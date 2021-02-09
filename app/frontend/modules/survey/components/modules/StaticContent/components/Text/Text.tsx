@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react'
+import { SafeHTML } from 'components/SafeHTML'
+
 import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
 import { Highlight } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
@@ -34,12 +36,11 @@ const Text: React.FC<Props> = ({
         selection={selection}
         updateHighlight={updateHighlight}
       />
-      <div
-        onMouseUp={handleMouseUp}
+      <SafeHTML
         className={className}
+        html={I18n.tQuestion(model, 'questionText')}
         ref={contentRef}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+        onMouseUp={handleMouseUp}
       />
     </>
   )

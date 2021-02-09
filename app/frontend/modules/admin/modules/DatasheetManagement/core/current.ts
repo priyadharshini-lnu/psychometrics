@@ -30,16 +30,16 @@ export type FetchSingleResponse = t.TypeOf<typeof FetchSingleResponseTR>
 export const fetchSingle = (
   parentType: ParentResourceType,
   parentId: number,
-  datasheetId: string,
+  datasheetRowId: string,
 ): ApiAction<FetchSingleResponse> => ({
   type: FETCH_SINGLE,
   request: {
     method: 'get',
-    mocked: true,
     debounce: 500,
     loader: true,
+    camelize: false,
     typedResponse: FetchSingleResponseTR,
-    url: `/administration/${parentType}s/${parentId}/datasheets/${datasheetId}`,
+    url: `/administration/${parentType}s/${parentId}/datasheet_rows/${datasheetRowId}`,
   },
 })
 

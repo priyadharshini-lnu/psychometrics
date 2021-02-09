@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
+import { SafeHTML } from 'components/SafeHTML'
 import styles from './MultipleChoice.scss'
 import Previews from './Previews'
 import connect from '../connect'
@@ -17,8 +19,12 @@ export class Preview extends Component {
   }
 
   renderContainer (html, classWithLtr) {
-    // eslint-disable-next-line react/no-danger
-    return (<div className={classWithLtr} dangerouslySetInnerHTML={{ __html: html }} />)
+    return (
+      <SafeHTML
+        className={classWithLtr}
+        html={html}
+      />
+    )
   }
 
   render () {

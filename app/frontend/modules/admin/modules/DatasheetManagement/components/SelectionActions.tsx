@@ -11,20 +11,26 @@ import {
 
 import {
   fetch,
-  batchDelete,
+  bulkDelete,
 } from 'modules/admin/modules/DatasheetManagement/core/list'
 import settings from 'modules/admin/settings'
 import {
   DrawerModes,
   ParentResourceType,
 } from 'modules/admin/modules/DatasheetManagement/interfaces'
+import { getTableConfigs } from 'modules/admin/core/filterAndPagination/selectors'
+import { RootState } from 'modules/reports/core/rootReducers'
 
 const { I18n } = window
 
-const connector = connect(null, {
-  fetch,
-  batchDelete,
-})
+const connector = connect(
+  (state: RootState) => ({
+    tableConfigs: getTableConfigs('datasheet', state),
+  }), {
+    fetch,
+    bulkDelete,
+  },
+)
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
@@ -44,8 +50,9 @@ const SelectionActionsComponent: FC<Props> = ({
   toggleDrawer,
   parentResourceType,
   parentResourceId,
-  batchDelete,
+  bulkDelete,
   fetch,
+  tableConfigs,
 }) => {
   if (selectedRowKeys.length === 0) {
     return null
@@ -55,9 +62,9 @@ const SelectionActionsComponent: FC<Props> = ({
   const badgeCount = selectedCount === 0 || selectedCount === 1 ? 0 : selectedCount
 
   const handleBatchDelete = async (): Promise<void> => {
-    await batchDelete(parentResourceType, parentResourceId, selectedRowKeys)
+    await bulkDelete(parentResourceType, parentResourceId, selectedRowKeys)
     setSelectedRowKeys([])
-    fetch(parentResourceType, parentResourceId)
+    fetch(parentResourceType, parentResourceId, tableConfigs)
     message.success(
       I18n.t('administration.datasheets.modals.delete_records.successMessage', {
         count: selectedCount,

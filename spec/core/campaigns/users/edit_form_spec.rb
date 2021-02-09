@@ -32,4 +32,10 @@ describe Campaigns::Users::EditForm do
     expect(form.valid?).to eq(false)
     expect(form.errors[:email]).to include('is invalid')
   end
+
+  it 'validates locale' do
+    form = described_class.new(locale: 'invalid')
+    form.validate
+    expect(form.errors.messages[:locale]).to include('Wrong locale')
+  end
 end

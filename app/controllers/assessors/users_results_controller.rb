@@ -2,6 +2,7 @@
 
 class Assessors::UsersResultsController < Administration::BaseController
   include UsersResults::ControllerConcern
+  skip_after_action :verify_authorized, only: [:upload_callback]
 
   def set_user_result
     @users_result = UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)

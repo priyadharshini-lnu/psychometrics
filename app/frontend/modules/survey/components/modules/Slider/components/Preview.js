@@ -1,6 +1,8 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './Slider.scss'
 import Previews from './Previews'
 import connect from '../connect'
@@ -21,9 +23,9 @@ export class Preview extends Component {
     const { model, I18n } = this.props
     return (
       <div>
-        <div
+        <SafeHTML
           className={styles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+          html={I18n.tQuestion(model, 'questionText')}
         />
         {this.renderSliderTypes()}
       </div>

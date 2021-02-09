@@ -1,5 +1,5 @@
-Active,First Name,Last Name,Email Address,Password,Created Date
-Yes,Fedor,Tar,fedor@gmail.com,,11 Jul 2020 / 16:39
-Yes,Vlad,Ata,vlad@gmail.com,,11 Jul 2020 / 17:25
-Yes,Rohan,R,rohan@gmail.com,,22 Jul 2020 / 18:40
-Yes,Shuja,S,shuja@gmail.com,,22 Jul 2020 / 19:03
+Active,First Name,Last Name,Email Address,Locale,Password,Created Date
+Yes,Fedor,Tar,fedor@gmail.com,de,,11 Jul 2020 / 16:39
+Yes,Vlad,Ata,vlad@gmail.com,de,,11 Jul 2020 / 17:25
+Yes,Rohan,R,rohan@gmail.com,de,,22 Jul 2020 / 18:40
+Yes,Shuja,S,shuja@gmail.com,de,,22 Jul 2020 / 19:03

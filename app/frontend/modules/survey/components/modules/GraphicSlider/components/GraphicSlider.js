@@ -23,7 +23,7 @@ export class GraphicSlider extends Component {
 
   componentDidUpdate () {
     // We have ugly lib 'react-slider' and have problems when we dynamicly change height/width of the slider
-    this.sliderRef && this.sliderRef._resize()
+    this.sliderRef && this.sliderRef.resize()
   }
 
   changeText = (value) => {

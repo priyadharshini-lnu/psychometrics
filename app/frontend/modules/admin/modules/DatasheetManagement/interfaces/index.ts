@@ -1,4 +1,3 @@
-import { ReactText } from 'react'
 import { ColumnType } from 'modules/admin/modules/DatasheetManagement/core/list'
 
 export enum ParentResourceType {
@@ -17,6 +16,6 @@ export type ToggleDrawer = (mode: DrawerModes, id?: string) => void
 
 export type DrawerDataRecord = {
   name: string,
-  value: ReactText,
+  value: string | number | null,
   type: ColumnType
 }

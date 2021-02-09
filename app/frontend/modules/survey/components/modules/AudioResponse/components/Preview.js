@@ -1,8 +1,8 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import AudioRecorder from 'components/AudioRecorder'
+import { SafeHTML } from 'components/SafeHTML'
 import connect from './connect'
 
 export class Preview extends Component {
@@ -47,9 +47,9 @@ export class Preview extends Component {
     I18n.tQuestion(model, 'questionText')
     return (
       <div>
-        <div
-          className={textEntryStyles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+        <SafeHTML
+          html={I18n.tQuestion(model, 'questionText')}
+          classNames={textEntryStyles.questionTextPreview}
         />
         {this.renderAudioResponseBlock()}
       </div>

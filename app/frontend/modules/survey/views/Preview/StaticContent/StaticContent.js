@@ -1,15 +1,17 @@
-/* eslint-disable react/no-danger */
 import React, { useRef, useState } from 'react'
 import cs from 'classnames'
 
 import {
   FIXED_TOP, LEFT, RIGHT, NORMAL_TOP,
 } from 'views/Block/components/StaticContent/settings'
-import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
+
 import { useAudioPlayer } from 'modules/survey/hooks/useAudioPlayer'
 import { useCopyProtection } from 'utils/hooks'
-import HighlightList from './HighlightList'
 
+import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
+import { SafeHTML } from 'components/SafeHTML'
+
+import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
 import styles from './StaticContent.scss'
 
 const StaticContent = ({
@@ -61,11 +63,11 @@ const StaticContent = ({
           staticContent={staticContent}
         />
         )}
-        <div
-          onMouseUp={handleMouseUp}
-          ref={contentRef}
+        <SafeHTML
           className={`${styles.content} highlight-container`}
-          dangerouslySetInnerHTML={{ __html: innerHTML }}
+          html={innerHTML}
+          ref={contentRef}
+          onMouseUp={handleMouseUp}
         />
       </div>
     </div>

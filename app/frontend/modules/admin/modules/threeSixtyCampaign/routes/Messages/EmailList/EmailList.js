@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
@@ -9,6 +8,7 @@ import _ from 'lodash'
 import { CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
 import routeUtils from 'utils/route'
 import cs from 'classnames'
+import { SafeHTML } from 'components/SafeHTML'
 import ErrorAlertBox from 'components/ErrorAlertBox'
 import TitleBar from './TitleBar'
 import settings from '../../../settings'
@@ -22,6 +22,7 @@ const { Option } = Select
 
 export default function Emails ({
   availableLocales,
+  emailTemplates,
   emailTemplates: { list, listWithLocales },
   fetch,
   update,
@@ -117,7 +118,7 @@ export default function Emails ({
                 <Option value={null}>
                   {I18n.t('empty')}
                 </Option>
-                {availableLocales.map(locale => (
+                {emailTemplates.availableLocales.map(locale => (
                   <Option key={locale} value={locale}>
                     {I18n.t(`languages.${locale}`)}
                   </Option>
@@ -151,11 +152,10 @@ export default function Emails ({
             />
             {rightLocale && (
             <div className={styles.comparisonBody}>
-              <div className="m16" dangerouslySetInnerHTML={{ __html: selectedRightLocale.content }} />
+              <SafeHTML html={selectedRightLocale.content} className="m16" />
             </div>
             )}
           </div>
-
         </div>
 
         <FooterBar emailTemplate={selectedTemplate} />

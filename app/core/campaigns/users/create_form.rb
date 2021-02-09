@@ -9,10 +9,12 @@ module Campaigns
       attribute :last_name, String
       attribute :email, String
       attribute :operation, String, default: 'add_and_allow_new_response'
+      attribute :locale, String
 
       validates :first_name, :last_name, :email, presence: true
       validates :email, format: { with: Devise.email_regexp }
       validates :operation, inclusion: { in: %w[skip_existing add_with_existing_response add_and_allow_new_response] }
+      validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
       validate :user_exists_in_project, if: -> { operation == 'skip_existing' }
       validate :user_exists_in_campaign
 

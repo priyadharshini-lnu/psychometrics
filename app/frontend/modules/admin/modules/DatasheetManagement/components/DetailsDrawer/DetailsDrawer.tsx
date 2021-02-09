@@ -1,5 +1,5 @@
 import React, {
-  FC, useEffect, ReactText,
+  FC, useEffect,
 } from 'react'
 import {
   Drawer,
@@ -71,7 +71,7 @@ const DetailsDrawerComponent: FC<Props> = ({
   ): DrawerDataRecord[] => {
     if (dataRecord) {
       const drawerDataRecord = dataRecord.columns.map((column) => {
-        const value: ReactText = dataRecord.record[column.id]
+        const value = dataRecord.record[column.id]
         return { value, type: column.type, name: column.id }
       })
 

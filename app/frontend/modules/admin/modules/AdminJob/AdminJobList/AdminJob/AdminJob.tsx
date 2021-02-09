@@ -8,8 +8,12 @@ import {
   DownOutlined,
   UpOutlined,
 } from '@ant-design/icons'
-import styles from './styles.scss'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import { AdminJob as AdminJobI } from '../../interfaces'
+
+import styles from './styles.scss'
 
 const { I18n } = window
 
@@ -80,10 +84,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
           message={I18n.t('admin_jobs.results')}
           className="mt4"
           type="info"
-          description={
-            // eslint-disable-next-line react/no-danger
-            <div dangerouslySetInnerHTML={{ __html: job.content }} />
-          }
+          description={<SafeHTML html={job.content} />}
         />
       )}
       {expanded && !!job.errorMessages.length && (

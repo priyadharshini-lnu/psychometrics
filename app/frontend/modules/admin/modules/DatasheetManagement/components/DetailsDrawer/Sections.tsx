@@ -1,16 +1,16 @@
 import React, { FC } from 'react'
 import {
-  Button, Col, Descriptions, Row, Skeleton, Typography,
+  Button, Col, Descriptions, Row, Skeleton, Typography, Empty,
 } from 'antd'
-
 import ReactMarkdown from 'react-markdown'
+
 import {
   DrawerDataRecord,
   DrawerModes,
   ToggleDrawer,
 } from 'modules/admin/modules/DatasheetManagement/interfaces'
 
-import { InnerHTML } from 'components/InnerHTML'
+import { SafeHTML } from 'components/SafeHTML'
 
 import { toReadableString } from 'modules/admin/modules/DatasheetManagement/utils'
 
@@ -54,12 +54,12 @@ interface DisplayRecordValue {
 }
 
 const DisplayRecordValue: FC<DisplayRecordValue> = ({ record }) => {
-  if (record.type === 'markdown') {
+  if (record.type === 'Markdown') {
     return <ReactMarkdown>{record.value}</ReactMarkdown>
   }
 
-  if (record.type === 'html') {
-    return <InnerHTML as="span" value={record.value} shouldSanitize />
+  if (record.type === 'HTML') {
+    return <SafeHTML as="span" html={`${record.value}`} />
   }
 
   return <>{record.value}</>
@@ -94,6 +94,7 @@ export const DetailsSection: FC<DetailsSectionProps> = ({
           ))}
         </Descriptions>
       )}
+      {dataRecord.length === 0 && <Empty />}
     </Skeleton>
   </Row>
 )

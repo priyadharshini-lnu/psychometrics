@@ -173,7 +173,8 @@ class AssignsController < ApplicationController
 
   def resource_params
     params[:resource].permit(
-      :current_element, :current_page, :status, :step, norm_data: {}, embedded_data: {}, results: {}
+      :current_element, :current_page, :status, :step, norm_data: {}, embedded_data: {}, results: {},
+      prev_pages: [:element, :page, questionIds: []]
     )
   end
 

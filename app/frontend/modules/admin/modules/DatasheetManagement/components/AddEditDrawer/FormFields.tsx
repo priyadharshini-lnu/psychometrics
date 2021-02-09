@@ -30,11 +30,11 @@ export const InputField: FC<InputFieldProps> = ({
     return null
   }
 
-  if (type === 'string') {
+  if (type === 'String') {
     return <Input {...fieldItemProps} />
   }
 
-  if (type === 'text') {
+  if (type === 'Text') {
     return (
       <Input.TextArea
         autoSize={{ minRows: 6, maxRows: 6 }}
@@ -43,7 +43,7 @@ export const InputField: FC<InputFieldProps> = ({
     )
   }
 
-  if (type === 'numeric') {
+  if (type === 'Number') {
     return (
       <InputNumber
         className="w-100"
@@ -53,7 +53,7 @@ export const InputField: FC<InputFieldProps> = ({
     )
   }
 
-  if (type === 'markdown') {
+  if (type === 'Markdown') {
     return (
       <MarkdownEditor
         value={fieldItemProps.value as string}
@@ -62,7 +62,7 @@ export const InputField: FC<InputFieldProps> = ({
     )
   }
 
-  if (type === 'html') {
+  if (type === 'HTML') {
     return (
       <HTMLEditor
         content={fieldItemProps.value as string}
@@ -96,7 +96,7 @@ export const EmailField: FC<EmailFieldProps> = ({
           },
         ]}
         label="Email"
-        name="email"
+        name="Email"
       >
         <Input type="email" {...restProps} />
       </Form.Item>

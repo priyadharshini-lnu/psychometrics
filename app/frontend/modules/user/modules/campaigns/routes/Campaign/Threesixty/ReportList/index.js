@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import {
@@ -6,6 +5,7 @@ import {
 } from 'antd'
 import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import ConfirmationModal from 'components/ConfirmationModal'
+import { SafeHTML } from 'components/SafeHTML'
 import userPresenter from 'presenters/user'
 import connect from './connect'
 import './styles.scss'
@@ -113,7 +113,7 @@ function ReportList ({
           onCancel={() => setShowHelp(false)}
           footer={null}
         >
-          <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: reportHelp.content }} />
+          <SafeHTML html={reportHelp.content} />
         </Modal>
         )}
       </List>

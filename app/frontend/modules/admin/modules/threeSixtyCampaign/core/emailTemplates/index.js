@@ -8,6 +8,7 @@ export const get = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates'
 const defaultState = {
   list: [],
   listWithLocales: [],
+  availableLocales: [],
 }
 
 export const FETCH = 'threeSixty/emailTemplates/FETCH'
@@ -22,6 +23,10 @@ const Locale = t.type({
   content: t.string, locale: t.string, subject: t.string, id: t.number,
 })
 const LocaleList = t.array(Locale)
+const FetchByLocalesTR = t.type({
+  list: LocaleList,
+  availableLocales: t.array(t.string),
+})
 
 
 export const update = (id, key, value, locale) => ({
@@ -46,7 +51,7 @@ export const fetchByLocales = (campaignId, id, locales) => ({
     method: 'get',
     url: `/administration/threesixty_campaigns/${campaignId}/email_templates/${id}`,
     body: { locales: locales.filter(l => l) },
-    typedResponse: LocaleList,
+    typedResponse: FetchByLocalesTR,
   },
 })
 
@@ -71,12 +76,12 @@ export const sendTestEmail = (campaignId, id, toEmail) => ({
 const HANDLERS = {
   [FETCH]: (state, { response }) => ({ ...state, list: response }),
   [FETCH_BY_LOCALES]: (state, { response }) => {
-    const listWithLocales = response.map(
+    const listWithLocales = response.list.map(
       resItem => state.listWithLocales.find(
         item => item.locale === resItem.locale && item.id === resItem.id,
       ) || resItem,
     )
-    return { ...state, listWithLocales }
+    return { ...state, listWithLocales, availableLocales: _.uniq([I18n.defaultLocale, ...response.availableLocales]) }
   },
   [UPDATE]: (state, {
     payload: {

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { setIn } from 'utils/immutable'
 
 export const LOADING = 'request/LOADING'
 export const LOADING_COMPLETE = 'request/LOADING_COMPLETE'
@@ -36,7 +37,7 @@ export default function reducer (state = defaultState, { type, payload }) {
     case LOADING:
       return { ...state, lastRequest: { loading: true, name: payload.name } }
     case LOADING_COMPLETE:
-      return defaultState
+      return setIn(state, ['lastRequest', 'loading'], false)
     case RESPONSE_DATA_MISMATCHED:
       return { ...state, responseDataMismatchRequest: payload }
     case CLEAR_RESPONSE_DATA_MISMATCHED:

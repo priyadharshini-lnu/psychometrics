@@ -1,7 +1,9 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ContentEditable from 'react-contenteditable'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './TextEditor.scss'
 
 export class TextEditor extends Component {
@@ -134,7 +136,7 @@ export class TextEditor extends Component {
   renderValue () {
     const { value } = this.props
     const { value: svalue, edit } = this.state
-    return { __html: edit ? svalue : value }
+    return edit ? svalue : value
   }
 
   renderText () {
@@ -143,8 +145,9 @@ export class TextEditor extends Component {
       <div
         className={`${styles.editable} ${css}`}
         onClick={this.edit}
-        dangerouslySetInnerHTML={this.renderValue()}
-      />
+      >
+        <SafeHTML html={this.renderValue()} />
+      </div>
     )
   }
 

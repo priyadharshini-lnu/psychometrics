@@ -11,6 +11,10 @@ module Threesixty
       object.delivered_at? ? :success : :undelivered
     end
 
+    def subject
+      object.subject.presence || object.template&.subject
+    end
+
     def recipient
       recipient_criteria = object.recipient_criteria
 

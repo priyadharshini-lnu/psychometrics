@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
@@ -8,6 +7,7 @@ import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import routeUtils from 'utils/route'
 import ErrorAlertBox from 'components/ErrorAlertBox'
+import { SafeHTML } from 'components/SafeHTML'
 import TitleBar from './TitleBar'
 import settings from '../../../settings'
 import styles from './styles.scss'
@@ -17,6 +17,7 @@ const { Option } = Select
 
 export default function InstructionList ({
   availableLocales,
+  instructionTemplates,
   instructionTemplates: { list, listWithLocales },
   fetch,
   fetchByLocales,
@@ -97,7 +98,7 @@ export default function InstructionList ({
                 <Option value={null}>
                   {I18n.t('empty')}
                 </Option>
-                {availableLocales.map(locale => (
+                {instructionTemplates.availableLocales.map(locale => (
                   <Option key={locale} value={locale}>
                     {I18n.t(`languages.${locale}`)}
                   </Option>
@@ -115,7 +116,7 @@ export default function InstructionList ({
             />
             {rightLocale && (
             <div className={styles.comparisonBody}>
-              <div className="m16" dangerouslySetInnerHTML={{ __html: selectedRightLocale.content }} />
+              <SafeHTML html={selectedRightLocale.content} className="m16" />
             </div>
             )}
           </div>

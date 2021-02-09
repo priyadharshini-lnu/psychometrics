@@ -2,13 +2,14 @@ import React from 'react'
 import { Tooltip } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 
+import { SafeHTML } from 'components/SafeHTML'
+
 const ScoringStrategyLabel = () => (
   <span>
     <span className="mr4">{I18n.t('administration.factors.form.scoring_strategy')}</span>
     <Tooltip
       title={(
-        // eslint-disable-next-line react/no-danger
-        <div dangerouslySetInnerHTML={{ __html: I18n.t('administration.factors.form.scoring_strategies_tip') }} />
+        <SafeHTML html={I18n.t('administration.factors.form.scoring_strategies_tip')} />
       )}
     >
       <QuestionCircleOutlined />

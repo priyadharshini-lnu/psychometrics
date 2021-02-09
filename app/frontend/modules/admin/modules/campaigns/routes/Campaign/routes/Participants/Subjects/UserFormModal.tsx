@@ -58,6 +58,13 @@ const UserFormModal: React.FC<Props> = ({
           <Input />
         </Form.Item>
 
+        <Form.Item
+          name="locale"
+          label="Locale"
+        >
+          <Input />
+        </Form.Item>
+
         {!isEdit
           && (
           <Form.Item
