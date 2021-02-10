@@ -220,7 +220,7 @@ class FactorsTable extends Component {
           <tr key={i}>
             {this.canShowRank() && (
               <td className={styles.rankOrder}>
-                <span className={tableStyle !== 'compact' ? cs(styles.star, 'fa', 'fa-star') : ''}>
+                <span className={tableStyle !== 'compact' ? cs(styles.star, 'icon-star') : ''}>
                   <span className={styles.text} style={{ fontFamily }}>{startRank + i}</span>
                 </span>
               </td>
