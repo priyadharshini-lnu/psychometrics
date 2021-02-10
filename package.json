@@ -13,7 +13,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "types": "tsc",
-    "postinstall": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi"
+    "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi"
   },
   "engines": {
     "node": ">=14.15.1 <15.0.0"

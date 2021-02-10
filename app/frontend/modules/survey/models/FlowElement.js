@@ -5,7 +5,7 @@ import FlowCondition from './FlowCondition'
 
 const FlowElement = function (attrs = {}, parentPath = null, index = 0) {
   this.type = attrs.type
-  this.parent = parent
+  this.parent = {} // ?
   this.props = attrs.props || {}
   this.path = parentPath ? parentPath.concat(index) : [index]
   if (this.props.conditions && this.props.conditions.length) {
