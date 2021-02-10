@@ -58,7 +58,9 @@ const HANDLERS = {
   },
   [REMOVE_ELEMENT]: (state, { element }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
+    const index = _.findIndex(getIn(state, path), el => (el.path
+      ? _.isEqual(el.path, element.path)
+      : _.isEqual({ ...el, path: element.path }, element)))
     if (index < 0) return state
     return updateIn(state, path, elements => elements.splice(index, 1) && elements)
   },
