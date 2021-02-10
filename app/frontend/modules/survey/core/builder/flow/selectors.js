@@ -1,12 +1,12 @@
 
-const loadChildren = elements => _.map(elements, element => ({
-  module: element,
-  children: loadChildren(element.elements),
+const loadChildren = (elements, roots) => _.map(elements, (element, i) => ({
+  module: { ...element, path: element.path || [...roots, i] },
+  children: loadChildren(element.elements, [roots, i]),
 }))
 
 export const getTree = ({ survey: { builder: { flow } } }) => {
   const { elements } = flow
-  const children = (flow === null) ? [] : loadChildren(elements)
+  const children = (flow === null) ? [] : loadChildren(elements, [])
   return {
     module: null,
     children,
