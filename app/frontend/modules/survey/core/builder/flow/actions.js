@@ -7,6 +7,7 @@ export const ADD_NEW_ELEMENT = 'survey/flow/ADD_NEW_ELEMENT'
 export const DUPLICATE_ELEMENT = 'survey/flow/DUPLICATE_ELEMENT'
 export const UPDATE_TREE = 'survey/flow/UPDATE_TREE'
 export const REMOVE_ELEMENT = 'survey/flow/REMOVE_ELEMENT'
+export const UPDATE_ELEMENT = 'survey/flow/UPDATE_ELEMENT'
 export const RESET = 'survey/flow/RESET'
 
 const loadElements = children => _.map(children, item => ({
@@ -31,6 +32,8 @@ export const addNew = (parent) => {
   const element = new FlowElement({}, parent.path, parent.elements.length)
   return ({ type: ADD_NEW_ELEMENT, element })
 }
+
+export const updateElement = element => ({ type: UPDATE_ELEMENT, element })
 
 export const updateTree = (tree) => {
   const flow = new Flow({ elements: loadElements(tree.children) })

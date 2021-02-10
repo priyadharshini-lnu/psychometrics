@@ -30,6 +30,8 @@ export class FlowElement extends Component {
   }
 
   update = () => {
+    const { model, updateElement } = this.props
+    updateElement(model)
     this.forceUpdate()
   }
 
@@ -44,7 +46,7 @@ export class FlowElement extends Component {
     const { model } = this.props
     model.type = type
     model.props = _.cloneDeep(Settings[type].defaults || {})
-    this.forceUpdate()
+    this.update()
   }
 
   renderElement = (element, i) => (
@@ -62,6 +64,7 @@ export class FlowElement extends Component {
             onRemove={this.remove}
             onAddBelow={this.addBelow}
             onDuplicate={this.duplicate}
+            onUpdate={this.update}
           />
         </div>
         <div className={styles.row}>
