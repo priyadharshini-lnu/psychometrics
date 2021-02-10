@@ -15,10 +15,10 @@ class Block extends Component {
   }
 
   changeBlock = (e) => {
-    const { model } = this.props
+    const { model, onUpdate } = this.props
     const val = e.currentTarget.value
     model.props.current = val
-    this.forceUpdate()
+    onUpdate(model)
   }
 
   toggleQuestions = () => {

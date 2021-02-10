@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { closeModal, getData } from 'modules/admin/core/ui/modals'
 import { getTree } from 'modules/survey/core/builder/flow/selectors'
 import {
-  addElementBelow, duplicateElement, addNew, updateTree, removeElement, reset,
+  addElementBelow, duplicateElement, addNew, updateTree, removeElement, reset, updateElement,
 } from 'modules/survey/core/builder/flow/actions'
 import {
   updateFlow,
@@ -27,5 +27,6 @@ export default connect(
     removeElement,
     reset,
     updateFlow,
+    updateElement,
   },
 )
