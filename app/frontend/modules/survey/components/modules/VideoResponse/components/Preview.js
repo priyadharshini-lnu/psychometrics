@@ -86,6 +86,7 @@ export class Preview extends Component {
         <SafeHTML
           className={textEntryStyles.questionTextPreview}
           html={I18n.tQuestion(model, 'questionText')}
+          config="adminRichText"
         />
         {this.renderVideoRecorder()}
       </div>

@@ -68,6 +68,7 @@ const StaticContent = ({
           html={innerHTML}
           ref={contentRef}
           onMouseUp={handleMouseUp}
+          config="adminRichText"
         />
       </div>
     </div>

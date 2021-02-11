@@ -23,6 +23,7 @@ export class Preview extends Component {
       <SafeHTML
         className={classWithLtr}
         html={html}
+        config="adminRichText"
       />
     )
   }

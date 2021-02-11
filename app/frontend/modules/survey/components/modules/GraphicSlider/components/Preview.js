@@ -37,6 +37,7 @@ export class Preview extends Component {
           <SafeHTML
             className={`${styles.questionText} ${styles.column}`}
             html={I18n.tQuestion(model, 'questionText')}
+            config="adminRichText"
           />
           <div className={`${styles.questionSlider} ${styles.column}`}>
             <div className={`${styles.row} ${styles[props.sliderPosition]}`}>
