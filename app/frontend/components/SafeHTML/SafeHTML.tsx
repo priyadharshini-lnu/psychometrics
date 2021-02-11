@@ -16,7 +16,7 @@ interface Props extends HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
 const SafeHTML = forwardRef<Ref, Props>(
   (
     {
-      html, as = 'div', sanitizeConfig = {}, className, key, ...restProps
+      html, as = 'div', sanitizeConfig = { ADD_TAGS: ['iframe'] }, className, key, ...restProps
     },
     ref,
   ) => {
