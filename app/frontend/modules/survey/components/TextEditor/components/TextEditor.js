@@ -146,7 +146,7 @@ export class TextEditor extends Component {
         className={`${styles.editable} ${css}`}
         onClick={this.edit}
       >
-        <SafeHTML html={this.renderValue()} />
+        <SafeHTML html={this.renderValue()} config="adminRichText" />
       </div>
     )
   }

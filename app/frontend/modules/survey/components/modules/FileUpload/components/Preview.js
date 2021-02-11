@@ -48,6 +48,7 @@ export class Preview extends Component {
         <SafeHTML
           html={I18n.tQuestion(model, 'questionText')}
           className={textEntryStyles.questionTextPreview}
+          config="adminRichText"
         />
         {this.renderFileUploadBlock()}
       </div>

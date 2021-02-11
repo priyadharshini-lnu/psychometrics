@@ -8,19 +8,29 @@ type Ref = RefAttributes<HTMLDivElement | HTMLSpanElement>
 interface Props extends HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   html: string | Node
   as?: 'div' | 'span'
-  sanitizeConfig?: Config
+  config?: keyof SanitizeConfig
   className?: string
   key?: Key
+}
+
+interface SanitizeConfig {
+  default: Config
+  adminRichText: Config
+}
+
+const sanitizeConfig: SanitizeConfig = {
+  default: {},
+  adminRichText: { ADD_TAGS: ['iframe'] },
 }
 
 const SafeHTML = forwardRef<Ref, Props>(
   (
     {
-      html, as = 'div', sanitizeConfig = { ADD_TAGS: ['iframe'] }, className, key, ...restProps
+      html, as = 'div', config = 'default', className, key, ...restProps
     },
     ref,
   ) => {
-    const inputHTML = useMemo(() => dompurify.sanitize(html, sanitizeConfig), [html])
+    const inputHTML = useMemo(() => dompurify.sanitize(html, sanitizeConfig[config]), [html])
 
     return createElement(as, {
       dangerouslySetInnerHTML: {
