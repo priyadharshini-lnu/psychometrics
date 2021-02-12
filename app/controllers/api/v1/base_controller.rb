@@ -4,6 +4,7 @@ module Api
   module V1
     class BaseController < ActionController::Base
       before_action :auth
+      skip_before_action :verify_authenticity_token
 
       rescue_from Errors::ApiError, with: :render_error
 

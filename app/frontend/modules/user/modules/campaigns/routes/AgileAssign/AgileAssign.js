@@ -28,7 +28,7 @@ export default function AgileAssign ({
         },
       },
       settings: {
-        returnURL: '/',
+        returnURL: '/assessment_completed',
         assetsBaseURL: agileAssetsUrl,
       },
     }
