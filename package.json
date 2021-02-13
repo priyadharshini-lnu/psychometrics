@@ -113,7 +113,7 @@
     "microphone-stream": "^5.0.1",
     "mime-types": "^2.1.28",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.33",
     "node-sass": "^5.0.0",
     "normalize.css": "^4.1.1",
     "normalizr": "^3.4.1",
