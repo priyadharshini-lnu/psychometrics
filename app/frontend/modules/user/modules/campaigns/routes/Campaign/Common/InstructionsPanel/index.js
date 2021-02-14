@@ -32,7 +32,7 @@ export default function InstructionsPanel ({
           >
             <SafeHTML
               html={instructions}
-              sanitizeConfig={{ ADD_TAGS: ['iframe'] }}
+              config="adminRichText"
             />
           </Panel>
         )}

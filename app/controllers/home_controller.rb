@@ -14,7 +14,8 @@ class HomeController < ApplicationController
       redirect_to_return_url('assessment_invalid') && return unless assign
       redirect_to_return_url('assessment_completed') && return if assign.completed?
 
-      redirect_to(pass_assign_path(assign)) && return
+      redirect_url = assign.assessment.agile? ? agile_assign_path(assign) : pass_assign_path(assign)
+      redirect_to(redirect_url) && return
     end
 
     redirect_to(root_path)

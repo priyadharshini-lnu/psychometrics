@@ -25,6 +25,7 @@ export class Preview extends Component {
         <SafeHTML
           className={styles.questionTextPreview}
           html={I18n.tQuestion(model, 'questionText')}
+          config="adminRichText"
         />
         {this.renderMatrixTypes()}
       </div>

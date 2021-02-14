@@ -16,8 +16,8 @@ module Administration
                                              evaluator_id: params[:id])
         @participant = threesixty_campaign.participants.find_by!(subject_id: resource.user_id,
                                             evaluator_id: params[:id])
+        set_locale_for_users_result(@users_result)
         @users_result.step = 0
-        set_locale_for_assessment(@users_result.assessment_id)
         piped_text_context = get_piped_text_context
         @results = UsersResultSerializer.new(@users_result, participant: @participant, campaign: threesixty_campaign,
                                              current_user: current_user, locale: @selected_locale,

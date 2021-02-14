@@ -20,7 +20,7 @@ module Threesixty
                                                         evaluator_id: @participant.evaluator_id) do |result|
             init_result(result)
           end
-
+          set_locale_for_users_result(@users_result)
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
 
@@ -32,8 +32,6 @@ module Threesixty
             @users_result.current_element = nil
             @users_result.current_page = 0
           end
-
-          set_locale_for_assessment(@users_result.assessment_id)
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
                  current_user: current_user, locale: @selected_locale,

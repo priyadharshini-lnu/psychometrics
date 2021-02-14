@@ -41,6 +41,7 @@ const Text: React.FC<Props> = ({
         html={I18n.tQuestion(model, 'questionText')}
         ref={contentRef}
         onMouseUp={handleMouseUp}
+        config="adminRichText"
       />
     </>
   )

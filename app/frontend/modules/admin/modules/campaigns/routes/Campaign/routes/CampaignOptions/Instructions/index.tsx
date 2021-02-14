@@ -121,6 +121,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
           <div className={styles.comparisonBody}>
             <SafeHTML
               html={selectedRightLocale ? selectedRightLocale.instructions : ''}
+              config="adminRichText"
               className="m16"
             />
           </div>
