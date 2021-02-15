@@ -69,10 +69,7 @@ class Campaign < ApplicationRecord
   end
 
   def datasheet_data(email)
-    project_datasheet_data = project.datasheet&.rows&.find_by(email: email)&.data || {}
-    campaign_datasheet_data = datasheet&.rows&.find_by(email: email)&.data || {}
-
-    project_datasheet_data.merge(campaign_datasheet_data)
+    ::Campaigns::GetDatasheetData.call!(self, email)[email]
   end
 
   def datasheet_column_names
