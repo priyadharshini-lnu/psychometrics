@@ -20,6 +20,7 @@ import TimeZoneSelect from 'components/TimeZoneSelect'
 import InputDuration from 'components/InputDuration'
 import Section from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
+import { getFeatures } from 'core/config'
 import Instructions from './Instructions'
 
 const { I18n } = window
@@ -27,6 +28,7 @@ const { I18n } = window
 const connector = connect(
   (state: RootState) => ({
     options: getCampaignOptions(state),
+    features: getFeatures(state),
   }),
   {
     fetch,
@@ -46,6 +48,7 @@ const CampaignOptions: React.FC<Props> = ({
   options,
   fetch,
   update,
+  features,
 }) => {
   const { projectId, campaignId } = useParams<{ projectId: string, campaignId: string }>()
 
@@ -133,51 +136,56 @@ const CampaignOptions: React.FC<Props> = ({
                 </Col>
               </Row>
             </div>
+            {/* Features Check */}
+            {features.proctoring && (
+              <>
+                <Option
+                  label={I18n.t('administration.campaigns.options.proctoring.enable')}
+                  {...parametersForField('proctoringEnabled')}
+                />
 
-            <Option
-              label={I18n.t('administration.campaigns.options.proctoring.enable')}
-              {...parametersForField('proctoringEnabled')}
-            />
-
-            <div className="mbl">
-              <Row>
-                <Col span={2}>
-                  <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
-                </Col>
-                <Col span={22}>
-                  {Object.keys(options.rules || {}).map(
-                    key => (
-                      <Option
-                        key={key}
-                        label={I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)}
-                        {...parametersForRules(key)}
-                      />
-                    ),
-                  )}
-                </Col>
-              </Row>
-            </div>
-
-            <div className="mbl">
-              <Row>
-                <Col span={24}>
+                <div className="mbl">
                   <Row>
                     <Col span={2}>
-                      <label>
-                        {I18n.t('administration.campaigns.options.proctoring.identification')}
-                      </label>
+                      <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
                     </Col>
                     <Col span={22}>
-                      <Radio.Group defaultValue="passport" onChange={saveIdentificationType}>
-                        {Object.entries(identifications).map(
-                          ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                        )}
-                      </Radio.Group>
+                      {Object.keys(options.rules || {}).map(
+                        key => (
+                          <Option
+                            key={key}
+                            label={I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)}
+                            {...parametersForRules(key)}
+                          />
+                        ),
+                      )}
                     </Col>
                   </Row>
-                </Col>
-              </Row>
-            </div>
+                </div>
+
+                <div className="mbl">
+                  <Row>
+                    <Col span={24}>
+                      <Row>
+                        <Col span={2}>
+                          <label>
+                            {I18n.t('administration.campaigns.options.proctoring.identification')}
+                          </label>
+                        </Col>
+                        <Col span={22}>
+                          <Radio.Group defaultValue="passport" onChange={saveIdentificationType}>
+                            {Object.entries(identifications).map(
+                              ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                            )}
+                          </Radio.Group>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </div>
+              </>
+            )}
+            {/* End Features Check */}
           </>
         )}
 
