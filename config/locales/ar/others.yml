@@ -101,8 +101,6 @@ ar:
     wait: انتظر
   campaign:
     begin: ابدأ مهامك
-    campaign_closed_assessment_take_message: لا يمكنك أخذ التقييم فقد تم إغلاق هذه الحملة
-    closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة
     complete_all: أكمل جميع التقييمات ذات الصلة
     complete_prev: " أكمل جميع التقييمات السابقة"
     completed: تم إكماله

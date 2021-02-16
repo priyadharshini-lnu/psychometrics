@@ -20,7 +20,6 @@ module UsersResults
         if threesixty_campaign
           send_necessary_emails
         else
-          set_completion_status
           generate_report
         end
       end
@@ -56,14 +55,6 @@ module UsersResults
       end
 
       users_result.save!
-    end
-
-    def set_completion_status
-      camapaign = users_result.user_assessment.campaign
-      return if camapaign.fixed_time?
-
-      campaign_user = current_user.campaign_users.where(campaign_id: camapaign.id).first
-      ::CampaignUsers::MarkCompleted.call!(campaign_user) if campaign_user&.user_assessments&.all?(&:completed?)
     end
 
     def generate_report

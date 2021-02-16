@@ -2,7 +2,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   fetch,
   remove,
-  toggleStatus,
+  toggleActive,
   resetPassword,
   get as getUsers,
 } from 'modules/admin/modules/campaigns/core/users'
@@ -18,7 +18,7 @@ const connecter = connect(
     remove,
     resetPassword,
     openModal,
-    toggleStatus,
+    toggleActive,
   },
 )
 export default connecter

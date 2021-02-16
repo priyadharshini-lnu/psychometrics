@@ -15,7 +15,7 @@ module CampaignUsers
     private
 
     def attributes
-      { completed_at: Time.now, completion_status: :completed, completed_via: :timed_out }
+      { completed_at: Time.now, status: :timed_out }
     end
   end
 end

@@ -4,35 +4,18 @@ module EndUser
   class CampaignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :name, :type, :status, :start_date, :end_date,
-               :groups, :ungrouped_assessments_ids, :campaign_user
+               :groups, :ungrouped_assessments_ids, :campaign_user, :status
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
     has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
 
-    def status
-      return object.status unless object.fixed_time?
-      return object.status unless object.active?
-      return object.status unless campaign_user_object.expiry_date?
-
-      return 'closed' if campaign_user_object.expiry_date < Time.now
-
-      object.status
-    end
-
     def campaign_user
       attributes = %i[ id campaign_id user_id active started_at completed_at expiry_date
-                       completed_via completion_status additional_time updated_at ]
+                       completion_status status additional_time updated_at ]
 
-      values = campaign_user_object.slice(*attributes)
-      return values unless object.fixed_time?
-      return values if user_assessments.none?
-      return values if campaign_user_object.not_started_campaign?
-
-      values['completion_status'] = determine_completion_status if campaign_user_object.in_progress_campaign?
-
-      values
+      campaign_user_object.slice(*attributes)
     end
 
     def groups
@@ -65,10 +48,6 @@ module EndUser
 
     def current_user
       @current_user ||= instance_options[:current_user]
-    end
-
-    def determine_completion_status
-      campaign_user_object.user_assessments.all?(&:completed?) ? :completed : :in_progress
     end
   end
 end

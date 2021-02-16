@@ -3,26 +3,15 @@
 module Administration
   class UserDetailSerializer < ActiveModel::Serializer
     attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns, :started_at, :completed_at,
-               :completion_status, :additional_time
+               :completion_status, :status, :additional_time
 
     has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
     has_many :user_reports, serializer: Administration::UserReportSerializer
 
-    attribute :active do
-      campaign_user&.active
-    end
+    delegate :active, :completion_status, :additional_time, to: :campaign_user
 
-    def completion_status
-      return campaign_user&.completion_status unless campaign.fixed_time?
-      return campaign_user&.completion_status unless campaign_user.started_at
-
-      start_time = campaign_user&.started_at
-      if start_time
-        expected_end_time = start_time + campaign.fixed_time_duration.minutes
-        return 'interrupted' if expected_end_time < Time.now && campaign.active?
-      end
-
-      campaign_user&.completion_status
+    def status
+      campaign_user.real_status
     end
 
     def full_name
@@ -49,12 +38,6 @@ module Administration
       return nil unless campaign_user&.completed_at
 
       I18n.l(campaign_user&.completed_at, format: :short)
-    end
-
-    def additional_time
-      return nil unless campaign_user&.additional_time
-
-      "#{campaign_user.additional_time} mins"
     end
 
     def campaigns

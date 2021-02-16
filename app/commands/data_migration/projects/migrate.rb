@@ -299,7 +299,7 @@ module DataMigration
           completion_status = :completed if all_assessments_completed
           completion_status = :not_started if no_assessments_started
 
-          campaign_user.update(started_at: started_at, completion_status: completion_status)
+          campaign_user.update(started_at: started_at, completion_status: completion_status, status: completion_status)
         end
       end
     end

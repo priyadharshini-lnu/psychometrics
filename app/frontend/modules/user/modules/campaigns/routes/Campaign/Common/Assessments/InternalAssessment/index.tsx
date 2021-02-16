@@ -35,7 +35,6 @@ interface Props {
   size: number
   withSidebar: boolean
   disabled: boolean
-  disabledReason: string
   timer: {
     fixedTime: boolean
     campaignDuration: number
@@ -46,7 +45,7 @@ interface Props {
 }
 
 const InternalAssessment: React.FC<Props> = ({
-  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer, withSidebar,
+  userAssessment, acceptPolicy, history, size, disabled, timer, withSidebar,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLang, setShowLang] = useState(false)
@@ -150,7 +149,6 @@ const InternalAssessment: React.FC<Props> = ({
                 loading={loading}
                 loadAssessmentOrCheckingWizard={loadAssessmentOrCheckingWizard}
                 disabled={disabled}
-                disabledReason={disabledReason}
                 timer={timer}
               />
             </div>

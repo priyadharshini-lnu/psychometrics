@@ -30,6 +30,8 @@ class UsersResult < ApplicationRecord
 
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
 
+  after_commit :set_campaign_user_completion_status, if: proc { status_previously_changed? }, on: %i[update]
+
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
@@ -108,5 +110,10 @@ class UsersResult < ApplicationRecord
 
   def self.statuses_count
     UsersResult.statuses.keys.each_with_object({}) { |status, acc| acc[status.to_sym] = 0 }
+  end
+
+  def set_campaign_user_completion_status
+    campaign_user = CampaignUser.find_by(user_id: subject_id, campaign_id: user_assessment&.campaign_id)
+    CampaignUsers::SetCompletionStatus.call!(campaign_user) if campaign_user
   end
 end

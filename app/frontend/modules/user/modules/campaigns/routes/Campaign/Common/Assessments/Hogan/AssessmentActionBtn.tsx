@@ -16,7 +16,6 @@ interface Props {
   setShowConfirm(state: boolean): void
   loading: boolean
   disabled: boolean
-  disabledReason: string
   loginHogan(): void
 }
 
@@ -29,7 +28,6 @@ const AssessmentActionBtn: React.FC<Props> = ({
   loading,
   loginHogan,
   disabled,
-  disabledReason,
 }) => {
   const showPolicyConfirm = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -68,7 +66,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
     <ConditionalWrap
       condition={disabled}
       wrap={children => (
-        <Tooltip placement="topRight" title={disabledReason}>
+        <Tooltip placement="topRight" title={I18n.t('campaign.complete_prev')}>
           <span>
             {children}
           </span>

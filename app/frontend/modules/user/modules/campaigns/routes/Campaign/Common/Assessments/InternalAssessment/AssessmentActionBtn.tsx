@@ -19,7 +19,6 @@ interface Props {
   loading: boolean
   loadAssessmentOrCheckingWizard(): void
   disabled: boolean
-  disabledReason: string
   timer: {
     fixedTime: boolean
     campaignDuration: number
@@ -38,7 +37,6 @@ const AssessmentActionBtn: React.FC<Props> = ({
   loading,
   loadAssessmentOrCheckingWizard,
   disabled,
-  disabledReason,
   timer: {
     fixedTime, expiryDate,
   },
@@ -91,7 +89,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
     <ConditionalWrap
       condition={disabled}
       wrap={children => (
-        <Tooltip placement="topRight" title={disabledReason}>
+        <Tooltip placement="topRight" title={I18n.t('campaign.complete_prev')}>
           <span>
             {children}
           </span>

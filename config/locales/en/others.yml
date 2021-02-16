@@ -778,7 +778,6 @@ en:
       message: Please use latest version of the browsers
   campaign:
     begin: Begin your tasks
-    campaign_closed_assessment_take_message: Can't take assessment as this campaign is closed.
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
     complete_prev: Complete all prev assessments
@@ -908,6 +907,13 @@ en:
         in_progress: In Progress
         interrupted: Interrupted
         not_started: Not Started
+        timed_out: Timed Out
+      statuses:
+        completed: Completed
+        in_progress: In Progress
+        interrupted: Interrupted
+        not_started: Not Started
+        timed_out: Timed Out
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?
@@ -1001,6 +1007,7 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      minutes: Minutes
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
@@ -1292,7 +1299,6 @@ en:
         completion_statuses:
           completed: Completed
           in_progress: In Progress
-          interrupted: Interrupted
           not_started: Not Started
     change_password: Change password
     delete: Delete

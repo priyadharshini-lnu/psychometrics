@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Modal, Button, Form, InputNumber,
+  Modal, Button, Form, InputNumber, message,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { PropsFromRedux } from './connect'
@@ -24,7 +24,12 @@ const UpdateCampaignTimeModal: React.FC<Props> = ({
   const [_fields, setFields] = useState({})
 
   const handleUpdate = (params) => {
-    extendTime(campaignId, userId, params.additionalTime)
+    extendTime(campaignId, userId, params.additionalTime).then(() => {
+      message.success(
+        I18n.t('administration.campaigns.extend_time_success_message', { minutes: params.additionalTime }),
+      )
+    })
+
     close()
   }
   return (
