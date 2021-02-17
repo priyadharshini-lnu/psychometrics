@@ -128,6 +128,7 @@ gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct'
 gem 'fog-aws', '~> 2.0.1'
+gem 'foundation_emails'
 gem 'mini_magick', '~> 4.10.1'
 gem 'remotipart', '~> 1.3.1'
 
