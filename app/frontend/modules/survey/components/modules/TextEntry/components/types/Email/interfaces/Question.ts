@@ -14,7 +14,7 @@ interface QuestionProps {
   subject: string
   contacts: { [key in ContactType]: string[] }
   maxLength?: number
-  contactList: ContactType[]
+  contactList: string[]
 }
 
 interface Result {
