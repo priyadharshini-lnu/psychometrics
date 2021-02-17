@@ -58,7 +58,7 @@ const Preview: React.FC<Props> = ({
           <Button
             type="primary"
             onClick={handleSendClick}
-            icon={<SendOutlined />}
+            icon={<SendOutlined className="rtl-flip" />}
           >
             {I18n().t('threesixty.question.email_type.send')}
           </Button>
