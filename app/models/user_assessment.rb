@@ -12,7 +12,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :users_result, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
 
-  delegate :selected_locale, :status, to: :users_result
+  delegate :selected_locale, :status, to: :users_result, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
