@@ -103,9 +103,14 @@ en:
               invalid: Reply to email is invalid
             scheduled_date:
               blank: Scheduled date field can't be blank
+            subject:
+              blank: Subject can't be blank
+            content:
+              blank: Content can't be blank
         email_template:
           attributes:
             content:
+              blank: Content can't be blank
               invalid_consolidated_pipetext: These pipetext are invalid for consolidate messages %{invalid_pipetexts}
               invalid_unconsolidated_pipetext: These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}
             from:
@@ -113,6 +118,8 @@ en:
             reply_to_email:
               blank: Reply to email field can't be blank
               invalid: Reply to email is invalid
+            subject:
+              blank: Subject can't be blank
         email_template_test_mail:
           attributes:
             to_email:
