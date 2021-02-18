@@ -21,6 +21,10 @@ module Administration
         @record.common? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
 
+      def export_raw_factor_scores?
+        export_scoring_results?
+      end
+
       def export_external_results?
         !@record.common? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
