@@ -16,3 +16,4 @@ Rails.application.config.assets.precompile += %w[devise.js threesixty.js]
 Rails.application.config.assets.precompile << 'filterrific/filterrific-spinner.gif'
 Rails.application.config.assets.precompile << 'administration/*.mp3'
 Rails.application.config.assets.precompile += %w[anonym/index.js anonym.scss]
+Rails.application.config.assets.precompile += %w[foundation_emails.css]
