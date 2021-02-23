@@ -3491,7 +3491,8 @@ CREATE TABLE public.users_results (
     reset_count integer DEFAULT 0,
     started_at timestamp without time zone,
     completion_reason integer,
-    prev_pages json DEFAULT '[]'::json
+    prev_pages json DEFAULT '[]'::json,
+    progress integer
 );
 
 
@@ -7910,6 +7911,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210124114207'),
 ('20210127111351'),
 ('20210201174626'),
+('20210209133316'),
 ('20210215142202');
-
-
