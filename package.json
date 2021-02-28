@@ -109,7 +109,7 @@
     "js-yaml": "^3.14.1",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "microphone-stream": "^5.3.1",
     "mime-types": "^2.1.28",
     "moment": "^2.24.0",
