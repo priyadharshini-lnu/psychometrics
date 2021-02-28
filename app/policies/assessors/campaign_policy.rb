@@ -3,7 +3,7 @@
 module Assessors
   class CampaignPolicy < BasePolicy
     def index?
-      @user.is?(:assessor)
+      @user&.is?(:assessor)
     end
 
     class Scope
