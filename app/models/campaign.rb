@@ -64,6 +64,12 @@ class Campaign < ApplicationRecord
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
 
+  def real_status
+    return 'closed' if end_date && end_date < Time.now
+
+    status
+  end
+
   def datasheet
     campaign_datasheet || project_datasheet
   end

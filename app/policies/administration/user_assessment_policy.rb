@@ -10,7 +10,7 @@ module Administration
 
     def update_additional_time?
       (@user.is?(:superadmin) || @user.has_grant?(:assessments, :view)) &&
-        record&.users_result&.completed? &&
+        %w[completed timed_out].include?(record&.real_status) &&
         record&.users_result&.expired?
     end
 

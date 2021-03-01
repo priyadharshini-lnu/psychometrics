@@ -131,7 +131,7 @@ class AssignsController < ApplicationController
   private
 
   def set_assign
-    @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
+    @assign = policy_scope(Assign).where.not(status: %i[completed timed_out]).find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

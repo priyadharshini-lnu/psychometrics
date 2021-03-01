@@ -32,16 +32,13 @@ export default function Campaign ({
   loginHogan, acceptPolicy, fetchCampaign, beginCampaign, continueCampaign, examus,
 }) {
   const {
+    isTimedCampaign,
     campaignUser: {
       expiryDate,
-      additionalTime,
-      status,
     },
     campaignOptions: {
       instructionsEnabled,
       instructions,
-      fixedTime,
-      fixedTimeDuration: duration,
       proctoringEnabled: isProctored,
     },
   } = campaign
@@ -56,13 +53,9 @@ export default function Campaign ({
   const isMD = useMedia('max-md')
   const hasAssessments = !!campaign.userAssessments.length
   const hasStartedCampaign = !!campaignUser.startedAt
-  const campaignTimedOut = () => {
-    if (!fixedTime || expiryDate === null) { return false }
-
-    return new Date(expiryDate) < new Date()
-  }
-  const isCampaignInterrupted = status === 'interrupted'
-  const canNotStartAssessment = !hasStartedCampaign || campaignClosed || isCampaignInterrupted || campaignTimedOut()
+  const campaignUserTimedOut = campaignUser.status === 'timed_out'
+  const isCampaignInterrupted = campaignUser.status === 'interrupted'
+  const canNotStartAssessment = !hasStartedCampaign || campaignClosed || isCampaignInterrupted || campaignUserTimedOut
   const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign
   const canContinueCampaign = isCampaignInterrupted && !campaignClosed && !allAssessmentsComplete
 
@@ -109,11 +102,10 @@ export default function Campaign ({
               <>
                 <Header
                   counters={counters}
-                  duration={duration}
                   expiryDate={expiryDate}
                   currentUser={currentUser}
                   onFinish={onTimerFinish}
-                  showTimer={!!fixedTime && hasStartedCampaign}
+                  showTimer={isTimedCampaign && hasStartedCampaign && !isCampaignInterrupted}
                 />
                 {allAssessmentsComplete && (
                   <Result
@@ -123,7 +115,7 @@ export default function Campaign ({
                     className="custom-result mvl"
                   />
                 )}
-                {campaignClosed && (
+                {(campaignClosed || campaignUserTimedOut) && (
                   <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
@@ -183,9 +175,8 @@ export default function Campaign ({
                                       loginHogan={loginHogan}
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
-                                      timer={{
-                                        fixedTime, campaignDuration: duration, additionalTime, expiryDate,
-                                      }}
+                                      isPartOfTimedCampaign={isTimedCampaign}
+                                      campaignExpiryDate={expiryDate}
                                     />
                                   )
                                 })}
@@ -211,9 +202,8 @@ export default function Campaign ({
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
                                     disabled={canNotStartAssessment}
-                                    timer={{
-                                      fixedTime, campaignDuration: duration, expiryDate,
-                                    }}
+                                    isPartOfTimedCampaign={isTimedCampaign}
+                                    campaignExpiryDate={expiryDate}
                                   />
                                 )
                               })}

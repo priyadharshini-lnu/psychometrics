@@ -48,7 +48,7 @@ module Assessments
                              res.user.email,
                              res.created_at.try(:strftime, '%D %r'),
                              res.completed_at.try(:strftime, '%D %r'),
-                             I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+                             I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
                              *raw_scores.values]
             end
           end

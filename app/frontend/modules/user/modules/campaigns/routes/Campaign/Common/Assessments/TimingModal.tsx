@@ -3,7 +3,7 @@ import {
   Button, Modal,
 } from 'antd'
 import './styles.scss'
-import { minutesLeftFromNow } from 'utils/time'
+import { secondsLeftFromNow, secondsToHHMMSS } from 'utils/time'
 
 const { I18n } = window
 
@@ -12,20 +12,14 @@ interface Props {
   ok(): void
   close(): void
   assessmentName: string
-  assessmentTime: string
-  timer: {
-    fixedTime: boolean
-    campaignDuration: number
-    startedAt: string
-    additionalTime: number
-    expiryDate: string
-  }
+  totalAssessmentTime: number
+  campaignExpiryDate: string
 }
 
 const TimingModal: React.FC<Props> = ({
-  ok, show, close, assessmentName, assessmentTime, timer: { expiryDate },
+  ok, show, close, assessmentName, totalAssessmentTime, campaignExpiryDate,
 }) => {
-  const delta = minutesLeftFromNow(new Date(expiryDate))
+  const remainingCampaignTime = secondsLeftFromNow(campaignExpiryDate)
 
   return (
     <Modal
@@ -48,7 +42,12 @@ const TimingModal: React.FC<Props> = ({
       )}
     >
       <div className="help-modal-body">
-        {I18n.t('campaign.time_left.notification', { assessmentName, x: assessmentTime, y: delta })}
+        {I18n.t('campaign.time_left.notification',
+          {
+            assessmentName,
+            totalAssessmentTime: secondsToHHMMSS(totalAssessmentTime),
+            remainingCampaignTime: secondsToHHMMSS(remainingCampaignTime),
+          })}
       </div>
     </Modal>
   )

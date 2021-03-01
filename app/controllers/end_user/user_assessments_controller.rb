@@ -56,10 +56,12 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   def set_user_assessment
-    @user_assessment = UserAssessment.joins(:campaign).find_by!(
-      id: params[:id],
-      evaluator_id: current_user.id,
-      campaigns: { status: :active }
-    )
+    @user_assessment = UserAssessment.joins(:campaign, :users_result).
+                       where.not(users_results: { status: %i[completed timed_out] }).
+                       find_by!(
+                         id: params[:id],
+                         evaluator_id: current_user.id,
+                         campaigns: { status: :active }
+                       )
   end
 end

@@ -5,7 +5,7 @@ import {
   Row, Col, Card, Progress, Dropdown, Menu,
 } from 'antd'
 import {
-  DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined,
+  DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined, FieldTimeOutlined,
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import truncate from 'lodash/truncate'
@@ -18,6 +18,7 @@ import ContinueIcon from './ContinueIcon'
 
 const IN_PROGRESS = 'in_progress'
 const INTERRUPTED = 'interrupted'
+const TIMED_OUT = 'timed_out'
 
 const ASSESSMENT_CATEGORY_ICONS = {
   psychometric: 'assessment',
@@ -69,6 +70,16 @@ const renderButtonContent = ({
   const LinkTag = ({ children }) => (mindmill
     ? <a href={href} onClick={showPolicyConfirm}>{children}</a>
     : <Link to={href} onClick={showPolicyConfirm}>{children}</Link>)
+
+  if (status === TIMED_OUT) {
+    return (
+      <div>
+        <FieldTimeOutlined />
+        {' '}
+        {I18n.t('threesixty.timed_out')}
+      </div>
+    )
+  }
 
   if (status === IN_PROGRESS || status === INTERRUPTED) {
     return (

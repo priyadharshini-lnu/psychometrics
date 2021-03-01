@@ -36,4 +36,10 @@ class CampaignUser < ApplicationRecord
 
     status
   end
+
+  def real_expiry_date
+    return [campaign.end_date, expiry_date].min if campaign.end_date && expiry_date
+
+    expiry_date || campaign.end_date
+  end
 end

@@ -18,7 +18,7 @@ class UsersResult < ApplicationRecord
   has_one :agile, through: :assessment
   has_many :agile_events, dependent: :destroy
 
-  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3 }
+  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
 
   scope :actual_by_options, lambda { |options|
@@ -34,6 +34,12 @@ class UsersResult < ApplicationRecord
 
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
+  end
+
+  def real_status
+    return 'timed_out' if expired? && !completed? && !interrupted?
+
+    status
   end
 
   def expired?

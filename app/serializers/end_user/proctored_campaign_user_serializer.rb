@@ -2,8 +2,7 @@
 
 module EndUser
   class ProctoredCampaignUserSerializer < ActiveModel::Serializer
-    attributes :id, :campaign_id, :user_id, :active, :started_at, :completed_at,
-               :completion_status, :additional_time, :expiry_date
+    attributes :id, :started_at, :expiry_date, :status
 
     attribute :jwt_token, unless: -> { instance_options[:jwt_token].blank? }
     attribute :session_id, unless: -> { instance_options[:session_id].blank? }

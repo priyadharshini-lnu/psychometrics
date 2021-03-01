@@ -234,6 +234,7 @@ en:
           in_progress: Resume
           interrupted: Interrupted
           not_started: New
+          timed_out: Timed Out
           overdue: Overdue
       block:
         active: Active
@@ -500,6 +501,7 @@ en:
           in_progress: Resume
           interrupted: Interrupted
           not_started: New
+          timed_out: Timed Out
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte
@@ -795,6 +797,7 @@ en:
       single_lang: This assessment is only available in %{lang}, which is different than you selected language.
       title: Select language
     new: New
+    timed_out: Timed Out
     not_started: New
     panels:
       assessments: Tasks
@@ -802,7 +805,7 @@ en:
     time_left:
       cancel: Cancel
       continue: Continue
-      notification: Your allocated time for this task "%{assessmentName}" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.
+      notification: Your allocated time for this task "%{assessmentName}" was %{totalAssessmentTime}. Due to the overall elapsed time, you now have only %{remainingCampaignTime} as your adjusted time to complete this task.
       title: Time left warning
     timer:
       message: Time left to complete all tasks
@@ -856,6 +859,7 @@ en:
       in_progress: In Progress
       interrupted: Interrupted
       not_started: Not Started
+      timed_out: Timed Out
       universal_link: Universal link
   campaign_report:
     actions:
@@ -897,17 +901,11 @@ en:
       modals:
         remove:
           successfully: User with email %{email} removed successfully.
-          title: Are you sure you want to remove this user from campaing %{campaignName}?
+          title: Are you sure you want to remove this user from campaign %{campaignName}?
       not_completed_yet: Not completed yet
       not_logged_in_yet: Not logged in yet
       not_started_yet: Not started yet
       started_at: Started At
-      statuses:
-        completed: Completed
-        in_progress: In Progress
-        interrupted: Interrupted
-        not_started: Not Started
-        timed_out: Timed Out
       statuses:
         completed: Completed
         in_progress: In Progress
@@ -919,7 +917,7 @@ en:
         content: Are you sure you want to send instructions with link to change password?
         successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         title: Change password %{name}?
-      remove: Are you sure you want to remove user with email %{email} from this campaing?
+      remove: Are you sure you want to remove user with email %{email} from this campaign?
   checking_wizard:
     audio_check:
       access: Access
@@ -2062,6 +2060,7 @@ en:
     assessment: Assessment
     back_to_tasks: Back to tasks
     begin: Begin
+    timed_out: Timed Out
     cancel: Cancel
     close_evaluation_modal:
       message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations

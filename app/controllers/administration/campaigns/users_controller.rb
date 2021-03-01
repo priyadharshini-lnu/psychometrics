@@ -125,7 +125,7 @@ module Administration
       end
 
       def extend_time
-        ::CampaignUsers::AddAdditionalTime.call!(campaign_user, params[:additional_time])
+        ::CampaignUsers::AddAdditionalTime.call!(campaign_user, params[:additional_time] * 60)
         render json: resource, serializer: Administration::UserDetailSerializer, campaign: campaign
       end
 

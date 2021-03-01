@@ -34,7 +34,7 @@ module CampaignUsers
       {
         started_at: Time.now,
         status: :in_progress,
-        expiry_date: campaign.fixed_time_duration&.minutes&.from_now
+        expiry_date: campaign.fixed_time? ? campaign.fixed_time_duration&.seconds&.from_now : nil
       }
     end
   end

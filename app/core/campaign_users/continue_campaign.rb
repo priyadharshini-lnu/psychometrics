@@ -20,7 +20,7 @@ module CampaignUsers
       {
         status: :in_progress,
         completed_at: nil,
-        expiry_date: campaign_user.additional_time&.minutes&.from_now,
+        expiry_date: campaign_user.additional_time&.seconds&.from_now,
         additional_time: nil
       }
     end

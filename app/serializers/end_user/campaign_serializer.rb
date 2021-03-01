@@ -4,18 +4,21 @@ module EndUser
   class CampaignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :name, :type, :status, :start_date, :end_date,
-               :groups, :ungrouped_assessments_ids, :campaign_user, :status
+               :groups, :ungrouped_assessments_ids, :campaign_user, :status,
+               :is_timed_campaign
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
     has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
+    has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
-    def campaign_user
-      attributes = %i[ id campaign_id user_id active started_at completed_at expiry_date
-                       completion_status status additional_time updated_at ]
+    def is_timed_campaign # rubocop:disable Naming/PredicateName
+      (object.fixed_time? && object.fixed_time_duration) || object.end_date?
+    end
 
-      campaign_user_object.slice(*attributes)
+    def status
+      object.real_status
     end
 
     def groups
@@ -32,7 +35,7 @@ module EndUser
         merge(Report.assignable)
     end
 
-    def campaign_user_object
+    def campaign_user
       object.campaign_users.find_by(user_id: current_user.id)
     end
 
@@ -41,10 +44,6 @@ module EndUser
     end
 
     private
-
-    def campaign_time_extended?
-      !!campaign_user_object.additional_time && campaign_user_object.expiry_date.blank?
-    end
 
     def current_user
       @current_user ||= instance_options[:current_user]

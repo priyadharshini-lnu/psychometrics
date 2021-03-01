@@ -10,6 +10,10 @@ module EndUser
     attribute :hogan_url, if: -> { object.assessment.hogan? }
     attribute :need_confirm
 
+    def status
+      object.real_status
+    end
+
     def url
       object.assessment.agile? ? agile_assign_path(object) : pass_assign_path(object)
     end

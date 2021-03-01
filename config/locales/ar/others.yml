@@ -123,7 +123,7 @@ ar:
     time_left:
       cancel: إلغاء
       continue: إستمرار
-      notification: كان وقتك المخصص لهذه المهمة "%{assessmentName}" هو %{x} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{y} دقيقة لإكمال هذه المهمة.
+      notification: كان وقتك المخصص لهذه المهمة "%{assessmentName}" هو %{totalAssessmentTime} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{remainingCampaignTime} دقيقة لإكمال هذه المهمة.
       title: تحذير الوقت المتبقي
     timer:
       message: الوقت المتبقي لإكمال جميع المهام

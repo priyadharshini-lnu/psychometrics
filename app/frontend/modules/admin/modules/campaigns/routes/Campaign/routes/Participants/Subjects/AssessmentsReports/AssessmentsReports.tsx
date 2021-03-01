@@ -174,7 +174,11 @@ const AssessmentsReports: React.FC<Props> = ({
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.column.status')}>
               {user.additionalTime
-                && <span className="prs">{`+ ${user.additionalTime} ${I18n.t('common.text.minutes')}`}</span>}
+                && (
+                <span className="prs">
+                  {`+ ${Math.round(user.additionalTime / 60)} ${I18n.t('common.text.minutes')}`}
+                </span>
+                )}
               <Tag key={status} color={statusToColor[user.status]}>
                 {I18n.t(`campaign_users.details.statuses.${user.status}`)}
               </Tag>
