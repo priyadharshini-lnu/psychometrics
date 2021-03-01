@@ -1,64 +1,119 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import store from 'modules/admin/store'
-import { Col, Row } from 'antd'
+import {
+  Col, Row, Tabs, Table,
+} from 'antd'
 import { useParams } from 'react-router-dom'
-import Breadcrumbs from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import qs from 'qs'
+import _ from 'lodash'
+import { RootState } from 'modules/admin/core/rootReducers'
+import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import AssessorAssessment from './AssessorAssessment'
 import UserAssessment from './UserAssessment'
-import { fetchAssessorAssessment } from '../../core/evaluation'
+import { fetchAssessorAssessments, changeAssessorForm, changeSubjectAssessment } from '../../core/evaluation'
 
+const { TabPane } = Tabs
 const { I18n } = window
 
-const mapStateToProps = state => ({
-  result: state.assessors.evaluation.result,
+const connector = connect((state: RootState) => ({
   evaluation: state.assessors.evaluation,
+}), {
+  fetchAll: fetchAssessorAssessments,
+  changeForm: changeAssessorForm,
+  changeSubjectAssessment,
 })
 
-const mapDispatchToProps = {
-  fetch: fetchAssessorAssessment,
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps)
-
 const Evaluation = ({
-  fetch, result, evaluation: { subject_user_assessment_id: subjectAssessmentId },
+  fetchAll, changeForm, changeSubjectAssessment, evaluation: { userInfo, assessorAssessments, subjectAssessments },
 }) => {
-  const { userAssessmentId } = useParams<{ userAssessmentId: string }>()
+  let parsedCampaignId; let
+    parsedUserId
+  const { campaignId, userId } = useParams<{ campaignId?: string, userId?: string }>()
+  if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
+  if (userId) { parsedUserId = parseInt(userId, 10) }
+
   useEffect(() => {
-    const { edit } = qs.parse(location.search.substr(1))
-    fetch(parseInt(userAssessmentId, 10), edit)
+    fetchAll(parsedCampaignId, parsedUserId)
   }, [])
 
-  if (!result) { return null }
+  const changeAssessorForm = (id) => {
+    if (id === 'overview') {
+      changeForm(null)
+      return
+    }
+    changeForm(id)
+  }
 
+  const changeSubjectForm = (id) => {
+    changeSubjectAssessment(id)
+  }
   return (
     <div>
-      <Breadcrumbs
+      <Breadcrumb
         request={{
           fields: ['project', 'campaign', 'client'],
-          data: { campaignId: result.campaign_id },
+          data: { campaignId: parsedCampaignId },
         }}
         crumbs={[{
           link: () => '/assessors',
           label: () => I18n.t('common.model.campaigns'),
         }, {
           label: state => state.campaign.name,
-          link: () => `/assessors/campaigns/${result.campaign_id}/users`,
+          link: () => `/assessors/campaigns/${campaignId}/users`,
         },
         {
-          label: () => result.user?.email,
-          link: () => `/assessors/campaigns/${result.campaign_id}/users/${result.user.id}`,
+          label: () => userInfo.user?.email,
         },
         ]}
       />
       <Row>
-        <Col span={subjectAssessmentId ? 12 : 24}>
-          <AssessorAssessment userAssessmentId={userAssessmentId} store={store} />
+        <Col span={subjectAssessments.length ? 12 : 24}>
+          <Tabs defaultActiveKey="overview" onChange={changeAssessorForm}>
+            <TabPane tab="Overview" key="overview">
+              <div>
+                {I18n.t('user.fields.first_name')}
+                {': '}
+                {userInfo.user && userInfo.user.firstName}
+              </div>
+              <div>
+                {I18n.t('user.fields.last_name')}
+                {': '}
+                {userInfo.user && userInfo.user.lastName}
+              </div>
+              <div>
+                <Table
+                  columns={[{
+                    title: I18n.t('user.datasheet.attribute'),
+                    dataIndex: 'key',
+                    key: 'key',
+                  }, {
+                    title: I18n.t('user.datasheet.value'),
+                    dataIndex: 'value',
+                    key: 'value',
+                  }]}
+                  dataSource={_.map(userInfo.datasheet, (v, k) => ({ key: k, value: v }))}
+                  pagination={false}
+                  rowKey={row => row.key}
+                />
+              </div>
+            </TabPane>
+            {assessorAssessments.map(assessment => (
+              <TabPane tab={assessment.name} key={assessment.id}>
+                <AssessorAssessment userAssessmentId={+assessment.id} store={store} />
+              </TabPane>
+            ))}
+          </Tabs>
         </Col>
         <Col span={12}>
-          {subjectAssessmentId && <UserAssessment userAssessmentId={userAssessmentId} /> }
+          {subjectAssessments.length > 0 && (
+            <Tabs defaultActiveKey="1" onChange={changeSubjectForm}>
+              {subjectAssessments.map(assessment => (
+                <TabPane tab={assessment.name} key={assessment.id}>
+                  <UserAssessment subjectAssessmentId={assessment.id} />
+                </TabPane>
+              ))}
+            </Tabs>
+          )}
         </Col>
       </Row>
     </div>

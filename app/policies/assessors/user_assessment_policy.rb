@@ -2,6 +2,14 @@
 
 module Assessors
   class UserAssessmentPolicy < BasePolicy
+    def index?
+      @user.is?(:assessor)
+    end
+
+    def evaluate?
+      @user.is?(:assessor)
+    end
+
     def show?
       @user.is?(:assessor)
     end

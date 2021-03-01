@@ -18,12 +18,12 @@ const routes = [
     component: UserList,
   },
   {
-    path: '/evaluations/:userAssessmentId',
-    component: Evaluation,
-  },
-  {
     path: '/campaigns/:campaignId/user_reports/:id',
     component: ReportPreview,
+  },
+  {
+    path: '/campaigns/:campaignId/evaluations/:userId',
+    component: Evaluation,
   },
 ]
 

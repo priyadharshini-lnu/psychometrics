@@ -45,13 +45,18 @@ Rails.application.routes.draw do
       get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
     end
 
-    resources :evaluations, only: [:show] do
+    resources :evaluations, only: %i[show] do
       get :subject_assessment
       resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades
     end
 
     resources :campaigns, only: [:index] do
       resources :users, only: %i[index show]
+      resources :evaluations, only: %i[] do
+        member do
+          get :evaluate
+        end
+      end
     end
 
     resources :campaigns, only: [] do

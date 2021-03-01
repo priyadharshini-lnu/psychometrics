@@ -2237,6 +2237,9 @@ en:
       export: Export Users
       export_completion_status: Export Completion Status
       import: Import Users
+    datasheet:
+      attribute: Attribute
+      value: Value
   user_assessments:
     modals:
       remove:

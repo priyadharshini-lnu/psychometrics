@@ -1,10 +1,11 @@
+/* eslint-disable max-len */
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { getCurrent, fetchSingle } from 'modules/admin/modules/AssessorApp/core/users'
 import { get as getUserAssessments } from 'modules/admin/modules/AssessorApp/core/userAssessments'
 import {
-  Table, Row, Col, Dropdown, Menu, PageHeader,
+  Table, Row, Col, Dropdown, Menu, PageHeader, Button,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
@@ -72,7 +73,18 @@ const UserDetails: React.FC<Props> = (
         subTitle={user.email}
       />
       <div className="pl">
-        <h3>{I18n.t('common.model.assessments')}</h3>
+        <Row justify="space-between" align="middle">
+          <Col><h3>{I18n.t('common.model.assessments')}</h3></Col>
+          <Col>
+            <Button type="primary">
+              <a href={`/assessors/campaigns/${campaignId}/evaluations/${user.id}${status === 'completed' ? '?edit=true' : ''}`}>
+                {status === 'completed'
+                  ? I18n.t('assessments.actions.reevaluate')
+                  : I18n.t('assessments.actions.evaluate') }
+              </a>
+            </Button>
+          </Col>
+        </Row>
         <Row>
           <Col span={24}>
             <Table className="mtm mbl" rowKey="id" dataSource={userAssessments} pagination={false}>
@@ -124,18 +136,8 @@ interface ActionsProps {
   status: string
 }
 
-const ActionsMenu: React.FC<ActionsProps> = ({ userAssessmentId, status }) => (
-  <Menu>
-    <Menu.Item key="evaluate">
-      <a
-        href={`/assessors/evaluations/${userAssessmentId}${status === 'completed' ? '?edit=true' : ''}`}
-        role="button"
-        tabIndex={-1}
-      >
-        {status === 'completed' ? I18n.t('assessments.actions.reevaluate') : I18n.t('assessments.actions.evaluate') }
-      </a>
-    </Menu.Item>
-  </Menu>
+const ActionsMenu: React.FC<ActionsProps> = () => (
+  <Menu />
 )
 
 export default connecter(UserDetails)
