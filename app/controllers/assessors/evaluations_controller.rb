@@ -32,7 +32,10 @@ class Assessors::EvaluationsController < Assessors::BaseController
 
   def show
     user_result = @assessor_assessment.users_result
-    user_result.update(last_activity_at: DateTime.current)
+    attributes = { last_activity_at: DateTime.current }
+    attributes = attributes.merge(started_at: Time.now) unless user_result.started_at
+    user_result.update(attributes)
+
     if params[:edit] == 'true'
       user_result.current_element = nil
       user_result.current_page = 0

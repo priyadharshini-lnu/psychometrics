@@ -2315,3 +2315,6 @@ en:
   'yes': 'Yes'
   your: Your
   yourself: Yourself
+  campaigns:
+    assessments_and_reports:
+      assessor_assessments: Assessor Assessments
