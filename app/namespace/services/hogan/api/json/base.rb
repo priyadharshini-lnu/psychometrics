@@ -1,0 +1,95 @@
+# frozen_string_literal: true
+
+module Services
+  module Hogan
+    module API
+      module JSON
+        class Base < BaseCommand
+          private_attr_reader :context
+
+          TOKEN_ENDPOINT = 'Token'
+          API_BASE = Rails.application.secrets.hogan[:json_api_url].freeze
+
+          def initialize(args)
+            @context = OpenStruct.new(args)
+          end
+
+          def client_with_auth(provider)
+            @client_with_auth ||= Faraday.new(API_BASE) do |connection|
+              connection.request :url_encoded
+              connection.adapter Faraday.default_adapter
+
+              connection.headers['Accept'] = 'application/json'
+              connection.headers['Content-Type'] = 'application/json'
+              connection.headers['Authorization'] = "Bearer #{token(provider)}"
+            end
+          end
+
+          def client_without_auth
+            @client_without_auth ||= Faraday.new(API_BASE) do |connection|
+              connection.request :url_encoded
+              connection.adapter Faraday.default_adapter
+
+              connection.headers['Accept'] = 'application/json'
+              connection.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+            end
+          end
+
+          alias client client_with_auth
+
+          def get_client_id(provider)
+            provider ||= Rails.application.secrets.hogan[:default_provider]
+            Rails.application.secrets.hogan[:credentials][provider.to_sym][:client_id]
+          end
+
+          def get_client_user_id(provider)
+            provider ||= Rails.application.secrets.hogan[:default_provider]
+            Rails.application.secrets.hogan[:credentials][provider.to_sym][:client_user_id]
+          end
+
+          def get_client_password(provider)
+            provider ||= Rails.application.secrets.hogan[:default_provider]
+            Rails.application.secrets.hogan[:credentials][provider.to_sym][:client_password]
+          end
+
+          def get_master_client_id(provider)
+            provider ||= Rails.application.secrets.hogan[:default_provider]
+            Rails.application.secrets.hogan[:credentials][provider.to_sym][:master_client_id]
+          end
+
+          def fetch_access_token(provider)
+            response = post(
+              endpoint: TOKEN_ENDPOINT,
+              request: {
+                grant_type: 'password',
+                username: get_client_user_id(provider),
+                password: get_client_password(provider),
+                clientid: get_master_client_id(provider)
+              },
+              provider: provider
+            )
+            response[:body]['access_token']
+          end
+
+          def token(provider)
+            @token ||= fetch_access_token(provider)
+          end
+
+          private
+
+          def get(endpoint:, request: {}, provider:)
+            response = client_with_auth(provider).get(Addressable::URI.encode(endpoint), request)
+            { body: ::JSON.parse(response.body), status: response.status }
+          end
+
+          def post(endpoint:, request: {}, provider:)
+            client = endpoint == TOKEN_ENDPOINT ? client_without_auth : client_with_auth(provider)
+            request = client.headers['Content-Type'] == 'application/json' ? ::JSON.generate(request) : request
+            response = client.post(Addressable::URI.encode(endpoint), request)
+            { body: ::JSON.parse(response.body), status: response.status }
+          end
+        end
+      end
+    end
+  end
+end

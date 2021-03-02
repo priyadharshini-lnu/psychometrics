@@ -10,7 +10,7 @@ export const searchEvaluators = (campaignId, nominationId, q) => ({
   type: SEARCH_EVALUATORS,
   request: {
     method: 'post',
-    url: `/campaigns/${campaignId}/nominations/${nominationId}/search_evaluators`,
+    url: `/threesixty_campaigns/${campaignId}/nominations/${nominationId}/search_evaluators`,
     body: {
       q,
     },

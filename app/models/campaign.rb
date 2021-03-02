@@ -68,6 +68,29 @@ class Campaign < ApplicationRecord
     campaign_datasheet || project_datasheet
   end
 
+  def datasheet_data(email)
+    ::Campaigns::GetDatasheetData.call!(self, email)[email]
+  end
+
+  def datasheet_column_names
+    datasheet_columns.keys
+  end
+
+  def datasheet_columns
+    project_datasheet_columns = project.datasheet&.columns || {}
+    campaign_datasheet_columns = datasheet&.columns || {}
+    project_datasheet_columns.merge(campaign_datasheet_columns)
+  end
+
+  def nomalized_datasheet_columns
+    datasheet_columns.map { |k, v| { name: k, type: v } }
+  end
+
+  def assessor_assessments
+    Assessment.assessor_form.joins(:user_assessments).
+      where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
+  end
+
   private
 
   def ensure_campaign_options

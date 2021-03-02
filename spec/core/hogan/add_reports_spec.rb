@@ -8,10 +8,11 @@ describe Hogan::AddReports do
   let(:user) { create(:user) }
   let(:user_report) { create(:user_report, report: report) }
   it 'when credentials are empty we create them' do
-    expect(Services::Hogan::API::GroupDetails).to receive(:call).and_return(double('res', success?: true))
-    expect(Services::Hogan::API::AddParticipantToGroup).to receive(:call!).and_return(double('res', participant_id: 1))
-    expect(Services::Hogan::API::AddParticipantAssessment).to receive(:call!)
-    expect(Services::Hogan::API::AddParticipantReport).to receive(:call!)
+    expect(Services::Hogan::API::JSON::GroupDetails).to receive(:call).and_return(double('res', success?: true))
+    expect(Services::Hogan::API::JSON::AddParticipantToGroup).to receive(:call!).
+      and_return(double('res', participant_id: 1))
+    expect(Services::Hogan::API::JSON::AddParticipantAssessment).to receive(:call!)
+    expect(Services::Hogan::API::JSON::AddParticipantReport).to receive(:call!)
     Hogan::AddReports.call!(
       group: 'any',
       credentials: nil,

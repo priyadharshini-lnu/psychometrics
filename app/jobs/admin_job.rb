@@ -21,7 +21,8 @@ class AdminJob < ApplicationJob
     import_raw_data: AdminJobs::ImportData,
     bulk_download_reports: AdminJobs::BulkDownloadReports,
     bulk_regenerate_reports: AdminJobs::BulkRegenerateReports,
-    bulk_regenerate_user_reports: AdminJobs::BulkRegenerateUserReports
+    bulk_regenerate_user_reports: AdminJobs::BulkRegenerateUserReports,
+    import_datasheet: AdminJobs::ImportDatasheet
   }.freeze
 
   def perform(record)

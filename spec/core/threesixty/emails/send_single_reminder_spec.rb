@@ -4,7 +4,11 @@ require 'rails_helper'
 
 describe Threesixty::Emails::SendSingleReminder do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
-  let!(:threesixty_option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
+  let!(:threesixty_option) do
+    create(:threesixty_option,
+           threesixty_campaign: threesixty_campaign,
+           participants: { 'subject' => { 'can_evaluate_self' => true } })
+  end
   let(:threesixty_subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
 
   it 'creates email_schdule record when it match first reminder rule' do
@@ -15,6 +19,10 @@ describe Threesixty::Emails::SendSingleReminder do
       name: Threesixty::Emails::Name::SUBJECT_REMINDER,
       meta: { 'reminder_rules' => [{ 'days' => 3, 'times' => 2 }] }
     )
+    create(:threesixty_participant,
+           evaluator: threesixty_subject.user,
+           subject: threesixty_subject.user,
+           campaign: threesixty_campaign.campaign)
     create(
       :threesixty_reminder_history,
       threesixty_campaign: threesixty_campaign,
@@ -37,6 +45,10 @@ describe Threesixty::Emails::SendSingleReminder do
       name: Threesixty::Emails::Name::SUBJECT_REMINDER,
       meta: { 'reminder_rules' => [{ 'days' => 3, 'times' => 2 }, { 'days' => 2, 'times' => 3 }] }
     )
+    create(:threesixty_participant,
+           evaluator: threesixty_subject.user,
+           subject: threesixty_subject.user,
+           campaign: threesixty_campaign.campaign)
     create(
       :threesixty_reminder_history,
       threesixty_campaign: threesixty_campaign,

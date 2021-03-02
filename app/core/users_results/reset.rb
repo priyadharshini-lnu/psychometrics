@@ -39,7 +39,8 @@ module UsersResults
         current_page: nil,
         completion_reason: nil,
         reset_count: users_result.reset_count + 1,
-        prev_pages: []
+        prev_pages: [],
+        progress: 0
       )
     end
 

@@ -19,8 +19,8 @@ describe Hogan::FetchResults do
   end
 
   it 'when credentials are empty we create them' do
-    expect(Services::Hogan::API::ParticipantReport).to receive(:call).and_return(double('res', report: 'base64'))
-    expect(Services::Hogan::API::ParticipantScore).to receive(:call).and_return(double('res', response: 'results'))
+    expect(Services::Hogan::API::JSON::ParticipantReport).to receive(:call!).and_return(double('res', report: 'base64'))
+    expect(Services::Hogan::API::JSON::ParticipantScore).to receive(:call!).and_return('results')
     Hogan::FetchResults.call!(user_assessment, report, user.hogan_credential, project)
 
     expect(users_result.external_results).to eq 'results'

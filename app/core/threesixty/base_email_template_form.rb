@@ -8,11 +8,12 @@ module Threesixty
     attribute :content, String
     attribute :consolidated, Boolean, default: false
 
-    validates :from, :reply_to_email, presence: true
+    validates :from, :reply_to_email, :subject, :content, presence: true
     validates :reply_to_email, format: { with: Devise.email_regexp }, allow_blank: true
     validate :validate_consolidatable_email_content
 
     def validate_consolidatable_email_content
+      return if errors.present?
       return unless Threesixty::Emails::Name.consolidatable_email?(email_name)
 
       consolidated ? validate_consolidated_pipetext : validate_unconsolidated_pipetext

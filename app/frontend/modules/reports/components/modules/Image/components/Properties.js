@@ -6,7 +6,6 @@ import Socket from 'rb/cable'
 import Select from 'react-select'
 import AssessmentProperties from 'rb/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
-import AppStore from 'rb/store/AppStore'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
 import connect from '../connect'
 
@@ -71,11 +70,11 @@ class Properties extends Component {
   }
 
   expand = () => {
-    const { model } = this.props
+    const { model, pageSize } = this.props
     model.props.position.left = 0
     model.props.position.top = 0
-    model.props.position.width = AppStore.report.props.sizes.width
-    model.props.position.height = AppStore.report.props.sizes.height
+    model.props.position.width = pageSize.width
+    model.props.position.height = pageSize.height
     this.update()
   }
 

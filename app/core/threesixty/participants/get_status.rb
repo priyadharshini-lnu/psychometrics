@@ -29,7 +29,9 @@ module Threesixty
       end
 
       def valid_nomination_requirement?
-        subject && nomination_requirement &&
+        return true if nomination_requirement.nil?
+
+        subject &&
           Threesixty::NominationRequirements::IsValid.call!(nomination_requirement, subject_evaluator_counters)
       end
 

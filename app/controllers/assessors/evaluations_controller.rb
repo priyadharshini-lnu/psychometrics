@@ -1,11 +1,41 @@
 # frozen_string_literal: true
 
 class Assessors::EvaluationsController < Assessors::BaseController
-  before_action :set_assessor_assessment, only: %i[show subject_assessment]
+  before_action :set_assessor_assessment, only: %i[show]
+  before_action :set_subject_user_assessment, only: %i[subject_assessment]
+
+  def evaluate
+    authorize(UserAssessment)
+    campaign = Campaign.find(params[:campaign_id])
+    user = User.find(params[:id])
+    @assessor_assessments = policy_scope(UserAssessment).where(campaign_id: campaign.id, subject_id: user.id)
+
+    assessment_ids = CampaignAssessment.where(
+      assessor_form_id: @assessor_assessments.map(&:assessment_id),
+      campaign_id: campaign.id
+    ).map(&:assessment_id)
+
+    @subject_user_assessment ||= UserAssessment.where(campaign_id: campaign.id,
+                                                        subject_id: user.id,
+                                                        evaluator_id: user.id,
+                                                        assessment_id: assessment_ids)
+    datasheet = campaign.datasheet_data(user.email)
+    render json: {
+      user_info: {
+        user: UserSerializer.new(user).to_hash,
+        datasheet: datasheet
+      },
+      assessor_assessments: @assessor_assessments.map { |a| { id: a.id, name: a.assessment.name } },
+      subject_assessments: @subject_user_assessment.map { |a| { id: a.id, name: a.assessment.name } }
+    }
+  end
 
   def show
     user_result = @assessor_assessment.users_result
-    user_result.update(last_activity_at: DateTime.current)
+    attributes = { last_activity_at: DateTime.current }
+    attributes = attributes.merge(started_at: Time.now) unless user_result.started_at
+    user_result.update(attributes)
+
     if params[:edit] == 'true'
       user_result.current_element = nil
       user_result.current_page = 0
@@ -16,10 +46,10 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   def subject_assessment
-    user_result = subject_user_assessment.users_result
+    user_result = @subject_user_assessment.users_result
 
     user_result.update(last_activity_at: DateTime.current)
-    render json: serialize_data(subject_user_assessment, user_result)
+    render json: serialize_data(@subject_user_assessment, user_result)
   end
 
   private
@@ -36,8 +66,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
       assessment: AssessmentSerializer.new(user_assessment.assessment,
                                            selected_locale: selected_locale,
                                            piped_text_context: build_piped_context(user_assessment)).
-        to_hash(include: '**'),
-      subject_user_assessment_id: subject_user_assessment&.id
+        to_hash(include: '**')
     }
   end
 
@@ -46,15 +75,9 @@ class Assessors::EvaluationsController < Assessors::BaseController
     authorize([@assessor_assessment])
   end
 
-  def subject_user_assessment
-    assessment_id = CampaignAssessment.find_by(assessor_form_id: @assessor_assessment.assessment_id,
-                                                 campaign_id: @assessor_assessment.campaign_id)&.assessment_id
-    return nil unless assessment_id
-
-    @subject_user_assessment ||= UserAssessment.find_by!(campaign_id: @assessor_assessment.campaign_id,
-                                                           subject_id: @assessor_assessment.subject_id,
-                                                           evaluator_id: @assessor_assessment.subject_id,
-                                                           assessment_id: assessment_id)
+  def set_subject_user_assessment
+    @subject_user_assessment = UserAssessment.find_by!(id: params[:id] || params[:evaluation_id])
+    authorize([@subject_user_assessment])
   end
 
   def build_piped_context(user_assessment)

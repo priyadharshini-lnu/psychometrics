@@ -27,7 +27,8 @@ module Threesixty
 
     enum type: %i[empty standard_360 previous_360]
 
-    delegate :client, :name, :subjects, :evaluators, :project, :participants, :datasheet, to: :campaign
+    delegate :client, :datasheet_column_names, :datasheet_data, :name, :subjects, :evaluators,
+             :project, :participants, :datasheet, to: :campaign
     delegate :logo, to: :client
 
     EMPTY = 'empty'
@@ -39,9 +40,5 @@ module Threesixty
       STANDARD_360 => 'Standard 360',
       PREVIOUS_360 => 'Previous 360'
     }.freeze
-
-    def datasheet_column_names
-      datasheet&.column_names || []
-    end
   end
 end

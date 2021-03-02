@@ -52,7 +52,7 @@ module Administration
       end
 
       def rescore_responses
-        AdminJob.call(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
+        AdminJob.call(:rescore_assessment, { campaign_id: campaign.id, assessment_id: assessment.id }, current_user)
         render json: :ok
       end
 

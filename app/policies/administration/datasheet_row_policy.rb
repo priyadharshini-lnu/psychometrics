@@ -9,5 +9,13 @@ module Administration
     def save_column_preference?
       create?
     end
+
+    def import?
+      create?
+    end
+
+    def export?
+      create?
+    end
   end
 end
