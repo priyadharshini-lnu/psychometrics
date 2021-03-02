@@ -48,6 +48,9 @@ module DataMigration
       private
 
       def migrate(subject)
+        campaign = Campaign.find_by(id: subject.id)
+        return log("Campaign with id #{subject.id} was already migrated") if campaign
+
         log("migrating #{subject.depth_symbol} (#{subject.id})")
         change_applicable_level_of_project
         create_campaign(subject)

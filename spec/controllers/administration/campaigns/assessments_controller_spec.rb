@@ -77,7 +77,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
   describe 'POST rescore_responses' do
     it 'schedules AdminJob' do
       expect(AdminJob).to receive(:call).
-        with(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
+        with(:rescore_assessment, { campaign_id: campaign.id, assessment_id: assessment.id }, current_user)
 
       post :rescore_responses, params: {
         id: assessment.id,

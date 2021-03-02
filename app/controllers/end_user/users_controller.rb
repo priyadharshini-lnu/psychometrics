@@ -21,6 +21,8 @@ class EndUser::UsersController < ApplicationController
         campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.group_by(&:type)
 
         json = @single_assigns.uniq.map do |assign|
+          next if assign.membership.client.migrated?
+
           applicable_level_project = assign.membership.client.applicable_level == 'project'
 
           next if applicable_level_project && assign.membership.disabled?

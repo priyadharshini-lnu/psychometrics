@@ -8,6 +8,12 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
   let(:assessment) { create(:assessment) }
   let(:report) { create(:report, assessments: [assessment]) }
   let(:report_family) { report.report_families.first }
+  let!(:assessor_relationship) { create(:relationship, type: :global, name: 'Assessor') }
+  let(:assessor_assessment) { create(:assessment, category: :assessor_form) }
+  let!(:assessor_user_assessment) do
+    create(:user_assessment, campaign_id: campaign.id, relationship: assessor_relationship,
+      assessment: assessor_assessment)
+  end
 
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
@@ -139,6 +145,12 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
       'name' => assessment.name,
       'category' => assessment.category,
       'norm_name' => nil
+    })
+
+    assessment_response = parsed_response['assessor_assessments'].first
+    expect(assessment_response).to eq({
+      'id' => assessor_assessment.id,
+      'name' => assessor_assessment.name
     })
   end
 end

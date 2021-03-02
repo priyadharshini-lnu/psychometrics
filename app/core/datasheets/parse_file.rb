@@ -27,7 +27,7 @@ module Datasheets
                      parent_resource.datasheet || parent_resource.build_datasheet
                    end
       columns_in_file = form.parsed_file.second
-      columns = form.replace_existing? ? columns_in_file : datasheet.columns.merge(columns_in_file)
+      columns = form.replace_existing? ? columns_in_file : (datasheet.columns || {}).merge(columns_in_file)
       datasheet.update!(columns: columns)
     end
 
@@ -38,7 +38,7 @@ module Datasheets
 
         row = datasheet.rows.find_or_initialize_by(email: email)
         data = data.except(Datasheet::EMAIL_COLUMN)
-        row.data = form.replace_existing? ? data : row.data.merge(data)
+        row.data = form.replace_existing? ? data : (row.data || {}).merge(data)
         row.save!
       end
     end

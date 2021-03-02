@@ -26,6 +26,7 @@ class UserAssessment < ApplicationRecord
   }
 
   after_commit :set_campaign_user_completion_status, on: %i[create destroy]
+  before_save :set_default_relationship
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment]
@@ -34,6 +35,10 @@ class UserAssessment < ApplicationRecord
   def set_campaign_user_completion_status
     campaign_user = CampaignUser.find_by(user_id: subject_id, campaign_id: campaign_id)
     CampaignUsers::SetCompletionStatus.call!(campaign_user) if campaign_user
+  end
+
+  def set_default_relationship
+    self.relationship_id = Relationship.self_relationship&.id unless relationship_id
   end
 
   def completed?

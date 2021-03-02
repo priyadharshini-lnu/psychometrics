@@ -70,7 +70,9 @@ _.extend(Result.prototype, {
 
     const { conditions } = this.question.validation.args
 
-    const validations = _.map(conditions, condition => new Validations.Custom(condition))
+    const validations = conditions.map(
+      condition => new Validations.Custom(condition, [this.question], {}, this),
+    )
 
     const results = validations.map(validation => validation.validate(this))
 
@@ -91,7 +93,7 @@ _.extend(Result.prototype, {
       prev = result
     })
 
-    if (!res) {
+    if (res) {
       return { type: 'Custom', message }
     }
   },

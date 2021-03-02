@@ -13,6 +13,7 @@ module UsersResults
     attribute :last_activity_at, DateTime
     attribute :completion_reason, String, default: 'user_completed'
     attribute :prev_pages, Array, default: []
+    attribute :progress, Integer
 
     def norm_id
       norm_data.dig(:id)&.to_i

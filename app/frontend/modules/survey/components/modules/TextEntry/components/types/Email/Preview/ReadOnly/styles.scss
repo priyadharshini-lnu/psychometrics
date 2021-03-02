@@ -6,13 +6,14 @@
   }
 
   .contactLabel {
-    padding-right: 12px;
+    padding-inline-end: 12px;
     color: #b1b1b1;
     font-size: 12px;
   }
-
-  td {
-    vertical-align: middle;
-    border: none !important;
+  table.contacts {
+    td {
+      border: none;
+      vertical-align: middle;
+    }
   }
 }

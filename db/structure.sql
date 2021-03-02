@@ -1648,7 +1648,8 @@ CREATE TABLE public.hogan_credentials (
     participant_id character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    user_id bigint
+    user_id bigint,
+    provider integer DEFAULT 0
 );
 
 
@@ -3491,7 +3492,8 @@ CREATE TABLE public.users_results (
     reset_count integer DEFAULT 0,
     started_at timestamp without time zone,
     completion_reason integer,
-    prev_pages json DEFAULT '[]'::json
+    prev_pages json DEFAULT '[]'::json,
+    progress integer
 );
 
 
@@ -7899,12 +7901,17 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201226142007'),
 ('20201226152556'),
 ('20210104093506'),
+('20210112082218'),
 ('20210118113839'),
 ('20210124114207'),
 ('20210127111351'),
 ('20210201174626'),
+('20210206160719'),
+('20210209061539'),
+('20210209133316'),
 ('20210215142202'),
 ('20210216092744'),
-('20210216133140');
+('20210216133140'),
+('20210228092218');
 
 
