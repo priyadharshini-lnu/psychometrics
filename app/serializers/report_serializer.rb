@@ -157,7 +157,7 @@ class ReportSerializer < ActiveModel::Serializer
   def data_sheet_columns
     return object.data_sheet_columns unless object.category_threesixty?
 
-    Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []
+    connected_campaign.nomalized_datasheet_columns
   end
 
   # Returns YAML rules for exporting data.

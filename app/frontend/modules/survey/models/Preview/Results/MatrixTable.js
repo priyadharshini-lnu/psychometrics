@@ -19,6 +19,10 @@ _.extend(MatrixTable.prototype, {
     this[this.result.question.props.type](...args)
   },
 
+  results () {
+    return this.result.answers
+  },
+
   // Force Response
   requiredValidation () {
     const notApplicable = _.keys(this.result.notApplicable).filter(key => this.result.notApplicable[key])

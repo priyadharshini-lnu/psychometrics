@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     collection do
       delete :bulk_delete
       put :save_column_preference
+      put :import
+      get :export
     end
   end
 
@@ -43,13 +45,18 @@ Rails.application.routes.draw do
       get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
     end
 
-    resources :evaluations, only: [:show] do
+    resources :evaluations, only: %i[show] do
       get :subject_assessment
       resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades
     end
 
     resources :campaigns, only: [:index] do
       resources :users, only: %i[index show]
+      resources :evaluations, only: %i[] do
+        member do
+          get :evaluate
+        end
+      end
     end
 
     resources :campaigns, only: [] do
@@ -178,6 +185,7 @@ Rails.application.routes.draw do
             get :export_raw_results
             get :export_scoring_results
             get :export_normed_results
+            get :export_raw_factor_scores
             get :export_external_results
             post :import_results
             get :norms

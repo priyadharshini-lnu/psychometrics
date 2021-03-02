@@ -128,6 +128,20 @@ export const bulkDelete = (
   },
 })
 
+export const IMPORT = 'datasheetManagement/IMPORT'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const importDatasheet = (parentType: ParentResourceType, parentId: number, body: any) => ({
+  type: IMPORT,
+  request: {
+    method: 'put',
+    url: `/administration/${parentType}s/${parentId}/datasheet_rows/import`,
+    body,
+    loader: true,
+  },
+})
+
+
 export type State = DataSheet[]
 
 const HANDLERS = {

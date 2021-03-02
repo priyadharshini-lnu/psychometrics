@@ -15,8 +15,8 @@ module Threesixty
       end
 
       def resolve_criteria
-        data_sheet = get_data_sheet(@user)&.data
-        subject_data_sheet = get_data_sheet(@subject)&.data
+        data_sheet = campaign.datasheet_data(@user.email)
+        subject_data_sheet = campaign.datasheet_data(@subject.email)
 
         return false unless data_sheet
 
@@ -35,10 +35,6 @@ module Threesixty
       private
 
       attr_reader :campaign, :criteria
-
-      def get_data_sheet(user)
-        campaign.datasheet&.rows&.find_by(email: user.email)
-      end
     end
   end
 end

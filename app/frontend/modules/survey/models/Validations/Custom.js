@@ -2,7 +2,7 @@ import _ from 'lodash'
 import Selectors from './Selectors'
 import Values from './Values'
 
-const Custom = function (condition, questions = {}, results = {}) {
+const Custom = function (condition, questions = {}, results = {}, result = null) {
   this.condition = condition
   this.subject = condition.subject
   this.question = _.find(questions, { id: this.subject })
@@ -11,7 +11,7 @@ const Custom = function (condition, questions = {}, results = {}) {
   this.predicate = condition.predicate
   this.type = condition.type
   this.value = condition.value
-  this.result = null
+  this.result = result
   this.results = results
 }
 
@@ -34,7 +34,7 @@ _.extend(Custom.prototype, {
 
   validate () {
     if (!this.question || !this.predicate) { return { prefix: 'Or', value: false } }
-    this.result = this.results[this.question.id]
+    this.result = this.result || this.results[this.question.id]
     if (!this.result) { return { prefix: 'Or', value: false } }
     return { prefix: this.prefix, value: this[this.predicate]() }
   },
@@ -90,11 +90,11 @@ _.extend(Custom.prototype, {
   },
 
   LessThen () {
-    return this.resultValue() > +this.value
+    return this.resultValue() < +this.value
   },
 
   LessThenOrEqual () {
-    return this.resultValue() >= +this.value
+    return this.resultValue() <= +this.value
   },
 
   Empty () {

@@ -59,24 +59,24 @@ en:
               already_exists: A subject with same email already exists
               blank: Email can't be blank
               invalid: Email is invalid
-            locale:
-              inclusion: Wrong locale
             evaluator_email:
               already_exists: The subject with this evaluator are already connected
               blank: Evaluator Email can't be blank
               invalid: Evaluator Email is invalid
-            evaluator_locale:
-              inclusion: Wrong locale
             evaluator_first_name:
               blank: Evaluator first name can't be blank
             evaluator_last_name:
               blank: Evaluator last name can't be blank
+            evaluator_locale:
+              inclusion: Wrong locale
             evaluator_password:
               too_short: Evaluator password is too short (minimum is %{count} characters)
             first_name:
               blank: First name can't be blank
             last_name:
               blank: Last name can't be blank
+            locale:
+              inclusion: Wrong locale
             relationship_name:
               blank: Relationship can't be blank
               invalid: Relationship %{name} is invalid
@@ -87,7 +87,11 @@ en:
         datasheet:
           attributes:
             file:
+              email_blank: 'Row %{row_number}: Email field can''t be blank
+
+                '
               email_duplicate: There are duplicates in Email column
+              invalid_column_type: Column type must be String, Text, Number, HTML or Markdown
               invalid_format: Invalid format (.xlsx)
               no_email_column: File does not contain Email column
         email_schedule:
@@ -99,9 +103,14 @@ en:
               invalid: Reply to email is invalid
             scheduled_date:
               blank: Scheduled date field can't be blank
+            subject:
+              blank: Subject can't be blank
+            content:
+              blank: Content can't be blank
         email_template:
           attributes:
             content:
+              blank: Content can't be blank
               invalid_consolidated_pipetext: These pipetext are invalid for consolidate messages %{invalid_pipetexts}
               invalid_unconsolidated_pipetext: These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}
             from:
@@ -109,6 +118,8 @@ en:
             reply_to_email:
               blank: Reply to email field can't be blank
               invalid: Reply to email is invalid
+            subject:
+              blank: Subject can't be blank
         email_template_test_mail:
           attributes:
             to_email:
@@ -120,12 +131,12 @@ en:
               already_exists: A subject with same email already exists
               blank: Email can't be blank
               invalid: Email is invalid
-            locale:
-              inclusion: Wrong locale
             first_name:
               blank: First name can't be blank
             last_name:
               blank: Last name can't be blank
+            locale:
+              inclusion: Wrong locale
             password:
               too_short: Password is too short. Minimum 6 character required
         password_reset:
@@ -174,14 +185,14 @@ en:
               inclusion: Please select the correct norm type
         user:
           attributes:
-            locale:
-              inclusion: Wrong locale
             email:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project
             import_data:
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
               invalid_header: Invalid header, take header from export
+            locale:
+              inclusion: Wrong locale
         user_assessment:
           subject_and_assessment_exists: Assessment and subject pair already exists
     models:
@@ -568,6 +579,7 @@ en:
         regenerate_report: Regenerate Report
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
+        import_datasheet: Import Datasheet
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -1011,6 +1023,16 @@ en:
     QAR: QAR
     SAR: SAR
     USD: USD
+  datasheet:
+    import_modal:
+      operations:
+        merge_with_existing: Merge with existing data
+        replace_existing: Replace the existing record’s data
+      success_message: File successfully upload. Import of datasheet record in progress
+      title: Import Datasheet Records
+    menu:
+      export: Export Datasheet
+      import: Import Datasheet
   devise:
     administrators:
       meta_title: Login to administration panel
@@ -2215,6 +2237,9 @@ en:
       export: Export Users
       export_completion_status: Export Completion Status
       import: Import Users
+    datasheet:
+      attribute: Attribute
+      value: Value
   user_assessments:
     modals:
       remove:
@@ -2290,3 +2315,6 @@ en:
   'yes': 'Yes'
   your: Your
   yourself: Yourself
+  campaigns:
+    assessments_and_reports:
+      assessor_assessments: Assessor Assessments

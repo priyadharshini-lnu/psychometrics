@@ -6,18 +6,19 @@ module Threesixty
       module RecipientFields
         class Meta < BaseField
           def call
-            row = DatasheetRow.joins(:datasheet).
-                  find_by(datasheets: { project_id: user.project_id }, email: user.email)
+            data = campaign.datasheet_data(user.email)
 
-            return broadcast :ok, '' unless row
-
-            broadcast :ok, row.data[path.second]
+            broadcast :ok, data[path.second]
           end
 
           protected
 
           def user
             context[:recipient]
+          end
+
+          def campaign
+            context[:threesixty_campaign].campaign
           end
         end
       end

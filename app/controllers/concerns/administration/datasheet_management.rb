@@ -13,7 +13,11 @@ module Administration
       respond_to do |format|
         format.html
         format.json do
-          return render json: { list: [], total: 0, columns: [] } if datasheet.nil?
+          if datasheet.nil?
+            return render json: {
+              list: [], total: 0, columns: [{ id: Datasheet::EMAIL_COLUMN, type: 'String', visible: true }]
+            }
+          end
 
           datasheet_rows = datasheet.rows.ransack(params[:filters]).result
           paginated_datasheet_rows = datasheet_rows.page(params[:page])
@@ -73,6 +77,27 @@ module Administration
       end
 
       head :ok
+    end
+
+    def import
+      form = ::Datasheets::DatasheetForm.from_params(params)
+      if form.valid?
+        AdminJob.call(:import_datasheet, {
+          parent_resource_id: parent_resource.id,
+          parent_resource_class: parent_resource.class.name,
+          operation: params[:operation]
+        }, current_user, params[:file])
+      else
+        render json: { errors: form.errors.messages.values.flatten }, status: 422
+      end
+    end
+
+    def export
+      results = ::Datasheets::Export.call!(parent_resource.datasheet)
+
+      respond_to do |format|
+        format.xlsx { send_data results.to_stream.read, filename: "datasheet-for-#{parent_resource.name}.xlsx" }
+      end
     end
 
     private

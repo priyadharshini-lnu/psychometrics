@@ -139,6 +139,10 @@ module Administration
         User
       end
 
+      def set_resource
+        @_resource = policy_scope(resource_class, policy_scope_class: Campaigns::UserPolicy::Scope).find(params[:id])
+      end
+
       def campaign_user
         @campaign_user ||= resource.campaign_users.find_by(campaign: campaign)
       end

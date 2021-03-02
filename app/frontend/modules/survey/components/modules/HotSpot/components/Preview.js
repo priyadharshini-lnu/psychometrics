@@ -139,6 +139,7 @@ export class Preview extends Component {
         <SafeHTML
           className={styles.questionTextPreview}
           html={I18n.tQuestion(model, 'questionText')}
+          config="adminRichText"
         />
         <div ref={(ref) => { this.raphaelPaper = ref }} className={styles.graphicWrap}>
           {this.renderGraphic()}

@@ -25,8 +25,14 @@ class UserAssessment < ApplicationRecord
     )
   }
 
+  before_save :set_default_relationship
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment]
+  end
+
+  def set_default_relationship
+    self.relationship_id = Relationship.self_relationship&.id unless relationship_id
   end
 
   def completed?

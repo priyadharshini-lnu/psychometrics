@@ -23,18 +23,24 @@ module Exports
         [
           {
             sheet_name: 'Raw',
-            score_type: 'RAW',
-            scale_type: 'scale'
+            score_type: 'rawScores',
+            scale_type: 'scaleScores',
+            value_field: 'scaleScore',
+            factor_field: 'scaleName'
           },
           {
             sheet_name: 'percentileScales',
-            score_type: 'percentile',
-            scale_type: 'scale'
+            score_type: 'percentileScores',
+            scale_type: 'scaleScores',
+            value_field: 'scaleScore',
+            factor_field: 'scaleName'
           },
           {
             sheet_name: 'percentileSubScales',
-            score_type: 'percentile',
-            scale_type: 'subscale'
+            score_type: 'percentileScores',
+            scale_type: 'subscaleScores',
+            value_field: 'subscaleScore',
+            factor_field: 'subscaleName'
           }
         ]
       end
@@ -42,47 +48,29 @@ module Exports
       def add_score(package, score)
         package.workbook.add_worksheet(name: score[:sheet_name]) do |sheet|
           header_style = package.workbook.styles.add_style(b: true, sz: 14)
-          headers = assigns_reports_headers(score[:score_type], score[:scale_type])
+          headers = build_headers(score)
           sheet.add_row(default_headers + headers, style: header_style)
 
           assigns_reports.each do |assigns_report|
-            content = assigns_report_content(assigns_report, score[:score_type], score[:scale_type])
+            content = build_data(assigns_report, score)
             sheet.add_row(default_content(assigns_report) + content)
           end
         end
       end
 
-      def assigns_reports_headers(score_type, scale_type)
-        headers = assigns_reports_with_score.map do |assigns_report|
-          assigns_report_headers(assigns_report, score_type, scale_type)
+      def build_headers(score)
+        sample = assigns_reports_with_score.sample
+        return [] unless sample
+
+        (sample.hogan_score&.dig(score[:score_type], score[:scale_type]) || []).map do |item|
+          item[score[:factor_field]]
         end
-        headers.find(&:any?) || []
       end
 
-      def assigns_report_headers(assigns_report, score_type, scale_type)
-        assigns_report_data(assigns_report, score_type, scale_type, 'type')
-      end
-
-      def assigns_report_content(assigns_report, score_type, scale_type)
-        assigns_report_data(assigns_report, score_type, scale_type, '__content__')
-      end
-
-      def assigns_report_data(assigns_report, score_type, scale_type, data_type)
-        score = assigns_report&.hogan_score&.dig('participant', 'assessment', 'score')&.find do |i|
-          i['type'] == score_type
+      def build_data(res, score)
+        (res.hogan_score&.dig(score[:score_type], score[:scale_type]) || []).map do |item|
+          item[score[:value_field]]
         end
-        return [] if score.nil?
-
-        data =
-          if scale_type == 'scale'
-            score.dig('scales', 'scale')
-          elsif scale_type == 'subscale'
-            score.dig('subscales', 'subscale')
-          end
-
-        return [] if data.nil?
-
-        Array.wrap(data).map { |i| i[data_type] }
       end
 
       def default_content(assigns_report)

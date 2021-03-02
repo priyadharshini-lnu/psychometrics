@@ -1,12 +1,12 @@
+/* eslint-disable max-len */
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { getCurrent, fetchSingle } from 'modules/admin/modules/AssessorApp/core/users'
 import { get as getUserAssessments } from 'modules/admin/modules/AssessorApp/core/userAssessments'
 import {
-  Table, Row, Col, Dropdown, Menu, PageHeader,
+  Table, Row, Col, PageHeader, Button,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
@@ -72,7 +72,18 @@ const UserDetails: React.FC<Props> = (
         subTitle={user.email}
       />
       <div className="pl">
-        <h3>{I18n.t('common.model.assessments')}</h3>
+        <Row justify="space-between" align="middle">
+          <Col><h3>{I18n.t('common.model.assessments')}</h3></Col>
+          <Col>
+            <Button type="primary">
+              <a href={`/assessors/campaigns/${campaignId}/evaluations/${user.id}${status === 'completed' ? '?edit=true' : ''}`}>
+                {status === 'completed'
+                  ? I18n.t('assessments.actions.reevaluate')
+                  : I18n.t('assessments.actions.evaluate') }
+              </a>
+            </Button>
+          </Col>
+        </Row>
         <Row>
           <Col span={24}>
             <Table className="mtm mbl" rowKey="id" dataSource={userAssessments} pagination={false}>
@@ -91,22 +102,6 @@ const UserDetails: React.FC<Props> = (
                 key="status"
                 render={({ status }) => I18n.t(`campaign_assessment.statuses.${status}`)}
               />
-              <Column
-                title={I18n.t('common.column.action')}
-                key="action"
-                render={({ id, status }) => (
-                  <Dropdown
-                    overlay={() => (
-                    ActionsMenu({ userAssessmentId: id, status }) as React.ReactElement
-                    )}
-                    trigger={['click']}
-                  >
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                  </Dropdown>
-                )}
-              />
             </Table>
           </Col>
         </Row>
@@ -118,24 +113,5 @@ const UserDetails: React.FC<Props> = (
     </>
   )
 }
-
-interface ActionsProps {
-  userAssessmentId: number
-  status: string
-}
-
-const ActionsMenu: React.FC<ActionsProps> = ({ userAssessmentId, status }) => (
-  <Menu>
-    <Menu.Item key="evaluate">
-      <a
-        href={`/assessors/evaluations/${userAssessmentId}${status === 'completed' ? '?edit=true' : ''}`}
-        role="button"
-        tabIndex={-1}
-      >
-        {status === 'completed' ? I18n.t('assessments.actions.reevaluate') : I18n.t('assessments.actions.evaluate') }
-      </a>
-    </Menu.Item>
-  </Menu>
-)
 
 export default connecter(UserDetails)

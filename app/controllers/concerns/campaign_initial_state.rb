@@ -18,8 +18,14 @@ module CampaignInitialState
                   new(current_user, current_membership: current_membership).
                   to_h,
       config: {
-        availableLocales: I18n.available_locales
+        availableLocales: I18n.available_locales,
+        features: feature_flags
       }
     }
+  end
+
+  def feature_flags
+    # Some values can be null
+    Settings.features.to_h.transform_values { |v| v == true }
   end
 end

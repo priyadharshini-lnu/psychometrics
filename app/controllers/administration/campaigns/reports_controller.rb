@@ -54,8 +54,12 @@ module Administration
           campaign.campaign_assessments.includes(:norm, :assessment),
           each_serializer: Administration::CampaignAssessmentSerializer
         )
+        assessor_assessments = ActiveModelSerializers::SerializableResource.new(
+          campaign.assessor_assessments,
+          each_serializer: Administration::AssessorAssessmentSerializer
+        )
 
-        render json: { assessments: assessments, reports: reports }
+        render json: { assessments: assessments, reports: reports, assessor_assessments: assessor_assessments }
       end
 
       def report_families

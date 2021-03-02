@@ -3,7 +3,7 @@ import { getIn, setIn, updateIn } from 'utils/immutable'
 import schema from 'store/schema'
 import { denormalize } from 'normalizr'
 import {
-  INIT, ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET,
+  INIT, ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET, UPDATE_ELEMENT,
 } from './actions'
 
 const lookUpPath = (element) => {
@@ -51,6 +51,12 @@ const HANDLERS = {
       return [...elements.slice(0, index + 1), newElement, ...rightElements]
     })
   },
+  [UPDATE_ELEMENT]: (state, { element }) => {
+    const path = lookUpPath(element)
+    const index = _.findIndex(getIn(state, path), el => (_.isEqual(el.path, element.path)))
+    if (index < 0) return state
+    return setIn(state, [...path, index], element)
+  },
   [DUPLICATE_ELEMENT]: (state, { element, duplicate }) => {
     const path = lookUpPath(element)
     const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
@@ -58,7 +64,9 @@ const HANDLERS = {
   },
   [REMOVE_ELEMENT]: (state, { element }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
+    const index = _.findIndex(getIn(state, path), el => (el.path
+      ? _.isEqual(el.path, element.path)
+      : _.isEqual({ ...el, path: element.path }, element)))
     if (index < 0) return state
     return updateIn(state, path, elements => elements.splice(index, 1) && elements)
   },

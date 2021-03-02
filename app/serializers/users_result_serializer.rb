@@ -96,11 +96,11 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def data_sheet
-    data_sheet_row_data(object.evaluator.email)
+    campaign.datasheet_data(object.evaluator.email)
   end
 
   def subject_datasheet
-    data_sheet_row_data(object.subject.email)
+    campaign.datasheet_data(object.subject.email)
   end
 
   def participant
@@ -119,14 +119,16 @@ class UsersResultSerializer < ActiveModel::Serializer
     return object.external_results if object.assessment.mindmill?
 
     if object.assessment.hogan?
-      score = object.external_results&.dig('participant', 'assessment', 'score') || {}
+      score = object.external_results
       if score.present?
-        return score.each_with_object({}) do |v, res|
-          scales = Array.wrap(v['scales']['scale'])
-          res[normalize_hogan_type(v['type'])] = scales.each_with_object({}) do |factor, inner_res|
-            inner_res[factor['id']] = factor['__content__'].to_f
-          end
-        end
+        raw_scale = score.dig('scores', 'rawScores', 'scaleScores') || []
+        percentile_scale = score.dig('scores', 'percentileScores', 'scaleScores') || []
+        percentile_subscale = score.dig('scores', 'percentileScores', 'subscaleScores') || []
+        return {
+          'RawScale' => normalize_hogan(raw_scale),
+          'PercentileScale' => normalize_hogan(percentile_scale),
+          'PercentileSubscale' => normalize_hogan(percentile_subscale)
+        }
       end
     end
     {}
@@ -150,18 +152,10 @@ class UsersResultSerializer < ActiveModel::Serializer
     instance_options[:locale] || I18n.default_locale
   end
 
-  def data_sheet_row_data(email)
-    row = DatasheetRow.
-          joins(:datasheet).
-          find_by(datasheets: { project_id: campaign.project.id }, email: email)
-    row&.data || {}
-  end
-
-  def normalize_hogan_type(type)
-    return 'Raw' if type == 'RAW'
-    return 'Percentile' if type == 'percentile'
-
-    raise "Not supported hogan type #{type}"
+  def normalize_hogan(items)
+    items.each_with_object({}) do |v, res|
+      res[v['id'].to_s.rjust(2, '0')] = (v['scaleScore'] || v['subscaleScore']).to_f
+    end
   end
 
   def piped_text_context

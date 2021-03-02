@@ -11,7 +11,7 @@ module Threesixty
         instruction_templates = read_yaml.map do |attributes|
           threesixty_campaign.instruction_templates.new(attributes)
         end
-        ::Threesixty::InstructionTemplate.import(instruction_templates)
+        ::Threesixty::InstructionTemplate.import(instruction_templates, recursive: true)
       end
 
       private

@@ -1,12 +1,14 @@
 import React from 'react'
 import { Collapse, Button } from 'antd'
-import { CaretRightOutlined } from '@ant-design/icons'
+import { CaretRightOutlined, CaretLeftOutlined } from '@ant-design/icons'
 
 import { SafeHTML } from 'components/SafeHTML'
+import { isRtl } from 'utils/locales'
 
 import styles from './styles'
 
 const { Panel } = Collapse
+const { I18n } = window
 
 export default function InstructionsPanel ({
   instructionsEnabled, instructions, showBegin, showContinue, onBegin, onContinue,
@@ -16,6 +18,7 @@ export default function InstructionsPanel ({
     ...(instructionsEnabled ? '1' : []),
     ...(showActions ? '2' : []),
   ]
+  const rtl = isRtl(I18n.uiLocale)
 
   return (
     <div className={styles.container}>
@@ -32,7 +35,7 @@ export default function InstructionsPanel ({
           >
             <SafeHTML
               html={instructions}
-              sanitizeConfig={{ ADD_TAGS: ['iframe'] }}
+              config="adminRichText"
             />
           </Panel>
         )}
@@ -42,8 +45,8 @@ export default function InstructionsPanel ({
               <Button
                 type="primary"
                 onClick={onContinue}
+                icon={rtl ? <CaretLeftOutlined /> : <CaretRightOutlined />}
               >
-                <CaretRightOutlined />
                 {I18n.t('campaign.continue')}
               </Button>
             )}
@@ -51,8 +54,8 @@ export default function InstructionsPanel ({
               <Button
                 type="primary"
                 onClick={onBegin}
+                icon={rtl ? <CaretLeftOutlined /> : <CaretRightOutlined />}
               >
-                <CaretRightOutlined />
                 {I18n.t('campaign.begin')}
               </Button>
             )}

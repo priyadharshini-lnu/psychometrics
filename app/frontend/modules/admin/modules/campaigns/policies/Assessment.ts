@@ -23,6 +23,13 @@ const Assessment = {
     if (isAgile(record.category)) return false
     return Assessment.exportRawResultsWithLabel(currentUser, record)
   },
+  exportRawFactorScores: (
+    currentUser: User,
+    record: IAssessment,
+  ) => {
+    if (isAgile(record.category)) return false
+    return Assessment.exportScoringResults(currentUser, record)
+  },
   exportNormedResults: (currentUser: User, record: IAssessment) => {
     if (isAgile(record.category)) return false
     if (isExternal(record.category)) return false

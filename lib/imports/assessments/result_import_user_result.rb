@@ -76,7 +76,7 @@ module Imports
           # If UserResult not found, going to create user
           unless user_result
             user = Users::Regular.
-                   find_by(users: { email: data['email'].to_s.downcase }, project_id: campaign.project_id)
+                   find_by(users: { email: data['subject_email'].to_s.downcase }, project_id: campaign.project_id)
             user ||= find_or_create_user(data, index)
             next unless user
 
@@ -103,7 +103,7 @@ module Imports
 
           norm_data = parse_norm_data(data['norm'], user_result.assessment_id)
           user_result.assign_attributes(
-            created_at: parse_date(data['started_at'], index),
+            started_at: parse_date(data['started_at'], index),
             completed_at: parse_date(data['completed_at'], index),
             norm_id: norm_data[:id],
             status: status,
@@ -170,7 +170,7 @@ module Imports
       private
 
       def find_or_create_user(data, index)
-        first_name, last_name = data['name']&.split(', ')
+        first_name, last_name = data['subject_name']&.split(', ')
         # TODO: Remove password and uncommit Invite
         user = Users::Regular.
                create_with(
@@ -180,7 +180,7 @@ module Imports
                  password_confirmation: 'password',
                  project_id: campaign.project_id
                ).
-               find_or_create_by(email: data['email'])
+               find_or_create_by(email: data['subject_email'])
         if user.errors.any?
           errors.add(:base, I18n.t('administration.imports.errors.result.error',
                                    row: index + SKIP_ROWS, error: user.errors.full_messages.first))

@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-star:before {
+  content: "\e90b";
+}
 .icon-360:before {
   content: "\e900";
 }

@@ -74,9 +74,9 @@ module Threesixty
 
       def check_datasheet_criteria(evaluator = nil)
         evaluator ||= OpenStruct.new(email: evaluator_email)
-        user_datasheet = threesixty_campaign.datasheet&.rows&.find_by(email: evaluator.email)
+        user_datasheet = threesixty_campaign.campaign.datasheet_data(evaluator.email)
 
-        return can_not_be_processed! unless user_datasheet
+        return can_not_be_processed! if user_datasheet.blank?
 
         if limit_nomination_by_subject_from_datasheet?
           unless Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(threesixty_campaign,

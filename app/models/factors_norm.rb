@@ -59,10 +59,8 @@ class FactorsNorm < ApplicationRecord
     end
 
     def export_structured_hash(norm)
-      sum = {}
       sql = Factor.where(dimension_id: norm.dimension_id).with_norm(norm.id)
-      sum['factors'] = FactorsNorm.structured_hash(sql)
-      sum
+      structured_hash(sql)
     end
 
     def change_cell(params)

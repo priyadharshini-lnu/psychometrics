@@ -7,6 +7,7 @@ require 'rails_helper'
 describe Assessments::Export::RawAndScoring do
   let(:campaign) { create(:campaign) }
   let(:project) { create(:project) }
+  let!(:relationship) { create(:relationship, type: :global, name: 'Self') }
   let(:assessment) { project.assessments.take }
   let(:file_name) { 'assessment_export.xlsx' }
 
@@ -24,9 +25,8 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_first_row = xlsx.sheet(0).row(1)
 
-      expected_first_row = [
-        'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
-      ]
+      expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+                            'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
       questions.each do |q|
         expected_first_row << "QID#{q.id}"
         expected_first_row << "QID#{q.id}_#{ImportExportConst::DURATION}"
@@ -40,7 +40,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
-      expected_second_row = [nil] * 8
+      expected_second_row = [nil] * 11
       questions.each { |q| expected_second_row << [q.name] * 2 }
 
       expect(actual_second_row).to eq(expected_second_row.flatten)
@@ -52,7 +52,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_third_row = xlsx.sheet(0).row(3)
-      expected_third_row = [nil] * 8
+      expected_third_row = [nil] * 11
       questions.each { |q| expected_third_row << [q.props['questionText']] * 2 }
 
       expect(actual_third_row).to eq(expected_third_row.flatten)
@@ -84,11 +84,13 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_result_row = xlsx.sheet(0).row(5)
-      user_name = "#{res.user.first_name}, #{res.user.last_name}"
       expected_result_row = [
         res.encoded_id,
-        user_name,
-        res.user.email,
+        "#{res.subject.first_name}, #{res.subject.last_name}",
+        res.subject.email,
+        "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
+        res.evaluator.email,
+        'Self',
         res.started_at.try(:strftime, '%D %r'),
         res.completed_at.try(:strftime, '%D %r'),
         nil,
@@ -114,9 +116,8 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_first_row = xlsx.sheet(0).row(1)
 
-      expected_first_row = [
-        'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
-      ]
+      expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+                            'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.each do |email_field|
         expected_first_row << "QID#{question.id}_#{email_field}"
@@ -133,7 +134,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
-      expected_second_row = [nil] * 8
+      expected_second_row = [nil] * 11
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
 
@@ -149,7 +150,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_third_row = xlsx.sheet(0).row(3)
-      expected_third_row = [nil] * 8
+      expected_third_row = [nil] * 11
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.count.times do |_i|
         expected_third_row << question.props['questionText']
@@ -178,11 +179,13 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_result_row = xlsx.sheet(0).row(5)
-      user_name = "#{res.user.first_name}, #{res.user.last_name}"
       expected_result_row = [
         res.encoded_id,
-        user_name,
-        res.user.email,
+        "#{res.subject.first_name}, #{res.subject.last_name}",
+        res.subject.email,
+        "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
+        res.evaluator.email,
+        'Self',
         res.started_at.try(:strftime, '%D %r'),
         res.completed_at.try(:strftime, '%D %r'),
         nil,
@@ -210,9 +213,8 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_first_row = xlsx.sheet(0).row(1)
 
-      expected_first_row = [
-        'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
-      ]
+      expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+                            'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
       expected_first_row << "QID#{question.id}"
       expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
 
@@ -225,7 +227,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
-      expected_second_row = [nil] * 8
+      expected_second_row = [nil] * 11
       expected_second_row << [question.name] * 2
 
       expect(actual_second_row).to eq(expected_second_row.flatten)
@@ -237,7 +239,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_third_row = xlsx.sheet(0).row(3)
-      expected_third_row = [nil] * 8
+      expected_third_row = [nil] * 11
 
       expected_third_row << [question.props['questionText']] * 2
 
@@ -261,11 +263,13 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_result_row = xlsx.sheet(0).row(5)
-      user_name = "#{res.user.first_name}, #{res.user.last_name}"
       expected_result_row = [
         res.encoded_id,
-        user_name,
-        res.user.email,
+        "#{res.subject.first_name}, #{res.subject.last_name}",
+        res.subject.email,
+        "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
+        res.evaluator.email,
+        'Self',
         res.started_at.try(:strftime, '%D %r'),
         res.completed_at.try(:strftime, '%D %r'),
         nil,

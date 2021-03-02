@@ -4,7 +4,7 @@ module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
       norm_data = {
-        norm_id: campaign_assessment.norm_id
+        norm_id: campaign_assessment&.norm_id
       }
 
       results.find_each do |res|
@@ -33,22 +33,24 @@ module AdminJobs
     private
 
     def campaign_assessment
-      @campaign_assessment ||= CampaignAssessment.find_by(id: record.data['campaign_assessment_id'])
+      @campaign_assessment ||= CampaignAssessment.find_by(
+        campaign_id: record.data['campaign_id'], assessment: record.data['assessment_id']
+      )
     end
 
     def campaign
-      campaign_assessment&.campaign
+      Campaign.find_by(id: record.data['campaign_id'])
     end
 
     def assessment
-      campaign_assessment&.assessment
+      Assessment.find_by(id: record.data['assessment_id'])
     end
 
     def results
       UsersResult.joins(:user_assessment).
         where(
-          assessment_id: campaign_assessment.assessment_id,
-          user_assessments: { campaign_id: campaign_assessment.campaign_id },
+          assessment_id: record.data['assessment_id'],
+          user_assessments: { campaign_id: record.data['campaign_id'] },
           status: :completed
         ).
         includes(:evaluator)

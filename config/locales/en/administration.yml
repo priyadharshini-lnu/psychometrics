@@ -281,7 +281,6 @@ en:
       libraries: Media Library
       licenses: Licenses
       new_campaign: New Campaign
-      new_datasheet: New Datasheet
       norm: Norm
       norms: Norms
       norms_editor: Norm Editor
@@ -2188,7 +2187,7 @@ en:
         successfully: Communication was successfully updated.
     components:
       input_duration:
-        placeholder: Enter as '1d 2h 3m 4s'
+        placeholder: Enter as '1d 2h 3m'
     copy: Copy
     create: Create
     created: Successfully created
@@ -2639,7 +2638,6 @@ en:
       libraries: Media Library
       licenses: Licenses
       new_campaign: New Campaign
-      new_datasheet: New Datasheet
       norm: Norm
       norms: Norms
       norms_editor: Norm Editor

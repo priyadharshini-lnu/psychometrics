@@ -13,6 +13,10 @@ module Administration
       def datasheet
         @datasheet ||= campaign.campaign_datasheet
       end
+
+      def parent_resource
+        campaign
+      end
     end
   end
 end
