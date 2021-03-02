@@ -45,9 +45,9 @@ const CHANGE_ASSESSOR_FORM = 'assessors/evaluating/CHANGE_ASSESSOR_FORM'
 const CHANGE_SUBJECT_ASSESSMENT = 'assessors/evaluating/CHANGE_SUBJECT_ASSESSMENT'
 
 type FetchAssessorAssessmentsType = ApiActionResponse<{
-  userInfo: {}
-  assessorAssessments: UserAssessment[]
-  subjectAssessments: UserAssessment[]
+  user_info: {}
+  assessor_assessments: UserAssessment[]
+  subject_assessments: UserAssessment[]
 }>
 
 // TODO: @fedor implement typedResponse and assessment/result type
@@ -74,6 +74,7 @@ export const fetchAssessorAssessments = (parsedCampaignId: number, userId: numbe
     method: 'get',
     url: `/assessors/campaigns/${parsedCampaignId}/evaluations/${userId}/evaluate`,
     body: {},
+    camelize: false,
   },
 })
 
@@ -101,8 +102,10 @@ export const fetchSubjectAssessment = (evaluationId: number) => ({
 const HANDLERS = {
   [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, { response }: FetchAssessorAssessmentsType) => ({
     ...state,
-    ...response,
-    currentAssessmentId: _.get(response, ['subjectAssessments', 0, 'id']),
+    userInfo: response.user_info,
+    assessorAssessments: response.assessor_assessments,
+    subjectAssessments: response.subject_assessments,
+    currentAssessmentId: _.get(response, ['subject_assessments', 0, 'id']),
     loaded: true,
   }),
   [FETCH_ASSESSOR_ASSESSMENT]: (state: State, { response, requestAction: { evaluationId } }: FetchType) => ({

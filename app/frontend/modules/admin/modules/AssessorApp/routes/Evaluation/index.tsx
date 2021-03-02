@@ -76,12 +76,12 @@ const Evaluation = ({
               <div>
                 {I18n.t('user.fields.first_name')}
                 {': '}
-                {userInfo.user && userInfo.user.firstName}
+                {userInfo.user && userInfo.user.first_name}
               </div>
               <div>
                 {I18n.t('user.fields.last_name')}
                 {': '}
-                {userInfo.user && userInfo.user.lastName}
+                {userInfo.user && userInfo.user.last_name}
               </div>
               <div>
                 <Table
