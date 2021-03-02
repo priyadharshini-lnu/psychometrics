@@ -1,10 +1,9 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import React, { Component } from 'react'
 import _ from 'lodash'
-import cs from 'classnames'
 import ResultStore from 'rb/store/ResultStore'
 import userPresenter from 'rb/presenters/userPresenter'
 import I18nStore from 'rb/store/I18nStore'
+import { PlayCircleOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
 
 const MOCK_RESULTS = [
@@ -31,22 +30,20 @@ const MOCK_RESULTS = [
 ]
 
 const Evaluator = ({ evaluator }) => (
-  <div className={styles.evaluator}>
-    <div className="text-align-c">
-      <a
-        href={evaluator?.video?.url}
-        className={styles.videoBox}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="glyphicon glyphicon-play-circle" aria-hidden="true" />
-      </a>
+  <a
+    href={evaluator?.video?.url}
+    className={styles.evaluator}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div className="text-align-l">
+      <PlayCircleOutlined className={styles.icon} />
     </div>
     <div className={styles.fullName}>
       <strong>{evaluator.fullName}</strong>
     </div>
     <div className={styles.relationship}>{evaluator.relationship}</div>
-  </div>
+  </a>
 )
 
 export default class VideoResponse extends Component {
@@ -76,7 +73,7 @@ export default class VideoResponse extends Component {
   renderNoResults () {
     return (
       <div className={styles.noResults}>
-        <span className={cs('glyphicon glyphicon-play-circle', styles.icon)} aria-hidden="true" />
+        <PlayCircleOutlined className={styles.icon} />
         <span className={styles.text}>{I18nStore.t('reports.modules.video_response.no_results')}</span>
       </div>
     )
