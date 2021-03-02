@@ -17,6 +17,7 @@ const { I18n } = window
 
 const connector = connect((state: RootState) => ({
   evaluation: state.assessors.evaluation,
+  currentAssessmentId: state.assessors.evaluation.currentAssessmentId,
 }), {
   fetchAll: fetchAssessorAssessments,
   changeForm: changeAssessorForm,
@@ -25,6 +26,7 @@ const connector = connect((state: RootState) => ({
 
 const Evaluation = ({
   fetchAll, changeForm, changeSubjectAssessment, evaluation: { userInfo, assessorAssessments, subjectAssessments },
+  currentAssessmentId,
 }) => {
   let parsedCampaignId; let
     parsedUserId
@@ -47,6 +49,7 @@ const Evaluation = ({
   const changeSubjectForm = (id) => {
     changeSubjectAssessment(id)
   }
+
   return (
     <div>
       <Breadcrumb
@@ -109,7 +112,7 @@ const Evaluation = ({
             <Tabs defaultActiveKey="1" onChange={changeSubjectForm}>
               {subjectAssessments.map(assessment => (
                 <TabPane tab={assessment.name} key={assessment.id}>
-                  <UserAssessment subjectAssessmentId={assessment.id} />
+                  {+currentAssessmentId === +assessment.id && <UserAssessment subjectAssessmentId={+assessment.id} />}
                 </TabPane>
               ))}
             </Tabs>

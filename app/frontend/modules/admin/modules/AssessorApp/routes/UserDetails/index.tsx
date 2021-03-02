@@ -5,9 +5,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import { getCurrent, fetchSingle } from 'modules/admin/modules/AssessorApp/core/users'
 import { get as getUserAssessments } from 'modules/admin/modules/AssessorApp/core/userAssessments'
 import {
-  Table, Row, Col, Dropdown, Menu, PageHeader, Button,
+  Table, Row, Col, PageHeader, Button,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
@@ -103,22 +102,6 @@ const UserDetails: React.FC<Props> = (
                 key="status"
                 render={({ status }) => I18n.t(`campaign_assessment.statuses.${status}`)}
               />
-              <Column
-                title={I18n.t('common.column.action')}
-                key="action"
-                render={({ id, status }) => (
-                  <Dropdown
-                    overlay={() => (
-                    ActionsMenu({ userAssessmentId: id, status }) as React.ReactElement
-                    )}
-                    trigger={['click']}
-                  >
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                  </Dropdown>
-                )}
-              />
             </Table>
           </Col>
         </Row>
@@ -130,14 +113,5 @@ const UserDetails: React.FC<Props> = (
     </>
   )
 }
-
-interface ActionsProps {
-  userAssessmentId: number
-  status: string
-}
-
-const ActionsMenu: React.FC<ActionsProps> = () => (
-  <Menu />
-)
 
 export default connecter(UserDetails)

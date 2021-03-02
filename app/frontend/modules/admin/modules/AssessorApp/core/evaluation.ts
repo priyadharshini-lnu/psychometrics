@@ -1,6 +1,7 @@
 import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
+import _ from 'lodash'
 import { setIn } from 'utils/immutable'
 
 export const UserAssessmentTR = t.type({
@@ -94,12 +95,14 @@ export const fetchSubjectAssessment = (evaluationId: number) => ({
     url: `/assessors/evaluations/${evaluationId}/subject_assessment`,
     camelize: false,
   },
+  evaluationId,
 })
 
 const HANDLERS = {
   [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, { response }: FetchAssessorAssessmentsType) => ({
     ...state,
     ...response,
+    currentAssessmentId: _.get(response, ['subjectAssessments', 0, 'id']),
     loaded: true,
   }),
   [FETCH_ASSESSOR_ASSESSMENT]: (state: State, { response, requestAction: { evaluationId } }: FetchType) => ({
