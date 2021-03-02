@@ -88,7 +88,7 @@ class Campaign < ApplicationRecord
 
   def assessor_assessments
     Assessment.assessor_form.joins(:user_assessments).
-      where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id })
+      where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
   end
 
   private
