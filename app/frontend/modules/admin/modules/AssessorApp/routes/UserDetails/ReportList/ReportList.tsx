@@ -107,7 +107,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <Menu.Item key="downloadReport">
           <a
             href={internal
-              ? `/assessors/user_reports/${id}/download.pdf`
+              ? `/assessors/campaigns/${campaignId}/user_reports/${id}/download.pdf`
               : reportUrl}
             target="_blank"
             rel="noopener noreferrer"
