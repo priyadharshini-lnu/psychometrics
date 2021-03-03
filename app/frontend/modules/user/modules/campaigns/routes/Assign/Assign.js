@@ -24,6 +24,7 @@ export default function Assign ({
       selected_locale: selectedLanguage,
       available_translations: availableTranslations,
       translations,
+      remaining_assessment_time: remainingAssessmentTime,
     },
   }, fetchAssessment,
   match: { params },
@@ -61,11 +62,21 @@ export default function Assign ({
                   {assessment.name}
                 </div>
               )}
-              extra={[
-                type !== 'preview_block' && enableProgress
-                  && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-                <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
-              ]}
+              extra={(
+                <Space size="middle">
+                  {remainingAssessmentTime && (
+                  <Timer
+                    key="2"
+                    theme="plain"
+                    notification
+                    seconds={remainingAssessmentTime}
+                    onFinish={() => markAssessmentTimedOut(preview)}
+                  />
+                  )}
+                  {type !== 'preview_block' && enableProgress
+                    && (<Progress key="1" percent={progress} style={{ width: '200px' }} />)}
+                </Space>
+              )}
               onBack={() => { window.location.href = '/dashboard' }}
             />
           </Content>

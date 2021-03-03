@@ -17,7 +17,7 @@ module CampaignUsers
     private
 
     def attributes
-      { completion_status: :in_progress, completed_at: nil, completed_via: nil }
+      { status: :in_progress, completed_at: nil }
     end
   end
 end

@@ -18,7 +18,7 @@ class UsersResult < ApplicationRecord
   has_one :agile, through: :assessment
   has_many :agile_events, dependent: :destroy
 
-  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3 }
+  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
 
   scope :actual_by_options, lambda { |options|
@@ -30,8 +30,16 @@ class UsersResult < ApplicationRecord
 
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
 
+  after_commit :set_campaign_user_completion_status, if: proc { status_previously_changed? }, on: %i[update]
+
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
+  end
+
+  def real_status
+    return 'timed_out' if expired? && !completed? && !interrupted?
+
+    status
   end
 
   def expired?
@@ -108,5 +116,10 @@ class UsersResult < ApplicationRecord
 
   def self.statuses_count
     UsersResult.statuses.keys.each_with_object({}) { |status, acc| acc[status.to_sym] = 0 }
+  end
+
+  def set_campaign_user_completion_status
+    campaign_user = CampaignUser.find_by(user_id: subject_id, campaign_id: user_assessment&.campaign_id)
+    CampaignUsers::SetCompletionStatus.call!(campaign_user) if campaign_user
   end
 end

@@ -779,10 +779,10 @@ CREATE TABLE public.campaign_users (
     active boolean DEFAULT true,
     started_at timestamp without time zone,
     completed_at timestamp without time zone,
-    completed_via integer,
     completion_status integer DEFAULT 0,
     additional_time integer,
-    expiry_date timestamp without time zone
+    expiry_date timestamp without time zone,
+    status integer DEFAULT 0
 );
 
 
@@ -5207,13 +5207,6 @@ CREATE INDEX index_campaign_users_on_completed_at ON public.campaign_users USING
 
 
 --
--- Name: index_campaign_users_on_completed_via; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_campaign_users_on_completed_via ON public.campaign_users USING btree (completed_via);
-
-
---
 -- Name: index_campaign_users_on_completion_status; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7917,5 +7910,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210209061539'),
 ('20210209133316'),
 ('20210215142202'),
+('20210216092744'),
+('20210216133140'),
 ('20210228092218');
+
 

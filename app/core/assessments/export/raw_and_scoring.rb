@@ -38,7 +38,7 @@ module Assessments
           res.started_at.try(:strftime, '%D %r'),
           res.completed_at.try(:strftime, '%D %r'),
           res.norm ? res.norm.name : '',
-          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+          I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
           completion_reason
         ]
       end

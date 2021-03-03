@@ -11,5 +11,15 @@ FactoryBot.define do
     trait :with_relationship do
       relationship
     end
+
+    trait :with_result do
+      transient do
+        status { :completed }
+      end
+
+      after(:create) do |ua, evaluator|
+        ua.users_result.update_columns(status: evaluator.status)
+      end
+    end
   end
 end

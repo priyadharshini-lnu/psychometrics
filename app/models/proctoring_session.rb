@@ -4,7 +4,7 @@ class ProctoringSession < ApplicationRecord
   belongs_to :campaign_user
 
   def payloadify
-    end_date = campaign_user.started_at + campaign.fixed_time_duration.minutes
+    end_date = campaign_user.started_at + campaign.fixed_time_duration.seconds
     {
       "userId": campaign_user.id.to_s,
       "lastName": campaign_user.user.first_name,
@@ -16,7 +16,7 @@ class ProctoringSession < ApplicationRecord
       "examId": campaign.id.to_s,
       "courseName": '',
       "examName": campaign.name,
-      "duration": campaign.fixed_time_duration,
+      "duration": campaign.fixed_time_duration / 60,
       "schedule": false,
       "proctoring": 'offline',
       "identification": campaign.identification,

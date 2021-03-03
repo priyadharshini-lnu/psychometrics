@@ -10,7 +10,7 @@ module EndUser
     attribute :hogan_url, if: -> { object.assessment.hogan? }
 
     def status
-      object.users_result&.status
+      object.real_status
     end
 
     def url
