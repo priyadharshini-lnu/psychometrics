@@ -30,13 +30,13 @@ class WordsRange {
     if (answerLength < this.minLength || answerLength > this.maxLength) {
       return {
         type: 'WordsRange',
-        message: I18n().t(`${getValidationKey(this.question)}.words_range`, {
+        message: I18n().t(`${getValidationKey(this.question)}.word_range`, {
           min: this.minLength,
           max: this.maxLength,
         }),
       }
     }
-    return {}
+    return null
   }
 }
 

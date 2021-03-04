@@ -22,12 +22,12 @@ class MinWords {
     if (wordsCount(getAnswer(this.question, answers)) < this.minLength) {
       return {
         type: 'MinWords',
-        message: I18n().t(`${getValidationKey(this.question)}.min_words`, {
+        message: I18n().t(`${getValidationKey(this.question)}.min_word`, {
           min: this.minLength,
         }),
       }
     }
-    return {}
+    return null
   }
 }
 
