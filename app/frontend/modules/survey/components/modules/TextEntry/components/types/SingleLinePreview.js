@@ -1,36 +1,50 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../TextEntry.scss'
+import { Input, Row, Col } from 'antd'
+
+import { TextEntryCounter } from '../components/TextEntryCounter'
 
 export default class extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
 
-  changeAnswer = (e) => {
+  changeAnswer = (event) => {
     const { model } = this.props
-    model.result.answer(e.currentTarget.value)
+    const {
+      currentTarget: { value },
+    } = event
+
+    model.result.answer(value)
     this.forceUpdate()
   }
 
-  type () {
-    const { model } = this.props
-    return model.props.type === 'SingleLine' ? 'text' : 'password'
-  }
-
   render () {
-    const { model: { result }, readOnly } = this.props
+    const {
+      readOnly,
+      model: {
+        result,
+        props: { type },
+      },
+      model,
+    } = this.props
+
     const value = (result.answers[0] && result.answers[0].value) || ''
+
     return (
       <div>
-        <input
-          autoComplete="off"
-          disabled={readOnly}
-          onChange={this.changeAnswer}
-          value={value}
-          className={`form-control ${styles.singleLine}`}
-          type={this.type()}
-        />
+        <Row>
+          <Col span={24}>
+            <Input
+              autoComplete="off"
+              disabled={readOnly}
+              onChange={this.changeAnswer}
+              value={value}
+              type={type === 'SingleLine' ? 'text' : 'password'}
+            />
+          </Col>
+        </Row>
+        <TextEntryCounter model={model} />
       </div>
     )
   }

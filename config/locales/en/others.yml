@@ -2292,6 +2292,7 @@ en:
     actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
     blank: can't be blank
     character_range: Your response must be at least %{min} and no more than %{max} characters.
+    words_range: Your response must be at least %{min} and no more than %{max} words.
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
@@ -2302,13 +2303,21 @@ en:
     least: Please answer at least %{min} choice(s).
     least_hotspot: Please answer at least %{min} choice(s).
     max_length: Your response must be no more than %{max} characters.
+    max_words: Your response must not be more than %{max} words.
     min_length: Your response must be at least %{min} characters.
+    min_words: Your response must be atleast %{min} words
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
     must_select: Please select from %{min} to %{max} choices
     number: Your response must be a number
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
+    character_count: 'Characters count '
+    word_count: 'Words count '
     text: Your response must not contain a numbers
+    tooltips:
+      textentry_range: 'Your response must be at least %{min} words and not more than %{max} words'
+      textentry_min: 'Your response must be atleast %{min} words'
+      textentry_max: 'Your response must not be more than %{max} words'
     title:
       one: There is one error, please check your responses
       other: There are %{count} errors, please check your responses

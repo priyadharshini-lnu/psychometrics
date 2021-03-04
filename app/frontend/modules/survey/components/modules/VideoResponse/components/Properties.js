@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import { DefaultTrackerOptions } from 'constants/DefaultProps'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
-import Validations, { RequiredValidations } from 'components/Validations'
+import ValidationTypes from 'components/ValidationTypes'
+import RequiredValidations from 'components/RequiredValidations'
 import { Button, InputNumber } from 'antd'
 import _ from 'lodash'
 
@@ -192,7 +193,7 @@ export class Properties extends Component {
         />
         )}
         {!restricted && (
-        <Validations
+        <ValidationTypes
           model={model}
           update={() => this.forceUpdate()}
         />

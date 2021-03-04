@@ -1,35 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
+
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 
-const NumericFormat = ({ model, changeValidationArg }) => (
-  <div>
-    <div className={styles.label} style={{ marginBottom: '10px' }}>Numeric Format</div>
-    <div className={styles.label}>Maximum</div>
-    <input
-      type="text"
-      onChange={changeValidationArg}
-      data-arg="maximum"
-      value={model.validation.args.maximum || ''}
-    />
-    <div className={styles.label}>Minimum</div>
-    <input
-      type="text"
-      onChange={changeValidationArg}
-      data-arg="minimum"
-      value={model.validation.args.minimum || ''}
-    />
-    <div className={styles.label}>Max Decimals</div>
-    <input
-      type="text"
-      onChange={changeValidationArg}
-      data-arg="maxDecimals"
-      value={model.validation.args.maxDecimals || ''}
-    />
-  </div>
-)
+import { ValidationFieldsProps } from '../interfaces'
 
-export default function Content ({ model, changeValidationArg }) {
+const Content: FC<ValidationFieldsProps> = ({
+  model,
+  changeValidationArg,
+}) => {
   const { type } = model.validation.args
+
   return (
     <div>
       <div className={styles.label}>Content Type</div>
@@ -37,9 +17,8 @@ export default function Content ({ model, changeValidationArg }) {
         <input
           style={{ marginRight: '3px' }}
           type="radio"
-          name="content_type"
           onChange={changeValidationArg}
-          data-arg="type"
+          name="type"
           checked={type === 'Email'}
           value="Email"
         />
@@ -49,9 +28,8 @@ export default function Content ({ model, changeValidationArg }) {
         <input
           style={{ marginRight: '3px' }}
           type="radio"
-          name="content_type"
           onChange={changeValidationArg}
-          data-arg="type"
+          name="type"
           checked={type === 'Date'}
           value="Date"
         />
@@ -61,9 +39,8 @@ export default function Content ({ model, changeValidationArg }) {
         <input
           style={{ marginRight: '3px' }}
           type="radio"
-          name="content_type"
           onChange={changeValidationArg}
-          data-arg="type"
+          name="type"
           checked={type === 'Number'}
           value="Number"
         />
@@ -73,15 +50,53 @@ export default function Content ({ model, changeValidationArg }) {
         <input
           style={{ marginRight: '3px' }}
           type="radio"
-          name="content_type"
           onChange={changeValidationArg}
-          data-arg="type"
+          name="type"
           checked={type === 'Text'}
           value="Text"
         />
         Text Only (No-numbers)
       </label>
-      {type === 'Number' && <NumericFormat model={model} changeValidationArg={changeValidationArg} />}
+      {type === 'Number' && (
+        <NumericFormat
+          model={model}
+          changeValidationArg={changeValidationArg}
+        />
+      )}
     </div>
   )
 }
+
+const NumericFormat: FC<ValidationFieldsProps> = ({
+  model,
+  changeValidationArg,
+}) => (
+  <div>
+    <div className={styles.label} style={{ marginBottom: '10px' }}>
+      Numeric Format
+    </div>
+    <div className={styles.label}>Maximum</div>
+    <input
+      type="text"
+      onChange={changeValidationArg}
+      name="maximum"
+      value={model.validation.args.maximum || ''}
+    />
+    <div className={styles.label}>Minimum</div>
+    <input
+      type="text"
+      onChange={changeValidationArg}
+      name="minimum"
+      value={model.validation.args.minimum || ''}
+    />
+    <div className={styles.label}>Max Decimals</div>
+    <input
+      type="text"
+      onChange={changeValidationArg}
+      name="maxDecimals"
+      value={model.validation.args.maxDecimals || ''}
+    />
+  </div>
+)
+
+export default Content
