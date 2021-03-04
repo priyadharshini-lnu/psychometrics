@@ -1,25 +1,30 @@
-import React from 'react'
+import React, { FC } from 'react'
+
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 
-export default function MustRankBetween ({ model, changeValidationArg }) {
-  return [
-    <div key={0}>
+import { ValidationFieldsProps } from '../interfaces'
+
+const MustRankBetween: FC<ValidationFieldsProps> = ({ model, changeValidationArg }) => (
+  <>
+    <div>
       <div className={styles.label}>Must Rank At Least</div>
       <input
         type="text"
         onChange={changeValidationArg}
-        data-arg="minValue"
+        name="minValue"
         value={model.validation.args.minValue || ''}
       />
-    </div>,
-    <div key={1}>
+    </div>
+    <div>
       <div className={styles.label}>And No More Than</div>
       <input
         type="text"
         onChange={changeValidationArg}
-        data-arg="maxValue"
+        name="maxValue"
         value={model.validation.args.maxValue || ''}
       />
-    </div>,
-  ]
-}
+    </div>
+  </>
+)
+
+export default MustRankBetween

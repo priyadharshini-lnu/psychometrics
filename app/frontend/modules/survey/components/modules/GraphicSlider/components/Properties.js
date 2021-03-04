@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
-import { RequiredValidations } from 'components/Validations'
+import RequiredValidations from 'components/RequiredValidations'
 import ChoicesInput from 'components/ChoicesInput'
 
 const TEXT_POSITIONS = ['Above', 'Below', 'Left', 'Right']

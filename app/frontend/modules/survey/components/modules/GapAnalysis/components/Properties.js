@@ -5,7 +5,7 @@ import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Utils from 'utils'
 import Action from 'undo'
-import { RequiredValidations } from 'components/Validations'
+import RequiredValidations from 'components/RequiredValidations'
 
 export class Properties extends Component {
   static propTypes = {
