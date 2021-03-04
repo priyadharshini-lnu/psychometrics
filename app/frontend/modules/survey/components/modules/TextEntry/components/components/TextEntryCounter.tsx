@@ -20,6 +20,10 @@ export const TextEntryCounter: FC<Props> = ({ model }) => {
   const characterTypes = ['MinLength', 'MaxLength', 'CharacterRange']
   const wordTypes = ['MinWords', 'MaxWords', 'WordsRange']
 
+  const translationKey = wordTypes.includes(validationType)
+    ? 'word'
+    : 'character'
+
   if (
     ![...characterTypes, ...wordTypes].includes(validationType)
     || isEmpty(validationArgs)
@@ -85,16 +89,16 @@ export const TextEntryCounter: FC<Props> = ({ model }) => {
 
   let tooltipText = ''
   if (validationArgs.minLength && validationArgs.maxLength) {
-    tooltipText = I18n().t('validations.tooltips.textentry_range', {
+    tooltipText = I18n().t(`validations.${translationKey}_range`, {
       min: validationArgs.minLength,
       max: validationArgs.maxLength,
     })
   } else if (validationArgs.minLength) {
-    tooltipText = I18n().t('validations.tooltips.textentry_min', {
+    tooltipText = I18n().t(`validations.min_${translationKey}`, {
       min: validationArgs.minLength,
     })
   } else if (validationArgs.maxLength) {
-    tooltipText = I18n().t('validations.tooltips.textentry_max', {
+    tooltipText = I18n().t(`validations.max_${translationKey}`, {
       max: validationArgs.maxLength,
     })
   }

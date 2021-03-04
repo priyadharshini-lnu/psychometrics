@@ -12,7 +12,7 @@ _.extend(MaxLength.prototype, {
     if (getAnswer(this.question, answers).length > this.maxLength) {
       return {
         type: 'MaxLength',
-        message: I18n().t(`${getValidationKey(this.question)}.max_length`, { max: this.maxLength }),
+        message: I18n().t(`${getValidationKey(this.question)}.max_character`, { max: this.maxLength }),
       }
     }
   },

@@ -22,12 +22,12 @@ class MaxWords {
     if (wordsCount(getAnswer(this.question, answers)) > this.maxLength) {
       return {
         type: 'MaxWords',
-        message: I18n().t(`${getValidationKey(this.question)}.max_words`, {
+        message: I18n().t(`${getValidationKey(this.question)}.max_word`, {
           max: this.maxLength,
         }),
       }
     }
-    return {}
+    return null
   }
 }
 

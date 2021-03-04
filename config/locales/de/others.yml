@@ -457,8 +457,8 @@ de:
     issue: Problem
     least: Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).
     least_hotspot: Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).
-    max_length: Ihre Antwort darf nicht mehr als %{max} Zeichen enthalten.
-    min_length: Ihre Antwort muss mindestens %{min} Zeichen enthalten.
+    max_character: Ihre Antwort darf nicht mehr als %{max} Zeichen enthalten.
+    min_character: Ihre Antwort muss mindestens %{min} Zeichen enthalten.
     must_rank_between: Bitte weisen Sie für jedes Element einen Wert von %{min} bis %{max} zu. Die Werte dürfen nicht mehrfach vergeben werden.
     must_select: Bitte wählen Sie von %{min} bis %{max} Auswahlmöglichkeiten
     number: Ihre Antwort muss eine Zahl sein
