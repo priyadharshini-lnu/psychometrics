@@ -1,0 +1,1 @@
+export const ASSESSMENT_TITLE_MAX_LENGTH = 48
