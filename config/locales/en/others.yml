@@ -1112,13 +1112,12 @@ en:
 
           Someone has requested a link to change your password. You can do this through the link below.
 
-          <a href="%{change_password_link}">Change Password</a>
-
-          If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
-
+        change_password: Change Password
+        regards: |
           Regards,
           Lighthouse Team
         subject: Instructions for resetting your password
+        footer: If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
       unlock_instructions:
         subject: Unlock instructions
     omniauth_callbacks:
