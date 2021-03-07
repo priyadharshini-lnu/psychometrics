@@ -120,16 +120,25 @@ const Navigation: FC<PropsFromRedux> = ({
       <Row justify="space-between" align="middle">
         <Col>
           <Link to="/">
-            <img
-              src={logo}
-              alt={projectName}
-              // reason for inline style -> LH-1187
-              style={{
-                maxHeight: '70px',
-                maxWidth: '100%',
-              }}
-              loading="lazy"
-            />
+            {logo
+              ? (
+                <img
+                  src={logo}
+                  alt={projectName}
+                  // reason for inline style -> LH-1187
+                  style={{
+                    maxHeight: '70px',
+                    maxWidth: '100%',
+                  }}
+                  loading="eager"
+                />
+              )
+              : (
+                <>
+                  {projectName}
+                </>
+              )
+          }
           </Link>
         </Col>
         <Col flex="1 1 auto" className="ta-e">
