@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
-import Validations from 'components/Validations'
+import ValidationTypes from 'components/ValidationTypes'
 
 import { LibraryStore } from 'libs/library'
 import Socket from 'cable'
@@ -142,7 +142,7 @@ export class Properties extends Component {
         {this.renderAlwaysVisible()}
         <hr className={styles.divider} />
         {!restricted && (
-          <Validations
+          <ValidationTypes
             model={model}
             update={() => this.forceUpdate()}
           />

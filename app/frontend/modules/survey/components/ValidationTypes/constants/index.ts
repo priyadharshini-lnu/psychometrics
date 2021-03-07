@@ -1,11 +1,11 @@
-export default {
+export const LABELS = {
   Least: 'At Least',
   LeastHotSpot: 'At Least',
   Range: 'Answers Range',
   RangeHotSpot: 'Answers Range',
-  MinLength: 'Minimum Length',
-  MaxLength: 'Maximum Length',
-  CharacterRange: 'Character Range',
+  MinLength: 'Minimum characters',
+  MaxLength: 'Maximum characters',
+  CharacterRange: 'Character range',
   ContentValidation: 'Content Validation',
   MustRankAll: 'Must Rank All',
   MustTotal: 'Must Total',
@@ -13,4 +13,7 @@ export default {
   MustSelect: 'Must Select',
   EachGroupContains: 'Each Group Contains',
   Content: 'Content Validation',
+  MinWords: 'Minimum words',
+  MaxWords: 'Maximum words',
+  WordsRange: 'Words range',
 }
