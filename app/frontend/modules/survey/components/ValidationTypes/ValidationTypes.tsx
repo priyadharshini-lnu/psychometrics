@@ -60,7 +60,7 @@ const ValidationType: FC<Props> = ({
   let availableValidations: string[] = []
   if (Array.isArray(validations)) {
     availableValidations = Array.from(validations)
-  } else if (Array.isArray(validations[answerType])) {
+  } else if (validations && Array.isArray(validations[answerType])) {
     availableValidations = Array.from(validations[answerType])
   }
 
