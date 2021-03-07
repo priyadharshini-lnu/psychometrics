@@ -105,6 +105,7 @@ const HANDLERS = {
     userInfo: response.user_info,
     assessorAssessments: response.assessor_assessments,
     subjectAssessments: response.subject_assessments,
+    currentAssessorFormId: _.get(response, ['assessor_assessments', 0, 'id']),
     currentAssessmentId: _.get(response, ['subject_assessments', 0, 'id']),
     loaded: true,
   }),
