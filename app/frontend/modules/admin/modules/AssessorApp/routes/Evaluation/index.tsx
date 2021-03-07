@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import store from 'modules/admin/store'
 import {
-  Col, Row, Tabs,
+  Col, Row, Tabs, Table,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import _ from 'lodash'
 import { RootState } from 'modules/admin/core/rootReducers'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import AssessorAssessment from './AssessorAssessment'
@@ -71,7 +72,7 @@ const Evaluation = ({
       <Row>
         <Col span={subjectAssessments.length ? 12 : 24}>
           <Tabs defaultActiveKey="overview" onChange={changeAssessorForm}>
-            {/* <TabPane tab="Overview" key="overview">
+            <TabPane tab="Overview" key="overview">
               <div>
                 {I18n.t('user.fields.first_name')}
                 {': '}
@@ -98,7 +99,7 @@ const Evaluation = ({
                   rowKey={row => row.key}
                 />
               </div>
-            </TabPane> */}
+            </TabPane>
             {assessorAssessments.map(assessment => (
               <TabPane tab={assessment.name} key={assessment.id}>
                 <AssessorAssessment userAssessmentId={+assessment.id} store={store} />
