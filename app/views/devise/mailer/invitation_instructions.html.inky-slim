@@ -1,0 +1,57 @@
+spacer[size="48"]
+container.email-container
+  spacer[size="32"]
+  row
+    columns
+      - if @resource&.project&.logo.url
+        = image_tag(@resource&.project&.logo.url, class: 'project-logo float-left')
+  
+  row
+    columns.email-content
+      - options = {id: @resource, invitation_token: @token, domain: Settings.domain, subdomain: @subdomain}
+
+      /p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
+      /p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
+
+      p= "Dear #{@resource.decorate.display_name}, "
+      p Greetings for the day!
+      p The Talent Enterprise would like you to complete this psychometric assessment. Here is your personalised link to our Thriving Index questionnaire.
+      p Request you to click on the link below to accept invitation and change your password on the platform. Remember to try and complete the test in one sitting as this assessment shouldn't take more than 20 mins of your time.
+      spacer[size="16"]
+
+      row
+        columns
+          |  <button class="radius small" href 
+          = url_for([:accept, @resource.role_scope, :invitation, options])
+          | target="_blank"
+          |  > 
+          = t("devise.mailer.invitation_instructions.accept")
+
+      p Please do not pass or forward this link to anyone else.
+      p We look forward to your response!
+
+      p Thank you and all the best!
+      p Regards,
+      p
+        | The Talent Enterprise
+        spacer[size="16"] 
+      p
+        | For any technical issues, please write to us at #{mail_to('surveys@thetalententerprise.com')} and we will respond within 24 hours.
+  row
+    columns.email-copyright.footer
+      |  © 
+      = Time.now.year
+      |  Lighthouse. All rights reserved 
+  spacer[size="16"]
+
+spacer[size="16"]
+wrapper.secondary
+  center
+    row
+      columns.powered-by-tte[valign="middle"]
+        center
+          = image_tag('tte-logo-no-text.svg')
+        spacer[size="16"]
+
+        p.text-center
+          |  Powered by The Talent Enterprises.

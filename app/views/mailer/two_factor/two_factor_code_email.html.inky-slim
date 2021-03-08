@@ -1,0 +1,46 @@
+spacer[size="48"]
+container.email-container
+  spacer[size="32"]
+
+  row
+    columns
+      - if @user&.project&.logo&.url
+        = image_tag(@user&.project&.logo&.url, class: 'project-logo float-left')
+  
+  row
+    columns.email-content  
+      p Dear #{@user.decorate.display_name},
+      p
+        | Please enter the below mentioned One time password (OTP) to log in to your Lighthouse account with The Talent Enterprise:
+  row
+    columns.email-content.otp
+      p 
+        = @code
+  row
+    columns.email-content
+      p This OTP is valid for 20 minutes.
+  row
+    columns.email-content
+      p You are receiving this email because you tried to log in to your Lighthouse account with The Talent Enterprise. Please do not disclose the above OTP to anyone.
+      p If you did not try to login, please login and update your password.
+  row
+    columns.email-content
+      = simple_format(t("devise.mailer.reset_password_instructions.regards"))
+  row
+    columns.email-copyright.footer
+      |  © 
+      = Time.now.year
+      |  Lighthouse. All rights reserved 
+  spacer[size="16"]
+
+spacer[size="16"]
+wrapper.secondary
+  center
+    row
+      columns.powered-by-tte[valign="middle"]
+        center
+          = image_tag('tte-logo-no-text.svg')
+        spacer[size="16"]
+
+        p.text-center
+          |  Powered by The Talent Enterprises.

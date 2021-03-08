@@ -7,6 +7,10 @@
 .email-content p{
   color: #787878;
 }
+.email-content.otp p{
+  font-weight: bold;
+  color: unset;
+}
 .email-copyright img {
   width: 15px;
   vertical-align: text-top;

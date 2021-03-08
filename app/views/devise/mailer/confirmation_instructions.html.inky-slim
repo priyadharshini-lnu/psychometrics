@@ -1,0 +1,40 @@
+spacer[size="48"]
+container.email-container
+  spacer[size="32"]  
+  row
+    columns
+      - if @resource&.project&.logo&.url
+        = image_tag(@resource&.project&.logo&.url, class: 'project-logo float-left')
+  row
+    columns.email-content
+      p
+        | Welcome 
+        = @email
+        | !
+      p
+        | You can confirm your account email through the link below:
+
+  row
+        columns
+          |  <button class="radius small" href 
+          = confirmation_url(@resource, confirmation_token: @token, domain: Settings.domain, subdomain: @resource.try(:clients).try(:first).try(:subdomain)) 
+          |  > 
+          = 'Confirm my account'
+  row
+    columns.email-copyright.footer
+      |  © 
+      = Time.now.year
+      |  Lighthouse. All rights reserved 
+  spacer[size="16"]
+
+spacer[size="16"]
+wrapper.secondary
+  center
+    row
+      columns.powered-by-tte[valign="middle"]
+        center
+          = image_tag('tte-logo-no-text.svg')
+        spacer[size="16"]
+
+        p.text-center
+          |  Powered by The Talent Enterprises.
