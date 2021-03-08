@@ -43,7 +43,7 @@ export class ChartsMenu extends Component {
           <div className={styles.chartIcon} type="Line" data-preset="Line" onClick={this.click}>
             <span className={`${styles[icons.Line]} ${styles.icon}`} />
           </div>
-          <div className={styles.chartIcon} type="Line" data-preset="Point" onClick={this.click}>
+          <div className={styles.chartIcon} type="Bubble" data-preset="Bubble" onClick={this.click}>
             <span className={`${styles.Point} ${styles.icon}`} />
           </div>
           <div className={styles.chartIcon} type="TagCloud" onClick={this.click}>

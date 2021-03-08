@@ -1,3 +1,4 @@
+/* eslint-disable */
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Select from 'react-select'
@@ -36,7 +37,12 @@ class Factor extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, model: { type, props: { type: propType } } } = this.props
+
+    if (type === 'Graph' && propType === 'Bubble') {
+      return null
+    }
+
     return (
       <Select
         name="form-field-name"

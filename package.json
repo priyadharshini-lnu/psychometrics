@@ -98,6 +98,7 @@
     "highcharts": "^4.2.7",
     "highcharts-3d": "0.1.2",
     "highcharts-custom-events": "^2.0.0",
+    "highcharts-v9": "npm::highcharts",
     "history": "^4.10.1",
     "humps": "^2.0.1",
     "interact.js": "1.2.8",
