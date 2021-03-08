@@ -1,8 +1,6 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable max-len */
 import React, { useState } from 'react'
 import {
-  Row, Col, Card, Progress, Dropdown, Menu,
+  Row, Col, Card, Progress, Dropdown, Menu, Tooltip,
 } from 'antd'
 import {
   DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined, FieldTimeOutlined,
@@ -12,9 +10,13 @@ import truncate from 'lodash/truncate'
 
 import routeUtils from 'utils/route'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
-import './styles.scss'
+
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+
 import PrivacyModal from './PrivacyModal'
 import ContinueIcon from './ContinueIcon'
+
+import './styles.scss'
 
 const IN_PROGRESS = 'in_progress'
 const INTERRUPTED = 'interrupted'
@@ -34,7 +36,13 @@ const DownloadLink = ({ report, text }) => {
   const { mindmill, mindmillReportUrl, pdfUrl } = report
 
   return (
-    <a href={mindmill ? mindmillReportUrl : pdfUrl} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
+    <a
+      href={mindmill ? mindmillReportUrl : pdfUrl}
+      onClick={e => e.stopPropagation()}
+      target="_blank"
+      rel="noopener noreferrer"
+      disabled={report.generating}
+    >
       <DownloadOutlined />
       {' '}
       {text}
@@ -46,7 +54,10 @@ const ReportsMenu = reports => (
   <Menu>
     {reports.map(report => (
       <Menu.Item key={report.id}>
-        <DownloadLink report={report} text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name} />
+        <DownloadLink
+          report={report}
+          text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name}
+        />
       </Menu.Item>
     ))}
   </Menu>
@@ -116,7 +127,12 @@ const renderButtonContent = ({
       )
     } if (assignedReports.length === 1) {
       const report = assignedReports[0]
-      return <DownloadLink report={report} text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')} />
+      return (
+        <DownloadLink
+          report={report}
+          text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')}
+        />
+      )
     }
   }
   return (
@@ -175,8 +191,12 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
       >
         <div className="card-body">
           <div className="card-content">
-            <div className="card-title" title={assign.assessmentName}>
-              {truncate(assign.assessmentName, { length: 55 })}
+            <div className="card-title">
+              <Tooltip title={assign.assessmentName} placement="bottom">
+                <span>
+                  {truncate(assign.assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })}
+                </span>
+              </Tooltip>
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">

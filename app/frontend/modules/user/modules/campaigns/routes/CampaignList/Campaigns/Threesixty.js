@@ -3,14 +3,19 @@ import React from 'react'
 import round from 'lodash/round'
 import truncate from 'lodash/truncate'
 import {
-  Row, Col, Card, Progress,
+  Row, Col, Card, Progress, Tooltip,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import './styles.scss'
+
 import { getTotalProgress } from 'modules/user/modules/campaigns/core/campaign/selectors'
+
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
+
+import './styles.scss'
 
 export default function Threesixty ({ campaign }) {
   const totalProgress = round(getTotalProgress(campaign))
@@ -38,8 +43,12 @@ export default function Threesixty ({ campaign }) {
         >
           <div className="card-body">
             <div className="card-content">
-              <div className="card-title" title={campaign.assessmentName}>
-                {truncate(campaign.assessmentName, { length: 55 })}
+              <div className="card-title">
+                <Tooltip title={campaign.assessmentName} placement="bottom">
+                  <span>
+                    {truncate(campaign.assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })}
+                  </span>
+                </Tooltip>
               </div>
               <Row type="flex" className="info-line">
                 <Col className="info-block">
