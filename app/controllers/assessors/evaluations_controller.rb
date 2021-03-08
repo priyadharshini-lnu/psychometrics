@@ -23,7 +23,8 @@ class Assessors::EvaluationsController < Assessors::BaseController
     render json: {
       user_info: {
         user: UserSerializer.new(user).to_hash,
-        datasheet: datasheet
+        datasheet: datasheet,
+        datasheet_columns: campaign.datasheet_columns
       },
       assessor_assessments: @assessor_assessments.map { |a| { id: a.id, name: a.assessment.name } },
       subject_assessments: @subject_user_assessment.map { |a| { id: a.id, name: a.assessment.name } }
