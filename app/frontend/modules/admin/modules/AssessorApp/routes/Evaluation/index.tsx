@@ -101,7 +101,7 @@ const Evaluation = ({
                         case 'Markdown':
                           return <ReactMarkdown>{value}</ReactMarkdown>
                         case 'HTML':
-                          return <SafeHTML as="span" html={`${value}`} />
+                          return <SafeHTML as="div" html={`${value}`} />
                         default:
                           return value
                       }
