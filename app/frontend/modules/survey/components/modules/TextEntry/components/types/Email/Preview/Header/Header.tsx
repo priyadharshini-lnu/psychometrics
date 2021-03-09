@@ -10,14 +10,17 @@ import { ViewEnum } from '../../constants'
 interface Props {
   model: Question
   view: string
+  readOnly?: boolean
   setView: (view: ViewEnum) => void
 }
 
-const Header: React.FC<Props> = ({ model, view, setView }) => (
+const Header: React.FC<Props> = ({
+  model, view, setView, readOnly,
+}) => (
   <div className={commonStyles.header}>
     <div className="display-flex justify-content-space-between">
       <div className={styles.title}>{I18n().tQuestion(model, 'title', {})}</div>
-      {view === 'view' && (
+      {!readOnly && view === 'view' && (
       <Button
         type="primary"
         onClick={() => setView(ViewEnum.Edit)}
