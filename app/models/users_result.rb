@@ -59,6 +59,10 @@ class UsersResult < ApplicationRecord
     evaluator_id
   end
 
+  def set_answers_as_dirty!
+    answers.each { |_, r| r[:dirty] = true }
+  end
+
   def user_reports
     UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
   end

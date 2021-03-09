@@ -11,7 +11,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
-
+  has_one :threesixty_campaign, through: :campaign
   delegate :selected_locale, to: :users_result
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
