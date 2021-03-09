@@ -31,17 +31,20 @@ container.email-container
       p We look forward to your response!
 
       p Thank you and all the best!
-      p Regards,
-      p
-        | The Talent Enterprise
-        spacer[size="16"] 
-      p
-        | For any technical issues, please write to us at #{mail_to('surveys@thetalententerprise.com')} and we will respond within 24 hours.
-  row
-    columns.email-copyright.footer
-      |  © 
-      = Time.now.year
-      |  Lighthouse. All rights reserved 
+
+    row
+      columns.email-content
+        p Regards,
+        p
+          | The Talent Enterprise
+          spacer[size="16"] 
+        p
+          | For any technical issues, please write to us at #{mail_to('surveys@thetalententerprise.com')} and we will respond within 24 hours.
+    row
+      columns.email-copyright.footer
+        |  © 
+        = Time.now.year
+        |  Lighthouse. All rights reserved 
   spacer[size="16"]
 
 spacer[size="16"]

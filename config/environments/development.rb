@@ -75,7 +75,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
   config.action_cable.disable_request_forgery_protection = true
-  config.action_mailer.asset_host = Settings.domain
+  config.action_mailer.asset_host = "#{Settings.protocol}://#{Settings.domain}:#{Settings.port}"
 
   config.action_dispatch.default_headers.merge!(
     'Access-Control-Allow-Origin' => '*'

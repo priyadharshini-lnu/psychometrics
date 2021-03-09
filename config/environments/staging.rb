@@ -97,6 +97,8 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.action_mailer.asset_host = "#{Settings.protocol}://#{Settings.domain}"
+
   config.action_mailer.default_url_options = { host: 'staging.tte-lighthouse.com' }
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
