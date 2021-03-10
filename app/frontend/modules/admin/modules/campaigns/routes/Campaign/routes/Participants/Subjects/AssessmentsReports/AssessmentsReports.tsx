@@ -173,7 +173,7 @@ const AssessmentsReports: React.FC<Props> = ({
               </Tag>
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.column.status')}>
-              {user.additionalTime
+              {user.additionalTime && user.status === 'interrupted'
                 && (
                 <span className="prs">
                   {`+ ${Math.round(user.additionalTime / 60)} ${I18n.t('common.text.minutes')}`}

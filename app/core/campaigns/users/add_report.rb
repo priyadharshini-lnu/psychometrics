@@ -21,10 +21,7 @@ module Campaigns
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
         user_assessments = report.assessments.map do |assessment|
-          ua = add_assessment_to_user(assessment, user_report)
-          ::CampaignUsers::MarkInProgress.call!(campaign_user) if !ua.completed? && campaign_user.completed_campaign?
-
-          ua
+          add_assessment_to_user(assessment, user_report)
         end
         generate_report_pdf(user_report)
 

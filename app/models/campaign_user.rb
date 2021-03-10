@@ -15,10 +15,12 @@ class CampaignUser < ApplicationRecord
   scope :in_progress, -> { where(completion_status: :in_progress) }
   scope :completed, -> { where(completion_status: :completed) }
 
-  after_commit :set_status_to_completed, if: proc { completion_status_previously_changed? && completed? }, on: [:update]
+  after_commit :compute_and_set_status, if: proc { completion_status_previously_changed? }, on: [:update]
 
-  def set_status_to_completed
-    update_column(:status, :completed)
+  def compute_and_set_status
+    return if campaign.timed? && completion_status != 'completed'
+
+    update_column(:status, completion_status)
   end
 
   def disabled

@@ -55,9 +55,14 @@ export default function Campaign ({
   const hasStartedCampaign = !!campaignUser.startedAt
   const campaignUserTimedOut = campaignUser.status === 'timed_out'
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
-  const canNotStartAssessment = !hasStartedCampaign || campaignClosed || isCampaignInterrupted || campaignUserTimedOut
+  const canNotStartAssessment = !hasStartedCampaign || campaignClosed
+    || campaignUser.status === 'completed' || isCampaignInterrupted || campaignUserTimedOut
   const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign
   const canContinueCampaign = isCampaignInterrupted && !campaignClosed && !allAssessmentsComplete
+  const showTimer = isTimedCampaign && hasStartedCampaign && !isCampaignInterrupted
+    && campaignUser.status !== 'completed'
+  const showCampaignClosedMessage = campaignClosed || campaignUserTimedOut
+    || (isTimedCampaign && campaignUser.status === 'completed')
 
   function startProctoredCampaign (jwtToken) {
     const url = `${examus.url}/integration/simple/${examus.integrationName}/start/?token=${jwtToken}`
@@ -105,7 +110,7 @@ export default function Campaign ({
                   expiryDate={expiryDate}
                   currentUser={currentUser}
                   onFinish={onTimerFinish}
-                  showTimer={isTimedCampaign && hasStartedCampaign && !isCampaignInterrupted}
+                  showTimer={showTimer}
                 />
                 {allAssessmentsComplete && (
                   <Result
@@ -115,7 +120,7 @@ export default function Campaign ({
                     className="custom-result mvl"
                   />
                 )}
-                {(campaignClosed || campaignUserTimedOut) && (
+                {showCampaignClosedMessage && (
                   <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>

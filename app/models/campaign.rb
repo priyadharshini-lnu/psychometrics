@@ -97,6 +97,10 @@ class Campaign < ApplicationRecord
       where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
   end
 
+  def timed?
+    (fixed_time? && fixed_time_duration.present?) || end_date?
+  end
+
   private
 
   def ensure_campaign_options

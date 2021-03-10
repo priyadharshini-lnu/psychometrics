@@ -14,7 +14,7 @@ module EndUser
     has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
     def is_timed_campaign # rubocop:disable Naming/PredicateName
-      (object.fixed_time? && object.fixed_time_duration) || object.end_date?
+      object.timed?
     end
 
     def status
