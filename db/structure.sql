@@ -1187,7 +1187,7 @@ ALTER SEQUENCE public.datasheet_column_preferences_id_seq OWNED BY public.datash
 CREATE TABLE public.datasheet_rows (
     id bigint NOT NULL,
     datasheet_id bigint,
-    email public.citext,
+    email public.citext NOT NULL,
     data jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -7912,6 +7912,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210215142202'),
 ('20210216092744'),
 ('20210216133140'),
-('20210228092218');
+('20210228092218'),
+('20210308170950');
 
 
