@@ -148,6 +148,17 @@ export class Properties extends Component {
           </label>
           <label className={styles.inputLabel}>
             <input
+              checked={type === 'TimeEntry'}
+              type="radio"
+              name={`q_${model.id}_type`}
+              onChange={this.changeType}
+              value="TimeEntry"
+            />
+            {' '}
+            Time
+          </label>
+          <label className={styles.inputLabel}>
+            <input
               checked={type === 'Chat'}
               type="radio"
               name={`q_${model.id}_type`}
