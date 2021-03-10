@@ -3,7 +3,7 @@ import { TimePicker } from 'antd'
 import moment from 'moment'
 import { getIn } from 'utils/immutable'
 
-const FORMAT = 'HH:mm'
+const FORMAT = 'h:mm a'
 export default class TimeEntryPreview extends React.Component {
   changeAnswer = (e) => {
     const { model } = this.props
@@ -18,11 +18,10 @@ export default class TimeEntryPreview extends React.Component {
 
     return (
       <TimePicker
-        value={value ? moment(value, FORMAT) : null}
+        defaultValue={value ? moment(value, FORMAT) : null}
         format={FORMAT}
-        disabledTime={false}
+        placeholder="HH:mm"
         onChange={this.changeAnswer}
-        showTime={{ defaultValue: moment('00:00', 'HH:mm') }}
       />
     )
   }

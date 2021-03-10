@@ -5,10 +5,9 @@ import moment from 'moment'
 export default function TimeEntry () {
   return (
     <TimePicker
-      size="default"
-      format="HH:mm"
-      disabledTime={false}
-      showTime={{ defaultValue: moment('00:00', 'HH:mm') }}
+      format="h:mm a"
+      placeholder="HH:mm"
+      defaultValue={moment('12:00 am', 'h:mm a')}
     />
   )
 }
