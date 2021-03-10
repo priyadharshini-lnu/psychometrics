@@ -36,11 +36,12 @@ _.extend(FlowElement.prototype, {
   },
 
   loadElements (elements) {
-    return _.map(elements, (element, index) => new FlowElement(element, this, index))
+    return _.map(elements, (element, index) => new FlowElement(element, this.path, index))
   },
 
   toJSON () {
     return {
+      uuid: this.uuid,
       type: this.type,
       elements: this.elements,
       path: this.path,

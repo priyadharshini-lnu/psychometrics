@@ -1,7 +1,9 @@
 import { createReducer } from 'utils/redux'
 import { getIn, setIn, updateIn } from 'utils/immutable'
 import schema from 'store/schema'
+import FlowElement from 'models/FlowElement'
 import { denormalize } from 'normalizr'
+import _ from 'lodash'
 import {
   INIT, ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET, UPDATE_ELEMENT,
 } from './actions'
@@ -25,7 +27,10 @@ const getRealPath = (state, path) => {
 }
 
 const HANDLERS = {
-  [INIT]: (_, { data }) => denormalize(data.result, schema, data.entities).flow,
+  [INIT]: (__, { data }) => {
+    const { flow } = denormalize(data.result, schema, data.entities)
+    return { elements: _.map(flow.elements, (el, i) => new FlowElement(el, null, i)) }
+  },
   [RESET]: (_, { flow }) => flow,
   [UPDATE_TREE]: (_, { flow }) => flow,
   [ADD_NEW_ELEMENT]: (state, { element }) => {
