@@ -24,7 +24,7 @@ module Threesixty
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
 
-            set_edit_results
+            ::UsersResults::Edit.call!(@users_result)
           end
           if params[:is_read] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).show?
@@ -73,11 +73,6 @@ module Threesixty
       @users_result.status = :in_progress
       @users_result.current_element = nil
       @users_result.current_page = 0
-    end
-
-    def set_edit_results
-      @users_result.set_answers_as_dirty!
-      @users_result.update(status: :in_progress, current_element: nil, current_page: 0)
     end
 
     def set_campaign
