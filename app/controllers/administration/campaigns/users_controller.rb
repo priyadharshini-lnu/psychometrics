@@ -8,7 +8,7 @@ module Administration
       def index
         users = campaign.
                 users.
-                includes(:creator, :modifier, :campaign_users, user_assessments: :users_result).
+                includes(:creator, :modifier, campaign_users: [:campaign], user_assessments: :users_result).
                 ransack(params[:filters]).result
 
         respond_to do |format|
@@ -125,8 +125,8 @@ module Administration
       end
 
       def extend_time
-        ::CampaignUsers::AddAdditionalTime.call!(campaign_user, params[:additional_time])
-        render json: resource, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
+        ::CampaignUsers::AddAdditionalTime.call!(campaign_user, params[:additional_time] * 60)
+        render json: resource, serializer: Administration::UserDetailSerializer, campaign: campaign
       end
 
       private

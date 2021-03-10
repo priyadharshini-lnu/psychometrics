@@ -34,7 +34,7 @@ class AssignDecorator < BaseDecorator
   end
 
   def status
-    I18n.t("activerecord.attributes.assign.statuses.#{object.status}")
+    I18n.t("activerecord.attributes.assign.statuses.#{object.real_status}")
   end
 
   def delete_confirmation

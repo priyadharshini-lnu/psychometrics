@@ -158,9 +158,9 @@ class FactorsTable extends Component {
 
   prepareRows () {
     const { module, module: { props } } = this.props
+    const sourceFactors = _.get(props, ['source', 'factors'], [])
+    const factorIds = sourceFactors.map(f => f.id)
     if (ResultStore.realResults) {
-      const sourceFactors = _.get(props, ['source', 'factors'], [])
-      const factorIds = sourceFactors.map(f => f.id)
       if (props.mode === 'topFactors') {
         this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds, TopFactorType.Any)
       } else {
@@ -168,7 +168,12 @@ class FactorsTable extends Component {
         this.factorsData = _.sortBy(factorData, f => factorIds.indexOf(f.id))
       }
     } else {
-      this.factorsData = this.getMockData(props.maxPosition - props.minPosition + 1)
+      // eslint-disable-next-line no-lonely-if
+      if (props.mode === 'topFactors') {
+        this.factorsData = this.getMockData(props.maxPosition - props.minPosition + 1)
+      } else {
+        this.factorsData = this.getMockData(factorIds.length)
+      }
     }
     if (props.reverseOrder && props.mode === 'topFactors') {
       this.factorsData.reverse()
@@ -191,13 +196,14 @@ class FactorsTable extends Component {
         let conditionText = null
         let conditionStrengths = null
         let conditionBlindspots = null
+        const normedOrRawMeanScore = factor.meanNormScore || factor.meanRawScore
         if (ResultStore.realResults) {
           for (let i = 0; i < conditions.length; i += 1) {
-            conditionText = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
+            conditionText = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'text')
-            conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
+            conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'strengths')
-            conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
+            conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'blindspots')
             if (conditionText) { break }
           }
@@ -207,7 +213,7 @@ class FactorsTable extends Component {
           conditionBlindspots = factor.blindspots
         }
 
-        const score = _.round(factor.meanNormScore || factor.meanRawScore, 1)
+        const score = _.round(normedOrRawMeanScore, 1)
         const percent = factor.strategy === 3 ? score : (score * 100) / 5 // 5-scale
 
         const {
@@ -234,7 +240,9 @@ class FactorsTable extends Component {
               <div className={styles.content}>
                 <div className={styles.strength}>{I18nStore.tFactor(factor, 'alias')}</div>
                 {showDescription && (
-                  <div className={cs(styles.text, 'mt4')}>{conditionText}</div>
+                  <ReactMarkdown className={cs(styles.text, 'mt4')}>
+                    {conditionText}
+                  </ReactMarkdown>
                 )}
                 {showStrengthsBlindspots && (
                   <div className={cs(styles.strengthsBlindspots, 'mt8')}>

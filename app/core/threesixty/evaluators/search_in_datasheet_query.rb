@@ -32,14 +32,16 @@ module Threesixty
         <<-SQL.strip_heredoc
           SELECT datasheet_rows.id, datasheet_rows.email, null as first_name, null as last_name
             FROM datasheet_rows
-            JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and datasheets.project_id = :project_id
+            JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and (
+              datasheets.project_id = :project_id OR datasheets.campaign_id = :campaign_id
+            )
             WHERE datasheet_rows.email ILIKE :query
           LIMIT :limit
         SQL
       end
 
       def params
-        { project_id: campaign.project.id, query: q, limit: LIMIT }
+        { project_id: campaign.project.id, campaign_id: campaign.id, query: q, limit: LIMIT }
       end
 
       private

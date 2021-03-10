@@ -59,7 +59,7 @@ module UserReports
         campaign_id: campaign.id
       )
 
-      pdf_preview_assessors_campaign_user_report_path(params)
+      pdf_preview_assessors_campaign_user_report_url(params)
     end
 
     def report_preview_admin_url

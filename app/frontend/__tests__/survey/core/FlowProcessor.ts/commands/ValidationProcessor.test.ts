@@ -45,7 +45,7 @@ test('required validation should return an error', () => {
 test('required validation should return an error', () => {
   expect(ValidationProcessor.run([multipleChoice, textEntry], { 2: { answers: [{ value: 'test' }] } }, [])).toStrictEqual({
     1: [{ message: 'validations.required', type: 'forceRequired' }],
-    2: [{ message: 'validations.min_length', type: 'MinLength' }],
+    2: [{ message: 'validations.min_character', type: 'MinLength' }],
   })
 })
 

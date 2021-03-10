@@ -77,6 +77,8 @@ Rails.application.configure do
   config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.asset_host = "#{Settings.protocol}://#{Settings.domain}:#{Settings.port}"
 
+  Rails.application.config.action_controller.forgery_protection_origin_check = false
+
   config.action_dispatch.default_headers.merge!(
     'Access-Control-Allow-Origin' => '*'
   )

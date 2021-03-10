@@ -48,6 +48,9 @@ module DataMigration
       private
 
       def migrate(subject)
+        campaign = Campaign.find_by(id: subject.id)
+        return log("Campaign with id #{subject.id} was already migrated") if campaign
+
         log("migrating #{subject.depth_symbol} (#{subject.id})")
         change_applicable_level_of_project
         create_campaign(subject)
@@ -299,7 +302,7 @@ module DataMigration
           completion_status = :completed if all_assessments_completed
           completion_status = :not_started if no_assessments_started
 
-          campaign_user.update(started_at: started_at, completion_status: completion_status)
+          campaign_user.update(started_at: started_at, completion_status: completion_status, status: completion_status)
         end
       end
     end

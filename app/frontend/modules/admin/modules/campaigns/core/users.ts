@@ -28,8 +28,8 @@ export const UPDATE = 'resource/campaigns/user/UPDATE'
 export const FETCH_SINGLE = 'campaigns/users/FETCH_SINGLE'
 export const IMPORT = 'campaigns/users/IMPORT'
 export const REMOVE = 'campaigns/user/REMOVE'
-export const TOGGLE_STATUS = 'campaigns/user/TOGGLE_STATUS'
-export const TOGGLE_STATUS_REQUEST = 'campaigns/user/TOGGLE_STATUS_REQUEST'
+export const TOGGLE_ACTIVE = 'campaigns/user/TOGGLE_ACTIVE'
+export const TOGGLE_ACTIVE_REQUEST = 'campaigns/user/TOGGLE_ACTIVE_REQUEST'
 export const RESET_PASSWORD = 'campaigns/user/RESET_PASSWORD'
 export const EXTEND_TIME = 'campaigns/user/EXTEND_TIME'
 
@@ -77,8 +77,8 @@ export const remove = (campaignId: string, id: number) => ({
   },
 })
 
-export const toggleStatus = (campaignId: string, id: number, options: { updateInListing: boolean }) => ({
-  type: TOGGLE_STATUS,
+export const toggleActive = (campaignId: string, id: number, options: { updateInListing: boolean }) => ({
+  type: TOGGLE_ACTIVE,
   id,
   options,
   request: {
@@ -113,6 +113,7 @@ export interface UserDetails {
   createdAt: string
   lastSignInAt: string
   completionStatus: string
+  status: string
   additionalTime: number
   startedAt: string
   completedAt: string
@@ -130,7 +131,6 @@ type CreateType = ApiActionResponse<User>
 type UpdateType = ApiActionResponse<User>
 type RemoveType = ApiActionResponse<number>
 type ToggleStatusType = ApiActionResponse<{id: number, options: { updateInListing: boolean }}>
-type ExtendTimeType = ApiActionResponse<User>
 
 const HANDLERS = {
   [FETCH]: (_: State, { response }: FetchType) => response,
@@ -150,7 +150,7 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS_REQUEST]: (state: State, { id, options }: ToggleStatusType) => {
+  [TOGGLE_ACTIVE_REQUEST]: (state: State, { id, options }: ToggleStatusType) => {
     if (options.updateInListing) {
       return updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
         if (user.id !== id) return user
@@ -161,7 +161,9 @@ const HANDLERS = {
     return setIn(state, ['current', 'active'], _.get(state, ['current', 'active']))
   },
   // eslint-disable-next-line max-len
-  [EXTEND_TIME]: (state: State, { response }: ExtendTimeType) => (setIn(state, ['current', 'additionalTime'], response.additionalTime)),
+  [EXTEND_TIME]: (state: State, { response }: FetchSingleType) => ({
+    ...state, current: response,
+  }),
 }
 
 export default createReducer(HANDLERS, defaultState)

@@ -25,7 +25,7 @@ import {
 import {
   Highlight, QuestionError, MediaResponse,
 } from './interfaces'
-import { getCurrentBlock } from './selectors'
+import { getCurrentBlock, getProgress } from './selectors'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
@@ -109,6 +109,7 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
       embedded_data: preview.embeddedData,
       status: isComplete ? 'completed' : 'in_progress',
       prev_pages: preview.prevPages,
+      progress: getProgress(preview),
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,

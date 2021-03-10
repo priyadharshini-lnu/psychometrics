@@ -25,7 +25,8 @@ module Administration
     end
 
     def update_additional_time?
-      destroy? && @record&.assign_with_result&.completed? && @record&.assign_with_result&.expired?
+      destroy? && %w[completed timed_out].include?(record&.assign_with_result&.real_status) &&
+        @record&.assign_with_result&.expired?
     end
 
     # Permission to view statistics link

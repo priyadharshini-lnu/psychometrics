@@ -8,6 +8,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
+import AssessorAssessmentList from './AssessorAssessmentList'
 import AddReportModal from './AddReportModal'
 import { Strategies } from './AddReportModal/interfaces'
 import UniversalLinkModal from './UniversalLinkModal'
@@ -113,6 +114,10 @@ const Manage: React.FC<Props> = ({
         <div className={styles.tableDivider} />
         <h3>Assessments</h3>
         <AssessmentList />
+
+        <div className={styles.tableDivider} />
+        <h3>{I18n.t('campaigns.assessments_and_reports.assessor_assessments')}</h3>
+        <AssessorAssessmentList />
       </div>
       <Modals modals={MODALS} />
     </div>

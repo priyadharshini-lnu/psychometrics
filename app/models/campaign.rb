@@ -64,15 +64,18 @@ class Campaign < ApplicationRecord
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
 
+  def real_status
+    return 'closed' if end_date && end_date < Time.now
+
+    status
+  end
+
   def datasheet
     campaign_datasheet || project_datasheet
   end
 
   def datasheet_data(email)
-    project_datasheet_data = project.datasheet&.rows&.find_by(email: email)&.data || {}
-    campaign_datasheet_data = datasheet&.rows&.find_by(email: email)&.data || {}
-
-    project_datasheet_data.merge(campaign_datasheet_data)
+    ::Campaigns::GetDatasheetData.call!(self, email)[email]
   end
 
   def datasheet_column_names
@@ -87,6 +90,11 @@ class Campaign < ApplicationRecord
 
   def nomalized_datasheet_columns
     datasheet_columns.map { |k, v| { name: k, type: v } }
+  end
+
+  def assessor_assessments
+    Assessment.assessor_form.joins(:user_assessments).
+      where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
   end
 
   private

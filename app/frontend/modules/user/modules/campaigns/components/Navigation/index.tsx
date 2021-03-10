@@ -76,7 +76,7 @@ const Navigation: FC<PropsFromRedux> = ({
   const PAGES_TO_HIDE_LOCALE_SWITCHER = ['/pass', '/anonym', '/evaluations', '/agile_user_assessments']
   const isLocaleSwitcherHidden = useMemo(
     () => PAGES_TO_HIDE_LOCALE_SWITCHER.some(
-      pageToHideLangSelection => pageToHideLangSelection === pathname,
+      pageToHideLangSelection => pathname.startsWith(pageToHideLangSelection),
     ),
     [pathname],
   )
@@ -120,16 +120,25 @@ const Navigation: FC<PropsFromRedux> = ({
       <Row justify="space-between" align="middle">
         <Col>
           <Link to="/">
-            <img
-              src={logo}
-              alt={projectName}
-              // reason for inline style -> LH-1187
-              style={{
-                maxHeight: '70px',
-                maxWidth: '100%',
-              }}
-              loading="lazy"
-            />
+            {logo
+              ? (
+                <img
+                  src={logo}
+                  alt={projectName}
+                  // reason for inline style -> LH-1187
+                  style={{
+                    maxHeight: '70px',
+                    maxWidth: '100%',
+                  }}
+                  loading="eager"
+                />
+              )
+              : (
+                <>
+                  {projectName}
+                </>
+              )
+          }
           </Link>
         </Col>
         <Col flex="1 1 auto" className="ta-e">

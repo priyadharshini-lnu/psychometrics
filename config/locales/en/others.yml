@@ -103,9 +103,14 @@ en:
               invalid: Reply to email is invalid
             scheduled_date:
               blank: Scheduled date field can't be blank
+            subject:
+              blank: Subject can't be blank
+            content:
+              blank: Content can't be blank
         email_template:
           attributes:
             content:
+              blank: Content can't be blank
               invalid_consolidated_pipetext: These pipetext are invalid for consolidate messages %{invalid_pipetexts}
               invalid_unconsolidated_pipetext: These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}
             from:
@@ -113,6 +118,8 @@ en:
             reply_to_email:
               blank: Reply to email field can't be blank
               invalid: Reply to email is invalid
+            subject:
+              blank: Subject can't be blank
         email_template_test_mail:
           attributes:
             to_email:
@@ -234,6 +241,7 @@ en:
           in_progress: Resume
           interrupted: Interrupted
           not_started: New
+          timed_out: Timed Out
           overdue: Overdue
       block:
         active: Active
@@ -500,6 +508,7 @@ en:
           in_progress: Resume
           interrupted: Interrupted
           not_started: New
+          timed_out: Timed Out
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte
@@ -778,7 +787,6 @@ en:
       message: Please use latest version of the browsers
   campaign:
     begin: Begin your tasks
-    campaign_closed_assessment_take_message: Can't take assessment as this campaign is closed.
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
     complete_prev: Complete all prev assessments
@@ -796,6 +804,7 @@ en:
       single_lang: This assessment is only available in %{lang}, which is different than you selected language.
       title: Select language
     new: New
+    timed_out: Timed Out
     not_started: New
     panels:
       assessments: Tasks
@@ -803,7 +812,7 @@ en:
     time_left:
       cancel: Cancel
       continue: Continue
-      notification: Your allocated time for this task "%{assessmentName}" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.
+      notification: Your allocated time for this task "%{assessmentName}" was %{totalAssessmentTime}. Due to the overall elapsed time, you now have only %{remainingCampaignTime} as your adjusted time to complete this task.
       title: Time left warning
     timer:
       message: Time left to complete all tasks
@@ -857,6 +866,7 @@ en:
       in_progress: In Progress
       interrupted: Interrupted
       not_started: Not Started
+      timed_out: Timed Out
       universal_link: Universal link
   campaign_report:
     actions:
@@ -898,7 +908,7 @@ en:
       modals:
         remove:
           successfully: User with email %{email} removed successfully.
-          title: Are you sure you want to remove this user from campaing %{campaignName}?
+          title: Are you sure you want to remove this user from campaign %{campaignName}?
       not_completed_yet: Not completed yet
       not_logged_in_yet: Not logged in yet
       not_started_yet: Not started yet
@@ -908,12 +918,13 @@ en:
         in_progress: In Progress
         interrupted: Interrupted
         not_started: Not Started
+        timed_out: Timed Out
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?
         successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         title: Change password %{name}?
-      remove: Are you sure you want to remove user with email %{email} from this campaing?
+      remove: Are you sure you want to remove user with email %{email} from this campaign?
   checking_wizard:
     audio_check:
       access: Access
@@ -1001,6 +1012,7 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      minutes: Minutes
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
@@ -1291,7 +1303,6 @@ en:
         completion_statuses:
           completed: Completed
           in_progress: In Progress
-          interrupted: Interrupted
           not_started: Not Started
     change_password: Change password
     delete: Delete
@@ -2055,6 +2066,7 @@ en:
     assessment: Assessment
     back_to_tasks: Back to tasks
     begin: Begin
+    timed_out: Timed Out
     cancel: Cancel
     close_evaluation_modal:
       message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
@@ -2229,6 +2241,9 @@ en:
       export: Export Users
       export_completion_status: Export Completion Status
       import: Import Users
+    datasheet:
+      attribute: Attribute
+      value: Value
   user_assessments:
     modals:
       remove:
@@ -2281,6 +2296,7 @@ en:
     actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
     blank: can't be blank
     character_range: Your response must be at least %{min} and no more than %{max} characters.
+    word_range: Your response must be at least %{min} and no more than %{max} words.
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
@@ -2290,13 +2306,17 @@ en:
     issue: Issue
     least: Please answer at least %{min} choice(s).
     least_hotspot: Please answer at least %{min} choice(s).
-    max_length: Your response must be no more than %{max} characters.
-    min_length: Your response must be at least %{min} characters.
+    max_character: Your response must be no more than %{max} characters.
+    max_word: Your response must not be more than %{max} words.
+    min_character: Your response must be at least %{min} characters.
+    min_word: Your response must be atleast %{min} words
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
     must_select: Please select from %{min} to %{max} choices
     number: Your response must be a number
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
+    character_count: 'Characters count '
+    word_count: 'Words count '
     text: Your response must not contain a numbers
     title:
       one: There is one error, please check your responses
@@ -2304,3 +2324,6 @@ en:
   'yes': 'Yes'
   your: Your
   yourself: Yourself
+  campaigns:
+    assessments_and_reports:
+      assessor_assessments: Assessor Assessments

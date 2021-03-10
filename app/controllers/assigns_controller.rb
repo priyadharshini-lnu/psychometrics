@@ -37,7 +37,6 @@ class AssignsController < ApplicationController
 
   def pass
     @assign.in_progress!
-    @threesixty_subject = @assign.threesixty? ? @assign.threesixty_subject : nil
     @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
     if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
       @assign.update(selected_locale: params[:lang])
@@ -132,7 +131,7 @@ class AssignsController < ApplicationController
   private
 
   def set_assign
-    @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
+    @assign = policy_scope(Assign).where.not(status: %i[completed timed_out]).find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

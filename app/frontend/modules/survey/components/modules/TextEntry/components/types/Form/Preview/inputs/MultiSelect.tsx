@@ -5,6 +5,7 @@ import { Question } from '../../interfaces'
 interface Props {
   model: Question
   index: number
+  readOnly: boolean
   onChange: (i: number, value: string) => void
 }
 

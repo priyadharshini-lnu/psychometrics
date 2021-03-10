@@ -1,17 +1,18 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable max-len */
 import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Card, Progress, Dropdown, Menu, Input,
+  Row, Col, Card, Progress, Dropdown, Menu, Input, Tooltip,
 } from 'antd'
 import {
   DownloadOutlined, LoadingOutlined, ClockCircleOutlined, CheckOutlined, PlayCircleOutlined,
 } from '@ant-design/icons'
 import truncate from 'lodash/truncate'
 
-import './styles.scss'
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+
 import ContinueIcon from './ContinueIcon'
 import PrivacyModal from './PrivacyModal'
+
+import './styles.scss'
 
 const IN_PROGRESS = 'in_progress'
 
@@ -19,7 +20,13 @@ const DownloadLink = ({ report, text }) => {
   const reportUrl = report.externalReportUrl || report.pdfUrl
   if (reportUrl) {
     return (
-      <a href={reportUrl} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
+      <a
+        href={reportUrl}
+        onClick={e => e.stopPropagation()}
+        target="_blank"
+        rel="noopener noreferrer"
+        disabled={report.generating}
+      >
         <DownloadOutlined />
         {' '}
         {text}
@@ -38,7 +45,10 @@ const ReportsMenu = reports => (
   <Menu>
     {reports.map(report => (
       <Menu.Item key={report.id}>
-        <DownloadLink report={report} text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name} />
+        <DownloadLink
+          report={report}
+          text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name}
+        />
       </Menu.Item>
     ))}
   </Menu>
@@ -82,7 +92,12 @@ const renderButtonContent = ({
       )
     } if (assignedReports.length === 1) {
       const report = assignedReports[0]
-      return <DownloadLink report={report} text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')} />
+      return (
+        <DownloadLink
+          report={report}
+          text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')}
+        />
+      )
     }
     return (
       <a>
@@ -151,8 +166,12 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
       >
         <div className="card-body">
           <div className="card-content">
-            <div className="card-title" title={assign.assessmentName}>
-              {truncate(assign.assessmentName, { length: 55 })}
+            <div className="card-title">
+              <Tooltip title={assign.assessmentName} placement="bottom">
+                <span>
+                  {truncate(assign.assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })}
+                </span>
+              </Tooltip>
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">

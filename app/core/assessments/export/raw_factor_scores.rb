@@ -10,13 +10,14 @@ module Assessments
         @campaign = campaign
       end
 
-      # rubocop:disable Metrics/BlockLength
+      # rubocop:disable Metrics/BlockLength, Metrics/AbcSize
       def call
         result = Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'AssessmentRawFactorScores') do |sheet|
             ## header
             header = {
-              header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Status']
+              header: ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+                       'Relationship', 'Started At', 'Completed At', 'Status']
             }
             factors = assessment.dimension.all_factors.active.includes(:sub_factors).index_by(&:id)
             factor_ids = {}
@@ -38,27 +39,30 @@ module Assessments
             #
             UsersResult.joins(:user_assessment).
               where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
-              includes(:evaluator).find_each(batch_size: 100) do |res|
+              includes(:subject, :evaluator).find_each(batch_size: 100) do |res|
               raw_scores.each_key do |factor_id|
                 raw_scores[factor_id] = res.scoring&.dig(factor_id.to_s, 'score')
               end
 
               sheet.add_row [res.encoded_id,
-                             user_name(res),
-                             res.user.email,
+                             user_name(res.subject.first_name, res.subject.last_name),
+                             res.subject.email,
+                             user_name(res.evaluator.first_name, res.evaluator.last_name),
+                             res.evaluator.email,
+                             res.user_assessment.relationship.name,
                              res.created_at.try(:strftime, '%D %r'),
                              res.completed_at.try(:strftime, '%D %r'),
-                             I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+                             I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
                              *raw_scores.values]
             end
           end
         end
         broadcast :ok, result
       end
-      # rubocop:enable Metrics/BlockLength
+      # rubocop:enable Metrics/BlockLength, Metrics/AbcSize
 
-      def user_name(res)
-        [res.user.first_name, res.user.last_name].reject(&:blank?).join(', ')
+      def user_name(first_name, last_name)
+        [first_name, last_name].reject(&:blank?).join(', ')
       end
     end
   end

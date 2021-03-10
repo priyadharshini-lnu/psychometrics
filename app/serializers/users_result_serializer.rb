@@ -4,9 +4,10 @@ class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
-             :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
+             :selected_locale, :current_element, :current_page, :seedrandom,
              :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at,
-             :prev_pages, :timed_out, :completed_at, :factors
+             :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
+             :remaining_assessment_time
 
   attribute :relationship
 
@@ -19,6 +20,26 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
   delegate :campaign_options, to: :campaign
   has_many :factors, serializer: ::UsersResults::FactorSerializer
+
+  def remaining_campaign_time
+    return unless campaign_user&.real_expiry_date
+
+    [campaign_user.real_expiry_date - Time.now, 0].max
+  end
+
+  def remaining_assessment_time
+    return unless object.expiry_date
+
+    assessment_time_left = [object.expiry_date - Time.now, 0].max
+
+    return [assessment_time_left, remaining_campaign_time].min if remaining_campaign_time
+
+    assessment_time_left
+  end
+
+  def status
+    object.real_status
+  end
 
   def factors
     Factor.where(id: object.scoring&.keys)
@@ -119,14 +140,16 @@ class UsersResultSerializer < ActiveModel::Serializer
     return object.external_results if object.assessment.mindmill?
 
     if object.assessment.hogan?
-      score = object.external_results&.dig('participant', 'assessment', 'score') || {}
+      score = object.external_results
       if score.present?
-        return score.each_with_object({}) do |v, res|
-          scales = Array.wrap(v['scales']['scale'])
-          res[normalize_hogan_type(v['type'])] = scales.each_with_object({}) do |factor, inner_res|
-            inner_res[factor['id']] = factor['__content__'].to_f
-          end
-        end
+        raw_scale = score.dig('scores', 'rawScores', 'scaleScores') || []
+        percentile_scale = score.dig('scores', 'percentileScores', 'scaleScores') || []
+        percentile_subscale = score.dig('scores', 'percentileScores', 'subscaleScores') || []
+        return {
+          'RawScale' => normalize_hogan(raw_scale),
+          'PercentileScale' => normalize_hogan(percentile_scale),
+          'PercentileSubscale' => normalize_hogan(percentile_subscale)
+        }
       end
     end
     {}
@@ -150,11 +173,10 @@ class UsersResultSerializer < ActiveModel::Serializer
     instance_options[:locale] || I18n.default_locale
   end
 
-  def normalize_hogan_type(type)
-    return 'Raw' if type == 'RAW'
-    return 'Percentile' if type == 'percentile'
-
-    raise "Not supported hogan type #{type}"
+  def normalize_hogan(items)
+    items.each_with_object({}) do |v, res|
+      res[v['id'].to_s.rjust(2, '0')] = (v['scaleScore'] || v['subscaleScore']).to_f
+    end
   end
 
   def piped_text_context

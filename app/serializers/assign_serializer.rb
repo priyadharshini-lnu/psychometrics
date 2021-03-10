@@ -25,12 +25,22 @@ class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :available_translations, :selected_locale, :translations,
-             :type, :occupations, :innovation_styles, :expiry_date, :meta_data,
+             :type, :occupations, :innovation_styles, :meta_data,
              :current_element, :current_page, :seedrandom, :reset_count, :highlights,
-             :subject_datasheet, :prev_pages
+             :subject_datasheet, :prev_pages, :remaining_assessment_time
 
   has_one :user, serializer: UserSerializer
   has_many :media_responses, serializer: MediaResponseSerializer
+
+  def remaining_assessment_time
+    return unless object.expiry_date
+
+    [object.expiry_date - Time.now, 0].max
+  end
+
+  def status
+    object.real_status
+  end
 
   def type
     'single_assign'
@@ -101,14 +111,16 @@ class AssignSerializer < ActiveModel::Serializer
 
     if object.assessment.hogan?
       assign_report = object.original_assign.assigns_reports.find { |r| r.hogan_score.present? }
-      score = assign_report&.hogan_score&.dig('participant', 'assessment', 'score') || {}
+      score = assign_report&.hogan_score || {}
       if score.present?
-        return score.each_with_object({}) do |v, res|
-          scales = Array.wrap(v['scales']['scale'])
-          res[normalize_hogan_type(v['type'])] = scales.each_with_object({}) do |factor, inner_res|
-            inner_res[factor['id']] = factor['__content__'].to_f
-          end
-        end
+        raw_scale = score.dig('scores', 'rawScores', 'scaleScores') || []
+        percentile_scale = score.dig('scores', 'percentileScores', 'scaleScores') || []
+        percentile_subscale = score.dig('scores', 'percentileScores', 'subscaleScores') || []
+        return {
+          'RawScale' => normalize_hogan(raw_scale),
+          'PercentileScale' => normalize_hogan(percentile_scale),
+          'PercentileSubscale' => normalize_hogan(percentile_subscale)
+        }
       end
     end
     {}
@@ -127,11 +139,9 @@ class AssignSerializer < ActiveModel::Serializer
   end
   alias subject_datasheet data_sheet
 
-  def normalize_hogan_type(type)
-    # TODO: (shuja): Add subscale
-    return 'RawScale' if type == 'RAW'
-    return 'PercentileScale' if type == 'percentile'
-
-    raise "Not supported hogan type #{type}"
+  def normalize_hogan(items)
+    items.each_with_object({}) do |v, res|
+      res[v['id'].to_s.rjust(2, '0')] = (v['scaleScore'] || v['subscaleScore']).to_f
+    end
   end
 end

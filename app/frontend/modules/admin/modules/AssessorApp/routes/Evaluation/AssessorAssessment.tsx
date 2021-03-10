@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Card, Progress,
@@ -6,46 +6,56 @@ import {
 import AssessmentContainer from 'modules/survey/containers/AssessmentContainer'
 import { getProgress } from 'core/preview/FlowProcessor/selectors'
 import _ from 'lodash'
+import { RootState } from 'modules/admin/core/rootReducers'
+import { useLocation } from 'react-router-dom'
 import styles from './styles.scss'
+import { fetchAssessorAssessment, getAssessorForm, getCurrentAssessorForm } from '../../core/evaluation'
 
 const { Content } = Layout
 
-const mapStateToProps = state => ({
+const connecter = connect((state: RootState, props: {userAssessmentId: number}) => ({
   loaded: state.assessors.evaluation.loaded,
-  assessment: state.assessors.evaluation.assessment,
-  result: state.assessors.evaluation.result,
+  currentAssessorFormId: getCurrentAssessorForm(state.assessors),
+  assessorForm: getAssessorForm(state.assessors.evaluation, props.userAssessmentId),
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
+}), {
+  fetch: fetchAssessorAssessment,
 })
 
-const mapDispatchToProps = {}
-
-const connecter = connect(mapStateToProps, mapDispatchToProps)
-
 interface Props extends ConnectedProps<typeof connecter> {
-  userAssessmentId: string
+  userAssessmentId: number
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   store: any
 }
 
 const AssessorAssessment: React.FC<Props> = ({
+  fetch,
   store,
-  loaded,
   userAssessmentId,
-  assessment,
-  result,
   progress,
+  assessorForm,
+  currentAssessorFormId,
   preview: {
-    initialized,
     enableProgress,
   },
 }) => {
+  const { search } = useLocation()
+  const edit = new URLSearchParams(search).get('edit')
+  useEffect(() => {
+    if (+currentAssessorFormId === userAssessmentId) {
+      fetch(userAssessmentId, edit === 'true')
+    }
+  }, [currentAssessorFormId])
+
   const bodyStyles = { padding: 0 }
+  const loaded = !!assessorForm
 
   return (
     <Card
+      key={userAssessmentId}
       loading={!loaded}
-      title={_.get(assessment, 'name', '')}
+      title={_.get(assessorForm, ['assessment', 'name'], 'Loading...')}
       bordered={false}
       bodyStyle={bodyStyles}
       className={styles.card}
@@ -58,12 +68,12 @@ const AssessorAssessment: React.FC<Props> = ({
         {loaded && (
           <AssessmentContainer
             id="pass_assessment"
-            initialized={initialized}
+            initialized={false}
             type="pass_assessment"
-            data={assessment}
-            result={result}
-            dashboardUrl={`/assessors/campaigns/${result.campaign_id}/users`}
-            resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${result.id}`}
+            data={assessorForm.assessment}
+            result={assessorForm.result}
+            dashboardUrl={`/assessors/campaigns/${_.get(assessorForm, ['result', 'campaign_id'])}/users`}
+            resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${_.get(assessorForm, ['result', 'id'])}`}
             rstore={store}
             showScoringOnEndPage
           />

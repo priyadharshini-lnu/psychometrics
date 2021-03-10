@@ -33,8 +33,8 @@ module CampaignUsers
     def attributes
       {
         started_at: Time.now,
-        completion_status: :in_progress,
-        expiry_date: campaign.fixed_time_duration&.minutes&.from_now
+        status: :in_progress,
+        expiry_date: campaign.fixed_time? ? campaign.fixed_time_duration&.seconds&.from_now : nil
       }
     end
   end

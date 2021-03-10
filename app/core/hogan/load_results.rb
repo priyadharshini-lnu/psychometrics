@@ -15,23 +15,24 @@ module Hogan
       @hogan_assessment_id = assign.assessment.hogan_assessment_setting.hogan_assessment_id
       @hogan_report_id = report.hogan_report_setting.hogan_report_id
       @hogan_norm_id = report.hogan_report_setting.hogan_norm_id
+      @credentials = membership.hogan_credential
       @hogan_participant_id = membership.hogan_credential.participant_id
     end
 
     def call
       participant_report = get_participant_report
-      return broadcast(:not_completed) if participant_report.report.blank?
+      return broadcast(:not_completed) if participant_report.blank?
 
       # Sets loaded report
       assigns_reports_scope.find_each do |assigns_report|
-        assigns_report.update(external_report: "data:application/pdf;base64,#{participant_report.report}",
+        assigns_report.update(external_report: "data:application/pdf;base64,#{participant_report}",
           generating: false)
       end
 
       # Fetchs score and sets to AssignsReports
       participant_score = get_participant_score
-      if participant_score.response.present?
-        assigns_reports_scope.where(hogan_score: {}).update_all(hogan_score: participant_score.response)
+      if participant_score.present?
+        assigns_reports_scope.where(hogan_score: {}).update_all(hogan_score: participant_score)
       end
 
       broadcast(:ok)
@@ -41,27 +42,29 @@ module Hogan
 
     attr_reader :assign, :report, :membership, :project, :hogan_group_name,
                 :hogan_assessment_id, :hogan_report_id, :hogan_norm_id,
-                :hogan_participant_id, :assigns_reports_scope
+                :hogan_participant_id, :assigns_reports_scope, :credentials
 
     # Loads report from Hogan
     #
     def get_participant_report
-      Services::Hogan::API::ParticipantReport.call(
+      Services::Hogan::API::JSON::ParticipantReport.call!(
         group: hogan_group_name,
         assessment_id: hogan_assessment_id,
         report_id: hogan_report_id,
-        participant_id: hogan_participant_id
+        participant_id: hogan_participant_id,
+        provider: credentials.provider
       )
     end
 
     # Loads scores from Hogan
     #
     def get_participant_score
-      Services::Hogan::API::ParticipantScore.call(
+      Services::Hogan::API::JSON::ParticipantScore.call!(
         group: hogan_group_name,
         participant_id: hogan_participant_id,
         assessment_id: hogan_assessment_id,
-        norm_id: hogan_norm_id
+        norm_id: hogan_norm_id,
+        provider: credentials.provider
       )
     end
 

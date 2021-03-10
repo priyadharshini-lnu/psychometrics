@@ -51,14 +51,14 @@ const Preview: React.FC<Props> = ({
 
   return (
     <div className={commonStyles.container}>
-      {view !== ViewEnum.Sent && <Header model={model} view={view} setView={setView} />}
+      {view !== ViewEnum.Sent && <Header model={model} view={view} setView={setView} readOnly={readOnly} />}
       <View model={model} errors={errors} readOnly={readOnly} setView={setView} />
-      {view === ViewEnum.Edit && (
+      {!readOnly && view === ViewEnum.Edit && (
         <div className={styles.buttonContainer}>
           <Button
             type="primary"
             onClick={handleSendClick}
-            icon={<SendOutlined />}
+            icon={<SendOutlined className="rtl-flip" />}
           >
             {I18n().t('threesixty.question.email_type.send')}
           </Button>

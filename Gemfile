@@ -7,6 +7,7 @@ gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'faraday',                    '~> 1.3.0'
 gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.3.5'
 gem 'jwt',                        '~> 2.2.2'
@@ -124,7 +125,7 @@ gem 'deep_cloneable', '~> 2.4.0'
 
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sigv4', '~> 1'
-gem 'carrierwave', '~> 1.2.2'
+gem 'carrierwave', '~> 1.3.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct'
 gem 'fog-aws', '~> 2.0.1'
@@ -171,6 +172,7 @@ gem 'tty-progressbar', '~> 0.16.0', require: false
 gem 'activerecord-import', '~> 1.0.2'
 gem 'possessive', '~> 1.0.1'
 
+gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.9.1'
 
 group :development, :test do

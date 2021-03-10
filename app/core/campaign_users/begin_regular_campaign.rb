@@ -2,10 +2,11 @@
 
 module CampaignUsers
   class BeginRegularCampaign < BaseCommand
-    private_attr_reader :campaign_user
+    private_attr_reader :campaign_user, :campaign
 
     def initialize(campaign_user)
       @campaign_user = campaign_user
+      @campaign = campaign_user.campaign
     end
 
     def call
@@ -19,8 +20,8 @@ module CampaignUsers
     def attributes
       {
         started_at: Time.now,
-        completion_status: :in_progress,
-        expiry_date: campaign_user.campaign.fixed_time_duration&.minutes&.from_now
+        status: :in_progress,
+        expiry_date: campaign.fixed_time? ? campaign.fixed_time_duration&.seconds&.from_now : nil
       }
     end
   end

@@ -30,7 +30,13 @@ export const minutesLeftFromNow = (date: Date) => {
   return Math.floor(deltaTime / 60000)
 }
 
-export const secondsLeftFromNow = (date: Date) => {
-  const deltaTime = +new Date(date) - Date.now()
-  return Math.floor(deltaTime / 1000)
+export function secondsLeftFromNow (date: string): number;
+export function secondsLeftFromNow (date: null): null;
+export function secondsLeftFromNow (date: string | null) {
+  if (!date) { return null }
+
+  const deltaTime = Date.parse(date) - Date.now()
+  return Math.ceil(deltaTime / 1000)
 }
+
+export const secondsToHHMMSS = (seconds: number) => new Date(seconds * 1000).toISOString().substr(11, 8)

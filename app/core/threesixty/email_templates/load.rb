@@ -11,7 +11,7 @@ module Threesixty
         email_templates = read_yaml.map do |attributes|
           threesixty_campaign.email_templates.new(attributes)
         end
-        ::Threesixty::EmailTemplate.import(email_templates)
+        ::Threesixty::EmailTemplate.import(email_templates, recursive: true)
       end
 
       private

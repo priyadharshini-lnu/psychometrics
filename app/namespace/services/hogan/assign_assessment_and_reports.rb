@@ -10,6 +10,7 @@ module Services
         context.membership = context.assessment_params[:membership]
         context.assessment = context.assessment_params[:assessment]
         context.reports = context.assessment_params[:reports]
+        context.credentials = context.membership.hogan_credential
 
         create_group
         add_participant_to_group
@@ -20,26 +21,34 @@ module Services
       private
 
       def create_group
-        result = Services::Hogan::API::GroupDetails.call(group: context.group)
-        return if result.success?
-
-        Services::Hogan::API::CreateGroup.call!(group: context.group)
+        Services::Hogan::API::JSON::GroupDetails.call(
+          group: context.group, provider: context.credentials&.provider
+        ) do
+          on(:error) do
+            Services::Hogan::API::JSON::CreateGroup.call!(group: context.group, provider: context.credentials&.provider)
+          end
+        end
       end
 
       def add_participant_to_group
         return if context.membership.hogan_credential.present?
 
         password = Devise.friendly_token.first(10)
-        result = Services::Hogan::API::AddParticipantToGroup.call!(group: context.group, password: password)
-        context.membership.create_hogan_credential(password: password, participant_id: result.participant_id)
+        participant_id = Services::Hogan::API::JSON::AddParticipantToGroup.call!(
+          group: context.group, password: password, provider: context.credentials&.provider
+        )
+        context.credentials = context.membership.create_hogan_credential(
+          password: password, participant_id: participant_id
+        )
       end
 
       def add_participant_assessment
-        Services::Hogan::API::AddParticipantAssessment.call!(
+        Services::Hogan::API::JSON::AddParticipantAssessment.call!(
           participant_id: context.membership.hogan_credential.participant_id,
           group: context.group,
           assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
-          form_id: context.assessment.hogan_assessment_setting.hogan_form_id
+          form_id: context.assessment.hogan_assessment_setting.hogan_form_id,
+          provider: context.credentials&.provider
         )
       end
 
@@ -47,13 +56,14 @@ module Services
         context.reports.each do |report|
           next unless report.hogan?
 
-          Services::Hogan::API::AddParticipantReport.call!(
+          Services::Hogan::API::JSON::AddParticipantReport.call!(
             group: context.group,
             norm_id: report.hogan_report_setting.hogan_norm_id,
             language_id: report.hogan_report_setting.hogan_language_id,
             assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
             report_id: report.hogan_report_setting.hogan_report_id,
-            participant_id: context.membership.hogan_credential.participant_id
+            participant_id: context.membership.hogan_credential.participant_id,
+            provider: context.credentials&.provider
           )
         end
       end

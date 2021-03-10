@@ -6,16 +6,17 @@ module Threesixty
       private
 
       def user_matches_criteria?(user, criteria)
-        return unless (datasheet_row = datasheet_rows[user.email])
+        datasheet_field_data = datasheet_data_indexed_by_email.dig(user.email, criteria['sub_field'])
+        return false if datasheet_field_data.nil?
 
-        datasheet_row.data[criteria['sub_field']]&.downcase == criteria['value']&.downcase
+        datasheet_field_data&.to_s&.downcase == criteria['value']&.downcase
       end
 
-      def datasheet_rows
-        @datasheet_rows ||= threesixty_campaign.datasheet&.
-          rows&.
-          where(email: participator_emails)&.
-          index_by(&:email) || {}
+      def datasheet_data_indexed_by_email
+        @datasheet_data_indexed_by_email ||= ::Campaigns::GetDatasheetData.call!(
+          threesixty_campaign.campaign,
+          participator_emails
+        )
       end
 
       def participator_emails

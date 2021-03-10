@@ -14,7 +14,6 @@ module CampaignUsers
       broadcast :invalid unless additional_time || additional_time.negative?
 
       transaction do
-        remove_reports if campaign_user.completed_campaign?
         add_additional_time
       end
 
@@ -25,16 +24,10 @@ module CampaignUsers
 
     def add_additional_time
       campaign_user.update_attributes(
-        completion_status: :interrupted,
+        status: :interrupted,
         additional_time: additional_time,
         expiry_date: nil
       )
-    end
-
-    def remove_reports
-      campaign_user.user_reports.each do |report|
-        report.update!(remove_pdf: true, status: :generating)
-      end
     end
   end
 end

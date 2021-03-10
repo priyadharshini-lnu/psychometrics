@@ -20,7 +20,7 @@ module Threesixty
 
     def search_evaluators
       render json: Threesixty::Evaluators::SearchQuery.
-        new(@campaign.campaign, @subject, params[:q]).query, each_serializer: ::Projects::SearchUserSerializer
+        new(@campaign.campaign, @subject, params[:q]).query, each_serializer: UserSerializer
     end
 
     def request_approval

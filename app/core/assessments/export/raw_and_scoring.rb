@@ -19,7 +19,8 @@ module Assessments
       private
 
       def get_result_details_header
-        ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
+        ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+         'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
       end
 
       def result_details_row_values(res)
@@ -29,12 +30,15 @@ module Assessments
           end
         [
           res.encoded_id,
+          user_name(res.subject.first_name, res.subject.last_name),
+          res.subject.email,
           user_name(res.evaluator.first_name, res.evaluator.last_name),
           res.evaluator.email,
+          res.user_assessment.relationship.name,
           res.started_at.try(:strftime, '%D %r'),
           res.completed_at.try(:strftime, '%D %r'),
           res.norm ? res.norm.name : '',
-          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+          I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
           completion_reason
         ]
       end
@@ -42,7 +46,7 @@ module Assessments
       def results
         UsersResult.joins(:user_assessment).
           where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
-          includes(:evaluator, :norm)
+          includes(:subject, :evaluator, :norm, :user_assessment)
       end
     end
   end
