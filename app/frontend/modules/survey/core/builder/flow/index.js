@@ -48,7 +48,7 @@ const HANDLERS = {
   },
   [ADD_ELEMENT]: (state, { element, newElement }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
+    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.uuid, element.uuid))
     return updateIn(state, path, (elements) => {
       const rightElements = elements.slice(index + 1, elements.length).map(
         el => setIn(el, ['path', el.path.length - 1], el.path[el.path.length - 1] + 1),
@@ -58,20 +58,20 @@ const HANDLERS = {
   },
   [UPDATE_ELEMENT]: (state, { element }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => (_.isEqual(el.path, element.path)))
+    const index = _.findIndex(getIn(state, path), el => (_.isEqual(el.uuid, element.uuid)))
     if (index < 0) return state
     return setIn(state, [...path, index], element)
   },
   [DUPLICATE_ELEMENT]: (state, { element, duplicate }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
+    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.uuid, element.uuid))
     return updateIn(state, path, elements => elements.splice(index + 1, 0, duplicate) && elements)
   },
   [REMOVE_ELEMENT]: (state, { element }) => {
     const path = lookUpPath(element)
     const index = _.findIndex(getIn(state, path), el => (el.path
-      ? _.isEqual(el.path, element.path)
-      : _.isEqual({ ...el, path: element.path }, element)))
+      ? _.isEqual(el.uuid, element.uuid)
+      : _.isEqual(el.path, element.path)))
     if (index < 0) return state
     return updateIn(state, path, elements => elements.splice(index, 1) && elements)
   },
