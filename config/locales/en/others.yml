@@ -1655,6 +1655,8 @@ en:
           totalResponses: Total Responses
           variance: Variance
           weightedMean: Weighted Mean
+        question:
+          no_response: No response available
         statistic: Statistic
         value: Value
       three_sixty_report_summary:
