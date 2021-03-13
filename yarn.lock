@@ -9952,10 +9952,10 @@ mkdirp@^0.5.3, mkdirp@^0.5.5:
   dependencies:
     minimist "^1.2.5"
 
-mocker-api@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/mocker-api/-/mocker-api-2.8.1.tgz#7f6fb131ccf16f7c8296060e3199de6540e4a928"
-  integrity sha512-Fj6uOwcwSr0PXES6ykIqscsrw7zEBpeKBZrQFuuSJyPAwj1l9zQJ/vQ8u3tZ/FiaZffM4yvJ+n3P+u7YaKAQ+w==
+mocker-api@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/mocker-api/-/mocker-api-2.8.2.tgz#2e462f8e187a74ca402a062e1139e2468bf2cf57"
+  integrity sha512-l190bZkBc2R0RDlO2nqK+W1OWCiF88xtPfrgqWjAq2l+j24DHEY0af6vVIiQ5aZ17ff1cyMjrWRmGM284pASnw==
   dependencies:
     "@babel/runtime" "7.12.5"
     "@types/body-parser" "1.19.0"
