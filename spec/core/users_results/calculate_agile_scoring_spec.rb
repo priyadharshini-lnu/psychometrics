@@ -156,7 +156,7 @@ describe UsersResults::CalculateAgileScoring do
     }
     results = [prepare_answers(@factor_ids)]
 
-    @users_result = create(:users_result, :with_user_assessment, answers: results)
+    @users_result = create(:users_result, answers: results)
     @agile = create(:agile, assessment: @users_result.assessment, config: config)
 
     if complete
@@ -187,7 +187,7 @@ describe UsersResults::CalculateAgileScoring do
     answers = prepare_answers(@factor_ids)
     results = [feed_in_wrong_answers(answers)]
 
-    @users_result = create(:users_result, :with_user_assessment, answers: results)
+    @users_result = create(:users_result, answers: results)
     @agile = create(:agile, assessment: @users_result.assessment, config: config)
 
     @users_result.update_columns(status: :completed, completed_at: Time.now, norm_id: @norm.id, norm_type: 'percentile')

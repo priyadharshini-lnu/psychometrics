@@ -37,7 +37,7 @@ class Campaign < ApplicationRecord
   has_many :instruction_templates, -> { enabled }, foreign_key: :threesixty_campaign_id,
                                                      class_name: 'Threesixty::InstructionTemplate'
   has_many :user_assessments, dependent: :destroy
-  has_many :users_results, dependent: :destroy
+  has_many :users_results, through: :user_assessments, dependent: :destroy
   has_many :campaign_reports, dependent: :destroy
   has_many :reports, through: :campaign_reports
   has_many :campaign_assessments, dependent: :destroy

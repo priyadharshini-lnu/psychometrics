@@ -80,13 +80,6 @@ module Imports
             user ||= find_or_create_user(data, index)
             next unless user
 
-            user_result = UsersResult.find_or_create_by(
-              subject_id: user.id,
-              evaluator_id: user.id,
-              campaign_id: campaign.id,
-              assessment_id: assessment.id
-            )
-
             UserAssessment.find_or_create_by(
               subject_id: user.id,
               evaluator_id: user.id,
@@ -94,7 +87,9 @@ module Imports
               assessment_id: assessment.id,
               project_id: campaign.project_id,
               users_result_id: user_result.id
-            )
+            ) do |user_assessment|
+              user_assessment.users_result = UsersResult.create
+            end
           end
 
           status = I18n.t('activerecord.attributes.users_result.statuses').key(data['status'])

@@ -18,13 +18,17 @@ module Threesixty
           users_results.
           completed.
           actual_by_options(option).
-          where(evaluator_id: user_ids).
-          group(:evaluator_id).
-          select('users_results.evaluator_id, count(users_results.id) as completed_evaluations_count')
+          where(user_assessments: { evaluator_id: user_ids }).
+          group('user_assessments.evaluator_id').
+          select(
+            'user_assessments.evaluator_id as ua_evaluator_id, count(users_results.id) as completed_evaluations_count'
+          )
 
-        user_results = user_results.where('subject_id != evaluator_id') if exclude_self_evaluations
+        if exclude_self_evaluations
+          user_results = user_results.where('user_assessments.subject_id != user_assessments.evaluator_id')
+        end
 
-        broadcast :ok, user_results.index_by(&:evaluator_id)
+        broadcast :ok, user_results.index_by(&:ua_evaluator_id)
       end
     end
   end

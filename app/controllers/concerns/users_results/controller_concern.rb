@@ -77,7 +77,9 @@ module UsersResults::ControllerConcern
   end
 
   def set_user_result
-    @users_result = UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)
+    @users_result = UsersResult.joins(:user_assessment).
+                    where(user_assessments: { evaluator_id: current_user.id }).
+                    find(params[:id])
     authorize [:end_user, @users_result]
   end
 

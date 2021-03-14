@@ -47,10 +47,11 @@ module Administration
       def export_completion_status
         headers['Content-Disposition'] = 'attachment; filename="completion_statuses.csv"'
         headers['Content-Type'] ||= 'text/csv'
-        users_results = UsersResult.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).
-                        includes(:evaluator, :assessment)
+        user_assessments = UserAssessment.where(campaign_id: campaign.id).
+                           includes(:users_result, :evaluator, :assessment)
+
         render :export_completion_status, locals: {
-          users_results: users_results,
+          user_assessments: user_assessments,
           headers: UsersResultDecorator.export_headers
         }
       end

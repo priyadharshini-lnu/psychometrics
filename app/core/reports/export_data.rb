@@ -58,9 +58,8 @@ module Reports
     private
 
     def users_results
-      UsersResult.joins(:user_assessment).where(
-        user_assessments: { campaign_id: campaign.id },
-        assessment_id: report.assessment_ids
+      UsersResult.includes(:user_assessment).where(
+        user_assessments: { assessment_id: report.assessment_ids, campaign_id: campaign.id }
       )
     end
 

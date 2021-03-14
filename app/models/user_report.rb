@@ -33,7 +33,7 @@ class UserReport < ApplicationRecord
   end
 
   def generatable?
-    completed_assessment_ids = user_results.pluck(:assessment_id)
+    completed_assessment_ids = user_results.includes(:user_assessment).pluck('user_assessments.assessment_id')
 
     report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
   end

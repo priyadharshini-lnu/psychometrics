@@ -16,14 +16,10 @@ module Administration
                        where.
                        has do
           (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id))
-        end
-        user_results = UsersResult.where.
-                       has do
-          (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id))
-        end
+        end.includes(:users_result)
+
         render json: participants,
-               each_serializer: ::Threesixty::ParticipantSerializer,
-               user_result_map: user_results.index_by { |r| [r.evaluator_id, r.subject_id] }
+               each_serializer: ::Threesixty::ParticipantSerializer
       end
 
       def update

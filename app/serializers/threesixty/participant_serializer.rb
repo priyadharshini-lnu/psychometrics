@@ -20,7 +20,7 @@ module Threesixty
     private
 
     def result
-      (@instance_options[:user_result_map] || {})[[object.evaluator_id, object.subject_id]]
+      object.users_result
     end
   end
 end

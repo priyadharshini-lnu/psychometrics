@@ -32,7 +32,7 @@ module Assessments
 
       def results
         UsersResult.joins(:user_assessment).
-          where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id })
+          where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id })
       end
     end
   end

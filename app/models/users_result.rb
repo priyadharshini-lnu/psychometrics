@@ -3,17 +3,16 @@
 class UsersResult < ApplicationRecord
   include EncodableId
 
-  belongs_to :campaign
-  belongs_to :subject, class_name: 'User'
-  belongs_to :evaluator, class_name: 'User'
-  belongs_to :assessment
   belongs_to :norm
   has_one :participant, class_name: 'Threesixty::Participant'
-  belongs_to :campaign
   belongs_to :norm
-  has_one :threesixty_campaign, through: :campaign
   has_many :media_responses, dependent: :destroy
   has_one :user_assessment
+  has_one :campaign, through: :user_assessment
+  has_one :threesixty_campaign, through: :campaign
+  has_one :subject, through: :user_assessment
+  has_one :evaluator, through: :user_assessment
+  has_one :assessment, through: :user_assessment
   has_one :mindmill_credential, dependent: :destroy
   has_one :agile, through: :assessment
   has_many :agile_events, dependent: :destroy
@@ -22,7 +21,9 @@ class UsersResult < ApplicationRecord
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
 
   scope :actual_by_options, lambda { |options|
-    where('subject_id != evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')
+    unless options.participants.dig('subject', 'can_evaluate_self')
+      joins(:user_assessment).merge(::Threesixty::Participant.actual_by_options(options))
+    end
   }
 
   scope :mindmill, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:mindmill] }) }
@@ -31,6 +32,9 @@ class UsersResult < ApplicationRecord
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
 
   after_commit :set_campaign_user_completion_status, if: proc { status_previously_changed? }, on: %i[update]
+
+  delegate :subject_id, :evaluator_id, :assessment_id,
+           :campaign_id, to: :user_assessment, allow_nil: true
 
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
