@@ -9,7 +9,9 @@ container.email-container
     columns.email-content
       p License expire
       - if @client
-        p= "Client #{@client.decorate.display_name}"
+        p
+          = "Check Client #{@client.decorate.display_name} License usage "
+          = link_to "here.", license_administration_client_url(@client)
   row
     columns.email-copyright.footer
       |  © 

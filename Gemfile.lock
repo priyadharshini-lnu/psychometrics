@@ -906,7 +906,6 @@ DEPENDENCIES
   filterrific (~> 2.0.5)
   fog-aws (~> 2.0.1)
   font-awesome-rails (~> 4.7)
-  foundation_emails
   guard (~> 2.14.0)
   hashids (~> 1.0.5)
   hirb

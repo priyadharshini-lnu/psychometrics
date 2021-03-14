@@ -7,10 +7,12 @@ container.email-container
         = image_tag(@client&.logo&.url, class: 'project-logo float-left')
   row
     columns.email-content
-      p License expire
+      p License expired.
       - if @client
-        p= "Client #{@client.decorate.display_name}"
-  row
+        p
+          = "Check Client #{@client.decorate.display_name} License usage "
+          = link_to "here.", license_administration_client_url(@client)
+    row
     columns.email-copyright.footer
       |  © 
       = Time.now.year
