@@ -37,12 +37,14 @@ class Assessors::EvaluationsController < Assessors::BaseController
     attributes = attributes.merge(started_at: Time.now) unless user_result.started_at
     user_result.update(attributes)
 
-    if params[:edit] == 'true'
+    ::UsersResults::Edit.call!(user_result) if params[:edit] == 'true'
+
+    if params[:read] == 'true'
+      user_result.status = :in_progress
       user_result.current_element = nil
       user_result.current_page = 0
-      user_result.status = :in_progress
-      user_result.prev_pages = []
     end
+
     render json: serialize_data(@assessor_assessment, user_result)
   end
 

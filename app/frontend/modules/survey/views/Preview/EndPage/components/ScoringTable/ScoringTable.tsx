@@ -1,11 +1,12 @@
-import React, { FC } from 'react'
+import React, { useState, FC } from 'react'
 import { Col, Row, Table } from 'antd'
 import { CSVLink } from 'react-csv'
 import { LabelKeyObject } from 'react-csv/components/CommonPropTypes'
 import map from 'lodash/map'
 import find from 'lodash/find'
-
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import EditEvaluationModal from '../EditEvaluationModal'
+
 
 import rootStyles from '../../styles.scss'
 
@@ -28,8 +29,14 @@ export const ScoringTable: FC<ScoringTableProps> = ({
   I18n,
   userAssessmentId,
 }) => {
+  const [editModal, setEditModal] = useState(false)
   if (!scoring || !showScoringOnEndPage) {
     return null
+  }
+
+  const handleReevaluateModal = (e) => {
+    e.preventDefault()
+    setEditModal(true)
   }
 
   const data = map(scoring, (s, id) => ({
@@ -73,12 +80,16 @@ export const ScoringTable: FC<ScoringTableProps> = ({
         rowKey={row => row.id}
       />
       <div className={rootStyles.links}>
-        <a href="?edit=true">{I18n.t('assessments.actions.re_evaluate')}</a>
+        <a href="?edit=true" onClick={handleReevaluateModal}>{I18n.t('assessments.actions.re_evaluate')}</a>
         {' | '}
         <a href={dashboardUrl}>
           {I18n.t('assessments.actions.back_to_campaign')}
         </a>
       </div>
+      <EditEvaluationModal
+        show={editModal}
+        close={() => setEditModal(false)}
+      />
     </>
   )
 }

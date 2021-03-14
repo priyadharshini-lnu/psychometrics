@@ -41,10 +41,12 @@ const AssessorAssessment: React.FC<Props> = ({
   },
 }) => {
   const { search } = useLocation()
-  const edit = new URLSearchParams(search).get('edit')
+  const params = new URLSearchParams(search)
+  const edit = params.get('edit')
+  const read = params.get('read')
   useEffect(() => {
     if (+currentAssessorFormId === userAssessmentId) {
-      fetch(userAssessmentId, edit === 'true')
+      fetch(userAssessmentId, { edit: edit === 'true', read: read === 'true' })
     }
   }, [currentAssessorFormId])
 
@@ -69,7 +71,7 @@ const AssessorAssessment: React.FC<Props> = ({
           <AssessmentContainer
             id="pass_assessment"
             initialized={false}
-            type="pass_assessment"
+            type={read === 'true' ? 'view_results' : 'pass_assessment'}
             data={assessorForm.assessment}
             result={assessorForm.result}
             dashboardUrl={`/assessors/campaigns/${_.get(assessorForm, ['result', 'campaign_id'])}/users`}
