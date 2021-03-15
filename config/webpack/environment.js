@@ -104,6 +104,7 @@ const vendors = [
   'mime-db',
   'esprima',
   'fbemitter',
+  'ajv',
 ]
 
 const vendors2 = [

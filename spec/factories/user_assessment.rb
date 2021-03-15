@@ -15,10 +15,11 @@ FactoryBot.define do
     trait :with_result do
       transient do
         status { :completed }
+        answers { {} }
       end
 
       after(:create) do |ua, evaluator|
-        ua.users_result.update_columns(status: evaluator.status)
+        ua.users_result.update_columns(status: evaluator.status, answers: evaluator.answers)
       end
     end
   end

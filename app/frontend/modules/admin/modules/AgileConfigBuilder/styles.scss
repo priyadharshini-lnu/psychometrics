@@ -1,4 +1,6 @@
 .tabContent {
-  width: 850px;
-  padding: 15px;
+  width: calc(100vw - 260px);
+  :global(.react-codemirror2) {
+    border: solid 1px rgb(224, 224, 224);
+  }
 }
