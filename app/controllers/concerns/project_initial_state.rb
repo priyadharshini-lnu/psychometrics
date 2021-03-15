@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CampaignInitialState
+module ProjectInitialState
   extend ActiveSupport::Concern
 
   included do
@@ -19,7 +19,8 @@ module CampaignInitialState
                   to_h,
       config: {
         availableLocales: I18n.available_locales,
-        features: feature_flags
+        features: feature_flags,
+        isProjectMigrated: project.migrated?
       }
     }
   end

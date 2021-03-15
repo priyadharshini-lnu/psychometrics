@@ -1,21 +1,27 @@
 # frozen_string_literal: true
 
 module Administration
-  class ProjectsController < Administration::BaseController
+  class NewProjectsController < Administration::BaseController
+    include ::ProjectInitialState
+
+    helper_method :project
+
     prepend_before_action :set_resource_class
     before_action :set_resource
     append_before_action :pundit_authorize
+    initial_state_for %i[show]
 
     def show; end
 
-    def search_users
-      users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
-        ::Projects::SearchUserSerializer.new(user).to_h
-      end
-      render json: users
+    private
+
+    def project
+      @project = @_resource
     end
 
-    private
+    def set_resource
+      @_resource = policy_scope(Client).find(params[:id])
+    end
 
     def set_resource_class
       @_resource_class ||= Client # rubocop:disable Naming/MemoizedInstanceVariableName

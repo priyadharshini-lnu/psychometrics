@@ -50,7 +50,8 @@ interface Props {
   getSortOrder(column: string): 'descend' | 'ascend'
   changePage(page: number): void
   openModal(name: string, data?: { projectId: string, campaign: object }): void
-  currentUser: User
+  currentUser: User,
+  isProjectMigrated: boolean
 }
 
 const CampaignList: React.FC<Props> = ({
@@ -70,6 +71,7 @@ const CampaignList: React.FC<Props> = ({
   changePage,
   openModal,
   currentUser,
+  isProjectMigrated,
 }) => {
   useEffect(() => {
     fetch(projectId, tableConfig)
@@ -89,6 +91,7 @@ const CampaignList: React.FC<Props> = ({
 
   return (
     <div>
+      {!isProjectMigrated && (
       <Breadcrumb
         request={{
           fields: ['project', 'client'],
@@ -106,6 +109,7 @@ const CampaignList: React.FC<Props> = ({
           label: state => state.project.name,
         }]}
       />
+      )}
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />

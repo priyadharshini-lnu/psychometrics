@@ -1,0 +1,59 @@
+import React from 'react'
+import { Menu } from 'antd'
+import routeUtils from 'utils/route'
+import RouteList from 'components/RouteList'
+import settings from 'modules/admin/modules/projects/settings'
+import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import { useParams } from 'react-router'
+import { routes } from './routes'
+
+const { I18n } = window
+
+export const Project = ({ history }) => {
+  const prefix = `${settings.urlPrefix}/:projectId`
+  const { projectId } = useParams<{ projectId: string}>()
+  const path = routeUtils.getActiveRoutePath(routes)
+  const showBreadcrumbs = ['/new_campaigns', '/datasheet'].includes(path)
+  const pageName = path === '/new_campaigns' ? I18n.t('common.model.campaigns') : I18n.t('common.model.datasheet')
+
+  const onSelect = ({ key }) => {
+    if (key === 'project_admins') {
+      window.location.pathname = `/administration/clients/${projectId}/project_admins`
+    } else {
+      routeUtils.moveTo(history, prefix, key)
+    }
+  }
+
+  return (
+    <div>
+      {showBreadcrumbs && (
+      <Breadcrumb
+        request={{
+          fields: ['project', 'client'],
+          data: {
+            projectId: parseInt(projectId, 10),
+          },
+        }}
+        crumbs={[{
+          link: () => '/administration',
+          label: () => I18n.t('administration.clients.tenancies'),
+        }, {
+          link: state => `/administration/clients/${state.client.id}/projects`,
+          label: state => state.client.name,
+        }, {
+          link: state => `/administration/projects/${state.project.id}/new_campaigns`,
+          label: state => state.project.name,
+        }, {
+          label: () => pageName,
+        }]}
+      />
+      )}
+      <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
+        <Menu.Item key="/new_campaigns">{I18n.t('common.model.campaigns')}</Menu.Item>
+        <Menu.Item key="/datasheet">{I18n.t('common.model.datasheet')}</Menu.Item>
+        <Menu.Item key="project_admins">{I18n.t('administration.breadcrumbs.project_admins')}</Menu.Item>
+      </Menu>
+      <RouteList routes={routes} urlPrefix={prefix} />
+    </div>
+  )
+}
