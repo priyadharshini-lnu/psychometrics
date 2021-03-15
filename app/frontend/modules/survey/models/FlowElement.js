@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import _ from 'lodash'
+import genUUID from 'uuid/v4'
 import { EventEmitter } from 'fbemitter'
 import FlowCondition from './FlowCondition'
 
 const FlowElement = function (attrs = {}, parentPath = null, index = 0) {
+  this.uuid = attrs.uuid || genUUID()
   this.type = attrs.type
   this.parent = {} // ?
   this.props = attrs.props || {}
@@ -36,11 +38,12 @@ _.extend(FlowElement.prototype, {
   },
 
   loadElements (elements) {
-    return _.map(elements, (element, index) => new FlowElement(element, this, index))
+    return _.map(elements, (element, index) => new FlowElement(element, this.path, index))
   },
 
   toJSON () {
     return {
+      uuid: this.uuid,
       type: this.type,
       elements: this.elements,
       path: this.path,

@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
+import cs from 'classnames'
 import AppStore from 'rb/store/AppStore'
 import I18nStore from 'rb/store/I18nStore'
 import Utils from 'rb/utils'
@@ -50,11 +51,8 @@ function FilterTable ({ filterId, model, questions }) {
       ResultStore, ['results', model.assessment_id, 'resultsByFilter', filter.id, 'questions', question.id],
     )
     if (!answers) return null
-    return answers.map(answer => answer[0].value)
+    return _.compact(answers).map(answer => answer[0].value)
   }
-
-  const results = getResults()
-  if (!results) { return null }
 
   return (
     <tbody>
@@ -63,13 +61,27 @@ function FilterTable ({ filterId, model, questions }) {
           {I18nStore.tFilterName(filter)}
         </td>
       </tr>
-      {results.map((r, i) => (
-        <tr key={i}>
-          <td className={styles.answer}>{r}</td>
-        </tr>
-      ))}
+      <Results results={getResults()} />
     </tbody>
   )
+}
+
+const Results = ({ results }) => {
+  if (!results || results.length === 0) {
+    return (
+      <tr>
+        <td className={cs([styles.answer, styles.noResponse])}>
+          {I18nStore.t('reports.modules.three_sixty_default.question.no_response')}
+        </td>
+      </tr>
+    )
+  }
+
+  return results.map((r, i) => (
+    <tr key={i}>
+      <td className={styles.answer}>{r}</td>
+    </tr>
+  ))
 }
 
 export default connect((state, { model }) => ({

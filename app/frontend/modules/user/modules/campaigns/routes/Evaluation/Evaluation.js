@@ -48,12 +48,12 @@ export default function Evaluation ({
 }) {
   const assessmentRef = React.createRef()
   const {
-    edit, step, approve_evaluation, lang,
+    edit, step, approve_evaluation, lang, read,
   } = qs.parse(location.search.substr(1))
 
   useEffect(() => {
     fetchAssessment(params.campaignId, params.id, {
-      isEdit: edit, step, approve_evaluation, lang,
+      isEdit: edit, isRead: read, step, approve_evaluation, lang,
     })
   }, [])
 
@@ -189,7 +189,7 @@ export default function Evaluation ({
                     ref={assessmentRef}
                     id="pass_assessment"
                     initialized={initialized}
-                    type={approve_evaluation ? 'view_results' : 'pass_assessment'}
+                    type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
                     isThreesixty="true"
                     resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
                     data={assessment}
