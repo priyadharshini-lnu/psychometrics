@@ -7,10 +7,10 @@ import {
   CheckSquareFilled, InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
 } from '@ant-design/icons'
 import { SafeHTML } from 'components/SafeHTML'
-
 import userPresenter from 'presenters/user'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import { STATUSES } from 'constants/userResult'
+import EditEvaluationModal from '../EditEvaluationModal'
 import connect from './connect'
 import styles from './styles.scss'
 
@@ -22,6 +22,7 @@ function EvaluationList ({
   instructions,
 }) {
   const [showHelp, setShowHelp] = useState(false)
+  const [editModal, setEditModal] = useState(null)
   const isEvaluationCompleted = item => item.status === STATUSES.COMPLETED
   const evaluationHelp = _.find(instructions, { name: 'evaluation_help' })
   const canNotEvaluate = (item) => {
@@ -70,8 +71,17 @@ function EvaluationList ({
   )
 
   const getPath = (item) => {
-    if (WizardIsRequired.run(item.assessmentExtra)) return `/system_checks/${item.assessmentId}/${item.id}`
+    if (!isEvaluationCompleted(item) && WizardIsRequired.run(item.assessmentExtra)) {
+      return `/system_checks/${item.assessmentId}/${item.id}`
+    }
     return `/threesixty_campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`
+  }
+
+  const handleAssessmentLinkClick = (e, item) => {
+    if (isEvaluationCompleted(item)) {
+      setEditModal(item)
+      e.preventDefault()
+    }
   }
 
   const EvaluationItem = item => (
@@ -85,7 +95,7 @@ function EvaluationList ({
           to={getPath(item)}
           style={{ display: 'flex', flex: 1 }}
           disabled={canNotEvaluate(item)}
-          onClick={e => moveTo(e, item)}
+          onClick={e => handleAssessmentLinkClick(e, item)}
         >
           <Tooltip placement="topLeft" title={item.subject.email}>
             <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
@@ -200,6 +210,11 @@ function EvaluationList ({
           list={managedSubjects}
         />
         )}
+      <EditEvaluationModal
+        show={!!editModal}
+        evaluation={editModal}
+        close={() => setEditModal(null)}
+      />
       {evaluationHelp && (
       <Modal
         title={(

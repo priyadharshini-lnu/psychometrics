@@ -25,14 +25,14 @@ module Threesixty
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
 
-            @users_result.current_element = nil
-            @users_result.current_page = 0
+            ::UsersResults::Edit.call!(@users_result)
           end
-          if params[:step]
-            @users_result.step = params[:step].to_i
-            @users_result.current_element = nil
-            @users_result.current_page = 0
+          if params[:is_read] == 'true'
+            render(json: { error: '403' }, status: 403) && return unless policy(@participant).show?
+
+            set_read_results
           end
+
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
                  current_user: current_user, locale: @selected_locale,
@@ -69,6 +69,12 @@ module Threesixty
     end
 
     private
+
+    def set_read_results
+      @users_result.status = :in_progress
+      @users_result.current_element = nil
+      @users_result.current_page = 0
+    end
 
     def set_campaign
       @campaign = Threesixty::Campaign.find(params[:campaign_id])

@@ -5,14 +5,18 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :url, :checks, :id, :config, :transcribe_supported_locales
     attribute :campaign_id, if: -> { object.assessment.threesixty? }
-    attribute :url, unless: -> { object.assessment.threesixty? }
+    attribute :url
 
     def url
       if object.assessment.agile?
         return object.is_a?(Assign) ? agile_assign_path(object) : agile_user_assessment_path(object)
       end
 
-      object.is_a?(Assign) ? pass_assign_path(object) : pass_user_assessment_path(object)
+      return pass_assign_path(object) if object.is_a?(Assign)
+
+      return pass_user_assessment_path(object) if object.campaign.common?
+
+      campaign_evaluation_path(object, campaign_id: object.threesixty_campaign.id)
     end
 
     def campaign_id

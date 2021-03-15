@@ -7,7 +7,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :selected_locale, :current_element, :current_page, :seedrandom,
              :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at,
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
-             :remaining_assessment_time
+             :remaining_assessment_time, :reset_count
 
   attribute :relationship
 

@@ -5,9 +5,8 @@ import {
 } from 'antd'
 import qs from 'qs'
 import cs from 'classnames'
-import { RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps, useLocation } from 'react-router-dom'
 import { useMedia } from 'modules/user/rootHooks'
-import routeUtils from 'utils/route'
 import { Checks, Config } from 'modules/user/modules/campaigns/core/checkingWizard/interfaces'
 import Cookies from 'js-cookie'
 import styles from './styles.scss'
@@ -16,6 +15,7 @@ import NetworkCheck from './NetworkCheck'
 import VideoCheck from './VideoCheck'
 import AudioCheck from './AudioCheck'
 import { PropsFromRedux } from './connect'
+
 
 const { Step } = Steps
 const { I18n } = window
@@ -58,18 +58,17 @@ interface OwnProps {
   checks: Checks
   config: Config
   url?: string
-  history?: object
-  campaignId?: number
-  id?: number
 }
 
 type Props = OwnProps & PropsFromRedux & RouteComponentProps<Params>
 
 const CheckingWizard: React.FC<Props> = ({
-  url, checks, config, fetch, match: { params }, history, campaignId, id,
+  url, checks, config, fetch, match: { params },
 }) => {
   const parsedAssessmentId = parseInt(params.assessmentId, 10)
   const parsedId = parseInt(params.id, 10)
+  const { search } = useLocation()
+  const mode = new URLSearchParams(search).get('mode')
 
   useEffect(() => {
     const query = qs.parse(location.search.substr(1))
@@ -82,12 +81,8 @@ const CheckingWizard: React.FC<Props> = ({
   const isMD = useMedia('md')
 
   const onFinish = () => {
-    if (url) {
-      location.href = url
-      return
-    }
-
-    routeUtils.moveTo(history, '', `/campaigns/${campaignId}/evaluations/${id}`)
+    if (mode === 'edit') { url = `${url}?edit=true` }
+    location.href = url
   }
 
   const getSteps = () => STEPS.filter(step => step.when(checks))

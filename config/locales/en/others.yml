@@ -799,6 +799,11 @@ en:
     instructions:
       heading: Please review the guidelines below before you get started. Wish you all the best!
     interrupted: Interrupted
+    edit_evaluation:
+      title: Confirm
+      body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
+      edit: Re-evaluate
+      view: View Results
     language:
       cancel: Cancel
       content: This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment
@@ -1656,6 +1661,8 @@ en:
           totalResponses: Total Responses
           variance: Variance
           weightedMean: Weighted Mean
+        question:
+          no_response: No response available
         statistic: Statistic
         value: Value
       three_sixty_report_summary:
