@@ -195,7 +195,7 @@ const DatasheetManagementComponent: FC<Props> = ({
               visibleColumnsKeys={visibleColumns}
               onVisibleColumnsChange={onVisibleColumnsChange}
             />
-            <ToolsDropdown parentId={parentResourceId} parentType={parentResourceType} />
+            <ToolsDropdown parentId={parentResourceId} parentType={parentResourceType} datasheetCount={total} />
             {isEmpty(columnDefinitions) || (
               <Button
                 type="primary"

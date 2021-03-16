@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
-import { Dropdown, Button, Menu } from 'antd'
+import {
+  Dropdown, Button, Menu, message,
+} from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { connect, ConnectedProps } from 'react-redux'
@@ -17,13 +19,23 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 interface OwnProps {
   parentType: ParentResourceType
   parentId: number
+  datasheetCount: number
 }
 
 type Props = PropsFromRedux & OwnProps
 
 const { I18n } = window
 
-const ToolsDropdown: FC<Props> = ({ parentType, parentId, openModal }) => {
+const ToolsDropdown: FC<Props> = ({
+  parentType, parentId, datasheetCount, openModal,
+}) => {
+  const handleExport = (e) => {
+    if (datasheetCount <= 0) {
+      message.info(I18n.t('datasheet.menu.export_info'))
+      e.preventDefault()
+    }
+  }
+
   const toolsMenu = (
     <Menu>
       <Menu.Item key="import" onClick={() => openModal('ImportDatasheetModal', { parentType, parentId })}>
@@ -33,6 +45,7 @@ const ToolsDropdown: FC<Props> = ({ parentType, parentId, openModal }) => {
         <a
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleExport}
           href={`/administration/${pluralize(parentType)}/${parentId}/datasheet_rows/export.xlsx`}
         >
           {I18n.t('datasheet.menu.export')}
