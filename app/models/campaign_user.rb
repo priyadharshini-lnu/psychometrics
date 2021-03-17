@@ -18,7 +18,7 @@ class CampaignUser < ApplicationRecord
   after_commit :compute_and_set_status, if: proc { completion_status_previously_changed? }, on: [:update]
 
   def compute_and_set_status
-    return if campaign.timed? && completion_status != 'completed'
+    return if campaign.fixed_timed?
 
     update_column(:status, completion_status)
   end

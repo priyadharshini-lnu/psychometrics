@@ -98,7 +98,11 @@ class Campaign < ApplicationRecord
   end
 
   def timed?
-    (fixed_time? && fixed_time_duration.present?) || end_date?
+    fixed_timed? || end_date?
+  end
+
+  def fixed_timed?
+    fixed_time? && fixed_time_duration.present?
   end
 
   private
