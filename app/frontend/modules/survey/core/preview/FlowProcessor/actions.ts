@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
+import * as t from 'io-ts'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
@@ -21,6 +22,7 @@ import {
   REMOVE_MEDIA_RESPONSE,
   MARK_MEDIA_RESPONSE_AS_SELECTED,
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION,
+  FETCH_QUESTION_SCORING,
 } from './consts'
 import {
   Highlight, QuestionError, MediaResponse,
@@ -173,6 +175,25 @@ export const updateHighlight = (highlight: Highlight, data: object, opts: Opts =
     payload,
   })
 }
+
+
+const Score = t.type({
+  score: t.number,
+})
+
+const FetchQuestionScoringResponseTR = t.record(t.string, Score)
+
+export const fetchQuestionScoring = (url, questionId, answers) => ({
+  type: FETCH_QUESTION_SCORING,
+  request: {
+    url: `${url}/scoring`,
+    method: 'POST',
+    body: { question_id: questionId, answers },
+    typedResponse: FetchQuestionScoringResponseTR,
+    decamelize: false,
+  },
+  questionId,
+})
 
 export const addMediaResponse = (mediaResponse: MediaResponse) => ({
   type: ADD_MEDIA_RESPONSE,

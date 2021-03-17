@@ -5,6 +5,7 @@ import { SafeHTML } from 'components/SafeHTML'
 import styles from './MatrixTable.scss'
 import Previews from './Previews'
 import connect from '../connect'
+import { ScoringTable } from '../../MultipleChoice/components/ScoringTable'
 
 export class Preview extends Component {
   static propTypes = {
@@ -18,8 +19,22 @@ export class Preview extends Component {
     return <View model={model} preview readOnly={readOnly} />
   }
 
+  renderScoring () {
+    const {
+      factors, scores, I18n,
+    } = this.props
+
+    if (!scores || !_.size(scores)) { return null }
+
+    return (
+      <div>
+        <ScoringTable factors={factors} scoring={scores} I18n={I18n} />
+      </div>
+    )
+  }
+
   render () {
-    const { model, I18n } = this.props
+    const { model, I18n, showQuestionScoring } = this.props
     return (
       <div>
         <SafeHTML
@@ -28,6 +43,7 @@ export class Preview extends Component {
           config="adminRichText"
         />
         {this.renderMatrixTypes()}
+        {showQuestionScoring && this.renderScoring()}
       </div>
     )
   }

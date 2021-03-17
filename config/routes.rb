@@ -47,7 +47,11 @@ Rails.application.routes.draw do
 
     resources :evaluations, only: %i[show] do
       get :subject_assessment
-      resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades
+      resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades do
+        member do
+          post :scoring
+        end
+      end
     end
 
     resources :campaigns, only: [:index] do

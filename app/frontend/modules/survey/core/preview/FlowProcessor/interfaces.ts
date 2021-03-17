@@ -134,6 +134,7 @@ export interface DefaultState {
   factors: []
   scoring: {} | null
   showScoringOnEndPage: boolean
+  showQuestionScoring: boolean
 }
 
 export interface MediaResponse {
@@ -192,6 +193,7 @@ export interface InitData {
   notAnEndPage: boolean
   category: string
   showScoringOnEndPage: boolean
+  showQuestionScoring: boolean
   factors: []
 }
 export interface Result {
@@ -220,6 +222,12 @@ interface SaveResponse {
   currentBlock: Block
   scoring?: {}
   factors?: []
+}
+
+interface FetchQuestionScoringResponse {
+  [key: number]: {
+    results: {question_id: number, value: number}[]
+  }
 }
 
 export interface InitType { type: string, data: InitData, result: Result}
@@ -264,3 +272,4 @@ export interface AppStore {
 
 export type SetLocalResults = ReturnType<typeof setLocalResults>
 export type SetIsSimulation = ReturnType<typeof setIsSimulation>
+export type FetchQuestionScoring = ApiActionResponse<FetchQuestionScoringResponse>

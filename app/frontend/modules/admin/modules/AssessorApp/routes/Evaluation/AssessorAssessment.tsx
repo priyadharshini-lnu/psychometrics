@@ -78,6 +78,7 @@ const AssessorAssessment: React.FC<Props> = ({
             resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${_.get(assessorForm, ['result', 'id'])}`}
             rstore={store}
             showScoringOnEndPage
+            showQuestionScoring
           />
         )}
       </Content>

@@ -40,3 +40,5 @@ export const MARK_MEDIA_RESPONSE_AS_SELECTED = 'flow_processor/MARK_MEDIA_RESPON
 export const SHOW_SUBMIT_PAGE = 'flow_processor/SHOW_SUBMIT_PAGE'
 export const HIDE_SUBMIT_PAGE = 'flow_processor/HIDE_SUBMIT_PAGE'
 export const SET_IS_SIMULATION = 'flow_processor/SET_IS_SIMULATION'
+
+export const FETCH_QUESTION_SCORING = 'flow_processor/FETCH_QUESTION_SCORING'
