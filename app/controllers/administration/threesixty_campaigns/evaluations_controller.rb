@@ -38,12 +38,13 @@ module Administration
       end
 
       def destroy
-        users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
+        participant = ::Threesixty::Participant.find_by!(campaign_id: threesixty_campaign.campaign_id,
                                              subject_id: resource.user_id,
                                              evaluator_id: params[:id])
-        users_result.participant.update!(evaluator_nomination_status: :waiting)
-        users_result.destroy!
-        render json: { id: users_result.id }
+        participant.update!(evaluator_nomination_status: :waiting)
+        participant.users_result.destroy!
+
+        render json: { id: participant.users_result_id }
       end
 
       private
