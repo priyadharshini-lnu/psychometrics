@@ -1,6 +1,4 @@
 container.email-container
-  = render 'mailer/layouts/end_user/logo', { resource: @user }
-
   row
     columns.email-content  
       p Dear #{@user.decorate.display_name},

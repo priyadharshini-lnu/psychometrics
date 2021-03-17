@@ -9,4 +9,10 @@ html[xmlns="http://www.w3.org/1999/xhtml"]
       tr
         td.center[align="center" valign="top"]
           center
-            
+            spacer[size="48"]
+            container.email-container
+              spacer[size="32"]
+              = render 'mailer/end_user_logo'
+              = yield
+              = render 'mailer/footer'
+            = render 'mailer/powered_by'

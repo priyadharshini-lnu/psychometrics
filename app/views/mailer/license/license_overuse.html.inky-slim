@@ -1,5 +1,4 @@
 container.email-container
-  = render 'mailer/layouts/admin/logo'
   row
     columns.email-content
       p License expired.

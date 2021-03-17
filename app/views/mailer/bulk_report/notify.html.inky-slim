@@ -1,6 +1,4 @@
 container.email-container
-  = render 'mailer/layouts/admin/logo'
-
   row
     columns.email-content
       p="Dear #{@user.first_name},"
@@ -9,3 +7,4 @@ container.email-container
       ul
         - @report.public_download_urls.each do |url|
           li = link_to(nil, url)
+

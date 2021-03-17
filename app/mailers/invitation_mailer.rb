@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class InvitationMailer < ApplicationMailer
+  layout 'end_user_email'
+
   def invite(user_id, invited_to_id, token)
     @resource = User.find(user_id)
     @token = token

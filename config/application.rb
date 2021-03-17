@@ -34,7 +34,7 @@ module Psychometrics
     config.active_job.queue_adapter = :sidekiq
 
     config.to_prepare do
-      Devise::Mailer.layout 'mailer' # email.haml or email.erb
+      Devise::Mailer.layout 'end_user_email' # email.haml or email.erb
     end
 
     # Settings in config/environments/* take precedence over those specified here.

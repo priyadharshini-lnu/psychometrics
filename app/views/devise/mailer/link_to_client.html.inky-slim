@@ -1,6 +1,4 @@
 container.email-container
-  = render 'mailer/layouts/end_user/logo', { resource: @resource }
-
   row
     columns.email-content
       - options = {id: @resource, invitation_token: @token, domain: Settings.domain, subdomain: @subdomain}
