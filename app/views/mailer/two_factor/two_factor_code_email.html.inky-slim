@@ -1,6 +1,4 @@
-spacer[size="48"]
 container.email-container
-  spacer[size="32"]
   = render 'mailer/layouts/end_user/logo', { resource: @user }
 
   row
@@ -22,6 +20,3 @@ container.email-container
   row
     columns.email-content
       = simple_format(t("devise.mailer.reset_password_instructions.regards"))
-  = render 'mailer/layouts/footer'
-
-= render 'mailer/layouts/powered_by'

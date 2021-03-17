@@ -1,6 +1,4 @@
-spacer[size="48"]
 container.email-container
-  spacer[size="32"]  
   = render 'mailer/layouts/end_user/logo', { resource: @resource }
   
   row
@@ -15,6 +13,3 @@ container.email-container
       | Click the link below to unlock your account:
       p
       = link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token, domain: Settings.domain, subdomain: @resource.try(:clients).try(:first).try(:subdomain))
-  = render 'mailer/layouts/footer'
-
-= render 'mailer/layouts/powered_by'

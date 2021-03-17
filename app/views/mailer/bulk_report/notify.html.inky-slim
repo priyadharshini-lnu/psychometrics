@@ -1,6 +1,4 @@
-spacer[size="48"]
 container.email-container
-  spacer[size="32"]
   = render 'mailer/layouts/admin/logo'
 
   row
@@ -11,7 +9,3 @@ container.email-container
       ul
         - @report.public_download_urls.each do |url|
           li = link_to(nil, url)
-
-  = render 'mailer/layouts/footer'
-
-= render 'mailer/layouts/powered_by'

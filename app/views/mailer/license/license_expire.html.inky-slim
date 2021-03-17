@@ -1,6 +1,4 @@
-spacer[size="48"]
 container.email-container
-  spacer[size="32"]
   = render 'mailer/layouts/admin/logo'
 
   row
@@ -10,7 +8,3 @@ container.email-container
         p
           = "Check Client #{@client.decorate.display_name} License usage "
           = link_to "here.", license_administration_client_url(@client) 
-  = render 'mailer/layouts/footer'
-
-= render 'mailer/layouts/powered_by'
-

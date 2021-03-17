@@ -1,6 +1,4 @@
-spacer[size="48"]
 container.email-container
-  spacer[size="32"]
   = render 'mailer/layouts/admin/logo'
   row
     columns.email-content
@@ -44,6 +42,3 @@ container.email-container
       - else
         p = t('.no_expiry_stats')
       p = t('.notice')
-  = render 'mailer/layouts/footer'
-
-= render 'mailer/layouts/powered_by'

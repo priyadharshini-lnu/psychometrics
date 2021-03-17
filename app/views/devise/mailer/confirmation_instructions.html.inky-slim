@@ -1,6 +1,4 @@
-spacer[size="48"]
 container.email-container
-  spacer[size="32"]  
   = render 'mailer/layouts/end_user/logo', { resource: @resource }
   row
     columns.email-content
@@ -17,6 +15,3 @@ container.email-container
           = confirmation_url(@resource, confirmation_token: @token, domain: Settings.domain, subdomain: @resource.try(:clients).try(:first).try(:subdomain)) 
           |  > 
           = 'Confirm my account'
-  = render 'mailer/layouts/footer'
-
-= render 'mailer/layouts/powered_by'
