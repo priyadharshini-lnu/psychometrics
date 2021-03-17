@@ -1,12 +1,8 @@
 spacer[size="48"]
 container.email-container
   spacer[size="32"]
+  = render 'mailer/layouts/end_user/logo', { resource: @user }
 
-  row
-    columns
-      - if @user&.project&.logo&.url
-        = image_tag(@user&.project&.logo&.url, class: 'project-logo float-left')
-  
   row
     columns.email-content  
       p Dear #{@user.decorate.display_name},
@@ -26,21 +22,6 @@ container.email-container
   row
     columns.email-content
       = simple_format(t("devise.mailer.reset_password_instructions.regards"))
-  row
-    columns.email-copyright.footer
-      |  © 
-      = Time.now.year
-      |  Lighthouse. All rights reserved 
-  spacer[size="16"]
+  = render 'mailer/layouts/footer'
 
-spacer[size="16"]
-wrapper.secondary
-  center
-    row
-      columns.powered-by-tte[valign="middle"]
-        center
-          = image_tag('tte-logo-no-text.svg')
-        spacer[size="16"]
-
-        p.text-center
-          |  Powered by The Talent Enterprises.
+= render 'mailer/layouts/powered_by'

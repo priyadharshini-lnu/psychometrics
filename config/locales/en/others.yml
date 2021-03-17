@@ -1103,9 +1103,6 @@ en:
           %{accept} Or you can safely ignore this email.
 
           Please do not share your access credentials with anyone.
-
-          Regards,
-          Lighthouse Team
         subject: Invitation to Lighthouse
       confirmation_instructions:
         subject: Confirmation instructions

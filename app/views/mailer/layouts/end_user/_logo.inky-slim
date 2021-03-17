@@ -1,0 +1,4 @@
+row
+  columns
+    - if resource&.project&.logo&.url
+      = image_tag(resource&.project&.logo&.url, class: 'project-logo float-left')

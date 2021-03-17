@@ -1,32 +1,16 @@
 spacer[size="48"]
 container.email-container
   spacer[size="32"]
-  row
-    columns
-      - if @client&.logo&.url
-        = image_tag(@client&.logo&.url, class: 'project-logo float-left')
+  = render 'mailer/layouts/admin/logo'
+
   row
     columns.email-content
       p License expire
       - if @client
         p
           = "Check Client #{@client.decorate.display_name} License usage "
-          = link_to "here.", license_administration_client_url(@client)
-  row
-    columns.email-copyright.footer
-      |  © 
-      = Time.now.year
-      |  Lighthouse. All rights reserved 
-  spacer[size="16"]
-spacer[size="16"]
-wrapper.secondary
-  center
-    row
-      columns.powered-by-tte[valign="middle"]
-        center
-          = image_tag('tte-logo-no-text.svg')
-        spacer[size="16"]
+          = link_to "here.", license_administration_client_url(@client) 
+  = render 'mailer/layouts/footer'
 
-        p.text-center
-          |  Powered by The Talent Enterprises.
+= render 'mailer/layouts/powered_by'
 
