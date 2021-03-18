@@ -16,6 +16,14 @@ export const DEFAULTS = {
     value: '',
     predicate: 'EqualTo',
   },
+  SubjectDataSheet: {
+    predicate: 'EqualTo',
+    value: '',
+  },
+  EvaluatorDataSheet: {
+    predicate: 'EqualTo',
+    value: '',
+  },
   EvaluatorRelationship: {
     predicate: 'EqualTo',
     value: '',

@@ -393,7 +393,7 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
   .cards-container {
     margin-top: 32px;
 
-    &.disabled {
+    .disabled {
       opacity: 0.7;
       pointer-events: none;
     }

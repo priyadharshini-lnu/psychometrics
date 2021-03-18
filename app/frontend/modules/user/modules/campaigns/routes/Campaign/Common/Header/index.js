@@ -3,18 +3,15 @@ import {
   FileAddOutlined, HistoryOutlined, CheckCircleOutlined,
 } from '@ant-design/icons'
 import Timer from 'modules/user/modules/campaigns/components/Timer'
+import { secondsLeftFromNow } from 'utils/time'
 
 export default function Header ({
   currentUser,
   expiryDate,
   counters,
   showTimer,
-  duration,
   onFinish,
 }) {
-  let background = 'white'
-  if (new Date(expiryDate) < new Date()) background = 'danger'
-
   return (
     <div className="campaign-header">
       <div className="left">
@@ -27,9 +24,9 @@ export default function Header ({
         {showTimer && (
           <div className="timer">
             <Timer
-              preview={{ expiryDate, timerDuration: duration }}
+              seconds={secondsLeftFromNow(expiryDate)}
               onFinish={onFinish}
-              background={background}
+              background="white"
             />
             {expiryDate && <span className="mls">{I18n.t('campaign.timer.message')}</span>}
           </div>

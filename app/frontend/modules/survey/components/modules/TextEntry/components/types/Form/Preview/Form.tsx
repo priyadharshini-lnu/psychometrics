@@ -9,6 +9,7 @@ import { FormType } from '../interfaces/Question'
 
 interface Props {
   model: Question
+  readOnly: boolean
 }
 
 const INPUT_TYPE = { name: 'Input' }
@@ -17,6 +18,7 @@ const Form: React.FC<Props> = ({
   model, model: {
     name, id, choicesIds, props: { formTypes }, moduleConfig,
   },
+  readOnly,
 }) => {
   const getType = (i: number): FormType => {
     if (!formTypes) return INPUT_TYPE
@@ -30,7 +32,7 @@ const Form: React.FC<Props> = ({
   const renderInput = (i: number): React.ReactNode => {
     const { name: inputName } = getType(i)
     const Input = inputs[inputName]
-    return <Input name={`choice_${name}_${id}`} index={i} model={model} onChange={changeAnswer} />
+    return <Input name={`choice_${name}_${id}`} index={i} model={model} onChange={changeAnswer} readOnly={readOnly} />
   }
 
   return (

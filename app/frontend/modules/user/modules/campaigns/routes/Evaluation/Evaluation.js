@@ -9,6 +9,7 @@ import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import './styles.scss'
+import { secondsLeftFromNow } from 'utils/time'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
@@ -32,6 +33,7 @@ export default function Evaluation ({
       participant: {
         manager_evaluation_status: managerEvaluationStatus,
       },
+      expiry_date,
     },
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
@@ -46,12 +48,12 @@ export default function Evaluation ({
 }) {
   const assessmentRef = React.createRef()
   const {
-    edit, step, approve_evaluation, lang,
+    edit, step, approve_evaluation, lang, read,
   } = qs.parse(location.search.substr(1))
 
   useEffect(() => {
     fetchAssessment(params.campaignId, params.id, {
-      isEdit: edit, step, approve_evaluation, lang,
+      isEdit: edit, isRead: read, step, approve_evaluation, lang,
     })
   }, [])
 
@@ -152,7 +154,12 @@ export default function Evaluation ({
             extra={[
               type !== 'preview_block' && enableProgress
                 && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
+              <Timer
+                key="2"
+                notification
+                seconds={secondsLeftFromNow(expiry_date)}
+                onFinish={() => markAssessmentTimedOut(preview)}
+              />,
             ]}
           />
         </Content>
@@ -182,7 +189,7 @@ export default function Evaluation ({
                     ref={assessmentRef}
                     id="pass_assessment"
                     initialized={initialized}
-                    type={approve_evaluation ? 'view_results' : 'pass_assessment'}
+                    type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
                     isThreesixty="true"
                     resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
                     data={assessment}

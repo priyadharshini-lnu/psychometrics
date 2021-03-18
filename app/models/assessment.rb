@@ -87,7 +87,7 @@ class Assessment < ApplicationRecord
 
   has_many :assigns, dependent: :restrict_with_error
   has_many :user_assessments, dependent: :restrict_with_error
-  has_many :users_results, dependent: :restrict_with_error
+  has_many :users_results, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,

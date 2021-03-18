@@ -32,21 +32,19 @@ export default function Campaign ({
   loginHogan, acceptPolicy, fetchCampaign, beginCampaign, continueCampaign, examus,
 }) {
   const {
+    isTimedCampaign,
     campaignUser: {
       expiryDate,
-      additionalTime,
-      completionStatus,
     },
     campaignOptions: {
       instructionsEnabled,
       instructions,
-      fixedTime,
-      fixedTimeDuration: duration,
       proctoringEnabled: isProctored,
     },
   } = campaign
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
+  // TODO: We can check completion_status here. Also need to take care for assessment timed_out status when we add it
   const allAssessmentsComplete = counters.completed === campaign.userAssessments.length
   let prevGroup
   let ungrouped = _.compact(
@@ -54,17 +52,17 @@ export default function Campaign ({
   )
   const isMD = useMedia('max-md')
   const hasAssessments = !!campaign.userAssessments.length
-  const hasStarted = !!campaignUser.startedAt
-  const isLocked = () => {
-    if (!fixedTime) return campaignClosed
-    if (expiryDate === null) return true
-
-    return (new Date(expiryDate) < new Date())
-  }
-
-  const canBeginCampaign = !campaignClosed && hasAssessments && !hasStarted
-  const canContinueCampaign = (
-    isLocked() && completionStatus === 'interrupted' && !!additionalTime && !allAssessmentsComplete)
+  const hasStartedCampaign = !!campaignUser.startedAt
+  const campaignUserTimedOut = campaignUser.status === 'timed_out'
+  const isCampaignInterrupted = campaignUser.status === 'interrupted'
+  const canNotStartAssessment = !hasStartedCampaign || campaignClosed
+    || campaignUser.status === 'completed' || isCampaignInterrupted || campaignUserTimedOut
+  const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign
+  const canContinueCampaign = isCampaignInterrupted && !campaignClosed && !allAssessmentsComplete
+  const showTimer = isTimedCampaign && hasStartedCampaign && !isCampaignInterrupted
+    && campaignUser.status !== 'completed'
+  const showCampaignClosedMessage = campaignClosed || campaignUserTimedOut
+    || (isTimedCampaign && campaignUser.status === 'completed')
 
   function startProctoredCampaign (jwtToken) {
     const url = `${examus.url}/integration/simple/${examus.integrationName}/start/?token=${jwtToken}`
@@ -109,11 +107,10 @@ export default function Campaign ({
               <>
                 <Header
                   counters={counters}
-                  duration={duration}
                   expiryDate={expiryDate}
                   currentUser={currentUser}
                   onFinish={onTimerFinish}
-                  showTimer={!!fixedTime && hasStarted}
+                  showTimer={showTimer}
                 />
                 {allAssessmentsComplete && (
                   <Result
@@ -123,7 +120,7 @@ export default function Campaign ({
                     className="custom-result mvl"
                   />
                 )}
-                {campaignClosed && (
+                {showCampaignClosedMessage && (
                   <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
@@ -136,8 +133,8 @@ export default function Campaign ({
                   onBegin={onBeginCampaign}
                   onContinue={onContinueCampaign}
                 />
-                <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
-                  <Col flex="2 0 33.3%">
+                <Row className="cards-container" gutter={16}>
+                  <Col flex="2 0 33.3%" className={cs({ disabled: canNotStartAssessment })}>
                     <div className="panel-label">{I18n.t('campaign.panels.assessments')}</div>
                     <Row gutter={[16, 16]}>
                       {groups.map((group) => {
@@ -169,7 +166,7 @@ export default function Campaign ({
                               <Row type="flex" gutter={[16, 16]} className="cards">
                                 {userAssessments.map((userAssessment) => {
                                   const Assessment = Assessments[userAssessment.type]
-                                  let isDisabled = isLocked() || prevCompleted || !hasStarted
+                                  let isDisabled = canNotStartAssessment || prevCompleted
                                   if (!isDisabled && group.previousAssessmentsRequired) {
                                     isDisabled = prevAssessmentsCompleted(userAssessments, userAssessment)
                                   }
@@ -183,13 +180,8 @@ export default function Campaign ({
                                       loginHogan={loginHogan}
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
-                                      timer={{
-                                        fixedTime, campaignDuration: duration, additionalTime, expiryDate,
-                                      }}
-                                      disabledReason={isLocked()
-                                        ? I18n.t('campaign.campaign_closed_assessment_take_message')
-                                        : I18n.t('campaign.complete_prev')
-                                      }
+                                      isPartOfTimedCampaign={isTimedCampaign}
+                                      campaignExpiryDate={expiryDate}
                                     />
                                   )
                                 })}
@@ -214,11 +206,9 @@ export default function Campaign ({
                                     withSidebar={hasSidebar}
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
-                                    disabled={isLocked() || !hasStarted}
-                                    timer={{
-                                      fixedTime, campaignDuration: duration, expiryDate,
-                                    }}
-                                    disabledReason={I18n.t('campaign.campaign_closed_assessment_take_message')}
+                                    disabled={canNotStartAssessment}
+                                    isPartOfTimedCampaign={isTimedCampaign}
+                                    campaignExpiryDate={expiryDate}
                                   />
                                 )
                               })}

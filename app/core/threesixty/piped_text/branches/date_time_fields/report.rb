@@ -16,16 +16,16 @@ module Threesixty
           private
 
           def self_evaluation_date
-            threesixty_campaign.
-              users_results.
-              completed.
-              find_by(subject_id: subject.id, evaluator_id: subject.id)&.
-              completed_at
+            UserAssessment.find_by(
+              subject_id: subject.id,
+              evaluator_id: subject.id,
+              campaign_id: threesixty_campaign.campaign_id
+            )&.users_result&.completed_at
           end
 
           def last_evaluation_date
-            threesixty_campaign.users_results.
-              where(subject_id: subject.id).
+            threesixty_campaign.users_results.joins(:user_assessment).
+              where(user_assessments: { subject_id: subject.id }).
               completed.
               order(:completed_at).
               last&.

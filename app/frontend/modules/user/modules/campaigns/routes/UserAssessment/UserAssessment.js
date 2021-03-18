@@ -7,8 +7,8 @@ import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { secondsLeftFromNow } from 'utils/time'
 import { isRtl } from 'utils/locales'
+import { useMedia } from 'modules/user/rootHooks'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
@@ -25,9 +25,9 @@ export default function UserAssessment ({
       selected_locale: selectedLanguage,
       available_translations: availableTranslations,
       campaign_id: campaignId,
-      campaign_options: campaignOptions,
-      campaign_user: campaignUser,
       translations,
+      remaining_campaign_time: remainingCampaignTime,
+      remaining_assessment_time: remainingAssessmentTime,
     },
   }, fetchAssessment,
   match: { params },
@@ -45,11 +45,12 @@ export default function UserAssessment ({
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
   }, [])
-  let campaignTimeLeft = null
+  const isMaxSm = useMedia('max-sm')
+  let progressBarProps = { type: 'line', style: { width: '200px' } }
+  if (isMaxSm) { progressBarProps = { type: 'circle', width: 50 } }
 
-  if (loaded && campaignOptions.fixed_time) {
-    campaignTimeLeft = secondsLeftFromNow(new Date(campaignUser.expiry_date))
-  }
+  if (!loaded) { return null }
+
 
   const rtl = isRtl(I18n.uiLocale)
   // TODO: Fix by creating a setting for list of rtl languages
@@ -71,16 +72,33 @@ export default function UserAssessment ({
               </div>
           )}
             extra={(
-              <Space>
-                {type !== 'preview_block' && enableProgress && (
-                  <Progress key="1" percent={progress} style={{ width: '200px' }} />
+              <Space size="large">
+                {remainingCampaignTime && (
+                <div className="text-align-c">
+                  <Timer
+                    key="1"
+                    theme="plain"
+                    seconds={remainingCampaignTime}
+                    onFinish={() => markAssessmentTimedOut(preview)}
+                  />
+                  <div>Campaign</div>
+                </div>
                 )}
-                <Timer
-                  key="2"
-                  preview={preview}
-                  campaignTimeLeft={campaignTimeLeft}
-                  onFinish={markAssessmentTimedOut}
-                />
+                {remainingAssessmentTime && (
+                <div className="text-align-c">
+                  <Timer
+                    key="2"
+                    theme="plain"
+                    notification
+                    seconds={remainingAssessmentTime}
+                    onFinish={() => markAssessmentTimedOut(preview)}
+                  />
+                  <div>Assessment</div>
+                </div>
+                )}
+                {type !== 'preview_block' && enableProgress && (
+                  <Progress key="3" percent={progress} {...progressBarProps} />
+                )}
               </Space>
             )}
             onBack={() => { window.location.href = `/campaigns/${campaignId}` }}

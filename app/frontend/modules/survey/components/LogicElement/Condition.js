@@ -4,6 +4,8 @@ import css from './Condition.scss'
 import Types from './types'
 import { DEFAULTS, TYPE_LABELS } from './Constants'
 
+const DataSheetTypes = ['SubjectDataSheet', 'EvaluatorDataSheet']
+
 export default class Condition extends Component {
   static propTypes = {
     types: PropTypes.array.isRequired,
@@ -18,9 +20,12 @@ export default class Condition extends Component {
   changeConditionType = (e) => {
     const { condition } = this.props
     const { value } = e.currentTarget
-    condition.reset()
+    const oldType = condition.conditionType
     condition.conditionType = value
-    Object.assign(condition, DEFAULTS[value])
+    if (!(DataSheetTypes.includes(oldType) && DataSheetTypes.includes(value))) {
+      condition.reset()
+      Object.assign(condition, DEFAULTS[value])
+    }
     this.forceUpdate()
   }
 
@@ -49,7 +54,7 @@ export default class Condition extends Component {
     const { condition } = this.props
     const type = condition.conditionType
     const View = Types[type] || Types.Question
-    return <View {...this.props} />
+    return <View key={type} {...this.props} />
   }
 
   renderLogicType () {

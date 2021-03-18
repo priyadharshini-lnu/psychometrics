@@ -51,9 +51,9 @@ const Preview: React.FC<Props> = ({
 
   return (
     <div className={commonStyles.container}>
-      {view !== ViewEnum.Sent && <Header model={model} view={view} setView={setView} />}
+      {view !== ViewEnum.Sent && <Header model={model} view={view} setView={setView} readOnly={readOnly} />}
       <View model={model} errors={errors} readOnly={readOnly} setView={setView} />
-      {view === ViewEnum.Edit && (
+      {!readOnly && view === ViewEnum.Edit && (
         <div className={styles.buttonContainer}>
           <Button
             type="primary"

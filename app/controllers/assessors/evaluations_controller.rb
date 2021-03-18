@@ -23,7 +23,8 @@ class Assessors::EvaluationsController < Assessors::BaseController
     render json: {
       user_info: {
         user: UserSerializer.new(user).to_hash,
-        datasheet: datasheet
+        datasheet: datasheet,
+        datasheet_columns: campaign.datasheet_columns
       },
       assessor_assessments: @assessor_assessments.map { |a| { id: a.id, name: a.assessment.name } },
       subject_assessments: @subject_user_assessment.map { |a| { id: a.id, name: a.assessment.name } }
@@ -36,12 +37,14 @@ class Assessors::EvaluationsController < Assessors::BaseController
     attributes = attributes.merge(started_at: Time.now) unless user_result.started_at
     user_result.update(attributes)
 
-    if params[:edit] == 'true'
+    ::UsersResults::Edit.call!(user_result) if params[:edit] == 'true'
+
+    if params[:read] == 'true'
+      user_result.status = :in_progress
       user_result.current_element = nil
       user_result.current_page = 0
-      user_result.status = :in_progress
-      user_result.prev_pages = []
     end
+
     render json: serialize_data(@assessor_assessment, user_result)
   end
 

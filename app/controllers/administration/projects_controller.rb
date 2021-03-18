@@ -6,6 +6,8 @@ module Administration
     before_action :set_resource
     append_before_action :pundit_authorize
 
+    def show; end
+
     def search_users
       users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
         ::Projects::SearchUserSerializer.new(user).to_h

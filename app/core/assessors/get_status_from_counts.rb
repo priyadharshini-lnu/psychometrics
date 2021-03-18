@@ -11,7 +11,7 @@ module Assessors
     def call
       return broadcast :ok, :completed if evaluations[:total] == evaluations[:completed]
 
-      is_in_progress = %i[in_progress interrupted completed].any? { |status| evaluations[status]&.positive? }
+      is_in_progress = %i[in_progress interrupted completed timed_out].any? { |status| evaluations[status]&.positive? }
       return broadcast :ok, :in_progress if is_in_progress
 
       broadcast :ok, :not_started

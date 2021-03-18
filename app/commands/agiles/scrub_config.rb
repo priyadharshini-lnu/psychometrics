@@ -24,7 +24,7 @@ module Agiles
             blocks.each do |block|
               block.delete('scoring')
               questions = block.dig('questions')
-              questions.each { |q| q.delete('answers') }
+              questions.each { |q| q.except!('answers', 'scoring') }
             end
           end
         end

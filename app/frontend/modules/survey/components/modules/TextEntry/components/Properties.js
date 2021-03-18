@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
-import Validations, { RequiredValidations } from 'components/Validations'
+import ValidationTypes from 'components/ValidationTypes'
+import RequiredValidations from 'components/RequiredValidations'
 import { TextEntryProps } from 'constants/DefaultProps'
 import EmailPropertyPanel from './types/Email/Builder/PropertyPanel'
 
@@ -147,6 +148,17 @@ export class Properties extends Component {
           </label>
           <label className={styles.inputLabel}>
             <input
+              checked={type === 'TimeEntry'}
+              type="radio"
+              name={`q_${model.id}_type`}
+              onChange={this.changeType}
+              value="TimeEntry"
+            />
+            {' '}
+            Time
+          </label>
+          <label className={styles.inputLabel}>
+            <input
               checked={type === 'Chat'}
               type="radio"
               name={`q_${model.id}_type`}
@@ -176,7 +188,7 @@ export class Properties extends Component {
         />
         )}
         {!restricted && (
-        <Validations
+        <ValidationTypes
           model={model}
           update={() => this.forceUpdate()}
         />

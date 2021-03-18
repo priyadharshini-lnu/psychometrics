@@ -40,12 +40,7 @@ module Assessors
     end
 
     def create_user_assessment(assessor_user, subject, assessment_id)
-      user_result = UsersResult.create(
-        assessment_id: assessment_id,
-        subject: subject,
-        evaluator: assessor_user,
-        answers: {}
-      )
+      user_result = UsersResult.create!
       UserAssessment.create!(
         assessment_id: assessment_id,
         evaluator: assessor_user,

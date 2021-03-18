@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { RootState } from 'modules/admin/core/rootReducers'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import ReactMarkdown from 'react-markdown'
+import { SafeHTML } from 'components/SafeHTML'
 import AssessorAssessment from './AssessorAssessment'
 import UserAssessment from './UserAssessment'
 import { fetchAssessorAssessments, changeAssessorForm, changeSubjectAssessment } from '../../core/evaluation'
@@ -93,6 +95,17 @@ const Evaluation = ({
                     title: I18n.t('user.datasheet.value'),
                     dataIndex: 'value',
                     key: 'value',
+                    render (value, row) {
+                      const type = userInfo.datasheet_columns[row.key]
+                      switch (type) {
+                        case 'Markdown':
+                          return <ReactMarkdown>{value}</ReactMarkdown>
+                        case 'HTML':
+                          return <SafeHTML as="div" html={`${value}`} />
+                        default:
+                          return value
+                      }
+                    },
                   }]}
                   dataSource={_.map(userInfo.datasheet, (v, k) => ({ key: k, value: v }))}
                   pagination={false}

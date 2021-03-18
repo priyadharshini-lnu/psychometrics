@@ -24,6 +24,7 @@ module Threesixty
               'Status'
             ]
             sheet.add_row(header, style: header_style)
+            # RTOD: Check this
             participants = threesixty_campaign.participants.actual_by_options(threesixty_campaign.option).
                            select(
                              'user_assessments.*',
@@ -32,12 +33,7 @@ module Threesixty
                              'users_results.created_at as result_created_at',
                              'users_results.completed_at as result_completed_at'
                            ).
-                           joins(
-                             'LEFT JOIN users_results
-              on users_results.subject_id = user_assessments.subject_id
-              and users_results.evaluator_id = user_assessments.evaluator_id
-              and users_results.campaign_id = user_assessments.campaign_id'
-                           ).
+                           joins(:users_result).
                            includes(:subject, :evaluator, :relationship)
             participants.each do |participant|
               status = I18n.t(

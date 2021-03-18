@@ -164,7 +164,7 @@ module DataMigration
 
       def create_user_assessment(assign, subject)
         log('creating user assessment', logger.level + 1)
-        users_result = create_users_result(assign, subject)
+        users_result = create_users_result(assign)
 
         user_assessment = UserAssessment.new(
           project_id: project.id,
@@ -181,22 +181,19 @@ module DataMigration
         associate_users_result_with_media_responses(assign, users_result)
       end
 
-      def create_users_result(assign, subject)
+      def create_users_result(assign)
         assign_with_result = assign.assign_with_result
 
         log('creating user result', logger.level + 1)
         attrs = %w[
-          assessment_id occupations innovation_styles
+          occupations innovation_styles
           embedded_data scoring status step current_element
           current_page seedrandom meta_data external_results
           selected_locale reset_count additional_time
           completed_at expiry_date last_activity_at started_at
         ]
         attributes = assign_with_result.attributes.slice(*attrs)
-        attributes['campaign_id'] = subject.id
         attributes['answers'] = assign_with_result.results
-        attributes['subject_id'] = assign_with_result.membership&.user_id
-        attributes['evaluator_id'] = assign_with_result.membership&.user_id
 
         attributes['norm_id'] = assign_with_result.norm_data.fetch('id', nil) if assign_with_result.norm_data
 
@@ -291,8 +288,12 @@ module DataMigration
 
       def set_campaign_user_status
         CampaignUser.where(campaign_id: out_stack[:campaigns].last).find_each do |campaign_user|
-          user_results = UsersResult.where(subject_id: campaign_user.user_id, evaluator_id: campaign_user.user_id).
-                         joins(:user_assessment).where(user_assessments: { campaign_id: campaign_user.campaign_id })
+          user_assessments = UserAssessment.where(
+            subject_id: campaign_user.user_id,
+            evaluator_id: campaign_user.user_id,
+            campaign_id: campaign_user.campaign_id
+          ).includes(:users_result)
+          user_results = user_assessments.map(&:users_result).compact
 
           started_at = user_results.map(&:started_at).compact.min
           all_assessments_completed = user_results.all?(&:completed?)
@@ -302,7 +303,7 @@ module DataMigration
           completion_status = :completed if all_assessments_completed
           completion_status = :not_started if no_assessments_started
 
-          campaign_user.update(started_at: started_at, completion_status: completion_status)
+          campaign_user.update(started_at: started_at, completion_status: completion_status, status: completion_status)
         end
       end
     end

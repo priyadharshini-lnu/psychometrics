@@ -71,10 +71,8 @@ describe ::UsersResults::UpdateUsersResult do
                                                   report: report)
     end
     let(:form) { double('form', 'invalid?': false, attributes_with_values: {}) }
-    let!(:participant) do
-      create(:threesixty_participant,
-             subject: subject_user, evaluator: evaluator_user, campaign: campaign, relationship: create(:relationship))
-    end
+    let!(:participant) { users_result.participant }
+    let!(:manager) { create(:relationship, name: 'Manager', type: :global) }
 
     it { expect { subject }.to broadcast(:ok) }
     it { expect { subject }.not_to broadcast(:invalid) }

@@ -33,7 +33,7 @@ module Datasheets
 
     def parse_file
       form.parsed_file[2..-1].each do |data|
-        email = ActionView::Base.full_sanitizer.sanitize(data[Datasheet::EMAIL_COLUMN])
+        email = ActionView::Base.full_sanitizer.sanitize(data[Datasheet::EMAIL_COLUMN].strip)
         next if email.blank?
 
         row = datasheet.rows.find_or_initialize_by(email: email)

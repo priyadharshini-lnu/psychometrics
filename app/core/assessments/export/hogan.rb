@@ -63,16 +63,16 @@ module Assessments
       end
 
       def build_headers(score)
-        sample = users_results.find_by("external_results != '{}'")
+        sample = users_results.completed.find_by("external_results != '{}'")
         return [] unless sample
 
-        (sample.external_results&.dig(score[:score_type], score[:scale_type]) || []).map do |item|
+        (sample.external_results&.dig('scores', score[:score_type], score[:scale_type]) || []).map do |item|
           item[score[:factor_field]]
         end
       end
 
       def build_data(res, score)
-        (res.external_results&.dig(score[:score_type], score[:scale_type]) || []).map do |item|
+        (res.external_results&.dig('scores', score[:score_type], score[:scale_type]) || []).map do |item|
           item[score[:value_field]]
         end
       end
@@ -90,8 +90,8 @@ module Assessments
 
       def users_results
         UsersResult.joins(:user_assessment).
-          where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
-          includes(:evaluator)
+          where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id }).
+          includes(user_assessment: :evaluator)
       end
 
       def default_headers

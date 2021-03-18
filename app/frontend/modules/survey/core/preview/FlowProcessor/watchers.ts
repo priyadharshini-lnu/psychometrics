@@ -4,6 +4,7 @@ import {
   select, takeEvery, takeLatest, put, debounce,
 } from 'redux-saga/effects'
 import { getItem, setItem } from 'utils/storage'
+import { AnyAction } from 'redux'
 import {
   nextPage,
   setDirtyResults,
@@ -17,6 +18,7 @@ import {
   hideSubmitPage,
   hideEnd,
   setIsSimulation,
+  fetchQuestionScoring,
 } from './actions'
 import {
   getPrevPage,
@@ -149,10 +151,18 @@ function* getShowSubmitPage () {
   }
 }
 
+function* genFetchQuestionScoring ({ result: { question_id } }: AnyAction) {
+  const state = yield select()
+  if (state.preview.showQuestionScoring) {
+    yield put(fetchQuestionScoring(state.preview.resultsUrl, question_id, state.preview.results))
+  }
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(INIT, genFetchLocalResults),
   debounce(200, ANSWER, genSaveResultsLocal),
+  debounce(200, ANSWER, genFetchQuestionScoring),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
   takeLatest(SHOW_END, getShowSubmitPage),

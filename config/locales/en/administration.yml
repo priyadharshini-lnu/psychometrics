@@ -458,6 +458,7 @@ en:
         successfully: Client Tenancy %{name} was successfully updated.
       url: Url
     campaigns:
+      extend_time_success_message: Campaign timer extended to %{minutes} minutes
       actions: Manage
       form:
         name: Name
@@ -497,8 +498,7 @@ en:
             allow_wrong_gaze_direction: Allow wrong gaze direction
           rules: Rules
       users:
-        completed_via: Completed Via
-        completion_status: Status
+        completion_status: Completion Status
         created_by: Created By
         email: Email
         id: Id

@@ -10,7 +10,7 @@ const FETCH_ASSESSMENT = 'threeSixty/evaluation/FETCH_ASSESSMENT'
 const UPDATE_STATUS = 'threeSixty/evaluation/UPDATE_STATUS'
 
 export const fetchAssessment = (campaignId, evaluationId, {
-  isEdit, step, approve_evaluation, lang,
+  isEdit, isRead, step, approve_evaluation, lang,
 }) => ({
   type: FETCH_ASSESSMENT,
   request: {
@@ -24,6 +24,7 @@ export const fetchAssessment = (campaignId, evaluationId, {
   campaignId,
   evaluationId,
   isEdit,
+  isRead,
   step,
   approve_evaluation,
   lang,
@@ -85,11 +86,11 @@ export default function reducer (state = defaultState, action) {
 
 function* genFetchEvaluation ({
   requestAction: {
-    campaignId, evaluationId, isEdit, step, approve_evaluation, lang,
+    campaignId, evaluationId, isEdit, isRead, step, approve_evaluation, lang,
   },
 }) {
   yield put(fetchEvaluation(campaignId, evaluationId, {
-    isEdit, step, approve_evaluation, lang,
+    isEdit, isRead, step, approve_evaluation, lang,
   }))
 }
 

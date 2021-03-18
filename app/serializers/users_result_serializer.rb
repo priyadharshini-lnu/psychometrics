@@ -4,9 +4,10 @@ class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
-             :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
+             :selected_locale, :current_element, :current_page, :seedrandom,
              :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at,
-             :prev_pages, :timed_out, :completed_at, :factors
+             :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
+             :remaining_assessment_time, :reset_count
 
   attribute :relationship
 
@@ -19,6 +20,26 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
   delegate :campaign_options, to: :campaign
   has_many :factors, serializer: ::UsersResults::FactorSerializer
+
+  def remaining_campaign_time
+    return unless campaign_user&.real_expiry_date
+
+    [campaign_user.real_expiry_date - Time.now, 0].max
+  end
+
+  def remaining_assessment_time
+    return unless object.expiry_date
+
+    assessment_time_left = [object.expiry_date - Time.now, 0].max
+
+    return [assessment_time_left, remaining_campaign_time].min if remaining_campaign_time
+
+    assessment_time_left
+  end
+
+  def status
+    object.real_status
+  end
 
   def factors
     Factor.where(id: object.scoring&.keys)

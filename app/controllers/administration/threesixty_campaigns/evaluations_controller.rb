@@ -11,11 +11,9 @@ module Administration
       before_action :init_breadcrumbs, except: %i[update destroy]
 
       def show
-        @users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
-                                             subject_id: resource.user_id,
-                                             evaluator_id: params[:id])
         @participant = threesixty_campaign.participants.find_by!(subject_id: resource.user_id,
                                             evaluator_id: params[:id])
+        @users_result = @participant.users_results
         set_locale_for_users_result(@users_result)
         @users_result.step = 0
         piped_text_context = get_piped_text_context
@@ -40,12 +38,13 @@ module Administration
       end
 
       def destroy
-        users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
+        participant = ::Threesixty::Participant.find_by!(campaign_id: threesixty_campaign.campaign_id,
                                              subject_id: resource.user_id,
                                              evaluator_id: params[:id])
-        users_result.participant.update!(evaluator_nomination_status: :waiting)
-        users_result.destroy!
-        render json: { id: users_result.id }
+        participant.update!(evaluator_nomination_status: :waiting)
+        participant.users_result.destroy!
+
+        render json: { id: participant.users_result_id }
       end
 
       private

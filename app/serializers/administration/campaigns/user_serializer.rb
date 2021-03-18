@@ -4,11 +4,10 @@ module Administration
   module Campaigns
     class UserSerializer < ActiveModel::Serializer
       attributes :id, :first_name, :last_name, :email, :full_name, :created_by, :updated_by,
-                 :created_at, :updated_at, :locale
+                 :created_at, :updated_at, :locale, :active, :completion_status,
+                 :status
 
-      attribute :active do
-        campaign_user&.active
-      end
+      delegate :active, :completion_status, to: :campaign_user
 
       attribute :started_at do
         campaign_user&.started_at && I18n.l(campaign_user&.started_at, format: :short)
@@ -18,16 +17,8 @@ module Administration
         campaign_user&.completed_at && I18n.l(campaign_user&.completed_at, format: :short)
       end
 
-      attribute :completed_via do
-        campaign_user&.completed_via
-      end
-
-      attribute :completion_status do
-        campaign_user&.completion_status
-      end
-
-      attribute :additional_time do
-        campaign_user&.additional_time
+      def status
+        campaign_user.real_status
       end
 
       def created_at

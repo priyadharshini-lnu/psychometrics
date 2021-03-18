@@ -4,6 +4,7 @@ import Line from './Line/Line'
 import TagCloud from './TagCloud/TagCloud'
 import Gauge from './Gauge/Gauge'
 import Radar from './Radar/Radar'
+import Bubble from './Bubble'
 import CustomPie from './CustomPie/CustomPie'
 import StackedBar from './StackedBar/StackedBar'
 import Engagometer from './Engagometer/Engagometer'
@@ -14,6 +15,7 @@ export default {
   Bar,
   Pie,
   Line,
+  Bubble,
   TagCloud,
   Gauge,
   Radar,

@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import PropertyPanelStore from 'rb/store/PropertyPanelStore'
 import Select from 'react-select'
@@ -53,12 +53,27 @@ class ChartsMenu extends Component {
   }
 
   changeSourceType = (value) => {
-    const { model } = this.props
+    const { model, model: { type, props: { type: propType } } } = this.props
     model.props.source = {
       type: value.value,
     }
 
+    if (type === 'Graph' && propType === 'Bubble' && value.value === 'Factor') {
+      this.preselectAllFactors()
+    }
+
     this.onSelect()
+  }
+
+  preselectAllFactors () {
+    const { model } = this.props
+    const assessmentId = model.assessment_id
+    const assessment = _.find(AppStore.assessments, { id: assessmentId })
+    const dimensionId = assessment && assessment.dimensionId
+    const allFactors = _.map(model.filterFactors(AppStore.factors[dimensionId]),
+      f => ({ id: f.id, alias: `${f.alias.substring(0, 24)}`, name: f.name }))
+
+    model.props.source.factors = allFactors
   }
 
   renderSettingsBasedOnAssessment () {
@@ -85,6 +100,7 @@ class ChartsMenu extends Component {
     const {
       model, onSelect, singleChoice, onlyNumbers,
     } = this.props
+
     const TypeComponent = types[_.result(model, 'props.source.type')]
     const assessment = AppStore.getAssessmentById(model.assessment_id)
 

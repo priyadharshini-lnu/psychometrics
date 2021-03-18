@@ -97,13 +97,15 @@ const DatasheetManagementComponent: FC<Props> = ({
   visibleColumns,
   setVisibleColumns,
 }) => {
-  const { campaignId } = useParams<{
+  const { campaignId, projectId } = useParams<{
     projectId?: string
     campaignId?: string
   }>()
 
-  let parentResourceId = temp__parentResourceId
-  if (!parentResourceId && parentResourceType === ParentResourceType.Campaign && campaignId) {
+  let parentResourceId: number | undefined = temp__parentResourceId
+  if (!parentResourceId && parentResourceType === ParentResourceType.Project && projectId) {
+    parentResourceId = parseInt(projectId, 10)
+  } else if (!parentResourceId && parentResourceType === ParentResourceType.Campaign && campaignId) {
     parentResourceId = parseInt(campaignId, 10)
   }
 
@@ -193,7 +195,7 @@ const DatasheetManagementComponent: FC<Props> = ({
               visibleColumnsKeys={visibleColumns}
               onVisibleColumnsChange={onVisibleColumnsChange}
             />
-            <ToolsDropdown parentId={parentResourceId} parentType={parentResourceType} />
+            <ToolsDropdown parentId={parentResourceId} parentType={parentResourceType} datasheetCount={total} />
             {isEmpty(columnDefinitions) || (
               <Button
                 type="primary"

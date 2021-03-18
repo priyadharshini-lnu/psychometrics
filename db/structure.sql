@@ -779,10 +779,10 @@ CREATE TABLE public.campaign_users (
     active boolean DEFAULT true,
     started_at timestamp without time zone,
     completed_at timestamp without time zone,
-    completed_via integer,
     completion_status integer DEFAULT 0,
     additional_time integer,
-    expiry_date timestamp without time zone
+    expiry_date timestamp without time zone,
+    status integer DEFAULT 0
 );
 
 
@@ -1187,7 +1187,7 @@ ALTER SEQUENCE public.datasheet_column_preferences_id_seq OWNED BY public.datash
 CREATE TABLE public.datasheet_rows (
     id bigint NOT NULL,
     datasheet_id bigint,
-    email public.citext,
+    email public.citext NOT NULL,
     data jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -3464,9 +3464,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 CREATE TABLE public.users_results (
     id bigint NOT NULL,
-    subject_id bigint,
-    evaluator_id bigint,
-    assessment_id bigint,
     answers jsonb,
     scoring jsonb,
     occupations jsonb,
@@ -3477,7 +3474,6 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint,
     meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
@@ -5207,13 +5203,6 @@ CREATE INDEX index_campaign_users_on_completed_at ON public.campaign_users USING
 
 
 --
--- Name: index_campaign_users_on_completed_via; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_campaign_users_on_completed_via ON public.campaign_users USING btree (completed_via);
-
-
---
 -- Name: index_campaign_users_on_completion_status; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6292,38 +6281,10 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
--- Name: index_users_results_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_assessment_id ON public.users_results USING btree (assessment_id);
-
-
---
--- Name: index_users_results_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_campaign_id ON public.users_results USING btree (campaign_id);
-
-
---
--- Name: index_users_results_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_evaluator_id ON public.users_results USING btree (evaluator_id);
-
-
---
 -- Name: index_users_results_on_norm_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_results_on_norm_id ON public.users_results USING btree (norm_id);
-
-
---
--- Name: index_users_results_on_subject_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btree (subject_id);
 
 
 --
@@ -6736,14 +6697,6 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
--- Name: users_results fk_rails_4eb165810a; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_results
-    ADD CONSTRAINT fk_rails_4eb165810a FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
-
-
---
 -- Name: clients fk_rails_5b49237ec1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6813,14 +6766,6 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.reports_accesses
     ADD CONSTRAINT fk_rails_74cd2e276f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
-
-
---
--- Name: users_results fk_rails_773500ba49; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_results
-    ADD CONSTRAINT fk_rails_773500ba49 FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -7333,14 +7278,6 @@ ALTER TABLE ONLY public.hogan_report_settings
 
 ALTER TABLE ONLY public.threesixty_subjects
     ADD CONSTRAINT fk_rails_d91185866e FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
-
-
---
--- Name: users_results fk_rails_dc09b8ec60; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_results
-    ADD CONSTRAINT fk_rails_dc09b8ec60 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
 
 
 --
@@ -7917,5 +7854,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210209061539'),
 ('20210209133316'),
 ('20210215142202'),
-('20210228092218');
+('20210216092744'),
+('20210216133140'),
+('20210228092218'),
+('20210304111031'),
+('20210304111041'),
+('20210308170950');
+
 

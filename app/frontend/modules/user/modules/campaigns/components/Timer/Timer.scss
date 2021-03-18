@@ -3,18 +3,38 @@
 :global(.ant-statistic) {
   &.timer {
     display: inline-block;
-    background-color: $main-color;
-    padding: 8px 12px !important;
-    border-radius: 4px;
 
     * {
-      color: #ffffff;
       font-size: 18px !important;
     }
   }
+  &.plain {
+    background: none;
+    * {
+      color: $dark-gray
+    }
+
+    &.green * {
+      color: $main-color;
+    }
+
+    &.warning * {
+      color: $warning-color;
+    }
+
+    &.danger * {
+      color: $red;
+    }
+  }
+
   &.withBg {
     background-color: $white;
-    * { color: $black; }
+    border-radius: 4px;
+    padding: 8px 12px !important;
+
+    * {
+      color: $black;
+    }
 
     &.green {
       background-color: $main-color;

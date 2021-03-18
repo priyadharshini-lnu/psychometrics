@@ -59,7 +59,7 @@ class Assign < ApplicationRecord
   validate :relevant_membership, if: -> { membership.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
-  enum status: %i[not_started in_progress completed interrupted]
+  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }
   enum role: %i[member manager admin]
 
   scope :mindmill, lambda {
@@ -101,6 +101,12 @@ class Assign < ApplicationRecord
 
   delegate :project_membership, to: :membership
   delegate :threesixty?, to: :assessment
+
+  def real_status
+    return 'timed_out' if expired? && !completed? && !interrupted?
+
+    status
+  end
 
   def set_started_at
     self.started_at = DateTime.current

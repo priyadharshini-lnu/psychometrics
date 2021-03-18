@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
-import Validations, { RequiredValidations } from 'components/Validations'
+import ValidationTypes from 'components/ValidationTypes'
+import RequiredValidations from 'components/RequiredValidations'
 
 export class Properties extends Component {
   static propTypes = {
@@ -119,7 +120,7 @@ export class Properties extends Component {
         />
         )}
         {!restricted && (
-        <Validations
+        <ValidationTypes
           model={model}
           update={() => this.forceUpdate()}
         />

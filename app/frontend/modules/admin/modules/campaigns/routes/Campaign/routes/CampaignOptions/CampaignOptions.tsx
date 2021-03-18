@@ -5,7 +5,6 @@ import {
   Row, Col, Radio, Tooltip,
 } from 'antd'
 import snakeCase from 'lodash/snakeCase'
-import round from 'lodash/round'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -70,11 +69,11 @@ const CampaignOptions: React.FC<Props> = ({
   })
 
   const parametersForFixedTimeDuration = ({
-    value: options.fixedTimeDuration ? options.fixedTimeDuration * 60 : 0,
+    value: options.fixedTimeDuration ? options.fixedTimeDuration : 0,
     onChange: (value: number) => update(
       parsedProjectId,
       parsedCampaignId,
-      { ...options, fixedTimeDuration: round(value / 60) },
+      { ...options, fixedTimeDuration: value },
     ),
   })
 

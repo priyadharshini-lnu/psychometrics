@@ -31,7 +31,7 @@ const { I18n } = window
 interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
   remove(campaignId: string, id: number): void
-  toggleStatus(campaignId: string, id: number, options: { updateInListing: boolean }): void
+  toggleActive(campaignId: string, id: number, options: { updateInListing: boolean }): void
   resetPassword(campaignId: string, id: number): void
   users: UserState
   match: {
@@ -53,7 +53,8 @@ const statusToColor = {
   not_started: 'gray',
   in_progress: 'orange',
   completed: 'green',
-  interrupted: 'red',
+  interrupted: 'orange',
+  timed_out: 'red',
 }
 
 const UserList: React.FC<Props> = ({
@@ -75,7 +76,7 @@ const UserList: React.FC<Props> = ({
   changePage,
   openModal,
   remove,
-  toggleStatus,
+  toggleActive,
   resetPassword,
 }) => {
   useEffect(() => {
@@ -146,7 +147,7 @@ const UserList: React.FC<Props> = ({
                     checked={active}
                     onChange={
                       () => {
-                        toggleStatus(campaignId, id, { updateInListing: true })
+                        toggleActive(campaignId, id, { updateInListing: true })
                       }
                   }
                   />
@@ -188,11 +189,6 @@ const UserList: React.FC<Props> = ({
               dataIndex="updated_by"
             />
             <Column
-              title={I18n.t('administration.campaigns.users.completed_via')}
-              key="completedVia"
-              dataIndex="completedVia"
-            />
-            <Column
               title={I18n.t('administration.campaigns.users.completion_status')}
               key="completionStatus"
               sorter
@@ -202,6 +198,19 @@ const UserList: React.FC<Props> = ({
                   color={statusToColor[user.completionStatus]}
                 >
                   {I18n.t(`frontend.campaign.users.completion_statuses.${user.completionStatus}`)}
+                </Tag>
+              )}
+            />
+            <Column
+              title={I18n.t('common.column.status')}
+              key="status"
+              sorter
+              sortOrder={getSortOrder('status')}
+              render={user => (
+                <Tag
+                  color={statusToColor[user.status]}
+                >
+                  {I18n.t(`campaign_users.details.statuses.${user.status}`)}
                 </Tag>
               )}
             />

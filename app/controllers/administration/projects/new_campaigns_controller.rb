@@ -3,9 +3,7 @@
 module Administration
   module Projects
     class NewCampaignsController < Administration::Projects::BaseController
-      include ::Administration::CampaignInitialState
-
-      initial_state_for %i[index show]
+      include ::ProjectInitialState
 
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
@@ -13,6 +11,7 @@ module Administration
         show update assessments_and_reports fetch_campaign_options
         fetch_campaign_instructions update_campaign_options destroy
       ]
+      initial_state_for %i[index show]
 
       def index
         respond_to do |format|

@@ -12,7 +12,7 @@ _.extend(MinLength.prototype, {
     if (getAnswer(this.question, answers).length < this.minLength) {
       return {
         type: 'MinLength',
-        message: I18n().t(`${getValidationKey(this.question)}.min_length`, { min: this.minLength }),
+        message: I18n().t(`${getValidationKey(this.question)}.min_character`, { min: this.minLength }),
       }
     }
   },

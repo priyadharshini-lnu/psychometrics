@@ -6,11 +6,8 @@ module Threesixty
     before_action :set_campaign
 
     def index
-      result = UsersResult.find_by(
-        campaign_id: @campaign.campaign_id,
-        subject_id: participant.subject_id,
-        evaluator_id: participant.evaluator_id
-      )
+      result = participant.users_result
+
       piped_text_context = {
         evaluator: participant.evaluator,
         subject: participant.subject,

@@ -2,4 +2,6 @@
 
 class DatasheetRow < ApplicationRecord
   belongs_to :datasheet, inverse_of: :rows
+
+  before_save { self.email = email&.downcase }
 end

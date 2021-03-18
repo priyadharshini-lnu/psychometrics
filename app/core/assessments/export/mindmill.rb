@@ -118,8 +118,8 @@ module Assessments
 
       def users_results
         UsersResult.joins(:user_assessment).
-          where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
-          includes(:evaluator)
+          where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
+          includes(user_assessment: :evaluator)
       end
 
       def user_name(res)

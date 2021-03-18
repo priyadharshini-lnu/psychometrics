@@ -1,7 +1,9 @@
 import { createReducer } from 'utils/redux'
 import { getIn, setIn, updateIn } from 'utils/immutable'
 import schema from 'store/schema'
+import FlowElement from 'models/FlowElement'
 import { denormalize } from 'normalizr'
+import _ from 'lodash'
 import {
   INIT, ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET, UPDATE_ELEMENT,
 } from './actions'
@@ -25,7 +27,10 @@ const getRealPath = (state, path) => {
 }
 
 const HANDLERS = {
-  [INIT]: (_, { data }) => denormalize(data.result, schema, data.entities).flow,
+  [INIT]: (__, { data }) => {
+    const { flow } = denormalize(data.result, schema, data.entities)
+    return { elements: _.map(flow.elements, (el, i) => new FlowElement(el, null, i)) }
+  },
   [RESET]: (_, { flow }) => flow,
   [UPDATE_TREE]: (_, { flow }) => flow,
   [ADD_NEW_ELEMENT]: (state, { element }) => {
@@ -43,7 +48,7 @@ const HANDLERS = {
   },
   [ADD_ELEMENT]: (state, { element, newElement }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
+    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.uuid, element.uuid))
     return updateIn(state, path, (elements) => {
       const rightElements = elements.slice(index + 1, elements.length).map(
         el => setIn(el, ['path', el.path.length - 1], el.path[el.path.length - 1] + 1),
@@ -53,20 +58,20 @@ const HANDLERS = {
   },
   [UPDATE_ELEMENT]: (state, { element }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => (_.isEqual(el.path, element.path)))
+    const index = _.findIndex(getIn(state, path), el => (_.isEqual(el.uuid, element.uuid)))
     if (index < 0) return state
     return setIn(state, [...path, index], element)
   },
   [DUPLICATE_ELEMENT]: (state, { element, duplicate }) => {
     const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
+    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.uuid, element.uuid))
     return updateIn(state, path, elements => elements.splice(index + 1, 0, duplicate) && elements)
   },
   [REMOVE_ELEMENT]: (state, { element }) => {
     const path = lookUpPath(element)
     const index = _.findIndex(getIn(state, path), el => (el.path
-      ? _.isEqual(el.path, element.path)
-      : _.isEqual({ ...el, path: element.path }, element)))
+      ? _.isEqual(el.uuid, element.uuid)
+      : _.isEqual(el.path, element.path)))
     if (index < 0) return state
     return updateIn(state, path, elements => elements.splice(index, 1) && elements)
   },

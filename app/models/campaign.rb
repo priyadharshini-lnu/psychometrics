@@ -37,7 +37,7 @@ class Campaign < ApplicationRecord
   has_many :instruction_templates, -> { enabled }, foreign_key: :threesixty_campaign_id,
                                                      class_name: 'Threesixty::InstructionTemplate'
   has_many :user_assessments, dependent: :destroy
-  has_many :users_results, dependent: :destroy
+  has_many :users_results, through: :user_assessments, dependent: :destroy
   has_many :campaign_reports, dependent: :destroy
   has_many :reports, through: :campaign_reports
   has_many :campaign_assessments, dependent: :destroy
@@ -64,6 +64,12 @@ class Campaign < ApplicationRecord
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
 
+  def real_status
+    return 'closed' if end_date && end_date < Time.now
+
+    status
+  end
+
   def datasheet
     campaign_datasheet || project_datasheet
   end
@@ -89,6 +95,14 @@ class Campaign < ApplicationRecord
   def assessor_assessments
     Assessment.assessor_form.joins(:user_assessments).
       where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
+  end
+
+  def timed?
+    fixed_timed? || end_date?
+  end
+
+  def fixed_timed?
+    fixed_time? && fixed_time_duration.present?
   end
 
   private

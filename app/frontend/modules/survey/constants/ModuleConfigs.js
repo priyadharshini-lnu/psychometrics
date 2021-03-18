@@ -25,9 +25,9 @@ const ModuleConfigs = {
     defaultChoiceText: i => `Click to write Form field ${i}`,
     icon: 'font',
     validations: {
-      SingleLine: ['MinLength', 'MaxLength', 'CharacterRange', 'Content'],
-      MultiLine: ['MinLength', 'MaxLength', 'CharacterRange'],
-      EssayTextBox: ['MinLength', 'MaxLength', 'CharacterRange'],
+      SingleLine: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange', 'Content'],
+      MultiLine: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange'],
+      EssayTextBox: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange'],
       Password: ['MinLength', 'MaxLength', 'CharacterRange'],
       Email: ['MinLength', 'MaxLength', 'CharacterRange'],
     },

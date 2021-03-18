@@ -52,6 +52,10 @@ _.extend(TextEntry.prototype, {
     this.result.answers = [{ value }]
   },
 
+  TimeEntry (value) {
+    this.result.answers = [{ value }]
+  },
+
   MultiLine (index) {
     this.result.answers = [{ value: index }]
   },

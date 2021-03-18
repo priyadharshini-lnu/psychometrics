@@ -25,5 +25,6 @@ export interface AssessmentExtra {
 
 export enum Statuses {
   NOT_STARTED = 'not_started',
-  COMPLETED = 'completed'
+  COMPLETED = 'completed',
+  TIMED_OUT = 'timed_out'
 }

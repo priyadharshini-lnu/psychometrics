@@ -21,10 +21,7 @@ module Campaigns
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
         user_assessments = report.assessments.map do |assessment|
-          ua = add_assessment_to_user(assessment, user_report)
-          ::CampaignUsers::MarkInProgress.call!(campaign_user) if !ua.completed? && campaign_user.completed_campaign?
-
-          ua
+          add_assessment_to_user(assessment, user_report)
         end
         generate_report_pdf(user_report)
 
@@ -64,7 +61,10 @@ module Campaigns
       def user_result(assessment)
         return create_new_user_result(assessment) if options[:operation] == 'add_and_allow_new_response'
 
-        user_result = campaign_user.evaluation_results.order(created_at: :desc).find_by(assessment_id: assessment.id)
+        user_result = campaign_user.evaluation_results.
+                      joins(:user_assessment).
+                      order(created_at: :desc).
+                      find_by(user_assessments: { assessment_id: assessment.id })
 
         return UsersResults::Copy.call!(user_result) if user_result
 
@@ -72,12 +72,7 @@ module Campaigns
       end
 
       def create_new_user_result(assessment)
-        user_result = UsersResult.create(
-          assessment: assessment,
-          subject_id: campaign_user.user_id,
-          evaluator_id: campaign_user.user_id,
-          answers: {}
-        )
+        user_result = UsersResult.create!
 
         if assessment.mindmill?
           user_result.create_mindmill_credential(
