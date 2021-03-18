@@ -38,7 +38,6 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
-  config.action_mailer.asset_host = URI("#{Settings.protocol || 'https'}://#{Settings.domain}:#{Settings.port}").to_s
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
