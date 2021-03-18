@@ -9,6 +9,7 @@ import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import './styles.scss'
+import { secondsLeftFromNow } from 'utils/time'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
@@ -32,6 +33,7 @@ export default function Evaluation ({
       participant: {
         manager_evaluation_status: managerEvaluationStatus,
       },
+      expiry_date,
     },
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
@@ -152,7 +154,12 @@ export default function Evaluation ({
             extra={[
               type !== 'preview_block' && enableProgress
                 && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
+              <Timer
+                key="2"
+                notification
+                seconds={secondsLeftFromNow(expiry_date)}
+                onFinish={() => markAssessmentTimedOut(preview)}
+              />,
             ]}
           />
         </Content>

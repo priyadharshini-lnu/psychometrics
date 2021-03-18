@@ -10,6 +10,10 @@ module Assessors
       update?
     end
 
+    def scoring?
+      update?
+    end
+
     def remove_media?
       update?
     end

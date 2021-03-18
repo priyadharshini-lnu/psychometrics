@@ -10,7 +10,7 @@ module Assessors
       end
 
       def call
-        user_result = UsersResult.create!(form.attributes.slice(:subject_id, :evaluator_id, :assessment_id))
+        user_result = UsersResult.create!
         user_assessment = UserAssessment.create!(form.attributes.merge(users_result_id: user_result.id))
 
         broadcast :ok, user_assessment

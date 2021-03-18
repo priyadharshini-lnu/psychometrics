@@ -144,10 +144,10 @@ module Administration
           if client.has_children? || client.subtenancy?
             add_breadcrumb(
               client.project.decorate.display_name,
-              administration_client_project_campaigns_path(client.client, client.project)
+              project_path(client)
             )
           end
-          if client.sub_campaign?
+          if client.sub_campaign? && !client.project.migrated?
             add_breadcrumb(
               client.parent.decorate.display_name,
               administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent)
@@ -155,6 +155,14 @@ module Administration
           end
         end
         add_breadcrumb client.decorate.display_name, action: :index if client.end_level?
+      end
+
+      def project_path(client)
+        if client.project.migrated?
+          administration_project_new_campaigns_path(client.project)
+        else
+          administration_client_project_campaigns_path(client, client.project)
+        end
       end
 
       def create_resource_params

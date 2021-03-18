@@ -47,7 +47,11 @@ Rails.application.routes.draw do
 
     resources :evaluations, only: %i[show] do
       get :subject_assessment
-      resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades
+      resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades do
+        member do
+          post :scoring
+        end
+      end
     end
 
     resources :campaigns, only: [:index] do
@@ -212,7 +216,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :projects do
+    resources :projects, :new_projects do
       scope module: :projects do
         resources :datasheet_rows, concerns: :datasheet_management
       end
@@ -243,6 +247,7 @@ Rails.application.routes.draw do
     resources :projects do
       member do
         post :search_users
+        get '*all', to: 'new_projects#show', constraints: { all: /.*/ }
       end
     end
 

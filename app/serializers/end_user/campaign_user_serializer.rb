@@ -2,7 +2,14 @@
 
 module EndUser
   class CampaignUserSerializer < ActiveModel::Serializer
-    attributes :id, :campaign_id, :user_id, :active, :started_at, :completed_at,
-               :completed_via, :completion_status, :additional_time, :expiry_date
+    attributes :id, :started_at, :status, :expiry_date
+
+    def expiry_date
+      object.real_expiry_date
+    end
+
+    def status
+      object.real_status
+    end
   end
 end

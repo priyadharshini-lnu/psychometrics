@@ -42,7 +42,7 @@ export const MarkdownEditor: FC<Props> = ({ value, onChange }) => (
         <Input.TextArea value={value} onChange={onChange} />
       </Col>
       <Col span="12" className={styles.viewer}>
-        <ReactMarkdown>{value}</ReactMarkdown>
+        <ReactMarkdown>{`${value}`}</ReactMarkdown>
       </Col>
     </Row>
   </>

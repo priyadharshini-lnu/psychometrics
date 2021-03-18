@@ -71,3 +71,7 @@ export const getEmbeddedData = (state: any, assessmentId: number) => {
   const { flow: { elements } } = state.builder.assessments[assessmentId]
   return parse(elements || [])
 }
+
+export const getAllFactors = (state: any) => state?.builder?.factors ?? []
+
+export const getAllAssessments = (state: any) => state?.builder?.assessments ?? {}

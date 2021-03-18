@@ -50,15 +50,8 @@ describe Reports::PrepareDataForReport do
 
     before do
       allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-      create(:threesixty_participant, campaign: threesixty_campaign.campaign,
-             subject: subject.user, evaluator: evaluator_1, relationship: manager)
-      create(:threesixty_participant, campaign: threesixty_campaign.campaign,
-             subject: subject.user, evaluator: evaluator_2, relationship: peer)
-      create(:threesixty_participant, campaign: threesixty_campaign.campaign,
-             evaluator: evaluator_3, relationship: customer)
-      create_users_result(threesixty_campaign, subject, evaluator_1)
-      create_users_result(threesixty_campaign, subject, evaluator_2)
-      create_users_result(threesixty_campaign, subject, evaluator_3)
+      create_users_result(threesixty_campaign, subject, evaluator_1, manager)
+      create_users_result(threesixty_campaign, subject, evaluator_2, peer)
     end
 
     it do
@@ -75,12 +68,13 @@ describe Reports::PrepareDataForReport do
     end
   end
 
-  def create_users_result(threesixty_campaign, subject, evaluator)
+  def create_users_result(threesixty_campaign, subject, evaluator, relationship)
     create(:users_result,
            campaign: threesixty_campaign.campaign,
            status: 'completed',
            assessment: threesixty_campaign.assessment,
            subject: subject.user,
-           evaluator: evaluator)
+           evaluator: evaluator,
+          relationship: relationship)
   end
 end

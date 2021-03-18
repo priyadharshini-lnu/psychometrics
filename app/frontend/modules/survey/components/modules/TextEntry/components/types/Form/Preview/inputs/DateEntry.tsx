@@ -9,16 +9,18 @@ interface Props {
   name: string
   model: Question
   index: number
+  readOnly: boolean
   onChange: (i: number, value: string) => void
 }
 
 const DateEntry: React.FC<Props> = ({
-  onChange, model: { result: { answers } }, index,
+  onChange, model: { result: { answers } }, index, readOnly,
 }) => {
   const { value } = answers[index]
 
   return (
     <DatePicker
+      disabled={readOnly}
       format="YYYY-MM-DD"
       value={value ? moment(value, FORMAT) : null}
       onChange={(e): void => onChange(index, e ? e.format(FORMAT) : '')}

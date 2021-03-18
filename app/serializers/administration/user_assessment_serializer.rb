@@ -10,7 +10,7 @@ module Administration
     def status
       return :not_started if user_result.nil?
 
-      user_result.status
+      user_result.real_status
     end
 
     def norms

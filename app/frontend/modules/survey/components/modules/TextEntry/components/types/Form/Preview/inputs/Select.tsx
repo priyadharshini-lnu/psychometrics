@@ -12,11 +12,12 @@ interface Props {
   model: Question
   index: number
   multi?: boolean
+  readOnly: boolean
   onChange: (i: number, value: string | string[]) => void
 }
 
 const Select: React.FC<Props> = ({
-  onChange, model, model: { result: { answers }, props: { formTypes } }, index, multi = false,
+  onChange, model, model: { result: { answers }, props: { formTypes } }, index, multi = false, readOnly,
 }) => {
   const type = formTypes[index]
   const { optionList } = type
@@ -24,6 +25,7 @@ const Select: React.FC<Props> = ({
   return (
     <div className={styles.selectContainer}>
       <BaseSelect
+        disabled={readOnly}
         showArrow
         value={answers[index].value || (multi ? [] : '')}
         onChange={(value: string | string[]): void => onChange(index, value)}

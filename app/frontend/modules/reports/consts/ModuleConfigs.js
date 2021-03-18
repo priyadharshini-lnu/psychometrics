@@ -32,6 +32,7 @@ export default {
       StackedArea3D: '3D Stacked Area',
       CompositeBar: 'Composite Bar',
       PerceptionMap: 'Perception Map',
+      Bubble: 'Bubble',
 
       Line: 'Line',
       PlotedLine: 'Ploted Line',
@@ -137,6 +138,11 @@ export default {
         EmbeddedData: false,
         Factor: true,
       },
+      Bubble: {
+        Question: false,
+        EmbeddedData: false,
+        Factor: true,
+      },
     },
     // add access to multiFiltering (by default: false)
     settings: {
@@ -211,7 +217,12 @@ export default {
     },
 
     HrisData: {
-      defaultLabels: ['Division', 'Respondent Count', 'Invitee count', 'Percentage'],
+      defaultLabels: [
+        'Division',
+        'Respondent Count',
+        'Invitee count',
+        'Percentage',
+      ],
     },
     defaultProps: {
       HighestLowest: {
@@ -253,11 +264,20 @@ export default {
           { id: 9, color: '#B9CD96' },
           { id: 10, color: '#A99BBD' },
         ],
-        milestones: [{
-          id: 1, min: 1.0, max: 2.0, name: 'Range 1',
-        }, {
-          id: 2, min: 2.0, max: 3.0, name: 'Range 2',
-        }],
+        milestones: [
+          {
+            id: 1,
+            min: 1.0,
+            max: 2.0,
+            name: 'Range 1',
+          },
+          {
+            id: 2,
+            min: 2.0,
+            max: 3.0,
+            name: 'Range 2',
+          },
+        ],
       },
       VideoResponse: {
         filter: [],

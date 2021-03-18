@@ -9,10 +9,12 @@ module UserReports
     end
 
     def query
-      user_results = UsersResult.where(
-        assessment_id: user_report.report.assessment_ids,
-        subject_id: user_report.user_id,
-        evaluator_id: user_report.user_id,
+      user_results = UsersResult.joins(:user_assessment).where(
+        user_assessments: {
+          assessment_id: user_report.report.assessment_ids,
+          subject_id: user_report.user_id,
+          evaluator_id: user_report.user_id
+        },
         status: :completed
       ).order(completed_at: :desc).each_with_object({}) do |ur, hash|
         next if campaign_user_assessment_ids.include?(ur.assessment_id) && ur.campaign_id != user_report.campaign_id
@@ -28,7 +30,7 @@ module UserReports
     private
 
     def campaign_user_assessment_ids
-      UsersResult.where(
+      UserAssessment.where(
         campaign_id: user_report.campaign_id,
         subject_id: user_report.user_id,
         evaluator_id: user_report.user_id

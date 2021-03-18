@@ -1,14 +1,20 @@
 import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Card, Progress, Input, Tag,
+  Row, Col, Card, Progress, Input, Tag, Tooltip,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
-import '../styles.scss'
-import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 import { History } from 'history'
+import truncate from 'lodash/truncate'
+
+import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+
 import PrivacyModal from '../PrivacyModal'
 import AssessmentCard from '../AssessmentCard'
 import AssessmentActionBtn from './AssessmentActionBtn'
+
+import '../styles.scss'
 
 const { I18n } = window
 
@@ -32,12 +38,11 @@ interface Props {
   size: number
   withSidebar: boolean
   disabled: boolean
-  disabledReason: string
   loginHogan(url: string): Promise<{ response: HoganData }>
 }
 
 const Hogan: React.FC<Props> = ({
-  userAssessment, acceptPolicy, loginHogan, size, disabled, disabledReason, withSidebar,
+  userAssessment, acceptPolicy, loginHogan, size, disabled, withSidebar,
 }) => {
   const [hoganData, setHoganData] = useState<HoganData| null>(null)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -94,7 +99,11 @@ const Hogan: React.FC<Props> = ({
         <div className="card-body">
           <div className="card-content">
             <div className="card-title">
-              {userAssessment.assessmentName}
+              <Tooltip title={userAssessment.assessmentName} placement="bottom">
+                <span>
+                  {truncate(userAssessment.assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })}
+                </span>
+              </Tooltip>
             </div>
             <Row className="info-line">
               <Col className="info-block">
@@ -117,7 +126,6 @@ const Hogan: React.FC<Props> = ({
                 loading={loading}
                 loginHogan={onLoginHogan}
                 disabled={disabled}
-                disabledReason={disabledReason}
               />
             </div>
           </div>

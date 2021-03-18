@@ -38,14 +38,18 @@ module UsersResults
     end
 
     def complete_event
-      # Validations and Callbacks are skipped
-      user_result.update_columns(norm_attributes.merge(status: :completed, completed_at: Time.now))
-
-      ::UsersResults::CalculateAgileScoring.call!(user_result, current_user)
+      user_result.update!(
+        norm_attributes.merge(
+          status: :completed,
+          completed_at: Time.now
+        )
+      )
+      ::UsersResults::SaveAgileScoringJob.set(wait: 10.seconds).perform_later(user_result, current_user)
     end
 
     def norm_attributes
-      norm_id = user_result&.agile&.config&.dig('normId')
+      norm_id = Norm.find_by(id: user_result&.agile&.config&.dig('normId'))&.id
+      return {} unless norm_id
 
       return { norm_data: { id: norm_id } } if user_result.is_a?(Assign)
 

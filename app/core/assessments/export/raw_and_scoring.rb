@@ -38,15 +38,15 @@ module Assessments
           res.started_at.try(:strftime, '%D %r'),
           res.completed_at.try(:strftime, '%D %r'),
           res.norm ? res.norm.name : '',
-          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+          I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
           completion_reason
         ]
       end
 
       def results
         UsersResult.joins(:user_assessment).
-          where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
-          includes(:subject, :evaluator, :norm, :user_assessment)
+          where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
+          includes(:norm, user_assessment: %i[subject evaluator])
       end
     end
   end

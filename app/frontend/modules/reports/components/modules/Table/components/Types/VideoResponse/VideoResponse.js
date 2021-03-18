@@ -65,7 +65,7 @@ export default class VideoResponse extends Component {
       id,
       fullName: userPresenter.getFullName({ firstName: user.first_name, lastName: user.last_name }),
       video: _(media)
-        .filter({ question_id: model.props.questionId })
+        .filter(m => m.question_id === model.props.questionId && m.url)
         .sortBy('user_selected').last(),
     })).filter(x => x.video)
   }

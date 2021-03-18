@@ -107,8 +107,10 @@ class User < ApplicationRecord
   has_many :user_assessments, inverse_of: :subject, foreign_key: :subject_id
   has_many :assessments, through: :user_assessments
   has_many :user_reports, inverse_of: :user
-  has_many :evaluated_results, foreign_key: 'subject_id', class_name: 'UsersResult'
-  has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
+  has_many :evaluated_assessments, foreign_key: :subject_id, class_name: 'UserAssessment'
+  has_many :evaluation_assessments, foreign_key: :evaluator_id, class_name: 'UserAssessment'
+  has_many :evaluated_results, through: :evaluated_assessments, source: :users_result
+  has_many :evaluation_results, through: :evaluation_assessments, source: :users_result
   has_many :campaign_users
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
   has_one :hogan_credential

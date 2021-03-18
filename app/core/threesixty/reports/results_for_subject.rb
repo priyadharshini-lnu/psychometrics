@@ -20,14 +20,16 @@ module Threesixty::Reports
 
     def lookup_results
       participants = Threesixty::EvaluatorParticipantsBySubject.new(subject.user_id, campaign.id).query
-      UsersResult.completed.
-        where(campaign_id: campaign.id, evaluator_id: participants.map(&:evaluator_id), subject_id: subject.user_id).
-        includes(:evaluator, :assessment).
+      UsersResult.completed.joins(:user_assessment).
+        where(
+          user_assessments: {
+            campaign_id: campaign.id, evaluator_id: participants.map(&:evaluator_id), subject_id: subject.user_id
+          }
+        ).
+        includes(user_assessment: %i[evaluator assessment]).
         map do |result|
-        participant = participants.
-                      find_by(evaluator_id: result.evaluator_id, subject_id: subject.user_id, campaign_id: campaign.id)
         ::UsersResultSerializer.
-          new(result, campaign: campaign, participant: participant, current_user: current_user).
+          new(result, campaign: campaign, participant: result.user_assessment, current_user: current_user).
           to_h
       end
     end

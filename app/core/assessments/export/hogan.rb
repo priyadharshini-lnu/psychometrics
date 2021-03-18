@@ -90,8 +90,8 @@ module Assessments
 
       def users_results
         UsersResult.joins(:user_assessment).
-          where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
-          includes(:evaluator)
+          where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id }).
+          includes(user_assessment: :evaluator)
       end
 
       def default_headers

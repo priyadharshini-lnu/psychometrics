@@ -38,8 +38,8 @@ module Assessments
             # Draws results
             #
             UsersResult.joins(:user_assessment).
-              where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
-              includes(:subject, :evaluator, :norm).find_each(batch_size: 100) do |res|
+              where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
+              includes(:norm, user_assessment: %i[subject evaluator]).find_each(batch_size: 100) do |res|
               normed_results.each_key do |factor_id|
                 normed_results[factor_id] = res.scoring&.dig(factor_id.to_s, 'norm_score')
               end
@@ -53,7 +53,7 @@ module Assessments
                              res.created_at.try(:strftime, '%D %r'),
                              res.completed_at.try(:strftime, '%D %r'),
                              res.norm ? res.norm.name : '',
-                             I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+                             I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
                              *normed_results.values]
             end
           end

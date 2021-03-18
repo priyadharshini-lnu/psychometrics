@@ -33,11 +33,11 @@ describe Threesixty::Subjects::CalcSubjectEvaluatorsCounters do
            project: project, subject: subject_2.user)
     create(:threesixty_participant,
            campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer,
-           evaluator: evaluator_user_1, project: project, subject: subject_1.user)
+           evaluator: evaluator_user_1, project: project, subject: subject_1.user,
+           users_result: create(:users_result, without_user_assessment: true, status: :completed))
     create(:threesixty_participant,
            campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer,
            evaluator: evaluator_user_1, project: project, subject: subject_2.user, manager_nomination_status: :denied)
-    create(:users_result, evaluator: evaluator_user_1, status: :completed, subject: subject_1.user)
   end
 
   it 'manager should not approve evaluations' do

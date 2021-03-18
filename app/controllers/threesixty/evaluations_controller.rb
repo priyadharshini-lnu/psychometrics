@@ -15,11 +15,12 @@ module Threesixty
       respond_to do |format|
         format.html { render 'end_user/users/dashboard' }
         format.json do
-          @users_result = UsersResult.find_or_create_by(campaign_id: @campaign.campaign_id,
-                                                        subject_id: @participant.subject_id,
-                                                        evaluator_id: @participant.evaluator_id) do |result|
-            init_result(result)
-          end
+          @users_result = @participant.users_result || @participant.create_users_result(
+            status: :in_progress,
+            last_activity_at: DateTime.current,
+            expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
+            answers: {}
+          )
           set_locale_for_users_result(@users_result)
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?

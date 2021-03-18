@@ -29,7 +29,7 @@ describe UsersResults::SaveAgileEvent do
 
   it "marks users_result as completed for 'assessmentComplete' event" do
     form = UsersResults::AgileEventForm.new(event: 'assessmentComplete')
-    user = double('User')
+    user = create(:user)
     UsersResults::SaveAgileEvent.call!(users_result, form, user)
 
     expect(users_result.completed?).to eq true

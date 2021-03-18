@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { createReducer } from 'utils/redux'
 
 interface FeaturesFlags {
@@ -16,6 +17,7 @@ export const defaultState: ConfigState = {
 }
 
 export const getFeatures = (state): FeaturesFlags => _.get(state, ['config', 'features'], {})
+export const isProjectMigrated = (state: RootState): boolean => _.get(state, ['config', 'isProjectMigrated'])
 
 const HANDLERS = {}
 

@@ -1,20 +1,25 @@
 import React, { useState } from 'react'
 import {
-  Row, Col, Card, Progress, Tag,
+  Row, Col, Card, Progress, Tag, Tooltip,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
+import truncate from 'lodash/truncate'
+
 import routeUtils from 'utils/route'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
-import '../styles.scss'
-import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+
 import { History } from 'history'
-import _ from 'lodash'
-import { getMinutesAndSeconds } from 'utils/time'
+import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+
 import PrivacyModal from '../PrivacyModal'
 import TimingModal from '../TimingModal'
 import AssessmentCard from '../AssessmentCard'
 import LanguageModal from '../LanguageModal'
 import AssessmentActionBtn from './AssessmentActionBtn'
+
+import '../styles.scss'
 
 const { I18n } = window
 
@@ -35,18 +40,12 @@ interface Props {
   size: number
   withSidebar: boolean
   disabled: boolean
-  disabledReason: string
-  timer: {
-    fixedTime: boolean
-    campaignDuration: number
-    startedAt: string
-    additionalTime: number
-    expiryDate: string
-  }
+  isPartOfTimedCampaign: boolean
+  campaignExpiryDate: string
 }
 
 const InternalAssessment: React.FC<Props> = ({
-  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer, withSidebar,
+  userAssessment, acceptPolicy, history, size, disabled, isPartOfTimedCampaign, campaignExpiryDate, withSidebar,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLang, setShowLang] = useState(false)
@@ -67,7 +66,7 @@ const InternalAssessment: React.FC<Props> = ({
     if (WizardIsRequired.run(userAssessment.assessmentExtra)) {
       return routeUtils.moveTo(history, '', `/system_checks/${userAssessment.assessmentId}/${userAssessment.id}`)
     }
-    if (!userAssessment.selectedLocale && !_.includes(userAssessment.availableLocales, I18n.currentLocale())) {
+    if (!userAssessment.selectedLocale && !userAssessment.availableLocales.includes(I18n.currentLocale())) {
       setShowLang(true)
     } else {
       return loadAssessment(userAssessment, userAssessment.selectedLocale || I18n.currentLocale())
@@ -109,7 +108,7 @@ const InternalAssessment: React.FC<Props> = ({
               <div className="internal-icon">
                 <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[userAssessment.assessmentCategory]}`} />
               </div>
-              {userAssessment.status !== 'completed' && (
+              {!['completed', 'timed_out'].includes(userAssessment.status) && (
                 <div>
                   <Tag
                     color={userAssessment.status === 'not_started' ? 'green' : 'blue'}
@@ -126,7 +125,11 @@ const InternalAssessment: React.FC<Props> = ({
         <div className="card-body">
           <div className="card-content">
             <div className="card-title">
-              {userAssessment.assessmentName}
+              <Tooltip title={userAssessment.assessmentName} placement="bottom">
+                <span>
+                  {truncate(userAssessment.assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })}
+                </span>
+              </Tooltip>
             </div>
             <Row className="info-line">
               <Col className="info-block">
@@ -150,8 +153,8 @@ const InternalAssessment: React.FC<Props> = ({
                 loading={loading}
                 loadAssessmentOrCheckingWizard={loadAssessmentOrCheckingWizard}
                 disabled={disabled}
-                disabledReason={disabledReason}
-                timer={timer}
+                isPartOfTimedCampaign={isPartOfTimedCampaign}
+                campaignExpiryDate={campaignExpiryDate}
               />
             </div>
           </div>
@@ -165,14 +168,14 @@ const InternalAssessment: React.FC<Props> = ({
         onSelect={selectLang}
         close={() => setShowLang(false)}
       />
-      {timer.fixedTime && showTimingConfirmation && (
+      {isPartOfTimedCampaign && showTimingConfirmation && userAssessment.assessmentExtra?.timer && (
         <TimingModal
           ok={startAssessment}
           show={showTimingConfirmation}
           close={() => setShowTimingConfirmation(false)}
           assessmentName={userAssessment.assessmentName}
-          assessmentTime={getMinutesAndSeconds(userAssessment.assessmentExtra.timer || 0)}
-          timer={timer}
+          totalAssessmentTime={userAssessment.assessmentExtra.timer}
+          campaignExpiryDate={campaignExpiryDate}
         />
       )}
     </AssessmentCard>

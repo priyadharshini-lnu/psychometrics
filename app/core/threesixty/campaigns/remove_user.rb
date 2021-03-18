@@ -13,8 +13,6 @@ module Threesixty
         remove_all_participants
 
         user.user_reports.where(campaign_id: campaign.id).each(&:destroy!)
-        user.evaluation_results.where(campaign_id: campaign.id).each(&:destroy!)
-        user.evaluated_results.where(campaign_id: campaign.id).each(&:destroy!)
         user.campaign_users.where(campaign_id: campaign.id).each(&:destroy!)
         campaign.subjects.where(user_id: user.id).each(&:destroy!)
         campaign.evaluators.where(user_id: user.id).each(&:destroy!)

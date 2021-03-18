@@ -59,9 +59,7 @@ describe Assessments::Export::RawAndScoring do
     end
 
     it 'xlsx contains each user result as separate row' do
-      create_list(:users_result, 2, assessment: assessment).each do |res|
-        create(:user_assessment, users_result: res, campaign: campaign)
-      end
+      create_list(:users_result, 2, assessment: assessment, campaign: campaign)
 
       xlsx = described_class.call!(assessment, campaign)
       xlsx.serialize(file_name)
@@ -76,8 +74,6 @@ describe Assessments::Export::RawAndScoring do
         questions[0].id.to_s => { 'answers' => [{ 'index' => 1, 'value' => true }], 'duration' => 30 },
         questions[1].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }], 'duration' => nil }
       })
-
-      create(:user_assessment, users_result: res, campaign: campaign)
 
       xlsx = described_class.call!(assessment, campaign)
       xlsx.serialize(file_name)
@@ -172,8 +168,6 @@ describe Assessments::Export::RawAndScoring do
         }
       })
 
-      create(:user_assessment, users_result: res, campaign: campaign)
-
       xlsx = described_class.call!(assessment, campaign)
       xlsx.serialize(file_name)
 
@@ -256,7 +250,6 @@ describe Assessments::Export::RawAndScoring do
             { 'index' => 3, 'value' => 'Hi' }
           ], 'duration' => 120 }
       })
-      create(:user_assessment, users_result: res, campaign: campaign)
 
       xlsx = described_class.call!(assessment, campaign)
       xlsx.serialize(file_name)

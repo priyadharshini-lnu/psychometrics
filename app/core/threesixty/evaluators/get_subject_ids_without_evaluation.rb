@@ -14,10 +14,11 @@ module Threesixty
       def call
         evaluation_completed_for_subject = user.
                                            evaluation_results.
+                                           joins(:user_assessment).
                                            completed.
                                            actual_by_options(threesixty_campaign.option).
-                                           where(campaign_id: threesixty_campaign.campaign_id).
-                                           pluck(:subject_id)
+                                           where(user_assessments: { campaign_id: threesixty_campaign.campaign_id }).
+                                           pluck('user_assessments.subject_id')
 
         all_subjects = threesixty_campaign.participants.where(evaluator_id: user.id).
                        where('subject_id != evaluator_id').

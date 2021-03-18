@@ -6,13 +6,15 @@ interface Props {
   name: string
   model: Question
   index: number
+  readOnly: boolean
   onChange: (i: number, value: string) => void
 }
 
 const Input: React.FC<Props> = ({
-  onChange, name, model: { result: { answers } }, index,
+  onChange, name, model: { result: { answers } }, index, readOnly,
 }) => (
   <BaseInput
+    disabled={readOnly}
     name={name}
     value={answers[index].value}
     onChange={({ target: { value } }): void => onChange(index, value)}

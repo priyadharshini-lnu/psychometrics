@@ -49,11 +49,10 @@ module AdminJobs
     def results
       UsersResult.joins(:user_assessment).
         where(
-          assessment_id: record.data['assessment_id'],
-          user_assessments: { campaign_id: record.data['campaign_id'] },
+          user_assessments: { assessment_id: record.data['assessment_id'], campaign_id: record.data['campaign_id'] },
           status: :completed
         ).
-        includes(:evaluator)
+        includes(user_assessment: :evaluator)
     end
   end
 end

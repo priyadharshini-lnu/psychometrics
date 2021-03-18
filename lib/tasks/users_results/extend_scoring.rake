@@ -20,7 +20,10 @@ namespace :users_results do
     results_processed = 0
     result_count = UsersResult.completed.where.not(scoring: [nil, {}]).size
     puts 'Extend scoring of users_results'
-    UsersResult.completed.includes(assessment: :dimension).where.not(scoring: [nil, {}]).find_each do |result|
+    UsersResult.completed.includes(user_assessment: { assessment: :dimension }).
+      where.
+      not(scoring: [nil, {}]).
+      find_each do |result|
       results_processed += 1
       result.scoring = ::UsersResults::Scoring::Extend.call!(result.scoring, {}, result.assessment.dimension)
       result.save!(validate: false)

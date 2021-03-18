@@ -264,3 +264,10 @@ export const getMediaResponsesByQuestionId = createSelector(
 export const getMediaResponseByQuestionId = (state, questionId: number) => (
   getMediaResponsesByQuestionId(state, questionId)[0]
 )
+
+export const getQuestionScoring = (store, questionId) => _.reduce(store.scoring, (acc, s, k) => {
+  if (_.some(s.results, q => q.questionId === questionId)) {
+    return { ...acc, [k]: { score: s.score } }
+  }
+  return acc
+}, {})

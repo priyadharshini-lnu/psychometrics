@@ -21,11 +21,11 @@ module UsersResults
           standard_deviation = props['standard_deviation']
 
           zscore =
-            if [mean, standard_deviation].any?(&:blank?)
+            if [mean, standard_deviation, value['score']].any?(&:blank?)
               nil
             else
               factor_score = value['score']
-              ((factor_score.to_f - mean) / standard_deviation).round(5)
+              ((factor_score.to_f - mean.to_f) / standard_deviation.to_f).round(5)
             end
           res.merge(factor_id => value.merge('zscore' => zscore))
         end

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Tooltip } from 'antd'
 import {
-  CheckOutlined, LoadingOutlined, PlayCircleOutlined,
+  CheckOutlined, LoadingOutlined, PlayCircleOutlined, FieldTimeOutlined,
 } from '@ant-design/icons'
 import '../styles.scss'
 import cs from 'classnames'
 import ConditionalWrap from 'conditional-wrap'
 import { UserAssessment, Statuses } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
-import { minutesLeftFromNow } from 'utils/time'
+import { secondsLeftFromNow } from 'utils/time'
 import ContinueIcon from '../ContinueIcon'
 
 const { I18n } = window
@@ -19,39 +19,32 @@ interface Props {
   loading: boolean
   loadAssessmentOrCheckingWizard(): void
   disabled: boolean
-  disabledReason: string
-  timer: {
-    fixedTime: boolean
-    campaignDuration: number
-    startedAt: string
-    expiryDate: string
-  }
+  isPartOfTimedCampaign: boolean
+  campaignExpiryDate: string
 }
 
 const AssessmentActionBtn: React.FC<Props> = ({
   userAssessment: {
     mindmill, mindmillUrl, url, status, needConfirm,
-    assessmentExtra: { timer },
+    assessmentExtra: { timer: totalAssessmentTime },
   },
   setShowConfirm,
   setShowTimingConfirmation,
   loading,
   loadAssessmentOrCheckingWizard,
   disabled,
-  disabledReason,
-  timer: {
-    fixedTime, expiryDate,
-  },
+  isPartOfTimedCampaign,
+  campaignExpiryDate,
 }) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
 
-  const showPolicyConfirm = (e: React.MouseEvent) => {
+  const handleBeginAssessment = (e: React.MouseEvent) => {
     e.preventDefault()
 
-    if (fixedTime && expiryDate) {
-      const deltaTime = minutesLeftFromNow(new Date(expiryDate))
-      if (deltaTime < (timer || 0) / 60) {
+    if (isPartOfTimedCampaign && campaignExpiryDate && totalAssessmentTime) {
+      const remainingCampaignTime = secondsLeftFromNow(campaignExpiryDate)
+      if (remainingCampaignTime && remainingCampaignTime < totalAssessmentTime) {
         return setShowTimingConfirmation(true)
       }
     }
@@ -59,6 +52,22 @@ const AssessmentActionBtn: React.FC<Props> = ({
     if (needConfirm) return setShowConfirm(true)
 
     loadAssessmentOrCheckingWizard()
+  }
+
+  const handleContinueAssessment = (e: React.MouseEvent) => {
+    e.preventDefault()
+
+    loadAssessmentOrCheckingWizard()
+  }
+
+  if (status === Statuses.TIMED_OUT) {
+    return (
+      <div>
+        <FieldTimeOutlined />
+        {' '}
+        {I18n.t('threesixty.timed_out')}
+      </div>
+    )
   }
 
   if (status === Statuses.COMPLETED) {
@@ -72,7 +81,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
   }
 
   const continueLink = (
-    <a href={href} className={cs({ disabled })} onClick={showPolicyConfirm}>
+    <a href={href} className={cs({ disabled })} onClick={handleContinueAssessment}>
       {loading ? <LoadingOutlined /> : <ContinueIcon disabled={disabled} />}
       {' '}
       {I18n.t('threesixty.continue')}
@@ -80,7 +89,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
   )
 
   const beginLink = (
-    <a href={href} className={cs({ disabled })} onClick={showPolicyConfirm}>
+    <a href={href} className={cs({ disabled })} onClick={handleBeginAssessment}>
       {I18n.t('threesixty.begin')}
       {' '}
       {loading ? <LoadingOutlined /> : <PlayCircleOutlined className="rtl-flip" />}
@@ -91,7 +100,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
     <ConditionalWrap
       condition={disabled}
       wrap={children => (
-        <Tooltip placement="topRight" title={disabledReason}>
+        <Tooltip placement="topRight" title={I18n.t('campaign.complete_prev')}>
           <span>
             {children}
           </span>

@@ -45,7 +45,7 @@ const AssessmentsReports: React.FC<Props> = ({
   fetchSingleUser,
   match: { params: { projectId, campaignId, id } },
   openModal,
-  toggleStatus,
+  toggleActive,
   remove,
   selectedIds,
   regenerateReports,
@@ -67,7 +67,8 @@ const AssessmentsReports: React.FC<Props> = ({
     not_started: 'blue',
     in_progress: 'orange',
     completed: 'green',
-    interrupted: 'red',
+    interrupted: 'orange',
+    timed_out: 'red',
   }
 
   const userCampaigns = () => {
@@ -109,7 +110,7 @@ const AssessmentsReports: React.FC<Props> = ({
     })
   }
 
-  const canExtendTime = (isFixedTime && user.completionStatus === 'interrupted')
+  const canExtendTime = (isFixedTime && ['timed_out', 'completed'].includes(user.status))
 
   return (
     <div>
@@ -148,12 +149,12 @@ const AssessmentsReports: React.FC<Props> = ({
           ]}
         >
           <Descriptions size="small" column={3}>
-            <Descriptions.Item label={I18n.t('common.column.status')}>
+            <Descriptions.Item label={I18n.t('administration.campaigns.users.is_active')}>
               <Switch
                 checked={user.active}
                 onChange={
                   () => {
-                    toggleStatus(campaignId, parsedUserId, { updateInListing: false })
+                    toggleActive(campaignId, parsedUserId, { updateInListing: false })
                   }
               }
               />
@@ -168,7 +169,18 @@ const AssessmentsReports: React.FC<Props> = ({
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
               <Tag key={status} color={statusToColor[user.completionStatus]}>
-                {I18n.t(`campaign_users.details.statuses.${user.completionStatus}`)}
+                {I18n.t(`frontend.campaign.users.completion_statuses.${user.completionStatus}`)}
+              </Tag>
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('common.column.status')}>
+              {user.additionalTime && user.status === 'interrupted'
+                && (
+                <span className="prs">
+                  {`+ ${Math.round(user.additionalTime / 60)} ${I18n.t('common.text.minutes')}`}
+                </span>
+                )}
+              <Tag key={status} color={statusToColor[user.status]}>
+                {I18n.t(`campaign_users.details.statuses.${user.status}`)}
               </Tag>
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.last_login')}>

@@ -42,7 +42,7 @@ module Datasheets
       return if errors.present?
 
       parsed_file[2..-1].each.with_index do |data, index|
-        errors.add(:file, :email_blank, row_number: index + 3) if data[Datasheet::EMAIL_COLUMN]&.chomp.blank?
+        errors.add(:file, :email_blank, row_number: index + 3) if data[Datasheet::EMAIL_COLUMN]&.strip.blank?
       end
     end
 
@@ -50,7 +50,7 @@ module Datasheets
     #
     def no_duplicates
       errors.add(:file, :email_duplicate) if parsed_file.
-                                             map { |item| item[Datasheet::EMAIL_COLUMN] }.
+                                             map { |item| item[Datasheet::EMAIL_COLUMN]&.strip&.downcase }.
                                              reject(&:blank?).
                                              uniq!
     end

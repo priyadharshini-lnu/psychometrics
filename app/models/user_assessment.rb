@@ -11,8 +11,9 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
+
   has_one :threesixty_campaign, through: :campaign
-  delegate :selected_locale, to: :users_result
+  delegate :selected_locale, :status, :real_status, to: :users_result, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -25,10 +26,16 @@ class UserAssessment < ApplicationRecord
     )
   }
 
+  after_commit :set_campaign_user_completion_status, on: %i[create destroy]
   before_save :set_default_relationship
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment]
+  end
+
+  def set_campaign_user_completion_status
+    campaign_user = CampaignUser.find_by(user_id: subject_id, campaign_id: campaign_id)
+    CampaignUsers::SetCompletionStatus.call!(campaign_user) if campaign_user
   end
 
   def set_default_relationship

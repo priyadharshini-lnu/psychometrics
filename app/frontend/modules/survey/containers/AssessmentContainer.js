@@ -20,7 +20,7 @@ class AssessmentContainer extends Component {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
       langPartial, result, selectedLocale, isAnonymousAssessment, rstore,
-      notAnEndPage, initialized, dontSaveStore, showScoringOnEndPage,
+      notAnEndPage, initialized, dontSaveStore, showScoringOnEndPage, showQuestionScoring,
     } = this.props
 
     this.langPartial = langPartial
@@ -45,6 +45,7 @@ class AssessmentContainer extends Component {
         dashboardUrl,
         notAnEndPage,
         showScoringOnEndPage,
+        showQuestionScoring,
       },
       result: dbResult,
     })

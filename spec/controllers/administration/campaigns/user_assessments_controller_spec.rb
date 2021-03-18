@@ -24,11 +24,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     )
   end
 
-  let!(:user_assessment) do
-    create(
-      :user_assessment, subject: user, assessment: assessment, campaign: campaign, users_result: users_result
-    )
-  end
+  let!(:user_assessment) { users_result.user_assessment }
 
   let!(:user_report) do
     create(

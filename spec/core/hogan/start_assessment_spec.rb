@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Hogan::StartAssessment do
   let(:assessment) { create(:assessment, type: 'Assessments::Hogan', dimension: nil) }
-  let(:user_result) { build(:users_result, assessment: assessment, evaluator: user) }
+  let(:user_result) { create(:users_result, assessment: assessment, evaluator: user) }
   let(:user) { create(:user) }
   let(:project) { create(:project) }
 

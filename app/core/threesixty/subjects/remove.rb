@@ -15,8 +15,7 @@ module Threesixty
 
       def call
         subject.user_reports.where(campaign_id: campaign.id).each(&:destroy!)
-        subject.evaluated_results.where(campaign_id: campaign.id).each(&:destroy!)
-        subject.participants.where(campaign_id: campaign.id).each(&:destroy!)
+        remove_all_participants
 
         if remove_license_usage
           ::Threesixty::LicenseUsages::Deactivate.call!(
@@ -27,6 +26,17 @@ module Threesixty
         end
 
         subject.destroy!
+      end
+
+      private
+
+      def remove_all_participants
+        participants = Threesixty::Participant.
+                       where(subject_id: subject.user_id, campaign_id: campaign.id).
+                       or(
+                         Threesixty::Participant.where(evaluator_id: subject.user_id, campaign_id: campaign.id)
+                       )
+        participants.map(&:destroy!)
       end
     end
   end

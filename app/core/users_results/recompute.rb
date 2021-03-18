@@ -34,7 +34,9 @@ module UsersResults
     end
 
     def compute_agile_assessment_scoring
-      ::UsersResults::CalculateAgileScoring.call!(user_result, current_user)
+      user_result.update!(
+        scoring: ::UsersResults::CalculateAgileScoring.call!(user_result, current_user)
+      )
     end
 
     def norm_data

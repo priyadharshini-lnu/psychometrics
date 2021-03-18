@@ -1,15 +1,18 @@
 /* eslint-disable max-len */
 import React from 'react'
 import {
-  Row, Col, Card,
+  Row, Col, Card, Tooltip,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import truncate from 'lodash/truncate'
 
-import './styles.scss'
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
+
+import './styles.scss'
 
 export default function Common ({ campaign }) {
   return (
@@ -32,8 +35,12 @@ export default function Common ({ campaign }) {
         >
           <div className="card-body">
             <div className="card-content">
-              <div className="card-title" title={campaign.name}>
-                {truncate(campaign.name, { length: 55 })}
+              <div className="card-title">
+                <Tooltip title={campaign.name} placement="bottom">
+                  <span>
+                    {truncate(campaign.name, { length: ASSESSMENT_TITLE_MAX_LENGTH })}
+                  </span>
+                </Tooltip>
               </div>
               <Row type="flex" className="info-line">
                 <Col className="info-block">

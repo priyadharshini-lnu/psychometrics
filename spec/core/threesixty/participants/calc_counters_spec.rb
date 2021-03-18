@@ -13,16 +13,11 @@ describe Threesixty::Participants::CalcCounters do
     before do
       campaign = option_which_does_not_require_approval.threesixty_campaign.campaign
       create(:threesixty_participant,
-             campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :approved)
-      create(:threesixty_participant, subject_id: subject_1.user_id, manager_nomination_status: :approved)
-      create(:threesixty_participant,
              campaign: campaign, subject_id: subject_2.user_id, manager_nomination_status: :approved)
       create(:threesixty_participant,
              campaign: campaign, evaluator_id: subject_2.user_id, manager_nomination_status: :approved)
       create(:threesixty_participant,
              campaign: campaign, evaluator_id: subject_1.user_id, manager_nomination_status: :waiting)
-      create(:threesixty_participant,
-             campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :waiting)
       create(:users_result, campaign: campaign, subject_id: subject_1.user_id, status: :completed)
       create(:users_result, campaign: campaign, subject_id: subject_1.user_id, status: :completed)
     end

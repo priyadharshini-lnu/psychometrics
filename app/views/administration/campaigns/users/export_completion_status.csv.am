@@ -1,13 +1,15 @@
 
 csv << headers
 
-users_results.each do |user_result|
+user_assessments.each do |user_assessment|
+  user_result = user_assessment.users_result
+
   row = [
           user_result.encoded_id,
-          user_result.user.decorate.full_name,
-          user_result.user.email,
-          user_result.assessment.decorate.category,
-          user_result.assessment.name,
+          user_assessment.user.decorate.full_name,
+          user_assessment.user.email,
+          user_assessment.assessment.decorate.category,
+          user_assessment.assessment.name,
           user_result.decorate.started_at_with_time,
           user_result.decorate.completed_at_with_time,
           user_result.decorate.status,

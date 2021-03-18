@@ -64,7 +64,7 @@ gem 'cocoon', '1.2.9'
 gem 'simple_form',                '5.0.2'
 ### Pagination helpers
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
-gem 'kaminari',                   '~> 0.17.0'
+gem 'kaminari',                   '~> 1.2.1'
 ### Breadcrumbs
 gem 'breadcrumbs_on_rails',       '~> 4.0.0'
 ### Filter data list

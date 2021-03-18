@@ -30,10 +30,7 @@ module Communications
       end
 
       def fetch_campaign_users(communication)
-        communication.selected_campaign_users.
-          joins(user_assessments: :users_result).
-          where(user_assessments: { campaign_id: communication.campaign_id, users_results: { status: :not_started } }).
-          distinct
+        communication.selected_campaign_users.where(completion_status: :not_started)
       end
 
       def fetch_memberships(communication)

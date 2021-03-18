@@ -55,7 +55,7 @@ interface DisplayRecordValue {
 
 const DisplayRecordValue: FC<DisplayRecordValue> = ({ record }) => {
   if (record.type === 'Markdown') {
-    return <ReactMarkdown>{record.value}</ReactMarkdown>
+    return <ReactMarkdown>{`${record.value}`}</ReactMarkdown>
   }
 
   if (record.type === 'HTML') {

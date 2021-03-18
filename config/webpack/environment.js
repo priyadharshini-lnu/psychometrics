@@ -16,6 +16,7 @@ const DEVTOOL = env.DEVTOOL || false
 const __DEV__ = env.NODE_ENV === 'development'
 const __TEST__ = env.NODE_ENV === 'test'
 const __PROD__ = env.NODE_ENV === 'production'
+const __RUN_ESLINT__ = env.RUN_ESLINT === 'true'
 
 environment.plugins.insert(
   'DefinePlugin',
@@ -33,18 +34,21 @@ environment.plugins.insert(
     RecordRTC: 'recordrtc',
   }),
 )
-if (__DEV__ || env.ENABLE_TS_FORK_CHECKER) {
-  environment.plugins.insert('TsForkChecker', new ForkTsCheckerWebpackPlugin({
-    eslint: {
-      files: './app/frontend/**/*.{ts,tsx,js,jsx}',
-    },
+if (__DEV__) {
+  let forkTsCheckerArgs = {
     typescript: {
       diagnosticOptions: {
         semantic: true,
         syntactic: true,
-      },
-    },
-  }))
+      }
+    }
+  }
+
+  if (__RUN_ESLINT__) {
+    forkTsCheckerArgs.eslint = { files: './app/frontend/**/*.{ts,tsx,js,jsx}', }
+  }
+
+  environment.plugins.insert('TsForkChecker', new ForkTsCheckerWebpackPlugin(forkTsCheckerArgs))
 }
 
 // Uncomment to activate bundle analyzer
@@ -100,6 +104,7 @@ const vendors = [
   'mime-db',
   'esprima',
   'fbemitter',
+  'ajv',
 ]
 
 const vendors2 = [

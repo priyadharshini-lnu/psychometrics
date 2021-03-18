@@ -34,8 +34,13 @@ module Threesixty
       end
 
       def evaluator_ids_with_completed_evaluations
-        UsersResult.actual_by_options(option).
-          where(subject_id: subject.user_id, status: :completed, campaign_id: threesixty_campaign.campaign_id).
+        UsersResult.joins(:user_assessment).actual_by_options(option).
+          where(
+            user_assessments: {
+              subject_id: subject.user_id, campaign_id: threesixty_campaign.campaign_id
+            },
+            status: :completed
+          ).
           pluck(:evaluator_id)
       end
     end
