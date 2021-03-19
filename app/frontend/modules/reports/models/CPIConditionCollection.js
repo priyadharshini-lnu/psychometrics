@@ -10,6 +10,7 @@ const CPIConditionCollection = function (attrs = {}, module) {
   this.blindspots = attrs.blindspots
   this.workstyles = attrs.workstyles
   this.possibleRoles = attrs.possibleRoles
+  this.label = attrs.label
   this.color = attrs.color
   this.module = module
   this.factorId = attrs.factorId
@@ -33,6 +34,7 @@ _.extend(CPIConditionCollection.prototype, {
       blindspots: this.blindspots,
       workstyles: this.workstyles,
       possibleRoles: this.possibleRoles,
+      label: this.label,
       color: this.color,
       factorId: this.factorId,
       styles: this.styles,
@@ -70,13 +72,13 @@ _.extend(CPIConditionCollection.prototype, {
 
   getColorByCondition (score) {
     if (this.conditions.length === 0) {
-      return {}
+      return null
     }
     let result = true
     _.each(this.conditions, (cond) => {
       result = result && cond.isValid(score)
     })
-    return result ? this.color : {}
+    return result ? this.color : null
   },
 
   getStylesByCondition (score) {

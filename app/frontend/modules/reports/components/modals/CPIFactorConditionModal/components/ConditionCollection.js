@@ -43,9 +43,14 @@ export class ConditionCollection extends Component {
     this.changeText('possibleRoles', e.currentTarget.value)
   }
 
+  changeLabel = (e) => {
+    this.changeText('label', e.currentTarget.value)
+  }
+
   changeColor = (color) => {
     const { model } = this.props
     model.color = color.hex
+    this.forceUpdate()
   }
 
   remove = () => {
@@ -137,6 +142,15 @@ export class ConditionCollection extends Component {
             value={model.possibleRoles || ''}
             onChange={this.changePossibleRoles}
             style={{ width: '100%', display: 'inline-block' }}
+          />
+        </div>
+        <div>
+          <strong>Label</strong>
+          <input
+            type="text"
+            className="form-control"
+            value={model.label || ''}
+            onChange={this.changeLabel}
           />
         </div>
         <div style={{ position: 'relative' }}>

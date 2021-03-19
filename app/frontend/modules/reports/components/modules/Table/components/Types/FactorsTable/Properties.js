@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
+import { InputNumber } from 'antd'
 import AppStore from 'rb/store/AppStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
 import _ from 'lodash'
 import Select from 'react-select'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import ColorPicker from 'rb/components/ColorPicker'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 
@@ -93,6 +95,12 @@ class Properties extends Component {
   setSortedFactors = (factors) => {
     const { model } = this.props
     model.props.source = { factors }
+    model.update()
+  }
+
+  onChangeColor = (key, value) => {
+    const { model } = this.props
+    model.props[key] = value
     model.update()
   }
 
@@ -195,9 +203,12 @@ class Properties extends Component {
         disabled: mode === 'orderedFactors',
       },
       { label: 'Score', prop: 'showScore', default: false },
+      { label: 'Name', prop: 'showName', default: false },
       { label: 'Description', prop: 'showDescription', default: false },
       { label: 'Strengths & Blindspots', prop: 'showStrengthsBlindspots', default: false },
       { label: 'Icons', prop: 'showIcons', default: false },
+      { label: 'Label', prop: 'showLabel', default: false },
+      { label: 'Border', prop: 'showBorder', default: false },
     ]
 
     return (
@@ -257,6 +268,11 @@ class Properties extends Component {
         )}
         <hr className={styles.divider} />
         <div className="margin-top-10">
+          <div className={cs(styles.label, 'mbm mtl')}>Max Value</div>
+          <InputNumber defaultValue={model.props.maxScoreValue} onBlur={e => this.changeProp('maxScoreValue', e)} />
+        </div>
+        <hr className={styles.divider} />
+        <div className="margin-top-10">
           <div className={cs(styles.label, 'mbm mtl')}>Show Elements</div>
           {this.renderTableOptions()}
         </div>
@@ -266,6 +282,24 @@ class Properties extends Component {
           {this.renderStyleSelect()}
         </div>
         <hr className={styles.divider} />
+        <div className={styles.block}>
+          Score Color
+          <div className={styles.flexRow}>
+            <ColorPicker
+              color={model.props.scoreProgressColor}
+              onChange={color => this.onChangeColor('scoreProgressColor', color.hex)}
+            />
+          </div>
+        </div>
+        <div className={styles.block}>
+          Score Background Color
+          <div className={styles.flexRow}>
+            <ColorPicker
+              color={model.props.scoreBackgroundColor}
+              onChange={color => this.onChangeColor('scoreBackgroundColor', color.hex)}
+            />
+          </div>
+        </div>
         <div>Font</div>
         <PropertyFonts model={model} colors={false} />
         <hr className={styles.divider} />
