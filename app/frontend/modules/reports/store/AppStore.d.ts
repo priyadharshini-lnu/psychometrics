@@ -10,6 +10,8 @@ declare class AppStore {
 
   mapFactors: object
 
+  factors: object
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   assessments: { [key: string]: any}[]
 
@@ -20,6 +22,8 @@ declare class AppStore {
   subfactors: object
 
   isSubfactor(factorId: number): boolean
+
+  factorsByAssessmentId(assessmentId: number): object[]
 }
 
 export = new AppStore()

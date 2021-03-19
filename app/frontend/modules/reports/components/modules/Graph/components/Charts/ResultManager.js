@@ -1,13 +1,22 @@
 import _ from 'lodash'
 import ResultStore from 'rb/store/ResultStore'
+import AppStore from 'rb/store/AppStore'
+
 /**
   * Define mock results if it is required
   * Return results based filters
   */
-export const getCorrectResults = (model) => {
+export const getCorrectResults = (model, mockFactorIds = []) => {
   if (!ResultStore.realResults) {
+    let factors = model.props.source.factors || []
+    if (mockFactorIds.length) {
+      factors = AppStore.factorsByAssessmentId(model.assessment_id).filter(f => mockFactorIds.includes(f.id))
+    }
     ResultStore.setMockResults(
-      model.assessment_id, model.getSourceType(), model.getSourceModel(), model.props.source.factors,
+      model.assessment_id,
+      model.getSourceType(),
+      model.getSourceModel(),
+      factors,
     )
     if (model.isMultiFiltering() && model.props.filter
       && Array.isArray(model.props.filter) && model.props.filter.length) {

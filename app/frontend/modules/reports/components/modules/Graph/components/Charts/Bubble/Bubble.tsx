@@ -1,7 +1,9 @@
-import React, { FC, useEffect, useRef } from 'react'
+import React, {
+  FC, useEffect, useRef, useState,
+} from 'react'
 import Highcharts, { Chart } from 'highcharts-v9'
 import highChartMore from 'highcharts-v9/highcharts-more'
-import merge from 'lodash/merge'
+import _ from 'lodash'
 
 import { getCorrectResults } from '../ResultManager'
 import { createFactorSeries, getFactorValue } from './series/factors'
@@ -11,7 +13,7 @@ import {
   ChartOptions,
 } from './chartOptions'
 
-import { SeriesDataIdPoint, ColorsFromPallet } from './interfaces/graph'
+import { SeriesDataIdPoint, ColorsFromPallet, Size } from './interfaces/graph'
 
 highChartMore(Highcharts)
 
@@ -23,17 +25,22 @@ interface Props {
 const Bubble: FC<Props> = ({ model }) => {
   const chartContainer = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
+  const [plotSize, setPlotSize] = useState<Size>({ width: 0, height: 0 })
 
   useEffect(() => {
     if (!chartContainer.current) {
       return
     }
-
-    const chartOptions = getBubbleChartOptions(model)
+    const chartOptions = getBubbleChartOptions(model, plotSize)
     if (chartRef.current) {
       chartRef.current.update(chartOptions, true, true, false)
     } else {
       chartRef.current = Highcharts.chart(chartContainer.current, chartOptions)
+    }
+
+    const size: Size = { width: chartRef.current.plotWidth, height: chartRef.current.plotHeight }
+    if (!_.isEqual(size, plotSize)) {
+      setPlotSize(size)
     }
   })
 
@@ -51,7 +58,7 @@ const Bubble: FC<Props> = ({ model }) => {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getBubbleChartOptions = (model: any): ChartOptions => {
+const getBubbleChartOptions = (model: any, size: Size): ChartOptions => {
   const {
     source,
     seriesValueIds,
@@ -59,6 +66,11 @@ const getBubbleChartOptions = (model: any): ChartOptions => {
     xMeanValueId,
     yMeanTitle,
     yMeanValueId,
+    xMin = 0,
+    xMax = 100,
+    yMin = 0,
+    yMax = 100,
+    bubbleSize,
     transparentBackground = false,
     colors: chartColors,
   } = model.props
@@ -86,8 +98,14 @@ const getBubbleChartOptions = (model: any): ChartOptions => {
 
   let updatedChartOptions: ChartOptions = defaultChartOptions
   let seriesData: SeriesDataIdPoint[] = []
-
-  const correctedResults = getCorrectResults(model)
+  const usedFactorIds = _(seriesValueIds)
+    .map(s => [s.x, s.y])
+    .concat(xMeanValueId, yMeanValueId)
+    .flatten()
+    .compact()
+    .uniq()
+    .value()
+  const correctedResults = getCorrectResults(model, usedFactorIds)
   if (sourceType === 'Factor') {
     seriesData = createFactorSeries(correctedResults, seriesValueIds)
 
@@ -97,11 +115,17 @@ const getBubbleChartOptions = (model: any): ChartOptions => {
       xMean: getFactorValue(correctedResults, xMeanValueId),
       yMeanTitle,
       yMean: getFactorValue(correctedResults, yMeanValueId),
+      xMin,
+      xMax,
+      yMin,
+      yMax,
       colors,
+      size,
+      bubbleSize,
     })
   }
 
-  const configChartOptions = merge(defaultChartOptions, updatedChartOptions)
+  const configChartOptions = _.merge(defaultChartOptions, updatedChartOptions)
   const chartOptions: ChartOptions = {
     ...configChartOptions,
     series: [

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'rb/store/AppStore'
+import { connect } from 'react-redux'
+import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionList from './ConditionList'
 import localStyles from './types/Scoring/Scoring.scss'
@@ -63,10 +64,8 @@ export class ConditionCollection extends Component {
   }
 
   renderConditions () {
-    const { model } = this.props
-    const assessment = _.find(AppStore.assessments, { id: model.module.assessment_id })
-    const dimensionId = assessment && assessment.dimensionId
-    const list = AppStore.factors[dimensionId]
+    const { model, factors } = this.props
+
     return (
       <div className={styles.listWrapper}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -77,7 +76,7 @@ export class ConditionCollection extends Component {
             className={`form-control ${localStyles.subjectSelect}`}
           >
             {!model.factorId && <option />}
-            {list.map(factor => (
+            {factors.map(factor => (
               <option key={factor.id} value={factor.id}>
                 {factor.alias}
               </option>
@@ -165,4 +164,6 @@ export class ConditionCollection extends Component {
   }
 }
 
-export default ConditionCollection
+export default connect((state, props) => ({
+  factors: getAssessmentFactors(state, props.model.module.assessment_id),
+}), {})(ConditionCollection)

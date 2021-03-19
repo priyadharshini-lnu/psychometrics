@@ -8,3 +8,8 @@ export type ColorsFromPallet = {
   id: number
   color: string
 }
+
+export type Size = {
+  width: number
+  height: number
+}

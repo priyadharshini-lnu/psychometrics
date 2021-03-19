@@ -190,6 +190,12 @@ _.extend(AppStore.prototype, {
   getAssessmentById (id) {
     return this.assessments.find(assessment => assessment.id === id)
   },
+
+  factorsByAssessmentId (id) {
+    const assessment = this.assessments.find(a => a.id === id)
+    const dimensionId = assessment?.dimensionId
+    return dimensionId ? this.factors[dimensionId] : []
+  },
 })
 
 export default new AppStore()

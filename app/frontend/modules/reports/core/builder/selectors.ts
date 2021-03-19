@@ -6,6 +6,7 @@ import {
   module, page, pages, blocks as blocksSchema,
 } from 'modules/reports/store/schema'
 import QuestionModel from 'modules/reports/models/Question'
+import { RootState } from 'modules/reports/core/rootReducers'
 import ModuleInterface from '../interfaces/Module'
 import PageInterface from '../interfaces/Page'
 
@@ -75,3 +76,7 @@ export const getEmbeddedData = (state: any, assessmentId: number) => {
 export const getAllFactors = (state: any) => state?.builder?.factors ?? []
 
 export const getAllAssessments = (state: any) => state?.builder?.assessments ?? {}
+
+export const getAssessmentFactors = (state: RootState, assessmentId: number) => (
+  state.report.builder.factors[state.report.builder.assessments[assessmentId]?.dimension_id] || []
+)
