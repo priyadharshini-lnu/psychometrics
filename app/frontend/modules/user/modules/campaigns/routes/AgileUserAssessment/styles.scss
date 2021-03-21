@@ -1,8 +1,18 @@
 :global {
+  .agile-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 190px);
+  }
   .agile-container {
     overflow: visible !important;
-    canvas {
-      margin: 6px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > canvas {
+      margin: 0px auto !important;
       border-radius: 6px;
       overflow: hidden;
       box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
