@@ -36,6 +36,7 @@
 
   td {
     padding: 1em;
+    padding-bottom: 0;
     text-align: start;
     vertical-align: top;
     white-space: normal;
@@ -70,6 +71,10 @@
       gap: 2em;
       grid-template-areas: "icon content";
       grid-auto-columns: minmax(min-content, max-content);
+
+      ul, ol {
+        padding-inline-start: 1.4em;
+      }
 
       .strengthsBlindspots {
         display: flex;
