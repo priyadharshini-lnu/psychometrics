@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BulkReportMailer < ApplicationMailer
+  layout 'admin_email'
+
   def notify(report)
     @report = report
     @user = report.user

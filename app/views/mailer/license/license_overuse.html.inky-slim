@@ -1,0 +1,8 @@
+container.email-container
+  row
+    columns.email-content
+      p License expired.
+      - if @client
+        p
+          = "Check Client #{@client.decorate.display_name} License usage "
+          = link_to "here.", license_administration_client_url(@client)
