@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .header {
   z-index: 1;
   box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.1);
@@ -31,6 +33,14 @@
     .anticon.anticon-question-circle {
       top: 7px;
       position: relative;
+    }
+  }
+}
+
+@media(max-width: $screen-lg) {
+  :global(.ant-layout-header) {
+    &.header {
+      padding: 0 20px;
     }
   }
 }
