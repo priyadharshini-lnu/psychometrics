@@ -5,6 +5,9 @@ import {
 } from 'antd'
 import styles from './styles.scss'
 
+const { TextArea } = Input
+const { I18n } = window
+
 interface Props {
   campaignId: number
   close(): void
@@ -82,6 +85,15 @@ const CodeFormModal: React.FC<Props> = ({
             valuePropName="checked"
           >
             <Checkbox>Active</Checkbox>
+          </Form.Item>
+          <Form.Item
+            name="restrictedDomains"
+            label={I18n.t('registration_code.restricted_domains')}
+          >
+            <TextArea
+              placeholder={I18n.t('registration_code.one_domain_per_line')}
+              autoSize={{ minRows: 2, maxRows: 5 }}
+            />
           </Form.Item>
         </>
       )}

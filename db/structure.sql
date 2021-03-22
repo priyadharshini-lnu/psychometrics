@@ -2510,7 +2510,8 @@ CREATE TABLE public.registration_codes (
     disabled boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    campaign_id integer
+    campaign_id integer,
+    restricted_domains text[]
 );
 
 
@@ -7860,6 +7861,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210304111031'),
 ('20210304111041'),
 ('20210308170950'),
-('20210319150315');
+('20210319150315'),
+('20210321134006');
 
 

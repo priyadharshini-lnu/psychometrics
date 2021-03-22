@@ -168,6 +168,7 @@ en:
             registration_code:
               blank: Registration code is required
               invalid: Registration code is invalid
+              incorrect_email_domain: This email address is not valid for the entered registration code
         super_admin_edit:
           attributes:
             email:
@@ -1572,6 +1573,9 @@ en:
       username: Username
     update:
       successfully: Profile updated
+  registration_code:
+    restricted_domains: Restricted domains
+    one_domain_per_line: One domain name per line
   reports:
     actions:
       add: Add Report

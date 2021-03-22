@@ -6,6 +6,7 @@ import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined,
 } from '@ant-design/icons'
+import array from 'utils/array'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { RegistrationCode } from 'modules/admin/modules/campaigns/core/registrationCodes'
@@ -20,6 +21,7 @@ const MODALS = {
   CodeModal,
 }
 const { Column } = Table
+const { I18n } = window
 
 interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
@@ -104,6 +106,11 @@ const RegistrationCodes: React.FC<Props> = ({
               title="End date"
               key="endDate"
               render={({ endDate }) => formatedDate(endDate)}
+            />
+            <Column
+              title={I18n.t('registration_code.restricted_domains')}
+              key="restrictedDomains"
+              render={({ restrictedDomains }) => array.joinJSXElements(restrictedDomains.split('\n'), <br />)}
             />
             <Column
               title="Usage stats"
