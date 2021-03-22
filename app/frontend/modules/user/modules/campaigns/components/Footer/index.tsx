@@ -15,7 +15,7 @@ import { get as getConfig } from 'modules/user/core/config'
 import lighthouseLogo from 'modules/user/assets/images/lighthouseLogo.svg'
 import tteLogo from 'modules/user/assets/images/tteLogo.svg'
 
-import './styles.scss'
+import styles from './styles.scss'
 
 const { I18n } = window
 
@@ -43,7 +43,7 @@ const Footer: FC<PropsFromRedux> = ({
   }
 
   return (
-    <Layout.Footer>
+    <Layout.Footer className={styles.footer}>
       <Row align="middle" justify="space-between">
         <TTELogo />
         <ProductUsageLinks

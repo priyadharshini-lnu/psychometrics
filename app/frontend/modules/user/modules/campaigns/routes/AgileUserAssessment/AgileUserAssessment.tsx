@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Space,
+  Layout,
 } from 'antd'
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import qs from 'qs'
-import { isRtl } from 'utils/locales'
 import './styles.scss'
 import { PropsFromRedux } from './connect'
 
 const { Content } = Layout
-const { I18n } = window
 
 interface OwnProps {
   agileUserAssessmentUrl?: string
@@ -20,7 +17,7 @@ interface OwnProps {
 type Props = OwnProps & PropsFromRedux & RouteComponentProps
 
 const AgileUserAssessment: React.FC<Props> = ({
-  isFrame,
+  // isFrame,
   agileAssetsUrl,
   agileUserAssessmentUrl,
   isAnonym,
@@ -53,24 +50,11 @@ const AgileUserAssessment: React.FC<Props> = ({
   useEffect(() => {
     initializeAgile()
   }, [])
-  const rtl = isRtl(I18n.uiLocale)
+
   return (
     <Layout>
-      <Content className="fluid-container">
-        <PageHeader
-          title={null}
-          className="page-header"
-          backIcon={!isFrame && (
-            <Space>
-                {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
-                {` ${I18n.t('assessments.page.back')}`}
-            </Space>
-          )}
-          onBack={() => { window.location.href = '/campaigns' }}
-        >
-          <div id="agile-container" className="agile-container" />
-          <div className="mbl" />
-        </PageHeader>
+      <Content className="agile-content mtm mbm">
+        <div id="agile-container" className="agile-container" />
       </Content>
     </Layout>
   )

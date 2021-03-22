@@ -7,6 +7,7 @@ import AppStore from './AppStore'
 
 const ResultStore = function () {
   this.results = {}
+  this.realResults = false
 }
 
 ResultStore.prototype = new EventEmitter()

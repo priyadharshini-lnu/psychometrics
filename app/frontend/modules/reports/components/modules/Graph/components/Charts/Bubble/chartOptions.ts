@@ -1,4 +1,5 @@
 import { SeriesBubbleOptions, Options } from 'highcharts-v9'
+import { Size } from './interfaces/graph'
 
 export interface ChartOptions extends Options {
   series?: SeriesBubbleOptions[]
@@ -6,7 +7,7 @@ export interface ChartOptions extends Options {
 
 export const defaultChartOptions: ChartOptions = {
   chart: {
-    plotBorderWidth: 1,
+    plotBorderWidth: 0,
     backgroundColor: '',
     animation: false,
   },
@@ -25,66 +26,65 @@ export const defaultChartOptions: ChartOptions = {
   subtitle: {
     text: '',
   },
-  xAxis: [
-    {
-      gridLineWidth: 1,
-      title: {
-        text: '',
-      },
-      labels: {
-        format: '{value}',
-      },
-      zoomEnabled: false,
-      plotLines: [
-        {
-          color: 'black',
-          dashStyle: 'Dot',
-          width: 2,
-          value: 0,
-          label: {
-            rotation: 0,
-            y: 15,
-            style: {
-              fontStyle: 'italic',
-            },
-            text: '',
-          },
-          zIndex: 3,
-        },
-      ],
+  xAxis: {
+    gridLineWidth: 0,
+    title: {
+      text: '',
     },
-  ],
-  yAxis: [
-    {
-      startOnTick: false,
-      endOnTick: false,
-      title: {
-        text: '',
-      },
-      labels: {
-        format: '{value}',
-      },
-      zoomEnabled: false,
-      maxPadding: 0.2,
-      plotLines: [
-        {
-          color: 'black',
-          dashStyle: 'Dot',
-          width: 2,
-          value: 0,
-          label: {
-            align: 'right',
-            style: {
-              fontStyle: 'italic',
-            },
-            text: '',
-            x: -10,
-          },
-          zIndex: 3,
-        },
-      ],
+    labels: {
+      format: '{value}',
     },
-  ],
+    zoomEnabled: false,
+    plotLines: [
+      {
+        color: 'black',
+        dashStyle: 'Dot',
+        width: 2,
+        value: 0,
+        label: {
+          rotation: 0,
+          y: 15,
+          style: {
+            fontStyle: 'italic',
+          },
+          text: '',
+        },
+        zIndex: 3,
+      },
+    ],
+  },
+  yAxis: {
+    startOnTick: false,
+    lineWidth: 1,
+    tickWidth: 1,
+    gridLineWidth: 0,
+    endOnTick: false,
+    title: {
+      text: '',
+    },
+    labels: {
+      format: '{value}',
+    },
+    zoomEnabled: false,
+    maxPadding: 0.2,
+    plotLines: [
+      {
+        color: 'black',
+        dashStyle: 'Dot',
+        width: 2,
+        value: 0,
+        label: {
+          align: 'right',
+          style: {
+            fontStyle: 'italic',
+          },
+          text: '',
+          x: -10,
+        },
+        zIndex: 3,
+      },
+    ],
+  },
   plotOptions: {
     series: {
       dataLabels: {
@@ -104,7 +104,13 @@ interface AdditionalChartOptions {
   xMeanTitle: string
   yMean: number
   yMeanTitle: string
+  xMin: number
+  xMax: number
+  yMin: number
+  yMax: number
   colors: string[]
+  size: Size
+  bubbleSize: number
 }
 
 export const additionalChartOptions = ({
@@ -113,34 +119,50 @@ export const additionalChartOptions = ({
   xMeanTitle = '',
   yMean = 0,
   yMeanTitle = '',
+  xMin = 0,
+  xMax = 100,
+  yMin = 0,
+  yMax = 100,
   colors = [],
+  size,
+  bubbleSize,
 }: AdditionalChartOptions): ChartOptions => ({
   chart: {
     backgroundColor,
   },
   colors,
-  xAxis: [
-    {
-      plotLines: [
-        {
-          value: xMean,
-          label: {
-            text: xMeanTitle,
-          },
-        },
-      ],
+  xAxis: {
+    title: {
+      text: xMeanTitle,
+      align: 'high',
+      y: -50,
     },
-  ],
-  yAxis: [
-    {
-      plotLines: [
-        {
-          value: yMean,
-          label: {
-            text: yMeanTitle,
-          },
-        },
-      ],
+    min: xMin,
+    max: xMax,
+    offset: yMean && (yMax - yMin > 0) ? -yMean * size.height / (yMax - yMin) : 0,
+  },
+  yAxis: {
+    title: {
+      text: yMeanTitle,
+      align: 'low',
+      rotation: 0,
+      y: 20,
     },
-  ],
+    min: yMin,
+    max: yMax,
+    offset: xMean && (xMax - xMin > 0) ? -xMean * size.width / (xMax - xMin) : 0,
+  },
+  plotOptions: {
+    bubble: {
+      ...(bubbleSize ? {
+        sizeBy: 'width',
+        minSize: bubbleSize,
+        maxSize: bubbleSize,
+        dataLabels: {
+          y: bubbleSize + 10,
+          allowOverlap: true,
+        },
+      } : {}),
+    },
+  },
 })

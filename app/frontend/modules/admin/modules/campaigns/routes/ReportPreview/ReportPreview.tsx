@@ -107,6 +107,7 @@ export default function ReportPreview ({
               onClick={() => download(parsedCampaignId, parsedId)}
               loading={downloadInProgress}
               disabled={downloadInProgress}
+              key="download"
             >
               {I18n.t('common.text.download')}
             </Button>,

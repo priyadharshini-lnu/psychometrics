@@ -6,6 +6,8 @@ interface Props {
   percent: number
   className: string
   text: string
+  progressColor?: string
+  backgroundColor?: string
 }
 
 const strokeWidth = 10
@@ -15,6 +17,8 @@ const PieGraph: React.FC<Props> = ({
   percent = 25,
   text = percent.toString(),
   className,
+  progressColor,
+  backgroundColor,
 }) => {
   const radius = (size - strokeWidth) / 2
   const innerRadius = radius - (strokeWidth * 1.2)
@@ -33,6 +37,9 @@ const PieGraph: React.FC<Props> = ({
           cy={50}
           r={radius}
           strokeWidth={`${strokeWidth}px`}
+          style={{
+            stroke: backgroundColor ?? '#d8fefd',
+          }}
         />
         <circle
           className={styles.circleProgress}
@@ -45,6 +52,7 @@ const PieGraph: React.FC<Props> = ({
           style={{
             strokeDasharray: dashArray,
             strokeDashoffset: dashOffset,
+            stroke: progressColor ?? '#51d0d4',
           }}
         />
         <circle
