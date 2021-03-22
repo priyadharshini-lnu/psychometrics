@@ -110,7 +110,8 @@ const RegistrationCodes: React.FC<Props> = ({
             <Column
               title={I18n.t('registration_code.restricted_domains')}
               key="restrictedDomains"
-              render={({ restrictedDomains }) => array.joinJSXElements(restrictedDomains.split('\n'), <br />)}
+              render={({ restrictedDomains }) => (
+                restrictedDomains && array.joinJSXElements(restrictedDomains.split('\n'), <br />))}
             />
             <Column
               title="Usage stats"
