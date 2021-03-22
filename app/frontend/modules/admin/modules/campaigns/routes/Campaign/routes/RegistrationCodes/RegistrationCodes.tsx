@@ -6,7 +6,6 @@ import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined,
 } from '@ant-design/icons'
-import array from 'utils/array'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { RegistrationCode } from 'modules/admin/modules/campaigns/core/registrationCodes'
@@ -110,8 +109,7 @@ const RegistrationCodes: React.FC<Props> = ({
             <Column
               title={I18n.t('registration_code.restricted_domains')}
               key="restrictedDomains"
-              render={({ restrictedDomains }) => (
-                restrictedDomains && array.joinJSXElements(restrictedDomains.split('\n'), <br />))}
+              render={({ restrictedDomains }) => (restrictedDomains ? restrictedDomains.split('\n').length : 0)}
             />
             <Column
               title="Usage stats"
