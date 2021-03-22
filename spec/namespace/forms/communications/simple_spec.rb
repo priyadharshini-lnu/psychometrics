@@ -61,6 +61,7 @@ RSpec.describe ::Forms::Communications::Simple do
 
   describe 'validation' do
     it 'should be valid with valid params' do
+      sub_campaign.project.update(migrated: false)
       form.prepopulate!(current_user: superadmin)
       expect(form.validate(valid_params)).to be_truthy
     end
