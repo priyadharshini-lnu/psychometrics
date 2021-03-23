@@ -1,0 +1,10 @@
+container.email-container
+  row
+    columns.email-content
+      - if @tasks.empty?
+        p There are no deployment tasks to be completed for this release
+      - else
+        p="You need to complete following tasks on '#{ENV['REAL_ENV']}' enviroment"
+        ul
+          - @tasks.each do |task|
+            li.list= task
