@@ -60,7 +60,7 @@ module Threesixty
             params = {
               user_ids: user_ids,
               campaign_id: campaign.id,
-              user_result_status: UsersResult.statuses[:completed],
+              user_result_status: UserAssessment.statuses[:completed],
               manager_nomination_status: Threesixty::Participant.manager_nomination_statuses[:denied],
               evaluator_nomination_status: Threesixty::Participant.evaluator_nomination_statuses[:declined]
             }
@@ -73,7 +73,7 @@ module Threesixty
         SELECT count(participants.id) as cache_counter, participants.subject_id, relationship_id
         FROM user_assessments as participants
         LEFT JOIN users_results ur on ur.id = participants.users_result_id
-        WHERE participants.subject_id in (:user_ids) AND participants.campaign_id = :campaign_id AND ur.status = :user_result_status
+        WHERE participants.subject_id in (:user_ids) AND participants.campaign_id = :campaign_id AND participants.status = :user_result_status
         AND manager_nomination_status != :manager_nomination_status AND evaluator_nomination_status != :evaluator_nomination_status
         GROUP BY (participants.subject_id, relationship_id)
         SQL

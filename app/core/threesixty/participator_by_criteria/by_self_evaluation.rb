@@ -13,12 +13,11 @@ module Threesixty
 
       def users_results
         @users_results ||= threesixty_campaign.
-                           users_results.
-                           joins(:user_assessment).
+                           participants.
                            completed.
-                           where('user_assessments.subject_id = user_assessments.evaluator_id').
-                           where(user_assessments: { subject_id: user_ids }).
-                           pluck('user_assessments.subject_id').
+                           where('subject_id = evaluator_id').
+                           where(subject_id: user_ids).
+                           pluck(:subject_id).
                            to_set
       end
     end

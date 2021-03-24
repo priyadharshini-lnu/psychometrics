@@ -12,6 +12,7 @@ FactoryBot.define do
       evaluator_id { nil }
       assessment_id { nil }
       campaign_id { nil }
+      status { 0 }
       without_user_assessment { nil }
     end
 
@@ -24,7 +25,8 @@ FactoryBot.define do
              evaluator_id: attrs.evaluator_id || attrs.evaluator.id,
              assessment_id: attrs.assessment_id || attrs.assessment.id,
              campaign_id: attrs.campaign_id || attrs.campaign.id,
-             relationship: attrs.relationship)
+             relationship: attrs.relationship,
+             status: attrs.status)
     end
   end
 end

@@ -42,12 +42,12 @@ module Threesixty
 
       def completed_evaluators
         @completed_evaluators =
-          UsersResult.joins(:user_assessment).
-          select('count(users_results.id) as cache_counter, user_assessments.subject_id as ua_subject_id').
+          Threesixty::Participant.
+          select('count(id) as cache_counter, subject_id').
           actual_by_options(option).
-          where(user_assessments: { subject_id: user_ids, campaign: threesixty_campaign.campaign }, status: :completed).
-          group(:ua_subject_id).
-          index_by(&:ua_subject_id)
+          where(subject_id: user_ids, campaign: threesixty_campaign.campaign, status: :completed).
+          group(:subject_id).
+          index_by(&:subject_id)
       end
     end
   end

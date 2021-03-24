@@ -16,11 +16,11 @@ module Threesixty
         format.html { render 'end_user/users/dashboard' }
         format.json do
           @users_result = @participant.users_result || @participant.create_users_result(
-            status: :in_progress,
             last_activity_at: DateTime.current,
             expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
             answers: {}
           )
+          @participant.update(status: :in_progress)
           set_locale_for_users_result(@users_result)
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?

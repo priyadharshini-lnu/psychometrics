@@ -11,7 +11,7 @@ module UsersResults
 
     def call
       transaction do
-        remove_reports if users_result.completed?
+        remove_reports if user_assessment.completed?
         reset_user_result
         remove_media_responses
       end
@@ -22,22 +22,25 @@ module UsersResults
     private
 
     def reset_user_result
-      users_result.update_attributes(
+      user_assessment.update!(
+        status: UserAssessment.statuses[:not_started],
+        completed_at: nil,
+        completion_reason: nil,
+        norm_id: nil,
+        norm_type: nil
+      )
+      users_result.update!(
         answers: {},
         scoring: nil,
         occupations: nil,
         embedded_data: nil,
-        status: UsersResult.statuses[:not_started],
-        completed_at: nil,
         step: 0,
-        norm_id: nil,
         expiry_date: nil,
         last_activity_at: nil,
         meta_data: {},
         additional_time: nil,
         current_element: nil,
         current_page: nil,
-        completion_reason: nil,
         reset_count: users_result.reset_count + 1,
         prev_pages: [],
         progress: 0
@@ -51,7 +54,7 @@ module UsersResults
     def remove_reports
       UserReport.where(
         report_id: users_result.assessment.report_ids,
-        user_id: users_result.subject_id,
+        user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
       ).update(remove_pdf: true, status: :not_prepared)
     end

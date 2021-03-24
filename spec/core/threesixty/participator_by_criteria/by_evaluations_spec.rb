@@ -16,7 +16,7 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
   it 'returns participators who have completed all the evaluations' do
     threesixty_subjects.each.with_index do |threesixty_subject, index|
       create(
-        :users_result,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
@@ -37,7 +37,7 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
   it 'returns participators who had not completed all evaluations' do
     threesixty_subjects.each.with_index do |threesixty_subject, index|
       create(
-        :users_result,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
@@ -63,7 +63,7 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
         manager_evaluation_status: :waiting,
-        users_result: create(:users_result, without_user_assessment: true, status: :completed)
+        status: :completed
       )
     end
 
@@ -73,7 +73,7 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
       subject_id: threesixty_subjects[2].user_id,
       evaluator_id: threesixty_subjects[2].user_id,
       manager_evaluation_status: :approved,
-      users_result: create(:users_result, without_user_assessment: true, status: :completed)
+      status: :completed
     )
 
     criteria_list = [{ 'field' => 'evaluations', 'value' => 'needs_approval' }]

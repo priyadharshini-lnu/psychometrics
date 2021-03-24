@@ -144,12 +144,13 @@ describe UsersResults::CalculateAgileScoring do
       :with_result,
       answers: results,
       status: :completed,
+      completed_at: Time.now,
+      norm_id: @norm.id,
+      norm_type: 'percentile',
       assessment: create(:assessment, dimension_id: @norm.dimension_id)
     )
     @users_result = user_assessment.users_result
     @agile = create(:agile, assessment: user_assessment.assessment, config: config)
-
-    @users_result.update_columns(status: :completed, completed_at: Time.now, norm_id: @norm.id, norm_type: 'percentile')
   end
 
   def setup_data_for_average_strategy
@@ -177,11 +178,12 @@ describe UsersResults::CalculateAgileScoring do
       :user_assessment,
       :with_result,
       answers: results,
-      assessment: create(:assessment, dimension: @norm.dimension)
+      assessment: create(:assessment, dimension: @norm.dimension),
+      completed_at: Time.now,
+      norm_id: @norm.id,
+      norm_type: 'percentile'
     )
     @users_result = user_assessment.users_result
     @agile = create(:agile, assessment: user_assessment.assessment, config: config)
-
-    @users_result.update_columns(status: :completed, completed_at: Time.now, norm_id: @norm.id, norm_type: 'percentile')
   end
 end

@@ -3328,7 +3328,12 @@ CREATE TABLE public.user_assessments (
     evaluator_id bigint,
     manager_evaluation_status integer DEFAULT 0,
     assessment_id bigint,
-    users_result_id bigint
+    users_result_id bigint,
+    norm_id bigint,
+    norm_type character varying,
+    status integer DEFAULT 0,
+    completed_at timestamp without time zone,
+    completion_reason integer
 );
 
 
@@ -3470,11 +3475,8 @@ CREATE TABLE public.users_results (
     occupations jsonb,
     embedded_data jsonb,
     step integer DEFAULT 0,
-    status integer DEFAULT 0,
-    completed_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    norm_id bigint,
     meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
@@ -3483,12 +3485,10 @@ CREATE TABLE public.users_results (
     last_activity_at timestamp without time zone,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
-    norm_type character varying,
     selected_locale character varying,
     additional_time integer,
     reset_count integer DEFAULT 0,
     started_at timestamp without time zone,
-    completion_reason integer,
     prev_pages json DEFAULT '[]'::json,
     progress integer
 );
@@ -6156,6 +6156,13 @@ CREATE INDEX index_user_assessments_on_evaluator_id ON public.user_assessments U
 
 
 --
+-- Name: index_user_assessments_on_norm_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessments_on_norm_id ON public.user_assessments USING btree (norm_id);
+
+
+--
 -- Name: index_user_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6279,13 +6286,6 @@ CREATE INDEX index_users_on_modified_by_id ON public.users USING btree (modified
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
-
-
---
--- Name: index_users_results_on_norm_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_norm_id ON public.users_results USING btree (norm_id);
 
 
 --
@@ -6762,6 +6762,14 @@ ALTER TABLE ONLY public.questions
 
 
 --
+-- Name: user_assessments fk_rails_70902006e4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessments
+    ADD CONSTRAINT fk_rails_70902006e4 FOREIGN KEY (norm_id) REFERENCES public.norms(id) ON DELETE SET NULL;
+
+
+--
 -- Name: reports_accesses fk_rails_74cd2e276f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7143,14 +7151,6 @@ ALTER TABLE ONLY public.media_responses
 
 ALTER TABLE ONLY public.assessments_clients
     ADD CONSTRAINT fk_rails_cc339dda78 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
--- Name: users_results fk_rails_ce283804a5; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_results
-    ADD CONSTRAINT fk_rails_ce283804a5 FOREIGN KEY (norm_id) REFERENCES public.norms(id) ON DELETE RESTRICT;
 
 
 --
@@ -7861,6 +7861,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210304111031'),
 ('20210304111041'),
 ('20210308170950'),
+('20210316134414'),
 ('20210319150315'),
 ('20210321134006'),
 ('20210321142256');
