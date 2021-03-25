@@ -1267,11 +1267,14 @@ en:
       recipients:
         all: All
         selected: Selected
+      body:
+        error: Email body has incorrect pipetext.
     report:
       type:
         common: Any
         eti: ETI
         yti: YTI
+    
   errors:
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page

@@ -36,7 +36,7 @@ RSpec.describe ::Forms::Communications::Simple do
   end
 
   let(:params_without_body) do
-    valid_params.slice!(:body)
+    valid_params.merge(body: '')
   end
 
   let(:params_without_subject) do
