@@ -44,6 +44,8 @@ class Client < ApplicationRecord
 
   LOGIN_BOX_POSITIONS = %i[right center left].freeze
 
+  CLIENT_IDS_TO_EXCLUDE_FOR_PROJECT_MIGRATION = [1157].freeze
+
   has_ancestry cache_depth: true
   store :design, accessors: %i[background_color login_box_position]
 
@@ -137,7 +139,7 @@ class Client < ApplicationRecord
 
   before_validation :ensure_subdomain, if: :retail?
   before_create :set_hogan_group_name, if: :project?
-  before_create -> { self.migrated = true }, if: :project?
+  before_create :set_migrated
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -179,6 +181,10 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
+
+  def set_migrated
+    self.migrated = true if project? && CLIENT_IDS_TO_EXCLUDE_FOR_PROJECT_MIGRATION.exclude?(project.client.id)
+  end
 
   def available_locales
     return locales if locales.any?
