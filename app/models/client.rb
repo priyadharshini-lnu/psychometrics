@@ -44,8 +44,6 @@ class Client < ApplicationRecord
 
   LOGIN_BOX_POSITIONS = %i[right center left].freeze
 
-  CLIENT_IDS_TO_EXCLUDE_FOR_PROJECT_MIGRATION = [1157].freeze
-
   has_ancestry cache_depth: true
   store :design, accessors: %i[background_color login_box_position]
 
@@ -183,7 +181,10 @@ class Client < ApplicationRecord
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
 
   def set_migrated
-    self.migrated = true if project? && CLIENT_IDS_TO_EXCLUDE_FOR_PROJECT_MIGRATION.exclude?(project.client.id)
+    return unless project?
+
+    client_ids_to_exclude = ENV['CLIENT_IDS_TO_EXCLUDE_FOR_PROJECT_MIGRATION']&.split(',')&.map { |id| id.strip.to_i }
+    self.migrated = true if client_ids_to_exclude.nil? || client_ids_to_exclude.exclude?(project.client.id)
   end
 
   def available_locales
