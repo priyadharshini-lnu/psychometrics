@@ -278,7 +278,7 @@ const Properties: FC<Props> = ({ model, factors }) => {
                   <Button
                     className="w-100"
                     onClick={() => handleRemoveDatapointRow(index)}
-                    type="danger"
+                    danger
                     size="small"
                   >
                     <DeleteOutlined />

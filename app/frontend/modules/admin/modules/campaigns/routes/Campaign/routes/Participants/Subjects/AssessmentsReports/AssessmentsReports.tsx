@@ -195,7 +195,7 @@ const AssessmentsReports: React.FC<Props> = ({
                   <span className="prs">{user.additionalTime}</span>
 
                   <Button
-                    type="danger"
+                    danger
                     size="small"
                     onClick={() => openModal('UpdateCampaignTimeModal', {
                       campaignId: parsedCampaignId,
