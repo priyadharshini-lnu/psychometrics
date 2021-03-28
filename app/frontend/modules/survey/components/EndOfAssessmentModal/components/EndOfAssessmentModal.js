@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
+import { Checkbox, Input, Radio } from 'antd'
+
 import styles from './EndOfAssessmentModal.scss'
 
 const { Header } = Modal
 const { Body } = Modal
 const { Footer } = Modal
 const { Title } = Modal
-
+const { I18n } = window
 export class EndOfAssessmentModal extends Component {
   state = {
     showUniqueId: false,
+    markAsInEligible: false,
     messageType: 'Default',
     message: '',
   }
@@ -19,21 +22,12 @@ export class EndOfAssessmentModal extends Component {
     this.setState(state => ({ ...state, ...flowElement.props }))
   }
 
-  changeMessageType = (e) => {
-    this.setState({ messageType: e.currentTarget.value })
-  }
-
-  changeOptions = (e) => {
-    this.setState({ showUniqueId: e.currentTarget.checked })
-  }
-
-  changeMessage = (e) => {
-    this.setState({ message: e.currentTarget.value })
-  }
-
   save = () => {
-    const { flowElement, close } = this.props
+    const {
+      flowElement, close, onUpdate,
+    } = this.props
     flowElement.props = this.state
+    onUpdate(flowElement)
     close()
   }
 
@@ -41,6 +35,7 @@ export class EndOfAssessmentModal extends Component {
     const { close } = this.props
     const {
       showUniqueId,
+      markAsInEligible,
       messageType,
       message,
     } = this.state
@@ -51,39 +46,33 @@ export class EndOfAssessmentModal extends Component {
         </Header>
         <Body>
           <div>
-            <label style={{ display: 'flex', alignItems: 'center' }}>
-              <input type="checkbox" onChange={this.changeOptions} checked={!!showUniqueId} />
-              Show Unique Identifier to respondents (for anonymous surveys)
-            </label>
+            <Checkbox
+              checked={showUniqueId}
+              onChange={() => this.setState({ showUniqueId: !showUniqueId })}
+            >
+              {I18n.t('assessments.flow.end_assessment_modal.show_uniq_identifier')}
+            </Checkbox>
+          </div>
+          <div>
+            <Checkbox
+              checked={markAsInEligible}
+              onChange={() => this.setState({ markAsInEligible: !markAsInEligible })}
+            >
+              {I18n.t('assessments.flow.end_assessment_modal.mark_as_ineligible')}
+            </Checkbox>
           </div>
           <hr />
           <div>
-            <label key="default" style={{ display: 'block' }}>
-              <input
-                checked={messageType === 'Default'}
-                onChange={this.changeMessageType}
-                value="Default"
-                type="radio"
-                name="message"
-              />
-              Default end of assessment message.
-            </label>
-            <label key="Custom">
-              <input
-                checked={messageType === 'Custom'}
-                onChange={this.changeMessageType}
-                type="radio"
-                value="Custom"
-                name="message"
-              />
-              Custom end of assessment message...
-            </label>
+            <Radio.Group onChange={e => this.setState({ messageType: e.target.value })} value={messageType}>
+              <Radio value="Default">{I18n.t('assessments.flow.end_assessment_modal.default_message')}</Radio>
+              <Radio value="Custom">{I18n.t('assessments.flow.end_assessment_modal.custom_message')}</Radio>
+            </Radio.Group>
             {messageType === 'Custom' && (
-            <div>
-              <textarea
+            <div className="mtm">
+              <Input.TextArea
                 value={message}
                 className={styles.messageTextArea}
-                onChange={this.changeMessage}
+                onChange={e => this.setState({ message: e.currentTarget.value })}
               />
             </div>
             )}

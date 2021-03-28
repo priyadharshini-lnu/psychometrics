@@ -52,6 +52,8 @@ const InternalAssessment: React.FC<Props> = ({
   const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  const isCompleted = ['completed', 'ineligible'].includes(userAssessment.status)
+
   const loadAssessment = ({
     url, mindmill, mindmillUrl,
   }, lang) => {
@@ -114,7 +116,7 @@ const InternalAssessment: React.FC<Props> = ({
                     color={userAssessment.status === 'not_started' ? 'green' : 'blue'}
                     style={{ background: 'transparent' }}
                   >
-                    {I18n.t(`campaign.${userAssessment.status}`)}
+                    {I18n.t(`campaign.${isCompleted ? 'completed' : userAssessment.status}`)}
                   </Tag>
                 </div>
               )}

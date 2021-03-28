@@ -25,9 +25,9 @@ import {
   FETCH_QUESTION_SCORING,
 } from './consts'
 import {
-  Highlight, QuestionError, MediaResponse,
+  Highlight, QuestionError, MediaResponse, EndOfAssessmentElementProps,
 } from './interfaces'
-import { getCurrentBlock, getProgress } from './selectors'
+import { getCurrentBlock, getProgress, getStatus } from './selectors'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
@@ -70,7 +70,8 @@ export const addQuestionError = (questionId: number, errors: QuestionError[]) =>
 
 export const removeQuestionError = (questionId: number) => ({ type: REMOVE_QUESTION_ERROR, questionId })
 
-export const showEnd = () => ({ type: SHOW_END })
+export const showEnd = (endOfAssessmentElementProps?: EndOfAssessmentElementProps) => (
+  { type: SHOW_END, payload: endOfAssessmentElementProps })
 export const hideEnd = () => ({ type: HIDE_END })
 
 export const changeElement = (id: string, page?: number) => ({ type: CHANGE_ELEMENT, id, page })
@@ -102,16 +103,14 @@ export const markAssessmentTimedOut = (questionId: number) => ({ type: MARK_ASSE
 
 export const saveResults = (preview, questionIds, currentBlockId?) => {
   const answerKey = !preview.resultsUrl || preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers'
-
-  const isComplete = !preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')
-
+  const status = getStatus(preview)
   const data = {
     resource: {
       [answerKey]: preview.results,
       embedded_data: preview.embeddedData,
-      status: isComplete ? 'completed' : 'in_progress',
+      status,
       prev_pages: preview.prevPages,
-      progress: getProgress(preview),
+      progress: ['completed', 'ineligible'].includes(status) ? 100 : getProgress(preview),
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,

@@ -28,6 +28,7 @@ import {
   InitType, AddQuestionError, RemoveQuestionError,
   SaveResults, UpdateHightlight, AddMediaResponse, RemoveMediaResponse,
   MarkMediaResponseAsSelected, FetchQuestionScoring,
+  ShowEnd,
 } from './interfaces'
 
 const { I18n } = window
@@ -172,7 +173,8 @@ const HANDLERS = {
     setIn(state, ['errors'], _.omit(state.errors, [questionId]))
   ),
   [REMOVE_PREV_PAGE]: (state: State) => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
-  [SHOW_END]: (state: State) => ({ ...state, end: true }),
+  [SHOW_END]: (state: State, { payload: endOfAssessmentElementProps }: ShowEnd) => (
+    { ...state, end: true, endOfAssessmentElementProps }),
   [HIDE_END]: (state: State) => ({ ...state, end: false }),
   [SET_EMBEDDED_DATA]: (state: State, { data }: SetEmbeddedData) => setIn(
     state, 'embeddedData', { ...state.embeddedData, ...data },

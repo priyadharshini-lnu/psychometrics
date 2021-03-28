@@ -4,7 +4,7 @@ import _ from 'lodash'
 import { setIn, merge } from 'utils/immutable'
 import { getNextElementId, getElement } from '../selectors'
 import BranchProcessor from './BranchProcessor'
-import { ElementInterface } from '../interfaces'
+import { ElementInterface, EndOfAssessmentElementProps } from '../interfaces'
 
 const BLOCK = 'Block'
 const BRANCH = 'Branch'
@@ -15,6 +15,7 @@ const RANDOMIZATION = 'Randomizer'
 interface BlockResult {
   element?: string | null;
   embeddedData: {};
+  endOfAssessmentElementProps?: EndOfAssessmentElementProps
 }
 
 // results
@@ -52,7 +53,10 @@ const ElementProcessor = {
           ))
           break
         case END:
-          return { embeddedData: result.embeddedData }
+          return {
+            embeddedData: result.embeddedData,
+            endOfAssessmentElementProps: element.props,
+          }
         case BLOCK:
           if (!store.blocks[element.props.current || '']
             || (store.blocks[element.props.current || ''] && store.blocks[element.props.current || ''].deleted)
