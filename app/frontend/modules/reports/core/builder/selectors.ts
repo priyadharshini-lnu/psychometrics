@@ -80,3 +80,7 @@ export const getAllAssessments = (state: any) => state?.builder?.assessments ?? 
 export const getAssessmentFactors = (state: RootState, assessmentId: number) => (
   state.report.builder.factors[state.report.builder.assessments[assessmentId]?.dimension_id] || []
 )
+
+export const getFlatFactors = (state: RootState) => _.reduce(
+  state.report.builder.factors, (result, value) => [...result, ...value], [],
+)
