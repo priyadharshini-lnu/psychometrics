@@ -52,8 +52,6 @@ const InternalAssessment: React.FC<Props> = ({
   const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const isCompleted = ['completed', 'ineligible'].includes(userAssessment.status)
-
   const loadAssessment = ({
     url, mindmill, mindmillUrl,
   }, lang) => {
@@ -110,13 +108,13 @@ const InternalAssessment: React.FC<Props> = ({
               <div className="internal-icon">
                 <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[userAssessment.assessmentCategory]}`} />
               </div>
-              {!['completed', 'timed_out'].includes(userAssessment.status) && (
+              {!['completed', 'ineligible', 'timed_out'].includes(userAssessment.status) && (
                 <div>
                   <Tag
                     color={userAssessment.status === 'not_started' ? 'green' : 'blue'}
                     style={{ background: 'transparent' }}
                   >
-                    {I18n.t(`campaign.${isCompleted ? 'completed' : userAssessment.status}`)}
+                    {I18n.t(`campaign.${userAssessment.status}`)}
                   </Tag>
                 </div>
               )}

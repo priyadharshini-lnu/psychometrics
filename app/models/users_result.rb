@@ -41,7 +41,7 @@ class UsersResult < ApplicationRecord
   end
 
   def real_status
-    return 'timed_out' if expired? && !completed? && !interrupted?
+    return 'timed_out' if expired? && !completed? && !ineligible? && !interrupted?
 
     status
   end

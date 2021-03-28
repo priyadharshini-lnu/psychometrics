@@ -36,7 +36,9 @@ const ElementProcessor = {
         case BRANCH:
           if (BranchProcessor.run(store, element)) {
             result = setIn(result, 'element', `${result.element}/0`)
-            const { element, embeddedData } = ElementProcessor.run(store, result.element)
+            const { element, embeddedData, endOfAssessmentElementProps } = ElementProcessor.run(store, result.element)
+            if (!element) { return { element, embeddedData, endOfAssessmentElementProps } }
+
             result = merge(result, { element, embeddedData: { ...result.embeddedData, ...embeddedData } })
             if (element) {
               return result
