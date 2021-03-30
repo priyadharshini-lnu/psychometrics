@@ -50,6 +50,7 @@ const Assessment = {
 
     return hasGrant(currentUser, 'assessments', 'import')
   },
+  enableUniversalLink: (currentUser: User) => isSuperAdmin(currentUser),
 }
 
 export default Assessment

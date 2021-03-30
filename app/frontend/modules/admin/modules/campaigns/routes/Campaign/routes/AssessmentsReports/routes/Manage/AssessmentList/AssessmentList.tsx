@@ -96,35 +96,38 @@ const AssessmentList: React.FC<Props> = ({
               </a>
             )}
           />
-          <Column
-            title={I18n.t('campaign_assessment.column.universal_link')}
-            key="universalLink"
-            render={({
-              enableUniversalLinks, universalLink, id, isExternal,
-            }) => {
-              if (isExternal) {
-                return I18n.t('common.text.na')
-              }
-              if (enableUniversalLinks && !isExternal) {
-                return (
-                  <a
-                    onClick={
-                        () => openModal('UniversalLinkModal',
-                          {
-                            projectId: parsedProjectId,
-                            campaignId: parsedCampaignId,
-                            campaignAssessmentId: id,
-                            universalLink,
-                          })
-                      }
-                  >
-                    {I18n.t('frontend.manage')}
-                  </a>
-                )
-              }
-              return <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
-            }}
-          />
+          {AssessmentPolicy.enableUniversalLink(currentUser)
+            && (
+            <Column
+              title={I18n.t('campaign_assessment.column.universal_link')}
+              key="universalLink"
+              render={({
+                enableUniversalLinks, universalLink, id, isExternal,
+              }) => {
+                if (isExternal) {
+                  return I18n.t('common.text.na')
+                }
+                if (enableUniversalLinks && !isExternal) {
+                  return (
+                    <a
+                      onClick={
+                          () => openModal('UniversalLinkModal',
+                            {
+                              projectId: parsedProjectId,
+                              campaignId: parsedCampaignId,
+                              campaignAssessmentId: id,
+                              universalLink,
+                            })
+                        }
+                    >
+                      {I18n.t('frontend.manage')}
+                    </a>
+                  )
+                }
+                return <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
+              }}
+            />
+            )}
           <Column
             title={I18n.t('common.column.action')}
             key="action"
