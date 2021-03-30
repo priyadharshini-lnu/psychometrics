@@ -49,7 +49,11 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
 
   const processNextElement = () => {
     const { preview } = getState()
-    const { element, embeddedData } = ElementProcessor.run(preview, getNextElementId(preview))
+    const {
+      element,
+      embeddedData,
+      endOfAssessmentElementProps,
+    } = ElementProcessor.run(preview, getNextElementId(preview))
     if (_.size(embeddedData) > 0) {
       dispatch(setEmbeddedData(embeddedData))
     }
@@ -57,7 +61,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
       dispatch(changeElement(element))
       processDisplayLogic()
     } else {
-      dispatch(showEnd())
+      dispatch(showEnd(endOfAssessmentElementProps))
     }
   }
 

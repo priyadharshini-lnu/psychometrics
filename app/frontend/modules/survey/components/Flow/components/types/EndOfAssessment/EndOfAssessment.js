@@ -10,8 +10,13 @@ class EndOfAssessment extends Component {
   }
 
   showOptions = () => {
-    const { model, openModal } = this.props
-    openModal({ flowElement: model })
+    const {
+      model, openModal, onUpdate,
+    } = this.props
+
+    openModal({
+      flowElement: model, onUpdate,
+    })
   }
 
   render () {

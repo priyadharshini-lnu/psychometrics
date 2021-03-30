@@ -108,7 +108,7 @@ const InternalAssessment: React.FC<Props> = ({
               <div className="internal-icon">
                 <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[userAssessment.assessmentCategory]}`} />
               </div>
-              {!['completed', 'timed_out'].includes(userAssessment.status) && (
+              {!['completed', 'ineligible', 'timed_out'].includes(userAssessment.status) && (
                 <div>
                   <Tag
                     color={userAssessment.status === 'not_started' ? 'green' : 'blue'}

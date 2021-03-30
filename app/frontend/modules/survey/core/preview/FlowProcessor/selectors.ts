@@ -271,3 +271,13 @@ export const getQuestionScoring = (store, questionId) => _.reduce(store.scoring,
   }
   return acc
 }, {})
+
+export const getStatus = (preview): string => {
+  if (!preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')) {
+    if (preview.endOfAssessmentElementProps?.markAsInEligible) { return 'ineligible' }
+
+    return 'completed'
+  }
+
+  return 'in_progress'
+}

@@ -57,7 +57,7 @@ class EndUser::UserAssessmentsController < ApplicationController
 
   def set_user_assessment
     @user_assessment = UserAssessment.joins(:campaign).
-                       where.not(status: %i[completed timed_out]).
+                       where.not(status: %i[completed timed_out ineligible]).
                        find_by!(
                          id: params[:id],
                          evaluator_id: current_user.id,

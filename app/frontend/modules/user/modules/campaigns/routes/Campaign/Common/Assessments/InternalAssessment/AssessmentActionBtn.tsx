@@ -70,7 +70,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
     )
   }
 
-  if (status === Statuses.COMPLETED) {
+  if (status === Statuses.COMPLETED || status === Statuses.INELIGIBLE) {
     return (
       <a>
         <CheckOutlined />

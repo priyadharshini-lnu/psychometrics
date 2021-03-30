@@ -10,6 +10,7 @@ import { useMedia } from 'modules/user/rootHooks'
 import Assessments from './Assessments'
 import Header from './Header'
 import InstructionsPanel from './InstructionsPanel'
+import { Statuses } from '../../../core/userAssessment/interfaces'
 
 const { Content } = Layout
 
@@ -88,6 +89,14 @@ export default function Campaign ({
     fetchCampaign(match.url)
   }
 
+  const isAnyAssessmentInPreviousGroupInEligible = (group) => {
+    if (!group) { return false }
+    return _.find(
+      campaign.userAssessments,
+      ua => _.includes(group.campaignAssessmentIds, ua.assessmentId) && ua.status === Statuses.INELIGIBLE,
+    )
+  }
+
   const allCampaignLevelAsssementIds = _.flatten(
     [...groups.map(g => g.campaignAssessmentIds), campaign.ungroupedAssessmentsIds],
   )
@@ -141,6 +150,7 @@ export default function Campaign ({
                         const size = group.campaignAssessmentIds.length
                         let colSize = 24
                         let prevCompleted = false
+                        let previousAssessmentIsIneligible = false
                         if (size <= 2) {
                           colSize = size === 1 ? 8 : 16
                         }
@@ -151,6 +161,7 @@ export default function Campaign ({
                         }
                         if (group.previousGroupRequired) {
                           prevCompleted = !prevGroupIsCompleted(campaign, prevGroup)
+                          if (isAnyAssessmentInPreviousGroupInEligible(prevGroup)) { return null }
                         }
                         prevGroup = group
                         const userAssessments = _.compact(
@@ -169,7 +180,9 @@ export default function Campaign ({
                                   let isDisabled = canNotStartAssessment || prevCompleted
                                   if (!isDisabled && group.previousAssessmentsRequired) {
                                     isDisabled = prevAssessmentsCompleted(userAssessments, userAssessment)
+                                    if (previousAssessmentIsIneligible) { return null }
                                   }
+                                  previousAssessmentIsIneligible = userAssessment.status === Statuses.INELIGIBLE
                                   return (
                                     <Assessment
                                       key={userAssessment.id}

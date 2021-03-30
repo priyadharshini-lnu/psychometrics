@@ -46,13 +46,21 @@ export interface BlockElementInterface {
   elements: any[]
 }
 
+export interface EndOfAssessmentElementProps {
+  showUniqueId?: boolean
+  markAsInEligible?: boolean
+  messageType?: string
+  message?: string
+}
+
+export interface ElementProps extends EndOfAssessmentElementProps{
+  storage?: {}
+  conditions?: []
+  current?: string
+}
 export interface ElementInterface {
   type: string
-  props: {
-    storage?: {}
-    conditions?: []
-    current?: string
-  }
+  props: ElementProps
   elements: any[]
 }
 

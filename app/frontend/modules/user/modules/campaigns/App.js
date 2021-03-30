@@ -6,12 +6,14 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import ConnectionCheck from 'components/ConnectionCheck'
 import { connected, disconnected } from 'core/connection'
+import { useWindowInnerSize } from 'modules/user/rootHooks.ts'
 import routes from './routes'
 import { PageLayout } from './components/PageLayout'
 
 const { antdLocale } = window
 
 export default function App () {
+  useWindowInnerSize(document.documentElement)
   return (
     <Provider store={store}>
       <ConfigProvider locale={antdLocale} direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}>

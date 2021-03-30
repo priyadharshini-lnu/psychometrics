@@ -244,6 +244,7 @@ en:
           interrupted: Interrupted
           not_started: New
           timed_out: Timed Out
+          ineligible: Ineligible
           overdue: Overdue
       block:
         active: Active
@@ -511,6 +512,7 @@ en:
           interrupted: Interrupted
           not_started: New
           timed_out: Timed Out
+          ineligible: Ineligible
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte
@@ -642,6 +644,12 @@ en:
       no_description: Description is empty
     file_upload:
       select_file: Select file
+    flow:
+      end_assessment_modal:
+        mark_as_ineligible: Mark as ineligible
+        show_uniq_identifier: Show Unique Identifier to respondents (for anonymous surveys)
+        default_message: Default end of assessment message
+        custom_message: Custom end of assessment message
     index:
       managers_assessments_button: Action Planning
       managers_dashboard_button: Managers Dashboard
@@ -813,6 +821,7 @@ en:
       title: Select language
     new: New
     timed_out: Timed Out
+    ineligible: Ineligible
     not_started: New
     panels:
       assessments: Tasks
@@ -875,6 +884,7 @@ en:
       interrupted: Interrupted
       not_started: Not Started
       timed_out: Timed Out
+      ineligible: Ineligible
       universal_link: Universal link
   campaign_report:
     actions:
@@ -927,6 +937,7 @@ en:
         interrupted: Interrupted
         not_started: Not Started
         timed_out: Timed Out
+        ineligible: Ineligible
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?

@@ -6,7 +6,7 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
              :restricted_domains
 
   def restricted_domains
-    object.restricted_domains.join("\n")
+    object.restricted_domains&.join("\n")
   end
 
   def url

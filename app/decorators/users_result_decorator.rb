@@ -34,15 +34,17 @@ class UsersResultDecorator < BaseDecorator
   end
 
   def self.export_headers
-    [
-      UsersResult.human_attribute_name('result_id'),
-      User.human_attribute_name('name'),
-      User.human_attribute_name('email'),
-      UsersResult.human_attribute_name('assessment_type'),
-      UsersResult.human_attribute_name('assessment_name'),
-      UsersResult.human_attribute_name('started_at'),
-      UsersResult.human_attribute_name('completed_at'),
-      UsersResult.human_attribute_name('status')
-    ]
+    I18n.with_locale(I18n.default_locale) do
+      [
+        UsersResult.human_attribute_name('result_id'),
+        User.human_attribute_name('name'),
+        User.human_attribute_name('email'),
+        UsersResult.human_attribute_name('assessment_type'),
+        UsersResult.human_attribute_name('assessment_name'),
+        UsersResult.human_attribute_name('started_at'),
+        UsersResult.human_attribute_name('completed_at'),
+        UsersResult.human_attribute_name('status')
+      ]
+    end
   end
 end
