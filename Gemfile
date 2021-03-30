@@ -214,7 +214,7 @@ group :test do
   gem 'capybara', '~> 3.35.3'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls', '~> 0.8.23', require: false
-  gem 'database_cleaner', '~> 1.8.5'
+  gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 1.8.7'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'

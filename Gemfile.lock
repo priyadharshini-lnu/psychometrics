@@ -219,7 +219,12 @@ GEM
     crass (1.0.6)
     css_parser (1.7.0)
       addressable
-    database_cleaner (1.8.5)
+    database_cleaner (2.0.1)
+      database_cleaner-active_record (~> 2.0.0)
+    database_cleaner-active_record (2.0.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date_validator (0.9.0)
       activemodel
       activesupport
@@ -896,7 +901,7 @@ DEPENDENCIES
   cocoon (= 1.2.9)
   config (~> 1.2.1)
   coveralls (~> 0.8.23)
-  database_cleaner (~> 1.8.5)
+  database_cleaner (~> 2.0.1)
   date_validator (~> 0.9.0)
   db-clone!
   debugger2
