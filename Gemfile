@@ -187,7 +187,7 @@ group :development, :test do
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'rswag-specs', '~> 2.3.0'
+  gem 'rswag-specs', '~> 2.4.0'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
   gem 'rubocop-rspec', require: false
