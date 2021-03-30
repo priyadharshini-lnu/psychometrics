@@ -52,7 +52,7 @@ const AgileUserAssessment: React.FC<Props> = ({
   }, [])
 
   return (
-    <Layout>
+    <Layout className="agile-layout">
       <Content className="agile-content mtm mbm">
         <div id="agile-container" className="agile-container" />
       </Content>
