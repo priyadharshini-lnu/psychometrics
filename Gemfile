@@ -146,7 +146,7 @@ gem 'hashids', '~> 1.0.5'
 
 gem 'dry-types', '~> 0.12.2'
 gem 'mobility', '~> 1.0.0'
-gem 'money-rails', '~> 1.13.3'
+gem 'money-rails', '~> 1.14.0'
 gem 'reform-rails', '~> 0.1.7'
 gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
