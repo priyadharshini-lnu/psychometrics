@@ -211,7 +211,7 @@ group :development do
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'capybara', '~> 3.32.0'
+  gem 'capybara', '~> 3.35.3'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls', '~> 0.8.23', require: false
   gem 'database_cleaner', '~> 1.8.5'
