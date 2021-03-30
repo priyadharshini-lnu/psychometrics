@@ -116,7 +116,11 @@ module Administration
       end
 
       def set_resource
-        @_resource = policy_scope(resource_class).find(params[:id])
+        @_resource = Assessment.find(params[:id])
+      end
+
+      def pundit_authorize
+        authorize campaign_assessment || CampaignAssessment
       end
 
       def import_params

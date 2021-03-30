@@ -29,9 +29,9 @@ export class FlowElement extends Component {
     duplicateElement(model)
   }
 
-  update = () => {
+  update = (newModal) => {
     const { model, updateElement } = this.props
-    updateElement(model)
+    updateElement(newModal || model)
     this.forceUpdate()
   }
 

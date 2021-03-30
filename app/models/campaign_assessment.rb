@@ -10,6 +10,8 @@ class CampaignAssessment < ApplicationRecord
 
   before_create :set_position
 
+  delegate :common?, :hogan?, :mindmill?, :external?, to: :assessment
+
   def expired?
     Time.now > key_expires_at.to_i
   end

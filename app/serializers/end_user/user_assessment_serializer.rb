@@ -27,10 +27,6 @@ module EndUser
       object.evaluator_id
     end
 
-    def hash_id
-      object.encode_id
-    end
-
     def assessment_id
       object.assessment.id
     end

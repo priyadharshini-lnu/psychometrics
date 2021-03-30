@@ -2,6 +2,14 @@
 
 module Administration
   class CampaignReportPolicy < BasePolicy
+    def create?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+    end
+
+    def destroy?
+      create?
+    end
+
     def report_families?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
     end
@@ -15,11 +23,11 @@ module Administration
     end
 
     def toggle_user_access?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+      create?
     end
 
     def toggle_assessor_access?
-      toggle_user_access?
+      create?
     end
 
     def regenerate?

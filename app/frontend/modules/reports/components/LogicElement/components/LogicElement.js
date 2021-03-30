@@ -23,7 +23,9 @@ export default class LogicElement extends Component {
   }
 
   render () {
-    const { logic, onChange, types } = this.props
+    const {
+      logic, onChange, types, factors,
+    } = this.props
     return (
       <div className={css.listWrapper}>
         {logic.conditions.map((conditionList, i) => (
@@ -37,6 +39,7 @@ export default class LogicElement extends Component {
             safeFirstElement={logic.conditions.length === 1 && i === 0}
             addList={this.addNewList}
             removeList={this.removeList}
+            factors={factors}
           />
         ))}
       </div>

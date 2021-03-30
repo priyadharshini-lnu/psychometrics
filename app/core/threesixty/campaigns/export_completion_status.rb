@@ -31,7 +31,7 @@ module Threesixty
                              'users_results.id as result_id',
                              'users_results.created_at as result_created_at'
                            ).
-                           joins(:users_result).
+                           left_joins(:users_result).
                            includes(:subject, :evaluator, :relationship)
             participants.each do |participant|
               status = I18n.t(

@@ -25,4 +25,10 @@ RSpec.describe Assessors::GetStatusFromCounts do
 
     expect(status).to eq(:not_started)
   end
+
+  it 'ineligible status is counted as completed' do
+    status = described_class.call!({ completed: 1, ineligible: 1, total: 2 })
+
+    expect(status).to eq(:completed)
+  end
 end

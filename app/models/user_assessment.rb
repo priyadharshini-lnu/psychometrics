@@ -13,7 +13,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :users_result, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
 
-  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }
+  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
   enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
   enum evaluator_nomination_status: { waiting: 0, completed: 1, declined: 2 }, _prefix: :evaluator_nomination
@@ -53,7 +53,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def real_status
-    return 'timed_out' if users_result&.expired? && !completed? && !interrupted?
+    return 'timed_out' if users_result&.expired? && !completed? && !ineligible? && !interrupted?
 
     status
   end

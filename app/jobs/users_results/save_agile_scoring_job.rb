@@ -6,6 +6,7 @@ module UsersResults
       user_result.update!(
         scoring: ::UsersResults::CalculateAgileScoring.call!(user_result, current_user)
       )
+      UsersResults::GenerateReports.call(user_result, current_user)
     end
   end
 end

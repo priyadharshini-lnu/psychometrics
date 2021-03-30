@@ -46,7 +46,7 @@ export default class Factor extends Component {
   }
 
   render () {
-    const { condition } = this.props
+    const { condition, factors } = this.props
     return (
       <div className={css.factor}>
         {this.renderFilterSelect(condition)}
@@ -54,7 +54,7 @@ export default class Factor extends Component {
           <div className={css.factorBlock}>
             {condition.filterId && (
             <FactorSelect
-              factors={AppStore.flatFactor}
+              factors={factors}
               condition={condition}
               onChange={this.change}
             />
