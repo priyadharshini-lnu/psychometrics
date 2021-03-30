@@ -19,7 +19,7 @@
     "sourceType": "module"
   },
   "plugins": [
-    "babel",
+    "@babel",
     "react",
     "import",
     "@typescript-eslint",
