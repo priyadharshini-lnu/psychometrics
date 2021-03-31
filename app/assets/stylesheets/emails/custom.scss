@@ -1,7 +1,10 @@
-.project-logo {
+.project-email-logo {
+  margin-bottom: 20px;
+}
+
+.admin-email-logo {
   margin-bottom: 20px;
   width: 120px;
-  height: 100px;
 }
 
 .email-content {
@@ -14,11 +17,13 @@
   font-weight: bold;
   color: unset;
 }
+
 .email-copyright img {
   width: 15px;
   vertical-align: text-top;
   display: inline-block;
 }
+
 .email-copyright th {
   font-size: 12px;
   color: #A9A9A9;
