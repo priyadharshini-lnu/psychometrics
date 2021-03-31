@@ -85,35 +85,24 @@
         }
         ul {
           margin: 0 auto;
-          padding: 0;
-          list-style-type: none;
 
           li {
             position: relative;
-            display: inline-block;
             vertical-align: top;
-            padding: 0 0 0.35em 1.2em;
-
-            &:before {
-              content: '';
-              top: 0.3em;
-              left: 0;
-              padding: 0;
-              margin: 0;
-              position: absolute;
-              width: .75em;
-              height: .75em;
-              display: block;
-              background-color: #fff;
-              border-radius: 50%;
-              border: .24em solid #bdbdbd;
-            }
+            padding-bottom: 0.35em;
           }
         }
 
-        .blindspots {
+        .strengths, .blindspots {
           color: #7B7B7B;
           font-style: italic;
+          flex: 1;
+        }
+        .strengths {
+          margin-inline-end: 0.6em;
+        }
+        .blindspots {
+          margin-inline-start: 0.6em;
         }
       }
 
@@ -190,20 +179,6 @@ body[data-locale="ar"] {
 
     th {
       text-align: right;
-    }
-
-    td {
-      &.strengthsBlindspots {
-        ul {
-          li {
-            padding: 0 1.5em 1.25em 0;
-
-            &:before {
-              right: 0;
-            }
-          }
-        }
-      }
     }
   }
 }
