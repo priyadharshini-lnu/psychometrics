@@ -658,8 +658,8 @@ en:
       finish: "Thank you for your time. \nYour responses have now been recorded."
     page:
       back: Back
-      confirm_message_1: Your responses will be submitted and cannot be changed after this
-      confirm_message_2: Are you sure you want to submit your responses?
+      confirm_message_1: Your responses will be submitted and cannot be changed after this.
+      confirm_message_2: Click ‘Back’ to review your responses one final time or click ‘Submit’ if you are finished.
       next: Next
       submit: Submit
     pickgrouprank:
