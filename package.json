@@ -185,7 +185,7 @@
   },
   "devDependencies": {
     "@babel/eslint-plugin": "^7.13.10",
-    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "@types/classnames": "^2.2.11",
