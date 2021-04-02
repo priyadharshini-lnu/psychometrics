@@ -93,7 +93,7 @@
     "face-api.js": "^0.22.2",
     "fbemitter": "^2.0.2",
     "file-loader": "^3.0.1",
-    "fork-ts-checker-webpack-plugin": "^6.1.1",
+    "fork-ts-checker-webpack-plugin": "^6.2.0",
     "fp-ts": "^2.9.5",
     "green-audio-player": "^1.1.1",
     "highcharts": "^4.2.7",
