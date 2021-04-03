@@ -106,7 +106,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>
-          {'Cancel'}
+          Cancel
         </Button>,
         <Button
           key="submit"

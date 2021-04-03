@@ -84,31 +84,36 @@ function EvaluationList ({
     }
   }
 
-  const EvaluationItem = item => (
-    <List.Item>
-      <div className="evaluation-item list-item">
-        {isEvaluationCompleted(item)
-          ? <a><CheckSquareFilled className="status-icon" /></a>
-          : <div className="empty-square" />}
-        {' '}
-        <Link
-          to={getPath(item)}
-          style={{ display: 'flex', flex: 1 }}
-          disabled={canNotEvaluate(item)}
-          onClick={e => handleAssessmentLinkClick(e, item)}
-        >
-          <Tooltip placement="topLeft" title={item.subject.email}>
-            <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
+  const EvaluationItem = (item) => {
+    const subjectEvaluationClosed = item?.subjectEvaluationClosed ?? false
+    const email = item?.subject?.email ?? ''
+    const subject = item?.subject ?? { firstName: '', lastName: '' }
+
+    return (
+      <List.Item>
+        <div className="evaluation-item list-item">
+          {isEvaluationCompleted(item)
+            ? <a><CheckSquareFilled className="status-icon" /></a>
+            : <div className="empty-square" />}
+          {' '}
+          <Link
+            to={getPath(item)}
+            style={{ display: 'flex', flex: 1 }}
+            disabled={canNotEvaluate(item)}
+            onClick={e => handleAssessmentLinkClick(e, item)}
+          >
+            <Tooltip placement="topLeft" title={email}>
+              <div className={styles.flex}>{userPresenter.selfUserName(item, subject)}</div>
+            </Tooltip>
+          </Link>
+
+          {subjectEvaluationClosed && (
+          <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
+            <InfoCircleOutlined />
           </Tooltip>
-        </Link>
+          )}
 
-        {item.subjectEvaluationClosed && (
-        <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
-          <InfoCircleOutlined />
-        </Tooltip>
-        )}
-
-        {showDeclineEvaluationDropdown(item)
+          {showDeclineEvaluationDropdown(item)
           && (
             <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
               <a className="ant-dropdown-link actions-btn" href="#" style={{ flex: 'none' }}>
@@ -117,16 +122,17 @@ function EvaluationList ({
             </Dropdown>
           )
         }
-      </div>
-    </List.Item>
-  )
+        </div>
+      </List.Item>
+    )
+  }
 
   const SubjectItem = item => (
     <List.Item>
       <div className="evaluation-item list-item">
         <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
           <a className="ant-dropdown-link actions-btn" href="#">
-            <Tooltip placement="topLeft" title={item.user.email}>
+            <Tooltip placement="topLeft" title={item?.user?.email ?? ''}>
               <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
             </Tooltip>
             <DownOutlined className="menu-icon" />
