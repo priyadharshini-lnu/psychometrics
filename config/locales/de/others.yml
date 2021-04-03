@@ -92,8 +92,10 @@ de:
         Ihre Antworten wurden jetzt aufgezeichnet.
     page:
       back: zurück
-      confirm_message_1: Your responses will be submitted and cannot be changed after this.
-      confirm_message_2: Click ‘Back’ to review your responses one final time or click ‘Submit’ if you are finished.
+      confirm_message: |-
+        #### Ihre Antworten werden übermittelt und können danach nicht mehr geändert werden.
+
+        Klicken Sie auf **Zurück**, um Ihre Antworten ein letztes Mal zu überprüfen, oder klicken Sie auf **Senden**, wenn Sie fertig sind.
       next: weiter
       submit: einreichen
     pickgrouprank:
