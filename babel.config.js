@@ -1,7 +1,7 @@
-/* eslint-disable global-require */
-module.exports = function (api) {
+module.exports = function config (api) {
   const validEnv = ['development', 'test', 'production']
   const currentEnv = api.env()
+
   const isDevelopmentEnv = api.env('development')
   const isProductionEnv = api.env('production')
   const isTestEnv = api.env('test')
@@ -18,75 +18,56 @@ module.exports = function (api) {
 
   return {
     presets: [
-      isTestEnv && [
-        require('@babel/preset-env').default,
-        {
-          targets: {
-            node: 'current',
-          },
-        },
-      ],
+      isTestEnv && ['@babel/preset-env', { targets: { node: 'current' } }],
       (isProductionEnv || isDevelopmentEnv) && [
-        require('@babel/preset-env').default,
+        '@babel/preset-env',
         {
+          targets: 'defaults, not ie 11',
           forceAllTransforms: true,
           useBuiltIns: 'entry',
           corejs: '3.8',
           modules: 'commonjs',
+          bugfixes: true,
           exclude: ['transform-typeof-symbol'],
         },
       ],
       [
-        require('@babel/preset-react').default,
+        '@babel/preset-react',
         {
           development: isDevelopmentEnv || isTestEnv,
           useBuiltIns: true,
         },
       ],
-      [
-        require('@babel/preset-typescript').default,
-        {
-          isTSX: true,
-          allExtensions: true,
-        },
-      ],
+      ['@babel/preset-typescript', { allExtensions: true, isTSX: true }],
     ].filter(Boolean),
     plugins: [
-      require('babel-plugin-macros'),
-      require('@babel/plugin-transform-object-assign').default,
-      require('@babel/plugin-syntax-dynamic-import').default,
-      isTestEnv && require('babel-plugin-dynamic-import-node'),
-      require('@babel/plugin-transform-destructuring').default,
-      require('@babel/plugin-proposal-export-default-from'),
-      require('@babel/plugin-proposal-optional-chaining').default,
-      require('@babel/plugin-proposal-nullish-coalescing-operator').default,
+      'babel-plugin-macros',
+      '@babel/plugin-syntax-dynamic-import',
+      '@babel/plugin-proposal-export-default-from',
+      '@babel/plugin-proposal-optional-chaining',
+      '@babel/plugin-proposal-nullish-coalescing-operator',
       [
-        require('@babel/plugin-proposal-class-properties').default,
+        '@babel/plugin-proposal-class-properties',
         {
           loose: true,
         },
       ],
       [
-        require('@babel/plugin-proposal-object-rest-spread').default,
+        '@babel/plugin-proposal-object-rest-spread',
         {
           useBuiltIns: true,
         },
       ],
       [
-        require('@babel/plugin-transform-runtime').default,
+        '@babel/plugin-transform-runtime',
         {
           helpers: false,
           regenerator: true,
         },
       ],
       [
-        require('@babel/plugin-transform-regenerator').default,
-        {
-          async: false,
-        },
-      ],
-      [
-        require('babel-plugin-module-resolver').default,
+        // TODO: Remove later and depend on webpack resolution only
+        'babel-plugin-module-resolver',
         {
           root: ['./app/frontend'],
           alias: {
@@ -95,16 +76,11 @@ module.exports = function (api) {
         },
       ],
       isProductionEnv && [
-        require('babel-plugin-transform-react-remove-prop-types').default,
+        'babel-plugin-transform-react-remove-prop-types',
         {
           removeImport: true,
         },
       ],
     ].filter(Boolean),
-    ignore: [
-      // eslint-disable-next-line max-len
-      /node_modules\/(?!query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js|react-use|green-audio-player)/,
-    ],
-    sourceMaps: true,
   }
 }
