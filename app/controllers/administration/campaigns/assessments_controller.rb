@@ -120,7 +120,7 @@ module Administration
       end
 
       def pundit_authorize
-        authorize campaign_assessment || CampaignAssessment
+        authorize campaign_assessment || assessment
       end
 
       def import_params
