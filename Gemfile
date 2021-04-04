@@ -172,7 +172,7 @@ gem 'activerecord-import', '~> 1.0.2'
 gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
-gem 'rails_autoscale_agent', '~> 0.9.1'
+gem 'rails_autoscale_agent', '~> 0.10.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
