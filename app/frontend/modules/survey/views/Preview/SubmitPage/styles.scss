@@ -23,4 +23,9 @@
   border-radius: 9px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 6px;
   border: 1px solid #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  justify-content: center;
+  align-items: center;
 }

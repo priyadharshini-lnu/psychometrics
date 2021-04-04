@@ -92,7 +92,12 @@ de:
         Ihre Antworten wurden jetzt aufgezeichnet.
     page:
       back: zurück
+      confirm_message: |-
+        #### Ihre Antworten werden übermittelt und können danach nicht mehr geändert werden.
+
+        Klicken Sie auf **Zurück**, um Ihre Antworten ein letztes Mal zu überprüfen, oder klicken Sie auf **Senden**, wenn Sie fertig sind.
       next: weiter
+      submit: einreichen
     pickgrouprank:
       items: Elemente
     resource:
