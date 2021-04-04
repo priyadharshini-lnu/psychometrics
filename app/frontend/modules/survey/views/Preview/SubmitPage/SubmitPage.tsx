@@ -1,5 +1,6 @@
 import React from 'react'
 import cs from 'classnames'
+import ReactMarkdown from 'react-markdown'
 import styles from './styles.scss'
 import Footer from '../Page/components/PageFooter'
 import { PropsFromRedux } from './connect'
@@ -11,11 +12,8 @@ const SubmitPage: React.FC<PropsFromRedux> = ({
 }) => (
   <div className={styles.page}>
     <div className={styles.question}>
-      <div className={cs(styles.message)}>
-        {I18n.t('assessments.page.confirm_message_1')}
-      </div>
+      <ReactMarkdown className={cs(styles.message)}>{I18n.t('assessments.page.confirm_message')}</ReactMarkdown>
     </div>
-
     <Footer
       preview={preview}
       hasPrevPage={hasPrevPage}
