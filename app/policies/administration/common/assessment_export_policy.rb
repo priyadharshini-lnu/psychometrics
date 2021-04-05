@@ -36,6 +36,10 @@ module Administration
       def export_mindmill_results?
         @record.mindmill? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
+
+      def rescore_responses?
+        @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      end
     end
   end
 end
