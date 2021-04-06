@@ -2,7 +2,7 @@
 
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
+    attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external
 
     delegate :name, :category, to: :assessment
@@ -35,6 +35,18 @@ module Administration
 
     def is_external # rubocop:disable Naming/PredicateName
       assessment.external?
+    end
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::UserAssessmentPolicy,
+        current_user,
+        object,
+        [
+          'update_additional_time',
+          %w[reset_results reset]
+        ]
+      )
     end
 
     private
