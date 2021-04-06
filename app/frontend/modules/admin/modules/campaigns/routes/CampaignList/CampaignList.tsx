@@ -13,8 +13,6 @@ import { STATUSES, DEFAULT_PAGE_SIZE, TYPES } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
 import array from 'utils/array'
-import { CampaignPolicy } from 'modules/admin/modules/campaigns/policies/CampaignPolicy'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
 import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import CommonCampaignFormModal from './CommonCampaignFormModal'
@@ -53,7 +51,6 @@ interface Props {
   getSortOrder(column: string): 'descend' | 'ascend'
   changePage(page: number): void
   openModal(name: string, data?: { projectId: string, campaign: object }): void
-  currentUser: User,
   isProjectMigrated: boolean
 }
 
@@ -74,7 +71,6 @@ const CampaignList: React.FC<Props> = ({
   getSortOrder,
   changePage,
   openModal,
-  currentUser,
   isProjectMigrated,
 }) => {
   useEffect(() => {

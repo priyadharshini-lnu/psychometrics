@@ -22,15 +22,19 @@ module Administration
     end
 
     def permissions
-      policy = ::Administration::CampaignAssessmentPolicy.new(current_user, assessment)
-      {
-        import_raw_data: policy.import_results?,
-        export_raw_results: policy.export_raw_results?,
-        export_scoring_results: policy.export_scoring_results?,
-        export_raw_factor_scores: policy.export_raw_factor_scores?,
-        export_normed_results: policy.export_normed_results?,
-        export_external_results: policy.export_external_results?
-      }
+      GetPermissionsHash.call!(
+        Administration::CampaignAssessmentPolicy,
+        current_user,
+        assessment,
+        %w[
+          import_results
+          export_raw_results
+          export_scoring_results
+          export_raw_factor_scores
+          export_normed_results
+          export_external_results
+        ]
+      )
     end
 
     private

@@ -7,7 +7,6 @@ import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/co
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -42,7 +41,6 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   rescoreResponse,
   reset,
   remove,
-  currentUser,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -112,7 +110,6 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     campaignId: parsedCampaignId,
                     userId: parsedUserId,
                     assessment,
-                    currentUser,
                     remove: () => remove(parsedCampaignId, assessment.id),
                   }) as React.ReactElement
                 )}
@@ -134,7 +131,6 @@ interface ActionMenuProps {
   assessment: UserAssessment
   userId: number
   campaignId: number
-  currentUser: User
   rescoreResponse(): void
   reset(campaignId: number, assessmentId: number): Promise<unknown>
   remove(): void
@@ -142,7 +138,7 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset, remove,
+  rescoreResponse, openModal, campaignId, userId, assessment, reset, remove,
 }) => {
   const { name, permissions } = assessment
 
