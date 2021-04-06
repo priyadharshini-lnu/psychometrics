@@ -16,7 +16,7 @@ module Administration
 
       def update_additional_time
         ::UsersResults::AddAdditionalTime.call!(resource.users_result, params[:additional_time] * 60)
-        render json: resource, serializer: UserAssessmentSerializer
+        render json: resource, serializer: UserAssessmentSerializer, current_user: current_user
       end
 
       def destroy
@@ -37,7 +37,7 @@ module Administration
       def reset
         ::UsersResults::Reset.call!(resource)
 
-        render json: resource, serializer: UserAssessmentSerializer
+        render json: resource, serializer: UserAssessmentSerializer, current_user: current_user
       end
 
       private

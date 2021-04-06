@@ -9,6 +9,9 @@ export default interface Campaign {
   assessments: Entity[]
   reports: Entity[]
   isFixedTime: boolean
+  permissions: {
+    canCreate: boolean
+  }
 }
 
 export interface Entity {

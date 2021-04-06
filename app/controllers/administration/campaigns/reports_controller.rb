@@ -52,7 +52,7 @@ module Administration
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(:norm, :assessment),
-          each_serializer: Administration::CampaignAssessmentSerializer
+          each_serializer: Administration::CampaignAssessmentSerializer, current_user: current_user
         )
         assessor_assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.assessor_assessments,

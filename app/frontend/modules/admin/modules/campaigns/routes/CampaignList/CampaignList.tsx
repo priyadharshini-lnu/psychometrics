@@ -38,6 +38,9 @@ interface Props {
   fetch(projectId: string, tableConfig: TableConfig): void
   list: Campaign[],
   total: number,
+  permissions: {
+    canCreate: boolean
+  },
   match: {
     params: {
       projectId: string
@@ -58,6 +61,7 @@ const CampaignList: React.FC<Props> = ({
   fetch,
   list,
   total,
+  permissions,
   match: { params: { projectId } },
   tableConfig: {
     filters,
@@ -142,7 +146,7 @@ const CampaignList: React.FC<Props> = ({
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-          {CampaignPolicy.canCreate(currentUser) && (
+          {permissions.canCreate && (
           <div className={styles.newCampaignButton}>
             <CreateCampaignDropdown openModal={openModal} projectId={projectId} />
           </div>

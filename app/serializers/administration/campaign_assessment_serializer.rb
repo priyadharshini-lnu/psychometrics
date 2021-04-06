@@ -3,7 +3,7 @@
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_id, :enable_universal_links,
-               :universal_link, :norms, :is_external, :assessor_form_name, :assessor_form_id
+               :universal_link, :norms, :is_external, :assessor_form_name, :assessor_form_id, :permissions
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, to: :norm, prefix: true, allow_nil: true
@@ -21,7 +21,23 @@ module Administration
       assessment.external?
     end
 
+    def permissions
+      policy = ::Administration::CampaignAssessmentPolicy.new(current_user, assessment)
+      {
+        import_raw_data: policy.import_results?,
+        export_raw_results: policy.export_raw_results?,
+        export_scoring_results: policy.export_scoring_results?,
+        export_raw_factor_scores: policy.export_raw_factor_scores?,
+        export_normed_results: policy.export_normed_results?,
+        export_external_results: policy.export_external_results?
+      }
+    end
+
     private
+
+    def current_user
+      instance_options[:current_user]
+    end
 
     def norm
       object.norm

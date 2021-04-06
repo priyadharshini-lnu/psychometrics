@@ -168,9 +168,9 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses, currentUser,
+  campaignId, assessment, openModal, rescoreResponses,
 }) => {
-  const { id, name } = assessment
+  const { id, name, permissions } = assessment
 
   const handleRescoreResponse = () => {
     rescoreResponses()
@@ -180,7 +180,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
-        {AssessmentPolicy.exportRawResultsWithLabel(currentUser, assessment) && (
+        {permissions.exportRawResults && (
         <Menu.Item key="export_raw_labels">
           <a
             target="_blank"
@@ -191,7 +191,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {AssessmentPolicy.exportRawResultsWithoutLabel(currentUser, assessment) && (
+        {permissions.exportRawResults && (
         <Menu.Item key="export_raw">
           <a
             target="_blank"
@@ -202,7 +202,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {AssessmentPolicy.exportScoringResults(currentUser, assessment) && (
+        { permissions.exportScoringResults && (
         <Menu.Item key="export_scoring">
           <a
             target="_blank"
@@ -213,7 +213,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {AssessmentPolicy.exportNormedResults(currentUser, assessment) && (
+        { permissions.exportNormedResults && (
         <Menu.Item key="export_normed">
           <a
             target="_blank"
@@ -224,7 +224,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {AssessmentPolicy.exportRawFactorScores(currentUser, assessment) && (
+        { permissions.exportRawFactorScores && (
         <Menu.Item key="export_raw_scores">
           <a
             target="_blank"
@@ -235,7 +235,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {AssessmentPolicy.exportExternalResults(currentUser, assessment) && (
+        { permissions.exportExternalResults && (
         <Menu.Item key="export_external">
           <a
             target="_blank"
@@ -247,7 +247,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
         )}
       </Menu.ItemGroup>
-      {AssessmentPolicy.importResults(currentUser, assessment) && (
+      { permissions.importRawData && (
       <Menu.ItemGroup key="import" title="Import">
         <Menu.Item key="import_raw">
           <a

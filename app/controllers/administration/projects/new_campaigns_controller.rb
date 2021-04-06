@@ -14,6 +14,10 @@ module Administration
       initial_state_for %i[index show]
 
       def index
+        policy = ::Administration::CampaignPolicy.new(current_user, nil)
+        permissions = {
+          can_create: policy.create?
+        }
         respond_to do |format|
           format.html
           format.json do
@@ -25,7 +29,8 @@ module Administration
             )
             render json: {
               campaigns: serialized_campaigns,
-              total: campaigns.count
+              total: campaigns.count,
+              permissions: permissions
             }, each_serializer: Administration::Campaigns::CampaignSerializer
           end
         end

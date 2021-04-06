@@ -5,7 +5,6 @@ import {
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import UserAssessmentPolicy from 'modules/admin/modules/campaigns/policies/UserAssessment'
 import _ from 'lodash'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
@@ -145,7 +144,7 @@ interface ActionMenuProps {
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset, remove,
 }) => {
-  const { name } = assessment
+  const { name, permissions } = assessment
 
   const handleReset = () => {
     Modal.confirm({
@@ -188,7 +187,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-        {UserAssessmentPolicy.resetResults(currentUser, assessment) ? (
+        {permissions.resetResults ? (
           <Menu.Item key="reset">
             <div
               role="button"
@@ -219,7 +218,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('common.actions.remove')}
         </div>
       </Menu.Item>
-      {UserAssessmentPolicy.updateAdditionalTime(currentUser, assessment) ? (
+      {permissions.updateAdditionalTime ? (
         <Menu.Item key="extend">
           <div
             role="button"
