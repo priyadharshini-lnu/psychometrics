@@ -187,6 +187,7 @@ group :development, :test do
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
+  gem 'i18n-tasks', '~> 0.9.31'
   gem 'rswag-specs', '~> 2.4.0'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
@@ -206,7 +207,6 @@ group :development do
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.14.0'
-  gem 'i18n-tasks', '~> 0.9.25'
   gem 'meta_request', '~> 0.6.0'
 end
 group :test do

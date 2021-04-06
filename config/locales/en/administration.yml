@@ -458,8 +458,8 @@ en:
         successfully: Client Tenancy %{name} was successfully updated.
       url: Url
     campaigns:
-      extend_time_success_message: Campaign timer extended to %{minutes} minutes
       actions: Manage
+      extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name
         status: Status
@@ -1485,8 +1485,8 @@ en:
           count_invalid: cannot be less than the used_count = %{use_count}
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
           duplicate_code: is in use. Try another one.
-          incorrect_domain: Incorrect domain format.
           in_use: "%{attribute} is already in use"
+          incorrect_domain: Incorrect domain format.
           invalid_attribute: "%{attribute} is invalid"
           invalid_end_date: has to be greater than the start date
           license_issue: Not enough licenses.

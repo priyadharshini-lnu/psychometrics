@@ -112,10 +112,20 @@ de:
   campaign:
     completed: abgeschlossen
     details: Einzelheiten
+    in_progress: im Gange
     instructions:
       heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
+    language:
+      cancel: Stornieren
+      content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.
+      proceed: Weiter
+      single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
+      title: Sprache auswählen
     new: neues
     not_started: neues
+    panels:
+      assessments: Aufgaben
+      reports: Berichte
     time_left:
       continue: fortfahren
     welcome: Willkommen
