@@ -17,4 +17,3 @@ class GetProjectBySubdomain < BaseCommand
     broadcast :ok, Client.find_by(subdomain: project_subdomain)
   end
 end
-
