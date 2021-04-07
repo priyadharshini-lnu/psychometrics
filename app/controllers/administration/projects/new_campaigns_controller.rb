@@ -14,10 +14,6 @@ module Administration
       initial_state_for %i[index show]
 
       def index
-        policy = ::Administration::CampaignPolicy.new(current_user, nil)
-        permissions = {
-          can_create: policy.create?
-        }
         respond_to do |format|
           format.html
           format.json do
@@ -34,6 +30,15 @@ module Administration
             }, each_serializer: Administration::Campaigns::CampaignSerializer
           end
         end
+      end
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::CampaignPolicy,
+          current_user,
+          nil,
+          [%w[can_create create]]
+        )
       end
 
       def destroy
@@ -121,6 +126,8 @@ module Administration
       def set_campaign
         @campaign = policy_scope(Campaign).find_by(project_id: params[:project_id], id: params[:id])
       end
+
+      
 
       def create_common_campaign
         form = ::Campaigns::Form.from_params(resource_params)
