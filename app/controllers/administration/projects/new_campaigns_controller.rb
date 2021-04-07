@@ -127,8 +127,6 @@ module Administration
         @campaign = policy_scope(Campaign).find_by(project_id: params[:project_id], id: params[:id])
       end
 
-      
-
       def create_common_campaign
         form = ::Campaigns::Form.from_params(resource_params)
         if form.valid?

@@ -32,6 +32,10 @@ module Administration
       !@record.external? && @user.is?(:superadmin)
     end
 
+    def enable_universal_link?
+      @user.is?(:superadmin)
+    end
+
     def attach_to_group?
       update?
     end

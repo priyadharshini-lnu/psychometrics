@@ -21,5 +21,6 @@ export default interface Assessment {
     exportNormedResults: boolean
     exportRawFactorScores: boolean
     exportExternalResults: boolean
+    importResults: boolean
   }
 }

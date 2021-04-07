@@ -6,7 +6,6 @@ import {
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
-import AssessmentPolicy from 'modules/admin/modules/campaigns/policies/Assessment'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import Report from 'modules/admin/modules/campaigns/interfaces/Report'
@@ -29,6 +28,7 @@ type Props = RouteComponentProps & OwnProps & PropsFromRedux
 const AssessmentList: React.FC<Props> = ({
   assessments: {
     list,
+    permissions,
   },
   match: { params: { projectId, campaignId } },
   currentUser,
@@ -96,7 +96,7 @@ const AssessmentList: React.FC<Props> = ({
               </a>
             )}
           />
-          {AssessmentPolicy.enableUniversalLink(currentUser)
+          {permissions.enableUniversalLink
             && (
             <Column
               title={I18n.t('campaign_assessment.column.universal_link')}

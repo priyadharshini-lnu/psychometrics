@@ -2,6 +2,28 @@
 
 module Administration
   class AssessorAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :name
+    attributes :id, :name, :permissions
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::CampaignAssessmentPolicy,
+        current_user,
+        object,
+        %w[
+          import_results
+          export_raw_results
+          export_scoring_results
+          export_raw_factor_scores
+          export_normed_results
+          export_external_results
+        ]
+      )
+    end
+
+    private
+
+    def current_user
+      instance_options[:current_user]
+    end
   end
 end
