@@ -247,7 +247,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
         )}
       </Menu.ItemGroup>
-      { permissions.importRawData && (
+      { permissions.importResults && (
       <Menu.ItemGroup key="import" title="Import">
         <Menu.Item key="import_raw">
           <a

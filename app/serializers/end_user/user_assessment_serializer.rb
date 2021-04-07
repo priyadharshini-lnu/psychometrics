@@ -5,7 +5,7 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
                :assessment_extra, :assessment_id, :status, :completion_percent, :need_confirm, :available_locales,
-               :selected_locale, :permissions
+               :selected_locale
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
 
@@ -97,14 +97,6 @@ module EndUser
 
     def need_confirm
       object.campaign.project.privacy_consent && object.user.privacy_consent.nil?
-    end
-
-    def permissions
-      policy = ::Administration::UserAssessmentPolicy.new(current_user, assessment)
-      {
-        update_additional_time: policy.update_additional_time?,
-        resetResults: policy.reset?
-      }
     end
   end
 end

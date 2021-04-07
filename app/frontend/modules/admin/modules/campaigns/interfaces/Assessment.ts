@@ -15,7 +15,6 @@ export default interface Assessment {
   universalLink: string | null
   norms?: Norm[]
   permissions: {
-    importRawData: boolean
     exportRawResults: boolean
     exportScoringResults: boolean
     exportNormedResults: boolean

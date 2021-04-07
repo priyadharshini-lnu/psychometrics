@@ -139,6 +139,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         is_external
         assessor_form_name
         assessor_form_id
+        permissions
       ]
     )
     expect(assessment_response).to include({
@@ -148,9 +149,18 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     })
 
     assessment_response = parsed_response['assessor_assessments'].first
+    policy = Administration::CampaignAssessmentPolicy.new(current_user, assessor_assessment)
     expect(assessment_response).to eq({
       'id' => assessor_assessment.id,
-      'name' => assessor_assessment.name
+      'name' => assessor_assessment.name,
+      'permissions' => {
+        'export_external_results' => policy.export_external_results?,
+        'export_normed_results' => policy.export_normed_results?,
+        'export_raw_factor_scores' => policy.export_raw_factor_scores?,
+        'export_raw_results' => policy.export_raw_results?,
+        'export_scoring_results' => policy.export_scoring_results?,
+        'import_results' => policy.import_results?
+      }
     })
   end
 end

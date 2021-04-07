@@ -51,6 +51,10 @@ module Administration
 
     private
 
+    def current_user
+      instance_options[:current_user]
+    end
+
     def norm
       user_result&.norm
     end
