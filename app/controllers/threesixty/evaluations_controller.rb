@@ -71,7 +71,7 @@ module Threesixty
     private
 
     def set_read_results
-      @users_result.status = :in_progress
+      @participant.status = :in_progress
       @users_result.current_element = nil
       @users_result.current_page = 0
     end

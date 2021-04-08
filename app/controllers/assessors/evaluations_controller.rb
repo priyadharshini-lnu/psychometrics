@@ -40,7 +40,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
     ::UsersResults::Edit.call!(user_result) if params[:edit] == 'true'
 
     if params[:read] == 'true'
-      user_result.status = :in_progress
+      @assessor_assessment.status = :in_progress
       user_result.current_element = nil
       user_result.current_page = 0
     end
