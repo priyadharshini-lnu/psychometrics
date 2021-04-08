@@ -10,7 +10,7 @@ module QrCode
     end
 
     def call
-      file_path = if type.eql?(I18n.t('administration.clients.registration_codes.resource.svg'))
+      file_path = if type.eql?('svg')
                     QrCode::CreateSvg.call!(target_url)
                   else
                     QrCode::CreatePng.call!(target_url)
