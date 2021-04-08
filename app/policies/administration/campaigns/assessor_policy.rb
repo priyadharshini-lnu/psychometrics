@@ -26,10 +26,6 @@ module Administration
       def spoof?
         @user.is?(:superadmin)
       end
-
-      def login_as?
-        spoof?
-      end
     end
   end
 end

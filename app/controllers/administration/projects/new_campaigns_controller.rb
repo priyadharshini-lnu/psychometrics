@@ -37,7 +37,7 @@ module Administration
           Administration::CampaignPolicy,
           current_user,
           nil,
-          [%w[can_create create]]
+          %w[create]
         )
       end
 

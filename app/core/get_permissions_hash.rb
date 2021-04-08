@@ -15,7 +15,8 @@ class GetPermissionsHash < BaseCommand
     permissions_hash = {}
     permission_names.each do |permission|
       if permission.is_a?(Array)
-        permissions_hash[permission[0]] = policy.send("#{permission[1]}?")
+        permission_name, policy_method_name = permission
+        permissions_hash[permission_name] = policy.send("#{policy_method_name}?")
       else
         permissions_hash[permission] = policy.send("#{permission}?")
       end

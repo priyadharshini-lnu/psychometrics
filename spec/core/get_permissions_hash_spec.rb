@@ -13,11 +13,15 @@ describe GetPermissionsHash do
       Administration::UserAssessmentPolicy,
       current_user,
       user_assessment,
-      %w[update_additional_time]
+      [
+        'update_additional_time',
+        %w[reset_results reset]
+      ]
     )
 
     expect(result).to eq({
-      'update_additional_time' => policy.update_additional_time?
+      'update_additional_time' => policy.update_additional_time?,
+      'reset_results' => policy.reset?
     })
   end
 end

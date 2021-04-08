@@ -37,7 +37,7 @@ interface Props {
   list: Campaign[],
   total: number,
   permissions: {
-    canCreate: boolean
+    create: boolean
   },
   match: {
     params: {
@@ -142,7 +142,7 @@ const CampaignList: React.FC<Props> = ({
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-          {permissions.canCreate && (
+          {permissions.create && (
           <div className={styles.newCampaignButton}>
             <CreateCampaignDropdown openModal={openModal} projectId={projectId} />
           </div>

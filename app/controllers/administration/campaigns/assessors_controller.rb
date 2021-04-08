@@ -40,7 +40,7 @@ module Administration
           Administration::Campaigns::AssessorPolicy,
           current_user,
           nil,
-          %w[login_as]
+          [%w[login_as spoof]]
         )
       end
 
