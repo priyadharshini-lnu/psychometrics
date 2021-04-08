@@ -1,8 +1,6 @@
 # Psychometrics
 
-[![pipeline status](https://gitlab.com/tte-lighthouse/psychometrics/badges/develop/pipeline.svg)](https://gitlab.com/tte-lighthouse/psychometrics/commits/develop)
-[![coverage report](https://gitlab.com/tte-lighthouse/psychometrics/badges/develop/coverage.svg)](https://gitlab.com/tte-lighthouse/psychometrics/commits/develop)
-
+<a href='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe'> <img src='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe' alt='Build Status'></a>
 
 ## Requisites
 
