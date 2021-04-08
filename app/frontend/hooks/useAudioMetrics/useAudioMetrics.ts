@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
-import _ from 'lodash'
-import Core from 'modules/survey/components/AudioRecorder/Recorder/Core.ts'
+import filter from 'lodash/filter'
+
+import Core from 'modules/survey/components/AudioRecorder/Recorder/Core'
 import { RECORDER_STATES } from 'modules/survey/components/AudioRecorder/constants'
+
 import { AudioLevel, State, StateFunctions } from './interfaces'
 
 const DEFAULT_AUDIO_PULSE = 0.7
@@ -38,7 +40,7 @@ export default function useAudioMetrics (recorder: React.MutableRefObject<Core |
     if ((level === AudioLevel.Low && batchPulsesRef.current.length)
       || (performance.now() - lastAudiDetectorColorChangeRef.current) > AUDIO_LEVEL_CHANGE_TO_LOW_THRESHOLD) {
       const totalPulse = batchPulsesRef.current.length
-      const pulseWithHighThreshold = _.filter(batchPulsesRef.current,
+      const pulseWithHighThreshold = filter(batchPulsesRef.current,
         (pulse: number) => pulse > HIGH_PULSE_THRESHOLD).length
       const percentOfHighPulse = (pulseWithHighThreshold / totalPulse) * 100
       setLevel(percentOfHighPulse > PERCENT_OF_HIGH_PULSE_THRESHOLD ? AudioLevel.High : AudioLevel.Low)

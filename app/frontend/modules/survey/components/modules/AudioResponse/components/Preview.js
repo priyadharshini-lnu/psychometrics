@@ -49,7 +49,7 @@ export class Preview extends Component {
       <div>
         <SafeHTML
           html={I18n.tQuestion(model, 'questionText')}
-          classNames={textEntryStyles.questionTextPreview}
+          className={textEntryStyles.questionTextPreview}
           config="adminRichText"
         />
         {this.renderAudioResponseBlock()}

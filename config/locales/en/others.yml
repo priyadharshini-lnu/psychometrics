@@ -640,6 +640,20 @@ en:
       psychometric: Assessment
     decorator:
       no_description: Description is empty
+    dictation:
+      listening: Listening
+      use_speech_instructions: Use speech input to write this answer
+      browser_unsupported: Your browser does not support Audio input
+      dictation_active: Dictation is now active
+      allow_browser_permision: Please allow browser audio permission to use dictation
+      dictation_inuse: Dictation is currently being used by another question
+      stop_dictation: Stop dictation
+      start_dictation: Start dictation
+      autostopping_in: Auto-stopping in %{reverseCountdown}
+      dictation_stopped: Speech dictation stopped
+      notifications:
+        refresh_page: Unable to continue speech dictation, try again by refreshing the page
+        autostopped: Dictation was auto stopped due to continued silence for %{autocutoff} seconds
     file_upload:
       select_file: Select file
     flow:

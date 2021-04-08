@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button } from 'antd'
+import { Input, Button, Divider } from 'antd'
 import ChoicesInput from 'modules/survey/components/ChoicesInput'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import { Question } from '../../interfaces'
@@ -51,7 +51,7 @@ const PropertyPanel: React.FC<Props> = ({
       <Button size="small" icon={<PlusOutlined />} onClick={addContact} className={styles.button}>
         Add
       </Button>
-      <hr className={styles.divider} />
+      <Divider />
     </div>
   )
 }

@@ -1,9 +1,17 @@
 import { connect } from 'react-redux'
 import {
-  getCurrentPage, getCurrentBlock, pageQuestionsWithoutHidden, pageErrors, getPrevPage, getProgress, getI18n,
+  getCurrentPage,
+  getCurrentBlock,
+  pageQuestionsWithoutHidden,
+  pageErrors,
+  getPrevPage,
+  getProgress,
+  getI18n,
 } from 'modules/survey/core/preview/FlowProcessor/selectors'
 import {
-  nextPage, prevPage,
+  nextPage,
+  prevPage,
+  fetchAwsSpeechTextPresignedUrl,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from 'modules/survey/core/rootReducers'
 import { fetchCampaignOptions } from 'modules/user/modules/campaigns/core/campaign'
@@ -11,7 +19,10 @@ import { isConnected } from 'core/connection'
 
 export default connect(
   (state: RootState) => {
-    const { preview, preview: { initialized } } = state
+    const {
+      preview,
+      preview: { initialized },
+    } = state
 
     return {
       preview,
@@ -29,5 +40,6 @@ export default connect(
     nextPage,
     prevPage,
     fetchCampaignOptions,
+    fetchAwsSpeechTextPresignedUrl,
   },
 )

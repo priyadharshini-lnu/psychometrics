@@ -142,7 +142,9 @@ export interface DefaultState {
   factors: []
   scoring: {} | null
   showScoringOnEndPage: boolean
+  awsSpeechTextPresignedURL: string
   showQuestionScoring: boolean
+  activeDictationOnQuestion: number
 }
 
 export interface MediaResponse {

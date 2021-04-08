@@ -265,12 +265,16 @@ export const getMediaResponseByQuestionId = (state, questionId: number) => (
   getMediaResponsesByQuestionId(state, questionId)[0]
 )
 
+export const getAwsSpeechTextPresignedUrl = state => state.awsSpeechTextPresignedURL
+
 export const getQuestionScoring = (store, questionId) => _.reduce(store.scoring, (acc, s, k) => {
   if (_.some(s.results, q => q.questionId === questionId)) {
     return { ...acc, [k]: { score: s.score } }
   }
   return acc
 }, {})
+
+export const getQuestionWithActiveDictation = state => state.activeDictationOnQuestion
 
 export const getStatus = (preview): string => {
   if (!preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')) {

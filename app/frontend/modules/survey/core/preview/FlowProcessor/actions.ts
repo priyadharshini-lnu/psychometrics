@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-
 import * as t from 'io-ts'
+
+import ApiAction from 'interfaces/ApiAction'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
@@ -22,7 +24,9 @@ import {
   REMOVE_MEDIA_RESPONSE,
   MARK_MEDIA_RESPONSE_AS_SELECTED,
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION,
+  AWS_SPEECH_TO_TEXT_URL,
   FETCH_QUESTION_SCORING,
+  ACTIVE_DICTATION_ON_QUESTION,
 } from './consts'
 import {
   Highlight, QuestionError, MediaResponse, EndOfAssessmentElementProps,
@@ -208,3 +212,24 @@ export const markMediaResponseAsSelected = (mediaResponse: MediaResponse) => ({
   type: MARK_MEDIA_RESPONSE_AS_SELECTED,
   payload: { mediaResponse },
 })
+
+export const AwsSpeechTextPresignedUrlTR = t.type({ url: t.string })
+export type AwsSpeechTextPresignedUrl = t.TypeOf<typeof AwsSpeechTextPresignedUrlTR>
+
+export const fetchAwsSpeechTextPresignedUrl = (): ApiAction<AwsSpeechTextPresignedUrl> => ({
+  type: AWS_SPEECH_TO_TEXT_URL,
+  request:
+    {
+      method: 'get',
+      url: '/transcribe/pre_sign_url',
+    },
+})
+
+export type AwsSpeechTextPresignedUrlAction = ApiActionResponse<AwsSpeechTextPresignedUrl>
+
+export const setDictationActiveOnQuestion = (questionId: number) => ({
+  type: ACTIVE_DICTATION_ON_QUESTION,
+  payload: { questionId },
+})
+
+export type SetDictationActiveOnQuestion = ReturnType<typeof setDictationActiveOnQuestion>

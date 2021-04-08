@@ -1,3 +1,2 @@
 !.eslintrc.js
 app/frontend/__tests__
-app/frontend/libs/amazon-transcribe-websocket-static

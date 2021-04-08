@@ -6,6 +6,7 @@ Object {
     "connected": true,
   },
   "preview": Object {
+    "activeDictationOnQuestion": 0,
     "agileAssetsUrl": undefined,
     "agileAssignUrl": undefined,
     "allPages": Object {
@@ -34,6 +35,7 @@ Object {
     },
     "assessmentCategory": undefined,
     "assessmentTimedOut": false,
+    "awsSpeechTextPresignedURL": "",
     "blocks": Object {
       "1": Object {
         "id": 1,
@@ -424,8 +426,10 @@ Object {
     "connected": true,
   },
   "preview": Object {
+    "activeDictationOnQuestion": 0,
     "allPages": Object {},
     "assessmentTimedOut": false,
+    "awsSpeechTextPresignedURL": "",
     "blocks": Object {},
     "currentElement": null,
     "currentPage": 0,
