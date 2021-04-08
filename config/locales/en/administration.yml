@@ -3089,9 +3089,9 @@ en:
     survey_builder:
       property_panel:
         allow_content_copy: Allow content copying
-        voice_dictation: Voice dictation
         answer_type: Answer type
         validation_response_type: Validation response type
+        voice_dictation: Voice dictation
     table:
       entries:
         selected:
