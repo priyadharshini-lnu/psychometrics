@@ -21,7 +21,7 @@ global_job_config:
     - name: PARALLEL_TEST_PROCESSORS
       value: '4'
     - name: WEB_CONCURRENCY
-      value: '2'
+      value: '1'
     - name: RAILS_MAX_THREADS
       value: '5'
   prologue:
