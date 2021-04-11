@@ -586,6 +586,7 @@ en:
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         import_datasheet: Import Datasheet
+        copy_dimension: Copy Dimension
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors

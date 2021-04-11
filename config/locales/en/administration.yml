@@ -2242,8 +2242,8 @@ en:
       started: Started At
       updated: Updated At
     dimensions:
-      copy:
-        error: 'Dimension #%{id} was not copied.'
+      copy_scheduled:
+        successfully: Copying scheduled for dimension %{name}
       create:
         successfully: "%{name} dimension was created successfully"
       destroy:

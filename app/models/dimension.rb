@@ -55,8 +55,20 @@ class Dimension < ApplicationRecord
   }
 
   def clone_and_save
-    @cloned_dimension = deep_clone(include: [:occupations, { factors: :factors_sub_factors }],
-                                   except: [:factors_count])
+    @cloned_dimension = deep_clone(
+      include: [
+        { all_factors: :factors_sub_factors },
+        { occupations: { occupations_factors: :factor } },
+        { innovation_styles: { innovation_styles_factors: :factor } }
+      ],
+      except: [:factors_count],
+      use_dictionary: true
+    ) do |original, copied|
+      original.class.uploaders.each_key do |image_column|
+        copied.public_send("#{image_column}=", original.public_send(image_column))
+      end
+    end
+
     @cloned_dimension.gen_uniq_name
     if @cloned_dimension.save
       # SubFactors have link to original dimension.
