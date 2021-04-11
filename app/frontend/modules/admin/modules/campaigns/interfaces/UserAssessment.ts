@@ -13,4 +13,8 @@ export default interface UserAssessment {
   status: string
   norms?: Norm[]
   reportIds: number[]
+  permissions: {
+    updateAdditionalTime: boolean
+    resetResults: boolean
+  }
 }

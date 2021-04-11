@@ -111,7 +111,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   def check_assessment_response(assessment_response)
     expect(assessment_response.keys).to eq(
       %w[
-        id assessment_id name category norm_name status norms norm_id
+        id permissions assessment_id name category norm_name status norms norm_id
         additional_time is_expired is_external
       ]
     )

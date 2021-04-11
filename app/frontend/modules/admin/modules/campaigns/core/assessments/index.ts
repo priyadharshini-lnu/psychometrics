@@ -19,6 +19,9 @@ import {
 const defaultState: State = {
   list: [],
   selectedId: [],
+  permissions: {
+    enableUniversalLink: false,
+  },
 }
 
 export const get = (state): State => _.get(state, ['campaigns', 'assessments'])
@@ -33,10 +36,13 @@ export interface ActivateUniversalLinkAction {
 export interface State {
   list: Assessment[]
   selectedId: number[],
+  permissions: {
+    enableUniversalLink: boolean
+  }
 }
 
 type ActivateUniversalLinkType = ApiActionResponse<Assessment>
-type FetchType = ApiActionResponse<{assessments: Assessment[]}>
+type FetchType = ApiActionResponse<{assessments: Assessment[], permissions: { assessmentPermissions: {} }}>
 type FetchNormsType = ApiActionResponse<Norm[]>
 type UpdateNormType = ApiActionResponse<{normName: string}>
 type UpdateAssessorForm = ApiActionResponse<{assessorFormName: string, assessorFormId: number | undefined}>
@@ -49,7 +55,7 @@ const updateAssessment = (state: State, { response }: ActivateUniversalLinkType)
 
 const HANDLERS = {
   [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => ({
-    ...state, list: response.assessments,
+    ...state, list: response.assessments, permissions: response.permissions.assessmentPermissions,
   }),
   [CREATE_REPORT]: (state, { response }: FetchType) => ({ ...state, list: response.assessments }),
   [ACTIVATE_UNIVERSAL_LINK]: updateAssessment,

@@ -19,12 +19,16 @@ const defaultState: State = {
     errors: null,
   },
   total: 0,
+  permissions: {
+    loginAs: false,
+  },
 }
 
 export const get = (state: RootState): State => _.get(state, ['campaigns', 'assessors'])
 export const getCurrent = (state: RootState) => _.get(get(state), ['current'])
 export const getForm = (state: RootState) => _.get(get(state), ['form'])
 export const getAvailableAssessments = (state: RootState) => _.get(get(state), ['availableAssessments'])
+
 
 export const FETCH = 'campaigns/FETCH_ASSESSORS'
 export const CREATE = 'resource/campaigns/assessor/CREATE'
@@ -51,6 +55,9 @@ type Assessor = t.TypeOf<typeof AssessorTR>
 
 const FetchAssessorsTR = t.type({
   list: t.array(AssessorTR),
+  permissions: t.type({
+    loginAs: t.boolean,
+  }),
   total: t.number,
 })
 
@@ -157,6 +164,9 @@ export interface State {
     errors: unknown
   }
   total: number
+  permissions: {
+    loginAs: boolean
+  }
 }
 
 type FetchType = ApiActionResponse<State>
