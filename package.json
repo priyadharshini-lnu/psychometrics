@@ -108,7 +108,7 @@
     "less-loader": "^5.0.0",
     "lodash": "^4.17.21",
     "microphone-stream": "^5.3.1",
-    "mime-types": "^2.1.29",
+    "mime-types": "^2.1.30",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "node-sass": "^5.0.0",
