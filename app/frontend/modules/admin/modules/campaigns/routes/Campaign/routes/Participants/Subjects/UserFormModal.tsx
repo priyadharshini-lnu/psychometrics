@@ -1,10 +1,11 @@
 import React from 'react'
+import {
+  Form, Input, Radio, Space,
+} from 'antd'
+
 import ResourceFormModal from 'components/ResourceFormModal'
-import { Form, Input, Select } from 'antd'
-import _ from 'lodash'
 
 const { I18n } = window
-const { Option } = Select
 
 interface Props {
   projectId: string
@@ -15,13 +16,13 @@ interface Props {
   }
 }
 
-const operationsOption = ['skip_existing', 'add_with_existing_response', 'add_and_allow_new_response']
+const OPERATIONS_OPTIONS = [
+  'skip_existing',
+  'add_with_existing_response',
+  'add_and_allow_new_response',
+]
 
-const UserFormModal: React.FC<Props> = ({
-  campaignId,
-  close,
-  user,
-}) => (
+const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => (
   <ResourceFormModal
     resourceName="user"
     requestScope="campaigns"
@@ -30,60 +31,54 @@ const UserFormModal: React.FC<Props> = ({
     showSuccessMessages
     close={close}
     modalProps={{ width: 550 }}
-    formProps={{ initialValues: { operation: 'skip_existing' } }}
+    formProps={{ initialValues: { operation: OPERATIONS_OPTIONS[0] } }}
   >
     {({ isEdit }) => (
       <>
         <Form.Item
           name="firstName"
-          label="First Name"
+          label={I18n.t('user.form.first_name')}
           rules={[{ required: true }]}
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           name="lastName"
-          label="Last Name"
+          label={I18n.t('user.form.last_name')}
           rules={[{ required: true }]}
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           name="email"
-          label="Email"
+          label={I18n.t('user.form.email')}
           rules={[{ required: true }]}
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           name="locale"
-          label="Locale"
+          label={I18n.t('user.form.locale')}
         >
           <Input />
         </Form.Item>
-
-        {!isEdit
-          && (
+        {!isEdit && (
           <Form.Item
             name="operation"
-            label="Operation"
+            label={I18n.t('user.form.operation')}
             rules={[{ required: true }]}
           >
-            <Select>
-              {_.map(operationsOption, operation => (
-                <Option
-                  key={operation}
-                  value={operation}
-                >
-                  {I18n.t(`user.form.operation_options.${operation}`)}
-                </Option>
-              ))}
-            </Select>
+            <Radio.Group>
+              <Space direction="vertical">
+                {OPERATIONS_OPTIONS.map(operation => (
+                  <Radio value={operation}>
+                    {I18n.t(`user.form.operation_options.${operation}`)}
+                  </Radio>
+                ))}
+              </Space>
+            </Radio.Group>
           </Form.Item>
-          )}
+        )}
       </>
     )}
   </ResourceFormModal>

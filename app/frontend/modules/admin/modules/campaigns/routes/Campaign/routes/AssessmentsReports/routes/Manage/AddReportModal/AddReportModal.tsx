@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import ResourceFormModal from 'components/ResourceFormModal'
 import {
-  Form, Select, Table, Checkbox,
+  Form, Select, Table, Checkbox, Radio, Space,
 } from 'antd'
 import _ from 'lodash'
+
+import ResourceFormModal from 'components/ResourceFormModal'
+
 import { Strategies } from './interfaces'
 
-const { Column } = Table
-const { Option } = Select
 const { I18n } = window
+
 interface Props {
   campaignId: string
   userId?: number
@@ -97,31 +98,34 @@ const AddReportModal: React.FC<Props> = ({
           >
             <Select
               showSearch
-              placeholder="Nothing selected"
+              placeholder={I18n.t('campaign_report.form.report_bundle_placeholder')}
               optionFilterProp="children"
               filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             >
               {_.map(reportFamilies, (reportFamily: ReportFamily) => (
-                <Option key={reportFamily.id} value={reportFamily.id}>{reportFamily.name}</Option>
+                <Select.Option key={reportFamily.id} value={reportFamily.id}>
+                  {reportFamily.name}
+                </Select.Option>
               ))}
             </Select>
           </Form.Item>
-
           <Form.Item
             name="operation"
             label={I18n.t('campaign_report.form.operation')}
             rules={[{ required: true }]}
           >
-            <Select>
-              {_.map(operationsOption, (operation: string) => (
-                <Option
-                  key={operation}
-                  value={operation}
-                >
-                  {I18n.t(`campaign_report.form.operation_options.${operation}`)}
-                </Option>
-              ))}
-            </Select>
+            <Radio.Group>
+              <Space direction="vertical">
+                {operationsOption.map(operation => (
+                  <Radio value={operation}>
+                    {I18n.t(
+                      `campaign_report.form.operation_options.${operation}`,
+                    )}
+                  </Radio>
+                ))
+                }
+              </Space>
+            </Radio.Group>
           </Form.Item>
           <div className="horizontalLabels">
             <Table
@@ -130,7 +134,7 @@ const AddReportModal: React.FC<Props> = ({
               dataSource={reportForSelection(form.getFieldValue('reportFamilyId'))}
               pagination={false}
             >
-              <Column
+              <Table.Column
                 title={I18n.t('campaign_report.form.report')}
                 width="80%"
                 render={({ id, name }) => (
@@ -145,7 +149,7 @@ const AddReportModal: React.FC<Props> = ({
                   </Form.Item>
                 )}
               />
-              <Column
+              <Table.Column
                 width="20%"
                 align="center"
                 title={I18n.t('campaign_report.column.user_access')}

@@ -915,6 +915,7 @@ en:
         add_with_existing_response: Add report to existing user and keep existing response
         skip_existing: Skip existing user
       report: Report
+      report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_successful: Bulk report download job scheduled successfully
     modals:
@@ -2270,6 +2271,11 @@ en:
       last_name: Last Name
       password: Password
     form:
+      email: Email
+      first_name: First name
+      last_name: Last name
+      locale: Locale
+      operation: Operation
       operation_options:
         add_and_allow_new_response: Add user and allow new response
         add_with_existing_response: Add user with existing response
