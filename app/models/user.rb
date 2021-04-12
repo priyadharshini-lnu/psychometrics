@@ -62,17 +62,19 @@ class User < ApplicationRecord
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
+    clients: %w[view view_licenses],
+    projects: %w[view manage manage_admins manage_users],
     norms: %w[view manage],
     dimensions: %w[view manage],
-    clients: %w[manage design],
-    assessments: %w[view manage assign export import],
-    translations: %w[export import],
-    reports: %w[view manage],
-    questions: %w[view manage],
+    assessments: %w[view manage],
     libraries: %w[view manage],
     communications: %w[view manage],
-    projects: %w[view manage],
-    assigns: %w[view]
+    reports: %w[view manage],
+    results: %w[view_report report_data raw_responses scores],
+    campaign: %w[view show manage manage_users manage_options manage_messages],
+    assessors: %w[view manage manage_users],
+    registration_codes: %w[view manage],
+    datasheet: %w[view manage]
   }.with_indifferent_access.freeze
 
   # Authentication
