@@ -822,7 +822,7 @@ en:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
       edit: Re-evaluate
       title: Confirm
-      view: View Results
+      view: View
     in_progress: In Progress
     ineligible: Ineligible
     instructions:
