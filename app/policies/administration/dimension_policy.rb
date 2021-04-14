@@ -9,6 +9,18 @@ class Administration::DimensionPolicy < Administration::BasePolicy
     super || @user.has_grant?(:dimensions, :manage)
   end
 
+  def edit?
+    create?
+  end
+
+  def update?
+    edit?
+  end
+
+  def copy?
+    create?
+  end
+
   class Scope < Scope
     def resolve
       scope = super

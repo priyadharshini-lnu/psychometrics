@@ -22,6 +22,14 @@ module Administration
       super || permit
     end
 
+    def copy?
+      create?
+    end
+
+    def edit?
+      create?
+    end
+
     def hogan_reports?
       create?
     end
@@ -64,7 +72,7 @@ module Administration
 
     # Can archive/unarchive Assessment
     def toggle_archive?
-      @user.is?(:superadmin)
+      create?
     end
 
     # Can regenerate reports if Superadmin

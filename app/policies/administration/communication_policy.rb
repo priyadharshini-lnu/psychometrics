@@ -7,11 +7,19 @@ module Administration
     end
 
     def create?
-      super || @user.has_grant?(:communications, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def show?
-      super || @user.has_grant?(:communications, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
+    end
+
+    def copy?
+      create?
+    end
+
+    def destroy?
+      create?
     end
 
     def new_form?

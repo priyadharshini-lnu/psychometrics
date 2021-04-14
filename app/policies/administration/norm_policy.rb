@@ -13,6 +13,18 @@ class Administration::NormPolicy < Administration::BasePolicy
     @user.is?(:superadmin)
   end
 
+  def edit?
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
+  end
+
+  def import?
+    super || @user.has_grant?(:norms, :manage)
+  end
+
+  def export?
+    super || @user.has_grant?(:norms, :view)
+  end
+
   def change_cell?
     @user.is?(:superadmin)
   end

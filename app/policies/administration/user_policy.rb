@@ -2,7 +2,8 @@
 
 class Administration::UserPolicy < Administration::BasePolicy
   def index?
-    @user.is?(:superadmin, :client_admin, :project_admin)
+    @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
+    # @user.is?(:superadmin, :client_admin, :project_admin)
   end
 
   def new?
@@ -34,6 +35,10 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def toggle_status?
+    send_mail?
+  end
+
+  def toggle_membership_status?
     current_user_record = @record.is_a?(Membership) ? @record.user : @record
     return true if @user.is?(:superadmin)
     return true if @user.is?(:client_admin) && current_user_record.is?(:project_admin, :regular)
@@ -42,12 +47,8 @@ class Administration::UserPolicy < Administration::BasePolicy
     false
   end
 
-  def toggle_membership_status?
-    toggle_status?
-  end
-
   def destroy?
-    toggle_status?
+    @user.is?(:superadmin)
   end
 
   def reset_password?
@@ -71,11 +72,11 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def send_mail?
-    @user.is?(:superadmin, :client_admin, :project_admin) && !@record.is_anonym?
+    index? && !@record.is_anonym?
   end
 
   def change_password?
-    @user.is?(:superadmin, :client_admin, :project_admin) && !@record.is_anonym?
+    send_mail?
   end
 
   # @deprecated

@@ -7,7 +7,19 @@ module Administration
     end
 
     def create?
-      super || @user.has_grant?(:dimensions, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+    end
+
+    def edit?
+      create?
+    end
+
+    def update?
+      create?
+    end
+
+    def copy?
+      create?
     end
 
     class Scope < Scope

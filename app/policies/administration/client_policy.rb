@@ -3,7 +3,7 @@
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :client_admin, :project_admin)
+      super || @user.has_grant?(:clients, :view)
     end
 
     def manage_first_level?
@@ -49,11 +49,15 @@ module Administration
     end
 
     def edit?
-      super
+      @user.is?(:superadmin)
     end
 
     def copy?
-      record.active? && super
+      record.active? && @user.is?(:superadmin)
+    end
+
+    def destroy?
+      @user.is?(:superadmin)
     end
 
     def archive?
