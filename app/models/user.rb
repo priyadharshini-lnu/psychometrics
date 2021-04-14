@@ -58,7 +58,15 @@ class User < ApplicationRecord
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     assessments: %w[view],
-    communications: %w[view manage]
+    communications: %w[view manage],
+    campaigns: %w[view manage manage_users manage_options show manage_messages],
+    assessors: %w[view manage manage_users],
+    results: %w[view_report report_data raw_responses scores],
+    registration_codes: %w[view manage],
+    datasheet: %w[view manage],
+    dimension: %w[manage],
+    report: %w[manage]
+
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
