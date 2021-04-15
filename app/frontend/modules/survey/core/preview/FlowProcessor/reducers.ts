@@ -144,7 +144,7 @@ const HANDLERS = {
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
       end: data.notAnEndPage ? false : result.status === 'completed',
-      prevPages: result.prev_pages || [],
+      prevPages: data.readOnly ? [] : (result.prev_pages || []),
       highlights: _.keyBy(highlights, 'id'),
       assessmentTimedOut: result.timed_out || false,
       factors: result.factors,
