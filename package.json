@@ -178,7 +178,7 @@
     "words-count": "^2.0.1"
   },
   "devDependencies": {
-    "@babel/eslint-plugin": "^7.13.10",
+    "@babel/eslint-plugin": "^7.13.15",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
