@@ -33,8 +33,8 @@ module Threesixty::InitialState
         enabled: @current_project.enable_live_chat
       },
       examus: {
-        url: Settings.examus.url,
-        integrationName: Settings.examus.integration_name
+        url: Rails.application.secrets.examus[:url],
+        integrationName: Rails.application.secrets.examus[:integration_name]
       }
     }
   end
