@@ -6,6 +6,14 @@ module Administration
       index?
     end
 
+    def new?
+      @user.is?(:superadmin)
+    end
+
+    def edit?
+      @user.is?(:superadmin)
+    end
+
     def index?
       super || @user.has_grant?(:clients, :view_licenses)
     end

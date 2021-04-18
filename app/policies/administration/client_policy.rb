@@ -6,6 +6,26 @@ module Administration
       super || @user.has_grant?(:clients, :view)
     end
 
+    def view_licenses?
+      @user.is?(:superadmin) || @user.has_grant?(:clients, :view_licenses)
+    end
+
+    def copy?
+      record.active? && @user.is?(:superadmin)
+    end
+
+    def destroy?
+      @user.is?(:superadmin)
+    end
+
+    def edit?
+      if record.project?
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      else
+        @user.is?(:superadmin)
+      end
+    end
+
     def manage_first_level?
       @user.is?(:superadmin)
     end
@@ -46,22 +66,6 @@ module Administration
 
     def show?
       true
-    end
-
-    def edit?
-      if record.project?
-        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
-      else
-        @user.is?(:superadmin)
-      end
-    end
-
-    def copy?
-      record.active? && @user.is?(:superadmin)
-    end
-
-    def destroy?
-      @user.is?(:superadmin)
     end
 
     def archive?

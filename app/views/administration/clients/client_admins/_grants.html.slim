@@ -65,7 +65,7 @@ table.table.grants-table
           - if policy(:membership).manage_grants_for_action?('clients', 'view_licenses', client: client)
             label
               = check_box_tag 'resource[grants_attributes][data][clients][]',
-                      'manage', resource.has_grant?(:clients, :view_licenses), id: clients_view_licenses_id
+                      'view_licenses', resource.has_grant?(:clients, :view_licenses), id: clients_view_licenses_id
               | View Licenses
 
     - if policy(:membership).manage_grants_for_actions?('clients', ['view', 'view_licenses'], client: client)
