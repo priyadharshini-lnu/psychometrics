@@ -9,7 +9,8 @@
         th = t('administration.dimensions.index.owner')
         th.date = link_to_sort resource_class, :created_at, filter_form
         th.date = link_to_sort resource_class, :updated_at, filter_form
-        th.text-center width='1%' = t 'administration.actions'
+        - if policy(resource_class).actions?
+          th.text-center width='1%' = t 'administration.actions'
     tbody
       - if resources.present?
         = render partial: 'resource', collection: resources

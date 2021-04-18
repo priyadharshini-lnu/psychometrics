@@ -75,6 +75,7 @@ class User < ApplicationRecord
     norms: %w[view manage],
     dimensions: %w[view manage],
     assessments: %w[view manage],
+    questions: %w[view manage],
     libraries: %w[view manage],
     communications: %w[view manage],
     reports: %w[view manage],

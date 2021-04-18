@@ -3,7 +3,14 @@
 class Administration::UserPolicy < Administration::BasePolicy
   def index?
     @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
-    # @user.is?(:superadmin, :client_admin, :project_admin)
+  end
+
+  def send_mail?
+    index? && !@record.is_anonym?
+  end
+
+  def change_password?
+    send_mail?
   end
 
   def new?
@@ -69,14 +76,6 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def assign_multiple?
     @user.is?(:superadmin, :client_admin, :project_admin)
-  end
-
-  def send_mail?
-    index? && !@record.is_anonym?
-  end
-
-  def change_password?
-    send_mail?
   end
 
   # @deprecated

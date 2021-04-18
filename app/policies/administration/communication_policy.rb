@@ -3,7 +3,7 @@
 module Administration
   class CommunicationPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:communications, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
     end
 
     def create?
@@ -27,7 +27,7 @@ module Administration
     end
 
     def download_history?
-      create?
+      show?
     end
 
     class Scope < Scope

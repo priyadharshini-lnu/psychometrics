@@ -15,6 +15,9 @@
 - assessments_view_id = dom_id(u, :assessments_view)
 - assessments_manage_id = dom_id(u, :assessments_manage)
 
+- questions_view_id = dom_id(u, :questions_view)
+- questions_manage_id = dom_id(u, :questions_manage)
+
 - libraries_view_id = dom_id(u, :libraries_view)
 - libraries_manage_id = dom_id(u, :libraries_manage)
 
@@ -172,6 +175,21 @@ table.table.grants-table
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
                       'manage', resource.has_grant?(:assessments, :manage), id: assessments_manage_id, data: { turn_on: [assessments_view_id] }
+              | Manage
+
+    - if policy(:membership).manage_grants_for_actions?('questions', ['view', 'manage'], client: client)
+      tr
+        td Questions
+        td.text-nowrap
+          - if policy(:membership).manage_grants_for_action?('questions', 'view', client: client)
+            label
+              = check_box_tag 'resource[grants_attributes][data][questions][]',
+                      'view', resource.has_grant?(:questions, :view), id: questions_view_id, data: { turn_off: [questions_manage_id] }
+              | View
+          - if policy(:membership).manage_grants_for_action?('questions', 'manage', client: client)
+            label
+              = check_box_tag 'resource[grants_attributes][data][questions][]',
+                      'manage', resource.has_grant?(:questions, :manage), id: questions_manage_id, data: { turn_on: [questions_view_id] }
               | Manage
 
     - if policy(:membership).manage_grants_for_actions?('libraries', ['view', 'manage'], client: client)

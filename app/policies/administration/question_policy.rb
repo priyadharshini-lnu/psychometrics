@@ -10,12 +10,28 @@ module Administration
       super || @user.has_grant?(:questions, :manage)
     end
 
+    def edit?
+      create?
+    end
+
+    def copy?
+      create?
+    end
+
+    def destroy?
+      create?
+    end
+
+    def actions?
+      edit? | copy? | destroy?
+    end
+
     def open_channel?
       @user.is?(:superadmin)
     end
 
     def new_assign?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
     end
 
     class Scope < Scope

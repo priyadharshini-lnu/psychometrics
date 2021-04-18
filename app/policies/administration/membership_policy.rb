@@ -13,6 +13,7 @@ module Administration
       norms: [],
       dimensions: [],
       assessments: [],
+      questions: [],
       libraries: [],
       communications: [],
       reports: [],

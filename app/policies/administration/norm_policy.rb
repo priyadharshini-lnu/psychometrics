@@ -17,6 +17,14 @@ class Administration::NormPolicy < Administration::BasePolicy
     @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
   end
 
+  def copy?
+    create?
+  end
+
+  def actions?
+    edit? & copy? & destroy?
+  end
+
   def import?
     super || @user.has_grant?(:norms, :manage)
   end
