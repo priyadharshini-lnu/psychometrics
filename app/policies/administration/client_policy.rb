@@ -34,7 +34,7 @@ module Administration
     end
 
     def project_admins?
-      record.prime_project? && @user.is?(:superadmin, :client_admin)
+      record.prime_project? && @user.has_grant?(:projects, :manage_admins)
     end
 
     def search_users?
@@ -49,7 +49,11 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin)
+      if record.project?
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      else
+        @user.is?(:superadmin)
+      end
     end
 
     def copy?

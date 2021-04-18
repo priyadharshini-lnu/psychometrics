@@ -3,11 +3,19 @@
 module Administration
   class CampaignPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :client_admin, :project_admin)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def show?
       @user.is?(:superadmin, :client_admin, :project_admin)
+    end
+
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+    end
+
+    def destroy?
+      edit?
     end
 
     def manage_first_level?
@@ -26,7 +34,7 @@ module Administration
     end
 
     def create?
-      super || @user.has_grant?(:clients, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
     end
 
     def projects?

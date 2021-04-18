@@ -279,17 +279,17 @@ table.table.grants-table
                       'manage', resource.has_grant?(:registration_codes, :manage), id: registration_codes_manage_id, data: { turn_on: [registration_codes_view_id] }
               | Manage
     
-    - if policy(:membership).manage_grants_for_actions?('datasheet', ['view', 'manage'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('datasheets', ['view', 'manage'], client: client)
       tr
         td Datasheets
         td.text-nowrap
-          - if policy(:membership).manage_grants_for_action?('datasheet', 'view', client: client)
+          - if policy(:membership).manage_grants_for_action?('datasheets', 'view', client: client)
             label
-              = check_box_tag 'resource[grants_attributes][data][datasheet][]',
-                      'view', resource.has_grant?(:datasheet, :view), id: datasheet_view_id, data: { turn_off: [datasheet_manage_id] }
+              = check_box_tag 'resource[grants_attributes][data][datasheets][]',
+                      'view', resource.has_grant?(:datasheets, :view), id: datasheet_view_id, data: { turn_off: [datasheet_manage_id] }
               | View
           - if policy(:membership).manage_grants_for_action?('datasheet', 'manage', client: client)
             label
               = check_box_tag 'resource[grants_attributes][data][datasheet][]',
-                      'manage', resource.has_grant?(:datasheet, :manage), id: datasheet_manage_id, data: { turn_on: [datasheet_view_id] }
+                      'manage', resource.has_grant?(:datasheets, :manage), id: datasheet_manage_id, data: { turn_on: [datasheet_view_id] }
               | Manage

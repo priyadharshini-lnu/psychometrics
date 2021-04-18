@@ -31,7 +31,7 @@ module Administration::Threesixty
     end
 
     def export_completion_status?
-      super_admins_or_admins?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def export_results?
