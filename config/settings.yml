@@ -27,10 +27,6 @@ agile_config:
 live_chat:
   base_url: <%= ENV.fetch('CHATWOOT_BASE_URL', 'https://chatwoot.tte-work.com') %>
   token: <%= ENV.fetch('CHATWOOT_TOKEN', 'zSvNq7inRf4HuQqFmV6GiuZg') %>
-examus:
-  url: <%= ENV.fetch('EXAMUS_URL', 'https://stage.examus.net') %>
-  integration_name: <%= ENV.fetch('EXAMUS_INTEGRATION_NAME', 'ttedev') %>
-  jwt_secret: <%= ENV['JWT_SECRET'] %>
 browser_requirements:
   default:
     supported:
