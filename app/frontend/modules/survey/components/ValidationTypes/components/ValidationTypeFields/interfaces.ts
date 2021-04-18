@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react'
 
-import { Question } from 'modules/survey/interfaces/builder/Question'
+import { QuestionInProperties } from 'modules/survey/interfaces/questions/Base'
 
 export interface ValidationFieldsProps {
-  model: Question
+  model: QuestionInProperties
   changeValidationArg: (event: ChangeEvent<HTMLInputElement>) => void
 }

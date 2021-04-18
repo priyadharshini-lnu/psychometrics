@@ -16,6 +16,7 @@ EmailPropertyPanel
   from 'modules/survey/components/modules/TextEntry/components/types/Email/Builder/PropertyPanel'
 
 const { I18n } = window
+
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   model: any
@@ -98,9 +99,11 @@ interface AnswerTypeSelectProps {
 }
 
 const AnswerTypeSelect: FC<AnswerTypeSelectProps> = ({ value, onSelect }) => (
-  <section className="ms-4 me-4">
+  <div className="ms-4 me-4">
     <Space direction="vertical" className="w-100">
-      <Typography.Text strong>{I18n.t('administration.survey_builder.property_panel.answer_type')}</Typography.Text>
+      <Typography.Text strong>
+        {I18n.t('administration.survey_builder.property_panel.answer_type')}
+      </Typography.Text>
       <Select
         className="w-100"
         options={ANSWER_TYPE_OPTIONS}
@@ -109,7 +112,7 @@ const AnswerTypeSelect: FC<AnswerTypeSelectProps> = ({ value, onSelect }) => (
       />
     </Space>
     <Divider />
-  </section>
+  </div>
 )
 
 interface PropertyChoiceInputProps {
@@ -124,22 +127,22 @@ const PropertyChoiceInput: FC<PropertyChoiceInputProps> = ({
   title,
   onChange,
 }) => (
-  <section className="ms-4 me-4 mb-4">
+  <div className="ms-4 me-4 mb-4">
     <Space direction="vertical">
       <Typography.Text strong>{title}</Typography.Text>
       <ChoicesInput model={model} onChange={onChange} />
     </Space>
     <Divider />
-  </section>
+  </div>
 )
 
 const VoiceDictationCheckbox = ({ checked, onChange }) => (
-  <section className="ms-4 me-4 mb-4">
+  <div className="ms-4 me-4 mb-4">
     <Checkbox checked={checked} onChange={onChange}>
       {I18n.t('administration.survey_builder.property_panel.voice_dictation')}
     </Checkbox>
     <Divider />
-  </section>
+  </div>
 )
 
 export default Properties

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC } from 'react'
 
-import { Question } from 'modules/survey/interfaces/builder/Question'
+import { QuestionInProperties } from 'modules/survey/interfaces/questions/Base'
 
 import Utils from 'utils'
 
@@ -13,7 +13,7 @@ import MustTotal from './components/MustTotal'
 import Range from './components/Range'
 
 interface Props {
-  model: Question
+  model: QuestionInProperties
   update: () => void
 }
 

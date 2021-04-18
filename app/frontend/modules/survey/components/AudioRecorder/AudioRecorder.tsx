@@ -7,6 +7,7 @@ import api from 'middleware/api'
 import useAudioMetrics from 'hooks/useAudioMetrics'
 import DynamicAudioIcon from 'components/DynamicAudioIcon'
 import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { PreviewModel } from 'modules/survey/interfaces/questions/AudioResponse'
 import styles from './AudioRecorderStyle.scss'
 import {
   RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION,
@@ -27,33 +28,14 @@ const { $ } = window as any
 
 interface Props {
   mediaUrl: string
-  model: Model
+  model: PreviewModel
   fakeUpload: boolean
-  onSuccessUpload(media: object): void
-  onRecordingDiscard(): void
+  onSuccessUpload?(media: object): void
+  onRecordingDiscard?(): void
   readOnly?: boolean
   markQuestionInProgress(questionId: number, progressState: string): void
-  removeQuestionInProgress(questionId: number): void
-  mediaResponse: MediaResponse
-}
-
-interface Model {
-  id: number
-  props: ModelProp
-  result: ModelResult
-}
-
-interface ModelProp {
-  duration: number | null
-}
-
-interface ModelResult {
-  answers: Array<Answer>
-}
-
-interface Answer {
-  media_id: number
-  value: string
+  removeQuestionInProgress(questionId: number, progressState?: string): void
+  mediaResponse?: MediaResponse
 }
 
 const AudioRecorder: React.FC<Props> = ({

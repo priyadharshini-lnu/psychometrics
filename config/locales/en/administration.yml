@@ -3090,6 +3090,15 @@ en:
       property_panel:
         allow_content_copy: Allow content copying
         answer_type: Answer type
+        duration_options:
+          '10': 10s
+          '120': 2min
+          '180': 3min
+          '30': 30s
+          '300': 5min
+          '60': 1min
+          '600': 10min
+        max_duration: Max duration
         validation_response_type: Validation response type
         voice_dictation: Voice dictation
     table:

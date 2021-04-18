@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 
-import { ValidationFieldsProps } from '../interfaces/index'
+import { ValidationFieldsProps } from '../interfaces'
 
 const Least: FC<ValidationFieldsProps> = ({
   model,
