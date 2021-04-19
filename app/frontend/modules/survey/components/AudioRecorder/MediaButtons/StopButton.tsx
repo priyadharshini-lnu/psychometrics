@@ -1,12 +1,12 @@
 import React from 'react'
 import cs from 'classnames'
-import styles from './MediaButtonsStyle.scss'
+import styles from './styles.scss'
 
 interface Props {
   onClick(): void
 }
 
-const StopButton: React.FC<Props> = ({ onClick }) => (
+export const StopButton: React.FC<Props> = ({ onClick }) => (
   <div
     className={cs([styles.mediaBtnContainer, styles.stopBtnContainer])}
     onClick={onClick}
@@ -16,5 +16,3 @@ const StopButton: React.FC<Props> = ({ onClick }) => (
     </div>
   </div>
 )
-
-export default StopButton

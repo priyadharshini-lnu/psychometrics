@@ -1,11 +1,4 @@
-import PlayButton from './PlayButton'
-import PauseButton from './PauseButton'
-import RecordButton from './RecordButton'
-import StopButton from './StopButton'
-
-export default {
-  PlayButton,
-  PauseButton,
-  RecordButton,
-  StopButton,
-}
+export { PlayButton } from './PlayButton'
+export { PauseButton } from './PauseButton'
+export { RecordButton } from './RecordButton'
+export { StopButton } from './StopButton'

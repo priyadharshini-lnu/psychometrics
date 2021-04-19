@@ -1,13 +1,13 @@
 import React from 'react'
 import cs from 'classnames'
 import { CaretRightOutlined } from '@ant-design/icons'
-import styles from './MediaButtonsStyle.scss'
+import styles from './styles.scss'
 
 interface Props {
   onClick(): void
 }
 
-const PlayButton: React.FC<Props> = ({ onClick }) => (
+export const PlayButton: React.FC<Props> = ({ onClick }) => (
   <div
     className={cs([styles.mediaBtnContainer, styles.playBtnContainer])}
     onClick={onClick}
@@ -17,5 +17,3 @@ const PlayButton: React.FC<Props> = ({ onClick }) => (
     </div>
   </div>
 )
-
-export default PlayButton

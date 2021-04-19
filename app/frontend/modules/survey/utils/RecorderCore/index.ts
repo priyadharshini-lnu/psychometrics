@@ -1,6 +1,6 @@
 /* eslint-disable import/no-webpack-loader-syntax */
-import recorderWorker from '!!raw-loader!./Recorder.worker'
-import { RECORDER_STATES } from '../constants'
+import { RECORDER_STATES } from 'modules/survey/constants/media'
+import recorderWorker from '!!raw-loader!./worker'
 
 declare global {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,7 +31,7 @@ interface ConfigObj {
   numChannels: number,
 }
 
-export default class Core {
+export class RecorderCore {
   config: ConfigObj;
 
   onUpdateRecordTime: (duration: number) => void;

@@ -1,6 +1,6 @@
 import React from 'react'
 import cs from 'classnames'
-import styles from './MediaButtonsStyle.scss'
+import styles from './styles.scss'
 
 interface Props {
   onClick?(): void
@@ -8,7 +8,7 @@ interface Props {
   recordButtonClass?: string
 }
 
-const RecordButton: React.FC<Props> = ({ onClick, className, recordButtonClass }) => (
+export const RecordButton: React.FC<Props> = ({ onClick, className, recordButtonClass }) => (
   <div
     className={cs([styles.mediaBtnContainer, styles.recordBtnContainer, className])}
     onClick={onClick}
@@ -18,5 +18,3 @@ const RecordButton: React.FC<Props> = ({ onClick, className, recordButtonClass }
     </div>
   </div>
 )
-
-export default RecordButton

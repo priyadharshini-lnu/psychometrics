@@ -8,20 +8,20 @@ import useAudioMetrics from 'hooks/useAudioMetrics'
 import DynamicAudioIcon from 'components/DynamicAudioIcon'
 import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 import { PreviewModel } from 'modules/survey/interfaces/questions/AudioResponse'
-import styles from './AudioRecorderStyle.scss'
+import { RecorderCore } from 'modules/survey/utils/RecorderCore'
 import {
   RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION,
-} from './constants'
-import RecorderCore from './Recorder/Core'
+} from 'modules/survey/constants/media'
+import styles from './styles.scss'
 import reducer, {
   initialState, setRecordingState, setUploadState, setFile, setPlayerState, removeFile,
   setRecordingTime, removeRecording,
 } from './reducer'
 import FileUploader from '../FileUpload/components/FileUploader'
-import Permission from './Permission'
-import AudioPlayer from './AudioPlayer/index'
-import RecorderControl from './Recorder/RecorderControl'
-import PlayerControl from './AudioPlayer/PlayerControl'
+import { Permission } from './Permission/Permission'
+import { AudioPlayer } from './AudioPlayer/AudioPlayer'
+import { RecorderControl } from './RecorderControl'
+import { PlayerControl } from './PlayerControl'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { $ } = window as any

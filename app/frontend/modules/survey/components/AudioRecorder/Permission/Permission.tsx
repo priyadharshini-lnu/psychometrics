@@ -3,7 +3,7 @@ import { message } from 'antd'
 import { AudioFilled, CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import ColoredButton from 'components/ColoredButton/index'
-import styles from './PermissionStyle.scss'
+import styles from './styles.scss'
 
 const { I18n } = window
 
@@ -12,7 +12,7 @@ interface Props {
   readOnly?: boolean
 }
 
-const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
+export const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
   const askForPermission = () => {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(onAllow)
@@ -40,5 +40,3 @@ const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
     </div>
   )
 }
-
-export default Permission

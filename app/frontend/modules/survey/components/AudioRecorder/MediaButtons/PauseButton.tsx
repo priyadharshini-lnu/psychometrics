@@ -1,13 +1,13 @@
 import React from 'react'
 import cs from 'classnames'
 import { PauseOutlined } from '@ant-design/icons'
-import styles from './MediaButtonsStyle.scss'
+import styles from './styles.scss'
 
 interface Props {
   onClick(): void
 }
 
-const PauseButton: React.FC<Props> = ({
+export const PauseButton: React.FC<Props> = ({
   onClick,
 }) => (
   <div
@@ -19,5 +19,3 @@ const PauseButton: React.FC<Props> = ({
     </div>
   </div>
 )
-
-export default PauseButton

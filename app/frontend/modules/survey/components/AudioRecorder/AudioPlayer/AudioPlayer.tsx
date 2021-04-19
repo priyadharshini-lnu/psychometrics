@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Slider, Spin } from 'antd'
 import { getMinutesAndSeconds } from 'utils/time'
-import { PLAYER_STATE } from '../constants'
-import styles from './AudioPlayerStyle.scss'
+import { PLAYER_STATE } from '../../../constants/media'
+import styles from './styles.scss'
 
 interface Props {
   playerState: string
@@ -11,7 +11,7 @@ interface Props {
   setPlayerElement(player: HTMLAudioElement): void
 }
 
-const AudioPlayer: React.FC<Props> = ({
+export const AudioPlayer: React.FC<Props> = ({
   playerState, audioFileUrl, onComplete, setPlayerElement,
 }) => {
   const [duration, setDuration] = useState(0)
@@ -110,5 +110,3 @@ const AudioPlayer: React.FC<Props> = ({
     </div>
   )
 }
-
-export default AudioPlayer

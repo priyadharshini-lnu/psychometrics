@@ -2,9 +2,9 @@ import React from 'react'
 import { Progress } from 'antd'
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
-import styles from '../AudioRecorderStyle.scss'
-import MediaButtons from '../MediaButtons'
-import { UPLOAD_STATES, PLAYER_STATE } from '../constants'
+import { UPLOAD_STATES, PLAYER_STATE } from 'modules/survey/constants/media'
+import styles from './styles.scss'
+import { PauseButton, PlayButton } from './MediaButtons'
 
 const { I18n } = window
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
   readOnly?: boolean
 }
 
-const PlayerControl: React.FC<Props> = ({
+export const PlayerControl: React.FC<Props> = ({
   playerState, percent, uploadState, discardRecording, saveRecording, playAudio, pauseAudio, readOnly,
 }) => (
   <div className={styles.controls}>
@@ -34,8 +34,8 @@ const PlayerControl: React.FC<Props> = ({
     </ColoredButton>
     )}
 
-    {playerState === PLAYER_STATE.PLAYING && <MediaButtons.PauseButton onClick={pauseAudio} />}
-    {playerState === PLAYER_STATE.PAUSED && <MediaButtons.PlayButton onClick={playAudio} />}
+    {playerState === PLAYER_STATE.PLAYING && <PauseButton onClick={pauseAudio} />}
+    {playerState === PLAYER_STATE.PAUSED && <PlayButton onClick={playAudio} />}
 
     {uploadState !== UPLOAD_STATES.SAVED
         && (
@@ -69,5 +69,3 @@ const PlayerControl: React.FC<Props> = ({
     )}
   </div>
 )
-
-export default PlayerControl
