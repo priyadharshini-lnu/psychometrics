@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import TextEditor from 'components/TextEditor'
 import VideoRecorder from 'components/VideoRecorder'
-import MultiLine from './MultiLine'
 
 export class VideoResponse extends React.Component {
   static propTypes = {
@@ -14,11 +13,6 @@ export class VideoResponse extends React.Component {
     const { model } = this.props
     model.changeProps({ questionText: value })
     this.forceUpdate()
-  }
-
-  renderAnswersType () {
-    const { model } = this.props
-    return <MultiLine model={model} />
   }
 
   renderVideoRecorder () {
@@ -50,5 +44,3 @@ export class VideoResponse extends React.Component {
     )
   }
 }
-
-export default VideoResponse

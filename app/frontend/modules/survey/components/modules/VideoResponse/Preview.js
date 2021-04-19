@@ -1,16 +1,43 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
+import {
+  getI18n,
+  isAssessmentTimedOut,
+  getMediaResponsesByQuestionId,
+} from 'modules/survey/core/preview/FlowProcessor/selectors'
+import {
+  markQuestionInProgress,
+  removeQuestionInProgress,
+  addMediaResponse,
+  removeMediaResponse,
+} from 'modules/survey/core/preview/FlowProcessor/actions'
 
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import VideoRecorder from 'components/VideoRecorder'
 import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
 import { SafeHTML } from 'components/SafeHTML'
 
-import connect from './connect'
-import styles from '../VideoResponse.scss'
 import VideoPlayer from './VideoPlayer'
 
-export class Preview extends Component {
+const connector = connect(
+  ({ preview }, { model }) => ({
+    type: preview.type,
+    mediaUrl: preview.mediaUrl,
+    I18n: getI18n(preview),
+    isAssessmentTimedOut: isAssessmentTimedOut(preview),
+    mediaResponses: getMediaResponsesByQuestionId(preview, model.id),
+  }),
+  {
+    markQuestionInProgress,
+    removeQuestionInProgress,
+    addMediaResponse,
+    removeMediaResponse,
+  },
+)
+
+class PreviewComponent extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -82,7 +109,7 @@ export class Preview extends Component {
     const { model, I18n } = this.props
     I18n.tQuestion(model, 'questionText')
     return (
-      <div className={styles.videoResponse}>
+      <div>
         <SafeHTML
           className={textEntryStyles.questionTextPreview}
           html={I18n.tQuestion(model, 'questionText')}
@@ -94,4 +121,4 @@ export class Preview extends Component {
   }
 }
 
-export default connect(Preview)
+export const Preview = connector(PreviewComponent)

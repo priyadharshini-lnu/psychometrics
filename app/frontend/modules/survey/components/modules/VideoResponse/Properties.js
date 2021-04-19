@@ -202,5 +202,3 @@ export class Properties extends Component {
     )
   }
 }
-
-export default Properties
