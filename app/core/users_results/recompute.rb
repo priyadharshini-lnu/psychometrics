@@ -28,7 +28,7 @@ module UsersResults
     private
 
     def compute_common_assessment_scoring
-      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result, norm_data)
+      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result, norm_data) if user_result.completed?
       user_result.occupations = Assigns::CalculateOccupations.call!(user_result)
       user_result.innovation_styles = Assigns::CalculateInnovationStyles.call!(user_result)
       user_result.save!

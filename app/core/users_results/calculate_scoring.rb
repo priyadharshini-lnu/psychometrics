@@ -31,8 +31,6 @@ module UsersResults
     end
 
     def call
-      return broadcast(:ok, {}) unless users_result.completed?
-
       factors_scoring = FactorsScoring.where(assessment_id: users_result.assessment_id).joins(:factor).all
       factors_scoring_map = factors_scoring.group_by(&:factor_id)
       questions_ids = factors_scoring.map(&:question_id).uniq
