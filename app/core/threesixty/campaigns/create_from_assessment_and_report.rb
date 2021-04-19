@@ -3,26 +3,27 @@
 module Threesixty
   module Campaigns
     class CreateFromAssessmentAndReport < BaseCommand
-      private_attr_reader :source_assessment, :source_report, :new_assessment, :new_report,
+      private_attr_reader :source_assessment, :source_report, :new_assessment, :new_report, :client,
                           :form, :project, :threesixty_campaign, :old_to_new_factor_mapping, :questions_mapping
 
       def initialize(source_assessment, source_report, form, project)
         @source_assessment = source_assessment
         @source_report = source_report
         @new_report = ::Reports::CopyReport.call!(source_report.id)
-        event = ::Assessments::CopyAssessment.call(source_assessment.id)
+        @project = project
+        @client = project.client
+        event = ::Assessments::CopyAssessment.call(source_assessment.id, client.id)
         raise('CopyAssessment failed!') unless event[:ok]
 
         @new_assessment = event[:ok][:assessment]
         @form = form
-        @project = project
         @threesixty_campaign = Threesixty::Campaigns::Build.call!(form, project)
         @old_to_new_factor_mapping = {}
         @questions_mapping = event[:ok][:questions_mapping]
       end
 
       def call
-        result = Dimensions::Copy.call!(source_assessment.dimension, form.factors || [], project)
+        result = Dimensions::Copy.call!(source_assessment.dimension, form.factors || [], client)
         new_dimension = result[:new_dimension]
         update_factor_ids(result[:old_to_new_factor_mapping])
 
@@ -40,7 +41,7 @@ module Threesixty
       end
 
       def update_new_report(old_to_new_factor_mapping)
-        new_report.owner_id = project.id
+        new_report.owner_id = client.id
         new_report.category = :threesixty
         new_report.assessment_id = new_assessment.id
         new_report.save!
