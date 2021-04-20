@@ -10,7 +10,8 @@ export default interface Campaign {
   reports: Entity[]
   isFixedTime: boolean
   permissions: {
-    create: boolean
+    edit: boolean
+    delete: boolean
   }
 }
 

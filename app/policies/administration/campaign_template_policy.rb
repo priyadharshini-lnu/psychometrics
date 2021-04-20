@@ -13,5 +13,13 @@ module Administration
     def destroy?
       @user.is?(:superadmin)
     end
+
+    def new?
+      @user.is?(:superadmin)
+    end
+
+    def create?
+      new?
+    end
   end
 end

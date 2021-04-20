@@ -20,7 +20,9 @@ const defaultState: State = {
   },
   total: 0,
   permissions: {
-    loginAs: false,
+    import: false,
+    export: false,
+    add: false,
   },
 }
 
@@ -49,6 +51,10 @@ const AssessorTR = t.type({
   totalEvaluations: t.number,
   completedEvaluations: t.number,
   status: t.string,
+  permissions: t.type({
+    remove: t.boolean,
+    loginAs: t.boolean,
+  }),
 })
 
 type Assessor = t.TypeOf<typeof AssessorTR>
@@ -56,7 +62,9 @@ type Assessor = t.TypeOf<typeof AssessorTR>
 const FetchAssessorsTR = t.type({
   list: t.array(AssessorTR),
   permissions: t.type({
-    loginAs: t.boolean,
+    import: t.boolean,
+    export: t.boolean,
+    add: t.boolean,
   }),
   total: t.number,
 })
@@ -74,6 +82,10 @@ const SingleAssessorTR = t.type({
   id: t.number,
   email: t.string,
   fullName: t.string,
+  permissions: t.type({
+    addSubject: t.boolean,
+    resetEvaluation: t.boolean,
+  }),
 })
 export type SingleAssessor = t.TypeOf<typeof SingleAssessorTR>
 
@@ -165,7 +177,9 @@ export interface State {
   }
   total: number
   permissions: {
-    loginAs: boolean
+    import: boolean
+    export: boolean
+    add: boolean
   }
 }
 

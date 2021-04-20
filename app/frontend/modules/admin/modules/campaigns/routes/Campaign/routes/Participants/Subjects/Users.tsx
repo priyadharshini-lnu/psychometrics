@@ -62,6 +62,7 @@ const UserList: React.FC<Props> = ({
   users: {
     list,
     total,
+    permissions,
   },
   match: { params: { projectId, campaignId } },
   tableConfig: {
@@ -97,7 +98,7 @@ const UserList: React.FC<Props> = ({
           <span className="mlm">{`${total} Users`}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} />
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
           <Select
             defaultValue="All"
             value={filters.isAnonymEq || 'All'}
@@ -114,12 +115,14 @@ const UserList: React.FC<Props> = ({
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-          <div className={styles.newUserButton}>
-            <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
-              <PlusOutlined />
-              <span>Add User</span>
-            </Button>
-          </div>
+          {permissions.create && (
+            <div className={styles.newUserButton}>
+              <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
+                <PlusOutlined />
+                <span>Add User</span>
+              </Button>
+            </div>
+          )}
         </div>
       </Row>
       <Row>
@@ -229,6 +232,7 @@ const UserList: React.FC<Props> = ({
                       email: user.email,
                       remove: () => remove(campaignId, user.id),
                       fullName: user.fullName,
+                      permissions: user.permissions,
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -265,10 +269,16 @@ interface ActionMenuProps {
   email: string
   remove(): void
   fullName: string
+  permissions: {
+    edit: boolean
+    loginAs: boolean
+    resetPassword: boolean
+    remove: boolean
+  }
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, resetPassword, remove, campaignId, projectId, userId, email, fullName,
+  onEdit, resetPassword, remove, campaignId, projectId, userId, email, fullName, permissions,
 }) => {
   const handleDelete = () => {
     Modal.confirm({
@@ -309,40 +319,48 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      <Menu.Item key="edit">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={onEdit}
-        >
-          {I18n.t('frontend.edit')}
-        </div>
-      </Menu.Item>
-      <Menu.Item key="loginAs">
-        <a
-          href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userId}/spoof`}
-        >
-          {I18n.t('frontend.login')}
-        </a>
-      </Menu.Item>
-      <Menu.Item key="changePassword">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => handleChangePassword()}
-        >
-          {I18n.t('frontend.change_password')}
-        </div>
-      </Menu.Item>
-      <Menu.Item key="delete">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => handleDelete()}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+      {permissions.edit && (
+        <Menu.Item key="edit">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={onEdit}
+          >
+            {I18n.t('frontend.edit')}
+          </div>
+        </Menu.Item>
+      )}
+      {permissions.loginAs && (
+        <Menu.Item key="loginAs">
+          <a
+            href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userId}/spoof`}
+          >
+            {I18n.t('frontend.login')}
+          </a>
+        </Menu.Item>
+      )}
+      {permissions.resetPassword && (
+        <Menu.Item key="changePassword">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleChangePassword()}
+          >
+            {I18n.t('frontend.change_password')}
+          </div>
+        </Menu.Item>
+      )}
+      {permissions.remove && (
+        <Menu.Item key="delete">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleDelete()}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

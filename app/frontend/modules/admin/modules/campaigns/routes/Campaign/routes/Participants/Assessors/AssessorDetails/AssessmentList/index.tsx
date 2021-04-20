@@ -10,6 +10,7 @@ import isEmpty from 'lodash/isEmpty'
 import {
   get as getAssessorAssessments, fetch, reset, selectRecords, getSelectedIds, bulkDelete, BULK_DELETE,
 } from 'modules/admin/modules/campaigns/core/assessorAssessments'
+import { getCurrent } from 'modules/admin/modules/campaigns/core/assessors'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 import settings from 'modules/admin/settings'
@@ -27,6 +28,7 @@ const { Search } = Input
 
 const connecter = connect(
   (state: RootState) => ({
+    assessor: getCurrent(state),
     assessorAssessments: getAssessorAssessments(state),
     selectedIds: getSelectedIds(state),
     bulkDeleteInProgress: isRequestInProgress(state, BULK_DELETE),
@@ -47,6 +49,7 @@ const MODALS = { AddAssessmentModal }
 
 const AssessmentList: React.FC<Props> = ({
   assessorAssessments: { list, total },
+  assessor,
   fetch,
   reset,
   selectRecords,
@@ -114,13 +117,15 @@ const AssessmentList: React.FC<Props> = ({
                 value={filters.filterableFields}
                 onChange={e => changeFilter('filterBySubjectOrAssessment', e.target.value)}
               />
-              <Button
-                type="primary"
-                onClick={() => openModal('AddAssessmentModal')}
-              >
-                <PlusOutlined />
-                <span>{I18n.t('administration.assessor.assessments.actions.add_subject')}</span>
-              </Button>
+              { assessor && assessor.permissions.addSubject && (
+                <Button
+                  type="primary"
+                  onClick={() => openModal('AddAssessmentModal')}
+                >
+                  <PlusOutlined />
+                  <span>{I18n.t('administration.assessor.assessments.actions.add_subject')}</span>
+                </Button>
+              )}
             </Space>
           </div>
         </div>
@@ -173,6 +178,7 @@ const AssessmentList: React.FC<Props> = ({
                     ActionsMenu({
                       subjectEmail,
                       reset: () => reset(parsedCampaignId, parsedAssessorId, id),
+                      permissions: assessor?.permissions || { resetEvaluation: false },
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -203,9 +209,12 @@ const AssessmentList: React.FC<Props> = ({
 interface ActionsMenuProps {
   subjectEmail: string
   reset(): Promise<{ response: unknown}>
+  permissions: {
+    resetEvaluation: boolean
+  }
 }
 
-const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset }) => {
+const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset, permissions }) => {
   const handleReset = () => {
     Modal.confirm({
       title: I18n.t('common.text.confirm'),
@@ -224,15 +233,17 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset }) => {
 
   return (
     <Menu>
-      <Menu.Item key="reset">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={handleReset}
-        >
-          {I18n.t('administration.assessor.assessments.actions.reset')}
-        </div>
-      </Menu.Item>
+      {permissions.resetEvaluation && (
+        <Menu.Item key="reset">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleReset}
+          >
+            {I18n.t('administration.assessor.assessments.actions.reset')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

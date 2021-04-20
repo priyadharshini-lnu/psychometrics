@@ -3,7 +3,7 @@
 module Administration
   module Assessors
     class UserSerializer < ActiveModel::Serializer
-      attributes :id, :email, :full_name, :total_evaluations, :completed_evaluations, :completion_status
+      attributes :id, :email, :full_name, :total_evaluations, :completed_evaluations, :completion_status, :permissions
 
       def full_name
         object.decorate.full_name
@@ -19,6 +19,18 @@ module Administration
 
       def completed_evaluations
         evaluation_count[:completed]
+      end
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Campaigns::AssessorPolicy,
+          current_user,
+          object,
+          %w[
+            reset_evaluation
+            add_subject
+          ]
+        )
       end
 
       private

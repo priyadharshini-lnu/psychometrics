@@ -18,7 +18,7 @@ module Administration
       communications: [],
       reports: [],
       results: [],
-      accessors: [],
+      assessors: [],
       registration_codes: [],
       datasheets: []
     ]].freeze

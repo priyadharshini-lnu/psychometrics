@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     class AssessorPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin, :client_admin, :project_admin)
+        @user.is?(:superadmin) || @user.has_grant?(:assessors, :view)
       end
 
       def available_assessments?
@@ -12,7 +12,15 @@ module Administration
       end
 
       def create_all?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:assessors, :manage)
+      end
+
+      def destroy?
+        create_all?
+      end
+
+      def import?
+        create_all?
       end
 
       def show?
@@ -25,6 +33,14 @@ module Administration
 
       def spoof?
         @user.is?(:superadmin)
+      end
+
+      def reset_evaluation?
+        add_subject?
+      end
+
+      def add_subject?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
     end
   end

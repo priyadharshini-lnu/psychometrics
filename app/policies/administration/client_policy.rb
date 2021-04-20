@@ -15,7 +15,11 @@ module Administration
     end
 
     def destroy?
-      @user.is?(:superadmin)
+      if record.project?
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      else
+        @user.is?(:superadmin)
+      end
     end
 
     def edit?
@@ -51,6 +55,10 @@ module Administration
 
     def sub_campaigns?
       @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
+    end
+
+    def manage_project_admins?
+      @user.has_grant?(:projects, :manage_admins)
     end
 
     def project_admins?

@@ -6,4 +6,10 @@ export default interface User {
   active: boolean
   role: string
   grants: object
+  permissions: {
+    edit: boolean
+    loginAs: boolean
+    resetPassword: boolean
+    remove: boolean
+  }
 }

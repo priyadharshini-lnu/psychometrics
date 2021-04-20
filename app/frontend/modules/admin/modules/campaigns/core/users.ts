@@ -17,6 +17,12 @@ export interface User {
 const defaultState = {
   list: [],
   total: 0,
+  permissions: {
+    create: false,
+    export_users: false,
+    export_completion_status: false,
+    import: false,
+  },
 }
 
 export const get = (state): User[] => _.get(state, ['campaigns', 'users'])
@@ -122,6 +128,12 @@ export interface UserDetails {
 export interface State {
   list: User[]
   total: number
+  permissions: {
+    create: boolean
+    export_users: boolean,
+    export_completion_status: boolean,
+    import: boolean,
+  }
   current?: UserDetails
 }
 

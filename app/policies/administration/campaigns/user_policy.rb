@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     class UserPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin, :client_admin, :project_admin)
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def show?
@@ -12,7 +12,15 @@ module Administration
       end
 
       def create?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      end
+
+      def edit?
+        create?
+      end
+
+      def destroy?
+        create?
       end
 
       def update?
@@ -32,7 +40,7 @@ module Administration
       end
 
       def export_completion_status?
-        @user.is?(:superadmin, :client_admin, :project_admin)
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def search?
@@ -40,7 +48,7 @@ module Administration
       end
 
       def import?
-        index?
+        create?
       end
 
       class Scope < Administration::BasePolicy::Scope

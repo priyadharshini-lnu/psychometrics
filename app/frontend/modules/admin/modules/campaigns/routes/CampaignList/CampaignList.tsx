@@ -220,6 +220,7 @@ const CampaignList: React.FC<Props> = ({
                         })
                       },
                       onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
+                      campaign,
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -290,32 +291,43 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => {
 interface ActionMenuProps {
   onEdit(): void
   onDelete(): void
+  campaign: Campaign
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({ onEdit, onDelete }) => (
-  <Menu>
-    <Menu.Item key="edit">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={onEdit}
-      >
-        Edit
-      </div>
-    </Menu.Item>
-    <Menu.Item key="copy">
-      Copy
-    </Menu.Item>
-    <Menu.Item key="delete">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={onDelete}
-      >
-        Delete
-      </div>
-    </Menu.Item>
-  </Menu>
-)
+const ActionsMenu: React.FC<ActionMenuProps> = ({
+  onEdit, onDelete, campaign,
+}) => {
+  const { permissions } = campaign
+
+  return (
+    <Menu>
+      { permissions.edit ? (
+        <Menu.Item key="edit">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={onEdit}
+          >
+            Edit
+          </div>
+        </Menu.Item>
+      ) : null }
+      <Menu.Item key="copy">
+        Copy
+      </Menu.Item>
+      { permissions.delete ? (
+        <Menu.Item key="delete">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={onDelete}
+          >
+            Delete
+          </div>
+        </Menu.Item>
+      ) : null }
+    </Menu>
+  )
+}
 
 export default withEnhancedTable(CampaignList, 'campaignList', { maintainHistory: true })
