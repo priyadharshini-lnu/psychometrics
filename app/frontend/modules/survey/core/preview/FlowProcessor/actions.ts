@@ -181,7 +181,7 @@ export const updateHighlight = (highlight: Highlight, data: object, opts: Opts =
 
 
 const Score = t.type({
-  score: t.number,
+  score: t.union([t.number, t.null]),
 })
 
 const FetchQuestionScoringResponseTR = t.record(t.string, Score)
