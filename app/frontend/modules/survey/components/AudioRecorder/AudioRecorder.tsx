@@ -1,25 +1,36 @@
-import React, {
-  useReducer, useEffect, useRef,
-} from 'react'
-import cs from 'classnames'
+import React, { useReducer, useEffect, useRef } from 'react'
+import {
+  Card, Row, Col, Space, Typography,
+} from 'antd'
+
+import { PreviewModel } from 'modules/survey/interfaces/questions/AudioResponse'
+import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { RecorderCore } from 'modules/survey/utils/RecorderCore'
+import {
+  RECORDER_STATES,
+  UPLOAD_STATES,
+  PLAYER_STATE,
+  DEFAULT_MAX_DURATION,
+} from 'modules/survey/constants/media'
+
 import { getMinutesAndSeconds } from 'utils/time'
 import api from 'middleware/api'
 import useAudioMetrics from 'hooks/useAudioMetrics'
+
+import FileUploader from 'modules/survey/components/FileUpload/components/FileUploader'
 import DynamicAudioIcon from 'components/DynamicAudioIcon'
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import { PreviewModel } from 'modules/survey/interfaces/questions/AudioResponse'
-import { RecorderCore } from 'modules/survey/utils/RecorderCore'
-import {
-  RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION,
-} from 'modules/survey/constants/media'
-import styles from './styles.scss'
 import reducer, {
-  initialState, setRecordingState, setUploadState, setFile, setPlayerState, removeFile,
-  setRecordingTime, removeRecording,
+  initialState,
+  setRecordingState,
+  setUploadState,
+  setFile,
+  setPlayerState,
+  removeFile,
+  setRecordingTime,
+  removeRecording,
 } from './reducer'
-import FileUploader from '../FileUpload/components/FileUploader'
-import { Permission } from './Permission/Permission'
-import { AudioPlayer } from './AudioPlayer/AudioPlayer'
+import { Permission } from './Permission'
+import { AudioPlayer } from './AudioPlayer'
 import { RecorderControl } from './RecorderControl'
 import { PlayerControl } from './PlayerControl'
 
@@ -38,7 +49,7 @@ interface Props {
   mediaResponse?: MediaResponse
 }
 
-const AudioRecorder: React.FC<Props> = ({
+export const AudioRecorder: React.FC<Props> = ({
   mediaUrl,
   model,
   fakeUpload,
@@ -64,7 +75,6 @@ const AudioRecorder: React.FC<Props> = ({
       initRecorder()
     }
   }, [mediaResponse])
-
 
   const initRecorder = (): void => {
     recorderRef.current = new RecorderCore({ onUpdateRecordTime: updateRecordTime })
@@ -141,8 +151,12 @@ const AudioRecorder: React.FC<Props> = ({
   }
 
   const fileUrl = (): string | void => {
-    if (state.file) { return URL.createObjectURL(state.file) }
-    if (mediaResponse) { return mediaResponse.url }
+    if (state.file) {
+      return URL.createObjectURL(state.file)
+    }
+    if (mediaResponse) {
+      return mediaResponse.url
+    }
   }
 
   const updateRecordTime = (time: number): void => {
@@ -158,72 +172,81 @@ const AudioRecorder: React.FC<Props> = ({
     playerRef.current?.play()
   }
 
-  const renderControls = (): JSX.Element => {
-    const {
-      recordingState, playerState, uploadState, percent,
-    } = state
-
-    if (recordingState === RECORDER_STATES.RECORDED) {
-      return (
-        <PlayerControl
-          percent={percent}
-          playerState={playerState}
-          uploadState={uploadState}
-          playAudio={playAudio}
-          pauseAudio={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))}
-          saveRecording={saveRecording}
-          discardRecording={discardRecording}
-          readOnly={readOnly}
-        />
-      )
-    }
-    return (
-      <RecorderControl
-        recordingState={recordingState}
-        startRecording={startRecording}
-        pauseRecording={pauseRecording}
-        stopRecording={stopRecording}
-      />
-    )
+  const pauseAudioPlay = (): void => {
+    dispatch(setPlayerState(PLAYER_STATE.PAUSED))
+    playerRef.current?.pause()
   }
 
   const {
-    recordingState, playerState,
+    recordingState, playerState, uploadState, percent,
   } = state
 
   if (state.recordingState === RECORDER_STATES.INIT) {
     return (
-      <Permission onAllow={(): void => dispatch(setRecordingState(RECORDER_STATES.READY))} readOnly={readOnly} />
+      <Card>
+        <Permission
+          onAllow={(): void => dispatch(setRecordingState(RECORDER_STATES.READY))
+            }
+          readOnly={readOnly}
+        />
+      </Card>
     )
   }
 
   return (
-    <div className={cs(styles.recorderContainer, styles[recordingState])}>
-      <DynamicAudioIcon level={level} pulse={pulse} />
-      {recordingState === RECORDER_STATES.RECORDED && fileUrl()
-        && (
-        <AudioPlayer
-          playerState={playerState}
-          setPlayerElement={(playerElement): void => { playerRef.current = playerElement }}
-          onComplete={
-          (): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))}
-          audioFileUrl={fileUrl() as string}
-        />
-        )
-      }
-
-      {recordingState !== RECORDER_STATES.RECORDED
-        && (
-        <div className={styles.recordingTime}>
-          {getMinutesAndSeconds(state.recordingTime)}
-          /
-          {getMinutesAndSeconds(maxDuration)}
-        </div>
+    <Card>
+      <Row justify="center" align="middle" gutter={[16, 16]} className="ta-c">
+        <Col span="24">
+          <DynamicAudioIcon level={level} pulse={pulse} />
+        </Col>
+        {recordingState === RECORDER_STATES.RECORDED && fileUrl() && (
+        <Col span="24" className="mb-6">
+          <AudioPlayer
+            playerState={playerState}
+            playAudio={playAudio}
+            pauseAudioPlay={pauseAudioPlay}
+            setPlayerElement={(playerElement): void => {
+              playerRef.current = playerElement
+            }}
+            onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))
+                  }
+            audioFileUrl={fileUrl() as string}
+          />
+        </Col>
         )}
-      {renderControls()}
-    </div>
+        {recordingState !== RECORDER_STATES.RECORDED && (
+        <Col span="24" className="mb-6">
+          <Space>
+            <Typography.Text strong>
+              {getMinutesAndSeconds(state.recordingTime)}
+            </Typography.Text>
+            <span>/</span>
+            <Typography.Text strong>
+              {getMinutesAndSeconds(maxDuration)}
+            </Typography.Text>
+          </Space>
+        </Col>
+        )}
+        <Col span="24" className="mb-6">
+          {recordingState === RECORDER_STATES.RECORDED ? (
+            <PlayerControl
+              percent={percent}
+              playerState={playerState}
+              uploadState={uploadState}
+              saveRecording={saveRecording}
+              discardRecording={discardRecording}
+              readOnly={readOnly}
+            />
+          ) : (
+            <RecorderControl
+              recordingState={recordingState}
+              startRecording={startRecording}
+              pauseRecording={pauseRecording}
+              stopRecording={stopRecording}
+            />
+          )}
+        </Col>
+      </Row>
+    </Card>
   )
 }
-
-
-export default AudioRecorder

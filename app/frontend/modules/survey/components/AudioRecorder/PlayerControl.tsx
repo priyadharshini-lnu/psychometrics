@@ -1,71 +1,58 @@
 import React from 'react'
-import { Progress } from 'antd'
-import { CheckOutlined, DeleteOutlined } from '@ant-design/icons'
-import ColoredButton from 'components/ColoredButton'
-import { UPLOAD_STATES, PLAYER_STATE } from 'modules/survey/constants/media'
-import styles from './styles.scss'
-import { PauseButton, PlayButton } from './MediaButtons'
+import { Button, Progress, Space } from 'antd'
+
+import { UPLOAD_STATES } from 'modules/survey/constants/media'
 
 const { I18n } = window
+
 interface Props {
   playerState: string
   percent: number
   uploadState: string
   discardRecording(): void
   saveRecording(): void
-  playAudio(): void
-  pauseAudio(): void
   readOnly?: boolean
 }
 
 export const PlayerControl: React.FC<Props> = ({
-  playerState, percent, uploadState, discardRecording, saveRecording, playAudio, pauseAudio, readOnly,
+  percent,
+  uploadState,
+  discardRecording,
+  saveRecording,
+  readOnly,
 }) => (
-  <div className={styles.controls}>
+  <Space>
     {!readOnly && (
-    <ColoredButton
-      color="grey"
-      type="primary"
-      icon={<DeleteOutlined />}
-      className={styles.deleteBtn}
-      onClick={discardRecording}
-    >
-      {I18n.t('assessments.video_response.delete')}
-    </ColoredButton>
+      <Button type="primary" danger onClick={discardRecording}>
+        {I18n.t('assessments.video_response.discard')}
+      </Button>
     )}
 
-    {playerState === PLAYER_STATE.PLAYING && <PauseButton onClick={pauseAudio} />}
-    {playerState === PLAYER_STATE.PAUSED && <PlayButton onClick={playAudio} />}
-
-    {uploadState !== UPLOAD_STATES.SAVED
-        && (
-          <ColoredButton
-            color="green"
-            type="primary"
-            icon={<CheckOutlined />}
-            className={styles.saveBtn}
-            onClick={saveRecording}
-            disabled={uploadState === UPLOAD_STATES.SAVING}
-          >
-            {uploadState === UPLOAD_STATES.SAVING ? I18n.t('assessments.video_response.saving')
-              : I18n.t('assessments.video_response.save')}
-          </ColoredButton>
-        )}
+    {uploadState !== UPLOAD_STATES.SAVED && (
+      <Button
+        type="primary"
+        onClick={saveRecording}
+        disabled={uploadState === UPLOAD_STATES.SAVING}
+      >
+        {uploadState === UPLOAD_STATES.SAVING
+          ? I18n.t('assessments.video_response.saving')
+          : I18n.t('assessments.video_response.save')}
+      </Button>
+    )}
 
     {uploadState === UPLOAD_STATES.SAVED && !readOnly && (
-    <div className={styles.savedTextContainer}>
-      <CheckOutlined className={styles.icon} />
-      <span className={styles.savedText}>{I18n.t('assessments.video_response.saved.label')}</span>
-    </div>
+      <Button disabled>
+        {I18n.t('assessments.video_response.saved.label')}
+      </Button>
     )}
 
-    {uploadState === UPLOAD_STATES.SAVING && (
-    <Progress
-      type="circle"
-      percent={percent}
-      width={32}
-      className="mls"
-    />
+    {(uploadState === UPLOAD_STATES.SAVING
+      || uploadState === UPLOAD_STATES.SAVED) && (
+      <Progress
+        type="circle"
+        percent={uploadState === UPLOAD_STATES.SAVED ? 100 : percent}
+        width={32}
+      />
     )}
-  </div>
+  </Space>
 )

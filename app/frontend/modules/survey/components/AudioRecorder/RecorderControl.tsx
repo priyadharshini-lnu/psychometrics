@@ -1,26 +1,40 @@
 import React from 'react'
-import _ from 'lodash'
+import { Button, Space } from 'antd'
+
 import { RECORDER_STATES } from 'modules/survey/constants/media'
-import styles from './styles.scss'
-import {
-  RecordButton, PauseButton, PlayButton, StopButton,
-} from './MediaButtons'
 
 interface Props {
-  recordingState: string;
-  startRecording(): void;
-  pauseRecording(): void,
-  stopRecording(): void,
+  recordingState: string
+  startRecording(): void
+  pauseRecording(): void
+  stopRecording(): void
 }
 
 export const RecorderControl: React.FC<Props> = ({
-  recordingState, startRecording, pauseRecording, stopRecording,
-}) => (
-  <div className={styles.controls}>
-    {recordingState === RECORDER_STATES.READY && <RecordButton onClick={startRecording} />}
-    {recordingState === RECORDER_STATES.RECORDING && <PauseButton onClick={pauseRecording} />}
-    {recordingState === RECORDER_STATES.PAUSED && <PlayButton onClick={startRecording} />}
-    {_.includes([RECORDER_STATES.RECORDING, RECORDER_STATES.PAUSED], recordingState)
-        && <StopButton onClick={stopRecording} />}
-  </div>
-)
+  recordingState,
+  startRecording,
+  pauseRecording,
+  stopRecording,
+}) => {
+  const isRecordingInitiated = [
+    RECORDER_STATES.RECORDING,
+    RECORDER_STATES.PAUSED,
+  ].includes(recordingState)
+
+  return (
+    <Space>
+      {recordingState === RECORDER_STATES.READY && (
+        <Button type="primary" onClick={startRecording}>
+          Start recording
+        </Button>
+      )}
+      {recordingState === RECORDER_STATES.RECORDING && (
+        <Button onClick={pauseRecording}>Pause</Button>
+      )}
+      {recordingState === RECORDER_STATES.PAUSED && (
+        <Button onClick={startRecording}>Resume</Button>
+      )}
+      {isRecordingInitiated && <Button onClick={stopRecording}>Stop</Button>}
+    </Space>
+  )
+}
