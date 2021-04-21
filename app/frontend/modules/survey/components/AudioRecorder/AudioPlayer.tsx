@@ -101,12 +101,7 @@ export const AudioPlayer: React.FC<Props> = ({
         Your browser does not support the audio tag.
       </audio>
       <Row align="middle" justify="center" gutter={[16, 16]}>
-        <Col
-          xs={{ order: 3, span: 24 }}
-          sm={{ order: 3, span: 24 }}
-          md={{ order: 1, span: 2 }}
-          lg={{ order: 1, span: 1 }}
-        >
+        <Col>
           {playerState === PLAYER_STATE.PLAYING ? (
             <Button
               shape="circle"
@@ -123,22 +118,12 @@ export const AudioPlayer: React.FC<Props> = ({
             />
           )}
         </Col>
-        <Col
-          xs={{ order: 2, span: 24 }}
-          sm={{ order: 2, span: 24 }}
-          md={{ order: 1, span: 3 }}
-          lg={{ order: 1, span: 2 }}
-        >
+        <Col>
           <Typography.Text strong>
             {getMinutesAndSeconds(currentTime)}
           </Typography.Text>
         </Col>
-        <Col
-          flex="1 0 auto"
-          xs={{ order: 1, span: 24 }}
-          sm={{ order: 1, span: 24 }}
-          md={{ order: 1 }}
-        >
+        <Col flex="1 0 auto">
           <Slider
             value={playPercentage()}
             onChange={changeCurrentTime}
@@ -146,12 +131,7 @@ export const AudioPlayer: React.FC<Props> = ({
             tooltipVisible={false}
           />
         </Col>
-        <Col
-          xs={0}
-          sm={0}
-          md={{ order: 2, span: 3 }}
-          lg={{ order: 1, span: 2 }}
-        >
+        <Col>
           <Typography.Text strong>
             {getMinutesAndSeconds(duration)}
           </Typography.Text>
