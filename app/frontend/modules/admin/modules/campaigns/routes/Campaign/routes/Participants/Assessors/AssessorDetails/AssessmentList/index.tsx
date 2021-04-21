@@ -99,7 +99,7 @@ const AssessmentList: React.FC<Props> = ({
         <div className="float-r">
           <div className={styles.newReportButton}>
             <Space>
-              {!isEmpty(selectedIds) && (
+              {!isEmpty(selectedIds) && assessor && assessor.permissions.remove && (
               <Button
                 type="default"
                 danger
@@ -108,7 +108,7 @@ const AssessmentList: React.FC<Props> = ({
                 disabled={bulkDeleteInProgress}
                 loading={bulkDeleteInProgress}
               >
-                <span>{I18n.t('common.actions.delete')}</span>
+                <span>Remove</span>
               </Button>
               )}
               <Search
@@ -172,13 +172,13 @@ const AssessmentList: React.FC<Props> = ({
             <Column
               title={I18n.t('common.column.action')}
               key="action"
-              render={({ subjectEmail, id }) => (
+              render={({ subjectEmail, id, permissions }) => (
                 <Dropdown
                   overlay={() => (
                     ActionsMenu({
                       subjectEmail,
                       reset: () => reset(parsedCampaignId, parsedAssessorId, id),
-                      permissions: assessor?.permissions || { resetEvaluation: false },
+                      permissions,
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -233,7 +233,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset, permissi
 
   return (
     <Menu>
-      {permissions.resetEvaluation && (
+      { permissions.resetEvaluation && (
         <Menu.Item key="reset">
           <div
             role="button"

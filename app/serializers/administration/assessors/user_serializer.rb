@@ -26,9 +26,9 @@ module Administration
           Administration::Campaigns::AssessorPolicy,
           current_user,
           object,
-          %w[
-            reset_evaluation
-            add_subject
+          [
+            'add_subject',
+            %w[remove destroy]
           ]
         )
       end

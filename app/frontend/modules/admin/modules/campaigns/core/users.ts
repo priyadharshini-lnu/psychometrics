@@ -137,7 +137,16 @@ export interface State {
   current?: UserDetails
 }
 
-type FetchType = ApiActionResponse<{list: [], total: number}>
+type FetchType = ApiActionResponse<{
+  list: [],
+  total: number,
+  permissions: {
+    create: boolean,
+    export_users: boolean,
+    export_completion_status: boolean,
+    import: boolean,
+  }
+}>
 type FetchSingleType = ApiActionResponse<UserDetails>
 type CreateType = ApiActionResponse<User>
 type UpdateType = ApiActionResponse<User>

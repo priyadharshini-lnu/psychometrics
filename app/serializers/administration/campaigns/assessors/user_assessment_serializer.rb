@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     module Assessors
       class UserAssessmentSerializer < ActiveModel::Serializer
-        attributes :id, :assessment_name, :subject_name, :subject_email, :status
+        attributes :id, :assessment_name, :subject_name, :subject_email, :status, :permissions
 
         delegate :email, to: :subject, prefix: true
 
@@ -20,7 +20,22 @@ module Administration
           subject.decorate.full_name
         end
 
+        def permissions
+          GetPermissionsHash.call!(
+            Administration::Campaigns::Assessors::UserAssessmentPolicy,
+            current_user,
+            nil,
+            [
+              %w[reset_evaluation reset]
+            ]
+          )
+        end
+
         private
+
+        def current_user
+          instance_options[:current_user]
+        end
 
         def subject
           object.subject

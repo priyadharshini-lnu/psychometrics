@@ -11,7 +11,8 @@ module Administration
                              ransack(params[:filters]).result
           serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
             user_assessments.page(params[:page]),
-            each_serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer
+            each_serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
+            current_user: current_user
           )
 
           render json: { list: serialized_user_assessments, total: user_assessments.count }
