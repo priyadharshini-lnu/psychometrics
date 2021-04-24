@@ -128,7 +128,7 @@
     "query-string": "^6.14.1",
     "raphael": "^2.2.1",
     "raw-loader": "^4.0.1",
-    "rc-tween-one": "^2.6.8",
+    "rc-tween-one": "^2.7.3",
     "react": "16.9.0",
     "react-addons-update": "^15.6.2",
     "react-bootstrap": "^0.32.4",
