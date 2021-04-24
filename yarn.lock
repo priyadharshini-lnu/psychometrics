@@ -7741,10 +7741,10 @@ graceful-fs@~2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-2.0.3.tgz#7cd2cdb228a4a3f36e95efa6cc142de7d1a136d0"
 
-green-audio-player@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/green-audio-player/-/green-audio-player-1.1.1.tgz#69ee9f47b3ac775230004705faad49c5e973b527"
-  integrity sha512-c5jf4rhP6xGgIPK0qldkENY7zAXrZyaYD2xbMXto3SoD4q/6/piYN8j0dKS1cS3NPflQh8mvUa4TZggRjfj7OA==
+green-audio-player@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/green-audio-player/-/green-audio-player-1.1.2.tgz#892f53a71a6f08ef056b5b32c79ee0236d93067a"
+  integrity sha512-ZqRz/TCK4K7Cv+YQMaD+fvcgLtEGMjSTSCdD3o/TWvQcJR6VaIfqTDDfWp5JB8mCDj+4+SW6U6y/ERacHoJU5A==
   dependencies:
     acorn "^7.1.1"
     browserslist "^4.9.1"
