@@ -2779,10 +2779,10 @@
     hoist-non-react-statics "^3.3.2"
     tslib "^1.9.3"
 
-"@sentry/rrweb@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@sentry/rrweb/-/rrweb-0.2.0.tgz#212334ac39034b9873670dba7a1a820271f8b883"
-  integrity sha512-tNvCZ8zdoSyTu+zn81xBEf78bS7HTZvjp9gca6pVzHjemsU0yTREbEGBsvKnq23dK6wJ6VJf76z4/X4tmQPDtQ==
+"@sentry/rrweb@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@sentry/rrweb/-/rrweb-0.3.1.tgz#a0f7496e086a30679d7af227d62ab76cfd5ed934"
+  integrity sha512-AJIy2yqjtgpcow3L1gyxxr6x+rqLN9HXMlsNNmLeUKlPBxaSMP47lM6aexI3V+XkKnRmOW05H21cLimyuM+59Q==
 
 "@sentry/types@5.30.0":
   version "5.30.0"
