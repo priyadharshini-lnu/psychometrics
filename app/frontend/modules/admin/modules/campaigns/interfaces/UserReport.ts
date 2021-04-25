@@ -4,4 +4,9 @@ export default interface UserReport {
   reportId: number
   userAccess: boolean
   reportFamilyName: string
+  permissions: {
+    downloadReport: boolean
+    remove: boolean
+    viewReport: boolean
+  }
 }

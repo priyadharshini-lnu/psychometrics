@@ -15,12 +15,24 @@ module Administration
         @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
+      def add_report?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      end
+
+      def regenerate_report?
+        add_report?
+      end
+
+      def toggle_status?
+        create?
+      end
+
       def edit?
         create?
       end
 
       def destroy?
-        create?
+        @user.is?(:superadmin)
       end
 
       def update?

@@ -3,7 +3,7 @@
 module Administration
   class UserDetailSerializer < ActiveModel::Serializer
     attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns, :started_at, :completed_at,
-               :completion_status, :status, :additional_time, :active
+               :completion_status, :status, :additional_time, :active, :permissions
 
     has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
     has_many :user_reports, serializer: Administration::UserReportSerializer
@@ -50,6 +50,20 @@ module Administration
 
     def user_reports
       object.user_reports.where(campaign: campaign).includes(:report, :report_family)
+    end
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::Campaigns::UserPolicy,
+        current_user,
+        object,
+        [
+          'add_report',
+          'regenerate_report',
+          'toggle_status',
+          %w[remove destroy]
+        ]
+      )
     end
 
     private

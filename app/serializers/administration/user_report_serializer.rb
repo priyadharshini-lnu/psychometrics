@@ -2,7 +2,7 @@
 
 module Administration
   class UserReportSerializer < ActiveModel::Serializer
-    attributes :id, :report_id, :name, :user_access, :report_family_name, :status, :internal, :report_url
+    attributes :id, :permissions, :report_id, :name, :user_access, :report_family_name, :status, :internal, :report_url
 
     delegate :name, :mindmill, to: :report
     delegate :name, to: :report_family, prefix: true, allow_nil: true
@@ -13,6 +13,19 @@ module Administration
 
     def report_url
       object.pdf.url
+    end
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::UserReportPolicy,
+        current_user,
+        object,
+        [
+          %w[view_report show],
+          %w[download_report download],
+          %w[remove destroy]
+        ]
+      )
     end
 
     private

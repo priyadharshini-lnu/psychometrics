@@ -123,6 +123,12 @@ export interface UserDetails {
   additionalTime: number
   startedAt: string
   completedAt: string
+  permissions: {
+    addReport: boolean
+    regenerateReport: boolean
+    toggleStatus: boolean
+    remove: boolean
+  }
 }
 
 export interface State {

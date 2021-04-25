@@ -142,23 +142,25 @@ const AssessmentsReports: React.FC<Props> = ({
           ghost={false}
           title={user.fullName}
           subTitle={user.email}
-          extra={[
+          extra={user.permissions.remove && [
             <Button key="3" onClick={() => handleDelete()}>
               {I18n.t('common.actions.remove') }
             </Button>,
           ]}
         >
           <Descriptions size="small" column={3}>
-            <Descriptions.Item label={I18n.t('administration.campaigns.users.is_active')}>
-              <Switch
-                checked={user.active}
-                onChange={
-                  () => {
-                    toggleActive(campaignId, parsedUserId, { updateInListing: false })
-                  }
-              }
-              />
-            </Descriptions.Item>
+            {user.permissions.toggleStatus && (
+              <Descriptions.Item label={I18n.t('administration.campaigns.users.is_active')}>
+                <Switch
+                  checked={user.active}
+                  onChange={
+                    () => {
+                      toggleActive(campaignId, parsedUserId, { updateInListing: false })
+                    }
+                }
+                />
+              </Descriptions.Item>
+            )}
             <Descriptions.Item label={I18n.t('common.model.campaigns')}>
               {userCampaigns()}
             </Descriptions.Item>
@@ -223,25 +225,29 @@ const AssessmentsReports: React.FC<Props> = ({
         <div>
           <div className={styles.newReportButton}>
             <Space>
-              <Button
-                type="default"
-                onClick={handleRegenerateReports}
-                disabled={_.isEmpty(selectedIds) || regenerateInProgress}
-                loading={regenerateInProgress}
-              >
-                <span>{I18n.t('user_reports.actions.regenerate')}</span>
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => openModal('AddReportModal', {
-                  campaignId: parsedCampaignId,
-                  userId: parsedUserId,
-                  strategy: Strategies.SINGLE,
-                })}
-              >
-                <PlusOutlined />
-                <span>{I18n.t('reports.actions.add')}</span>
-              </Button>
+              {user.permissions.regenerateReport && (
+                <Button
+                  type="default"
+                  onClick={handleRegenerateReports}
+                  disabled={_.isEmpty(selectedIds) || regenerateInProgress}
+                  loading={regenerateInProgress}
+                >
+                  <span>{I18n.t('user_reports.actions.regenerate')}</span>
+                </Button>
+              )}
+              {user.permissions.addReport && (
+                <Button
+                  type="primary"
+                  onClick={() => openModal('AddReportModal', {
+                    campaignId: parsedCampaignId,
+                    userId: parsedUserId,
+                    strategy: Strategies.SINGLE,
+                  })}
+                >
+                  <PlusOutlined />
+                  <span>{I18n.t('reports.actions.add')}</span>
+                </Button>
+              )}
             </Space>
           </div>
         </div>
