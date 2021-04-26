@@ -37,6 +37,7 @@ module Threesixty
                  participant: @participant, campaign: @campaign,
                  current_user: current_user, locale: @selected_locale,
                  piped_text_context: get_piped_text_context,
+                 read_only:  params[:is_read] == 'true',
                  include: '**'
         end
       end

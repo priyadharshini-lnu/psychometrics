@@ -42,6 +42,8 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def status
+    return 'in_progress' if instance_options[:read_only]
+
     object.real_status
   end
 
@@ -50,6 +52,8 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def timed_out
+    return false if instance_options[:read_only]
+
     object.expired?
   end
 
