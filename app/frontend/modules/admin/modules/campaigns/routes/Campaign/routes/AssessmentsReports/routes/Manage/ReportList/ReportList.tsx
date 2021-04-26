@@ -24,6 +24,7 @@ type Props = RouteComponentProps & OwnProps & PropsFromRedux
 const ReportList: React.FC<Props> = ({
   reports: {
     list,
+    permissions,
   },
   match: { params: { projectId, campaignId } },
   openModal,
@@ -57,27 +58,31 @@ const ReportList: React.FC<Props> = ({
             key="reportFamilyName"
             dataIndex="reportFamilyName"
           />
-          <Column
-            title={I18n.t('campaign_report.column.user_access')}
-            key="userAccess"
-            render={({ userAccess, id }) => (
-              <Switch
-                checked={userAccess}
-                onChange={() => openModal('ToggleUserAccessModal',
-                  { campaignId, campaignReportId: id, userAccess })}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_report.column.assessor_access')}
-            key="userAccess"
-            render={({ assessorAccess, id }) => (
-              <Switch
-                checked={assessorAccess}
-                onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
-              />
-            )}
-          />
+          {permissions.toggleUserAccess && (
+            <Column
+              title={I18n.t('campaign_report.column.user_access')}
+              key="userAccess"
+              render={({ userAccess, id }) => (
+                <Switch
+                  checked={userAccess}
+                  onChange={() => openModal('ToggleUserAccessModal',
+                    { campaignId, campaignReportId: id, userAccess })}
+                />
+              )}
+            />
+          )}
+          {permissions.toggleAssessorAccess && (
+            <Column
+              title={I18n.t('campaign_report.column.assessor_access')}
+              key="userAccess"
+              render={({ assessorAccess, id }) => (
+                <Switch
+                  checked={assessorAccess}
+                  onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
+                />
+              )}
+            />
+          )}
           <Column
             title={I18n.t('common.column.action')}
             key="action"
@@ -89,6 +94,7 @@ const ReportList: React.FC<Props> = ({
                       campaignId: parsedCampaignId,
                       campaignReportId: report.id,
                       reportId: report.reportId,
+                      permissions: report.permissions,
                       openModal,
                     }) as React.ReactElement
                 )}
@@ -113,35 +119,43 @@ interface ActionMenuProps {
   reportId: string
   campaignReportId: number
   openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
+  permissions: {
+    export: boolean
+    remove: boolean
+  }
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, reportId, campaignReportId, openModal,
+  campaignId, reportId, campaignReportId, openModal, permissions,
 }) => (
   <Menu>
-    <Menu.Item key="export">
-      <div
-        role="button"
-        tabIndex={-1}
-      >
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
+    {permissions.export && (
+      <Menu.Item key="export">
+        <div
+          role="button"
+          tabIndex={-1}
         >
-          Export Data
-        </a>
-      </div>
-    </Menu.Item>
-    <Menu.Item key="delete">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
-      >
-        {I18n.t('common.actions.remove')}
-      </div>
-    </Menu.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
+          >
+            Export Data
+          </a>
+        </div>
+      </Menu.Item>
+    )}
+    {permissions.remove && (
+      <Menu.Item key="delete">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
+    )}
   </Menu>
 )
 

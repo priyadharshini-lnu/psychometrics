@@ -2,12 +2,28 @@
 
 module Administration
   class CampaignReportSerializer < ActiveModel::Serializer
-    attributes :id, :report_id, :name, :user_access, :assessor_access, :report_family_name
+    attributes :id, :report_id, :name, :user_access, :assessor_access, :report_family_name, :permissions
 
     delegate :name, to: :report
     delegate :name, to: :report_family, prefix: true
 
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::CampaignReportPolicy,
+        current_user,
+        object,
+        [
+          'export',
+          %w[remove destroy]
+        ]
+      )
+    end
+
     private
+
+    def current_user
+      @instance_options[:current_user]
+    end
 
     def report
       object.report

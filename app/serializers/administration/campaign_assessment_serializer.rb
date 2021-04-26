@@ -26,13 +26,15 @@ module Administration
         Administration::CampaignAssessmentPolicy,
         current_user,
         assessment,
-        %w[
-          import_results
-          export_raw_results
-          export_scoring_results
-          export_raw_factor_scores
-          export_normed_results
-          export_external_results
+        [
+          'import_results',
+          'export_raw_results',
+          'export_scoring_results',
+          'export_raw_factor_scores',
+          'export_normed_results',
+          'export_external_results',
+          'rescore_responses',
+          %w[remove destroy]
         ]
       )
     end

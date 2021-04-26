@@ -8,5 +8,6 @@ export default interface UserReport {
     downloadReport: boolean
     remove: boolean
     viewReport: boolean
+    toggleAccess: boolean
   }
 }

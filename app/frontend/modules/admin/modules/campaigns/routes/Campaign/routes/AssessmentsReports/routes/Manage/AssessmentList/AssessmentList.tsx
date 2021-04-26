@@ -59,43 +59,51 @@ const AssessmentList: React.FC<Props> = ({
             key="category"
             render={({ category }) => _.capitalize(category)}
           />
-          <Column
-            title={I18n.t('campaign_assessment.column.norm')}
-            key="normName"
-            render={({
-              normName, id, isExternal,
-            }) => {
-              if (isExternal) {
-                return I18n.t('common.text.na')
-              }
-              return (
+          {permissions.updateNorm
+            && (
+            <Column
+              title={I18n.t('campaign_assessment.column.norm')}
+              key="normName"
+              render={({
+                normName, id, isExternal,
+              }) => {
+                if (isExternal) {
+                  return I18n.t('common.text.na')
+                }
+                return (
+                  <a
+                    onClick={
+                      () => openModal('UpdateNormModal',
+                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                    }
+                  >
+                    {normName || I18n.t('common.text.default')}
+                  </a>
+                )
+              }}
+            />
+            )
+          }
+          {permissions.updateAssessorForm
+            && (
+            <Column
+              title={I18n.t('campaign_assessment.column.assessor_form')}
+              key="assessorFormName"
+              render={({
+                assessorFormName, id,
+              }) => (
                 <a
                   onClick={
-                    () => openModal('UpdateNormModal',
-                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                  }
+                      () => openModal('UpdateAssessorFormModal',
+                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                    }
                 >
-                  {normName || I18n.t('common.text.default')}
+                  {assessorFormName || I18n.t('common.text.na')}
                 </a>
-              )
-            }}
-          />
-          <Column
-            title={I18n.t('campaign_assessment.column.assessor_form')}
-            key="assessorFormName"
-            render={({
-              assessorFormName, id,
-            }) => (
-              <a
-                onClick={
-                    () => openModal('UpdateAssessorFormModal',
-                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                  }
-              >
-                {assessorFormName || I18n.t('common.text.na')}
-              </a>
-            )}
-          />
+              )}
+            />
+            )
+          }
           {permissions.enableUniversalLink
             && (
             <Column
@@ -266,23 +274,27 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       </Menu.ItemGroup>
       )}
       <Menu.Divider />
-      <Menu.Item key="rescoring">
-        <a
-          onClick={handleRescoreResponse}
-        >
-          {I18n.t('campaign_assessment.modals.rescore_response.title')}
-        </a>
-      </Menu.Item>
+      {permissions.rescoreResponses && (
+        <Menu.Item key="rescoring">
+          <a
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('campaign_assessment.modals.rescore_response.title')}
+          </a>
+        </Menu.Item>
+      )}
       <Menu.Divider />
-      <Menu.Item key="remove">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+      {permissions.remove && (
+        <Menu.Item key="remove">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

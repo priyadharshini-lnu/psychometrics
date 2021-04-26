@@ -23,7 +23,8 @@ module Administration
         [
           %w[view_report show],
           %w[download_report download],
-          %w[remove destroy]
+          %w[remove destroy],
+          %w[toggle_access toggle_user_access]
         ]
       )
     end

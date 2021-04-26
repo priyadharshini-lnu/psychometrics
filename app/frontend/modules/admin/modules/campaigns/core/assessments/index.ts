@@ -21,6 +21,8 @@ const defaultState: State = {
   selectedId: [],
   permissions: {
     enableUniversalLink: false,
+    updateNorm: false,
+    updateAssessorForm: false,
   },
 }
 
@@ -38,6 +40,8 @@ export interface State {
   selectedId: number[],
   permissions: {
     enableUniversalLink: boolean
+    updateNorm: boolean
+    updateAssessorForm: boolean
   }
 }
 

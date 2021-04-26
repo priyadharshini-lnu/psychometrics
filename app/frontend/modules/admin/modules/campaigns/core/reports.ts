@@ -10,6 +10,10 @@ import { FETCH_ASSESSMENTS_AND_REPORTS } from './current'
 const defaultState = {
   list: [],
   selectedIds: [],
+  permissions: {
+    toggleUserAccess: false,
+    toggleAssessorAccess: false,
+  },
 }
 
 export const get = (state): State => _.get(state, ['campaigns', 'reports'])
@@ -85,7 +89,7 @@ export const bulkDownload = (campaignId: number, ids: number[]) => ({
 
 type RemoveResponse = number
 
-type FetchType = ApiActionResponse<{reports: Report[]}>
+type FetchType = ApiActionResponse<{reports: Report[], permissions: { reportPermissions: {} }}>
 type CreateType = ApiActionResponse<{reports: Report[]}>
 type ToggleUserAccessType = ApiActionResponse<Report>
 type RemoveType = ApiActionResponse<RemoveResponse>
@@ -96,10 +100,16 @@ interface ToggleAssessorAccessType extends Action{
 export interface State {
   list: Report[],
   selectedIds: number[]
+  permissions: {
+    toggleUserAccess: boolean
+    toggleAssessorAccess: boolean
+  }
 }
 
 const HANDLERS = {
-  [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => ({ ...state, list: response.reports }),
+  [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => (
+    { ...state, list: response.reports, permissions: response.permissions.reportPermissions }
+  ),
   [CREATE]: (state: State, { response }: CreateType) => ({ ...state, list: response.reports }),
   [REMOVE]: (state: State, { response }: RemoveType) => (
     updateIn(state, ['list'], (reports: Report[]) => _.filter(

@@ -9,23 +9,19 @@ module Administration
     end
 
     def destroy?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def import_results?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
-    end
-
-    def rescore_responses?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:results, :reset_responses)
     end
 
     def update_norm?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def update_assessor_form?
-      update?
+      update_norm?
     end
 
     def can_configure_universal_links?
