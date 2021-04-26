@@ -31,11 +31,11 @@ module Administration
     end
 
     def regenerate?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
     def bulk_download?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:results, :view_report)
     end
   end
 end

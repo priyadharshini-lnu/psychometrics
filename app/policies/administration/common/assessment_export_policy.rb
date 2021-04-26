@@ -4,7 +4,7 @@ module Administration
   module Common
     module AssessmentExportPolicy
       def export_results?
-        @user.is?(:superadmin) ||(@user.has_grant?(:results, :raw_responses) && @record.common?)
+        @user.is?(:superadmin) || (@user.has_grant?(:results, :raw_responses) && @record.common?)
       end
 
       def export_raw_results?

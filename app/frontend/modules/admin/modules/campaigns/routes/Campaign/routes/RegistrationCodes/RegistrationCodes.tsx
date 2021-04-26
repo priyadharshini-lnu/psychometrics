@@ -119,28 +119,32 @@ const RegistrationCodes: React.FC<Props> = ({
             <Column
               title="Action"
               key="action"
-              render={code => (
+              render={({ code, permissions }) => (
                 <>
-                  <CopyToClipboard
-                    text={code.url}
-                    onCopy={() => message.info('URL is copied to clipboard successfully')}
-                  >
-                    <Button shape="round" icon={<CopyOutlined />} />
-                  </CopyToClipboard>
-                  <Dropdown
-                    overlay={() => (
-                      QRCodeMenu({
-                        projectId,
-                        campaignId,
-                        code,
-                      }) as React.ReactElement
-                    )}
-                    trigger={['click']}
-                  >
-                    <Button shape="round" icon={<QrcodeOutlined />}>
-                      QR code
-                    </Button>
-                  </Dropdown>
+                  {permissions.copy && (
+                    <CopyToClipboard
+                      text={code.url}
+                      onCopy={() => message.info('URL is copied to clipboard successfully')}
+                    >
+                      <Button shape="round" icon={<CopyOutlined />} />
+                    </CopyToClipboard>
+                  )}
+                  {permissions.downloadQrcode && (
+                    <Dropdown
+                      overlay={() => (
+                        QRCodeMenu({
+                          projectId,
+                          campaignId,
+                          code,
+                        }) as React.ReactElement
+                      )}
+                      trigger={['click']}
+                    >
+                      <Button shape="round" icon={<QrcodeOutlined />}>
+                        QR code
+                      </Button>
+                    </Dropdown>
+                  )}
                   <Dropdown
                     overlay={() => (
                       ActionsMenu({
@@ -153,6 +157,7 @@ const RegistrationCodes: React.FC<Props> = ({
                             disabled: !code.disabled,
                           },
                         }),
+                        permissions,
                       }) as React.ReactElement
                     )}
                     trigger={['click']}
@@ -161,16 +166,18 @@ const RegistrationCodes: React.FC<Props> = ({
                       <MoreOutlined />
                     </Button>
                   </Dropdown>
-                  <Popconfirm
-                    title="Are you sure?"
-                    onConfirm={() => destroy(campaignId, code.id)}
-                    okText="Yes"
-                    cancelText="No"
-                  >
-                    <Button danger shape="round">
-                      <CloseOutlined />
-                    </Button>
-                  </Popconfirm>
+                  {permissions.remove && (
+                    <Popconfirm
+                      title="Are you sure?"
+                      onConfirm={() => destroy(campaignId, code.id)}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Button danger shape="round">
+                        <CloseOutlined />
+                      </Button>
+                    </Popconfirm>
+                  )}
                 </>
               )}
             />
@@ -193,13 +200,15 @@ const RegistrationCodes: React.FC<Props> = ({
 
 interface ActionMenuProps {
   onEdit(): void
+  permissions: {
+    edit: boolean
+  }
 }
 
 interface QRCodeMenuProps {
   projectId: string
   campaignId: string
   code: RegistrationCode
-
 }
 
 const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
@@ -233,18 +242,20 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
 )
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit,
+  onEdit, permissions,
 }) => (
   <Menu>
-    <Menu.Item key="edit">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={onEdit}
-      >
-        Edit
-      </div>
-    </Menu.Item>
+    { permissions.edit && (
+      <Menu.Item key="edit">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={onEdit}
+        >
+          Edit
+        </div>
+      </Menu.Item>
+    )}
   </Menu>
 )
 

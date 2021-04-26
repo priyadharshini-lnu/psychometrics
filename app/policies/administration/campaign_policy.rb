@@ -94,7 +94,7 @@ module Administration
     end
 
     def update_campaign_options?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
     end
 
     class Scope < Scope

@@ -38,6 +38,7 @@ module Administration
           object,
           [
             'edit',
+            'update_campaign_options',
             %w[delete destroy]
           ]
         )

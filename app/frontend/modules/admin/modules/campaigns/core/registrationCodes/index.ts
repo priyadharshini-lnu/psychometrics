@@ -12,6 +12,12 @@ export interface RegistrationCode {
   useCount: number
   startDate: Date
   endDate: Date
+  permissions: {
+    copy: boolean
+    downloadQrcode: boolean
+    remove: boolean
+    edit: boolean
+  }
 }
 
 const defaultState: State = {
