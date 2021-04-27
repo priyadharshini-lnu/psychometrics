@@ -5,7 +5,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = resource.decorate.status
   td == "#{link_to(resource.name, [:administration, resource, :factors])} #{render_dimension_association_links(resource, ["occupations", "innovation_styles"])}"
   td.text-center = resource.factors_count
-  td = resource.decorate.client_name
+  td = resource.decorate.owner_link
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at
   td.actions-cell

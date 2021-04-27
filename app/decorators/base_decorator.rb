@@ -108,9 +108,9 @@ class BaseDecorator < Draper::Decorator
     }.to_json
   end
 
-  def client_name
+  def owner_link
     if object.owner_id
-      helpers.link_to(object.owner.name, helpers.administration_client_users_path(object.owner_id))
+      helpers.link_to(object.owner.name, h.administration_client_projects_path(object.owner_id))
     else
       I18n.t('administration.tte')
     end

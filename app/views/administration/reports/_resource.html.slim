@@ -12,7 +12,7 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
     - else
       = resource.name
   td = resource.decorate.assessments_names
-  td = resource.decorate.client_name
+  td = resource.decorate.owner_link
   td = resource.decorate.report_families
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at

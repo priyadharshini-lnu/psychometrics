@@ -12,7 +12,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
     - else
       = resource.decorate.name
   td = resource.dimension.try(:decorate).try(:display_name)
-  td = resource.decorate.client_name
+  td = resource.decorate.owner_link
   td = resource.decorate.type
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at
