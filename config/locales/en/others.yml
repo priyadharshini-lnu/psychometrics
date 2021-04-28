@@ -645,7 +645,7 @@ en:
       autostopping_in: Auto-stopping in %{reverseCountdown}
       browser_unsupported: Your browser does not support Audio input
       dictation_active: Dictation is now active
-      dictation_inuse: Dictation is currently being used by another question
+      dictation_disabled: Dictation is currently disabled or is being used by another question
       dictation_stopped: Speech dictation stopped
       listening: Listening
       notifications:

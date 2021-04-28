@@ -238,7 +238,7 @@ export const SpeechToTextInput: FC<Props> = ({
 
   useEffect(() => {
     if (isDisabled) {
-      setTooltipText(I18n.t('assessments.dictation.dictation_inuse'))
+      setTooltipText(I18n.t('assessments.dictation.dictation_disabled'))
     } else {
       setTooltipText(I18n.t('assessments.dictation.use_speech_instructions'))
     }

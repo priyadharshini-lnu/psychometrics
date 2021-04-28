@@ -64,7 +64,7 @@ const MultiLinePreview: FC<Props> = ({
               value={value}
               onChange={updateModelAnswer}
               onToggle={handleDictationToggle}
-              isDisabled={isDictationDisabled}
+              isDisabled={isDictationDisabled || readOnly}
             >
               <MultiLineTextArea
                 readOnly={readOnly}
