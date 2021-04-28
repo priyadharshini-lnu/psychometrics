@@ -17,9 +17,11 @@ module Administration
                 ).
                 references(:user).
                 order(id: :desc)
-        subjects = ::Threesixty::Subjects::Serialize.call!(query.page(params[:page]), threesixty_campaign)
+        subjects = ::Threesixty::Subjects::Serialize.call!(
+          query.page(params[:page]), threesixty_campaign, current_user
+        )
         total = query.count
-        render json: { subjects: subjects, total: total }
+        render json: { subjects: subjects, total: total, permissions: permissions }
       end
 
       def search
@@ -39,7 +41,7 @@ module Administration
             subject: resource
           )
         end
-        render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign).first
+        render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign, current_user).first
       end
 
       def destroy
@@ -94,6 +96,24 @@ module Administration
       end
 
       private
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Threesixty::SubjectPolicy,
+          current_user,
+          nil,
+          [
+            %w[add_subject create_all],
+            'manage_datasheets',
+            'manage_relationships',
+            'export_results',
+            'export_completion_status',
+            'edit_dimension',
+            'reset_all_participants',
+            'reset_all_nominations'
+          ]
+        )
+      end
 
       # Set model
       def set_resource_class

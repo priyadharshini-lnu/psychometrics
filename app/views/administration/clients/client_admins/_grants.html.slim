@@ -318,8 +318,8 @@ table.table.grants-table
               = check_box_tag 'resource[grants_attributes][data][datasheets][]',
                       'view', resource.has_grant?(:datasheets, :view), id: datasheet_view_id, data: { turn_off: [datasheet_manage_id] }
               | View
-          - if policy(:membership).manage_grants_for_action?('datasheet', 'manage', client: client)
+          - if policy(:membership).manage_grants_for_action?('datasheets', 'manage', client: client)
             label
-              = check_box_tag 'resource[grants_attributes][data][datasheet][]',
+              = check_box_tag 'resource[grants_attributes][data][datasheets][]',
                       'manage', resource.has_grant?(:datasheets, :manage), id: datasheet_manage_id, data: { turn_on: [datasheet_view_id] }
               | Manage

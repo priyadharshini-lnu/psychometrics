@@ -18,6 +18,7 @@ export const getForm = state => _.get(get(state), ['form'])
 
 export const defaultState = {
   list: [],
+  permissions: [],
   total: 0,
   form: {
     attrs: [],
@@ -78,7 +79,9 @@ export const remove = (campaignId, subjectId, removeLicenceUsage) => ({
 })
 
 const HANDLERS = {
-  [FETCH_SUBJECTS]: (state, { response: { subjects, total } }) => ({ ...state, list: subjects, total }),
+  [FETCH_SUBJECTS]: (state, { response: { subjects, permissions, total } }) => ({
+    ...state, list: subjects, permissions, total,
+  }),
   [FILL_SUBJECTS]: (state, { subjects }) => setIn(state, ['form', 'attrs'], subjects),
   [CREATE_ALL_FAILURE]: (state, { errors }) => setIn(state, ['form', 'errors'], errors),
   [CLEAR_FORM]: state => ({ ...state, form: defaultState.form }),

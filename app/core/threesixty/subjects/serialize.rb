@@ -3,9 +3,10 @@
 module Threesixty
   module Subjects
     class Serialize < BaseCommand
-      def initialize(subjects, threesixty_campaign)
+      def initialize(subjects, threesixty_campaign, current_user)
         @subjects = subjects
         @threesixty_campaign = threesixty_campaign
+        @current_user = current_user
       end
 
       def call
@@ -25,7 +26,8 @@ module Threesixty
             option: threesixty_campaign.option,
             counters: counters,
             nomination_requirement: nomination_requirement_by_user_id[subject.user_id],
-            subject_evaluator_counters: subject_evaluator_counters
+            subject_evaluator_counters: subject_evaluator_counters,
+            current_user: current_user
           ).to_h
         end
         broadcast :ok, result
@@ -33,7 +35,7 @@ module Threesixty
 
       private
 
-      attr_reader :subjects, :threesixty_campaign
+      attr_reader :subjects, :threesixty_campaign, :current_user
     end
   end
 end

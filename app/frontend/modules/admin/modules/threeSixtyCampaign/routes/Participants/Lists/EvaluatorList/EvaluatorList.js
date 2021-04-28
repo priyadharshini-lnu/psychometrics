@@ -18,6 +18,7 @@ export default function EvaluatorList ({
   removeUser,
   editUser,
   total,
+  permissions,
   page,
   searchTerm,
   match: {
@@ -44,7 +45,7 @@ export default function EvaluatorList ({
             path="/participants/evaluators"
             searchTerm={searchTerm}
           />
-          <ToolsDropdown />
+          <ToolsDropdown permissions={permissions} />
           <CreateEvaluatorsDropdown />
         </Col>
       </Row>
@@ -63,7 +64,9 @@ export default function EvaluatorList ({
           </div>
         </Col>
       </Row>
-      <CreateEvaluatorModal match={match} />
+      {permissions.addEvaluator && (
+        <CreateEvaluatorModal match={match} />
+      )}
       <EvaluatorImportModal match={match} />
       <UserEditModal match={match} />
     </>

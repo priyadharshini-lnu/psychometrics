@@ -15,6 +15,7 @@ export const getForm = state => _.get(get(state), ['form'])
 export const defaultState = {
   list: [],
   total: 0,
+  permissions: {},
   form: {
     attrs: [],
     errors: null,
@@ -59,7 +60,12 @@ export const importFile = (campaignId, data) => ({
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_EVALUATORS:
-      return { ...state, list: action.response.evaluators, total: action.response.total }
+      return {
+        ...state,
+        list: action.response.evaluators,
+        total: action.response.total,
+        permissions: action.response.permissions,
+      }
     case FILL_EVALUATORS:
       return setIn(state, ['form', 'attrs'], action.evaluators)
     case CLEAR_FORM:
