@@ -71,7 +71,7 @@ environment.loaders.append('less', lessLoader)
 
 environment.loaders.append('babel', jsTsLoader)
 
-environment.loaders.append('svg', svgLoader)
+environment.loaders.append('svgr', svgLoader)
 
 loaders.nodeModules.use[0].options.sourceMaps = true
 
