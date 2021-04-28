@@ -12,12 +12,6 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
     Hogan::FetchResultsJob.set(wait: 30.seconds).
       perform_later(user_result, current_user.hogan_credential, @user_assessment.campaign.project)
 
-    UsersResults::GenerateReports.call(
-      user_result,
-      current_user,
-      exceptUserReportIds: user_result.hogan_user_reports.pluck(:id)
-    )
-
     redirect_to(campaign_path(@user_assessment.campaign))
   end
 
