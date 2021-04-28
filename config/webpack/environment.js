@@ -9,8 +9,9 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 // Uncomment to activate bundle analyzer
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-const less = require('./loaders/less')
-const jsTsLoader = require('./loaders/js-ts-loader')
+const lessLoader = require('./loaders/less')
+const jsTsLoader = require('./loaders/js-ts')
+const svgLoader = require('./loaders/svg')
 
 const DEVTOOL = env.DEVTOOL || false
 const __DEV__ = env.NODE_ENV === 'development'
@@ -35,17 +36,17 @@ environment.plugins.insert(
   }),
 )
 if (__DEV__) {
-  let forkTsCheckerArgs = {
+  const forkTsCheckerArgs = {
     typescript: {
       diagnosticOptions: {
         semantic: true,
         syntactic: true,
-      }
-    }
+      },
+    },
   }
 
   if (__RUN_ESLINT__) {
-    forkTsCheckerArgs.eslint = { files: './app/frontend/**/*.{ts,tsx,js,jsx}', }
+    forkTsCheckerArgs.eslint = { files: './app/frontend/**/*.{ts,tsx,js,jsx}' }
   }
 
   environment.plugins.insert('TsForkChecker', new ForkTsCheckerWebpackPlugin(forkTsCheckerArgs))
@@ -66,10 +67,11 @@ const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === '
 
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
 
-environment.loaders.append('less', less)
+environment.loaders.append('less', lessLoader)
 
-// Loader for javascript and typescript files
 environment.loaders.append('babel', jsTsLoader)
+
+environment.loaders.append('svg', svgLoader)
 
 loaders.nodeModules.use[0].options.sourceMaps = true
 
