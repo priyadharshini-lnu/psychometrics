@@ -31,8 +31,7 @@ const MockData = [
     strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
-* Lorem ipsum dolor sit amet consectetur adipisicing
-* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Lorem ipsum dolor sit amet consectetur
 * Ipsum dolor sit amet, consectetur adipisicing elit
     `,
     blindspots: `
@@ -57,14 +56,13 @@ const MockData = [
     strategy: 1,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
-* Lorem ipsum dolor sit amet consectetur adipisicing
-* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-* Ipsum dolor sit amet, consectetur adipisicing elit
+* Lorem ipsum dolor sit amet
+* Consectetur adipisicing elit
+* Ipsum dolor sit amet
     `,
     blindspots: `
-* Lorem ipsum dolor sit amet consectetur adipisicing
-* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-* Ipsum dolor sit amet, consectetur adipisicing elit
+* Lorem ipsum dolor sit amet
+* Consectetur adipisicing elit
     `,
     workstyles: `
 * Lorem ipsum dolor sit amet consectetur adipisicing

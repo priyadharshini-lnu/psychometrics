@@ -67,11 +67,7 @@
     }
     &.description {
       color: #7B7B7B;
-      display: grid;
-      gap: 2em;
-      grid-template-areas: "icon content";
-      grid-auto-columns: minmax(min-content, max-content);
-
+      display: flex;
       ul, ol {
         padding-inline-start: 1.4em;
       }
@@ -105,8 +101,11 @@
           margin-inline-start: 0.6em;
         }
       }
-
+      .content {
+        flex: 1;
+      }
       .icons {
+        margin-inline-end: 1em;
         img {
           width: 2.5em;
           object-fit: contain;
