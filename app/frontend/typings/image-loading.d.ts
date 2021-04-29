@@ -9,8 +9,3 @@ declare module '*.svg' {
   const svg: any
   export default svg
 }
-
-declare module '*.svgr' {
-  const content: any
-  export default content
-}

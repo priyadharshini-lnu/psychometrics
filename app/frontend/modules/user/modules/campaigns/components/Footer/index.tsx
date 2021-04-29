@@ -57,7 +57,7 @@ const Footer: FC<PropsFromRedux> = ({
 }
 
 const TTELogo: FC = () => (
-  <TTELogoSVG title="The Talent Enterprise" className={styles.logo} height="5rem" width="auto" />
+  <TTELogoSVG title="The Talent Enterprise" height="5rem" width="auto" />
 )
 
 type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
