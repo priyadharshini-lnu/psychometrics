@@ -26,7 +26,7 @@ default: &default
     - .gif
     - .tiff
     - .ico
-    - .svg
+    - .(?<!r)\.svg
     - .eot
     - .otf
     - .ttf
