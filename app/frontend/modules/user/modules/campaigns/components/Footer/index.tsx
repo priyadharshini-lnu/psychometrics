@@ -12,8 +12,8 @@ import {
 } from 'modules/user/modules/campaigns/core/project'
 import { get as getConfig } from 'modules/user/core/config'
 
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogo.svg'
-import tteLogo from 'modules/user/assets/images/tteLogo.svg'
+import LighthouseLogoSVG from 'modules/user/assets/images/lighthouseLogo.r.svg'
+import TTELogoSVG from 'modules/user/assets/images/tteLogo.r.svg'
 
 import styles from './styles.scss'
 
@@ -57,7 +57,7 @@ const Footer: FC<PropsFromRedux> = ({
 }
 
 const TTELogo: FC = () => (
-  <img src={tteLogo} alt="The Talent Enterprise" height="50" width="auto" />
+  <TTELogoSVG title="The Talent Enterprise" className={styles.logo} />
 )
 
 type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
@@ -105,7 +105,7 @@ const PartnerLogo: FC<PartnerLogsProps> = ({
     )
   }
 
-  return <img src={lighthouseLogo} alt="Lighthouse" height="50" width="auto" />
+  return <LighthouseLogoSVG title="Lighthouse" className={styles.logo} />
 }
 
 const FooterConnected = connector(Footer)
