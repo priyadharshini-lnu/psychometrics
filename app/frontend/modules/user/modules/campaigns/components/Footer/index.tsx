@@ -57,7 +57,7 @@ const Footer: FC<PropsFromRedux> = ({
 }
 
 const TTELogo: FC = () => (
-  <TTELogoSVG title="The Talent Enterprise" className={styles.logo} />
+  <TTELogoSVG title="The Talent Enterprise" className={styles.logo} height="5rem" width="auto" />
 )
 
 type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
@@ -101,11 +101,11 @@ const PartnerLogo: FC<PartnerLogsProps> = ({
 }) => {
   if (secondaryLogo) {
     return (
-      <img src={secondaryLogo} alt={projectName} height="50" width="auto" />
+      <img src={secondaryLogo} alt={projectName} className={styles.logoImg} />
     )
   }
 
-  return <LighthouseLogoSVG title="Lighthouse" className={styles.logo} />
+  return <LighthouseLogoSVG title="Lighthouse" height="5rem" width="auto" />
 }
 
 const FooterConnected = connector(Footer)
