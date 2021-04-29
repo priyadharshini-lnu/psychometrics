@@ -2,27 +2,25 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import Select from 'react-select'
 import AppStore from 'rb/store/AppStore'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
 
 class DataSheet extends Component {
   getOptions = () => {
     const { onlyNumbers } = this.props
     if (onlyNumbers) {
-      return AppStore.report.dataSheetColumns.filter(column => column.type === 'Number')
+      return AppStore.report.dataSheetColumns.filter(column => column.type === 'Number').map(d => d.name)
     }
-    return AppStore.report.dataSheetColumns
+    return AppStore.report.dataSheetColumns.map(d => d.name)
   }
 
   onChange = (data) => {
     const { model, singleChoice, onSelect } = this.props
-    model.props.source.columns = singleChoice ? [data.name] : data.map(f => f.name)
+    model.props.source.columns = singleChoice ? [data] : data
     onSelect()
   }
 
   getValue () {
-    const { model, singleChoice } = this.props
-    const columns = _.result(model, 'props.source.columns', 'Choose Column')
-    return singleChoice ? columns[0] || '' : columns
+    const { model } = this.props
+    return _.result(model, 'props.source.columns', 'Choose Column')
   }
 
   render () {
@@ -30,9 +28,9 @@ class DataSheet extends Component {
     return (
       <Select
         name="form-field-name"
-        value={getValue(this.getOptions(), this.getValue(), 'name')}
-        getOptionValue={opt => opt.name}
-        getOptionLabel={opt => opt.name}
+        value={this.getValue()}
+        getOptionValue={opt => opt}
+        getOptionLabel={opt => opt}
         options={this.getOptions()}
         clearable={false}
         autoFocus={false}
