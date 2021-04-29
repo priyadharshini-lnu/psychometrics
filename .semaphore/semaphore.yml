@@ -36,7 +36,7 @@ global_job_config:
       - sem-version node 14.15.1
       - node --version
       - gem install bundler -v '2.1.4'
-      - bundle install -j $(nproc) --retry 3  --without development --path vendor/bundle
+      - MAKE="make --jobs $(nproc)" bundle install -j $(nproc) --retry 3  --without development --path vendor/bundle
 auto_cancel:
   queued:
     when: "true"
