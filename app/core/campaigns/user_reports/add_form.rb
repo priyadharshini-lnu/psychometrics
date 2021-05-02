@@ -14,6 +14,22 @@ module Campaigns
       def add_and_allow_new_response?
         operation == 'add_and_allow_new_response'
       end
+
+      def assessments
+        nil
+      end
+
+      def assessment_ids
+        []
+      end
+
+      def assessment_map
+        {}
+      end
+
+      def report_map
+        {}
+      end
     end
   end
 end

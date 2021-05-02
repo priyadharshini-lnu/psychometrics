@@ -20,7 +20,7 @@ module Campaigns
           report_family_id: options[:report_family_id]
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
-        user_assessments = report.assessments.map do |assessment|
+        user_assessments = options[:assessments].map do |assessment|
           add_assessment_to_user(assessment, user_report)
         end
         generate_report_pdf(user_report)
@@ -33,6 +33,7 @@ module Campaigns
       private
 
       def add_assessment_to_user(assessment, user_report)
+        norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         user_assessment = UserAssessment.find_by(
           campaign: campaign,
           assessment_id: assessment.id,
@@ -47,6 +48,7 @@ module Campaigns
           campaign: campaign,
           assessment_id: assessment.id,
           subject: user,
+          norm_id: norm_assessment[:norm_id],
           evaluator: user,
           relationship: Relationship.self_relationship
         )

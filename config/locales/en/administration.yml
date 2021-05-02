@@ -1317,6 +1317,7 @@ en:
           privacy_link: Privacy link
           privacy_text: Privacy text
           project_number: Project Number
+          webhook: Webhook
         header:
           actions: Actions
         index:

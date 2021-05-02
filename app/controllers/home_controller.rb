@@ -9,12 +9,14 @@ class HomeController < ApplicationController
 
   # TODO: needs some refactoring
   def sso
-    if params[:assign_id]
-      assign = @current_membership.assigns.find_by(id: params[:assign_id])
-      redirect_to_return_url('assessment_invalid') && return unless assign
-      redirect_to_return_url('assessment_completed') && return if assign.completed?
+    if params[:user_assessment_id]
+      user_assessment = UserAssessment.find_by(id: params[:user_assessment_id], evaluator_id: @current_user.id)
+      redirect_to_return_url('assessment_invalid') && return unless user_assessment
+      redirect_to_return_url('assessment_completed') && return if user_assessment.completed?
 
-      redirect_url = assign.assessment.agile? ? agile_assign_path(assign) : pass_assign_path(assign)
+      campaign_user = user_assessment.campaign_user
+      CampaignUsers::BeginRegularCampaign.call(campaign_user) if campaign_user.not_started?
+      redirect_url = pass_user_assessment_path(params[:user_assessment_id])
       redirect_to(redirect_url) && return
     end
 

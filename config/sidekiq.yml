@@ -11,6 +11,7 @@ production:
   - mailers
   - communication
   - reports
+  - webhooks
   - cron_tasks
   - default
   - low_priority

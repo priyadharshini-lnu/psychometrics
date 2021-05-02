@@ -35,6 +35,7 @@ class Client < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   attr_writer :license_msg
+  attribute :webhook, :string
 
   HIERARCHY_LEVEL = {
     project: 1,
@@ -104,6 +105,7 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
+  has_one :webhook_subscription, class_name: 'WebhookSystem::Subscription', foreign_key: :project_id
   has_many :registration_codes, class_name: 'RegistrationCode', foreign_key: :end_level_id, inverse_of: :end_level
   has_many :project_registration_codes, class_name: 'RegistrationCode', foreign_key: :project_id, inverse_of: :project
 
@@ -126,8 +128,8 @@ class Client < ApplicationRecord
     root.validates :account_manager, :project_manager, presence: true, on: :create
   end
   with_options if: :project? do |project|
-    project.validates :number, presence: true
     project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
+    project.validates :webhook, http_url: { presence: false }
     project.validate :subdomain_format_validation
   end
   # disabled this validation as it was causing error while saving sub-campaign
@@ -146,9 +148,9 @@ class Client < ApplicationRecord
   enum type: %i[partner corporate distributer associate tte retail other]
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
-  mount_uploader :logo, ImageUploader
-  mount_uploader :background, BackgroundUploader
-  mount_uploader :secondary_logo, ImageUploader
+  mount_base64_uploader :logo, ImageUploader
+  mount_base64_uploader :background, BackgroundUploader
+  mount_base64_uploader :secondary_logo, ImageUploader
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
@@ -294,7 +296,7 @@ class Client < ApplicationRecord
   end
 
   def subdomain_format_validation
-    return if /^[a-zA-Z0-9\-_]+$/.match?(subdomain)
+    return if /^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$/.match?(subdomain)
 
     errors.add(:subdomain, 'Wrong subdomain format')
   end

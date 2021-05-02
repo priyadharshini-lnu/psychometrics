@@ -13,7 +13,7 @@ module Api
       end
 
       def url
-        "#{instance_options[:url]}?assign_id=#{object.id}"
+        "#{instance_options[:url]}?user_assessment_id=#{object.id}"
       end
 
       def status

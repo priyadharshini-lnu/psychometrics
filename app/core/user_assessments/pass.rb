@@ -12,6 +12,7 @@ module UserAssessments
     def call
       return broadcast :ok if user_assessment.completed?
 
+      publish_to_webhook
       user_assessment.users_result.update(build_user_result_params)
       user_assessment.in_progress!
 
@@ -27,6 +28,18 @@ module UserAssessments
       params[:started_at] = Time.now unless user_assessment.users_result.started_at
 
       params
+    end
+
+    def publish_to_webhook
+      return unless user_assessment.users_result.not_started?
+
+      data = {
+        campaign: user_assessment.campaign,
+        assessment: user_assessment.assessment,
+        evaluator: user_assessment.evaluator,
+        subject: user_assessment.subject
+      }
+      WebhookSubscriptions::Publish.call!(user_assessment.evaluator.project, :assessment_started, data)
     end
 
     def time

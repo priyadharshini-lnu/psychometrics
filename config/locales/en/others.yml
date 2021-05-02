@@ -516,6 +516,10 @@ en:
         admin_for_another_tte: User already admin in another tte
         not_uniqueness: Assign has already been taken
       models:
+        client:
+          attributes:
+            webhook:
+              invalid_http_url: Invalid url
         factors_norm:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from

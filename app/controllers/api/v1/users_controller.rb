@@ -4,11 +4,27 @@ module Api
   module V1
     class UsersController < Api::V1::BaseController
       def create
-        form = Api::V1::Users::CreateForm.from_params(params).with_context(project: project)
-        Administration::Clients::CreateUser.call(form, Client.where(id: form.campaign_ids).all, current_user) do
-          on(:invalid) { |f| render_validation_errors(f) }
-          on(:license_error) { |_form, error| raise Errors::Api::NotEnoughLicencesError, error.message }
-          on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
+        normalized_params = API::NormalizeCampaignParams.call!(params)
+        form = Api::V1::Users::CreateForm.from_params(normalized_params).with_context(project: project)
+
+        if form.valid?
+          user = normalized_params[:campaigns].map do |campaign_attrs|
+            campaign = Campaign.find(campaign_attrs[:id])
+            struct = OpenStruct.new(
+              email: form.email,
+              first_name: form.first_name,
+              last_name: form.last_name,
+              operation: campaign_attrs[:existing_record],
+              active: campaign_attrs[:active]
+            )
+            response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
+              on(:error) { |error| raise Errors::Api::NotEnoughLicencesError, error }
+            end
+            response[:ok]
+          end.sample
+          render json: Api::V1::UserSerializer.new(user, project: project).to_h
+        else
+          render_validation_errors(form)
         end
       end
 
@@ -22,13 +38,48 @@ module Api
 
       def sso
         url, expires_at = ::Users::BuildSsoUrl.call(project, user)[:ok]
-        assigns = Assign.includes(:assessment).where(membership: project_membership)
-        render json: { expires_at: expires_at, url: url, assessments: assigns.
-          map { |a| Api::V1::SsoAssignSerializer.new(a, url: url).to_h } }
+        render json: { expires_at: expires_at, url: url, assessments: user.user_assessments.
+          map { |ua| Api::V1::SsoAssignSerializer.new(ua, url: url).to_h } }
+      end
+
+      def assessments_reports
+        form = Api::V1::Users::AssessmentsAndReportsForm.from_params(params).
+               with_context(campaign_user: campaign_user, campaign: campaign)
+        if form.valid?
+          ::Campaigns::UserReports::Add.call(form, campaign_user) do
+            on(:error) { |error| raise Errors::Api::NotEnoughLicencesError, error }
+          end
+          render json: campaign_user, serializer: Api::V1::UserAssessmentsAndReportsSerializer
+        else
+          render_validation_errors(form)
+        end
       end
 
       def user_params
         params.require(:user).permit(:email, :first_name, :last_name, :password)
+      end
+
+      def campaign
+        @campaign ||=
+          begin
+            c = Campaign.find_by(project_id: project.id, id: params[:campaign_id])
+            raise Errors::Api::ResourceNotFoundError, "Campaign with id=#{params[:campaign_id]} is not found" unless c
+
+            c
+          end
+      end
+
+      def campaign_user
+        @campaign_user ||=
+          begin
+            cu = CampaignUser.find_by(user: user, campaign: campaign)
+            unless cu
+              raise Errors::Api::ResourceNotFoundError,
+                    "User #{user&.id} does not belong to the campaign with id=#{campaign.id}"
+            end
+
+            cu
+          end
       end
     end
   end

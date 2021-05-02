@@ -20,6 +20,21 @@ module Mindmill
 
       mindmill_user_report_ids = user_result.mindmill_user_reports.pluck(:id)
       UsersResults::GenerateReports.call!(user_result, current_user, exceptUserReportIds: mindmill_user_report_ids)
+
+      publish_to_webhook(user_result)
+    end
+
+    def publish_to_webhook(user_result)
+      user_report = user_result.user_reports.first
+      campaign = user_result.user_assessment.campaign
+
+      data = {
+        campaign: campaign,
+        subject: user_result.subject,
+        report: user_report.report,
+        user_report: user_report
+      }
+      WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
     end
   end
 end

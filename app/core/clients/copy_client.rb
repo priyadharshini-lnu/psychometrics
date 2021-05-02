@@ -20,7 +20,7 @@ module Clients
     def clone_client(original, copy)
       copy.name += ' (copy)'
       if original.subdomain.present?
-        copy.subdomain = original.subdomain + "_#{SecureRandom.random_number(Time.now.to_i)}"
+        copy.subdomain = original.subdomain + "t#{SecureRandom.random_number(Time.now.to_i)}"
       end
     end
 

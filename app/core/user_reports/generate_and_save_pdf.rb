@@ -37,6 +37,7 @@ module UserReports
       pdf_file_path = UserReports::GeneratePdf.call!(user_report, current_user, options)
 
       File.open(pdf_file_path) { |file| user_report.update!(status: :prepared, pdf: file) }
+      publish_to_webhook(user_report)
     end
 
     def generate_mindminl_report(user_report)
@@ -49,6 +50,19 @@ module UserReports
         user_report.user.hogan_credential,
         user_report.project
       )
+    end
+
+    def publish_to_webhook(user_report)
+      user_result = user_report.user_results.first
+      campaign = user_result.user_assessment.campaign
+
+      data = {
+        campaign: campaign,
+        subject: user_result.subject,
+        report: user_report.report,
+        user_report: user_report
+      }
+      WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
     end
   end
 end

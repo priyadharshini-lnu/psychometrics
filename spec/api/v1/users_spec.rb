@@ -6,7 +6,7 @@ require 'swagger_helper'
 describe 'Users' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
-  let(:campaign) { create(:client_campaign, parent: project) }
+  let(:campaign) { create(:campaign, project: project) }
   let(:user) { create(:user, project: project) }
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
@@ -89,9 +89,12 @@ the campaign\'s default assessments and reports.'
         let(:first_name) { 'Max' }
         let(:last_name) { 'Holloway' }
         let(:email) { 'max@example.com' }
-        let(:campaign_ids) { [campaign.id] }
         let(:project_id) { project.id }
-        let(:body) { { email: email, first_name: first_name, last_name: last_name, campaign_ids: campaign_ids } }
+        let(:body) do
+          { email: email, first_name: first_name, last_name: last_name, campaigns: [
+            { id: campaign.id, active: true, existing_record: 'new_evaluation' }
+          ] }
+        end
 
         run_test! do |response|
           user = JSON.parse(response.body)
@@ -99,7 +102,7 @@ the campaign\'s default assessments and reports.'
           expect(user['first_name']).to eq first_name
           expect(user['last_name']).to eq last_name
           expect(user['email']).to eq email
-          expect(user['campaign_ids']).to eq [campaign.id]
+          expect(user['campaigns'][0]['id']).to eq campaign.id
         end
       end
 
@@ -178,8 +181,7 @@ the campaign\'s default assessments and reports.'
         examples 'application/json' => {
           "code": 1003,
           "message": 'Not enough licenses',
-          "more_info": '<b>john.doe@example.com</b> in <b>ACME</b> does not have not enough \\
-licenses for <b>Cognitive - Entry Level</b> report.'
+          "more_info": "'Client Tenancy 1' does not have enough licenses for 'report 2'"
         }
 
         let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
@@ -195,8 +197,8 @@ licenses for <b>Cognitive - Entry Level</b> report.'
           expect(error).to eq(
             'code' => 1003,
             'message' => 'Not enough licenses',
-            'more_info' => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not \
-enough licenses for <b>#{report.name}</b> report.",
+            'more_info' => "'#{membership.client.name}' does not have \
+enough licenses for '#{report.name}'",
             'meta' => nil
           )
         end
@@ -240,6 +242,76 @@ enough licenses for <b>#{report.name}</b> report.",
           expect(user['first_name']).to eq first_name
           expect(user['last_name']).to eq last_name
           expect(user['email']).to eq email
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/campaigns/{campaign_id}/users/{user_id}/assessments_reports' do
+    put 'Update a user assessments and reports' do
+      operationId 'UpdateUserAssessmentsAndReports'
+      description 'Update user assessments and reports'
+      tags 'Users'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, type: :string
+      parameter name: :body, in: :body,
+       schema: { '$ref' => '#/definitions/UpdatedCampaignAssessmentsAndReports' }, required: true
+
+      response '200', 'Assessments and reports updated' do
+        schema '$ref' => '#/definitions/AssessmentsAndReports'
+        examples 'application/json' => {
+          "reports": [
+            {
+              "id": 1,
+              "user_access": true,
+              "report_bundle_id": 1
+            }
+          ],
+          "assessments": [
+            {
+              "id": 1,
+              "norm_id": 2
+            }
+          ]
+        }
+
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:user_id) { user.id }
+        let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+        let(:assessment) { create(:assessment) }
+        let!(:norm) { create(:norm, dimension: assessment.dimension) }
+        let(:report) { create(:report, assessments: [assessment]) }
+        let(:report_family) { create(:report_family, reports: [report]) }
+        let(:body) do
+          {
+            reports: [
+              { id: report.id, user_access: true, report_bundle_id: report_family.id }
+            ],
+            assessments: [
+              { id: assessment.id, norm_id: norm.id }
+            ]
+          }
+        end
+
+        before do
+          allow(Licenses::Use).to receive(:call).and_return(true)
+        end
+
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          expect(body['reports'].first).to eq({
+            'id' => report.id,
+            'user_access' => true,
+            'report_bundle_id' => report_family.id
+          })
+          expect(body['assessments'].first).to eq({
+            'id' => assessment.id,
+            'norm_id' => norm.id
+          })
         end
       end
     end

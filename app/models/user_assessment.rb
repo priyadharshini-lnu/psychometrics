@@ -79,5 +79,9 @@ class UserAssessment < ApplicationRecord
     statuses.keys.each_with_object({}) { |status, acc| acc[status.to_sym] = 0 }
   end
 
+  def campaign_user
+    CampaignUser.find_by(campaign_id: campaign_id, user_id: evaluator_id)
+  end
+
   alias result users_result
 end

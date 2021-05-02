@@ -6,26 +6,30 @@ require 'swagger_helper'
 describe 'Reports' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
-  let(:campaign) { create(:client_campaign, parent: project) }
+  let(:campaign) { create(:campaign, project: project) }
   let(:user) { create(:user, project: project) }
   let(:dimension) { create(:dimension, :with_multiple_occupations) }
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment', dimension: dimension) }
   let(:report) { assessment.reports.first }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
-  let!(:assign) do
-    user_membership = create(:membership, client: campaign, user: user)
-    user_membership.client.assessments = [assessment]
-    user_membership.client.project.assessments = [assessment]
-    user_membership.client.reports = assessment.reports
-    user_membership.client.project.reports = assessment.reports
-    create(:assign, membership: user_membership, assessment: assessment, status: :completed)
+  let!(:user_assessment) do
+    campaign_user = create(:campaign_user, campaign: campaign, user: user)
+    campaign_user.campaign.reports = assessment.reports
+    campaign_user.campaign.assessments = [assessment]
+    user_result = create(:users_result, subject: user, evaluator: user, assessment: assessment)
+    create(:user_assessment,
+           subject: user,
+           evaluator: user,
+           assessment: assessment,
+           campaign: campaign,
+           users_result: user_result)
   end
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   before do
     allow_any_instance_of(AssignsReport).to receive(:use_license) { 'nth' }
-    create(:assigns_report, report: report, assign: assign)
+    create(:user_report, report: report, user: user, campaign: campaign)
   end
 
   path '/projects/{project_id}/users/{user_id}/reports' do
@@ -38,6 +42,8 @@ describe 'Reports' do
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :query, type: :string, required: false,
+      description: 'if is not filled, the system takes the last campaign id'
 
       response '200', 'Success' do
         schema type: 'array', items: { '$ref' => '#/definitions/UserReport' }
@@ -46,6 +52,7 @@ describe 'Reports' do
             "id": 127,
             "name": 'Thriving Index - Resource Pro',
             "status": 'not_ready',
+            "campaign_id": 1,
             "assessments": [
               {
                 "id": 91_731,
@@ -60,6 +67,7 @@ describe 'Reports' do
             "id": 110,
             "name": 'Custom Report',
             "status": 'not_ready',
+            "campaign_id": 1,
             "assessments": [
               {
                 "id": 91_731,
@@ -97,11 +105,14 @@ describe 'Reports' do
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :query, type: :string, required: false,
+      description: 'if is not filled, the system takes the last campaign id'
 
       response '200', 'Success' do
         schema '$ref' => '#/definitions/ReportResults'
         examples 'application/json' => {
           'user_data' => { 'first_name' => 'Jane', 'last_name' => 'Doe' },
+          'campaign_id': 1,
           'assessments' => [
             {
               'id' => 17,
@@ -134,6 +145,10 @@ describe 'Reports' do
         let(:user_id) { user.id }
         let(:report_id) { report.id }
 
+        before do
+          user_assessment.users_result.completed!
+        end
+
         run_test! do |response|
           result = JSON.parse(response.body)
           expect(result['assessments']).to be_an_instance_of(Array)
@@ -155,7 +170,7 @@ describe 'Reports' do
         let(:report_id) { report.id }
 
         before do
-          assign.project_assign.in_progress!
+          user_assessment.users_result.in_progress!
         end
         run_test! do |response|
           error = JSON.parse(response.body)
@@ -181,11 +196,14 @@ describe 'Reports' do
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :query, type: :string, required: false,
+      description: 'if is not filled, the system takes the last campaign id'
 
       response '200', 'Success' do
         schema '$ref' => '#/definitions/ReportPdf'
         examples 'application/json' => {
           url: 'https://some.aws.s3.com/report.pdf',
+          campaign_id: 1,
           status: 'ready'
         }
 

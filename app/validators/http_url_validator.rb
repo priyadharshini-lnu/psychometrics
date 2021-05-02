@@ -5,6 +5,8 @@ class HttpUrlValidator < ActiveModel::EachValidator
   VALID_SCHEMES = %w[http https].freeze
 
   def validate_each(record, attribute, value)
+    return if options[:presence] == false && value.blank?
+
     record.errors.add(attribute, :invalid_http_url) unless valid?(value)
   end
 

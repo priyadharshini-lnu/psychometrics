@@ -1031,13 +1031,13 @@ CREATE TABLE public.communications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     project_id integer,
-    campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL
+    stop_reminder boolean DEFAULT false NOT NULL,
+    campaign_id bigint
 );
 
 
@@ -3047,8 +3047,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -3511,6 +3510,104 @@ CREATE SEQUENCE public.users_results_id_seq
 --
 
 ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
+
+
+--
+-- Name: webhook_event_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.webhook_event_logs (
+    id bigint NOT NULL,
+    subscription_id bigint NOT NULL,
+    event_name character varying NOT NULL,
+    event_id character varying NOT NULL,
+    status integer NOT NULL,
+    request text NOT NULL,
+    response text NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: webhook_event_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.webhook_event_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: webhook_event_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.webhook_event_logs_id_seq OWNED BY public.webhook_event_logs.id;
+
+
+--
+-- Name: webhook_subscription_topics; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.webhook_subscription_topics (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    subscription_id bigint NOT NULL
+);
+
+
+--
+-- Name: webhook_subscription_topics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.webhook_subscription_topics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: webhook_subscription_topics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.webhook_subscription_topics_id_seq OWNED BY public.webhook_subscription_topics.id;
+
+
+--
+-- Name: webhook_subscriptions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.webhook_subscriptions (
+    id bigint NOT NULL,
+    url character varying NOT NULL,
+    active boolean NOT NULL,
+    encrypted boolean DEFAULT false NOT NULL,
+    secret text,
+    project_id bigint
+);
+
+
+--
+-- Name: webhook_subscriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.webhook_subscriptions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: webhook_subscriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.webhook_subscriptions_id_seq OWNED BY public.webhook_subscriptions.id;
 
 
 --
@@ -4148,6 +4245,27 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 ALTER TABLE ONLY public.users_results ALTER COLUMN id SET DEFAULT nextval('public.users_results_id_seq'::regclass);
+
+
+--
+-- Name: webhook_event_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_event_logs ALTER COLUMN id SET DEFAULT nextval('public.webhook_event_logs_id_seq'::regclass);
+
+
+--
+-- Name: webhook_subscription_topics id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscription_topics ALTER COLUMN id SET DEFAULT nextval('public.webhook_subscription_topics_id_seq'::regclass);
+
+
+--
+-- Name: webhook_subscriptions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscriptions ALTER COLUMN id SET DEFAULT nextval('public.webhook_subscriptions_id_seq'::regclass);
 
 
 --
@@ -4900,6 +5018,30 @@ ALTER TABLE ONLY public.users
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT users_results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: webhook_event_logs webhook_event_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_event_logs
+    ADD CONSTRAINT webhook_event_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: webhook_subscription_topics webhook_subscription_topics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscription_topics
+    ADD CONSTRAINT webhook_subscription_topics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: webhook_subscriptions webhook_subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscriptions
+    ADD CONSTRAINT webhook_subscriptions_pkey PRIMARY KEY (id);
 
 
 --
@@ -6289,6 +6431,69 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_webhook_event_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_event_logs_on_created_at ON public.webhook_event_logs USING btree (created_at);
+
+
+--
+-- Name: index_webhook_event_logs_on_event_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_event_logs_on_event_id ON public.webhook_event_logs USING btree (event_id);
+
+
+--
+-- Name: index_webhook_event_logs_on_event_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_event_logs_on_event_name ON public.webhook_event_logs USING btree (event_name);
+
+
+--
+-- Name: index_webhook_event_logs_on_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_event_logs_on_status ON public.webhook_event_logs USING btree (status);
+
+
+--
+-- Name: index_webhook_event_logs_on_subscription_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_event_logs_on_subscription_id ON public.webhook_event_logs USING btree (subscription_id);
+
+
+--
+-- Name: index_webhook_subscription_topics_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscription_topics_on_name ON public.webhook_subscription_topics USING btree (name);
+
+
+--
+-- Name: index_webhook_subscription_topics_on_subscription_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscription_topics_on_subscription_id ON public.webhook_subscription_topics USING btree (subscription_id);
+
+
+--
+-- Name: index_webhook_subscriptions_on_active; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscriptions_on_active ON public.webhook_subscriptions USING btree (active);
+
+
+--
+-- Name: index_webhook_subscriptions_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscriptions_on_project_id ON public.webhook_subscriptions USING btree (project_id);
+
+
+--
 -- Name: sub_eval_campaign_assessment; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6727,6 +6932,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 ALTER TABLE ONLY public.communications
     ADD CONSTRAINT fk_rails_639c49fe3d FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: webhook_subscriptions fk_rails_69d6421690; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscriptions
+    ADD CONSTRAINT fk_rails_69d6421690 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -7863,6 +8076,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210308170950'),
 ('20210316134414'),
 ('20210319150315'),
+('20210320201644'),
 ('20210321134006'),
 ('20210321142256'),
 ('20210419092225');

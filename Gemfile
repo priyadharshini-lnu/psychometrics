@@ -173,6 +173,7 @@ gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
+gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

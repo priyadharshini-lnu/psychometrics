@@ -3,7 +3,7 @@
 module Api
   module V1
     class ResultSerializer < ActiveModel::Serializer
-      attributes :user_data, :assessments
+      attributes :user_data, :assessments, :campaign_id
 
       def initialize(object, instance_options = {})
         super(object, instance_options)
@@ -13,6 +13,10 @@ module Api
       def user_data
         user_data = object.select { |row| row.dig(:config_data, 'type') == 'user_data' }
         user_data.each_with_object({}) { |row, result| result[row[:key]] = row[:value] }
+      end
+
+      def campaign_id
+        instance_options[:user_report]&.campaign_id
       end
 
       def assessments

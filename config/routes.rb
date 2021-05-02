@@ -947,11 +947,19 @@ Rails.application.routes.draw do
   constraints format: :json do
     namespace :api do
       namespace :v1 do
-        resources :projects, only: [] do
+        resources :projects, only: %i[create update] do
+          resources :campaigns, only: %i[create update] do
+            put :assessments_reports, on: :member
+            resources :users, only: [] do
+              put :assessments_reports, on: :member
+            end
+          end
+
           resources :users, only: %i[create update] do
             post :sso, on: :member
 
-            resources :campaigns, only: %i[index create]
+            post 'campaigns' => 'campaigns#assign_user'
+            resources :campaigns, only: %i[index]
             resources :assessments, only: [:index]
             resources :reports, only: [:index] do
               get :results, on: :member
