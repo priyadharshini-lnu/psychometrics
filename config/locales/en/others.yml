@@ -631,8 +631,12 @@ en:
       reevaluate: Re-Evaluate
       rescore: Rescore
     audio_response:
+      pause: Pause
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
+      resume: Resume
+      start_recording: Start recording
+      stop: Stop
     categories:
       '360': 360 Campaign
       agile: AGILE

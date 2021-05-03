@@ -41,6 +41,7 @@ export const AudioResponse: FC<Props> = ({
         model={model}
         mediaUrl=""
         fakeUpload
+        disableRecording
         markQuestionInProgress={markQuestionInProgress}
         removeQuestionInProgress={removeQuestionInProgress}
       />

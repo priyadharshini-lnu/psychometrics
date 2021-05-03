@@ -34,8 +34,7 @@ import { AudioPlayer } from './AudioPlayer'
 import { RecorderControl } from './RecorderControl'
 import { PlayerControl } from './PlayerControl'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { $ } = window as any
+const { $ } = window
 
 interface Props {
   mediaUrl: string
@@ -47,12 +46,14 @@ interface Props {
   markQuestionInProgress(questionId: number, progressState: string): void
   removeQuestionInProgress(questionId: number, progressState?: string): void
   mediaResponse?: MediaResponse
+  disableRecording?: boolean
 }
 
 export const AudioRecorder: React.FC<Props> = ({
   mediaUrl,
   model,
   fakeUpload,
+  disableRecording,
   onSuccessUpload,
   onRecordingDiscard,
   readOnly,
@@ -200,32 +201,32 @@ export const AudioRecorder: React.FC<Props> = ({
           <DynamicAudioIcon level={level} pulse={pulse} />
         </Col>
         {recordingState === RECORDER_STATES.RECORDED && fileUrl() && (
-        <Col span="24" className="mb-6">
-          <AudioPlayer
-            playerState={playerState}
-            playAudio={playAudio}
-            pauseAudioPlay={pauseAudioPlay}
-            setPlayerElement={(playerElement): void => {
-              playerRef.current = playerElement
-            }}
-            onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))
-                  }
-            audioFileUrl={fileUrl() as string}
-          />
-        </Col>
+          <Col span="24" className="mb-6">
+            <AudioPlayer
+              playerState={playerState}
+              playAudio={playAudio}
+              pauseAudioPlay={pauseAudioPlay}
+              setPlayerElement={(playerElement): void => {
+                playerRef.current = playerElement
+              }}
+              onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))
+              }
+              audioFileUrl={fileUrl() as string}
+            />
+          </Col>
         )}
         {recordingState !== RECORDER_STATES.RECORDED && (
-        <Col span="24" className="mb-6">
-          <Space>
-            <Typography.Text strong>
-              {getMinutesAndSeconds(state.recordingTime)}
-            </Typography.Text>
-            <span>/</span>
-            <Typography.Text strong>
-              {getMinutesAndSeconds(maxDuration)}
-            </Typography.Text>
-          </Space>
-        </Col>
+          <Col span="24" className="mb-6">
+            <Space>
+              <Typography.Text strong>
+                {getMinutesAndSeconds(state.recordingTime)}
+              </Typography.Text>
+              <span>/</span>
+              <Typography.Text strong>
+                {getMinutesAndSeconds(maxDuration)}
+              </Typography.Text>
+            </Space>
+          </Col>
         )}
         <Col span="24" className="mb-6">
           {recordingState === RECORDER_STATES.RECORDED ? (
@@ -239,6 +240,7 @@ export const AudioRecorder: React.FC<Props> = ({
             />
           ) : (
             <RecorderControl
+              disableRecording={disableRecording}
               recordingState={recordingState}
               startRecording={startRecording}
               pauseRecording={pauseRecording}
