@@ -1,4 +1,22 @@
-interface QuestionBase {
+export interface BaseBuilderModel extends BaseModel, ModelProps<BaseProps> {
+  update: () => void
+}
+
+export interface BasePropertiesModel extends BaseModel, ModelProps<BaseProps> {
+  update: () => void
+  changeReqValidations: (
+    newProps: {
+      enabled?: boolean
+      type?: string
+    },
+    undo?: boolean
+  ) => void
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface BasePreviewModel extends BaseModel, ModelProps<BaseProps> {}
+
+interface BaseModel {
   id: number
   block_id: number
   name: string
@@ -8,35 +26,26 @@ interface QuestionBase {
     type: string
     args: Record<string, number | string>
   }
-  requiredValidation: RequiredValidations
+  requiredValidation: {
+    enabled: boolean
+    type: string
+  }
   moduleConfig: {
     validations: boolean
   }
-  update: () => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface QuestionInBuilder extends QuestionBase {}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface QuestionInPreview extends QuestionBase {}
-
-export interface QuestionInProperties extends QuestionBase {
-  changeReqValidations: (
-    newProps: Partial<RequiredValidations>,
-    undo?: boolean
-  ) => void
-  props: BaseQuestionProps
+export interface ModelProps<T> {
+  props: T
 }
 
-export interface BaseQuestionProps {
+export interface ChangeProps<T> {
+  changeProps(props: Partial<T>): void
+}
+
+export interface BaseProps {
   questionText: string
   type: string
 }
 
-interface RequiredValidations {
-  enabled: boolean
-  type: string
-}
-
-type QuestionTypes = 'AudioResponse' | 'TextEntry'
+type QuestionTypes = 'AudioResponse' | 'TextEntry' | 'VideoResponse'

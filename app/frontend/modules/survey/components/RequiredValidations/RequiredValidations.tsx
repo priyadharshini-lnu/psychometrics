@@ -2,12 +2,12 @@ import React, { FC } from 'react'
 import { Radio, Checkbox } from 'antd'
 
 import { RadioChangeEvent } from 'antd/lib/radio'
-import { QuestionInProperties } from 'modules/survey/interfaces/questions/Base'
+import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
 
 const { I18n } = window
 
 interface Props {
-  model: QuestionInProperties
+  model: BasePropertiesModel
   update: () => void
 }
 

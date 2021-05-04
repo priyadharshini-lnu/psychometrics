@@ -19,12 +19,20 @@ export interface PropertiesModel
 
 export interface PreviewModel
   extends Omit<BasePreviewModel, 'props'>,
-    ModelProps<Props> {
-  result?: {
-    answers: Array<{ media_id: number; value: string }>
-  }
-}
+    ChangeProps<Props>,
+    ModelProps<Props> {}
 
 interface Props extends BaseProps {
-  duration: number | null
+  duration: number
+  trackerOptions: {
+    box: {
+      height: number
+      width: number
+    }
+    object: {
+      size: number
+      threshold: number
+    }
+  }
+  fitInFrame: string
 }
