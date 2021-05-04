@@ -3342,12 +3342,13 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
-"@types/react-color@2.17.3":
-  version "2.17.3"
-  resolved "https://registry.yarnpkg.com/@types/react-color/-/react-color-2.17.3.tgz#92a67b2dc5783a9220bc52804f8fade93696a1fe"
-  integrity sha512-ewFUB9mNXuqT2UMbiYNqXiUWt857VinGaElhX0Gk+kT1BrXel0imzRp1FeWntHpr+uHkKAnJbr5e4Yc4vP1BRg==
+"@types/react-color@3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react-color/-/react-color-3.0.4.tgz#c63daf012ad067ac0127bdd86725f079d02082bd"
+  integrity sha512-EswbYJDF1kkrx93/YU+BbBtb46CCtDMvTiGmcOa/c5PETnwTiSWoseJ1oSWeRl/4rUXkhME9bVURvvPg0W5YQw==
   dependencies:
     "@types/react" "*"
+    "@types/reactcss" "*"
 
 "@types/react-csv@^1.1.1":
   version "1.1.1"
@@ -3444,6 +3445,13 @@
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/reactcss@*":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@types/reactcss/-/reactcss-1.2.3.tgz#af28ae11bbb277978b99d04d1eedfd068ca71834"
+  integrity sha512-d2gQQ0IL6hXLnoRfVYZukQNWHuVsE75DzFTLPUuyyEhJS8G2VvlE+qfQQ91SJjaMqlURRCNIsX7Jcsw6cEuJlA==
+  dependencies:
+    "@types/react" "*"
 
 "@types/scheduler@*":
   version "0.16.1"

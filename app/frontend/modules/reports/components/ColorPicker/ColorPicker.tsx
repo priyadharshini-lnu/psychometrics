@@ -1,23 +1,23 @@
 import React from 'react'
-import { ColorState } from 'react-color'
+import { ColorResult } from 'react-color'
 import styles from './styles.scss'
 import { Open, Color } from '../../core/temp/colorPicker'
 
 interface Props {
   openPicker: Open
   color: Color
-  onComplete: null | undefined | ((color: ColorState) => void)
-  onChange: null | undefined | ((color: ColorState) => void)
+  onComplete: null | undefined | ((color: ColorResult) => void)
+  onChange: null | undefined | ((color: ColorResult) => void)
 }
 
 const ColorPicker: React.FC<Props> = ({
   color, openPicker, onChange, onComplete,
 }) => {
-  const handleChange = (color: ColorState) => {
+  const handleChange = (color: ColorResult) => {
     onChange && onChange(color)
   }
 
-  const handleComplete = (color: ColorState) => {
+  const handleComplete = (color: ColorResult) => {
     onComplete && onComplete(color)
   }
 
