@@ -2,6 +2,8 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'modules/admin/core/ui/modals'
 import _ from 'lodash'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import importReducer from './import'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
@@ -16,7 +18,27 @@ export const DOWNLOAD_REPORT = 'threeSixty/subjects/DOWNLOAD_REPORT'
 export const get = state => _.get(state, ['threeSixtyCampaign', 'subjects'])
 export const getForm = state => _.get(get(state), ['form'])
 
-export const defaultState = {
+interface Subject {
+  id: number
+}
+
+interface State {
+  list: Subject[],
+  total: number,
+  form: {
+    attrs: [],
+    errors: null,
+  },
+  autocompleted: [],
+}
+
+interface UpdateData {
+  report_approval_status?: string
+  report_release_status?: string
+  evaluation_status?: string
+}
+
+export const defaultState: State = {
   list: [],
   total: 0,
   form: {
@@ -26,7 +48,7 @@ export const defaultState = {
   autocompleted: [],
 }
 
-export const fetchSubjects = (campaignId, page, q) => ({
+export const fetchSubjects = (campaignId: number, page = '', q = '') => ({
   type: FETCH_SUBJECTS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects`,
@@ -40,7 +62,7 @@ export const fetchSubjects = (campaignId, page, q) => ({
 export const fillSubjects = subjects => ({ type: FILL_SUBJECTS, subjects })
 export const clearForm = () => ({ type: CLEAR_FORM })
 
-export const createAll = (campaignId, subjects) => ({
+export const createAll = (campaignId: number, subjects: Subject[]) => ({
   type: CREATE_ALL,
   campaignId,
   request: {
@@ -51,7 +73,7 @@ export const createAll = (campaignId, subjects) => ({
   },
 })
 
-export const update = (campaignId, subjectId, data) => ({
+export const update = (campaignId: number, subjectId: number, data: UpdateData) => ({
   type: UPDATE,
   request: {
     method: 'put',
@@ -60,14 +82,14 @@ export const update = (campaignId, subjectId, data) => ({
   },
 })
 
-export const downloadReport = (campaignId, subjectId) => ({
+export const downloadReport = (campaignId: number, subjectId: number) => ({
   type: DOWNLOAD_REPORT,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports/download`,
   },
 })
 
-export const remove = (campaignId, subjectId, removeLicenceUsage) => ({
+export const remove = (campaignId: number, subjectId: number, removeLicenceUsage: boolean) => ({
   type: REMOVE,
   id: subjectId,
   request: {
@@ -77,35 +99,38 @@ export const remove = (campaignId, subjectId, removeLicenceUsage) => ({
   },
 })
 
+type FetchSubjectsType = ApiActionResponse<{subjects: Subject[], total: number}>
+type FillSubjectsType = ApiActionResponse<{list: Subject[], total: number}>
+type CreateAllFailureType = ApiActionResponse<{errors: {}}>
+type UpdateType = ApiActionResponse<Subject>
+type RemoveType = ApiActionResponse<Subject>
+
 const HANDLERS = {
-  [FETCH_SUBJECTS]: (state, { response: { subjects, total } }) => ({ ...state, list: subjects, total }),
-  [FILL_SUBJECTS]: (state, { subjects }) => setIn(state, ['form', 'attrs'], subjects),
-  [CREATE_ALL_FAILURE]: (state, { errors }) => setIn(state, ['form', 'errors'], errors),
-  [CLEAR_FORM]: state => ({ ...state, form: defaultState.form }),
-  [UPDATE]: (state, { response }) => {
+  [FETCH_SUBJECTS]: (state: State, { response: { subjects, total } }: FetchSubjectsType) => ({
+    ...state, list: subjects, total,
+  }),
+  [FILL_SUBJECTS]: (state: State, { subjects }: FillSubjectsType) => setIn(state, ['form', 'attrs'], subjects),
+  [CREATE_ALL_FAILURE]: (state: State, { errors }: CreateAllFailureType) => setIn(state, ['form', 'errors'], errors),
+  [CLEAR_FORM]: (state: State) => ({ ...state, form: defaultState.form }),
+  [UPDATE]: (state: State, { response }: UpdateType) => {
     const index = _.findIndex(state.list, subject => subject.id === response.id)
     return updateIn(state, ['list', index], () => response)
   },
-  [REMOVE]: (state, { requestAction }) => (
+  [REMOVE]: (state: State, { requestAction }: RemoveType) => (
     updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== requestAction.id)))
   ),
 }
 
-export default function reducer (state = defaultState, action) {
-  const stateFromInnerReducer = updateIn(
-    state, ['import'], state => importReducer(state, action),
-  )
+export default createReducer(HANDLERS, defaultState, (state, action) => updateIn(
+  state, ['import'], state => importReducer(state, action),
+))
 
-  const handler = HANDLERS[action.type]
-  return handler ? handler(state, action) : stateFromInnerReducer
-}
-
-export function* genFetchSubjects ({ requestAction }) {
+export function* genFetchSubjects ({ requestAction }: CreateAllFailureType) {
   yield put(fetchSubjects(requestAction.campaignId))
 }
 
 function* genClearForm () {
-  yield put(clearForm({}))
+  yield put(clearForm())
 }
 
 function* genCloseModal () {

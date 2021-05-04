@@ -2,10 +2,30 @@ import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
 import { takeLatest, put, select } from 'redux-saga/effects'
 import { getCurrentCampaignId } from 'modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import moment from 'moment'
 import recipientCriteria from './recipientCriteria'
 
-const defaultState = {
+interface Schedule {
+  id: number
+  scheduledDate: string
+  name: string
+  recipientCriteria: {}
+}
+
+interface Recipient {
+  id: number
+}
+interface State {
+  list: Schedule[]
+  selectedId?: number
+  recipients: []
+}
+
+const defaultState: State = {
   list: [],
+  recipients: [],
 }
 
 export const get = state => _.get(state, ['threeSixtyCampaign', 'emailSchedules'])
@@ -18,10 +38,10 @@ export const CREATE = 'threeSixty/emailSchedules/CREATE'
 export const CHANGE_SELECTED = 'threeSixty/emailSchedules/CHANGE_SELECTED'
 export const FETCH_RECIPIENT_BY_CRITERIA = 'threeSixty/emailSchedules/FETCH_RECIPIENT_BY_CRITERIA'
 
-export const updateField = (key, value) => ({ type: UPDATE_FIELD, payload: { key, value } })
-export const changeSelected = id => ({ type: CHANGE_SELECTED, payload: { id } })
+export const updateField = (key: string, value) => ({ type: UPDATE_FIELD, payload: { key, value } })
+export const changeSelected = (id: number) => ({ type: CHANGE_SELECTED, payload: { id } })
 
-export const fetchSingle = (campaignId, emailScheduleId) => ({
+export const fetchSingle = (campaignId: number, emailScheduleId: number) => ({
   type: FETCH_SINGLE,
   campaignId,
   request: {
@@ -30,7 +50,9 @@ export const fetchSingle = (campaignId, emailScheduleId) => ({
   },
 })
 
-export const fetchSchedulableTemplate = (campaignId, { selectedEmailTemplateId }) => ({
+export const fetchSchedulableTemplate = (
+  campaignId: number, { selectedEmailTemplateId }: {selectedEmailTemplateId: number},
+) => ({
   type: FETCH_SCHEDULABLE_TEMPLATE,
   campaignId,
   selectedEmailTemplateId,
@@ -40,7 +62,7 @@ export const fetchSchedulableTemplate = (campaignId, { selectedEmailTemplateId }
   },
 })
 
-export const fecthRecipientsByCriteria = (campaignId, emailSchedule) => ({
+export const fecthRecipientsByCriteria = (campaignId: number, emailSchedule: Schedule) => ({
   type: FETCH_RECIPIENT_BY_CRITERIA,
   campaignId,
   request: {
@@ -54,7 +76,9 @@ export const fecthRecipientsByCriteria = (campaignId, emailSchedule) => ({
   },
 })
 
-export const create = (campaignId, emailSchedule, recipientIds) => ({
+export const create = (
+  campaignId: number, emailSchedule: Schedule, recipientIds: number,
+) => ({
   type: CREATE,
   request: {
     method: 'post',
@@ -63,7 +87,7 @@ export const create = (campaignId, emailSchedule, recipientIds) => ({
   },
 })
 
-export const update = (campaignId, emailSchedule, recipientIds) => ({
+export const update = (campaignId: number, emailSchedule: Schedule, recipientIds: number) => ({
   type: UPDATE,
   request: {
     method: 'put',
@@ -72,11 +96,13 @@ export const update = (campaignId, emailSchedule, recipientIds) => ({
   },
 })
 
-function* genChangeSelectedId ({ requestAction: { selectedEmailTemplateId } }) {
+type FetchSchedulableTemplate = ApiActionResponse<typeof fetchSchedulableTemplate>
+
+function* genChangeSelectedId ({ requestAction: { selectedEmailTemplateId } }: FetchSchedulableTemplate) {
   yield put(changeSelected(selectedEmailTemplateId))
 }
 
-export function* genFecthRecipientsByCriteria (options = {}) {
+export function* genFecthRecipientsByCriteria (options: FetchSchedulableTemplate) {
   const emailSchedule = yield select((state) => {
     const emailSchedules = get(state)
     const selectedId = _.get(options, ['requestAction', 'selectedEmailTemplateId'], emailSchedules.selectedId)
@@ -87,20 +113,31 @@ export function* genFecthRecipientsByCriteria (options = {}) {
   yield put(fecthRecipientsByCriteria(campaignId, emailSchedule))
 }
 
+export type FetchSchedultTemplateAction = ApiActionResponse<Schedule[]>
+export type FetchSingleAction = ApiActionResponse<{
+  emailSchedule: Schedule,
+  recipients: Recipient[]
+}>
+export type FetchRecipientAction = ApiActionResponse<Recipient[]>
+export type UpdateFieldAction = ReturnType<typeof updateField>
+export type ChangeSelectedAction = ReturnType<typeof changeSelected>
+
 const HANDLERS = {
-  [FETCH_SCHEDULABLE_TEMPLATE]: (state, { response }) => {
+  [FETCH_SCHEDULABLE_TEMPLATE]: (state: State, { response }: FetchSchedultTemplateAction) => {
     const scheduledDate = moment().format()
     const list = response.map(emailSchedule => ({ ...emailSchedule, scheduledDate }))
     return { ...state, list }
   },
-  [FETCH_SINGLE]: (state, { response }) => {
+  [FETCH_SINGLE]: (state: State, { response }: FetchSingleAction) => {
     const { emailSchedule, recipients } = response
     return {
       ...state, list: [emailSchedule], selectedId: emailSchedule.id, recipients,
     }
   },
-  [FETCH_RECIPIENT_BY_CRITERIA]: (state, { response }) => ({ ...state, recipients: response }),
-  [UPDATE_FIELD]: (state, { payload: { key, value } }) => updateIn(
+  [FETCH_RECIPIENT_BY_CRITERIA]: (state: State, { response }: FetchRecipientAction) => ({
+    ...state, recipients: response,
+  }),
+  [UPDATE_FIELD]: (state: State, { payload: { key, value } }: UpdateFieldAction) => updateIn(
     state,
     'list',
     list => _.map(list, (emailSchedule) => {
@@ -108,18 +145,15 @@ const HANDLERS = {
       return { ...emailSchedule, [key]: value }
     }),
   ),
-  [CHANGE_SELECTED]: (state, { payload: { id } }) => ({ ...state, selectedId: id }),
+  [CHANGE_SELECTED]: (state: State, { payload: { id } }: ChangeSelectedAction) => ({ ...state, selectedId: id }),
 }
 
-export default function reducer (state = defaultState, action) {
+export default createReducer(HANDLERS, defaultState, (state: State, action) => {
   const index = _.findIndex(state.list, ({ id }) => id === state.selectedId)
-  const stateFromInnerReducer = updateIn(
+  return updateIn(
     state, ['list', index, 'recipientCriteria'], state => recipientCriteria(state, action),
   )
-
-  const handler = HANDLERS[action.type]
-  return handler ? handler(state, action) : stateFromInnerReducer
-}
+})
 
 export const watchers = [
   takeLatest(FETCH_SCHEDULABLE_TEMPLATE, genChangeSelectedId),

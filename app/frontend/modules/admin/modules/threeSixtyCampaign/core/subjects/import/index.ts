@@ -3,6 +3,9 @@ import { setIn } from 'utils/immutable'
 import { message } from 'antd'
 import _ from 'lodash'
 import { closeModal } from 'modules/admin/core/ui/modals'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { AnyAction } from 'redux'
 import { genFetchSubjects } from '../index'
 
 export const IMPORT = 'threeSixty/subjects/IMPORT'
@@ -12,7 +15,7 @@ export const CLEAR_IMPORT_DATA = 'threeSixty/subjects/CLEAR_IMPORT_DATA'
 
 export const get = state => _.get(state, ['threeSixtyCampaign', 'subjects', 'import'])
 
-export const importFile = (campaignId, data) => ({
+export const importFile = (campaignId: number, data: FormData) => ({
   type: IMPORT,
   campaignId,
   request: {
@@ -27,9 +30,12 @@ export const clearImportData = () => ({ type: CLEAR_IMPORT_DATA })
 
 export const defaultState = { errors: null }
 
+type ImportType = ApiActionResponse<{existingSubjectsWhosePasswordNotChanged: boolean}>
+type ImportFailurType = ApiActionResponse<{errors: {}}>
+
 const HANDLERS = {
-  [IMPORT_FAILURE]: (state, { errors }) => setIn(state, ['errors'], errors),
-  [IMPORT]: (state, { response }) => (
+  [IMPORT_FAILURE]: (state, { errors }: ImportFailurType) => setIn(state, ['errors'], errors),
+  [IMPORT]: (state, { response }: ImportType) => (
     setIn(
       state,
       ['existingSubjectsWhosePasswordNotChanged'],
@@ -39,13 +45,9 @@ const HANDLERS = {
   [CLEAR_IMPORT_DATA]: () => defaultState,
 }
 
+export default createReducer(HANDLERS, defaultState)
 
-export default function reducer (state = defaultState, action) {
-  const handler = HANDLERS[action.type]
-  return handler ? handler(state, action) : state
-}
-
-function* genCloseImportModal ({ response }) {
+function* genCloseImportModal ({ response }: AnyAction) {
   if (_.isEmpty(response.existingSubjectsWhosePasswordNotChanged)) {
     yield put(closeModal())
   }

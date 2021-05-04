@@ -1,7 +1,14 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 
 export const get = state => _.get(state, ['threeSixtyCampaign', 'mailHistories'])
+
+interface State {
+  list: []
+  total: number
+}
 
 const defaultState = {
   list: [],
@@ -30,15 +37,20 @@ export const fetch = (campaignId, page) => ({
   },
 })
 
+interface FetchResponse {
+  emailSchedules: []
+  total: number
+}
+type FetchType = ApiActionResponse<FetchResponse>
+type RemoveType = ApiActionResponse<FetchResponse>
 
 const HANDLERS = {
-  [FETCH]: (state, { response: { emailSchedules, total } }) => ({ ...state, list: emailSchedules, total }),
-  [REMOVE]: (state, { requestAction: { emailScheduleId } }) => (
+  [FETCH]: (state: State, { response: { emailSchedules, total } }: FetchType) => ({
+    ...state, list: emailSchedules, total,
+  }),
+  [REMOVE]: (state: State, { requestAction: { emailScheduleId } }: RemoveType) => (
     updateIn(state, 'list', emailSchedules => _.filter(emailSchedules, ({ id }) => id !== emailScheduleId))
   ),
 }
 
-export default function reducer (state = defaultState, action) {
-  const handler = HANDLERS[action.type]
-  return handler ? handler(state, action) : state
-}
+export default createReducer(HANDLERS, defaultState)

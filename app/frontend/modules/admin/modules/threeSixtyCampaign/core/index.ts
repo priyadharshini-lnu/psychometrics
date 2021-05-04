@@ -9,7 +9,7 @@ const RESET = 'threeSixty/RESET'
 const RESET_NOMINATIONS = 'threeSixty/RESET_NOMINATIONS'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 
-export const reset = (campaignId, removeLicenceUsage) => ({
+export const reset = (campaignId: number, removeLicenceUsage: boolean) => ({
   type: RESET,
   request: {
     method: 'delete',
@@ -18,7 +18,7 @@ export const reset = (campaignId, removeLicenceUsage) => ({
   },
 })
 
-export const resetAllNominations = campaignId => ({
+export const resetAllNominations = (campaignId: number) => ({
   type: RESET_NOMINATIONS,
   request: {
     method: 'delete',
@@ -26,7 +26,7 @@ export const resetAllNominations = campaignId => ({
   },
 })
 
-export const removeUser = (campaignId, userId) => ({
+export const removeUser = (campaignId: number, userId: number) => ({
   type: REMOVE_USER,
   request: {
     method: 'delete',

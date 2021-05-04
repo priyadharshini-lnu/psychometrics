@@ -13,6 +13,7 @@ import {
   REMOVE_DATASHEET_CRITERIA,
   UPDATE_DATASHEET_CRITERIA,
   ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE,
+  AddDatasheetCriteriaWithDefaultValueType,
 } from './actions'
 import { getParticipantOption } from './selectors'
 
@@ -24,7 +25,7 @@ function* genSyncWithServer () {
   yield put(syncWithServer(campaignId, participantOption))
 }
 
-function* genAddDatasheetCriteriaWithValue ({ payload: { key } }) {
+function* genAddDatasheetCriteriaWithValue ({ payload: { key } }: AddDatasheetCriteriaWithDefaultValueType) {
   const datasheetFields = yield select(getDatasheetField)
   yield put(addDatasheetCriteria(key, datasheetFields[0]))
 }

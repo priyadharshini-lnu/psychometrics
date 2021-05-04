@@ -1,11 +1,24 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
 import * as t from 'io-ts'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import reminderRulesReducer from './reminderRules'
 
+const { I18n } = window
 export const get = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates'])
 
-const defaultState = {
+interface State {
+  list: Locale[],
+  listWithLocales: Locale[],
+  availableLocales: string[],
+}
+
+interface EmailTemplate {
+  id: number
+}
+
+const defaultState: State = {
   list: [],
   listWithLocales: [],
   availableLocales: [],
@@ -19,24 +32,25 @@ export const SEND_TEST_EMAIL = 'threeSixty/emailTemplates/SEND_TEST_EMAIL'
 export const FETCH_BY_LOCALES = 'threeSixty/emailTemplates/FETCH_BY_LOCALES'
 
 
-const Locale = t.type({
+const LocaleTR = t.type({
   content: t.string, locale: t.string, subject: t.string, id: t.number,
 })
-const LocaleList = t.array(Locale)
+const LocaleList = t.array(LocaleTR)
 const FetchByLocalesTR = t.type({
   list: LocaleList,
   availableLocales: t.array(t.string),
 })
 
+type Locale = t.TypeOf<typeof LocaleTR>
 
-export const update = (id, key, value, locale) => ({
+export const update = (id: number, key: string, value, locale: Locale) => ({
   type: UPDATE,
   payload: {
     id, key, value, locale,
   },
 })
 
-export const fetch = campaignId => ({
+export const fetch = (campaignId: number) => ({
   type: FETCH,
   campaignId,
   request: {
@@ -44,7 +58,8 @@ export const fetch = campaignId => ({
     url: `/administration/threesixty_campaigns/${campaignId}/email_templates`,
   },
 })
-export const fetchByLocales = (campaignId, id, locales) => ({
+
+export const fetchByLocales = (campaignId: number, id: number, locales: Locale[]) => ({
   type: FETCH_BY_LOCALES,
   campaignId,
   request: {
@@ -55,7 +70,7 @@ export const fetchByLocales = (campaignId, id, locales) => ({
   },
 })
 
-export const save = (campaignId, emailTemplate, locale) => ({
+export const save = (campaignId: number, emailTemplate: EmailTemplate, locale: Locale) => ({
   type: SAVE,
   request: {
     method: 'put',
@@ -64,7 +79,7 @@ export const save = (campaignId, emailTemplate, locale) => ({
   },
 })
 
-export const sendTestEmail = (campaignId, id, toEmail) => ({
+export const sendTestEmail = (campaignId: number, id: number, toEmail: string) => ({
   type: SEND_TEST_EMAIL,
   request: {
     method: 'get',
@@ -73,9 +88,15 @@ export const sendTestEmail = (campaignId, id, toEmail) => ({
   },
 })
 
+type FetchByLocalesResponse = t.TypeOf<typeof FetchByLocalesTR>
+
+export type FetchAction = ApiActionResponse<Locale[]>
+export type FetchByLocalesAction = ApiActionResponse<FetchByLocalesResponse>
+export type UpdateAction = ApiActionResponse<FetchByLocalesResponse>
+
 const HANDLERS = {
-  [FETCH]: (state, { response }) => ({ ...state, list: response }),
-  [FETCH_BY_LOCALES]: (state, { response }) => {
+  [FETCH]: (state: State, { response }: FetchAction) => ({ ...state, list: response }),
+  [FETCH_BY_LOCALES]: (state: State, { response }: FetchByLocalesAction) => {
     const listWithLocales = response.list.map(
       resItem => state.listWithLocales.find(
         item => item.locale === resItem.locale && item.id === resItem.id,
@@ -83,11 +104,11 @@ const HANDLERS = {
     )
     return { ...state, listWithLocales, availableLocales: _.uniq([I18n.defaultLocale, ...response.availableLocales]) }
   },
-  [UPDATE]: (state, {
+  [UPDATE]: (state: State, {
     payload: {
       id, key, value, locale,
     },
-  }) => {
+  }: UpdateAction) => {
     if (['subject', 'content'].includes(key)) {
       return updateIn(
         state,
@@ -110,12 +131,10 @@ const HANDLERS = {
   },
 }
 
-export default function reducer (state = defaultState, action) {
+export default createReducer(HANDLERS, defaultState, (state, action) => {
   const index = _.findIndex(state.list, ({ id }) => id === _.get(action, ['payload', 'emailTemplateId']))
   const stateFromInnerReducer = updateIn(
     state, ['list', index, 'meta', 'reminderRules'], state => reminderRulesReducer(state, action),
   )
-
-  const handler = HANDLERS[action.type]
-  return handler ? handler(state, action) : stateFromInnerReducer
-}
+  return stateFromInnerReducer
+})

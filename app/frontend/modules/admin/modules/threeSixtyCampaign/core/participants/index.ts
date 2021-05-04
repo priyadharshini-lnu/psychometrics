@@ -2,6 +2,8 @@ import { createSelector } from 'reselect'
 import { getUserId } from 'modules/admin/core/ui/modals'
 import { setIn } from 'utils/immutable'
 import _ from 'lodash'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 
 export const FETCH_ALL_BY_USER_ID = 'threeSixty/participants/FETCH_ALL_BY_USER_ID'
 export const UPDATE = 'threeSixty/participants/UPDATE'
@@ -10,7 +12,14 @@ export const DESTROY_EVALUATION = 'threeSixty/participants/DESTROY_EVALUATION'
 
 export const defaultState = []
 
-export const fetchAllByUserId = (campaignId, userId) => ({
+interface UpdateAttrs {
+  relationship_id: number
+  manager_nomination_status: string
+  evaluator_nomination_status: string
+  manager_evaluation_status: string
+}
+
+export const fetchAllByUserId = (campaignId: number, userId: number) => ({
   type: FETCH_ALL_BY_USER_ID,
   campaignId,
   request: {
@@ -20,7 +29,7 @@ export const fetchAllByUserId = (campaignId, userId) => ({
   },
 })
 
-export const update = (campaignId, participantId, attrs) => ({
+export const update = (campaignId: number, participantId: number, attrs: UpdateAttrs) => ({
   type: UPDATE,
   campaignId,
   request: {
@@ -30,7 +39,7 @@ export const update = (campaignId, participantId, attrs) => ({
   },
 })
 
-export const remove = (campaignId, participantId) => ({
+export const remove = (campaignId: number, participantId: number) => ({
   type: DESTROY,
   campaignId,
   id: participantId,
@@ -40,7 +49,9 @@ export const remove = (campaignId, participantId) => ({
   },
 })
 
-export const removeEvaluation = (campaignId, participantId, subjectId, evaluationId) => ({
+export const removeEvaluation = (
+  campaignId: number, participantId: number, subjectId: number, evaluationId: number,
+) => ({
   type: DESTROY_EVALUATION,
   participantId,
   request: {
@@ -49,22 +60,29 @@ export const removeEvaluation = (campaignId, participantId, subjectId, evaluatio
   },
 })
 
-export default function reducer (state = defaultState, action) {
-  switch (action.type) {
-    case FETCH_ALL_BY_USER_ID:
-      return action.response
-    case UPDATE:
-      return state.map(p => (p.id === action.response.id ? { ...p, ...action.response } : p))
-    case DESTROY:
-      return state.filter(p => (p.id !== action.requestAction.id))
-    case DESTROY_EVALUATION:
-      // eslint-disable-next-line no-case-declarations
-      const index = _.findIndex(state, { id: action.requestAction.participantId })
-      return setIn(state, [index, 'result'], null)
-    default:
-      return state
-  }
+interface Participant {
+  id: number
 }
+type State = Participant[]
+
+export type FetchAllAction = ApiActionResponse<Participant[]>
+export type UpdateAction = ApiActionResponse<Participant>
+export type DestroyAction = ApiActionResponse<Participant[]>
+export type DestroyEvaluationAction = ApiActionResponse<Participant[]>
+
+const HANDLERS = {
+  [FETCH_ALL_BY_USER_ID]: (state: State, { response }: FetchAllAction) => ({ ...state, ...response }),
+  [UPDATE]: (state: State, { response }: UpdateAction) => state.map(
+    p => (p.id === response.id ? { ...p, ...response } : p),
+  ),
+  [DESTROY]: (state: State, { requestAction }: DestroyAction) => state.filter(p => (p.id !== requestAction.id)),
+  [DESTROY_EVALUATION]: (state: State, { requestAction }: DestroyEvaluationAction) => {
+    const index = _.findIndex(state, { id: requestAction.participantId })
+    return setIn(state, [index, 'result'], null)
+  },
+}
+
+export default createReducer(HANDLERS, defaultState)
 
 const getParticipants = state => state.threeSixtyCampaign.participants
 

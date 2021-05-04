@@ -2,7 +2,7 @@ export const FETCH = 'threeSixty/option/FETCH'
 export const UPDATE = 'threeSixty/option/UPDATE'
 export const SYNC = 'threeSixty/option/SYNC'
 
-export const fetch = campaignId => ({
+export const fetch = (campaignId: number) => ({
   type: FETCH,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/options/report_options`,
@@ -10,7 +10,7 @@ export const fetch = campaignId => ({
   },
 })
 
-export const syncWithServer = (campaignId, options) => ({
+export const syncWithServer = (campaignId: number, options) => ({
   type: SYNC,
   request: {
     method: 'put',
@@ -19,7 +19,9 @@ export const syncWithServer = (campaignId, options) => ({
   },
 })
 
-export const update = (key, value) => ({
+export const update = (key: string, value: {}) => ({
   type: UPDATE,
   payload: { key, value },
 })
+
+export type UpdateType = ReturnType<typeof update>

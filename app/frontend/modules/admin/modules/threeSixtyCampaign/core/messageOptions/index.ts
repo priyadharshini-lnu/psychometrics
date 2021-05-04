@@ -2,15 +2,19 @@ import {
   takeLatest, put, select, delay,
 } from 'redux-saga/effects'
 import _ from 'lodash'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { getCurrentCampaignId } from '../campaignDetails'
 
 export const FETCH = 'threeSixty/messageOptions/messageFETCH'
 export const UPDATE = 'threeSixty/messageOptions/UPDATE'
 export const SYNC_WITH_SERVER = 'threeSixty/messageOptions/SYNC_WITH_SERVER'
 
+type MessageOptions = {[key: string]: string}
+
 export const getMessageOption = state => _.get(state, ['threeSixtyCampaign', 'messageOptions'])
 
-export const fetch = campaignId => ({
+export const fetch = (campaignId: number) => ({
   type: FETCH,
   campaignId,
   request: {
@@ -19,12 +23,12 @@ export const fetch = campaignId => ({
   },
 })
 
-export const update = (key, value) => ({
+export const update = (key: string, value: string) => ({
   type: UPDATE,
   payload: { key, value },
 })
 
-export const syncWithServer = (campaignId, options) => ({
+export const syncWithServer = (campaignId: number, options: MessageOptions) => ({
   type: SYNC_WITH_SERVER,
   request: {
     method: 'put',
@@ -33,17 +37,19 @@ export const syncWithServer = (campaignId, options) => ({
   },
 })
 
+
+type FetchType = ApiActionResponse<MessageOptions>
+type UpdateType = ReturnType<typeof update>
+
 const HANDLERS = {
-  [FETCH]: (_, { response }) => response,
-  [UPDATE]: (state, { payload: { key, value } }) => ({ ...state, [key]: value }),
+  [FETCH]: (_, { response }: FetchType) => response,
+  [UPDATE]: (state, { payload: { key, value } }: UpdateType) => ({ ...state, [key]: value }),
 }
 
 const defaultState = {}
 
-export default function reducer (state = defaultState, action) {
-  const handler = HANDLERS[action.type]
-  return handler ? handler(state, action) : state
-}
+export default createReducer(HANDLERS, defaultState)
+
 
 function* genSyncWithServer () {
   yield delay(1000)

@@ -1,6 +1,9 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
 import { closeModal } from 'modules/admin/core/ui/modals'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import _ from 'lodash'
 
 export const CLEAR_FORM = 'threeSixty/evaluators/CLEAR_FORM'
 export const CREATE_ALL_EVALUATORS = 'threeSixty/evaluators/CREATE_ALL_EVALUATORS'
@@ -12,7 +15,21 @@ export const IMPORT = 'threeSixty/evaluators/IMPORT'
 export const get = state => _.get(state, ['threeSixtyCampaign', 'evaluators'])
 export const getForm = state => _.get(get(state), ['form'])
 
-export const defaultState = {
+interface Evaluator {
+  id: number
+}
+
+interface State {
+  list: Evaluator[],
+  total: number,
+  form: {
+    attrs: [],
+    errors: [] | null,
+  },
+}
+
+
+export const defaultState: State = {
   list: [],
   total: 0,
   form: {
@@ -20,7 +37,8 @@ export const defaultState = {
     errors: null,
   },
 }
-export const createAllEvaluators = (campaignId, evaluators) => ({
+
+export const createAllEvaluators = (campaignId: number, evaluators: Evaluator[]) => ({
   type: CREATE_ALL_EVALUATORS,
   campaignId,
   request: {
@@ -31,10 +49,10 @@ export const createAllEvaluators = (campaignId, evaluators) => ({
   },
 })
 
-export const fillEvaluators = evaluators => ({ type: FILL_EVALUATORS, evaluators })
+export const fillEvaluators = (evaluators: Evaluator[]) => ({ type: FILL_EVALUATORS, evaluators })
 export const clearForm = () => ({ type: CLEAR_FORM })
 
-export const fetchEvaluators = (campaignId, page, q) => ({
+export const fetchEvaluators = (campaignId: number, page?: number, q?: string) => ({
   type: FETCH_EVALUATORS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/evaluators`,
@@ -45,7 +63,7 @@ export const fetchEvaluators = (campaignId, page, q) => ({
   },
 })
 
-export const importFile = (campaignId, data) => ({
+export const importFile = (campaignId: number, data: FormData) => ({
   type: IMPORT,
   campaignId,
   request: {
@@ -56,27 +74,34 @@ export const importFile = (campaignId, data) => ({
   },
 })
 
-export default function reducer (state = defaultState, action) {
-  switch (action.type) {
-    case FETCH_EVALUATORS:
-      return { ...state, list: action.response.evaluators, total: action.response.total }
-    case FILL_EVALUATORS:
-      return setIn(state, ['form', 'attrs'], action.evaluators)
-    case CLEAR_FORM:
-      return { ...state, form: defaultState.form }
-    case CREATE_ALL_EVALUATORS_FAILURE:
-      return setIn(state, ['form', 'errors'], action.errors)
-    default:
-      return state
-  }
+interface FetchActionResponse {
+  evaluators: Evaluator[],
+  total: number
 }
 
-export function* genFetchEvaluators ({ requestAction }) {
+export type FetchAction = ApiActionResponse<FetchActionResponse>
+export type CreateAllEvaluatorsAction = ApiActionResponse<typeof createAllEvaluators>
+export type CreateAllEvaluatorsActionError = ApiActionResponse<{errors: []}>
+
+const HANDLERS = {
+  [FETCH_EVALUATORS]: (state: State, action: FetchAction) => ({
+    ...state, list: action.response.evaluators, total: action.response.total,
+  }),
+  [FILL_EVALUATORS]: (state: State, action) => setIn(state, ['form', 'attrs'], action.evaluators),
+  [CLEAR_FORM]: (state: State) => ({ ...state, form: defaultState.form }),
+  [CREATE_ALL_EVALUATORS_FAILURE]: (state: State, action: CreateAllEvaluatorsActionError) => setIn(
+    state, ['form', 'errors'], action.errors,
+  ),
+}
+
+export default createReducer(HANDLERS, defaultState)
+
+export function* genFetchEvaluators ({ requestAction }: CreateAllEvaluatorsAction) {
   yield put(fetchEvaluators(requestAction.campaignId))
 }
 
 function* genClearForm () {
-  yield put(clearForm({}))
+  yield put(clearForm())
 }
 function* genCloseModal () {
   yield put(closeModal())
