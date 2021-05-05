@@ -49,5 +49,13 @@ module Administration::Threesixty
     def update?
       super_admins_or_admins?
     end
+
+    def edit_subject_report?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
+    def manage_reports_options?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
+    end
   end
 end

@@ -6,6 +6,7 @@ import styles from './styles.scss'
 
 export default function Options ({
   fetchReportOptions,
+  campaignReportPermissions,
   match: {
     params: { campaignId },
   },
@@ -16,9 +17,13 @@ export default function Options ({
 
   return (
     <div className={styles.container}>
-      <AccessSection />
-      <ApprovalSection />
-      <ReportAvailabilitySection />
+      {campaignReportPermissions.manageReportsOptions && (
+        <>
+          <AccessSection />
+          <ApprovalSection />
+          <ReportAvailabilitySection />
+        </>
+      )}
     </div>
   )
 }
