@@ -176,8 +176,6 @@ en:
               blank: First name can't be blank
             last_name:
               blank: Last name can't be blank
-        update_assessment:
-          attributes: 
         update_norm:
           attributes:
             norm_type:
@@ -945,6 +943,7 @@ en:
       additional_time: Additional Time
       completed_at: Completed At
       completion_status: Completion status
+      hogan_id: Hogan Id
       last_login: Last login
       modals:
         remove:

@@ -113,7 +113,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'active' => campaign_user.active,
       'additional_time' => campaign_user.additional_time,
       'completed_at' => nil,
-      'started_at' => nil
+      'started_at' => nil,
+      'hogan_id' => nil
     })
   end
 
