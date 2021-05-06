@@ -78,8 +78,8 @@ export type RemoveAction = ApiActionResponse<Relationship>
 export type UpdateRequestAction = ApiActionResponse<Relationship>
 
 const HANDLERS = {
-  [FETCH_RELATIONSHIPS]: (state, { response }: FetchRelationshipsAction) => ({ ...state, ...response }),
-  [FETCH_WITH_USAGE]: (state, { response }: FetchWithUsageAction) => ({ ...state, ...response }),
+  [FETCH_RELATIONSHIPS]: (_, { response }: FetchRelationshipsAction) => (response),
+  [FETCH_WITH_USAGE]: (_, { response }: FetchWithUsageAction) => (response),
   [CREATE]: (state, { response }: CreateAction) => [...state, response],
   [REMOVE]: (state, { response }: RemoveAction) => state.filter(r => r.id !== response),
   [UPDATE_REQUEST]: (state, action: UpdateRequestAction) => state.map((r) => {
