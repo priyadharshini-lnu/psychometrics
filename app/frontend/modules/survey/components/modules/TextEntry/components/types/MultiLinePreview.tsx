@@ -58,7 +58,7 @@ const MultiLinePreview: FC<Props> = ({
     <div>
       <Row>
         <Col span={24}>
-          {allowDictation ? (
+          {!readOnly && allowDictation ? (
             <SpeechToTextInput
               preSignedUrl={awsSpeechTextPresignedUrl}
               value={value}
