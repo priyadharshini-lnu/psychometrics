@@ -710,6 +710,7 @@ en:
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
+        unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
       offline_message: Please check your internet connection.
       retake: Retake
       retry: Retry
