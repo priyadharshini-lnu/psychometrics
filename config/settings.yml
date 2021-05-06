@@ -429,6 +429,7 @@ providers:
       - id: HPI
         name: HPI
         form_id: 3
+        fallback_norm_id: Global
         factors:
           -
             - id: '01'
@@ -644,6 +645,7 @@ providers:
       - id: HDS
         name: HDS
         form_id: 5
+        fallback_norm_id: Global
         factors:
           -
             - id: '01'
@@ -814,6 +816,7 @@ providers:
       - id: MVPI
         name: MVPI
         form_id: 1
+        fallback_norm_id: Global
         factors:
           -
             - id: '01'
@@ -1029,6 +1032,7 @@ providers:
       - id: HBRIV1
         name: HBRI
         form_id: 2
+        fallback_norm_id: GlobalTimed
         factors:
           -
             - id: '01'

@@ -17,7 +17,8 @@ class AdminJobRecord < ApplicationRecord
     bulk_regenerate_reports: 6,
     bulk_regenerate_user_reports: 7,
     import_assessors: 8,
-    import_datasheet: 9
+    import_datasheet: 9,
+    copy_dimension: 10
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }

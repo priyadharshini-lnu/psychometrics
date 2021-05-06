@@ -65,14 +65,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def copy
-    respond_to do |format|
-      @cloned_resource = resource.clone_and_save
-      if @cloned_resource
-        format.js
-      else
-        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', id: resource.id) } }
-      end
-    end
+    AdminJob.call(:copy_dimension, { dimension_id: resource.id }, current_user)
   end
 
   private

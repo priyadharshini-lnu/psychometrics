@@ -54,6 +54,10 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
+  # Disabling this due to some clients facing ActionDispatch::RemoteIp::IpSpoofAttackError error.
+  # TODO: Find a solution and remove this setting
+  config.action_dispatch.ip_spoofing_check = false
+
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'

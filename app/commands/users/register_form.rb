@@ -14,6 +14,10 @@ module Users
     validate :validate_registration_code
     validate :validate_restricted_domains
 
+    def registration_code=(code)
+      super code.strip
+    end
+
     private
 
     def validate_email_uniqueness
