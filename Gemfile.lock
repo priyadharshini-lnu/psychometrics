@@ -708,7 +708,7 @@ GEM
     rspec-retry (0.6.2)
       rspec-core (> 3.3)
     rspec-support (3.10.2)
-    rswag-api (2.3.2)
+    rswag-api (2.3.3)
       railties (>= 3.1, < 7.0)
     rswag-specs (2.4.0)
       activesupport (>= 3.1, < 7.0)
