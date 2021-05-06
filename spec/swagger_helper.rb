@@ -21,7 +21,7 @@ RSpec.configure do |config|
         title: 'TTE Lighthouse API',
         version: '1.0.0',
         'x-logo': {
-          url: 'https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
+          url: 'https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
           backgroundColor: '#FFFFFF',
           altText: 'Lighthouse'
         },
@@ -51,7 +51,7 @@ RSpec.configure do |config|
           ## Workflow
           There is no particular workflow you need to follow. A typical workflow is shown below.
 
-          <img src="https://tte-static.s3.amazonaws.com/lighthouse/Lighthouse-Typical-Integration.svg" style="width: 100%%;"/>
+          <img src="https://static.tte-lighthouse.com/lighthouse/Lighthouse-Typical-Integration.svg" style="width: 100%%;"/>
 
           ## Terminology
 
@@ -97,7 +97,7 @@ RSpec.configure do |config|
             id: { type: 'integer' },
             name: { type: 'string' },
             campaign_id: { type: 'integer' },
-            status: { type: 'string' },
+            status: { type: 'string', enum: %w[not_started in_progress completed] },
             started_at: { type: 'string', 'x-nullable': true },
             completed_at: { type: 'string', 'x-nullable': true }
           }
@@ -211,7 +211,13 @@ RSpec.configure do |config|
             id: { type: 'integer' },
             active: { type: 'boolean' },
             existing_record: {
-              type: 'string', enum: %w[copy_evaluation new_evaluation]
+              type: 'string',
+              enum: %w[copy_evaluation new_evaluation],
+              description: '**copy_evaluation**: This will copy the responses if the user has previously
+              completed the assessment in different a campaign. Most recent response will be used
+              **new_evaluation**: This allows the user to sit an assessment even if the user has previously
+              completed the assessment in a different campaign.
+              '
             }
           }
         },
@@ -278,7 +284,7 @@ RSpec.configure do |config|
           type: 'object',
           properties: {
             id: { type: 'integer' },
-            norm_id: { type: 'integer' }
+            norm_id: { type: 'integer', 'x-nullable': true }
           }
         },
         UpdatedCampaignAssessmentsAndReports: {
@@ -317,7 +323,7 @@ RSpec.configure do |config|
             subdomain: { type: 'string' },
             client_id: { type: 'integer' },
             client_reference: { type: 'string', 'x-nullable': true },
-            locales: { type: 'array', items: { type: 'string', enum: %w[en ar de] }, 'x-nullable': true },
+            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
             data_processing_consent: { type: 'boolean' },
             enable_strong_password: { type: 'boolean', 'x-nullable': true },
             enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
@@ -335,7 +341,7 @@ RSpec.configure do |config|
             name: { type: 'string', 'x-nullable': true },
             subdomain: { type: 'string', 'x-nullable': true },
             client_reference: { type: 'string', 'x-nullable': true },
-            locales: { type: 'array', items: { type: 'string', enum: %w[en ar de] }, 'x-nullable': true },
+            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
             data_processing_consent: { type: 'boolean', 'x-nullable': true },
             enable_strong_password: { type: 'boolean', 'x-nullable': true },
             enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
@@ -376,7 +382,14 @@ RSpec.configure do |config|
             first_name: { type: 'string' },
             last_name: { type: 'string' },
             email: { type: 'string' },
-            campaigns: { type: 'array', items: { type: 'UserCampaign' } },
+            campaigns: { type: 'array', items: { '$ref': '#/definitions/UserCampaign' } },
+            campaign_ids: {
+              type: 'array',
+              items: { type: 'integer' },
+              'x-nullable': true,
+              description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
+, "campaigns" will be used'
+            },
             created_at: { type: 'string' },
             updated_at: { type: 'string' }
           }
@@ -393,8 +406,10 @@ RSpec.configure do |config|
           type: 'object',
           properties: {
             id: { type: 'integer' },
+            campaign_id: { type: 'integer' },
             name: { type: 'string' },
-            url: { type: 'string' }
+            url: { type: 'string' },
+            status: { type: 'string', enum: %w[not_started in_progress completed] }
           }
         },
         Occupation: {

@@ -108,6 +108,31 @@ currencies:
   - OMR
   - QAR
 default_currency: 'USD'
+reserved_subdomains:
+  - api
+  - assessment
+  - assessments
+  - report
+  - reports
+  - tte
+  - talent
+  - idp
+  - survey
+  - surveys
+  - user
+  - users
+  - campaign
+  - campaigns
+  - project
+  - projects
+  - admin
+  - administration
+  - task
+  - tasks
+  - activity
+  - activities
+  - event
+  - events
 mindmill_factors:
   nf: &nf
   - name: "NF Attempted"

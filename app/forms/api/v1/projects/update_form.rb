@@ -24,10 +24,12 @@ module Api
         validates :partner_logo, base64: { presence: false }
         validates :background_image, base64: { presence: false }
         validates :webhook, http_url: { presence: false }
+        validates :subdomain, length: { minimum: 3, maximum: 32 }
 
         validate :validate_locales
         validate :validate_subdomain
         validate :uniq_subdomain
+        validate :reserved_subdomain
 
         def validate_locales
           (locales || []).each do |locale|
@@ -46,7 +48,14 @@ module Api
           return if subdomain.nil?
           return unless Client.where.not(id: id).exists?(subdomain: subdomain)
 
-          errors.add(:subdomain, "Subdomain #{subdomain} is already taken")
+          errors.add(:subdomain, "'#{subdomain}' is already taken")
+        end
+
+        def reserved_subdomain
+          return if subdomain.nil?
+          return if Settings.reserved_subdomains.exclude? subdomain
+
+          errors.add(:subdomain, "'#{subdomain}' is reserved")
         end
       end
     end

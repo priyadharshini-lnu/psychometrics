@@ -3,7 +3,7 @@
 module Api
   module V1
     class SsoAssignSerializer < ActiveModel::Serializer
-      attributes :id, :name, :url, :status
+      attributes :id, :campaign_id, :name, :url, :status
       def id
         object.assessment.id
       end

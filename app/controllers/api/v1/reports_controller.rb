@@ -18,7 +18,7 @@ module Api
         results = user_report.user_results
 
         if results.blank?
-          raise Errors::Api::AssessmentIsNotPassedError, "Assessments for report #{report.id} are not passed"
+          raise Errors::Api::AssessmentIsNotPassedError, "Assessments for report #{report.id} are not completed"
         end
 
         render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call(report, results, true)[:ok],
@@ -27,7 +27,7 @@ module Api
 
       def pdf
         user_report = UserReport.find_by(user: user, campaign_id: campaign_id, report_id: params[:id])
-        raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} is not found" unless user_report
+        raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} was not found" unless user_report
 
         render json: {
           url: user_report.pdf&.url,
@@ -38,7 +38,7 @@ module Api
 
       def dimensions
         report = current_user.available_client_admin_reports.eager_load(:dimensions).find_by(id: params[:id])
-        raise Errors::Api::ResourceNotFoundError, "Report with id #{params[:id]} not found." unless report
+        raise Errors::Api::ResourceNotFoundError, "Report with id #{params[:id]} was not found." unless report
         if report.data_configuration.blank?
           raise Errors::Api::ResourceNotConfiguredError, no_config_message(params[:id])
         end
@@ -53,7 +53,7 @@ module Api
         @report ||=
           begin
             r = Report.enabled.find_by(id: params[:id])
-            raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} is not found" unless r
+            raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} was not found" unless r
 
             # TODO: (atanych): report should be directly checked with user membership
             r

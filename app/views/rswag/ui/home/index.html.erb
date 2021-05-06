@@ -5,9 +5,24 @@
   <meta charset="utf-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+  <style>
+    rapi-doc::part(section-main-content) {
+      max-width: 1000px;
+      margin: auto;
+    }
+    rapi-doc::part(section-servers) { /* <<< targets the server div */
+      background: #d6e8e8;
+      margin:0 24px 0 24px;
+      border-radius: 5px;
+    }
+    rapi-doc::part(label-selected-server) { /* <<< targets selected server label */
+      color: #000;
+    }
+  </style>
 </head>
 <body>
   <rapi-doc
+    theme="light"
     render-style = "read"
     show-header="false"
     spec-url = "<%= config_object.dig(:urls, 0, :url) %>"
@@ -17,12 +32,14 @@
     nav-text-color="#333"
     primary-color="#02b1a8"
     regular-font="Montserrat"
-    show-components="true"
+    show-components="false"
+    schema-style="table"
+    schema-description-expanded="true"
   >
     <img
       slot="nav-logo"
-      src="https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg"
-      style="max-width: 80%;"
+      src="https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg"
+      style="width: 284px; max-width: 100%;"
     />
   </rapi-doc>
 </body>

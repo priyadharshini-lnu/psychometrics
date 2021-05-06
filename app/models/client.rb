@@ -128,9 +128,10 @@ class Client < ApplicationRecord
     root.validates :account_manager, :project_manager, presence: true, on: :create
   end
   with_options if: :project? do |project|
-    project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
+    project.validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
     project.validates :webhook, http_url: { presence: false }
     project.validate :subdomain_format_validation
+    project.validate :reserved_subdomain_validation
   end
   # disabled this validation as it was causing error while saving sub-campaign
   # TODO: Needs to be investigated
@@ -299,6 +300,12 @@ class Client < ApplicationRecord
     return if /^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$/.match?(subdomain)
 
     errors.add(:subdomain, 'Wrong subdomain format')
+  end
+
+  def reserved_subdomain_validation
+    return if Settings.reserved_subdomains.exclude? subdomain
+
+    errors.add(:subdomain, "Subdomain #{subdomain} is reserved")
   end
 
   def set_tte

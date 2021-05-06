@@ -2911,6 +2911,7 @@ en:
           create: Create
       list:
         created_at: Created date
+        id: ID
         name: Name
         updated_at: Modified date
       new:
@@ -2925,6 +2926,7 @@ en:
             create: Create
         list:
           created_at: Created date
+          id: ID
           name: Name
           updated_at: Updated date
         resource:

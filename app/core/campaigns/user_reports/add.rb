@@ -53,7 +53,7 @@ module Campaigns
       end
 
       def get_assessments_for(report)
-        return report.assessments if form.assessments.nil?
+        return report.assessments if form.assessments.blank?
 
         report.assessments.select { |a| form.assessment_ids.include?(a.id) }
       end

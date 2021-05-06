@@ -44,7 +44,8 @@ describe 'Users' do
             {
               "id": '3456',
               "name": 'Thriving Index Assessment',
-              "url": 'https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875'
+              "url": 'https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875',
+              "status": 'not_started'
             }
           ]
         }
@@ -157,7 +158,7 @@ the campaign\'s default assessments and reports.'
         examples 'application/json' => {
           "code": 1005,
           "message": 'Resource not found',
-          "more_info": 'Project with id=111 is not found'
+          "more_info": 'Project with id=111 was not found'
         }
 
         run_test! do |response|
@@ -165,7 +166,7 @@ the campaign\'s default assessments and reports.'
           expect(error).to eq(
             'code' => 1005,
             'message' => 'Resource not found',
-            'more_info' => 'Project with id=111 is not found',
+            'more_info' => 'Project with id=111 was not found',
             'meta' => nil
           )
         end

@@ -63,7 +63,7 @@ module Api
         @campaign ||=
           begin
             c = Campaign.find_by(project_id: project.id, id: params[:campaign_id])
-            raise Errors::Api::ResourceNotFoundError, "Campaign with id=#{params[:campaign_id]} is not found" unless c
+            raise Errors::Api::ResourceNotFoundError, "Campaign with id=#{params[:campaign_id]} was not found" unless c
 
             c
           end

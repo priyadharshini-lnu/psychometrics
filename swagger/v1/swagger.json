@@ -4,7 +4,7 @@
     "title": "TTE Lighthouse API",
     "version": "1.0.0",
     "x-logo": {
-      "url": "https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg",
+      "url": "https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg",
       "backgroundColor": "#FFFFFF",
       "altText": "Lighthouse"
     },
@@ -14,7 +14,7 @@
       "url": "https://www.thetalententerprise.com"
     },
     "termsOfService": "https://thetalententerprise.com/privacy-statement/",
-    "description": "## Introduction\nLighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.\n\nTo access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.\n\n## Base URL\nAll URLs referenced in this documentation have the following base component.\n\n`https://%<host>s%<basePath>s`\n\nTo ensure data privacy and security, all requests should be made over `https`. `http` is not supported.\n\n## Authentication\nBasic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.\n\n## Workflow\nThere is no particular workflow you need to follow. A typical workflow is shown below.\n\n<img src=\"https://tte-static.s3.amazonaws.com/lighthouse/Lighthouse-Typical-Integration.svg\" style=\"width: 100%%;\"/>\n\n## Terminology\n\n### Assessments\nAssessments are pre-configured for a campaign. Any user added to the campaign gets assigned the configured assessments.\n\n### Campaigns\nCampaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.\n\n### Results\nAfter the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.\n"
+    "description": "## Introduction\nLighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.\n\nTo access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.\n\n## Base URL\nAll URLs referenced in this documentation have the following base component.\n\n`https://%<host>s%<basePath>s`\n\nTo ensure data privacy and security, all requests should be made over `https`. `http` is not supported.\n\n## Authentication\nBasic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.\n\n## Workflow\nThere is no particular workflow you need to follow. A typical workflow is shown below.\n\n<img src=\"https://static.tte-lighthouse.com/lighthouse/Lighthouse-Typical-Integration.svg\" style=\"width: 100%%;\"/>\n\n## Terminology\n\n### Assessments\nAssessments are pre-configured for a campaign. Any user added to the campaign gets assigned the configured assessments.\n\n### Campaigns\nCampaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.\n\n### Results\nAfter the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.\n"
   },
   "securityDefinitions": {
     "basic": {
@@ -111,14 +111,14 @@
                 "example": {
                   "code": 1000,
                   "message": "Invalid authentication",
-                  "more_info": "User for api token is disabled",
+                  "more_info": "API User is disabled",
                   "meta": null
                 }
               }
             }
           },
           "404": {
-            "description": "User is not found",
+            "description": "User was not found",
             "schema": {
               "$ref": "#/definitions/ApiError"
             },
@@ -127,7 +127,7 @@
                 "example": {
                   "code": 1005,
                   "message": "Resource not found",
-                  "more_info": "User with id=111 is not found",
+                  "more_info": "User with id=111 was not found",
                   "meta": null
                 }
               }
@@ -877,7 +877,7 @@
                 "example": {
                   "code": 1004,
                   "message": "Assessment not completed",
-                  "more_info": "Assessments for report 111 are not passed",
+                  "more_info": "Assessments for report 111 are not completed",
                   "meta": null
                 }
               }
@@ -1107,7 +1107,8 @@
                     {
                       "id": "3456",
                       "name": "Thriving Index Assessment",
-                      "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875"
+                      "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875",
+                      "status": "not_started"
                     }
                   ]
                 }
@@ -1207,7 +1208,7 @@
                 "example": {
                   "code": 1005,
                   "message": "Resource not found",
-                  "more_info": "Project with id=111 is not found"
+                  "more_info": "Project with id=111 was not found"
                 }
               }
             }
@@ -1416,7 +1417,12 @@
           "type": "integer"
         },
         "status": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "not_started",
+            "in_progress",
+            "completed"
+          ]
         },
         "started_at": {
           "type": "string",
@@ -1657,7 +1663,8 @@
           "enum": [
             "copy_evaluation",
             "new_evaluation"
-          ]
+          ],
+          "description": "**copy_evaluation**: This will copy the responses if the user has previously\n              completed the assessment in different a campaign. Most recent response will be used\n              **new_evaluation**: This allows the user to sit an assessment even if the user has previously\n              completed the assessment in a different campaign.\n              "
         }
       }
     },
@@ -1835,7 +1842,8 @@
           "type": "integer"
         },
         "norm_id": {
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         }
       }
     },
@@ -2112,8 +2120,16 @@
         "campaigns": {
           "type": "array",
           "items": {
-            "type": "UserCampaign"
+            "$ref": "#/definitions/UserCampaign"
           }
+        },
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "x-nullable": true,
+          "description": "deprecated, use \"campaigns\". In case both \"campaigns\"  and \"campaign_ids\" are provided\n, \"campaigns\" will be used"
         },
         "created_at": {
           "type": "string"
@@ -2146,11 +2162,22 @@
         "id": {
           "type": "integer"
         },
+        "campaign_id": {
+          "type": "integer"
+        },
         "name": {
           "type": "string"
         },
         "url": {
           "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_started",
+            "in_progress",
+            "completed"
+          ]
         }
       }
     },

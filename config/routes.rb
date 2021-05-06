@@ -923,7 +923,7 @@ Rails.application.routes.draw do
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify', as: :identify
-    get 'assessment_completed', to: 'home#assessment_completed'
+    get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed'
     get 'upgrade', to: 'home#upgrade'
     root to: 'end_user/users#dashboard'
   end

@@ -102,7 +102,7 @@ describe 'Assessments' do
         examples 'application/json' => {
           'code': 1000,
           'message': 'Invalid authentication',
-          'more_info': 'User for api token is disabled',
+          'more_info': 'API User is disabled',
           'meta': nil
         }
 
@@ -111,13 +111,13 @@ describe 'Assessments' do
           expect(error).to eq(
             'code' => 1000,
             'message' => 'Invalid authentication',
-            'more_info' => 'User for api token is disabled',
+            'more_info' => 'API User is disabled',
             'meta' => nil
           )
         end
       end
 
-      response '404', 'User is not found' do
+      response '404', 'User was not found' do
         let(:project_id) { project.id }
         let(:user_id) { 111 }
 
@@ -126,7 +126,7 @@ describe 'Assessments' do
         examples 'application/json' => {
           'code': 1005,
           'message': 'Resource not found',
-          'more_info': 'User with id=111 is not found',
+          'more_info': 'User with id=111 was not found',
           'meta': nil
         }
 
@@ -135,7 +135,7 @@ describe 'Assessments' do
           expect(error).to eq(
             'code' => 1005,
             'message' => 'Resource not found',
-            'more_info' => 'User with id=111 is not found',
+            'more_info' => 'User with id=111 was not found',
             'meta' => nil
           )
         end

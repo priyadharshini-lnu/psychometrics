@@ -161,7 +161,7 @@ describe 'Reports' do
         examples 'application/json' => {
           'code' => 1004,
           'message' => 'Assessment not completed',
-          'more_info' => 'Assessments for report 111 are not passed',
+          'more_info' => 'Assessments for report 111 are not completed',
           'meta' => nil
         }
 
@@ -177,7 +177,7 @@ describe 'Reports' do
           expect(error).to eq(
             'code' => 1004,
             'message' => 'Assessment not completed',
-            'more_info' => "Assessments for report #{report_id} are not passed",
+            'more_info' => "Assessments for report #{report_id} are not completed",
             'meta' => nil
           )
         end
@@ -283,7 +283,7 @@ describe 'Reports' do
           expect(result).to eq(
             'code' => 1005,
             'message' => 'Resource not found',
-            'more_info' => "Report with id #{report_id} not found.",
+            'more_info' => "Report with id #{report_id} was not found.",
             'meta' => nil
           )
         end

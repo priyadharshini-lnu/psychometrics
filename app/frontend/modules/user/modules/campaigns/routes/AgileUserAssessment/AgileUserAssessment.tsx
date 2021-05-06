@@ -38,7 +38,7 @@ const AgileUserAssessment: React.FC<Props> = ({
         },
       },
       settings: {
-        returnURL: isAnonym ? '' : `/campaigns/${campaignId}`,
+        returnURL: isAnonym ? '' : `/assessment_completed/${campaignId}`,
         assetsBaseURL: agileAssetsUrl,
         locale: lang?.toString(),
       },
