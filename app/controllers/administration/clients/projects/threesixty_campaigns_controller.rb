@@ -157,7 +157,7 @@ module Administration
               manage_reports_options
             ]
           )
-          permissions.transform_keys!{|k| k.camelcase(:lower)}
+          permissions.transform_keys! { |k| k.camelcase(:lower) }
         end
       end
     end

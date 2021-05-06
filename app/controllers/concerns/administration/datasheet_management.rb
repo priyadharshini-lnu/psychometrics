@@ -27,6 +27,7 @@ module Administration
 
           render json: {
             list: serialized_datasheet_rows,
+            permissions: permissions,
             total: datasheet_rows.count,
             columns: Datasheets::GetColumnDefinition.call!(datasheet)
           }
@@ -101,6 +102,21 @@ module Administration
     end
 
     private
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::DatasheetRowPolicy,
+        current_user,
+        nil,
+        [
+          'export',
+          'import',
+          'update',
+          %w[add create],
+          %w[delete destroy]
+        ]
+      )
+    end
 
     def set_resource_class
       @_resource_class ||= DatasheetRow # rubocop:disable Naming/MemoizedInstanceVariableName

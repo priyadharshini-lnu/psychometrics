@@ -40,6 +40,10 @@ interface OwnProps {
   parentResourceType: ParentResourceType
   parentResourceId: number
   setSelectedRowKeys: Dispatch<SetStateAction<string[]>>
+  permissions: {
+    update: boolean
+    delete: boolean
+  }
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -50,6 +54,7 @@ const SelectionActionsComponent: FC<Props> = ({
   toggleDrawer,
   parentResourceType,
   parentResourceId,
+  permissions,
   bulkDelete,
   fetch,
   tableConfigs,
@@ -93,21 +98,23 @@ const SelectionActionsComponent: FC<Props> = ({
 
   return (
     <Space>
-      {selectedRowKeys.length === 1 && (
+      {permissions.update && selectedRowKeys.length === 1 && (
         <Button
           onClick={() => toggleDrawer(DrawerModes.Edit, selectedRowKeys[0])}
         >
           <EditOutlined />
         </Button>
       )}
-      <Badge
-        count={badgeCount}
-        overflowCount={settings.pagination.defaultPageSize}
-      >
-        <Button danger onClick={openConfirmModalForDelete}>
-          <DeleteOutlined />
-        </Button>
-      </Badge>
+      {permissions.delete && (
+        <Badge
+          count={badgeCount}
+          overflowCount={settings.pagination.defaultPageSize}
+        >
+          <Button danger onClick={openConfirmModalForDelete}>
+            <DeleteOutlined />
+          </Button>
+        </Badge>
+      )}
     </Space>
   )
 }

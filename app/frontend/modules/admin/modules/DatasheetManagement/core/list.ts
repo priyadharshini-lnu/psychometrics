@@ -36,6 +36,13 @@ export type Column = t.TypeOf<typeof ColumnTR>
 
 const FetchResponseTR = t.type({
   total: t.number,
+  permissions: t.type({
+    export: t.boolean,
+    import: t.boolean,
+    update: t.boolean,
+    add: t.boolean,
+    delete: t.boolean,
+  }),
   columns: t.array(ColumnTR),
   list: t.array(DataSheetTR),
 })
@@ -63,6 +70,13 @@ export type FetchAction = ApiActionResponse<{
   total: number
   list: DataSheet[]
   columns: Column[]
+  permissions: {
+    export: boolean
+    import: boolean
+    update: boolean
+    add: boolean
+    delete: boolean
+  }
 }>
 
 export type AddResponse = t.TypeOf<typeof DataSheetTR>
