@@ -586,6 +586,8 @@ en:
         regenerate_report: Regenerate Report
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
+        import_datasheet: Import Datasheet
+        copy_dimension: Copy Dimension
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -1019,6 +1021,7 @@ en:
       allow_title: Please allow to use camera to record Video
       ambient_light: Ambient Light
       continue: Continue
+      description: Any video or photo captured at this stage will not be saved or used. It is used locally on your device to ensure the camera is functioning for an upcoming question that may require video recording.
       face_detection: Face detection
       processing: Processing
       run_again: Run again

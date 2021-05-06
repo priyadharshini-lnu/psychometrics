@@ -14,7 +14,7 @@ module Hogan
       @project = project
 
       assign_assessment_and_reports
-      load_results if user_result.completed?
+      Hogan::FetchResults.call!(user_result, credentials, project) if user_result.completed?
     end
 
     private
@@ -27,14 +27,6 @@ module Hogan
         assessment: user_result.assessment,
         reports: user_reports
       )
-    end
-
-    def load_results
-      user_reports.each do |user_report|
-        if user_report.report.hogan?
-          Hogan::FetchResults.call!(user_assessment, user_report.report, credentials, project)
-        end
-      end
     end
   end
 end

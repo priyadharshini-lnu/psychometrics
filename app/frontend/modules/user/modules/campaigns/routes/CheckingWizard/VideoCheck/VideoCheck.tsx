@@ -89,7 +89,8 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     <>
       <Col className={styles.container} lg={16} xs={24} sm={24}>
         <Card className={styles.card}>
-          <div className={styles.title}>{I18n.t('checking_wizard.video_check.title')}</div>
+          <h4>{I18n.t('checking_wizard.video_check.title')}</h4>
+          <p>{I18n.t('checking_wizard.video_check.description')}</p>
           <div className="position-relative">
             <video ref={videoRef} className={styles.video} />
             {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access) && (

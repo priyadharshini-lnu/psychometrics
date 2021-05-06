@@ -138,11 +138,11 @@ class Factor < ApplicationRecord
   private
 
   def increment_factors
-    dimension.increment!(:factors_count) if parent_id.nil?
+    dimension.increment!(:factors_count)
   end
 
   def decrement_factors
-    dimension.decrement!(:factors_count) if parent_id.nil?
+    dimension.decrement!(:factors_count)
   end
 
   def create_aliases
