@@ -52,6 +52,7 @@ export const getCurrent = (state: RootState): UserReportDetail => _.get(get(stat
 
 const FETCH_SINGLE_USER = 'assessors/users/FETCH_SINGLE'
 export const DOWNLOAD = 'assessors/userReports/DOWNLOAD'
+export const ASYNC_DOWNLOAD = 'assessors/userReports/ASYNC_DOWNLOAD'
 
 export const fetchSingle = (campaignId: number, id: number) => ({
   type: FETCH_SINGLE,
@@ -59,6 +60,13 @@ export const fetchSingle = (campaignId: number, id: number) => ({
     url: `/assessors/campaigns/${campaignId}/user_reports/${id}`,
     camelize: false,
     typedResponse: UserReportDetailTR,
+  },
+})
+
+export const asyncDownload = (campaignId: number, id: number) => ({
+  type: ASYNC_DOWNLOAD,
+  request: {
+    url: `/assessors/campaigns/${campaignId}/user_reports/${id}/download`,
   },
 })
 

@@ -42,6 +42,9 @@ prevent bundle secure warnings with
 
 7. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
+8. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
+Follow the instruction mentioned in the README.md to install and run the serverless framework.
+In the main psychometric repo set environment variable `URL_TO_PDF_LAMBDA_URL` to `http://localhost:3000/dev`
 
 ### Run PSQL through docker (optional)
 > Due to supporting old PSQL version (11) on production we have to use the same version locally

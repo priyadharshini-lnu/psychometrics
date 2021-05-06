@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  post '/lambda_notifications/url_to_pdf', 'lambda_notifications/url_to_pdf'
+
   concern :media_uploades do
     member do
       get :upload_media_url
@@ -55,6 +57,11 @@ Rails.application.routes.draw do
     end
 
     resources :campaigns, only: [:index] do
+      resources :user_reports, only: [] do
+        member do
+          get :download
+        end
+      end
       resources :users, only: %i[index show]
       resources :evaluations, only: %i[] do
         member do

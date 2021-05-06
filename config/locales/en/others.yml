@@ -2310,6 +2310,7 @@ en:
     actions:
       regenerate: Regenerate
     messages:
+      async_generation: Report generation in progress. You would be notified once report is generated.
       regenerate_successful: Report regeneration job scheduled successfully
     modals:
       remove:

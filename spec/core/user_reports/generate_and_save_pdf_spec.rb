@@ -19,7 +19,7 @@ describe UserReports::GenerateAndSavePdf do
   let(:current_user) { create(:superadmin) }
 
   it 'save pdf in user_report if report can be generated' do
-    expect(UserReports::GeneratePdf).to receive(:call!).and_return('spec/fixtures/files/reports/test.pdf')
+    expect(UserReports::GeneratePdf).to receive(:call!).and_return(file_path: 'spec/fixtures/files/reports/test.pdf')
     expect(user_report).to receive(:generatable?).and_return(true)
     expect(user_report).to receive(:user_results).and_return([user_result])
 

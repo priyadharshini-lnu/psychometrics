@@ -18,7 +18,7 @@ module Campaigns
 
       def call
         transaction do
-          progress = 0
+          job_record.update!(total_tasks: rows.length)
           rows.each do |attrs|
             user = campaign.users.find_by(email: attrs[:email])
             if user
@@ -34,8 +34,7 @@ module Campaigns
                 end
               end
             end
-            progress += 100 / rows.size
-            AdminJob.update_progress(job_record, progress)
+            job_record.increment_completed_tasks!
           end
         end
         broadcast :ok, users_those_pwd_not_changed, imported_users

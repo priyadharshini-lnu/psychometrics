@@ -40,6 +40,11 @@ class Assessors::UsersController < Administration::BaseController
   end
 
   def dashboard
+    @init_state = {
+      config: {
+        features: feature_flags
+      }
+    }
     raise NotAuthorizedError unless current_user.is?(:assessor)
   end
 

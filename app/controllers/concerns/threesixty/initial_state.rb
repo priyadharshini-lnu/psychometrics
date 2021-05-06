@@ -24,7 +24,8 @@ module Threesixty::InitialState
       }.merge(campaign_intial_state),
       config: {
         isFrame: use_iframe?,
-        agileAssetsUrl: Settings.agile_config.asset_url
+        agileAssetsUrl: Settings.agile_config.asset_url,
+        features: feature_flags
       },
       currentUser: serialized_current_user,
       liveChat: {

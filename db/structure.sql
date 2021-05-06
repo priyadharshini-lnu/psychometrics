@@ -83,7 +83,6 @@ CREATE TABLE public.admin_jobs (
     id bigint NOT NULL,
     owner_id bigint,
     operation smallint,
-    progress double precision DEFAULT 0.0,
     data json DEFAULT '{}'::json,
     file character varying,
     status smallint DEFAULT 0,
@@ -91,7 +90,9 @@ CREATE TABLE public.admin_jobs (
     content character varying,
     read boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    total_tasks integer DEFAULT 1,
+    completed_tasks integer DEFAULT 0
 );
 
 
@@ -8079,6 +8080,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210321134006'),
 ('20210321142256'),
 ('20210411073736'),
-('20210419092225');
+('20210419090439'),
+('20210419092225'),
+('20210429142157');
 
 

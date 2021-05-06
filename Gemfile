@@ -124,6 +124,7 @@ gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel.git'
 gem 'deep_cloneable', '~> 2.4.0'
 
 gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
 gem 'carrierwave', '~> 1.3.2'
 gem 'carrierwave-base64', '~> 2.5.3'

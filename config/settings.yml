@@ -13,6 +13,7 @@ terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
+    one_day_expiry_folder: tmp/1-day
 hashids_length:
   anonym: 8
   default: 6
@@ -20,6 +21,7 @@ features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>
   proctoring: <%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
+  url_to_pdf_lambda: <%= ENV.fetch('URL_TO_PDF_LAMBDA_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:

@@ -12,11 +12,10 @@ module UserReports
     end
 
     def call
-      progress = 0
+      job_record&.update(total_tasks: user_reports.length)
       user_reports.each do |user_report|
-        progress += 100 / user_reports.size
         unless user_report.generatable?
-          AdminJob.update_progress(job_record, progress) if job_record
+          job_record&.increment_completed_tasks!
           next
         end
 
@@ -27,17 +26,21 @@ module UserReports
         generate_mindminl_report(user_report) if report.mindmill?
         generate_hogan_report(user_report) if report.hogan?
         generate_internal_report(user_report) if report.provider_internal?
-        AdminJob.update_progress(job_record, progress) if job_record
+        job_record&.increment_completed_tasks! unless async_report_generation?(report)
       end
 
       broadcast :ok
     end
 
     def generate_internal_report(user_report)
-      pdf_file_path = UserReports::GeneratePdf.call!(user_report, current_user, options)
+      data = UserReports::GeneratePdf.call!(
+        user_report,
+        current_user,
+        options.merge(async: true, admin_job_record_id: job_record&.id)
+      )
+      return unless data[:file_path]
 
-      File.open(pdf_file_path) { |file| user_report.update!(status: :prepared, pdf: file) }
-      publish_to_webhook(user_report)
+      File.open(data[:file_path]) { |file| user_report.update!(status: :prepared, pdf: file) }
     end
 
     def generate_mindminl_report(user_report)
@@ -52,17 +55,8 @@ module UserReports
       )
     end
 
-    def publish_to_webhook(user_report)
-      user_result = user_report.user_results.first
-      campaign = user_result.user_assessment.campaign
-
-      data = {
-        campaign: campaign,
-        subject: user_result.subject,
-        report: user_report.report,
-        user_report: user_report
-      }
-      WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
+    def async_report_generation?(report)
+      Settings.features.url_to_pdf_lambda && report.provider_internal?
     end
   end
 end
