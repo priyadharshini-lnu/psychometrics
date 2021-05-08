@@ -10,6 +10,8 @@ global_job_config:
       value: production
     - name: NODE_ENV
       value: production
+    - name: NODE_OPTIONS
+      value: '--max-old-space-size=6400'
     - name: BUNDLER_VERSION
       value: 2.1.4
     - name: HEROKU_REMOTE
