@@ -17,7 +17,7 @@ const IncorrectResponseErrorModal: React.FC<Props> = ({
     onCancel={clearResponseDataMismatched}
     footer={[
       <Button key="cancel" onClick={clearResponseDataMismatched}>
-          Cancel
+        Cancel
       </Button>,
     ]}
   >

@@ -63,7 +63,7 @@ module Assessments
       end
 
       def build_headers(score)
-        sample = users_results.completed.find_by("external_results != '{}'")
+        sample = users_results.merge(UserAssessment.completed).find_by("external_results != '{}'")
         return [] unless sample
 
         (sample.external_results&.dig('scores', score[:score_type], score[:scale_type]) || []).map do |item|

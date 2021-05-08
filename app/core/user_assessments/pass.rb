@@ -10,19 +10,19 @@ module UserAssessments
     end
 
     def call
-      return broadcast :ok if user_assessment.users_result.completed?
+      return broadcast :ok if user_assessment.completed?
 
-      user_assessment.users_result.update(build_params)
+      publish_to_webhook
+      user_assessment.users_result.update(build_user_result_params)
+      user_assessment.in_progress!
 
       broadcast :ok
     end
 
     private
 
-    def build_params
-      params = {
-        status: :in_progress
-      }
+    def build_user_result_params
+      params = {}
       params[:selected_locale] = lang if lang
       params[:expiry_date] = time.second.from_now if time
       params[:started_at] = Time.now unless user_assessment.users_result.started_at
@@ -30,9 +30,21 @@ module UserAssessments
       params
     end
 
+    def publish_to_webhook
+      return unless user_assessment.users_result.not_started?
+
+      data = {
+        campaign: user_assessment.campaign,
+        assessment: user_assessment.assessment,
+        evaluator: user_assessment.evaluator,
+        subject: user_assessment.subject
+      }
+      WebhookSubscriptions::Publish.call!(user_assessment.evaluator.project, :assessment_started, data)
+    end
+
     def time
-      return user_assessment.users_result.additional_time if user_assessment.users_result.interrupted?
-      return user_assessment.assessment.extra['timer'] if user_assessment.users_result.not_started?
+      return user_assessment.users_result.additional_time if user_assessment.interrupted?
+      return user_assessment.assessment.extra['timer'] if user_assessment.not_started?
 
       nil
     end

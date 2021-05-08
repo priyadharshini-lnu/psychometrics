@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import _ from 'lodash'
-import axios from 'axios'
-import { InProgressQuestion, MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import { SelectOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Row, Col, Tooltip,
 } from 'antd'
+import { SelectOutlined, CheckOutlined } from '@ant-design/icons'
+import axios from 'axios'
 import cs from 'classnames'
+import find from 'lodash/find'
+import findIndex from 'lodash/findIndex'
+
+import { InProgressQuestion, MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+
 import { I18n } from 'modules/survey/store/StoreWatchman'
 import useMap from 'hooks/useMap'
+import { useBrowserSupportChecks } from 'hooks/useBrowserSupportChecks'
+import { BROWSER_FEATURES } from 'modules/survey/constants/browser'
+
 import MultipleTakeButtons from './MultipleTakeButtons'
+import { UnsupportedBrowser } from './UnsupportedBrowser'
+
 import styles from './styles.scss'
 
 interface Props {
@@ -55,13 +63,13 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
 
   const showRetakes: boolean = completedTakes > 0 && completedTakes < maxTakes && !!currentMediaResponse
 
-  const recordingInProgress = _.find(inProgressQuestions || [], ({ questionId }) => questionId === model.id)
+  const recordingInProgress = find(inProgressQuestions || [], ({ questionId }) => questionId === model.id)
 
   const currentTakeIsSelected = currentMediaResponse && currentMediaResponse.userSelected
-  const selectedTakeIndex = _.findIndex(mediaResponses, ({ userSelected }) => userSelected)
+  const selectedTakeIndex = findIndex(mediaResponses, ({ userSelected }) => userSelected)
 
   useEffect(() => {
-    let currentTakeIndexToSet = _.findIndex(mediaResponses, ({ userSelected }) => userSelected)
+    let currentTakeIndexToSet = findIndex(mediaResponses, ({ userSelected }) => userSelected)
     currentTakeIndexToSet = currentTakeIndexToSet > 0 ? currentTakeIndexToSet : 0
     setCurrentTakeIndex(currentTakeIndexToSet)
   }, [])
@@ -124,6 +132,19 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
       errors={errors}
     />
   )
+
+  // Check for Media Recorder API browser support
+  const [isBrowserSupported, supportedBrowsers] = useBrowserSupportChecks(
+    BROWSER_FEATURES.mediaRecorderAPI,
+  )
+
+  if (!isBrowserSupported) {
+    return (
+      <UnsupportedBrowser
+        supportedBrowsers={supportedBrowsers}
+      />
+    )
+  }
 
   if (maxTakes === 1) {
     return renderWrappedComponent()

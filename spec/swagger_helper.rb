@@ -21,7 +21,7 @@ RSpec.configure do |config|
         title: 'TTE Lighthouse API',
         version: '1.0.0',
         'x-logo': {
-          url: 'https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
+          url: 'https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
           backgroundColor: '#FFFFFF',
           altText: 'Lighthouse'
         },
@@ -51,7 +51,7 @@ RSpec.configure do |config|
           ## Workflow
           There is no particular workflow you need to follow. A typical workflow is shown below.
 
-          <img src="https://tte-static.s3.amazonaws.com/lighthouse/Lighthouse-Typical-Integration.svg" style="width: 100%%;"/>
+          <img src="https://static.tte-lighthouse.com/lighthouse/Lighthouse-Typical-Integration.svg" style="width: 100%%;"/>
 
           ## Terminology
 
@@ -96,7 +96,8 @@ RSpec.configure do |config|
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
-            status: { type: 'string' },
+            campaign_id: { type: 'integer' },
+            status: { type: 'string', enum: %w[not_started in_progress completed] },
             started_at: { type: 'string', 'x-nullable': true },
             completed_at: { type: 'string', 'x-nullable': true }
           }
@@ -106,14 +107,16 @@ RSpec.configure do |config|
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            campaign_id: { type: 'integer' },
             status: { type: 'string' },
-            asessments: { type: 'array', items: { '$ref' => '#/definitions/UserAssessment' } }
+            assessments: { type: 'array', items: { '$ref' => '#/definitions/UserAssessment' } }
           }
         },
         ReportPdf: {
           type: 'object',
           properties: {
             url: { type: 'string', 'x-nullable': true },
+            campaign_id: { type: 'integer' },
             status: { type: 'string' }
           }
         },
@@ -123,7 +126,14 @@ RSpec.configure do |config|
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string' },
-            campaign_ids: { type: 'array', items: { type: 'integer' }, 'x-nullable': true }
+            campaign_ids: {
+              type: 'array',
+              items: { type: 'integer' },
+              'x-nullable': true,
+              description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
+, "campaigns" will be used'
+            },
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
           },
           required: %w[email first_name last_name campaign_ids]
         },
@@ -138,6 +148,7 @@ RSpec.configure do |config|
         ReportResults: {
           type: 'object',
           properties: {
+            campaign_id: { type: 'integer' },
             user_data: { type: 'object', 'x-nullable': true },
             assessments: { type: 'array', items: { '$ref' => '#/definitions/ResultAssessment' } }
           }
@@ -181,10 +192,59 @@ RSpec.configure do |config|
             name: { type: 'string' }
           }
         },
-        NewCampaigns: {
+        NewUserCampaigns: {
           type: 'object',
           properties: {
-            campaign_ids: { type: 'array', items: { type: 'integer' } }
+            campaign_ids: {
+              type: 'array',
+              items: { type: 'integer' },
+              'x-nullable': true,
+              description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
+, "campaigns" will be used'
+            },
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
+          }
+        },
+        NewUserCampaign: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            active: { type: 'boolean' },
+            existing_record: {
+              type: 'string',
+              enum: %w[copy_evaluation new_evaluation],
+              description: '**copy_evaluation**: This will copy the responses if the user has previously
+              completed the assessment in different a campaign. Most recent response will be used
+              **new_evaluation**: This allows the user to sit an assessment even if the user has previously
+              completed the assessment in a different campaign.
+              '
+            }
+          }
+        },
+        NewCampaign: {
+          type: 'object',
+          properties: {
+            name: { type: 'string' },
+            status: { type: 'string', enum: %w[active inactive closed archived] },
+            start_date: { type: 'string', 'x-nullable': true },
+            end_date: { type: 'string', 'x-nullable': true },
+            fixed_time: { type: 'boolean', 'x-nullable': true },
+            duration: { type: 'integer', 'x-nullable': true },
+            enable_instructions: { type: 'boolean', 'x-nullable': true },
+            instructions: { type: 'string', 'x-nullable': true }
+          }
+        },
+        UpdatedCampaign: {
+          type: 'object',
+          properties: {
+            name: { type: 'string', 'x-nullable': true },
+            status: { type: 'string', enum: %w[active inactive closed archived], 'x-nullable': true },
+            start_date: { type: 'string', 'x-nullable': true },
+            end_date: { type: 'string', 'x-nullable': true },
+            fixed_time: { type: 'boolean', 'x-nullable': true },
+            duration: { type: 'integer', 'x-nullable': true },
+            enable_instructions: { type: 'boolean', 'x-nullable': true },
+            instructions: { type: 'string', 'x-nullable': true }
           }
         },
         Campaign: {
@@ -192,6 +252,125 @@ RSpec.configure do |config|
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            status: { type: 'string', enum: %w[active inactive closed archived] },
+            start_date: { type: 'string', 'x-nullable': true },
+            end_date: { type: 'string', 'x-nullable': true },
+            fixed_time: { type: 'boolean', 'x-nullable': true },
+            duration: { type: 'integer', 'x-nullable': true },
+            enable_instructions: { type: 'boolean', 'x-nullable': true },
+            instructions: { type: 'string', 'x-nullable': true },
+            created_at: { type: 'string', 'x-nullable': true },
+            updated_at: { type: 'string', 'x-nullable': true }
+          }
+        },
+        UserCampaign: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            name: { type: 'string' },
+            created_at: { type: 'string' },
+            updated_at: { type: 'string' }
+          }
+        },
+        UpdatedReport: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            user_access: { type: 'boolean' },
+            report_bundle_id: { type: 'integer' }
+          }
+        },
+        UpdatedAssessment: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            norm_id: { type: 'integer', 'x-nullable': true }
+          }
+        },
+        UpdatedCampaignAssessmentsAndReports: {
+          type: 'object',
+          properties: {
+            reports: { type: 'array', items: { '$ref' => '#/definitions/UpdatedReport' } },
+            assessments: { type: 'array', items: { '$ref' => '#/definitions/UpdatedAssessment' } }
+          }
+        },
+        AssessmentsAndReports: {
+          type: 'object',
+          properties: {
+            reports: { type: 'array', items: { '$ref' => '#/definitions/CampaignOrUserReport' } },
+            assessments: { type: 'array', items: { '$ref' => '#/definitions/CampaignOrUserAssessment' } }
+          }
+        },
+        CampaignOrUserReport: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            user_access: { type: 'boolean' },
+            report_bundle_id: { type: 'integer' }
+          }
+        },
+        CampaignOrUserAssessment: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            norm_id: { type: 'integer', 'x-nullable': true }
+          }
+        },
+        NewProject: {
+          type: 'object',
+          properties: {
+            name: { type: 'string' },
+            subdomain: { type: 'string' },
+            client_id: { type: 'integer' },
+            client_reference: { type: 'string', 'x-nullable': true },
+            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
+            data_processing_consent: { type: 'boolean' },
+            enable_strong_password: { type: 'boolean', 'x-nullable': true },
+            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
+            project_logo: { type: 'string', 'x-nullable': true },
+            partner_logo: { type: 'string', 'x-nullable': true },
+            webhook: { type: 'string', 'x-nullable': true },
+            background_image: { type: 'string', 'x-nullable': true },
+            background_color: { type: 'string', 'x-nullable': true },
+            login_box_position: { type: 'string', 'x-nullable': true }
+          }
+        },
+        UpdatedProject: {
+          type: 'object',
+          properties: {
+            name: { type: 'string', 'x-nullable': true },
+            subdomain: { type: 'string', 'x-nullable': true },
+            client_reference: { type: 'string', 'x-nullable': true },
+            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
+            data_processing_consent: { type: 'boolean', 'x-nullable': true },
+            enable_strong_password: { type: 'boolean', 'x-nullable': true },
+            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
+            project_logo: { type: 'string', 'x-nullable': true },
+            partner_logo: { type: 'string', 'x-nullable': true },
+            background_image: { type: 'string', 'x-nullable': true },
+            background_color: { type: 'string', 'x-nullable': true },
+            webhook: { type: 'string', 'x-nullable': true },
+            login_box_position: { type: 'string', 'x-nullable': true }
+          }
+        },
+        Project: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            client_id: { type: 'integer' },
+            name: { type: 'string' },
+            subdomain: { type: 'string' },
+            client_reference: { type: 'string', 'x-nullable': true },
+            locales: { type: 'array', items: { type: 'string' } },
+            enable_strong_password: { type: 'boolean', 'x-nullable': true },
+            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
+
+            project_logo: { type: 'string', 'x-nullable': true },
+            partner_logo: { type: 'string', 'x-nullable': true },
+            background_image: { type: 'string', 'x-nullable': true },
+            background_color: { type: 'string', 'x-nullable': true },
+            login_box_position: { type: 'string', 'x-nullable': true },
+            webhook: { type: 'string', 'x-nullable': true },
             created_at: { type: 'string' },
             updated_at: { type: 'string' }
           }
@@ -203,7 +382,14 @@ RSpec.configure do |config|
             first_name: { type: 'string' },
             last_name: { type: 'string' },
             email: { type: 'string' },
-            campaign_ids: { type: 'array', items: { type: 'integer' } },
+            campaigns: { type: 'array', items: { '$ref': '#/definitions/UserCampaign' } },
+            campaign_ids: {
+              type: 'array',
+              items: { type: 'integer' },
+              'x-nullable': true,
+              description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
+, "campaigns" will be used'
+            },
             created_at: { type: 'string' },
             updated_at: { type: 'string' }
           }
@@ -220,8 +406,10 @@ RSpec.configure do |config|
           type: 'object',
           properties: {
             id: { type: 'integer' },
+            campaign_id: { type: 'integer' },
             name: { type: 'string' },
-            url: { type: 'string' }
+            url: { type: 'string' },
+            status: { type: 'string', enum: %w[not_started in_progress completed] }
           }
         },
         Occupation: {

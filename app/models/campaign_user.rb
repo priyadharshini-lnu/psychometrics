@@ -9,7 +9,9 @@ class CampaignUser < ApplicationRecord
   has_one :project, through: :campaign
   has_many :evaluation_results, through: :user
   has_many :user_assessments, through: :user
+  has_many :assessments, through: :user_assessments
   has_many :user_reports, through: :user
+  has_many :reports, through: :user_reports
   has_many :proctoring_sessions, dependent: :destroy
 
   scope :in_progress, -> { where(completion_status: :in_progress) }
@@ -29,6 +31,10 @@ class CampaignUser < ApplicationRecord
 
   def campaign_user_assessments
     user_assessments.where(campaign_id: campaign_id)
+  end
+
+  def campaign_user_reports
+    user_reports.where(campaign_id: campaign_id)
   end
 
   def real_status

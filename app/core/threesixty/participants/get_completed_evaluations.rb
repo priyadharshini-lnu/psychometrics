@@ -13,22 +13,18 @@ module Threesixty
       end
 
       def call
-        user_results =
+        participants =
           threesixty_campaign.
-          users_results.
+          participants.
           completed.
           actual_by_options(option).
-          where(user_assessments: { evaluator_id: user_ids }).
-          group('user_assessments.evaluator_id').
-          select(
-            'user_assessments.evaluator_id as ua_evaluator_id, count(users_results.id) as completed_evaluations_count'
-          )
+          where(evaluator_id: user_ids).
+          group(:evaluator_id).
+          select('evaluator_id, count(id) as completed_evaluations_count')
 
-        if exclude_self_evaluations
-          user_results = user_results.where('user_assessments.subject_id != user_assessments.evaluator_id')
-        end
+        participants = participants.where('subject_id != evaluator_id') if exclude_self_evaluations
 
-        broadcast :ok, user_results.index_by(&:ua_evaluator_id)
+        broadcast :ok, participants.index_by(&:evaluator_id)
       end
     end
   end

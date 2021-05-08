@@ -28,13 +28,13 @@ module Imports
         return false unless valid?
 
         # errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: 1))
-        imported_items = load_imported_items.compact
+        user_results = load_imported_items.compact
 
-        if imported_items.map(&:valid?).all?
-          imported_items.each(&:save!)
+        if user_results.map(&:valid?).all?
+          user_results.each(&:save!)
         else
-          imported_items.each_with_index do |item, index|
-            item.errors.full_messages.each do |message|
+          user_results.each_with_index do |user_result, index|
+            user_result.errors.full_messages.each do |message|
               errors.add(:base, I18n.t('administration.imports.errors.result.error',
                                        row: index + SKIP_ROWS, error: message))
             end
@@ -80,16 +80,17 @@ module Imports
             user ||= find_or_create_user(data, index)
             next unless user
 
-            UserAssessment.find_or_create_by(
+            user.campaign_users.find_or_create_by(campaign_id: campaign.id)
+            user_assessment = UserAssessment.find_or_create_by(
               subject_id: user.id,
               evaluator_id: user.id,
               campaign_id: campaign.id,
               assessment_id: assessment.id,
-              project_id: campaign.project_id,
-              users_result_id: user_result.id
-            ) do |user_assessment|
-              user_assessment.users_result = UsersResult.create
+              project_id: campaign.project_id
+            ) do |ua|
+              ua.users_result = UsersResult.create
             end
+            user_result = user_assessment.users_result
           end
 
           status = I18n.t('activerecord.attributes.users_result.statuses').key(data['status'])
@@ -98,7 +99,9 @@ module Imports
 
           norm_data = parse_norm_data(data['norm'], user_result.assessment_id)
           user_result.assign_attributes(
-            started_at: parse_date(data['started_at'], index),
+            started_at: parse_date(data['started_at'], index)
+          )
+          user_result.user_assessment.update!(
             completed_at: parse_date(data['completed_at'], index),
             norm_id: norm_data[:id],
             status: status,
@@ -180,6 +183,8 @@ module Imports
           errors.add(:base, I18n.t('administration.imports.errors.result.error',
                                    row: index + SKIP_ROWS, error: user.errors.full_messages.first))
           nil
+        else
+          user
         end
       end
 

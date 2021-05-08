@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import { normalize } from 'normalizr'
@@ -17,7 +16,8 @@ import {
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
-  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING, AWS_SPEECH_TO_TEXT_URL,
+  ACTIVE_DICTATION_ON_QUESTION,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -28,7 +28,9 @@ import {
   InitType, AddQuestionError, RemoveQuestionError,
   SaveResults, UpdateHightlight, AddMediaResponse, RemoveMediaResponse,
   MarkMediaResponseAsSelected, FetchQuestionScoring,
+  ShowEnd,
 } from './interfaces'
+import { AwsSpeechTextPresignedUrlAction, SetDictationActiveOnQuestion } from './actions'
 
 const { I18n } = window
 type State = DefaultState
@@ -74,7 +76,9 @@ const defaultState: State = {
   factors: [],
   scoring: null,
   showScoringOnEndPage: false,
+  awsSpeechTextPresignedURL: '',
   showQuestionScoring: false,
+  activeDictationOnQuestion: 0,
 }
 
 const HANDLERS = {
@@ -140,7 +144,7 @@ const HANDLERS = {
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
       end: data.notAnEndPage ? false : result.status === 'completed',
-      prevPages: result.prev_pages || [],
+      prevPages: data.readOnly ? [] : (result.prev_pages || []),
       highlights: _.keyBy(highlights, 'id'),
       assessmentTimedOut: result.timed_out || false,
       factors: result.factors,
@@ -172,7 +176,8 @@ const HANDLERS = {
     setIn(state, ['errors'], _.omit(state.errors, [questionId]))
   ),
   [REMOVE_PREV_PAGE]: (state: State) => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
-  [SHOW_END]: (state: State) => ({ ...state, end: true }),
+  [SHOW_END]: (state: State, { payload: endOfAssessmentElementProps }: ShowEnd) => (
+    { ...state, end: true, endOfAssessmentElementProps }),
   [HIDE_END]: (state: State) => ({ ...state, end: false }),
   [SET_EMBEDDED_DATA]: (state: State, { data }: SetEmbeddedData) => setIn(
     state, 'embeddedData', { ...state.embeddedData, ...data },
@@ -267,8 +272,15 @@ const HANDLERS = {
   [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
+  [AWS_SPEECH_TO_TEXT_URL]: (
+    state: State,
+    { response: { url } }: AwsSpeechTextPresignedUrlAction,
+  ) => ({ ...state, awsSpeechTextPresignedURL: url }),
   [FETCH_QUESTION_SCORING]: (state: State, { response }: FetchQuestionScoring) => ({
     ...state, scoring: response,
+  }),
+  [ACTIVE_DICTATION_ON_QUESTION]: (state: State, { payload: { questionId } }: SetDictationActiveOnQuestion) => ({
+    ...state, activeDictationOnQuestion: questionId,
   }),
 }
 

@@ -25,12 +25,13 @@ const MockData = [
     icon: Ambiguity,
     name: 'Ambiguity',
     alias: 'Ambiguity',
+    label: 'High',
+    color: '#666666',
     meanNormScore: 65.8,
     strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
-* Lorem ipsum dolor sit amet consectetur adipisicing
-* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Lorem ipsum dolor sit amet consectetur
 * Ipsum dolor sit amet, consectetur adipisicing elit
     `,
     blindspots: `
@@ -49,18 +50,19 @@ const MockData = [
     icon: Achievement,
     name: 'Achievement',
     alias: 'Achievement',
+    label: 'Medium',
+    color: '#999999',
     meanNormScore: 35,
     strategy: 1,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
-* Lorem ipsum dolor sit amet consectetur adipisicing
-* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-* Ipsum dolor sit amet, consectetur adipisicing elit
+* Lorem ipsum dolor sit amet
+* Consectetur adipisicing elit
+* Ipsum dolor sit amet
     `,
     blindspots: `
-* Lorem ipsum dolor sit amet consectetur adipisicing
-* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-* Ipsum dolor sit amet, consectetur adipisicing elit
+* Lorem ipsum dolor sit amet
+* Consectetur adipisicing elit
     `,
     workstyles: `
 * Lorem ipsum dolor sit amet consectetur adipisicing
@@ -73,6 +75,8 @@ const MockData = [
     icon: Accountability,
     name: 'Accountability',
     alias: 'Accountability',
+    label: 'Medium',
+    color: '#999999',
     meanNormScore: 55,
     strategy: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -97,6 +101,8 @@ const MockData = [
     icon: Ambition,
     name: 'Ambition',
     alias: 'Ambition',
+    label: 'Low',
+    color: '#aaaaaa',
     meanNormScore: 0.75,
     strategy: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -121,6 +127,8 @@ const MockData = [
     icon: Agility,
     name: 'Agility',
     alias: 'Agility',
+    label: 'High',
+    color: '#666666',
     meanNormScore: 95,
     strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -196,6 +204,8 @@ class FactorsTable extends Component {
         let conditionText = null
         let conditionStrengths = null
         let conditionBlindspots = null
+        let conditionLabel = null
+        let conditionColor = null
         const normedOrRawMeanScore = factor.meanNormScore || factor.meanRawScore
         if (ResultStore.realResults) {
           for (let i = 0; i < conditions.length; i += 1) {
@@ -205,22 +215,31 @@ class FactorsTable extends Component {
               _.indexOf(module.textConditions, conditions[i]), 'strengths')
             conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'blindspots')
+            conditionLabel = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
+              _.indexOf(module.textConditions, conditions[i]), 'label')
+            conditionColor = _.invoke(conditions[i], 'getColorByCondition', normedOrRawMeanScore)
             if (conditionText) { break }
           }
         } else {
           conditionText = factor.description
           conditionStrengths = factor.strengths
           conditionBlindspots = factor.blindspots
+          conditionLabel = factor.label
+          conditionColor = factor.color
         }
 
-        const score = _.round(normedOrRawMeanScore, 1)
-        const percent = factor.strategy === 3 ? score : (score * 100) / 5 // 5-scale
+        conditionColor = conditionColor ?? '#666666'
 
         const {
           tableStyle, minPosition, maxPosition, reverseOrder, source: { factors },
-          showDescription, showIcons, showStrengthsBlindspots, showScore,
+          showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
+          scoreProgressColor, scoreBackgroundColor, maxScoreValue,
         } = model.props
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
+
+        const score = _.round(normedOrRawMeanScore, 1)
+        const maxValue = maxScoreValue ?? (factor.strategy === 3 ? 100 : 5)
+        const percent = score * 100 / maxValue
 
         return (
           <tr key={i}>
@@ -231,42 +250,57 @@ class FactorsTable extends Component {
                 </span>
               </td>
             )}
-            <td className={styles.description}>
-              {showIcons && (
-                <div className={styles.icons}>
-                  <img src={factor.icon} />
-                </div>
-              )}
-              <div className={styles.content}>
-                <div className={styles.strength}>{I18nStore.tFactor(factor, 'alias')}</div>
-                {showDescription && (
-                  <ReactMarkdown className={cs(styles.text, 'mt4')}>
-                    {conditionText}
-                  </ReactMarkdown>
-                )}
-                {showStrengthsBlindspots && (
-                  <div className={cs(styles.strengthsBlindspots, 'mt8')}>
-                    <ReactMarkdown className={styles.strengths}>
-                      {conditionStrengths}
-                    </ReactMarkdown>
-                    <ReactMarkdown className={styles.blindspots}>
-                      {conditionBlindspots}
-                    </ReactMarkdown>
+            {(showIcons || showName || showDescription) && (
+              <td className={styles.description}>
+                {showIcons && (
+                  <div className={styles.icons}>
+                    <img src={factor.icon} />
                   </div>
                 )}
-              </div>
-            </td>
-            {showScore && (
-              <td className={styles.score}>
-                {tableStyle !== 'compact'
-                  ? (
-                    <PieGraph
-                      strokeWidth="10"
-                      text={score}
-                      percent={Math.min(percent, 100)}
-                    />
-                  )
-                  : score}
+                {(showName || showDescription || showStrengthsBlindspots) && (
+                  <div className={styles.content}>
+                    {showName && (
+                      <div className={styles.strength}>
+                        {I18nStore.tFactor(factor, 'alias')}
+                      </div>
+                    )}
+                    {showDescription && (
+                      <ReactMarkdown className={cs(styles.text, 'mt4')}>
+                        {conditionText}
+                      </ReactMarkdown>
+                    )}
+                    {showStrengthsBlindspots && (
+                      <div className={cs(styles.strengthsBlindspots, 'mt8')}>
+                        <ReactMarkdown className={styles.strengths}>
+                          {conditionStrengths}
+                        </ReactMarkdown>
+                        <ReactMarkdown className={styles.blindspots}>
+                          {conditionBlindspots}
+                        </ReactMarkdown>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </td>
+            )}
+            {(showScore || showLabel) && (
+              <td className={showScore ? styles.score : null}>
+                {showScore && (
+                  tableStyle !== 'compact'
+                    ? (
+                      <PieGraph
+                        strokeWidth="10"
+                        text={score}
+                        percent={Math.min(percent, 100)}
+                        progressColor={scoreProgressColor}
+                        backgroundColor={scoreBackgroundColor}
+                      />
+                    )
+                    : score
+                )}
+                {!showScore && showLabel && (
+                  <div className={styles.label} style={{ backgroundColor: conditionColor }}>{conditionLabel}</div>
+                )}
               </td>
             )}
           </tr>
@@ -294,6 +328,7 @@ class FactorsTable extends Component {
 
   render () {
     const { module, model } = this.props
+    const { showBorder } = model.props
     const { fontSize, fontFamily } = module.props.style
     const style = {
       fontSize,
@@ -301,7 +336,7 @@ class FactorsTable extends Component {
     }
     this.prepareRows()
     return (
-      <table className={cs(styles.table, styles[model.props.tableStyle || 'default'])} style={style}>
+      <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
         {this.renderHeader(model.props.showHeader)}
         <tbody>
           {this.renderFactors()}

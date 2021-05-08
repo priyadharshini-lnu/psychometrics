@@ -1,0 +1,4 @@
+row
+  columns
+    - if @resource&.project&.logo&.url
+      = image_tag(@resource&.project&.logo&.small&.url, class: 'project-email-logo float-left')

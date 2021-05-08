@@ -1,12 +1,15 @@
-- download_url = download_administration_threesixty_campaign_subject_reports_path(@user_report.threesixty_campaign, @user_report.threesixty_subject, format: :pdf, lang: lang_param, export: true)
+
+- uses_lambda = Settings.features.url_to_pdf_lambda
+- download_url = download_administration_threesixty_campaign_subject_reports_path(@user_report.threesixty_campaign,
+    @user_report.threesixty_subject, format: Settings.features.url_to_pdf_lambda ? nil : :pdf, lang: lang_param, export: true)
 .row
   .col-md-12
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
         = render partial: 'application/lang', locals: { with_confirm: false, locales: @available_translations }
-        = link_to(download_url, class: 'mrl pull-right', data: { behavior: 'export-pdf' })
-          button class="btn btn-default ladda-button" type="button" data-style="zoom-out" data-spinner-color="#000000"
+        = link_to(download_url, class: 'mrl pull-right', data: { behavior: uses_lambda ? nil : 'export-pdf' }, target: uses_lambda ? '_blank' : nil)
+          button class="btn btn-default #{uses_lambda ? nil : 'ladda-button'}" type="button" data-style="zoom-out" data-spinner-color="#000000"
             span.fa.fa-file-pdf-o
             = t('threesixty.export_pdf')
 

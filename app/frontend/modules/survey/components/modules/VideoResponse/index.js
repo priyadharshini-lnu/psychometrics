@@ -1,6 +1,3 @@
-import VideoResponsePreview from './components/Preview'
-import VideoResponse from './components/VideoResponse'
-import VideoResponseProperties from './components/Properties'
-
-export { VideoResponsePreview, VideoResponseProperties }
-export default VideoResponse
+export { VideoResponse } from './VideoResponse'
+export { Preview as VideoResponsePreview } from './Preview'
+export { Properties as VideoResponseProperties } from './Properties'

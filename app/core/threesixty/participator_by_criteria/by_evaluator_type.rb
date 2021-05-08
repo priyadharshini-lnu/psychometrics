@@ -19,7 +19,7 @@ module Threesixty
       end
 
       def subject_ids
-        @subject_ids = threesixty_campaign.subjects.pluck(:user_id).to_set
+        @subject_ids ||= threesixty_campaign.subjects.pluck(:user_id).to_set
       end
     end
   end

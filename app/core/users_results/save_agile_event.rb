@@ -38,12 +38,12 @@ module UsersResults
     end
 
     def complete_event
-      user_result.update!(
-        norm_attributes.merge(
-          status: :completed,
-          completed_at: Time.now
-        )
+      attributes = norm_attributes.merge(
+        status: :completed,
+        completed_at: Time.now
       )
+      user_result.is_a?(Assign) ? user_result.update!(attributes) : user_result.user_assessment.update!(attributes)
+
       ::UsersResults::SaveAgileScoringJob.set(wait: 10.seconds).perform_later(user_result, current_user)
     end
 

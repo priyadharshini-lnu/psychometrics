@@ -15,7 +15,8 @@ module Mindmill
       report = "data:application/pdf;base64,#{data[:report]}"
 
       user_result.mindmill_user_reports.map { |ur| ur.update(pdf: report, status: :prepared) }
-      user_result.update(external_results: normalised_scores, status: :completed, completed_at: Time.current)
+      user_result.update(external_results: normalised_scores)
+      user_result.user_assessment.update(status: :completed, completed_at: Time.current)
 
       mindmill_user_report_ids = user_result.mindmill_user_reports.pluck(:id)
       UsersResults::GenerateReports.call!(user_result, current_user, exceptUserReportIds: mindmill_user_report_ids)

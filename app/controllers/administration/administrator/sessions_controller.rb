@@ -17,7 +17,7 @@ module Administration
       def after_sign_in_path_for(resource)
         return assessors_dashboard_path if resource.is?(:assessor)
 
-        administration_root_path
+        stored_location_for(resource) || administration_root_path
       end
 
       def after_sign_out_path_for(_resource)

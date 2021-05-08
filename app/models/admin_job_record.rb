@@ -17,8 +17,37 @@ class AdminJobRecord < ApplicationRecord
     bulk_regenerate_reports: 6,
     bulk_regenerate_user_reports: 7,
     import_assessors: 8,
-    import_datasheet: 9
+    import_datasheet: 9,
+    copy_dimension: 10
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }
+
+  def progress
+    return 100 if completed?
+
+    completed_tasks / total_tasks.to_f * 100
+  end
+
+  def increment_completed_tasks!
+    return if completed_tasks == total_tasks
+
+    with_lock do
+      self.completed_tasks = completed_tasks + 1
+      self.status = :completed if completed_tasks == total_tasks
+      save!
+    end
+    broadcast(:update)
+  end
+
+  def complete!
+    return if completed?
+
+    update!(status: :completed, completed_tasks: total_tasks)
+    broadcast(:update)
+  end
+
+  def broadcast(action)
+    AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new(self))
+  end
 end

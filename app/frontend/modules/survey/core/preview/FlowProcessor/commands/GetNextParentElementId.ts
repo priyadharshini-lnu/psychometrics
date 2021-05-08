@@ -1,6 +1,6 @@
 const GetNextParentElementId = {
   run (id: string): string | null {
-    const path: string[] = id.split('/')
+    const path: string[] = id?.split('/') ?? []
     path.pop()
     if (path.length) {
       path[path.length - 1] = (+path[path.length - 1] + 1).toString()

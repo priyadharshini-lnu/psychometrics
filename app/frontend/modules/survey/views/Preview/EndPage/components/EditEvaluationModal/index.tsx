@@ -36,7 +36,7 @@ const EditEvaluationModal: React.FC<Props> = ({
             </Button>
           </a>
           <a href={getEditPath()}>
-            <Button type="danger">
+            <Button danger>
               {I18n.t('campaign.edit_evaluation.edit')}
             </Button>
           </a>

@@ -32,7 +32,7 @@ describe UsersResults::SaveAgileEvent do
     user = create(:user)
     UsersResults::SaveAgileEvent.call!(users_result, form, user)
 
-    expect(users_result.completed?).to eq true
-    expect(users_result.completed_at).to be_present
+    expect(users_result.user_assessment.completed?).to eq true
+    expect(users_result.user_assessment.completed_at).to be_present
   end
 end

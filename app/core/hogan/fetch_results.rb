@@ -2,44 +2,51 @@
 
 module Hogan
   class FetchResults < BaseCommand
-    private_attr_reader :user_result, :report, :hogan_group_name, :hogan_assessment_id, :hogan_report_id,
-                        :hogan_norm_id, :hogan_participant_id, :user_assessment, :credentials
+    private_attr_reader :user_result, :hogan_group_name, :hogan_assessment_id,
+                        :hogan_participant_id, :user_assessment, :credentials
 
-    def initialize(user_assessment, report, credentials, project)
-      @user_assessment = user_assessment
-      @user_result = user_assessment.users_result
-      @report = report
+    def initialize(user_result, credentials, project)
+      @user_result = user_result
+      @user_assessment = user_result.user_assessment
 
       # Hogan settings
       @hogan_group_name = project.hogan_group_name
       @hogan_assessment_id = user_assessment.assessment.hogan_assessment_setting.hogan_assessment_id
-      @hogan_report_id = report.hogan_report_setting.hogan_report_id
-      @hogan_norm_id = report.hogan_report_setting.hogan_norm_id
       @hogan_participant_id = credentials.participant_id
       @credentials = credentials
     end
 
     def call
-      participant_report = get_participant_report
-
-      return broadcast(:not_completed) if participant_report.blank?
-
-      UserReport.
-        find_by(
-          campaign_id: user_assessment.campaign_id,
-          report_id: report.id,
-          user_id: user_result.evaluator_id
-        ).
-        update!(pdf: "data:application/pdf;base64,#{participant_report}", status: :prepared)
       participant_score = get_participant_score
-      user_result.update(external_results: participant_score) if participant_score.present?
+
+      return broadcast(:not_completed) unless participant_score.present?
+
+      user_result.update(external_results: participant_score)
+      generate_internal_reports
+
+      user_result.hogan_user_reports.each do |user_report|
+        participant_report = get_participant_report(user_report)
+
+        return broadcast(:not_completed) if participant_report.blank?
+
+        user_report.update!(pdf: "data:application/pdf;base64,#{participant_report}", status: :prepared)
+      end
 
       broadcast(:ok)
     end
 
     private
 
-    def get_participant_report
+    def generate_internal_reports
+      UsersResults::GenerateReports.call(
+        user_result,
+        user_result.user,
+        exceptUserReportIds: user_result.hogan_user_reports.pluck(:id)
+      )
+    end
+
+    def get_participant_report(user_report)
+      hogan_report_id = user_report.report.hogan_report_setting.hogan_report_id
       Services::Hogan::API::JSON::ParticipantReport.call!(
         group: hogan_group_name,
         assessment_id: hogan_assessment_id,
@@ -57,6 +64,13 @@ module Hogan
         norm_id: hogan_norm_id,
         provider: credentials.provider
       )
+    end
+
+    def hogan_norm_id
+      norm_from_report = user_result.hogan_user_reports.first&.report&.hogan_report_setting&.hogan_norm_id
+      return norm_from_report if norm_from_report
+
+      user_assessment.assessment.hogan_assessment_setting.norm_id
     end
   end
 end

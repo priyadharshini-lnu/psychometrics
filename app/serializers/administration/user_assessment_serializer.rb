@@ -2,7 +2,7 @@
 
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
+    attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external
 
     delegate :name, :category, to: :assessment
@@ -37,7 +37,23 @@ module Administration
       assessment.external?
     end
 
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::UserAssessmentPolicy,
+        current_user,
+        object,
+        [
+          'update_additional_time',
+          %w[reset_results reset]
+        ]
+      )
+    end
+
     private
+
+    def current_user
+      instance_options[:current_user]
+    end
 
     def norm
       user_result&.norm

@@ -1,7 +1,7 @@
 @import './variables.scss';
 
 :global {
-  // Heights 
+  // Heights
   .h {
     &-100 {
       height: 100%;
@@ -114,5 +114,30 @@
     .pb#{$scale} {
       padding-block-end: $value;
     }
+  }
+
+  // Display as Flexbox
+  .flex {
+    display: flex;
+  }
+
+  // Flex Justify Content
+  .justify-start {
+    justify-content: flex-start;
+  }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-around {
+    justify-content: space-around;
+  }
+  .justify-evenly {
+    justify-content: space-evenly;
   }
 }

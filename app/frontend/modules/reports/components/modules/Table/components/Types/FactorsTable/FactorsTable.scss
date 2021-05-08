@@ -3,11 +3,13 @@
   color: #333333;
   position: relative;
   border-spacing: 0;
-  border-radius: 12px;
   background: #FFFFFF 0% 0% no-repeat padding-box;;
-  border: 0.5px solid #0202020D;
-  box-shadow: 0px 0px 8px #0202020D;
   font-size: 1em;
+  &.bordered {
+    border-radius: 12px;
+    border: 0.5px solid #0202020D;
+    box-shadow: 0px 0px 8px #0202020D;
+  }
 
   tbody {
     tr {
@@ -34,6 +36,7 @@
 
   td {
     padding: 1em;
+    padding-bottom: 0;
     text-align: start;
     vertical-align: top;
     white-space: normal;
@@ -45,19 +48,29 @@
     &.rankOrder {
       width: 2em;
     }
-
+    .nameAndLabel {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
     .strength {
       color: #333333;
       font-weight: bold;
       align-self: center;
     }
-
+    .label {
+      color: white;
+      font-size: 0.9em;
+      padding: 0.3em 0.6em;
+      border-radius: 4px;
+      text-align: center;
+    }
     &.description {
       color: #7B7B7B;
-      display: grid;
-      gap: 2em;
-      grid-template-areas: "icon content";
-      grid-auto-columns: minmax(min-content, max-content);
+      display: flex;
+      ul, ol {
+        padding-inline-start: 1.4em;
+      }
 
       .strengthsBlindspots {
         display: flex;
@@ -68,39 +81,31 @@
         }
         ul {
           margin: 0 auto;
-          padding: 0;
-          list-style-type: none;
 
           li {
             position: relative;
-            display: inline-block;
             vertical-align: top;
-            padding: 0 0 0.35em 1.2em;
-
-            &:before {
-              content: '';
-              top: 0.3em;
-              left: 0;
-              padding: 0;
-              margin: 0;
-              position: absolute;
-              width: .75em;
-              height: .75em;
-              display: block;
-              background-color: #fff;
-              border-radius: 50%;
-              border: .24em solid #bdbdbd;
-            }
+            padding-bottom: 0.35em;
           }
         }
 
-        .blindspots {
+        .strengths, .blindspots {
           color: #7B7B7B;
           font-style: italic;
+          flex: 1;
+        }
+        .strengths {
+          margin-inline-end: 0.6em;
+        }
+        .blindspots {
+          margin-inline-start: 0.6em;
         }
       }
-
+      .content {
+        flex: 1;
+      }
       .icons {
+        margin-inline-end: 1em;
         img {
           width: 2.5em;
           object-fit: contain;
@@ -173,20 +178,6 @@ body[data-locale="ar"] {
 
     th {
       text-align: right;
-    }
-
-    td {
-      &.strengthsBlindspots {
-        ul {
-          li {
-            padding: 0 1.5em 1.25em 0;
-
-            &:before {
-              right: 0;
-            }
-          }
-        }
-      }
     }
   }
 }

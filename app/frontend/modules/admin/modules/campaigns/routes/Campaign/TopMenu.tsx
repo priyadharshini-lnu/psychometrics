@@ -1,6 +1,5 @@
-import React, { Attributes } from 'react'
-import _ from 'lodash'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import React, { useMemo } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   UserOutlined,
@@ -9,21 +8,47 @@ import {
   QrcodeOutlined,
   DatabaseOutlined,
 } from '@ant-design/icons'
+
 import routeUtils from 'utils/route'
 
 const { I18n } = window
-interface Props extends Attributes {
+
+interface Props {
   prefix?: string
 }
-const ROUTES = ['/participants', '/assessments_reports', '/registration_codes', '/datasheet', '/options']
 
-const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
-  const onClick = ({ key }) => routeUtils.moveTo(history, prefix, key)
+const ROUTES = [
+  '/participants',
+  '/assessments_reports',
+  '/registration_codes',
+  '/datasheet',
+  '/options',
+]
 
-  const active = _.find(ROUTES, key => location.pathname.includes(key)) as string
+const TopMenu: React.FC<Props> = ({ prefix }) => {
+  const { pathname } = useLocation()
+
+  const history = useHistory()
+
+  const onClick = ({ key }) => {
+    const basePath = routeUtils.getBasePath(prefix)
+    history.push(`${basePath}${key}`)
+  }
+
+  const selectedActiveKeys = useMemo(() => {
+    const selectedMenu = ROUTES.find(route => pathname.includes(route))
+    const selectedMenuInArray = selectedMenu ? [selectedMenu] : []
+
+    return selectedMenuInArray
+  }, [pathname])
 
   return (
-    <Menu className="mbm" onSelect={onClick} selectedKeys={[active]} mode="horizontal">
+    <Menu
+      onSelect={onClick}
+      selectedKeys={selectedActiveKeys}
+      mode="horizontal"
+      data-testid="top-level-navigation"
+    >
       <Menu.Item key="/participants">
         <UserOutlined />
         Participants
@@ -48,4 +73,4 @@ const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
   )
 }
 
-export default withRouter(MyMenu)
+export default TopMenu

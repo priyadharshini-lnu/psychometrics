@@ -16,11 +16,11 @@ module Threesixty
         format.html { render 'end_user/users/dashboard' }
         format.json do
           @users_result = @participant.users_result || @participant.create_users_result(
-            status: :in_progress,
             last_activity_at: DateTime.current,
             expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
             answers: {}
           )
+          @participant.update(status: :in_progress)
           set_locale_for_users_result(@users_result)
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
@@ -37,6 +37,7 @@ module Threesixty
                  participant: @participant, campaign: @campaign,
                  current_user: current_user, locale: @selected_locale,
                  piped_text_context: get_piped_text_context,
+                 read_only:  params[:is_read] == 'true',
                  include: '**'
         end
       end
@@ -71,7 +72,7 @@ module Threesixty
     private
 
     def set_read_results
-      @users_result.status = :in_progress
+      @participant.status = :in_progress
       @users_result.current_element = nil
       @users_result.current_page = 0
     end

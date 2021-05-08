@@ -10,9 +10,12 @@ module UserReports
     end
 
     def call
-      serialized_result = user_report.user_results.completed.map do |user_result|
-        ::UsersResultSerializer.new(user_result, campaign: campaign).to_h
-      end.group_by { |result| result[:assessment_id] }
+      serialized_result = user_report.
+                          user_results.
+                          joins(:user_assessment).
+                          merge(UserAssessment.completed).map do |user_result|
+                            ::UsersResultSerializer.new(user_result, campaign: campaign).to_h
+                          end.group_by { |result| result[:assessment_id] }
 
       broadcast :ok, serialized_result
     end

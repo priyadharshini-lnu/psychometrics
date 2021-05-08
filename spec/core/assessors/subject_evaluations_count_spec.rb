@@ -21,9 +21,9 @@ RSpec.describe Assessors::SubjectEvaluationsCount do
     result = described_class.call!([subject1.id, subject2.id], assessor, campaign.id)
     expected_result = {}
     expected_result[subject1.id] = { completed: 2, in_progress: 1, not_started: 1,
-                                     interrupted: 0, timed_out: 0, total: 4 }
+                                     interrupted: 0, timed_out: 0, ineligible: 0, total: 4 }
     expected_result[subject2.id] = { completed: 1, in_progress: 0, not_started: 1,
-                                     interrupted: 0, timed_out: 0, total: 2 }
+                                     interrupted: 0, timed_out: 0, ineligible: 0, total: 2 }
 
     expect(result).to eq(expected_result)
   end
@@ -32,6 +32,6 @@ RSpec.describe Assessors::SubjectEvaluationsCount do
 
   def create_user_assessment(opts)
     create(:user_assessment, evaluator: assessor, subject: opts[:subject], campaign: campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: opts[:status]))
+      relationship: assessor_relationship, status: opts[:status])
   end
 end

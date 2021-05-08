@@ -7,7 +7,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :selected_locale, :current_element, :current_page, :seedrandom,
              :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at,
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
-             :remaining_assessment_time, :reset_count
+             :remaining_assessment_time, :reset_count, :hash_id
 
   attribute :relationship
 
@@ -20,6 +20,10 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
   delegate :campaign_options, to: :campaign
   has_many :factors, serializer: ::UsersResults::FactorSerializer
+
+  def hash_id
+    object.encoded_id
+  end
 
   def remaining_campaign_time
     return unless campaign_user&.real_expiry_date
@@ -38,6 +42,8 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def status
+    return 'in_progress' if instance_options[:read_only]
+
     object.real_status
   end
 
@@ -46,6 +52,8 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def timed_out
+    return false if instance_options[:read_only]
+
     object.expired?
   end
 

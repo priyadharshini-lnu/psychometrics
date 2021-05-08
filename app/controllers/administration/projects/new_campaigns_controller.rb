@@ -25,10 +25,20 @@ module Administration
             )
             render json: {
               campaigns: serialized_campaigns,
-              total: campaigns.count
+              total: campaigns.count,
+              permissions: permissions
             }, each_serializer: Administration::Campaigns::CampaignSerializer
           end
         end
+      end
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::CampaignPolicy,
+          current_user,
+          nil,
+          %w[create]
+        )
       end
 
       def destroy

@@ -3,8 +3,6 @@
 class AdminJob < ApplicationJob
   queue_as :low_priority
 
-  around_perform :around_perform
-
   rescue_from Exception do |error|
     errors = arguments.first.error_messages + [error.message]
     arguments.first.update!(error_messages: errors, status: :completed, progress: 100)
@@ -22,37 +20,28 @@ class AdminJob < ApplicationJob
     bulk_download_reports: AdminJobs::BulkDownloadReports,
     bulk_regenerate_reports: AdminJobs::BulkRegenerateReports,
     bulk_regenerate_user_reports: AdminJobs::BulkRegenerateUserReports,
-    import_datasheet: AdminJobs::ImportDatasheet
+    import_datasheet: AdminJobs::ImportDatasheet,
+    copy_dimension: AdminJobs::CopyDimension
   }.freeze
 
   def perform(record)
-    response = JOBS[record.operation.to_sym].call!(record)
-    record.update(response) if response
+    record.update!(status: :in_progress)
+    JOBS[record.operation.to_sym].call(record) do
+      on(:ok) do |response|
+        record.complete!
+        record.update(response) if response
+      end
+      on(:waiting) do |response|
+        record.update(response) if response
+      end
+    end
   end
 
   class << self
-    def update_progress(record, progress)
-      record.update!(progress: progress)
-      broadcast(:update, record)
-    end
-
-    def broadcast(action, record)
-      AdminJobChannel.broadcast_to(record.owner, action: action, job: AdminJobRecordSerializer.new(record))
-    end
-
     def call(operation, data, owner, file = nil)
       record = AdminJobRecord.create!(operation: operation, data: data, file: file, owner: owner)
-      AdminJob.broadcast(:create, record)
+      record.broadcast(:create)
       perform_later(record)
     end
-  end
-
-  private
-
-  def around_perform
-    arguments.first.update!(status: :in_progress)
-    yield
-    arguments.first.update!(status: :completed, progress: 100)
-    AdminJob.broadcast(:update, arguments.first)
   end
 end

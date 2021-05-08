@@ -1,0 +1,11 @@
+spacer[size="16"]
+wrapper.secondary
+  center
+    row
+      columns.powered-by-tte[valign="middle"]
+        center
+          = image_tag('tte-logo-no-text.svg')
+        spacer[size="16"]
+
+        p.text-center
+          |  Powered by The Talent Enterprises.

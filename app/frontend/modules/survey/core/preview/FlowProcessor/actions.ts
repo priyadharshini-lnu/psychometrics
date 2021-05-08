@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-
 import * as t from 'io-ts'
+
+import ApiAction from 'interfaces/ApiAction'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
@@ -22,12 +24,14 @@ import {
   REMOVE_MEDIA_RESPONSE,
   MARK_MEDIA_RESPONSE_AS_SELECTED,
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION,
+  AWS_SPEECH_TO_TEXT_URL,
   FETCH_QUESTION_SCORING,
+  ACTIVE_DICTATION_ON_QUESTION,
 } from './consts'
 import {
-  Highlight, QuestionError, MediaResponse,
+  Highlight, QuestionError, MediaResponse, EndOfAssessmentElementProps,
 } from './interfaces'
-import { getCurrentBlock, getProgress } from './selectors'
+import { getCurrentBlock, getProgress, getStatus } from './selectors'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
@@ -70,7 +74,8 @@ export const addQuestionError = (questionId: number, errors: QuestionError[]) =>
 
 export const removeQuestionError = (questionId: number) => ({ type: REMOVE_QUESTION_ERROR, questionId })
 
-export const showEnd = () => ({ type: SHOW_END })
+export const showEnd = (endOfAssessmentElementProps?: EndOfAssessmentElementProps) => (
+  { type: SHOW_END, payload: endOfAssessmentElementProps })
 export const hideEnd = () => ({ type: HIDE_END })
 
 export const changeElement = (id: string, page?: number) => ({ type: CHANGE_ELEMENT, id, page })
@@ -102,16 +107,14 @@ export const markAssessmentTimedOut = (questionId: number) => ({ type: MARK_ASSE
 
 export const saveResults = (preview, questionIds, currentBlockId?) => {
   const answerKey = !preview.resultsUrl || preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers'
-
-  const isComplete = !preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')
-
+  const status = getStatus(preview)
   const data = {
     resource: {
       [answerKey]: preview.results,
       embedded_data: preview.embeddedData,
-      status: isComplete ? 'completed' : 'in_progress',
+      status,
       prev_pages: preview.prevPages,
-      progress: getProgress(preview),
+      progress: ['completed', 'ineligible'].includes(status) ? 100 : getProgress(preview),
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,
@@ -178,7 +181,7 @@ export const updateHighlight = (highlight: Highlight, data: object, opts: Opts =
 
 
 const Score = t.type({
-  score: t.number,
+  score: t.union([t.number, t.null]),
 })
 
 const FetchQuestionScoringResponseTR = t.record(t.string, Score)
@@ -209,3 +212,24 @@ export const markMediaResponseAsSelected = (mediaResponse: MediaResponse) => ({
   type: MARK_MEDIA_RESPONSE_AS_SELECTED,
   payload: { mediaResponse },
 })
+
+export const AwsSpeechTextPresignedUrlTR = t.type({ url: t.string })
+export type AwsSpeechTextPresignedUrl = t.TypeOf<typeof AwsSpeechTextPresignedUrlTR>
+
+export const fetchAwsSpeechTextPresignedUrl = (): ApiAction<AwsSpeechTextPresignedUrl> => ({
+  type: AWS_SPEECH_TO_TEXT_URL,
+  request:
+    {
+      method: 'get',
+      url: '/transcribe/pre_sign_url',
+    },
+})
+
+export type AwsSpeechTextPresignedUrlAction = ApiActionResponse<AwsSpeechTextPresignedUrl>
+
+export const setDictationActiveOnQuestion = (questionId: number) => ({
+  type: ACTIVE_DICTATION_ON_QUESTION,
+  payload: { questionId },
+})
+
+export type SetDictationActiveOnQuestion = ReturnType<typeof setDictationActiveOnQuestion>

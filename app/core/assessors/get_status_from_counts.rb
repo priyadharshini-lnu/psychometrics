@@ -9,7 +9,8 @@ module Assessors
     end
 
     def call
-      return broadcast :ok, :completed if evaluations[:total] == evaluations[:completed]
+      completed = evaluations.values_at(:completed, :ineligible).compact.sum
+      return broadcast :ok, :completed if evaluations[:total] == completed
 
       is_in_progress = %i[in_progress interrupted completed timed_out].any? { |status| evaluations[status]&.positive? }
       return broadcast :ok, :in_progress if is_in_progress

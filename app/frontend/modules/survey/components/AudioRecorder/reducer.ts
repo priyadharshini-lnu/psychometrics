@@ -1,5 +1,5 @@
 import { createReducer } from 'utils/redux'
-import { RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE } from './constants'
+import { RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE } from 'modules/survey/constants/media'
 
 export interface State {
   file: Blob | null

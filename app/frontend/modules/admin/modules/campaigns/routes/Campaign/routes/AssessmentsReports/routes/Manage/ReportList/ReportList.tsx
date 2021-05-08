@@ -129,7 +129,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           rel="noopener noreferrer"
           href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
         >
-         Export Data
+          Export Data
         </a>
       </div>
     </Menu.Item>

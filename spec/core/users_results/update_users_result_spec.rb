@@ -5,7 +5,8 @@ require 'rails_helper'
 describe ::UsersResults::UpdateUsersResult do
   let(:threesixty_campaign) { double('threesixty_campaign', id: 1) }
   let(:users_result) do
-    double('users_result', subject: 'subject', evaluator: 'evaluator', threesixty_campaign: threesixty_campaign)
+    double('users_result', subject: 'subject', evaluator: 'evaluator', threesixty_campaign: threesixty_campaign,
+      user_assessment: UserAssessment.new)
   end
   let(:evaluator_user) { double('user', id: 1) }
 
@@ -32,7 +33,10 @@ describe ::UsersResults::UpdateUsersResult do
     form = double('form', 'invalid?': false)
     threesixty_subject = double
     allow_any_instance_of(described_class).to receive(:update_users_result)
-    allow(users_result).to receive(:'completed?').and_return(true)
+    allow(users_result).to receive(:user_assessment).and_return(
+      UserAssessment.new
+    )
+    allow(users_result).to receive(:completed?).and_return(true)
     allow(users_result).to receive(:campaign).and_return(threesixty_campaign)
     allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
 
@@ -55,13 +59,15 @@ describe ::UsersResults::UpdateUsersResult do
     let(:report)          { threesixty_campaign.report }
     let(:subject_membership) { create(:membership, client: project) }
     let(:subject_user) { subject_membership.user }
-    let(:evaluator_membership) { create(:membership, client: project) }
-    let(:evaluator_user)  { evaluator_membership.user }
-    let!(:users_result)   do
+    let(:evaluator_membership) { create(:membership, client: project, user: create(:user, project: project)) }
+    let(:evaluator_user) { evaluator_membership.user }
+    let(:user_assessment) { create(:user_assessment, campaign: campaign, evaluator: evaluator_user) }
+    let!(:users_result) do
       create(:users_result, assessment: assessment,
                                                   campaign: campaign,
                                                   subject: subject_user,
                                                   evaluator: evaluator_user,
+                                                  user_assessment: user_assessment,
                                                   answers: {},
                                                   step: 3)
     end
@@ -86,14 +92,14 @@ describe ::UsersResults::UpdateUsersResult do
 
       context 'users_result is completed' do
         before do
-          allow(users_result).to receive(:'completed?').and_return(true)
+          allow(users_result.user_assessment).to receive(:'completed?').and_return(true)
         end
 
         it { expect(::UsersResults::RemoveDirtyResults).to receive(:call!).with(subject.answers).and_return({}) }
         it { expect(::UsersResults::ExpandAnswersByRecoding).to receive(:call!).with(subject) }
         it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject) }
         it { expect(::Assigns::CalculateOccupations).to receive(:call!).with(subject) }
-        it { is_expected.to receive(:'completed_at=').with(Time.now) }
+        it { expect(users_result.user_assessment).to receive(:'completed_at=').with(Time.now) }
       end
     end
   end

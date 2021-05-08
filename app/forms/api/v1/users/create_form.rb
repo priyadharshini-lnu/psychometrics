@@ -5,12 +5,13 @@ module Api
     module Users
       class CreateForm < Rectify::Form
         attribute %i[first_name last_name email], String
-        attribute :campaign_ids, Array
+        attribute :campaigns, Array
 
         validates :email, presence: true
         validates :email, format: { with: Devise.email_regexp }
         validate :uniq_email, if: -> { email.present? }
         validate :verify_campaign_ids
+        validate :validate_campaigns
 
         def uniq_email
           user = ::Users::Regular.find_by(email: email, project_id: context.project.id)
@@ -23,20 +24,33 @@ module Api
         end
 
         def verify_campaign_ids
-          return errors.add(:campaign_ids, 'Campaign ids should be filled') if campaign_ids.empty?
-
-          existing_campaign_ids = Client.campaigns_and_sub_campaigns_of(context.project.id).ids
+          return if campaign_ids.empty?
           return if existing_campaign_ids & campaign_ids == campaign_ids
 
           errors.add(:campaign_ids, 'Not all campaign ids are existing')
         end
 
-        def user_attributes
-          attributes.except(:campaign_ids)
+        def validate_campaigns
+          return errors.add(:campaigns, 'Should be at least one campaign') unless campaigns.present?
+
+          campaigns.each.with_index do |campaign, index|
+            form = Api::V1::Campaigns::ValidateForm.new(campaign)
+            errors.add(:campaigns, "[Campaign #{index + 1}] #{form.errors.full_messages}") if form.invalid?
+          end
         end
 
-        def membership_attributes
-          {}
+        def active
+          true
+        end
+
+        def campaign_ids
+          campaigns.map { |c| c[:id] }
+        end
+
+        private
+
+        def existing_campaign_ids
+          @existing_campaign_ids ||= context.project.project_campaign_ids
         end
       end
     end

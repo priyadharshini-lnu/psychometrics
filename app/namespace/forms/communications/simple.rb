@@ -72,6 +72,8 @@ module Forms
 
       validates_with ::Validators::Forms::Communications::SelectedMembers, if: proc { recipients == 'selected' }
 
+      validate :body_content
+
       def owner
         Client.find_by(id: owner_id)
       end
@@ -122,6 +124,12 @@ module Forms
       end
 
       private
+
+      def body_content
+        Mustache.render(body)
+      rescue Mustache::Parser::SyntaxError
+        errors.add(:body, I18n.t('enums.communication.body.error'))
+      end
 
       def reminder?
         kind == 'reminder'

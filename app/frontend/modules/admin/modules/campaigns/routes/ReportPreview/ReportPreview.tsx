@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, message,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import Report from 'modules/reports/report'
@@ -24,6 +24,7 @@ type Props = PropsFromRedux & RouteComponentProps<Params>
 export default function ReportPreview ({
   userReport,
   match: { params: { campaignId, id } }, fetchReport, download, downloadInProgress,
+  features, asyncDownload,
 }: Props) {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
@@ -54,6 +55,15 @@ export default function ReportPreview ({
         selectedLocale={defaultLanguage}
       />
     )
+  }
+
+  const onReportDownloadClick = () => {
+    if (features.url_to_pdf_lambda) {
+      asyncDownload(parsedCampaignId, parsedId)
+      message.success(I18n.t('user_reports.messages.async_generation'))
+    } else {
+      download(parsedCampaignId, parsedId)
+    }
   }
 
   return (
@@ -104,9 +114,10 @@ export default function ReportPreview ({
           )}
           extra={[
             <Button
-              onClick={() => download(parsedCampaignId, parsedId)}
+              onClick={onReportDownloadClick}
               loading={downloadInProgress}
               disabled={downloadInProgress}
+              key="download"
             >
               {I18n.t('common.text.download')}
             </Button>,

@@ -17,18 +17,18 @@ describe GetProjectBySubdomain do
 
   it 'replaces Settings.subdomain from subdomain before finding project' do
     allow(Settings).to receive(:subdomain).and_return('develop')
-    project = create(:project, subdomain: 'tte')
+    project = create(:project, subdomain: 'abc')
 
-    result = described_class.call!('tte.develop')
+    result = described_class.call!('abc.develop')
 
     expect(result).to eq(project)
   end
 
   it 'finds correct project when Settings.subdomain is nil' do
     allow(Settings).to receive(:subdomain).and_return(nil)
-    project = create(:project, subdomain: 'tte')
+    project = create(:project, subdomain: 'abc')
 
-    result = described_class.call!('tte')
+    result = described_class.call!('abc')
 
     expect(result).to eq(project)
   end

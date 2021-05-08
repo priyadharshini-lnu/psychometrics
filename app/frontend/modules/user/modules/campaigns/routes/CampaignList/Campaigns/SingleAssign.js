@@ -50,18 +50,22 @@ const DownloadLink = ({ report, text }) => {
   )
 }
 
-const ReportsMenu = reports => (
-  <Menu>
-    {reports.map(report => (
-      <Menu.Item key={report.id}>
-        <DownloadLink
-          report={report}
-          text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name}
-        />
-      </Menu.Item>
-    ))}
-  </Menu>
-)
+const ReportsMenu = (reports) => {
+  const reportMenuItems = reports?.length ? reports : []
+
+  return (
+    <Menu>
+      {reportMenuItems.map(report => (
+        <Menu.Item key={report.id}>
+          <DownloadLink
+            report={report}
+            text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name}
+          />
+        </Menu.Item>
+      ))}
+    </Menu>
+  )
+}
 
 const renderButtonContent = ({
   mindmill, mindmillUrl, url, status, assignedReports, needConfirm,

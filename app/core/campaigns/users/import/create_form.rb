@@ -26,6 +26,10 @@ module Campaigns
           end
         end
 
+        def active
+          true
+        end
+
         private
 
         def campaign

@@ -87,9 +87,9 @@ FactoryBot.define do
 
     factory :project_base, traits: [:with_reports] do
       association :parent, factory: :tenancy
-      sequence(:name) { |i| "Project #{i}" }
-      sequence(:subdomain) { |i| "test-#{i}" }
-      sequence(:number) { |i| "Number #{i}" }
+      sequence(:name) { |i| "Project #{i}s#{rand(1..100)}" }
+      sequence(:subdomain) { |i| "test#{i}s#{rand(1..100)}" }
+      sequence(:number) { |i| "Number #{i}s#{rand(1..100)}" }
     end
 
     factory :project, parent: :project_base, traits: %i[project_level _end_level]

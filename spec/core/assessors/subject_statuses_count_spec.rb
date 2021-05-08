@@ -21,7 +21,9 @@ RSpec.describe Assessors::SubjectStatusesCount do
 
     result = described_class.call!(assessor, [campaign.id])
 
-    expect(result[campaign.id]).to eq({ total: 3, in_progress: 1, completed: 1, not_started: 1, timed_out: 0 })
+    expect(result[campaign.id]).to eq(
+      total: 3, in_progress: 1, completed: 1, not_started: 1, timed_out: 0, ineligible: 0
+    )
   end
 
   it 'returns subject status count for passed campaign_id' do
@@ -30,18 +32,24 @@ RSpec.describe Assessors::SubjectStatusesCount do
     create_user_assessment(subject: subject1, status: :in_progress, campaign: campaign2)
 
     result = described_class.call!(assessor, [campaign.id])
-    expect(result[campaign.id]).to eq({ total: 1, in_progress: 0, completed: 1, not_started: 0, timed_out: 0 })
+    expect(result[campaign.id]).to eq(
+      total: 1, in_progress: 0, completed: 1, not_started: 0, timed_out: 0, ineligible: 0
+    )
     expect(result[campaign2.id]).to eq(nil)
 
     result = described_class.call!(assessor, [campaign.id, campaign2.id])
-    expect(result[campaign.id]).to eq({ total: 1, in_progress: 0, completed: 1, not_started: 0, timed_out: 0 })
-    expect(result[campaign2.id]).to eq({ total: 1, in_progress: 1, completed: 0, not_started: 0, timed_out: 0 })
+    expect(result[campaign.id]).to eq(
+      total: 1, in_progress: 0, completed: 1, not_started: 0, timed_out: 0, ineligible: 0
+    )
+    expect(result[campaign2.id]).to eq(
+      total: 1, in_progress: 1, completed: 0, not_started: 0, timed_out: 0, ineligible: 0
+    )
   end
 
   private
 
   def create_user_assessment(opts)
     create(:user_assessment, evaluator: assessor, subject: opts[:subject], campaign: opts[:campaign] || campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: opts[:status]))
+      relationship: assessor_relationship, status: opts[:status])
   end
 end

@@ -1,3 +1,4 @@
+import { useWindowSize } from 'hooks/useWindowSize'
 import { useMedia as baseUseMedia } from 'react-use-media'
 
 export const useMedia = (type: 'md' | 'sm' | 'max-sm' | 'max-md') => {
@@ -6,3 +7,10 @@ export const useMedia = (type: 'md' | 'sm' | 'max-sm' | 'max-md') => {
   if (type === 'sm') return baseUseMedia({ minWidth: 768 })
   if (type === 'md') return baseUseMedia({ minWidth: 992 })
 }
+
+export const useWindowInnerSize = (element: HTMLElement) => useWindowSize((width, height) => {
+  const vw = width * 0.01
+  const vh = height * 0.01
+  element.style.setProperty('--vh', `${vh}px`)
+  element.style.setProperty('--vw', `${vw}px`)
+})

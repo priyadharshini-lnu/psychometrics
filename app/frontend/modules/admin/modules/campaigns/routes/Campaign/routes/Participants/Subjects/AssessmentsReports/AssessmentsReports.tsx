@@ -195,7 +195,7 @@ const AssessmentsReports: React.FC<Props> = ({
                   <span className="prs">{user.additionalTime}</span>
 
                   <Button
-                    type="danger"
+                    danger
                     size="small"
                     onClick={() => openModal('UpdateCampaignTimeModal', {
                       campaignId: parsedCampaignId,
@@ -213,6 +213,11 @@ const AssessmentsReports: React.FC<Props> = ({
                 <Descriptions.Item label={I18n.t('campaign_users.details.completed_at')}>
                   {user.completedAt || I18n.t('campaign_users.details.not_completed_yet')}
                 </Descriptions.Item>
+                {user.hoganId && (
+                <Descriptions.Item label={I18n.t('campaign_users.details.hogan_id')}>
+                  {user.hoganId}
+                </Descriptions.Item>
+                )}
               </>
             )}
           </Descriptions>

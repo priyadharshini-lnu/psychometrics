@@ -8,10 +8,14 @@ import {
   List,
   Button,
   Select,
+  InputNumber,
 } from 'antd'
+import { connect } from 'react-redux'
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 
+import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
 import I18nStore from 'modules/reports/store/I18nStore'
+import { RootState } from 'modules/reports/core/rootReducers'
 
 import styles from './styles.scss'
 
@@ -24,9 +28,10 @@ interface DataPoint {
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   model?: any
+  factors: object[]
 }
 
-const Properties: FC<Props> = ({ model }) => {
+const Properties: FC<Props> = ({ model, factors }) => {
   const [meanValues, setMeanValues] = useState({
     x: {
       title: model?.props?.xMeanTitle ?? '',
@@ -58,7 +63,7 @@ const Properties: FC<Props> = ({ model }) => {
     ...dataPoints.slice(0, index),
     {
       ...dataPoints[index],
-      [field]: value || 0,
+      [field]: value,
     },
     ...dataPoints.slice(index + 1),
   ]
@@ -82,11 +87,71 @@ const Properties: FC<Props> = ({ model }) => {
     updateChartProps('seriesValueIds', filteredDataPoints)
   }
 
-  const propertiesOptions = model.getSourceModel()
-
   return (
-    <Collapse defaultActiveKey={[]}>
-      <Collapse.Panel header="Mean factors" key="1">
+    <Collapse defaultActiveKey={[]} className={styles.properties} key={model.id}>
+      <Collapse.Panel header="Chart" key="1">
+        <Row justify="space-between">
+          <Col className="mb-4">
+            <Typography.Text strong>Size</Typography.Text>
+          </Col>
+          <Col className="mb-4">
+            <InputNumber
+              onBlur={({ currentTarget: { value } }) => updateChartProps('bubbleSize', parseFloat(value))}
+              defaultValue={model.props.bubbleSize}
+              size="small"
+            />
+          </Col>
+        </Row>
+        <Row justify="space-between">
+          <Col className="mb-4">
+            <Typography.Text strong>Min X</Typography.Text>
+          </Col>
+          <Col className="mb-4">
+            <InputNumber
+              onBlur={({ currentTarget: { value } }) => updateChartProps('xMin', parseFloat(value))}
+              defaultValue={model.props.xMin}
+              size="small"
+            />
+          </Col>
+        </Row>
+        <Row justify="space-between">
+          <Col className="mb-4">
+            <Typography.Text strong>Max X</Typography.Text>
+          </Col>
+          <Col className="mb-4">
+            <InputNumber
+              onBlur={({ currentTarget: { value } }) => updateChartProps('xMax', parseFloat(value))}
+              defaultValue={model.props.xMax}
+              size="small"
+            />
+          </Col>
+        </Row>
+        <Row justify="space-between">
+          <Col className="mb-4">
+            <Typography.Text strong>Min Y</Typography.Text>
+          </Col>
+          <Col className="mb-4">
+            <InputNumber
+              onBlur={({ currentTarget: { value } }) => updateChartProps('yMin', parseFloat(value))}
+              defaultValue={model.props.yMin}
+              size="small"
+            />
+          </Col>
+        </Row>
+        <Row justify="space-between">
+          <Col className="mb-4">
+            <Typography.Text strong>Max Y</Typography.Text>
+          </Col>
+          <Col className="mb-4">
+            <InputNumber
+              onBlur={({ currentTarget: { value } }) => updateChartProps('yMax', parseFloat(value))}
+              defaultValue={model.props.yMax}
+              size="small"
+            />
+          </Col>
+        </Row>
+      </Collapse.Panel>
+      <Collapse.Panel header="Mean factors" key="2">
         <Row>
           <Typography.Text strong>X mean</Typography.Text>
           <Col className="mb-4">
@@ -100,11 +165,12 @@ const Properties: FC<Props> = ({ model }) => {
               }
               onBlur={() => updateChartProps('xMeanTitle', meanValues.x.title)}
               value={meanValues.x.title}
+              size="small"
             />
           </Col>
           <Col className="mb-8" flex="1 1 0">
             <FactorsSelect
-              propertiesOptions={propertiesOptions}
+              propertiesOptions={factors}
               placeholder="Select X value"
               onChange={(value) => {
                 setMeanValues({
@@ -130,11 +196,12 @@ const Properties: FC<Props> = ({ model }) => {
               }
               onBlur={() => updateChartProps('yMeanTitle', meanValues.y.title)}
               value={meanValues.y.title}
+              size="small"
             />
           </Col>
           <Col className="mb-8" flex="1 1 0">
             <FactorsSelect
-              propertiesOptions={propertiesOptions}
+              propertiesOptions={factors}
               placeholder="Select Y value"
               onChange={(value) => {
                 setMeanValues({
@@ -148,7 +215,7 @@ const Properties: FC<Props> = ({ model }) => {
           </Col>
         </Row>
       </Collapse.Panel>
-      <Collapse.Panel header="Data points" key="2">
+      <Collapse.Panel header="Data points" key="3">
         <List
           className={styles.list}
           itemLayout="vertical"
@@ -157,22 +224,23 @@ const Properties: FC<Props> = ({ model }) => {
           renderItem={(dataPoint, index) => (
             <List.Item key={index}>
               <Row align="middle" justify="space-between" className="mb-2">
-                <Col>
+                <Col flex="1 1 0">
                   <Input
                     placeholder="Label"
                     className="w-100"
-                    value={dataPoint.label}
+                    defaultValue={dataPoint.label}
                     onChange={({ currentTarget: { value } }) => setDataPoints(insertDataPointAt(index, 'label', value))
                     }
                     onBlur={() => updateChartProps('seriesValueIds', dataPoints)
                     }
+                    size="small"
                   />
                 </Col>
               </Row>
               <Row className="mb-2">
                 <Col flex="1 1 0">
                   <FactorsSelect
-                    propertiesOptions={propertiesOptions}
+                    propertiesOptions={factors}
                     placeholder="X value"
                     value={dataPoint.x}
                     onChange={(value) => {
@@ -190,7 +258,7 @@ const Properties: FC<Props> = ({ model }) => {
               <Row align="middle" justify="space-between" className="mb-2">
                 <Col flex="1 1 0">
                   <FactorsSelect
-                    propertiesOptions={propertiesOptions}
+                    propertiesOptions={factors}
                     placeholder="Y value"
                     value={dataPoint.y}
                     onChange={(value) => {
@@ -206,18 +274,21 @@ const Properties: FC<Props> = ({ model }) => {
                 </Col>
               </Row>
               <Row className="mb-2">
-                <Button
-                  className="w-100"
-                  onClick={() => handleRemoveDatapointRow(index)}
-                  type="danger"
-                >
-                  <DeleteOutlined />
-                </Button>
+                <Col flex="1 1 0">
+                  <Button
+                    className="w-100"
+                    onClick={() => handleRemoveDatapointRow(index)}
+                    danger
+                    size="small"
+                  >
+                    <DeleteOutlined />
+                  </Button>
+                </Col>
               </Row>
             </List.Item>
           )}
           footer={(
-            <Button className="w-100" onClick={handleAddDatapointRow}>
+            <Button className="w-100" onClick={handleAddDatapointRow} size="small">
               <PlusOutlined />
             </Button>
 )}
@@ -249,12 +320,13 @@ const FactorsSelect: FC<FactorsSelectProps> = ({
     onChange={onChange}
     placeholder={placeholder}
     value={value !== 0 ? value : undefined}
+    size="small"
   >
     {propertiesOptions?.map(assessmentFactor => (
       <Select.Option
         value={assessmentFactor.id}
         title={assessmentFactor.name}
-        key={propertiesOptions.id}
+        key={assessmentFactor.id}
       >
         {I18nStore.tFactor(assessmentFactor, 'alias')}
       </Select.Option>
@@ -262,4 +334,6 @@ const FactorsSelect: FC<FactorsSelectProps> = ({
   </Select>
 )
 
-export default Properties
+export default connect((state: RootState, props: Props) => ({
+  factors: getAssessmentFactors(state, props.model.assessment_id),
+}), {})(Properties)

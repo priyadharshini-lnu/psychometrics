@@ -18,7 +18,7 @@ describe Users::PasswordResetForm do
   end
 
   it 'validates existence of project user' do
-    subdomain = 'tte'
+    subdomain = 'abc'
     project = create(:project, subdomain: subdomain)
     user = create(:user, project: project)
     create(:membership, client_id: project.id, user_id: user.id)
@@ -39,7 +39,7 @@ describe Users::PasswordResetForm do
   end
 
   it "doesn't find admin user when subdomain is provided" do
-    subdomain = 'tte'
+    subdomain = 'abc'
     create(:project, subdomain: subdomain)
     user = create(:user, project: nil)
     form = described_class.new(email: user.email).with_context(subdomain: subdomain)
@@ -50,7 +50,7 @@ describe Users::PasswordResetForm do
   end
 
   it "doesn't find project user when no subdomain is provided" do
-    project = create(:project, subdomain: 'tte')
+    project = create(:project, subdomain: 'abc')
     user = create(:user, project: project)
     form = described_class.new(email: user.email).with_context(subdomain: nil)
 

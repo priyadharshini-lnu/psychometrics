@@ -2,10 +2,9 @@ import React, { useState, ReactElement } from 'react'
 import {
   Modal, Button, Spin, Form,
 } from 'antd'
-import { FormInstance } from 'antd/lib/form/util'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import _ from 'lodash'
-import { FormProps } from 'antd/lib/form'
+import { FormProps, FormInstance } from 'antd/lib/form'
 import { ModalProps } from 'antd/lib/modal'
 import { FieldData } from 'rc-field-form/lib/interface'
 import ResourceFrom from '../ResourceForm'
@@ -107,7 +106,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>
-          {'Cancel'}
+          Cancel
         </Button>,
         <Button
           key="submit"

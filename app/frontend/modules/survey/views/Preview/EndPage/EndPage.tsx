@@ -4,6 +4,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/survey/core/rootReducers'
 import { getI18n } from 'core/preview/FlowProcessor/selectors'
 
+import { EndOfAssessmentElementProps } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 import ScoringTable from './components/ScoringTable'
 
 import styles from './styles.scss'
@@ -16,16 +17,12 @@ const connector = connect(({ preview }: RootState) => ({
   scoring: preview.scoring,
   factors: preview.factors,
   showScoringOnEndPage: preview.showScoringOnEndPage,
+  endOfAssessmentElementProps: preview.endOfAssessmentElementProps as EndOfAssessmentElementProps | undefined,
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-interface OwnProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  flowElement: any
-}
-
-type Props = OwnProps & PropsFromRedux
+type Props = PropsFromRedux
 
 const EndPage: FC<Props> = ({
   isAnonymousAssessment,
@@ -35,15 +32,13 @@ const EndPage: FC<Props> = ({
   scoring,
   factors,
   showScoringOnEndPage,
-  flowElement,
+  endOfAssessmentElementProps,
 }) => {
   const { user_assessment_id } = dbResult
 
   let message = I18n.t('assessments.messages.finish')
-  if (flowElement && flowElement.type === 'EndOfAssessment') {
-    if (flowElement.props.messageType === 'Custom') {
-      message = flowElement?.props?.message
-    }
+  if (endOfAssessmentElementProps?.messageType === 'Custom' && endOfAssessmentElementProps?.message) {
+    message = endOfAssessmentElementProps?.message
   }
   const textDirection = message.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? 'ltr' : 'rtl'
 
@@ -52,6 +47,7 @@ const EndPage: FC<Props> = ({
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>
       <div className={styles.end} style={{ direction: textDirection }}>
         {message}
+        <UniqueID endOfAssessmentElementProps={endOfAssessmentElementProps} dbResult={dbResult} />
       </div>
       <ScoringTable
         showScoringOnEndPage={showScoringOnEndPage}
@@ -68,30 +64,26 @@ const EndPage: FC<Props> = ({
           </a>
         </div>
       )}
-      <UniqueID flowElement={flowElement} dbResult={dbResult} />
     </div>
   )
 }
 
 interface UniqueIDProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  flowElement: any
+  endOfAssessmentElementProps: EndOfAssessmentElementProps | undefined
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dbResult: any
 }
 
-const UniqueID: FC<UniqueIDProps> = ({ flowElement, dbResult }) => {
-  const hashID = dbResult?.hash_id ?? '<it is builder>'
+const UniqueID: FC<UniqueIDProps> = ({ endOfAssessmentElementProps, dbResult }) => {
+  const hashID = dbResult?.hash_id
 
-  if (flowElement && flowElement.type === 'EndOfAssessment') {
-    if (flowElement.props.showUniqueId) {
-      return (
-        <div className={styles.end}>
-          Your unique ID:
-          {hashID}
-        </div>
-      )
-    }
+  if (endOfAssessmentElementProps?.showUniqueId && hashID) {
+    return (
+      <div>
+        Your unique ID:
+        {hashID}
+      </div>
+    )
   }
   return null
 }

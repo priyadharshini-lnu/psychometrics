@@ -22,7 +22,7 @@ export const shuffle = (array: any[], rnd = Math.random): any[] => {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const joinJSXElements = (arr: any[], sep: string) => {
+const joinJSXElements = (arr: any[], sep: string | JSX.Element) => {
   if (arr.length === 0) {
     return []
   }

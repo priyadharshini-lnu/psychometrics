@@ -90,9 +90,13 @@ const apiMiddleware = () => next => (action) => {
       })
     })
     .catch((error) => {
-      const errors = humps.camelizeKeys(error.response.data.errors)
-      next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
-      throw errors
+      if (error.response) {
+        const errors = humps.camelizeKeys(error.response.data.errors)
+        next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
+        throw errors
+      } else {
+        throw error
+      }
     })
     .finally(() => {
       if (loader) {

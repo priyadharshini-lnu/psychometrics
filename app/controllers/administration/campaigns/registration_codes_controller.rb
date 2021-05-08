@@ -50,11 +50,12 @@ module Administration
 
       def download_qrcode
         encoded_url = resource.decorate.url
-        type = params[:type].downcase
-        file = QrCode::Create.call!(encoded_url, type)
         respond_to do |format|
-          format.svg { send_data file.read, filename: format(resource.campaign.name, type) }
-          format.png { send_data file.read, filename: format(resource.campaign.name, type) }
+          format.any(:svg, :png) do
+            type = request.format.to_sym.to_s
+            file = QrCode::Create.call!(encoded_url, type)
+            send_data file.read, filename: "qr_code_#{resource.campaign.name.parameterize.underscore}.#{type}"
+          end
         end
       end
 
@@ -62,11 +63,6 @@ module Administration
 
       def resource_class
         RegistrationCode
-      end
-
-      def format(name, type)
-        file_name = name.downcase.split(/\s|-|_/).reject(&:blank?).join('_')
-        "qr_code_#{file_name}.#{type}"
       end
     end
   end

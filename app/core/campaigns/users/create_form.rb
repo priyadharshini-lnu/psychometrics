@@ -28,6 +28,10 @@ module Campaigns
         errors.add(:email, :user_exists_in_campaign) if campaign.users.exists?(email: email)
       end
 
+      def active
+        true
+      end
+
       private
 
       def campaign

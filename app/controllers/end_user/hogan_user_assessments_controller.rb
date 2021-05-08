@@ -4,19 +4,11 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
   before_action :set_user_assessment, only: %i[pass redirect]
 
   def redirect
-    if params[:status] == 'Completed'
-      @user_assessment.users_result.update(status: :completed, completed_at: Time.current)
-    end
+    @user_assessment.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
     user_result = @user_assessment.users_result
 
     Hogan::FetchResultsJob.set(wait: 30.seconds).
       perform_later(user_result, current_user.hogan_credential, @user_assessment.campaign.project)
-
-    UsersResults::GenerateReports.call(
-      user_result,
-      current_user,
-      exceptUserReportIds: user_result.hogan_user_reports.pluck(:id)
-    )
 
     redirect_to(campaign_path(@user_assessment.campaign))
   end

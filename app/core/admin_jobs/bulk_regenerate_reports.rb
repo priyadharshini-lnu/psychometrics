@@ -6,6 +6,8 @@ module AdminJobs
       user_reports = campaign_reports.map(&:user_reports).flatten
 
       ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
+
+      broadcast :waiting
     end
 
     def generate_title_link

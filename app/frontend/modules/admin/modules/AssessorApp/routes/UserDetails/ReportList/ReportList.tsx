@@ -79,45 +79,19 @@ interface ActionMenuProps {
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, id, internal, reportUrl,
-}) => {
-  const viewReportMenu = () => {
-    if (!internal && !reportUrl) return null
-
-    if (!internal && reportUrl) {
-      return (
-        <Menu.Item key="downloadReport">
-          <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
-        </Menu.Item>
-      )
-    }
-
-    return (
-      <Menu.Item key="viewReport">
+}) => (
+  <Menu>
+    {internal && (
+      <Menu.Item key="viewReport" disabled={!reportUrl}>
         <Link to={`/assessors/campaigns/${campaignId}/user_reports/${id}/`}>
           {I18n.t('reports.actions.view')}
         </Link>
       </Menu.Item>
-    )
-  }
-
-  return (
-    <Menu>
-      {viewReportMenu()}
-      {internal && (
-        <Menu.Item key="downloadReport">
-          <a
-            href={internal
-              ? `/assessors/campaigns/${campaignId}/user_reports/${id}/download.pdf`
-              : reportUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {I18n.t('reports.actions.download')}
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
-  )
-}
+    )}
+    <Menu.Item key="downloadReport" disabled={!reportUrl}>
+      <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
+    </Menu.Item>
+  </Menu>
+)
 
 export default connecter(UserReports)

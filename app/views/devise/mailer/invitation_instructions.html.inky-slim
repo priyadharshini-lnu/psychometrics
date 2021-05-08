@@ -1,0 +1,20 @@
+- options = {id: @resource, invitation_token: @token, domain: Settings.domain, subdomain: @subdomain}
+/p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
+/p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
+
+p= "Dear #{@resource.decorate.display_name}, "
+p Greetings for the day!
+p The Talent Enterprise would like you to complete this psychometric assessment. Here is your personalised link to our Thriving Index questionnaire.
+p Request you to click on the link below to accept invitation and change your password on the platform. Remember to try and complete the test in one sitting as this assessment shouldn't take more than 20 mins of your time.
+spacer[size="16"]
+
+row
+  columns
+    .radius.small
+      button href= url_for([:accept, @resource.role_scope, :invitation, options]) target="_blank" 
+        = t("devise.mailer.invitation_instructions.accept")
+
+p Please do not pass or forward this link to anyone else.
+p We look forward to your response!
+
+p Thank you and all the best!
