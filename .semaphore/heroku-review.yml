@@ -41,10 +41,11 @@ blocks:
         - name: Deploy to review
           commands:
           - checkout --use-cache
-          - 'find ./app/frontend -type f -exec md5sum {} + > webpack-files.txt'
+          - 'find ./app/frontend ./config/webpack -type f -exec md5sum {} + > webpack-files.txt'
+          - 'md5sum *.js *.json yarn.lock .eslintrc >> webpack-files.txt'
           - cache restore bundle-prod-gems-$(checksum Gemfile.lock)
           - cache restore node-modules-prod-$(checksum yarn.lock)
-          - cache restore webpack-compile-prod-$(checksum yarn.lock)-$(checksum webpack-files.txt)
+          - cache restore webpack-compile-prod-$(checksum webpack-files.txt)
           - sem-version ruby 2.5.1
           - sem-version node 14.15.1
           - sem-service start postgres --username=postgres --password=postgres
@@ -58,7 +59,8 @@ blocks:
           - yarn install --pure-lockfile
           - cache store node-modules-prod-$(checksum yarn.lock) node_modules
           - 'bundle exec rake db:create'
-          - 'bundle exec rails assets:precompile'
+          - 'WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile'
+          - bundle exec rails webpacker:compile
           - ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
           - chmod 600 ~/.ssh/id_rsa_semaphore_heroku
           - ssh-add ~/.ssh/id_rsa_semaphore_heroku
