@@ -56,21 +56,37 @@ class HomeController < ApplicationController
 
     # Do not redirect back to return_url until all assessments are completed if sso url
     # was not a direct assessment link
-    if assessment_status.nil? && session[:sso].try(:[], 'user_assessment_id').nil?
+    if assessment_status.nil?
+      result = check_assessment_status
+      return redirect_to redirect_path if result[:redirect]
+
+      assessment_status = result[:assessment_status]
+    end
+
+    substitutions.store('ASSESSMENT_STATUS', assessment_status) if assessment_status
+    redirect_to return_url(substitutions, redirect_path)
+  end
+
+  def check_assessment_status
+    campaign_id = params.fetch(:campaign_id) { nil }
+    sso_user_assessment_id = session[:sso].try(:[], 'user_assessment_id')
+    if sso_user_assessment_id.nil?
       if campaign_id.present?
         cu = CampaignUser.find_by(campaign_id: campaign_id, user_id: @current_user.id)
-        return redirect_to(redirect_path) unless cu.completed?
+        return { redirect: true } unless cu.completed?
       end
 
       incomplete_campaign_count = CampaignUser.includes(:campaign).
                                   where(campaigns: { status: :active }).
                                   where(user_id: @current_user.id).
                                   where.not(completion_status: :completed).count
-      return redirect_to redirect_path unless incomplete_campaign_count.zero?
-    end
+      return { redirect: true } unless incomplete_campaign_count.zero?
 
-    substitutions.store('ASSESSMENT_STATUS', assessment_status) if assessment_status
-    redirect_to return_url(substitutions, redirect_path)
+      { assessment_status: 'assessment_completed' } if incomplete_campaign_count.zero?
+    else
+      user_assessment = UserAssessment.find_by(id: sso_user_assessment_id, evaluator_id: @current_user.id)
+      { assessment_status: "assessment_#{user_assessment.status}" }
+    end
   end
 
   def return_url(substitutions, default_url)
