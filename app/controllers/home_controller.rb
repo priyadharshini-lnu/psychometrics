@@ -66,7 +66,7 @@ class HomeController < ApplicationController
                                   where(campaigns: { status: :active }).
                                   where(user_id: @current_user.id).
                                   where.not(completion_status: :completed).count
-      return redirect_to redirect_path if incomplete_campaign_count.zero?
+      return redirect_to redirect_path unless incomplete_campaign_count.zero?
     end
 
     substitutions.store('ASSESSMENT_STATUS', assessment_status) if assessment_status
