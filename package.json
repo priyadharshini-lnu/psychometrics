@@ -49,7 +49,7 @@
     "@sentry/rrweb": "^0.3.1",
     "@svgr/webpack": "^5.5.0",
     "@thetalententerprise/interactive-assessments": "1.3.5",
-    "@types/actioncable": "^5.2.3",
+    "@types/actioncable": "^5.2.4",
     "@types/lodash": "^4.14.168",
     "@types/lodash.set": "^4.3.6",
     "@types/react-redux": "^7.1.16",
