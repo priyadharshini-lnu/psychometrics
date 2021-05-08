@@ -13,7 +13,8 @@ Rswag::Api.configure do |c|
   #
   c.swagger_filter = lambda do |swagger, _env|
     subdomain = Settings.subdomain && (Settings.subdomain + '.')
-    host = "#{subdomain}#{Settings.domain}#{Settings.port.to_s && ':' + Settings.port.to_s}"
+    port = Settings.port && (':' + Settings.port.to_s)
+    host = "#{subdomain}#{Settings.domain}#{port}"
     base_path = swagger['basePath']
     swagger['host'] = host
     swagger['info']['description'] = swagger['info']['description'] % { host: host, basePath: base_path }
