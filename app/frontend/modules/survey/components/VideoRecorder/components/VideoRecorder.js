@@ -229,7 +229,9 @@ class VideoRecorder extends Component {
   }
 
   initRecorder () {
-    const { maxDuration, model, markQuestionInProgress } = this.props
+    const {
+      maxDuration, model, markQuestionInProgress, disableRecording,
+    } = this.props
 
     this.setState({
       recordingState: 'initialized',
@@ -237,7 +239,7 @@ class VideoRecorder extends Component {
       hasMediaRecorder: !(typeof window.MediaRecorder === 'undefined'),
     }, () => {
       const options = {
-        controls: true,
+        controls: !disableRecording,
         fluid: true,
         controlBar: {
           fullscreenToggle: false,
