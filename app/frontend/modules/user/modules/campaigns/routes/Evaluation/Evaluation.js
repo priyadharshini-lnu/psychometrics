@@ -12,7 +12,7 @@ import './styles.scss'
 import { secondsLeftFromNow } from 'utils/time'
 import Language from '../../components/Language'
 import store from '../../../../store'
-import Timer from '../../components/Timer'
+import { Timer } from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout

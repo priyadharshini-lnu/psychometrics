@@ -2,7 +2,7 @@ import React from 'react'
 import {
   FileAddOutlined, HistoryOutlined, CheckCircleOutlined,
 } from '@ant-design/icons'
-import Timer from 'modules/user/modules/campaigns/components/Timer'
+import { Timer } from 'modules/user/modules/campaigns/components/Timer'
 import { secondsLeftFromNow } from 'utils/time'
 
 export default function Header ({

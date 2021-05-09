@@ -11,7 +11,7 @@ import { isRtl } from 'utils/locales'
 import { useMedia } from 'modules/user/rootHooks'
 import Language from '../../components/Language'
 import store from '../../../../store'
-import Timer from '../../components/Timer'
+import { Timer } from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout
