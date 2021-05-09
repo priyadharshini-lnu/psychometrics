@@ -140,7 +140,7 @@ class Client < ApplicationRecord
 
   before_validation :ensure_subdomain, if: :retail?
   before_create :set_hogan_group_name, if: :project?
-  before_create :set_migrated
+  before_create -> { self.migrated = true }, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -182,13 +182,6 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
-
-  def set_migrated
-    return unless project?
-
-    client_ids_to_exclude = ENV['CLIENT_IDS_TO_EXCLUDE_FOR_PROJECT_MIGRATION']&.split(',')&.map { |id| id.strip.to_i }
-    self.migrated = true if client_ids_to_exclude.nil? || client_ids_to_exclude.exclude?(project.client.id)
-  end
 
   def available_locales
     return locales if locales.any?

@@ -75,6 +75,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -8082,6 +8084,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210411073736'),
 ('20210419090439'),
 ('20210419092225'),
-('20210429142157');
+('20210429142157'),
+('20210509083519');
 
 
