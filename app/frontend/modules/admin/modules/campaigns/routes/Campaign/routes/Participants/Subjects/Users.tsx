@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag, message,
+  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag, message, Tooltip,
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
@@ -233,9 +233,17 @@ const UserList: React.FC<Props> = ({
                   )}
                   trigger={['click']}
                 >
-                  <a>
-                    <MoreOutlined />
-                  </a>
+                  <Tooltip title={I18n.t('administration.table.more_actions')}>
+                    <Button
+                      id={`menu-button_campaign-subjects-${user.email}`}
+                      type="link"
+                      aria-label={I18n.t('administration.table.more_actions')}
+                      aria-controls={`menu_campaign-subjects-${user.email}`}
+                      aria-haspopup
+                    >
+                      <MoreOutlined />
+                    </Button>
+                  </Tooltip>
                 </Dropdown>
               )}
             />
@@ -308,15 +316,12 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   return (
-    <Menu>
-      <Menu.Item key="edit">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={onEdit}
-        >
-          {I18n.t('frontend.edit')}
-        </div>
+    <Menu
+      id={`menu_campaign-subjects-${email}`}
+      aria-labelledby={`menu-button_campaign-subjects-${email}`}
+    >
+      <Menu.Item key="edit" onClick={onEdit}>
+        {I18n.t('frontend.edit')}
       </Menu.Item>
       <Menu.Item key="loginAs">
         <a
@@ -325,23 +330,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('frontend.login')}
         </a>
       </Menu.Item>
-      <Menu.Item key="changePassword">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => handleChangePassword()}
-        >
-          {I18n.t('frontend.change_password')}
-        </div>
+      <Menu.Item key="changePassword" onClick={handleChangePassword}>
+        {I18n.t('frontend.change_password')}
       </Menu.Item>
-      <Menu.Item key="delete">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => handleDelete()}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
+      <Menu.Item key="delete" onClick={handleDelete}>
+        {I18n.t('common.actions.remove')}
       </Menu.Item>
     </Menu>
   )
