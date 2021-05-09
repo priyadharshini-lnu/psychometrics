@@ -14,6 +14,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
     end
 
+    def copy?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+    end
+
     def destroy?
       edit?
     end

@@ -244,13 +244,16 @@ const DatasheetManagementComponent: FC<Props> = ({
           />
         </Col>
       </Row>
-      <DetailsDrawer
-        isOpen={activeDrawerIs === DrawerModes.Details}
-        toggleDrawer={toggleDrawer}
-        currentDatasheetId={currentDatasheetId}
-        parentResourceType={parentResourceType}
-        parentResourceId={parentResourceId}
-      />
+      {permissions.view && (
+        <DetailsDrawer
+          isOpen={activeDrawerIs === DrawerModes.Details}
+          toggleDrawer={toggleDrawer}
+          editPermission={permissions.edit}
+          currentDatasheetId={currentDatasheetId}
+          parentResourceType={parentResourceType}
+          parentResourceId={parentResourceId}
+        />
+      )}
       <AddEditDrawer
         isOpen={
           activeDrawerIs === DrawerModes.Edit

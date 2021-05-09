@@ -40,7 +40,7 @@ module Administration
     end
 
     def can_manage_project_admins?
-      @user.is?(:superadmin, :client_admin)
+      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_admins)
     end
 
     def admins?

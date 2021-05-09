@@ -57,5 +57,9 @@ module Administration::Threesixty
     def manage_reports_options?
       @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
     end
+
+    def manage_campaign_options?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
+    end
   end
 end

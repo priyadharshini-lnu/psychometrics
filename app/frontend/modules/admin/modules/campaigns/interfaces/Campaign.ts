@@ -12,6 +12,8 @@ export default interface Campaign {
   permissions: {
     edit: boolean
     delete: boolean
+    updateCampaignOptions: boolean
+    copy: boolean
   }
 }
 

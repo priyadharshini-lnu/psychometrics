@@ -312,9 +312,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
       ) : null }
-      <Menu.Item key="copy">
-        Copy
-      </Menu.Item>
+      { permissions.copy ? (
+        <Menu.Item key="copy">
+          Copy
+        </Menu.Item>
+      ) : null }
       { permissions.delete ? (
         <Menu.Item key="delete">
           <div

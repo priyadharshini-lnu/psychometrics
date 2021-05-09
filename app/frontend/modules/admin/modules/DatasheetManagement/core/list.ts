@@ -42,6 +42,8 @@ const FetchResponseTR = t.type({
     update: t.boolean,
     add: t.boolean,
     delete: t.boolean,
+    view: t.boolean,
+    edit: t.boolean,
   }),
   columns: t.array(ColumnTR),
   list: t.array(DataSheetTR),
@@ -76,6 +78,8 @@ export type FetchAction = ApiActionResponse<{
     update: boolean
     add: boolean
     delete: boolean
+    view: boolean
+    edit: boolean
   }
 }>
 

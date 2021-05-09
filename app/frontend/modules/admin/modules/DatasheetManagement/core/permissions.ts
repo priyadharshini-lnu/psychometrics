@@ -11,6 +11,8 @@ export type State = {
   update: boolean
   add: boolean
   delete: boolean
+  view: boolean
+  edit: boolean
 }
 
 const HANDLERS = {
@@ -23,6 +25,8 @@ const defaultState: State = {
   update: false,
   add: false,
   delete: false,
+  view: false,
+  edit: false,
 }
 
 export default createReducer(HANDLERS, defaultState)

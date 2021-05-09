@@ -11,11 +11,15 @@ module Administration
     end
 
     def copy?
-      record.active? && @user.is?(:superadmin)
+      if record.prime_project?
+        record.active? && (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage))
+      else
+        record.active? && @user.is?(:superadmin)
+      end
     end
 
     def destroy?
-      if record.project?
+      if record.prime_project?
         @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
       else
         @user.is?(:superadmin)
@@ -23,7 +27,7 @@ module Administration
     end
 
     def edit?
-      if record.project?
+      if record.prime_project?
         @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
       else
         @user.is?(:superadmin)
@@ -35,7 +39,7 @@ module Administration
     end
 
     def manage_project?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
+      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
     end
 
     def manage_campaign?
