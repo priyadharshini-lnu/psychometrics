@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import AssessmentContainer from 'modules/survey/containers/AssessmentContainer'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
+import AssessmentContainer from 'modules/survey/containers/AssessmentContainer'
 import initSentry from 'libs/initSentry'
 import rstore from '../../modules/survey/store'
 import 'modules/user/styles/ant.less'
@@ -35,7 +36,9 @@ const props = {
 
 ReactDOM.render(
   <Provider store={rstore}>
-    <AssessmentContainer {...props} />
+    <Router>
+      <AssessmentContainer {...props} />
+    </Router>
   </Provider>, root,
 )
 
