@@ -3113,6 +3113,7 @@ en:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      more_actions: More actions
     templates:
       blocks:
         copy:

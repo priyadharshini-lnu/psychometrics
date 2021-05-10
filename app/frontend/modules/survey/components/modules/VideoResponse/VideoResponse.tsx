@@ -41,6 +41,7 @@ export const VideoResponse: FC<Props> = ({
       <div className="mt-4">
         <VideoRecorder
           key={model.id}
+          disableRecording
           maxDuration={model.props.duration || 10}
           markQuestionInProgress={markQuestionInProgress}
           removeQuestionInProgress={removeQuestionInProgress}

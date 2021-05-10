@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Statistic, notification as antdNotification } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
-import styles from './Timer.scss'
 
-const { Countdown } = Statistic
+import styles from './styles.scss'
+
+const { I18n, setTimeout, clearTimeout } = window
 
 const NOTIFICATION_POINTS = [50, 75, 90]
 const TIMER_STATES = {
@@ -12,32 +13,40 @@ const TIMER_STATES = {
   90: 'danger',
 }
 
-const Timer = ({
+interface Props {
+  seconds: number | null
+  onFinish(): void
+  notification?: boolean
+  background?: string
+  theme?: string
+}
+
+export const Timer: FC<Props> = ({
   seconds,
   onFinish,
-  notification,
+  notification = false,
   background = 'green',
   theme = 'withBackground',
 }) => {
+  const [countDownValue, setCountDownValue] = useState<number| undefined>(undefined)
+
   useEffect(() => {
     if (!seconds) return
     setCountDownValue(Date.now() + (seconds * 1000))
 
-    // eslint-disable-next-line arrow-body-style
     const notifications = NOTIFICATION_POINTS.map((notificationPoint) => {
       const className = styles[`notification${notificationPoint}`]
       return notificationSetTimeout(notificationPoint, seconds, className)
     })
 
     return () => {
-      notifications.map(notification => clearTimeout(notification))
+      notifications.forEach(notification => clearTimeout(notification))
     }
   }, [seconds])
 
   const [timerState, setTimerState] = useState(background)
-  const [countDownValue, setCountDownValue] = useState(null)
 
-  const notificationSetTimeout = (notificationPoint, seconds, className) => {
+  const notificationSetTimeout = (notificationPoint: number, seconds: number, className: string) => {
     const remainingTimeInMilliseconds = seconds * 1000
     const notificationRemainingTime = seconds * 1000 * (100 - notificationPoint) / 100
 
@@ -58,21 +67,23 @@ const Timer = ({
         }
       }, remainingTimeInMilliseconds - notificationRemainingTime)
     }
+
+    return undefined
   }
 
-  const bgClass = seconds < 1 ? styles.danger : styles[timerState]
+  const bgClass = seconds && seconds < 1 ? styles.danger : styles[timerState]
   const timerStyle = theme === 'withBackground' ? styles.withBg : styles.plain
 
+  if (seconds === null) {
+    return null
+  }
+
   return (
-    seconds !== null ? (
-      <Countdown
-        value={countDownValue}
-        onFinish={onFinish}
-        prefix={theme === 'withBackground' && <ClockCircleOutlined className="mrs" />}
-        className={cs(styles.timer, timerStyle, bgClass)}
-      />
-    ) : null
+    <Statistic.Countdown
+      value={countDownValue}
+      onFinish={() => onFinish()}
+      prefix={theme === 'withBackground' && <ClockCircleOutlined className="me-2" />}
+      className={cs(styles.timer, timerStyle, bgClass)}
+    />
   )
 }
-
-export default Timer

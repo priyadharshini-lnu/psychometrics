@@ -11,7 +11,7 @@
   &.plain {
     background: none;
     * {
-      color: $dark-gray
+      color: $dark-gray;
     }
 
     &.green * {
@@ -38,24 +38,33 @@
 
     &.green {
       background-color: $main-color;
-      * { color: $white; }
+      * {
+        color: $white;
+      }
     }
 
     &.warning {
       background-color: $warning-color;
-      * { color: $white; }
+      * {
+        color: $white;
+      }
     }
 
     &.danger {
       background-color: $red;
-      * { color: $white }
+      * {
+        color: $white;
+      }
     }
   }
 }
 :global(.ant-notification-notice) {
-  &.notification75, &.notification90 {
+  &.notification75,
+  &.notification90 {
     :global {
-      .ant-notification-notice-message, .ant-notification-close-x, .anticon.ant-notification-notice-icon-warning {
+      .ant-notification-notice-message,
+      .ant-notification-close-x,
+      .anticon.ant-notification-notice-icon-warning {
         color: white;
         font-weight: bold;
       }
