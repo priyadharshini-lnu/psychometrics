@@ -4,7 +4,7 @@ import store from 'modules/admin/store'
 import {
   Col, Row, Tabs, Table,
 } from 'antd'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, useHistory } from 'react-router-dom'
 import _ from 'lodash'
 import { RootState } from 'modules/admin/core/rootReducers'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
@@ -20,6 +20,7 @@ const { I18n } = window
 const connector = connect((state: RootState) => ({
   evaluation: state.assessors.evaluation,
   currentAssessmentId: state.assessors.evaluation.currentAssessmentId,
+  currentAssessorFormId: state.assessors.evaluation.currentAssessorFormId,
 }), {
   fetchAll: fetchAssessorAssessments,
   changeForm: changeAssessorForm,
@@ -28,23 +29,39 @@ const connector = connect((state: RootState) => ({
 
 const Evaluation = ({
   fetchAll, changeForm, changeSubjectAssessment, evaluation: { userInfo, assessorAssessments, subjectAssessments },
-  currentAssessmentId,
+  currentAssessmentId, currentAssessorFormId,
 }) => {
   let parsedCampaignId; let
     parsedUserId
   const { campaignId, userId } = useParams<{ campaignId?: string, userId?: string }>()
   if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
   if (userId) { parsedUserId = parseInt(userId, 10) }
+  const location = useLocation()
+  const history = useHistory()
+  const params = new URLSearchParams(location.search)
 
   useEffect(() => {
     fetchAll(parsedCampaignId, parsedUserId)
   }, [])
 
+  useEffect(() => {
+    const tabId = params.get('tab')
+    if (tabId) {
+      changeForm(tabId)
+    }
+  }, [assessorAssessments])
+
   const changeAssessorForm = (id) => {
+    params.delete('read')
+    params.delete('edit')
     if (id === 'overview') {
+      params.delete('tab')
+      history.replace(`${location.pathname}?${params.toString()}`)
       changeForm(null)
       return
     }
+    params.set('tab', id)
+    history.replace(`${location.pathname}?${params.toString()}`)
     changeForm(id)
   }
 
@@ -73,7 +90,11 @@ const Evaluation = ({
       />
       <Row>
         <Col span={subjectAssessments.length ? 12 : 24}>
-          <Tabs defaultActiveKey="overview" onChange={changeAssessorForm}>
+          <Tabs
+            activeKey={currentAssessorFormId || 'overview'}
+            defaultActiveKey="overview"
+            onChange={changeAssessorForm}
+          >
             <TabPane tab="Overview" key="overview">
               <div>
                 {I18n.t('user.fields.first_name')}
