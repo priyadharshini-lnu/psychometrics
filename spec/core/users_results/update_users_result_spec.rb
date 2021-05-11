@@ -6,7 +6,7 @@ describe ::UsersResults::UpdateUsersResult do
   let(:threesixty_campaign) { double('threesixty_campaign', id: 1) }
   let(:users_result) do
     double('users_result', subject: 'subject', evaluator: 'evaluator', threesixty_campaign: threesixty_campaign,
-      user_assessment: UserAssessment.new)
+      user_assessment: UserAssessment.new(campaign: build(:campaign)))
   end
   let(:evaluator_user) { double('user', id: 1) }
 
@@ -34,7 +34,7 @@ describe ::UsersResults::UpdateUsersResult do
     threesixty_subject = double
     allow_any_instance_of(described_class).to receive(:update_users_result)
     allow(users_result).to receive(:user_assessment).and_return(
-      UserAssessment.new
+      UserAssessment.new(campaign: build(:campaign))
     )
     allow(users_result).to receive(:completed?).and_return(true)
     allow(users_result).to receive(:campaign).and_return(threesixty_campaign)

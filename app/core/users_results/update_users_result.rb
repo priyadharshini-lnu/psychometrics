@@ -2,7 +2,7 @@
 
 module UsersResults
   class UpdateUsersResult < BaseCommand
-    private_attr_reader :form, :users_result, :user_assessment, :subject_user, :current_user
+    private_attr_reader :form, :users_result, :user_assessment, :subject_user, :current_user, :project
 
     def initialize(form, users_result, current_user)
       @form = form
@@ -11,6 +11,7 @@ module UsersResults
       @subject_user = users_result.subject
       @evaluator_user = users_result.evaluator
       @current_user = current_user
+      @project = user_assessment.campaign.project
     end
 
     def call
@@ -65,7 +66,7 @@ module UsersResults
         evaluator: users_result.evaluator,
         subject: users_result.subject
       }
-      WebhookSubscriptions::Publish.call!(users_result.user_assessment.evaluator.project, :assessment_completed, data)
+      WebhookSubscriptions::Publish.call!(project, :assessment_completed, data)
     end
 
     def publish_results_to_webhook
@@ -80,7 +81,7 @@ module UsersResults
           report: user_report.report,
           results: Api::V1::ResultSerializer.new(built_results, user_report: user_report).to_h
         }
-        WebhookSubscriptions::Publish.call!(users_result.user_assessment.evaluator.project, :results_available, data)
+        WebhookSubscriptions::Publish.call!(project, :results_available, data)
       end
     end
 
