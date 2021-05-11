@@ -113,7 +113,13 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'active' => campaign_user.active,
       'additional_time' => campaign_user.additional_time,
       'completed_at' => nil,
-      'started_at' => nil
+      'started_at' => nil,
+      'permissions' => {
+        'add_report' => true,
+        'regenerate_report' => true,
+        'remove' => true,
+        'toggle_status' => true
+      }
     })
   end
 
@@ -126,7 +132,13 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'report_family_name' => report_family.name,
       'status' => 'not_prepared',
       'internal' => true,
-      'report_url' => nil
+      'report_url' => nil,
+      'permissions' => {
+        'download_report' => true,
+        'remove' => true,
+        'toggle_access' => true,
+        'view_report' => true
+      }
     })
   end
 
@@ -141,7 +153,10 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'norms' => [],
       'permissions' => {
         'reset_results' => policy.reset?,
-        'update_additional_time' => policy.update_additional_time?
+        'update_additional_time' => policy.update_additional_time?,
+        'update_norm' => policy.update_norm?,
+        'rescore_response' => policy.rescore_response?,
+        'remove' => policy.destroy?
       },
       'norm_id' => nil,
       'additional_time' => nil,

@@ -1,3 +1,5 @@
+- clients_view_id = dom_id(u, :clients_view)
+
 - assessments_view_id = dom_id(u, :assessments_view)
 - assessments_manage_id = dom_id(u, :assessments_manage)
 
@@ -32,6 +34,16 @@ table.table.grants-table
       th Entity
       th.actions Privileges
   tbody
+    - if policy(:membership).manage_grants_for_actions?('clients', ['view'], client: client)
+        tr
+          td Clients
+          td.text-nowrap
+            - if policy(:membership).manage_grants_for_action?('clients', 'view', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][clients][]',
+                        'view', resource.has_grant?(:clients, :view), id: clients_view_id
+                | View
+
     - if policy(:membership).manage_grants_for_actions?('projects', ['view', 'manage_users'], project: project)
       tr
         td Projects

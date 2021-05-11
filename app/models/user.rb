@@ -51,12 +51,15 @@ class User < ApplicationRecord
   include TwoFactorAuthenticatable
 
   DEFAULT_ADMIN_GRANTS = {
+    clients: %w[view],
+    projects: %w[view],
     assessments: %w[view],
     reports: %w[view],
     communications: %w[view manage]
   }.with_indifferent_access.freeze
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
+    clients: %w[view],
     assessments: %w[view],
     communications: %w[view manage],
     campaigns: %w[view manage manage_users manage_options show manage_messages],
@@ -70,7 +73,7 @@ class User < ApplicationRecord
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
-    clients: %w[view view_licenses],
+    clients: %w[view view_licenses manage],
     projects: %w[view manage manage_admins manage_users],
     norms: %w[view manage],
     dimensions: %w[view manage],

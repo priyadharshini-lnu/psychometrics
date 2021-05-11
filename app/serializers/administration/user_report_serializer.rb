@@ -31,6 +31,10 @@ module Administration
 
     private
 
+    def current_user
+      @instance_options[:current_user]
+    end
+
     def report
       object.report
     end

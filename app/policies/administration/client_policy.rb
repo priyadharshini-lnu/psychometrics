@@ -42,15 +42,19 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
     end
 
+    def new?
+      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+    end
+
     def manage_campaign?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
+      return true if @user.has_grant?(:campaigns, :manage)
 
       false
     end
 
     def create?
-      super || @user.has_grant?(:clients, :manage)
+      super || @user.has_grant?(:clients, :manage) || @user.has_grant?(:projects, :manage)
     end
 
     def projects?

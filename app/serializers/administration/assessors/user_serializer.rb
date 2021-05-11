@@ -35,6 +35,10 @@ module Administration
 
       private
 
+      def current_user
+        @instance_options[:current_user]
+      end
+
       def evaluation_count
         instance_options.dig(:evaluations_count, object.id) || { total: 0, completed: 0, in_progress: 0 }
       end

@@ -10,6 +10,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
     end
 
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+    end
+
     def index?
       @user.is?(:superadmin) || @user.has_grant?(:datasheets, :view)
     end

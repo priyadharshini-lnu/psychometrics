@@ -12,6 +12,7 @@ class Assessors::UsersController < Administration::BaseController
     paginated_users = users.page(params[:page])
     serialized_users = ActiveModelSerializers::SerializableResource.new(
       paginated_users, each_serializer: Administration::Assessors::UserSerializer,
+      current_user: current_user,
       evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
         paginated_users.pluck(:id), current_user, params[:campaign_id]
       )
@@ -33,7 +34,7 @@ class Assessors::UsersController < Administration::BaseController
       user_reports, each_serializer: Administration::Assessors::UserReportSerializer
     )
     render json: {
-      user: Administration::Assessors::UserSerializer.new(@user).to_h,
+      user: Administration::Assessors::UserSerializer.new(@user, current_user: current_user).to_h,
       user_assessments: serialized_user_assessments,
       user_reports: serialized_user_reports
     }

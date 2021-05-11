@@ -44,7 +44,7 @@ module Administration
         )
         reports = ActiveModelSerializers::SerializableResource.new(
           campaign_user.user_reports.where(campaign: campaign).includes(:report, :report_family),
-          each_serializer: Administration::UserReportSerializer
+          each_serializer: Administration::UserReportSerializer, current_user: current_user
         )
         { user_assessments: assessments, user_reports: reports }
       end

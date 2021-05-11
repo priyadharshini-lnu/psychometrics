@@ -28,7 +28,11 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'email' => assessors_user.email,
         'completion_status' => 'not_started',
         'completed_evaluations' => 0,
-        'total_evaluations' => 1
+        'total_evaluations' => 1,
+        'permissions' => {
+          'add_subject' => false,
+          'remove' => false
+        }
       }])
     end
   end
@@ -44,7 +48,11 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'email' => subject_user.email,
         'completed_evaluations' => 0,
         'total_evaluations' => 0,
-        'completion_status' => 'completed'
+        'completion_status' => 'completed',
+        'permissions' => {
+          'add_subject' => false,
+          'remove' => false
+        }
       })
     end
 
