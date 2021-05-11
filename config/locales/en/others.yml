@@ -1368,7 +1368,7 @@ en:
           error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
-    ar: العربية
+    ar: Arabic
     bg: Bulgarian
     bs: Bosnian
     ca: Catalan
