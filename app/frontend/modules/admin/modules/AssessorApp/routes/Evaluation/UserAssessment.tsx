@@ -83,6 +83,7 @@ const UserAssessment: React.FC<Props> = ({
             resultsUrl={`/user_assessments/${1}/users_results/${subjectForm.result.id}`}
             rstore={store}
             showAsSinglePage
+            dontSaveStore
           />
         )}
       </Content>
