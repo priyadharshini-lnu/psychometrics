@@ -13,6 +13,7 @@ module UsersResults
 
     def call
       user_assessment.update(norm_id: norm_id) if norm_id
+      return broadcast :ok, user_result unless user_assessment.completed?
 
       if user_result.assessment.agile?
         compute_agile_assessment_scoring
