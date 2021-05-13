@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Layout, Row, Col, ConfigProvider, PageHeader, Progress,
+  Layout, Row, Col, ConfigProvider, PageHeader, Progress, Space,
 } from 'antd'
+import { ProgressProps } from 'antd/lib/progress'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import './styles.scss'
 import Cookies from 'js-cookie'
@@ -9,7 +10,7 @@ import Language from 'modules/user/modules/campaigns/components/Language'
 import store from 'modules/user/store'
 import Timer from 'modules/user/modules/campaigns/components/Timer'
 import ResourcesTabs from 'modules/user/modules/campaigns/components/ResourcesTabs'
-import { secondsLeftFromNow } from 'utils/time'
+import { useMedia } from 'modules/user/rootHooks'
 import Confirm from './Confirm'
 import { PropsFromRedux } from './connect'
 
@@ -33,6 +34,7 @@ const Common: React.FC<Props> = ({
       translations,
       current_step: currentStep,
       current_element: currentElement,
+      remaining_assessment_time: remainingAssessmentTime,
     },
   },
   preview,
@@ -41,6 +43,9 @@ const Common: React.FC<Props> = ({
   markAssessmentTimedOut,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
+  const isMaxSm = useMedia('max-sm')
+  let progressBarProps: ProgressProps = { type: 'line', style: { width: '200px' } }
+  if (isMaxSm) { progressBarProps = { type: 'circle', width: 50 } }
 
   useEffect(() => {
     if (currentElement > 0 || currentStep > 0) {
@@ -63,17 +68,18 @@ const Common: React.FC<Props> = ({
           <PageHeader
             className="page-header"
             title={assessment.name}
-            extra={[
-              enableProgress
-                  && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer
-                key="2"
-                notification
-                theme="plain"
-                seconds={secondsLeftFromNow(preview.expiryDate)}
-                onFinish={() => markAssessmentTimedOut(preview)}
-              />,
-            ]}
+            extra={(
+              <Space size="large">
+                <Timer
+                  key="2"
+                  notification
+                  theme="plain"
+                  seconds={remainingAssessmentTime}
+                  onFinish={() => markAssessmentTimedOut(preview)}
+                />
+                {enableProgress && <Progress key="1" percent={progress} {...progressBarProps} />}
+              </Space>
+            )}
           />
         </Content>
       </div>
