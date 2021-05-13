@@ -1434,7 +1434,8 @@ CREATE TABLE public.factors (
     icon character varying,
     description text,
     scoring_strategy smallint DEFAULT 0 NOT NULL,
-    code character varying
+    code character varying,
+    use_percentage boolean DEFAULT false
 );
 
 
@@ -8085,6 +8086,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210419090439'),
 ('20210419092225'),
 ('20210429142157'),
-('20210509083519');
+('20210509083519'),
+('20210512100320');
 
 

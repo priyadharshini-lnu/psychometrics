@@ -9,7 +9,7 @@ class Slider extends BaseScoringModule {
   }
 
   changeValue (index, value) {
-    if (value && value >= 0) {
+    if (Utils.isNumeric(value)) {
       const object = _.find(this.scoring.props, { index })
       if (object) {
         object.value = value

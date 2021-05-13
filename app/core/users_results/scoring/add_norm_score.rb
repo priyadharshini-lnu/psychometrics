@@ -16,12 +16,15 @@ module UsersResults
         return broadcast :ok, scoring unless norm
 
         extended_scoring = scoring.reduce({}) do |extending_scoring, (factor_id, value)|
+          factor = factor_hash.dig(factor_id.to_i, :factor)
           norm_score =
             if norm.percentile?
               calc_percentile_norm_score(factor_id)
             else
               calc_standard_norm_score(factor_id, value)
             end
+          # Use percentage score as norm_score if there is no norm_score
+          norm_score ||= value['percentage'] if factor&.use_percentage?
           extending_scoring.merge(factor_id => value.merge('norm_score' => norm_score))
         end
 

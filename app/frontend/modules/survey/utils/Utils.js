@@ -47,4 +47,10 @@ export default {
     dirtyString = dirtyString.replace(/<\/?[^>]+(>|$)|\\n|&nbsp;/g, '')
     return _.trim(dirtyString)
   },
+
+  isNumeric (str) {
+    if (typeof str === 'number') return true
+    if (typeof str !== 'string') return false
+    return !isNaN(str) && !isNaN(parseFloat(str))
+  },
 }

@@ -9,7 +9,9 @@ module UsersResults
           sub_factor_ids = factor_data[:sub_factor_hash].keys
 
           sub_extended_scoring =
-            ::UsersResults::Scoring::AddScore.call!(factor_hash, sub_factor_ids, extended_scoring)
+            ::UsersResults::Scoring::AddScore.call!(
+              factor_hash, sub_factor_ids, extended_scoring, factors_question_count
+            )
 
           score =
             if sub_factor_ids.blank?

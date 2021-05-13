@@ -27,7 +27,7 @@ class SideBySide extends BaseScoringModule {
     if (object) {
       answerData = _.find(object.values, { index: answer })
     }
-    if (value && value >= 0) {
+    if (Utils.isNumeric(value)) {
       if (answerData) {
         answerData.value = value
       } else if (object) {
