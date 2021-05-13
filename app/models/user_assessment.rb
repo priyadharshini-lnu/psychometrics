@@ -83,5 +83,15 @@ class UserAssessment < ApplicationRecord
     CampaignUser.find_by(campaign_id: campaign_id, user_id: evaluator_id)
   end
 
+  def campaign_assessment
+    CampaignAssessment.find_by(campaign_id: campaign_id, assessment_id: assessment_id)
+  end
+
+  def applicable_norm_id
+    return norm_id if norm_id
+
+    campaign_assessment&.norm_id
+  end
+
   alias result users_result
 end
