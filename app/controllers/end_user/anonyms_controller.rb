@@ -109,5 +109,10 @@ module EndUser
     def set_locale
       I18n.locale = ui_locale
     end
+
+    def feature_flags
+      # Some values can be null
+      Settings.features.to_h.transform_values { |v| v == true }
+    end
   end
 end
