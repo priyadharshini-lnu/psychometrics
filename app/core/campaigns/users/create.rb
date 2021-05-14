@@ -33,7 +33,7 @@ module Campaigns
         if existing_user_in_project
           @user = existing_user_in_project
         else
-          user_attributes = form.attributes.except(:operation).merge(
+          user_attributes = form.to_h.except(:operation, :campaign_ids, :active).merge(
             project: project,
             create_by_invite: true,
             creator: current_user,
@@ -41,7 +41,7 @@ module Campaigns
           )
           @user = User.create!(user_attributes)
         end
-        @campaign_user = campaign.campaign_users.create(user: user)
+        @campaign_user = campaign.campaign_users.create(user: user, active: form.active)
       end
 
       def add_reports_and_assessments
@@ -52,6 +52,7 @@ module Campaigns
             report_family_id: campaign_report.report_family_id,
             user_access: campaign_report.user_access,
             operation: form.operation,
+            assessments: campaign_report.report.assessments,
             use_license: use_new_license?(campaign_report.report)
           )
         end

@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+class DeploymentMailer < ApplicationMailer
+  layout 'admin_email'
+
+  def send_deployment_tasks(emails, tasks)
+    @tasks = tasks
+    mail(
+      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
+      to: emails,
+      subject: 'Deployment tasks to complete',
+      template_path: '/mailer/deployment',
+      template_name: 'send_deployment_tasks'
+    )
+  end
+end

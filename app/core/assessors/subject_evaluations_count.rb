@@ -11,23 +11,24 @@ module Assessors
     end
 
     def call
-      result = UserAssessment.joins(:users_result).
-               where(user_assessments: {
-                 campaign_id: campaign_id, relationship: Relationship.assessor_relationship,
-                 subject_id: subject_user_ids, evaluator: assessor_user
-               }).
-               group(:subject_id).
-               select('user_assessments.subject_id, array_agg(status) as statuses').
-               each_with_object({}) do |ur, acc|
-        acc[ur.subject_id] ||= UsersResult.statuses_count
-        acc[ur.subject_id][:total] = ur.statuses.length
+      result =
+        UserAssessment.
+        where(
+          campaign_id: campaign_id, relationship: Relationship.assessor_relationship,
+          subject_id: subject_user_ids, evaluator: assessor_user
+        ).
+        group(:subject_id).
+        select('subject_id, array_agg(status) as statuses').
+        each_with_object({}) do |ua, acc|
+          acc[ua.subject_id] ||= UserAssessment.statuses_count
+          acc[ua.subject_id][:total] = ua.statuses.length
 
-        status_counts = ur.statuses.group_by { |s| s }.each_with_object({}) do |(k, v), hash|
-          status = UsersResult.statuses.key(k).to_sym
-          hash[status] = v.count
+          status_counts = ua.statuses.group_by { |s| s }.each_with_object({}) do |(k, v), hash|
+            status = UserAssessment.statuses.key(k).to_sym
+            hash[status] = v.count
+          end
+          acc[ua.subject_id] = acc[ua.subject_id].merge(status_counts)
         end
-        acc[ur.subject_id] = acc[ur.subject_id].merge(status_counts)
-      end
 
       broadcast :ok, result
     end

@@ -10,7 +10,7 @@ tr id=dom_id(resource)
     - else
       = resource.name
   td = resource.description
-  td = resource.decorate.client_name
+  td = resource.decorate.owner_link
   td.text-center = resource.decorate.created_at
   td.actions-cell
     - if resource.file?

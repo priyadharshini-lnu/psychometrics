@@ -26,7 +26,7 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 const { I18n } = window
 
-const operationsOptions = ['replace_existing', 'merge_with_existing']
+const OPERATIONS_OPTIONS = ['replace_existing', 'merge_with_existing']
 
 interface OwnProps {
   parentType: ParentResourceType
@@ -103,7 +103,7 @@ const ImportDatasheetModal: React.FC<Props> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ operation: operationsOptions[0] }}
+        initialValues={{ operation: OPERATIONS_OPTIONS[0] }}
         onFieldsChange={(a, allFields) => {
           setFields(allFields)
         }}
@@ -117,7 +117,7 @@ const ImportDatasheetModal: React.FC<Props> = ({
         </Form.Item>
         <Form.Item name="operation">
           <Radio.Group>
-            {operationsOptions.map(option => (
+            {OPERATIONS_OPTIONS.map(option => (
               <Radio className={styles.radioBtn} value={option} key={option}>
                 {I18n.t(`datasheet.import_modal.operations.${option}`)}
               </Radio>

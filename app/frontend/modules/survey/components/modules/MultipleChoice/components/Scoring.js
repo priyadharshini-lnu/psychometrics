@@ -25,7 +25,8 @@ export class Scoring extends Component {
 
   change = (index, e) => {
     const { scoring } = this.props
-    const value = Utils.parseFloat(e.currentTarget ? e.currentTarget.value : e)
+    const str = e.currentTarget ? e.currentTarget.value : e
+    const value = Utils.isNumeric(str) ? Utils.parseFloat(str) : ''
     scoring.changeValue(index, value)
     this.forceUpdate()
   }

@@ -3,11 +3,10 @@
 class UsersResult < ApplicationRecord
   include EncodableId
 
-  belongs_to :norm
   has_one :participant, class_name: 'Threesixty::Participant'
-  belongs_to :norm
   has_many :media_responses, dependent: :destroy
   has_one :user_assessment
+  has_one :norm, through: :user_assessment
   has_one :campaign, through: :user_assessment
   has_one :threesixty_campaign, through: :campaign
   has_one :subject, through: :user_assessment
@@ -16,9 +15,6 @@ class UsersResult < ApplicationRecord
   has_one :mindmill_credential, dependent: :destroy
   has_one :agile, through: :assessment
   has_many :agile_events, dependent: :destroy
-
-  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
-  enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
 
   scope :actual_by_options, lambda { |options|
     unless options.participants.dig('subject', 'can_evaluate_self')
@@ -29,38 +25,27 @@ class UsersResult < ApplicationRecord
   scope :mindmill, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:mindmill] }) }
   scope :agile, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:agile] }) }
 
-  after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
-
-  after_commit :set_campaign_user_completion_status, if: proc { status_previously_changed? }, on: %i[update]
-
-  delegate :subject_id, :evaluator_id, :assessment_id,
-           :campaign_id, to: :user_assessment, allow_nil: true
+  delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :norm_type, :status, :real_status,
+           :norm_data, :completed_at, :completion_reason, to: :user_assessment, allow_nil: true
+  delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
+           to: :user_assessment, allow_nil: true)
 
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
 
-  def real_status
-    return 'timed_out' if expired? && !completed? && !ineligible? && !interrupted?
-
-    status
-  end
-
   def expired?
     return false unless expiry_date
 
-    expiry_date < Time.current || campaign_time_over?(evaluator_id)
+    expiry_date < Time.current || campaign_time_over?
   end
 
-  def campaign_time_over?(user_id)
-    options = user_assessment.campaign.campaign_options
-    return false unless options&.fixed_time
+  def campaign_time_over?
+    campaign_user&.real_expiry_date && campaign_user.real_expiry_date < Time.current
+  end
 
-    campaign_user = user_assessment.campaign.campaign_users.find_by(user_id: user_id)
-    return false unless campaign_user.started_at
-    return false unless campaign_user.expiry_date
-
-    campaign_user.expiry_date < Time.current
+  def campaign_user
+    campaign.campaign_users.find_by(user_id: user_id)
   end
 
   def user
@@ -108,22 +93,5 @@ class UsersResult < ApplicationRecord
   # TODO: Remove all reference of answer_key after Assign model is removed
   def answer_key
     'answers'
-  end
-
-  def send_completion_email
-    ::Communications::CompletionTypeJob.perform_later(self)
-  end
-
-  def norm_data
-    { 'id' => norm_id }
-  end
-
-  def self.statuses_count
-    UsersResult.statuses.keys.each_with_object({}) { |status, acc| acc[status.to_sym] = 0 }
-  end
-
-  def set_campaign_user_completion_status
-    campaign_user = CampaignUser.find_by(user_id: subject_id, campaign_id: user_assessment&.campaign_id)
-    CampaignUsers::SetCompletionStatus.call!(campaign_user) if campaign_user
   end
 end

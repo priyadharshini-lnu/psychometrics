@@ -33,6 +33,15 @@ module Psychometrics
     # Setup Active Job to use Sidekiq
     config.active_job.queue_adapter = :sidekiq
 
+    config.action_mailer.asset_host = Settings.asset_host || URI::Generic.build(
+      host: Settings.domain, scheme: Settings.protocol || 'https',
+      port: Settings.port
+    ).to_s
+
+    config.to_prepare do
+      Devise::Mailer.layout 'end_user_email' # email.haml or email.erb
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

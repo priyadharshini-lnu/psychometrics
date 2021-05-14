@@ -24,7 +24,8 @@ module Threesixty::InitialState
       }.merge(campaign_intial_state),
       config: {
         isFrame: use_iframe?,
-        agileAssetsUrl: Settings.agile_config.asset_url
+        agileAssetsUrl: Settings.agile_config.asset_url,
+        features: feature_flags
       },
       currentUser: serialized_current_user,
       liveChat: {
@@ -33,8 +34,8 @@ module Threesixty::InitialState
         enabled: @current_project.enable_live_chat
       },
       examus: {
-        url: Settings.examus.url,
-        integrationName: Settings.examus.integration_name
+        url: Rails.application.secrets.examus[:url],
+        integrationName: Rails.application.secrets.examus[:integration_name]
       }
     }
   end

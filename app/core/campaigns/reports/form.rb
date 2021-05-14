@@ -10,6 +10,22 @@ module Campaigns
 
       validates :report_family_id, presence: true
       validates :operation, inclusion: { in: %w[skip_existing add_with_existing_response add_and_allow_new_response] }
+
+      def assessments
+        nil
+      end
+
+      def assessment_ids
+        []
+      end
+
+      def assessment_map
+        {}
+      end
+
+      def report_map
+        {}
+      end
     end
   end
 end

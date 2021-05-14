@@ -28,10 +28,8 @@ module Threesixty
             participants = threesixty_campaign.participants.actual_by_options(threesixty_campaign.option).
                            select(
                              'user_assessments.*',
-                             'users_results.status as result_status',
                              'users_results.id as result_id',
-                             'users_results.created_at as result_created_at',
-                             'users_results.completed_at as result_completed_at'
+                             'users_results.created_at as result_created_at'
                            ).
                            left_joins(:users_result).
                            includes(:subject, :evaluator, :relationship)
@@ -46,7 +44,7 @@ module Threesixty
                              participant.evaluator.email,
                              participant.relationship.name,
                              participant.result_created_at.try(:strftime, '%D %r'),
-                             participant.result_completed_at.try(:strftime, '%D %r'),
+                             participant.completed_at.try(:strftime, '%D %r'),
                              status]
             end
           end
@@ -56,13 +54,9 @@ module Threesixty
       # rubocop:enable Metrics/BlockLength
 
       def get_status(participant)
-        if participant.result_status.nil? || participant.result_status == UsersResult.statuses[:not_started]
-          return :not_started
-        end
+        return participant.status if %w[not_started in_progress].include?(participant.status)
 
-        return :in_progress if participant.result_status == UsersResult.statuses[:in_progress]
-
-        completed = participant.result_status == UsersResult.statuses[:completed]
+        completed = participant.status == 'completed'
 
         return :approved if completed && participant.manager_evaluation_approved?
         return :denied if completed && participant.manager_evaluation_denied?

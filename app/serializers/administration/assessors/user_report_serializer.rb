@@ -12,7 +12,7 @@ module Administration
       end
 
       def report_url
-        object.pdf.url
+        object.pdf.download_url
       end
 
       private

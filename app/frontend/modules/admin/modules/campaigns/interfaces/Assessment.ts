@@ -14,4 +14,12 @@ export default interface Assessment {
   isExternal: boolean
   universalLink: string | null
   norms?: Norm[]
+  permissions: {
+    exportRawResults: boolean
+    exportScoringResults: boolean
+    exportNormedResults: boolean
+    exportRawFactorScores: boolean
+    exportExternalResults: boolean
+    importResults: boolean
+  }
 }

@@ -18,7 +18,7 @@ module Comparator
                    lhs != rhs
                  when 'less_than'
                    lhs < rhs
-                 when 'more_than'
+                 when 'more_than', 'greater_than'
                    lhs > rhs
                end
 

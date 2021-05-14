@@ -13,6 +13,7 @@ terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
+    one_day_expiry_folder: tmp/1-day
 hashids_length:
   anonym: 8
   default: 6
@@ -20,6 +21,7 @@ features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>
   proctoring: <%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
+  url_to_pdf_lambda: <%= ENV.fetch('URL_TO_PDF_LAMBDA_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -27,10 +29,6 @@ agile_config:
 live_chat:
   base_url: <%= ENV.fetch('CHATWOOT_BASE_URL', 'https://chatwoot.tte-work.com') %>
   token: <%= ENV.fetch('CHATWOOT_TOKEN', 'zSvNq7inRf4HuQqFmV6GiuZg') %>
-examus:
-  url: <%= ENV.fetch('EXAMUS_URL', 'https://stage.examus.net') %>
-  integration_name: <%= ENV.fetch('EXAMUS_INTEGRATION_NAME', 'ttedev') %>
-  jwt_secret: <%= ENV['JWT_SECRET'] %>
 browser_requirements:
   default:
     supported:
@@ -112,6 +110,31 @@ currencies:
   - OMR
   - QAR
 default_currency: 'USD'
+reserved_subdomains:
+  - api
+  - assessment
+  - assessments
+  - report
+  - reports
+  - tte
+  - talent
+  - idp
+  - survey
+  - surveys
+  - user
+  - users
+  - campaign
+  - campaigns
+  - project
+  - projects
+  - admin
+  - administration
+  - task
+  - tasks
+  - activity
+  - activities
+  - event
+  - events
 mindmill_factors:
   nf: &nf
   - name: "NF Attempted"

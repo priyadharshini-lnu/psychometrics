@@ -25,7 +25,7 @@ const Breadcrumb: React.FC<Props> = ({
   }, [JSON.stringify(request)])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="breadcrumbs">
       <AntBreadcrumb>
         {crumbs.map((crumb, index) => (
           <AntBreadcrumb.Item key={index}>

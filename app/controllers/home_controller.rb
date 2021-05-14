@@ -9,20 +9,22 @@ class HomeController < ApplicationController
 
   # TODO: needs some refactoring
   def sso
-    if params[:assign_id]
-      assign = @current_membership.assigns.find_by(id: params[:assign_id])
-      redirect_to_return_url('assessment_invalid') && return unless assign
-      redirect_to_return_url('assessment_completed') && return if assign.completed?
+    if params[:user_assessment_id]
+      user_assessment = UserAssessment.find_by(id: params[:user_assessment_id], evaluator_id: @current_user.id)
+      redirect_to_campaign_or_return_url('assessment_invalid') && return unless user_assessment
+      redirect_to_campaign_or_return_url('assessment_completed') && return if user_assessment.completed?
 
-      redirect_url = assign.assessment.agile? ? agile_assign_path(assign) : pass_assign_path(assign)
+      campaign_user = user_assessment.campaign_user
+      CampaignUsers::BeginRegularCampaign.call(campaign_user) if campaign_user.not_started?
+      redirect_url = pass_user_assessment_path(params[:user_assessment_id])
       redirect_to(redirect_url) && return
     end
 
-    redirect_to(root_path)
+    redirect_to_campaign_or_return_url
   end
 
   def assessment_completed
-    redirect_to_return_url('assessment_completed')
+    redirect_to_campaign_or_return_url
   end
 
   # To be used by the integrators when using SSO url in an iframe
@@ -45,15 +47,54 @@ class HomeController < ApplicationController
 
   private
 
-  def redirect_to_return_url(type)
-    return redirect_to(root_path) if session[:sso].try(:[], 'return_url').nil?
+  def redirect_to_campaign_or_return_url(assessment_status = nil)
+    campaign_id = params.fetch(:campaign_id) { nil }
+    redirect_path = campaign_id.nil? ? root_path : campaign_path(campaign_id)
+    return redirect_to(redirect_path) if session[:sso].try(:[], 'return_url').nil?
 
-    uri = URI.parse session[:sso]['return_url']
-    uri.query = uri.query.gsub('ASSESSMENT_STATUS', type) if uri.query
-    uri.path = uri.path.gsub('ASSESSMENT_STATUS', type) if uri.path
-    uri.fragment = uri.fragment.gsub('ASSESSMENT_STATUS', type) if uri.fragment
-    redirect_to uri.to_s
+    substitutions = {}
+
+    # Do not redirect back to return_url until all assessments are completed if sso url
+    # was not a direct assessment link
+    if assessment_status.nil?
+      result = check_assessment_status
+      return redirect_to redirect_path if result[:redirect]
+
+      assessment_status = result[:assessment_status]
+    end
+
+    substitutions.store('ASSESSMENT_STATUS', assessment_status) if assessment_status
+    redirect_to return_url(substitutions, redirect_path)
+  end
+
+  def check_assessment_status
+    campaign_id = params.fetch(:campaign_id) { nil }
+    sso_user_assessment_id = session[:sso].try(:[], 'user_assessment_id')
+    if sso_user_assessment_id.nil?
+      if campaign_id.present?
+        cu = CampaignUser.find_by(campaign_id: campaign_id, user_id: @current_user.id)
+        return { redirect: true } unless cu.completed?
+      end
+
+      incomplete_campaign_count = CampaignUser.includes(:campaign).
+                                  where(campaigns: { status: :active }).
+                                  where(user_id: @current_user.id).
+                                  where.not(completion_status: :completed).count
+      return { redirect: true } unless incomplete_campaign_count.zero?
+
+      { assessment_status: 'assessment_completed' } if incomplete_campaign_count.zero?
+    else
+      user_assessment = UserAssessment.find_by(id: sso_user_assessment_id, evaluator_id: @current_user.id)
+      { assessment_status: "assessment_#{user_assessment.status}" }
+    end
+  end
+
+  def return_url(substitutions, default_url)
+    url = session[:sso]['return_url']
+    substitutions.each { |k, v| url.gsub! k, v }
+    uri = URI.parse url
+    uri.to_s
   rescue URI::InvalidURIError
-    redirect_to(root_path)
+    default_url
   end
 end

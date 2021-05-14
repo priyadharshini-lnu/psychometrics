@@ -22,4 +22,8 @@ class PdfUploader < CarrierWave::Uploader::Base
   def fog_authenticated_url_expiration
     10.minutes
   end
+
+  def download_url
+    url(query: { 'response-content-disposition' => 'attachment' })
+  end
 end

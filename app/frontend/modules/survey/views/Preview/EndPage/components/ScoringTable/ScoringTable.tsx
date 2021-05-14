@@ -31,7 +31,7 @@ export const ScoringTable: FC<ScoringTableProps> = ({
 
   const data = map(scoring, (s, id) => ({
     id,
-    competency: find(factors, { id: +id }).name,
+    competency: find(factors, { id: +id })?.name,
     score: s.score,
   }))
 

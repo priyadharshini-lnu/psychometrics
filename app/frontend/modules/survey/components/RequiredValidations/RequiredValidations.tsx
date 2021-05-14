@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
-import { Radio, Checkbox, Typography } from 'antd'
+import { Radio, Checkbox } from 'antd'
 
 import { RadioChangeEvent } from 'antd/lib/radio'
-import { Question } from 'modules/survey/interfaces/builder/Question'
+import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
+
+const { I18n } = window
 
 interface Props {
-  model: Question
+  model: BasePropertiesModel
   update: () => void
 }
 
@@ -30,17 +32,15 @@ export const RequiredValidations: FC<Props> = ({ model, update }) => {
 
   return (
     <section className="ms-4 me-4 mb-4">
-      <Typography.Text strong>Validation option</Typography.Text>
       <Checkbox
         className="mt-2"
         checked={requiredIsValidation}
         onChange={handleEnableCheckbox}
       >
-        Enable
+        {I18n.t('administration.survey_builder.property_panel.validation_response_type')}
       </Checkbox>
       {requiredIsValidation && (
         <div className="mt-2">
-          <Typography.Text>Reponse type</Typography.Text>
           <Radio.Group
             className="mt-2"
             value={type}

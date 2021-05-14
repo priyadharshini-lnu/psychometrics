@@ -50,6 +50,7 @@ export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedI
 export const CREATE = 'resource/userReport/report/CREATE'
 export const FETCH_SINGLE = 'userReports/FETCH_SINGLE'
 export const DOWNLOAD = 'userReports/DOWNLOAD'
+export const ASYNC_DOWNLOAD = 'userReports/ASYNC_DOWNLOAD'
 export const SELECT_RECORDS = 'userReports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'userReports/REGENERATE_REPORTS'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
@@ -61,6 +62,13 @@ export const fetchSingle = (campaignId: number, id: number) => ({
   request: {
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}`,
     camelize: false,
+  },
+})
+
+export const asyncDownload = (campaignId: number, id: number) => ({
+  type: ASYNC_DOWNLOAD,
+  request: {
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/download`,
   },
 })
 

@@ -133,41 +133,19 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const viewReportMenu = () => {
-    if (!internal && !reportUrl) return null
-
-    if (!internal && reportUrl) {
-      return (
+  return (
+    <Menu>
+      {internal && (
+        <Menu.Item key="viewReport">
+          <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
+            {I18n.t('reports.actions.view')}
+          </Link>
+        </Menu.Item>
+      )}
+      {reportUrl && (
         <Menu.Item key="downloadReport">
           <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
         </Menu.Item>
-      )
-    }
-
-    return (
-      <Menu.Item key="viewReport">
-        <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
-          {I18n.t('reports.actions.view')}
-        </Link>
-      </Menu.Item>
-    )
-  }
-
-  return (
-    <Menu>
-      {viewReportMenu()}
-      {internal && (
-      <Menu.Item key="downloadReport">
-        <a
-          href={internal
-            ? `/administration/new_campaigns/${campaignId}/user_reports/${userReportId}/download.pdf`
-            : reportUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {I18n.t('reports.actions.download')}
-        </a>
-      </Menu.Item>
       )}
       <Menu.Item key="remove">
         <div

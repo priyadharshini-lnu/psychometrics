@@ -141,7 +141,7 @@ const Navigation: FC<PropsFromRedux> = ({
           }
           </Link>
         </Col>
-        <Col flex="1 1 auto" className="ta-e">
+        <Col flex="1 1 auto">
           <Menu
             key="menu"
             mode="horizontal"
@@ -149,9 +149,10 @@ const Navigation: FC<PropsFromRedux> = ({
             overflowedIndicator={
               <MenuOutlined className={styles.menuItemIcons} />
             }
-            // triggerSubMenuAction="click"  // TODO: it appears in ant 4.4 version and seems doesn't work for now
+            triggerSubMenuAction="click"
             selectedKeys={activeMenuKey}
             onClick={({ key }) => changeActiveMenuKey([`${key}`])}
+            className="ta-e"
           >
             <LocaleSwitcherSubmenu
               isLocaleLoading={isLocaleLoading}

@@ -35,7 +35,6 @@ module Users
 
     def add_assessment_to_user(user)
       users_result = UsersResult.create(
-        status: :in_progress,
         last_activity_at: DateTime.current,
         expiry_date: assessment.extra['timer']&.second&.from_now,
         answers: {}
@@ -45,6 +44,7 @@ module Users
         campaign: campaign,
         subject: user,
         evaluator: user,
+        status: :in_progress,
         users_result: users_result
       )
     end

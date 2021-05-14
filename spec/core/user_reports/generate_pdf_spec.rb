@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe UserReports::GeneratePdf do
+  include Rails.application.routes.url_helpers
+
   let(:user) { create(:user, :with_project_membership) }
   let(:user_report) { create(:user_report, user: user) }
   let(:report) { user_report.report }
@@ -12,23 +14,122 @@ describe UserReports::GeneratePdf do
     allow(Kernel).to receive(:system)
   end
 
-  it 'create report pdf in tmp location where current_user is a super admin' do
-    output_path = described_class.call!(user_report, current_user)
+  describe 'report_preview_url' do
+    let(:common_url_params) do
+      {
+        host: Settings.domain,
+        user_token: current_user.authentication_token,
+        lang: 'en',
+        port: Settings.port,
+        protocol: Settings.protocol,
+        id: user_report.id
+      }
+    end
 
-    # rubocop:disable Layout/LineLength
-    expect(output_path).to include(
-      "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
-    )
-    # rubocop:enable Layout/LineLength
+    it 'returns preview pdf url for administrator' do
+      url = described_class.new(user_report, current_user).send(:report_preview_url)
+
+      expect(url).to eq(
+        pdf_preview_administration_new_campaign_user_report_url(
+          common_url_params.merge(subdomain: Settings.subdomain, new_campaign_id: user_report.campaign.id)
+        )
+      )
+    end
+
+    it 'returns preview pdf url for assessor' do
+      allow(current_user).to receive(:is?).with(:regular).and_return(false)
+      allow(current_user).to receive(:is?).with(:assessor).and_return(true)
+      url = described_class.new(user_report, current_user).send(:report_preview_url)
+
+      expect(url).to eq(pdf_preview_assessors_campaign_user_report_url(
+                          common_url_params.merge(subdomain: Settings.subdomain, campaign_id: user_report.campaign.id)
+                        ))
+    end
+
+    it 'returns preview pdf url for 360 end_user' do
+      current_user = create(:user, :with_project_membership)
+      campaign = create(:campaign, :threesixty)
+      create(:threesixty_campaign, campaign: campaign)
+      user_report = create(:user_report, campaign: campaign)
+      url = described_class.new(user_report, current_user).send(:report_preview_url)
+
+      expect(url).to eq(
+        campaign_report_url(
+          common_url_params.merge(
+            subdomain: campaign.project.subdomain,
+            campaign_id: campaign.threesixty_campaign.id,
+            user_token: current_user.authentication_token,
+            id: user_report.id,
+            format: :pdf
+          )
+        )
+      )
+    end
+
+    it 'returns preview pdf url for non 360 end_user' do
+      current_user = create(:user, :with_project_membership)
+      url = described_class.new(user_report, current_user).send(:report_preview_url)
+
+      expect(url).to eq(pdf_preview_user_report_url(
+                          common_url_params.merge(
+                            user_token: current_user.authentication_token,
+                            subdomain: current_user.project.subdomain
+                          )
+                        ))
+    end
   end
 
-  it 'create report pdf in tmp location where current_user is a regular user' do
-    output_path = described_class.call!(user_report, user)
+  context 'using local puppeter' do
+    before(:each) do
+      allow(Settings).to receive_message_chain(:features, :url_to_pdf_lambda) { false }
+    end
 
-    # rubocop:disable Layout/LineLength
-    expect(output_path).to include(
-      "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
-    )
-    # rubocop:enable Layout/LineLength
+    it 'create report pdf in tmp location where current_user is a super admin' do
+      output_path = described_class.call!(user_report, current_user)[:file_path]
+
+      # rubocop:disable Layout/LineLength
+      expect(output_path).to include(
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+      )
+      # rubocop:enable Layout/LineLength
+    end
+
+    it 'create report pdf in tmp location where current_user is a regular user' do
+      output_path = described_class.call!(user_report, user)[:file_path]
+
+      # rubocop:disable Layout/LineLength
+      expect(output_path).to include(
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+      )
+      # rubocop:enable Layout/LineLength
+    end
+  end
+
+  context 'using lambda' do
+    before(:each) do
+      allow(Settings).to receive_message_chain(:features, :url_to_pdf_lambda) { true }
+    end
+
+    it 'calls Lambdas::UrlToPdf ' do
+      report_url = 'https://cc.com/abc.pdf'
+      report_file_name = 'abc.pdf'
+      allow_any_instance_of(described_class).to receive(:report_preview_url).and_return(report_url)
+      allow_any_instance_of(described_class).to receive(:report_file_name).and_return(report_file_name)
+      expect(::Lambdas::UrlToPdf).to receive(:call!).with(
+        report.pdf_dimension.merge(
+          url: report_url,
+          output_file_path: "#{user_report.pdf.store_dir}/#{report_file_name}",
+          webhook_message: {
+            user_report_id: user_report.id,
+            file_name: report_file_name,
+            file_path: "uploads/user_report/pdf/#{user_report.id}/#{report_file_name}",
+            update_record: true
+          },
+          async: nil
+        )
+      )
+
+      described_class.call!(user_report, user)
+    end
   end
 end

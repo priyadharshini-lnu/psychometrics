@@ -15,6 +15,10 @@ class UserReport < ApplicationRecord
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
+  after_commit :publish_to_webhook,
+               if: proc { status_previously_changed? && status == 'prepared' },
+               on: [:update]
+
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)
   end
@@ -36,5 +40,20 @@ class UserReport < ApplicationRecord
     completed_assessment_ids = user_results.includes(:user_assessment).pluck('user_assessments.assessment_id')
 
     report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
+  end
+
+  def publish_to_webhook
+    user_result = user_results.first
+    return if user_result.nil?
+
+    campaign = user_result.user_assessment.campaign
+
+    data = {
+      campaign: campaign,
+      subject: user_result.subject,
+      report: report,
+      user_report: self
+    }
+    WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
   end
 end

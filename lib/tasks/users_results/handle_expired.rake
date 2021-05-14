@@ -10,8 +10,10 @@ namespace :users_results do
         assign.update(status: :timed_out)
       end
 
-    UsersResult.in_progress.where('expiry_date <= :current', current: 10.second.from_now).find_each do |result|
-      result.update(status: :timed_out, completion_reason: :time_out_offline)
+    UserAssessment.in_progress.joins(:users_result).
+      where('users_results.expiry_date <= :current', current: 10.second.from_now).
+      find_each do |user_assessment|
+      user_assessment.update(status: :timed_out, completion_reason: :time_out_offline)
     end
   end
 end

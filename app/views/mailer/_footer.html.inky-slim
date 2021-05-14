@@ -1,0 +1,15 @@
+row
+  columns.email-content
+    p Regards,
+    p
+      | Lighthouse Team
+      spacer[size="16"] 
+    p
+      | For any technical issues, please write to us at #{mail_to('surveys@thetalententerprise.com')} and we will respond within 24 hours.
+
+row
+  columns.email-copyright.footer
+    |  © 
+    = Time.now.year
+    |  Lighthouse. All rights reserved 
+  spacer[size="16"]

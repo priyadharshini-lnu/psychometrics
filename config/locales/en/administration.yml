@@ -458,8 +458,8 @@ en:
         successfully: Client Tenancy %{name} was successfully updated.
       url: Url
     campaigns:
-      extend_time_success_message: Campaign timer extended to %{minutes} minutes
       actions: Manage
+      extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name
         status: Status
@@ -1317,6 +1317,7 @@ en:
           privacy_link: Privacy link
           privacy_text: Privacy text
           project_number: Project Number
+          webhook: Webhook
         header:
           actions: Actions
         index:
@@ -1485,8 +1486,8 @@ en:
           count_invalid: cannot be less than the used_count = %{use_count}
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
           duplicate_code: is in use. Try another one.
-          incorrect_domain: Incorrect domain format.
           in_use: "%{attribute} is already in use"
+          incorrect_domain: Incorrect domain format.
           invalid_attribute: "%{attribute} is invalid"
           invalid_end_date: has to be greater than the start date
           license_issue: Not enough licenses.
@@ -2910,6 +2911,7 @@ en:
           create: Create
       list:
         created_at: Created date
+        id: ID
         name: Name
         updated_at: Modified date
       new:
@@ -2924,6 +2926,7 @@ en:
             create: Create
         list:
           created_at: Created date
+          id: ID
           name: Name
           updated_at: Updated date
         resource:
@@ -3089,6 +3092,18 @@ en:
     survey_builder:
       property_panel:
         allow_content_copy: Allow content copying
+        answer_type: Answer type
+        duration_options:
+          '10': 10s
+          '120': 2min
+          '180': 3min
+          '30': 30s
+          '300': 5min
+          '60': 1min
+          '600': 10min
+        max_duration: Max duration
+        validation_response_type: Validation response type
+        voice_dictation: Voice dictation
     table:
       entries:
         selected:
@@ -3098,6 +3113,7 @@ en:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      more_actions: More actions
     templates:
       blocks:
         copy:

@@ -117,6 +117,7 @@ export interface UserDetails {
   additionalTime: number
   startedAt: string
   completedAt: string
+  hoganId: string | null
 }
 
 export interface State {

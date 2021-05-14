@@ -40,3 +40,13 @@ export function secondsLeftFromNow (date: string | null) {
 }
 
 export const secondsToHHMMSS = (seconds: number) => new Date(seconds * 1000).toISOString().substr(11, 8)
+
+export const convertSecondsToMMSS = (totalSeconds: number): string => {
+  const minutes = Math.floor(totalSeconds / 60)
+  const seconds = totalSeconds % 60
+
+  const minutesFormatted = `${minutes}`.length === 1 ? `0${minutes}` : `${minutes}`
+  const secondsFormatted = `${seconds}`.length === 1 ? `0${seconds}` : `${seconds}`
+
+  return `${minutesFormatted}:${secondsFormatted}/10:00`
+}

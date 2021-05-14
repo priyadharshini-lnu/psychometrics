@@ -112,10 +112,25 @@ de:
   campaign:
     completed: abgeschlossen
     details: Einzelheiten
+    edit_evaluation:
+      body: Bitte beachten Sie, dass Sie nach dem Klicken auf "Neu bewerten" zum Beginn der Umfrage weitergeleitet werden, wo Sie die Antworten bearbeiten können. Die vorherigen Antworten sind weiterhin verfügbar, können jedoch nach Bedarf geändert werden. Nach der Bearbeitung müssen Sie die Bewertung erneut einreichen, um den Vorgang abzuschließen.
+      edit: Neu bewerten
+      title: Bestätigen
+      view: Aussicht
+    in_progress: im Gange
     instructions:
       heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
+    language:
+      cancel: Stornieren
+      content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.
+      proceed: Weiter
+      single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
+      title: Sprache auswählen
     new: neues
     not_started: neues
+    panels:
+      assessments: Aufgaben
+      reports: Berichte
     time_left:
       continue: fortfahren
     welcome: Willkommen
@@ -160,7 +175,16 @@ de:
         new:
           submit: Anmelden
     failure:
+      already_authenticated: Herzlich willkommen
+      inactive: Dein Benutzerkonto ist noch nicht aktiviert.
+      invalid: Ungültige E-Mail-Adresse oder ungültiges Passwort
+      invited: Sie haben eine ausstehende Einladung. Bitte akzeptieren Sie diese, um die Erstellung Ihres Kontos abzuschließen.
+      last_attempt: Sie haben noch einen Versuch, bevor Ihr Konto gesperrt wird.
+      locked: Ihr Konto ist gesperrt.
+      not_found_in_database: Ungültige E-Mail-Adresse oder ungültiges Passwort
+      timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an, um fortzufahren.
       unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
+      unconfirmed: Sie müssen Ihre E-Mail-Adresse bestätigen, bevor Sie fortfahren können.
     invitations:
       edit:
         password_label: Passwort

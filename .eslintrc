@@ -19,7 +19,7 @@
     "sourceType": "module"
   },
   "plugins": [
-    "babel",
+    "@babel",
     "react",
     "import",
     "@typescript-eslint",
@@ -62,7 +62,6 @@
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "import/no-cycle": 0,
-    //require refactoring/updates  inside libs
     "import/no-unresolved": 0,
     "import/no-named-as-default": 0,
     "react/require-default-props": 0,
@@ -82,7 +81,8 @@
     "func-names": 0,
     "no-use-before-define": 0,
     "no-template-curly-in-string": 0,
-    "jsx-a11y/media-has-caption": 0
+    "jsx-a11y/media-has-caption": 0,
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   },
   "overrides": [
     {

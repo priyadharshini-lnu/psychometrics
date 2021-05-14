@@ -41,4 +41,7 @@ export const SHOW_SUBMIT_PAGE = 'flow_processor/SHOW_SUBMIT_PAGE'
 export const HIDE_SUBMIT_PAGE = 'flow_processor/HIDE_SUBMIT_PAGE'
 export const SET_IS_SIMULATION = 'flow_processor/SET_IS_SIMULATION'
 
+export const AWS_SPEECH_TO_TEXT_URL = 'AWS_SPEECH_TO_TEXT_URL'
+export const ACTIVE_DICTATION_ON_QUESTION = 'ACTIVE_DICTATION_ON_QUESTION'
+
 export const FETCH_QUESTION_SCORING = 'flow_processor/FETCH_QUESTION_SCORING'

@@ -124,11 +124,13 @@ gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel.git'
 gem 'deep_cloneable', '~> 2.4.0'
 
 gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
 gem 'carrierwave', '~> 1.3.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct'
 gem 'fog-aws', '~> 2.0.1'
+gem 'inky-rb', '~> 1.3.8', require: 'inky'
 gem 'mini_magick', '~> 4.10.1'
 gem 'remotipart', '~> 1.3.1'
 
@@ -145,7 +147,7 @@ gem 'hashids', '~> 1.0.5'
 
 gem 'dry-types', '~> 0.12.2'
 gem 'mobility', '~> 1.0.0'
-gem 'money-rails', '~> 1.13.3'
+gem 'money-rails', '~> 1.14.0'
 gem 'reform-rails', '~> 0.1.7'
 gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
@@ -171,7 +173,8 @@ gem 'activerecord-import', '~> 1.0.2'
 gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
-gem 'rails_autoscale_agent', '~> 0.9.1'
+gem 'rails_autoscale_agent', '~> 0.10.2'
+gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -186,7 +189,8 @@ group :development, :test do
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'rswag-specs', '~> 2.3.0'
+  gem 'i18n-tasks', '~> 0.9.31'
+  gem 'rswag-specs', '~> 2.4.0'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
   gem 'rubocop-rspec', require: false
@@ -205,15 +209,14 @@ group :development do
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.14.0'
-  gem 'i18n-tasks', '~> 0.9.25'
   gem 'meta_request', '~> 0.6.0'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'capybara', '~> 3.32.0'
+  gem 'capybara', '~> 3.35.3'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls', '~> 0.8.23', require: false
-  gem 'database_cleaner', '~> 1.8.5'
+  gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 1.8.7'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'

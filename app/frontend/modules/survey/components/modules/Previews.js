@@ -13,9 +13,9 @@ import TimingPreview from './Timing/components/Preview'
 import CaptchaPreview from './Captcha/components/Preview'
 import HotSpotPreview from './HotSpot/components/Preview'
 import GraphicSliderPreview from './GraphicSlider/components/Preview'
-import VideoResponsePreview from './VideoResponse/components/Preview'
+import { VideoResponsePreview } from './VideoResponse'
 import FileUploadPreview from './FileUpload/components/Preview'
-import AudioResponsePreview from './AudioResponse/components/Preview'
+import { AudioResponsePreview } from './AudioResponse'
 
 export default {
   StaticContentPreview,

@@ -13,15 +13,26 @@ export class Preview extends Component {
   }
 
   renderAnswersType () {
-    const { readOnly, model } = this.props
+    const {
+      readOnly, model, awsSpeechTextPresignedUrl, activeDictationOnQuestion, setDictationActiveOnQuestion,
+    } = this.props
     const { type } = model.props
     const View = Previews[type]
-    return <View model={model} readOnly={readOnly} />
+
+    return (
+      <View
+        model={model}
+        readOnly={readOnly}
+        awsSpeechTextPresignedUrl={awsSpeechTextPresignedUrl}
+        activeDictationOnQuestion={activeDictationOnQuestion}
+        setDictationActiveOnQuestion={setDictationActiveOnQuestion}
+      />
+    )
   }
 
   render () {
     const { model, I18n } = this.props
-    I18n.tQuestion(model, 'questionText')
+
     return (
       <div>
         <SafeHTML

@@ -32,6 +32,6 @@ RSpec.describe Assessors::SubjectEvaluationsCount do
 
   def create_user_assessment(opts)
     create(:user_assessment, evaluator: assessor, subject: opts[:subject], campaign: campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: opts[:status]))
+      relationship: assessor_relationship, status: opts[:status])
   end
 end

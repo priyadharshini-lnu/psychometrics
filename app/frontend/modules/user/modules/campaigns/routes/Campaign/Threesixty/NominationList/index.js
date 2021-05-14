@@ -12,22 +12,29 @@ import connect from './connect'
 
 const { Panel } = Collapse
 
-const NominationItem = item => (
-  <List.Item className="list-item">
-    <Link
-      to={`/threesixty_campaigns/${item.campaignId}/nominations/${item.id}`}
-      style={{ display: 'flex', alignItems: 'center' }}
-    >
-      {item.isNominationCompleted
-        ? <CheckSquareFilled className="status-icon" />
-        : <div className="empty-square" />}
-      {' '}
-      <Tooltip placement="topLeft" title={item.user.email}>
-        {userPresenter.selfUserName(item)}
-      </Tooltip>
-    </Link>
-  </List.Item>
-)
+const NominationItem = (item) => {
+  const campaignId = item?.campaignId ?? 0
+  const itemId = item?.id ?? 0
+  const isNominationCompleted = item?.isNominationCompleted ?? false
+  const email = item?.user?.email ?? ''
+
+  return (
+    <List.Item className="list-item">
+      <Link
+        to={`/threesixty_campaigns/${campaignId}/nominations/${itemId}`}
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
+        {isNominationCompleted
+          ? <CheckSquareFilled className="status-icon" />
+          : <div className="empty-square" />}
+        {' '}
+        <Tooltip placement="topLeft" title={email}>
+          {userPresenter.selfUserName(item)}
+        </Tooltip>
+      </Link>
+    </List.Item>
+  )
+}
 
 const CollapseItem = ({ title, list }) => (
   <Collapse bordered={false} accordion={false} defaultActiveKey="panel">

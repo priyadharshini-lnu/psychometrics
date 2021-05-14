@@ -1,9 +1,8 @@
 import React from 'react'
-import { message } from 'antd'
-import { AudioFilled, CheckOutlined } from '@ant-design/icons'
-import cs from 'classnames'
-import ColoredButton from 'components/ColoredButton/index'
-import styles from './PermissionStyle.scss'
+import {
+  message, Avatar, Button, Result,
+} from 'antd'
+import { AudioOutlined } from '@ant-design/icons'
 
 const { I18n } = window
 
@@ -12,33 +11,34 @@ interface Props {
   readOnly?: boolean
 }
 
-const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
-  const askForPermission = () => {
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(onAllow)
-      .catch(() => {
-        message.info(I18n.t('assessments.audio_response.permission_denied_message'))
+export const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
+  const requestBrowserPermission = async () => {
+    try {
+      await navigator.mediaDevices.getUserMedia({
+        audio: true,
       })
+      onAllow()
+    } catch (err) {
+      message.info(
+        I18n.t('assessments.audio_response.permission_denied_message'),
+      )
+    }
   }
 
   return (
-    <div className={styles.permissionContainer}>
-      <div className={styles.iconContainer}>
-        <AudioFilled className={cs([styles.icon, 'mtl'])} />
-      </div>
-      <div className="mtl">{I18n.t('assessments.audio_response.permission_text')}</div>
-      <ColoredButton
-        color="green"
-        type="primary"
-        icon={<CheckOutlined />}
-        className="mtl"
-        onClick={askForPermission}
-        disabled={readOnly}
-      >
-        {I18n.t('assessments.video_response.device')}
-      </ColoredButton>
-    </div>
+    <Result
+      status="info"
+      icon={<Avatar icon={<AudioOutlined />} size="large" aria-hidden="true" />}
+      subTitle={I18n.t('assessments.audio_response.permission_text')}
+      extra={(
+        <Button
+          type="primary"
+          onClick={requestBrowserPermission}
+          disabled={readOnly}
+        >
+          {I18n.t('assessments.video_response.device')}
+        </Button>
+      )}
+    />
   )
 }
-
-export default Permission

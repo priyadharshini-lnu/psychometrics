@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import list from './list'
 import total from './total'
+import permissions from './permissions'
 import registrationCodes from './registrationCodes'
 import users from './users'
 import assessors from './assessors'
@@ -17,6 +18,7 @@ import campaignAssessorAssessments from './campaignAssessorAssessments'
 export default combineReducers({
   list,
   total,
+  permissions,
   registrationCodes,
   users,
   assessors,

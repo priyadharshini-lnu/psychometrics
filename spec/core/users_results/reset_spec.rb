@@ -10,20 +10,19 @@ describe UsersResults::Reset do
   let(:report) { assessment.reports.first }
   let(:norm) { create(:norm) }
   let!(:users_result) do
-    create(:users_result, subject: user,
+    users_result = create(:users_result, subject: user,
       evaluator: user,
       assessment: assessment,
       campaign: campaign,
       answers: test,
       scoring: test,
       embedded_data: test,
-      status: Assign.statuses[:completed],
-      completed_at: Time.now,
       step: 100,
       occupations: test,
       expiry_date: Time.now,
-      last_activity_at: Time.now,
-      norm_id: norm.id)
+      last_activity_at: Time.now)
+    users_result.user_assessment.update(completed_at: Time.now, norm_id: norm.id, status: :completed)
+    users_result
   end
   let(:user_report) do
     create(:user_report, :with_pdf, report: report, user: user, campaign: campaign, status: :prepared)
@@ -54,12 +53,13 @@ describe UsersResults::Reset do
   end
 
   it 'reset user_report data if assessment is completed' do
+    allow(user_assessment).to receive(:completed?).and_return(true)
     expect { subject }.to(change { user_report.reload.pdf_identifier }.from('test.pdf').to(nil).
       and(change { user_report.status }.from('prepared').to('not_prepared')))
   end
 
   it 'dont reset user_report data if assessment is NOT completed' do
-    allow(users_result).to receive(:completed?).and_return(false)
+    allow(user_assessment).to receive(:completed?).and_return(true)
     expect { subject }.not_to(change { user_report.attributes })
   end
 

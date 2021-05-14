@@ -11,16 +11,16 @@ RSpec.describe Assessors::EvaluationsCount do
     assessor_relationship = create(:relationship, name: 'Assessor', type: :global)
 
     create_list(:user_assessment, 2, evaluator: assessor1, campaign: campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: 'completed'))
+      relationship: assessor_relationship, status: :completed, users_result: create(:users_result))
     create(:user_assessment, evaluator: assessor1, campaign: campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: 'in_progress'))
+      relationship: assessor_relationship, status: :in_progress)
     create(:user_assessment, evaluator: assessor1, campaign: campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: 'not_started'))
+      relationship: assessor_relationship, status: :not_started)
 
     create(:user_assessment, evaluator: assessor2, campaign: campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: 'completed'))
+      relationship: assessor_relationship,  status: :completed)
     create(:user_assessment, evaluator: assessor2, campaign: campaign,
-      relationship: assessor_relationship, users_result: create(:users_result, status: 'not_started'))
+      relationship: assessor_relationship,  status: :not_started)
 
     result = described_class.call!([assessor1.id, assessor2.id], campaign)
     expected_result = {}

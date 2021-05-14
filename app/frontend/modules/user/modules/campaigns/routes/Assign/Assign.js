@@ -10,7 +10,7 @@ import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import Language from '../../components/Language'
 import store from '../../../../store'
-import Timer from '../../components/Timer'
+import { Timer } from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout

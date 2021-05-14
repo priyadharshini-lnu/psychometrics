@@ -177,6 +177,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
            relationship: relation,
            evaluator_nomination_status: status,
            manager_evaluation_status: :approved,
-          users_result: create(:users_result, without_user_assessment: true, status: :completed))
+           status: :completed,
+           users_result: create(:users_result, without_user_assessment: true))
   end
 end

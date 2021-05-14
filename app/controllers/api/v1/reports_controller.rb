@@ -4,44 +4,41 @@ module Api
   module V1
     class ReportsController < Api::V1::BaseController
       def index
-        project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
-        membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
-        # We should filter project assigns due to assign_reports relations are created only for (sub)campaigns
-        # TODO (atanych): after fixing DB relations between assigns->assign_reports, fix this controller
-        assigns = Assign.
-                  includes(project_assign: :assessment, assigns_reports: { report: :assessments }).
-                  where(membership_id: membership_ids)
-        render json: assigns.flat_map(&:assigns_reports).
-          uniq { |r| r.report.id }.
-          map { |r| Api::V1::AssignReportSerializer.new(r, assigns: assigns.index_by(&:assessment_id)).to_h }
+        user_reports = UserReport.where(user: user, campaign: campaign_id).includes(:report)
+        user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
+                           joins(:users_result, :assessment).
+                           index_by(&:assessment_id)
+
+        render json: user_reports.
+          map { |r| Api::V1::UserReportSerializer.new(r, user_assessments: user_assessments).to_h }
       end
 
       def results
-        assigns = Assign.completed.
-                  where(membership: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
-        if assigns.blank?
-          raise Errors::Api::AssessmentIsNotPassedError, "Assessments for report #{report.id} are not passed"
+        user_report = UserReport.find_by(user: user, campaign_id: campaign_id, report_id: params[:id])
+        results = user_report.user_results
+
+        if results.blank?
+          raise Errors::Api::AssessmentIsNotPassedError, "Assessments for report #{report.id} are not completed"
         end
 
-        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call(report, assigns)[:ok]).to_h
+        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call(report, results, true)[:ok],
+                                                   user_report: user_report).to_h
       end
 
       def pdf
-        project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
-        membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
-        # TODO: (atanych): we might fetch N different assigns_reports for different campaigns with one
-        # project and report id
-        # TODO (atanych): How to handle it???
-        assigns_report = report.assigns_reports.joins(:assign).find_by(assigns: { membership_id: membership_ids })
-        raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} is not found" unless assigns_report
+        user_report = UserReport.find_by(user: user, campaign_id: campaign_id, report_id: params[:id])
+        raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} was not found" unless user_report
 
-        # TODO: (atanych): we should think through report statuses
-        render json: { url: assigns_report.pdf&.url, status: assigns_report.status }
+        render json: {
+          url: user_report.pdf&.url,
+          status: user_report.decorate.api_status,
+          campaign_id: user_report.campaign_id
+        }
       end
 
       def dimensions
         report = current_user.available_client_admin_reports.eager_load(:dimensions).find_by(id: params[:id])
-        raise Errors::Api::ResourceNotFoundError, "Report with id #{params[:id]} not found." unless report
+        raise Errors::Api::ResourceNotFoundError, "Report with id #{params[:id]} was not found." unless report
         if report.data_configuration.blank?
           raise Errors::Api::ResourceNotConfiguredError, no_config_message(params[:id])
         end
@@ -56,7 +53,7 @@ module Api
         @report ||=
           begin
             r = Report.enabled.find_by(id: params[:id])
-            raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} is not found" unless r
+            raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} was not found" unless r
 
             # TODO: (atanych): report should be directly checked with user membership
             r
@@ -64,6 +61,10 @@ module Api
       end
 
       private
+
+      def campaign_id
+        @campaign_id ||= params[:campaign_id] || user.campaigns.last.id
+      end
 
       def serialization_params
         params.permit(:include_factors, :include_occupations, :report, :since).to_h.symbolize_keys

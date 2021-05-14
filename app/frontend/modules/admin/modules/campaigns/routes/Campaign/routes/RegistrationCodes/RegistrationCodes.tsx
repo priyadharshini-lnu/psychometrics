@@ -167,7 +167,7 @@ const RegistrationCodes: React.FC<Props> = ({
                     okText="Yes"
                     cancelText="No"
                   >
-                    <Button type="danger" shape="round">
+                    <Button danger shape="round">
                       <CloseOutlined />
                     </Button>
                   </Popconfirm>
@@ -211,7 +211,7 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
       <a
         download
         // eslint-disable-next-line max-len
-        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png?type=PNG`}
+        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
       >
         <DownloadOutlined />
         {' '}
@@ -222,7 +222,7 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
       <a
         download
         // eslint-disable-next-line max-len
-        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.svg?type=SVG`}
+        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.svg`}
       >
         <DownloadOutlined />
         {' '}

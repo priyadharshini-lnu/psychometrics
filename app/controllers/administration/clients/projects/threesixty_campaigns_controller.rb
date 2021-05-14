@@ -31,7 +31,8 @@ module Administration
             },
             currentUser: serialized_current_user,
             config: {
-              availableLocales: I18n.available_locales
+              availableLocales: I18n.available_locales,
+              features: feature_flags
             },
             datasheet: {
               parentResource: { type: 'new_campaign', id: resource.campaign_id }

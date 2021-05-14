@@ -113,7 +113,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'active' => campaign_user.active,
       'additional_time' => campaign_user.additional_time,
       'completed_at' => nil,
-      'started_at' => nil
+      'started_at' => nil,
+      'hogan_id' => nil
     })
   end
 
@@ -131,6 +132,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   end
 
   def check_assessment_response(assessment_response, user_assessment)
+    policy = Administration::UserAssessmentPolicy.new(current_user, user_assessment)
     expect(assessment_response).to eq({
       'id' => user_assessment.id,
       'assessment_id' => assessment.id,
@@ -138,6 +140,10 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'category' => assessment.category,
       'norm_name' => nil,
       'norms' => [],
+      'permissions' => {
+        'reset_results' => policy.reset?,
+        'update_additional_time' => policy.update_additional_time?
+      },
       'norm_id' => nil,
       'additional_time' => nil,
       'is_expired' => false,

@@ -2,7 +2,6 @@ import React from 'react'
 import { Menu, Modal, message } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
-import AssessorPolicy from 'modules/admin/modules/campaigns/policies/Assessor'
 
 const { I18n } = window
 
@@ -11,11 +10,14 @@ interface ActionMenuProps {
   currentUser: User
   id: number
   email: string
+  permissions: {
+    loginAs: boolean
+  }
   remove(): void
 }
 
 export const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, currentUser, id, remove, email,
+  campaignId, id, remove, email, permissions,
 }) => {
   const handleDelete = () => {
     Modal.confirm({
@@ -44,7 +46,7 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('common.actions.remove')}
         </div>
       </Menu.Item>
-      {AssessorPolicy.loginAs(currentUser)
+      {permissions.loginAs
         && (
         <Menu.Item key="loginAs">
           <a

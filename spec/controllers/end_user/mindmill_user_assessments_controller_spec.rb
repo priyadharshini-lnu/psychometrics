@@ -12,7 +12,7 @@ RSpec.describe EndUser::MindmillUserAssessmentsController, type: :controller do
 
   describe 'GET pass' do
     it 'redirects to root_path if user_assessment is completed' do
-      user_assessment.users_result.update(status: :completed)
+      user_assessment.update(status: :completed)
 
       get :pass, params: { id: user_assessment.id }
 
@@ -48,7 +48,7 @@ RSpec.describe EndUser::MindmillUserAssessmentsController, type: :controller do
     end
 
     it "doesn't call Mindmill::LoadResultsJob job if user_assessment is completed" do
-      user_assessment.users_result.update(status: :completed)
+      user_assessment.update(status: :completed)
       expect(::Mindmill::LoadResultsJob).to_not receive(:perform_now)
 
       get :redirect, params: { id: user_assessment.id }

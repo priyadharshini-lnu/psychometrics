@@ -87,15 +87,15 @@ en:
         datasheet:
           attributes:
             file:
-              email_blank: 'Row %{row_number}: Email field can''t be blank
-
-                '
+              email_blank: 'Row %{row_number}: Email field can''t be blank'
               email_duplicate: There are duplicates in Email column
               invalid_column_type: Column type must be String, Text, Number, HTML or Markdown
               invalid_format: Invalid format (.xlsx)
               no_email_column: File does not contain Email column
         email_schedule:
           attributes:
+            content:
+              blank: Content can't be blank
             from:
               blank: From field can't be blank
             reply_to_email:
@@ -105,8 +105,6 @@ en:
               blank: Scheduled date field can't be blank
             subject:
               blank: Subject can't be blank
-            content:
-              blank: Content can't be blank
         email_template:
           attributes:
             content:
@@ -167,8 +165,8 @@ en:
               too_long: Last Name is too long
             registration_code:
               blank: Registration code is required
-              invalid: Registration code is invalid
               incorrect_email_domain: This email address is not valid for the entered registration code
+              invalid: Registration code is invalid
         super_admin_edit:
           attributes:
             email:
@@ -178,8 +176,6 @@ en:
               blank: First name can't be blank
             last_name:
               blank: Last name can't be blank
-        update_assessment:
-          attributes:
         update_norm:
           attributes:
             norm_type:
@@ -217,12 +213,12 @@ en:
         categories:
           '360': 360 Campaign
           agile: AGILE
+          assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
           mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment
-          assessor_form: Assessor Form
         category: Category
         created_at: Created Date
         description: Description
@@ -241,11 +237,11 @@ en:
         statuses:
           completed: Completed
           in_progress: Resume
+          ineligible: Ineligible
           interrupted: Interrupted
           not_started: New
-          timed_out: Timed Out
-          ineligible: Ineligible
           overdue: Overdue
+          timed_out: Timed Out
       block:
         active: Active
         assign_to_assessment_ids: Assessments
@@ -453,13 +449,13 @@ en:
         role: Role
         roles:
           admin: Admin
-          assessor: Assessor
           admins:
             admin: Admin
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
+          assessor: Assessor
           assessor_form: Assessor Form
           case_study: Case study
           client_admin: Client Admin
@@ -509,15 +505,19 @@ en:
         statuses:
           completed: Completed
           in_progress: Resume
+          ineligible: Ineligible
           interrupted: Interrupted
           not_started: New
           timed_out: Timed Out
-          ineligible: Ineligible
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte
         not_uniqueness: Assign has already been taken
       models:
+        client:
+          attributes:
+            webhook:
+              invalid_http_url: Invalid url
         factors_norm:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from
@@ -577,7 +577,9 @@ en:
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        copy_dimension: Copy Dimension
         import_assessors: Import Assessors
+        import_datasheet: Import Datasheet
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
         import_users: Import Users
@@ -585,8 +587,6 @@ en:
         regenerate_report: Regenerate Report
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
-        import_datasheet: Import Datasheet
-        copy_dimension: Copy Dimension
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -622,35 +622,53 @@ en:
   assessments:
     actions:
       back_to_campaign: Back to Campaign
+      download_csv: Download CSV
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Go To Dashboard
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       rescore: Rescore
-      download_csv: Download CSV
     audio_response:
+      pause: Pause
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
+      resume: Resume
+      start_recording: Start recording
+      stop: Stop
     categories:
       '360': 360 Campaign
       agile: AGILE
+      assessor_form: Assessor Form
       case_study: Case Study
       hogan: Hogan
       mindmill: Mindmill
       organisational: Survey
       psychometric: Assessment
-      assessor_form: Assessor Form
     decorator:
       no_description: Description is empty
+    dictation:
+      allow_browser_permision: Please allow browser audio permission to use dictation
+      autostopping_in: Auto-stopping in %{reverseCountdown}
+      browser_unsupported: Your browser does not support Audio input
+      dictation_active: Dictation is now active
+      dictation_disabled: Dictation is currently disabled or is being used by another question
+      dictation_stopped: Speech dictation stopped
+      listening: Listening
+      notifications:
+        autostopped: Dictation was auto stopped due to continued silence for %{autocutoff} seconds
+        refresh_page: Unable to continue speech dictation, try again by refreshing the page
+      start_dictation: Start dictation
+      stop_dictation: Stop dictation
+      use_speech_instructions: Use speech input to write this answer
     file_upload:
       select_file: Select file
     flow:
       end_assessment_modal:
+        custom_message: Custom end of assessment message
+        default_message: Default end of assessment message
         mark_as_ineligible: Mark as ineligible
         show_uniq_identifier: Show Unique Identifier to respondents (for anonymous surveys)
-        default_message: Default end of assessment message
-        custom_message: Custom end of assessment message
     index:
       managers_assessments_button: Action Planning
       managers_dashboard_button: Managers Dashboard
@@ -692,6 +710,7 @@ en:
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
+        unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
       offline_message: Please check your internet connection.
       retake: Retake
       retry: Retry
@@ -807,24 +826,23 @@ en:
     completed: Completed
     continue: Continue Assessment
     details: Details
+    edit_evaluation:
+      body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
+      edit: Re-evaluate
+      title: Confirm
+      view: View
     in_progress: In Progress
+    ineligible: Ineligible
     instructions:
       heading: Please review the guidelines below before you get started. Wish you all the best!
     interrupted: Interrupted
-    edit_evaluation:
-      title: Confirm
-      body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
-      edit: Re-evaluate
-      view: View Results
     language:
       cancel: Cancel
-      content: This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment
+      content: This task is not available in the currently selected language. Please select one of the available languages to proceed.
       proceed: Proceed
-      single_lang: This assessment is only available in %{lang}, which is different than you selected language.
+      single_lang: This task is available only in %{lang}. Click "Proceed" to continue.
       title: Select language
     new: New
-    timed_out: Timed Out
-    ineligible: Ineligible
     not_started: New
     panels:
       assessments: Tasks
@@ -834,6 +852,7 @@ en:
       continue: Continue
       notification: Your allocated time for this task "%{assessmentName}" was %{totalAssessmentTime}. Due to the overall elapsed time, you now have only %{remainingCampaignTime} as your adjusted time to complete this task.
       title: Time left warning
+    timed_out: Timed Out
     timer:
       message: Time left to complete all tasks
       notification: You have %{minutes} minutes and %{seconds} seconds to complete
@@ -884,10 +903,10 @@ en:
     statuses:
       completed: Completed
       in_progress: In Progress
+      ineligible: Ineligible
       interrupted: Interrupted
       not_started: Not Started
       timed_out: Timed Out
-      ineligible: Ineligible
       universal_link: Universal link
   campaign_report:
     actions:
@@ -904,6 +923,7 @@ en:
         add_with_existing_response: Add report to existing user and keep existing response
         skip_existing: Skip existing user
       report: Report
+      report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_successful: Bulk report download job scheduled successfully
     modals:
@@ -925,6 +945,7 @@ en:
       additional_time: Additional Time
       completed_at: Completed At
       completion_status: Completion status
+      hogan_id: Hogan Id
       last_login: Last login
       modals:
         remove:
@@ -937,16 +958,19 @@ en:
       statuses:
         completed: Completed
         in_progress: In Progress
+        ineligible: Ineligible
         interrupted: Interrupted
         not_started: Not Started
         timed_out: Timed Out
-        ineligible: Ineligible
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?
         successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         title: Change password %{name}?
       remove: Are you sure you want to remove user with email %{email} from this campaign?
+  campaigns:
+    assessments_and_reports:
+      assessor_assessments: Assessor Assessments
   checking_wizard:
     audio_check:
       access: Access
@@ -1031,11 +1055,11 @@ en:
       continue: Continue
       default: Default
       download: Download
+      minutes: Minutes
       na: N/A
       ok: Ok
       reference_language: Reference Language
       response: Response
-      minutes: Minutes
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
@@ -1127,9 +1151,6 @@ en:
           %{accept} Or you can safely ignore this email.
 
           Please do not share your access credentials with anyone.
-
-          Regards,
-          Lighthouse Team
         subject: Invitation to Lighthouse
       confirmation_instructions:
         subject: Confirmation instructions
@@ -1147,11 +1168,9 @@ en:
           Hello %{name}!
 
           Someone has requested a link to change your password. You can do this through the link below.
-
-          <a href="%{change_password_link}">Change Password</a>
-
-          If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
-
+        change_password: Change Password
+        footer: If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
+        regards: |
           Regards,
           Lighthouse Team
         subject: Instructions for resetting your password
@@ -1272,6 +1291,8 @@ en:
   empty: Empty
   enums:
     communication:
+      body:
+        error: Email body has incorrect pipetext.
       delivery_rule:
         in_progress: If assessment is in progress
         not_competed: If assessment is not completed
@@ -1589,8 +1610,8 @@ en:
     update:
       successfully: Profile updated
   registration_code:
-    restricted_domains: Restricted domains
     one_domain_per_line: One domain name per line
+    restricted_domains: Restricted domains
   reports:
     actions:
       add: Add Report
@@ -1818,12 +1839,12 @@ en:
         categories:
           '360': 360 Campaign
           agile: AGILE
+          assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
           mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment
-          assessor_form: Assessor Form
         category: Category
         completed_at: Completion Date
         created_at: Created Date
@@ -2097,7 +2118,6 @@ en:
     assessment: Assessment
     back_to_tasks: Back to tasks
     begin: Begin
-    timed_out: Timed Out
     cancel: Cancel
     close_evaluation_modal:
       message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
@@ -2215,6 +2235,7 @@ en:
     setup_nominations: Set up nominations
     subject: Subject
     submit: Submit
+    timed_out: Timed Out
     total_progress: Total progress
     user_name_input_placeholder: type name or email...
     validation_errors: Validation Errors
@@ -2251,12 +2272,20 @@ en:
     update: Update
     updated_successfully: Profile updated successfully
   user:
+    datasheet:
+      attribute: Attribute
+      value: Value
     fields:
       email: Email Address
       first_name: First Name
       last_name: Last Name
       password: Password
     form:
+      email: Email
+      first_name: First name
+      last_name: Last name
+      locale: Locale
+      operation: Operation
       operation_options:
         add_and_allow_new_response: Add user and allow new response
         add_with_existing_response: Add user with existing response
@@ -2272,9 +2301,6 @@ en:
       export: Export Users
       export_completion_status: Export Completion Status
       import: Import Users
-    datasheet:
-      attribute: Attribute
-      value: Value
   user_assessments:
     modals:
       remove:
@@ -2284,20 +2310,21 @@ en:
     actions:
       regenerate: Regenerate
     messages:
+      async_generation: Report generation in progress. You would be notified once report is generated.
       regenerate_successful: Report regeneration job scheduled successfully
     modals:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
         successfully: "%{userReportName} report removed successfully"
     preview_report: Preview Report
-    statuses:
-      generating: Generating
-      not_prepared: Not Available
-      prepared: Available
     readable_statuses:
       generating: Report is being generated
       not_prepared: Report is not available
       prepared: Download the report
+    statuses:
+      generating: Generating
+      not_prepared: Not Available
+      prepared: Available
   validations:
     AudioResponse:
       in_progress:
@@ -2326,8 +2353,8 @@ en:
       required: Please record and save the video before you continue
     actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
     blank: can't be blank
+    character_count: 'Characters count '
     character_range: Your response must be at least %{min} and no more than %{max} characters.
-    word_range: Your response must be at least %{min} and no more than %{max} words.
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
@@ -2346,15 +2373,12 @@ en:
     number: Your response must be a number
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
-    character_count: 'Characters count '
-    word_count: 'Words count '
     text: Your response must not contain a numbers
     title:
       one: There is one error, please check your responses
       other: There are %{count} errors, please check your responses
+    word_count: 'Words count '
+    word_range: Your response must be at least %{min} and no more than %{max} words.
   'yes': 'Yes'
   your: Your
   yourself: Yourself
-  campaigns:
-    assessments_and_reports:
-      assessor_assessments: Assessor Assessments

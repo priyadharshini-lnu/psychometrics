@@ -2,16 +2,18 @@
 
 module UsersResults
   class Recompute < BaseCommand
-    private_attr_reader :user_result, :current_user, :norm_id
+    private_attr_reader :user_result, :user_assessment, :current_user, :norm_id
 
     def initialize(user_result, current_user, options = {})
       @user_result = user_result
+      @user_assessment = user_result.user_assessment
       @current_user = current_user
       @norm_id = options[:norm_id]
     end
 
     def call
-      user_result.norm_id = norm_id if norm_id
+      user_assessment.update(norm_id: norm_id) if norm_id
+      return broadcast :ok, user_result unless user_assessment.completed?
 
       if user_result.assessment.agile?
         compute_agile_assessment_scoring
@@ -27,7 +29,7 @@ module UsersResults
     private
 
     def compute_common_assessment_scoring
-      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result, norm_data)
+      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result, norm_data) if user_result.completed?
       user_result.occupations = Assigns::CalculateOccupations.call!(user_result)
       user_result.innovation_styles = Assigns::CalculateInnovationStyles.call!(user_result)
       user_result.save!
@@ -41,7 +43,7 @@ module UsersResults
 
     def norm_data
       {
-        'id' => norm_id || user_result.norm_id
+        'id' => norm_id || user_assessment.norm_id
       }
     end
   end

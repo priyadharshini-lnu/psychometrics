@@ -39,6 +39,7 @@ module Administration
       def edit
         @_resource.privacy_consent = false if @_resource.privacy_consent.nil?
         @_resource.privacy_link.present? || @_resource.build_privacy_link
+        @_resource.webhook = @_resource.webhook_subscription&.url
       end
 
       def export
@@ -51,10 +52,34 @@ module Administration
         end
       end
 
+      def update
+        resource.modifier = current_user
+        resource.assign_attributes(resource_params)
+        resource.operator = current_user
+        respond_to do |format|
+          if resource.save
+            WebhookSubscriptions::Save.call!(resource, resource_params[:webhook])
+            format.js
+          else
+            format.js { render :edit }
+          end
+        end
+      end
+
       def create
-        @_resource = resource_class.new(resource_params)
+        @_resource ||= resource_class.new(resource_params)
         resource.parent = client
-        super
+        resource.creator = current_user
+        resource.modifier = current_user
+        resource.operator = current_user
+        respond_to do |format|
+          if resource.save
+            WebhookSubscriptions::Save.call!(resource, resource_params[:webhook])
+            format.js
+          else
+            format.js { render :new }
+          end
+        end
       end
 
       def i18n
@@ -73,7 +98,7 @@ module Administration
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          :privacy_consent, :two_factor_enabled, :strong_password_enabled,
                                          :login_box_position, :secondary_logo, :remove_secondary_logo,
-                                         :enable_live_chat, locales: [],
+                                         :webhook, :enable_live_chat, locales: [],
                                          privacy_link_attributes: %i[id text link _destroy])
       end
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Divider } from 'antd'
 import { Properties } from 'components/modules'
 import Menu from 'components/ModulesMenu'
 import Action from 'undo'
@@ -127,9 +128,9 @@ class PropertyPanel extends Component {
     return (
       <div className={styles.main} style={style}>
         {this.renderQuestiontypeBtn(q)}
-        <hr className={styles.divider} />
+        <Divider />
         {this.renderCustomProperties(q)}
-        <hr className={styles.divider} />
+        <Divider />
         {this.renderDefaultAction(q)}
       </div>
     )

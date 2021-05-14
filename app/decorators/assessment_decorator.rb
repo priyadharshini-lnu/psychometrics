@@ -73,14 +73,6 @@ class AssessmentDecorator < BaseDecorator
     }.to_json
   end
 
-  def client_name
-    if object.owner_id
-      helpers.link_to(object.owner.name, h.administration_client_projects_path(object.owner_id))
-    else
-      I18n.t('administration.tte')
-    end
-  end
-
   def clients_names
     object.clients.
       map { |client| client.decorate.display_name }.

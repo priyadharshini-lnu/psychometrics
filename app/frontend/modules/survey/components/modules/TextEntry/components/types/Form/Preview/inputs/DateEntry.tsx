@@ -1,6 +1,6 @@
 import React from 'react'
 import { DatePicker } from 'antd'
-import moment from 'moment'
+import moment, { Moment } from 'moment'
 import { Question } from '../../interfaces'
 
 const FORMAT = 'YYYY-MM-DD'
@@ -18,12 +18,20 @@ const DateEntry: React.FC<Props> = ({
 }) => {
   const { value } = answers[index]
 
+  const handleOnChange = (date: Moment | null): void => {
+    const newValue = date ? date.format(FORMAT) : ''
+    onChange(index, newValue)
+  }
+
+  const dateValue = value ? moment(value, FORMAT) : moment(moment.now())
+
   return (
     <DatePicker
       disabled={readOnly}
+      allowClear={false}
       format="YYYY-MM-DD"
-      value={value ? moment(value, FORMAT) : null}
-      onChange={(e): void => onChange(index, e ? e.format(FORMAT) : '')}
+      onChange={handleOnChange}
+      value={dateValue}
     />
   )
 }

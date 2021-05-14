@@ -5,10 +5,11 @@ module UsersResults
     END_GROUP_EVENT = 'endGroup'
     ASSESSMENT_COMPLETE_EVENT = 'assessmentComplete'
 
-    private_attr_accessor :user_result, :form, :current_user
+    private_attr_accessor :user_result, :form, :current_user, :user_assessment
 
     def initialize(user_result, form, current_user)
       @user_result = user_result
+      @user_assessment = user_result.user_assessment
       @form = form
       @current_user = current_user
     end
@@ -38,17 +39,18 @@ module UsersResults
     end
 
     def complete_event
-      user_result.update!(
-        norm_attributes.merge(
-          status: :completed,
-          completed_at: Time.now
-        )
+      attributes = norm_attributes.merge(
+        status: :completed,
+        completed_at: Time.now
       )
+      user_result.is_a?(Assign) ? user_result.update!(attributes) : user_result.user_assessment.update!(attributes)
+
       ::UsersResults::SaveAgileScoringJob.set(wait: 10.seconds).perform_later(user_result, current_user)
     end
 
     def norm_attributes
-      norm_id = Norm.find_by(id: user_result&.agile&.config&.dig('normId'))&.id
+      norm_id = user_assessment.applicable_norm_id
+      norm_id ||= Norm.find_by(id: user_result&.agile&.config&.dig('normId'))&.id
       return {} unless norm_id
 
       return { norm_data: { id: norm_id } } if user_result.is_a?(Assign)

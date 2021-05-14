@@ -1,3 +1,3 @@
-import AudioRecorder from './AudioRecorder'
+import { AudioRecorder } from './AudioRecorder'
 
 export default AudioRecorder

@@ -43,7 +43,9 @@ const Campaign: React.FC<Props> = ({
       }]}
     />
     <TopMenu prefix={`${settings.urlPrefix}/${campaignId}`} />
-    <RouteList routes={routes} urlPrefix={`${settings.urlPrefix}/:campaignId`} />
+    <section data-testid="admin_campaign_section">
+      <RouteList routes={routes} urlPrefix={`${settings.urlPrefix}/:campaignId`} />
+    </section>
   </div>
 )
 

@@ -15,7 +15,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
       campaign_id: @threesixty_campaign.campaign_id,
       evaluator_id: @evaluators[0].user_id,
       manager_nomination_status: :approved,
-      users_result: create(:users_result, status: :completed, without_user_assessment: true)
+      status: :completed
     )
 
     # Approved participant with no evaluation
@@ -34,7 +34,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
       campaign_id: @threesixty_campaign.campaign_id,
       evaluator_id: @evaluators[2].user_id,
       manager_nomination_status: :approved,
-      users_result: create(:users_result, status: :in_progress, without_user_assessment: true)
+      status: :in_progress
     )
 
     # Participant in waiting state with no evaluation

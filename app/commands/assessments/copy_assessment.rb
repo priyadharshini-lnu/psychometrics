@@ -2,11 +2,13 @@
 
 module Assessments
   class CopyAssessment < Rectify::Command
-    def initialize(assessment_id)
+    private_attr_reader :assessment, :owner_id
+
+    def initialize(assessment_id, owner_id = nil)
       @assessment = Assessment.includes(blocks: {
         questions: %i[factors_scorings question_recodings translations]
       }).find(assessment_id)
-
+      @owner_id = owner_id || @assessment.owner_id
       @blocks_mapping = {}
       @questions_mapping = {}
     end
@@ -18,6 +20,7 @@ module Assessments
 
       new_assessment = ActiveRecord::Base.transaction do
         new_assessment = assessment.clone
+        new_assessment.owner_id = owner_id
         new_assessment.save!
 
         # Loop blocks to save for the new assessment
@@ -65,8 +68,6 @@ module Assessments
     end
 
     private
-
-    attr_reader :assessment
 
     def make_copy(object, resource, resource_key = 'assessment_id')
       copy = object.clone(false)

@@ -28,13 +28,10 @@ module Exports
         attr_reader :current_user, :report, :user, :client, :opts, :url
 
         def generate_report
-          args = {
+          args = report.pdf_dimension.merge(
             url: url,
-            output: output,
-            pageWidth: report.props&.dig('sizes', 'width') || 850,
-            pageHeight: report.props&.dig('sizes', 'height') || 1100,
-            auth: Rails.application.secrets.http_auth
-          }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
+            output: output
+          ).merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
           Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
           system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")

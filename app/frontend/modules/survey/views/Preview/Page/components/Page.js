@@ -20,6 +20,12 @@ class Page extends Component {
       const { fetchCampaignOptions } = this.props
       fetchCampaignOptions(parseInt(path[1], 10))
     }
+
+    const awsSpeechTextPresignedURL = this.props?.preview?.awsSpeechTextPresignedURL ?? ''
+    if (awsSpeechTextPresignedURL.length === 0) {
+      const { fetchAwsSpeechTextPresignedUrl } = this.props
+      fetchAwsSpeechTextPresignedUrl()
+    }
   }
 
   getBlockClasses () {

@@ -137,7 +137,10 @@ class User < ApplicationRecord
   validate :validate_grants
 
   before_save :ensure_authentication_token
-  before_save { self.email = email.downcase }
+  before_save do
+    self.email = email.downcase
+    self.locale = locale.presence
+  end
 
   has_one_time_password(encrypted: true)
 

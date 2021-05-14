@@ -34,11 +34,10 @@ module CampaignReports
     end
 
     def download_user_reports_from_s3
-      progress = 0
+      job_record.update!(total_tasks: user_reports_with_pdf.length)
       user_reports_with_pdf.each do |user_report|
         download_report(user_report)
-        progress += 100 / user_reports_with_pdf.size
-        AdminJob.update_progress(job_record, progress)
+        job_record.increment_completed_tasks!
       end
     end
 

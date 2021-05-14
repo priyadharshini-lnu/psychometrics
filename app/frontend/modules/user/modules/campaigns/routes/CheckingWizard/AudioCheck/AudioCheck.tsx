@@ -6,12 +6,12 @@ import {
 import { browserName } from 'react-device-detect'
 import { Config } from 'modules/user/modules/campaigns/core/checkingWizard/interfaces'
 import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
-import { RECORDER_STATES } from 'modules/survey/components/AudioRecorder/constants'
+import { RECORDER_STATES } from 'modules/survey/constants/media'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
-import transcribe, { closeSocket as closeSpeechDetectionSocket } from 'libs/amazon-transcribe-websocket-static/lib/main'
+import { stopTranscription, transcribe } from 'libs/amazon-transcribe-websocket-static'
 import useAudioMetrics from 'hooks/useAudioMetrics'
-import RecorderCore from 'modules/survey/components/AudioRecorder/Recorder/Core'
+import { RecorderCore } from 'modules/survey/utils/RecorderCore'
 import DynamicAudioIcon from 'components/DynamicAudioIcon'
 import styles from './styles.scss'
 import Progress from '../Progress'
@@ -57,7 +57,7 @@ const AudioCheck: React.FC<Props> = ({
   const requestAccess = () => {
     const speechDetectionTimer = setTimeout(() => {
       dispatch(updateSpeechDetection(CheckListStatus.Failed))
-      closeSpeechDetectionSocket()
+      stopTranscription()
       recorderRef.current?.stop()
       resetMetrics()
     }, SPEECH_DETECTION_TIME_FRAME)
@@ -67,11 +67,16 @@ const AudioCheck: React.FC<Props> = ({
         $(window).on(RECORDER_STATES.RECORDING, updatePulse)
         recorderRef.current?.start()
         dispatch(updateAccess(CheckListStatus.Done))
-        transcribe(preSignedUrl, stream, (t: string) => handleTranscriptionResults(t, speechDetectionTimer), () => {
+        transcribe({
+          url: preSignedUrl,
+          stream,
+          onTranscribe: (t: string) => handleTranscriptionResults(t, speechDetectionTimer),
+          onError: () => {
           recorderRef.current?.stop()
           resetMetrics()
           dispatch(updateSpeechDetection(CheckListStatus.Failed))
           clearInterval(speechDetectionTimer)
+          },
         })
       })
       .catch(() => {
@@ -86,7 +91,7 @@ const AudioCheck: React.FC<Props> = ({
     if (input.includes(testMessage)) {
       clearInterval(speechDetectionTimer)
       dispatch(updateSpeechDetection(CheckListStatus.Done))
-      closeSpeechDetectionSocket()
+      stopTranscription()
       recorderRef.current?.stop()
       resetMetrics()
     }

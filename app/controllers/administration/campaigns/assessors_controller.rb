@@ -30,13 +30,18 @@ module Administration
               campaign_id: campaign.id,
               evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_assessors.pluck(:user_id), campaign)
             )
-
-            render json: {
-              list: serialized_assessors,
-              total: assessors.count
-            }
+            render json: { list: serialized_assessors, total: assessors.count, permissions: permissions }
           end
         end
+      end
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Campaigns::AssessorPolicy,
+          current_user,
+          nil,
+          [%w[login_as spoof]]
+        )
       end
 
       def create_all

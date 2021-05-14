@@ -4,9 +4,7 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
   before_action :set_user_assessment, only: %i[pass redirect]
 
   def redirect
-    if params[:status] == 'Completed'
-      @user_assessment.users_result.update(status: :completed, completed_at: Time.current)
-    end
+    @user_assessment.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
     user_result = @user_assessment.users_result
 
     Hogan::FetchResultsJob.set(wait: 30.seconds).

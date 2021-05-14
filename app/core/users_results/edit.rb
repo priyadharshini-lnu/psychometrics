@@ -2,10 +2,11 @@
 
 module UsersResults
   class Edit < BaseCommand
-    private_attr_reader :users_result
+    private_attr_reader :users_result, :user_assessment
 
     def initialize(users_result)
       @users_result = users_result
+      @user_assessment = users_result.user_assessment
     end
 
     def call
@@ -23,19 +24,22 @@ module UsersResults
     end
 
     def reset_user_result
-      users_result.update_attributes(
+      user_assessment.update!(
+        status: UserAssessment.statuses[:not_started],
+        completed_at: nil,
+        completion_reason: nil,
+        norm_id: nil,
+        norm_type: nil
+      )
+      users_result.update!(
         answers: set_answers_as_dirty,
         scoring: nil,
         occupations: nil,
         embedded_data: nil,
-        status: UsersResult.statuses[:in_progress],
-        completed_at: nil,
         step: 0,
-        norm_id: nil,
         meta_data: {},
         current_element: nil,
         current_page: 0,
-        completion_reason: nil,
         prev_pages: [],
         progress: 0
       )

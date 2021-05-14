@@ -23,7 +23,7 @@ const getColumns = (onChange, onRemove, errors) => [
       const error = errors.find(([id]) => id === record.sub_factor_id)
       return (
         <>
-          <div>{record.name}</div>
+          <div>{record?.name ?? ''}</div>
           {error && (
             <div className="has-error">
               <span className="ant-form-explain">{error[1]}</span>
@@ -40,7 +40,7 @@ const getColumns = (onChange, onRemove, errors) => [
     render: record => (
       <Select
         style={{ width: '60px' }}
-        value={record.predicate}
+        value={record?.predicate ?? ''}
         size="small"
         onChange={predicate => onChange({ ...record, predicate })}
       >
@@ -58,7 +58,7 @@ const getColumns = (onChange, onRemove, errors) => [
     scoringStrategies: ['sub_factors_conditional_average', 'sub_factors_average'],
     render: record => (
       <InputNumber
-        value={record.weight}
+        value={record?.weight ?? 0}
         size="small"
         min={0}
         max={10}
@@ -73,7 +73,7 @@ const getColumns = (onChange, onRemove, errors) => [
     scoringStrategies: ['sub_factors_conditional_average'],
     render: record => (
       <InputNumber
-        value={record.value}
+        value={record?.value ?? 0}
         size="small"
         min={0}
         step={0.1}

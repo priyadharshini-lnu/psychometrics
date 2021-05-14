@@ -66,6 +66,7 @@ const AssessorList: React.FC<Props> = ({
   assessors: {
     list,
     total,
+    permissions,
   },
   match: { params: { projectId, campaignId } },
   tableConfig: {
@@ -155,6 +156,7 @@ const AssessorList: React.FC<Props> = ({
                       currentUser,
                       id: assessor.id,
                       email: assessor.email,
+                      permissions,
                       remove: () => remove(campaignId, assessor.id),
                     }) as React.ReactElement
                   )}

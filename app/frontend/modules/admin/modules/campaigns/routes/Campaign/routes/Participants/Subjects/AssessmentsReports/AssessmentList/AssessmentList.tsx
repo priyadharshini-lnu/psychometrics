@@ -5,10 +5,8 @@ import {
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import UserAssessmentPolicy from 'modules/admin/modules/campaigns/policies/UserAssessment'
 import _ from 'lodash'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -43,7 +41,6 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   rescoreResponse,
   reset,
   remove,
-  currentUser,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -113,7 +110,6 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     campaignId: parsedCampaignId,
                     userId: parsedUserId,
                     assessment,
-                    currentUser,
                     remove: () => remove(parsedCampaignId, assessment.id),
                   }) as React.ReactElement
                 )}
@@ -135,7 +131,6 @@ interface ActionMenuProps {
   assessment: UserAssessment
   userId: number
   campaignId: number
-  currentUser: User
   rescoreResponse(): void
   reset(campaignId: number, assessmentId: number): Promise<unknown>
   remove(): void
@@ -143,9 +138,9 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset, remove,
+  rescoreResponse, openModal, campaignId, userId, assessment, reset, remove,
 }) => {
-  const { name } = assessment
+  const { name, permissions } = assessment
 
   const handleReset = () => {
     Modal.confirm({
@@ -188,7 +183,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-        {UserAssessmentPolicy.resetResults(currentUser, assessment) ? (
+        {permissions.resetResults ? (
           <Menu.Item key="reset">
             <div
               role="button"
@@ -219,7 +214,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('common.actions.remove')}
         </div>
       </Menu.Item>
-      {UserAssessmentPolicy.updateAdditionalTime(currentUser, assessment) ? (
+      {permissions.updateAdditionalTime ? (
         <Menu.Item key="extend">
           <div
             role="button"
