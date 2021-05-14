@@ -42,13 +42,13 @@ module UsersResults
       user_assessment.update!(user_assessment_form_attributes.except(:norm_id))
       # Calculates scoring and sets time of completion
       if user_assessment.completed?
+        norm_id = user_assessment.applicable_norm_id || user_assessment_form_attributes[:norm_id]
+        user_assessment.update!(completed_at: Time.now, norm_id: norm_id)
         users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
         users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
         publish_assessment_completion_to_webhook
-        norm_id = user_assessment.applicable_norm_id || user_assessment_form_attributes[:norm_id]
-        user_assessment.update!(completed_at: Time.now, norm_id: norm_id)
         if threesixty_campaign
           user_assessment_attrs = { evaluator_nomination_status: :completed }
           if user_assessment.relationship_id == Relationship.manager_relationship.id
