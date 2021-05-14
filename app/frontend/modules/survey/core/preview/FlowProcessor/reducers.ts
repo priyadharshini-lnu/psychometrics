@@ -147,7 +147,7 @@ const HANDLERS = {
       prevPages: data.readOnly ? [] : (result.prev_pages || []),
       highlights: _.keyBy(highlights, 'id'),
       assessmentTimedOut: result.timed_out || false,
-      factors: result.factors,
+      factors: data.factors,
       scoring: result.scoring,
       showScoringOnEndPage: data.showScoringOnEndPage,
       showQuestionScoring: data.showQuestionScoring,
