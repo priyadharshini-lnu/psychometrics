@@ -4,7 +4,11 @@ module AgileUserResult
   extend ActiveSupport::Concern
 
   def show
-    user_result.in_progress! if user_result.not_started?
+    if user_result.not_started?
+      user_result.in_progress!
+      UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment
+    end
+
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
       format.json do
@@ -36,6 +40,10 @@ module AgileUserResult
   end
 
   private
+
+  def user_assessment
+    user_result.try(:user_assessment)
+  end
 
   def user_result
     @user_result || @assign
