@@ -93,5 +93,9 @@ class UserAssessment < ApplicationRecord
     campaign_assessment&.norm_id
   end
 
+  def user_reports
+    UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
+  end
+
   alias result users_result
 end
