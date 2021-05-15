@@ -107,6 +107,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.21",
+    "medium-zoom": "^1.0.6",
     "microphone-stream": "^5.3.1",
     "mime-types": "^2.1.30",
     "moment": "^2.29.1",

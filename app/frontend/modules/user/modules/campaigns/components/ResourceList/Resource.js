@@ -2,7 +2,8 @@ import React, { useRef, useState } from 'react'
 import { SafeHTML } from 'components/SafeHTML'
 
 import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
-import { useCopyProtection } from 'utils/hooks'
+import { useCopyProtection } from 'modules/survey/hooks/useCopyProtection'
+import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
 
 import connect from './connect'
 
@@ -16,6 +17,7 @@ const Resource = ({
   const [selection, setSelection] = useState(null)
 
   useCopyProtection(containerRef)
+  useImageZoom(containerRef)
 
   const handleMouseUp = () => {
     const selection = window.getSelection()

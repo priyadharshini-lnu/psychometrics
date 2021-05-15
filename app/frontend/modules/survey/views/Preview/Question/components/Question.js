@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
+import mediumZoom from 'medium-zoom'
 import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
 import { initAudioPlayer } from 'modules/survey/hooks/useAudioPlayer'
@@ -17,6 +19,11 @@ class Question extends Component {
 
   componentDidMount () {
     initAudioPlayer(this.question)
+    this.initImageZoom()
+  }
+
+  componentWillUnmount () {
+    this.zoom?.detach()
   }
 
   update = () => {
@@ -24,6 +31,13 @@ class Question extends Component {
   }
 
   addLtrStyleIfNeed = phrase => (phrase.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? { direction: 'ltr' } : {})
+
+  initImageZoom () {
+    // eslint-disable-next-line react/no-find-dom-node
+    const node = ReactDOM.findDOMNode(this.question)
+    const images = node.querySelectorAll('img.zoom-image')
+    this.zoom = mediumZoom(images)
+  }
 
   renderPreview () {
     const { model, result, randomseed } = this.props

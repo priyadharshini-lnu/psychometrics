@@ -87,6 +87,9 @@ function Editor ({
       'fr-highlighted': 'Highlighted',
       'fr-thick': 'Thick',
     },
+    imageStyles: {
+      'zoom-image': 'Zoom Image',
+    },
     toolbarSticky: false,
     videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
     pasteDeniedAttrs: ['style'],
