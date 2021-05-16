@@ -38,8 +38,8 @@ class UserAssessment < ApplicationRecord
     end
   }
 
-  after_commit :set_campaign_user_completion_status, on: %i[create destroy]
-  after_commit :set_campaign_user_completion_status, if: proc { status_previously_changed? }, on: %i[update]
+  after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
+  after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
 
   before_save :set_default_relationship
