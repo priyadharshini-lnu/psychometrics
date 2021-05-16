@@ -149,18 +149,17 @@ const AssessmentsReports: React.FC<Props> = ({
           ]}
         >
           <Descriptions size="small" column={3}>
-            {user.permissions.toggleStatus && (
-              <Descriptions.Item label={I18n.t('administration.campaigns.users.is_active')}>
-                <Switch
-                  checked={user.active}
-                  onChange={
-                    () => {
-                      toggleActive(campaignId, parsedUserId, { updateInListing: false })
-                    }
-                }
-                />
-              </Descriptions.Item>
-            )}
+            <Descriptions.Item label={I18n.t('administration.campaigns.users.is_active')}>
+              <Switch
+                checked={user.active}
+                disabled={!user.permissions.toggleStatus}
+                onChange={
+                  () => {
+                    toggleActive(campaignId, parsedUserId, { updateInListing: false })
+                  }
+              }
+              />
+            </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.model.campaigns')}>
               {userCampaigns()}
             </Descriptions.Item>

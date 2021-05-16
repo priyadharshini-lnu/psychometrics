@@ -24,7 +24,7 @@ type Props = RouteComponentProps & OwnProps & PropsFromRedux
 const ReportList: React.FC<Props> = ({
   reports: {
     list,
-    permissions,
+    reportPermissions,
   },
   match: { params: { projectId, campaignId } },
   openModal,
@@ -58,31 +58,29 @@ const ReportList: React.FC<Props> = ({
             key="reportFamilyName"
             dataIndex="reportFamilyName"
           />
-          {permissions.toggleUserAccess && (
-            <Column
-              title={I18n.t('campaign_report.column.user_access')}
-              key="userAccess"
-              render={({ userAccess, id }) => (
-                <Switch
-                  checked={userAccess}
-                  onChange={() => openModal('ToggleUserAccessModal',
-                    { campaignId, campaignReportId: id, userAccess })}
-                />
-              )}
-            />
-          )}
-          {permissions.toggleAssessorAccess && (
-            <Column
-              title={I18n.t('campaign_report.column.assessor_access')}
-              key="userAccess"
-              render={({ assessorAccess, id }) => (
-                <Switch
-                  checked={assessorAccess}
-                  onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
-                />
-              )}
-            />
-          )}
+          <Column
+            title={I18n.t('campaign_report.column.user_access')}
+            key="userAccess"
+            render={({ userAccess, id }) => (
+              <Switch
+                checked={userAccess}
+                disabled={!reportPermissions.toggleUserAccess}
+                onChange={() => openModal('ToggleUserAccessModal',
+                  { campaignId, campaignReportId: id, userAccess })}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_report.column.assessor_access')}
+            key="userAccess"
+            render={({ assessorAccess, id }) => (
+              <Switch
+                checked={assessorAccess}
+                disabled={!reportPermissions.toggleAssessorAccess}
+                onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
+              />
+            )}
+          />
           <Column
             title={I18n.t('common.column.action')}
             key="action"

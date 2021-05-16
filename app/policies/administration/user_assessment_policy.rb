@@ -23,7 +23,8 @@ module Administration
     end
 
     def reset?
-      @user.is?(:superadmin) && !record&.assessment&.external?
+      !record&.assessment&.external? &&
+        (@user.is?(:superadmin) || @user.has_grant?(:results, :reset_responses))
     end
   end
 end

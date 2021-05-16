@@ -64,8 +64,7 @@ module Administration
           assessments: assessments, reports: reports, assessor_assessments: assessor_assessments,
           permissions: {
             assessment_permissions: aseessment_permissions,
-            report_permissions: report_permissions,
-            assessment_reports_manage_permissions: assessment_reports_manage_permissions
+            report_permissions: report_permissions
           }
         }
       end
@@ -95,19 +94,6 @@ module Administration
 
       private
 
-      def assessment_reports_manage_permissions
-        GetPermissionsHash.call!(
-          Administration::CampaignReportPolicy,
-          current_user,
-          nil,
-          [
-            %w[add_report report_families],
-            'bulk_download',
-            'regenerate'
-          ]
-        )
-      end
-
       def aseessment_permissions
         GetPermissionsHash.call!(
           Administration::CampaignAssessmentPolicy,
@@ -126,9 +112,12 @@ module Administration
           Administration::CampaignReportPolicy,
           current_user,
           nil,
-          %w[
-            toggle_user_access
-            toggle_assessor_access
+          [
+            %w[add_report report_families],
+            'bulk_download',
+            'regenerate',
+            'toggle_user_access',
+            'toggle_assessor_access'
           ]
         )
       end

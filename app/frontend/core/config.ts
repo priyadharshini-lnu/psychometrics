@@ -16,7 +16,7 @@ export const defaultState: ConfigState = {
   features: {},
 }
 
-export const getFeatures = (state): FeaturesFlags => _.get(state, ['config', 'features'], {})
+export const getFeatures = (state): FeaturesFlags => _.get(state, ['campaigns', 'permissions'], {})
 export const isProjectMigrated = (state: RootState): boolean => _.get(state, ['config', 'isProjectMigrated'])
 
 const HANDLERS = {}

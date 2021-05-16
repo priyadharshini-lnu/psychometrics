@@ -28,11 +28,11 @@ module Administration
       end
 
       def edit?
-        create?
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
       end
 
       def destroy?
-        @user.is?(:superadmin)
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       def update?

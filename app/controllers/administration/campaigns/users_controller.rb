@@ -47,7 +47,9 @@ module Administration
             'create',
             %w[export_users index],
             'export_completion_status',
-            'import'
+            'import',
+            'edit',
+            %w[remove destroy]
           ]
         )
       end

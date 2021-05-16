@@ -23,6 +23,9 @@ export interface RegistrationCode {
 const defaultState: State = {
   list: [],
   total: 0,
+  permissions: {
+    create: false,
+  },
 }
 
 export const get = (state): RegistrationCode[] => _.get(state, ['campaigns', 'registrationCodes'])
@@ -54,6 +57,9 @@ export const destroy = (campaignId: string, id: number) => ({
 export interface State {
   list: RegistrationCode[]
   total: number
+  permissions: {
+    create: boolean
+  }
 }
 
 type FetchType = ApiActionResponse<{list: [], total: number}>

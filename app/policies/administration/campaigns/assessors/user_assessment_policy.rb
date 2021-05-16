@@ -17,7 +17,8 @@ module Administration
         end
 
         def reset?
-          @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+          @user.is?(:superadmin) || (@user.has_grant?(:campaigns, :manage_users) &&
+            @user.has_grant?(:assessors, :manage))
         end
       end
     end

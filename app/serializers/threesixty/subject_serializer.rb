@@ -41,7 +41,7 @@ module Threesixty
         object,
         [
           %w[login spoof],
-          'edit',
+          'edit_user',
           'view_report',
           'download_report',
           'view_responses',

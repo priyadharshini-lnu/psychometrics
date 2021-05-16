@@ -12,7 +12,8 @@ module Administration
       end
 
       def create_all?
-        @user.is?(:superadmin) || @user.has_grant?(:assessors, :manage)
+        @user.is?(:superadmin) || (@user.has_grant?(:assessors, :manage) &&
+          @user.has_grant?(:campaigns, :manage_users))
       end
 
       def destroy?
@@ -40,7 +41,8 @@ module Administration
       end
 
       def add_subject?
-        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+        @user.is?(:superadmin) || (@user.has_grant?(:assessors, :manage) &&
+          @user.has_grant?(:campaigns, :manage_users))
       end
     end
   end

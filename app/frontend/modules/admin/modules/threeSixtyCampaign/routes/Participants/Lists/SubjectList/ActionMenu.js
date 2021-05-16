@@ -128,7 +128,7 @@ const ActionsMenu = ({
           </a>
         </Menu.Item>
       )}
-      {permissions.edit && (
+      {permissions.editUser && (
         <Menu.Item key="1">
           <div
             onClick={openUserEditModal}

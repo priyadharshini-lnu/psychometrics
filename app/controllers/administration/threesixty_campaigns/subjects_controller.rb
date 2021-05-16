@@ -110,7 +110,8 @@ module Administration
             'export_completion_status',
             'edit_dimension',
             'reset_all_participants',
-            'reset_all_nominations'
+            'reset_all_nominations',
+            'edit_user'
           ]
         )
       end

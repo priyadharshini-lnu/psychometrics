@@ -66,14 +66,13 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.user_access')}
             key="userAccess"
             render={({ userAccess, id, permissions }) => (
-              permissions.toggleAccess && (
-                <Switch
-                  checked={userAccess}
-                  onChange={() => {
-                    toggleUserAccess(parsedCampaignId, id)
-                  }}
-                />
-              )
+              <Switch
+                checked={userAccess}
+                disabled={!permissions.toggleAccess}
+                onChange={() => {
+                  toggleUserAccess(parsedCampaignId, id)
+                }}
+              />
             )}
           />
           <Column

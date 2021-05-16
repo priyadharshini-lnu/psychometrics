@@ -26,6 +26,9 @@ interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
   destroy(campaignId: string, id: number): void
   list: RegistrationCode[],
+  permissions: {
+    create: boolean
+  },
   total: number,
   match: {
     params: {
@@ -44,6 +47,7 @@ const RegistrationCodes: React.FC<Props> = ({
   fetch,
   list,
   total,
+  permissions,
   match: { params: { projectId, campaignId } },
   tableConfig: {
     page,
@@ -66,14 +70,16 @@ const RegistrationCodes: React.FC<Props> = ({
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">{`${total} Registration Codes `}</span>
         </Col>
-        <div className="float-r">
-          <div>
-            <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
-              <PlusOutlined />
-              <span>Add Code</span>
-            </Button>
+        {permissions.create && (
+          <div className="float-r">
+            <div>
+              <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
+                <PlusOutlined />
+                <span>Add Code</span>
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </Row>
       <Row>
         <Col span={24}>
