@@ -165,6 +165,8 @@ module DataMigration
       def create_user_assessment(assign, subject)
         log('creating user assessment', logger.level + 1)
         users_result = create_users_result(assign)
+        assign_with_result = assign.assign_with_result
+        norm_id = assign_with_result.norm_data.fetch('id', nil) if assign_with_result.norm_data
 
         user_assessment = UserAssessment.new(
           project_id: project.id,
@@ -172,7 +174,10 @@ module DataMigration
           subject_id: assign.membership.user_id,
           evaluator_id: assign.membership.user_id,
           assessment_id: assign.assessment_id,
-          users_result_id: users_result.id
+          users_result_id: users_result.id,
+          status: assign_with_result.status,
+          completed_at: assign_with_result.completed_at,
+          norm_id: norm_id
         )
         user_assessment.save!
 
@@ -187,15 +192,13 @@ module DataMigration
         log('creating user result', logger.level + 1)
         attrs = %w[
           occupations innovation_styles
-          embedded_data scoring status step current_element
+          embedded_data scoring step current_element
           current_page seedrandom meta_data external_results
           selected_locale reset_count additional_time
-          completed_at expiry_date last_activity_at started_at
+          expiry_date last_activity_at started_at
         ]
         attributes = assign_with_result.attributes.slice(*attrs)
         attributes['answers'] = assign_with_result.results
-
-        attributes['norm_id'] = assign_with_result.norm_data.fetch('id', nil) if assign_with_result.norm_data
 
         users_result = UsersResult.new(attributes)
         users_result.save!

@@ -11,7 +11,7 @@ import { isRtl } from 'utils/locales'
 import { useMedia } from 'modules/user/rootHooks'
 import Language from '../../components/Language'
 import store from '../../../../store'
-import Timer from '../../components/Timer'
+import { Timer } from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout
@@ -127,7 +127,7 @@ export default function UserAssessment ({
                 data={assessment}
                 result={results}
                 locales={translations}
-                dashboardUrl={`/campaigns/${campaignId}`}
+                dashboardUrl={`/assessment_completed/${campaignId}`}
                 resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
                 selectedLocale={selectedLanguage && selectedLanguage.code}
                 rstore={store}

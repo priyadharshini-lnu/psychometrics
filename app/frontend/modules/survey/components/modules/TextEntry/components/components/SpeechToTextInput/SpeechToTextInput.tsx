@@ -52,6 +52,10 @@ export const SpeechToTextInput: FC<Props> = ({
   isDisabled = false,
   children,
 }) => {
+  if (preSignedUrl.length === 0) {
+    return null
+  }
+
   const [isDictating, setDictationIndicator] = useState(false)
   const [canRecordAudio, setCanRecordAudio] = useState(false)
   const [tooltipText, setTooltipText] = useState('')
@@ -88,6 +92,7 @@ export const SpeechToTextInput: FC<Props> = ({
         audio: true,
       })
 
+      const AudioContext = window.AudioContext || window.webkitAudioContext
       const audioCtx = new AudioContext()
       const audioSourceNode = audioCtx.createMediaStreamSource(audioStream)
       const audioAnalyzer = audioCtx.createAnalyser()
@@ -233,7 +238,7 @@ export const SpeechToTextInput: FC<Props> = ({
 
   useEffect(() => {
     if (isDisabled) {
-      setTooltipText(I18n.t('assessments.dictation.dictation_inuse'))
+      setTooltipText(I18n.t('assessments.dictation.dictation_disabled'))
     } else {
       setTooltipText(I18n.t('assessments.dictation.use_speech_instructions'))
     }
@@ -292,7 +297,10 @@ export const SpeechToTextInput: FC<Props> = ({
                   <Typography.Text className="ps-4">
                     {I18n.t('assessments.dictation.listening')}
                   </Typography.Text>
-                  <Typography.Text className="ps-4" type={countdownTimerTextType}>
+                  <Typography.Text
+                    className="ps-4"
+                    type={countdownTimerTextType}
+                  >
                     {convertSecondsToMMSS(countdownTimer)}
                   </Typography.Text>
                 </Space>

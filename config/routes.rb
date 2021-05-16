@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  post '/lambda_notifications/url_to_pdf', 'lambda_notifications/url_to_pdf'
+
   concern :media_uploades do
     member do
       get :upload_media_url
@@ -55,6 +57,11 @@ Rails.application.routes.draw do
     end
 
     resources :campaigns, only: [:index] do
+      resources :user_reports, only: [] do
+        member do
+          get :download
+        end
+      end
       resources :users, only: %i[index show]
       resources :evaluations, only: %i[] do
         member do
@@ -923,7 +930,7 @@ Rails.application.routes.draw do
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify', as: :identify
-    get 'assessment_completed', to: 'home#assessment_completed'
+    get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed'
     get 'upgrade', to: 'home#upgrade'
     root to: 'end_user/users#dashboard'
   end
@@ -947,11 +954,19 @@ Rails.application.routes.draw do
   constraints format: :json do
     namespace :api do
       namespace :v1 do
-        resources :projects, only: [] do
+        resources :projects, only: %i[create update] do
+          resources :campaigns, only: %i[create update] do
+            put :assessments_reports, on: :member
+            resources :users, only: [] do
+              put :assessments_reports, on: :member
+            end
+          end
+
           resources :users, only: %i[create update] do
             post :sso, on: :member
 
-            resources :campaigns, only: %i[index create]
+            post 'campaigns' => 'campaigns#assign_user'
+            resources :campaigns, only: %i[index]
             resources :assessments, only: [:index]
             resources :reports, only: [:index] do
               get :results, on: :member

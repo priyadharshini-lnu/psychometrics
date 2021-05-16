@@ -129,6 +129,7 @@ export interface UserDetails {
     toggleStatus: boolean
     remove: boolean
   }
+  hoganId: string | null
 }
 
 export interface State {

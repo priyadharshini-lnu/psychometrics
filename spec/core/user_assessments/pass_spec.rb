@@ -6,6 +6,7 @@ describe UserAssessments::Pass do
   let(:user_assessment) do
     create(
       :user_assessment,
+      evaluator: build(:user, project: create(:project)),
       users_result: build(:users_result, additional_time: 20), assessment: build(:assessment, extra: { timer: 10 })
     )
   end

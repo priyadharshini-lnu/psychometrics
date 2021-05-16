@@ -124,6 +124,7 @@ gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel.git'
 gem 'deep_cloneable', '~> 2.4.0'
 
 gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
 gem 'carrierwave', '~> 1.3.2'
 gem 'carrierwave-base64', '~> 2.5.3'
@@ -173,6 +174,7 @@ gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
+gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -16,10 +16,12 @@ module Campaigns
             Campaigns::Users::AddReport.call!(
               campaign_user,
               report,
-              report_family_id: form.report_family_id,
+              report_family_id: report_family_id_for(report),
               user_access: user_access_for(report),
               operation: form.operation,
-              use_license: use_new_license?(campaign_user.user, report)
+              use_license: use_new_license?(campaign_user.user, report),
+              assessments: get_assessments_for(report),
+              norm_ids: form.assessments || []
             )
           end
         end
@@ -41,7 +43,19 @@ module Campaigns
       end
 
       def user_access_for(report)
-        form.report_access.fetch(report.id.to_s, false)
+        report_params = form.report_map[report.id] || {}
+        report_params[:user_access] || form.report_access.fetch(report.id.to_s, false)
+      end
+
+      def report_family_id_for(report)
+        report_params = form.report_map[report.id] || {}
+        report_params[:report_bundle_id] || form.report_family_id
+      end
+
+      def get_assessments_for(report)
+        return report.assessments if form.assessments.blank?
+
+        report.assessments.select { |a| form.assessment_ids.include?(a.id) }
       end
     end
   end

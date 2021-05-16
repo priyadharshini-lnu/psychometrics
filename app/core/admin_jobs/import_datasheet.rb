@@ -9,6 +9,8 @@ module AdminJobs
       form = ::Datasheets::DatasheetForm.new(file: file, operation: record.data['operation'])
 
       ::Datasheets::ParseFile.call(form, parent_resource)
+
+      broadcast :ok
     end
 
     def generate_title_link

@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ArrowLeftOutlined } from '@ant-design/icons'
@@ -9,10 +9,11 @@ import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { useParams } from 'react-router-dom'
 import {
-  fetchSingle as fetchReport, getCurrent, download, DOWNLOAD,
+  fetchSingle as fetchReport, getCurrent, download, DOWNLOAD, asyncDownload,
 } from 'modules/admin/modules/AssessorApp/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { isRequestInProgress } from 'modules/admin/core/request'
+import { getFeatures } from 'core/config'
 import styles from './styles.scss'
 
 const { Content } = Layout
@@ -21,16 +22,18 @@ const { I18n } = window
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
   downloadInProgress: isRequestInProgress(state, DOWNLOAD),
+  features: getFeatures(state),
 }), {
   fetchReport,
   download,
+  asyncDownload,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const ReportPreview: FC<Props> = ({
-  userReport, fetchReport, download, downloadInProgress,
+  userReport, fetchReport, download, downloadInProgress, features, asyncDownload,
 }) => {
   const { campaignId, id } = useParams<{ id: string, campaignId: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -65,6 +68,15 @@ const ReportPreview: FC<Props> = ({
   }
 
   const { user } = userReport
+
+  const onReportDownloadClick = () => {
+    if (features.url_to_pdf_lambda) {
+      asyncDownload(parsedCampaignId, parsedId)
+      message.success(I18n.t('user_reports.messages.async_generation'))
+    } else {
+      download(parsedCampaignId, parsedId)
+    }
+  }
 
   return (
     <Layout>
@@ -106,7 +118,7 @@ const ReportPreview: FC<Props> = ({
           extra={[
             <Button
               key="download"
-              onClick={() => download(parsedCampaignId, parsedId)}
+              onClick={onReportDownloadClick}
               loading={downloadInProgress}
               disabled={downloadInProgress}
             >

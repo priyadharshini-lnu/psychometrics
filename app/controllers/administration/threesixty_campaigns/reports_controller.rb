@@ -31,7 +31,12 @@ module Administration
         user_report = UserReport.find_by!(
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
-        options = { lang: params[:lang] }
+        options = {
+          lang: params[:lang],
+          file_path: Settings.aws.s3.one_day_expiry_folder,
+          notify_user: true,
+          update_record: false
+        }
         respond_to do |format|
           format.json do
             ::Threesixty::Reports::DownloadJob.perform_later(
@@ -41,11 +46,12 @@ module Administration
           end
           format.pdf do
             add_cookie_for_file_download
-
-            pdf_file = ::Threesixty::Reports::ExportReport.call!(
-              current_user, threesixty_campaign, @_resource, user_report, options
-            )
-            send_file pdf_file, type: 'application/pdf'
+            data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
+            send_file data[:file_path], type: 'application/pdf'
+          end
+          format.html do
+            data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
+            redirect_to data[:file_url]
           end
         end
       end

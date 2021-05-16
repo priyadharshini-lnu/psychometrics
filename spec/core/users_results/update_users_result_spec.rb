@@ -59,13 +59,15 @@ describe ::UsersResults::UpdateUsersResult do
     let(:report)          { threesixty_campaign.report }
     let(:subject_membership) { create(:membership, client: project) }
     let(:subject_user) { subject_membership.user }
-    let(:evaluator_membership) { create(:membership, client: project) }
-    let(:evaluator_user)  { evaluator_membership.user }
-    let!(:users_result)   do
+    let(:evaluator_membership) { create(:membership, client: project, user: create(:user, project: project)) }
+    let(:evaluator_user) { evaluator_membership.user }
+    let(:user_assessment) { create(:user_assessment, campaign: campaign, evaluator: evaluator_user) }
+    let!(:users_result) do
       create(:users_result, assessment: assessment,
                                                   campaign: campaign,
                                                   subject: subject_user,
                                                   evaluator: evaluator_user,
+                                                  user_assessment: user_assessment,
                                                   answers: {},
                                                   step: 3)
     end

@@ -5,7 +5,7 @@ require 'swagger_helper'
 
 describe 'Assessments' do
   let!(:membership) { create(:client_admin_membership) }
-  let(:campaign) { create(:client_campaign, parent: project) }
+  let(:campaign) { create(:campaign, project: project) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
@@ -21,18 +21,18 @@ describe 'Assessments' do
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :query, type: :string, required: false,
+      description: 'if is not filled, the system takes the last campaign id'
 
       response '200', 'Assessments presented' do
         let(:project_id) { project.id }
         let(:user_id) { user.id }
         before do
-          user_membership = create(:membership, client: campaign, user: user)
+          campaign_user = create(:campaign_user, campaign: campaign, user: user)
           assessment = create(:assessment, :with_report, name: 'Super Assessment')
-          user_membership.client.reports = assessment.reports
-          user_membership.client.assessments = [assessment]
-          user_membership.client.project.assessments = [assessment]
-          user_membership.client.project.reports = assessment.reports
-          create(:assign, membership: user_membership, assessment: assessment)
+          campaign_user.campaign.reports = assessment.reports
+          campaign_user.campaign.assessments = [assessment]
+          create(:user_assessment, subject: user, evaluator: user, assessment: assessment, campaign: campaign)
         end
         schema type: 'array', items: { '$ref' => '#/definitions/UserAssessment' }
 
@@ -40,6 +40,7 @@ describe 'Assessments' do
           {
             "id": '11234',
             "name": 'Assessment 1',
+            "campaign_id": 1,
             "status": 'completed',
             "started_at": '2019-03-04T15:47:33.570+04:00',
             "completed_at": '2019-03-04T15:47:33.570+04:00'
@@ -47,6 +48,7 @@ describe 'Assessments' do
           {
             "id": '11235',
             "name": 'Assessment 2',
+            "campaign_id": 1,
             "status": 'completed',
             "started_at": '2019-03-04T15:47:33.570+04:00',
             "completed_at": '2019-03-04T15:47:33.570+04:00'
@@ -54,6 +56,7 @@ describe 'Assessments' do
           {
             "id": '11236',
             "name": 'Assessment 3',
+            "campaign_id": 1,
             "status": 'completed',
             "started_at": '2019-03-04T15:47:33.570+04:00',
             "completed_at": '2019-03-04T15:47:33.570+04:00'
@@ -99,7 +102,7 @@ describe 'Assessments' do
         examples 'application/json' => {
           'code': 1000,
           'message': 'Invalid authentication',
-          'more_info': 'User for api token is disabled',
+          'more_info': 'API User is disabled',
           'meta': nil
         }
 
@@ -108,13 +111,13 @@ describe 'Assessments' do
           expect(error).to eq(
             'code' => 1000,
             'message' => 'Invalid authentication',
-            'more_info' => 'User for api token is disabled',
+            'more_info' => 'API User is disabled',
             'meta' => nil
           )
         end
       end
 
-      response '404', 'User is not found' do
+      response '404', 'User was not found' do
         let(:project_id) { project.id }
         let(:user_id) { 111 }
 
@@ -123,7 +126,7 @@ describe 'Assessments' do
         examples 'application/json' => {
           'code': 1005,
           'message': 'Resource not found',
-          'more_info': 'User with id=111 is not found',
+          'more_info': 'User with id=111 was not found',
           'meta': nil
         }
 
@@ -132,7 +135,7 @@ describe 'Assessments' do
           expect(error).to eq(
             'code' => 1005,
             'message' => 'Resource not found',
-            'more_info' => 'User with id=111 is not found',
+            'more_info' => 'User with id=111 was not found',
             'meta' => nil
           )
         end

@@ -27,11 +27,14 @@ module Campaigns
         return if existing_report_ids.include?(report.id)
 
         campaign.campaign_reports.create!(
-          report: report, user_access: user_access_for(report), report_family_id: form.report_family_id
+          report: report, user_access: user_access_for(report), report_family_id: report_family_id_for(report)
         )
 
-        report.assessments.each do |assessment|
-          campaign.campaign_assessments.find_or_create_by!(assessment: assessment)
+        get_assessments_for(report).each do |assessment|
+          assessment_params = form.assessment_map[assessment.id] || {}
+          attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
+
+          campaign.campaign_assessments.find_or_create_by!(attrs)
         end
 
         return if form.operation == 'skip_existing'
@@ -44,9 +47,10 @@ module Campaigns
           Campaigns::Users::AddReport.call!(
             campaign_user,
             report,
-            report_family_id: form.report_family_id,
+            report_family_id: report_family_id_for(report),
             user_access: user_access_for(report),
             operation: form.operation,
+            assessments: report.assessments,
             use_license: use_new_license?(campaign_user.user, report)
           )
         end
@@ -63,11 +67,23 @@ module Campaigns
       end
 
       def reports
-        @reports ||= Report.where(id: form.report_ids)
+        @reports ||= Report.where(id: form.report_ids).includes(:assessments)
       end
 
       def user_access_for(report)
-        form.report_access.fetch(report.id.to_s, false)
+        report_params = form.report_map[report.id] || {}
+        report_params[:user_access] || form.report_access.fetch(report.id.to_s, false)
+      end
+
+      def report_family_id_for(report)
+        report_params = form.report_map[report.id] || {}
+        report_params[:report_bundle_id] || form.report_family_id
+      end
+
+      def get_assessments_for(report)
+        return report.assessments if form.assessments.blank?
+
+        report.assessments.select { |a| form.assessment_ids.include?(a.id) }
       end
     end
   end

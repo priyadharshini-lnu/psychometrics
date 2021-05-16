@@ -4,9 +4,11 @@ module Api
   module V1
     module Campaigns
       class AttachToUserForm < Rectify::Form
-        attribute :campaign_ids, Array
+        attribute :campaigns, Array
+
         validate :verify_campaign_ids
         validate :uniq_campaign_ids
+        validate :validate_campaigns
 
         def verify_campaign_ids
           return if campaign_ids.empty?
@@ -19,22 +21,31 @@ module Api
         def uniq_campaign_ids
           return if campaign_ids.empty?
 
-          duplicated_ids = context.user.memberships.map(&:client_id) & campaign_ids
+          duplicated_ids = context.user.campaign_ids & campaign_ids
           return if duplicated_ids.empty?
 
           errors.add(:campaign_ids, "Following campaign ids already existed: #{duplicated_ids}")
         end
 
-        def existing_campaign_ids
-          @existing_campaign_ids ||= Client.campaigns_and_sub_campaigns_of(context.project.id).ids
+        def validate_campaigns
+          errors.add(:campaigns, 'Should be at least one campaign') if campaigns.empty?
+
+          campaigns.each.with_index do |campaign, index|
+            form = ValidateForm.new(campaign)
+            errors.add(:campaigns, "[Campaign #{index + 1}] #{form.errors.full_messages}") if form.invalid?
+          end
         end
 
-        def membership_attributes
-          {}
+        def existing_campaign_ids
+          @existing_campaign_ids ||= context.project.project_campaign_ids
         end
 
         def email
           context.user.email
+        end
+
+        def campaign_ids
+          campaigns.map { |c| c[:id] }
         end
       end
     end

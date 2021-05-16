@@ -12,6 +12,6 @@ feature 'Copy Dimension' do
       find('.copy').click
     end
     wait_for_ajax
-    expect(page).to have_content 'New Dim (1)'
+    expect(page).to have_content I18n.t('administration.dimensions.copy_scheduled.successfully', name: dimension.name)
   end
 end

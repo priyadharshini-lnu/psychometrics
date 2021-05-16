@@ -21,6 +21,7 @@ module UsersResults
         if threesixty_campaign
           send_necessary_emails
         else
+          publish_results_to_webhook
           generate_report
         end
       end
@@ -43,6 +44,7 @@ module UsersResults
         users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
+        publish_assessment_completion_to_webhook
         user_assessment.update!(completed_at: Time.now)
         if threesixty_campaign
           user_assessment_attrs = { evaluator_nomination_status: :completed }
@@ -54,6 +56,32 @@ module UsersResults
       end
 
       users_result.save!
+    end
+
+    def publish_assessment_completion_to_webhook
+      data = {
+        campaign: users_result.user_assessment.campaign,
+        assessment: users_result.assessment,
+        evaluator: users_result.evaluator,
+        subject: users_result.subject
+      }
+      WebhookSubscriptions::Publish.call!(users_result.user_assessment.evaluator.project, :assessment_completed, data)
+    end
+
+    def publish_results_to_webhook
+      users_result.user_reports.each do |user_report|
+        next unless user_report.generatable?
+        next if user_report.report.data_configuration.empty?
+
+        built_results = ::Reports::BuildResults.call(user_report.report, user_report.user_results, true)[:ok]
+        data = {
+          campaign: users_result.user_assessment.campaign,
+          subject: users_result.subject,
+          report: user_report.report,
+          results: Api::V1::ResultSerializer.new(built_results, user_report: user_report).to_h
+        }
+        WebhookSubscriptions::Publish.call!(users_result.user_assessment.evaluator.project, :results_available, data)
+      end
     end
 
     def generate_report

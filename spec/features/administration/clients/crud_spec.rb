@@ -24,7 +24,7 @@ feature 'CRUD Client' do
 
       project = create_project(tenancy,
                                name: 'Project',
-                               subdomain: 'project',
+                               subdomain: 'projectabc',
                                number: 2,
                                applicable_level: 'Sub-Campaign',
                                privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
@@ -57,7 +57,7 @@ feature 'CRUD Client' do
       scenario 'I can create any client within tte' do
         new_project = create_project(tenancy,
                                      name: 'New Project',
-                                     subdomain: 'new_project',
+                                     subdomain: 'newproject',
                                      number: 2,
                                      applicable_level: 'Sub-Campaign',
                                      reports: [report.name],

@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Radio, Typography } from 'antd'
 
 import { RadioChangeEvent } from 'antd/lib/radio'
-import { Question } from 'modules/survey/interfaces/builder/Question'
+import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
 
 import { openModal } from 'modules/admin/core/ui/modals'
 import { changeValidation } from 'modules/survey/core/builder/assessment/question/actions'
@@ -20,7 +20,7 @@ const connector = connect(null, {
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
-  model: Question
+  model: BasePropertiesModel
   update: () => void
 }
 

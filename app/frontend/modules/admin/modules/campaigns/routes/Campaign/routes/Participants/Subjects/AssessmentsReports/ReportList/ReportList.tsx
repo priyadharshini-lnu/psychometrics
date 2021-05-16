@@ -141,44 +141,18 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const viewReportMenu = () => {
-    if (!internal && !reportUrl) return null
-
-    if (!internal && reportUrl) {
-      return (
-        <Menu.Item key="downloadReport">
-          <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
-        </Menu.Item>
-      )
-    }
-
-    if (permissions.viewReport) {
-      return (
+  return (
+    <Menu>
+      {internal && permissions.viewReport && (
         <Menu.Item key="viewReport">
           <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
             {I18n.t('reports.actions.view')}
           </Link>
         </Menu.Item>
-      )
-    }
-
-    return null
-  }
-
-  return (
-    <Menu>
-      {viewReportMenu()}
-      {internal && permissions.downloadReport && (
+      )}
+      {reportUrl && permissions.downloadReport && (
         <Menu.Item key="downloadReport">
-          <a
-            href={internal
-              ? `/administration/new_campaigns/${campaignId}/user_reports/${userReportId}/download.pdf`
-              : reportUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {I18n.t('reports.actions.download')}
-          </a>
+          <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
         </Menu.Item>
       )}
       {permissions.remove && (

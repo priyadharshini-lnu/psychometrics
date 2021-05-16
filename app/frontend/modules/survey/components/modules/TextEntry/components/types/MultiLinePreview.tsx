@@ -58,13 +58,13 @@ const MultiLinePreview: FC<Props> = ({
     <div>
       <Row>
         <Col span={24}>
-          {allowDictation ? (
+          {!readOnly && allowDictation ? (
             <SpeechToTextInput
               preSignedUrl={awsSpeechTextPresignedUrl}
               value={value}
               onChange={updateModelAnswer}
               onToggle={handleDictationToggle}
-              isDisabled={isDictationDisabled}
+              isDisabled={isDictationDisabled || readOnly}
             >
               <MultiLineTextArea
                 readOnly={readOnly}

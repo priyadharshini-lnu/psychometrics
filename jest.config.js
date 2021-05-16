@@ -2,14 +2,15 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 
 module.exports = {
-  roots: [
-    '<rootDir>/app/frontend',
-    '<rootDir>/app/frontend/modules/survey',
-  ],
+  roots: ['<rootDir>/app/frontend', '<rootDir>/app/frontend/modules/survey'],
   testEnvironment: 'jsdom',
   testMatch: [
-    '**/__tests__/**/?(*.)+(spec|test).+(ts|tsx|js)',
+    '<rootDir>/app/frontend/__tests__/**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
+  moduleNameMapper: {
+    '\\.svg$': '<rootDir>/app/frontend/__mocks__/svg.js',
+    '\\.(scss|less)$': 'identity-obj-proxy',
+  },
   transform: {
     '^.+\\.js?$': 'babel-jest',
     '^.+\\.tsx?$': 'ts-jest',

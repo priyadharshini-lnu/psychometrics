@@ -176,8 +176,6 @@ en:
               blank: First name can't be blank
             last_name:
               blank: Last name can't be blank
-        update_assessment:
-          attributes: 
         update_norm:
           attributes:
             norm_type:
@@ -516,6 +514,10 @@ en:
         admin_for_another_tte: User already admin in another tte
         not_uniqueness: Assign has already been taken
       models:
+        client:
+          attributes:
+            webhook:
+              invalid_http_url: Invalid url
         factors_norm:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from
@@ -575,6 +577,7 @@ en:
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        copy_dimension: Copy Dimension
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
         import_raw_data: Import Raw Data
@@ -627,8 +630,12 @@ en:
       reevaluate: Re-Evaluate
       rescore: Rescore
     audio_response:
+      pause: Pause
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
+      resume: Resume
+      start_recording: Start recording
+      stop: Stop
     categories:
       '360': 360 Campaign
       agile: AGILE
@@ -645,7 +652,7 @@ en:
       autostopping_in: Auto-stopping in %{reverseCountdown}
       browser_unsupported: Your browser does not support Audio input
       dictation_active: Dictation is now active
-      dictation_inuse: Dictation is currently being used by another question
+      dictation_disabled: Dictation is currently disabled or is being used by another question
       dictation_stopped: Speech dictation stopped
       listening: Listening
       notifications:
@@ -703,6 +710,7 @@ en:
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
+        unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
       offline_message: Please check your internet connection.
       retake: Retake
       retry: Retry
@@ -822,7 +830,7 @@ en:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
       edit: Re-evaluate
       title: Confirm
-      view: View Results
+      view: View
     in_progress: In Progress
     ineligible: Ineligible
     instructions:
@@ -915,6 +923,7 @@ en:
         add_with_existing_response: Add report to existing user and keep existing response
         skip_existing: Skip existing user
       report: Report
+      report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_successful: Bulk report download job scheduled successfully
     modals:
@@ -936,6 +945,7 @@ en:
       additional_time: Additional Time
       completed_at: Completed At
       completion_status: Completion status
+      hogan_id: Hogan Id
       last_login: Last login
       modals:
         remove:
@@ -1011,6 +1021,7 @@ en:
       allow_title: Please allow to use camera to record Video
       ambient_light: Ambient Light
       continue: Continue
+      description: Any video or photo captured at this stage will not be saved or used. It is used locally on your device to ensure the camera is functioning for an upcoming question that may require video recording.
       face_detection: Face detection
       processing: Processing
       run_again: Run again
@@ -1378,7 +1389,7 @@ en:
           error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
-    ar: العربية
+    ar: Arabic
     bg: Bulgarian
     bs: Bosnian
     ca: Catalan
@@ -2270,6 +2281,11 @@ en:
       last_name: Last Name
       password: Password
     form:
+      email: Email
+      first_name: First name
+      last_name: Last name
+      locale: Locale
+      operation: Operation
       operation_options:
         add_and_allow_new_response: Add user and allow new response
         add_with_existing_response: Add user with existing response
@@ -2294,6 +2310,7 @@ en:
     actions:
       regenerate: Regenerate
     messages:
+      async_generation: Report generation in progress. You would be notified once report is generated.
       regenerate_successful: Report regeneration job scheduled successfully
     modals:
       remove:

@@ -47,6 +47,8 @@ class Campaign < ApplicationRecord
   has_many :registration_codes, dependent: :destroy
   has_many :assessors, dependent: :destroy
 
+  accepts_nested_attributes_for :campaign_options
+
   delegate :client, to: :project
   THREESIXTY = 'threesixty'
 
@@ -95,6 +97,12 @@ class Campaign < ApplicationRecord
   def assessor_assessments
     Assessment.assessor_form.joins(:user_assessments).
       where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
+  end
+
+  def clone
+    deep_clone(include: %i[
+                 campaign_reports campaign_assessments campaign_assessment_groups campaign_options
+               ])
   end
 
   def timed?

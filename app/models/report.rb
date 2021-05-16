@@ -197,6 +197,14 @@ class Report < ApplicationRecord
     end.flatten.compact
   end
 
+  def pdf_dimension
+    pdf_height_margin = 6
+    {
+      width: "#{(props&.dig('sizes', 'width') || 850) * 0.265}mm",
+      height: "#{((props&.dig('sizes', 'height') || 1100) + pdf_height_margin) * 0.265}mm"
+    }
+  end
+
   private
 
   def max_assessments_count

@@ -29,9 +29,11 @@ describe Campaigns::UserReports::Add do
       campaign_user,
       report,
       report_family_id: nil,
+      norm_ids: [],
       user_access: true,
       operation: form.operation,
-      use_license: true
+      use_license: true,
+      assessments: report.assessments
     )
 
     described_class.call!(form, campaign_user)
@@ -45,9 +47,11 @@ describe Campaigns::UserReports::Add do
       campaign_user,
       report,
       report_family_id: nil,
+      norm_ids: [],
       user_access: true,
       operation: form.operation,
-      use_license: false
+      use_license: false,
+      assessments: report.assessments
     )
 
     described_class.call!(form, campaign_user)

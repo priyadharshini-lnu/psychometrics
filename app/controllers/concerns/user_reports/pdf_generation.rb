@@ -26,13 +26,20 @@ module UserReports::PdfGeneration
   end
 
   def download
-    options = { lang: params[:lang] }
+    options = {
+      lang: params[:lang],
+      file_path: Settings.aws.s3.one_day_expiry_folder,
+      async: true,
+      notify_user: true,
+      update_record: false
+    }
+    data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
     respond_to do |format|
       format.pdf do
-        file_path = ::UserReports::GeneratePdf.call!(resource, current_user, options)
-
-        send_file file_path, type: 'application/pdf'
+        send_file data[:file_path], type: 'application/pdf'
       end
+
+      format.json { head :ok }
     end
   end
 

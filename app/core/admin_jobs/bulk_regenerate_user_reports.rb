@@ -4,6 +4,8 @@ module AdminJobs
   class BulkRegenerateUserReports < AdminJobs::Base
     def call
       ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
+
+      broadcast :waiting
     end
 
     def generate_title_link

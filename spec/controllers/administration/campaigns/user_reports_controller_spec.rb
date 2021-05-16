@@ -79,7 +79,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     it 'sends pdf file for download' do
       file_path = 'tmp/reports/user.pdf'
 
-      expect(UserReports::GeneratePdf).to receive(:call!).and_return(file_path)
+      expect(UserReports::GeneratePdf).to receive(:call!).and_return(file_path: file_path)
       expect(controller).to receive(:send_file).with(file_path, type: 'application/pdf')
 
       get :download, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :pdf

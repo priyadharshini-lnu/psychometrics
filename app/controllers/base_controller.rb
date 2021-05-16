@@ -16,6 +16,11 @@ class BaseController < ActionController::Base
 
   private
 
+  def feature_flags
+    # Some values can be null
+    Settings.features.to_h.transform_values { |v| v == true }
+  end
+
   def detect_mobile
     request.variant = :mobile if browser.device.mobile?
   end

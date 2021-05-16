@@ -4,13 +4,24 @@ require 'rails_helper'
 
 describe UserReports::GenerateAndSavePdf do
   let(:user) { create(:user, email: 'samdad@cc.com') }
-  let(:user_report) { create(:user_report, user: user) }
-  let(:report) { user_report.report }
+  let(:user_assessment) { create(:user_assessment, campaign: create(:campaign)) }
+  let(:user_result) do
+    create(:users_result,
+           { user_assessment: user_assessment,
+             assessment: assessment,
+             status: :completed,
+             subject: user,
+             evaluator: user })
+  end
+  let(:user_report) { create(:user_report, user: user, report: report) }
+  let(:assessment) { create(:assessment) }
+  let(:report) { create(:report, assessments: [assessment]) }
   let(:current_user) { create(:superadmin) }
 
   it 'save pdf in user_report if report can be generated' do
-    expect(UserReports::GeneratePdf).to receive(:call!).and_return('spec/fixtures/files/reports/test.pdf')
+    expect(UserReports::GeneratePdf).to receive(:call!).and_return(file_path: 'spec/fixtures/files/reports/test.pdf')
     expect(user_report).to receive(:generatable?).and_return(true)
+    expect(user_report).to receive(:user_results).and_return([user_result])
 
     described_class.call!(user_report, current_user)
 

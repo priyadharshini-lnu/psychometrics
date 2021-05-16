@@ -13,9 +13,9 @@ import Timing, { TimingProperties } from './Timing'
 import Captcha, { CaptchaProperties } from './Captcha'
 import HotSpot, { HotSpotProperties } from './HotSpot'
 import GraphicSlider, { GraphicSliderProperties } from './GraphicSlider'
-import VideoResponse, { VideoResponseProperties } from './VideoResponse'
+import { VideoResponse, VideoResponseProperties } from './VideoResponse'
 import FileUpload, { FileUploadProperties } from './FileUpload'
-import AudioResponse, { AudioResponseProperties } from './AudioResponse'
+import { AudioResponseProperties, AudioResponse } from './AudioResponse'
 import Previews from './Previews'
 
 const Modules = {

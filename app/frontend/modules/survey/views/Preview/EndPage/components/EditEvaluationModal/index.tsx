@@ -7,17 +7,18 @@ const { I18n } = window
 
 interface Props {
   show: boolean
+  userAssessmentId: number
   close(): void
 }
 
 const EditEvaluationModal: React.FC<Props> = ({
-  show, close,
+  show, close, userAssessmentId,
 }) => {
   if (!show) { return null }
 
-  const getViewPath = () => '?read=true'
+  const getViewPath = () => `?tab=${userAssessmentId}&read=true`
 
-  const getEditPath = () => '?edit=true'
+  const getEditPath = () => `?tab=${userAssessmentId}&edit=true`
 
   return (
     <Modal

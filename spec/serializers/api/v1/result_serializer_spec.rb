@@ -24,14 +24,17 @@ describe Api::V1::ResultSerializer do
        }, value: 5 }]
   end
 
+  let(:user_report) { create(:user_report) }
+
   before do
     create(:assessment, id: 17, name: 'ass 17')
     create(:assessment, id: 18, name: 'ass 18')
   end
 
-  subject { described_class.new(raw_data).to_h }
+  subject { described_class.new(raw_data, user_report: user_report).to_h }
   it do
     is_expected.to eq(
+      campaign_id: user_report.campaign_id,
       user_data: { 'first_name' => 'Shuja', 'last_name' => 'GPTS' },
       assessments: [
         {

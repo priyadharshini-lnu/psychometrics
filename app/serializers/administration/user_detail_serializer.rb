@@ -3,7 +3,7 @@
 module Administration
   class UserDetailSerializer < ActiveModel::Serializer
     attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns, :started_at, :completed_at,
-               :completion_status, :status, :additional_time, :active, :permissions
+               :completion_status, :status, :additional_time, :active, :hogan_id, :permissions
 
     has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
     has_many :user_reports, serializer: Administration::UserReportSerializer
@@ -64,6 +64,10 @@ module Administration
           %w[remove destroy]
         ]
       )
+    end
+
+    def hogan_id
+      object.hogan_credential&.participant_id
     end
 
     private

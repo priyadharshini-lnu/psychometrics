@@ -119,7 +119,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'regenerate_report' => true,
         'remove' => true,
         'toggle_status' => true
-      }
+      },
+      'hogan_id' => nil
     })
   end
 

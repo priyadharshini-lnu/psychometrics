@@ -8,6 +8,10 @@ class HoganAssessmentSetting < ApplicationRecord
 
   before_validation :set_hogan_form_id, unless: :hogan_form_id
 
+  def norm_id
+    Settings.providers.hogan.assessments.find { |h| h.id == hogan_assessment_id }.fallback_norm_id
+  end
+
   private
 
   def set_hogan_form_id

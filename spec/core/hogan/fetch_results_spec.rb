@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 describe Hogan::FetchResults do
-  let(:assessment) { create(:assessment, hogan_assessment_setting: build(:hogan_assessment_setting)) }
-  let(:report) { build(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting)) }
+  let(:assessment) { create(:assessment, :hogan, hogan_assessment_setting: build(:hogan_assessment_setting)) }
+  let(:report) { create(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting)) }
   let(:user) { create(:user, hogan_credential: build(:hogan_credential)) }
   let(:project) { create(:project) }
   let(:users_result) { create(:users_result) }
@@ -19,9 +19,10 @@ describe Hogan::FetchResults do
   end
 
   it 'when credentials are empty we create them' do
+    allow(users_result).to receive(:hogan_user_reports).and_return([user_report])
     expect(Services::Hogan::API::JSON::ParticipantReport).to receive(:call!).and_return(double('res', report: 'base64'))
     expect(Services::Hogan::API::JSON::ParticipantScore).to receive(:call!).and_return('results')
-    Hogan::FetchResults.call!(user_assessment, report, user.hogan_credential, project)
+    Hogan::FetchResults.call!(users_result, user.hogan_credential, project)
 
     expect(users_result.external_results).to eq 'results'
     expect(user_report.reload.status).to eq 'prepared'
