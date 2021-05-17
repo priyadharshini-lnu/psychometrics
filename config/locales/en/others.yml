@@ -2339,8 +2339,8 @@ en:
     TextEntry:
       Email:
         character_range: Email message entered must be at least %{min} and no more than %{max} characters.
-        max_length: Email message entered must be no more than %{max} characters.
-        min_length: Email message entered must be at least %{min} characters.
+        max_character: Email message entered must be no more than %{max} characters.
+        min_character: Email message entered must be at least %{min} characters.
         subject:
           min_length: Subject field should have minimum of 10 characters
         to:
