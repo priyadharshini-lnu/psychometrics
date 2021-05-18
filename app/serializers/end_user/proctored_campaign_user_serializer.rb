@@ -7,6 +7,10 @@ module EndUser
     attribute :jwt_token, unless: -> { instance_options[:jwt_token].blank? }
     attribute :session_id, unless: -> { instance_options[:session_id].blank? }
 
+    def expiry_date
+      object.real_expiry_date
+    end
+
     def jwt_token
       instance_options[:jwt_token]
     end
