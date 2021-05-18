@@ -5,13 +5,13 @@ class UserAssessment < ApplicationRecord
   belongs_to :assessment
   belongs_to :campaign
   belongs_to :norm
-  belongs_to :project, class_name: 'Client'
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
   belongs_to :assessor
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
+  has_one :project, through: :campaign
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
