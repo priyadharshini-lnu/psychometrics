@@ -18,11 +18,22 @@ class CampaignUser < ApplicationRecord
   scope :completed, -> { where(completion_status: :completed) }
 
   after_commit :compute_and_set_status, if: proc { completion_status_previously_changed? }, on: [:update]
+  after_commit :finish_proctoring_session,
+               if: proc { status_previously_changed? && %w[completed timed_out].include?(status) },
+               on: [:update]
+  delegate :proctoring_enabled?, to: :campaign
 
   def compute_and_set_status
-    return if campaign.fixed_timed?
+    return if campaign.timed? && completion_status != 'completed'
 
-    update_column(:status, completion_status)
+    update(status: completion_status)
+  end
+
+  def finish_proctoring_session
+    proctoring_session = proctoring_sessions.last
+    return unless proctoring_session
+
+    Examus::FinishSession.call!(proctoring_session.session_id)
   end
 
   def disabled

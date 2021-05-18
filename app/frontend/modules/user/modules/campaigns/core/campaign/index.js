@@ -72,8 +72,14 @@ export const defaultState = {
 const HANDLERS = {
   [FETCH]: (state, action) => ({ ...state, ...action.response, loaded: true }),
   [FETCH_OPTIONS]: (state, { response }) => setIn(state, 'options', response),
-  [BEGIN]: (state, { response }) => (setIn(state, 'campaignUser', response)),
-  [CONTINUE]: (state, { response }) => (setIn(state, 'campaignUser', response)),
+  [BEGIN]: (state, { response }) => {
+    if (response.examusSessionUrl) return state
+    return setIn(state, 'campaignUser', response)
+  },
+  [CONTINUE]: (state, { response }) => {
+    if (response.examusSessionUrl) return state
+    return setIn(state, 'campaignUser', response)
+  },
   [RESET]: () => defaultState,
   [DECLINE_EVALUATION]: (state, { requestAction: { evaluationId } }) => {
     const evaluations = _.filter(state.evaluations, ({ id }) => id !== evaluationId)

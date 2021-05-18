@@ -17,7 +17,6 @@ interface OwnProps {
 type Props = OwnProps & PropsFromRedux & RouteComponentProps
 
 const AgileUserAssessment: React.FC<Props> = ({
-  // isFrame,
   agileAssetsUrl,
   agileUserAssessmentUrl,
   isAnonym,

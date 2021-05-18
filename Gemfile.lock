@@ -237,6 +237,8 @@ GEM
       term-ansicolor (~> 1.3)
       thor (>= 0.19.4, < 2.0)
       tins (~> 1.6)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     css_parser (1.7.0)
       addressable
@@ -390,6 +392,7 @@ GEM
       thor (>= 0.18.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
+    hashdiff (1.0.1)
     hashids (1.0.5)
     heapy (0.1.4)
     highline (2.0.3)
@@ -877,6 +880,10 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
+    webmock (3.12.2)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webpacker (4.0.7)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -1050,6 +1057,7 @@ DEPENDENCIES
   web-console (~> 3.3.1)
   webdrivers (~> 4.1.2)
   webhook_system!
+  webmock (~> 3.12.2)
   webpacker (~> 4.0.2)
   wisper-rspec (~> 1.1.0)
   with_model (~> 2.1.5)

@@ -14,6 +14,7 @@ require 'wisper/rspec/matchers'
 require 'rectify/rspec'
 require 'capybara_config'
 require 'rspec/mocks'
+require 'webmock/rspec'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
@@ -60,6 +61,7 @@ RSpec.configure do |config|
 
   config.before(:all) do
     FactoryBot.reload
+    WebMock.allow_net_connect!
   end
 
   config.after(:suite) do
