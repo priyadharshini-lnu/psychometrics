@@ -1,15 +1,20 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
+import { TimePicker } from 'antd'
+import _ from 'lodash'
+import moment from 'moment'
+
 import ActionsHistory from 'modules/survey/components/ActionsHistory'
 import Block from 'modules/survey/models/Block'
 import QuestionSerializer from 'modules/survey/models/QuestionSerializer'
 import { perform } from 'modules/survey/core/temp/socket'
 import NotificationDispatcher from 'modules/survey/dispatchers/NotificationDispatcher'
 import SerializeAssessment from 'modules/survey/core/builder/assessment/SerializeAssessment'
-import { TimePicker } from 'antd'
-import moment from 'moment'
+import { TYPES as CAMPAIGN_TYPES } from 'constants/campaign'
+
 import styles from './Header.scss'
+
+const { I18n } = window
 
 export class Header extends Component {
   openDataSheetModal = () => {
@@ -68,14 +73,15 @@ export class Header extends Component {
     this.form.submit()
   }
 
-  addTimer = () => {
+  toggleTimer = () => {
     const { assessment: { extra }, updateExtra } = this.props
-    updateExtra({ ...extra, timer: null })
-  }
+    const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
 
-  removeTimer = () => {
-    const { assessment: { extra }, updateExtra } = this.props
-    updateExtra(_.omit(extra, 'timer'))
+    if (isAssessmentTimerAdded) {
+      updateExtra(_.omit(extra, 'timer'))
+    } else {
+      updateExtra({ ...extra, timer: null })
+    }
   }
 
   updateTimer = (time) => {
@@ -104,6 +110,9 @@ export class Header extends Component {
       assessment, assessment: { extra, saving }, toggleEnableBack, toggleEnableProgress,
     } = this.props
 
+    const isThreeSixtyAsessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
+    const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
+
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div>
@@ -112,7 +121,7 @@ export class Header extends Component {
           </h3>
         </div>
         <ul className="panel-controls">
-          {_.has(extra, 'timer') && (
+          {isAssessmentTimerAdded && (
             <li>
               Timer:
               <TimePicker
@@ -203,10 +212,13 @@ export class Header extends Component {
               <MenuItem onSelect={toggleEnableProgress}>
                 {_.result(assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
               </MenuItem>
-              {_.has(extra, 'timer') ? (
-                <MenuItem onSelect={this.removeTimer}>Remove Timer</MenuItem>
-              ) : (
-                <MenuItem onSelect={this.addTimer}>Add Timer</MenuItem>
+              {!isThreeSixtyAsessment
+              && (
+              <MenuItem onSelect={this.toggleTimer}>
+                {isAssessmentTimerAdded
+                  ? I18n.t('administration.assessments.menus.remove_timer')
+                  : I18n.t('administration.assessments.menus.add_timer')}
+              </MenuItem>
               )}
               <MenuItem onSelect={this.openDataSheetModal}>Manage Datasheet</MenuItem>
             </DropdownButton>

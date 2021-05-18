@@ -107,6 +107,9 @@ en:
         name: Name
         type: Type
         updated_at: Modified date
+      menus:
+        add_timer: Add timer
+        remove_timer: Remove timer
       new:
         header: New assessment
       resource:
