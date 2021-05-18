@@ -74,6 +74,7 @@ module Administration
           nil,
           [
             %w[add_evaluator create_all],
+            %w[import_evaluator import],
             'manage_datasheets',
             'manage_relationships',
             'export_results',

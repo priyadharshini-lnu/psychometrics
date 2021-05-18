@@ -76,7 +76,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                 return I18n.t('common.text.na')
               }
               return (
-                permissions.updateNorm && (
+                permissions.updateNorm ? (
                   <a
                     onClick={
                       () => openModal('UpdateNormModal',
@@ -90,7 +90,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                   >
                     {normName || I18n.t('common.text.default')}
                   </a>
-                )
+                ) : normName || I18n.t('common.text.default')
               )
             }}
           />

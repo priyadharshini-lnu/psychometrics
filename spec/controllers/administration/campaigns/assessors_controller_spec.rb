@@ -93,7 +93,7 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
         'completion_status' => 'completed',
         'permissions' => {
           'add_subject' => true,
-          'remove' => true
+          'remove_subject' => true
         }
       })
     end

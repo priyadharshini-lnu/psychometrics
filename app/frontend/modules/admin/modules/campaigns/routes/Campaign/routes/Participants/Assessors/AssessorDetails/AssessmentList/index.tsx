@@ -99,7 +99,7 @@ const AssessmentList: React.FC<Props> = ({
         <div className="float-r">
           <div className={styles.newReportButton}>
             <Space>
-              {!isEmpty(selectedIds) && assessor && assessor.permissions.remove && (
+              {!isEmpty(selectedIds) && assessor && assessor.permissions.removeSubject && (
               <Button
                 type="default"
                 danger
@@ -117,7 +117,7 @@ const AssessmentList: React.FC<Props> = ({
                 value={filters.filterableFields}
                 onChange={e => changeFilter('filterBySubjectOrAssessment', e.target.value)}
               />
-              { assessor && assessor.permissions.addSubject && (
+              {assessor && assessor.permissions.addSubject && (
                 <Button
                   type="primary"
                   onClick={() => openModal('AddAssessmentModal')}
@@ -233,7 +233,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset, permissi
 
   return (
     <Menu>
-      { permissions.resetEvaluation && (
+      {permissions.resetEvaluation && (
         <Menu.Item key="reset">
           <div
             role="button"

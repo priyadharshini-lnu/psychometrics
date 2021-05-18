@@ -301,7 +301,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      { permissions.edit ? (
+      {permissions.edit ? (
         <Menu.Item key="edit">
           <div
             role="button"
@@ -312,12 +312,12 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
       ) : null }
-      { permissions.copy ? (
+      {permissions.copy ? (
         <Menu.Item key="copy">
           Copy
         </Menu.Item>
       ) : null }
-      { permissions.delete ? (
+      {permissions.delete ? (
         <Menu.Item key="delete">
           <div
             role="button"

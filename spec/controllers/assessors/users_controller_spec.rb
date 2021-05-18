@@ -31,7 +31,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'total_evaluations' => 1,
         'permissions' => {
           'add_subject' => false,
-          'remove' => false
+          'remove_subject' => false
         }
       }])
     end
@@ -51,7 +51,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'completion_status' => 'completed',
         'permissions' => {
           'add_subject' => false,
-          'remove' => false
+          'remove_subject' => false
         }
       })
     end

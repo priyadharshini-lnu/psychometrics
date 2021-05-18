@@ -46,7 +46,7 @@ export default function EvaluatorList ({
             searchTerm={searchTerm}
           />
           <ToolsDropdown permissions={permissions} />
-          <CreateEvaluatorsDropdown />
+          <CreateEvaluatorsDropdown permissions={permissions} />
         </Col>
       </Row>
       <Row>
@@ -64,9 +64,7 @@ export default function EvaluatorList ({
           </div>
         </Col>
       </Row>
-      {permissions.addEvaluator && (
-        <CreateEvaluatorModal match={match} />
-      )}
+      <CreateEvaluatorModal match={match} />
       <EvaluatorImportModal match={match} />
       <UserEditModal match={match} />
     </>

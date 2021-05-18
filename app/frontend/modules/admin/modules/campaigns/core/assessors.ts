@@ -84,7 +84,7 @@ const SingleAssessorTR = t.type({
   fullName: t.string,
   permissions: t.type({
     addSubject: t.boolean,
-    remove: t.boolean,
+    removeSubject: t.boolean,
   }),
 })
 export type SingleAssessor = t.TypeOf<typeof SingleAssessorTR>

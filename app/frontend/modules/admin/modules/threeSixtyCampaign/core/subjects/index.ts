@@ -24,7 +24,17 @@ interface Subject {
 
 interface State {
   list: Subject[],
-  permissions: [],
+  permissions: {
+    addSubject: boolean
+    editDimension: boolean
+    editUser: boolean
+    exportCompletionStatus: boolean
+    exportResults: boolean
+    manageDatasheets: boolean
+    manageRelationships: boolean
+    resetAllNominations: boolean
+    resetAllParticipants: boolean
+  },
   total: number,
   form: {
     attrs: [],
@@ -41,7 +51,17 @@ interface UpdateData {
 
 export const defaultState: State = {
   list: [],
-  permissions: [],
+  permissions: {
+    addSubject: false,
+    editDimension: true,
+    editUser: false,
+    exportCompletionStatus: true,
+    exportResults: false,
+    manageDatasheets: true,
+    manageRelationships: true,
+    resetAllNominations: false,
+    resetAllParticipants: true,
+  },
   total: 0,
   form: {
     attrs: [],
@@ -101,7 +121,21 @@ export const remove = (campaignId: number, subjectId: number, removeLicenceUsage
   },
 })
 
-type FetchSubjectsType = ApiActionResponse<{subjects: Subject[], permissions: [], total: number}>
+type FetchSubjectsType = ApiActionResponse<{
+  subjects: Subject[],
+  permissions: {
+    addSubject: boolean
+    editDimension: boolean
+    editUser: boolean
+    exportCompletionStatus: boolean
+    exportResults: boolean
+    manageDatasheets: boolean
+    manageRelationships: boolean
+    resetAllNominations: boolean
+    resetAllParticipants: boolean
+  },
+  total: number
+}>
 type FillSubjectsType = ApiActionResponse<{list: Subject[], total: number}>
 type CreateAllFailureType = ApiActionResponse<{errors: {}}>
 type UpdateType = ApiActionResponse<Subject>

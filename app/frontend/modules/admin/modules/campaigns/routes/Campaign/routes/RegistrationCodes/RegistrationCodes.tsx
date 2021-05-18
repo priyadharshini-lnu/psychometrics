@@ -251,7 +251,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   onEdit, permissions,
 }) => (
   <Menu>
-    { permissions.edit && (
+    {permissions.edit && (
       <Menu.Item key="edit">
         <div
           role="button"

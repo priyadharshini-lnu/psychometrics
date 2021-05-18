@@ -39,7 +39,6 @@ module Administration
           [
             'edit',
             'copy',
-            'update_campaign_options',
             %w[delete destroy]
           ]
         )

@@ -28,7 +28,7 @@ module Administration
           object,
           [
             'add_subject',
-            %w[remove destroy]
+            %w[remove_subject destroy]
           ]
         )
       end
