@@ -34,5 +34,3 @@ export class MultipleChoice extends Component {
     )
   }
 }
-
-export default MultipleChoice

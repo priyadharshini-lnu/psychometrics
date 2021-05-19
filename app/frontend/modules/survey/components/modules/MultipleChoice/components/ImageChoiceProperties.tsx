@@ -1,0 +1,79 @@
+import React, { FC } from 'react'
+import {
+  Checkbox,
+  Space,
+  Typography,
+  Radio,
+  Divider,
+  RadioChangeEvent,
+} from 'antd'
+
+import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { PropertiesModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+
+const { I18n } = window
+
+interface Props {
+  isEnabled: PropertiesModel['props']['withImageChoice']
+  onImageEnableChange(event: CheckboxChangeEvent): void
+  isPreviewEnabled: PropertiesModel['props']['isImagePreviewEnable']
+  onPreviewOptionChange(event: CheckboxChangeEvent): void
+  size: PropertiesModel['props']['imageChoiceSize']
+  onSizeChange(event: RadioChangeEvent): void
+}
+
+export const ImageChoiceProperties: FC<Props> = ({
+  isEnabled,
+  isPreviewEnabled,
+  onImageEnableChange,
+  onPreviewOptionChange,
+  size,
+  onSizeChange,
+}) => (
+  <>
+    <div className="ms-4 me-4">
+      <Checkbox defaultChecked={isEnabled} onChange={onImageEnableChange}>
+        {I18n.t(
+          'administration.survey_builder.property_panel.image_multi_choice_properties.enable',
+        )}
+      </Checkbox>
+      {isEnabled && (
+        <Space direction="vertical" size="small" className="mt-2">
+          <Checkbox
+            defaultChecked={isPreviewEnabled}
+            onChange={onPreviewOptionChange}
+          >
+            {I18n.t(
+              'administration.survey_builder.property_panel.image_multi_choice_properties.preview',
+            )}
+          </Checkbox>
+          <div>
+            <Typography.Text strong>
+              {I18n.t(
+                'administration.survey_builder.property_panel.image_multi_choice_properties.size.title',
+              )}
+            </Typography.Text>
+            <Radio.Group className="mt-2" value={size} onChange={onSizeChange}>
+              <Radio value="small">
+                {I18n.t(
+                  'administration.survey_builder.property_panel.image_multi_choice_properties.size.small',
+                )}
+              </Radio>
+              <Radio value="medium">
+                {I18n.t(
+                  'administration.survey_builder.property_panel.image_multi_choice_properties.size.medium',
+                )}
+              </Radio>
+              <Radio value="large">
+                {I18n.t(
+                  'administration.survey_builder.property_panel.image_multi_choice_properties.size.large',
+                )}
+              </Radio>
+            </Radio.Group>
+          </div>
+        </Space>
+      )}
+    </div>
+    <Divider className="mt-4 mb-4" />
+  </>
+)

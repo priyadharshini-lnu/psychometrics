@@ -48,4 +48,12 @@ export interface BaseProps {
   type: string
 }
 
-type QuestionTypes = 'AudioResponse' | 'TextEntry' | 'VideoResponse'
+type QuestionTypes =
+  | 'AudioResponse'
+  | 'TextEntry'
+  | 'VideoResponse'
+  | 'SingleAnswer'
+  | 'MultipleAnswer'
+  | 'Dropdown'
+  | 'SelectBox'
+  | 'MultiSelectBox'

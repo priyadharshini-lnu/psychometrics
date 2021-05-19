@@ -65,17 +65,17 @@ const ChoicesInput: FC<Props> = ({
   const val = isNumber(value) ? value : model.props.choices
 
   return (
-    <Row justify="space-between" align="middle" className={className}>
-      <Col span="6">
-        <Button onClick={handleOnDecrement}>
+    <Row justify="space-between" align="middle" className={className} wrap={false}>
+      <Col>
+        <Button onClick={handleOnDecrement} size="small">
           <MinusOutlined />
         </Button>
       </Col>
       <Col span="8">
-        <Input onChange={handleOnChange} value={val} className="ta-c" />
+        <Input onChange={handleOnChange} value={val} className="ta-c" size="small" />
       </Col>
-      <Col span="6">
-        <Button onClick={handleOnIncrement}>
+      <Col>
+        <Button onClick={handleOnIncrement} size="small">
           <PlusOutlined />
         </Button>
       </Col>
