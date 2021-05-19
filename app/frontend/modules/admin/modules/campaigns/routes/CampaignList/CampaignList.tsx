@@ -301,33 +301,36 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      {permissions.edit ? (
-        <Menu.Item key="edit">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={onEdit}
-          >
-            Edit
-          </div>
-        </Menu.Item>
-      ) : null }
-      {permissions.copy ? (
-        <Menu.Item key="copy">
-          Copy
-        </Menu.Item>
-      ) : null }
-      {permissions.delete ? (
-        <Menu.Item key="delete">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={onDelete}
-          >
-            Delete
-          </div>
-        </Menu.Item>
-      ) : null }
+      <Menu.Item
+        key="edit"
+        disabled={!permissions.edit}
+      >
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={onEdit}
+        >
+          Edit
+        </div>
+      </Menu.Item>
+      <Menu.Item
+        key="copy"
+        disabled={!permissions.copy}
+      >
+        Copy
+      </Menu.Item>
+      <Menu.Item
+        key="delete"
+        disabled={!permissions.delete}
+      >
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={onDelete}
+        >
+          Delete
+        </div>
+      </Menu.Item>
     </Menu>
   )
 }

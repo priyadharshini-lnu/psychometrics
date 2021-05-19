@@ -100,102 +100,87 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
-        {permissions.exportRawResults && (
-          <Menu.Item key="export_raw_labels">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={
-                `/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx?with_labels=1`
-              }
-            >
-              Raw (with labels)
-            </a>
-          </Menu.Item>
-        )}
-        {permissions.exportRawResults && (
-          <Menu.Item key="export_raw">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx`}
-            >
-              Raw (without labels)
-            </a>
-          </Menu.Item>
-        )}
-        {permissions.exportScoringResults && (
-          <Menu.Item key="export_scoring">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_scoring_results.xlsx`}
-            >
-              Scoring
-            </a>
-          </Menu.Item>
-        )}
-        {permissions.exportNormedResults && (
-          <Menu.Item key="export_normed">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_normed_results.xlsx`}
-            >
-              Normed Factor Scores
-            </a>
-          </Menu.Item>
-        )}
-        {permissions.exportRawFactorScores && (
-          <Menu.Item key="export_raw_scores">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_factor_scores.xlsx`}
-            >
-              Raw Factor Scores
-            </a>
-          </Menu.Item>
-        )}
-        {permissions.exportExternalResults && (
-          <Menu.Item key="export_external">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
-            >
-              External
-            </a>
-          </Menu.Item>
-        )}
+        <Menu.Item key="export_raw_labels" disabled={!permissions.exportRawResults}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={
+              `/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx?with_labels=1`
+            }
+          >
+            Raw (with labels)
+          </a>
+        </Menu.Item>
+        <Menu.Item key="export_raw" disabled={!permissions.exportRawResults}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx`}
+          >
+            Raw (without labels)
+          </a>
+        </Menu.Item>
+        <Menu.Item key="export_scoring" disabled={!permissions.exportScoringResults}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_scoring_results.xlsx`}
+          >
+            Scoring
+          </a>
+        </Menu.Item>
+        <Menu.Item key="export_normed" disabled={!permissions.exportNormedResults}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_normed_results.xlsx`}
+          >
+            Normed Factor Scores
+          </a>
+        </Menu.Item>
+        <Menu.Item key="export_raw_scores" disabled={!permissions.exportRawFactorScores}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_factor_scores.xlsx`}
+          >
+            Raw Factor Scores
+          </a>
+        </Menu.Item>
+        <Menu.Item key="export_external" disabled={!permissions.exportExternalResults}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
+          >
+            External
+          </a>
+        </Menu.Item>
       </Menu.ItemGroup>
-      {permissions.importResults && (
-        <Menu.ItemGroup key="import" title="Import">
-          <Menu.Item key="import_raw">
-            <a
-              onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
-            >
-              Raw
-            </a>
-          </Menu.Item>
-          <Menu.Item key="import_scoring">
-            <a
-              onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
-            >
-              Scoring
-            </a>
-          </Menu.Item>
-        </Menu.ItemGroup>
-      )}
+      <Menu.ItemGroup key="import" title="Import">
+        <Menu.Item key="import_raw" disabled={!permissions.importResults}>
+          <a
+            onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
+          >
+            Raw
+          </a>
+        </Menu.Item>
+        <Menu.Item key="import_scoring" disabled={!permissions.importResults}>
+          <a
+            onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
+          >
+            Scoring
+          </a>
+        </Menu.Item>
+      </Menu.ItemGroup>
       <Menu.Divider />
-      <Menu.Item key="rescoring">
+      <Menu.Item key="rescoring" disabled={!permissions.rescoreResponses}>
         <a
           onClick={handleRescoreResponse}
         >
           {I18n.t('campaign_assessment.modals.rescore_response.title')}
         </a>
       </Menu.Item>
-      <Menu.Divider />
     </Menu>
   )
 }

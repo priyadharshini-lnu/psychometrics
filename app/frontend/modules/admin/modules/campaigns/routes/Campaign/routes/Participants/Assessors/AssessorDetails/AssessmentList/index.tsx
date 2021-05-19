@@ -233,17 +233,15 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset, permissi
 
   return (
     <Menu>
-      {permissions.resetEvaluation && (
-        <Menu.Item key="reset">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleReset}
-          >
-            {I18n.t('administration.assessor.assessments.actions.reset')}
-          </div>
-        </Menu.Item>
-      )}
+      <Menu.Item key="reset" disabled={!permissions.resetEvaluation}>
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={handleReset}
+        >
+          {I18n.t('administration.assessor.assessments.actions.reset')}
+        </div>
+      </Menu.Item>
     </Menu>
   )
 }

@@ -142,29 +142,27 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      {internal && permissions.viewReport && (
-        <Menu.Item key="viewReport">
+      {internal && (
+        <Menu.Item key="viewReport" disabled={!permissions.viewReport}>
           <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
             {I18n.t('reports.actions.view')}
           </Link>
         </Menu.Item>
       )}
-      {reportUrl && permissions.downloadReport && (
-        <Menu.Item key="downloadReport">
+      {reportUrl && (
+        <Menu.Item key="downloadReport" disabled={!permissions.downloadReport}>
           <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
         </Menu.Item>
       )}
-      {permissions.remove && (
-        <Menu.Item key="remove">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleDelete}
-          >
-            {I18n.t('common.actions.remove')}
-          </div>
-        </Menu.Item>
-      )}
+      <Menu.Item key="remove" disabled={!permissions.remove}>
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={handleDelete}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
     </Menu>
   )
 }

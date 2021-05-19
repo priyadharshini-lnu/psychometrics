@@ -39,13 +39,11 @@ module Administration
       end
 
       def reset_evaluation?
-        @user.is?(:superadmin) || (@user.has_grant?(:assessors, :manage) &&
-          @user.has_grant?(:campaigns, :manage_users))
+        create_all?
       end
 
       def add_subject?
-        @user.is?(:superadmin) || (@user.has_grant?(:assessors, :manage) &&
-          @user.has_grant?(:campaigns, :manage_users))
+        create_all?
       end
     end
   end

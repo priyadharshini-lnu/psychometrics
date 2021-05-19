@@ -31,28 +31,24 @@ const ActionsMenu = ({
           </a>
         </Menu.Item>
       )}
-      {permissions.edit && (
-        <Menu.Item key="2">
-          <div
-            onClick={openUserEditModal}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.edit')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.removeFromCampaign && (
-        <Menu.Item key="11">
-          <div
-            onClick={removeUserWithConfirmation}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.remove_campaign')}
-          </div>
-        </Menu.Item>
-      )}
+      <Menu.Item key="2" disabled={!permissions.edit}>
+        <div
+          onClick={openUserEditModal}
+          role="button"
+          tabIndex={-1}
+        >
+          {I18n.t('threesixty.participant_list.actions.edit')}
+        </div>
+      </Menu.Item>
+      <Menu.Item key="11" disabled={!permissions.removeFromCampaign}>
+        <div
+          onClick={removeUserWithConfirmation}
+          role="button"
+          tabIndex={-1}
+        >
+          {I18n.t('threesixty.participant_list.actions.remove_campaign')}
+        </div>
+      </Menu.Item>
     </Menu>
   )
 }

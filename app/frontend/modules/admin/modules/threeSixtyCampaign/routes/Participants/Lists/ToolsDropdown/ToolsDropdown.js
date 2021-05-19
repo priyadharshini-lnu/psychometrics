@@ -9,66 +9,52 @@ const menu = ({
   openModal, dimensionId, permissions,
 }) => (
   <Menu>
-    {permissions.manageDatasheets && (
-      <Menu.Item key="datasheet">
-        <a href={`/administration/clients/${projectId}/datasheet_rows`}>Manage Data Sheets...</a>
-      </Menu.Item>
-    )}
-    {permissions.manageRelationships && (
-      <Menu.Item key="manage_relationship">
-        <a onClick={() => openModal('ManageRelationshipsModal')} role="button" tabIndex={-1}>Manage Relationships...</a>
-      </Menu.Item>
-    )}
+    <Menu.Item key="datasheet" disabled={!permissions.manageDatasheets}>
+      <a href={`/administration/clients/${projectId}/datasheet_rows`}>Manage Data Sheets...</a>
+    </Menu.Item>
+    <Menu.Item key="manage_relationship" disabled={!permissions.manageRelationships}>
+      <a onClick={() => openModal('ManageRelationshipsModal')} role="button" tabIndex={-1}>Manage Relationships...</a>
+    </Menu.Item>
     <Menu.Divider />
-    {permissions.exportResults && (
-      <Menu.Item key="export_results">
-        <a
-          href={`/administration/threesixty_campaigns/${campaignId}/export_results.xlsx`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Export Result
-        </a>
-      </Menu.Item>
-    )}
-    {permissions.exportCompletionStatus && (
-      <Menu.Item key="export_completion_status">
-        <a
-          href={`/administration/threesixty_campaigns/${campaignId}/export_completion_status.xlsx`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Export Completion Status
-        </a>
-      </Menu.Item>
-    )}
+    <Menu.Item key="export_results" disabled={!permissions.exportResults}>
+      <a
+        href={`/administration/threesixty_campaigns/${campaignId}/export_results.xlsx`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Export Result
+      </a>
+    </Menu.Item>
+    <Menu.Item key="export_completion_status" disabled={!permissions.exportCompletionStatus}>
+      <a
+        href={`/administration/threesixty_campaigns/${campaignId}/export_completion_status.xlsx`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Export Completion Status
+      </a>
+    </Menu.Item>
     <Menu.Divider />
-    {permissions.editDimension && (
-      <Menu.Item key="dimension">
-        <a href={`/administration/dimensions/${dimensionId}/factors`} role="button" tabIndex={-1}>
-          Edit Dimension
-        </a>
-      </Menu.Item>
-    )}
+    <Menu.Item key="dimension" disabled={!permissions.editDimension}>
+      <a href={`/administration/dimensions/${dimensionId}/factors`} role="button" tabIndex={-1}>
+        Edit Dimension
+      </a>
+    </Menu.Item>
     <Menu.Divider />
-    {permissions.resetAllParticipants && (
-      <Menu.Item key="reset_participant">
-        <div onClick={() => resetCampaignWithConfirmation(campaignId)} role="button" tabIndex={-1}>
-          Reset All Participants...
-        </div>
-      </Menu.Item>
-    )}
-    {permissions.resetAllNominations && (
-      <Menu.Item key="reset_all_nominations">
-        <div
-          onClick={() => resetAllNominationsWithConfirmation(campaignId)}
-          role="button"
-          tabIndex={-1}
-        >
-          Reset All Nominations...
-        </div>
-      </Menu.Item>
-    )}
+    <Menu.Item key="reset_participant" disabled={!permissions.resetAllParticipants}>
+      <div onClick={() => resetCampaignWithConfirmation(campaignId)} role="button" tabIndex={-1}>
+        Reset All Participants...
+      </div>
+    </Menu.Item>
+    <Menu.Item key="reset_all_nominations" disabled={!permissions.resetAllNominations}>
+      <div
+        onClick={() => resetAllNominationsWithConfirmation(campaignId)}
+        role="button"
+        tabIndex={-1}
+      >
+        Reset All Nominations...
+      </div>
+    </Menu.Item>
   </Menu>
 )
 

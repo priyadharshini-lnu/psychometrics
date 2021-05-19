@@ -186,8 +186,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
-        {permissions.exportRawResults && (
-        <Menu.Item key="export_raw_labels">
+        <Menu.Item key="export_raw_labels" disabled={!permissions.exportRawResults}>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -196,9 +195,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             Raw (with labels)
           </a>
         </Menu.Item>
-        )}
-        {permissions.exportRawResults && (
-        <Menu.Item key="export_raw">
+        <Menu.Item key="export_raw" disabled={!permissions.exportRawResults}>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -207,9 +204,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             Raw (without labels)
           </a>
         </Menu.Item>
-        )}
-        {permissions.exportScoringResults && (
-        <Menu.Item key="export_scoring">
+        <Menu.Item key="export_scoring" disabled={!permissions.exportScoringResults}>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -218,7 +213,6 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             Scoring
           </a>
         </Menu.Item>
-        )}
         {permissions.exportNormedResults && (
         <Menu.Item key="export_normed">
           <a
@@ -230,8 +224,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {permissions.exportRawFactorScores && (
-        <Menu.Item key="export_raw_scores">
+        <Menu.Item key="export_raw_scores" disabled={!permissions.exportRawFactorScores}>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -240,9 +233,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             Raw Factor Scores
           </a>
         </Menu.Item>
-        )}
-        {permissions.exportExternalResults && (
-        <Menu.Item key="export_external">
+        <Menu.Item key="export_external" disabled={!permissions.exportExternalResults}>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -251,18 +242,16 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             External
           </a>
         </Menu.Item>
-        )}
       </Menu.ItemGroup>
-      {permissions.importResults && (
       <Menu.ItemGroup key="import" title="Import">
-        <Menu.Item key="import_raw">
+        <Menu.Item key="import_raw" disabled={!permissions.importResults}>
           <a
             onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
           >
             Raw
           </a>
         </Menu.Item>
-        <Menu.Item key="import_scoring">
+        <Menu.Item key="import_scoring" disabled={!permissions.importResults}>
           <a
             onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
           >
@@ -270,29 +259,24 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
       </Menu.ItemGroup>
-      )}
       <Menu.Divider />
-      {permissions.rescoreResponses && (
-        <Menu.Item key="rescoring">
-          <a
-            onClick={handleRescoreResponse}
-          >
-            {I18n.t('campaign_assessment.modals.rescore_response.title')}
-          </a>
-        </Menu.Item>
-      )}
+      <Menu.Item key="rescoring" disabled={!permissions.rescoreResponses}>
+        <a
+          onClick={handleRescoreResponse}
+        >
+          {I18n.t('campaign_assessment.modals.rescore_response.title')}
+        </a>
+      </Menu.Item>
       <Menu.Divider />
-      {permissions.remove && (
-        <Menu.Item key="remove">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
-          >
-            {I18n.t('common.actions.remove')}
-          </div>
-        </Menu.Item>
-      )}
+      <Menu.Item key="remove" disabled={!permissions.remove}>
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
     </Menu>
   )
 }

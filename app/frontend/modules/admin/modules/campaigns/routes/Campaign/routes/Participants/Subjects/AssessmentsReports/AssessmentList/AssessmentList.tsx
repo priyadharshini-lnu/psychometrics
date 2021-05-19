@@ -187,52 +187,44 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-        {permissions.resetResults ? (
-          <Menu.Item key="reset">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={handleReset}
-            >
-              {I18n.t('common.actions.reset')}
-            </div>
-          </Menu.Item>
-        ) : null }
-        {permissions.rescoreResponse && (
-          <Menu.Item key="rescore">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={handleRescoreResponse}
-            >
-              {I18n.t('assessments.actions.rescore')}
-            </div>
-          </Menu.Item>
-        )}
+        <Menu.Item key="reset" disabled={!permissions.resetResults}>
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleReset}
+          >
+            {I18n.t('common.actions.reset')}
+          </div>
+        </Menu.Item>
+        <Menu.Item key="rescore" disabled={!permissions.rescoreResponse}>
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('assessments.actions.rescore')}
+          </div>
+        </Menu.Item>
       </Menu.ItemGroup>
       <Menu.Divider />
-      {permissions.remove && (
-        <Menu.Item key="remove">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleDelete}
-          >
-            {I18n.t('common.actions.remove')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.updateAdditionalTime ? (
-        <Menu.Item key="extend">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })}
-          >
-            {I18n.t('assessments.actions.extend_time')}
-          </div>
-        </Menu.Item>
-      ) : null}
+      <Menu.Item key="remove" disabled={!permissions.remove}>
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={handleDelete}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
+      <Menu.Item key="extend" disabled={!permissions.updateAdditionalTime}>
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })}
+        >
+          {I18n.t('assessments.actions.extend_time')}
+        </div>
+      </Menu.Item>
     </Menu>
   )
 }

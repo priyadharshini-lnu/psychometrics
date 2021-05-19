@@ -330,11 +330,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       id={`menu_campaign-subjects-${email}`}
       aria-labelledby={`menu-button_campaign-subjects-${email}`}
     >
-      {permissions.edit && (
-        <Menu.Item key="edit" onClick={onEdit}>
-          {I18n.t('frontend.edit')}
-        </Menu.Item>
-      )}
+      <Menu.Item
+        key="edit"
+        onClick={onEdit}
+        disabled={!permissions.edit}
+      >
+        {I18n.t('frontend.edit')}
+      </Menu.Item>
       {permissions.loginAs && (
         <Menu.Item key="loginAs">
           <a
@@ -344,16 +346,20 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
       )}
-      {permissions.resetPassword && (
-        <Menu.Item key="changePassword" onClick={handleChangePassword}>
-          {I18n.t('frontend.change_password')}
-        </Menu.Item>
-      )}
-      {permissions.remove && (
-        <Menu.Item key="delete" onClick={handleDelete}>
-          {I18n.t('common.actions.remove')}
-        </Menu.Item>
-      )}
+      <Menu.Item
+        key="changePassword"
+        onClick={handleChangePassword}
+        disabled={!permissions.resetPassword}
+      >
+        {I18n.t('frontend.change_password')}
+      </Menu.Item>
+      <Menu.Item
+        key="delete"
+        onClick={handleDelete}
+        disabled={!permissions.remove}
+      >
+        {I18n.t('common.actions.remove')}
+      </Menu.Item>
     </Menu>
   )
 }

@@ -127,33 +127,29 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, reportId, campaignReportId, openModal, permissions,
 }) => (
   <Menu>
-    {permissions.export && (
-      <Menu.Item key="export">
-        <div
-          role="button"
-          tabIndex={-1}
+    <Menu.Item key="export" disabled={!permissions.export}>
+      <div
+        role="button"
+        tabIndex={-1}
+      >
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
         >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
-          >
-            Export Data
-          </a>
-        </div>
-      </Menu.Item>
-    )}
-    {permissions.remove && (
-      <Menu.Item key="delete">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
-    )}
+          Export Data
+        </a>
+      </div>
+    </Menu.Item>
+    <Menu.Item key="delete" disabled={!permissions.remove}>
+      <div
+        role="button"
+        tabIndex={-1}
+        onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
+      >
+        {I18n.t('common.actions.remove')}
+      </div>
+    </Menu.Item>
   </Menu>
 )
 

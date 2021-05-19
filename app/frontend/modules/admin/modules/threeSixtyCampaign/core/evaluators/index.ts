@@ -22,18 +22,37 @@ interface Evaluator {
 interface State {
   list: Evaluator[],
   total: number,
-  permissions: {},
+  permissions: {
+    addSubject: boolean
+    editDimension: boolean
+    editUser: boolean
+    exportCompletionStatus: boolean
+    exportResults: boolean
+    manageDatasheets: boolean
+    manageRelationships: boolean
+    resetAllNominations: boolean
+    resetAllParticipants: boolean
+  },
   form: {
     attrs: [],
     errors: [] | null,
   },
 }
 
-
 export const defaultState: State = {
   list: [],
   total: 0,
-  permissions: {},
+  permissions: {
+    addSubject: false,
+    editDimension: true,
+    editUser: true,
+    exportCompletionStatus: true,
+    exportResults: false,
+    manageDatasheets: false,
+    manageRelationships: false,
+    resetAllNominations: false,
+    resetAllParticipants: true,
+  },
   form: {
     attrs: [],
     errors: null,
@@ -79,7 +98,17 @@ export const importFile = (campaignId: number, data: FormData) => ({
 interface FetchActionResponse {
   evaluators: Evaluator[],
   total: number,
-  permissions: {},
+  permissions: {
+    addSubject: boolean
+    editDimension: boolean
+    editUser: boolean
+    exportCompletionStatus: boolean
+    exportResults: boolean
+    manageDatasheets: boolean
+    manageRelationships: boolean
+    resetAllNominations: boolean
+    resetAllParticipants: boolean
+  },
 }
 
 export type FetchAction = ApiActionResponse<FetchActionResponse>
