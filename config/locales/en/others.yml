@@ -854,6 +854,7 @@ en:
       title: Time left warning
     timed_out: Timed Out
     timer:
+      expiry_message: assessment ends
       message: Time left to complete all tasks
       notification: You have %{minutes} minutes and %{seconds} seconds to complete
     ungrouped: Ungrouped tasks
@@ -2339,8 +2340,8 @@ en:
     TextEntry:
       Email:
         character_range: Email message entered must be at least %{min} and no more than %{max} characters.
-        max_length: Email message entered must be no more than %{max} characters.
-        min_length: Email message entered must be at least %{min} characters.
+        max_character: Email message entered must be no more than %{max} characters.
+        min_character: Email message entered must be at least %{min} characters.
         subject:
           min_length: Subject field should have minimum of 10 characters
         to:

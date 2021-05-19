@@ -225,6 +225,7 @@ group :test do
   gem 'simplecov', '~> 0.16.1', require: false
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.1.2'
+  gem 'webmock', '~> 3.12.2'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'with_model', '~> 2.1.5'
 end

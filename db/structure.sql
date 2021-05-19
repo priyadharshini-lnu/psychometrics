@@ -1434,7 +1434,8 @@ CREATE TABLE public.factors (
     icon character varying,
     description text,
     scoring_strategy smallint DEFAULT 0 NOT NULL,
-    code character varying
+    code character varying,
+    use_percentage boolean DEFAULT false
 );
 
 
@@ -3318,7 +3319,6 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.user_assessments (
     id bigint NOT NULL,
-    project_id bigint,
     campaign_id bigint,
     relationship_id bigint,
     manager_nomination_status integer DEFAULT 0,
@@ -6307,13 +6307,6 @@ CREATE INDEX index_user_assessments_on_norm_id ON public.user_assessments USING 
 
 
 --
--- Name: index_user_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_assessments_on_project_id ON public.user_assessments USING btree (project_id);
-
-
---
 -- Name: index_user_assessments_on_relationship_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7609,14 +7602,6 @@ ALTER TABLE ONLY public.license_usages
 
 
 --
--- Name: user_assessments fk_rails_f5ead802f1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_assessments
-    ADD CONSTRAINT fk_rails_f5ead802f1 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE RESTRICT;
-
-
---
 -- Name: threesixty_nomination_requirements fk_rails_f78f0657d6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8085,6 +8070,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210419090439'),
 ('20210419092225'),
 ('20210429142157'),
-('20210509083519');
+('20210509083519'),
+('20210512100320'),
+('20210518140350');
 
 

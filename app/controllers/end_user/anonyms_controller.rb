@@ -102,10 +102,6 @@ module EndUser
       }
     end
 
-    def use_iframe?
-      false
-    end
-
     def set_locale
       I18n.locale = ui_locale
     end

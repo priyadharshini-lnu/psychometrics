@@ -1,9 +1,15 @@
 import React from 'react'
 import {
-  FileAddOutlined, HistoryOutlined, CheckCircleOutlined,
+  FileAddOutlined,
+  HistoryOutlined,
+  CheckCircleOutlined,
 } from '@ant-design/icons'
-import { Timer } from 'modules/user/modules/campaigns/components/Timer'
+import { Space } from 'antd'
+
+import { Timer, StaticTime } from 'modules/user/modules/campaigns/components/Timer'
 import { secondsLeftFromNow } from 'utils/time'
+
+const DAY_IN_SECONDS = 24 * 60 * 60
 
 export default function Header ({
   currentUser,
@@ -21,16 +27,11 @@ export default function Header ({
           {currentUser.fullName}
           !
         </h2>
-        {showTimer && (
-          <div className="timer">
-            <Timer
-              seconds={secondsLeftFromNow(expiryDate)}
-              onFinish={onFinish}
-              background="white"
-            />
-            {expiryDate && <span className="mls">{I18n.t('campaign.timer.message')}</span>}
-          </div>
-        )}
+        <TimerSection
+          showTimer={showTimer}
+          onFinish={onFinish}
+          expiryDate={expiryDate}
+        />
       </div>
       <div className="right-wrapper">
         <div className="right">
@@ -61,4 +62,34 @@ export default function Header ({
       </div>
     </div>
   )
+}
+
+export const TimerSection = ({ showTimer, onFinish, expiryDate }) => {
+  const isLessThanDaysTimeRemaining = expiryDate && secondsLeftFromNow(expiryDate) < DAY_IN_SECONDS
+
+  if (showTimer && isLessThanDaysTimeRemaining) {
+    return (
+      <Space className="timer" align="baseline">
+        <Timer
+          seconds={secondsLeftFromNow(expiryDate)}
+          onFinish={onFinish}
+          background="white"
+        />
+        {expiryDate && (
+          <span>{I18n.t('campaign.timer.message')}</span>
+        )}
+      </Space>
+    )
+  }
+
+  if (showTimer && expiryDate) {
+    return (
+      <Space className="timer" align="baseline">
+        <StaticTime background="white" expiryDate={expiryDate} />
+        <span>{I18n.t('campaign.timer.expiry_message')}</span>
+      </Space>
+    )
+  }
+
+  return null
 }

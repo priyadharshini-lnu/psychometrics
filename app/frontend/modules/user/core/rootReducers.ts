@@ -16,7 +16,6 @@ import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
 import anonym from '../modules/campaigns/core/anonym'
 import config from './config'
-import examus from './examus'
 
 const rootReducer = history => combineReducers({
   campaigns: combineReducers({
@@ -39,7 +38,6 @@ const rootReducer = history => combineReducers({
   preview,
   report: combineReducers({ builder: reportBuilder }),
   checkingWizard,
-  examus,
   connection,
   router: connectRouter(history),
 })
