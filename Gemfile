@@ -182,7 +182,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails', '~> 6.1.0'
   gem 'hirb'
-  gem 'parallel_tests'
+  gem 'parallel_tests', '~> 3.7'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 4.0.0'
@@ -215,16 +215,16 @@ group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.35.3'
   gem 'capybara-screenshot', '~> 1.0.24'
-  gem 'coveralls', '~> 0.8.23', require: false
+  gem 'coveralls_reborn', '~> 0.22.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 1.8.7'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
-  gem 'selenium-webdriver', '~> 3.142.0'
+  gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.3.0'
-  gem 'simplecov', '~> 0.16.1', require: false
+  gem 'simplecov', '~> 0.21.2'
   gem 'timecop', '~> 0.9.1'
-  gem 'webdrivers', '~> 4.1.2'
+  gem 'webdrivers', '~> 4.6.0'
   gem 'webmock', '~> 3.12.2'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'with_model', '~> 2.1.5'

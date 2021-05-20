@@ -5,15 +5,14 @@ require 'rspec/retry'
 require 'rails_helper'
 require 'coveralls'
 
-Coveralls.wear!('rails')
+unless ENV['CI']
+  SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
 
-if ENV['CI_PROJECT_DIR']
-  dir = File.join(ENV['CI_PROJECT_DIR'], 'coverage')
-  SimpleCov.coverage_dir(dir)
+  SimpleCov.start 'rails' do
+    add_filter 'vendor'
+  end
 end
-SimpleCov.start 'rails' do
-  add_filter 'vendor'
-end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'
 require 'support/mailer_macros'

@@ -36,8 +36,11 @@ module UsersResults
       questions_ids = factors_scoring.map(&:question_id).uniq
       questions_map = Question.where(id: questions_ids).all.group_by(&:id)
 
+      factors_question_count = {}
+
       factors_scoring_map.each do |factor_id, scoring_array|
         scoring[factor_id] = { results: [] }
+        factors_question_count[factor_id] = 0
         scoring_array.each do |question_scoring|
           question = questions_map[question_scoring.question_id].try(:first)
           scoring_class = "::Scoring::#{question.try(:type)}".safe_constantize
@@ -47,10 +50,14 @@ module UsersResults
             scoring_point = scoring_class.new.calculate(question, result, question_scoring.props)[:value]
             scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
           end
+          factors_question_count[factor_id] += 1 if scoring_class && question && !question_scoring.props.empty?
         end
       end
 
-      broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm_data, users_result.assessment.dimension)
+      broadcast :ok, ::UsersResults::Scoring::Extend.call!(
+        scoring, norm_data,
+        users_result.assessment.dimension, factors_question_count
+      )
     end
 
     private

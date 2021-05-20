@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Utils from 'utils'
 import BaseScoringModule from './BaseScoringModule'
 
 class MatrixTable extends BaseScoringModule {
@@ -11,7 +12,7 @@ class MatrixTable extends BaseScoringModule {
   }
 
   changeValue (scale, choice, value) {
-    if (value && value >= 0) {
+    if (Utils.isNumeric(value)) {
       const object = _.find(this.scoring.props, { scale, choice })
       if (object) {
         object.value = value

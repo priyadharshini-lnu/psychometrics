@@ -68,7 +68,7 @@ function* genPrevPage () {
 
 function* genUpdateResultsAsNotDirty () {
   const state = yield select()
-  if (!state.initialized) { return }
+  if (!state.preview.initialized) { return }
   const questions = pageQuestionsWithoutHidden(state.preview)
   yield put(setNotDirtyResults(_.map(questions, 'id')))
 }

@@ -7,8 +7,7 @@
         th = link_to_sort resource_class, :first_name, filter_form
         th = link_to_sort resource_class, :last_name, filter_form
         th = link_to_sort resource_class, :email, filter_form
-        th = User.human_attribute_name :memberships
-        th = t('administration.clients_hierarchy')
+        th width='180' = t('administration.clients_hierarchy')
         th = link_to_sort resource_class, :role, filter_form
         th.date = link_to_sort resource_class, :created_at, filter_form
         th = t('administration.created_by')

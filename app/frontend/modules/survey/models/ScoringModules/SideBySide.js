@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Utils from 'utils'
 import BaseScoringModule from './BaseScoringModule'
 import SideBySideTypes from './SideBySideTypes'
 
@@ -27,7 +28,7 @@ class SideBySide extends BaseScoringModule {
     if (object) {
       answerData = _.find(object.values, { index: answer })
     }
-    if (value && value >= 0) {
+    if (Utils.isNumeric(value)) {
       if (answerData) {
         answerData.value = value
       } else if (object) {

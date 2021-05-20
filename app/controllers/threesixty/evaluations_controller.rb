@@ -15,12 +15,7 @@ module Threesixty
       respond_to do |format|
         format.html { render 'end_user/users/dashboard' }
         format.json do
-          @users_result = @participant.users_result || @participant.create_users_result(
-            last_activity_at: DateTime.current,
-            expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
-            answers: {}
-          )
-          @participant.update(status: :in_progress)
+          @users_result = find_user_result_or_create
           set_locale_for_users_result(@users_result)
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
@@ -70,6 +65,18 @@ module Threesixty
     end
 
     private
+
+    def find_user_result_or_create
+      unless @participant.users_result
+        @participant.create_users_result(
+          last_activity_at: DateTime.current,
+          expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
+          answers: {}
+        )
+        @participant.update(status: :in_progress)
+      end
+      @participant.users_result
+    end
 
     def set_read_results
       @participant.status = :in_progress
