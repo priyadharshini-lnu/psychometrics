@@ -19,7 +19,6 @@ export interface PropertiesModel
 
 export interface PreviewModel
   extends Omit<BasePreviewModel, 'props'>,
-    ChangeProps<Props>,
     ModelProps<Props> {}
 
 interface Props extends BaseProps {

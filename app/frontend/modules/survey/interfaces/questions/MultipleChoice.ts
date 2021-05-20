@@ -22,7 +22,10 @@ export interface PropertiesModel
 interface Props extends BaseProps {
   position: 'Vertical' | 'Horizontal'
   notApplicable: boolean
+  notApplicableLabel: string
   withImageChoice: boolean
   isImagePreviewEnable: boolean
   imageChoiceSize: 'small' | 'medium' | 'large'
+  choices: number
+  choicesTexts: Array<string>
 }

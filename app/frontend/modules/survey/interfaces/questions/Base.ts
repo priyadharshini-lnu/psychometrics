@@ -1,5 +1,13 @@
 export interface BaseBuilderModel extends BaseModel, ModelProps<BaseProps> {
-  update: () => void
+  update(): void
+  changeArrayProps(
+    { collection, i, val }: { collection: string; i: number; val: string },
+    undo?: boolean
+  ): void
+  moduleConfig: {
+    validations: boolean
+    defaultChoiceText: (i: number) => string
+  }
 }
 
 export interface BasePropertiesModel extends BaseModel, ModelProps<BaseProps> {
@@ -11,10 +19,16 @@ export interface BasePropertiesModel extends BaseModel, ModelProps<BaseProps> {
     },
     undo?: boolean
   ) => void
+  moduleConfig: {
+    validations: boolean
+  }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BasePreviewModel extends BaseModel, ModelProps<BaseProps> {}
+export interface BasePreviewModel extends BaseModel, ModelProps<BaseProps> {
+  moduleConfig: {
+    validations: boolean
+  }
+}
 
 interface BaseModel {
   id: number
@@ -29,9 +43,6 @@ interface BaseModel {
   requiredValidation: {
     enabled: boolean
     type: string
-  }
-  moduleConfig: {
-    validations: boolean
   }
 }
 
