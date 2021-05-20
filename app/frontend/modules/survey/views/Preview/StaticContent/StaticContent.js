@@ -6,7 +6,8 @@ import {
 } from 'views/Block/components/StaticContent/settings'
 
 import { useAudioPlayer } from 'modules/survey/hooks/useAudioPlayer'
-import { useCopyProtection } from 'utils/hooks'
+import { useCopyProtection } from 'modules/survey/hooks/useCopyProtection'
+import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
 
 import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
 import { SafeHTML } from 'components/SafeHTML'
@@ -20,6 +21,7 @@ const StaticContent = ({
   const containerRef = useRef()
   const shouldEnableContentCopy = staticContent?.allowContentCopy ?? false
   useCopyProtection(containerRef, shouldEnableContentCopy)
+  useImageZoom(containerRef)
 
   const [selection, setSelection] = useState(null)
 

@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0",
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0 --fix",
     "test": "jest",
+    "test:coverage": "jest --coverage --detectOpenHandles && coveralls < coverage/lcov.info",
     "test:watch": "jest --watch",
     "types": "tsc",
     "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi"
@@ -107,6 +108,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.21",
+    "medium-zoom": "^1.0.6",
     "microphone-stream": "^5.3.1",
     "mime-types": "^2.1.30",
     "moment": "^2.29.1",
@@ -196,6 +198,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-select": "4.0.15",
     "core-js": "3.10.0",
+    "coveralls": "^3.1.0",
     "eslint": "^7.25.0",
     "eslint-plugin-jest-dom": "^3.8.1",
     "eslint-plugin-react": "^7.23.2",

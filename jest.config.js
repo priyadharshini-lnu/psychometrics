@@ -23,6 +23,16 @@ module.exports = {
     'app/frontend/modules/survey',
     'app/frontend/modules/reports',
   ],
+  collectCoverageFrom: [
+    'app/frontend/**/*.{ts,tsx,js,jsx}',
+  ],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    'app/frontend/__tests__/',
+    'app/frontend/__mocks__/',
+    'app/frontend/packs/',
+    'app/frontend/typings/',
+  ],
   globals: {
     window: {},
     __DEV__: {},
@@ -30,6 +40,7 @@ module.exports = {
     __PROD__: {},
     __DISABLE_LOGGER_: {},
     'ts-jest': {
+      babelConfig: true,
       tsconfig: 'tsconfig.json',
     },
   },

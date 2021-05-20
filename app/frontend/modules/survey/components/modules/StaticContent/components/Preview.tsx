@@ -4,9 +4,10 @@ import { connect, ConnectedProps } from 'react-redux'
 import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
 
 import { RootState } from 'modules/survey/core/rootReducers'
-import { I18nInterface, Question } from 'modules/survey/core/preview/FlowProcessor/interfaces.ts'
+import { I18nInterface, Question } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
-import { useCopyProtection } from 'utils/hooks'
+import { useCopyProtection } from 'modules/survey/hooks/useCopyProtection'
+import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
 
 import Previews from './Previews'
 import Text from './Text'
@@ -31,6 +32,7 @@ const Preview: FC<Props> = ({ model, I18n }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useCopyProtection(containerRef)
+  useImageZoom(containerRef)
 
   return (
     <div ref={containerRef}>
