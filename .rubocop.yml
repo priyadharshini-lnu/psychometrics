@@ -5,6 +5,7 @@ AllCops:
     - "node_modules/**/*"
     - "db/schema.rb"
   UseCache: true
+  CacheRootDirectory: "tmp"
 
 Layout/HashAlignment:
   EnforcedLastArgumentHashStyle: ignore_implicit
