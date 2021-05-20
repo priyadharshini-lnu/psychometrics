@@ -25,6 +25,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
   end
 
   let!(:user_assessment) { users_result.user_assessment }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
 
   let!(:user_report) do
     create(
@@ -64,7 +65,9 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     expect(users_result.additional_time).to eq(600)
     expect(users_result.status).to eq('interrupted')
     expect(users_result.expiry_date).to be_nil
-    expect(parsed_response['id']).to eq(user_assessment.id)
+    expect(parsed_response.dig('user_assessments', 0, 'id')).to eq(user_assessment.id)
+    expect(parsed_response['id']).to eq(user.id)
+    expect(parsed_response['user_reports'].class).to be(Array)
     expect(user_report.reload.status).to eq('generating')
   end
 
@@ -86,8 +89,10 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       id: user_assessment.id,
       new_campaign_id: campaign.id
     }
-
-    expect(response).to have_http_status(:success)
+    parsed_response = JSON.parse(response.body)
+    expect(parsed_response.dig('user_assessments', 0, 'id')).to eq(user_assessment.id)
+    expect(parsed_response['id']).to eq(user.id)
+    expect(parsed_response['user_reports'].class).to be(Array)
   end
 
   describe 'DELETE' do
@@ -98,8 +103,11 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
           id: user_assessment.id
         }
       end.to change(UserAssessment, :count).by(-1)
-      expect(response.body).to eq(user_assessment.id.to_s)
-      expect(UserAssessment.find_by(id: user_assessment.id)).to be_nil
+      parsed_response = JSON.parse(response.body)
+
+      expect(parsed_response['user_assessments']).to be_empty
+      expect(parsed_response['id']).to eq(user.id)
+      expect(parsed_response['user_reports'].class).to be(Array)
     end
   end
 end
