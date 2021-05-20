@@ -17,13 +17,11 @@ export default function Options ({
 
   return (
     <div className={styles.container}>
-      {campaignReportPermissions.manageReportsOptions && (
-        <>
-          <AccessSection />
-          <ApprovalSection />
-          <ReportAvailabilitySection />
-        </>
-      )}
+      <>
+        <AccessSection manageReportsOptions={campaignReportPermissions.manageReportsOptions} />
+        <ApprovalSection />
+        <ReportAvailabilitySection />
+      </>
     </div>
   )
 }

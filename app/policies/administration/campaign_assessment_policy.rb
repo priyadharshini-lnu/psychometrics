@@ -5,7 +5,7 @@ module Administration
     include ::Administration::Common::AssessmentExportPolicy
 
     def update?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def destroy?
@@ -21,7 +21,7 @@ module Administration
     end
 
     def update_assessor_form?
-      update_norm?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def can_configure_universal_links?
@@ -29,11 +29,11 @@ module Administration
     end
 
     def enable_universal_link?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def attach_to_group?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
   end
 end

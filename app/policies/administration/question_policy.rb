@@ -3,23 +3,23 @@
 module Administration
   class QuestionPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:questions, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :view)
     end
 
     def create?
-      super || @user.has_grant?(:questions, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
     end
 
     def edit?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
     end
 
     def copy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
     end
 
     def destroy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
     end
 
     def actions?

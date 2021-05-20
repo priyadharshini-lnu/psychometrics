@@ -19,7 +19,7 @@ module Administration
     end
 
     def create?
-      new?
+      @user.is?(:superadmin)
     end
   end
 end

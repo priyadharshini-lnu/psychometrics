@@ -2,27 +2,27 @@
 
 class Administration::DimensionPolicy < Administration::BasePolicy
   def index?
-    super || @user.has_grant?(:dimensions, :view)
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :view)
   end
 
   def create?
-    super || @user.has_grant?(:dimensions, :manage)
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
   end
 
   def destroy?
-    create?
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
   end
 
   def edit?
-    create?
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
   end
 
   def update?
-    edit?
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
   end
 
   def copy?
-    create?
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
   end
 
   def actions?

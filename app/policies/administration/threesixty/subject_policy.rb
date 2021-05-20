@@ -28,27 +28,27 @@ module Administration
       end
 
       def remove_report_approval?
-        approve_report?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
       end
 
       def release_report?
-        approve_report?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
       end
 
       def hold_report?
-        approve_report?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
       end
 
       def remove_report_hold_release?
-        approve_report?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
       end
 
       def mark_as_done?
-        approve_report?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
       end
 
       def unmark_as_done?
-        approve_report?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
       end
 
       def export_results?
@@ -80,7 +80,7 @@ module Administration
       end
 
       def download_report?
-        view_report?
+        user.is?(:superadmin) || user.has_grant?(:results, :view_report)
       end
 
       def view_responses?
@@ -96,19 +96,19 @@ module Administration
       end
 
       def create_all?
-        import?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
       end
 
       def search?
-        index?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
       end
 
       def preview_report?
-        index?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
       end
 
       def download_example_import_file?
-        index?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
       end
     end
   end

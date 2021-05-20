@@ -105,7 +105,7 @@ module Administration
     end
 
     def edit_additional_fields?
-      view_additional_fields?
+      @user.is?(:superadmin)
     end
 
     class Scope < Scope

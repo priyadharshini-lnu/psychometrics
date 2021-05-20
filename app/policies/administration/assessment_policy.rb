@@ -13,23 +13,23 @@ module Administration
     end
 
     def create?
-      new?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
     end
 
     def edit?
-      new?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
     end
 
     def update?
-      new?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
     end
 
     def copy?
-      new?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
     end
 
     def destroy?
-      new?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
     end
 
     # Can archive/unarchive Assessment

@@ -3,7 +3,7 @@
 module Administration
   class DatasheetRowPolicy < Administration::BasePolicy
     def bulk_delete?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
     end
 
     def create?
@@ -31,7 +31,7 @@ module Administration
     end
 
     def save_column_preference?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
     end
 
     def import?

@@ -11,11 +11,11 @@ module Administration
     end
 
     def edit?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:libraries, :manage)
     end
 
     def destroy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:libraries, :manage)
     end
 
     def open_channel?

@@ -2,11 +2,11 @@
 
 class Administration::NormPolicy < Administration::BasePolicy
   def index?
-    super || @user.has_grant?(:norms, :view)
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :view)
   end
 
   def create?
-    super || @user.has_grant?(:norms, :manage)
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
   end
 
   def editor?
@@ -18,7 +18,7 @@ class Administration::NormPolicy < Administration::BasePolicy
   end
 
   def copy?
-    create?
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
   end
 
   def actions?
@@ -26,11 +26,11 @@ class Administration::NormPolicy < Administration::BasePolicy
   end
 
   def import?
-    super || @user.has_grant?(:norms, :manage)
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
   end
 
   def export?
-    super || @user.has_grant?(:norms, :view)
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :view)
   end
 
   def change_cell?

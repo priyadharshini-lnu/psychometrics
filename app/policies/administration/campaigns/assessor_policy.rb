@@ -8,7 +8,7 @@ module Administration
       end
 
       def available_assessments?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:assessors, :view)
       end
 
       def create_all?
@@ -17,19 +17,21 @@ module Administration
       end
 
       def destroy?
-        create_all?
+        @user.is?(:superadmin) || (@user.has_grant?(:assessors, :manage) &&
+          @user.has_grant?(:campaigns, :manage_users))
       end
 
       def import?
-        create_all?
+        @user.is?(:superadmin) || (@user.has_grant?(:assessors, :manage) &&
+          @user.has_grant?(:campaigns, :manage_users))
       end
 
       def show?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:assessors, :view)
       end
 
       def user_assessments?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:assessors, :view)
       end
 
       def spoof?
@@ -37,7 +39,8 @@ module Administration
       end
 
       def reset_evaluation?
-        add_subject?
+        @user.is?(:superadmin) || (@user.has_grant?(:assessors, :manage) &&
+          @user.has_grant?(:campaigns, :manage_users))
       end
 
       def add_subject?

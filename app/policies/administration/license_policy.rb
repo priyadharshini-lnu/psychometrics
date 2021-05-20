@@ -3,7 +3,7 @@
 module Administration
   class LicensePolicy < Administration::BasePolicy
     def overview?
-      index?
+      super || @user.has_grant?(:clients, :view_licenses)
     end
 
     def new?

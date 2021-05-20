@@ -11,15 +11,15 @@ module Administration
     end
 
     def edit?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
     end
 
     def update?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
     end
 
     def copy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
     end
 
     class Scope < Scope

@@ -11,11 +11,11 @@ module Administration
     end
 
     def destroy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:registration_codes, :manage)
     end
 
     def update?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:registration_codes, :manage)
     end
 
     def index?

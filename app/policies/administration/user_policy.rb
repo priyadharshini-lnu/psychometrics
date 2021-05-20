@@ -6,11 +6,11 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def send_mail?
-    index? && !@record.is_anonym?
+    (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)) && !@record.is_anonym?
   end
 
   def change_password?
-    send_mail?
+    (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)) && !@record.is_anonym?
   end
 
   def new?
@@ -26,7 +26,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def search_admins?
-    index?
+    @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
   end
 
   def create_superadmin?
@@ -42,7 +42,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def toggle_status?
-    send_mail?
+    (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)) && !@record.is_anonym?
   end
 
   def toggle_membership_status?
@@ -63,11 +63,11 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def export?
-    index?
+    @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
   end
 
   def export_completion_status?
-    index?
+    @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
   end
 
   def spoof?

@@ -11,15 +11,15 @@ module Administration
     end
 
     def pdf_preview?
-      show?
+      @user.is?(:superadmin) || @user.has_grant?(:results, :view_report)
     end
 
     def download?
-      show?
+      @user.is?(:superadmin) || @user.has_grant?(:results, :view_report)
     end
 
     def regenerate?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:campaign, :manage_users)
     end
 
     def destroy?
@@ -28,7 +28,7 @@ module Administration
     end
 
     def toggle_user_access?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:campaign, :manage_users)
     end
   end
 end

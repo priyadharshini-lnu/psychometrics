@@ -52,11 +52,11 @@ module Administration
       end
 
       def create_all?
-        import?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
       end
 
       def download_example_import_file?
-        index?
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
       end
     end
   end

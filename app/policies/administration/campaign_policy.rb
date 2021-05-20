@@ -19,7 +19,7 @@ module Administration
     end
 
     def destroy?
-      edit?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
     end
 
     def manage_first_level?
@@ -62,7 +62,7 @@ module Administration
     end
 
     def archive?
-      edit?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
     end
 
     def edit_tte?
@@ -82,19 +82,19 @@ module Administration
     end
 
     def edit_additional_fields?
-      view_additional_fields?
+      @user.is?(:superadmin)
     end
 
     def templates_and_assessment?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def fetch_campaign_options?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def fetch_campaign_instructions?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def manage_options?

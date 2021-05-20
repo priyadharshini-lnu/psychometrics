@@ -15,11 +15,11 @@ module Administration
     end
 
     def copy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def destroy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def new_form?
@@ -27,7 +27,7 @@ module Administration
     end
 
     def download_history?
-      show?
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
     end
 
     class Scope < Scope

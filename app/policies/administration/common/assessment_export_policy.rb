@@ -20,7 +20,7 @@ module Administration
       end
 
       def export_raw_factor_scores?
-        export_normed_results?
+        @record.common? && (@user.is?(:superadmin) || @user.has_grant?(:results, :scores))
       end
 
       def export_external_results?

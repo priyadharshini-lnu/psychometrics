@@ -8,7 +8,7 @@ module Administration
       end
 
       def show?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def create?
@@ -20,11 +20,11 @@ module Administration
       end
 
       def regenerate_report?
-        add_report?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       def toggle_status?
-        create?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       def edit?
@@ -36,11 +36,11 @@ module Administration
       end
 
       def update?
-        create?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       def reset_password?
-        update? && !@record.is_anonym?
+        (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)) && !@record.is_anonym?
       end
 
       def spoof?
@@ -48,7 +48,7 @@ module Administration
       end
 
       def extend_time?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def export_completion_status?
@@ -56,11 +56,11 @@ module Administration
       end
 
       def search?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def import?
-        create?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       class Scope < Administration::BasePolicy::Scope

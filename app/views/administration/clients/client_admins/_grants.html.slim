@@ -1,5 +1,7 @@
 - clients_view_id = dom_id(u, :clients_view)
 - clients_view_licenses_id = dom_id(u, :clients_manage)
+- clients_design_id = dom_id(u, :clients_design)
+
 
 - projects_view_id = dom_id(u, :projects_view)
 - projects_manage_id = dom_id(u, :projects_manage)
@@ -58,7 +60,7 @@ table.table.grants-table
       th Entity
       th.actions Privileges
   tbody
-    - if policy(:membership).manage_grants_for_actions?('clients', ['view', 'view_licenses'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('clients', ['view', 'view_licenses', 'design'], client: client)
       tr
         td Clients
         td.text-nowrap
@@ -72,12 +74,16 @@ table.table.grants-table
               = check_box_tag 'resource[grants_attributes][data][clients][]',
                       'view_licenses', resource.has_grant?(:clients, :view_licenses), id: clients_view_licenses_id
               | View Licenses
+            label
+              = check_box_tag 'resource[grants_attributes][data][clients][]',
+                      'design', resource.has_grant?(:clients, :design), id: clients_design_id
+              | Design
 
-    - if policy(:membership).manage_grants_for_actions?('clients', ['view', 'view_licenses'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('projects', ['view', 'manage', 'manage_admins', 'manage_users'], client: client)
       tr
         td Projects
         td.text-nowrap
-          - if policy(:membership).manage_grants_for_action?('projects', ['view', 'manage', 'manage_admins', 'manage_users'], client: client)
+          - if policy(:membership).manage_grants_for_action?('projects', 'view', client: client)
             label
               = check_box_tag 'resource[grants_attributes][data][projects][]',
                       'view', resource.has_grant?(:projects, :view), id: projects_view_id, data: { turn_off: [projects_manage_id] }

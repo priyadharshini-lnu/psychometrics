@@ -7,7 +7,7 @@ module Administration
     end
 
     def destroy?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def report_families?
@@ -23,11 +23,11 @@ module Administration
     end
 
     def toggle_user_access?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def toggle_assessor_access?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def regenerate?
