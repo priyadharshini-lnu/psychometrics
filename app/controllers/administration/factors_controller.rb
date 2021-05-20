@@ -101,7 +101,7 @@ class Administration::FactorsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(:id, :name, :description, :icon, :remove_icon, :dimension_id, :scoring_strategy,
-                                     :code, factors_sub_factors_attributes:
+                                     :code, :use_percentage, factors_sub_factors_attributes:
                                        %i[id weight _destroy sub_factor_id position predicate value])
   end
 end

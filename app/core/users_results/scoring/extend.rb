@@ -3,12 +3,13 @@
 module UsersResults
   module Scoring
     class Extend < BaseCommand
-      private_attr_reader :scoring, :norm_data, :dimension
+      private_attr_reader :scoring, :norm_data, :dimension, :factors_question_count
 
-      def initialize(scoring, norm_data, dimension)
+      def initialize(scoring, norm_data, dimension, factors_question_count = {})
         @scoring = scoring.deep_stringify_keys
         @norm_data = norm_data
         @dimension = dimension
+        @factors_question_count = factors_question_count
       end
 
       def call
@@ -28,7 +29,9 @@ module UsersResults
           })
         end
 
-        extended_scoring = ::UsersResults::Scoring::AddScore.call!(factor_hash, factor_hash.keys, scoring)
+        extended_scoring = ::UsersResults::Scoring::AddScore.call!(
+          factor_hash, factor_hash.keys, scoring, factors_question_count
+        )
         if norm_data.present?
           extended_scoring = ::UsersResults::Scoring::AddZScore.call!(extended_scoring, norm_data, factor_norm_hash)
           extended_scoring = ::UsersResults::Scoring::AddNormScore.call!(

@@ -2,7 +2,7 @@
 
 module UsersResults
   class UpdateUsersResult < BaseCommand
-    private_attr_reader :form, :users_result, :user_assessment, :subject_user, :current_user
+    private_attr_reader :form, :users_result, :user_assessment, :subject_user, :current_user, :project
 
     def initialize(form, users_result, current_user)
       @form = form
@@ -11,6 +11,7 @@ module UsersResults
       @subject_user = users_result.subject
       @evaluator_user = users_result.evaluator
       @current_user = current_user
+      @project = user_assessment.campaign.project
     end
 
     def call
@@ -21,7 +22,7 @@ module UsersResults
         if threesixty_campaign
           send_necessary_emails
         else
-          publish_results_to_webhook
+          UserAssessments::Webhook.new(user_assessment).publish_results_available
           generate_report
         end
       end
@@ -37,15 +38,17 @@ module UsersResults
     def update_users_result
       attributes = form.attributes_with_values
       users_result.update!(attributes.except(*user_assessment_attribute_names))
-      user_assessment.update!(attributes.slice(*user_assessment_attribute_names))
+      user_assessment_form_attributes = attributes.slice(*user_assessment_attribute_names)
+      user_assessment.update!(user_assessment_form_attributes.except(:norm_id))
       # Calculates scoring and sets time of completion
       if user_assessment.completed?
+        norm_id = user_assessment.applicable_norm_id || user_assessment_form_attributes[:norm_id]
+        user_assessment.update!(completed_at: Time.now, norm_id: norm_id)
         users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
         users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
-        publish_assessment_completion_to_webhook
-        user_assessment.update!(completed_at: Time.now)
+        UserAssessments::Webhook.new(user_assessment).publish_assessment_completed
         if threesixty_campaign
           user_assessment_attrs = { evaluator_nomination_status: :completed }
           if user_assessment.relationship_id == Relationship.manager_relationship.id
@@ -56,32 +59,6 @@ module UsersResults
       end
 
       users_result.save!
-    end
-
-    def publish_assessment_completion_to_webhook
-      data = {
-        campaign: users_result.user_assessment.campaign,
-        assessment: users_result.assessment,
-        evaluator: users_result.evaluator,
-        subject: users_result.subject
-      }
-      WebhookSubscriptions::Publish.call!(users_result.user_assessment.evaluator.project, :assessment_completed, data)
-    end
-
-    def publish_results_to_webhook
-      users_result.user_reports.each do |user_report|
-        next unless user_report.generatable?
-        next if user_report.report.data_configuration.empty?
-
-        built_results = ::Reports::BuildResults.call(user_report.report, user_report.user_results, true)[:ok]
-        data = {
-          campaign: users_result.user_assessment.campaign,
-          subject: users_result.subject,
-          report: user_report.report,
-          results: Api::V1::ResultSerializer.new(built_results, user_report: user_report).to_h
-        }
-        WebhookSubscriptions::Publish.call!(users_result.user_assessment.evaluator.project, :results_available, data)
-      end
     end
 
     def generate_report

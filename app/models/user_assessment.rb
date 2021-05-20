@@ -38,8 +38,8 @@ class UserAssessment < ApplicationRecord
     end
   }
 
-  after_commit :set_campaign_user_completion_status, on: %i[create destroy]
-  after_commit :set_campaign_user_completion_status, if: proc { status_previously_changed? }, on: %i[update]
+  after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
+  after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
 
   before_save :set_default_relationship
@@ -81,6 +81,20 @@ class UserAssessment < ApplicationRecord
 
   def campaign_user
     CampaignUser.find_by(campaign_id: campaign_id, user_id: evaluator_id)
+  end
+
+  def campaign_assessment
+    CampaignAssessment.find_by(campaign_id: campaign_id, assessment_id: assessment_id)
+  end
+
+  def applicable_norm_id
+    return norm_id if norm_id
+
+    campaign_assessment&.norm_id
+  end
+
+  def user_reports
+    UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
   end
 
   alias result users_result
