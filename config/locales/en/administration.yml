@@ -3122,7 +3122,7 @@ en:
           single_answer: Single answer
         no_of_choices: No. of choices
         orientation:
-          horizontal: horizontal
+          horizontal: Horizontal
           title: Orientation
           vertical: Vertical
         validation_response_type: Validation response type

@@ -1,6 +1,15 @@
 import {
-  BasePropertiesModel, ModelProps, ChangeProps, BaseProps,
+  BaseBuilderModel,
+  BasePropertiesModel,
+  ModelProps,
+  ChangeProps,
+  BaseProps,
 } from './Base'
+
+export interface BuilderModel
+  extends Omit<BaseBuilderModel, 'props'>,
+    ChangeProps<Props>,
+    ModelProps<Props> {}
 
 export interface PropertiesModel
   extends Omit<BasePropertiesModel, 'props'>,

@@ -16,6 +16,9 @@ const DefaultProps = {
     defaultValues: [],
     notApplicable: false,
     notApplicableLabel: 'Not Applicable',
+    withImageChoice: false,
+    isImagePreviewEnable: false,
+    imageChoiceSize: 'small',
   },
 
   TextEntry: {

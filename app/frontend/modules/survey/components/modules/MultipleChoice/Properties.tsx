@@ -60,6 +60,7 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
   const handleWithImageChange = (event: CheckboxChangeEvent) => {
     model.changeProps({
       withImageChoice: event.target.checked,
+      position: 'Vertical',
     })
     model.update()
   }
@@ -104,7 +105,11 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
           )}
         </Checkbox>
         {isSingleOrMultiAnswerType && (
-          <PositionProperty value={position} onChange={handlePositionChange} />
+          <PositionProperty
+            value={position}
+            onChange={handlePositionChange}
+            isDisabled={withImageChoice}
+          />
         )}
       </Space>
       <Divider className="mt-4 mb-4" />
@@ -165,14 +170,15 @@ const ChoicesCountInput: FC<ChoicesCountInputProps> = ({ model, onChange }) => (
 interface PositionPropertyProps {
   value: PropertiesModel['props']['position']
   onChange(event: RadioChangeEvent): void
+  isDisabled?: boolean
 }
 
-const PositionProperty: FC<PositionPropertyProps> = ({ value, onChange }) => (
+const PositionProperty: FC<PositionPropertyProps> = ({ value, onChange, isDisabled = false }) => (
   <div className="ms-4 me-4">
     <Typography.Text strong>
       {I18n.t('administration.survey_builder.property_panel.orientation.title')}
     </Typography.Text>
-    <Radio.Group className="mt-2" value={value} onChange={onChange}>
+    <Radio.Group className="mt-2" value={value} onChange={onChange} disabled={isDisabled}>
       <Radio value="Vertical">
         {I18n.t(
           'administration.survey_builder.property_panel.orientation.vertical',
