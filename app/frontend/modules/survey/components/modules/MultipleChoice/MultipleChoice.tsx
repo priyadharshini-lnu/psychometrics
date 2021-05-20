@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC } from 'react'
 
 import TextEditor from 'components/TextEditor'
 import Templates from 'modules/survey/components/modules/MultipleChoice/components/Templates'
@@ -12,8 +12,6 @@ interface Props {
 }
 
 export const MultipleChoice: FC<Props> = ({ model }) => {
-  const { type, questionText } = model.props
-
   const forceUpdate = useForceUpdate()
 
   const changeText = (value: string) => {
@@ -21,10 +19,9 @@ export const MultipleChoice: FC<Props> = ({ model }) => {
     forceUpdate()
   }
 
-  const answerType = useMemo(() => {
-    const View = Templates[type]
-    return <View model={model} key={type} />
-  }, [type])
+  const { type, questionText } = model.props
+  const View = Templates[type]
+  const answerType = <View model={model} key={type} />
 
   return (
     <div style={{ position: 'relative' }}>

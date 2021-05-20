@@ -37,10 +37,12 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
     model.changeProps({
       type: selectedType,
     })
+    model.update()
   }
 
   const handleChoiceCountChange = (val: number) => {
     model.setChoices(val)
+    model.update()
   }
 
   const handlePositionChange = (event: RadioChangeEvent) => {
