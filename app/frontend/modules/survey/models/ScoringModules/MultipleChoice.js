@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Utils from 'utils'
 import BaseScoringModule from './BaseScoringModule'
 
 class MultipleChoice extends BaseScoringModule {

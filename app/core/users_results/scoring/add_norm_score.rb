@@ -50,6 +50,7 @@ module UsersResults
 
       def get_factor_zscore(factor_id)
         factor_data = factor_hash[factor_id.to_i]
+        return unless factor_data
         return scoring.dig(factor_id.to_s, 'zscore') unless factor_data[:factor].sub_factors_average_strategy?
 
         score_data = factor_data[:sub_factor_hash].each_with_object(sum: 0, count: 0) do |(k, v), data|

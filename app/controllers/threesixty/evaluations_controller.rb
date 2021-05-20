@@ -67,9 +67,7 @@ module Threesixty
     private
 
     def find_user_result_or_create
-      if @participant.users_result
-        @participant.users_result
-      else
+      unless @participant.users_result
         @participant.create_users_result(
           last_activity_at: DateTime.current,
           expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
@@ -77,6 +75,7 @@ module Threesixty
         )
         @participant.update(status: :in_progress)
       end
+      @participant.users_result
     end
 
     def set_read_results
