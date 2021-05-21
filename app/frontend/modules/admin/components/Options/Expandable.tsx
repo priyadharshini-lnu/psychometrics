@@ -41,7 +41,6 @@ const Expandable: React.FC<Props> = ({
                   <Switch
                     checkedChildren="On"
                     unCheckedChildren="Off"
-                    defaultChecked
                     checked={value}
                     onChange={onChange}
                   />
