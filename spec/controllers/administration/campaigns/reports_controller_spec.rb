@@ -116,7 +116,9 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
   def check_campaign_reports_and_assesment_response(parsed_response)
     report_response = parsed_response['reports'].first
-    expect(report_response.keys).to eq(%w[id report_id name user_access assessor_access report_family_name])
+    expect(report_response.keys).to eq(
+      %w[id report_id name user_access assessor_access report_family_name permissions]
+    )
     expect(report_response).to include({
       'name' => report.name,
       'report_family_name' => report_family.name,

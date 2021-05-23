@@ -27,6 +27,7 @@ export default function SubjectList ({
   removeUser,
   downloadReport,
   total,
+  permissions,
   page,
   searchTerm,
   editUser,
@@ -62,8 +63,10 @@ export default function SubjectList ({
             path="/participants/subjects"
             searchTerm={searchTerm}
           />
-          <ToolsDropdown />
-          <CreateSubjectsDropdown />
+          <ToolsDropdown permissions={permissions} />
+          {permissions.addSubject && (
+            <CreateSubjectsDropdown />
+          )}
         </Col>
       </Row>
       <Row>
@@ -118,7 +121,9 @@ export default function SubjectList ({
 
             <Column
               key="action"
-              render={({ id, user: { email }, user }) => (
+              render={({
+                id, user: { email }, user, permissions,
+              }) => (
                 <Dropdown
                   overlay={() => ActionsMenu({
                     subjectId: id,
@@ -132,6 +137,7 @@ export default function SubjectList ({
                     openModal,
                     editUser,
                     onUserUpdate,
+                    permissions,
                   })
                   }
                   trigger={['click']}

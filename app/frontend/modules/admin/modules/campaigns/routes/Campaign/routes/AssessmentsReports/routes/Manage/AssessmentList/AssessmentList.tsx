@@ -69,14 +69,16 @@ const AssessmentList: React.FC<Props> = ({
                 return I18n.t('common.text.na')
               }
               return (
-                <a
-                  onClick={
-                    () => openModal('UpdateNormModal',
-                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                  }
-                >
-                  {normName || I18n.t('common.text.default')}
-                </a>
+                permissions.updateNorm ? (
+                  <a
+                    onClick={
+                      () => openModal('UpdateNormModal',
+                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                    }
+                  >
+                    {normName || I18n.t('common.text.default')}
+                  </a>
+                ) : normName || I18n.t('common.text.default')
               )
             }}
           />
@@ -86,48 +88,52 @@ const AssessmentList: React.FC<Props> = ({
             render={({
               assessorFormName, id,
             }) => (
-              <a
-                onClick={
-                    () => openModal('UpdateAssessorFormModal',
-                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                  }
-              >
-                {assessorFormName || I18n.t('common.text.na')}
-              </a>
+              permissions.updateAssessorForm ? (
+                <a
+                  onClick={
+                      () => openModal('UpdateAssessorFormModal',
+                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                    }
+                >
+                  {assessorFormName || I18n.t('common.text.na')}
+                </a>
+              ) : assessorFormName || I18n.t('common.text.na')
             )}
           />
-          {permissions.enableUniversalLink
-            && (
-            <Column
-              title={I18n.t('campaign_assessment.column.universal_link')}
-              key="universalLink"
-              render={({
-                enableUniversalLinks, universalLink, id, isExternal,
-              }) => {
-                if (isExternal) {
-                  return I18n.t('common.text.na')
-                }
-                if (enableUniversalLinks && !isExternal) {
-                  return (
-                    <a
-                      onClick={
-                          () => openModal('UniversalLinkModal',
-                            {
-                              projectId: parsedProjectId,
-                              campaignId: parsedCampaignId,
-                              campaignAssessmentId: id,
-                              universalLink,
-                            })
-                        }
-                    >
-                      {I18n.t('frontend.manage')}
-                    </a>
-                  )
-                }
-                return <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
-              }}
-            />
-            )}
+          <Column
+            title={I18n.t('campaign_assessment.column.universal_link')}
+            key="universalLink"
+            render={({
+              enableUniversalLinks, universalLink, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              if (enableUniversalLinks && !isExternal) {
+                return (
+                  <a
+                    onClick={
+                        () => openModal('UniversalLinkModal',
+                          {
+                            projectId: parsedProjectId,
+                            campaignId: parsedCampaignId,
+                            campaignAssessmentId: id,
+                            universalLink,
+                            manageUniversalLink: permissions.enableUniversalLink,
+                          })
+                      }
+                  >
+                    {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
+                  </a>
+                )
+              }
+              return (
+                permissions.enableUniversalLink ? (
+                  <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
+                ) : I18n.t('common.text.na')
+              )
+            }}
+          />
           <Column
             title={I18n.t('common.column.action')}
             key="action"
@@ -202,7 +208,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        { permissions.exportScoringResults && (
+        {permissions.exportScoringResults && (
         <Menu.Item key="export_scoring">
           <a
             target="_blank"
@@ -213,7 +219,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        { permissions.exportNormedResults && (
+        {permissions.exportNormedResults && (
         <Menu.Item key="export_normed">
           <a
             target="_blank"
@@ -224,7 +230,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        { permissions.exportRawFactorScores && (
+        {permissions.exportRawFactorScores && (
         <Menu.Item key="export_raw_scores">
           <a
             target="_blank"
@@ -235,7 +241,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        { permissions.exportExternalResults && (
+        {permissions.exportExternalResults && (
         <Menu.Item key="export_external">
           <a
             target="_blank"
@@ -247,7 +253,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
         )}
       </Menu.ItemGroup>
-      { permissions.importResults && (
+      {permissions.importResults && (
       <Menu.ItemGroup key="import" title="Import">
         <Menu.Item key="import_raw">
           <a
@@ -266,23 +272,27 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       </Menu.ItemGroup>
       )}
       <Menu.Divider />
-      <Menu.Item key="rescoring">
-        <a
-          onClick={handleRescoreResponse}
-        >
-          {I18n.t('campaign_assessment.modals.rescore_response.title')}
-        </a>
-      </Menu.Item>
+      {permissions.rescoreResponses && (
+        <Menu.Item key="rescoring">
+          <a
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('campaign_assessment.modals.rescore_response.title')}
+          </a>
+        </Menu.Item>
+      )}
       <Menu.Divider />
-      <Menu.Item key="remove">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+      {permissions.remove && (
+        <Menu.Item key="remove">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

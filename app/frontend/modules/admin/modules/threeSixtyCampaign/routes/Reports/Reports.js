@@ -4,7 +4,9 @@ import routeUtils from 'utils/route'
 import RouteList from 'components/RouteList'
 import settings from '../../settings'
 
-export default function Reports ({ history, routes, reportId }) {
+export default function Reports ({
+  history, routes, reportId,
+}) {
   const onSelect = ({ key }) => {
     if (key === 'report_builder') {
       window.location.pathname = `/administration/reports/${reportId}`

@@ -14,10 +14,10 @@ import { removeUser } from 'modules/admin/modules/threeSixtyCampaign/core'
 export default connect(
   ({
     threeSixtyCampaign: {
-      subjects: { list, total },
+      subjects: { list, total, permissions },
     },
   }) => ({
-    subjects: list, total, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+    subjects: list, total, permissions, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
   }),
   dispatch => ({
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),

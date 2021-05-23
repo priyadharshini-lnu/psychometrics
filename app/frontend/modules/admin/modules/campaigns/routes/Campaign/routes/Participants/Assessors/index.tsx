@@ -94,19 +94,21 @@ const AssessorList: React.FC<Props> = ({
           <span className="mlm">{I18n.t('administration.assessor.count', { count: total })}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} />
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
           <Search
             placeholder="Search"
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-          <div className={styles.newUserButton}>
-            <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
-              <PlusOutlined />
-              <span>Add Assessor</span>
-            </Button>
-          </div>
+          {permissions.add && (
+            <div className={styles.newUserButton}>
+              <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
+                <PlusOutlined />
+                <span>Add Assessor</span>
+              </Button>
+            </div>
+          )}
         </div>
       </Row>
       <Row>
@@ -156,7 +158,7 @@ const AssessorList: React.FC<Props> = ({
                       currentUser,
                       id: assessor.id,
                       email: assessor.email,
-                      permissions,
+                      permissions: assessor.permissions,
                       remove: () => remove(campaignId, assessor.id),
                     }) as React.ReactElement
                   )}

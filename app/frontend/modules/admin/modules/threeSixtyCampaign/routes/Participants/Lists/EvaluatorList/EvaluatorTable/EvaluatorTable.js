@@ -58,10 +58,11 @@ export default function EvaluatorTable ({
 
       <Column
         key="action"
-        render={({ user }) => (
+        render={({ user, permissions }) => (
           <Dropdown
             overlay={() => ActionsMenu({
               user,
+              permissions,
               campaignId,
               removeUser,
               editUser,

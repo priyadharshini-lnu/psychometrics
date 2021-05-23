@@ -44,6 +44,9 @@ module Administration
         object,
         [
           'update_additional_time',
+          'update_norm',
+          'rescore_response',
+          %w[remove destroy],
           %w[reset_results reset]
         ]
       )

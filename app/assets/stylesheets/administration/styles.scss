@@ -17,8 +17,8 @@
 
 // User grants table
 .grants-table .actions { width: 1%; }
-.grants-table label { font-size: 17px; margin: 0 4px;}
-.grants-table label input { display: none; }
+.grants-table label { margin: 2px 6px; width: 150px; }
+.grants-table label input { margin-right: 4px; vertical-align: text-top; }
 .grants-table label i { cursor: pointer; margin: 0 4px 0 0; }
 .grants-table label input:checked + i { color: #1caf9a; }
 

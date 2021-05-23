@@ -45,6 +45,9 @@ type Props = PropsFromRedux & RouteComponentProps<Params>
 const Manage: React.FC<Props> = ({
   fetchAssessmentAndReports,
   match: { params: { campaignId } },
+  reports: {
+    reportPermissions,
+  },
   openModal,
   selectedIds,
   regenerateReports,
@@ -78,33 +81,39 @@ const Manage: React.FC<Props> = ({
         <div>
           <div className={styles.newReportButton}>
             <Space>
-              <Button
-                type="default"
-                onClick={handleBulkDownload}
-                disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
-                loading={bulkDownloadInProgress}
-              >
-                <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
-              </Button>
+              {reportPermissions.bulkDownload && (
+                <Button
+                  type="default"
+                  onClick={handleBulkDownload}
+                  disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
+                  loading={bulkDownloadInProgress}
+                >
+                  <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
+                </Button>
+              )}
 
-              <Button
-                type="default"
-                onClick={handleRegenerateReports}
-                disabled={_.isEmpty(selectedIds) || regenerateInProgress}
-                loading={regenerateInProgress}
-              >
-                <span>{I18n.t('user_reports.actions.regenerate')}</span>
-              </Button>
+              {reportPermissions.regenerate && (
+                <Button
+                  type="default"
+                  onClick={handleRegenerateReports}
+                  disabled={_.isEmpty(selectedIds) || regenerateInProgress}
+                  loading={regenerateInProgress}
+                >
+                  <span>{I18n.t('user_reports.actions.regenerate')}</span>
+                </Button>
+              )}
 
-              <Button
-                type="primary"
-                onClick={
-                  () => openModal('AddReportModal', { campaignId: parsedCampaignId, strategy: Strategies.MULTIPLE })
-                }
-              >
-                <PlusOutlined />
-                <span>Add Report</span>
-              </Button>
+              {reportPermissions.addReport && (
+                <Button
+                  type="primary"
+                  onClick={
+                    () => openModal('AddReportModal', { campaignId: parsedCampaignId, strategy: Strategies.MULTIPLE })
+                  }
+                >
+                  <PlusOutlined />
+                  <span>Add Report</span>
+                </Button>
+              )}
             </Space>
           </div>
         </div>

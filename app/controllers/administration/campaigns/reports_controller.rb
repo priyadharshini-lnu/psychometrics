@@ -48,7 +48,7 @@ module Administration
       def assessments_and_reports
         reports = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_reports.includes(:report),
-          each_serializer: Administration::CampaignReportSerializer
+          each_serializer: Administration::CampaignReportSerializer, current_user: current_user
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(:norm, :assessment),
@@ -62,7 +62,10 @@ module Administration
 
         render json: {
           assessments: assessments, reports: reports, assessor_assessments: assessor_assessments,
-          permissions: { assessment_permissions: aseessment_permissions }
+          permissions: {
+            assessment_permissions: aseessment_permissions,
+            report_permissions: report_permissions
+          }
         }
       end
 
@@ -98,6 +101,23 @@ module Administration
           nil,
           %w[
             enable_universal_link
+            update_norm
+            update_assessor_form
+          ]
+        )
+      end
+
+      def report_permissions
+        GetPermissionsHash.call!(
+          Administration::CampaignReportPolicy,
+          current_user,
+          nil,
+          [
+            %w[add_report report_families],
+            'bulk_download',
+            'regenerate',
+            'toggle_user_access',
+            'toggle_assessor_access'
           ]
         )
       end

@@ -6,7 +6,7 @@ module Administration
       include Rails.application.routes.url_helpers
 
       attributes :id, :name, :start_date, :end_date, :type, :status, :campaign_url, :is_threesixty,
-                 :is_fixed_time, :project_id
+                 :is_fixed_time, :project_id, :permissions
 
       has_many :assessments, serializer: Administration::Campaigns::AssessmentSerializer
       has_many :reports, serializer: Administration::Campaigns::ReportSerializer
@@ -31,10 +31,27 @@ module Administration
         object.campaign_options&.fixed_time
       end
 
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::CampaignPolicy,
+          current_user,
+          object,
+          [
+            'edit',
+            'copy',
+            %w[delete destroy]
+          ]
+        )
+      end
+
       private
 
       def project
         object.project
+      end
+
+      def current_user
+        instance_options[:current_user]
       end
     end
   end

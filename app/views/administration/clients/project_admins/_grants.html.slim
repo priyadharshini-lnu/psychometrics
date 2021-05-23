@@ -1,20 +1,31 @@
-- norms_view_id = dom_id(u, :norms_view)
-- norms_manage_id = dom_id(u, :norms_manage)
-- dimensions_view_id = dom_id(u, :dimensions_view)
-- dimensions_manage_id = dom_id(u, :dimensions_manage)
+- clients_view_id = dom_id(u, :clients_view)
+
 - assessments_view_id = dom_id(u, :assessments_view)
 - assessments_manage_id = dom_id(u, :assessments_manage)
-- assessments_assign_id = dom_id(u, :assessments_assign)
-- translations_export_id = dom_id(u, :translations_export)
-- translations_import_id = dom_id(u, :translations_import)
-- questions_view_id = dom_id(u, :questions_view)
-- questions_manage_id = dom_id(u, :questions_manage)
-- libraries_view_id = dom_id(u, :libraries_view)
-- libraries_manage_id = dom_id(u, :libraries_manage)
+
 - communications_view_id = dom_id(u, :communications_view)
 - communications_manage_id = dom_id(u, :communications_manage)
-- reports_view_id = dom_id(u, :reports_view)
-- reports_manage_id = dom_id(u, :reports_manage)
+
+- assessors_view_id = dom_id(u, :assessors_view)
+- assessors_manage_id = dom_id(u, :assessors_manage)
+- assessors_manage_users_id = dom_id(u, :assessors_manage_users)
+
+- projects_view_id = dom_id(u, :projects_view)
+- projects_manage_users_id = dom_id(u, :projects_manage_users)
+
+- results_view_report_id = dom_id(u, :results_view_report)
+- results_report_data_id = dom_id(u, :results_report_data)
+- results_raw_responses_id = dom_id(u, :results_raw_responses)
+- results_scores_id = dom_id(u, :results_scores)
+- results_reset_responses_id = dom_id(u, :reset_responses)
+
+- registration_codes_view_id = dom_id(u, :registration_codes_view)
+- registration_codes_manage_id = dom_id(u, :registration_codes_manage)
+
+- dimensions_manage_id = dom_id(u, :dimensions_manage)
+
+- datasheet_view_id = dom_id(u, :datasheet_view)
+- datasheet_manage_id = dom_id(u, :datasheet_manage)
 
 = hidden_field_tag 'resource[grants_attributes][data]{}'
 table.table.grants-table
@@ -23,45 +34,86 @@ table.table.grants-table
       th Entity
       th.actions Privileges
   tbody
-    - if policy(:membership).manage_grants_for_actions?('assessments', ['view', 'assign'], project: project)
+    - if policy(:membership).manage_grants_for_actions?('clients', ['view'], client: client)
+        tr
+          td Clients
+          td.text-nowrap
+            - if policy(:membership).manage_grants_for_action?('clients', 'view', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][clients][]',
+                        'view', resource.has_grant?(:clients, :view), id: clients_view_id
+                | View
+
+    - if policy(:membership).manage_grants_for_actions?('projects', ['view', 'manage_users'], project: project)
       tr
-        td Assessments
+        td Projects
         td.text-nowrap
-          - if policy(:membership).manage_grants_for_action?('assessments', 'view', project: project)
+          - if policy(:membership).manage_grants_for_action?('projects', 'view', project: project)
             label
-              = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'view', resource.has_grant?(:assessments, :view), id: assessments_view_id,
-                      data: { turn_off: [assessments_manage_id, assessments_assign_id],
-                              turn_off_if: [{ ids: [translations_export_id, translations_import_id], disabled: [reports_view_id] }] }
-              i.fa.fa-eye title='View'
-          - if policy(:membership).manage_grants_for_action?('assessments', 'assign', project: project)
+              = check_box_tag 'resource[grants_attributes][data][projects][]',
+                      'view', resource.has_grant?(:projects, :view), id: projects_view_id
+              | View
+          - if policy(:membership).manage_grants_for_action?('projects', 'manage_users', project: project)
             label
-              = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'assign', resource.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_view_id] }
-              i.fa.fa-user-plus title='Assign'
-    - if policy(:membership).manage_grants_for_actions?('assessments', ['export', 'import'], project: project)
+              = check_box_tag 'resource[grants_attributes][data][projects][]',
+                      'manage_users', resource.has_grant?(:projects, :manage_users), id: projects_manage_users_id
+              | Manage Users
+    
+    - if policy(:membership).manage_grants_for_actions?('results', ['view_report', 'report_data', 'raw_responses', 'scores'], project: project)
       tr
-        td Data Centre (Exporting Assessment / Report data sets)
-        td.text-nowrap
-          - if policy(:membership).manage_grants_for_action?('assessments', 'export', project: project)
-            label
-              = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'export', resource.has_grant?(:assessments, :export), id: dom_id(u, :assessments_export)
-              i.fa.fa-upload
-          - if policy(:membership).manage_grants_for_action?('assessments', 'import', project: project)
-            label
-              = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'import', resource.has_grant?(:assessments, :import), id: dom_id(u, :assessments_import)
-              i.fa.fa-download
-    - if policy(:membership).manage_grants_for_actions?('clients', ['manage'], project: project)
+        td Results
+        td
+          - if policy(:membership).manage_grants_for_action?('results', 'view_report', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'view_report', resource.has_grant?(:results, :view_report), id: results_view_report_id
+              | View Report
+          - if policy(:membership).manage_grants_for_action?('results', 'report_data', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'report_data', resource.has_grant?(:results, :report_data), id: results_report_data_id
+              | Report Data
+          - if policy(:membership).manage_grants_for_action?('results', 'raw_responses', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'raw_responses', resource.has_grant?(:results, :raw_responses), id: results_raw_responses_id
+              | Raw Responses
+          - if policy(:membership).manage_grants_for_action?('results', 'scores', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'scores', resource.has_grant?(:results, :scores), id: results_scores_id
+              | Scores
+          - if policy(:membership).manage_grants_for_action?('results', 'reset_responses', client: client)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'reset_responses', resource.has_grant?(:results, :reset_responses), id: results_reset_responses_id
+              | Reset Responses
+
+    - if policy(:membership).manage_grants_for_actions?('dimensions', ['manage'], project: project)
       tr
-        td Campaigns & Sub-Campaigns
+        td Dimensions
         td.text-nowrap
-          - if policy(:membership).manage_grants_for_action?('clients', 'manage', project: project)
+          - if policy(:membership).manage_grants_for_action?('dimensions', 'manage', project: project)
             label
-              = check_box_tag 'resource[grants_attributes][data][clients][]',
-                      'manage', resource.has_grant?(:clients, :manage), id: dom_id(u, :clients_manage)
-              i.fa.fa-pencil title='Manage'
+              = check_box_tag 'resource[grants_attributes][data][dimensions][]',
+                      'manage', resource.has_grant?(:dimensions, :manage), id: dimensions_manage_id
+              | Manage
+
+    - if policy(:membership).manage_grants_for_actions?('registration_codes', ['view', 'manage'], project: project)
+      tr
+        td Registration Codes
+        td.text-nowrap
+          - if policy(:membership).manage_grants_for_action?('registration_codes', 'view', project: project)
+            label
+              = check_box_tag 'resource[grants_attributes][data][registration_codes][]',
+                      'view', resource.has_grant?(:registration_codes, :view), id: registration_codes_view_id, data: { turn_off: [registration_codes_manage_id] }
+              | View
+          - if policy(:membership).manage_grants_for_action?('registration_codes', 'manage', project: project)
+            label
+              = check_box_tag 'resource[grants_attributes][data][registration_codes][]',
+                      'manage', resource.has_grant?(:registration_codes, :manage), id: registration_codes_manage_id, data: { turn_on: [registration_codes_view_id] }
+              | Manage
+    
     - if policy(:membership).manage_grants_for_actions?('communications', ['view', 'manage'], project: project)
       tr
         td Communication Centre
@@ -70,17 +122,93 @@ table.table.grants-table
             label
               = check_box_tag 'resource[grants_attributes][data][communications][]',
                       'view', resource.has_grant?(:communications, :view), id: communications_view_id, data: { turn_off: [communications_manage_id] }
-              i.fa.fa-eye title='View'
+              | View
           - if policy(:membership).manage_grants_for_action?('communications', 'manage', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][communications][]',
                       'manage', resource.has_grant?(:communications, :manage), id: communications_manage_id, data: { turn_on: [communications_view_id] }
-              i.fa.fa-pencil title='Manage'
-    - if policy(:membership).manage_grants_for_action?('assigns', 'view', project: project)
+              | Manage
+    
+    - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'show', 'manage_messages'], project: project)
       tr
-        td Overview Reports
+        td Campaigns & Sub-Campaigns
+        td
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'view', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                      'view', resource.has_grant?(:campaigns, :view), id: dom_id(u, :campaigns_view)
+              | View
+
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'manage', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                      'manage', resource.has_grant?(:campaigns, :manage), id: dom_id(u, :campaigns_manage)
+              | Manage
+
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_users', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                      'manage_users', resource.has_grant?(:campaigns, :manage_users), id: dom_id(u, :campaigns_manage_users)
+              | Manage Users
+
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_options', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                      'manage_options', resource.has_grant?(:campaigns, :manage_options), id: dom_id(u, :campaigns_manage_options)
+              | Manage Options
+
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'show', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                      'show', resource.has_grant?(:campaigns, :show), id: dom_id(u, :campaigns_show)
+              | Show
+          
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_messages', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                      'manage_messages', resource.has_grant?(:campaigns, :manage_messages), id: dom_id(u, :campaigns_manage_messages)
+              | Manage Messages
+    
+    - if policy(:membership).manage_grants_for_actions?('assessors', ['view', 'manage', 'manage_users'], project: project)
+      tr
+        td Assessors
+        td.text-nowrap
+          - if policy(:membership).manage_grants_for_action?('assessors', 'view', project: project)
+            label
+              = check_box_tag 'resource[grants_attributes][data][assessors][]',
+                      'view', resource.has_grant?(:assessors, :view), id: assessors_view_id, data: { turn_off: [assessors_manage_id] }
+              | View
+          - if policy(:membership).manage_grants_for_action?('assessors', 'manage', project: project)
+            label
+              = check_box_tag 'resource[grants_attributes][data][assessors][]',
+                      'manage', resource.has_grant?(:assessors, :manage), id: assessors_manage_id,  data: { turn_on: [assessors_view_id] }
+              | Manage
+          - if policy(:membership).manage_grants_for_action?('assessors', 'manage_users', project: project)
+            label
+              = check_box_tag 'resource[grants_attributes][data][assessors][]',
+                      'manage_users', resource.has_grant?(:assessors, :manage_users), id: assessors_manage_users_id
+              | Manage Users
+
+    - if policy(:membership).manage_grants_for_action?('reports', 'manage', project: project)
+      tr
+        td Reports
         td.text-nowrap
           label
-            = check_box_tag 'resource[grants_attributes][data][assigns][]',
-                    'view', resource.has_grant?(:assigns, :view), id: dom_id(u, :assigns_view)
-            i.fa.fa-eye title='View'
+            = check_box_tag 'resource[grants_attributes][data][reports][]',
+                    'manage', resource.has_grant?(:reports, :manage), id: dom_id(u, :reports_manage)
+            | Manage
+    
+    - if policy(:membership).manage_grants_for_actions?('datasheets', ['view', 'manage'], project: project)
+      tr
+        td Datasheets
+        td.text-nowrap
+          - if policy(:membership).manage_grants_for_action?('datasheest', 'view', project: project)
+            label
+              = check_box_tag 'resource[grants_attributes][data][datasheets][]',
+                      'view', resource.has_grant?(:datasheets, :view), id: datasheet_view_id, data: { turn_off: [datasheet_manage_id] }
+              | View
+          - if policy(:membership).manage_grants_for_action?('datasheets', 'manage', project: project)
+            label
+              = check_box_tag 'resource[grants_attributes][data][datasheets][]',
+                      'manage', resource.has_grant?(:datasheets, :manage), id: datasheet_manage_id, data: { turn_on: [datasheet_view_id] }
+              | Manage

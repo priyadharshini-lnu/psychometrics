@@ -39,6 +39,7 @@ const connector = connect(
 interface OwnProps {
   isOpen: boolean
   toggleDrawer: ToggleDrawer
+  editPermission: boolean
   currentDatasheetId: string
   parentResourceType: ParentResourceType
   parentResourceId: number
@@ -51,6 +52,7 @@ type Props = OwnProps & PropsFromRedux
 const DetailsDrawerComponent: FC<Props> = ({
   isOpen,
   toggleDrawer,
+  editPermission,
   currentDatasheetId,
   datasheetDetails,
   isFetching,
@@ -126,7 +128,7 @@ const DetailsDrawerComponent: FC<Props> = ({
         isFetching={isFetching}
         toggleDrawer={toggleDrawer}
         currentDatasheetId={currentDatasheetId}
-        allowEdit={parentResourceType === ParentResourceType.Project}
+        allowEdit={parentResourceType === ParentResourceType.Project && editPermission}
       />
       <DetailsSection
         isFetching={isFetching}

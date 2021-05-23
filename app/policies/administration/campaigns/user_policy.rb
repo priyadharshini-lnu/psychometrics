@@ -4,23 +4,43 @@ module Administration
   module Campaigns
     class UserPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin, :client_admin, :project_admin)
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def show?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def create?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      end
+
+      def add_report?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      end
+
+      def regenerate_report?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      end
+
+      def toggle_status?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      end
+
+      def edit?
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
+      end
+
+      def destroy?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       def update?
-        create?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       def reset_password?
-        update? && !@record.is_anonym?
+        (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)) && !@record.is_anonym?
       end
 
       def spoof?
@@ -28,19 +48,19 @@ module Administration
       end
 
       def extend_time?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def export_completion_status?
-        @user.is?(:superadmin, :client_admin, :project_admin)
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def search?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
       end
 
       def import?
-        index?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
       end
 
       class Scope < Administration::BasePolicy::Scope

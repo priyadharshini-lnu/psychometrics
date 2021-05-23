@@ -3,6 +3,10 @@
 module Administration
   module Campaigns
     class UniversalLinkPolicy < Administration::BasePolicy
+      def show?
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
+      end
+
       def activate?
         @user.is?(:superadmin)
       end

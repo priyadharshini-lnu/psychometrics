@@ -24,6 +24,17 @@ interface Subject {
 
 interface State {
   list: Subject[],
+  permissions: {
+    addSubject: boolean
+    editDimension: boolean
+    editUser: boolean
+    exportCompletionStatus: boolean
+    exportResults: boolean
+    manageDatasheets: boolean
+    manageRelationships: boolean
+    resetAllNominations: boolean
+    resetAllParticipants: boolean
+  },
   total: number,
   form: {
     attrs: [],
@@ -40,6 +51,17 @@ interface UpdateData {
 
 export const defaultState: State = {
   list: [],
+  permissions: {
+    addSubject: false,
+    editDimension: true,
+    editUser: false,
+    exportCompletionStatus: true,
+    exportResults: false,
+    manageDatasheets: true,
+    manageRelationships: true,
+    resetAllNominations: false,
+    resetAllParticipants: true,
+  },
   total: 0,
   form: {
     attrs: [],
@@ -99,15 +121,29 @@ export const remove = (campaignId: number, subjectId: number, removeLicenceUsage
   },
 })
 
-type FetchSubjectsType = ApiActionResponse<{subjects: Subject[], total: number}>
+type FetchSubjectsType = ApiActionResponse<{
+  subjects: Subject[],
+  permissions: {
+    addSubject: boolean
+    editDimension: boolean
+    editUser: boolean
+    exportCompletionStatus: boolean
+    exportResults: boolean
+    manageDatasheets: boolean
+    manageRelationships: boolean
+    resetAllNominations: boolean
+    resetAllParticipants: boolean
+  },
+  total: number
+}>
 type FillSubjectsType = ApiActionResponse<{list: Subject[], total: number}>
 type CreateAllFailureType = ApiActionResponse<{errors: {}}>
 type UpdateType = ApiActionResponse<Subject>
 type RemoveType = ApiActionResponse<Subject>
 
 const HANDLERS = {
-  [FETCH_SUBJECTS]: (state: State, { response: { subjects, total } }: FetchSubjectsType) => ({
-    ...state, list: subjects, total,
+  [FETCH_SUBJECTS]: (state: State, { response: { subjects, permissions, total } }: FetchSubjectsType) => ({
+    ...state, list: subjects, permissions, total,
   }),
   [FILL_SUBJECTS]: (state: State, { subjects }: FillSubjectsType) => setIn(state, ['form', 'attrs'], subjects),
   [CREATE_ALL_FAILURE]: (state: State, { errors }: CreateAllFailureType) => setIn(state, ['form', 'errors'], errors),

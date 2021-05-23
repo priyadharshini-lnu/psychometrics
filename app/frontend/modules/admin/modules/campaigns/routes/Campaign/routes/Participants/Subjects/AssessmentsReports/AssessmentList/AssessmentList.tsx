@@ -65,32 +65,36 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
             key="category"
             render={({ category }) => _.capitalize(category)}
           />
+
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
             render={({
-              normName, id, isExternal,
+              normName, id, isExternal, permissions,
             }) => {
               if (isExternal) {
                 return I18n.t('common.text.na')
               }
               return (
-                <a
-                  onClick={
-                    () => openModal('UpdateNormModal',
-                      {
-                        projectId: parsedProjectId,
-                        campaignId: parsedCampaignId,
-                        campaignAssessmentId: id,
-                        userId: parsedUserId,
-                      })
-                  }
-                >
-                  {normName || I18n.t('common.text.default')}
-                </a>
+                permissions.updateNorm ? (
+                  <a
+                    onClick={
+                      () => openModal('UpdateNormModal',
+                        {
+                          projectId: parsedProjectId,
+                          campaignId: parsedCampaignId,
+                          campaignAssessmentId: id,
+                          userId: parsedUserId,
+                        })
+                    }
+                  >
+                    {normName || I18n.t('common.text.default')}
+                  </a>
+                ) : normName || I18n.t('common.text.default')
               )
             }}
           />
+
 
           <Column
             title={I18n.t('common.column.status')}
@@ -194,26 +198,30 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             </div>
           </Menu.Item>
         ) : null }
-        <Menu.Item key="rescore">
+        {permissions.rescoreResponse && (
+          <Menu.Item key="rescore">
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={handleRescoreResponse}
+            >
+              {I18n.t('assessments.actions.rescore')}
+            </div>
+          </Menu.Item>
+        )}
+      </Menu.ItemGroup>
+      <Menu.Divider />
+      {permissions.remove && (
+        <Menu.Item key="remove">
           <div
             role="button"
             tabIndex={-1}
-            onClick={handleRescoreResponse}
+            onClick={handleDelete}
           >
-            {I18n.t('assessments.actions.rescore')}
+            {I18n.t('common.actions.remove')}
           </div>
         </Menu.Item>
-      </Menu.ItemGroup>
-      <Menu.Divider />
-      <Menu.Item key="remove">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={handleDelete}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+      )}
       {permissions.updateAdditionalTime ? (
         <Menu.Item key="extend">
           <div

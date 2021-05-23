@@ -22,6 +22,7 @@ interface Evaluator {
 interface State {
   list: Evaluator[],
   total: number,
+  permissions: {},
   form: {
     attrs: [],
     errors: [] | null,
@@ -32,6 +33,7 @@ interface State {
 export const defaultState: State = {
   list: [],
   total: 0,
+  permissions: {},
   form: {
     attrs: [],
     errors: null,
@@ -76,7 +78,8 @@ export const importFile = (campaignId: number, data: FormData) => ({
 
 interface FetchActionResponse {
   evaluators: Evaluator[],
-  total: number
+  total: number,
+  permissions: {},
 }
 
 export type FetchAction = ApiActionResponse<FetchActionResponse>
@@ -85,7 +88,10 @@ export type CreateAllEvaluatorsActionError = ApiActionResponse<{errors: []}>
 
 const HANDLERS = {
   [FETCH_EVALUATORS]: (state: State, action: FetchAction) => ({
-    ...state, list: action.response.evaluators, total: action.response.total,
+    ...state,
+    list: action.response.evaluators,
+    total: action.response.total,
+    permissions: action.response.permissions,
   }),
   [FILL_EVALUATORS]: (state: State, action) => setIn(state, ['form', 'attrs'], action.evaluators),
   [CLEAR_FORM]: (state: State) => ({ ...state, form: defaultState.form }),

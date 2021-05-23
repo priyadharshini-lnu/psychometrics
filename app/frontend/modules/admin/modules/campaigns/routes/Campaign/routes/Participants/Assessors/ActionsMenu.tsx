@@ -12,6 +12,7 @@ interface ActionMenuProps {
   email: string
   permissions: {
     loginAs: boolean
+    remove: boolean
   }
   remove(): void
 }
@@ -37,15 +38,18 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      <Menu.Item key="delete">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => handleDelete()}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+      {permissions.remove
+        && (
+        <Menu.Item key="delete">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleDelete()}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+        )}
       {permissions.loginAs
         && (
         <Menu.Item key="loginAs">

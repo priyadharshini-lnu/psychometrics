@@ -3,11 +3,23 @@
 module Administration
   class CampaignPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :client_admin, :project_admin)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def show?
       @user.is?(:superadmin, :client_admin, :project_admin)
+    end
+
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+    end
+
+    def copy?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+    end
+
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
     end
 
     def manage_first_level?
@@ -26,7 +38,7 @@ module Administration
     end
 
     def create?
-      super || @user.has_grant?(:clients, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
     end
 
     def projects?
@@ -50,7 +62,7 @@ module Administration
     end
 
     def archive?
-      edit?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
     end
 
     def edit_tte?
@@ -70,23 +82,27 @@ module Administration
     end
 
     def edit_additional_fields?
-      view_additional_fields?
+      @user.is?(:superadmin)
     end
 
     def templates_and_assessment?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def fetch_campaign_options?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def fetch_campaign_instructions?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
-    def update_campaign_options?
-      index?
+    def manage_options?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
+    end
+
+    def manage_messages?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_messages)
     end
 
     class Scope < Scope

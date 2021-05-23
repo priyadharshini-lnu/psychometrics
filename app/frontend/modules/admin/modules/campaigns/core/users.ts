@@ -20,6 +20,12 @@ export interface User {
 const defaultState = {
   list: [],
   total: 0,
+  permissions: {
+    create: false,
+    exportUsers: false,
+    exportCompletionStatus: false,
+    import: false,
+  },
 }
 
 export const get = (state): User[] => _.get(state, ['campaigns', 'users'])
@@ -131,16 +137,37 @@ export interface UserDetails {
   additionalTime: number
   startedAt: string
   completedAt: string
+  permissions: {
+    addReport: boolean
+    regenerateReport: boolean
+    toggleStatus: boolean
+    remove: boolean
+  }
   hoganId: string | null
 }
 
 export interface State {
   list: User[]
   total: number
+  permissions: {
+    create: boolean
+    exportUsers: boolean,
+    exportCompletionStatus: boolean,
+    import: boolean,
+  }
   current?: UserDetails
 }
 
-type FetchType = ApiActionResponse<{list: [], total: number}>
+type FetchType = ApiActionResponse<{
+  list: [],
+  total: number,
+  permissions: {
+    create: boolean,
+    exportUsers: boolean,
+    exportCompletionStatus: boolean,
+    import: boolean,
+  }
+}>
 type FetchSingleType = ApiActionResponse<UserDetails & { userAssessments: UserAssessment[], userReports: UserReport[]}>
 type CreateType = ApiActionResponse<User>
 type UpdateType = ApiActionResponse<User>
