@@ -37,8 +37,8 @@ interface Props {
   campaignId: number
   openModal(name: string, data?: { campaignId: string, user?: User }): void
   permissions: {
-    export_users: boolean,
-    export_completion_status: boolean,
+    exportUsers: boolean,
+    exportCompletionStatus: boolean,
     import: boolean,
   }
 }

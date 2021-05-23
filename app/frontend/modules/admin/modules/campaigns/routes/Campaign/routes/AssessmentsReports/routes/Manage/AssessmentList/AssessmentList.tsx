@@ -40,11 +40,6 @@ const AssessmentList: React.FC<Props> = ({
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
 
-
-  const universalLinks = _.map(list, ({ enableUniversalLinks }) => enableUniversalLinks)
-
-  const showUniversalLinkColumn = _.includes(universalLinks, true)
-
   return (
     <Row>
       <Col span={24}>
@@ -105,42 +100,40 @@ const AssessmentList: React.FC<Props> = ({
               ) : assessorFormName || I18n.t('common.text.na')
             )}
           />
-          {(permissions.enableUniversalLink || showUniversalLinkColumn) && (
-            <Column
-              title={I18n.t('campaign_assessment.column.universal_link')}
-              key="universalLink"
-              render={({
-                enableUniversalLinks, universalLink, id, isExternal,
-              }) => {
-                if (isExternal) {
-                  return I18n.t('common.text.na')
-                }
-                if (enableUniversalLinks && !isExternal) {
-                  return (
-                    <a
-                      onClick={
-                          () => openModal('UniversalLinkModal',
-                            {
-                              projectId: parsedProjectId,
-                              campaignId: parsedCampaignId,
-                              campaignAssessmentId: id,
-                              universalLink,
-                              showButtons: permissions.enableUniversalLink,
-                            })
-                        }
-                    >
-                      {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
-                    </a>
-                  )
-                }
+          <Column
+            title={I18n.t('campaign_assessment.column.universal_link')}
+            key="universalLink"
+            render={({
+              enableUniversalLinks, universalLink, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              if (enableUniversalLinks && !isExternal) {
                 return (
-                  permissions.enableUniversalLink ? (
-                    <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
-                  ) : I18n.t('common.text.na')
+                  <a
+                    onClick={
+                        () => openModal('UniversalLinkModal',
+                          {
+                            projectId: parsedProjectId,
+                            campaignId: parsedCampaignId,
+                            campaignAssessmentId: id,
+                            universalLink,
+                            manageUniversalLink: permissions.enableUniversalLink,
+                          })
+                      }
+                  >
+                    {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
+                  </a>
                 )
-              }}
-            />
-          )}
+              }
+              return (
+                permissions.enableUniversalLink ? (
+                  <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
+                ) : I18n.t('common.text.na')
+              )
+            }}
+          />
           <Column
             title={I18n.t('common.column.action')}
             key="action"

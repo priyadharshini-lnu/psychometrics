@@ -22,8 +22,8 @@ const defaultState = {
   total: 0,
   permissions: {
     create: false,
-    export_users: false,
-    export_completion_status: false,
+    exportUsers: false,
+    exportCompletionStatus: false,
     import: false,
   },
 }
@@ -151,8 +151,8 @@ export interface State {
   total: number
   permissions: {
     create: boolean
-    export_users: boolean,
-    export_completion_status: boolean,
+    exportUsers: boolean,
+    exportCompletionStatus: boolean,
     import: boolean,
   }
   current?: UserDetails
@@ -163,8 +163,8 @@ type FetchType = ApiActionResponse<{
   total: number,
   permissions: {
     create: boolean,
-    export_users: boolean,
-    export_completion_status: boolean,
+    exportUsers: boolean,
+    exportCompletionStatus: boolean,
     import: boolean,
   }
 }>
