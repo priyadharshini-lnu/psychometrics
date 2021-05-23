@@ -90,6 +90,8 @@ const UserList: React.FC<Props> = ({
     changeFilter('isAnonymEq', value)
   }
 
+  const showToolsDropdown = permissions.exportCompletionStatus || permissions.exportUsers || permissions.import
+
   return (
     <div>
       <Row justify="space-between" className="pm">
@@ -98,7 +100,9 @@ const UserList: React.FC<Props> = ({
           <span className="mlm">{`${total} Users`}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
+          {showToolsDropdown && (
+            <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
+          )}
           <Select
             defaultValue="All"
             value={filters.isAnonymEq || 'All'}

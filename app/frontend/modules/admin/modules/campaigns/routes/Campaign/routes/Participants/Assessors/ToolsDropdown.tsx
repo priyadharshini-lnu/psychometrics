@@ -13,22 +13,26 @@ const menu = ({
   permissions,
 }) => (
   <Menu>
-    <Menu.Item
-      key="import"
-      disabled={!permissions.import}
-    >
-      <a onClick={() => openModal('ImportAssessorsModal', { campaignId })}>
-        {I18n.t('administration.assessor.toolbar.import')}
-      </a>
-    </Menu.Item>
-    <Menu.Item
-      key="export"
-      disabled={!permissions.export}
-    >
-      <a href={`/administration/new_campaigns/${campaignId}/assessors.csv`}>
-        {I18n.t('administration.assessor.toolbar.export')}
-      </a>
-    </Menu.Item>
+    {permissions.import && (
+      <Menu.Item
+        key="import"
+        disabled={!permissions.import}
+      >
+        <a onClick={() => openModal('ImportAssessorsModal', { campaignId })}>
+          {I18n.t('administration.assessor.toolbar.import')}
+        </a>
+      </Menu.Item>
+    )}
+    {permissions.export && (
+      <Menu.Item
+        key="export"
+        disabled={!permissions.export}
+      >
+        <a href={`/administration/new_campaigns/${campaignId}/assessors.csv`}>
+          {I18n.t('administration.assessor.toolbar.export')}
+        </a>
+      </Menu.Item>
+    )}
   </Menu>
 )
 

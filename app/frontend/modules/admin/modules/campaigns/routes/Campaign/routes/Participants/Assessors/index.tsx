@@ -86,6 +86,8 @@ const AssessorList: React.FC<Props> = ({
     fetch(campaignId, tableConfig)
   }, [tableConfig])
 
+  const showToolsDropdown = permissions.export || permissions.import
+
   return (
     <div>
       <Row justify="space-between" className="pm">
@@ -94,7 +96,9 @@ const AssessorList: React.FC<Props> = ({
           <span className="mlm">{I18n.t('administration.assessor.count', { count: total })}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
+          {showToolsDropdown && (
+            <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
+          )}
           <Search
             placeholder="Search"
             className={styles.searchInput}

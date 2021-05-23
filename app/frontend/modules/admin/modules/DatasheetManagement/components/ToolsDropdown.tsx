@@ -42,23 +42,26 @@ const ToolsDropdown: FC<Props> = ({
 
   const toolsMenu = (
     <Menu>
-      <Menu.Item
-        key="import"
-        onClick={() => openModal('ImportDatasheetModal', { parentType, parentId })}
-        disabled={!permissions.import}
-      >
-        {I18n.t('datasheet.menu.import')}
-      </Menu.Item>
-      <Menu.Item key="export" disabled={!permissions.export}>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleExport}
-          href={`/administration/${pluralize(parentType)}/${parentId}/datasheet_rows/export.xlsx`}
+      {permissions.import && (
+        <Menu.Item
+          key="import"
+          onClick={() => openModal('ImportDatasheetModal', { parentType, parentId })}
         >
-          {I18n.t('datasheet.menu.export')}
-        </a>
-      </Menu.Item>
+          {I18n.t('datasheet.menu.import')}
+        </Menu.Item>
+      )}
+      {permissions.export && (
+        <Menu.Item key="export">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleExport}
+            href={`/administration/${pluralize(parentType)}/${parentId}/datasheet_rows/export.xlsx`}
+          >
+            {I18n.t('datasheet.menu.export')}
+          </a>
+        </Menu.Item>
+      )}
     </Menu>
   )
 

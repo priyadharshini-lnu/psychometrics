@@ -50,6 +50,10 @@ export default function SubjectList ({
 
   const onUserUpdate = () => fetchSubjects(campaignId, page)
 
+  const showToolsDropdown = permissions.manageDatasheets || permissions.exportResults
+  || permissions.exportCompletionStatus || permissions.editDimension || permissions.resetAllParticipants
+  || permissions.resetAllNominations
+
   return (
     <>
       <Row>
@@ -63,7 +67,9 @@ export default function SubjectList ({
             path="/participants/subjects"
             searchTerm={searchTerm}
           />
-          <ToolsDropdown permissions={permissions} />
+          {showToolsDropdown && (
+            <ToolsDropdown permissions={permissions} />
+          )}
           {permissions.addSubject && (
             <CreateSubjectsDropdown />
           )}
