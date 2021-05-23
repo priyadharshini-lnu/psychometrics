@@ -1,0 +1,31 @@
+import {
+  BaseBuilderModel,
+  BasePropertiesModel,
+  ModelProps,
+  ChangeProps,
+  BaseProps,
+} from './Base'
+
+export interface BuilderModel
+  extends Omit<BaseBuilderModel, 'props'>,
+    ChangeProps<Props>,
+    ModelProps<Props> {}
+
+export interface PropertiesModel
+  extends Omit<BasePropertiesModel, 'props'>,
+    ChangeProps<Props>,
+    ModelProps<Props> {
+  setChoices(choice: number): void
+  resetDefaultValues(): void
+}
+
+interface Props extends BaseProps {
+  position: 'Vertical' | 'Horizontal'
+  notApplicable: boolean
+  notApplicableLabel: string
+  withImageChoice: boolean
+  isImagePreviewEnable: boolean
+  imageChoiceSize: 'small' | 'medium' | 'large'
+  choices: number
+  choicesTexts: Array<string>
+}

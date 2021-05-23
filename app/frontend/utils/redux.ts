@@ -21,3 +21,4 @@ interface IPayload<P, T = any> extends AnyAction { // eslint-disable-line @types
 }
 
 export type Payload<P, T = any> = IPayload<P, T> // eslint-disable-line @typescript-eslint/no-explicit-any
+export type CustomAction<P, T = string> = P & Action<T>

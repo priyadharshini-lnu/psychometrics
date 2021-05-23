@@ -68,6 +68,9 @@ export default {
     'fr-highlighted': 'Highlighted',
     'fr-thick': 'Thick',
   },
+  imageStyles: {
+    'zoom-image': 'Zoom Image',
+  },
   events: {
     'video.codeError': function (code) {
       events.video_code_error(this, code)

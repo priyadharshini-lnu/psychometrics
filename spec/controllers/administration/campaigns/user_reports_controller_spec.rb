@@ -9,13 +9,13 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:assessment) { create(:assessment) }
   let(:report) { create(:report, assessments: [assessment]) }
-  let!(:user_report) { create(:user_report, report: report, user: campaign_user.user) }
+  let(:user_report) { create(:user_report, report: report, user: campaign_user.user, campaign: campaign) }
+  let(:report_family) { report.report_families.first }
 
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
   describe 'create' do
-    let(:report_family) { report.report_families.first }
     let!(:license) do
       create(:license, report_family: report_family, client: campaign.client, start_date: 2.days.ago,
         end_date: 2.days.since)
@@ -44,15 +44,23 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       parsed_response = JSON.parse(response.body)
       check_report_response(parsed_response['user_reports'].first)
       check_assessment_response(parsed_response['user_assessments'].first)
+      expect(parsed_response['id']).to eq(user.id)
     end
   end
 
   describe 'DELETE' do
     it 'removes users_report' do
+      expect(user_report).to_not eq(nil)
+
       expect do
         delete :destroy, params: { new_campaign_id: user_report.campaign_id, id: user_report.id }
       end.to change(UserReport, :count).by(-1)
-      expect(response.body).to eq(user_report.id.to_s)
+
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['user_reports']).to be_empty
+      expect(parsed_response['id']).to eq(user.id)
+      expect(parsed_response['user_assessments'].class).to be(Array)
+      expect(parsed_response['id']).to eq(user.id)
     end
   end
 

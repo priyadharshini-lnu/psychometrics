@@ -7,6 +7,8 @@ agent:
 execution_time_limit:
   minutes: 25
 global_job_config:
+  secrets:
+    - name: tte-lighthouse
   env_vars:
     - name: RAILS_ENV
       value: test
@@ -15,7 +17,7 @@ global_job_config:
     - name: REDIS_URL
       value: 'redis://localhost:6379/1'
     - name: NODE_OPTIONS
-      value: '--max-old-space-size=6400'
+      value: '--max_old_space_size=7168'
     - name: BUNDLER_VERSION
       value: 2.1.4
     - name: PARALLEL_TEST_PROCESSORS
@@ -24,8 +26,11 @@ global_job_config:
       value: '1'
     - name: RAILS_MAX_THREADS
       value: '5'
+    - name: PARALLEL_TEST_FIRST_IS_1
+      value: '1'
   prologue:
     commands:
+      - export SEMAPHORE_BUILD_NUMBER="$SEMAPHORE_WORKFLOW_ID"
       - checkout
       - 'find ./app/frontend ./config/webpack -type f -exec md5sum {} + > webpack-files.txt'
       - 'md5sum *.js *.json yarn.lock .eslintrc >> webpack-files.txt'
@@ -86,8 +91,10 @@ blocks:
               fi
         - name: RuboCop
           commands:
+            - cache restore rubocop-$(checksum .rubocop.yml)-$SEMAPHORE_GIT_BRANCH-$SEMAPHORE_WORKFLOW_ID,rubocop-$(checksum .rubocop.yml)-$SEMAPHORE_GIT_BRANCH,rubocop-$(checksum .rubocop.yml)
             - bundle exec rubocop --parallel
-  - name: JS tests & Compile
+            - cache store rubocop-$(checksum .rubocop.yml)-$SEMAPHORE_GIT_BRANCH-$SEMAPHORE_WORKFLOW_ID tmp/rubocop_cache
+  - name: Webpack
     dependencies:
       - Linters
     task:
@@ -99,9 +106,6 @@ blocks:
           - cp config/application.yml.sample  config/application.yml
           - 'PARALLEL_TEST_PROCESSORS=1 bundle exec rake parallel:create parallel:load_structure'
       jobs:
-        - name: Jest
-          commands:
-            - yarn test
         - name: Webpack
           commands:
             - |
@@ -111,27 +115,31 @@ blocks:
               else
                 echo "No need to compile assets. Asset fetched from cache."
               fi
-  - name: Ruby tests
+  - name: Tests
     dependencies:
-      - JS tests & Compile
+      - Webpack
     task:
       agent:
         machine:
           type: e1-standard-4
           os_image: ubuntu1804
       jobs:
-        - name: RSpec - feature specs
+        - name: Jest
+          commands:
+            - yarn test:coverage
+          execution_time_limit:
+            minutes: 10
+        - name: RSpec
           commands:
             - sem-service start postgres --username=postgres --password=postgres
             - sem-service start redis
             - cp config/database.yml.sample config/database.yml
             - cp config/application.yml.sample  config/application.yml
             - 'bundle exec rake parallel:create parallel:load_structure'
+            - 'WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile'
             - EAGER_LOAD=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log
-      epilogue:
-        on_fail:
-          commands:
-            - artifact push capybara_screenshots tmp/capybara
+          execution_time_limit:
+            minutes: 15
 promotions:
   - name: Deploy to Develop
     pipeline_file: heroku-develop.yml

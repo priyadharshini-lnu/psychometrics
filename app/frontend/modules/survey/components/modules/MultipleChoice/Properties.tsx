@@ -1,0 +1,196 @@
+import React, { FC } from 'react'
+import {
+  Space,
+  Typography,
+  Divider,
+  Select,
+  Radio,
+  Checkbox,
+  RadioChangeEvent,
+} from 'antd'
+
+import ChoicesInput from 'components/ChoicesInput'
+import ValidationTypes from 'components/ValidationTypes'
+import RequiredValidations from 'components/RequiredValidations'
+import {
+  ImageChoiceProperties,
+} from 'modules/survey/components/modules/MultipleChoice/components/ImageChoiceProperties'
+
+import { ANSWER_TYPE_OPTIONS } from 'modules/survey/components/modules/MultipleChoice/constants'
+import useForceUpdate from 'hooks/useUpdate'
+
+import { PropertiesModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+
+const { I18n } = window
+
+interface Props {
+  model: PropertiesModel
+  restricted: boolean
+}
+
+export const Properties: FC<Props> = ({ model, restricted }) => {
+  const forceUpdate = useForceUpdate()
+
+  const handleAnswerTypeChange = (selectedType: string) => {
+    model.resetDefaultValues()
+    model.changeProps({
+      type: selectedType,
+    })
+    model.update()
+  }
+
+  const handleChoiceCountChange = (val: number) => {
+    model.setChoices(val)
+    model.update()
+  }
+
+  const handlePositionChange = (event: RadioChangeEvent) => {
+    model.changeProps({
+      position: event.target.value,
+    })
+    model.update()
+  }
+
+  const handleNotApplicableOptionChange = (event: CheckboxChangeEvent) => {
+    model.changeProps({
+      notApplicable: event.target.checked,
+    })
+    model.update()
+  }
+
+  const handleWithImageChange = (event: CheckboxChangeEvent) => {
+    model.changeProps({
+      withImageChoice: event.target.checked,
+      position: 'Vertical',
+    })
+    model.update()
+  }
+
+  const handleImagePreviewChange = (event: CheckboxChangeEvent) => {
+    model.changeProps({
+      isImagePreviewEnable: event.target.checked,
+    })
+    model.update()
+  }
+
+  const handleImageGridSizeChange = (event: RadioChangeEvent) => {
+    model.changeProps({
+      imageChoiceSize: event.target.value,
+    })
+    model.update()
+  }
+
+  const {
+    type,
+    position,
+    notApplicable,
+    withImageChoice,
+    isImagePreviewEnable,
+    imageChoiceSize,
+  } = model.props
+  const isSingleOrMultiAnswerType = type === 'SingleAnswer' || type === 'MultipleAnswer'
+
+  return (
+    <div>
+      <AnswerTypeSelect value={type} onSelect={handleAnswerTypeChange} />
+      <Divider className="mt-4 mb-4" />
+      <Space direction="vertical" size="small">
+        <ChoicesCountInput model={model} onChange={handleChoiceCountChange} />
+        <Checkbox
+          onChange={handleNotApplicableOptionChange}
+          defaultChecked={notApplicable}
+          className="ms-4 me-4"
+        >
+          {I18n.t(
+            'administration.survey_builder.property_panel.add_n_a_option',
+          )}
+        </Checkbox>
+        {isSingleOrMultiAnswerType && (
+          <PositionProperty
+            value={position}
+            onChange={handlePositionChange}
+            isDisabled={withImageChoice}
+          />
+        )}
+      </Space>
+      <Divider className="mt-4 mb-4" />
+      {isSingleOrMultiAnswerType && (
+        <ImageChoiceProperties
+          isEnabled={withImageChoice}
+          onImageEnableChange={handleWithImageChange}
+          isPreviewEnabled={isImagePreviewEnable}
+          onPreviewOptionChange={handleImagePreviewChange}
+          size={imageChoiceSize}
+          onSizeChange={handleImageGridSizeChange}
+        />
+      )}
+      {!restricted && (
+        <RequiredValidations model={model} update={() => forceUpdate()} />
+      )}
+      {!restricted && (
+        <ValidationTypes model={model} update={() => forceUpdate()} />
+      )}
+    </div>
+  )
+}
+
+interface AnswerTypeSelectProps {
+  value: string
+  onSelect: (value: string) => void
+}
+
+const AnswerTypeSelect: FC<AnswerTypeSelectProps> = ({ value, onSelect }) => (
+  <div className="ms-4 me-4">
+    <Typography.Text strong>
+      {I18n.t('administration.survey_builder.property_panel.answer_type')}
+    </Typography.Text>
+    <Select
+      className="w-100"
+      options={ANSWER_TYPE_OPTIONS}
+      value={value}
+      onSelect={onSelect}
+      size="small"
+    />
+  </div>
+)
+
+interface ChoicesCountInputProps {
+  model: PropertiesModel
+  onChange(value: number): void
+}
+
+const ChoicesCountInput: FC<ChoicesCountInputProps> = ({ model, onChange }) => (
+  <Space direction="vertical" className="ms-4 me-4">
+    <Typography.Text strong>
+      {I18n.t('administration.survey_builder.property_panel.no_of_choices')}
+    </Typography.Text>
+    <ChoicesInput model={model} onChange={onChange} />
+  </Space>
+)
+
+interface PositionPropertyProps {
+  value: PropertiesModel['props']['position']
+  onChange(event: RadioChangeEvent): void
+  isDisabled?: boolean
+}
+
+const PositionProperty: FC<PositionPropertyProps> = ({ value, onChange, isDisabled = false }) => (
+  <div className="ms-4 me-4">
+    <Typography.Text strong>
+      {I18n.t('administration.survey_builder.property_panel.orientation.title')}
+    </Typography.Text>
+    <Radio.Group className="mt-2" value={value} onChange={onChange} disabled={isDisabled}>
+      <Radio value="Vertical">
+        {I18n.t(
+          'administration.survey_builder.property_panel.orientation.vertical',
+        )}
+      </Radio>
+      <Radio value="Horizontal">
+        {I18n.t(
+          'administration.survey_builder.property_panel.orientation.horizontal',
+        )}
+      </Radio>
+    </Radio.Group>
+  </div>
+)

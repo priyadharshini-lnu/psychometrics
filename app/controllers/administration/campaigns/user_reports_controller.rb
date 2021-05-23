@@ -11,7 +11,10 @@ module Administration
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
         if form.valid?
           ::Campaigns::UserReports::Add.call(form, campaign_user) do
-            on(:ok) { render json: user_assessments_and_reports }
+            on(:ok) do
+              render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
+                campaign: campaign_user.campaign
+            end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
           end
         else
@@ -21,7 +24,8 @@ module Administration
 
       def destroy
         resource.destroy!
-        render json: resource.id
+
+        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
 
       def regenerate
@@ -36,18 +40,6 @@ module Administration
       end
 
       private
-
-      def user_assessments_and_reports
-        assessments = ActiveModelSerializers::SerializableResource.new(
-          campaign_user.user_assessments.where(campaign: campaign).includes(:assessment, :users_result),
-          each_serializer: Administration::UserAssessmentSerializer, current_user: current_user
-        )
-        reports = ActiveModelSerializers::SerializableResource.new(
-          campaign_user.user_reports.where(campaign: campaign).includes(:report, :report_family),
-          each_serializer: Administration::UserReportSerializer, current_user: current_user
-        )
-        { user_assessments: assessments, user_reports: reports }
-      end
 
       def campaign_user
         CampaignUser.find_by!(campaign: campaign, user_id: params[:user_id])

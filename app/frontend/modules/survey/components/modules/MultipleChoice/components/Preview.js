@@ -6,7 +6,7 @@ import Previews from './Previews'
 import connect from '../connect'
 import { ScoringTable } from './ScoringTable'
 
-export class Preview extends Component {
+export class PreviewComponent extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -61,4 +61,4 @@ export class Preview extends Component {
   }
 }
 
-export default connect(Preview)
+export const Preview = connect(PreviewComponent)

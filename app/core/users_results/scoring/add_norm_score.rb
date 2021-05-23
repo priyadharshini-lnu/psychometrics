@@ -16,12 +16,15 @@ module UsersResults
         return broadcast :ok, scoring unless norm
 
         extended_scoring = scoring.reduce({}) do |extending_scoring, (factor_id, value)|
+          factor = factor_hash.dig(factor_id.to_i, :factor)
           norm_score =
             if norm.percentile?
               calc_percentile_norm_score(factor_id)
             else
               calc_standard_norm_score(factor_id, value)
             end
+          # Use percentage score as norm_score if there is no norm_score
+          norm_score ||= value['percentage'] if factor&.use_percentage?
           extending_scoring.merge(factor_id => value.merge('norm_score' => norm_score))
         end
 
@@ -47,6 +50,7 @@ module UsersResults
 
       def get_factor_zscore(factor_id)
         factor_data = factor_hash[factor_id.to_i]
+        return unless factor_data
         return scoring.dig(factor_id.to_s, 'zscore') unless factor_data[:factor].sub_factors_average_strategy?
 
         score_data = factor_data[:sub_factor_hash].each_with_object(sum: 0, count: 0) do |(k, v), data|

@@ -49,16 +49,6 @@ class UserDecorator < BaseDecorator
     end
   end
 
-  def tenancies_list
-    object.ttes.select('DISTINCT ON (clients.id) clients.*').map do |tte|
-      if tte.retail?
-        h.link_to tte.decorate.display_name, h.administration_client_users_path(tte)
-      else
-        h.link_to tte.decorate.display_name, h.administration_client_projects_path(tte)
-      end
-    end.join(', ').html_safe
-  end
-
   def clients_hierarchy
     admin_levels = object.project_admin_clients.map do |client|
       path = h.administration_client_project_campaigns_path(client.parent_id, client) if client.subtenancy?
@@ -69,7 +59,7 @@ class UserDecorator < BaseDecorator
     # TODO: refactor
     end_levels = object.clients.end_level.map do |client|
       clients_array = client.path.order(:id)
-      clients_array.map do |c|
+      whole_path = clients_array.map do |c|
         next if c.tenancy?
 
         path = if c.campaign_level? || c.sub_campaign_level?
@@ -80,9 +70,35 @@ class UserDecorator < BaseDecorator
         path ||= h.administration_client_users_path(c)
         h.link_to c.decorate.display_name, path
       end.compact.join(' > ')
-    end.join('<br/>')
+      "&#187; #{whole_path}"
+    end
+    end_levels.concat(clients_hierarchy_for_regular_user).join('<br/>')
 
     [admin_levels, end_levels].reject(&:empty?).join('<br/>').html_safe
+  end
+
+  def clients_hierarchy_for_regular_user
+    object.campaigns.includes(:project, :threesixty_campaign).map do |campaign|
+      project = campaign.project
+      client = campaign.client
+      whole_path = [
+        h.link_to(client.decorate.display_name, h.administration_client_users_path(client)),
+        h.link_to(project.decorate.display_name, h.administration_client_project_campaigns_path(client, project)),
+        h.link_to(campaign.decorate.display_name, campaign_path(campaign, project, client))
+      ].join(' > ')
+      "&#187; #{whole_path}"
+    end
+  end
+
+  def campaign_path(campaign, project, client)
+    if campaign.threesixty?
+      return h.administration_client_project_threesixty_campaign_path(
+        client,
+        project,
+        campaign.threesixty_campaign.id
+      )
+    end
+    h.administration_project_new_campaign_path(project, campaign)
   end
 
   def delete_confirmation

@@ -9,8 +9,15 @@ module UsersResults
 
           results = SubFactorQuestions.get_results(factor_data, extended_scoring, factor_hash)
           score = calc_score(results)
+          percentage = if factors_question_count[factor.id].present?
+                         { 'percentage' => calc_percentage(results, factors_question_count[factor.id]) }
+                       else
+                         {}
+                       end
 
-          broadcast :ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => score })
+          broadcast(:ok, extended_scoring.
+            deep_merge(factor.id.to_s => { 'score' => score }).
+            deep_merge(factor.id.to_s => percentage))
         end
       end
     end

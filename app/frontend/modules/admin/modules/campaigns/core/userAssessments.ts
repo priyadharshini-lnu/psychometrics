@@ -1,20 +1,24 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { createReducer, CustomAction } from 'utils/redux'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
-import { updateIn } from 'utils/immutable'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import { FETCH_SINGLE } from './users'
-import { CREATE as CREATE_REPORT } from './userReports'
+import { takeEvery, put } from 'redux-saga/effects'
+import {
+  FETCH_SINGLE as FETCH_SINGLE_USER,
+  REMOVE_ASSESSMENT,
+  RESET_ASSESSMENT,
+  EXTEND_ASSESSMENT_TIME,
+  CREATE_REPORT,
+  REMOVE_REPORT,
+} from './users'
 
 const defaultState = {
   list: [],
 }
 
 const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
-const UPDATE_ADDITIONAL_TIME = 'campaigns/userAssessments/UPDATE_ADDITIONAL_TIME'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
-const RESET = 'campaigns/userAssessments/RESET'
-const REMOVE = 'campaigns/userAssessments/REMOVE'
+export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -35,7 +39,7 @@ export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
 })
 
 export const updateAdditionalTime = (campaignId: number, campaignAssessmentId: number, additionalTime: number) => ({
-  type: UPDATE_ADDITIONAL_TIME,
+  type: EXTEND_ASSESSMENT_TIME,
   campaignAssessmentId,
   request: {
     method: 'post',
@@ -53,7 +57,7 @@ export const rescoreResponse = (campaignId: number, campaignAssessmentId: number
 })
 
 export const reset = (campaignId: number, campaignAssessmentId: number) => ({
-  type: RESET,
+  type: RESET_ASSESSMENT,
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/reset`,
@@ -61,11 +65,16 @@ export const reset = (campaignId: number, campaignAssessmentId: number) => ({
 })
 
 export const remove = (campaignId: number, campaignAssessmentId: number) => ({
-  type: REMOVE,
+  type: REMOVE_ASSESSMENT,
   request: {
     method: 'delete',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}`,
   },
+})
+
+export const setUserAssessments = (userAssessments: UserAssessment[]) => ({
+  type: SET_USER_ASSESSMENTS,
+  userAssessments,
 })
 
 export interface State {
@@ -73,40 +82,11 @@ export interface State {
 }
 
 type FetchType = ApiActionResponse<{userAssessments: UserAssessment[]}>
-type UpdateAdditionalTimeType = ApiActionResponse<{}>
 type UpdateNormType = ApiActionResponse<{normName: string, normType: string}>
-type ResetType = ApiActionResponse<UserAssessment>
-type RemoveType = ApiActionResponse<number>
 
 const HANDLERS = {
-  [FETCH_SINGLE]: (_, { response }: FetchType) => ({ list: response.userAssessments }),
-  [CREATE_REPORT]: (_, { response }: FetchType) => ({ list: response.userAssessments }),
-  [UPDATE_ADDITIONAL_TIME]: (state, {
-    requestAction: {
-      campaignAssessmentId,
-    },
-    response,
-  }: UpdateAdditionalTimeType) => {
-    const list = state.list.map((assessment: UserAssessment) => {
-      if (assessment.id !== campaignAssessmentId) return assessment
-
-      return { ...assessment, ...response }
-    })
-    return { ...state, list }
-  },
-  [REMOVE]: (state: State, { response }: RemoveType) => (
-    updateIn(state, ['list'], (userAssessments: UserAssessment[]) => _.filter(
-      userAssessments, (userAssessment: UserAssessment) => userAssessment.id !== response,
-    ))
-  ),
-  [RESET]: (state: State, { response }: ResetType) => (
-    updateIn(state, ['list'], (userAssessments: UserAssessment[]) => _.map(userAssessments,
-      (userAssessment: UserAssessment) => {
-        if (userAssessment.id === response.id) { return response }
-
-        return userAssessment
-      }))
-  ),
+  [SET_USER_ASSESSMENTS]: (state, { userAssessments }: CustomAction<{ userAssessments: UserAssessment[] }>) => (
+    { ...state, list: userAssessments }),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
     const list = state.list.map((assessment: UserAssessment) => {
       if (assessment.id !== request.body.campaignAssessmentId) return assessment
@@ -116,5 +96,16 @@ const HANDLERS = {
     return { ...state, list }
   },
 }
+
+function* genSetUserAssessments ({ response }: FetchType) {
+  yield put(setUserAssessments(response.userAssessments))
+}
+
+export const watchers = [
+  takeEvery(
+    [FETCH_SINGLE_USER, CREATE_REPORT, REMOVE_REPORT, EXTEND_ASSESSMENT_TIME, REMOVE_ASSESSMENT, RESET_ASSESSMENT],
+    genSetUserAssessments,
+  ),
+]
 
 export default createReducer(HANDLERS, defaultState)

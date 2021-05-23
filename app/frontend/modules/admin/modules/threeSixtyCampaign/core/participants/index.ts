@@ -71,7 +71,7 @@ export type DestroyAction = ApiActionResponse<Participant[]>
 export type DestroyEvaluationAction = ApiActionResponse<Participant[]>
 
 const HANDLERS = {
-  [FETCH_ALL_BY_USER_ID]: (state: State, { response }: FetchAllAction) => ({ ...state, ...response }),
+  [FETCH_ALL_BY_USER_ID]: (_: State, { response }: FetchAllAction) => (response),
   [UPDATE]: (state: State, { response }: UpdateAction) => state.map(
     p => (p.id === response.id ? { ...p, ...response } : p),
   ),

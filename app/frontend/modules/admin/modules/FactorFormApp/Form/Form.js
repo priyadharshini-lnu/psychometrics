@@ -14,7 +14,14 @@ export default function Form (props) {
   const [resource, setResource] = useState(factor)
 
   const onChange = ({ currentTarget }) => {
-    setResource({ ...resource, [currentTarget.name]: currentTarget.value })
+    const values = {
+      [currentTarget.name]: currentTarget.value,
+    }
+    if (currentTarget.name === 'scoring_strategy'
+      && (resource.scoring_strategy !== 'sub_factor_questions_sum' && resource.scoring_strategy !== 'questions_sum')) {
+      values.use_percentage = false
+    }
+    setResource({ ...resource, ...values })
   }
 
   // The function is used as adapter for rails nested attributes functionality
@@ -36,7 +43,6 @@ export default function Form (props) {
     })
     return [...factorsSubFactors, ...findDestroyedSubFactors()]
   }
-
   return (
     <>
       <HiddenInputList
@@ -50,6 +56,21 @@ export default function Form (props) {
       <div className="ant-form-vertical">
         <InputFile onChange={onChange} value={resource.icon} />
       </div>
+      {(resource.scoring_strategy === 'sub_factor_questions_sum' || resource.scoring_strategy === 'questions_sum')
+        && (
+        <div className="mtm mbm">
+          <Checkbox
+            name="use_percentage"
+            onChange={({ target }) => onChange({ currentTarget: { name: target.name, value: target.checked ? 1 : 0 } })}
+            checked={resource.use_percentage}
+          >
+            Use percentage of correct answers
+            <br />
+            <small>(If normed score not present)</small>
+          </Checkbox>
+        </div>
+        )
+      }
       {resource.scoring_strategy !== 'questions' && resource.scoring_strategy !== 'questions_sum'
       && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
     </>

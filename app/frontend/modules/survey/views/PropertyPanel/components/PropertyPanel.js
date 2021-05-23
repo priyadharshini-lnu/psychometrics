@@ -128,9 +128,9 @@ class PropertyPanel extends Component {
     return (
       <div className={styles.main} style={style}>
         {this.renderQuestiontypeBtn(q)}
-        <Divider />
+        <Divider className="mt-4 mb-4" />
         {this.renderCustomProperties(q)}
-        <Divider />
+        <Divider className="mt-4 mb-4" />
         {this.renderDefaultAction(q)}
       </div>
     )
