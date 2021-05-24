@@ -7,6 +7,7 @@ import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import settings from 'modules/admin/settings'
 import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
@@ -90,8 +91,6 @@ const UserList: React.FC<Props> = ({
     changeFilter('isAnonymEq', value)
   }
 
-  const showToolsDropdown = permissions.exportCompletionStatus || permissions.exportUsers || permissions.import
-
   return (
     <div>
       <Row justify="space-between" className="pm">
@@ -100,9 +99,7 @@ const UserList: React.FC<Props> = ({
           <span className="mlm">{`${total} Users`}</span>
         </Col>
         <div>
-          {showToolsDropdown && (
-            <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
-          )}
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
           <Select
             defaultValue="All"
             value={filters.isAnonymEq || 'All'}
@@ -224,36 +221,43 @@ const UserList: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
-              render={user => (
-                <Dropdown
-                  overlay={() => (
-                    ActionsMenu({
-                      onEdit: () => openModal('UserFormModal', { campaignId, user }),
-                      resetPassword: () => resetPassword(campaignId, user.id),
-                      projectId,
-                      campaignId,
-                      userId: user.id,
-                      email: user.email,
-                      remove: () => remove(campaignId, user.id),
-                      fullName: user.fullName,
-                      permissions: user.permissions,
-                    }) as React.ReactElement
-                  )}
-                  trigger={['click']}
-                >
-                  <Tooltip title={I18n.t('administration.table.more_actions')}>
-                    <Button
-                      id={`menu-button_campaign-subjects-${user.email}`}
-                      type="link"
-                      aria-label={I18n.t('administration.table.more_actions')}
-                      aria-controls={`menu_campaign-subjects-${user.email}`}
-                      aria-haspopup
-                    >
-                      <MoreOutlined />
-                    </Button>
-                  </Tooltip>
-                </Dropdown>
-              )}
+              render={(user) => {
+                const menu = ActionsMenu({
+                  onEdit: () => openModal('UserFormModal', { campaignId, user }),
+                  resetPassword: () => resetPassword(campaignId, user.id),
+                  projectId,
+                  campaignId,
+                  userId: user.id,
+                  email: user.email,
+                  remove: () => remove(campaignId, user.id),
+                  fullName: user.fullName,
+                  permissions: user.permissions,
+                }) as React.ReactElement
+
+                return (
+                  <ConditionalDropdown
+                    menu={menu}
+                    dropdown={(
+                      <Dropdown
+                        overlay={() => (menu)}
+                        trigger={['click']}
+                      >
+                        <Tooltip title={I18n.t('administration.table.more_actions')}>
+                          <Button
+                            id={`menu-button_campaign-subjects-${user.email}`}
+                            type="link"
+                            aria-label={I18n.t('administration.table.more_actions')}
+                            aria-controls={`menu_campaign-subjects-${user.email}`}
+                            aria-haspopup
+                          >
+                            <MoreOutlined />
+                          </Button>
+                        </Tooltip>
+                      </Dropdown>
+                    )}
+                  />
+                )
+              }}
             />
           </Table>
         </Col>
@@ -334,13 +338,14 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       id={`menu_campaign-subjects-${email}`}
       aria-labelledby={`menu-button_campaign-subjects-${email}`}
     >
-      <Menu.Item
-        key="edit"
-        onClick={onEdit}
-        disabled={!permissions.edit}
-      >
-        {I18n.t('frontend.edit')}
-      </Menu.Item>
+      {permissions.edit && (
+        <Menu.Item
+          key="edit"
+          onClick={onEdit}
+        >
+          {I18n.t('frontend.edit')}
+        </Menu.Item>
+      )}
       {permissions.loginAs && (
         <Menu.Item key="loginAs">
           <a
@@ -350,20 +355,22 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
       )}
-      <Menu.Item
-        key="changePassword"
-        onClick={handleChangePassword}
-        disabled={!permissions.resetPassword}
-      >
-        {I18n.t('frontend.change_password')}
-      </Menu.Item>
-      <Menu.Item
-        key="delete"
-        onClick={handleDelete}
-        disabled={!permissions.remove}
-      >
-        {I18n.t('common.actions.remove')}
-      </Menu.Item>
+      {permissions.resetPassword && (
+        <Menu.Item
+          key="changePassword"
+          onClick={handleChangePassword}
+        >
+          {I18n.t('frontend.change_password')}
+        </Menu.Item>
+      )}
+      {permissions.remove && (
+        <Menu.Item
+          key="delete"
+          onClick={handleDelete}
+        >
+          {I18n.t('common.actions.remove')}
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

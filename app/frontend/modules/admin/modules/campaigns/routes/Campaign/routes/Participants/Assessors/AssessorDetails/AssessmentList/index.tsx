@@ -5,6 +5,7 @@ import {
 import {
   MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
 } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
@@ -172,22 +173,30 @@ const AssessmentList: React.FC<Props> = ({
             <Column
               title={I18n.t('common.column.action')}
               key="action"
-              render={({ subjectEmail, id, permissions }) => (
-                <Dropdown
-                  overlay={() => (
-                    ActionsMenu({
-                      subjectEmail,
-                      reset: () => reset(parsedCampaignId, parsedAssessorId, id),
-                      permissions,
-                    }) as React.ReactElement
-                  )}
-                  trigger={['click']}
-                >
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                </Dropdown>
-              )}
+              render={({ subjectEmail, id, permissions }) => {
+                const menu = ActionsMenu({
+                  subjectEmail,
+                  reset: () => reset(parsedCampaignId, parsedAssessorId, id),
+                  permissions,
+                }) as React.ReactElement
+
+                return (
+                  <ConditionalDropdown
+                    menu={menu}
+                    dropdown={(
+                      <Dropdown
+                        overlay={() => (menu)}
+                        trigger={['click']}
+                      >
+                        <a>
+                          <MoreOutlined />
+                        </a>
+                      </Dropdown>
+                    )}
+                    placeholder="NA"
+                  />
+                )
+              }}
             />
           </Table>
         </Col>
@@ -233,15 +242,17 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset, permissi
 
   return (
     <Menu>
-      <Menu.Item key="reset" disabled={!permissions.resetEvaluation}>
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={handleReset}
-        >
-          {I18n.t('administration.assessor.assessments.actions.reset')}
-        </div>
-      </Menu.Item>
+      {permissions.resetEvaluation && (
+        <Menu.Item key="reset">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleReset}
+          >
+            {I18n.t('administration.assessor.assessments.actions.reset')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

@@ -7,6 +7,7 @@ import { UserOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
 import UserEditModal from 'modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from 'modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import styles from './SubjectList.scss'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
@@ -50,10 +51,6 @@ export default function SubjectList ({
 
   const onUserUpdate = () => fetchSubjects(campaignId, page)
 
-  const showToolsDropdown = permissions.manageDatasheets || permissions.exportResults
-  || permissions.exportCompletionStatus || permissions.editDimension || permissions.resetAllParticipants
-  || permissions.resetAllNominations
-
   return (
     <>
       <Row>
@@ -67,9 +64,7 @@ export default function SubjectList ({
             path="/participants/subjects"
             searchTerm={searchTerm}
           />
-          {showToolsDropdown && (
-            <ToolsDropdown permissions={permissions} />
-          )}
+          <ToolsDropdown permissions={permissions} />
           {permissions.addSubject && (
             <CreateSubjectsDropdown />
           )}
@@ -127,32 +122,41 @@ export default function SubjectList ({
 
             <Column
               key="action"
+              title="Action"
               render={({
                 id, user: { email }, user, permissions,
-              }) => (
-                <Dropdown
-                  overlay={() => ActionsMenu({
-                    subjectId: id,
-                    email,
-                    user,
-                    campaignId,
-                    update,
-                    remove,
-                    removeUser,
-                    downloadReport,
-                    openModal,
-                    editUser,
-                    onUserUpdate,
-                    permissions,
-                  })
-                  }
-                  trigger={['click']}
-                >
-                  <div className={styles.actions}>
-                    <MoreOutlined />
-                  </div>
-                </Dropdown>
-              )}
+              }) => {
+                const menu = ActionsMenu({
+                  subjectId: id,
+                  email,
+                  user,
+                  campaignId,
+                  update,
+                  remove,
+                  removeUser,
+                  downloadReport,
+                  openModal,
+                  editUser,
+                  onUserUpdate,
+                  permissions,
+                })
+                return (
+                  <ConditionalDropdown
+                    menu={menu}
+                    dropdown={(
+                      <Dropdown
+                        overlay={() => menu}
+                        trigger={['click']}
+                      >
+                        <div className={styles.actions}>
+                          <MoreOutlined />
+                        </div>
+                      </Dropdown>
+                    )}
+                    placeholder="NA"
+                  />
+                )
+              }}
             />
           </Table>
           <div className="pm">

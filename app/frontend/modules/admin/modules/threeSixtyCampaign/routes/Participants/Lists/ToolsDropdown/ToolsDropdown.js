@@ -3,6 +3,7 @@ import {
   Button, Dropdown, Menu,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 
 const menu = ({
   projectId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
@@ -59,7 +60,7 @@ const menu = ({
       </Menu.Item>
     )}
     {permissions.resetAllNominations && (
-      <Menu.Item key="reset_all_nominations" disabled={!permissions.resetAllNominations}>
+      <Menu.Item key="reset_all_nominations">
         <div
           onClick={() => resetAllNominationsWithConfirmation(campaignId)}
           role="button"
@@ -90,8 +91,8 @@ export default function ToolsDropdown ({
   }
 
   return (
-    <Dropdown
-      overlay={menu({
+    <ConditionalDropdown
+      menu={menu({
         projectId,
         campaignId,
         resetCampaignWithConfirmation,
@@ -100,14 +101,27 @@ export default function ToolsDropdown ({
         dimensionId,
         permissions,
       })}
-      className="mrm"
-      trigger={['click']}
-    >
-      <Button>
-        <ToolOutlined />
-        <span>Tools</span>
-        <DownOutlined />
-      </Button>
-    </Dropdown>
+      dropdown={(
+        <Dropdown
+          overlay={menu({
+            projectId,
+            campaignId,
+            resetCampaignWithConfirmation,
+            resetAllNominationsWithConfirmation,
+            openModal,
+            dimensionId,
+            permissions,
+          })}
+          className="mrm"
+          trigger={['click']}
+        >
+          <Button>
+            <ToolOutlined />
+            <span>Tools</span>
+            <DownOutlined />
+          </Button>
+        </Dropdown>
+      )}
+    />
   )
 }

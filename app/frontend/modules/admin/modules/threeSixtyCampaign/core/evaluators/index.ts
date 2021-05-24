@@ -19,39 +19,42 @@ interface Evaluator {
   id: number
 }
 
+interface Permissions {
+  addSubject: boolean
+  editDimension: boolean
+  editUser: boolean
+  exportCompletionStatus: boolean
+  exportResults: boolean
+  manageDatasheets: boolean
+  manageRelationships: boolean
+  resetAllNominations: boolean
+  resetAllParticipants: boolean
+}
+
 interface State {
   list: Evaluator[],
   total: number,
-  permissions: {
-    addSubject: boolean
-    editDimension: boolean
-    editUser: boolean
-    exportCompletionStatus: boolean
-    exportResults: boolean
-    manageDatasheets: boolean
-    manageRelationships: boolean
-    resetAllNominations: boolean
-    resetAllParticipants: boolean
-  },
+  permissions: Permissions,
   form: {
     attrs: [],
     errors: [] | null,
   },
 }
 
+
 export const defaultState: State = {
   list: [],
   total: 0,
   permissions: {
     addSubject: false,
-    editDimension: true,
-    editUser: true,
-    exportCompletionStatus: true,
+    editDimension: false,
+    editUser: false,
+    exportCompletionStatus: false,
     exportResults: false,
     manageDatasheets: false,
     manageRelationships: false,
     resetAllNominations: false,
-    resetAllParticipants: true,
+    resetAllParticipants: false,
   },
   form: {
     attrs: [],
@@ -98,17 +101,7 @@ export const importFile = (campaignId: number, data: FormData) => ({
 interface FetchActionResponse {
   evaluators: Evaluator[],
   total: number,
-  permissions: {
-    addSubject: boolean
-    editDimension: boolean
-    editUser: boolean
-    exportCompletionStatus: boolean
-    exportResults: boolean
-    manageDatasheets: boolean
-    manageRelationships: boolean
-    resetAllNominations: boolean
-    resetAllParticipants: boolean
-  },
+  permissions: Permissions,
 }
 
 export type FetchAction = ApiActionResponse<FetchActionResponse>

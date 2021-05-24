@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { openModal } from 'modules/admin/core/ui/modals'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import pluralize from 'pluralize'
 import { ParentResourceType } from '../interfaces'
@@ -65,13 +66,20 @@ const ToolsDropdown: FC<Props> = ({
     </Menu>
   )
 
-  return (
+  const toolsDropdown = (
     <Dropdown overlay={toolsMenu} trigger={['click']}>
       <Button>
         <ToolOutlined />
         <DownOutlined />
       </Button>
     </Dropdown>
+  )
+
+  return (
+    <ConditionalDropdown
+      menu={toolsMenu}
+      dropdown={toolsDropdown}
+    />
   )
 }
 

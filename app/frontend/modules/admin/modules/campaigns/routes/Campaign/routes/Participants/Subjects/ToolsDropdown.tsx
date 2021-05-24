@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 
 const { I18n } = window
 
@@ -44,21 +45,30 @@ interface Props {
 }
 
 const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissions }) => (
-  <Dropdown
-    overlay={menu({
+  <ConditionalDropdown
+    menu={menu({
       campaignId,
       openModal,
       permissions,
     })}
-    className="mrm"
-    trigger={['click']}
-  >
-    <Button>
-      <ToolOutlined />
-      <span>Tools</span>
-      <DownOutlined />
-    </Button>
-  </Dropdown>
+    dropdown={(
+      <Dropdown
+        overlay={menu({
+          campaignId,
+          openModal,
+          permissions,
+        })}
+        className="mrm"
+        trigger={['click']}
+      >
+        <Button>
+          <ToolOutlined />
+          <span>Tools</span>
+          <DownOutlined />
+        </Button>
+      </Dropdown>
+    )}
+  />
 )
 
 export default ToolsDropdown

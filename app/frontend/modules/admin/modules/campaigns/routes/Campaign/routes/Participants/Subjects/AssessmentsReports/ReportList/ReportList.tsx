@@ -3,6 +3,7 @@ import {
   Table, Menu, Row, Col, Dropdown, Switch, Modal, message,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
 
@@ -78,27 +79,34 @@ const ReportList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={userReport => (
-              <Dropdown
-                overlay={() => (
-                  ActionsMenu({
-                    projectId: parsedProjectId,
-                    campaignId: parsedCampaignId,
-                    userReportId: userReport.id,
-                    userReportName: userReport.name,
-                    remove: () => remove(parsedCampaignId, userReport.id),
-                    internal: userReport.internal,
-                    reportUrl: userReport.reportUrl,
-                    permissions: userReport.permissions,
-                  }) as React.ReactElement
-                )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
-            )}
+            render={(userReport) => {
+              const menu = ActionsMenu({
+                projectId: parsedProjectId,
+                campaignId: parsedCampaignId,
+                userReportId: userReport.id,
+                userReportName: userReport.name,
+                remove: () => remove(parsedCampaignId, userReport.id),
+                internal: userReport.internal,
+                reportUrl: userReport.reportUrl,
+                permissions: userReport.permissions,
+              }) as React.ReactElement
+
+              return (
+                <ConditionalDropdown
+                  menu={menu}
+                  dropdown={(
+                    <Dropdown
+                      overlay={() => (menu)}
+                      trigger={['click']}
+                    >
+                      <a>
+                        <MoreOutlined />
+                      </a>
+                    </Dropdown>
+                  )}
+                />
+              )
+            }}
           />
         </Table>
       </Col>
@@ -142,27 +150,29 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      {internal && (
-        <Menu.Item key="viewReport" disabled={!permissions.viewReport}>
+      {internal && permissions.viewReport && (
+        <Menu.Item key="viewReport">
           <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
             {I18n.t('reports.actions.view')}
           </Link>
         </Menu.Item>
       )}
-      {reportUrl && (
-        <Menu.Item key="downloadReport" disabled={!permissions.downloadReport}>
+      {reportUrl && permissions.downloadReport && (
+        <Menu.Item key="downloadReport">
           <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
         </Menu.Item>
       )}
-      <Menu.Item key="remove" disabled={!permissions.remove}>
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={handleDelete}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+      {permissions.remove && (
+        <Menu.Item key="remove">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleDelete}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

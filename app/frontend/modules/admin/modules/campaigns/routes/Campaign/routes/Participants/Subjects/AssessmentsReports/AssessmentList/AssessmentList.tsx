@@ -3,6 +3,7 @@ import {
   Table, Menu, Row, Col, Dropdown, message, Modal,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
@@ -104,26 +105,33 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={assessment => (
-              <Dropdown
-                overlay={() => (
-                  ActionsMenu({
-                    rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
-                    openModal,
-                    reset,
-                    campaignId: parsedCampaignId,
-                    userId: parsedUserId,
-                    assessment,
-                    remove: () => remove(parsedCampaignId, assessment.id),
-                  }) as React.ReactElement
+            render={(assessment) => {
+              const menu = ActionsMenu({
+                rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
+                openModal,
+                reset,
+                campaignId: parsedCampaignId,
+                userId: parsedUserId,
+                assessment,
+                remove: () => remove(parsedCampaignId, assessment.id),
+              }) as React.ReactElement
+
+              return (
+                <ConditionalDropdown
+                  menu={menu}
+                  dropdown={(
+                    <Dropdown
+                      overlay={() => (menu)}
+                      trigger={['click']}
+                    >
+                      <a>
+                        <MoreOutlined />
+                      </a>
+                    </Dropdown>
                 )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
-            )}
+                />
+              )
+            }}
           />
         </Table>
       </Col>
@@ -187,44 +195,52 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-        <Menu.Item key="reset" disabled={!permissions.resetResults}>
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleReset}
-          >
-            {I18n.t('common.actions.reset')}
-          </div>
-        </Menu.Item>
-        <Menu.Item key="rescore" disabled={!permissions.rescoreResponse}>
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleRescoreResponse}
-          >
-            {I18n.t('assessments.actions.rescore')}
-          </div>
-        </Menu.Item>
+        {permissions.resetResults && (
+          <Menu.Item key="reset">
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={handleReset}
+            >
+              {I18n.t('common.actions.reset')}
+            </div>
+          </Menu.Item>
+        )}
+        {permissions.rescoreResponse && (
+          <Menu.Item key="rescore">
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={handleRescoreResponse}
+            >
+              {I18n.t('assessments.actions.rescore')}
+            </div>
+          </Menu.Item>
+        )}
       </Menu.ItemGroup>
       <Menu.Divider />
-      <Menu.Item key="remove" disabled={!permissions.remove}>
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={handleDelete}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
-      <Menu.Item key="extend" disabled={!permissions.updateAdditionalTime}>
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })}
-        >
-          {I18n.t('assessments.actions.extend_time')}
-        </div>
-      </Menu.Item>
+      {permissions.remove && (
+        <Menu.Item key="remove">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleDelete}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      )}
+      {permissions.updateAdditionalTime && (
+        <Menu.Item key="extend">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })}
+          >
+            {I18n.t('assessments.actions.extend_time')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

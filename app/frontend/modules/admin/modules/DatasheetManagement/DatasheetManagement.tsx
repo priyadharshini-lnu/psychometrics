@@ -167,8 +167,6 @@ const DatasheetManagementComponent: FC<Props> = ({
     setVisibleColumns(parentResourceType, parentResourceId, changedVisibleColumnKey)
   }
 
-  const showToolsDropdown = permissions.export || permissions.import
-
   return (
     <>
       <Row justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
@@ -201,14 +199,12 @@ const DatasheetManagementComponent: FC<Props> = ({
               visibleColumnsKeys={visibleColumns}
               onVisibleColumnsChange={onVisibleColumnsChange}
             />
-            {showToolsDropdown && (
-              <ToolsDropdown
-                parentId={parentResourceId}
-                parentType={parentResourceType}
-                datasheetCount={total}
-                permissions={permissions}
-              />
-            )}
+            <ToolsDropdown
+              parentId={parentResourceId}
+              parentType={parentResourceType}
+              datasheetCount={total}
+              permissions={permissions}
+            />
             {permissions.add && (isEmpty(columnDefinitions) || (
               <Button
                 type="primary"

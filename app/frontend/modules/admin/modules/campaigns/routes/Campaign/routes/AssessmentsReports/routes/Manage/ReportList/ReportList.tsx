@@ -3,6 +3,7 @@ import {
   Table, Menu, Row, Col, Dropdown, Switch,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
 
@@ -84,27 +85,34 @@ const ReportList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={report => (
-              <Dropdown
-                overlay={() => (
-                    ActionsMenu({
-                      projectId,
-                      campaignId: parsedCampaignId,
-                      campaignReportId: report.id,
-                      reportId: report.reportId,
-                      permissions: report.permissions,
-                      openModal,
-                    }) as React.ReactElement
-                )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
-            )}
-          />
+            render={(report) => {
+              const menu = ActionsMenu({
+                projectId,
+                campaignId: parsedCampaignId,
+                campaignReportId: report.id,
+                reportId: report.reportId,
+                permissions: report.permissions,
+                openModal,
+              }) as React.ReactElement
 
+              return (
+                <ConditionalDropdown
+                  menu={menu}
+                  dropdown={(
+                    <Dropdown
+                      overlay={() => (menu)}
+                      trigger={['click']}
+                    >
+                      <a>
+                        <MoreOutlined />
+                      </a>
+                    </Dropdown>
+                  )}
+                  placeholder="NA"
+                />
+              )
+            }}
+          />
         </Table>
       </Col>
     </Row>
@@ -127,29 +135,33 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, reportId, campaignReportId, openModal, permissions,
 }) => (
   <Menu>
-    <Menu.Item key="export" disabled={!permissions.export}>
-      <div
-        role="button"
-        tabIndex={-1}
-      >
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
+    {permissions.export && (
+      <Menu.Item key="export">
+        <div
+          role="button"
+          tabIndex={-1}
         >
-          Export Data
-        </a>
-      </div>
-    </Menu.Item>
-    <Menu.Item key="delete" disabled={!permissions.remove}>
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
-      >
-        {I18n.t('common.actions.remove')}
-      </div>
-    </Menu.Item>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
+          >
+            Export Data
+          </a>
+        </div>
+      </Menu.Item>
+    )}
+    {permissions.remove && (
+      <Menu.Item key="delete">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
+    )}
   </Menu>
 )
 

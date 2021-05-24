@@ -38,18 +38,19 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      <Menu.Item
-        key="delete"
-        disabled={!permissions.remove}
-      >
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => handleDelete()}
+      {permissions.remove && (
+        <Menu.Item
+          key="delete"
         >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleDelete()}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      )}
       {permissions.loginAs
         && (
         <Menu.Item key="loginAs">

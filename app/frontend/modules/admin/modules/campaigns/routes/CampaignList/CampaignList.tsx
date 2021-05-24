@@ -13,6 +13,7 @@ import { STATUSES, DEFAULT_PAGE_SIZE, TYPES } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
 import array from 'utils/array'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import CommonCampaignFormModal from './CommonCampaignFormModal'
@@ -205,31 +206,37 @@ const CampaignList: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
-              render={campaign => (
-                <Dropdown
-                  overlay={() => (
-                    ActionsMenu({
-                      onEdit: () => {
-                        openModal('CommonCampaignFormModal', {
-                          projectId,
-                          campaign: {
-                            ...campaign,
-                            startDate: campaign.startDate && moment(campaign.startDate),
-                            endDate: campaign.endDate && moment(campaign.endDate),
-                          },
-                        })
+              render={(campaign) => {
+                const menu = ActionsMenu({
+                  onEdit: () => {
+                    openModal('CommonCampaignFormModal', {
+                      projectId,
+                      campaign: {
+                        ...campaign,
+                        startDate: campaign.startDate && moment(campaign.startDate),
+                        endDate: campaign.endDate && moment(campaign.endDate),
                       },
-                      onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
-                      campaign,
-                    }) as React.ReactElement
-                  )}
-                  trigger={['click']}
-                >
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                </Dropdown>
-              )}
+                    })
+                  },
+                  onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
+                  campaign,
+                }) as React.ReactElement
+                return (
+                  <ConditionalDropdown
+                    menu={menu}
+                    dropdown={(
+                      <Dropdown
+                        overlay={() => (menu)}
+                        trigger={['click']}
+                      >
+                        <a>
+                          <MoreOutlined />
+                        </a>
+                      </Dropdown>
+                    )}
+                  />
+                )
+              }}
             />
           </Table>
         </Col>

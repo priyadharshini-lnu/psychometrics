@@ -32,10 +32,6 @@ export default function EvaluatorList ({
 
   const curriedFetchEvaluators = _.curry(fetchEvaluators)
 
-  const showToolsDropdown = permissions.manageDatasheets || permissions.exportResults
-  || permissions.exportCompletionStatus || permissions.editDimension || permissions.resetAllParticipants
-  || permissions.resetAllNominations
-
   return (
     <>
       <Row justify="space-between">
@@ -49,9 +45,7 @@ export default function EvaluatorList ({
             path="/participants/evaluators"
             searchTerm={searchTerm}
           />
-          {showToolsDropdown && (
-            <ToolsDropdown permissions={permissions} />
-          )}
+          <ToolsDropdown permissions={permissions} />
           <CreateEvaluatorsDropdown permissions={permissions} />
         </Col>
       </Row>
