@@ -85,7 +85,9 @@ export default class Factor extends Component {
       scoringLeft,
       (result, factor) => {
         const leftMean = _.meanBy(factor.results, r => r.getValue())
-        const rightMean = _.meanBy(scoringRight[factor.id].results, r => r.getValue())
+        const rightResults = scoringRight[factor.id]?.results
+        if (!rightResults || _.isEmpty(rightResults)) { return result }
+        const rightMean = _.meanBy(rightResults, r => r.getValue())
         return [
           ...result,
           {
