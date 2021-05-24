@@ -10,10 +10,10 @@ import {
 export default connect(
   ({
     threeSixtyCampaign: {
-      managers: { list, total },
+      managers: { list, total, permissions },
     },
   }) => ({
-    managers: list, total, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+    managers: list, total, permissions, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
   }),
   dispatch => ({
     fetchManagers: (campaignId, page, query) => dispatch(fetchManagers(campaignId, page, query)),
