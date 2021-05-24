@@ -767,6 +767,8 @@ Rails.application.routes.draw do
                             passwords: 'passwords' }
   # Manager's panel
   #
+  get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
+
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
     namespace :managers do
       resources :dashboard, only: [:index]
@@ -799,7 +801,6 @@ Rails.application.routes.draw do
     end
 
     resources :highlights, only: %i[update]
-    get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
     scope module: :end_user do
       resources :campaigns, only: %i[show]

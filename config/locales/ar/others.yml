@@ -102,6 +102,7 @@ ar:
       use_this: تسليم هذا
     wait: انتظر
   campaign:
+    all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     begin: ابدأ مهامك
     complete_all: أكمل جميع التقييمات ذات الصلة
     complete_prev: " أكمل جميع التقييمات السابقة"
@@ -127,6 +128,7 @@ ar:
     panels:
       assessments: مهامك
       reports: تقارير
+    thank_you_for_time: شكراً لك على وقتك
     time_left:
       cancel: إلغاء
       continue: إستمرار

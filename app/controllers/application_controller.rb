@@ -62,33 +62,6 @@ class ApplicationController < ::BaseController
     end
   end
 
-  def authenticate_user!
-    return if @anonymous_user
-
-    Users::AuthenticateUser.call(params) do
-      on(:ok) do |user, found_by|
-        if found_by == :spoof
-          request.env['warden'].request.env['devise.skip_trackable'] = 1
-          session[:spoofed] = true
-        end
-        if found_by == :sso
-          session[:sso] = {
-            'user_id': user.id,
-            'user_assessment_id' => params[:user_assessment_id],
-            'display' => params[:display],
-            'return_url' => params[:return_url]
-          }
-        end
-        session.delete(:sso) unless found_by == :sso
-        session.delete(:spoofed) unless found_by == :spoofed
-
-        sign_in(user)
-      end
-      on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
-    end
-    super
-  end
-
   # Detect Client by subdomain
 
   def set_client_by_subdomain

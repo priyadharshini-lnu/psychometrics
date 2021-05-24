@@ -119,8 +119,8 @@ export default function Campaign ({
                 {allAssessmentsComplete && (
                   <Result
                     status="success"
-                    title="Thank you for your time"
-                    subTitle="All activities are now complete."
+                    title={I18n.t('campaign.thank_you_for_time')}
+                    subTitle={I18n.t('campaign.all_activities_are_completed')}
                     className="custom-result mvl"
                   />
                 )}

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class TranscribeController < ApplicationController
+class TranscribeController < BaseController
+  include AuthenticateAnonymousUser
+
+  prepend_before_action :authenticate_anonymous_user!
   append_before_action :pundit_authorize
 
   def pre_sign_url
