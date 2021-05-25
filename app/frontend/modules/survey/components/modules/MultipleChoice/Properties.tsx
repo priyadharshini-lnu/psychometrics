@@ -24,7 +24,7 @@ import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 
 const { I18n } = window
 
-interface Props {
+export interface Props {
   model: PropertiesModel
   restricted: boolean
 }
@@ -99,7 +99,7 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
         <ChoicesCountInput model={model} onChange={handleChoiceCountChange} />
         <Checkbox
           onChange={handleNotApplicableOptionChange}
-          defaultChecked={notApplicable}
+          checked={notApplicable}
           className="ms-4 me-4"
         >
           {I18n.t(
@@ -143,7 +143,9 @@ interface AnswerTypeSelectProps {
 const AnswerTypeSelect: FC<AnswerTypeSelectProps> = ({ value, onSelect }) => (
   <div className="ms-4 me-4">
     <Typography.Text strong>
-      {I18n.t('administration.survey_builder.property_panel.answer_type')}
+      {I18n.t(
+        'administration.survey_builder.property_panel.answer_type',
+      )}
     </Typography.Text>
     <Select
       className="w-100"
@@ -163,7 +165,9 @@ interface ChoicesCountInputProps {
 const ChoicesCountInput: FC<ChoicesCountInputProps> = ({ model, onChange }) => (
   <Space direction="vertical" className="ms-4 me-4">
     <Typography.Text strong>
-      {I18n.t('administration.survey_builder.property_panel.no_of_choices')}
+      {I18n.t(
+        'administration.survey_builder.property_panel.no_of_choices',
+      )}
     </Typography.Text>
     <ChoicesInput model={model} onChange={onChange} />
   </Space>
@@ -175,12 +179,23 @@ interface PositionPropertyProps {
   isDisabled?: boolean
 }
 
-const PositionProperty: FC<PositionPropertyProps> = ({ value, onChange, isDisabled = false }) => (
+const PositionProperty: FC<PositionPropertyProps> = ({
+  value,
+  onChange,
+  isDisabled = false,
+}) => (
   <div className="ms-4 me-4">
     <Typography.Text strong>
-      {I18n.t('administration.survey_builder.property_panel.orientation.title')}
+      {I18n.t(
+        'administration.survey_builder.property_panel.orientation.title',
+      )}
     </Typography.Text>
-    <Radio.Group className="mt-2" value={value} onChange={onChange} disabled={isDisabled}>
+    <Radio.Group
+      className="mt-2"
+      value={value}
+      onChange={onChange}
+      disabled={isDisabled}
+    >
       <Radio value="Vertical">
         {I18n.t(
           'administration.survey_builder.property_panel.orientation.vertical',

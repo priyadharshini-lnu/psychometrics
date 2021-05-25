@@ -32,7 +32,7 @@ export const ImageChoiceProperties: FC<Props> = ({
 }) => (
   <>
     <div className="ms-4 me-4">
-      <Checkbox defaultChecked={isEnabled} onChange={onImageEnableChange}>
+      <Checkbox checked={isEnabled} onChange={onImageEnableChange}>
         {I18n.t(
           'administration.survey_builder.property_panel.image_multi_choice_properties.enable',
         )}
@@ -40,7 +40,7 @@ export const ImageChoiceProperties: FC<Props> = ({
       {isEnabled && (
         <Space direction="vertical" size="small" className="mt-2">
           <Checkbox
-            defaultChecked={isPreviewEnabled}
+            checked={isPreviewEnabled}
             onChange={onPreviewOptionChange}
           >
             {I18n.t(

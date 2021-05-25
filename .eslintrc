@@ -44,6 +44,7 @@
         "allowDirectConstAssertionInArrowFunctions": true
       }
     ],
+    "@typescript-eslint/no-empty-interface": "off",
     "semi": [2, "never"],
     "max-len": [2, 120, 2],
     "no-debugger": "off",

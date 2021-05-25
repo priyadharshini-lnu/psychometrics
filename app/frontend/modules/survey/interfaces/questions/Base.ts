@@ -1,16 +1,13 @@
-export interface BaseBuilderModel extends BaseModel, ModelProps<BaseProps> {
+export interface BaseBuilderModel<P = {}, MC = {}> extends BaseModel<P, MC> {
   update(): void
   changeArrayProps(
     { collection, i, val }: { collection: string; i: number; val: string },
     undo?: boolean
   ): void
-  moduleConfig: {
-    validations: boolean
-    defaultChoiceText: (i: number) => string
-  }
+  changeProps(props: Partial<P & BaseProps>): void
 }
 
-export interface BasePropertiesModel extends BaseModel, ModelProps<BaseProps> {
+export interface BasePropertiesModel<P = {}, MC = {}> extends BaseModel<P, MC> {
   update: () => void
   changeReqValidations: (
     newProps: {
@@ -19,18 +16,12 @@ export interface BasePropertiesModel extends BaseModel, ModelProps<BaseProps> {
     },
     undo?: boolean
   ) => void
-  moduleConfig: {
-    validations: boolean
-  }
+  changeProps(props: Partial<P & BaseProps>): void
 }
 
-export interface BasePreviewModel extends BaseModel, ModelProps<BaseProps> {
-  moduleConfig: {
-    validations: boolean
-  }
-}
+export interface BasePreviewModel<P = {}, MC = {}> extends BaseModel<P, MC> {}
 
-interface BaseModel {
+interface BaseModel<P = {}, MC = {}> {
   id: number
   block_id: number
   name: string
@@ -44,17 +35,13 @@ interface BaseModel {
     enabled: boolean
     type: string
   }
+  moduleConfig: {
+    validations: boolean
+  } & MC
+  props: BaseProps & P
 }
 
-export interface ModelProps<T> {
-  props: T
-}
-
-export interface ChangeProps<T> {
-  changeProps(props: Partial<T>): void
-}
-
-export interface BaseProps {
+interface BaseProps {
   questionText: string
   type: string
 }

@@ -1,8 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import { Radio, Space } from 'antd'
 
 import LabelEditor from 'components/LabelEditor'
-
+import {
+  ImageChoiceBuilder,
+  ImageNotApplicableChoice,
+} from 'modules/survey/components/modules/MultipleChoice/components/ImageChoiceBuilder'
+import Socket from 'modules/survey/cable'
+import LibraryTransport from 'modules/survey/cable/LibraryChannel'
+import { LibraryStore } from 'libs/library'
 import useForceUpdate from 'hooks/useUpdate'
 
 import { BuilderModel } from 'modules/survey/interfaces/questions/MultipleChoice'
@@ -20,10 +26,19 @@ const SingleAnswer: FC<Props> = ({ model }) => {
       choices,
       choicesTexts,
       position,
+      withImageChoice,
+      choicesImages,
     },
   } = model
 
   const forceUpdate = useForceUpdate()
+
+  const librarySocket = useRef<null>()
+
+  useEffect(() => {
+    LibraryTransport.init()
+    librarySocket.current = Socket.library()
+  }, [])
 
   const changeLabel = (i: number, value: string) => {
     model.changeArrayProps({ collection: 'choicesTexts', i, val: value })
@@ -35,6 +50,24 @@ const SingleAnswer: FC<Props> = ({ model }) => {
     forceUpdate()
   }
 
+  const handleImageClick = (index: number) => {
+    LibraryStore.openPopup(
+      librarySocket.current,
+      item => handleImageSelect(item, index),
+      'image',
+    )
+  }
+
+  const handleImageSelect = (item, index: number) => {
+    if (index >= 0 && item && item.file) {
+      model.changeArrayProps({
+        collection: 'choicesImages',
+        i: index,
+        val: item.file,
+      })
+    }
+  }
+
   return (
     <Radio.Group value={null} className="mb-4">
       <Space
@@ -43,7 +76,14 @@ const SingleAnswer: FC<Props> = ({ model }) => {
         wrap
       >
         {Array.from({ length: choices }, (_, index) => (
-          <Radio>
+          <Radio key={index}>
+            {withImageChoice && (
+              <ImageChoiceBuilder
+                index={index}
+                src={choicesImages?.[index] ?? null}
+                onClick={handleImageClick}
+              />
+            )}
             <LabelEditor
               value={
                 choicesTexts[index] || moduleConfig.defaultChoiceText(index + 1)
@@ -54,6 +94,7 @@ const SingleAnswer: FC<Props> = ({ model }) => {
         ))}
         {notApplicable && (
           <Radio>
+            {withImageChoice && <ImageNotApplicableChoice />}
             <LabelEditor
               value={notApplicableLabel}
               onChange={handleNotApplicableLabelChange}

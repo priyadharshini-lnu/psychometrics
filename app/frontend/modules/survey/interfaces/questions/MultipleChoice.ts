@@ -1,25 +1,14 @@
-import {
-  BaseBuilderModel,
-  BasePropertiesModel,
-  ModelProps,
-  ChangeProps,
-  BaseProps,
-} from './Base'
+import { BaseBuilderModel, BasePropertiesModel } from './Base'
 
-export interface BuilderModel
-  extends Omit<BaseBuilderModel, 'props'>,
-    ChangeProps<Props>,
-    ModelProps<Props> {}
+export interface BuilderModel extends BaseBuilderModel<Props, ModuleConfig> {}
 
 export interface PropertiesModel
-  extends Omit<BasePropertiesModel, 'props'>,
-    ChangeProps<Props>,
-    ModelProps<Props> {
+  extends BasePropertiesModel<Props, ModuleConfig> {
   setChoices(choice: number): void
   resetDefaultValues(): void
 }
 
-interface Props extends BaseProps {
+interface Props {
   position: 'Vertical' | 'Horizontal'
   notApplicable: boolean
   notApplicableLabel: string
@@ -28,4 +17,14 @@ interface Props extends BaseProps {
   imageChoiceSize: 'small' | 'medium' | 'large'
   choices: number
   choicesTexts: Array<string>
+  choicesImages: Array<string>
+}
+
+interface ModuleConfig {
+  moduleName: 'Multiple Choice'
+  defaultChoiceText(index: number): string
+  validations: boolean
+  randomization: boolean
+  defaultValue: boolean
+  scoring: boolean
 }
