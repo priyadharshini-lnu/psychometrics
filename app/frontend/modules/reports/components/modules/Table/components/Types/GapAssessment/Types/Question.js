@@ -106,6 +106,8 @@ function Question ({
         return _.round(value, 2) || 0
       })
 
+      if (!factor) { return null }
+
       const row = { left: values[0], right: values[1] }
       return {
         ...row,
@@ -116,6 +118,7 @@ function Question ({
       }
     })
 
+    results = _.compact(results)
     results = _.sortBy(results, d => -d.diff)
     const positive = _.take(_.takeWhile(results, d => d.diff > 0), 5)
     const negative = _.take(_.takeRightWhile(results, d => d.diff < 0), 5)

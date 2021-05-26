@@ -27,7 +27,7 @@ class Factor < ApplicationRecord
   has_many :sub_factors, through: :factors_sub_factors
   has_many :parent_factors, through: :parent_factor_sub_factors, source: :factor
   has_many :factors_norms, dependent: :destroy
-  has_many :factors_scoring
+  has_many :factors_scoring, dependent: :destroy
   has_many :questions, through: :factors_scoring
   has_many :occupations_factors, dependent: :destroy
   has_many :innovation_styles_factors, dependent: :destroy
