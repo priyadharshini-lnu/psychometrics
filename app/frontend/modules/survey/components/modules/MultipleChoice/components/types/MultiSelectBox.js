@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../MultipleChoice.scss'
+import styles from '../../styles.scss'
 import Editable from './Editable'
 
 export default class extends Component {

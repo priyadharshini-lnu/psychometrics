@@ -4,9 +4,12 @@ import map from 'lodash/map'
 import find from 'lodash/find'
 
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import {
+  getQuestionScoring,
+} from 'modules/survey/core/preview/FlowProcessor/selectors'
 
 interface ScoringTableProps {
-  scoring: {score: number}[]
+  scoring: ReturnType<typeof getQuestionScoring>
   factors: {id: number, name: string}[]
   I18n: I18nInterface
 }

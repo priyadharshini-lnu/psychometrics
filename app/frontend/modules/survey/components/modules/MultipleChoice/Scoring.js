@@ -5,7 +5,7 @@ import FillingScoring from 'components/FillingScoring'
 import ScoringCell from 'components/ScoringCell'
 import ScoringLabel from 'components/ScoringLabel'
 import Utils from 'utils'
-import styles from './MultipleChoice.scss'
+import styles from './styles.scss'
 
 export class Scoring extends Component {
   static propTypes = {

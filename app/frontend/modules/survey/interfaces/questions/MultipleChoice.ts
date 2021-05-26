@@ -1,4 +1,4 @@
-import { BaseBuilderModel, BasePropertiesModel } from './Base'
+import { BaseBuilderModel, BasePropertiesModel, BasePreviewModel } from './Base'
 
 export interface BuilderModel extends BaseBuilderModel<Props, ModuleConfig> {}
 
@@ -6,6 +6,10 @@ export interface PropertiesModel
   extends BasePropertiesModel<Props, ModuleConfig> {
   setChoices(choice: number): void
   resetDefaultValues(): void
+}
+
+export interface PreviewModel extends BasePreviewModel<Props, ModuleConfig> {
+  isNeedToAddLtrManually: boolean
 }
 
 interface Props {

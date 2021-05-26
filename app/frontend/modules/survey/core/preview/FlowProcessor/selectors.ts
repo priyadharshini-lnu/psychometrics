@@ -267,12 +267,19 @@ export const getMediaResponseByQuestionId = (state, questionId: number) => (
 
 export const getAwsSpeechTextPresignedUrl = state => state.awsSpeechTextPresignedURL
 
-export const getQuestionScoring = (store, questionId) => _.reduce(store.scoring, (acc, s, k) => {
-  if (_.some(s.results, q => q.questionId === questionId)) {
-    return { ...acc, [k]: { score: s.score } }
-  }
-  return acc
-}, {})
+export const getQuestionScoring = (
+  store,
+  questionId,
+): Record<number, { score: number }> => _.reduce(
+  store.scoring,
+  (acc, s, k) => {
+    if (_.some(s.results, q => q.questionId === questionId)) {
+      return { ...acc, [k]: { score: s.score } }
+    }
+    return acc
+  },
+  {},
+)
 
 export const getQuestionWithActiveDictation = state => state.activeDictationOnQuestion
 

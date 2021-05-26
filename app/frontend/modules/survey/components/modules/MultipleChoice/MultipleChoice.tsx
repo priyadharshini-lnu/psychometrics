@@ -1,11 +1,16 @@
-import React, { FC } from 'react'
+import React, { FC, lazy, Suspense } from 'react'
+import { Spin } from 'antd'
 
 import TextEditor from 'components/TextEditor'
-import Templates from 'modules/survey/components/modules/MultipleChoice/components/Templates'
-
 import useForceUpdate from 'hooks/useUpdate'
 
 import { BuilderModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+
+const SingleAnswer = lazy(() => import('./components/types/SingleAnswer'))
+const MultipleAnswer = lazy(() => import('./components/types/MultipleAnswer'))
+const Dropdown = lazy(() => import('./components/types/Dropdown'))
+const SelectBox = lazy(() => import('./components/types/SelectBox'))
+const MultiSelectBox = lazy(() => import('./components/types/MultiSelectBox'))
 
 interface Props {
   model: BuilderModel
@@ -20,19 +25,30 @@ export const MultipleChoice: FC<Props> = ({ model }) => {
   }
 
   const { type, questionText } = model.props
-  const View = Templates[type]
-  const answerType = <View model={model} key={type} />
+
+  const builderAnswerTypeProps = {
+    model,
+    key: type,
+  }
 
   return (
     <div style={{ position: 'relative' }}>
       <div className="mt-4">
-        <TextEditor
-          model={model}
-          value={questionText}
-          onChange={changeText}
-        />
+        <TextEditor model={model} value={questionText} onChange={changeText} />
       </div>
-      {answerType}
+      <Suspense fallback={<Spin />}>
+        {type === 'SingleAnswer' && (
+          <SingleAnswer {...builderAnswerTypeProps} />
+        )}
+        {type === 'MultipleAnswer' && (
+          <MultipleAnswer {...builderAnswerTypeProps} />
+        )}
+        {type === 'Dropdown' && <Dropdown {...builderAnswerTypeProps} />}
+        {type === 'SelectBox' && <SelectBox {...builderAnswerTypeProps} />}
+        {type === 'MultiSelectBox' && (
+          <MultiSelectBox {...builderAnswerTypeProps} />
+        )}
+      </Suspense>
     </div>
   )
 }
