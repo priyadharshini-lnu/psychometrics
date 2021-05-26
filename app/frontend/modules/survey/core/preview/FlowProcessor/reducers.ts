@@ -211,7 +211,7 @@ const HANDLERS = {
   }),
   [SAVE_RESULTS]: (state: State, {
     response: {
-      expired, currentBlock, factors, scoring,
+      expired, currentBlock, factors, scoring, translations,
     },
   }: SaveResults) => {
     const blocks = currentBlock
@@ -226,7 +226,9 @@ const HANDLERS = {
       currentPage: null,
       factors,
       scoring,
-    } : { ...state, end, blocks }
+    } : {
+      ...state, end, blocks, locales: translations,
+    }
   },
   [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {
     if (_.get(state, ['highlights', payload.id])) return setIn(state, ['highlights', payload.id], payload)

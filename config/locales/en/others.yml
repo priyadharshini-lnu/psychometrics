@@ -819,6 +819,7 @@ en:
       instruction: Upgrade Now
       message: Please use latest version of the browsers
   campaign:
+    all_activities_are_completed: All activities are now complete.
     begin: Begin your tasks
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
@@ -847,6 +848,7 @@ en:
     panels:
       assessments: Tasks
       reports: Reports
+    thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel
       continue: Continue
@@ -1337,9 +1339,11 @@ en:
   frontend:
     activate: Activate
     are_you_sure: Are you sure?
+    assessment: Assessment
     assessment_groups:
       create_success: The group is successfully created
       update_success: The group is successfully updated
+    background_reading: Background Reading
     campaign:
       actions:
         remove:

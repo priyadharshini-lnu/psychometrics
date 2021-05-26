@@ -231,7 +231,8 @@ interface SaveResponse {
   expired: boolean
   currentBlock: Block
   scoring?: {}
-  factors?: []
+  factors?: [],
+  translations: object
 }
 
 interface FetchQuestionScoringResponse {

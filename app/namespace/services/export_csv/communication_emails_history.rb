@@ -10,7 +10,7 @@ module Services
       HEADERS = ['First Name', 'Last Name', 'Email', 'Sent At'].freeze
 
       def call
-        data = @communication.emails.sent.joins(membership: [:user]).pluck(
+        data = @communication.emails.sent.joins(:user).pluck(
           'users.first_name', 'users.last_name', 'users.email', :sent_at
         )
         context.result = generate_csv(data)

@@ -173,7 +173,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def locale
-    instance_options[:locale] || I18n.default_locale
+    instance_options[:locale] || object.selected_locale || I18n.default_locale
   end
 
   def normalize_hogan(items)

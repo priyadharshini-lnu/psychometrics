@@ -15,6 +15,7 @@ class CommunicationEmail < ApplicationRecord
   belongs_to :membership, inverse_of: :communication_emails, foreign_key: :membership_id
   belongs_to :communication, inverse_of: :emails
   belongs_to :campaign_user
+  has_one :user, through: :campaign_user
 
   after_commit :delivery_email, on: :create
 
