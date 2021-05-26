@@ -1,5 +1,5 @@
 version: v1.0
-name: Lighthouse
+name: Heroku Staging
 agent:
   machine:
     type: e1-standard-4
@@ -11,7 +11,7 @@ global_job_config:
     - name: NODE_ENV
       value: production
     - name: NODE_OPTIONS
-      value: '--max_old_space_size=7168'
+      value: '--max_old_space_size=8192'
     - name: BUNDLER_VERSION
       value: 2.1.4
     - name: HEROKU_REMOTE
