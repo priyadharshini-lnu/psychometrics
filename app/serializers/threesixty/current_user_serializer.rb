@@ -22,7 +22,10 @@ module Threesixty
         Administration::CampaignPolicy,
         object,
         nil,
-        %w[manage_options manage_messages]
+        [
+          %w[manage_options update_campaign_options],
+          'manage_messages'
+        ]
       )
       permissions.transform_keys! { |k| k.camelcase(:lower) }
     end

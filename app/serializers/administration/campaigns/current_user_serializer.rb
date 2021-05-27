@@ -14,7 +14,10 @@ module Administration
           Administration::CampaignPolicy,
           object,
           nil,
-          %w[create manage_options]
+          [
+            'create',
+            %w[manage_options update_campaign_options]
+          ]
         )
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
