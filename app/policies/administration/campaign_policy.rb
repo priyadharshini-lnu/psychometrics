@@ -97,7 +97,7 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
-    def manage_options?
+    def update_campaign_options?
       @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
     end
 
