@@ -61,8 +61,9 @@ blocks:
           - yarn install --pure-lockfile
           - cache store node-modules-prod-$(checksum yarn.lock) node_modules
           - 'bundle exec rake db:create'
+          # Retry if it fails first time
+          - bundle exec rails webpacker:compile || bundle exec rails webpacker:compile
           - 'WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile'
-          - bundle exec rails webpacker:compile
           - ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
           - chmod 600 ~/.ssh/id_rsa_semaphore_heroku
           - ssh-add ~/.ssh/id_rsa_semaphore_heroku
