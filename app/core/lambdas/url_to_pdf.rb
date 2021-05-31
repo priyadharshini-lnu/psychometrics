@@ -72,9 +72,6 @@ module Lambdas
              )
       return body unless options[:async]
 
-      sns_arn = lambda_config.dig(:url_to_pdf, :snsArn)
-      return body.merge(snsArn: sns_arn) if sns_arn
-
       body.merge(webhookUrl: lambda_notifications_url)
     end
 
