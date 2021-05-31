@@ -16,38 +16,28 @@ module Administration
     end
 
     def create?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      super || permit
+      manage_report?
     end
 
     def copy?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      super || permit
+      manage_report?
     end
 
     def edit?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      super || permit
+      manage_report?
     end
 
     def hogan_reports?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      super || permit
+      manage_report?
     end
 
     def upload_data_sheet?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      super || permit
+      manage_report?
+    end
+
+    # Can archive/unarchive Assessment
+    def toggle_archive?
+      manage_report?
     end
 
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
@@ -82,14 +72,6 @@ module Administration
       edit?
     end
 
-    # Can archive/unarchive Assessment
-    def toggle_archive?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      super || permit
-    end
-
     # Can regenerate reports if Superadmin
     #   and record is not external
     #
@@ -107,6 +89,15 @@ module Administration
 
     def restore?
       @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
+    private
+
+    def manage_report?
+      permit = @user.has_grant?(:reports, :manage)
+      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
+      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
+      @user.is?(:superadmin) || permit
     end
 
     class Scope < Scope
