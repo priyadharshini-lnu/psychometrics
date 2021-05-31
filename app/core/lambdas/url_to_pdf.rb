@@ -58,7 +58,7 @@ module Lambdas
 
     def jwt_request_body
       JWT.encode(
-        { data: request_body, exp: 2.minutes.from_now.to_i },
+        { data: request_body, exp: expiry_time.from_now.to_i },
         lambda_config[:signing_secret],
         'HS256'
       )
@@ -77,7 +77,7 @@ module Lambdas
 
     def webhook_message
       JWT.encode(
-        { data: options[:webhook_message], exp: 10.minutes.from_now.to_i },
+        { data: options[:webhook_message], exp: expiry_time.from_now.to_i },
         lambda_config[:signing_secret],
         'HS256'
       )
@@ -97,8 +97,12 @@ module Lambdas
         :put_object,
         bucket: Rails.application.secrets.directory,
         key: options[:output_file_path],
-        expires_in: 6000
+        expires_in: expiry_time.to_i
       )
+    end
+
+    def expiry_time
+      12.hours
     end
   end
 end
