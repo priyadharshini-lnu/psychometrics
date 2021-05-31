@@ -16,28 +16,28 @@ module Administration
     end
 
     def create?
-      @user.is?(:superadmin) || permit_manage?
+      manage_report?
     end
 
     def copy?
-      @user.is?(:superadmin) || permit_manage?
+      manage_report?
     end
 
     def edit?
-      @user.is?(:superadmin) || permit_manage?
+      manage_report?
     end
 
     def hogan_reports?
-      @user.is?(:superadmin) || permit_manage?
+      manage_report?
     end
 
     def upload_data_sheet?
-      @user.is?(:superadmin) || permit_manage?
+      manage_report?
     end
 
     # Can archive/unarchive Assessment
     def toggle_archive?
-      @user.is?(:superadmin) || permit_manage?
+      manage_report?
     end
 
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
@@ -93,10 +93,11 @@ module Administration
 
     private
 
-    def permit_manage?
+    def manage_report?
       permit = @user.has_grant?(:reports, :manage)
       ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit && ttes_ids.include?(record.owner_id) if record.is_a? ::Report
+      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
+      @user.is?(:superadmin) || permit
     end
 
     class Scope < Scope
