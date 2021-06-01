@@ -1,11 +1,12 @@
 tr id=dom_id(resource)
   td.text-center
-    = link_to toggle_status_administration_client_license_path(client, resource),
+    = link_to_if policy(:license).edit?,
+              resource.decorate.status,
+              toggle_status_administration_client_license_path(client, resource),
               method: :patch,
               remote: true,
               class: 'toggle-status',
               data: { confirm: resource.decorate.toggle_status_confirmation }
-      = resource.decorate.status
   td = resource.type_common? ? resource.decorate.display_name : ''
   td
     - if resource.type_common?
