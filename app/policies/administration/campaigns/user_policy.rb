@@ -36,7 +36,7 @@ module Administration
       end
 
       def update?
-        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
       end
 
       def reset_password?
