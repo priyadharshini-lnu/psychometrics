@@ -269,9 +269,11 @@ ar:
   frontend:
     activate: تنشيط
     are_you_sure: هل أنت متأكد؟
+    assessment: تقييم
     assessment_groups:
       create_success: تم إنشاء المجموعة بنجاح
       update_success: تم تحديث المجموعة بنجاح
+    background_reading: قراءة الخلفية
     campaign:
       actions:
         remove:

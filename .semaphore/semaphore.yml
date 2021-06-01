@@ -112,7 +112,7 @@ blocks:
           commands:
             - |
               if [[ ! -d public/packs-test ]]; then
-                DISABLE_COVERAGE=1 bundle exec rails webpacker:compile \
+                (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile) \
                 && cache store webpack-compile-$(checksum webpack-files.txt) public/packs-test
               else
                 echo "No need to compile assets. Asset fetched from cache."

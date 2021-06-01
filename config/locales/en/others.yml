@@ -1340,9 +1340,11 @@ en:
   frontend:
     activate: Activate
     are_you_sure: Are you sure?
+    assessment: Assessment
     assessment_groups:
       create_success: The group is successfully created
       update_success: The group is successfully updated
+    background_reading: Background Reading
     campaign:
       actions:
         remove:

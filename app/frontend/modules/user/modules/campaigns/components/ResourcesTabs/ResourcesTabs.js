@@ -5,6 +5,7 @@ import {
 import ResourceList from '../ResourceList'
 
 const { TabPane } = Tabs
+const { I18n } = window
 
 export default function ResourcesTabs ({
   assessment, children, ...props
@@ -15,10 +16,10 @@ export default function ResourcesTabs ({
 
   return (
     <Tabs defaultActiveKey={tab} className="tabs-row" onChange={setTab}>
-      <TabPane tab="Assessment" key="assessment">
+      <TabPane tab={I18n.t('frontend.assessment')} key="assessment">
         {tab === 'assessment' && children}
       </TabPane>
-      <TabPane tab="Background Reading" key="resources">
+      <TabPane tab={I18n.t('frontend.background_reading')} key="resources">
         {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}
       </TabPane>
     </Tabs>

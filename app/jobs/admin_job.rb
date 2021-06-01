@@ -5,9 +5,8 @@ class AdminJob < ApplicationJob
 
   rescue_from Exception do |error|
     errors = arguments.first.error_messages + [error.message]
-    arguments.first.update!(error_messages: errors, status: :completed, progress: 100)
+    arguments.first.complete!(errors)
     Sentry.capture_exception(error)
-    AdminJob.broadcast(:update, arguments.first)
   end
 
   JOBS = {
