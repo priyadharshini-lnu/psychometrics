@@ -1,27 +1,51 @@
 import React, { ReactElement } from 'react'
+import {
+  Menu, Dropdown,
+} from 'antd'
+import { MoreOutlined } from '@ant-design/icons'
+import _ from 'lodash'
 
-interface DropdownProps {
+interface DefaultProps {
   menu: ReactElement
-  dropdown: ReactElement,
-  placeholder?: string | null,
+  innerElement?: ReactElement,
 }
 
-export default function ConditionalDropdown (props: DropdownProps) {
+export default function ConditionalDropdown (props: DefaultProps) {
   const {
-    menu, dropdown, placeholder,
+    menu, innerElement,
   } = props
 
-  const placeholderValue = placeholder ? (
-    <div>
-      {placeholder}
-    </div>
-  ) : null
+  const filteredMenu = removeInvalidelements(menu)
+  const disabledDropdown = !filteredMenu.props.children.length
 
-  function showMenuWithItemGroup (menu) {
+  const defaultInnerElement = (
+    <a>
+      <MoreOutlined />
+    </a>
+  )
+
+  function removeInvalidelements (menu) {
     const childrens = toArray(menu.props.children)
-    return childrens.length
-      ? childrens.every(child => React.isValidElement(child))
-      : null
+    let newChildren = _.compact(childrens.map((child) => {
+      const type = child && child.type.name
+      if (type === 'MenuItemGroup' || type === 'SubMenu') {
+        if (child.props.children.length && child.props.children.some(child => React.isValidElement(child))) {
+          return child
+        }
+      } else if (React.isValidElement(child)) {
+        return child
+      }
+    }))
+
+    if (newChildren.every(child => child.type.name === 'Divider')) {
+      newChildren = []
+    }
+
+    return (
+      <Menu>
+        {newChildren}
+      </Menu>
+    )
   }
 
   function toArray (children) {
@@ -31,6 +55,12 @@ export default function ConditionalDropdown (props: DropdownProps) {
   }
 
   return (
-    showMenuWithItemGroup(menu) ? dropdown : placeholderValue
+    <Dropdown
+      overlay={() => (filteredMenu)}
+      trigger={['click']}
+      disabled={disabledDropdown}
+    >
+      {innerElement || defaultInnerElement}
+    </Dropdown>
   )
 }
