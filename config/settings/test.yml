@@ -1,4 +1,4 @@
-domain: lvh.me
+domain: ttedev.me
 subdomain: www
 port: <%= 31338 + ENV['TEST_ENV_NUMBER'].to_i %>
 protocol: 'http'

@@ -73,26 +73,26 @@ $> Users::SuperAdmin.create(
 )
 ```
 
-1. Setup a loopback address to `lvh.me` or another preferred local domain
+1. Setup a loopback address to `ttedev.me` or another preferred local domain
 2. Run the server `bundle exec rails s -p 3030`
 3. start redis server `brew services start redis` or `redis-server`
 4. start webpack server with command `./bin/webpack-dev-server`. Check more details [here](https://github.com/rails/webpacker)
-5. Visit https://lvh.me:3030
+5. Visit https://ttedev.me:3030
 
 
 # SSL
-Add the following environment variables. Use appropriate local development domains if not using `lvh.me`
+Add the following environment variables. Use appropriate local development domains if not using `ttedev.me`
 
 ```
 WEBPACKER_DEV_SERVER_HTTPS="true"
-WEBPACKER_DEV_SERVER_HOST="lvh.me"
-WEBPACKER_DEV_SERVER_PUBLIC="lvh.me:3035"
+WEBPACKER_DEV_SERVER_HOST="ttedev.me"
+WEBPACKER_DEV_SERVER_PUBLIC="ttedev.me:3035"
 ```
 
 1. Run the server
 
-   `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/lvh.me.key&cert=support/dev-ssl/lvh.me.pem"`
-2. Visit https://lvh.me:3030
+   `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/ttedev.me.key&cert=support/dev-ssl/ttedev.me.pem"`
+2. Visit https://ttedev.me:3030
 
 ## Using other local domains with SSL
 Example of using `psy.loc`
