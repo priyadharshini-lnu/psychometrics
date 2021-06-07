@@ -37,15 +37,28 @@ export default function ConditionalDropdown (props: DefaultProps) {
       }
     }))
 
-    if (newChildren.every(child => child.type.name === 'Divider')) {
-      newChildren = []
-    }
+    newChildren = removeDividers(newChildren)
 
     return (
       <Menu>
         {newChildren}
       </Menu>
     )
+  }
+
+  function removeDividers (newChildren) {
+    let menuWithValidDividers
+    if (newChildren.every(child => child.type.name === 'Divider')) {
+      menuWithValidDividers = []
+    } else {
+      menuWithValidDividers = newChildren.map((child, index, array) => {
+        const previousElement = array[index - 1]
+        if (!(child.type.name === 'Divider' && previousElement.type.name === 'Divider')) {
+          return child
+        }
+      })
+    }
+    return menuWithValidDividers
   }
 
   function toArray (children) {
