@@ -211,7 +211,7 @@ const HANDLERS = {
   }),
   [SAVE_RESULTS]: (state: State, {
     response: {
-      expired, currentBlock, factors, scoring, translations,
+      expired, current_block: currentBlock, factors, scoring, translations,
     },
   }: SaveResults) => {
     const blocks = currentBlock

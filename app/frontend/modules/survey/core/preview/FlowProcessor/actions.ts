@@ -139,6 +139,7 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
       method: 'PUT',
       body: JSON.stringify(data),
       decamelize: false,
+      camelize: false,
     },
   }
 }
