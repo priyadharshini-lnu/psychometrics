@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
+  Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
 } from 'antd'
 import cs from 'classnames'
 import { Link } from 'react-router-dom'
@@ -206,37 +206,31 @@ const CampaignList: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
-              render={(campaign) => {
-                const menu = ActionsMenu({
-                  onEdit: () => {
-                    openModal('CommonCampaignFormModal', {
-                      projectId,
-                      campaign: {
-                        ...campaign,
-                        startDate: campaign.startDate && moment(campaign.startDate),
-                        endDate: campaign.endDate && moment(campaign.endDate),
+              render={campaign => (
+                <ConditionalDropdown
+                  menu={
+                    ActionsMenu({
+                      onEdit: () => {
+                        openModal('CommonCampaignFormModal', {
+                          projectId,
+                          campaign: {
+                            ...campaign,
+                            startDate: campaign.startDate && moment(campaign.startDate),
+                            endDate: campaign.endDate && moment(campaign.endDate),
+                          },
+                        })
                       },
-                    })
-                  },
-                  onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
-                  campaign,
-                }) as React.ReactElement
-                return (
-                  <ConditionalDropdown
-                    menu={menu}
-                    dropdown={(
-                      <Dropdown
-                        overlay={() => (menu)}
-                        trigger={['click']}
-                      >
-                        <a>
-                          <MoreOutlined />
-                        </a>
-                      </Dropdown>
-                    )}
-                  />
-                )
-              }}
+                      onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
+                      campaign,
+                    }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <a>
+                      <MoreOutlined />
+                    </a>
+                  )}
+                />
+              )}
             />
           </Table>
         </Col>
@@ -308,36 +302,33 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      <Menu.Item
-        key="edit"
-        disabled={!permissions.edit}
-      >
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={onEdit}
-        >
-          Edit
-        </div>
-      </Menu.Item>
-      <Menu.Item
-        key="copy"
-        disabled={!permissions.copy}
-      >
-        Copy
-      </Menu.Item>
-      <Menu.Item
-        key="delete"
-        disabled={!permissions.delete}
-      >
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={onDelete}
-        >
-          Delete
-        </div>
-      </Menu.Item>
+      {permissions.edit && (
+        <Menu.Item key="edit">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={onEdit}
+          >
+            Edit
+          </div>
+        </Menu.Item>
+      )}
+      {permissions.copy && (
+        <Menu.Item key="copy">
+          Copy
+        </Menu.Item>
+      )}
+      {permissions.delete && (
+        <Menu.Item key="delete">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={onDelete}
+          >
+            Delete
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Dropdown, Menu,
+  Button, Menu,
 } from 'antd'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
@@ -51,23 +51,15 @@ const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissions }) 
       openModal,
       permissions,
     })}
-    dropdown={(
-      <Dropdown
-        overlay={menu({
-          campaignId,
-          openModal,
-          permissions,
-        })}
-        className="mrm"
-        trigger={['click']}
-      >
-        <Button>
-          <ToolOutlined />
-          <span>Tools</span>
-          <DownOutlined />
-        </Button>
-      </Dropdown>
+    innerElement={(
+      <Button>
+        <ToolOutlined />
+        <span>Tools</span>
+        <DownOutlined />
+      </Button>
     )}
+    className="mrm"
+    hideForEmptyMenu
   />
 )
 

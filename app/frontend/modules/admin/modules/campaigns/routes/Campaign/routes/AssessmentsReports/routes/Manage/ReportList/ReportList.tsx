@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, Switch,
+  Table, Menu, Row, Col, Switch,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
@@ -85,33 +85,25 @@ const ReportList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={(report) => {
-              const menu = ActionsMenu({
-                projectId,
-                campaignId: parsedCampaignId,
-                campaignReportId: report.id,
-                reportId: report.reportId,
-                permissions: report.permissions,
-                openModal,
-              }) as React.ReactElement
-
-              return (
-                <ConditionalDropdown
-                  menu={menu}
-                  dropdown={(
-                    <Dropdown
-                      overlay={() => (menu)}
-                      trigger={['click']}
-                    >
-                      <a>
-                        <MoreOutlined />
-                      </a>
-                    </Dropdown>
-                  )}
-                  placeholder="NA"
-                />
-              )
-            }}
+            render={report => (
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    projectId,
+                    campaignId: parsedCampaignId,
+                    campaignReportId: report.id,
+                    reportId: report.reportId,
+                    permissions: report.permissions,
+                    openModal,
+                  }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
+                )}
+              />
+            )}
           />
         </Table>
       </Col>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag, message, Tooltip,
+  Table, Menu, Row, Col, Input, Select, Pagination, Button, Modal, Switch, Tag, message, Tooltip,
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
@@ -221,43 +221,36 @@ const UserList: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
-              render={(user) => {
-                const menu = ActionsMenu({
-                  onEdit: () => openModal('UserFormModal', { campaignId, user }),
-                  resetPassword: () => resetPassword(campaignId, user.id),
-                  projectId,
-                  campaignId,
-                  userId: user.id,
-                  email: user.email,
-                  remove: () => remove(campaignId, user.id),
-                  fullName: user.fullName,
-                  permissions: user.permissions,
-                }) as React.ReactElement
-
-                return (
-                  <ConditionalDropdown
-                    menu={menu}
-                    dropdown={(
-                      <Dropdown
-                        overlay={() => (menu)}
-                        trigger={['click']}
+              render={user => (
+                <ConditionalDropdown
+                  menu={
+                    ActionsMenu({
+                      onEdit: () => openModal('UserFormModal', { campaignId, user }),
+                      resetPassword: () => resetPassword(campaignId, user.id),
+                      projectId,
+                      campaignId,
+                      userId: user.id,
+                      email: user.email,
+                      remove: () => remove(campaignId, user.id),
+                      fullName: user.fullName,
+                      permissions: user.permissions,
+                    }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <Tooltip title={I18n.t('administration.table.more_actions')}>
+                      <Button
+                        id={`menu-button_campaign-subjects-${user.email}`}
+                        type="link"
+                        aria-label={I18n.t('administration.table.more_actions')}
+                        aria-controls={`menu_campaign-subjects-${user.email}`}
+                        aria-haspopup
                       >
-                        <Tooltip title={I18n.t('administration.table.more_actions')}>
-                          <Button
-                            id={`menu-button_campaign-subjects-${user.email}`}
-                            type="link"
-                            aria-label={I18n.t('administration.table.more_actions')}
-                            aria-controls={`menu_campaign-subjects-${user.email}`}
-                            aria-haspopup
-                          >
-                            <MoreOutlined />
-                          </Button>
-                        </Tooltip>
-                      </Dropdown>
-                    )}
-                  />
-                )
-              }}
+                        <MoreOutlined />
+                      </Button>
+                    </Tooltip>
+                  )}
+                />
+              )}
             />
           </Table>
         </Col>

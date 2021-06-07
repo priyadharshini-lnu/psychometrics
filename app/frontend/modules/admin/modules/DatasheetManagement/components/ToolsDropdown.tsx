@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import {
-  Dropdown, Button, Menu, message,
+  Button, Menu, message,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { openModal } from 'modules/admin/core/ui/modals'
@@ -66,19 +66,16 @@ const ToolsDropdown: FC<Props> = ({
     </Menu>
   )
 
-  const toolsDropdown = (
-    <Dropdown overlay={toolsMenu} trigger={['click']}>
-      <Button>
-        <ToolOutlined />
-        <DownOutlined />
-      </Button>
-    </Dropdown>
-  )
-
   return (
     <ConditionalDropdown
       menu={toolsMenu}
-      dropdown={toolsDropdown}
+      hideForEmptyMenu
+      innerElement={(
+        <Button>
+          <ToolOutlined />
+          <DownOutlined />
+        </Button>
+      )}
     />
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, Switch, Modal, message,
+  Table, Menu, Row, Col, Switch, Modal, message,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
@@ -79,34 +79,27 @@ const ReportList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={(userReport) => {
-              const menu = ActionsMenu({
-                projectId: parsedProjectId,
-                campaignId: parsedCampaignId,
-                userReportId: userReport.id,
-                userReportName: userReport.name,
-                remove: () => remove(parsedCampaignId, userReport.id),
-                internal: userReport.internal,
-                reportUrl: userReport.reportUrl,
-                permissions: userReport.permissions,
-              }) as React.ReactElement
-
-              return (
-                <ConditionalDropdown
-                  menu={menu}
-                  dropdown={(
-                    <Dropdown
-                      overlay={() => (menu)}
-                      trigger={['click']}
-                    >
-                      <a>
-                        <MoreOutlined />
-                      </a>
-                    </Dropdown>
-                  )}
-                />
-              )
-            }}
+            render={userReport => (
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    projectId: parsedProjectId,
+                    campaignId: parsedCampaignId,
+                    userReportId: userReport.id,
+                    userReportName: userReport.name,
+                    remove: () => remove(parsedCampaignId, userReport.id),
+                    internal: userReport.internal,
+                    reportUrl: userReport.reportUrl,
+                    permissions: userReport.permissions,
+                  }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
+                )}
+              />
+            )}
           />
         </Table>
       </Col>

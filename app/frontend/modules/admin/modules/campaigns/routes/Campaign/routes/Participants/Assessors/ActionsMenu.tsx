@@ -51,8 +51,7 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
       )}
-      {permissions.loginAs
-        && (
+      {permissions.loginAs && (
         <Menu.Item key="loginAs">
           <a
             href={`/administration/new_campaigns/${campaignId}/assessors/${id}/spoof`}
@@ -60,7 +59,7 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
             {I18n.t('frontend.login')}
           </a>
         </Menu.Item>
-        )}
+      )}
     </Menu>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message, Modal,
+  Table, Menu, Row, Col, message, Modal,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
@@ -105,33 +105,26 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={(assessment) => {
-              const menu = ActionsMenu({
-                rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
-                openModal,
-                reset,
-                campaignId: parsedCampaignId,
-                userId: parsedUserId,
-                assessment,
-                remove: () => remove(parsedCampaignId, assessment.id),
-              }) as React.ReactElement
-
-              return (
-                <ConditionalDropdown
-                  menu={menu}
-                  dropdown={(
-                    <Dropdown
-                      overlay={() => (menu)}
-                      trigger={['click']}
-                    >
-                      <a>
-                        <MoreOutlined />
-                      </a>
-                    </Dropdown>
+            render={assessment => (
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
+                    openModal,
+                    reset,
+                    campaignId: parsedCampaignId,
+                    userId: parsedUserId,
+                    assessment,
+                    remove: () => remove(parsedCampaignId, assessment.id),
+                  }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
                 )}
-                />
-              )
-            }}
+              />
+            )}
           />
         </Table>
       </Col>

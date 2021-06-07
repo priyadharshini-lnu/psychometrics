@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Dropdown, Menu,
+  Button, Menu,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
@@ -101,26 +101,14 @@ export default function ToolsDropdown ({
         dimensionId,
         permissions,
       })}
-      dropdown={(
-        <Dropdown
-          overlay={menu({
-            projectId,
-            campaignId,
-            resetCampaignWithConfirmation,
-            resetAllNominationsWithConfirmation,
-            openModal,
-            dimensionId,
-            permissions,
-          })}
-          className="mrm"
-          trigger={['click']}
-        >
-          <Button>
-            <ToolOutlined />
-            <span>Tools</span>
-            <DownOutlined />
-          </Button>
-        </Dropdown>
+      className="mrm"
+      hideForEmptyMenu
+      innerElement={(
+        <Button>
+          <ToolOutlined />
+          <span>Tools</span>
+          <DownOutlined />
+        </Button>
       )}
     />
   )

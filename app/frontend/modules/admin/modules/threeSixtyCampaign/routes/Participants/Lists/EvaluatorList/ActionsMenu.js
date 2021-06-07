@@ -43,7 +43,7 @@ const ActionsMenu = ({
         </Menu.Item>
       )}
       {permissions.removeFromCampaign && (
-        <Menu.Item key="11" disabled={!permissions.removeFromCampaign}>
+        <Menu.Item key="11">
           <div
             onClick={removeUserWithConfirmation}
             role="button"

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Table, Dropdown, Row, Col,
+  Table, Row, Col,
 } from 'antd'
 import { UserOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
@@ -125,38 +125,31 @@ export default function SubjectList ({
               title="Action"
               render={({
                 id, user: { email }, user, permissions,
-              }) => {
-                const menu = ActionsMenu({
-                  subjectId: id,
-                  email,
-                  user,
-                  campaignId,
-                  update,
-                  remove,
-                  removeUser,
-                  downloadReport,
-                  openModal,
-                  editUser,
-                  onUserUpdate,
-                  permissions,
-                })
-                return (
-                  <ConditionalDropdown
-                    menu={menu}
-                    dropdown={(
-                      <Dropdown
-                        overlay={() => menu}
-                        trigger={['click']}
-                      >
-                        <div className={styles.actions}>
-                          <MoreOutlined />
-                        </div>
-                      </Dropdown>
-                    )}
-                    placeholder="NA"
-                  />
-                )
-              }}
+              }) => (
+                <ConditionalDropdown
+                  menu={
+                    ActionsMenu({
+                      subjectId: id,
+                      email,
+                      user,
+                      campaignId,
+                      update,
+                      remove,
+                      removeUser,
+                      downloadReport,
+                      openModal,
+                      editUser,
+                      onUserUpdate,
+                      permissions,
+                    })
+                  }
+                  innerElement={(
+                    <div className={styles.actions}>
+                      <MoreOutlined />
+                    </div>
+                  )}
+                />
+              )}
             />
           </Table>
           <div className="pm">

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table, Dropdown, Menu, Input, Pagination, Modal, message, Button, Space,
+  Row, Col, Table, Menu, Input, Pagination, Modal, message, Button, Space,
 } from 'antd'
 import {
   MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
@@ -173,30 +173,22 @@ const AssessmentList: React.FC<Props> = ({
             <Column
               title={I18n.t('common.column.action')}
               key="action"
-              render={({ subjectEmail, id, permissions }) => {
-                const menu = ActionsMenu({
-                  subjectEmail,
-                  reset: () => reset(parsedCampaignId, parsedAssessorId, id),
-                  permissions,
-                }) as React.ReactElement
-
-                return (
-                  <ConditionalDropdown
-                    menu={menu}
-                    dropdown={(
-                      <Dropdown
-                        overlay={() => (menu)}
-                        trigger={['click']}
-                      >
-                        <a>
-                          <MoreOutlined />
-                        </a>
-                      </Dropdown>
-                    )}
-                    placeholder="NA"
-                  />
-                )
-              }}
+              render={({ subjectEmail, id, permissions }) => (
+                <ConditionalDropdown
+                  menu={
+                    ActionsMenu({
+                      subjectEmail,
+                      reset: () => reset(parsedCampaignId, parsedAssessorId, id),
+                      permissions,
+                    }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <a>
+                      <MoreOutlined />
+                    </a>
+                  )}
+                />
+              )}
             />
           </Table>
         </Col>

@@ -160,7 +160,7 @@ const ActionsMenu = ({
       )}
       <Menu.Divider />
       {permissions.viewResponses && (
-        <Menu.Item key="2.5" disabled={!permissions.viewResponses}>
+        <Menu.Item key="2.5">
           <div
             onClick={() => openResultsModal()}
             role="button"

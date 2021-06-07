@@ -272,12 +272,12 @@ table.table.grants-table
           - if policy(:membership).manage_grants_for_action?('results', 'reset_responses', client: client)
             label.text-nowrap
               = check_box_tag 'resource[grants_attributes][data][results][]',
-                      'scores', resource.has_grant?(:results, :reset_responses), id: results_reset_responses_id
+                      'reset_responses', resource.has_grant?(:results, :reset_responses), id: results_reset_responses_id
               | Reset Responses
           - if policy(:membership).manage_grants_for_action?('results', 'rescore_responses', client: client)
             label.text-nowrap
               = check_box_tag 'resource[grants_attributes][data][results][]',
-                      'scores', resource.has_grant?(:results, :rescore_responses), id: results_rescore_responses_id
+                      'rescore_responses', resource.has_grant?(:results, :rescore_responses), id: results_rescore_responses_id
               | Rescore Responses
 
     - if policy(:membership).manage_grants_for_actions?('assessors', ['view', 'manage', 'manage_users'], client: client)
