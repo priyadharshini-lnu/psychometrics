@@ -14,7 +14,7 @@ module Reports
 
         return decorate(factor, factor_alias) unless assign&.assessment_id == data['assessmentId']
 
-        decorate(factor, factor_alias, assign.scoring.dig(data['factorId']&.to_s, 'norm_score'))
+        decorate(factor, factor_alias, assign.scoring&.dig(data['factorId']&.to_s, 'norm_score'))
       rescue ActiveRecord::RecordNotFound => e
         Rails.logger.warn e.message
         decorate(factor, factor_alias)
