@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import cs from 'classnames'
 import mediumZoom from 'medium-zoom'
 import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
@@ -80,7 +79,7 @@ class Question extends Component {
       >
         <div className={styles.content}>
           {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
-          <div className={cs(styles.contentOuter, 'fr-view')}>
+          <div className={styles.contentOuter}>
             {this.renderPreview()}
           </div>
         </div>

@@ -40,6 +40,7 @@ blocks:
       jobs:
         - name: Deploy to review
           commands:
+          - sudo swapoff -a && sudo fallocate -l 2G /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
           - checkout --use-cache
           - 'find ./app/frontend ./config/webpack -type f -exec md5sum {} + > webpack-files.txt'
           - 'md5sum *.js *.json yarn.lock .eslintrc >> webpack-files.txt'

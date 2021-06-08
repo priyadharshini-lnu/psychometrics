@@ -32,6 +32,7 @@ global_job_config:
       value: 'true'
   prologue:
     commands:
+      - sudo swapoff -a && sudo fallocate -l 2G /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
       - export SEMAPHORE_BUILD_NUMBER="$SEMAPHORE_WORKFLOW_ID"
       - checkout
       - 'find ./app/frontend ./config/webpack -type f -exec md5sum {} + > webpack-files.txt'

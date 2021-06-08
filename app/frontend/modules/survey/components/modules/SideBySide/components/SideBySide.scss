@@ -9,11 +9,11 @@
 
 .column{
   min-width: 200px;
-  border-left: 1px solid #aaa;
+  border-left: 1px solid #f0f0f0;
 }
 
 .header {
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .group{
@@ -24,22 +24,24 @@
 
 .controlsRow {
   height: 40px;
-  background: #D1DCED;
-  border-bottom: 1px solid #BAC8DE;
-  border-top: 1px solid #BAC8DE;
+  border-bottom: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
 }
 
 .answersRow{
-  background: #D1DCED;
-  border-bottom: 1px solid #aaa;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .mainRow {
   &:first-child{
-    border-top: 1px solid #aaa;
+    border-top: 1px solid #f0f0f0;
   }
   td {
     padding: 4px 8px;
+  }
+  &:hover {
+    background-color: #fafafa;
   }
 }
 
@@ -53,7 +55,7 @@
   min-height: 20px;
   justify-content: space-around;
   align-items: center;
-  background: #D1DCED;
+  background: #fafafa;
   .answer {
     min-width: 41px;
     padding: 4px;
@@ -165,17 +167,17 @@
   margin: 5px 0;
 }
 .scoringLeftBorder {
-  border-left: 1px solid #aaa;
+  border-left: 1px solid #f0f0f0;
 }
 .scoringBottomBorder {
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #f0f0f0;
 }
 .scoringFirstCeil {
   max-width: 400px;
   padding: 5px;
 }
 .scoringScaleRow {
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #f0f0f0;
 }
 .scoringTable {
   td {
@@ -195,9 +197,9 @@
 :global(.rtl) {
   .column{
     border-left: 0;
-    border-right: 1px solid #aaa;
+    border-right: 1px solid #f0f0f0;
   }
   .firstColumn{
     border-right: 0;
-  }  
+  }
 }

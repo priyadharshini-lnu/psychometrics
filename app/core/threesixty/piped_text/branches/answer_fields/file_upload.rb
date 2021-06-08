@@ -8,17 +8,22 @@ module Threesixty
           DEFAULT_WIDTH = '100%'
           DEFAULT_HEIGHT = '400px'
           MS_EXTENSIONS = ['.pptx', '.docx', '.doc', '.ppt', '.xls', '.xlsx'].freeze
+          IMAGE_EXTENSIONS = ['.svg', '.png', '.gif', '.jpg', '.jpeg'].freeze
           PDF_EXTENSIONS = ['.pdf'].freeze
-          VALID_EXTENSIONS = MS_EXTENSIONS + PDF_EXTENSIONS
+          VALID_EXTENSIONS = MS_EXTENSIONS + PDF_EXTENSIONS + IMAGE_EXTENSIONS
 
           def call
             media_response = context[:result].media_responses.find_by(question_id: path.second)
             file_path = media_response&.asset&.url
 
-            return broadcast :ok, nil unless file_path
+            return broadcast :ok, nil unless file_path && valid_file_path?(file_path)
 
-            if get_extname(file_path).in?(PDF_EXTENSIONS)
+            file_ext = get_extname(file_path)
+
+            if file_ext.in?(PDF_EXTENSIONS)
               broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_path}\" type=\"application/pdf\"></object>"
+            elsif file_ext.in?(IMAGE_EXTENSIONS)
+              broadcast :ok, "<img src=\"#{file_path}\" class=\"user-upload-image\" />"
             else
               broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(file_path)}\"></iframe>"
             end
@@ -41,7 +46,7 @@ module Threesixty
           end
 
           def get_extname(file_path)
-            Pathname(file_path).extname
+            Pathname(file_path).extname.downcase
           end
         end
       end

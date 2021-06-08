@@ -211,13 +211,14 @@ const HANDLERS = {
   }),
   [SAVE_RESULTS]: (state: State, {
     response: {
-      expired, currentBlock, factors, scoring, translations,
+      expired, current_block: currentBlock, factors, scoring, translations,
     },
   }: SaveResults) => {
     const blocks = currentBlock
       ? setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
       : state.blocks
     const end = expired || state.end
+    const questions = currentBlock?.questions ? _.keyBy(currentBlock.questions, 'id') : {}
     return end && !state.showSubmitPage ? {
       ...state,
       end,
@@ -227,7 +228,14 @@ const HANDLERS = {
       factors,
       scoring,
     } : {
-      ...state, end, blocks, locales: translations,
+      ...state,
+      end,
+      blocks,
+      locales: translations,
+      questions: {
+        ...state.questions,
+        ...questions,
+      },
     }
   },
   [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {
