@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Divider } from 'antd'
+import {
+  Divider, Checkbox, Space, ConfigProvider,
+} from 'antd'
 import { Properties } from 'components/modules'
 import Menu from 'components/ModulesMenu'
 import Action from 'undo'
@@ -116,6 +118,21 @@ class PropertyPanel extends Component {
     return <View model={model} restricted={restricted} />
   }
 
+  renderCommonProperties (model) {
+    const { allowContentCopy } = model.props
+
+    return (
+      <div className={styles.fieldset}>
+        <Checkbox
+          onChange={({ target: { checked } }) => model.changeProps({ allowContentCopy: checked })}
+          defaultChecked={allowContentCopy}
+        >
+          {I18n.t('administration.survey_builder.property_panel.allow_content_copy')}
+        </Checkbox>
+      </div>
+    )
+  }
+
   render () {
     const { question, offset } = this.props
     const style = {
@@ -126,13 +143,21 @@ class PropertyPanel extends Component {
     if (!question) { return null }
     const q = QuestionSerializer.wrap(question)
     return (
-      <div className={styles.main} style={style}>
-        {this.renderQuestiontypeBtn(q)}
-        <Divider />
-        {this.renderCustomProperties(q)}
-        <Divider />
-        {this.renderDefaultAction(q)}
-      </div>
+      <ConfigProvider componentSize="small">
+        <Space
+          className={styles.main}
+          style={style}
+          key={q.id}
+          direction="vertical"
+          split={<Divider style={{ margin: 0 }} />}
+          size={1}
+        >
+          {this.renderQuestiontypeBtn(q)}
+          {this.renderCustomProperties(q)}
+          {this.renderCommonProperties(q)}
+          {this.renderDefaultAction(q)}
+        </Space>
+      </ConfigProvider>
     )
   }
 }
