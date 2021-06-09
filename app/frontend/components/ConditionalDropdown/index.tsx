@@ -3,42 +3,51 @@ import {
   Menu, Dropdown,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import _ from 'lodash'
+import compact from 'lodash/compact'
+import castArray from 'lodash/castArray'
 
-interface DefaultProps {
+interface Props {
   menu: ReactElement
   innerElement?: ReactElement
   className?: string
   hideForEmptyMenu?: boolean
 }
 
-export default function ConditionalDropdown (props: DefaultProps) {
-  const {
-    menu, innerElement, className, hideForEmptyMenu,
-  } = props
-
-  const filteredMenu = removeInvalidelements(menu)
-  const hasChildrens = (filteredMenu.props.children.length > 0)
-
+const ConditionalDropdown: React.FC<Props> = ({
+  menu, innerElement, className, hideForEmptyMenu,
+}) => {
   const defaultInnerElement = (
     <a>
       <MoreOutlined />
     </a>
   )
 
-  function removeInvalidelements (menu) {
-    const childrens = toArray(menu.props.children)
-    let newChildren = _.compact(childrens.map((child) => {
-      const type = child && child.type.name
-      if (type === 'MenuItemGroup' || type === 'SubMenu') {
-        if (child.props.children.length && child.props.children.some(child => React.isValidElement(child))) {
-          return child
-        }
-      } else if (React.isValidElement(child)) {
+  const removeInvalidDividers = (newChildren) => {
+    let menuWithValidDividers
+    if (newChildren.every(child => child.type.name === 'Divider')) {
+      menuWithValidDividers = []
+    } else {
+      menuWithValidDividers = newChildren.map((child, index, array) => {
+        const previousElement = (index > 0) ? (array[index - 1]) : null
+        if (child.type.name === 'Divider' && previousElement?.type?.name === 'Divider') { return null }
         return child
-      }
-    }))
+      })
+    }
+    return compact(menuWithValidDividers)
+  }
 
+  const removeInvalidElements = (menu) => {
+    const childrens = compact(castArray(menu.props.children))
+    let newChildren = childrens.map((child) => {
+      const childType = child?.type?.name
+      const childIsAGroup = ['MenuItemGroup', 'SubMenu'].includes(childType)
+      const hasValidGradchildren = child.props.children.some(child => React.isValidElement(child))
+
+      if (childIsAGroup && hasValidGradchildren) { return child }
+      if (React.isValidElement(child)) { return child }
+    })
+
+    newChildren = compact(newChildren)
     newChildren = removeInvalidDividers(newChildren)
 
     return (
@@ -48,37 +57,21 @@ export default function ConditionalDropdown (props: DefaultProps) {
     )
   }
 
-  function removeInvalidDividers (newChildren) {
-    let menuWithValidDividers
-    if (newChildren.every(child => child.type.name === 'Divider')) {
-      menuWithValidDividers = []
-    } else {
-      menuWithValidDividers = newChildren.map((child, index, array) => {
-        const previousElement = array[index - 1]
-        if (!(child.type.name === 'Divider' && previousElement?.type?.name === 'Divider')) {
-          return child
-        }
-      })
-    }
-    return menuWithValidDividers
-  }
+  const filteredMenu = removeInvalidElements(menu)
+  const hasChildrens = (filteredMenu.props.children.length > 0)
 
-  function toArray (children) {
-    if (children === undefined || children === false) return []
-
-    return Array.isArray(children) ? children : [children]
-  }
+  if (!hasChildrens && hideForEmptyMenu) { return null }
 
   return (
-    (!hasChildrens && hideForEmptyMenu) ? null : (
-      <Dropdown
-        overlay={() => (filteredMenu)}
-        trigger={['click']}
-        disabled={!hasChildrens}
-        className={className || ''}
-      >
-        {innerElement || defaultInnerElement}
-      </Dropdown>
-    )
+    <Dropdown
+      overlay={() => (filteredMenu)}
+      trigger={['click']}
+      disabled={!hasChildrens}
+      className={className || ''}
+    >
+      {innerElement || defaultInnerElement}
+    </Dropdown>
   )
 }
+
+export default ConditionalDropdown
