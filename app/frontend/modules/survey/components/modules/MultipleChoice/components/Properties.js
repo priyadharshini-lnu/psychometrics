@@ -47,6 +47,7 @@ export class Properties extends Component {
       <div className={styles.fieldset}>
         <label className={styles.inputLabel}>
           <input checked={!!notApplicable} type="checkbox" onChange={this.changeNotApplicable} />
+          {' '}
           Not Applicable
         </label>
       </div>
@@ -72,10 +73,12 @@ export class Properties extends Component {
         <div className={styles.label}>Position</div>
         <label className={styles.inputLabel}>
           <input checked={position === 'Vertical'} type="radio" onChange={this.changePosition} value="Vertical" />
+          {' '}
           Vertical
         </label>
         <label className={styles.inputLabel}>
           <input checked={position === 'Horizontal'} type="radio" onChange={this.changePosition} value="Horizontal" />
+          {' '}
           Horizontal
         </label>
       </div>
