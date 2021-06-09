@@ -125,9 +125,9 @@ const RegistrationCodes: React.FC<Props> = ({
             <Column
               title="Action"
               key="action"
-              render={({ code, permissions }) => (
+              render={code => (
                 <>
-                  {permissions.copy && (
+                  {code.permissions.copy && (
                     <CopyToClipboard
                       text={code.url}
                       onCopy={() => message.info('URL is copied to clipboard successfully')}
@@ -135,7 +135,7 @@ const RegistrationCodes: React.FC<Props> = ({
                       <Button shape="round" icon={<CopyOutlined />} />
                     </CopyToClipboard>
                   )}
-                  {permissions.downloadQrcode && (
+                  {code.permissions.downloadQrcode && (
                     <Dropdown
                       overlay={() => (
                         QRCodeMenu({
@@ -163,7 +163,7 @@ const RegistrationCodes: React.FC<Props> = ({
                             disabled: !code.disabled,
                           },
                         }),
-                        permissions,
+                        permissions: code.permissions,
                       }) as React.ReactElement
                     )}
                     trigger={['click']}
@@ -172,7 +172,7 @@ const RegistrationCodes: React.FC<Props> = ({
                       <MoreOutlined />
                     </Button>
                   </Dropdown>
-                  {permissions.remove && (
+                  {code.permissions.remove && (
                     <Popconfirm
                       title="Are you sure?"
                       onConfirm={() => destroy(campaignId, code.id)}
