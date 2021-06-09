@@ -64,7 +64,7 @@ module Administration
       end
 
       def reset_all_participants?
-        user.is?(:superadmin) || user.has_grant?(:dimensions, :manage)
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
       end
 
       def reset_all_nominations?
