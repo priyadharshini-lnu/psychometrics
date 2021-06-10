@@ -2,6 +2,22 @@
 
 module Administration
   class OccupationPolicy < Administration::BasePolicy
+    def index?
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :view)
+    end
+
+    def create?
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+    end
+
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+    end
+
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+    end
+
     class Scope < Scope
       def resolve
         scope = super
