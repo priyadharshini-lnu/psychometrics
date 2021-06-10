@@ -22,8 +22,6 @@
 - registration_codes_view_id = dom_id(u, :registration_codes_view)
 - registration_codes_manage_id = dom_id(u, :registration_codes_manage)
 
-- dimensions_manage_id = dom_id(u, :dimensions_manage)
-
 - datasheet_view_id = dom_id(u, :datasheet_view)
 - datasheet_manage_id = dom_id(u, :datasheet_manage)
 
@@ -88,16 +86,6 @@ table.table.grants-table
               = check_box_tag 'resource[grants_attributes][data][results][]',
                       'reset_responses', resource.has_grant?(:results, :reset_responses), id: results_reset_responses_id
               | Reset Responses
-
-    - if policy(:membership).manage_grants_for_actions?('dimensions', ['manage'], project: project)
-      tr
-        td Dimensions
-        td.text-nowrap
-          - if policy(:membership).manage_grants_for_action?('dimensions', 'manage', project: project)
-            label
-              = check_box_tag 'resource[grants_attributes][data][dimensions][]',
-                      'manage', resource.has_grant?(:dimensions, :manage), id: dimensions_manage_id
-              | Manage
 
     - if policy(:membership).manage_grants_for_actions?('registration_codes', ['view', 'manage'], project: project)
       tr
