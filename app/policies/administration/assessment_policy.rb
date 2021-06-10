@@ -32,10 +32,6 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
     end
 
-    def actions?
-      edit? | copy? | destroy?
-    end
-
     # Can archive/unarchive Assessment
     def toggle_archive?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
