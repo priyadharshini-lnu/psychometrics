@@ -34,6 +34,8 @@
             = p.input :link, as: :string, label: t('.privacy_link')
         = f.input :two_factor_enabled, label: t('.2fa_enable')
         = f.input :enable_live_chat, label: t('.enable_live_chat')
+        #live_chat_token.mbm class="#{resource.enable_live_chat ? '' : 'hidden'}"
+          = f.input :live_chat_token, label: t('.live_chat_token'), placeholder: t('.optional')
         = f.input :webhook, label: t('.webhook')
       .clearfix
       -if policy(:client).design?
