@@ -1,8 +1,9 @@
 tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
   td = resource.id
   td.text-center
-    = link_to([:toggle_status, :administration, resource], method: :patch, class: 'toggle-status btn disabled disable-link', remote: true, data: { confirm: resource.decorate.toggle_status_confirmation })
-      = resource.decorate.status
+    = link_to_if policy(resource).edit?,
+      resource.decorate.status,
+      ([:toggle_status, :administration, resource]), method: :patch, class: 'toggle-status btn disabled disable-link', remote: true, data: { confirm: resource.decorate.toggle_status_confirmation }
   td
     - if policy(resource).show?
       - if resource.agile?
@@ -17,10 +18,12 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at
   td.actions-cell
-    = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit disabled disable-link', data: { toggle: 'tooltip', title: t('.tooltips.edit') } do
-      span.fa.fa-pencil
-    = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy disabled disable-link' , data: { toggle: 'tooltip', title: t('.tooltips.copy'), disable_with: t('.in_progress.copying') } do
-      span.fa.fa-copy
+    - if policy(resource).edit?
+      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit disabled disable-link', data: { toggle: 'tooltip', title: t('.tooltips.edit') } do
+        span.fa.fa-pencil
+    - if policy(resource).copy?
+      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy disabled disable-link' , data: { toggle: 'tooltip', title: t('.tooltips.copy'), disable_with: t('.in_progress.copying') } do
+        span.fa.fa-copy
     - if policy(resource).destroy? &&  resource.deleted?
       = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm delete disabled disable-link',
         method: 'delete', data: { confirm: resource.decorate.delete_confirmation,
