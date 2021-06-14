@@ -23,16 +23,14 @@ const ConditionalDropdown: React.FC<Props> = ({
   )
 
   const removeInvalidDividers = (newChildren) => {
-    let menuWithValidDividers
-    if (newChildren.every(child => child.type.name === 'Divider')) {
-      menuWithValidDividers = []
-    } else {
-      menuWithValidDividers = newChildren.map((child, index, array) => {
-        const previousElement = (index > 0) ? (array[index - 1]) : null
-        if (child.type.name === 'Divider' && previousElement?.type?.name === 'Divider') { return null }
-        return child
-      })
-    }
+    if (newChildren.every(child => child.type.name === 'Divider')) { return [] }
+
+    const menuWithValidDividers = newChildren.map((child, index, array) => {
+      const previousElement = (index > 0) ? (array[index - 1]) : null
+      if (child.type.name === 'Divider' && previousElement?.type?.name === 'Divider') { return null }
+      return child
+    })
+
     return compact(menuWithValidDividers)
   }
 
@@ -41,10 +39,10 @@ const ConditionalDropdown: React.FC<Props> = ({
     let newChildren = childrens.map((child) => {
       const childType = child?.type?.name
       const childIsAGroup = ['MenuItemGroup', 'SubMenu'].includes(childType)
-      const hasValidGradchildren = child.props.children.some(child => React.isValidElement(child))
+      const hasValidGradchildren = compact(castArray(child.props.children)).some(child => React.isValidElement(child))
 
       if (childIsAGroup && hasValidGradchildren) { return child }
-      if (React.isValidElement(child)) { return child }
+      if (!childIsAGroup && React.isValidElement(child)) { return child }
     })
 
     newChildren = compact(newChildren)
