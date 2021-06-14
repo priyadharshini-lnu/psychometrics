@@ -26,7 +26,7 @@ class AdminJobRecord < ApplicationRecord
   def progress
     return 100 if completed?
 
-    completed_tasks / total_tasks.to_f * 100
+    (completed_tasks / total_tasks.to_f * 100).floor
   end
 
   def increment_completed_tasks!
@@ -40,10 +40,10 @@ class AdminJobRecord < ApplicationRecord
     broadcast(:update)
   end
 
-  def complete!
+  def complete!(error_messages = [])
     return if completed?
 
-    update!(status: :completed, completed_tasks: total_tasks)
+    update!(status: :completed, completed_tasks: total_tasks, error_messages: error_messages)
     broadcast(:update)
   end
 

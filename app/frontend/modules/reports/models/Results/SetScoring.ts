@@ -28,7 +28,9 @@ const extendScoringByData = (scoring: ResultScoring, data: RawResult, dimensionI
       result = { ...result, [factorId]: { id: factorId, name: factor.alias } }
     }
     let factorData = [...factorResults]
-    if (scoringResults.score) { factorData = [...factorResults, scoring] }
+    if (_.isNumber(scoringResults.score)) {
+      factorData = [...factorResults, scoring]
+    }
     return setIn(result, [factorId, 'results'], factorData)
   },
   scoring,

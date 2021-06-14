@@ -38,7 +38,7 @@ if (__DEV__ && env.RUN_MOCK_SERVER === 'true') {
       before (app) {
         apiMocker(app, path.resolve(__dirname, '../mocker/index.js'), {
           header: {
-            'Access-Control-Allow-Origin': 'https://www.lvh.me:3030',
+            'Access-Control-Allow-Origin': 'https://www.ttedev.me:3030',
             'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, X-CSRF-Token',
           },
         })

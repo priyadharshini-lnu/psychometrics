@@ -141,11 +141,11 @@ export class TableBodyPreview extends Component {
 
   render () {
     const { model, model: { props, moduleConfig }, I18n } = this.props
-    const data = props.columnsData
+    const { columnsData: data, hideHeaders } = props
     return (
       <tbody>
         {_.times(props.choices, i => [
-          this.renderHeaders(i),
+          hideHeaders ? null : this.renderHeaders(i),
           <tr className={styles.mainRow} key={i}>
             <td className={styles.firstColumn}>
               <span>

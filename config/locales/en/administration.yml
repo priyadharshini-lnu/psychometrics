@@ -1313,6 +1313,8 @@ en:
           data_privacy: Data privacy
           enable_live_chat: Enable Live Chat
           enable_privacy_links: Enable privacy link
+          live_chat_token: Live Chat Token
+          optional: Optional
           other_settings: Other Settings
           privacy_link: Privacy link
           privacy_text: Privacy text

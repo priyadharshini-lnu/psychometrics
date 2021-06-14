@@ -3,15 +3,6 @@
 require 'simplecov'
 require 'rspec/retry'
 require 'rails_helper'
-require 'coveralls'
-
-unless ENV['CI']
-  SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
-
-  SimpleCov.start 'rails' do
-    add_filter 'vendor'
-  end
-end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'

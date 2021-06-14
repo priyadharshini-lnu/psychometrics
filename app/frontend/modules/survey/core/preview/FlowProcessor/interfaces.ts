@@ -229,9 +229,10 @@ export interface Result {
 
 interface SaveResponse {
   expired: boolean
-  currentBlock: Block
+  current_block: Block
   scoring?: {}
-  factors?: []
+  factors?: [],
+  translations: object
 }
 
 interface FetchQuestionScoringResponse {

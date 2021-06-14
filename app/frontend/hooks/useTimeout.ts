@@ -11,13 +11,15 @@ export function useTimeout (
     callbackRef.current = callback
   }, [callback])
 
+  const clearTimeout = () => window.clearTimeout(timeoutRef.current || 0)
+
   useEffect(() => {
     if (typeof delay === 'number') {
+      clearTimeout()
       timeoutRef.current = window.setTimeout(() => callbackRef.current(), delay)
-      return () => window.clearTimeout(timeoutRef.current || 0)
     }
-    return () => {}
-  }, [delay])
+    return clearTimeout
+  })
 
   return timeoutRef
 }

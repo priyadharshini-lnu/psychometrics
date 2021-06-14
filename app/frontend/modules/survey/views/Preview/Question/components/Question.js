@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import cs from 'classnames'
 import mediumZoom from 'medium-zoom'
 import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
@@ -65,6 +64,7 @@ class Question extends Component {
   render () {
     const { model, moduleConfig, hideHiddenQuestions } = this.props
     const hidden = hideHiddenQuestions && moduleConfig.hidden
+    const { allowContentCopy } = model.props
 
     const stylesProps = {
       display: hidden ? 'none' : 'flex',
@@ -77,10 +77,11 @@ class Question extends Component {
         ref={(ref) => { this.question = ref }}
         name={`question_${model.id}`}
         className={`${styles.question} highlight-container`}
+        data-allow-content-copy={allowContentCopy ? 1 : 0}
       >
         <div className={styles.content}>
           {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
-          <div className={cs(styles.contentOuter, 'fr-view')}>
+          <div className={styles.contentOuter}>
             {this.renderPreview()}
           </div>
         </div>

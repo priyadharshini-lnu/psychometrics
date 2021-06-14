@@ -78,3 +78,5 @@ support/dev-ssl/*.pem
 support/dev-ssl/*.key
 !support/dev-ssl/lvh.me.pem
 !support/dev-ssl/lvh.me.key
+!support/dev-ssl/ttedev.me.pem
+!support/dev-ssl/ttedev.me.key
