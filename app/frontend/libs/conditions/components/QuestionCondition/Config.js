@@ -60,7 +60,7 @@ const Config = {
         additional: [AdditionalConditions.TextField],
       },
       Form: {
-        collection: 'choicesTexts', type: 'input',
+        collection: 'choicesTexts', type: 'any',
       },
     },
   },
