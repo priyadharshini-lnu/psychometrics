@@ -879,7 +879,8 @@ CREATE TABLE public.clients (
     secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
-    locales json DEFAULT '[]'::json
+    locales json DEFAULT '[]'::json,
+    live_chat_token character varying
 );
 
 
@@ -8087,6 +8088,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210419092225'),
 ('20210429142157'),
 ('20210509083519'),
-('20210512100320');
+('20210512100320'),
+('20210610160411');
 
 
