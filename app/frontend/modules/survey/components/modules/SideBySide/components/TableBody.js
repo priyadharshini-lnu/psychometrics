@@ -78,7 +78,7 @@ export class TableBody extends Component {
     }
 
     return (
-      <tr className={styles.answersRow}>
+      <tr className={styles.answersRow} key={`header-${index}`}>
         <td className={`${styles.header} ${styles.column} ${styles.firstColumn}`} />
         {_.times(props.scalePoints, i => (
           <td key={i} className={styles.column}>

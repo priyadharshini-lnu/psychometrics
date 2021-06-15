@@ -2,6 +2,10 @@
 
 module Administration
   class ReportFamilyPolicy < ReportPolicy
+    def index?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
+
     def create?
       @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end

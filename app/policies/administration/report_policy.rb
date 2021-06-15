@@ -15,8 +15,12 @@ module Administration
         (super || @user.has_grant?(:reports, :view))
     end
 
+    def new?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
     def create?
-      manage_report?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
     def copy?

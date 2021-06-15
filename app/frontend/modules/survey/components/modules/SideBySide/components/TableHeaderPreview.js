@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './SideBySide.scss'
 
 const TableHeaderPreview = ({ model, I18n }) => {
-  const { props: { columnsData, scalePoints }, moduleConfig } = model
+  const { props: { columnsData, scalePoints, hideHeaders }, moduleConfig } = model
   return (
     <thead className={styles.tableHead}>
       <tr className={styles.row}>
@@ -19,6 +19,7 @@ const TableHeaderPreview = ({ model, I18n }) => {
           </td>
         ))}
       </tr>
+      {!hideHeaders && (
       <tr className={styles.answersRow}>
         <th className={`${styles.header} ${styles.column} ${styles.firstColumn}`} />
         {_.times(scalePoints, i => (
@@ -36,6 +37,7 @@ const TableHeaderPreview = ({ model, I18n }) => {
           </th>
         ))}
       </tr>
+      )}
     </thead>
   )
 }

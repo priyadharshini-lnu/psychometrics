@@ -2,6 +2,7 @@ import {
   createElement, Key, forwardRef, useMemo, HTMLAttributes, RefAttributes,
 } from 'react'
 import dompurify, { Config } from 'dompurify'
+import cs from 'classnames'
 
 type Ref = RefAttributes<HTMLDivElement | HTMLSpanElement>
 
@@ -36,7 +37,7 @@ const SafeHTML = forwardRef<Ref, Props>(
       dangerouslySetInnerHTML: {
         __html: inputHTML,
       },
-      className,
+      className: cs(className, 'fr-view'),
       key,
       ref,
       ...restProps,

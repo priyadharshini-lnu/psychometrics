@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Radio, Typography } from 'antd'
+import { Radio, Typography, Space } from 'antd'
 
 import { RadioChangeEvent } from 'antd/lib/radio'
 import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
@@ -50,7 +50,7 @@ const ValidationType: FC<Props> = ({
           args: { conditions: [new Condition({ subject: model.id })] },
         })
       }
-      openCustomValidation({ questionId: model.id })
+      // openCustomValidation({ questionId: model.id })
     } else {
       changeValidation(model, { type: value, args: {} })
       update()
@@ -63,7 +63,6 @@ const ValidationType: FC<Props> = ({
   } else if (validations && Array.isArray(validations[answerType])) {
     availableValidations = Array.from(validations[answerType])
   }
-
   return (
     <section className="ms-4 me-4 mb-4">
       <Typography.Text strong>Validation type</Typography.Text>
@@ -74,8 +73,16 @@ const ValidationType: FC<Props> = ({
             {LABELS[availableValidation]}
           </Radio>
         ))}
-        <Radio value="Custom">Custom</Radio>
+        <Radio value="Custom">
+          <Space>
+            Custom
+            {type === 'Custom' && (
+              <a onClick={() => openCustomValidation({ questionId: model.id })}>Edit</a>
+            )}
+          </Space>
+        </Radio>
       </Radio.Group>
+
       <ValidationTypeFields model={model} update={update} />
     </section>
   )

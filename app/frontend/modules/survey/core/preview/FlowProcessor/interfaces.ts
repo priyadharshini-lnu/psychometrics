@@ -229,7 +229,7 @@ export interface Result {
 
 interface SaveResponse {
   expired: boolean
-  currentBlock: Block
+  current_block: Block
   scoring?: {}
   factors?: [],
   translations: object

@@ -62,7 +62,7 @@ export default function Campaign ({
     || campaignUser.status === 'completed' || isCampaignInterrupted || campaignUserTimedOut
   const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign
   const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted)
-    && !campaignClosed && !allAssessmentsComplete
+    && !campaignClosed && !allAssessmentsComplete && !campaignUserTimedOut
   const showTimer = isTimedCampaign && hasStartedCampaign && !isCampaignInterrupted
     && campaignUser.status !== 'completed'
   const showCampaignClosedMessage = campaignClosed || campaignUserTimedOut

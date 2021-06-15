@@ -38,7 +38,7 @@ Capybara::Screenshot.register_driver(:headless_chrome) do |driver, path|
 end
 
 Capybara.configure do |c|
-  c.app_host = "http://lvh.me:#{Settings.port}"
+  c.app_host = "http://ttedev.me:#{Settings.port}"
   c.server_port = Settings.port
 end
 

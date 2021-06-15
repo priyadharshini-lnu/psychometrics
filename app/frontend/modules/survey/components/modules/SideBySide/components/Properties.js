@@ -19,9 +19,9 @@ export class Properties extends Component {
     model.update()
   }
 
-  changeField = (fieldName, e) => {
+  changeField = (fieldName, value) => {
     const { model } = this.props
-    model.changeProps({ [fieldName]: e.currentTarget.value })
+    model.changeProps({ [fieldName]: value })
   }
 
   changeStatements = (val) => {
@@ -49,8 +49,20 @@ export class Properties extends Component {
   renderRepeatHeaders () {
     const { model } = this.props
     const type = model.props.repeatHeaders
+    const { hideHeaders } = model.props
     return (
       <div className={styles.fieldset}>
+        <div className={styles.label}>Headers</div>
+        <label className={styles.inputLabel}>
+          <input
+            defaultChecked={hideHeaders}
+            type="checkbox"
+            onChange={e => this.changeField('hideHeaders', e.currentTarget.checked)}
+            value={1}
+          />
+          {' '}
+          Hide Headers
+        </label>
         <div className={styles.label}>Repeat Headers</div>
         {
           ['None', 'Middle', 'Bottom', 'Both', 'All'].map(innerType => (
@@ -59,7 +71,7 @@ export class Properties extends Component {
                 checked={type === innerType}
                 type="radio"
                 name={`q_${model.id}_repeat_headers`}
-                onChange={e => this.changeField('repeatHeaders', e)}
+                onChange={e => this.changeField('repeatHeaders', e.currentTarget.value)}
                 value={innerType}
               />
               {' '}

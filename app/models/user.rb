@@ -63,7 +63,7 @@ class User < ApplicationRecord
     assessments: %w[view],
     communications: %w[view manage],
     campaigns: %w[view manage manage_users manage_options show manage_messages],
-    assessors: %w[view manage manage_users],
+    assessors: %w[view manage],
     results: %w[view_report report_data raw_responses scores],
     registration_codes: %w[view manage],
     datasheet: %w[view manage],
@@ -84,7 +84,7 @@ class User < ApplicationRecord
     reports: %w[view manage],
     results: %w[view_report report_data raw_responses scores],
     campaign: %w[view show manage manage_users manage_options manage_messages],
-    assessors: %w[view manage manage_users],
+    assessors: %w[view manage],
     registration_codes: %w[view manage],
     datasheet: %w[view manage]
   }.with_indifferent_access.freeze
