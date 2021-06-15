@@ -59,6 +59,7 @@ export default {
   pasteDeniedAttrs: ['style'],
   tableStyles: {
     'table-minimal-hr': 'Minimal',
+    'table-compact': 'Compact',
     'table-full-width': 'Full Width',
     'fr-dashed-borders': 'Dashed Borders',
     'fr-alternate-rows': 'Alternate Rows',
