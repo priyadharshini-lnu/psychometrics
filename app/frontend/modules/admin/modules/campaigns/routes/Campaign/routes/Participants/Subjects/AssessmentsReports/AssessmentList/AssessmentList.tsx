@@ -1,8 +1,9 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message, Modal,
+  Table, Menu, Row, Col, message, Modal,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
@@ -105,8 +106,8 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
             title={I18n.t('common.column.action')}
             key="action"
             render={assessment => (
-              <Dropdown
-                overlay={() => (
+              <ConditionalDropdown
+                menu={
                   ActionsMenu({
                     rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
                     openModal,
@@ -116,13 +117,13 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     assessment,
                     remove: () => remove(parsedCampaignId, assessment.id),
                   }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
                 )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
+              />
             )}
           />
         </Table>
@@ -187,7 +188,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-        {permissions.resetResults ? (
+        {permissions.resetResults && (
           <Menu.Item key="reset">
             <div
               role="button"
@@ -197,7 +198,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
               {I18n.t('common.actions.reset')}
             </div>
           </Menu.Item>
-        ) : null }
+        )}
         {permissions.rescoreResponse && (
           <Menu.Item key="rescore">
             <div
@@ -222,7 +223,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
       )}
-      {permissions.updateAdditionalTime ? (
+      {permissions.updateAdditionalTime && (
         <Menu.Item key="extend">
           <div
             role="button"
@@ -232,7 +233,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             {I18n.t('assessments.actions.extend_time')}
           </div>
         </Menu.Item>
-      ) : null}
+      )}
     </Menu>
   )
 }

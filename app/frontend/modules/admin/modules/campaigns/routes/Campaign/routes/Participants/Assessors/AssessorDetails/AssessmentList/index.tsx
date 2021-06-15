@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table, Dropdown, Menu, Input, Pagination, Modal, message, Button, Space,
+  Row, Col, Table, Menu, Input, Pagination, Modal, message, Button, Space,
 } from 'antd'
 import {
   MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
 } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
@@ -173,20 +174,20 @@ const AssessmentList: React.FC<Props> = ({
               title={I18n.t('common.column.action')}
               key="action"
               render={({ subjectEmail, id, permissions }) => (
-                <Dropdown
-                  overlay={() => (
+                <ConditionalDropdown
+                  menu={
                     ActionsMenu({
                       subjectEmail,
                       reset: () => reset(parsedCampaignId, parsedAssessorId, id),
                       permissions,
                     }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <a>
+                      <MoreOutlined />
+                    </a>
                   )}
-                  trigger={['click']}
-                >
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                </Dropdown>
+                />
               )}
             />
           </Table>

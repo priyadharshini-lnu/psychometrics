@@ -38,9 +38,10 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      {permissions.remove
-        && (
-        <Menu.Item key="delete">
+      {permissions.remove && (
+        <Menu.Item
+          key="delete"
+        >
           <div
             role="button"
             tabIndex={-1}
@@ -49,9 +50,8 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
             {I18n.t('common.actions.remove')}
           </div>
         </Menu.Item>
-        )}
-      {permissions.loginAs
-        && (
+      )}
+      {permissions.loginAs && (
         <Menu.Item key="loginAs">
           <a
             href={`/administration/new_campaigns/${campaignId}/assessors/${id}/spoof`}
@@ -59,7 +59,7 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
             {I18n.t('frontend.login')}
           </a>
         </Menu.Item>
-        )}
+      )}
     </Menu>
   )
 }

@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
 import {
-  Dropdown, Button, Menu, message,
+  Button, Menu, message,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { openModal } from 'modules/admin/core/ui/modals'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import pluralize from 'pluralize'
 import { ParentResourceType } from '../interfaces'
@@ -43,7 +44,10 @@ const ToolsDropdown: FC<Props> = ({
   const toolsMenu = (
     <Menu>
       {permissions.import && (
-        <Menu.Item key="import" onClick={() => openModal('ImportDatasheetModal', { parentType, parentId })}>
+        <Menu.Item
+          key="import"
+          onClick={() => openModal('ImportDatasheetModal', { parentType, parentId })}
+        >
           {I18n.t('datasheet.menu.import')}
         </Menu.Item>
       )}
@@ -63,12 +67,16 @@ const ToolsDropdown: FC<Props> = ({
   )
 
   return (
-    <Dropdown overlay={toolsMenu} trigger={['click']}>
-      <Button>
-        <ToolOutlined />
-        <DownOutlined />
-      </Button>
-    </Dropdown>
+    <ConditionalDropdown
+      menu={toolsMenu}
+      hideForEmptyMenu
+      innerElement={(
+        <Button>
+          <ToolOutlined />
+          <DownOutlined />
+        </Button>
+      )}
+    />
   )
 }
 

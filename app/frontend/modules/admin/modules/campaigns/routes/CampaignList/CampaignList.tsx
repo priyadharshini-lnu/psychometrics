@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
+  Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
 } from 'antd'
 import cs from 'classnames'
 import { Link } from 'react-router-dom'
@@ -13,6 +13,7 @@ import { STATUSES, DEFAULT_PAGE_SIZE, TYPES } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
 import array from 'utils/array'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import CommonCampaignFormModal from './CommonCampaignFormModal'
@@ -206,8 +207,8 @@ const CampaignList: React.FC<Props> = ({
               title={I18n.t('administration.campaigns.actions')}
               key="action"
               render={campaign => (
-                <Dropdown
-                  overlay={() => (
+                <ConditionalDropdown
+                  menu={
                     ActionsMenu({
                       onEdit: () => {
                         openModal('CommonCampaignFormModal', {
@@ -222,13 +223,13 @@ const CampaignList: React.FC<Props> = ({
                       onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
                       campaign,
                     }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <a>
+                      <MoreOutlined />
+                    </a>
                   )}
-                  trigger={['click']}
-                >
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                </Dropdown>
+                />
               )}
             />
           </Table>
@@ -301,7 +302,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      {permissions.edit ? (
+      {permissions.edit && (
         <Menu.Item key="edit">
           <div
             role="button"
@@ -311,13 +312,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             Edit
           </div>
         </Menu.Item>
-      ) : null }
-      {permissions.copy ? (
+      )}
+      {permissions.copy && (
         <Menu.Item key="copy">
           Copy
         </Menu.Item>
-      ) : null }
-      {permissions.delete ? (
+      )}
+      {permissions.delete && (
         <Menu.Item key="delete">
           <div
             role="button"
@@ -327,7 +328,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             Delete
           </div>
         </Menu.Item>
-      ) : null }
+      )}
     </Menu>
   )
 }

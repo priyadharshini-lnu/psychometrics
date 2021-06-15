@@ -161,7 +161,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         'export_raw_factor_scores' => policy.export_raw_factor_scores?,
         'export_raw_results' => policy.export_raw_results?,
         'export_scoring_results' => policy.export_scoring_results?,
-        'import_results' => policy.import_results?
+        'import_results' => policy.import_results?,
+        'rescore_responses' => policy.rescore_responses?
       }
     })
   end

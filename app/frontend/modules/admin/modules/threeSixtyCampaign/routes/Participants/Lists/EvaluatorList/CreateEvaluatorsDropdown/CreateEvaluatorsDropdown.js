@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Button, Dropdown, Menu,
+  Button, Menu,
 } from 'antd'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
 const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
@@ -19,13 +20,18 @@ const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
   )
 
   return (
-    <Dropdown overlay={menu} className="mrm" trigger={['click']}>
-      <Button type="primary">
-        <PlusOutlined />
-        <span>Add Evaluators</span>
-        <DownOutlined />
-      </Button>
-    </Dropdown>
+    <ConditionalDropdown
+      menu={menu}
+      className="mrm"
+      hideForEmptyMenu
+      innerElement={(
+        <Button type="primary">
+          <PlusOutlined />
+          <span>Add Evaluators</span>
+          <DownOutlined />
+        </Button>
+      )}
+    />
   )
 }
 

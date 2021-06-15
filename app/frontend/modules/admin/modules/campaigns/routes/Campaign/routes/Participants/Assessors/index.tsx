@@ -9,8 +9,9 @@ import { get as getCurrentUser } from 'core/currentUser'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
-  Table, Row, Col, Input, Pagination, Button, Dropdown,
+  Table, Row, Col, Input, Pagination, Button,
 } from 'antd'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
@@ -151,8 +152,8 @@ const AssessorList: React.FC<Props> = ({
               title={I18n.t('administration.campaigns.actions')}
               key="action"
               render={assessor => (
-                <Dropdown
-                  overlay={() => (
+                <ConditionalDropdown
+                  menu={
                     ActionsMenu({
                       campaignId,
                       currentUser,
@@ -161,13 +162,13 @@ const AssessorList: React.FC<Props> = ({
                       permissions: assessor.permissions,
                       remove: () => remove(campaignId, assessor.id),
                     }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <a>
+                      <MoreOutlined />
+                    </a>
                   )}
-                  trigger={['click']}
-                >
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                </Dropdown>
+                />
               )}
             />
           </Table>

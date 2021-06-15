@@ -1,10 +1,11 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message,
+  Table, Menu, Row, Col, message,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import _ from 'lodash'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
@@ -138,23 +139,23 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('common.column.action')}
             key="action"
             render={assessment => (
-              <Dropdown
-                overlay={() => (
-                    ActionsMenu({
-                      assessment,
-                      currentUser,
-                      reports,
-                      campaignId: parsedCampaignId,
-                      openModal,
-                      rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
-                    }) as React.ReactElement
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    assessment,
+                    currentUser,
+                    reports,
+                    campaignId: parsedCampaignId,
+                    openModal,
+                    rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
+                  }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
                 )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
+              />
             )}
           />
         </Table>
@@ -187,37 +188,39 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
         {permissions.exportRawResults && (
-        <Menu.Item key="export_raw_labels">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx?with_labels=1`}
-          >
-            Raw (with labels)
-          </a>
-        </Menu.Item>
+          <Menu.Item key="export_raw_labels">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={
+                `/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx?with_labels=1`
+              }
+            >
+              Raw (with labels)
+            </a>
+          </Menu.Item>
         )}
         {permissions.exportRawResults && (
-        <Menu.Item key="export_raw">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx`}
-          >
-            Raw (without labels)
-          </a>
-        </Menu.Item>
+          <Menu.Item key="export_raw">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx`}
+            >
+              Raw (without labels)
+            </a>
+          </Menu.Item>
         )}
         {permissions.exportScoringResults && (
-        <Menu.Item key="export_scoring">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_scoring_results.xlsx`}
-          >
-            Scoring
-          </a>
-        </Menu.Item>
+          <Menu.Item key="export_scoring">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_scoring_results.xlsx`}
+            >
+              Scoring
+            </a>
+          </Menu.Item>
         )}
         {permissions.exportNormedResults && (
         <Menu.Item key="export_normed">
@@ -231,45 +234,46 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
         )}
         {permissions.exportRawFactorScores && (
-        <Menu.Item key="export_raw_scores">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_factor_scores.xlsx`}
-          >
-            Raw Factor Scores
-          </a>
-        </Menu.Item>
+          <Menu.Item key="export_raw_scores">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_factor_scores.xlsx`}
+            >
+              Raw Factor Scores
+            </a>
+          </Menu.Item>
         )}
         {permissions.exportExternalResults && (
-        <Menu.Item key="export_external">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
-          >
-            External
-          </a>
-        </Menu.Item>
+          <Menu.Item key="export_external">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
+            >
+              External
+            </a>
+          </Menu.Item>
         )}
       </Menu.ItemGroup>
+
       {permissions.importResults && (
-      <Menu.ItemGroup key="import" title="Import">
-        <Menu.Item key="import_raw">
-          <a
-            onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
-          >
-            Raw
-          </a>
-        </Menu.Item>
-        <Menu.Item key="import_scoring">
-          <a
-            onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
-          >
-            Scoring
-          </a>
-        </Menu.Item>
-      </Menu.ItemGroup>
+        <Menu.ItemGroup key="import" title="Import">
+          <Menu.Item key="import_raw">
+            <a
+              onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
+            >
+              Raw
+            </a>
+          </Menu.Item>
+          <Menu.Item key="import_scoring">
+            <a
+              onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
+            >
+              Scoring
+            </a>
+          </Menu.Item>
+        </Menu.ItemGroup>
       )}
       <Menu.Divider />
       {permissions.rescoreResponses && (

@@ -6,6 +6,7 @@ import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined,
 } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { RegistrationCode } from 'modules/admin/modules/campaigns/core/registrationCodes'
@@ -151,27 +152,25 @@ const RegistrationCodes: React.FC<Props> = ({
                       </Button>
                     </Dropdown>
                   )}
-                  <Dropdown
-                    overlay={() => (
-                      ActionsMenu({
-                        onEdit: () => openModal('CodeModal', {
-                          campaignId,
-                          code: {
-                            ...code,
-                            startDate: moment(code.startDate),
-                            endDate: moment(code.endDate),
-                            disabled: !code.disabled,
-                          },
-                        }),
-                        permissions: code.permissions,
-                      }) as React.ReactElement
+                  <ConditionalDropdown
+                    menu={ActionsMenu({
+                      onEdit: () => openModal('CodeModal', {
+                        campaignId,
+                        code: {
+                          ...code,
+                          startDate: moment(code.startDate),
+                          endDate: moment(code.endDate),
+                          disabled: !code.disabled,
+                        },
+                      }),
+                      permissions: code.permissions,
+                    }) as React.ReactElement}
+                    innerElement={(
+                      <Button type="link">
+                        <MoreOutlined />
+                      </Button>
                     )}
-                    trigger={['click']}
-                  >
-                    <Button type="link">
-                      <MoreOutlined />
-                    </Button>
-                  </Dropdown>
+                  />
                   {code.permissions.remove && (
                     <Popconfirm
                       title="Are you sure?"

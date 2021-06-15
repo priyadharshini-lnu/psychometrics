@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag, message, Tooltip,
+  Table, Menu, Row, Col, Input, Select, Pagination, Button, Modal, Switch, Tag, message, Tooltip,
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import settings from 'modules/admin/settings'
 import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
@@ -221,8 +222,8 @@ const UserList: React.FC<Props> = ({
               title={I18n.t('administration.campaigns.actions')}
               key="action"
               render={user => (
-                <Dropdown
-                  overlay={() => (
+                <ConditionalDropdown
+                  menu={
                     ActionsMenu({
                       onEdit: () => openModal('UserFormModal', { campaignId, user }),
                       resetPassword: () => resetPassword(campaignId, user.id),
@@ -234,21 +235,21 @@ const UserList: React.FC<Props> = ({
                       fullName: user.fullName,
                       permissions: user.permissions,
                     }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <Tooltip title={I18n.t('administration.table.more_actions')}>
+                      <Button
+                        id={`menu-button_campaign-subjects-${user.email}`}
+                        type="link"
+                        aria-label={I18n.t('administration.table.more_actions')}
+                        aria-controls={`menu_campaign-subjects-${user.email}`}
+                        aria-haspopup
+                      >
+                        <MoreOutlined />
+                      </Button>
+                    </Tooltip>
                   )}
-                  trigger={['click']}
-                >
-                  <Tooltip title={I18n.t('administration.table.more_actions')}>
-                    <Button
-                      id={`menu-button_campaign-subjects-${user.email}`}
-                      type="link"
-                      aria-label={I18n.t('administration.table.more_actions')}
-                      aria-controls={`menu_campaign-subjects-${user.email}`}
-                      aria-haspopup
-                    >
-                      <MoreOutlined />
-                    </Button>
-                  </Tooltip>
-                </Dropdown>
+                />
               )}
             />
           </Table>
@@ -331,7 +332,10 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       aria-labelledby={`menu-button_campaign-subjects-${email}`}
     >
       {permissions.edit && (
-        <Menu.Item key="edit" onClick={onEdit}>
+        <Menu.Item
+          key="edit"
+          onClick={onEdit}
+        >
           {I18n.t('frontend.edit')}
         </Menu.Item>
       )}
@@ -345,12 +349,18 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
       )}
       {permissions.resetPassword && (
-        <Menu.Item key="changePassword" onClick={handleChangePassword}>
+        <Menu.Item
+          key="changePassword"
+          onClick={handleChangePassword}
+        >
           {I18n.t('frontend.change_password')}
         </Menu.Item>
       )}
       {permissions.remove && (
-        <Menu.Item key="delete" onClick={handleDelete}>
+        <Menu.Item
+          key="delete"
+          onClick={handleDelete}
+        >
           {I18n.t('common.actions.remove')}
         </Menu.Item>
       )}

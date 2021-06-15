@@ -1,5 +1,6 @@
 import React from 'react'
-import { Dropdown, Table } from 'antd'
+import { Table } from 'antd'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { CheckOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
 import ActionsMenu from '../ActionsMenu'
@@ -59,23 +60,24 @@ export default function EvaluatorTable ({
       <Column
         key="action"
         render={({ user, permissions }) => (
-          <Dropdown
-            overlay={() => ActionsMenu({
-              user,
-              permissions,
-              campaignId,
-              removeUser,
-              editUser,
-              openModal,
-              onUserUpdate: onCloseParticipantModal,
-            })
+          <ConditionalDropdown
+            menu={
+              ActionsMenu({
+                user,
+                permissions,
+                campaignId,
+                removeUser,
+                editUser,
+                openModal,
+                onUserUpdate: onCloseParticipantModal,
+              })
             }
-            trigger={['click']}
-          >
-            <div className={styles.actions}>
-              <MoreOutlined />
-            </div>
-          </Dropdown>
+            innerElement={(
+              <div className={styles.actions}>
+                <MoreOutlined />
+              </div>
+            )}
+          />
         )}
       />
     </Table>

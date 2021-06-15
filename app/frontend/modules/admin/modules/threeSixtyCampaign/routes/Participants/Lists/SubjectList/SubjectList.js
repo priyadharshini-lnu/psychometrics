@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Table, Dropdown, Row, Col,
+  Table, Row, Col,
 } from 'antd'
 import { UserOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
 import UserEditModal from 'modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from 'modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import styles from './SubjectList.scss'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
@@ -121,31 +122,33 @@ export default function SubjectList ({
 
             <Column
               key="action"
+              title="Action"
               render={({
                 id, user: { email }, user, permissions,
               }) => (
-                <Dropdown
-                  overlay={() => ActionsMenu({
-                    subjectId: id,
-                    email,
-                    user,
-                    campaignId,
-                    update,
-                    remove,
-                    removeUser,
-                    downloadReport,
-                    openModal,
-                    editUser,
-                    onUserUpdate,
-                    permissions,
-                  })
+                <ConditionalDropdown
+                  menu={
+                    ActionsMenu({
+                      subjectId: id,
+                      email,
+                      user,
+                      campaignId,
+                      update,
+                      remove,
+                      removeUser,
+                      downloadReport,
+                      openModal,
+                      editUser,
+                      onUserUpdate,
+                      permissions,
+                    })
                   }
-                  trigger={['click']}
-                >
-                  <div className={styles.actions}>
-                    <MoreOutlined />
-                  </div>
-                </Dropdown>
+                  innerElement={(
+                    <div className={styles.actions}>
+                      <MoreOutlined />
+                    </div>
+                  )}
+                />
               )}
             />
           </Table>

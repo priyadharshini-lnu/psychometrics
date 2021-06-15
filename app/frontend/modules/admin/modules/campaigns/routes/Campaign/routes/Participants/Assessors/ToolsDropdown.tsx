@@ -1,8 +1,9 @@
 import React from 'react'
 import {
-  Button, Dropdown, Menu,
+  Button, Menu,
 } from 'antd'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 
 const { I18n } = window
@@ -41,21 +42,22 @@ interface Props {
 }
 
 const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissions }) => (
-  <Dropdown
-    overlay={menu({
+  <ConditionalDropdown
+    menu={menu({
       campaignId,
       openModal,
       permissions,
     })}
+    innerElement={(
+      <Button>
+        <ToolOutlined />
+        <span>{I18n.t('administration.assessor.toolbar.tools')}</span>
+        <DownOutlined />
+      </Button>
+    )}
+    hideForEmptyMenu
     className="mrm"
-    trigger={['click']}
-  >
-    <Button>
-      <ToolOutlined />
-      <span>{I18n.t('administration.assessor.toolbar.tools')}</span>
-      <DownOutlined />
-    </Button>
-  </Dropdown>
+  />
 )
 
 export default ToolsDropdown

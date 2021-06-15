@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message,
+  Table, Menu, Row, Col, message,
 } from 'antd'
-
 import { MoreOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { useParams } from 'react-router-dom'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import { rescoreResponses } from 'modules/admin/modules/campaigns/core/assessments/actions'
@@ -54,21 +54,21 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('common.column.action')}
             key="action"
             render={assessment => (
-              <Dropdown
-                overlay={() => (
+              <ConditionalDropdown
+                menu={
                   ActionsMenu({
                     assessment,
                     openModal,
                     campaignId: parsedCampaignId,
                     rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
                   }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
                 )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
+              />
             )}
           />
         </Table>
@@ -169,8 +169,8 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </Menu.Item>
         )}
       </Menu.ItemGroup>
-      {permissions.importResults && (
-        <Menu.ItemGroup key="import" title="Import">
+      <Menu.ItemGroup key="import" title="Import">
+        {permissions.importResults && (
           <Menu.Item key="import_raw">
             <a
               onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
@@ -178,6 +178,8 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
               Raw
             </a>
           </Menu.Item>
+        )}
+        {permissions.importResults && (
           <Menu.Item key="import_scoring">
             <a
               onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
@@ -185,17 +187,18 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
               Scoring
             </a>
           </Menu.Item>
-        </Menu.ItemGroup>
+        )}
+      </Menu.ItemGroup>
+      <Menu.Divider />
+      {permissions.rescoreResponses && (
+        <Menu.Item key="rescoring">
+          <a
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('campaign_assessment.modals.rescore_response.title')}
+          </a>
+        </Menu.Item>
       )}
-      <Menu.Divider />
-      <Menu.Item key="rescoring">
-        <a
-          onClick={handleRescoreResponse}
-        >
-          {I18n.t('campaign_assessment.modals.rescore_response.title')}
-        </a>
-      </Menu.Item>
-      <Menu.Divider />
     </Menu>
   )
 }
