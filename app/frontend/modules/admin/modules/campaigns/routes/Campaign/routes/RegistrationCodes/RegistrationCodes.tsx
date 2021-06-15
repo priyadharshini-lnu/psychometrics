@@ -163,7 +163,7 @@ const RegistrationCodes: React.FC<Props> = ({
                           disabled: !code.disabled,
                         },
                       }),
-                      permissions,
+                      permissions: code.permissions,
                     }) as React.ReactElement}
                     innerElement={(
                       <Button type="link">
