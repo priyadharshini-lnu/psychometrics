@@ -13,10 +13,11 @@
               a data-toggle="tab" href="#tab-grants" role="tab" = t('.grants')
         .panel-body.tab-content
           #tab-first.tab-pane.active
+            - is_read_only = !policy(resource).can_manage_client_admins?
             = f.simple_fields_for :user do |u|
-              = u.input :email, readonly: true
-              = u.input :first_name, readonly: true
-              = u.input :last_name, readonly: true
+              = u.input :email, readonly: is_read_only
+              = u.input :first_name, readonly: is_read_only
+              = u.input :last_name, readonly: is_read_only
             = f.input :parent_id,
                       collection: f.object.decorate.managers_for_select,
                       label_method: lambda { |u| u.user.decorate.display_name },
