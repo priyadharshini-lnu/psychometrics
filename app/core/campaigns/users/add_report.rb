@@ -53,6 +53,10 @@ module Campaigns
           relationship: Relationship.self_relationship
         )
 
+        if assessment.saville?
+          user_assessment.create_saville_user_assessment(norm_id: user_assessment.applicable_saville_norm_id)
+        end
+
         if assessment.hogan? && user.hogan_credential
           Hogan::AddReportsJob.perform_later(user_assessment, [user_report],
                                              user.hogan_credential, user.project)

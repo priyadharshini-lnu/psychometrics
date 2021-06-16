@@ -142,12 +142,14 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         assessor_form_name
         assessor_form_id
         permissions
+        is_saville
       ]
     )
     expect(assessment_response).to include({
       'name' => assessment.name,
       'category' => assessment.category,
-      'norm_name' => nil
+      'norm_name' => nil,
+      'is_saville' => false
     })
 
     assessment_response = parsed_response['assessor_assessments'].first

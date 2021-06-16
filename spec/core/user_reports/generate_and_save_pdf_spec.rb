@@ -36,4 +36,18 @@ describe UserReports::GenerateAndSavePdf do
 
     expect(user_report.pdf.url).to be_nil
   end
+
+  context 'Saville Report' do
+    it 'calls Saville::AssessmentOrderRequest if report is a saville report' do
+      report = create(:report, :saville)
+      users_result = create(:users_result)
+      user_report = create(:user_report, report: report)
+      allow(report).to receive(:provider_internal?).and_return(false)
+      allow(user_report).to receive(:generatable?).and_return(true)
+      allow(user_report).to receive(:user_results).and_return(UsersResult.where(id: users_result.id))
+      expect(Saville::AssessmentOrderRequest).to receive(:call!).with(users_result.user_assessment)
+
+      described_class.call!(user_report, current_user)
+    end
+  end
 end

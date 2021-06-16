@@ -50,7 +50,7 @@ const Hogan: React.FC<Props> = ({
 
   const onLoginHogan = () => {
     setLoading(true)
-    loginHogan(userAssessment.hoganUrl).then((data) => {
+    loginHogan(userAssessment.url).then((data) => {
       setHoganData(data.response)
     })
   }

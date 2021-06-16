@@ -38,6 +38,13 @@ describe UsersResults::Reset do
     expect(described_class).to respond_to(:'call!').with_unlimited_arguments
   end
 
+  it 'calls Saville::ResetAssessment is it is a saville assessment' do
+    allow(user_assessment).to receive(:saville_user_assessment).and_return(double)
+    expect(Saville::ResetAssessment).to receive(:call!).with(user_assessment)
+
+    subject
+  end
+
   it 'reset users_result data' do
     expect { subject }.to change { users_result.answers }.from(test).to({}).
       and change { users_result.scoring }.from(test).to(nil).

@@ -12,6 +12,12 @@ module UsersResults
     end
 
     def call
+      if user_assessment.saville?
+        user_assessment.saville_user_assessment.update(norm_id: norm_id) if norm_id
+        Saville::AssessmentOrderRequest.call!(user_assessment) unless user_assessment.not_started?
+        return broadcast :ok, user_result
+      end
+
       user_assessment.update(norm_id: norm_id) if norm_id
       return broadcast :ok, user_result unless user_assessment.completed?
 

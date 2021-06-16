@@ -13,17 +13,19 @@ module Administration
     end
 
     def update_additional_time?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users) &&
+      !record&.assessment&.external? &&
+        (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)) &&
         %w[completed timed_out].include?(record&.real_status) &&
         record&.users_result&.expired?
     end
 
     def rescore_response?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      !record&.assessment&.external? &&
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def reset?
-      !record&.assessment&.external? &&
+      !record&.assessment&.mindmill? && !record&.assessment&.hogan? &&
         (@user.is?(:superadmin) || @user.has_grant?(:results, :reset_responses))
     end
   end

@@ -15,6 +15,7 @@ require 'rectify/rspec'
 require 'capybara_config'
 require 'rspec/mocks'
 require 'webmock/rspec'
+require 'savon/mock/spec_helper'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
@@ -44,6 +45,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerMacros, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Savon::SpecHelper
+  config.include SamlHelper
   config.render_views
 
   config.infer_spec_type_from_file_location!

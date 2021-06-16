@@ -10,6 +10,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :assessor
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
+  has_one :saville_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
 
@@ -21,6 +22,7 @@ class UserAssessment < ApplicationRecord
 
   has_one :threesixty_campaign, through: :campaign
   delegate :selected_locale, to: :users_result, allow_nil: true
+  delegate :saville_assessment_id, :saville?, to: :assessment
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -44,8 +46,18 @@ class UserAssessment < ApplicationRecord
 
   before_save :set_default_relationship
 
+  alias result users_result
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment]
+  end
+
+  def saville_user_reports
+    saville_reports = assessment.reports.select(&:provider_saville?)
+
+    return UserReport.none if saville_reports.blank?
+
+    UserReport.where(report_id: saville_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_id)
   end
 
   def norm_data
@@ -93,9 +105,27 @@ class UserAssessment < ApplicationRecord
     campaign_assessment&.norm_id
   end
 
+  def applicable_saville_norm_id
+    campaign_assessment&.saville_norm_id || assessment.saville_norm_id
+  end
+
+  def saville_norm_id
+    saville_user_assessment.norm_id
+  end
+
   def user_reports
     UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
   end
 
-  alias result users_result
+  def norm_name
+    return saville_norm_name if assessment.saville?
+
+    norm&.name
+  end
+
+  private
+
+  def saville_norm_name
+    Settings.providers.saville.norms.find { |norm| norm[:id] == saville_user_assessment.norm_id }&.dig(:name)
+  end
 end

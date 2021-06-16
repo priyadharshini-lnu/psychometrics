@@ -3,10 +3,10 @@
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_id, :enable_universal_links,
-               :universal_link, :norms, :is_external, :assessor_form_name, :assessor_form_id, :permissions
+               :universal_link, :norms, :is_external, :assessor_form_name, :assessor_form_id, :permissions,
+               :is_saville
 
     delegate :id, :name, :category, to: :assessment
-    delegate :name, to: :norm, prefix: true, allow_nil: true
     delegate :name, :id, to: :assessor_form, prefix: true, allow_nil: true
 
     def universal_link
@@ -14,7 +14,13 @@ module Administration
     end
 
     def norms
+      return assessment.saville_norms if assessment.saville?
+
       assessment.norms.map { |n| NormSerializer.new(n).to_h }
+    end
+
+    def is_saville # rubocop:disable Naming/PredicateName
+      assessment.saville?
     end
 
     def is_external # rubocop:disable Naming/PredicateName

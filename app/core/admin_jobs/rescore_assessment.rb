@@ -3,12 +3,13 @@
 module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
-      norm_data = {
-        norm_id: campaign_assessment&.norm_id
-      }
-
+      if campaign_assessment
+        norm_data = {
+          norm_id: campaign_assessment.saville? ? campaign_assessment.saville_norm_id : campaign_assessment.norm_id
+        }
+      end
       results.find_each do |res|
-        ::UsersResults::Recompute.call!(res, owner, norm_data)
+        ::UsersResults::Recompute.call!(res, owner, norm_data || {})
       end
       broadcast :ok
     end
@@ -51,8 +52,7 @@ module AdminJobs
         where(
           user_assessments: {
             assessment_id: record.data['assessment_id'],
-            campaign_id: record.data['campaign_id'],
-            status: :completed
+            campaign_id: record.data['campaign_id']
           }
         ).
         includes(user_assessment: :evaluator)

@@ -10,8 +10,7 @@ module Administration
     # true if it's not Mindmill report
     #   and user is Superadmin or user has grants
     def show?
-      @record.hogan_report_setting.blank? &&
-        !@record.mindmill &&
+      @record.provider_internal? &&
         (super || @user.has_grant?(:reports, :view))
     end
 
@@ -31,7 +30,7 @@ module Administration
       manage_report?
     end
 
-    def hogan_reports?
+    def external_reports?
       manage_report?
     end
 

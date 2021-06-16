@@ -11,7 +11,7 @@ module Administration
 
         ::UsersResults::Recompute.call!(user_result, current_user, params.permit(:norm_id))
 
-        render json: { norm_name: user_result.norm.name }
+        render json: { norm_name: resource.norm_name }
       end
 
       def update_additional_time
