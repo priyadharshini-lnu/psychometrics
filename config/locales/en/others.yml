@@ -2374,6 +2374,8 @@ en:
     min_word: Your response must be atleast %{min} words
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
     must_select: Please select from %{min} to %{max} choices
+    not_in_future: Selected date should not be in future
+    not_in_past: Selected date should not be in past
     number: Your response must be a number
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
