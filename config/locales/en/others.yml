@@ -2307,6 +2307,10 @@ en:
       import: Import Users
   user_assessments:
     modals:
+      actions:
+        allow_edit:
+          name: Alow Edit
+          success_message: Assessment %{name} is ready for edit
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
         successfully: "%{name} assessment removed successfully."

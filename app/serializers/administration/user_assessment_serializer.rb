@@ -44,6 +44,7 @@ module Administration
         object,
         [
           'update_additional_time',
+          'allow_edit',
           %w[reset_results reset]
         ]
       )

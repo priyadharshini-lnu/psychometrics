@@ -34,6 +34,10 @@ class UsersResult < ApplicationRecord
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
 
+  def timed?
+    expiry_date.present?
+  end
+
   def expired?
     return false unless expiry_date
 

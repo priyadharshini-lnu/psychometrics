@@ -142,7 +142,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'norms' => [],
       'permissions' => {
         'reset_results' => policy.reset?,
-        'update_additional_time' => policy.update_additional_time?
+        'update_additional_time' => policy.update_additional_time?,
+        'allow_edit' => policy.allow_edit?
       },
       'norm_id' => nil,
       'additional_time' => nil,

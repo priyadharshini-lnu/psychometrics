@@ -40,6 +40,12 @@ module Administration
         render json: resource, serializer: UserAssessmentSerializer, current_user: current_user
       end
 
+      def allow_edit
+        ::UserAssessments::AllowEdit.call!(resource)
+
+        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+      end
+
       private
 
       def assessment

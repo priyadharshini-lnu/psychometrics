@@ -15,6 +15,7 @@ const UPDATE_ADDITIONAL_TIME = 'campaigns/userAssessments/UPDATE_ADDITIONAL_TIME
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 const RESET = 'campaigns/userAssessments/RESET'
 const REMOVE = 'campaigns/userAssessments/REMOVE'
+export const ALLOW_EDIT_OF_ASSESSMENT = 'campaigns/userAssessments/ALLOW_EDIT_OF_ASSESSMENT'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -65,6 +66,14 @@ export const remove = (campaignId: number, campaignAssessmentId: number) => ({
   request: {
     method: 'delete',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}`,
+  },
+})
+
+export const allowEdit = (campaignId: number, userAssessmentId: number) => ({
+  type: ALLOW_EDIT_OF_ASSESSMENT,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/allow_edit`,
   },
 })
 

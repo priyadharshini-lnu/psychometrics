@@ -41,6 +41,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   rescoreResponse,
   reset,
   remove,
+  allowEdit,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -111,6 +112,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     userId: parsedUserId,
                     assessment,
                     remove: () => remove(parsedCampaignId, assessment.id),
+                    allowEdit,
                   }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -133,12 +135,13 @@ interface ActionMenuProps {
   campaignId: number
   rescoreResponse(): void
   reset(campaignId: number, assessmentId: number): Promise<unknown>
+  allowEdit: Props['allowEdit']
   remove(): void
   openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, reset, remove,
+  rescoreResponse, openModal, campaignId, userId, assessment, reset, remove, allowEdit,
 }) => {
   const { name, permissions } = assessment
 
@@ -178,6 +181,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         message.success(I18n.t('user_assessments.modals.remove.successfully', { name }))
       },
     })
+  }
+
+  const handleAllowEdit = () => {
+    allowEdit(campaignId, assessment.id)
+    message.info(I18n.t('user_assessments.modals.actions.allow_edit.success_message', { name }))
   }
 
   return (
@@ -225,6 +233,17 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
       ) : null}
+      {permissions.allowEdit && (
+        <Menu.Item key="allowEdit">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleAllowEdit}
+          >
+            {I18n.t('user_assessments.modals.actions.allow_edit.name')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }
