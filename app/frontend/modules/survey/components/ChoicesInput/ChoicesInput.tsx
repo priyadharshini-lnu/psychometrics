@@ -6,13 +6,14 @@ import {
 } from 'antd'
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
 
+import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
+
 const MIN_VALUE = 0
 const MAX_VALUE = 500
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  model?: any
-  onChange: (value: number) => void
+  model?: BasePropertiesModel
+  onChange: (value: number, undo?: boolean) => void
   value?: number
   minValue?: number
   maxValue?: number
@@ -49,24 +50,28 @@ const ChoicesInput: FC<Props> = ({
   }
 
   const handleOnIncrement = () => {
-    let val = isNumber(value) ? value : model.props.choices
-    val += 1
-    val = val < getMaxValue() ? val : getMaxValue()
-    updateModel(val)
+    let val = isNumber(value) ? value : model?.props?.choices
+    if (val) {
+      val += 1
+      val = val < getMaxValue() ? val : getMaxValue()
+      updateModel(val)
+    }
   }
 
   const handleOnDecrement = () => {
-    let val = isNumber(value) ? value : model.props.choices
-    val -= 1
-    val = val < getMinValue() ? getMinValue() : val
-    updateModel(val)
+    let val = isNumber(value) ? value : model?.props?.choices
+    if (val) {
+      val -= 1
+      val = val < getMinValue() ? getMinValue() : val
+      updateModel(val)
+    }
   }
 
-  const val = isNumber(value) ? value : model.props.choices
+  const val = isNumber(value) ? value : model?.props?.choices
 
   return (
     <Row justify="space-between" align="middle" className={className}>
-      <Col span="6">
+      <Col>
         <Button onClick={handleOnDecrement}>
           <MinusOutlined />
         </Button>
@@ -74,7 +79,7 @@ const ChoicesInput: FC<Props> = ({
       <Col span="8">
         <Input onChange={handleOnChange} value={val} className="ta-c" />
       </Col>
-      <Col span="6">
+      <Col>
         <Button onClick={handleOnIncrement}>
           <PlusOutlined />
         </Button>

@@ -5,7 +5,7 @@ import MatrixTable, { MatrixTableProperties, MatrixTableScoring } from './Matrix
 import Slider, { SliderProperties, SliderScoring } from './Slider'
 import RankOrder, { RankOrderProperties } from './RankOrder'
 import MetaInfo from './MetaInfo'
-import SideBySide, { SideBySideProperties, SideBySideScoring } from './SideBySide'
+import { SideBySide, SideBySideProperties, SideBySideScoring } from './SideBySide'
 import GapAnalysis, { GapAnalysisProperties } from './GapAnalysis'
 import ConstantSum, { ConstantSumProperties } from './ConstantSum'
 import PickGroupRank, { PickGroupRankProperties } from './PickGroupRank'

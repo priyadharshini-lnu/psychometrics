@@ -1,13 +1,18 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import styles from './SideBySide.scss'
+import _ from 'lodash'
 
-export class TableBodyPreview extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
+import { PreviewModel } from 'modules/survey/interfaces/questions/SideBySide'
+import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
+import styles from '../styles.scss'
+
+interface Props {
+  model: PreviewModel
+  readOnly: boolean
+  I18n: I18nInterface
+}
+
+export class TableBodyPreview extends Component<Props> {
   changeValue = (scale, choice, answer, e) => {
     const { model } = this.props
     model.result.answer(scale, choice, answer, e.currentTarget.value, e.currentTarget.checked)
@@ -17,16 +22,16 @@ export class TableBodyPreview extends Component {
   renderInput (data, scalePoint, choice, index) {
     const { model, readOnly } = this.props
     const object = _.find(model.result.answers, { scale: scalePoint, choice })
-    let defaultValue = {}
+    let defaultValue
     if (object) {
-      defaultValue = _.find(object.values, { index }) || {}
+      defaultValue = _.find(object.values, { index }) || { value: '' }
     }
     if (data.type === 'Text' && data.textType === 'Essay') {
       return (
         <textarea
           disabled={readOnly}
           onChange={this.changeValue.bind(this, scalePoint, choice, index)}
-          value={defaultValue.value}
+          value={defaultValue ?. value ?? ''}
           className={styles.Essay}
         />
       )
@@ -36,8 +41,8 @@ export class TableBodyPreview extends Component {
         <input
           disabled={readOnly}
           className={styles[data.textType]}
-          checked={!!defaultValue.value}
-          value={defaultValue.value || ''}
+          checked={!!defaultValue ?. value}
+          value={defaultValue ?. value ?? ''}
           onChange={this.changeValue.bind(this, scalePoint, choice, index)}
         />
       )
@@ -46,8 +51,8 @@ export class TableBodyPreview extends Component {
       <input
         disabled={readOnly}
         className={styles[data.textType]}
-        checked={!!defaultValue.value}
-        value={defaultValue.value}
+        checked={!!defaultValue ?. value}
+        value={defaultValue ?. value ?? ''}
         onChange={this.changeValue.bind(this, scalePoint, choice, index)}
         type={data.likertType === 'SingleAnswer' ? 'radio' : 'checkbox'}
       />
@@ -66,12 +71,12 @@ export class TableBodyPreview extends Component {
     const {
       readOnly, model, model: { result, moduleConfig }, I18n,
     } = this.props
-    const object = _.find(result.answers, { choice, scale: scalePoint }) || {}
-    const values = object.values || [{}]
+    const object = _.find(result.answers, { choice, scale: scalePoint })
+    const values = object ?. values ?? [{ value: '' }]
     return (
       <select
         disabled={readOnly}
-        value={values[0].value || ''}
+        value={`${values[0].value}`}
         onChange={this.changeValue.bind(this, scalePoint, choice, null)}
         className={styles.select}
       >
@@ -120,9 +125,9 @@ export class TableBodyPreview extends Component {
 
     return (
       <tr className={styles.answersRow}>
-        <td className={`${styles.header} ${styles.column} ${styles.firstColumn}`} />
+        <td className={`${styles.header} ${styles.column} ${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`} />
         {_.times(props.scalePoints, i => (
-          <td key={i} className={styles.column}>
+          <td key={i} className={`${styles.column} ps-2 pe-2 pt-2 pb-2`}>
             <div className={styles.answers}>
               {_.times(data[i].answers, j => (
                 <div className={styles.answer} key={j}>
@@ -147,7 +152,7 @@ export class TableBodyPreview extends Component {
         {_.times(props.choices, i => [
           hideHeaders ? null : this.renderHeaders(i),
           <tr className={styles.mainRow} key={i}>
-            <td className={styles.firstColumn}>
+            <td className={`${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`}>
               <span>
                 {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                   || moduleConfig.defaultChoiceText(i + 1)}
@@ -157,7 +162,7 @@ export class TableBodyPreview extends Component {
               const dropdown = (data[scalePoint].type === 'Likert'
               && data[scalePoint].likertType === 'DropDown')
               return (
-                <td key={scalePoint} className={styles.column}>
+                <td key={scalePoint} className={`${styles.column} ps-2 pe-2 pt-2 pb-2`}>
                   <div className={`${styles.inputs} ${dropdown ? styles.dropdowns : ''}`}>
                     {dropdown
                       ? this.renderDropdown(data[scalePoint], scalePoint, i)
@@ -168,7 +173,7 @@ export class TableBodyPreview extends Component {
             })}
           </tr>,
         ])}
-        {this.renderHeaders()}
+        {this.renderHeaders(undefined)}
       </tbody>
     )
   }

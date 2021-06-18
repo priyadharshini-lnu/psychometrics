@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import update from 'react-addons-update'
-import styles from './SideBySide.scss'
+import styles from '../styles.scss'
 
 const LIKERT_TYPES = ['Drop Down', 'Single Answer', 'Multiple Answer']
 const INPUTS_TYPES = ['Short', 'Medium', 'Long', 'Essay']

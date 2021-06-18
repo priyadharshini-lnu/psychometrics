@@ -1,15 +1,17 @@
-/* eslint-disable no-nested-ternary */
-import _ from 'lodash'
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import _ from 'lodash'
+
+import { BuilderModel } from 'modules/survey/interfaces/questions/SideBySide'
+
 import LabelEditor from 'components/LabelEditor'
-import styles from './SideBySide.scss'
 
-export class TableBody extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
+import styles from '../styles.scss'
 
+interface Props {
+  model: BuilderModel
+}
+
+export class TableBody extends Component<Props> {
   changeLabel = (i, text) => {
     const { model } = this.props
     model.changeArrayProps({ collection: 'choicesTexts', i, val: text })
@@ -30,7 +32,14 @@ export class TableBody extends Component {
         name={`answers_${scalePoint}_${choice}`}
         className={styles[data.textType]}
         defaultValue=""
-        type={data.type === 'Likert' ? (data.likertType === 'SingleAnswer' ? 'radio' : 'checkbox') : 'text'}
+        type={
+          // eslint-disable-next-line no-nested-ternary
+          data.type === 'Likert'
+            ? data.likertType === 'SingleAnswer'
+              ? 'radio'
+              : 'checkbox'
+            : 'text'
+        }
       />
     )
   }
@@ -44,7 +53,9 @@ export class TableBody extends Component {
   }
 
   renderDropdown (data) {
-    const { model: { moduleConfig } } = this.props
+    const {
+      model: { moduleConfig },
+    } = this.props
     return (
       <select className={styles.select}>
         <option />
@@ -58,7 +69,9 @@ export class TableBody extends Component {
   }
 
   renderHeaders (index) {
-    const { model: { props, moduleConfig } } = this.props
+    const {
+      model: { props, moduleConfig },
+    } = this.props
     const data = props.columnsData
     const length = props.choices
     const none = props.repeatHeaders === 'None'
@@ -68,24 +81,37 @@ export class TableBody extends Component {
     const last = typeof index === 'undefined'
 
     if (bottom || both) {
-      if (bottom && !last) { return }
+      if (bottom && !last) {
+        return
+      }
       if (both) {
-        if (!last && index !== Math.ceil(length / 2)) { return }
+        if (!last && index !== Math.ceil(length / 2)) {
+          return
+        }
       }
     } else {
-      if (index === 0 || none) { return }
-      if (middle && index !== Math.ceil(length / 2)) { return }
+      if (index === 0 || none) {
+        return
+      }
+      if (middle && index !== Math.ceil(length / 2)) {
+        return
+      }
     }
 
     return (
       <tr className={styles.answersRow} key={`header-${index}`}>
-        <td className={`${styles.header} ${styles.column} ${styles.firstColumn}`} />
+        <td
+          className={`${styles.header} ${styles.column} ${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`}
+        />
         {_.times(props.scalePoints, i => (
-          <td key={i} className={styles.column}>
+          <td key={i} className={`${styles.column} ps-2 pe-2 pt-2 pb-2`}>
             <div className={styles.answers}>
               {_.times(data[i].answers, j => (
                 <div className={styles.answer} key={j}>
-                  <span>{data[i].answersTexts[j] || moduleConfig.defaultAnswerText(j + 1)}</span>
+                  <span>
+                    {data[i].answersTexts[j]
+                      || moduleConfig.defaultAnswerText(j + 1)}
+                  </span>
                 </div>
               ))}
             </div>
@@ -96,28 +122,37 @@ export class TableBody extends Component {
   }
 
   render () {
-    const { model: { props, moduleConfig } } = this.props
+    const {
+      model: { props, moduleConfig },
+    } = this.props
     const data = props.columnsData
+
     return (
       <tbody>
         {_.times(props.choices, i => [
           this.renderHeaders(i),
           <tr className={styles.mainRow} key={i}>
-            <td className={styles.firstColumn}>
+            <td className={`${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`}>
               <LabelEditor
                 onChange={e => this.changeLabel(i, e)}
                 maxWidth="100%"
-                value={props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)}
+                value={
+                  props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)
+                }
               />
             </td>
             {_.times(props.scalePoints, (scalePoint) => {
-              const dropdown = (data[scalePoint].type === 'Likert'
-                                && data[scalePoint].likertType === 'DropDown')
+              const dropdown = data[scalePoint].type === 'Likert'
+                && data[scalePoint].likertType === 'DropDown'
               return (
-                <td key={scalePoint} className={styles.column}>
-                  <div className={`${styles.inputs} ${dropdown ? styles.dropdowns : ''}`}>
+                <td key={scalePoint} className={`${styles.column} ps-2 pe-2 pt-2 pb-2`}>
+                  <div
+                    className={`${styles.inputs} ${
+                      dropdown ? styles.dropdowns : ''
+                    }`}
+                  >
                     {dropdown
-                      ? this.renderDropdown(data[scalePoint], scalePoint, i)
+                      ? this.renderDropdown(data[scalePoint])
                       : this.renderInputs(data[scalePoint], scalePoint, i)}
                   </div>
                 </td>
@@ -125,7 +160,7 @@ export class TableBody extends Component {
             })}
           </tr>,
         ])}
-        {this.renderHeaders()}
+        {this.renderHeaders(undefined)}
       </tbody>
     )
   }

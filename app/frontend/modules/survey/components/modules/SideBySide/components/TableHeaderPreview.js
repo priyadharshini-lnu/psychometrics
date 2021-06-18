@@ -1,15 +1,15 @@
 import _ from 'lodash'
 import React from 'react'
-import styles from './SideBySide.scss'
+import styles from '../styles.scss'
 
 const TableHeaderPreview = ({ model, I18n }) => {
   const { props: { columnsData, scalePoints, hideHeaders }, moduleConfig } = model
   return (
     <thead className={styles.tableHead}>
       <tr className={styles.row}>
-        <td className={`${styles.group} ${styles.column} ${styles.firstColumn}`} />
+        <td className={`${styles.group} ${styles.column} ${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`} />
         {_.times(scalePoints, i => (
-          <td key={i} className={styles.column}>
+          <td key={i} className={`${styles.column} ps-2 pe-2 pt-2 pb-2`}>
             <div className={styles.group}>
               <span>
                 {I18n.tQuestion(model, `text${i + 1}`, { group: i })

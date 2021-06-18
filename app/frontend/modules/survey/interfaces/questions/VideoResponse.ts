@@ -2,27 +2,15 @@ import {
   BaseBuilderModel,
   BasePropertiesModel,
   BasePreviewModel,
-  ModelProps,
-  ChangeProps,
-  BaseProps,
 } from './Base'
 
-export interface BuilderModel
-  extends Omit<BaseBuilderModel, 'props'>,
-    ChangeProps<Props>,
-    ModelProps<Props> {}
+export interface BuilderModel extends BaseBuilderModel<Props> {}
 
-export interface PropertiesModel
-  extends Omit<BasePropertiesModel, 'props'>,
-    ChangeProps<Props>,
-    ModelProps<Props> {}
+export interface PropertiesModel extends BasePropertiesModel<Props> {}
 
-export interface PreviewModel
-  extends Omit<BasePreviewModel, 'props'>,
-    ChangeProps<Props>,
-    ModelProps<Props> {}
+export interface PreviewModel extends BasePreviewModel<Props> {}
 
-interface Props extends BaseProps {
+interface Props {
   duration: number
   trackerOptions: {
     box: {

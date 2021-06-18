@@ -5,7 +5,7 @@ import FillingScoring from 'components/FillingScoring'
 import ScoringCell from 'components/ScoringCell'
 import ScoringLabelAdvanced from 'components/ScoringLabelAdvanced'
 import Utils from 'utils'
-import styles from './SideBySide.scss'
+import styles from './styles.scss'
 
 export class Scoring extends Component {
   static propTypes = {
@@ -163,5 +163,3 @@ export class Scoring extends Component {
     )
   }
 }
-
-export default Scoring

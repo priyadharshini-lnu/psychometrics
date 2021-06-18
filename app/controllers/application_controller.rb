@@ -42,7 +42,7 @@ class ApplicationController < ::BaseController
   private
 
   def set_mobility_locale
-    Mobility.with_locale(current_user&.locale || I18n.default_locale) do
+    Mobility.with_locale(ui_locale) do
       yield
     end
   end
