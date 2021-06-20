@@ -98,7 +98,7 @@ module Administration
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          :privacy_consent, :two_factor_enabled, :strong_password_enabled,
                                          :login_box_position, :secondary_logo, :remove_secondary_logo,
-                                         :webhook, :enable_live_chat, locales: [],
+                                         :webhook, :enable_live_chat, :live_chat_token, locales: [],
                                          privacy_link_attributes: %i[id text link _destroy])
       end
 

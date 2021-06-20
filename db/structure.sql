@@ -880,7 +880,8 @@ CREATE TABLE public.clients (
     secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
-    locales json DEFAULT '[]'::json
+    locales json DEFAULT '[]'::json,
+    live_chat_token character varying
 );
 
 
@@ -2875,9 +2876,9 @@ CREATE TABLE public.saville_user_assessments (
     user_assessment_id bigint NOT NULL,
     request_id character varying,
     url character varying,
+    norm_id character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    norm_id character varying
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -8266,6 +8267,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210527094321'),
 ('20210531064834'),
 ('20210606072330'),
-('20210606105059');
+('20210606105059'),
+('20210610160411');
 
 

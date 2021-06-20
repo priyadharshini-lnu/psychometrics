@@ -21,7 +21,10 @@ interface SanitizeConfig {
 
 const sanitizeConfig: SanitizeConfig = {
   default: { ADD_ATTR: ['target'] },
-  adminRichText: { ADD_TAGS: ['iframe'] },
+  adminRichText: {
+    ADD_TAGS: ['iframe'],
+    ADD_ATTR: ['target'],
+  },
 }
 
 const SafeHTML = forwardRef<Ref, Props>(

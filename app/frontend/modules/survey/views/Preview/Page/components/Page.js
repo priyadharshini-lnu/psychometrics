@@ -26,6 +26,15 @@ class Page extends Component {
       const { fetchAwsSpeechTextPresignedUrl } = this.props
       fetchAwsSpeechTextPresignedUrl()
     }
+    this.ref.addEventListener('copy', this.disableCopyHandler)
+    this.ref.addEventListener('cut', this.disableCopyHandler)
+    this.ref.addEventListener('contextmenu', this.disableCopyHandler)
+  }
+
+  componentWillUnmount () {
+    this.ref.removeEventListener('copy', this.disableCopyHandler)
+    this.ref.removeEventListener('cut', this.disableCopyHandler)
+    this.ref.removeEventListener('contextmenu', this.disableCopyHandler)
   }
 
   getBlockClasses () {
@@ -45,6 +54,18 @@ class Page extends Component {
       [styles.sideStaticContent]: (layout === LEFT || layout === RIGHT),
       [styles.rightStaticContent]: (layout === RIGHT),
     })
+  }
+
+  disableCopyHandler = (event) => {
+    const { target } = event
+    const copyEnabled = target.closest('[data-allow-content-copy="1"]')
+    if (copyEnabled || ['INPUT', 'TEXTAREA'].includes(target.tagName)) {
+      return
+    }
+
+    event.preventDefault()
+    event.stopPropagation()
+    return false
   }
 
   addLtrStyleIfNeed = phrase => (phrase.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? { direction: 'ltr' } : {})
@@ -78,7 +99,10 @@ class Page extends Component {
     } = this.props
     if (!page) { return }
     return (
-      <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}>
+      <div
+        ref={(ref) => { this.ref = ref }}
+        className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}
+      >
         {readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent key={blockId} />}
