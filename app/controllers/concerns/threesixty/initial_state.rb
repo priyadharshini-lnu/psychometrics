@@ -29,10 +29,14 @@ module Threesixty::InitialState
       currentUser: serialized_current_user,
       liveChat: {
         url: Settings.live_chat.base_url,
-        token: Settings.live_chat.token,
+        token: live_chat_token,
         enabled: @current_project.enable_live_chat
       }
     }
+  end
+
+  def live_chat_token
+    @current_project.live_chat_token.blank? ? Settings.live_chat.token : @current_project.live_chat_token
   end
 
   def serialized_current_user

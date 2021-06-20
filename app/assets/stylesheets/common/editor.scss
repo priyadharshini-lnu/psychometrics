@@ -19,6 +19,14 @@ table.table-minimal-hr {
         color: #666;
     }
 }
+table.table-compact {
+    td.table-cell-header, th {
+        padding: 4px;
+    }
+    td {
+        padding: 4px;
+    }
+}
 table.table-full-width {
     width: 100%;
 }
