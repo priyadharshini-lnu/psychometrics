@@ -203,5 +203,3 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
     end
   end
 end
-
-# shardi khasi na law
