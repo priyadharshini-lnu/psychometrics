@@ -2,10 +2,11 @@
 
 module Administration
   class BasePolicy
-    attr_reader :user, :record
+    attr_reader :user, :membership, :record
 
-    def initialize(user, record, _extra = {})
-      @user = user
+    def initialize(context, record, _extra = {})
+      @user = context[:user]
+      @membership = context[:membership]
       @record = [record].flatten.last
     end
 
@@ -64,8 +65,8 @@ module Administration
     class Scope
       attr_reader :user, :scope
 
-      def initialize(user, scope)
-        @user = user
+      def initialize(context, scope)
+        @user = context[:user]
         @scope = [scope].flatten.last
       end
 

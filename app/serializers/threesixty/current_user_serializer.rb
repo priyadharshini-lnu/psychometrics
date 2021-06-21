@@ -20,7 +20,10 @@ module Threesixty
     def permissions
       permissions = GetPermissionsHash.call!(
         Administration::CampaignPolicy,
-        object,
+        {
+          user: object,
+          membership: current_membership
+        },
         nil,
         [
           %w[manage_options update_campaign_options],

@@ -34,7 +34,10 @@ module Administration
       def permissions
         GetPermissionsHash.call!(
           Administration::CampaignPolicy,
-          current_user,
+          {
+            user: current_user,
+            membership: instance_options[:membership]
+          },
           object,
           [
             'edit',
