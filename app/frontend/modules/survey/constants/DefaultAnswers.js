@@ -86,6 +86,8 @@ const DefaultAnswers = {
     }],
     questionText: 'Click to write the question text',
     repeatHeaders: 'None',
+    isRowDescriptionEnabled: false,
+    rowDescriptions: [''],
   },
 
   GapAnalysis: {

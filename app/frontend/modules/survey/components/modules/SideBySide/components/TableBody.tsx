@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import _ from 'lodash'
+import { Input } from 'antd'
 
 import { BuilderModel } from 'modules/survey/interfaces/questions/SideBySide'
 
@@ -20,6 +21,13 @@ export class TableBody extends Component<Props> {
 
   update = () => {
     this.forceUpdate()
+  }
+
+  handleRowDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>, index: number) => {
+    const { target: { value } } = event
+    const { model } = this.props
+    model.changeArrayProps({ collection: 'rowDescriptions', i: index, val: value }, false)
+    this.update()
   }
 
   renderInput (data, scalePoint, choice) {
@@ -126,6 +134,7 @@ export class TableBody extends Component<Props> {
       model: { props, moduleConfig },
     } = this.props
     const data = props.columnsData
+    const { isRowDescriptionEnabled } = props
 
     return (
       <tbody>
@@ -140,6 +149,13 @@ export class TableBody extends Component<Props> {
                   props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)
                 }
               />
+              {isRowDescriptionEnabled && (
+                <Input.TextArea
+                  rows={2}
+                  defaultValue={props?.rowDescriptions?.[i] ?? ''}
+                  onBlur={event => this.handleRowDescriptionChange(event, i)}
+                />
+              )}
             </td>
             {_.times(props.scalePoints, (scalePoint) => {
               const dropdown = data[scalePoint].type === 'Likert'

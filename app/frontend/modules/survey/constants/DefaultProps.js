@@ -100,6 +100,8 @@ const DefaultProps = {
     }],
     questionText: 'Click to write the question text',
     repeatHeaders: 'None',
+    isRowDescriptionEnabled: false,
+    rowDescriptions: [''],
     f: [{ scale: 0, choice: 1, value: '11111' }],
     defaultValues: [],
   },

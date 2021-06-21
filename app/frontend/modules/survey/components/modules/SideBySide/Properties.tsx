@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Checkbox, Divider } from 'antd'
+import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import _ from 'lodash'
 
 import { PropertiesModel } from 'modules/survey/interfaces/questions/SideBySide'
@@ -15,6 +17,8 @@ interface Props {
   model: PropertiesModel
   restricted: boolean
 }
+
+const { I18n } = window
 
 export class Properties extends Component<Props> {
   update = () => {
@@ -47,6 +51,19 @@ export class Properties extends Component<Props> {
       Action('ChangeScalePoints', this, { oldValue, newValue })
     }
     model.update()
+  }
+
+  handleQuestionDescriptionChange = (event: CheckboxChangeEvent) => {
+    const {
+      target: { checked },
+    } = event
+
+    const { model } = this.props
+
+    model.changeProps({
+      isRowDescriptionEnabled: checked,
+    })
+    this.update()
   }
 
   renderRepeatHeaders () {
@@ -112,13 +129,20 @@ export class Properties extends Component<Props> {
 
   render () {
     const { model, restricted } = this.props
+    const { props: { isRowDescriptionEnabled } } = model
+
     return (
       <div>
         {this.renderStatements()}
         <hr className={styles.divider} />
         {this.renderScalePoints()}
         {this.renderRepeatHeaders()}
-        <hr className={styles.divider} />
+        <div className="ms-4 me-4">
+          <Checkbox checked={isRowDescriptionEnabled} onChange={this.handleQuestionDescriptionChange}>
+            {I18n.t('administration.survey_builder.property_panel.question_description')}
+          </Checkbox>
+        </div>
+        <Divider />
         {!restricted && (
           <RequiredValidations
             model={model}

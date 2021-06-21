@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import { Space, Popover, Typography } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons'
 
 import { PreviewModel } from 'modules/survey/interfaces/questions/SideBySide'
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
@@ -146,7 +148,9 @@ export class TableBodyPreview extends Component<Props> {
 
   render () {
     const { model, model: { props, moduleConfig }, I18n } = this.props
-    const { columnsData: data, hideHeaders } = props
+    const {
+      columnsData: data, hideHeaders, isRowDescriptionEnabled, rowDescriptions,
+    } = props
     return (
       <tbody>
         {_.times(props.choices, i => [
@@ -154,8 +158,25 @@ export class TableBodyPreview extends Component<Props> {
           <tr className={styles.mainRow} key={i}>
             <td className={`${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`}>
               <span>
-                {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
-                  || moduleConfig.defaultChoiceText(i + 1)}
+                <Space direction="horizontal">
+                  {I18n.tQuestion(model, `choicesTexts${i + 1}`, {
+                    choice: i,
+                  }) || moduleConfig.defaultChoiceText(i + 1)}
+                  {isRowDescriptionEnabled
+                    && rowDescriptions[i]
+                    && rowDescriptions[i].length !== 0 && (
+                      <Popover
+                        content={(
+                          <Typography.Paragraph style={{ maxWidth: '25rem' }}>
+                            {rowDescriptions[i]}
+                          </Typography.Paragraph>
+                        )}
+                        arrowPointAtCenter
+                      >
+                        <InfoCircleOutlined />
+                      </Popover>
+                  )}
+                </Space>
               </span>
             </td>
             {_.times(props.scalePoints, (scalePoint) => {

@@ -23,6 +23,7 @@ interface Props {
   choices: number
   scalePoints: number
   choicesTexts: Array<string>
+  rowDescriptions: Array<string>
   columnsData: Array<{
     type: 'Likert' | 'Text'
     likertType: 'SingleAnswer' | 'DropDown' | 'MultipleAnswer'
@@ -33,6 +34,7 @@ interface Props {
   }>
   hideHeaders: boolean
   repeatHeaders: 'None' | 'Middle' | 'Bottom' | 'Both' | 'All'
+  isRowDescriptionEnabled: boolean
   questionText: string
   randomization: {
     type: 'No' | 'Yes'

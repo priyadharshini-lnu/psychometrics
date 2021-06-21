@@ -3112,6 +3112,7 @@ en:
           '60': 1min
           '600': 10min
         max_duration: Max duration
+        question_description: Row descriptions
         validation_response_type: Validation response type
         voice_dictation: Voice dictation
     table:
