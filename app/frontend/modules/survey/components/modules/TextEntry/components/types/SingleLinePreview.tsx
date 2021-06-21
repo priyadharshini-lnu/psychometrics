@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC } from 'react'
 import { Input, Row, Col } from 'antd'
 
 import useForceUpdate from 'hooks/useUpdate'
-import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/components/components/TextEntryCounter'
+import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/components/TextEntryCounter'
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

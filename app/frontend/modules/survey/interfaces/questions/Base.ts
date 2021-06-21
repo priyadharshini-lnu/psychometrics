@@ -10,7 +10,7 @@ export interface BaseBuilderModel<
 > extends BaseModel<P, MC, AG> {
   update(): void
   changeArrayProps(
-    { collection, i, val }: { collection: string; i: number; val: string },
+    { collection, i, val }: { collection: string; i: number; val: unknown },
     undo?: boolean
   ): void
   changeProps(props: Partial<P & BaseProps>): void
@@ -27,6 +27,10 @@ export interface BasePropertiesModel<
   AG = Record<string, number | string>
 > extends BaseModel<P, MC, AG> {
   update: () => void
+  changeArrayProps(
+    { collection, i, val }: { collection: string; i: number; val: unknown },
+    undo?: boolean
+  ): void
   changeReqValidations: (
     newProps: {
       enabled?: boolean
@@ -35,6 +39,9 @@ export interface BasePropertiesModel<
     undo?: boolean
   ) => void
   changeProps(props: Partial<P & BaseProps>): void
+  resetDefaultValues(): void
+  setChoices(val: number, undo?: boolean): void
+  setFormFields(val: number): void
 }
 
 /**

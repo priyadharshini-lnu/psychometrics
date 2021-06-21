@@ -2,8 +2,8 @@ import React, { ChangeEvent, FC, useRef } from 'react'
 import { Row, Col } from 'antd'
 
 import useForceUpdate from 'hooks/useUpdate'
-import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/components/components/TextEntryCounter'
-import { SpeechToTextInput } from 'modules/survey/components/modules/TextEntry/components/components/SpeechToTextInput'
+import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/components/TextEntryCounter'
+import { SpeechToTextInput } from 'modules/survey/components/modules/TextEntry/components/SpeechToTextInput'
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

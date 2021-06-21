@@ -11,7 +11,7 @@ interface Props {
   model: BuilderModel
 }
 
-export const SideBySide: FC<Props> = ({ model }) => {
+const SideBySide: FC<Props> = ({ model }) => {
   const forceUpdate = useForceUpdate()
 
   const { props: { questionText }, changeProps } = model
@@ -41,3 +41,5 @@ export const SideBySide: FC<Props> = ({ model }) => {
     </div>
   )
 }
+
+export default SideBySide

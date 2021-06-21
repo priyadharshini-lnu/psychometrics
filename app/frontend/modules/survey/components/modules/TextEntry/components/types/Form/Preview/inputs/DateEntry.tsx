@@ -1,39 +1,34 @@
 import React from 'react'
 import { DatePicker } from 'antd'
 import moment, { Moment } from 'moment'
-import { Question } from '../../interfaces'
-
-const FORMAT = 'YYYY-MM-DD'
 
 interface Props {
-  name: string
-  model: Question
-  index: number
+  value: string
+  onChange: (value: string) => void
+  dateFormat: string
   readOnly: boolean
-  onChange: (i: number, value: string) => void
 }
 
-const DateEntry: React.FC<Props> = ({
-  onChange, model: { result: { answers } }, index, readOnly,
+export const DateEntry: React.FC<Props> = ({
+  onChange,
+  value,
+  dateFormat,
+  readOnly,
 }) => {
-  const { value } = answers[index]
-
   const handleOnChange = (date: Moment | null): void => {
-    const newValue = date ? date.format(FORMAT) : ''
-    onChange(index, newValue)
+    const newValue = date ? date.format(dateFormat) : ''
+    onChange(newValue)
   }
 
-  const dateValue = value ? moment(value, FORMAT) : moment(moment.now())
+  const dateValue = value ? moment(value, dateFormat) : moment(moment.now())
 
   return (
     <DatePicker
       disabled={readOnly}
       allowClear={false}
-      format="YYYY-MM-DD"
+      format={dateFormat}
       onChange={handleOnChange}
       value={dateValue}
     />
   )
 }
-
-export default DateEntry

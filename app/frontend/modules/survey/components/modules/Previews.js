@@ -1,6 +1,6 @@
 import MultipleChoicePreview from './MultipleChoice/components/Preview'
 import StaticContentPreview from './StaticContent/components/Preview'
-import TextEntryPreview from './TextEntry/components/Preview'
+import { TextEntryPreview } from './TextEntry'
 import MatrixTablePreview from './MatrixTable/components/Preview'
 import SliderPreview from './Slider/components/Preview'
 import RankOrderPreview from './RankOrder/components/Preview'

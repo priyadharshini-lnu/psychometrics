@@ -1,6 +1,6 @@
 import MultipleChoice, { MultipleChoiceProperties, MultipleChoiceScoring } from './MultipleChoice'
 import StaticContent, { StaticContentProperties } from './StaticContent'
-import TextEntry, { TextEntryProperties, TextEntryScoring } from './TextEntry'
+import { TextEntryProperties, TextEntryScoring, TextEntry } from './TextEntry'
 import MatrixTable, { MatrixTableProperties, MatrixTableScoring } from './MatrixTable'
 import Slider, { SliderProperties, SliderScoring } from './Slider'
 import RankOrder, { RankOrderProperties } from './RankOrder'

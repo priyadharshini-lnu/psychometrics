@@ -15,6 +15,8 @@ const DefaultAnswers = {
     choicesTexts: ['', '', ''],
     questionText: 'Click to write the question text',
     type: 'SingleLine',
+    allowDictation: false,
+    dateFormat: 'DD-MM-YYYY',
   },
 
   MatrixTable: {

@@ -23,6 +23,8 @@ const DefaultProps = {
     choicesTexts: ['Click to write Form field 1', 'Click to write Form field 2', 'Click to write Form field 3'],
     questionText: 'Click to write the question text',
     type: 'SingleLine',
+    allowDictation: false,
+    dateFormat: 'DD-MM-YYYY',
     defaultValues: [],
   },
 

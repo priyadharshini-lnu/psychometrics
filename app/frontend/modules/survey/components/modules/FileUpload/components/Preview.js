@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
+import textEntryStyles from 'components/modules/TextEntry/components/styles.scss'
 import FileUploadBlock from 'components/FileUpload'
 import { SafeHTML } from 'components/SafeHTML'
 import connect from './connect'
