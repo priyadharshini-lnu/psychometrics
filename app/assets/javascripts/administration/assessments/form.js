@@ -32,7 +32,8 @@ function AssessmentsForm () {
   }.bind(this)
 
   this.showHideFieldsForExternalIntegrations = function (integrationType) {
-    var [_, className] = integrationType.toLowerCase().split('::')
+    var integrationsTypeArray = integrationType.toLowerCase().split('::')
+    var className = integrationsTypeArray[1]
 
     $('#assessments_form').find('.common:not(.' + className + ')').addClass('hidden').find(":input").attr('disabled', true)
     integrations.forEach(function (integrationName) {
