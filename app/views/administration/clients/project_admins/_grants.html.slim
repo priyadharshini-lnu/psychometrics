@@ -116,9 +116,9 @@ table.table.grants-table
                       'manage', resource.has_grant?(:communications, :manage), id: communications_manage_id, data: { turn_on: [communications_view_id] }
               | Manage
     
-    - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'show', 'manage_messages'], project: project)
+    - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'manage_messages'], project: project)
       tr
-        td Campaigns & Sub-Campaigns
+        td Campaigns
         td
           - if policy(:membership).manage_grants_for_action?('campaigns', 'view', project: project)
             label.text-nowrap
@@ -144,12 +144,6 @@ table.table.grants-table
                       'manage_options', resource.has_grant?(:campaigns, :manage_options), id: dom_id(u, :campaigns_manage_options)
               | Manage Options
 
-          - if policy(:membership).manage_grants_for_action?('campaigns', 'show', project: project)
-            label.text-nowrap
-              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
-                      'show', resource.has_grant?(:campaigns, :show), id: dom_id(u, :campaigns_show)
-              | Show
-          
           - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_messages', project: project)
             label.text-nowrap
               = check_box_tag 'resource[grants_attributes][data][campaigns][]',
