@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
+import uuid from 'uuid/v4'
 import ConditionList from './ConditionList'
+import Condition from '../../../models/QuestionCondition'
 import styles from './CustomValidation.scss'
 
 const { Header } = Modal
@@ -15,7 +17,7 @@ export class CustomValidation extends Component {
 
   save = () => {
     const { question, close } = this.props
-    if (!question.validation.message) {
+    if (_.some(question.validations, v => !v.message)) {
       this.setState({ error: true })
     } else {
       this.setState({ error: false })
@@ -23,6 +25,7 @@ export class CustomValidation extends Component {
       close()
     }
   }
+
 
   cancel = () => {
     const { question, close } = this.props
@@ -34,40 +37,64 @@ export class CustomValidation extends Component {
     close()
   }
 
-  changeErrorText = (e) => {
-    const { question } = this.props
-    question.validation.message = e.currentTarget.value
+  changeErrorText = (validation, e) => {
+    validation.message = e.currentTarget.value
     this.forceUpdate()
   }
 
-  renderConditions () {
+  addValidation = () => {
     const { question } = this.props
+    if (!question.validation.customValidations) {
+      question.validation.customValidations = []
+    }
+    question.validation.customValidations = [...question.validation.customValidations, {
+      uuid: uuid(),
+      conditions: [new Condition()],
+      message: '',
+    }]
+    this.forceUpdate()
+  }
+
+  removeValidation = (validation) => {
+    const { question } = this.props
+    question.validation.customValidations = _.filter(
+      question.validation.customValidations, v => v.uuid !== validation.uuid,
+    )
+    this.forceUpdate()
+  }
+
+  renderConditions (validation, key) {
     const { error } = this.state
     return (
-      <div>
+      <div className={styles.panel} key={key}>
+        <div className={`btn fa fa-close ${styles.remove}`} onClick={() => this.removeValidation(validation)} />
         <div>Validation will pass if the following condition is met:</div>
-        <ConditionList {...this.props} />
+        <ConditionList validation={validation} {...this.props} />
         <div className={`${styles.errMessage} ${error ? styles.error : ''}`}>
           Type an error message to display on failure:
         </div>
         <input
           type="text"
           className="form-control"
-          value={question.validation.message}
-          onChange={this.changeErrorText}
+          value={validation.message}
+          onChange={e => this.changeErrorText(validation, e)}
         />
       </div>
     )
   }
 
   render () {
+    const { question: { validation: { validations } } } = this.props
     return (
       <Modal show bsSize="lg" keyboard={false}>
         <Header>
           <Title>Choice Text</Title>
         </Header>
         <Body>
-          {this.renderConditions()}
+          {validations && validations.map((validation, i) => this.renderConditions(validation, i))}
+          <div className={styles.constrols}>
+            <button className="btn btn-success" onClick={this.addValidation}>Add Validation</button>
+          </div>
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
