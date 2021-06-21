@@ -11,6 +11,9 @@ const LookupSourceName = {
     if (sourceType === 'ExternalFactor') {
       return I18nStore.tExternalFactorName(sources.id, (sources.factors.find(f => f.id === sourceKey) || {}))
     }
+    if (sourceType === 'SavilleFactor') {
+      return I18nStore.tSavilleFactorName(sources.id, (sources.factors.find(f => f.id === sourceKey) || {}))
+    }
     return (sources.factors.find(f => f.id === sourceKey) || {}).name
   },
 }
