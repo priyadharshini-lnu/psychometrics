@@ -16,7 +16,7 @@ module Administration
       end
 
       def export_completion_status?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :show)
+        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
       end
 
       def edit_dimension?
