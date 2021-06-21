@@ -95,7 +95,7 @@ _.extend(Result.prototype, {
       prev = result
     })
 
-    if (res) {
+    if (!res) {
       return { type: 'Custom', message }
     }
   },
