@@ -84,14 +84,14 @@ export class CustomValidation extends Component {
   }
 
   render () {
-    const { question: { validation: { validations } } } = this.props
+    const { question: { validation: { customValidations } } } = this.props
     return (
       <Modal show bsSize="lg" keyboard={false}>
         <Header>
           <Title>Choice Text</Title>
         </Header>
         <Body>
-          {validations && validations.map((validation, i) => this.renderConditions(validation, i))}
+          {customValidations && customValidations.map((validation, i) => this.renderConditions(validation, i))}
           <div className={styles.constrols}>
             <button className="btn btn-success" onClick={this.addValidation}>Add Validation</button>
           </div>
