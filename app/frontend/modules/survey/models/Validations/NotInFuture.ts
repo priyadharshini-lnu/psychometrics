@@ -13,7 +13,7 @@ class NotInFuture {
   }
 
   validate ([{ value }]) {
-    const date = moment(value)
+    const date = moment(value, this.question.props.dateFormat)
     const now = moment()
     if (now < date) {
       return {

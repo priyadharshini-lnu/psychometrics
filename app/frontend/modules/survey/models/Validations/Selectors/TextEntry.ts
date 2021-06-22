@@ -7,7 +7,7 @@ interface Condition {
 
 function find (condition: Condition) {
   const answers = _.get(condition, ['result', 'answers'], [])
-  return _.find(answers, { index: +condition.answer, value: true })
+  return _.find(answers, { index: +condition.answer })
 }
 
 export default {
