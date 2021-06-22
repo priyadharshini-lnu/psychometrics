@@ -36,7 +36,7 @@ module Administration
           Administration::CampaignPolicy,
           {
             user: current_user,
-            membership: instance_options[:membership]
+            project_id: project.id
           },
           object,
           [

@@ -7,7 +7,6 @@ module Administration
 
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
-      before_action :set_membership
       before_action :set_campaign, only: %i[
         show update assessments_and_reports fetch_campaign_options
         fetch_campaign_instructions update_campaign_options destroy
@@ -39,7 +38,7 @@ module Administration
           Administration::CampaignPolicy,
           {
             user: current_user,
-            membership: @user_membership
+            project_id: params[:project_id]
           },
           nil,
           %w[create]
@@ -128,16 +127,10 @@ module Administration
         authorize @campaign || Campaign
       end
 
-      def set_membership
-        project = Client.find_by(id: params[:project_id])
-        membership_client_id = current_user.is?(:client_admin) ? project.parent_id : project.id
-        @user_membership = Membership.find_by(client_id: membership_client_id)
-      end
-
       def pundit_user
         {
           user: current_user,
-          membership: @user_membership
+          project_id: params[:project_id]
         }
       end
 

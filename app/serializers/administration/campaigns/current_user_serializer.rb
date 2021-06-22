@@ -12,7 +12,7 @@ module Administration
       def permissions
         permissions = GetPermissionsHash.call!(
           Administration::CampaignPolicy,
-          { user: object, membership: instance_options[:current_membership] },
+          { user: object, project_id: instance_options[:project_id] },
           nil,
           [
             'create',

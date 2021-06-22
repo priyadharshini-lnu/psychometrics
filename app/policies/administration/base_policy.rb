@@ -2,11 +2,12 @@
 
 module Administration
   class BasePolicy
-    attr_reader :user, :membership, :record
+    attr_reader :user, :project_id, :membership, :record
 
     def initialize(context, record, _extra = {})
       @user = context[:user]
-      @membership = context[:membership]
+      @project_id = context[:project_id]
+      @membership = user_membership
       @record = [record].flatten.last
     end
 
@@ -74,6 +75,14 @@ module Administration
       def resolve
         [scope].flatten.last
       end
+    end
+
+    private
+
+    def user_membership
+      project = Client.find_by(id: @project_id)
+      membership_client_id = @user.is?(:client_admin) ? project.parent_id : project.id
+      @user_membership ||= Membership.find_by(client_id: membership_client_id)
     end
   end
 end

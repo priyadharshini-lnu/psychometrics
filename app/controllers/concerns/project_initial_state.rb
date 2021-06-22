@@ -15,7 +15,7 @@ module ProjectInitialState
     end
     @init_state = {
       currentUser: ::Administration::Campaigns::CurrentUserSerializer.
-                  new(current_user, current_membership: current_membership).
+                  new(current_user, current_membership: current_membership, project_id: project.id).
                   to_h,
       config: {
         availableLocales: I18n.available_locales,
