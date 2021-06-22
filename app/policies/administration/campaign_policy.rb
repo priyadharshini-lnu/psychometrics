@@ -3,7 +3,7 @@
 module Administration
   class CampaignPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin) || @membership.has_grant?(:campaigns, :view)
+      @user.is?(:superadmin) || @user.has_user_membership_grant?(:campaigns, :view, @project_id)
     end
 
     def show?

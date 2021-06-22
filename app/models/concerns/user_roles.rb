@@ -67,6 +67,12 @@ module UserRoles
     memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 
+  def has_user_membership_grant?(scope, grant, project_id = nil)
+    project = Client.find_by(id: project_id)
+    project_client_ids = is?(:project_admin) ? [project.id, project.parent_id] : [project.parent_id]
+    memberships.where(client_id: project_client_ids.compact).any? { |m| m.has_grant?(scope, grant) }
+  end
+
   def superadmin?
     role == SUPER_ADMIN_ROLE
   end
