@@ -135,7 +135,7 @@ Rails.application.routes.draw do
             post :bulk_download
           end
           member do
-            get :export
+            post :export
             patch :toggle_user_access
             patch :toggle_assessor_access
           end
