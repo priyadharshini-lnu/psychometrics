@@ -13,7 +13,7 @@ class NotInPast {
   }
 
   validate ([{ value }]) {
-    const date = moment(value, this.question.props.dateFormat)
+    const date = moment(value, this.question.props.dateFormat).endOf('day')
     const now = moment()
     if (now > date) {
       return {
