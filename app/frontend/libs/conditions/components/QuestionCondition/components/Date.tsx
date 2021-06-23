@@ -25,6 +25,10 @@ export const Date: FC<Props> = ({ preview, condition, onChange }) => {
     condition.predicate = e.currentTarget.value
     onChange(condition)
   }
+  const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
+    condition.value = e.currentTarget.value
+    onChange(condition)
+  }
 
   const renderSelect = () => {
     if (preview) {
@@ -38,10 +42,30 @@ export const Date: FC<Props> = ({ preview, condition, onChange }) => {
     )
   }
 
+
+  const renderInput = () => {
+    if (preview) {
+      return <div>{condition.value}</div>
+    }
+    if (condition.predicate
+       && !condition.predicate.match(/(NotInPast|NotInFuture|Empty|NotEmpty|Displayed|NotDisplayed)/)) {
+      return (
+        <input
+          type="text"
+          className="form-control"
+          defaultValue={condition.value}
+          onChange={changeValue}
+        />
+      )
+    }
+    return <div className={styles.empty} />
+  }
+
+
   return (
     <div className={!preview ? styles.predicates : undefined}>
       {renderSelect()}
-      <div className={styles.empty} />
+      {renderInput()}
     </div>
   )
 }
