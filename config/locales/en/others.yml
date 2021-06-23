@@ -2309,7 +2309,7 @@ en:
     modals:
       actions:
         allow_edit:
-          name: Alow Edit
+          name: Allow Edit
           success_message: Assessment %{name} is ready for edit
       remove:
         content: Are you sure you want to remove assessment '%{name}'?

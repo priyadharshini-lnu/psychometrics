@@ -29,7 +29,7 @@ module Administration
     end
 
     def allow_edit?
-      !record&.assessment&.external? && !record.timed? && record.completed? &&
+      !record.assessment.external? && !record.assessment.agile? && !record.timed? && record.completed? &&
         (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users))
     end
   end
