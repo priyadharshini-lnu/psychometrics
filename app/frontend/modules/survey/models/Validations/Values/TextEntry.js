@@ -29,4 +29,16 @@ export default {
   Password (condition) {
     return find(condition)
   },
+
+  DateEntry (condition) {
+    if (Custom[condition.answer]) {
+      return Custom[condition.answer](condition)
+    }
+  },
+
+  DateTimeEntry (condition) {
+    if (Custom[condition.answer]) {
+      return Custom[condition.answer](condition)
+    }
+  },
 }

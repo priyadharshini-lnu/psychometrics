@@ -5,8 +5,6 @@ import moment, { Moment } from 'moment'
 import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
 
 import { getIn } from 'utils/immutable'
-import useUpdate from 'hooks/useUpdate'
-
 import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
 
 interface Props {
@@ -14,8 +12,6 @@ interface Props {
 }
 
 const DateEntryPreview: FC<Props> = ({ model }) => {
-  const forceUpdate = useUpdate()
-
   const {
     result: { answers },
     props: { dateFormat },
@@ -24,7 +20,8 @@ const DateEntryPreview: FC<Props> = ({ model }) => {
   const handleAnswerChange = (value: Moment | null) => {
     if (value) {
       model.result.answer(value.format(dateFormat))
-      forceUpdate()
+    } else {
+      model.result.answer(null)
     }
   }
 

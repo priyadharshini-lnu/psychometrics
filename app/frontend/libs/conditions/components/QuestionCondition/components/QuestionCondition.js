@@ -18,6 +18,7 @@ const Conditions = {
 
 const FormTypes = {
   Date,
+  DateTime: Date,
   Input,
   TextArea: Input,
   Select,

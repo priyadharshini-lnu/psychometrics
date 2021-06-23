@@ -10,7 +10,7 @@ const TEXT_FIELD_INPUTS = {
   Checkbox: 'bool',
   Select: 'input',
   MultiSelect: 'input',
-  Date: 'input',
+  Date: 'date',
 }
 
 class AnswerManager {
@@ -118,6 +118,14 @@ class AnswerManager {
     })
   }
 
+  customConditionTextEntryDates () {
+    return [{
+      value: 'TextField',
+      label: 'Date',
+      type: 'date',
+    }]
+  }
+
   getAnswers () {
     if (!this.config || !this.config.conditions) {
       return
@@ -146,6 +154,9 @@ class AnswerManager {
       case 'TextEntry': {
         if (this.question.props.type === 'Form') {
           return this.customTextEntryContent()
+        }
+        if (this.question.props.type === 'DateEntry' || this.question.props.type === 'DateTimeEntry') {
+          return this.customConditionTextEntryDates()
         }
         break
       }

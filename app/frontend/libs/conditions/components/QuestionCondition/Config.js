@@ -12,6 +12,8 @@ export const AdditionalConditions = {
   Off: { value: 'Off', label: 'Off', type: 'bool' },
   OffCount: { value: 'OffCount', label: 'Off (Count)', type: 'input' },
   NotApplicable: { value: 'not_applicable', label: 'Not Applicable', type: 'bool' },
+  NotInPast: { label: 'Not In Past', type: 'date' },
+  NotInFuture: { label: 'Not In Future', type: 'date' },
 }
 
 const Config = {
@@ -61,6 +63,12 @@ const Config = {
       },
       Form: {
         collection: 'choicesTexts', type: 'any',
+      },
+      DateEntry: {
+        additional: [AdditionalConditions.NotInPast, AdditionalConditions.NotInFuture],
+      },
+      DateTimeEntry: {
+        additional: [AdditionalConditions.NotInPast, AdditionalConditions.NotInFuture],
       },
     },
   },
