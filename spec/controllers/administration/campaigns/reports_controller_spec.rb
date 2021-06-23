@@ -140,6 +140,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         assessor_form_name
         assessor_form_id
         permissions
+        available_locales
+        all_locales
       ]
     )
     expect(assessment_response).to include({

@@ -170,7 +170,7 @@ export default function Evaluation ({
             <Col flex="none">
               <StatusDropdown />
             </Col>
-            {availableTranslations && availableTranslations.length > 0 && (
+            {availableTranslations && availableTranslations.length > 1 && (
               <Col flex="none">
                 <div className="mlm">
                   <Language

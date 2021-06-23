@@ -96,6 +96,38 @@ const AssessmentList: React.FC<Props> = ({
               </a>
             )}
           />
+
+          <Column
+            title={I18n.t('campaign_assessment.column.locales')}
+            key="availableLocales"
+            render={({
+              availableLocales, id, isExternal, allLocales,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              if (!permissions.updateAvailableLocales) {
+                return _.join(availableLocales, '')
+              }
+              return (
+                <a
+                  onClick={
+                    () => openModal('UpdateLocalesModal',
+                      {
+                        projectId: parsedProjectId,
+                        campaignId: parsedCampaignId,
+                        campaignAssessmentId: id,
+                        availableLocales,
+                        allLocales,
+                      })
+                  }
+                >
+                  {_.isEmpty(availableLocales) ? I18n.t('frontend.manage') : _.join(availableLocales, ', ')}
+                </a>
+              )
+            }}
+          />
+
           {permissions.enableUniversalLink
             && (
             <Column

@@ -94,6 +94,7 @@ module Administration
           nil,
           %w[
             enable_universal_link
+            update_available_locales
           ]
         )
       end

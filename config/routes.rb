@@ -202,6 +202,7 @@ Rails.application.routes.draw do
             get :norms
             post :update_norm
             put :update_assessor_form
+            put :update_available_locales
             post :rescore_responses
           end
         end

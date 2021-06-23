@@ -604,7 +604,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     norm_type character varying,
     campaign_assessment_group_id bigint,
-    assessor_form_id bigint
+    assessor_form_id bigint,
+    available_locales text[] DEFAULT '{}'::text[]
 );
 
 
@@ -8089,6 +8090,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210429142157'),
 ('20210509083519'),
 ('20210512100320'),
-('20210610160411');
+('20210610160411'),
+('20210623082242');
 
 

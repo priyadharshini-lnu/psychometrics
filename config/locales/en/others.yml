@@ -867,6 +867,7 @@ en:
     column:
       assessment_name: Assessment name
       assessor_form: Assessor Form
+      locales: Locales
       norm: Norm
       status: Status
       universal_link: Universal link
@@ -896,6 +897,10 @@ en:
         success_msg: Assessor Form successfully uploaded
         title: Update Assessor Form
         update: Update
+      update_locales:
+        select_locales: Select Locales
+        success_msg: Locales successfully updated
+        title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
         select_norm: Select Norm
@@ -1041,6 +1046,7 @@ en:
       delete: Delete
       remove: Remove
       reset: Reset
+      update: Update
     column:
       action: Action
       category: Category
