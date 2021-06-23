@@ -26,7 +26,10 @@ class UsersResultDecorator < BaseDecorator
   end
 
   def selected_locale
-    nil
+    return nil unless object.completed_at
+
+    locale = object.selected_locale || I18n.default_locale
+    I18n.t("languages.#{locale}", locale: I18n.default_locale)
   end
 
   def status
