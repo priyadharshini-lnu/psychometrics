@@ -86,6 +86,14 @@ module Administration
         'clients.projects'
       end
 
+      def pundit_user
+        {
+          user: current_user,
+          project_id: params[:client_id],
+          for_project: true
+        }
+      end
+
       private
 
       def init_breadcrumbs

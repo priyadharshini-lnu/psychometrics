@@ -13,7 +13,20 @@ module Administration
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+    def pundit_user
+      {
+        user: current_user,
+        project_id: client_id
+      }
+    end
+
     private
+
+    def client_id
+      client_id = params[:project_id] || params[:client_id]
+      client_id ||= params[:id] if resource_class&.name == 'Client'
+      client_id
+    end
 
     def user_not_authorized
       render plain: I18n.t('errors.forbidden'), status: 403

@@ -3,7 +3,7 @@
 module Administration
   class LicensePolicy < Administration::BasePolicy
     def overview?
-      @user.is?(:superadmin) || @user.has_grant?(:clients, :view_licenses)
+      @user.is?(:superadmin) || @user.has_client_grant?(:clients, :view_licenses, @project_id)
     end
 
     def new?
@@ -15,7 +15,7 @@ module Administration
     end
 
     def index?
-      super || @user.has_grant?(:clients, :view_licenses)
+      super || @user.has_client_grant?(:clients, :view_licenses, @project_id)
     end
   end
 end

@@ -3,7 +3,11 @@
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:clients, :view)
+      if @for_project
+        super || @user.has_client_grant?(:projects, :view, @project_id)
+      else
+        super || @user.has_grant?(:clients, :view)
+      end
     end
 
     def view_licenses?
@@ -11,8 +15,8 @@ module Administration
     end
 
     def copy?
-      if record.prime_project?
-        record.active? && (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage))
+      if record.project?
+        record.active? && (@user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id))
       else
         record.active? && @user.is?(:superadmin)
       end
