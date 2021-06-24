@@ -9,9 +9,10 @@ import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry
 
 interface Props {
   model: PreviewModel
+  readOnly: boolean
 }
 
-const DateEntryPreview: FC<Props> = ({ model }) => {
+const DateEntryPreview: FC<Props> = ({ model, readOnly }) => {
   const {
     result: { answers },
     props: { dateFormat },
@@ -29,9 +30,11 @@ const DateEntryPreview: FC<Props> = ({ model }) => {
 
   return (
     <DatePicker
+      allowClear
+      disabled={readOnly}
+      format={dateFormat || DATE_FORMAT_OPTIONS[0].value}
       value={value ? moment(value, dateFormat) : null}
       onChange={handleAnswerChange}
-      format={dateFormat || DATE_FORMAT_OPTIONS[0].value}
     />
   )
 }

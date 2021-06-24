@@ -33,7 +33,7 @@ const Form: React.FC<Props> = ({
     return formTypes[i] || INPUT_TYPE
   }
 
-  const changeAnswer = (i: number, value: string | string[]): void => {
+  const changeAnswer = (i: number, value: string | string[] | null): void => {
     model.result.answer(i, value)
   }
 

@@ -4,7 +4,7 @@ import moment, { Moment } from 'moment'
 
 interface Props {
   value: string
-  onChange: (value: string) => void
+  onChange: (value: string | null) => void
   dateFormat: string
   readOnly: boolean
 }
@@ -15,20 +15,21 @@ export const DateEntry: React.FC<Props> = ({
   dateFormat,
   readOnly,
 }) => {
-  const handleOnChange = (date: Moment | null): void => {
-    const newValue = date ? date.format(dateFormat) : ''
-    onChange(newValue)
+  const handleAnswerChange = (value: Moment | null): void => {
+    if (value) {
+      onChange(value.format(dateFormat))
+    } else {
+      onChange(null)
+    }
   }
-
-  const dateValue = value ? moment(value, dateFormat) : moment(moment.now())
 
   return (
     <DatePicker
+      allowClear
       disabled={readOnly}
-      allowClear={false}
       format={dateFormat}
-      onChange={handleOnChange}
-      value={dateValue}
+      value={value ? moment(value, dateFormat) : null}
+      onChange={handleAnswerChange}
     />
   )
 }
