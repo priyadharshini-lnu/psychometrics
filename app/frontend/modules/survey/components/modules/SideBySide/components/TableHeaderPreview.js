@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
+import cs from 'classnames'
 import styles from '../styles.scss'
 
 const TableHeaderPreview = ({ model, I18n }) => {
@@ -23,7 +24,9 @@ const TableHeaderPreview = ({ model, I18n }) => {
       <tr className={styles.answersRow}>
         <th className={`${styles.header} ${styles.column} ${styles.firstColumn}`} />
         {_.times(scalePoints, i => (
-          <th key={i} className={styles.column}>
+          <th key={i} className={cs(styles.column, { invisible: columnsData[i].isHeaderHidden })}>
+            {!columnsData[i].isHeaderHidden
+            && (
             <div className={styles.answers}>
               {_.times(columnsData[i].answers, j => (
                 <div className={styles.answer} key={j}>
@@ -34,6 +37,8 @@ const TableHeaderPreview = ({ model, I18n }) => {
                 </div>
               ))}
             </div>
+            )
+          }
           </th>
         ))}
       </tr>

@@ -76,6 +76,7 @@ const DefaultAnswers = {
       text: '',
       answers: 2,
       answersTexts: ['', ''],
+      isHeaderHidden: false,
     }, {
       type: 'Likert',
       likertType: 'SingleAnswer',
@@ -83,6 +84,7 @@ const DefaultAnswers = {
       text: '',
       answers: 2,
       answersTexts: ['', ''],
+      isHeaderHidden: false,
     }],
     questionText: 'Click to write the question text',
     repeatHeaders: 'None',

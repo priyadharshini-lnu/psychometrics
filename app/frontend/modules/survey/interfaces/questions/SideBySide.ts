@@ -19,6 +19,13 @@ export interface PreviewModel
   }
 }
 
+export enum TextType {
+  'Short' = 'Short',
+  'Medium' = 'Medium',
+  'Long' = 'Long',
+  'Essay' = 'Essay'
+}
+
 interface Props {
   choices: number
   scalePoints: number
@@ -27,10 +34,11 @@ interface Props {
   columnsData: Array<{
     type: 'Likert' | 'Text'
     likertType: 'SingleAnswer' | 'DropDown' | 'MultipleAnswer'
-    textType: 'Short' | 'Medium' | 'Long' | 'Essay'
+    textType: TextType
     text: string
     answers: number
     answersTexts: Array<string>
+    isHeaderHidden: boolean
   }>
   hideHeaders: boolean
   repeatHeaders: 'None' | 'Middle' | 'Bottom' | 'Both' | 'All'

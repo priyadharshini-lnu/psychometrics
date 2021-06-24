@@ -14,10 +14,10 @@ interface Props {
 const SideBySide: FC<Props> = ({ model }) => {
   const forceUpdate = useForceUpdate()
 
-  const { props: { questionText }, changeProps } = model
+  const { props: { questionText } } = model
 
   const handleOnTextChange = (value: string) => {
-    changeProps({ questionText: value })
+    model.changeProps({ questionText: value })
     forceUpdate()
   }
 

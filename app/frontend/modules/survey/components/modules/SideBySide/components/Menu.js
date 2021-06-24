@@ -1,5 +1,6 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
+import { Checkbox } from 'antd'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
@@ -108,6 +109,13 @@ export class Menu extends Component {
     this.update()
   }
 
+  handleColumnGroupHeaderVisibility = (event) => {
+    const { data } = this.props
+    const { target: { checked } } = event
+    data.isHeaderHidden = checked
+    this.update()
+  }
+
   renderLikertMenu () {
     const { data } = this.props
     return (
@@ -165,6 +173,11 @@ export class Menu extends Component {
         <MenuItem onSelect={this.moveLeft}>
           <span className={`fa fa-arrow-left ${styles.menuicon}`} />
           Move Left
+        </MenuItem>
+        <MenuItem>
+          <Checkbox checked={data.isHeaderHidden} onChange={this.handleColumnGroupHeaderVisibility}>
+            Hide header
+          </Checkbox>
         </MenuItem>
         <MenuItem divider style={{ padding: '2px 0 0' }} />
         <MenuItem onSelect={e => this.changeType('Likert', e)}>
