@@ -28,6 +28,10 @@ module Administration
       update?
     end
 
+    def update_available_locales?
+      update?
+    end
+
     def can_configure_universal_links?
       !@record.external? && @user.is?(:superadmin)
     end

@@ -10,20 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -618,7 +604,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     norm_type character varying,
     campaign_assessment_group_id bigint,
-    assessor_form_id bigint
+    assessor_form_id bigint,
+    available_locales text[] DEFAULT '{}'::text[]
 );
 
 
@@ -8104,6 +8091,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210509083519'),
 ('20210512100320'),
 ('20210610160411'),
-('20210616195712');
+('20210616195712'),
+('20210623082242');
 
 

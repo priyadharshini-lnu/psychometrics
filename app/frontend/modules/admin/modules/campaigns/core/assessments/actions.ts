@@ -10,6 +10,7 @@ export const UPDATE_NORM = 'campaigns/assessments/UPDATE_NORM'
 export const UPDATE_ASSESSOR_FORM = 'campaigns/assessments/UPDATE_ASSESSOR_FORM'
 export const RESCORE_RESPONSES = 'campaigns/assessments/RESCORE_RESPONSES'
 export const REMOVE = 'campaigns/assessments/REMOVE'
+export const UPDATE_AVAILABLE_LOCALES = 'campaigns/userAssessments/UPDATE_AVAILABLE_LOCALES'
 
 export const activateUniversalLink = (campaignId: string, id: number) => ({
   type: ACTIVATE_UNIVERSAL_LINK,
@@ -104,5 +105,17 @@ export const updateAssessorForm = (campaignId: number, assessmentId: number, bod
     body: { ...body, id: assessmentId },
     loader: true,
     typedResponse: UpdateAssessorFormTR,
+  },
+})
+
+export const updateAvailableLocales = (
+  campaignId: number, assessmentId: number, body: { availableLocales: string[] },
+) => ({
+  type: UPDATE_AVAILABLE_LOCALES,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_available_locales`,
+    body: { ...body, id: assessmentId },
+    loader: true,
   },
 })

@@ -12,9 +12,6 @@ export default function Language ({ selectedLanguage, availableTranslations }) {
 
   const LangMenu = () => (
     <Menu onClick={handleLanguageChange}>
-      <Menu.Item key="en">
-        {I18n.t('languages.en')}
-      </Menu.Item>
       {availableTranslations.map(lang => (
         <Menu.Item key={lang}>
           {I18n.t(`languages.${lang}`)}

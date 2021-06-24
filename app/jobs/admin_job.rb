@@ -20,7 +20,8 @@ class AdminJob < ApplicationJob
     bulk_regenerate_reports: AdminJobs::BulkRegenerateReports,
     bulk_regenerate_user_reports: AdminJobs::BulkRegenerateUserReports,
     import_datasheet: AdminJobs::ImportDatasheet,
-    copy_dimension: AdminJobs::CopyDimension
+    copy_dimension: AdminJobs::CopyDimension,
+    export_report_data: AdminJobs::ExportReportData
   }.freeze
 
   def perform(record)

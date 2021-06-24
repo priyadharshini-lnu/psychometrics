@@ -578,6 +578,7 @@ en:
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
         copy_dimension: Copy Dimension
+        export_report_data: Export report data
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
         import_raw_data: Import Raw Data
@@ -599,6 +600,8 @@ en:
     close: Close
     details: Details
     errors: Errors
+    export_report_data:
+      title: Link to download report data
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
@@ -864,6 +867,7 @@ en:
     column:
       assessment_name: Assessment name
       assessor_form: Assessor Form
+      locales: Locales
       norm: Norm
       status: Status
       universal_link: Universal link
@@ -893,6 +897,10 @@ en:
         success_msg: Assessor Form successfully uploaded
         title: Update Assessor Form
         update: Update
+      update_locales:
+        select_locales: Select Locales
+        success_msg: Locales successfully updated
+        title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
         select_norm: Select Norm
@@ -913,6 +921,7 @@ en:
   campaign_report:
     actions:
       bulk_download: Bulk Download
+      export_data: Export Data
     column:
       assessor_access: Assessor Access
       report_bundle: Report Bundle
@@ -928,6 +937,7 @@ en:
       report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_successful: Bulk report download job scheduled successfully
+      export_report_data_scheduled: Report data export job scheduled successfully
     modals:
       remove:
         apply: Apply this changes to existing users in this campaign.
@@ -1036,6 +1046,7 @@ en:
       delete: Delete
       remove: Remove
       reset: Reset
+      update: Update
     column:
       action: Action
       category: Category

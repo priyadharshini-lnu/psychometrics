@@ -106,7 +106,7 @@ export default function UserAssessment ({
         </Content>
       </div>
       <Content className="fluid-container">
-        {availableTranslations && availableTranslations.length > 0 && (
+        {availableTranslations && availableTranslations.length > 1 && (
           <Row type="flex" justify="end" className="mtm mrm lang-row">
             <Col>
               <Language

@@ -18,13 +18,14 @@ class AdminJobRecord < ApplicationRecord
     bulk_regenerate_user_reports: 7,
     import_assessors: 8,
     import_datasheet: 9,
-    copy_dimension: 10
+    copy_dimension: 10,
+    export_report_data: 11
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }
 
   def progress
-    return 100 if completed?
+    return 100 if completed? || total_tasks.zero?
 
     (completed_tasks / total_tasks.to_f * 100).floor
   end
