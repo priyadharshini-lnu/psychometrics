@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, Switch,
+  Table, Menu, Row, Col, Dropdown, Switch, message,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -29,8 +29,15 @@ const ReportList: React.FC<Props> = ({
   openModal,
   selectRecords,
   toggleAssessorAccess,
+  exportData,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
+
+  const handleExportData = (campaignId: number, reportId: number) => {
+    exportData(campaignId, reportId).then(() => {
+      message.success(I18n.t('campaign_report.messages.export_report_data_scheduled'))
+    })
+  }
 
   return (
     <Row>
@@ -90,6 +97,7 @@ const ReportList: React.FC<Props> = ({
                       campaignReportId: report.id,
                       reportId: report.reportId,
                       openModal,
+                      exportData: handleExportData,
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -110,13 +118,14 @@ const ReportList: React.FC<Props> = ({
 interface ActionMenuProps {
   projectId: string
   campaignId: number
-  reportId: string
+  reportId: number
   campaignReportId: number
   openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
+  exportData(campaignId: number, reportId: number): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, reportId, campaignReportId, openModal,
+  campaignId, reportId, campaignReportId, openModal, exportData,
 }) => (
   <Menu>
     <Menu.Item key="export">
@@ -124,13 +133,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         role="button"
         tabIndex={-1}
       >
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => exportData(campaignId, reportId)}
         >
-          Export Data
-        </a>
+          {I18n.t('campaign_report.actions.export_data')}
+        </div>
       </div>
     </Menu.Item>
     <Menu.Item key="delete">

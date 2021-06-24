@@ -97,6 +97,13 @@ module Administration
         }
       end
 
+      def update_available_locales
+        campaign_assessment.update!(available_locales: params[:available_locales] || [])
+        render json: {
+          available_locales: campaign_assessment.available_locales
+        }
+      end
+
       private
 
       def assessment

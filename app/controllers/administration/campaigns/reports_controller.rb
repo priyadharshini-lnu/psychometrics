@@ -36,13 +36,9 @@ module Administration
       end
 
       def export
-        report = Report.find(params[:id])
-        campaign = Campaign.find(params[:new_campaign_id])
-        xlsx = ::Reports::ExportData.call!(report, campaign)
+        AdminJob.call(:export_report_data, { report_id: params[:id], campaign_id: campaign.id }, current_user)
 
-        respond_to do |format|
-          format.xlsx { send_data xlsx.to_stream.read, filename: "report-#{report.id}-data.xlsx" }
-        end
+        head :ok
       end
 
       def assessments_and_reports
@@ -98,6 +94,7 @@ module Administration
           nil,
           %w[
             enable_universal_link
+            update_available_locales
           ]
         )
       end

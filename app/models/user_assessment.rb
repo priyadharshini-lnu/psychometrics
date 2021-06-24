@@ -48,6 +48,15 @@ class UserAssessment < ApplicationRecord
     %i[filter_by_subject_or_assessment]
   end
 
+  def available_locales
+    assessment_locales = assessment.agile.translations.keys if assessment.agile?
+    assessment_locales ||= ['en'] + ::Translation.available_translation_for_assessment(assessment.id)
+    campaign_assessment_locales = campaign_assessment&.available_locales
+    return assessment_locales if campaign_assessment_locales.blank?
+
+    (campaign_assessment_locales & assessment_locales).presence || ['en']
+  end
+
   def norm_data
     { 'id' => norm_id }
   end
