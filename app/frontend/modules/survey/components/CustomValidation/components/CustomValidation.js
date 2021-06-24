@@ -49,7 +49,7 @@ export class CustomValidation extends Component {
     }
     question.validation.customValidations = [...question.validation.customValidations, {
       uuid: uuid(),
-      conditions: [new Condition()],
+      conditions: [new Condition({ subject: question.id })],
       message: '',
     }]
     this.forceUpdate()
