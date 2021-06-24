@@ -115,7 +115,7 @@ _.extend(Custom.prototype, {
   },
 
   MatchesRegexp () {
-    return this.resultValue().toString().test(new RegExp(this.value))
+    return this.resultValue().toString().match(new RegExp(this.value))
   },
 
   NotInPast () {
