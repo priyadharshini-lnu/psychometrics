@@ -15,6 +15,18 @@ export class CustomValidation extends Component {
     error: false,
   }
 
+  componentDidMount () {
+    const { question } = this.props
+    if (!question.validation.customValidations?.length) {
+      question.validation.customValidations = [{
+        uuid: uuid(),
+        conditions: [new Condition({ subject: question.id })],
+        message: '',
+      }]
+      this.forceUpdate()
+    }
+  }
+
   save = () => {
     const { question, close } = this.props
     if (_.some(question.validations, v => !v.message)) {
@@ -44,9 +56,6 @@ export class CustomValidation extends Component {
 
   addValidation = () => {
     const { question } = this.props
-    if (!question.validation.customValidations) {
-      question.validation.customValidations = []
-    }
     question.validation.customValidations = [...question.validation.customValidations, {
       uuid: uuid(),
       conditions: [new Condition({ subject: question.id })],
