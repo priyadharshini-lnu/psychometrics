@@ -70,4 +70,10 @@ export const DATE_FORMAT_OPTIONS = [
     ),
     value: DateFormat['YYYY-MM'],
   },
+  {
+    label: I18n.t(
+      'administration.survey_builder.property_panel.date_format_options.yyyy',
+    ),
+    value: DateFormat.YYYY,
+  },
 ]

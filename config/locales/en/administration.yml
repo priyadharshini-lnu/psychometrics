@@ -3101,6 +3101,7 @@ en:
         date_format_options:
           dd_mm_yyy: DD-MM-YYYY
           mm_yyyy: MM-YYYY
+          yyyy: YYYY
           yyyy_mm: YYYY-MM
           yyyy_mm_dd: YYYY-MM-DD
         duration_options:

@@ -51,10 +51,11 @@ interface Props {
 }
 
 export enum DateFormat {
-  'MM-YYYY' = 'MM-YYYY',
-  'YYYY-MM' = 'YYYY-MM',
   'DD-MM-YYYY' = 'DD-MM-YYYY',
   'YYYY-MM-DD' = 'YYYY-MM-DD',
+  'MM-YYYY' = 'MM-YYYY',
+  'YYYY-MM' = 'YYYY-MM',
+  'YYYY' = 'YYYY'
 }
 
 interface ModuleConfig {

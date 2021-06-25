@@ -2,6 +2,8 @@ import React from 'react'
 import { DatePicker } from 'antd'
 import moment, { Moment } from 'moment'
 
+import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
+
 interface Props {
   value: string
   onChange: (value: string | null) => void
@@ -27,6 +29,7 @@ export const DateEntry: React.FC<Props> = ({
     <DatePicker
       allowClear
       disabled={readOnly}
+      picker={getCorrectPickerFromDateFormat(dateFormat)}
       format={dateFormat}
       value={value ? moment(value, dateFormat) : null}
       onChange={handleAnswerChange}

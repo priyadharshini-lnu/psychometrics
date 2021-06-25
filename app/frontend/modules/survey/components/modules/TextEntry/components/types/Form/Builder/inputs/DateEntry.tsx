@@ -8,6 +8,7 @@ import { DownOutlined } from '@ant-design/icons'
 import { DateFormat } from 'modules/survey/interfaces/questions/TextEntry'
 
 import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
 
 const { I18n } = window
 
@@ -26,11 +27,20 @@ export const DateEntry: React.FC<Props> = ({
     }
   }
 
+  // Can contain list of all active options in future too
+  const allSelectedOptions: string[] = [dateFormat]
+
   const DateEntryMenu = (
-    <Menu onClick={handleMenuItemClick} triggerSubMenuAction="click">
+    <Menu
+      onClick={handleMenuItemClick}
+      triggerSubMenuAction="click"
+      selectedKeys={allSelectedOptions}
+    >
       <Menu.SubMenu
         key="date-format"
-        title={I18n.t('administration.survey_builder.property_panel.date_format')}
+        title={I18n.t(
+          'administration.survey_builder.property_panel.date_format',
+        )}
       >
         {DATE_FORMAT_OPTIONS.map(dateFormatOption => (
           <Menu.Item
@@ -46,7 +56,11 @@ export const DateEntry: React.FC<Props> = ({
 
   return (
     <Space direction="horizontal">
-      <DatePicker format={dateFormat} />
+      <DatePicker
+        size="middle"
+        format={dateFormat}
+        picker={getCorrectPickerFromDateFormat(dateFormat)}
+      />
       <Dropdown overlay={DateEntryMenu} trigger={['click']}>
         <Button type="link">
           {I18n.t('administration.survey_builder.builder_area.options')}
