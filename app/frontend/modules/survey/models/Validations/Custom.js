@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import moment from 'moment'
 import Selectors from './Selectors'
 import Values from './Values'
 
@@ -114,9 +115,20 @@ _.extend(Custom.prototype, {
   },
 
   MatchesRegexp () {
-    return this.resultValue().toString().test(new RegExp(this.value))
+    return this.resultValue().toString().match(new RegExp(this.value))
   },
 
+  NotInPast () {
+    const date = moment(this.resultValue(), this.question.props.dateFormat).endOf('day')
+    const now = moment()
+    return now < date
+  },
+
+  NotInFuture () {
+    const date = moment(this.resultValue(), this.question.props.dateFormat).startOf('day')
+    const now = moment()
+    return now > date
+  },
 })
 
 export default Custom

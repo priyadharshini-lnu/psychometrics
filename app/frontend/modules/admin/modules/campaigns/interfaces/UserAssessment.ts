@@ -16,5 +16,6 @@ export default interface UserAssessment {
   permissions: {
     updateAdditionalTime: boolean
     resetResults: boolean
+    allowEdit: boolean
   }
 }

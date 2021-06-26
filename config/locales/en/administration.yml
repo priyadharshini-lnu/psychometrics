@@ -3092,9 +3092,18 @@ en:
       toggle_status:
         successfully: Sub-Factor was successfully updated.
     survey_builder:
+      builder_area:
+        options: Options
       property_panel:
         allow_content_copy: Allow content copying
         answer_type: Answer type
+        date_format: Date format
+        date_format_options:
+          dd_mm_yyy: DD-MM-YYYY
+          mm_yyyy: MM-YYYY
+          yyyy: YYYY
+          yyyy_mm: YYYY-MM
+          yyyy_mm_dd: YYYY-MM-DD
         duration_options:
           '10': 10s
           '120': 2min
@@ -3104,6 +3113,7 @@ en:
           '60': 1min
           '600': 10min
         max_duration: Max duration
+        question_description: Row descriptions
         validation_response_type: Validation response type
         voice_dictation: Voice dictation
     table:

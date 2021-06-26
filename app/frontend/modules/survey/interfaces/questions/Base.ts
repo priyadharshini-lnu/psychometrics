@@ -1,9 +1,36 @@
-export interface BaseBuilderModel extends BaseModel, ModelProps<BaseProps> {
-  update: () => void
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+export interface BaseBuilderModel<
+  P = {},
+  MC = {},
+  AG = Record<string, number | string>
+> extends BaseModel<P, MC, AG> {
+  update(): void
+  changeArrayProps(
+    { collection, i, val }: { collection: string; i: number; val: unknown },
+    undo?: boolean
+  ): void
+  changeProps(props: Partial<P & BaseProps>): void
 }
 
-export interface BasePropertiesModel extends BaseModel, ModelProps<BaseProps> {
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+export interface BasePropertiesModel<
+  P = {},
+  MC = {},
+  AG = Record<string, number | string>
+> extends BaseModel<P, MC, AG> {
   update: () => void
+  changeArrayProps(
+    { collection, i, val }: { collection: string; i: number; val: unknown },
+    undo?: boolean
+  ): void
   changeReqValidations: (
     newProps: {
       enabled?: boolean
@@ -11,12 +38,29 @@ export interface BasePropertiesModel extends BaseModel, ModelProps<BaseProps> {
     },
     undo?: boolean
   ) => void
+  changeProps(props: Partial<P & BaseProps>): void
+  resetDefaultValues(): void
+  setChoices(val: number, undo?: boolean): void
+  setFormFields(val: number): void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BasePreviewModel extends BaseModel, ModelProps<BaseProps> {}
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+export interface BasePreviewModel<
+  P = {},
+  MC = {},
+  AG = Record<string, number | string>
+> extends BaseModel<P, MC, AG> {}
 
-interface BaseModel {
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+interface BaseModel<P = {}, MC = {}, AG = Record<string, number | string>> {
   id: number
   block_id: number
   name: string
@@ -24,7 +68,7 @@ interface BaseModel {
   type: QuestionTypes
   validation: {
     type: string
-    args: Record<string, number | string>
+    args: AG
   }
   requiredValidation: {
     enabled: boolean
@@ -32,20 +76,23 @@ interface BaseModel {
   }
   moduleConfig: {
     validations: boolean
-  }
+  } & MC
+  props: BaseProps & P
 }
 
-export interface ModelProps<T> {
-  props: T
-}
-
-export interface ChangeProps<T> {
-  changeProps(props: Partial<T>): void
-}
-
-export interface BaseProps {
+interface BaseProps {
   questionText: string
+  choices: number
   type: string
 }
 
-type QuestionTypes = 'AudioResponse' | 'TextEntry' | 'VideoResponse'
+type QuestionTypes =
+  | 'AudioResponse'
+  | 'TextEntry'
+  | 'VideoResponse'
+  | 'SingleAnswer'
+  | 'MultipleAnswer'
+  | 'Dropdown'
+  | 'SelectBox'
+  | 'MultiSelectBox'
+  | 'SideBySide'

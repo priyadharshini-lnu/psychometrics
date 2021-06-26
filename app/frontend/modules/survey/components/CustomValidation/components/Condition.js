@@ -23,8 +23,8 @@ export class Condition extends Component {
   }
 
   remove = () => {
-    const { onRemove, condition, question } = this.props
-    if (question.validation.args.conditions.length > 1) {
+    const { onRemove, condition, validation } = this.props
+    if (validation.conditions.length > 1) {
       onRemove(condition)
     }
   }
@@ -36,8 +36,8 @@ export class Condition extends Component {
   }
 
   renderLogicType () {
-    const { condition, question } = this.props
-    const first = condition === question.validation.args.conditions[0]
+    const { condition, validation } = this.props
+    const first = condition === validation.conditions[0]
     if (first) {
       return (
         <span className={styles.keyword}>if</span>

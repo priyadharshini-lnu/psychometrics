@@ -1,8 +1,8 @@
 import React from 'react'
 import { Select as BaseSelect, Dropdown, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
+import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 import styles from '../../../FormStyle.scss'
-import { Question } from '../../../interfaces'
 import OptionList from './OptionList'
 
 const { Option } = BaseSelect
@@ -10,7 +10,7 @@ const { Option } = BaseSelect
 const MULTIPLE = 'multiple'
 
 interface Props {
-  model: Question
+  model: BuilderModel
   index: number
   multi?: boolean
 }

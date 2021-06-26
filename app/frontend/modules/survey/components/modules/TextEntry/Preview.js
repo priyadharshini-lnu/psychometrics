@@ -1,13 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './TextEntry.scss'
-import Previews from './Previews'
-import connect from '../connect'
+import { setDictationActiveOnQuestion } from 'modules/survey/core/preview/FlowProcessor/actions'
+import {
+  getI18n,
+  getAwsSpeechTextPresignedUrl,
+  getQuestionWithActiveDictation,
+} from 'modules/survey/core/preview/FlowProcessor/selectors'
 
-export class Preview extends Component {
+import styles from './components/styles.scss'
+import Previews from './Previews'
+
+
+const connector = connect(
+  ({ preview }) => ({
+    I18n: getI18n(preview),
+    awsSpeechTextPresignedUrl: getAwsSpeechTextPresignedUrl(preview),
+    activeDictationOnQuestion: getQuestionWithActiveDictation(preview),
+  }),
+  { setDictationActiveOnQuestion },
+)
+
+class PreviewComponent extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -46,4 +63,4 @@ export class Preview extends Component {
   }
 }
 
-export default connect(Preview)
+export const Preview = connector(PreviewComponent)

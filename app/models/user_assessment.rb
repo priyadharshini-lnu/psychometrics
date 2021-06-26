@@ -20,7 +20,7 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   has_one :threesixty_campaign, through: :campaign
-  delegate :selected_locale, to: :users_result, allow_nil: true
+  delegate :selected_locale, :timed?, to: :users_result, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
