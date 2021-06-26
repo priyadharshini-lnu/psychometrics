@@ -119,15 +119,15 @@ _.extend(Custom.prototype, {
   },
 
   NotInPast () {
-    const date = moment(this.resultValue(), this.question.props.dateFormat)
+    const date = moment(this.resultValue(), this.question.props.dateFormat).endOf('day')
     const now = moment()
-    return now > date
+    return now < date
   },
 
   NotInFuture () {
-    const date = moment(this.resultValue(), this.question.props.dateFormat)
+    const date = moment(this.resultValue(), this.question.props.dateFormat).startOf('day')
     const now = moment()
-    return now < date
+    return now > date
   },
 })
 
