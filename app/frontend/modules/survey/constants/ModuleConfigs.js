@@ -30,6 +30,7 @@ const ModuleConfigs = {
       EssayTextBox: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange'],
       Password: ['MinLength', 'MaxLength', 'CharacterRange'],
       Email: ['MinLength', 'MaxLength', 'CharacterRange'],
+      DateEntry: ['NotInPast', 'NotInFuture'],
     },
     randomization: true,
     defaultValue: true,

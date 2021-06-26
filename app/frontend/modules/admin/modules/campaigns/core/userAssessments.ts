@@ -19,6 +19,7 @@ const defaultState = {
 const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
+export const ALLOW_EDIT_OF_ASSESSMENT = 'campaigns/userAssessments/ALLOW_EDIT_OF_ASSESSMENT'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -77,6 +78,14 @@ export const setUserAssessments = (userAssessments: UserAssessment[]) => ({
   userAssessments,
 })
 
+export const allowEdit = (campaignId: number, userAssessmentId: number) => ({
+  type: ALLOW_EDIT_OF_ASSESSMENT,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/allow_edit`,
+  },
+})
+
 export interface State {
   list: UserAssessment[]
 }
@@ -103,7 +112,15 @@ function* genSetUserAssessments ({ response }: FetchType) {
 
 export const watchers = [
   takeEvery(
-    [FETCH_SINGLE_USER, CREATE_REPORT, REMOVE_REPORT, EXTEND_ASSESSMENT_TIME, REMOVE_ASSESSMENT, RESET_ASSESSMENT],
+    [
+      FETCH_SINGLE_USER,
+      CREATE_REPORT,
+      REMOVE_REPORT,
+      EXTEND_ASSESSMENT_TIME,
+      REMOVE_ASSESSMENT,
+      RESET_ASSESSMENT,
+      ALLOW_EDIT_OF_ASSESSMENT,
+    ],
     genSetUserAssessments,
   ),
 ]

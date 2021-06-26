@@ -24,6 +24,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
+    def update_available_locales?
+      update?
+    end
+
     def can_configure_universal_links?
       !@record.external? && @user.is?(:superadmin)
     end

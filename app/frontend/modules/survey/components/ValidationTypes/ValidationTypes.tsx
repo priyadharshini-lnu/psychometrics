@@ -69,9 +69,11 @@ const ValidationType: FC<Props> = ({
       <Radio.Group className="mt-2" value={type} onChange={handleOnChange}>
         <Radio value="None">None</Radio>
         {availableValidations.map((availableValidation, index) => (
-          <Radio key={index} value={availableValidation}>
-            {LABELS[availableValidation]}
-          </Radio>
+          <div key={index}>
+            <Radio value={availableValidation}>
+              {LABELS[availableValidation]}
+            </Radio>
+          </div>
         ))}
         <Radio value="Custom">
           <Space>

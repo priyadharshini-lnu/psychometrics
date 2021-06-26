@@ -135,7 +135,7 @@ Rails.application.routes.draw do
             post :bulk_download
           end
           member do
-            get :export
+            post :export
             patch :toggle_user_access
             patch :toggle_assessor_access
           end
@@ -202,6 +202,7 @@ Rails.application.routes.draw do
             get :norms
             post :update_norm
             put :update_assessor_form
+            put :update_available_locales
             post :rescore_responses
           end
         end
@@ -210,6 +211,7 @@ Rails.application.routes.draw do
             post :update_norm
             post :rescore_response
             post :reset
+            post :allow_edit
             post :update_additional_time
           end
         end

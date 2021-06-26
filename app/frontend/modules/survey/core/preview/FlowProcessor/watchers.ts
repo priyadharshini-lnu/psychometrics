@@ -122,7 +122,7 @@ function* genSimulatePassingAssessment () {
   yield put(setIsSimulation())
   let state = yield select()
   while (!state.preview.end) {
-    yield put(nextPage({ skipValidations: true }))
+    yield put(nextPage({ skipValidations: true, ignoreBackBtn: true }))
     state = yield select()
   }
 }

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 import styles from '../ChatStyle.scss'
 import Header from './Header'
 import Footer from './Footer'
 import MessageList from './MessageList'
-import { Question, Message } from '../interfaces'
 
 interface Props {
-  model: Question
+  model: BuilderModel
 }
 
 const Chat: React.FC<Props> = ({
@@ -18,11 +18,11 @@ const Chat: React.FC<Props> = ({
     },
   },
 }) => {
-  const [messageListState, setMessageListState] = useState<Message[]>(messageList)
+  const [messageListState, setMessageListState] = useState<BuilderModel['props']['messageList']>(messageList)
 
   const changeProps = (value: string, key: string): void => model.changeProps({ [key]: value })
 
-  const updateMessageList = (value: Message[]): void => {
+  const updateMessageList = (value: BuilderModel['props']['messageList']): void => {
     model.changeProps({ messageList: value })
     setMessageListState(value)
   }

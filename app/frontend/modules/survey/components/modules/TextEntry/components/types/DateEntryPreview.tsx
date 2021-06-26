@@ -1,0 +1,44 @@
+import React, { FC } from 'react'
+import { DatePicker } from 'antd'
+import moment, { Moment } from 'moment'
+
+import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
+
+import { getIn } from 'utils/immutable'
+import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
+
+interface Props {
+  model: PreviewModel
+  readOnly: boolean
+}
+
+const DateEntryPreview: FC<Props> = ({ model, readOnly }) => {
+  const {
+    result: { answers },
+    props: { dateFormat },
+  } = model
+
+  const handleAnswerChange = (value: Moment | null) => {
+    if (value) {
+      model.result.answer(value.format(dateFormat))
+    } else {
+      model.result.answer(null)
+    }
+  }
+
+  const value = getIn(answers, ['0', 'value'])
+
+  return (
+    <DatePicker
+      allowClear
+      disabled={readOnly}
+      picker={getCorrectPickerFromDateFormat(dateFormat)}
+      format={dateFormat || DATE_FORMAT_OPTIONS[0].value}
+      value={value ? moment(value, dateFormat) : null}
+      onChange={handleAnswerChange}
+    />
+  )
+}
+
+export default DateEntryPreview

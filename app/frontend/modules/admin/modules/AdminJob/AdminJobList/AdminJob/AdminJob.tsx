@@ -72,7 +72,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
                 <div key={i}>
                   <strong>{el[0]}</strong>
                   :
-                  <span className="pl4">{el[1]}</span>
+                  <span className="pl4"><SafeHTML html={el[1]} /></span>
                 </div>
               ))}
             </>

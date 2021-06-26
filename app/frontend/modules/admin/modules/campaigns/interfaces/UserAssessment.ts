@@ -19,5 +19,6 @@ export default interface UserAssessment {
     updateNorm: boolean
     remove: boolean
     rescoreResponse: boolean
+    allowEdit: boolean
   }
 }

@@ -86,7 +86,7 @@ const Common: React.FC<Props> = ({
       <Content className="fluid-container">
         <div className="evaluation-container">
           <Row justify="end" className="mtm mrm">
-            {availableTranslations && availableTranslations.length > 0 && (
+            {availableTranslations && availableTranslations.length > 1 && (
               <Col flex="none">
                 <div className="mlm">
                   <Language

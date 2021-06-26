@@ -6,6 +6,16 @@
   align-items: center;
   flex: 1;
 }
+.panel {
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background-color: #f4f4f4;
+}
+
+.constrols {
+  margin-top: 12px;
+}
 
 .error {
   background: #D64541;
@@ -51,6 +61,12 @@
 .questionSelect{
   margin: 0 5px;
   flex: 1;
+}
+
+.remove {
+  color: #f55;
+  font-size: 20px;
+  float: right;
 }
 
 .btns{

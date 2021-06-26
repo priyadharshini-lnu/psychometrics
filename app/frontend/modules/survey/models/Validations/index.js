@@ -13,6 +13,8 @@ import CharacterRange from './CharacterRange'
 import Content from './Content'
 import MustSelect from './MustSelect'
 import EachGroupContains from './EachGroupContains'
+import NotInPast from './NotInPast'
+import NotInFuture from './NotInFuture'
 import Custom from './Custom'
 
 export default {
@@ -32,4 +34,6 @@ export default {
   MustSelect,
   EachGroupContains,
   RangeHotSpot,
+  NotInPast,
+  NotInFuture,
 }

@@ -14,7 +14,7 @@ import {
   removeMediaResponse,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 
-import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
+import textEntryStyles from 'components/modules/TextEntry/components/styles.scss'
 import VideoRecorder from 'components/VideoRecorder'
 import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
 import { SafeHTML } from 'components/SafeHTML'

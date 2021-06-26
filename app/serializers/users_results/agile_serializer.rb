@@ -2,7 +2,7 @@
 
 module UsersResults
   class AgileSerializer < ActiveModel::Serializer
-    attributes :id, :groups, :locale, :completed_groups, :assets
+    attributes :id, :groups, :locale, :completed_groups, :assets, :available_locales
 
     delegate :config, :translations, to: :agile
 
@@ -19,11 +19,12 @@ module UsersResults
     end
 
     def locale
+      locales = object.available_locales
       {
         selected: object.selected_locale,
         defaultLocale: I18n.default_locale,
-        available: translations.keys,
-        translations: translations
+        available: locales,
+        translations: translations.slice(*locales)
       }
     end
 

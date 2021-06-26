@@ -101,15 +101,44 @@ const AssessmentList: React.FC<Props> = ({
               ) : assessorFormName || I18n.t('common.text.na')
             )}
           />
+
+          <Column
+            title={I18n.t('campaign_assessment.column.locales')}
+            key="availableLocales"
+            render={({
+              availableLocales, id, isExternal, allLocales,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              if (!permissions.updateAvailableLocales) {
+                return _.join(availableLocales, '')
+              }
+              return (
+                <a
+                  onClick={
+                  () => openModal('UpdateLocalesModal',
+                    {
+                      projectId: parsedProjectId,
+                      campaignId: parsedCampaignId,
+                      campaignAssessmentId: id,
+                      availableLocales,
+                      allLocales,
+                    })
+                }
+                >
+                  {_.isEmpty(availableLocales) ? I18n.t('frontend.manage') : _.join(availableLocales, ', ')}
+                </a>
+              )
+            }}
+          />
+
           <Column
             title={I18n.t('campaign_assessment.column.universal_link')}
             key="universalLink"
             render={({
               enableUniversalLinks, universalLink, id, isExternal,
             }) => {
-              if (isExternal) {
-                return I18n.t('common.text.na')
-              }
               if (enableUniversalLinks && !isExternal) {
                 return (
                   <a
@@ -135,6 +164,7 @@ const AssessmentList: React.FC<Props> = ({
               )
             }}
           />
+
           <Column
             title={I18n.t('common.column.action')}
             key="action"
