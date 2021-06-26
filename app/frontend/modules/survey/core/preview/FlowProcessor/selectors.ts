@@ -244,13 +244,13 @@ export const getI18n = ({ locales }): I18nInterface => ({
     const propsPath = path || [key]
     return _.get(locales, ['block', block.id, key]) || _.get(block, ['props', ...propsPath])
   },
-  tCustomValidation (question: any): string {
+  tCustomValidation (question: any, message: string): string {
     if (locales && locales.question && locales.question[question.id]) {
       if (locales.question[question.id].customValidationText) {
         return locales.question[question.id].customValidationText
       }
     }
-    return question.validation.message
+    return message
   },
 })
 

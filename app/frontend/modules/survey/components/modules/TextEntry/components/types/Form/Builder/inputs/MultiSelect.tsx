@@ -1,9 +1,11 @@
 import React from 'react'
+
+import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
+
 import Select from './Select'
-import { Question } from '../../interfaces'
 
 interface Props {
-  model: Question
+  model: BuilderModel
   index: number
 }
 

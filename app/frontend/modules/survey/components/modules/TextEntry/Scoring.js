@@ -80,5 +80,3 @@ export class Scoring extends Component {
     )
   }
 }
-
-export default Scoring

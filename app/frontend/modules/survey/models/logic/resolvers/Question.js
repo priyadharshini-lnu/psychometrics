@@ -98,5 +98,5 @@ export default class QuestionResolver extends BaseResolver {
 
   DoesNotContains = () => this.resultValue().toString().search(this.value) === -1
 
-  MatchesRegexp = () => this.resultValue().toString().test(new RegExp(this.value))
+  MatchesRegexp = () => this.resultValue().toString().match(new RegExp(this.value))
 }

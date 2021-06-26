@@ -1,14 +1,36 @@
-export interface BaseBuilderModel<P = {}, MC = {}> extends BaseModel<P, MC> {
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+export interface BaseBuilderModel<
+  P = {},
+  MC = {},
+  AG = Record<string, number | string>
+> extends BaseModel<P, MC, AG> {
   update(): void
   changeArrayProps(
-    { collection, i, val }: { collection: string; i: number; val: string },
+    { collection, i, val }: { collection: string; i: number; val: unknown },
     undo?: boolean
   ): void
   changeProps(props: Partial<P & BaseProps>): void
 }
 
-export interface BasePropertiesModel<P = {}, MC = {}> extends BaseModel<P, MC> {
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+export interface BasePropertiesModel<
+  P = {},
+  MC = {},
+  AG = Record<string, number | string>
+> extends BaseModel<P, MC, AG> {
   update: () => void
+  changeArrayProps(
+    { collection, i, val }: { collection: string; i: number; val: unknown },
+    undo?: boolean
+  ): void
   changeReqValidations: (
     newProps: {
       enabled?: boolean
@@ -17,11 +39,28 @@ export interface BasePropertiesModel<P = {}, MC = {}> extends BaseModel<P, MC> {
     undo?: boolean
   ) => void
   changeProps(props: Partial<P & BaseProps>): void
+  resetDefaultValues(): void
+  setChoices(val: number, undo?: boolean): void
+  setFormFields(val: number): void
 }
 
-export interface BasePreviewModel<P = {}, MC = {}> extends BaseModel<P, MC> {}
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+export interface BasePreviewModel<
+  P = {},
+  MC = {},
+  AG = Record<string, number | string>
+> extends BaseModel<P, MC, AG> {}
 
-interface BaseModel<P = {}, MC = {}> {
+/**
+ * @template P Question props
+ * @template MC Module config
+ * @template AG Validation arguments
+ */
+interface BaseModel<P = {}, MC = {}, AG = Record<string, number | string>> {
   id: number
   block_id: number
   name: string
@@ -29,7 +68,7 @@ interface BaseModel<P = {}, MC = {}> {
   type: QuestionTypes
   validation: {
     type: string
-    args: Record<string, number | string>
+    args: AG
   }
   requiredValidation: {
     enabled: boolean
@@ -43,6 +82,7 @@ interface BaseModel<P = {}, MC = {}> {
 
 interface BaseProps {
   questionText: string
+  choices: number
   type: string
 }
 
@@ -55,3 +95,4 @@ type QuestionTypes =
   | 'Dropdown'
   | 'SelectBox'
   | 'MultiSelectBox'
+  | 'SideBySide'

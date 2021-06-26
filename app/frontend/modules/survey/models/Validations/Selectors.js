@@ -7,6 +7,7 @@ import GapAnalysis from './Selectors/GapAnalysis'
 import GraphicSlider from './Selectors/GraphicSlider'
 import Captcha from './Selectors/Captcha'
 import StaticContent from './Selectors/StaticContent'
+import TextEntry from './Selectors/TextEntry'
 
 export default {
   MultipleChoice,
@@ -18,4 +19,5 @@ export default {
   GraphicSlider,
   Captcha,
   StaticContent,
+  TextEntry,
 }

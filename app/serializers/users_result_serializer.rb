@@ -70,7 +70,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def available_translations
-    ::Translation.available_translation_for_assessment(object.assessment_id)
+    participant&.available_locales || ['en']
   end
 
   def translations

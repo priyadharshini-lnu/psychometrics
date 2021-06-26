@@ -5,14 +5,13 @@ import { Menu, Input } from 'antd'
 import Utils from 'modules/survey/utils/Utils'
 import { DnDElement } from 'components/DnD'
 import { useInputFocus } from 'hooks/useInputFocus'
+import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 import styles from '../../../FormStyle.scss'
-import { Question } from '../../../interfaces'
-import { FormType } from '../../../interfaces/Question'
 import Option from './Option'
 
 interface Props {
-  type: FormType
-  model: Question
+  type: BuilderModel['props']['formTypes'][0]
+  model: BuilderModel
   index: number
 }
 

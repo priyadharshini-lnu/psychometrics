@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
 import Action from 'undo'
-import styles from './SideBySide.scss'
+import styles from '../styles.scss'
 import Menu from './Menu'
 
 export class TableHeader extends Component {
@@ -58,9 +58,9 @@ export class TableHeader extends Component {
           ))}
         </tr>
         <tr className={styles.row}>
-          <td className={`${styles.group} ${styles.column} ${styles.firstColumn}`} />
+          <td className={`${styles.group} ${styles.column} ${styles.firstColumn} ps-2 pe-2 pt-2 pb-2`} />
           {_.times(props.scalePoints, i => (
-            <td key={i} className={styles.column}>
+            <td key={i} className={`${styles.column} ps-2 pe-2 pt-2 pb-2`}>
               <div className={styles.group}>
                 <LabelEditor
                   onChange={e => this.changeLabel(i, e)}

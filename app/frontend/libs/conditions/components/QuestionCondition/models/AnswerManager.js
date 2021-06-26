@@ -4,6 +4,15 @@ import MatrixTableConditions from './MatrixTableConditions'
 import SideBySideConditions from './SideBySideConditions'
 import PickGroupRankConditions from './PickGroupRankConditions'
 
+const TEXT_FIELD_INPUTS = {
+  Input: 'input',
+  TextArea: 'input',
+  Checkbox: 'bool',
+  Select: 'input',
+  MultiSelect: 'input',
+  Date: 'date',
+}
+
 class AnswerManager {
   constructor (question) {
     this.question = question
@@ -98,6 +107,25 @@ class AnswerManager {
     return [{ value: '0', label: this.question.props.questionText, type: 'simple' }]
   }
 
+  customTextEntryContent () {
+    return _.map(this.question.props.choicesTexts, (text, i) => {
+      const input = this.question.props.formTypes && this.question.props.formTypes[i]
+      return {
+        value: i.toString(),
+        label: text,
+        type: input ? TEXT_FIELD_INPUTS[input.name] : 'input',
+      }
+    })
+  }
+
+  customConditionTextEntryDates () {
+    return [{
+      value: 'TextField',
+      label: 'Date',
+      type: 'date',
+    }]
+  }
+
   getAnswers () {
     if (!this.config || !this.config.conditions) {
       return
@@ -123,6 +151,15 @@ class AnswerManager {
         return this.customConditionCaptcha()
       case 'StaticContent':
         return this.customConditionStaticContent()
+      case 'TextEntry': {
+        if (this.question.props.type === 'Form') {
+          return this.customTextEntryContent()
+        }
+        if (this.question.props.type === 'DateEntry' || this.question.props.type === 'DateTimeEntry') {
+          return this.customConditionTextEntryDates()
+        }
+        break
+      }
       default:
     }
     const fields = this.config.conditions[this.question.props.type]

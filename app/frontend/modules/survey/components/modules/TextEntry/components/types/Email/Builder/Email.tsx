@@ -1,12 +1,12 @@
 import React from 'react'
-import { Question } from '../interfaces'
+import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 import styles from '../commonStyles.scss'
 import Header from './Header'
 import Form from './Form'
 import { ContactType } from '../interfaces/Email'
 
 interface Props {
-  model: Question
+  model: BuilderModel
 }
 
 const Email: React.FC<Props> = ({

@@ -48,6 +48,8 @@ describe('Assessment builder - MultipleChoice - Property panel', () => {
       changeReqValidations: jest.fn(),
       changeProps: jest.fn(),
       update: jest.fn,
+      setFormFields: jest.fn(),
+      changeArrayProps: jest.fn(),
     },
     restricted: true,
   }

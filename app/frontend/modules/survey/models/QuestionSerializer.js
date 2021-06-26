@@ -17,10 +17,10 @@ const loadComments = (question, comments) => {
   })
 }
 
-const loadConditions = (question, conditions) => {
-  question.validation.args.conditions = []
-  _.each(conditions, (condition) => {
-    question.validation.args.conditions.push(new Condition(condition))
+const loadConditions = (question, validations) => {
+  question.validation.customValidations = _.map(validations, (validation) => {
+    validation.conditions = _.map(validation.conditions, condition => new Condition(condition))
+    return validation
   })
 }
 
@@ -70,7 +70,7 @@ export class QuestionSerializer {
     }
     loadComments(question, attrs.comments || [])
     if (question.validation.type === 'Custom') {
-      loadConditions(question, attrs.validation.args.conditions || [])
+      loadConditions(question, attrs.validation.customValidations || [])
     }
     _.extend(question.props, _.clone(attrs.props))
     shuffleChoices(question, randomseed)
