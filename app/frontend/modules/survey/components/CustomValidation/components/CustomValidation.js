@@ -12,27 +12,33 @@ const { Title } = Modal
 
 export class CustomValidation extends Component {
   state = {
-    error: false,
+    errors: [],
+    validations: [],
   }
 
   componentDidMount () {
     const { question } = this.props
     if (!question.validation.customValidations?.length) {
-      question.validation.customValidations = [{
-        uuid: uuid(),
-        conditions: [new Condition({ subject: question.id })],
-        message: '',
-      }]
-      this.forceUpdate()
+      this.setState({
+        validations: [{
+          uuid: uuid(),
+          conditions: [new Condition({ subject: question.id })],
+          message: '',
+        }],
+      })
+    } else {
+      const validations = _.cloneDeep(question.validation.customValidations)
+      this.setState({ validations })
     }
   }
 
   save = () => {
     const { question, close } = this.props
-    if (_.some(question.validations, v => !v.message)) {
-      this.setState({ error: true })
-    } else {
-      this.setState({ error: false })
+    const { validations } = this.state
+    const missingMessages = validations.filter(v => !v.message).map(v => v.uuid)
+    this.setState({ errors: missingMessages })
+    if (missingMessages.length === 0) {
+      question.validation.customValidations = validations
       question.update()
       close()
     }
@@ -41,11 +47,11 @@ export class CustomValidation extends Component {
 
   cancel = () => {
     const { question, close } = this.props
-    if (!question.validation.message) {
+    if (!question.validation.customValidations.length) {
       question.validation.type = 'None'
       question.update()
     }
-    this.setState({ error: false })
+    this.setState({ errors: [] })
     close()
   }
 
@@ -55,31 +61,38 @@ export class CustomValidation extends Component {
   }
 
   addValidation = () => {
+    const { validations } = this.state
     const { question } = this.props
-    question.validation.customValidations = [...question.validation.customValidations, {
-      uuid: uuid(),
-      conditions: [new Condition({ subject: question.id })],
-      message: '',
-    }]
+    this.setState({
+      validations: [
+        ...validations,
+        {
+          uuid: uuid(),
+          conditions: [new Condition({ subject: question.id })],
+          message: '',
+        },
+      ],
+    })
     this.forceUpdate()
   }
 
   removeValidation = (validation) => {
-    const { question } = this.props
-    question.validation.customValidations = _.filter(
-      question.validation.customValidations, v => v.uuid !== validation.uuid,
-    )
-    this.forceUpdate()
+    const { validations } = this.state
+    this.setState({
+      validations: _.filter(
+        validations, v => v.uuid !== validation.uuid,
+      ),
+    })
   }
 
   renderConditions (validation, key) {
-    const { error } = this.state
+    const { errors } = this.state
     return (
       <div className={styles.panel} key={key}>
         <div className={`btn fa fa-close ${styles.remove}`} onClick={() => this.removeValidation(validation)} />
         <div>Validation will pass if the following condition is met:</div>
         <ConditionList validation={validation} {...this.props} />
-        <div className={`${styles.errMessage} ${error ? styles.error : ''}`}>
+        <div className={`${styles.errMessage} ${errors.includes(validation.uuid) ? styles.error : ''}`}>
           Type an error message to display on failure:
         </div>
         <input
@@ -93,14 +106,14 @@ export class CustomValidation extends Component {
   }
 
   render () {
-    const { question: { validation: { customValidations } } } = this.props
+    const { validations } = this.state
     return (
       <Modal show bsSize="lg" keyboard={false}>
         <Header>
           <Title>Choice Text</Title>
         </Header>
         <Body>
-          {customValidations && customValidations.map((validation, i) => this.renderConditions(validation, i))}
+          {validations && validations.map((validation, i) => this.renderConditions(validation, i))}
           <div className={styles.constrols}>
             <button className="btn btn-success" onClick={this.addValidation}>Add Validation</button>
           </div>
