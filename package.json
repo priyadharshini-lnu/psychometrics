@@ -70,7 +70,7 @@
     "browserslist": "^4.16.6",
     "caniuse-lite": "^1.0.30001214",
     "classnames": "^2.3.1",
-    "codemirror": "^5.61.0",
+    "codemirror": "^5.61.1",
     "conditional-wrap": "^1.0.2",
     "connected-react-router": "^6.9.1",
     "crypto-js": "^4.0.0",
