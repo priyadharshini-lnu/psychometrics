@@ -1090,39 +1090,544 @@ providers:
     assessments:
       - id: A830E4AB-BC66-4238-92E0-6E6FD3FD1EDF
         name: Wave Focus Styles (IA)
-        default_norm_id: 05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337
+        default_norm_id: 7B81005D-A319-470A-BC98-2269E819FB0D
         norm_ids:
+          - 7B81005D-A319-470A-BC98-2269E819FB0D
+          - C11548CA-FE01-445F-88EA-0F6ACE4474D0
+          - 430A9596-D773-4C24-9B83-2A96E7168679
           - 05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337
           - A0F63805-6099-47EB-9037-187929E80021
+          - 7B81005D-A319-470A-BC98-2269E819FB0D
+          - E1D45CEF-8599-4888-BE78-7D8E53CEC66A
+          - C11548CA-FE01-445F-88EA-0F6ACE4474D0
+          - 430A9596-D773-4C24-9B83-2A96E7168679
         report_ids:
+          - 0FB7FC8B-9E26-4FB7-AAA3-27CB1CFC5C10
+          - 65789477-C495-4AFE-9087-1A9402E8BF5C
+          - C29D9CF2-DB75-45BA-A46F-6B3E1DA61294
+          - C323008D-B4B0-4D42-9D44-E02ECF070682
+          - 13112969-3388-4C1E-978F-5104A558E0E9
+          - 572895BC-3754-473A-89D8-EB7F2CB9E2C2
           - 2AEE2048-AC2B-415B-B83D-7CB3B15FC547
+          - 99C2791A-0B91-4844-AEBA-7B2DDD56A6CF
+          - CA1F0347-DF05-48FD-A299-8A71D7DE6835
           - 01D3EFDE-65C6-4E3E-9104-D5FA21609500
+          - 8C0EB84C-2DCA-421B-A39B-C0BF6214BC37
+          - 648DAC14-B511-43D1-ACBC-D0421D913D91
+          - CFFDD90D-AFA7-4139-A1A0-016D5B075B22
       - id: 62827908-1916-4E58-8F03-6B9DF8C7C6A5
         name: Swift Analysis Aptitude-Rx (IA)
         default_norm_id: 7432E71D-AF60-4628-A7B8-6711B396D81E
         norm_ids:
           - 7432E71D-AF60-4628-A7B8-6711B396D81E
           - 2BEC30F1-56E2-44D3-8CEB-9ED25158B3C3
+          - D63DB312-D321-476F-9BEF-F431F7D3D7A8
+          - A56CF3F0-2290-4134-B48E-770411A8ACA4
+          - 442865C1-14E7-49A3-BEAB-69563FA5D145
+          - DF91FEA8-3417-494A-8C11-335C6E047B9A
+          - A0AEFB82-6E7E-4FE1-B003-893EEE88704C
         report_ids:
           - 70945782-6B50-4C80-8EE6-308BD6D92A45
-
+      - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
+        name: Abstract Reasoning Aptitude-Rx (IA)
+        default_norm_id: 998C485C-B931-416D-8404-9B284160F688
+        norm_ids:
+          - 998C485C-B931-416D-8404-9B284160F688
+          - 846B63CF-358A-43F0-9835-A95D8F38D860
+          - 655C4C3A-139B-4CC0-AE88-91FE4DA7C279
+          - 11673989-C2B8-435C-BD5F-3FB2893E1CD8
+          - 46C8BC34-34C8-4955-8D9D-B0497476B721
+          - 4F9ED4DC-16EF-4441-B356-4562CD6C9E6D
+          - 41C3630D-23E9-4C61-9CA4-53041A0B70E3
+        report_ids:
+          - 2D3459D6-BC5C-4F15-82B7-8AD312A7CF46
+      - id: DF3FE097-4394-4BEF-8ABC-EAF36B0FBE0E
+        name: Diagrammatic Analysis Aptitude-Rx (IA)
+        default_norm_id: 00CCBE42-638B-4770-BF92-6D0FA45206DA
+        norm_ids:
+          - 00CCBE42-638B-4770-BF92-6D0FA45206DA
+          - 5B64B8AE-54EA-4749-BD37-32803FAB9150
+          - 2B58C9E8-32A6-4711-B5A7-7E1266C6C8AC
+          - 506D5164-2ECD-4D3D-978D-28ABBA4FEDCA
+          - 7964BA3B-A089-471A-849A-588880CE8DB3
+          - CF5C481C-BA97-4D41-A36C-35107D61D253
+          - 86BF59E0-A4A7-44DB-9519-AA852F66CEC9
+        report_ids:
+          - 8FB3153A-B53C-4263-A910-6DB6E1DC0C66
+      - id: D3DD8BF1-73AD-41DC-84C1-CCCFBA5464BF
+        name: Swift Analysis Verbal & Numerical-Rx (IA)
+        default_norm_id: 8463AD1E-02E3-474C-B68E-D86B5F7971B9
+        norm_ids:
+          - 8463AD1E-02E3-474C-B68E-D86B5F7971B9
+          - 34A42DC9-66BF-469F-A71A-FC6390C22C0F
+          - 17B422B1-60E0-48B6-87BA-F4BD1A1927DA
+          - 120B0695-5D16-4878-BC04-0A76D2FEA4DA
+          - 6C7A652D-6C77-4A36-B843-B894E73FAE0C
+          - 5D0C00E3-3837-4F38-AD45-717F20570E73
+          - DF6050E3-2F99-49C5-AC74-047102143402
+        report_ids:
+          - 0EDB235E-572F-4B10-954A-B167C3588490
+      - id: 1DF70675-A331-47AE-A3A4-4FF235C036A0
+        name: Swift Executive Aptitude-Rx (IA)
+        default_norm_id:
+        norm_ids:
+          - F6BADEA2-7243-4FC1-AE32-3E148587688E
+          - 6D54A4CB-185C-4ABF-9077-6D3428BBAEBC
+          - F4A2EEE4-675A-4013-8D0A-32EAEB4A0F87
+          - 469BDE5C-0B2B-4DAA-BED7-A81F99B43C54
+          - BC75D0F8-55B2-46CF-A394-731AEE90C4BA
+          - 56302523-2FFB-4926-B032-AB6D8F884C84
+          - C78CE80A-0A4E-4391-88E7-26031C755799
+        report_ids:
+          - C0915446-B9F8-48D1-AAF5-61E08E56F490
+      - id: 7709C5E7-8CEB-4539-8B15-6FDEADF282B7
+        name: Verbal Analysis Aptitude-Rx (IA)
+        default_norm_id: 0A4B2D43-C443-4556-B5AC-3F862D40F3D2
+        norm_ids:
+          - 0A4B2D43-C443-4556-B5AC-3F862D40F3D2
+          - 2DEC4AF1-F90E-4329-B6E5-46FBA8925014
+          - 3E836FF4-FC2F-481F-9A3D-700FD3F6C12F
+          - 793EFE44-FA74-439F-9EF7-F707A22A176D
+          - AF83E91F-0669-437E-9C52-26E268426F41
+          - B92E1215-D96F-4371-9D1D-F7581932109F
+          - 73966581-5022-446C-9394-381DB81B3B27
+        report_ids:
+          - 7A7974D6-81AD-4183-BDED-6C8E999B6509
+      - id: BF1AF0E0-A0D7-4D4D-9859-CD9876B5CC32
+        name: Wave Professional Styles (IA)
+        default_norm_id: 31426297-86E4-4BA9-8B4B-A6A9965BCF65
+        norm_ids:
+          - 31426297-86E4-4BA9-8B4B-A6A9965BCF65
+          - 3B182848-4DBD-4E90-8F85-CD85A874E5AD
+          - 2CEE23FE-9664-45C8-80A8-CDDE4B9C6E08
+          - F6201B62-6A8B-4AB8-A57B-4026AAEA40D5
+          - 5F533E15-A7F1-47A3-BAAA-B0773845459B
+          - 70C4E175-716F-47D5-8233-98BBEF5F36FE
+          - 4C75B6E8-307E-48B8-A3A1-52A72AA7830C
+        report_ids:
+          - 0B623B16-D4CC-4992-B560-7584348D49E8
+          - CF7AAD43-6657-4DEE-A273-76D1F79DE456
+          - 507B6BEB-1D58-4EB2-B729-7DD6FE388067
+          - 13C7BDC7-3970-49F7-A180-77C9BEB636D5
+          - 8166CDC5-F840-4611-9CB7-D91F04CC2450
+          - 67D49D54-9131-4C45-9B3E-97122E815FD4
+          - 0CC84B46-3540-40BF-8360-42A38DFAB166
+          - B35B205B-2B20-4282-A9B5-17FB119D89A9
+          - 2BC6B197-A345-4DEB-8398-510B02F36548
+          - FADCF58C-46E3-42E5-B72D-96478D19E27B
+          - E808E858-AE00-46A7-8A08-4895CD0EA5DC
+          - F9CC8A99-4828-474E-80B1-39BB417D6C1B
+          - 8BD19C09-9551-4FF2-9AC5-BC8D27A042C6
+          - D4066C0C-8823-49F0-BC08-E049841AF059
+          - B18FABFA-777A-4E7A-AF9D-C4E25BCD6B0D
+          - D4562C9B-3CAE-479F-9D46-03C34E4F2393
+          - 63C93766-A295-40B7-80F4-1AECC18BFE9D
+          - CDC7DEBF-9C2C-4DC0-8816-30E09F5F0516
+          - CB73D91E-CE96-4299-AAD2-58B3258C024B
+          - 9539E050-94A1-443D-907D-74296883FB71
+          - 5DF31F3A-2F95-4969-A61A-E0247E2A3A30
+          - F31ED9E3-2EBD-4CED-B2CC-E371FEFCF33F
+          - 4E34D3A4-BA06-4279-B9F4-A3EA234D18B3
+      - id: A6DB5C4B-8D1E-426C-B215-DB638327F44F
+        name: Work Strengths (IA) V2
+        default_norm_id: C61621ED-894E-4368-A7B1-1E8931512FD3
+        norm_ids:
+          - C61621ED-894E-4368-A7B1-1E8931512FD3
+          - D15A6485-8B05-4C15-A365-F2CD66D7D3EF
+          - 6932EE59-3EA4-4330-884C-D44C19FFCE9F
+          - AED6CE92-F94D-4404-AA3C-222A2259FE45
+          - BC4DDF39-2D66-46C1-94D2-02515CF88415
+          - 728939D9-1EC1-4AE2-9E27-B9E39B6BA27A
+        report_ids:
+          - 5B6BD6BD-AAA3-453C-AACC-FE1265A39C4A
+          - C54F0DDE-06CA-4845-A766-3524C751379E
+          - 50A8F842-FC2C-4872-B243-04739C2EE52E
+          - DB457A33-C361-4D80-A13B-A14959F4342F
+      - id: 1FED08DA-44BA-46B6-9BE5-2C3B7AEC066A
+        name: Diagrammatic Reasoning Aptitude-Rx (IA)
+        default_norm_id: 580D2F93-6BCF-4822-A123-CA9617D4BF60
+        norm_ids:
+          - 580D2F93-6BCF-4822-A123-CA9617D4BF60
+          - D1DBF7F3-E9ED-4295-BE93-5988CE9BE3FD
+        report_ids:
+          - 4A60F5D2-CCF0-4749-A7E2-929F47F7BED4
+      - id: 4D37344B-E66E-4A00-9314-929C2C8030D2
+        name: Error Checking Aptitude-Rx (IA)
+        default_norm_id: C907228A-50B2-486D-B2F2-F50D2DDECCEB
+        norm_ids:
+          - C907228A-50B2-486D-B2F2-F50D2DDECCEB
+          - 0671A5FF-C88B-4B29-99DC-397ACFC56A11
+          - D885AD5E-6368-4B40-8ED1-156F6B12F254
+          - 98040973-D570-4C04-9E89-68AA0AE45502
+        report_ids:
+          - 8CFEB58B-505C-4BD8-9311-9E7AC4C18611
+      - id: 28EEA6CB-C094-4975-9C78-9AD67E8C3FCF
+        name: Mechanical Reasoning Aptitude-Rx (IA)
+        default_norm_id: 2144DC78-18D1-40B7-837B-30BAD35029C0
+        norm_ids:
+          - 2144DC78-18D1-40B7-837B-30BAD35029C0
+          - 54C73457-6DBF-47B2-9ABE-705DB883F56D
+        report_ids:
+          - 2F1CC1F6-4BCB-4251-8C0E-72F3E37ECB48
+      - id: 4C1665E2-EEE3-4E92-8F31-70A6B0E55E93
+        name: Numerical Comprehension Aptitude-Rx (IA)
+        default_norm_id: CE546973-763C-4DCD-A283-11A36EF31F1D
+        norm_ids:
+          - CE546973-763C-4DCD-A283-11A36EF31F1D
+          - 7056CBDE-AFD6-4FE8-811D-8FA72042AD87
+          - F63C9BEA-A637-4045-98E4-4AC7F284F2B7
+          - 0F5287B8-CF01-4038-BBBB-87793C900003
+        report_ids:
+          - 5CF5C861-C0B5-4BBB-898A-409DA379E153
+      - id: 73F44184-EED3-400D-B4BB-14925E4502D3
+        name: Spatial Reasoning Aptitude-Rx (IA)
+        default_norm_id: DB13563C-4029-4473-848A-AFDF2C59DFB8
+        norm_ids:
+          - DB13563C-4029-4473-848A-AFDF2C59DFB8
+          - FFDAD963-8912-44B5-80EA-8E6503B92382
+        report_ids:
+          - 8910F2FB-DBAD-4A33-A300-49A26DA5539F
+      - id: BE83F750-6CDA-4539-88F6-F50B8DB0DAA7
+        name: Swift Apprentice Aptitude-Rx (IA)
+        default_norm_id: DB0FCE9E-E6F5-4945-B071-55232F806DB0
+        norm_ids:
+          - DB0FCE9E-E6F5-4945-B071-55232F806DB0
+        report_ids:
+          - 3269E517-E1D2-4E68-9F0E-EFC563570C88
+      - id: 96CD4C90-71B7-41D8-87DD-66BF8EF28CD7
+        name: Swift Comprehension Aptitude-Rx (IA)
+        default_norm_id: DB0FCE9E-E6F5-4945-B071-55232F806DB0
+        norm_ids:
+          - DB0FCE9E-E6F5-4945-B071-55232F806DB0
+          - 2534997A-E398-485D-AE1C-84EA0BCC0962
+          - 7055378D-CFC4-4154-AE5C-12CBFAD75CA2
+          - EB761631-446A-419D-AD4B-F99A1EF27552
+        report_ids:
+          - 4E45B9EE-07A9-4B41-9C50-6FD49F84540F
+      - id: DEEA440C-AA2D-400C-A1BA-8E787F5C3A14
+        name: Swift Comprehension Verbal & Numerical-Rx (IA)
+        default_norm_id: 8BB05447-6E88-43DB-8160-E0B8D419D840
+        norm_ids:
+          - 8BB05447-6E88-43DB-8160-E0B8D419D840
+          - A593BC1F-484C-48E6-A505-2DF761D00909
+          - 7A30EEAC-CBBA-4A8C-A9F8-B582F30EFCD8
+          - D6882C2D-321E-4D51-BCE3-9D15BCE2E099
+        report_ids:
+          - F4AF61BE-572D-423F-9B2B-772EA780C0FA
+      - id: 1C02B020-81A1-4BA7-8926-67F955F8B410
+        name: Swift Technical Aptitude-Rx (IA)
+        default_norm_id: 14F3CA34-3C41-4F56-891B-E46881591527
+        norm_ids:
+          - 14F3CA34-3C41-4F56-891B-E46881591527
+          - AFB46761-EF9B-4EAF-AE39-0E49516E02A9
+        report_ids:
+          - 0AF518F0-55BF-468C-8395-D2F7477EB478
+      - id: 59102BDD-6294-4F88-8D07-275BD1BD680E
+        name: Verbal Comprehension Aptitude-Rx (IA)
+        default_norm_id: 99EE7044-1CD4-4CD3-83AE-0DFF91E84D40
+        norm_ids:
+          - 99EE7044-1CD4-4CD3-83AE-0DFF91E84D40
+          - 23C1E6E2-EAA0-4984-85D2-B06CAEB1B206
+          - 6B96085E-D0A2-409B-A5ED-514A022170EE
+          - 94437446-E07B-4CF2-B3EF-32717D16F00E
+        report_ids:
+          - B64D89DF-B364-46CC-A2D1-F033BE7DD6DF
     norms:
-      - id: 05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337
-        name: Wave Focus Styles V4 - Graduates - All (INT, IA, 2021)
-      - id: A0F63805-6099-47EB-9037-187929E80021
-        name: Wave Focus Styles V4 - Graduates - Recent (INT, IA, 2021)
+      - id: 998C485C-B931-416D-8404-9B284160F688
+        name: Abstract Reasoning Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+      - id: 846B63CF-358A-43F0-9835-A95D8F38D860
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
+      - id: 655C4C3A-139B-4CC0-AE88-91FE4DA7C279
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
+      - id: 11673989-C2B8-435C-BD5F-3FB2893E1CD8
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
+      - id: 46C8BC34-34C8-4955-8D9D-B0497476B721
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
+      - id: 4F9ED4DC-16EF-4441-B356-4562CD6C9E6D
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
+      - id: 41C3630D-23E9-4C61-9CA4-53041A0B70E3
+        name: Abstract Reasoning Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
+      - id: 00CCBE42-638B-4770-BF92-6D0FA45206DA
+        name: Diagrammatic Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+      - id: 5B64B8AE-54EA-4749-BD37-32803FAB9150
+        name: Diagrammatic Analysis Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
+      - id: 2B58C9E8-32A6-4711-B5A7-7E1266C6C8AC
+        name: Diagrammatic Analysis Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
+      - id: 506D5164-2ECD-4D3D-978D-28ABBA4FEDCA
+        name: Diagrammatic Analysis Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
+      - id: 7964BA3B-A089-471A-849A-588880CE8DB3
+        name: Diagrammatic Analysis Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
+      - id: CF5C481C-BA97-4D41-A36C-35107D61D253
+        name: Diagrammatic Analysis Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
+      - id: 86BF59E0-A4A7-44DB-9519-AA852F66CEC9
+        name: Diagrammatic Analysis Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
       - id: 7432E71D-AF60-4628-A7B8-6711B396D81E
         name: Swift Analysis Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
       - id: 2BEC30F1-56E2-44D3-8CEB-9ED25158B3C3
         name: Swift Analysis Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
-
+      - id: D63DB312-D321-476F-9BEF-F431F7D3D7A8
+        name: Swift Analysis Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
+      - id: A56CF3F0-2290-4134-B48E-770411A8ACA4
+        name: Swift Analysis Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
+      - id: 442865C1-14E7-49A3-BEAB-69563FA5D145
+        name: Swift Analysis Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
+      - id: DF91FEA8-3417-494A-8C11-335C6E047B9A
+        name: Swift Analysis Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
+      - id: A0AEFB82-6E7E-4FE1-B003-893EEE88704C
+        name: Swift Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+      - id: 8463AD1E-02E3-474C-B68E-D86B5F7971B9
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
+      - id: 34A42DC9-66BF-469F-A71A-FC6390C22C0F
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
+      - id: 17B422B1-60E0-48B6-87BA-F4BD1A1927DA
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
+      - id: 120B0695-5D16-4878-BC04-0A76D2FEA4DA
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
+      - id: 6C7A652D-6C77-4A36-B843-B894E73FAE0C
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
+      - id: 5D0C00E3-3837-4F38-AD45-717F20570E73
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
+      - id: DF6050E3-2F99-49C5-AC74-047102143402
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+      - id: F6BADEA2-7243-4FC1-AE32-3E148587688E
+        name: Swift Executive Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+      - id: 6D54A4CB-185C-4ABF-9077-6D3428BBAEBC
+        name: Swift Executive Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
+      - id: F4A2EEE4-675A-4013-8D0A-32EAEB4A0F87
+        name: Swift Executive Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
+      - id: 469BDE5C-0B2B-4DAA-BED7-A81F99B43C54
+        name: Swift Executive Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
+      - id: BC75D0F8-55B2-46CF-A394-731AEE90C4BA
+        name: Swift Executive Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
+      - id: 56302523-2FFB-4926-B032-AB6D8F884C84
+        name: Swift Executive Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
+      - id: C78CE80A-0A4E-4391-88E7-26031C755799
+        name: Swift Executive Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
+      - id: 0A4B2D43-C443-4556-B5AC-3F862D40F3D2
+        name: Verbal Analysis Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
+      - id: 2DEC4AF1-F90E-4329-B6E5-46FBA8925014
+        name: Verbal Analysis Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
+      - id: 3E836FF4-FC2F-481F-9A3D-700FD3F6C12F
+        name: Verbal Analysis Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2021)
+      - id: 793EFE44-FA74-439F-9EF7-F707A22A176D
+        name: Verbal Analysis Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2021)
+      - id: AF83E91F-0669-437E-9C52-26E268426F41
+        name: Verbal Analysis Aptitude & Pace (Rx) - Professionals & Managers (INT, IA, 2021)
+      - id: B92E1215-D96F-4371-9D1D-F7581932109F
+        name: Verbal Analysis Aptitude & Pace (Rx) - Senior Managers & Executives (INT, IA, 2021)
+      - id: 73966581-5022-446C-9394-381DB81B3B27
+        name: Verbal Analysis Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
+      - id: 7B81005D-A319-470A-BC98-2269E819FB0D
+        name: Wave Focus Styles V4 - Individual Contributors (INT, IA, 2021)
+      - id: C11548CA-FE01-445F-88EA-0F6ACE4474D0
+        name: Wave Focus Styles V4 - Professionals & Managers (INT, IA, 2021)
+      - id: 430A9596-D773-4C24-9B83-2A96E7168679
+        name: Wave Focus Styles V4 - Senior Managers & Executives (INT, IA, 2021)
+      - id: 05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337
+        name: Wave Focus Styles V4 - Graduates - All (INT, IA, 2021)
+      - id: A0F63805-6099-47EB-9037-187929E80021
+        name: Wave Focus Styles V4 - Graduates - Recent (INT, IA, 2021)
+      - id: E1D45CEF-8599-4888-BE78-7D8E53CEC66A
+        name: Wave Focus Styles V4 - Mixed Occupational Group (INT, IA, 2021)
+      - id: 31426297-86E4-4BA9-8B4B-A6A9965BCF65
+        name: Wave Professional Styles V4 - Individual Contributors (INT, IA, 2021)
+      - id: 3B182848-4DBD-4E90-8F85-CD85A874E5AD
+        name: Wave Professional Styles V4 - Professionals & Managers (INT, IA, 2021)
+      - id: 2CEE23FE-9664-45C8-80A8-CDDE4B9C6E08
+        name: Wave Professional Styles V4 - Senior Managers & Executives (INT, IA, 2021)
+      - id: F6201B62-6A8B-4AB8-A57B-4026AAEA40D5
+        name: Wave Professional Styles V4 - Graduates - All (INT, IA, 2021)
+      - id: 5F533E15-A7F1-47A3-BAAA-B0773845459B
+        name: Wave Professional Styles V4 - Graduates - Recent (INT, IA, 2021)
+      - id: 70C4E175-716F-47D5-8233-98BBEF5F36FE
+        name: Wave Professional Styles V4 - Mixed Occupational Group (INT, IA, 2021)
+      - id: 4C75B6E8-307E-48B8-A3A1-52A72AA7830C
+        name: Wave Professional Styles V4 - Sales (INT, IA, 2021)
+      - id: C61621ED-894E-4368-A7B1-1E8931512FD3
+        name: Work Strengths IA V2 - Graduates - All (INT, IA, 2021)
+      - id: D15A6485-8B05-4C15-A365-F2CD66D7D3EF
+        name: Work Strengths IA V2 - Graduates - Recent (INT, IA, 2021)
+      - id: 6932EE59-3EA4-4330-884C-D44C19FFCE9F
+        name: Work Strengths IA V2 - Individual Contributors (INT, IA, 2021)
+      - id: AED6CE92-F94D-4404-AA3C-222A2259FE45
+        name: Work Strengths IA V2 - Mixed Occupational Group (INT, IA, 2021)
+      - id: BC4DDF39-2D66-46C1-94D2-02515CF88415
+        name: Work Strengths IA V2 - Professionals & Managers (INT, IA, 2021)
+      - id: 728939D9-1EC1-4AE2-9E27-B9E39B6BA27A
+        name: Work Strengths IA V2 - Senior Managers & Executives (INT, IA, 2021)
+      - id: 580D2F93-6BCF-4822-A123-CA9617D4BF60
+        name: Diagrammatic Reasoning Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: D1DBF7F3-E9ED-4295-BE93-5988CE9BE3FD
+        name: Diagrammatic Reasoning Aptitude & Pace (Rx) - Technical Occupations (INT, IA, 2018)
+      - id: C907228A-50B2-486D-B2F2-F50D2DDECCEB
+        name: Error Checking Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: 0671A5FF-C88B-4B29-99DC-397ACFC56A11
+        name: Error Checking Aptitude & Pace (Rx) - Foundation Level Group (INT, IA, 2016)
+      - id: D885AD5E-6368-4B40-8ED1-156F6B12F254
+        name: Error Checking Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2016)
+      - id: 98040973-D570-4C04-9E89-68AA0AE45502
+        name: Error Checking Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2016)
+      - id: 2144DC78-18D1-40B7-837B-30BAD35029C0
+        name: Mechanical Reasoning Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: 54C73457-6DBF-47B2-9ABE-705DB883F56D
+        name: Mechanical Reasoning Aptitude & Pace (Rx) - Technical Occupations (INT, IA, 2018)
+      - id: CE546973-763C-4DCD-A283-11A36EF31F1D
+        name: Numerical Comprehension Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: 7056CBDE-AFD6-4FE8-811D-8FA72042AD87
+        name: Numerical Comprehension Aptitude & Pace (Rx) - Foundation Level Group (INT, IA, 2016)
+      - id: F63C9BEA-A637-4045-98E4-4AC7F284F2B7
+        name: Numerical Comprehension Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2016)
+      - id: 0F5287B8-CF01-4038-BBBB-87793C900003
+        name: Numerical Comprehension Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2016)
+      - id: DB13563C-4029-4473-848A-AFDF2C59DFB8
+        name: Spatial Reasoning Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: FFDAD963-8912-44B5-80EA-8E6503B92382
+        name: Spatial Reasoning Aptitude & Pace (Rx) - Technical Occupations (INT, IA, 2018)
+      - id: DB0FCE9E-E6F5-4945-B071-55232F806DB0
+        name: Swift Apprentice Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: 9E85FCE1-FE11-4456-B242-3EAD8105E14B
+        name: Swift Comprehension Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: 2534997A-E398-485D-AE1C-84EA0BCC0962
+        name: Swift Comprehension Aptitude & Pace (Rx) - Foundation Level Group (INT, IA, 2016)
+      - id: 7055378D-CFC4-4154-AE5C-12CBFAD75CA2
+        name: Swift Comprehension Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2016)
+      - id: EB761631-446A-419D-AD4B-F99A1EF27552
+        name: Swift Comprehension Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2016)
+      - id: 8BB05447-6E88-43DB-8160-E0B8D419D840
+        name: Swift Comprehension Verbal & Numerical Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: A593BC1F-484C-48E6-A505-2DF761D00909
+        name: Swift Comprehension Verbal & Numerical Aptitude & Pace (Rx) - Foundation Level Group (INT, IA, 2016)
+      - id: 7A30EEAC-CBBA-4A8C-A9F8-B582F30EFCD8
+        name: Swift Comprehension Verbal & Numerical Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2016)
+      - id: D6882C2D-321E-4D51-BCE3-9D15BCE2E099
+        name: Swift Comprehension Verbal & Numerical Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2016)
+      - id: 14F3CA34-3C41-4F56-891B-E46881591527
+        name: Swift Technical Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: AFB46761-EF9B-4EAF-AE39-0E49516E02A9
+        name: Swift Technical Aptitude & Pace (Rx) - Technical Occupations (INT, IA, 2018)
+      - id: 99EE7044-1CD4-4CD3-83AE-0DFF91E84D40
+        name: Verbal Comprehension Aptitude & Pace (Rx) - Apprentices (INT, IA, 2018)
+      - id: 23C1E6E2-EAA0-4984-85D2-B06CAEB1B206
+        name: Verbal Comprehension Aptitude & Pace (Rx) - Foundation Level Group (INT, IA, 2016)
+      - id: 6B96085E-D0A2-409B-A5ED-514A022170EE
+        name: Verbal Comprehension Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2016)
+      - id: 94437446-E07B-4CF2-B3EF-32717D16F00E
+        name: Verbal Comprehension Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2016)
     reports:
-      - id: 2AEE2048-AC2B-415B-B83D-7CB3B15FC547
-        name: Wave Focus Styles Expert Report V4
-      - id: 01D3EFDE-65C6-4E3E-9104-D5FA21609500
-        name: Wave Focus Styles Line Manager Report V4
+      - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
+        name: Abstract Reasoning Aptitude-Rx (IA)
+      - id: 8FB3153A-B53C-4263-A910-6DB6E1DC0C66
+        name: Diagrammatic Analysis Aptitude & Pace Report (Rx)
       - id: 70945782-6B50-4C80-8EE6-308BD6D92A45
         name: Swift Analysis Aptitude & Pace Report (Rx)
+      - id: 0EDB235E-572F-4B10-954A-B167C3588490
+        name: Swift Analysis Verbal & Numerical Aptitude & Pace Report (Rx)
+      - id: C0915446-B9F8-48D1-AAF5-61E08E56F490
+        name: Swift Executive Aptitude & Pace Report (Rx)
+      - id: 7A7974D6-81AD-4183-BDED-6C8E999B6509
+        name: Verbal Analysis Aptitude & Pace Report (Rx)
+      - id: 0FB7FC8B-9E26-4FB7-AAA3-27CB1CFC5C10
+        name: Wave Focus Styles Building Resilient Agility Report V4
+      - id: 65789477-C495-4AFE-9087-1A9402E8BF5C
+        name: Wave Focus Styles Coaching Report V4
+      - id: C29D9CF2-DB75-45BA-A46F-6B3E1DA61294
+        name: Wave Focus Styles Development Report V4
+      - id: C323008D-B4B0-4D42-9D44-E02ECF070682
+        name: Wave Focus Styles Entrepreneurial Potential Report V4
+      - id: 13112969-3388-4C1E-978F-5104A558E0E9
+        name: Wave Focus Styles Expert Coaching Report V4
+      - id: 572895BC-3754-473A-89D8-EB7F2CB9E2C2
+        name: Wave Focus Styles Expert Development Report V4
+      - id: 2AEE2048-AC2B-415B-B83D-7CB3B15FC547
+        name: Wave Focus Styles Expert Report V4
+      - id: 99C2791A-0B91-4844-AEBA-7B2DDD56A6CF
+        name: Wave Focus Styles Expert Work Roles Report V4
+      - id: CA1F0347-DF05-48FD-A299-8A71D7DE6835
+        name: Wave Focus Styles Interview Guide V4
+      - id: 01D3EFDE-65C6-4E3E-9104-D5FA21609500
+        name: Wave Focus Styles Line Manager Report V4
+      - id: 8C0EB84C-2DCA-421B-A39B-C0BF6214BC37
+        name: Wave Focus Styles Onboarding Report V4
+      - id: 648DAC14-B511-43D1-ACBC-D0421D913D91
+        name: Wave Focus Styles Personal Report V4
+      - id: CFFDD90D-AFA7-4139-A1A0-016D5B075B22
+        name: Wave Focus Styles Work Roles Report V4
+      - id: 0B623B16-D4CC-4992-B560-7584348D49E8
+        name: Wave Professional Styles Building Resilient Agility Report V4
+      - id: CF7AAD43-6657-4DEE-A273-76D1F79DE456
+        name: Wave Professional Styles Coaching Report V4
+      - id: 507B6BEB-1D58-4EB2-B729-7DD6FE388067
+        name: Wave Professional Styles Development Report V4
+      - id: 13C7BDC7-3970-49F7-A180-77C9BEB636D5
+        name: Wave Professional Styles Entrepreneurial Potential Report V4
+      - id: 8166CDC5-F840-4611-9CB7-D91F04CC2450
+        name: Wave Professional Styles Expert Coaching Report V4
+      - id: 67D49D54-9131-4C45-9B3E-97122E815FD4
+        name: Wave Professional Styles Expert Development Report V4
+      - id: 0CC84B46-3540-40BF-8360-42A38DFAB166
+        name: Wave Professional Styles Expert Leadership Risk Report V4
+      - id: B35B205B-2B20-4282-A9B5-17FB119D89A9
+        name: Wave Professional Styles Expert Report V4
+      - id: 2BC6B197-A345-4DEB-8398-510B02F36548
+        name: Wave Professional Styles Expert Work Roles Report V4
+      - id: FADCF58C-46E3-42E5-B72D-96478D19E27B
+        name: Wave Professional Styles Interview Guide V4
+      - id: E808E858-AE00-46A7-8A08-4895CD0EA5DC
+        name: Wave Professional Styles Leadership Impact Expert and Risk Report V4
+      - id: F9CC8A99-4828-474E-80B1-39BB417D6C1B
+        name: Wave Professional Styles Leadership Impact Expert Report V4
+      - id: 8BD19C09-9551-4FF2-9AC5-BC8D27A042C6
+        name: Wave Professional Styles Leadership Impact Personal Report V4
+      - id: D4066C0C-8823-49F0-BC08-E049841AF059
+        name: Wave Professional Styles Leadership Impact Summary Report V4
+      - id: B18FABFA-777A-4E7A-AF9D-C4E25BCD6B0D
+        name: Wave Professional Styles Leadership Risk Report V4
+      - id: D4562C9B-3CAE-479F-9D46-03C34E4F2393
+        name: Wave Professional Styles Line Manager Report V4
+      - id: 63C93766-A295-40B7-80F4-1AECC18BFE9D
+        name: Wave Professional Styles Onboarding Report V4
+      - id: CDC7DEBF-9C2C-4DC0-8816-30E09F5F0516
+        name: Wave Professional Styles Personal Report V4
+      - id: CB73D91E-CE96-4299-AAD2-58B3258C024B
+        name: Wave Professional Styles Sales Development Report V4
+      - id: 9539E050-94A1-443D-907D-74296883FB71
+        name: Wave Professional Styles Sales Environment Fit Report V4
+      - id: A4E2EEE3-FCAF-4610-8EC0-91CD14439BD3
+        name: Wave Professional Styles Sales Expert Report V4
+      - id: 5DF31F3A-2F95-4969-A61A-E0247E2A3A30
+        name: Wave Professional Styles Sales Interview Guide V4
+      - id: F31ED9E3-2EBD-4CED-B2CC-E371FEFCF33F
+        name: Wave Professional Styles Sales Line Manager Report V4
+      - id: 4E34D3A4-BA06-4279-B9F4-A3EA234D18B3
+        name: Wave Professional Styles Work Roles Report V4
+      - id: 5B6BD6BD-AAA3-453C-AACC-FE1265A39C4A
+        name: Work Strengths Behavioural Profile V2
+      - id: C54F0DDE-06CA-4845-A766-3524C751379E
+        name: Work Strengths Environment Fit Report V2
+      - id: 50A8F842-FC2C-4872-B243-04739C2EE52E
+        name: Work Strengths Interview Guide V2
+      - id: DB457A33-C361-4D80-A13B-A14959F4342F
+        name: Work Strengths Onboarding Report V2
+      - id: 4A60F5D2-CCF0-4749-A7E2-929F47F7BED4
+        name: Diagrammatic Reasoning Aptitude & Pace Report (Rx)
+      - id: 8CFEB58B-505C-4BD8-9311-9E7AC4C18611
+        name: Error Checking Aptitude & Pace Report (Rx)
+      - id: 2F1CC1F6-4BCB-4251-8C0E-72F3E37ECB48
+        name: Mechanical Reasoning Aptitude & Pace Report (Rx)
+      - id: 5CF5C861-C0B5-4BBB-898A-409DA379E153
+        name: Numerical Comprehension Aptitude & Pace Report (Rx)
+      - id: 8910F2FB-DBAD-4A33-A300-49A26DA5539F
+        name: Spatial Reasoning Aptitude & Pace Report (Rx)
+      - id: 3269E517-E1D2-4E68-9F0E-EFC563570C88
+        name: Swift Apprentice Aptitude & Pace Report (Rx)
+      - id: 4E45B9EE-07A9-4B41-9C50-6FD49F84540F
+        name: Swift Comprehension Aptitude & Pace Report (Rx)
+      - id: F4AF61BE-572D-423F-9B2B-772EA780C0FA
+        name: Swift Comprehension Verbal & Numerical Aptitude & Pace Report (Rx)
+      - id: 0AF518F0-55BF-468C-8395-D2F7477EB478
+        name: Swift Technical Aptitude & Pace Report (Rx)
+      - id: B64D89DF-B364-46CC-A2D1-F033BE7DD6DF
+        name: Verbal Comprehension Aptitude & Pace Report (Rx)
 
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>
