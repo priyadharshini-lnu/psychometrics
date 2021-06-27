@@ -2,8 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
-import styles from '../MultipleChoice.scss'
-import connect from '../../connect'
+import styles from '../../styles.scss'
 
 class SingleAnswerPreview extends Component {
   static propTypes = {
@@ -84,4 +83,4 @@ class SingleAnswerPreview extends Component {
   }
 }
 
-export default connect(SingleAnswerPreview)
+export default SingleAnswerPreview

@@ -5,7 +5,7 @@ module Administration
     class UserSerializer < ActiveModel::Serializer
       attributes :id, :first_name, :last_name, :email, :full_name, :created_by, :updated_by,
                  :created_at, :updated_at, :locale, :active, :completion_status,
-                 :status
+                 :status, :permissions
 
       delegate :active, :completion_status, to: :campaign_user
 
@@ -15,6 +15,20 @@ module Administration
 
       attribute :completed_at do
         campaign_user&.completed_at && I18n.l(campaign_user&.completed_at, format: :short)
+      end
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Campaigns::UserPolicy,
+          current_user,
+          object,
+          [
+            'edit',
+            %w[login_as spoof],
+            'reset_password',
+            %w[remove destroy]
+          ]
+        )
       end
 
       def status
@@ -43,6 +57,12 @@ module Administration
 
       def campaign_user
         object.campaign_users.find { |cu| cu.campaign_id == @instance_options[:campaign_id] }
+      end
+
+      private
+
+      def current_user
+        instance_options[:current_user]
       end
     end
   end

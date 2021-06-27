@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class AssessorSerializer < ActiveModel::Serializer
-      attributes :id, :full_name, :email,
+      attributes :id, :full_name, :email, :permissions,
                  :status, :total_evaluations, :completed_evaluations
 
       delegate :email, to: :user
@@ -26,10 +26,26 @@ module Administration
         evalutions_count[:completed]
       end
 
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Campaigns::AssessorPolicy,
+          current_user,
+          object,
+          [
+            %w[remove destroy],
+            %w[login_as spoof]
+          ]
+        )
+      end
+
       private
 
       def evalutions_count
         instance_options[:evalutions_count][object.user_id] || { total: 0, completed: 0 }
+      end
+
+      def current_user
+        instance_options[:current_user]
       end
 
       def user

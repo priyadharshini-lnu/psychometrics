@@ -1,0 +1,38 @@
+<AssessmentOrderRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ns.hr-xml.org/2007-04-15 ../HRXML200704/HR-XML-2_5/StandAlone/AssessmentOrderRequest.xsd" xmlns="http://ns.hr-xml.org/2007-04-15">
+  <ClientId idOwner="Saville Consulting">
+    <IdValue name="ClientCode"><%= client_code %></IdValue>
+  </ClientId>
+  <PackageId idOwner="Saville Consulting">
+    <IdValue name="Instrument"><%= assessment_guid %></IdValue>
+    <% report_guids.each do |report_guid| %>
+      <IdValue name="XmlScores"><%= report_guid %></IdValue>
+      <IdValue name="PdfReport"><%= report_guid %></IdValue>
+    <% end %>
+  </PackageId>
+  <ProviderId idOwner="<%= provider %>">
+    <IdValue>Saville Consulting</IdValue>
+  </ProviderId>
+  <ComparisonGroupId>
+    <IdValue name=""><%= norm_id %></IdValue>
+  </ComparisonGroupId>
+  <ClientOrderId>
+    <IdValue name="Company"><%= data_seprator %></IdValue>
+    <IdValue name="AssessmentPushbackUrl"><%= webhook_url %></IdValue>
+    <IdValue name="AssessmentCompleteReturnUrl"><%= return_url %></IdValue>
+  </ClientOrderId>
+  <AssessmentRequester><%= subject_full_name %></AssessmentRequester>
+  <AssessmentSubject>
+    <SubjectId idOwner="Campaign">
+      <IdValue name="CandidateID"><%= subject_id %></IdValue>
+    </SubjectId>
+    <PersonName>
+      <LegalName><%= subject_last_name %></LegalName>
+      <GivenName><%= subject_first_name %></GivenName>
+    </PersonName>
+    <ContactMethod>
+      <InternetEmailAddress><%= subject_email %></InternetEmailAddress>
+    </ContactMethod>
+  </AssessmentSubject>
+  <AssessmentLanguage>en-GB</AssessmentLanguage>
+  <ResultLanguage>en-GB</ResultLanguage>
+</AssessmentOrderRequest>

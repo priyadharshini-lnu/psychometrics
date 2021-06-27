@@ -52,7 +52,6 @@ module Threesixty
         threesixty_campaign.participants.find_or_create_by!(evaluator: user, subject: user) do |participant|
           participant.manager_nomination_status = :approved
           participant.relationship = self_relationship
-          participant.project_id = threesixty_campaign.campaign.project_id
         end
 
         ::Threesixty::Evaluator.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)

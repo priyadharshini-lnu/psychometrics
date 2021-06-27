@@ -1,4 +1,4 @@
-import MultipleChoicePreview from './MultipleChoice/components/Preview'
+import { MultipleChoicePreview } from './MultipleChoice'
 import StaticContentPreview from './StaticContent/components/Preview'
 import { TextEntryPreview } from './TextEntry'
 import MatrixTablePreview from './MatrixTable/components/Preview'

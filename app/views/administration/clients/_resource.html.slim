@@ -12,7 +12,7 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
       td rowspan=rowspan = resource.number
       td.nowrap rowspan=rowspan = resource.country
     td rowspan=rowspan = resource.year
-    - (current_user.is?(:superadmin) ? 6 : 0).times do
+    - (policy(:client).view_licenses? ? 6 : 0).times do
       td.fake
     td rowspan=rowspan
       = resource.decorate.client_admins(current_user)
@@ -31,7 +31,7 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
             span.fa.fa-copy
         = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete'), disable_with: t('.in_progress.deleting') }
           span.fa.fa-times
-  - if current_user.is?(:superadmin)
+  - if policy(:client).view_licenses?
     - resource.licenses.each do |license|
       tr
         td.nowrap = license.decorate.display_name

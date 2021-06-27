@@ -9,8 +9,9 @@ import { get as getCurrentUser } from 'core/currentUser'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
-  Table, Row, Col, Input, Pagination, Button, Dropdown,
+  Table, Row, Col, Input, Pagination, Button,
 } from 'antd'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
@@ -94,19 +95,21 @@ const AssessorList: React.FC<Props> = ({
           <span className="mlm">{I18n.t('administration.assessor.count', { count: total })}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} />
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
           <Search
             placeholder="Search"
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-          <div className={styles.newUserButton}>
-            <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
-              <PlusOutlined />
-              <span>Add Assessor</span>
-            </Button>
-          </div>
+          {permissions.add && (
+            <div className={styles.newUserButton}>
+              <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
+                <PlusOutlined />
+                <span>Add Assessor</span>
+              </Button>
+            </div>
+          )}
         </div>
       </Row>
       <Row>
@@ -149,23 +152,23 @@ const AssessorList: React.FC<Props> = ({
               title={I18n.t('administration.campaigns.actions')}
               key="action"
               render={assessor => (
-                <Dropdown
-                  overlay={() => (
+                <ConditionalDropdown
+                  menu={
                     ActionsMenu({
                       campaignId,
                       currentUser,
                       id: assessor.id,
                       email: assessor.email,
-                      permissions,
+                      permissions: assessor.permissions,
                       remove: () => remove(campaignId, assessor.id),
                     }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <a>
+                      <MoreOutlined />
+                    </a>
                   )}
-                  trigger={['click']}
-                >
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                </Dropdown>
+                />
               )}
             />
           </Table>

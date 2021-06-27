@@ -3,7 +3,35 @@
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :client_admin, :project_admin)
+      super || @user.has_grant?(:clients, :view)
+    end
+
+    def view_licenses?
+      @user.is?(:superadmin) || @user.has_grant?(:clients, :view_licenses)
+    end
+
+    def copy?
+      if record.prime_project?
+        record.active? && (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage))
+      else
+        record.active? && @user.is?(:superadmin)
+      end
+    end
+
+    def destroy?
+      if record.prime_project?
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      else
+        @user.is?(:superadmin)
+      end
+    end
+
+    def edit?
+      if record.prime_project?
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      else
+        @user.is?(:superadmin)
+      end
     end
 
     def manage_first_level?
@@ -11,18 +39,22 @@ module Administration
     end
 
     def manage_project?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
+      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+    end
+
+    def new?
+      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
     end
 
     def manage_campaign?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
+      return true if @user.has_grant?(:campaigns, :manage)
 
       false
     end
 
     def create?
-      super || @user.has_grant?(:clients, :manage)
+      super || @user.has_grant?(:clients, :manage) || @user.has_grant?(:projects, :manage)
     end
 
     def projects?
@@ -33,8 +65,12 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
     end
 
+    def manage_project_admins?
+      @user.has_grant?(:projects, :manage_admins)
+    end
+
     def project_admins?
-      record.prime_project? && @user.is?(:superadmin, :client_admin)
+      record.prime_project? && @user.has_grant?(:projects, :manage_admins)
     end
 
     def search_users?
@@ -46,14 +82,6 @@ module Administration
 
     def show?
       true
-    end
-
-    def edit?
-      super
-    end
-
-    def copy?
-      record.active? && super
     end
 
     def archive?
@@ -77,7 +105,7 @@ module Administration
     end
 
     def edit_additional_fields?
-      view_additional_fields?
+      @user.is?(:superadmin)
     end
 
     class Scope < Scope

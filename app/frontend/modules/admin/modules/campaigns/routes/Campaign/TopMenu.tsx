@@ -8,13 +8,14 @@ import {
   QrcodeOutlined,
   DatabaseOutlined,
 } from '@ant-design/icons'
-
 import routeUtils from 'utils/route'
+import User from 'modules/admin/modules/campaigns/interfaces/User'
 
 const { I18n } = window
 
 interface Props {
   prefix?: string
+  currentUser: User
 }
 
 const ROUTES = [
@@ -25,7 +26,7 @@ const ROUTES = [
   '/options',
 ]
 
-const TopMenu: React.FC<Props> = ({ prefix }) => {
+const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
   const { pathname } = useLocation()
 
   const history = useHistory()
@@ -65,10 +66,12 @@ const TopMenu: React.FC<Props> = ({ prefix }) => {
         <DatabaseOutlined />
         {I18n.t('common.model.datasheet')}
       </Menu.Item>
-      <Menu.Item key="/options">
-        <SettingOutlined />
-        Options
-      </Menu.Item>
+      {currentUser.permissions.manageOptions && (
+        <Menu.Item key="/options">
+          <SettingOutlined />
+          Options
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

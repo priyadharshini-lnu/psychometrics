@@ -2,7 +2,7 @@ import React from 'react'
 import { DatePicker } from 'antd'
 import moment, { Moment } from 'moment'
 
-import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
+import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
 
 interface Props {
   value: string
@@ -25,11 +25,15 @@ export const DateEntry: React.FC<Props> = ({
     }
   }
 
+  const pickerMode = DATE_FORMAT_OPTIONS.find(
+    dateFormatOption => dateFormatOption.value === dateFormat,
+  )?.picker ?? 'date'
+
   return (
     <DatePicker
       allowClear
       disabled={readOnly}
-      picker={getCorrectPickerFromDateFormat(dateFormat)}
+      picker={pickerMode}
       format={dateFormat}
       value={value ? moment(value, dateFormat) : null}
       onChange={handleAnswerChange}

@@ -12,8 +12,9 @@
       = f.association :dimension,
                       collection: policy_scope(Dimension).all.sorted_by('name_asc'),
                       include_blank: true,
+                      disabled: resource.persisted?,
                       input_html: { data: { live_search: true } }
-      = f.input :norm_type, disabled: !resource.new_record?
+      = f.input :norm_type, disabled: resource.persisted?
 
   .modal-footer
     .btn-group

@@ -25,16 +25,33 @@ module Administration
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
               users.page(params[:page]),
-              each_serializer: Administration::Campaigns::UserSerializer,
+              each_serializer: Administration::Campaigns::UserSerializer, current_user: current_user,
               campaign_id: campaign.id
             )
 
             render json: {
               list: serialized_users,
-              total: users.count
+              total: users.count,
+              permissions: permissions
             }
           end
         end
+      end
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Campaigns::UserPolicy,
+          current_user,
+          nil,
+          [
+            'create',
+            %w[export_users index],
+            'export_completion_status',
+            'import',
+            'edit',
+            %w[remove destroy]
+          ]
+        )
       end
 
       def search

@@ -1,3 +1,4 @@
+import { Assessment } from 'modules/reports/core/interfaces/Assessment'
 
 declare class AppStore {
   constructor()
@@ -24,6 +25,12 @@ declare class AppStore {
   isSubfactor(factorId: number): boolean
 
   factorsByAssessmentId(assessmentId: number): object[]
+
+  getAssessmentById(assessmentId: number): Assessment
+
+  report: {
+    getFilterNameById(id: string): string
+  }
 }
 
 export = new AppStore()

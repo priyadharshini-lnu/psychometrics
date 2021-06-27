@@ -10,11 +10,17 @@ import { FETCH_ASSESSMENTS_AND_REPORTS } from './current'
 const defaultState = {
   list: [],
   selectedIds: [],
+  reportPermissions: {
+    toggleUserAccess: false,
+    toggleAssessorAccess: false,
+    addReport: false,
+    bulkDownload: false,
+    regenerate: false,
+  },
 }
 
 export const get = (state): State => _.get(state, ['campaigns', 'reports'])
 export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedIds')
-
 export const CREATE = 'resource/campaigns/report/CREATE'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
@@ -94,7 +100,9 @@ export const exportData = (campaignId: number, reportId: number) => ({
 
 type RemoveResponse = number
 
-type FetchType = ApiActionResponse<{reports: Report[]}>
+type FetchType = ApiActionResponse<{reports: Report[], permissions: {
+  reportPermissions: {},
+}}>
 type CreateType = ApiActionResponse<{reports: Report[]}>
 type ToggleUserAccessType = ApiActionResponse<Report>
 type RemoveType = ApiActionResponse<RemoveResponse>
@@ -105,10 +113,23 @@ interface ToggleAssessorAccessType extends Action{
 export interface State {
   list: Report[],
   selectedIds: number[]
+  reportPermissions: {
+    toggleUserAccess: boolean
+    toggleAssessorAccess: boolean
+    addReport: boolean
+    bulkDownload: boolean
+    regenerate: boolean
+  }
 }
 
 const HANDLERS = {
-  [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => ({ ...state, list: response.reports }),
+  [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => (
+    {
+      ...state,
+      list: response.reports,
+      reportPermissions: response.permissions.reportPermissions,
+    }
+  ),
   [CREATE]: (state: State, { response }: CreateType) => ({ ...state, list: response.reports }),
   [REMOVE]: (state: State, { response }: RemoveType) => (
     updateIn(state, ['list'], (reports: Report[]) => _.filter(

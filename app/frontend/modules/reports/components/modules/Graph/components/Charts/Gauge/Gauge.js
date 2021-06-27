@@ -46,6 +46,7 @@ class Gauge extends Component {
     const series = data.series(getCorrectResults(model), factor, model)
     const { props } = model
     const assessment = AppStore.getAssessmentById(model.assessment_id)
+
     Highcharts.chart(this[`container${factor.id || factor}`], Highcharts.merge(ChartOptions(model), {
       plotOptions: {
         series: {
@@ -113,7 +114,7 @@ class Gauge extends Component {
     }
     return (
       <div className={styles.gauge}>
-        {['Factor', 'ExternalFactor', 'DataSheet'].includes(sourceType) && sourceModel
+        {['Factor', 'ExternalFactor', 'DataSheet', 'SavilleFactor'].includes(sourceType) && sourceModel
           && _.map(sourceModel, (factor, i) => (
             <div
               style={cssStyles}

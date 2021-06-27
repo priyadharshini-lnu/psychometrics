@@ -10,9 +10,9 @@
           th = t('.used_license_overuse_number')
         th = t('.usage_percent')
         th = t('.start_date')
-        - if current_user.is?(:superadmin)
-          th = t('.end_date')
-        th width='1%' = t('administration.actions')
+        th = t('.end_date')
+        - if policy(:license).edit?
+          th width='1%' = t('administration.actions')
     tbody
       - if resources.present?
         = render partial: 'resource', collection: resources

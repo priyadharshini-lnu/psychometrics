@@ -25,6 +25,7 @@ import {
   FETCH as FETCH_DATASHEET,
 } from 'modules/admin/modules/DatasheetManagement/core/list'
 import { get as getTotal } from 'modules/admin/modules/DatasheetManagement/core/total'
+import { get as getPermissions } from 'modules/admin/modules/DatasheetManagement/core/permissions'
 import { get as getParentResource } from 'modules/admin/modules/DatasheetManagement/core/parentResource'
 import {
   get as getColumnDefinitions,
@@ -60,6 +61,7 @@ const connector = connect(
     list: get(state),
     isListLoading: isRequestInProgress(state, FETCH_DATASHEET),
     total: getTotal(state),
+    permissions: getPermissions(state),
     columnDefinitions: getColumnDefinitions(state),
     visibleColumns: getVisibleColumnNames(state),
     temp__parentResourceId: getParentResource(state).id, // wont be needing this when projects comes under router
@@ -86,6 +88,7 @@ const DatasheetManagementComponent: FC<Props> = ({
   list,
   isListLoading,
   total,
+  permissions,
   temp__parentResourceId,
   columnDefinitions,
   parentResourceType,
@@ -180,6 +183,7 @@ const DatasheetManagementComponent: FC<Props> = ({
               selectedRowKeys={selectedRowKeys}
               setSelectedRowKeys={setSelectedRowKeys}
               toggleDrawer={toggleDrawer}
+              permissions={permissions}
               parentResourceType={parentResourceType}
               parentResourceId={parentResourceId}
             />
@@ -195,8 +199,13 @@ const DatasheetManagementComponent: FC<Props> = ({
               visibleColumnsKeys={visibleColumns}
               onVisibleColumnsChange={onVisibleColumnsChange}
             />
-            <ToolsDropdown parentId={parentResourceId} parentType={parentResourceType} datasheetCount={total} />
-            {isEmpty(columnDefinitions) || (
+            <ToolsDropdown
+              parentId={parentResourceId}
+              parentType={parentResourceType}
+              datasheetCount={total}
+              permissions={permissions}
+            />
+            {permissions.add && (isEmpty(columnDefinitions) || (
               <Button
                 type="primary"
                 onClick={() => toggleDrawer(DrawerModes.Add)}
@@ -205,7 +214,7 @@ const DatasheetManagementComponent: FC<Props> = ({
                 <PlusOutlined />
                 {I18n.t('administration.datasheets.list.header.add_record')}
               </Button>
-            )}
+            ))}
           </Space>
         </Col>
       </Row>
@@ -235,13 +244,16 @@ const DatasheetManagementComponent: FC<Props> = ({
           />
         </Col>
       </Row>
-      <DetailsDrawer
-        isOpen={activeDrawerIs === DrawerModes.Details}
-        toggleDrawer={toggleDrawer}
-        currentDatasheetId={currentDatasheetId}
-        parentResourceType={parentResourceType}
-        parentResourceId={parentResourceId}
-      />
+      {permissions.view && (
+        <DetailsDrawer
+          isOpen={activeDrawerIs === DrawerModes.Details}
+          toggleDrawer={toggleDrawer}
+          editPermission={permissions.edit}
+          currentDatasheetId={currentDatasheetId}
+          parentResourceType={parentResourceType}
+          parentResourceId={parentResourceId}
+        />
+      )}
       <AddEditDrawer
         isOpen={
           activeDrawerIs === DrawerModes.Edit

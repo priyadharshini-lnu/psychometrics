@@ -25,7 +25,7 @@ interface Props {
 
 const AssessmentActionBtn: React.FC<Props> = ({
   userAssessment: {
-    mindmill, mindmillUrl, url, status, needConfirm,
+    url, status, needConfirm,
     assessmentExtra: { timer: totalAssessmentTime },
   },
   setShowConfirm,
@@ -36,9 +36,6 @@ const AssessmentActionBtn: React.FC<Props> = ({
   isPartOfTimedCampaign,
   campaignExpiryDate,
 }) => {
-  let href = url
-  if (mindmill) { href = mindmillUrl }
-
   const handleBeginAssessment = (e: React.MouseEvent) => {
     e.preventDefault()
 
@@ -81,7 +78,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
   }
 
   const continueLink = (
-    <a href={href} className={cs({ disabled })} onClick={handleContinueAssessment}>
+    <a href={url} className={cs({ disabled })} onClick={handleContinueAssessment}>
       {loading ? <LoadingOutlined /> : <ContinueIcon disabled={disabled} />}
       {' '}
       {I18n.t('threesixty.continue')}
@@ -89,7 +86,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
   )
 
   const beginLink = (
-    <a href={href} className={cs({ disabled })} onClick={handleBeginAssessment}>
+    <a href={url} className={cs({ disabled })} onClick={handleBeginAssessment}>
       {I18n.t('threesixty.begin')}
       {' '}
       {loading ? <LoadingOutlined /> : <PlayCircleOutlined className="rtl-flip" />}

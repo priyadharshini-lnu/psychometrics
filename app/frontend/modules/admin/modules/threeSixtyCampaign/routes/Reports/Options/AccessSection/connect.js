@@ -4,9 +4,13 @@ import {
   update as updateReportOptions,
 } from 'modules/admin/modules/threeSixtyCampaign/core/reportOptions/actions'
 import { getAccessOption } from 'modules/admin/modules/threeSixtyCampaign/core/reportOptions/selectors'
+import { getCampaignReportPermissions } from 'modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 export default connect(
-  state => ({ options: getAccessOption(state) }),
+  state => ({
+    options: getAccessOption(state),
+    campaignReportPermissions: getCampaignReportPermissions(state),
+  }),
   dispatch => ({
     updateReportOptions: _.curry((key, value) => dispatch(updateReportOptions(key, value))),
   }),

@@ -5,6 +5,41 @@ require 'rails_helper'
 RSpec.describe Report, type: :model do
   let(:report) { build(:report) }
 
+  it 'deletes saville_report_setting if any assessment is not of type saville' do
+    saville_assessment = create(:assessment, :saville)
+    report = create(:report, :saville, assessments: [saville_assessment])
+    expect(report.saville_report_setting).to_not eq(nil)
+
+    common_assessment = create(:assessment)
+    create(:assessments_report, report: report, assessment: common_assessment)
+    report.reload.update_attribute(:name, 'New Name')
+    expect(report.reload.saville_report_setting).to eq(nil)
+  end
+
+  context 'validation Saville report' do
+    context '#all_assessments_saville' do
+      let(:saville_report_setting) { build(:saville_report_setting) }
+      let(:report) { build(:report, saville_report_setting: saville_report_setting) }
+
+      let(:common_assessment) { create(:assessment) }
+      let(:saville_assessment) { create(:assessment, :saville) }
+
+      subject { report.valid? }
+
+      it 'invalid' do
+        report.assessment_ids = [common_assessment.id, saville_assessment.id]
+        subject
+        expect(report.errors.details[:base]).to include(error: :assessments_not_saville)
+      end
+
+      it 'valid' do
+        report.assessment_ids = [saville_assessment.id]
+        subject
+        expect(report.errors.details[:base]).not_to include(error: :assessments_not_saville)
+      end
+    end
+  end
+
   context 'validation number of assessments' do
     context 'greater then max' do
       it 'should be invalid' do

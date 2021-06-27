@@ -14,6 +14,7 @@ module UsersResults
         remove_reports if user_assessment.completed?
         reset_user_result
         remove_media_responses
+        Saville::ResetAssessment.call!(user_assessment) if user_assessment.saville_user_assessment
       end
 
       broadcast :ok

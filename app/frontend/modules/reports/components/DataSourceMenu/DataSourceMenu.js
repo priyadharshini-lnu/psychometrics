@@ -86,7 +86,8 @@ class ChartsMenu extends Component {
       model, onSelect, singleChoice, onlyNumbers,
     } = this.props
 
-    const TypeComponent = types[_.result(model, 'props.source.type')]
+    const sourceType = _.get(model, 'props.source.type')
+    const TypeComponent = types[sourceType]
     const assessment = AppStore.getAssessmentById(model.assessment_id)
 
     return (
@@ -102,7 +103,7 @@ class ChartsMenu extends Component {
               model={model}
               onSelect={onSelect}
               assessment={assessment}
-              sourceType={_.result(model, 'props.source.type')}
+              sourceType={sourceType}
             />
           )}
         </div>

@@ -11,17 +11,19 @@ module Administration
 
         ::UsersResults::Recompute.call!(user_result, current_user, params.permit(:norm_id))
 
-        render json: { norm_name: user_result.norm.name }
+        render json: { norm_name: resource.norm_name }
       end
 
       def update_additional_time
         ::UsersResults::AddAdditionalTime.call!(resource.users_result, params[:additional_time] * 60)
-        render json: resource, serializer: UserAssessmentSerializer, current_user: current_user
+
+        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
 
       def destroy
         resource.destroy!
-        render json: resource.id
+
+        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
 
       def rescore_response
@@ -37,7 +39,7 @@ module Administration
       def reset
         ::UsersResults::Reset.call!(resource)
 
-        render json: resource, serializer: UserAssessmentSerializer, current_user: current_user
+        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
 
       def allow_edit

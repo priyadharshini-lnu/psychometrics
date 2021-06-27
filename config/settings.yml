@@ -1086,6 +1086,44 @@ providers:
             - id: '04'
               name: Completion_Time
               type: Percentile Scale
+  saville:
+    assessments:
+      - id: A830E4AB-BC66-4238-92E0-6E6FD3FD1EDF
+        name: Wave Focus Styles (IA)
+        default_norm_id: 05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337
+        norm_ids:
+          - 05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337
+          - A0F63805-6099-47EB-9037-187929E80021
+        report_ids:
+          - 2AEE2048-AC2B-415B-B83D-7CB3B15FC547
+          - 01D3EFDE-65C6-4E3E-9104-D5FA21609500
+      - id: 62827908-1916-4E58-8F03-6B9DF8C7C6A5
+        name: Swift Analysis Aptitude-Rx (IA)
+        default_norm_id: 7432E71D-AF60-4628-A7B8-6711B396D81E
+        norm_ids:
+          - 7432E71D-AF60-4628-A7B8-6711B396D81E
+          - 2BEC30F1-56E2-44D3-8CEB-9ED25158B3C3
+        report_ids:
+          - 70945782-6B50-4C80-8EE6-308BD6D92A45
+
+    norms:
+      - id: 05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337
+        name: Wave Focus Styles V4 - Graduates - All (INT, IA, 2021)
+      - id: A0F63805-6099-47EB-9037-187929E80021
+        name: Wave Focus Styles V4 - Graduates - Recent (INT, IA, 2021)
+      - id: 7432E71D-AF60-4628-A7B8-6711B396D81E
+        name: Swift Analysis Aptitude & Pace (Rx) - Graduates - All (INT, IA, 2021)
+      - id: 2BEC30F1-56E2-44D3-8CEB-9ED25158B3C3
+        name: Swift Analysis Aptitude & Pace (Rx) - Graduates - Recent (INT, IA, 2021)
+
+    reports:
+      - id: 2AEE2048-AC2B-415B-B83D-7CB3B15FC547
+        name: Wave Focus Styles Expert Report V4
+      - id: 01D3EFDE-65C6-4E3E-9104-D5FA21609500
+        name: Wave Focus Styles Line Manager Report V4
+      - id: 70945782-6B50-4C80-8EE6-308BD6D92A45
+        name: Swift Analysis Aptitude & Pace Report (Rx)
+
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>
   network:

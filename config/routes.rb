@@ -650,7 +650,7 @@ Rails.application.routes.draw do
         put :restore
       end
       collection do
-        get :hogan_reports
+        get :external_reports
       end
       scope module: 'reports' do
         resource :builders, only: [:update]
@@ -750,6 +750,7 @@ Rails.application.routes.draw do
 
   namespace :webhooks do
     resource :examus, only: %i[create]
+    post '/saville/results', to: 'saville#results', as: :saville
   end
 
   devise_scope :user do
@@ -825,6 +826,13 @@ Rails.application.routes.draw do
       end
 
       resources :mindmill_user_assessments, only: [] do
+        member do
+          get :pass
+          get :redirect
+        end
+      end
+
+      resources :saville_user_assessments, only: [] do
         member do
           get :pass
           get :redirect
@@ -933,7 +941,7 @@ Rails.application.routes.draw do
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify', as: :identify
-    get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed'
+    get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed', as: :assessment_completed
     get 'upgrade', to: 'home#upgrade'
     root to: 'end_user/users#dashboard'
   end

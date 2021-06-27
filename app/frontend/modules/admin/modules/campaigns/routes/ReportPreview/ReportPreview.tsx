@@ -51,7 +51,7 @@ export default function ReportPreview ({
         results={results}
         campaign={JSON.stringify(campaign)}
         user={JSON.stringify(user)}
-        locales={JSON.stringify(locales)}
+        locales={locales}
         selectedLocale={defaultLanguage}
       />
     )

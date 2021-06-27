@@ -68,7 +68,6 @@ module Threesixty
         ) do |participant|
           participant.manager_nomination_status = :approved
           participant.relationship = evaluator[:relationship]
-          participant.project_id = threesixty_campaign.campaign.project_id
         end
       end
 

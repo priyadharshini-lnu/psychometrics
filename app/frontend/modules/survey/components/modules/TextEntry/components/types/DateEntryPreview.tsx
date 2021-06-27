@@ -6,7 +6,6 @@ import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
 
 import { getIn } from 'utils/immutable'
 import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
-import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
 
 interface Props {
   model: PreviewModel
@@ -28,13 +27,16 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly }) => {
   }
 
   const value = getIn(answers, ['0', 'value'])
+  const pickerMode = DATE_FORMAT_OPTIONS.find(
+    dateFormatOption => dateFormatOption.value === dateFormat,
+  )?.picker ?? 'date'
 
   return (
     <DatePicker
       allowClear
       disabled={readOnly}
-      picker={getCorrectPickerFromDateFormat(dateFormat)}
       format={dateFormat || DATE_FORMAT_OPTIONS[0].value}
+      picker={pickerMode}
       value={value ? moment(value, dateFormat) : null}
       onChange={handleAnswerChange}
     />

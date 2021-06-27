@@ -1,11 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../MultipleChoice.scss'
+import styles from '../../styles.scss'
 import { NOT_APPLICABLE } from '../../../MatrixTable/components/Consts'
-import connect from '../../connect'
 
-class MultiSelectBox extends Component {
+class MultiSelectBoxPreview extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -66,4 +65,4 @@ class MultiSelectBox extends Component {
   }
 }
 
-export default connect(MultiSelectBox)
+export default MultiSelectBoxPreview

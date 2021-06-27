@@ -18,6 +18,7 @@ export default function EvaluatorList ({
   removeUser,
   editUser,
   total,
+  permissions,
   page,
   searchTerm,
   match: {
@@ -44,8 +45,8 @@ export default function EvaluatorList ({
             path="/participants/evaluators"
             searchTerm={searchTerm}
           />
-          <ToolsDropdown />
-          <CreateEvaluatorsDropdown />
+          <ToolsDropdown permissions={permissions} />
+          <CreateEvaluatorsDropdown permissions={permissions} />
         </Col>
       </Row>
       <Row>

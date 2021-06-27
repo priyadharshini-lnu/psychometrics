@@ -605,7 +605,8 @@ CREATE TABLE public.campaign_assessments (
     norm_type character varying,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[]
+    available_locales text[] DEFAULT '{}'::text[],
+    saville_norm_id character varying
 );
 
 
@@ -2803,6 +2804,138 @@ ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
 
 
 --
+-- Name: saville_assessment_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saville_assessment_settings (
+    id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    saville_assessment_id character varying NOT NULL,
+    saville_norm_id character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saville_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saville_assessment_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saville_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saville_assessment_settings_id_seq OWNED BY public.saville_assessment_settings.id;
+
+
+--
+-- Name: saville_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saville_factors (
+    id bigint NOT NULL,
+    assessment_id character varying,
+    factor_id character varying,
+    name character varying,
+    score_type character varying,
+    value_type character varying
+);
+
+
+--
+-- Name: saville_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saville_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saville_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saville_factors_id_seq OWNED BY public.saville_factors.id;
+
+
+--
+-- Name: saville_report_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saville_report_settings (
+    id bigint NOT NULL,
+    report_id bigint NOT NULL,
+    saville_report_id character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saville_report_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saville_report_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saville_report_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saville_report_settings_id_seq OWNED BY public.saville_report_settings.id;
+
+
+--
+-- Name: saville_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saville_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    request_id character varying,
+    url character varying,
+    norm_id character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saville_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saville_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saville_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saville_user_assessments_id_seq OWNED BY public.saville_user_assessments.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3321,7 +3454,6 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.user_assessments (
     id bigint NOT NULL,
-    project_id bigint,
     campaign_id bigint,
     relationship_id bigint,
     manager_nomination_status integer DEFAULT 0,
@@ -4127,6 +4259,34 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: saville_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.saville_assessment_settings_id_seq'::regclass);
+
+
+--
+-- Name: saville_factors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_factors ALTER COLUMN id SET DEFAULT nextval('public.saville_factors_id_seq'::regclass);
+
+
+--
+-- Name: saville_report_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_report_settings ALTER COLUMN id SET DEFAULT nextval('public.saville_report_settings_id_seq'::regclass);
+
+
+--
+-- Name: saville_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.saville_user_assessments_id_seq'::regclass);
+
+
+--
 -- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4871,6 +5031,38 @@ ALTER TABLE ONLY public.reports_pages
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saville_assessment_settings saville_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_assessment_settings
+    ADD CONSTRAINT saville_assessment_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saville_factors saville_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_factors
+    ADD CONSTRAINT saville_factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saville_report_settings saville_report_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_report_settings
+    ADD CONSTRAINT saville_report_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saville_user_assessments saville_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_user_assessments
+    ADD CONSTRAINT saville_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -6128,6 +6320,27 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 
 
 --
+-- Name: index_saville_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saville_assessment_settings_on_assessment_id ON public.saville_assessment_settings USING btree (assessment_id);
+
+
+--
+-- Name: index_saville_report_settings_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saville_report_settings_on_report_id ON public.saville_report_settings USING btree (report_id);
+
+
+--
+-- Name: index_saville_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.saville_user_assessments USING btree (user_assessment_id);
+
+
+--
 -- Name: index_tasks_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6307,13 +6520,6 @@ CREATE INDEX index_user_assessments_on_evaluator_id ON public.user_assessments U
 --
 
 CREATE INDEX index_user_assessments_on_norm_id ON public.user_assessments USING btree (norm_id);
-
-
---
--- Name: index_user_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_assessments_on_project_id ON public.user_assessments USING btree (project_id);
 
 
 --
@@ -6932,11 +7138,27 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: saville_user_assessments fk_rails_60f7c22dd4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_user_assessments
+    ADD CONSTRAINT fk_rails_60f7c22dd4 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: communications fk_rails_639c49fe3d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.communications
     ADD CONSTRAINT fk_rails_639c49fe3d FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: saville_assessment_settings fk_rails_6847f23cff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_assessment_settings
+    ADD CONSTRAINT fk_rails_6847f23cff FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -7201,6 +7423,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_9cb58b8a3f FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: saville_report_settings fk_rails_9dbdc763fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_report_settings
+    ADD CONSTRAINT fk_rails_9dbdc763fd FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -7609,14 +7839,6 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_f4894a9b56 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
-
-
---
--- Name: user_assessments fk_rails_f5ead802f1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_assessments
-    ADD CONSTRAINT fk_rails_f5ead802f1 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE RESTRICT;
 
 
 --
@@ -8090,8 +8312,16 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210429142157'),
 ('20210509083519'),
 ('20210512100320'),
+('20210518140350'),
+('20210527094321'),
+('20210531064834'),
+('20210606072330'),
+('20210606105059'),
 ('20210610160411'),
+('20210614064633'),
 ('20210616195712'),
+('20210617154459'),
+('20210621071756'),
 ('20210623082242');
 
 

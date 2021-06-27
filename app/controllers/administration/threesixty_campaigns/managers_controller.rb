@@ -34,10 +34,27 @@ module Administration
             subject_evaluator_counters: subject_evaluator_counters
           ).to_h
         end
-        render json: { managers: paginated_managers, total: total }
+        render json: { managers: paginated_managers, total: total, permissions: permissions }
       end
 
       private
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Threesixty::EvaluatorPolicy,
+          current_user,
+          nil,
+          %w[
+            manage_datasheets
+            manage_relationships
+            export_results
+            export_completion_status
+            edit_dimension
+            reset_all_participants
+            reset_all_nominations
+          ]
+        )
+      end
 
       # Set model
       def set_resource_class

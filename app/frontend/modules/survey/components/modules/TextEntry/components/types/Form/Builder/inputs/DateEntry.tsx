@@ -8,7 +8,6 @@ import { DownOutlined } from '@ant-design/icons'
 import { DateFormat } from 'modules/survey/interfaces/questions/TextEntry'
 
 import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
-import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
 
 const { I18n } = window
 
@@ -54,12 +53,16 @@ export const DateEntry: React.FC<Props> = ({
     </Menu>
   )
 
+  const pickerMode = DATE_FORMAT_OPTIONS.find(
+    dateFormatOption => dateFormatOption.value === dateFormat,
+  )?.picker ?? 'date'
+
   return (
     <Space direction="horizontal">
       <DatePicker
         size="middle"
         format={dateFormat}
-        picker={getCorrectPickerFromDateFormat(dateFormat)}
+        picker={pickerMode}
       />
       <Dropdown overlay={DateEntryMenu} trigger={['click']}>
         <Button type="link">

@@ -6,7 +6,7 @@
       .form-inputs.clearfix
         = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
                          include_blank: false,
-                         wrapper_html: { class: 'common mindmill hogan' }
+                         wrapper_html: { class: 'common mindmill hogan saville' }
         = f.input :mindmill_id, collection: Settings.providers.mindmill.assessments.map { |m| [m[:name], m[:id]] },
                                 include_blank: false,
                                 wrapper_html: { class: 'mindmill' }
@@ -14,7 +14,11 @@
           = hogan.input :hogan_assessment_id, collection: Settings.providers.hogan.assessments.map { |h| [h[:name], h[:id]] },
                                               include_blank: false,
                                               wrapper_html: { class: 'hogan' }
-        = f.input :name, wrapper_html: { class: 'common mindmill hogan' }
+        = f.simple_fields_for :saville_assessment_setting do |saville|
+          = saville.input :saville_assessment_id, collection: Settings.providers.saville.assessments.map { |h| [h[:name], h[:id]] },
+                                              include_blank: false,
+                                              wrapper_html: { class: 'saville' }
+        = f.input :name, wrapper_html: { class: 'common mindmill hogan saville' }
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: policy_scope(Client).roots.order(name: :asc),
                                   include_blank: t('administration.tte'),
@@ -25,15 +29,15 @@
                              wrapper_html: { class: 'common' }
         = f.input :status, as: :select, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] },
                            include_blank: false,
-                           wrapper_html: { class: 'common mindmill hogan' }
+                           wrapper_html: { class: 'common mindmill hogan saville' }
         = f.association :dimension, collection: policy_scope(Dimension).all.sorted_by('name_asc'),
                                     include_blank: true,
                                     input_html: { data: { live_search: true } },
                                     wrapper_html: { class: 'common' }
         = f.input :timing, as: :text,
                            hint: t('.timing.hint'),
-                           wrapper_html: { class: 'common mindmill hogan' }
-        = f.input :description, as: :text, wrapper_html: { class: 'common mindmill hogan' }
+                           wrapper_html: { class: 'common mindmill hogan saville' }
+        = f.input :description, as: :text, wrapper_html: { class: 'common mindmill hogan saville' }
         .clearfix
           = f.input :enable_video_check, as: :boolean
           = f.input :enable_audio_check, as: :boolean

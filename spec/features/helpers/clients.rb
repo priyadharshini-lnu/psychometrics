@@ -5,7 +5,7 @@ module Features
     module Clients
       def initiate_action(selector, text)
         find(selector, text: t(text)).click
-        find('.modal-header').click
+        # find('.modal-header').click
       end
 
       def create_tenancy(opts = {})

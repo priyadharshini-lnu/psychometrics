@@ -23,7 +23,8 @@ class Report < ApplicationRecord
   PROVIDERS = {
     internal: 0,
     mindmill: 1,
-    hogan: 2
+    hogan: 2,
+    saville: 3
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10
@@ -79,7 +80,9 @@ class Report < ApplicationRecord
   has_many :campaign_templates, dependent: :destroy
 
   has_one :hogan_report_setting
+  has_one :saville_report_setting
   accepts_nested_attributes_for :hogan_report_setting, allow_destroy: true
+  accepts_nested_attributes_for :saville_report_setting
 
   #   VALIDATIONS
   #
@@ -88,11 +91,12 @@ class Report < ApplicationRecord
   validate :max_assessments_count
   validate :min_assessments_count
   validate :all_assessments_hogan, if: :hogan_report_setting
+  validate :all_assessments_saville, if: :saville_report_setting
 
   #   CALLBACKS
   #
   before_validation :set_assessment
-  before_save :delete_hogan_report_setting, :set_provider
+  before_save :delete_hogan_report_setting, :delete_saville_report_setting, :set_provider
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum category: { common: 0, threesixty: 1 }, _prefix: :category
@@ -105,6 +109,7 @@ class Report < ApplicationRecord
     self.icon_color = Settings.default_colors.sample
   end
 
+  delegate :saville_report_id, to: :saville_report_setting, allow_nil: true
   #   SCOPES
   #
   scope :enabled, -> { where.not(disabled: true) }
@@ -137,7 +142,7 @@ class Report < ApplicationRecord
   # Copy report with nested resources
   def clone
     @cloned_item = deep_clone(
-      include: %i[assessments hogan_report_setting]
+      include: %i[assessments hogan_report_setting saville_report_setting]
     )
     @cloned_item.gen_uniq_name
     @cloned_item
@@ -176,7 +181,7 @@ class Report < ApplicationRecord
   end
 
   def hogan?
-    hogan_report_setting.present?
+    provider_hogan?
   end
 
   def has_data_configuration_occupations?
@@ -226,7 +231,11 @@ class Report < ApplicationRecord
   end
 
   def delete_hogan_report_setting
-    hogan_report_setting.destroy if hogan_report_setting && !assessment.hogan?
+    hogan_report_setting.destroy if hogan_report_setting && !assessments.all?(&:hogan?)
+  end
+
+  def delete_saville_report_setting
+    saville_report_setting.destroy if saville_report_setting && !assessments.all?(&:saville?)
   end
 
   def add_factors_aliases(assessment)
@@ -245,9 +254,15 @@ class Report < ApplicationRecord
     errors.add(:base, :assessments_not_hogan) unless assessments.all?(&:hogan?)
   end
 
+  def all_assessments_saville
+    errors.add(:base, :assessments_not_saville) unless assessments.all?(&:saville?)
+  end
+
   def set_provider
-    self.provider = if hogan?
+    self.provider = if hogan_report_setting.present?
                       PROVIDERS[:hogan]
+                    elsif saville_report_setting.present?
+                      PROVIDERS[:saville]
                     elsif mindmill?
                       PROVIDERS[:mindmill]
                     else

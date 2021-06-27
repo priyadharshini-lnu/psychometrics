@@ -5,27 +5,23 @@ module Administration
     include ::Administration::Common::AssessmentExportPolicy
 
     def update?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def destroy?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def import_results?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
-    end
-
-    def rescore_responses?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:results, :reset_responses)
     end
 
     def update_norm?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def update_assessor_form?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def update_available_locales?
@@ -37,11 +33,11 @@ module Administration
     end
 
     def enable_universal_link?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def attach_to_group?
-      update?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
   end
 end

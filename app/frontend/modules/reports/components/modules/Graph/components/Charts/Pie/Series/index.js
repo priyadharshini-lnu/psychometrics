@@ -6,6 +6,7 @@ import GapAnalysis from '../../Base/Series/GapAnalysis'
 import EmbeddedData from '../../Base/Series/EmbeddedData'
 import Factor from '../../Base/Series/Factor'
 import ExternalFactor from '../../Base/Series/ExternalFactor'
+import SavilleFactor from '../../Base/Series/SavilleFactor'
 import GraphicSlider from '../../Base/Series/GraphicSlider'
 import Timing from '../../Base/Series/Timing'
 import TextEntry from '../../Base/Series/TextEntry'
@@ -30,5 +31,6 @@ export default {
   TextEntry,
   MatrixTable,
   ExternalFactor,
+  SavilleFactor,
   DataSheet,
 }

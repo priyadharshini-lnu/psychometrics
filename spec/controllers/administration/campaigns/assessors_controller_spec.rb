@@ -32,7 +32,11 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
         'email' => assessor.user.email,
         'status' => 'completed',
         'completed_evaluations' => 0,
-        'total_evaluations' => 0
+        'total_evaluations' => 0,
+        'permissions' => {
+          'login_as' => true,
+          'remove' => true
+        }
       }])
     end
   end
@@ -86,7 +90,11 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
         'full_name' => assessor.user.decorate.full_name,
         'completed_evaluations' => 0,
         'total_evaluations' => 0,
-        'completion_status' => 'completed'
+        'completion_status' => 'completed',
+        'permissions' => {
+          'add_subject' => true,
+          'remove_subject' => true
+        }
       })
     end
   end

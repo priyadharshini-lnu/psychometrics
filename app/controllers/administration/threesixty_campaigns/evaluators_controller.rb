@@ -36,10 +36,11 @@ module Administration
             option: option,
             nomination_requirement: nomination_requirement_by_user_id[e.user_id],
             counters: counters,
-            subject_evaluator_counters: subject_evaluator_counters
+            subject_evaluator_counters: subject_evaluator_counters,
+            current_user: current_user
           ).to_h
         end
-        render json: { evaluators: evaluators, total: total }
+        render json: { evaluators: evaluators, total: total, permissions: permissions }
       end
 
       def create_all
@@ -65,6 +66,25 @@ module Administration
       end
 
       private
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::Threesixty::EvaluatorPolicy,
+          current_user,
+          nil,
+          [
+            %w[add_evaluator create_all],
+            %w[import_evaluator import],
+            'manage_datasheets',
+            'manage_relationships',
+            'export_results',
+            'export_completion_status',
+            'edit_dimension',
+            'reset_all_participants',
+            'reset_all_nominations'
+          ]
+        )
+      end
 
       # Set model
       def set_resource_class

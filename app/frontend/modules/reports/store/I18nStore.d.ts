@@ -13,6 +13,8 @@ declare class I18nStore {
   tFactor (factor, key): string
 
   tOccupation (occupation, key): string
+
+  tSavilleFactorName (assessment_id: number, factor: { name: string, id: string }): string
 }
 
 export = new I18nStore()

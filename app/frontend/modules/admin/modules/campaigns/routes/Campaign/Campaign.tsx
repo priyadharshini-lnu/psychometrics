@@ -1,6 +1,7 @@
 import React from 'react'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import RouteList from 'components/RouteList'
+import User from 'modules/admin/modules/campaigns/interfaces/User'
 import TopMenu from './TopMenu'
 import Breadcrumb from '../../components/Breadcrumb'
 import settings from '../../settings'
@@ -16,10 +17,12 @@ interface Props {
       campaignId: string
     }
   }
+  currentUser: User
 }
 
 const Campaign: React.FC<Props> = ({
   match: { params: { campaignId } },
+  currentUser,
 }) => (
   <div>
     <Breadcrumb
@@ -42,7 +45,7 @@ const Campaign: React.FC<Props> = ({
         label: state => state.campaign?.name,
       }]}
     />
-    <TopMenu prefix={`${settings.urlPrefix}/${campaignId}`} />
+    <TopMenu prefix={`${settings.urlPrefix}/${campaignId}`} currentUser={currentUser} />
     <section data-testid="admin_campaign_section">
       <RouteList routes={routes} urlPrefix={`${settings.urlPrefix}/:campaignId`} />
     </section>

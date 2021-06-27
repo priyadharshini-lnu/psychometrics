@@ -10,7 +10,7 @@ class CampaignAssessment < ApplicationRecord
 
   before_create :set_position
 
-  delegate :common?, :hogan?, :mindmill?, :external?, to: :assessment
+  delegate :common?, :hogan?, :mindmill?, :external?, :saville?, to: :assessment
 
   def expired?
     Time.now > key_expires_at.to_i
@@ -25,5 +25,23 @@ class CampaignAssessment < ApplicationRecord
       campaign_assessments.
       where(campaign_assessment_group_id: campaign_assessment_group_id).
       maximum('position') || 0) + 1
+  end
+
+  def norm_name
+    return saville_norm_name if assessment.saville?
+
+    norm&.name
+  end
+
+  def update_norm!(norm_id)
+    return update!(saville_norm_id: norm_id) if assessment.saville?
+
+    update!(norm_id: norm_id)
+  end
+
+  private
+
+  def saville_norm_name
+    Settings.providers.saville.norms.find { |norm| norm[:id] == saville_norm_id }&.dig(:name)
   end
 end

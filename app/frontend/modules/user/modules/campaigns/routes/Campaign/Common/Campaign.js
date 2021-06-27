@@ -7,6 +7,7 @@ import { STATUSES } from 'constants/campaign'
 import './styles.scss'
 import cs from 'classnames'
 import { useMedia } from 'modules/user/rootHooks'
+import { isInsideIframe } from 'utils/isInsideIframe'
 import Assessments from './Assessments'
 import Header from './Header'
 import InstructionsPanel from './InstructionsPanel'
@@ -30,7 +31,7 @@ const prevGroupIsCompleted = (campaign, group) => {
 
 export default function Campaign ({
   history, match, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
-  loginHogan, acceptPolicy, fetchCampaign, beginCampaign, continueCampaign, examus,
+  loginHogan, acceptPolicy, fetchCampaign, beginCampaign, continueCampaign,
 }) {
   const {
     isTimedCampaign,
@@ -40,9 +41,10 @@ export default function Campaign ({
     campaignOptions: {
       instructionsEnabled,
       instructions,
-      proctoringEnabled: isProctored,
+      proctoringEnabled,
     },
   } = campaign
+  const needsProctoring = proctoringEnabled && !isInsideIframe()
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
   // TODO: We can check completion_status here. Also need to take care for assessment timed_out status when we add it
@@ -56,32 +58,25 @@ export default function Campaign ({
   const hasStartedCampaign = !!campaignUser.startedAt
   const campaignUserTimedOut = campaignUser.status === 'timed_out'
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
-  const canNotStartAssessment = !hasStartedCampaign || campaignClosed
+  const canNotStartAssessment = needsProctoring || !hasStartedCampaign || campaignClosed
     || campaignUser.status === 'completed' || isCampaignInterrupted || campaignUserTimedOut
   const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign
-  const canContinueCampaign = isCampaignInterrupted && !campaignClosed && !allAssessmentsComplete
+  const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted)
+    && !campaignClosed && !allAssessmentsComplete && !campaignUserTimedOut
   const showTimer = isTimedCampaign && hasStartedCampaign && !isCampaignInterrupted
     && campaignUser.status !== 'completed'
   const showCampaignClosedMessage = campaignClosed || campaignUserTimedOut
     || (isTimedCampaign && campaignUser.status === 'completed')
 
-  function startProctoredCampaign (jwtToken) {
-    const url = `${examus.url}/integration/simple/${examus.integrationName}/start/?token=${jwtToken}`
-    window.location = url
-  }
-
   const onBeginCampaign = () => {
-    beginCampaign(campaignUser.id).then((response) => {
-      const { jwtToken } = response.response
-      if (isProctored && jwtToken) {
-        startProctoredCampaign(jwtToken)
-      }
+    beginCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }) => {
+      if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
     })
   }
 
   const onContinueCampaign = () => {
-    continueCampaign(campaignUser.id).then(() => {
-      fetchCampaign(match.url)
+    continueCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }) => {
+      if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
     })
   }
 

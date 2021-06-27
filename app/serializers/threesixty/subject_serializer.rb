@@ -2,7 +2,7 @@
 
 module Threesixty
   class SubjectSerializer < ActiveModel::Serializer
-    attributes :id, :status, :report_status, :evaluators, :evaluations
+    attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions
 
     has_one :user, serializer: UserSerializer
     def status
@@ -32,6 +32,36 @@ module Threesixty
 
     def counters
       @instance_options[:counters][object.user_id]
+    end
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::Threesixty::SubjectPolicy,
+        current_user,
+        object,
+        [
+          %w[login spoof],
+          'edit_user',
+          'view_report',
+          'download_report',
+          'view_responses',
+          'approve_report',
+          'remove_report_approval',
+          'release_report',
+          'hold_report',
+          'remove_report_hold_release',
+          'mark_as_done',
+          'unmark_as_done',
+          'remove_subject',
+          'remove_from_campaign'
+        ]
+      )
+    end
+
+    private
+
+    def current_user
+      @instance_options[:current_user]
     end
   end
 end

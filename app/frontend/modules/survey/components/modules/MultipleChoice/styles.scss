@@ -1,0 +1,151 @@
+@import '~styles/theme';
+@import 'modules/user/styles/variables';
+
+.list {
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+  background-color: $bg-light-gray;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid $light-gray;
+  position: relative;
+}
+
+.listItem {
+  padding: 4px 0;
+  font-weight: normal;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid $light-gray;
+  &:last-child {
+    border-bottom: 0;
+  }
+  &:hover {
+    color: black;
+    background-color: $white;
+  }
+  .optionDescription {
+    padding-inline-start: 10px;
+    padding-inline-end: 20px;
+    display: inline-block;
+  }
+}
+
+.input {
+  margin: 3px 7px !important;
+  width: 12px;
+}
+
+.label {
+  font-weight: normal;
+  width: 100%;
+}
+
+.ltr_direction {
+  direction: ltr;
+}
+
+.liButton {
+  padding: 0;
+  align-items: center;
+  input {
+    display: none;
+  }
+}
+
+.buttonActive {
+  .checkIcon {
+    background-color: $success-color;
+  }
+}
+.multipleAnswer {
+  .listItem:not(.buttonActive) {
+    .checkIcon {
+      color: $light-gray;
+    }
+  }
+}
+.checkIcon {
+  background-color: $white;
+  border-radius: 50%;
+  color: $white;
+  font-size: 0.8em;
+  padding: 0.4em;
+  margin: auto 10px;
+  border: 1px solid $light-gray;
+}
+
+.left_float {
+  float: left;
+}
+
+.labelButton {
+  cursor: pointer;
+  padding: 15px;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+  span {
+    text-align: left;
+  }
+}
+
+.Horizontal {
+  &.list {
+    border: 0;
+    background-color: transparent;
+  }
+  .listItem {
+    border: 0;
+  }
+  .labelButton {
+    padding: 1em 0;
+  }
+  .checkIcon {
+    margin: 0;
+  }
+  .optionDescription {
+    padding-inline-start: 8px;
+  }
+}
+
+.questionTextPreview {
+  margin-bottom: 10px;
+  overflow-x: hidden;
+}
+
+.scoringRow {
+  display: flex;
+  margin: 5px 0;
+}
+
+:global(body .ltr) {
+  .list:not(.Horizontal) {
+    .checkIcon {
+      position: absolute;
+      right: 0;
+    }
+  }
+  .Horizontal {
+    .checkIcon {
+      margin-right: 0.3em;
+    }
+  }
+}
+:global(body .rtl) {
+  .list:not(.Horizontal) {
+    .checkIcon {
+      position: absolute;
+      left: 0;
+    }
+  }
+  .Horizontal {
+    .listItem {
+      margin-left: 1.2em;
+    }
+    .checkIcon {
+      margin-left: 0.4em;
+    }
+  }
+}

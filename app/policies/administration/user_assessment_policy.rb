@@ -5,27 +5,28 @@ module Administration
     include ::Administration::Common::AssessmentExportPolicy
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      @user.is?(:superadmin) || !record.completed? && @user.has_grant?(:campaigns, :manage_users)
     end
 
     def update_norm?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def update_additional_time?
-      (@user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)) &&
+      !record&.assessment&.external? &&
+        (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)) &&
         %w[completed timed_out].include?(record&.real_status) &&
         record&.users_result&.expired?
     end
 
     def rescore_response?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      !record&.assessment&.external? &&
+        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
     end
 
     def reset?
-      (@user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)) &&
-        !record&.users_result&.not_started? &&
-        !record&.assessment&.external?
+      !record&.assessment&.mindmill? && !record&.assessment&.hogan? &&
+        (@user.is?(:superadmin) || @user.has_grant?(:results, :reset_responses))
     end
 
     def allow_edit?

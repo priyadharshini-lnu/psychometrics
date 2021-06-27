@@ -75,6 +75,7 @@ en:
           mindmill: Mindmill
           organisational: Org Surveys
           psychometric: Psychometrics
+          saville: Saville
           threesixty: Threesixty
         statuses:
           finished: Finished
@@ -93,6 +94,7 @@ en:
             mindmill: Mindmill
             organisational: Org Surveys
             psychometric: Psychometrics
+            saville: Saville
             threesixty: Threesixty
         new: Add
         owner: Owner
@@ -107,6 +109,9 @@ en:
         name: Name
         type: Type
         updated_at: Modified date
+      menus:
+        add_timer: Add timer
+        remove_timer: Remove timer
       new:
         header: New assessment
       resource:
@@ -562,6 +567,7 @@ en:
             mindmill: Mindmill
             organisational: Org Surveys
             psychometric: Psychometrics
+            saville: Saville
             threesixty: Threesixty
           statuses:
             finished: Finished
@@ -580,6 +586,7 @@ en:
               mindmill: Mindmill
               organisational: Org Surveys
               psychometric: Psychometrics
+              saville: Saville
               threesixty: Threesixty
           new: Add
           owner: Owner
@@ -3095,6 +3102,7 @@ en:
       builder_area:
         options: Options
       property_panel:
+        add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying
         answer_type: Answer type
         date_format: Date format
@@ -3112,7 +3120,26 @@ en:
           '300': 5min
           '60': 1min
           '600': 10min
+        image_multi_choice_properties:
+          enable: With images
+          preview: Preview on click
+          size:
+            large: Large
+            medium: Medium
+            small: Small
+            title: Grid size
         max_duration: Max duration
+        multiple_choice_types:
+          dropdown: Dropdown
+          multi_answer: Multiple answers
+          multi_select_box: Multiple select box
+          select_box: Select box
+          single_answer: Single answer
+        no_of_choices: No. of choices
+        orientation:
+          horizontal: Horizontal
+          title: Orientation
+          vertical: Vertical
         question_description: Row descriptions
         validation_response_type: Validation response type
         voice_dictation: Voice dictation
