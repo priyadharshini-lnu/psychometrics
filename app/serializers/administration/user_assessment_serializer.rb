@@ -50,11 +50,16 @@ module Administration
           'rescore_response',
           %w[remove destroy],
           %w[reset_results reset]
-        ]
+        ],
+        campaign.project_id
       )
     end
 
     private
+
+    def campaign
+      instance_options[:campaign]
+    end
 
     def current_user
       instance_options[:current_user]

@@ -12,7 +12,8 @@ module Administration
           serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
             user_assessments.page(params[:page]),
             each_serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
-            current_user: current_user
+            current_user: current_user,
+            project_id: campaign.project_id
           )
 
           render json: { list: serialized_user_assessments, total: user_assessments.count }
@@ -47,6 +48,7 @@ module Administration
           authorize(
             resource || UserAssessment,
             nil,
+            project_id: campaign.project_id,
             policy_class: Administration::Campaigns::Assessors::UserAssessmentPolicy
           )
         end

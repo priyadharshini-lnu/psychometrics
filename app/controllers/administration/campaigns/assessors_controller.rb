@@ -29,6 +29,7 @@ module Administration
               each_serializer: Administration::Campaigns::AssessorSerializer,
               current_user: current_user,
               campaign_id: campaign.id,
+              project_id: campaign.project_id,
               evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_assessors.pluck(:user_id), campaign)
             )
             render json: { list: serialized_assessors, total: assessors.count, permissions: permissions }
@@ -45,7 +46,8 @@ module Administration
             %w[export index],
             'import',
             %w[add create_all]
-          ]
+          ],
+          campaign.project_id
         )
       end
 
@@ -78,7 +80,9 @@ module Administration
       end
 
       def show
-        render json: resource.user, serializer: Administration::Assessors::UserSerializer
+        render json: resource.user,
+          serializer: Administration::Assessors::UserSerializer,
+          project_id: campaign.project_id
       end
 
       def create
@@ -104,7 +108,12 @@ module Administration
       private
 
       def pundit_authorize
-        authorize(resource || Assessor, nil, policy_class: Administration::Campaigns::AssessorPolicy)
+        authorize(
+          resource || Assessor,
+          nil,
+          project_id: campaign.project_id,
+          policy_class: Administration::Campaigns::AssessorPolicy
+        )
       end
 
       def resource_class

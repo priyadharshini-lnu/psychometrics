@@ -12,12 +12,13 @@ module Administration
       def permissions
         permissions = GetPermissionsHash.call!(
           Administration::CampaignPolicy,
-          { user: object, project_id: instance_options[:project_id] },
+          object,
           nil,
           [
             'create',
             %w[manage_options update_campaign_options]
-          ]
+          ],
+          instance_options[:project_id]
         )
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end

@@ -10,15 +10,13 @@ module Administration
     def permissions
       GetPermissionsHash.call!(
         Administration::CampaignReportPolicy,
-        {
-          user: current_user,
-          project_id: object.campaign.project_id
-        },
+        current_user,
         object,
         [
           'export',
           %w[remove destroy]
-        ]
+        ],
+        instance_options[:project_id]
       )
     end
 

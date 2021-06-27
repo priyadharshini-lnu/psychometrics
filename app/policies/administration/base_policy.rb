@@ -4,10 +4,10 @@ module Administration
   class BasePolicy
     attr_reader :user, :project_id, :for_project, :membership, :record
 
-    def initialize(context, record, _extra = {})
-      @user = context[:user]
-      @project_id = context[:project_id]
-      @for_project = context[:for_project]
+    def initialize(user, record, extra = {})
+      @user = user
+      @project_id = extra[:project_id]
+      @for_project = extra[:for_project]
       @record = [record].flatten.last
     end
 
@@ -64,11 +64,10 @@ module Administration
     end
 
     class Scope
-      attr_reader :user, :project_id, :scope
+      attr_reader :user, :scope
 
-      def initialize(context, scope)
-        @user = context[:user]
-        @project_id = context[:project_id]
+      def initialize(user, scope)
+        @user = user
         @scope = [scope].flatten.last
       end
 

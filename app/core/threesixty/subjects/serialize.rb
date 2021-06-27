@@ -27,7 +27,8 @@ module Threesixty
             counters: counters,
             nomination_requirement: nomination_requirement_by_user_id[subject.user_id],
             subject_evaluator_counters: subject_evaluator_counters,
-            current_user: current_user
+            current_user: current_user,
+            project_id: threesixty_campaign.campaign.project_id
           ).to_h
         end
         broadcast :ok, result

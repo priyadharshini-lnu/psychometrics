@@ -28,7 +28,7 @@
     td = resource.parent.account_manager&.decorate&.display_name
     td
       = resource.decorate.client_project_admins(current_user)
-      - if policy(:membership).can_manage_project_admins?
+      - if policy(:membership, { project_id: client.id }).can_manage_project_admins?
         .add-icon-box
           = link_to new_step_1_administration_client_project_admins_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus
@@ -40,7 +40,8 @@
     td.text-center = resource.decorate.updated_at
     td = resource.decorate.modifier_name
     td.actions-cell
-      - if policy(resource).actions? && policy(:client).manage_project?
+      - if policy(resource, {project_id: resource.id}).actions? && policy(
+        :client, { project_id: client.id }).manage_project?
         = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
           span.fa.fa-pencil
         = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })

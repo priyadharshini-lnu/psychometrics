@@ -30,10 +30,7 @@ module Administration
     def permissions
       GetPermissionsHash.call!(
         Administration::CampaignAssessmentPolicy,
-        {
-          user: current_user,
-          project_id: object.campaign.project_id
-        },
+        current_user,
         assessment,
         [
           'import_results',
@@ -44,7 +41,8 @@ module Administration
           'export_external_results',
           'rescore_responses',
           %w[remove destroy]
-        ]
+        ],
+        instance_options[:project_id]
       )
     end
 

@@ -22,7 +22,7 @@ module Administration
                         includes(:reports, :assessments, :project, :threesixty_campaign)
             serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
               campaigns.page(params[:page]), each_serializer: Administration::Campaigns::CampaignSerializer,
-              current_user: current_user
+              current_user: current_user, project_id: params[:project_id]
             )
             render json: {
               campaigns: serialized_campaigns,
@@ -36,12 +36,10 @@ module Administration
       def permissions
         GetPermissionsHash.call!(
           Administration::CampaignPolicy,
-          {
-            user: current_user,
-            project_id: params[:project_id]
-          },
+          current_user,
           nil,
-          %w[create]
+          %w[create],
+          params[:project_id]
         )
       end
 
@@ -124,14 +122,11 @@ module Administration
       private
 
       def pundit_authorize
-        authorize @campaign || Campaign
-      end
-
-      def pundit_user
-        {
-          user: current_user,
+        authorize(
+          @campaign || Campaign,
+          nil,
           project_id: params[:project_id]
-        }
+        )
       end
 
       def set_campaign

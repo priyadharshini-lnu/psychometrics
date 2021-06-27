@@ -48,18 +48,18 @@ module Administration
       def assessments_and_reports
         reports = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_reports.includes(:report),
-          each_serializer: Administration::CampaignReportSerializer, current_user: current_user
+          each_serializer: Administration::CampaignReportSerializer,
+          current_user: current_user, project_id: campaign.project_id
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(:norm, :assessment),
-          each_serializer: Administration::CampaignAssessmentSerializer, current_user: current_user
+          each_serializer: Administration::CampaignAssessmentSerializer,
+          current_user: current_user, project_id: campaign.project_id
         )
-
         assessor_assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.assessor_assessments,
           each_serializer: Administration::AssessorAssessmentSerializer,
-          current_user: current_user,
-          campaign: campaign
+          current_user: current_user, campaign: campaign
         )
 
         render json: {
@@ -96,36 +96,32 @@ module Administration
 
       private
 
-      def pundit_user
-        {
-          user: current_user,
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
           project_id: campaign.project_id
-        }
+        )
       end
 
       def aseessment_permissions
         GetPermissionsHash.call!(
           Administration::CampaignAssessmentPolicy,
-          {
-            user: current_user,
-            project_id: campaign.project_id
-          },
+          current_user,
           nil,
           %w[
             enable_universal_link
             update_norm
             update_assessor_form
-          ]
+          ],
+          campaign.project_id
         )
       end
 
       def report_permissions
         GetPermissionsHash.call!(
           Administration::CampaignReportPolicy,
-          {
-            user: current_user,
-            project_id: campaign.project_id
-          },
+          current_user,
           nil,
           [
             %w[add_report report_families],
@@ -133,7 +129,8 @@ module Administration
             'regenerate',
             'toggle_user_access',
             'toggle_assessor_access'
-          ]
+          ],
+          campaign.project_id
         )
       end
 

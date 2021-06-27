@@ -25,8 +25,10 @@ module Administration
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
               users.page(params[:page]),
-              each_serializer: Administration::Campaigns::UserSerializer, current_user: current_user,
-              campaign_id: campaign.id
+              each_serializer: Administration::Campaigns::UserSerializer,
+              current_user: current_user,
+              campaign_id: campaign.id,
+              project_id: campaign.project_id
             )
 
             render json: {
@@ -41,10 +43,7 @@ module Administration
       def permissions
         GetPermissionsHash.call!(
           Administration::Campaigns::UserPolicy,
-          {
-            user: current_user,
-            project_id: campaign.project_id
-          },
+          current_user,
           nil,
           [
             'create',
@@ -53,7 +52,8 @@ module Administration
             'import',
             'edit',
             %w[remove destroy]
-          ]
+          ],
+          campaign.project_id
         )
       end
 
@@ -152,15 +152,20 @@ module Administration
 
       private
 
-      def pundit_user
-        {
-          user: current_user,
-          project_id: campaign.project_id
-        }
-      end
+      # def pundit_user
+      #   {
+      #     user: current_user,
+      #     project_id: campaign.project_id
+      #   }
+      # end
 
       def pundit_authorize
-        authorize(resource || User, nil, policy_class: Campaigns::UserPolicy)
+        authorize(
+          resource || User,
+          nil,
+          project_id: campaign.project_id,
+          policy_class: Campaigns::UserPolicy
+        )
       end
 
       def resource_class

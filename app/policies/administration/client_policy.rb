@@ -43,7 +43,7 @@ module Administration
     end
 
     def manage_project?
-      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id)
     end
 
     def new?
@@ -70,7 +70,7 @@ module Administration
     end
 
     def manage_project_admins?
-      @user.has_grant?(:projects, :manage_admins)
+      @user.has_client_grant?(:projects, :manage_admins, @project_id)
     end
 
     def project_admins?

@@ -105,15 +105,16 @@ module Administration
 
     private
 
+    def pundit_authorize
+      authorize(resource || resource_class, nil, project_id: project.id)
+    end
+
     def permissions
       GetPermissionsHash.call!(
         Administration::DatasheetRowPolicy,
-        {
-          user: current_user,
-          project_id: project.id
-        },
-        nil,
-        ['export', 'import', 'update', 'edit', %w[add create], %w[delete destroy], %w[view show]]
+        current_user, nil,
+        ['export', 'import', 'update', 'edit', %w[add create], %w[delete destroy], %w[view show]],
+        project.id
       )
     end
 

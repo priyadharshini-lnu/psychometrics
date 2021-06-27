@@ -34,16 +34,14 @@ module Administration
       def permissions
         GetPermissionsHash.call!(
           Administration::CampaignPolicy,
-          {
-            user: current_user,
-            project_id: project.id
-          },
+          current_user,
           object,
           [
             'edit',
             'copy',
             %w[delete destroy]
-          ]
+          ],
+          instance_options[:project_id]
         )
       end
 

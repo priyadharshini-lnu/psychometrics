@@ -25,11 +25,16 @@ module Administration
           %w[download_report download],
           %w[remove destroy],
           %w[toggle_access toggle_user_access]
-        ]
+        ],
+        campaign.project_id
       )
     end
 
     private
+
+    def campaign
+      instance_options[:campaign]
+    end
 
     def current_user
       @instance_options[:current_user]

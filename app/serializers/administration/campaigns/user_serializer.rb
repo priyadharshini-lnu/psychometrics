@@ -20,17 +20,15 @@ module Administration
       def permissions
         GetPermissionsHash.call!(
           Administration::Campaigns::UserPolicy,
-          {
-            user: current_user,
-            project_id: campaign_user.campaign.project_id
-          },
+          current_user,
           object,
           [
             'edit',
             %w[login_as spoof],
             'reset_password',
             %w[remove destroy]
-          ]
+          ],
+          instance_options[:project_id]
         )
       end
 

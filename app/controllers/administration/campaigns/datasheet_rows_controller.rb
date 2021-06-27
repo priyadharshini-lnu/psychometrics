@@ -10,13 +10,6 @@ module Administration
 
       private
 
-      def pundit_user
-        {
-          user: current_user,
-          project_id: campaign.project_id
-        }
-      end
-
       def datasheet
         @datasheet ||= campaign.campaign_datasheet
       end

@@ -17,17 +17,15 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
   def permissions
     GetPermissionsHash.call!(
       Administration::RegistrationCodePolicy,
-      {
-        user: current_user,
-        project_id: object.campaign.project_id
-      },
+      current_user,
       object,
       [
         'copy',
         'download_qrcode',
         %w[remove destroy],
         %w[edit update]
-      ]
+      ],
+      instance_options[:project_id]
     )
   end
 

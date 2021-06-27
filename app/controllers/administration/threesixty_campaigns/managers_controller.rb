@@ -31,7 +31,9 @@ module Administration
             option: option,
             nomination_requirement: nomination_requirement_by_user_id[m.user_id],
             counters: counters,
-            subject_evaluator_counters: subject_evaluator_counters
+            subject_evaluator_counters: subject_evaluator_counters,
+            current_user: current_user,
+            project_id: threesixty_campaign.campaign.project_id
           ).to_h
         end
         render json: { managers: paginated_managers, total: total, permissions: permissions }
@@ -52,7 +54,8 @@ module Administration
             edit_dimension
             reset_all_participants
             reset_all_nominations
-          ]
+          ],
+          threesixty_campaign.campaign.project_id
         )
       end
 

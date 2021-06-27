@@ -54,7 +54,8 @@ module Threesixty
           'unmark_as_done',
           'remove_subject',
           'remove_from_campaign'
-        ]
+        ],
+        current_project_id
       )
     end
 
@@ -62,6 +63,10 @@ module Threesixty
 
     def current_user
       @instance_options[:current_user]
+    end
+
+    def current_project_id
+      @instance_options[:project_id]
     end
   end
 end

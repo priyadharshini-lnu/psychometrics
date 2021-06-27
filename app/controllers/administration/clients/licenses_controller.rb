@@ -69,7 +69,11 @@ module Administration
       end
 
       def pundit_authorize
-        authorize :license
+        authorize(
+          :license,
+          nil,
+          project_id: client.id
+        )
       end
     end
   end

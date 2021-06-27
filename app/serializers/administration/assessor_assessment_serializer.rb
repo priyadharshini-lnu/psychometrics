@@ -7,10 +7,7 @@ module Administration
     def permissions
       GetPermissionsHash.call!(
         Administration::CampaignAssessmentPolicy,
-        {
-          user: current_user,
-          project_id: campaign.project_id
-        },
+        current_user,
         object,
         %w[
           import_results
@@ -20,7 +17,8 @@ module Administration
           export_normed_results
           export_external_results
           rescore_responses
-        ]
+        ],
+        campaign.project_id
       )
     end
 

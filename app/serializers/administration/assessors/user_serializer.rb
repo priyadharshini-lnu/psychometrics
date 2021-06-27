@@ -29,7 +29,8 @@ module Administration
           [
             'add_subject',
             %w[remove_subject destroy]
-          ]
+          ],
+          instance_options[:project_id]
         )
       end
 
