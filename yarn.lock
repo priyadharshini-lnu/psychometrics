@@ -3041,10 +3041,10 @@
   resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.3.5/1c7186ac4e3430b7254f0ad46da740f218f9511b4b1f8eaa0538261093340751#ab4f96c14f84ac86c1df9f4760fe066f58fe7d5b"
   integrity sha512-OAcKExU8eTaroj69gfyiXFBJMquD5c8c7113rK8TqikMLjItPYFzDHZ5+2XGyWtE7v9Iwn/UM49OBKxZHnbw7A==
 
-"@types/actioncable@^5.2.4":
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/@types/actioncable/-/actioncable-5.2.4.tgz#c5f58188ea163b750ed0399519e220d04fb90e02"
-  integrity sha512-Uwkg/6kdYQfTCCxuBhtBkqPLyB/sSMgwsTtqTYBHeKgu3ED7onS+teO0Cgd3+2ttM9nfdOgt53mSd+MSXaDDqA==
+"@types/actioncable@^5.2.5":
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/@types/actioncable/-/actioncable-5.2.5.tgz#afe7d1d765f360bcdc88005b45588d148c5362b7"
+  integrity sha512-lXxf7qEzjWJanq9PqpsCKzmRTYj6PrxsFOzCU/kXSn7OuHdraI4nF/GOqyOJwRSjNQg3O5LrX2wy0xEg/DXgfg==
 
 "@types/aria-query@^4.2.0":
   version "4.2.1"
