@@ -119,7 +119,7 @@ class QuestionCondition extends React.Component {
       return (<div className={styles.predicates} />)
     }
     const question = questions[condition.subject]
-    if (question.props.type === 'Form') {
+    if (question && question.props.type === 'Form') {
       const field = question.props.formTypes[condition.answer]
       if (field?.name) {
         const View = FormTypes[field.name]
