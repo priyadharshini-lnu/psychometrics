@@ -10,7 +10,10 @@ module Administration
     def permissions
       GetPermissionsHash.call!(
         Administration::CampaignReportPolicy,
-        current_user,
+        {
+          user: current_user,
+          project_id: object.campaign.project_id
+        },
         object,
         [
           'export',

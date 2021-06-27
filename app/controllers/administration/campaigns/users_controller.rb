@@ -41,7 +41,10 @@ module Administration
       def permissions
         GetPermissionsHash.call!(
           Administration::Campaigns::UserPolicy,
-          current_user,
+          {
+            user: current_user,
+            project_id: campaign.project_id
+          },
           nil,
           [
             'create',
@@ -148,6 +151,13 @@ module Administration
       end
 
       private
+
+      def pundit_user
+        {
+          user: current_user,
+          project_id: campaign.project_id
+        }
+      end
 
       def pundit_authorize
         authorize(resource || User, nil, policy_class: Campaigns::UserPolicy)

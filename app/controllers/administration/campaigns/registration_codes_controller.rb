@@ -62,10 +62,20 @@ module Administration
 
       private
 
+      def pundit_user
+        {
+          user: current_user,
+          project_id: campaign.project_id
+        }
+      end
+
       def permissions
         GetPermissionsHash.call!(
           Administration::RegistrationCodePolicy,
-          current_user,
+          {
+            user: current_user,
+            project_id: campaign.project_id
+          },
           nil,
           [
             'create'

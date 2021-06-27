@@ -7,7 +7,10 @@ module Administration
     def permissions
       GetPermissionsHash.call!(
         Administration::CampaignAssessmentPolicy,
-        current_user,
+        {
+          user: current_user,
+          project_id: campaign.project_id
+        },
         object,
         %w[
           import_results
@@ -25,6 +28,10 @@ module Administration
 
     def current_user
       instance_options[:current_user]
+    end
+
+    def campaign
+      instance_options[:campaign]
     end
   end
 end

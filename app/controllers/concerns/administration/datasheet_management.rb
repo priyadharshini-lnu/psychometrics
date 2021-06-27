@@ -108,7 +108,10 @@ module Administration
     def permissions
       GetPermissionsHash.call!(
         Administration::DatasheetRowPolicy,
-        current_user,
+        {
+          user: current_user,
+          project_id: project.id
+        },
         nil,
         ['export', 'import', 'update', 'edit', %w[add create], %w[delete destroy], %w[view show]]
       )

@@ -19,7 +19,7 @@ module Administration
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage, @project_id)
     end
 
     def manage_first_level?

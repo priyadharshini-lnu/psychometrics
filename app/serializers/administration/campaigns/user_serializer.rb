@@ -20,7 +20,10 @@ module Administration
       def permissions
         GetPermissionsHash.call!(
           Administration::Campaigns::UserPolicy,
-          current_user,
+          {
+            user: current_user,
+            project_id: campaign_user.campaign.project_id
+          },
           object,
           [
             'edit',

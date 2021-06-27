@@ -3,43 +3,43 @@
 module Administration
   class DatasheetRowPolicy < Administration::BasePolicy
     def bulk_delete?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
 
     def create?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
 
     def index?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :view)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :view, @project_id)
     end
 
     def show?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :view)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :view, @project_id)
     end
 
     def update?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
 
     def save_column_preference?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
 
     def import?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
 
     def export?
-      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+      @user.is?(:superadmin) || @user.has_client_grant?(:datasheets, :manage, @project_id)
     end
   end
 end

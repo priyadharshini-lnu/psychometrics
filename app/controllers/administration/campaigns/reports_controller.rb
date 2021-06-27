@@ -57,7 +57,9 @@ module Administration
 
         assessor_assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.assessor_assessments,
-          each_serializer: Administration::AssessorAssessmentSerializer, current_user: current_user
+          each_serializer: Administration::AssessorAssessmentSerializer,
+          current_user: current_user,
+          campaign: campaign
         )
 
         render json: {
@@ -94,10 +96,20 @@ module Administration
 
       private
 
+      def pundit_user
+        {
+          user: current_user,
+          project_id: campaign.project_id
+        }
+      end
+
       def aseessment_permissions
         GetPermissionsHash.call!(
           Administration::CampaignAssessmentPolicy,
-          current_user,
+          {
+            user: current_user,
+            project_id: campaign.project_id
+          },
           nil,
           %w[
             enable_universal_link
@@ -110,7 +122,10 @@ module Administration
       def report_permissions
         GetPermissionsHash.call!(
           Administration::CampaignReportPolicy,
-          current_user,
+          {
+            user: current_user,
+            project_id: campaign.project_id
+          },
           nil,
           [
             %w[add_report report_families],

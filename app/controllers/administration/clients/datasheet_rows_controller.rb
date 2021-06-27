@@ -34,6 +34,13 @@ module Administration
 
       private
 
+      def pundit_user
+        {
+          user: current_user,
+          project_id: project.id
+        }
+      end
+
       def set_resource_class
         @_resource_class ||= ::DatasheetRow # rubocop:disable Naming/MemoizedInstanceVariableName
       end

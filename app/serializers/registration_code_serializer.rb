@@ -17,7 +17,10 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
   def permissions
     GetPermissionsHash.call!(
       Administration::RegistrationCodePolicy,
-      current_user,
+      {
+        user: current_user,
+        project_id: object.campaign.project_id
+      },
       object,
       [
         'copy',
