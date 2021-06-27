@@ -167,7 +167,7 @@
     "scroll-js": "^3.1.0",
     "seedrandom": "^3.0.5",
     "style-loader": "^0.23.1",
-    "thread-loader": "^3.0.3",
+    "thread-loader": "^3.0.4",
     "use-debounce": "^3.0.0",
     "videojs-record": "^3.6.0",
     "wavesurfer.js": "^3.3.3",
