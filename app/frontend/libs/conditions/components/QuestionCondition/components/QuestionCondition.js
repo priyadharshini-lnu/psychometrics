@@ -120,7 +120,7 @@ class QuestionCondition extends React.Component {
     }
     const question = questions[condition.subject]
     if (question && question.props.type === 'Form') {
-      const field = question.props.formTypes[condition.answer]
+      const field = question.props.formTypes?.[condition.answer]
       if (field?.name) {
         const View = FormTypes[field.name]
         return <View {...this.props} field={field} />
