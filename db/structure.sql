@@ -5876,6 +5876,13 @@ CREATE INDEX index_memberships_on_assigns_count ON public.memberships USING btre
 
 
 --
+-- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_client_id ON public.memberships USING btree (client_id);
+
+
+--
 -- Name: index_memberships_on_hris; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8092,6 +8099,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210512100320'),
 ('20210610160411'),
 ('20210616195712'),
-('20210623082242');
+('20210623082242'),
+('20210627134315');
 
 
