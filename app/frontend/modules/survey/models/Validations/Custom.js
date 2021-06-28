@@ -121,7 +121,10 @@ _.extend(Custom.prototype, {
   NotInPast () {
     const result = this.resultValue()
     if (!result) { return true }
-    const date = moment(result, this.question.props.dateFormat).endOf('day')
+    const format = this.question.props.type === 'Form'
+      ? this.question.props.formTypes[this.answer].dateFormat
+      : this.question.props.dateFormat
+    const date = moment(result, format).endOf('day')
     const now = moment()
     return now < date
   },
@@ -129,7 +132,10 @@ _.extend(Custom.prototype, {
   NotInFuture () {
     const result = this.resultValue()
     if (!result) { return true }
-    const date = moment(result, this.question.props.dateFormat).startOf('day')
+    const format = this.question.props.type === 'Form'
+      ? this.question.props.formTypes[this.answer].dateFormat
+      : this.question.props.dateFormat
+    const date = moment(result, format).startOf('day')
     const now = moment()
     return now > date
   },
