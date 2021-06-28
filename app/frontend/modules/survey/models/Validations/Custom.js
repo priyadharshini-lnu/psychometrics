@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import moment from 'moment'
+import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
 import Selectors from './Selectors'
 import Values from './Values'
 
@@ -121,17 +122,37 @@ _.extend(Custom.prototype, {
   NotInPast () {
     const result = this.resultValue()
     if (!result) { return true }
-    const date = moment(result, this.question.props.dateFormat).endOf('day')
-    const now = moment()
-    return now < date
+    const format = this.question.props.type === 'Form'
+      ? this.question.props.formTypes[this.answer].dateFormat
+      : this.question.props.dateFormat
+    const date = moment(result, format)
+    const now = this.currentDateForFormat(format)
+    return now <= date
   },
 
   NotInFuture () {
     const result = this.resultValue()
     if (!result) { return true }
-    const date = moment(result, this.question.props.dateFormat).startOf('day')
-    const now = moment()
-    return now > date
+    const format = this.question.props.type === 'Form'
+      ? this.question.props.formTypes[this.answer].dateFormat
+      : this.question.props.dateFormat
+
+    const date = moment(result, format)
+    const now = this.currentDateForFormat(format)
+    return now >= date
+  },
+
+  currentDateForFormat (format) {
+    let now = moment()
+    const picker = getCorrectPickerFromDateFormat(format)
+    if (picker === 'date') {
+      now = now.startOf('day')
+    } else if (picker === 'month') {
+      now = now.startOf('month')
+    } else if (picker === 'year') {
+      now = now.startOf('year')
+    }
+    return now
   },
 })
 
