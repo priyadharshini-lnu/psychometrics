@@ -5480,6 +5480,13 @@ CREATE INDEX index_campaign_assessments_on_campaign_assessment_group_id ON publi
 
 
 --
+-- Name: index_campaign_assessments_on_campaign_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_assessments_on_campaign_assessment_id ON public.campaign_assessments USING btree (campaign_id, assessment_id);
+
+
+--
 -- Name: index_campaign_assessments_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6065,6 +6072,13 @@ CREATE INDEX index_memberships_on_assigns_completed ON public.memberships USING 
 --
 
 CREATE INDEX index_memberships_on_assigns_count ON public.memberships USING btree (assigns_count);
+
+
+--
+-- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_client_id ON public.memberships USING btree (client_id);
 
 
 --
@@ -8323,6 +8337,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210617154459'),
 ('20210621071756'),
 ('20210623082242'),
-('20210627110306');
+('20210627110306'),
+('20210627134315');
 
 
