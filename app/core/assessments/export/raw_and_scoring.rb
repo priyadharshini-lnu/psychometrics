@@ -46,7 +46,7 @@ module Assessments
       def results
         UsersResult.joins(:user_assessment).
           where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
-          includes(:norm, user_assessment: %i[subject evaluator])
+          includes(:norm, :subject, :evaluator, user_assessment: %i[relationship])
       end
     end
   end
