@@ -21,7 +21,11 @@ class AdminJob < ApplicationJob
     bulk_regenerate_user_reports: AdminJobs::BulkRegenerateUserReports,
     import_datasheet: AdminJobs::ImportDatasheet,
     copy_dimension: AdminJobs::CopyDimension,
-    export_report_data: AdminJobs::ExportReportData
+    export_report_data: AdminJobs::ExportReportData,
+    assessment_raw_result_export: AdminJobs::AssessmentRawResultExport,
+    assessment_scoring_export: AdminJobs::AssessmentScoringExport,
+    assessment_norm_export: AdminJobs::AssessmentNormExport,
+    assessment_raw_factor_export: AdminJobs::AssessmentRawFactorExport
   }.freeze
 
   def perform(record)

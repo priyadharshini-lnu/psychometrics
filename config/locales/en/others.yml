@@ -573,6 +573,10 @@ en:
       id: ID
       name: Name
       operations:
+        assessment_norm_export: Normed Results Export
+        assessment_raw_factor_export: Raw Factor Scores Export
+        assessment_raw_result_export: Raw Results Export
+        assessment_scoring_export: Scoring Results Export
         bulk_download_reports: Bulk Download Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
@@ -871,6 +875,11 @@ en:
       norm: Norm
       status: Status
       universal_link: Universal link
+    messages:
+      norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
+      raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
+      raw_results_export_scheduled: Assessment Raw Results export job scheduled successfully
+      scoring_results_export_scheduled: Assessment Scoring Results export job scheduled successfully
     modals:
       import_raw:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
@@ -1057,10 +1066,12 @@ en:
       name: Name
       status: Status
     model:
+      assessment: Assessment
       assessments: Assessments
       assessors: Assessors
       campaigns: Campaigns
       datasheet: Datasheet
+      report: Report
       reports: Reports
     text:
       cancel: Cancel

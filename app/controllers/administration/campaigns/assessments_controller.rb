@@ -7,36 +7,44 @@ module Administration
       before_action :pundit_authorize
 
       def export_raw_results
-        results = ::Assessments::Export::RawExport.call!(
-          assessment, campaign, export_with_labels: !!params[:with_labels]
+        with_labels = params[:with_labels] == 'true'
+        AdminJob.call(
+          :assessment_raw_result_export,
+          { assessment_id: assessment.id, campaign_id: campaign.id, export_with_labels: with_labels },
+          current_user
         )
 
-        respond_to do |format|
-          format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-raw-results.xlsx" }
-        end
+        head :ok
       end
 
       def export_scoring_results
-        results = ::Assessments::Export::RawAndScoring.call!(assessment, campaign, scoring: true)
+        AdminJob.call(
+          :assessment_scoring_export,
+          { assessment_id: assessment.id, campaign_id: campaign.id },
+          current_user
+        )
 
-        respond_to do |format|
-          format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-scoring-results.xlsx" }
-        end
+        head :ok
       end
 
       def export_normed_results
-        results = ::Assessments::Export::NormedResult.call!(assessment, campaign)
-        respond_to do |format|
-          format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-normed-results.xlsx" }
-        end
+        AdminJob.call(
+          :assessment_norm_export,
+          { assessment_id: assessment.id, campaign_id: campaign.id },
+          current_user
+        )
+
+        head :ok
       end
 
       def export_raw_factor_scores
-        results = ::Assessments::Export::RawFactorScores.call!(assessment, campaign)
-        respond_to do |format|
-          export_file_name = "assessment-#{assessment.id}-raw-factor-scores.xlsx"
-          format.xlsx { send_data results.to_stream.read, filename: export_file_name }
-        end
+        AdminJob.call(
+          :assessment_raw_factor_export,
+          { assessment_id: assessment.id, campaign_id: campaign.id },
+          current_user
+        )
+
+        head :ok
       end
 
       def export_external_results
