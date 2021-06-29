@@ -2,7 +2,7 @@
 
 module Saville
   class MakeRequest < BaseCommand
-    WSDL_URL = 'https://tte-lighthouse.uat-oasys.com/ws/integration/savillehrxml/Assessment.asmx?WSDL'
+    WSDL_URL = Rails.application.secrets.saville.wsdl_url
 
     private_attr_reader :action, :xml_file_name, :attributes
 
