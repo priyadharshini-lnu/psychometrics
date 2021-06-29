@@ -1169,7 +1169,7 @@ providers:
           - 0EDB235E-572F-4B10-954A-B167C3588490
       - id: 1DF70675-A331-47AE-A3A4-4FF235C036A0
         name: Swift Executive Aptitude-Rx (IA)
-        default_norm_id:
+        default_norm_id: F6BADEA2-7243-4FC1-AE32-3E148587688E
         norm_ids:
           - F6BADEA2-7243-4FC1-AE32-3E148587688E
           - 6D54A4CB-185C-4ABF-9077-6D3428BBAEBC
