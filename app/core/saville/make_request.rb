@@ -37,7 +37,7 @@ module Saville
 
     def client
       Savon.client(
-        wsdl: Rails.application.secrets.saville.wsdl_url,
+        wsdl: Rails.application.secrets.saville.dig(:wsdl_url),
         soap_version: 1,
         log_level: :debug,
         logger: Rails.logger,
