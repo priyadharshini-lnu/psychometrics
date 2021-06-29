@@ -7,7 +7,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :selected_locale, :current_element, :current_page, :seedrandom,
              :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at,
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
-             :remaining_assessment_time, :reset_count, :hash_id
+             :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled
 
   attribute :relationship
 
@@ -23,6 +23,10 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def hash_id
     object.encoded_id
+  end
+
+  def proctoring_enabled
+    campaign_user&.proctoring_enabled?
   end
 
   def remaining_campaign_time
@@ -141,6 +145,7 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def external_scoring
     return object.external_results if object.assessment.mindmill?
+    return object.external_results['scores'] || [] if object.assessment.saville?
 
     if object.assessment.hogan?
       score = object.external_results

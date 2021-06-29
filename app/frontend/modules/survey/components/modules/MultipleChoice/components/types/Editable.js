@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import LabelEditor from 'components/LabelEditor'
-import styles from '../MultipleChoice.scss'
+import styles from '../../styles.scss'
 
 export default function Editable ({ model, onChange, endEdit }) {
   const changeLabel = (i, text) => {

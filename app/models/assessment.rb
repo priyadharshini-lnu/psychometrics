@@ -35,7 +35,8 @@ class Assessment < ApplicationRecord
     MINDMILL = 'mindmill',
     ASSESSOR_FORM = 'assessor_form',
     HOGAN = 'hogan',
-    AGILE = 'agile'
+    AGILE = 'agile',
+    SAVILLE = 'saville'
   ].freeze
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
@@ -45,14 +46,16 @@ class Assessment < ApplicationRecord
     mindmill: MINDMILL,
     hogan: HOGAN,
     agile: AGILE,
-    assessor_form: ASSESSOR_FORM
+    assessor_form: ASSESSOR_FORM,
+    saville: SAVILLE
   }.freeze
 
   # Assessments constant
   TYPES = {
     common: 'Assessments::Common',
     mindmill: 'Assessments::Mindmill',
-    hogan: 'Assessments::Hogan'
+    hogan: 'Assessments::Hogan',
+    saville: 'Assessments::Saville'
   }.freeze
 
   # STATUSES constant
@@ -88,6 +91,7 @@ class Assessment < ApplicationRecord
   has_many :assigns, dependent: :restrict_with_error
   has_many :user_assessments, dependent: :restrict_with_error
   has_many :users_results, through: :user_assessments, dependent: :restrict_with_error
+  has_many :saville_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
@@ -98,10 +102,11 @@ class Assessment < ApplicationRecord
   has_many :clients, through: :reports
 
   has_one :hogan_assessment_setting, dependent: :destroy
+  has_one :saville_assessment_setting, dependent: :destroy
   has_one :agile
 
-  accepts_nested_attributes_for :hogan_assessment_setting
-  before_save :delete_hogan_assessment_setting
+  accepts_nested_attributes_for :hogan_assessment_setting, :saville_assessment_setting
+  before_save :delete_hogan_assessment_setting, :delete_saville_assessment_setting
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
   #
   ### END ASSOCIATIONS
@@ -119,6 +124,8 @@ class Assessment < ApplicationRecord
   mount_uploader :icon, ImageUploader
 
   delegate :config, :translations, to: :agile, prefix: true
+  delegate :saville_norm_id, :saville_assessment_id, :saville_norms,
+           to: :saville_assessment_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
@@ -127,6 +134,7 @@ class Assessment < ApplicationRecord
   scope :common, -> { where(type: TYPES[:common]) }
   scope :mindmill, -> { where(type: TYPES[:mindmill]) }
   scope :hogan, -> { where(type: TYPES[:hogan]) }
+  scope :saville, -> { where(type: TYPES[:saville]) }
   scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
@@ -139,7 +147,7 @@ class Assessment < ApplicationRecord
 
   # Copy assessment with nested resources
   def clone
-    @cloned_item = deep_clone include: [:hogan_assessment_setting]
+    @cloned_item = deep_clone include: %i[hogan_assessment_setting saville_assessment_setting]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
@@ -168,8 +176,12 @@ class Assessment < ApplicationRecord
     type == TYPES[:hogan]
   end
 
+  def saville?
+    type == TYPES[:saville]
+  end
+
   def external?
-    mindmill? || hogan?
+    mindmill? || hogan? || saville?
   end
 
   def agile?
@@ -195,5 +207,9 @@ class Assessment < ApplicationRecord
 
   def delete_hogan_assessment_setting
     hogan_assessment_setting.destroy if hogan_assessment_setting && !hogan?
+  end
+
+  def delete_saville_assessment_setting
+    saville_assessment_setting.destroy if saville_assessment_setting && !saville?
   end
 end

@@ -8,6 +8,7 @@ import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
+import { isInsideIframe } from 'utils/isInsideIframe'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import { Timer } from '../../components/Timer'
@@ -28,7 +29,6 @@ export default function Assign ({
     },
   }, fetchAssessment,
   match: { params },
-  isFrame,
   preview: {
     enableProgress,
     type,
@@ -51,7 +51,7 @@ export default function Assign ({
           <Content className="fluid-container">
             <PageHeader
               className="page-header"
-              backIcon={!isFrame && (
+              backIcon={!isInsideIframe() && (
                 <Space>
                   {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
                   {` ${I18n.t('assessments.page.back', { locale: I18n.uiLocale })}`}

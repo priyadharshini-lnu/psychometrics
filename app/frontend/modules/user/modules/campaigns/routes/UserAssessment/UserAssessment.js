@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import {
   Layout, PageHeader, Row, Col, Progress, Space,
 } from 'antd'
@@ -9,6 +10,7 @@ import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { useMedia } from 'modules/user/rootHooks'
+import { isInsideIframe } from 'utils/isInsideIframe'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import { Timer } from '../../components/Timer'
@@ -28,10 +30,10 @@ export default function UserAssessment ({
       translations,
       remaining_campaign_time: remainingCampaignTime,
       remaining_assessment_time: remainingAssessmentTime,
+      proctoring_enabled: proctoringEnabled,
     },
   }, fetchAssessment,
   match: { params },
-  isFrame,
   preview: {
     initialized,
     enableProgress,
@@ -51,6 +53,10 @@ export default function UserAssessment ({
 
   if (!loaded) { return null }
 
+  const needsProctoring = proctoringEnabled && !isInsideIframe()
+  if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
+
+  const enableBackButton = !isInsideIframe() || proctoringEnabled
 
   const rtl = isRtl(I18n.uiLocale)
   // TODO: Fix by creating a setting for list of rtl languages
@@ -60,7 +66,7 @@ export default function UserAssessment ({
         <Content className="fluid-container">
           <PageHeader
             className="page-header"
-            backIcon={!isFrame && (
+            backIcon={enableBackButton && (
               <Space>
                 {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
                 {` ${I18n.t('assessments.page.back')}`}

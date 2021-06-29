@@ -7,7 +7,15 @@ module Administration
     end
 
     def create?
-      super || @user.has_grant?(:libraries, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:libraries, :manage)
+    end
+
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:libraries, :manage)
+    end
+
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:libraries, :manage)
     end
 
     def open_channel?

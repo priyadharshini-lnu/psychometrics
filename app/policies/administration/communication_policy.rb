@@ -3,15 +3,23 @@
 module Administration
   class CommunicationPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:communications, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
     end
 
     def create?
-      super || @user.has_grant?(:communications, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def show?
-      super || @user.has_grant?(:communications, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
+    end
+
+    def copy?
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
+    end
+
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def new_form?
@@ -19,7 +27,7 @@ module Administration
     end
 
     def download_history?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
     end
 
     class Scope < Scope

@@ -1,9 +1,12 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { createReducer, CustomAction } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import ApiAction from 'interfaces/ApiAction'
+import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
+import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
+import { takeEvery, put } from 'redux-saga/effects'
 
 export interface User {
   id: number
@@ -17,6 +20,12 @@ export interface User {
 const defaultState = {
   list: [],
   total: 0,
+  permissions: {
+    create: false,
+    exportUsers: false,
+    exportCompletionStatus: false,
+    import: false,
+  },
 }
 
 export const get = (state): User[] => _.get(state, ['campaigns', 'users'])
@@ -32,6 +41,12 @@ export const TOGGLE_ACTIVE = 'campaigns/user/TOGGLE_ACTIVE'
 export const TOGGLE_ACTIVE_REQUEST = 'campaigns/user/TOGGLE_ACTIVE_REQUEST'
 export const RESET_PASSWORD = 'campaigns/user/RESET_PASSWORD'
 export const EXTEND_TIME = 'campaigns/user/EXTEND_TIME'
+export const SET_USER_DETAILS = 'campaigns/users/SET_USER_DETAILS'
+export const RESET_ASSESSMENT = 'campaigns/userAssessments/RESET'
+export const REMOVE_ASSESSMENT = 'campaigns/userAssessments/REMOVE'
+export const EXTEND_ASSESSMENT_TIME = 'campaigns/userAssessments/EXTEND_ASSESSMENT_TIME'
+export const CREATE_REPORT = 'resource/userReport/report/CREATE'
+export const REMOVE_REPORT = 'resource/campaigns/report/REMOVE'
 
 export interface ShortUser {
   firstName: string
@@ -104,6 +119,11 @@ export const extendTime = (campaignId: number, id: number, additionalTime: numbe
   },
 })
 
+export const setUserDetails = (userDetails: UserDetails) => ({
+  type: SET_USER_DETAILS,
+  userDetails,
+})
+
 export interface UserDetails {
   id: number
   fullName: string
@@ -117,17 +137,38 @@ export interface UserDetails {
   additionalTime: number
   startedAt: string
   completedAt: string
+  permissions: {
+    addReport: boolean
+    regenerateReport: boolean
+    toggleStatus: boolean
+    remove: boolean
+  }
   hoganId: string | null
 }
 
 export interface State {
   list: User[]
   total: number
+  permissions: {
+    create: boolean
+    exportUsers: boolean,
+    exportCompletionStatus: boolean,
+    import: boolean,
+  }
   current?: UserDetails
 }
 
-type FetchType = ApiActionResponse<{list: [], total: number}>
-type FetchSingleType = ApiActionResponse<UserDetails>
+type FetchType = ApiActionResponse<{
+  list: [],
+  total: number,
+  permissions: {
+    create: boolean,
+    exportUsers: boolean,
+    exportCompletionStatus: boolean,
+    import: boolean,
+  }
+}>
+type FetchSingleType = ApiActionResponse<UserDetails & { userAssessments: UserAssessment[], userReports: UserReport[]}>
 type CreateType = ApiActionResponse<User>
 type UpdateType = ApiActionResponse<User>
 type RemoveType = ApiActionResponse<number>
@@ -135,9 +176,9 @@ type ToggleStatusType = ApiActionResponse<{id: number, options: { updateInListin
 
 const HANDLERS = {
   [FETCH]: (_: State, { response }: FetchType) => response,
-  [FETCH_SINGLE]: (state: State, { response }: FetchSingleType) => ({
-    ...state, current: response,
-  }),
+  [SET_USER_DETAILS]: (state: State, { userDetails }: CustomAction<{ userDetails: UserDetails }>) => (
+    { ...state, current: userDetails }
+  ),
   [CREATE]: (state: State, { response }: CreateType) => (setIn(state, ['list'], [response, ...state.list])),
   [UPDATE]: (state: State, { response }: UpdateType) => (
     updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
@@ -169,5 +210,17 @@ const HANDLERS = {
 
 export default createReducer(HANDLERS, defaultState)
 
+function* genSetUserDetails ({ response }: FetchSingleType) {
+  yield put(
+    setUserDetails(
+      _.omit(response, ['userAssessment', 'userReports']) as UserDetails,
+    ),
+  )
+}
+
 export const watchers = [
+  takeEvery(
+    [FETCH_SINGLE, CREATE_REPORT, REMOVE_REPORT, EXTEND_ASSESSMENT_TIME, RESET_ASSESSMENT, REMOVE_ASSESSMENT],
+    genSetUserDetails,
+  ),
 ]

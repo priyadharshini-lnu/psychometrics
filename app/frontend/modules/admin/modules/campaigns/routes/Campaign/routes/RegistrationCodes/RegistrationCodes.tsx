@@ -6,6 +6,7 @@ import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined,
 } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { RegistrationCode } from 'modules/admin/modules/campaigns/core/registrationCodes'
@@ -26,6 +27,9 @@ interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
   destroy(campaignId: string, id: number): void
   list: RegistrationCode[],
+  permissions: {
+    create: boolean
+  },
   total: number,
   match: {
     params: {
@@ -44,6 +48,7 @@ const RegistrationCodes: React.FC<Props> = ({
   fetch,
   list,
   total,
+  permissions,
   match: { params: { projectId, campaignId } },
   tableConfig: {
     page,
@@ -66,14 +71,16 @@ const RegistrationCodes: React.FC<Props> = ({
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">{`${total} Registration Codes `}</span>
         </Col>
-        <div className="float-r">
-          <div>
-            <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
-              <PlusOutlined />
-              <span>Add Code</span>
-            </Button>
+        {permissions.create && (
+          <div className="float-r">
+            <div>
+              <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
+                <PlusOutlined />
+                <span>Add Code</span>
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </Row>
       <Row>
         <Col span={24}>
@@ -121,56 +128,61 @@ const RegistrationCodes: React.FC<Props> = ({
               key="action"
               render={code => (
                 <>
-                  <CopyToClipboard
-                    text={code.url}
-                    onCopy={() => message.info('URL is copied to clipboard successfully')}
-                  >
-                    <Button shape="round" icon={<CopyOutlined />} />
-                  </CopyToClipboard>
-                  <Dropdown
-                    overlay={() => (
-                      QRCodeMenu({
-                        projectId,
-                        campaignId,
-                        code,
-                      }) as React.ReactElement
-                    )}
-                    trigger={['click']}
-                  >
-                    <Button shape="round" icon={<QrcodeOutlined />}>
-                      QR code
-                    </Button>
-                  </Dropdown>
-                  <Dropdown
-                    overlay={() => (
-                      ActionsMenu({
-                        onEdit: () => openModal('CodeModal', {
+                  {code.permissions.copy && (
+                    <CopyToClipboard
+                      text={code.url}
+                      onCopy={() => message.info('URL is copied to clipboard successfully')}
+                    >
+                      <Button shape="round" icon={<CopyOutlined />} />
+                    </CopyToClipboard>
+                  )}
+                  {code.permissions.downloadQrcode && (
+                    <Dropdown
+                      overlay={() => (
+                        QRCodeMenu({
+                          projectId,
                           campaignId,
-                          code: {
-                            ...code,
-                            startDate: moment(code.startDate),
-                            endDate: moment(code.endDate),
-                            disabled: !code.disabled,
-                          },
-                        }),
-                      }) as React.ReactElement
+                          code,
+                        }) as React.ReactElement
+                      )}
+                      trigger={['click']}
+                    >
+                      <Button shape="round" icon={<QrcodeOutlined />}>
+                        QR code
+                      </Button>
+                    </Dropdown>
+                  )}
+                  <ConditionalDropdown
+                    menu={ActionsMenu({
+                      onEdit: () => openModal('CodeModal', {
+                        campaignId,
+                        code: {
+                          ...code,
+                          startDate: moment(code.startDate),
+                          endDate: moment(code.endDate),
+                          disabled: !code.disabled,
+                        },
+                      }),
+                      permissions: code.permissions,
+                    }) as React.ReactElement}
+                    innerElement={(
+                      <Button type="link">
+                        <MoreOutlined />
+                      </Button>
                     )}
-                    trigger={['click']}
-                  >
-                    <Button type="link">
-                      <MoreOutlined />
-                    </Button>
-                  </Dropdown>
-                  <Popconfirm
-                    title="Are you sure?"
-                    onConfirm={() => destroy(campaignId, code.id)}
-                    okText="Yes"
-                    cancelText="No"
-                  >
-                    <Button danger shape="round">
-                      <CloseOutlined />
-                    </Button>
-                  </Popconfirm>
+                  />
+                  {code.permissions.remove && (
+                    <Popconfirm
+                      title="Are you sure?"
+                      onConfirm={() => destroy(campaignId, code.id)}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Button danger shape="round">
+                        <CloseOutlined />
+                      </Button>
+                    </Popconfirm>
+                  )}
                 </>
               )}
             />
@@ -193,13 +205,15 @@ const RegistrationCodes: React.FC<Props> = ({
 
 interface ActionMenuProps {
   onEdit(): void
+  permissions: {
+    edit: boolean
+  }
 }
 
 interface QRCodeMenuProps {
   projectId: string
   campaignId: string
   code: RegistrationCode
-
 }
 
 const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
@@ -233,18 +247,20 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
 )
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit,
+  onEdit, permissions,
 }) => (
   <Menu>
-    <Menu.Item key="edit">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={onEdit}
-      >
-        Edit
-      </div>
-    </Menu.Item>
+    {permissions.edit && (
+      <Menu.Item key="edit">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={onEdit}
+        >
+          Edit
+        </div>
+      </Menu.Item>
+    )}
   </Menu>
 )
 

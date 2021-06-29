@@ -8,6 +8,35 @@ module Administration
       super || @user.has_grant?(:assessments, :view)
     end
 
+    def new?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
+    def create?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
+    def update?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
+    def copy?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
+    # Can archive/unarchive Assessment
+    def toggle_archive?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
     def assessments?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
     end
@@ -26,10 +55,6 @@ module Administration
     def show?
       @record.common? &&
         (super || @user.has_grant?(:assessments, :manage))
-    end
-
-    def create?
-      super || @user.has_grant?(:assessments, :manage)
     end
 
     # Can open Websocket Channel for build Assessment (Blocks, Questions and etc.)
@@ -88,11 +113,6 @@ module Administration
     def save?
       @record.common? &&
         @user.is?(:superadmin)
-    end
-
-    # Can archive/unarchive Assessment
-    def toggle_archive?
-      @user.is?(:superadmin)
     end
 
     # Can export Assessment's questions and scoring

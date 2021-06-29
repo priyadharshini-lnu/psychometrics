@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
   campaign: state.campaigns.campaign,
   instructions: state.campaigns.campaign.instructions,
   currentUser: state.currentUser,
-  examus: state.examus,
 })
 
 const mapDispatchToProps = {

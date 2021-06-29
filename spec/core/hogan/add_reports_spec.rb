@@ -4,7 +4,9 @@ require 'rails_helper'
 
 describe Hogan::AddReports do
   let(:assessment) { create(:assessment, hogan_assessment_setting: build(:hogan_assessment_setting)) }
-  let(:report) { build(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting)) }
+  let(:report) do
+    build(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting), provider: :hogan)
+  end
   let(:user) { create(:user) }
   let(:user_report) { create(:user_report, report: report) }
   it 'when credentials are empty we create them' do

@@ -27,6 +27,7 @@ module Administration
             serialized_assessors = ActiveModelSerializers::SerializableResource.new(
               paginated_assessors,
               each_serializer: Administration::Campaigns::AssessorSerializer,
+              current_user: current_user,
               campaign_id: campaign.id,
               evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_assessors.pluck(:user_id), campaign)
             )
@@ -40,7 +41,11 @@ module Administration
           Administration::Campaigns::AssessorPolicy,
           current_user,
           nil,
-          [%w[login_as spoof]]
+          [
+            %w[export index],
+            'import',
+            %w[add create_all]
+          ]
         )
       end
 

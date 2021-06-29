@@ -61,7 +61,7 @@ const ReportPreview: FC<Props> = ({
         results={results}
         campaign={JSON.stringify({})}
         user={JSON.stringify(user)}
-        locales={JSON.stringify(locales)}
+        locales={locales}
         selectedLocale={defaultLanguage}
       />
     )

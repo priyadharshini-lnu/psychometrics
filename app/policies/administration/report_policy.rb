@@ -3,31 +3,44 @@
 module Administration
   class ReportPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:reports, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end
 
     # Can open builder of Report (Reports, Modules and etc.)
     # true if it's not Mindmill report
     #   and user is Superadmin or user has grants
     def show?
-      @record.hogan_report_setting.blank? &&
-        !@record.mindmill &&
+      @record.provider_internal? &&
         (super || @user.has_grant?(:reports, :view))
     end
 
-    def create?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      super || permit
+    def new?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
-    def hogan_reports?
-      create?
+    def create?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
+    def copy?
+      manage_report?
+    end
+
+    def edit?
+      manage_report?
+    end
+
+    def external_reports?
+      manage_report?
     end
 
     def upload_data_sheet?
-      create?
+      manage_report?
+    end
+
+    # Can archive/unarchive Assessment
+    def toggle_archive?
+      manage_report?
     end
 
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
@@ -51,7 +64,7 @@ module Administration
     end
 
     def left_menu?
-      index?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end
 
     def sidebar?
@@ -62,11 +75,6 @@ module Administration
       edit?
     end
 
-    # Can archive/unarchive Assessment
-    def toggle_archive?
-      @user.is?(:superadmin)
-    end
-
     # Can regenerate reports if Superadmin
     #   and record is not external
     #
@@ -74,12 +82,25 @@ module Administration
       @user.is?(:superadmin) && !record.try(:external_report?)
     end
 
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
     def soft_delete?
-      destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
     def restore?
-      destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
+    private
+
+    def manage_report?
+      permit = @user.has_grant?(:reports, :manage)
+      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
+      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
+      @user.is?(:superadmin) || permit
     end
 
     class Scope < Scope

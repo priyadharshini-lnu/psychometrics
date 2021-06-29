@@ -19,9 +19,22 @@ interface Evaluator {
   id: number
 }
 
+interface Permissions {
+  addSubject: boolean
+  editDimension: boolean
+  editUser: boolean
+  exportCompletionStatus: boolean
+  exportResults: boolean
+  manageDatasheets: boolean
+  manageRelationships: boolean
+  resetAllNominations: boolean
+  resetAllParticipants: boolean
+}
+
 interface State {
   list: Evaluator[],
   total: number,
+  permissions: Permissions,
   form: {
     attrs: [],
     errors: [] | null,
@@ -32,6 +45,17 @@ interface State {
 export const defaultState: State = {
   list: [],
   total: 0,
+  permissions: {
+    addSubject: false,
+    editDimension: false,
+    editUser: false,
+    exportCompletionStatus: false,
+    exportResults: false,
+    manageDatasheets: false,
+    manageRelationships: false,
+    resetAllNominations: false,
+    resetAllParticipants: false,
+  },
   form: {
     attrs: [],
     errors: null,
@@ -76,7 +100,8 @@ export const importFile = (campaignId: number, data: FormData) => ({
 
 interface FetchActionResponse {
   evaluators: Evaluator[],
-  total: number
+  total: number,
+  permissions: Permissions,
 }
 
 export type FetchAction = ApiActionResponse<FetchActionResponse>
@@ -85,7 +110,10 @@ export type CreateAllEvaluatorsActionError = ApiActionResponse<{errors: []}>
 
 const HANDLERS = {
   [FETCH_EVALUATORS]: (state: State, action: FetchAction) => ({
-    ...state, list: action.response.evaluators, total: action.response.total,
+    ...state,
+    list: action.response.evaluators,
+    total: action.response.total,
+    permissions: action.response.permissions,
   }),
   [FILL_EVALUATORS]: (state: State, action) => setIn(state, ['form', 'attrs'], action.evaluators),
   [CLEAR_FORM]: (state: State) => ({ ...state, form: defaultState.form }),

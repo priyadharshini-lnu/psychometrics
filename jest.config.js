@@ -34,7 +34,6 @@ module.exports = {
     'app/frontend/typings/',
   ],
   globals: {
-    window: {},
     __DEV__: {},
     __TEST__: {},
     __PROD__: {},

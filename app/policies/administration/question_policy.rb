@@ -3,11 +3,27 @@
 module Administration
   class QuestionPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:questions, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :view)
     end
 
     def create?
-      super || @user.has_grant?(:questions, :manage)
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
+    end
+
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
+    end
+
+    def copy?
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
+    end
+
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
+    end
+
+    def actions?
+      edit? | copy? | destroy?
     end
 
     def open_channel?
@@ -15,7 +31,7 @@ module Administration
     end
 
     def new_assign?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
     end
 
     class Scope < Scope

@@ -10,7 +10,7 @@ import {
   getSecondaryLogo,
   getName,
 } from 'modules/user/modules/campaigns/core/project'
-import { get as getConfig } from 'modules/user/core/config'
+import { isInsideIframe } from 'utils/isInsideIframe'
 
 import lighthouseLogo from 'modules/user/assets/images/lighthouseLogo.svg'
 import tteLogo from 'modules/user/assets/images/tteLogo.svg'
@@ -20,7 +20,6 @@ import styles from './styles.scss'
 const { I18n } = window
 
 const mapStateToProps = (state: RootState) => ({
-  isFrame: getConfig(state).isFrame,
   privacyText: getPrivacyText(state),
   privacyPageLink: privacyPageLink(state),
   secondaryLogo: getSecondaryLogo(state),
@@ -32,13 +31,12 @@ const connector = connect(mapStateToProps)
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 const Footer: FC<PropsFromRedux> = ({
-  isFrame,
   privacyText,
   privacyPageLink,
   secondaryLogo,
   projectName,
 }) => {
-  if (isFrame) {
+  if (isInsideIframe()) {
     return null
   }
 

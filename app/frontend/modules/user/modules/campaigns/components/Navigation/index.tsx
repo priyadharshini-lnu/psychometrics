@@ -18,9 +18,8 @@ import {
   getLogo,
   getName as getProjectName,
 } from 'modules/user/modules/campaigns/core/project'
-import { get as getConfig } from 'modules/user/core/config'
 import { logout, get as getCurrentUser, changeLocale } from 'core/currentUser'
-
+import { isInsideIframe } from 'utils/isInsideIframe'
 import EditProfileModal from '../EditProfileModal'
 import { LocaleSwitcherSubmenu } from './components/LocaleSwitcherSubmenu'
 
@@ -29,7 +28,6 @@ import styles from './styles.scss'
 const mapStateToProps = (state: RootState) => ({
   logo: getLogo(state),
   projectName: getProjectName(state),
-  isFrame: getConfig(state).isFrame,
   isAnonym: getCurrentUser(state).isAnonym,
 })
 
@@ -57,12 +55,11 @@ enum ModalVisibiltyStates {
 const Navigation: FC<PropsFromRedux> = ({
   logo,
   projectName,
-  isFrame,
   isAnonym,
   logout,
   changeLocale,
 }) => {
-  if (isFrame) {
+  if (isInsideIframe()) {
     return null
   }
 

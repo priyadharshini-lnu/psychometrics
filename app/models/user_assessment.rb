@@ -5,13 +5,14 @@ class UserAssessment < ApplicationRecord
   belongs_to :assessment
   belongs_to :campaign
   belongs_to :norm
-  belongs_to :project, class_name: 'Client'
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
   belongs_to :assessor
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
+  has_one :saville_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
+  has_one :project, through: :campaign
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
@@ -20,6 +21,7 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   has_one :threesixty_campaign, through: :campaign
+  delegate :saville_assessment_id, :saville?, to: :assessment
   delegate :selected_locale, :timed?, to: :users_result, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
@@ -44,8 +46,18 @@ class UserAssessment < ApplicationRecord
 
   before_save :set_default_relationship
 
+  alias result users_result
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment]
+  end
+
+  def saville_user_reports
+    saville_reports = assessment.reports.select(&:provider_saville?)
+
+    return UserReport.none if saville_reports.blank?
+
+    UserReport.where(report_id: saville_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_id)
   end
 
   def available_locales
@@ -102,9 +114,27 @@ class UserAssessment < ApplicationRecord
     campaign_assessment&.norm_id
   end
 
+  def applicable_saville_norm_id
+    campaign_assessment&.saville_norm_id || assessment.saville_norm_id
+  end
+
+  def saville_norm_id
+    saville_user_assessment.norm_id
+  end
+
   def user_reports
     UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
   end
 
-  alias result users_result
+  def norm_name
+    return saville_norm_name if assessment.saville?
+
+    norm&.name
+  end
+
+  private
+
+  def saville_norm_name
+    Settings.providers.saville.norms.find { |norm| norm[:id] == saville_user_assessment.norm_id }&.dig(:name)
+  end
 end

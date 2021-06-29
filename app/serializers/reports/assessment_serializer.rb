@@ -25,6 +25,8 @@ module Reports
     end
 
     def factors
+      return SavilleFactor.get_factors(object.saville_assessment_id.downcase) if object.saville?
+
       if object.mindmill?
         external_assessment = Settings.providers.mindmill.assessments.detect { |a| a.id == object.mindmill_id }
         return external_assessment.factors.flatten

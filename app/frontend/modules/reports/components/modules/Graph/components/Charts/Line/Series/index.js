@@ -10,6 +10,7 @@ import Factor from './Factor'
 import ExternalFactor from './ExternalFactor'
 import TextEntry from '../../Base/Series/TextEntry'
 import DataSheet from './DataSheet'
+import SavilleFactor from './SavilleFactor'
 
 export default {
   Slider: Base,
@@ -27,4 +28,5 @@ export default {
   ExternalFactor,
   TextEntry,
   DataSheet,
+  SavilleFactor,
 }

@@ -26,7 +26,7 @@ _.extend(ResultStore.prototype, {
     this.realResults = true
   },
 
-  setMockResults (assessmentId, sourceType, sourceModel, factors = []) {
+  setMockResults (assessmentId, sourceType, sourceModel, factors = [], scoreType = null, valueType = null) {
     this.results[assessmentId] = new Result(assessmentId)
     let keys; let
       mockLength
@@ -52,6 +52,17 @@ _.extend(ResultStore.prototype, {
           res[factor] = mockResults[index % mockResults.length]
           return res
         }, {})
+        break
+      case 'SavilleFactor':
+        this.results[assessmentId].externalScoring = (sourceModel || []).map((factorId, index) => {
+          const mockResults = MockResults[sourceType]
+          return {
+            id: factorId,
+            score_type: scoreType,
+            value_type: valueType,
+            score: mockResults[index % mockResults.length],
+          }
+        })
         break
       case 'DataSheet':
         this.results[assessmentId].dataSheet = (sourceModel || []).reduce((res, field, index) => {

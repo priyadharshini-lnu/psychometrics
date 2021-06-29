@@ -15,7 +15,9 @@ module Administration
         format.json do
           if datasheet.nil?
             return render json: {
-              list: [], total: 0, columns: [{ id: Datasheet::EMAIL_COLUMN, type: 'String', visible: true }]
+              list: [], total: 0, permissions: permissions, columns: [
+                { id: Datasheet::EMAIL_COLUMN, type: 'String', visible: true }
+              ]
             }
           end
 
@@ -27,6 +29,7 @@ module Administration
 
           render json: {
             list: serialized_datasheet_rows,
+            permissions: permissions,
             total: datasheet_rows.count,
             columns: Datasheets::GetColumnDefinition.call!(datasheet)
           }
@@ -101,6 +104,15 @@ module Administration
     end
 
     private
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::DatasheetRowPolicy,
+        current_user,
+        nil,
+        ['export', 'import', 'update', 'edit', %w[add create], %w[delete destroy], %w[view show]]
+      )
+    end
 
     def set_resource_class
       @_resource_class ||= DatasheetRow # rubocop:disable Naming/MemoizedInstanceVariableName

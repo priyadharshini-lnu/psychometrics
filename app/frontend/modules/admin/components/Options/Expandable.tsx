@@ -9,6 +9,7 @@ interface Props {
   label: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any
+  disabled?: boolean
   actionable?: React.ReactNode
   children?: React.ReactNode
   type?: 'checkbox' | 'switch'
@@ -18,7 +19,7 @@ interface Props {
 
 
 const Expandable: React.FC<Props> = ({
-  label, value, onChange, actionable, children, type,
+  label, value, onChange, actionable, children, type, disabled,
 }) => {
   const renderExpandableBlock = () => {
     if (!value || !children) return null
@@ -29,6 +30,8 @@ const Expandable: React.FC<Props> = ({
     if (!value || !actionable) return null
     return <span className="mlh">{actionable}</span>
   }
+
+  const disable = disabled || false
 
   return (
     <div className={cs({ mbs: type === 'checkbox', mbl: type !== 'checkbox' })}>
@@ -41,6 +44,7 @@ const Expandable: React.FC<Props> = ({
                   <Switch
                     checkedChildren="On"
                     unCheckedChildren="Off"
+                    disabled={disable}
                     checked={value}
                     onChange={onChange}
                   />
@@ -53,6 +57,7 @@ const Expandable: React.FC<Props> = ({
                   onChange={e => onChange(e.target.checked)}
                   checked={value}
                   className="mrs"
+                  disabled={disable}
                 />
               )}
               {label}

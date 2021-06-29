@@ -3,19 +3,43 @@
 module Administration
   class DatasheetRowPolicy < Administration::BasePolicy
     def bulk_delete?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+    end
+
+    def create?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+    end
+
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+    end
+
+    def index?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :view)
+    end
+
+    def show?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :view)
+    end
+
+    def update?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
+    end
+
+    def destroy?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
     end
 
     def save_column_preference?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
     end
 
     def import?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
     end
 
     def export?
-      create?
+      @user.is?(:superadmin) || @user.has_grant?(:datasheets, :manage)
     end
   end
 end

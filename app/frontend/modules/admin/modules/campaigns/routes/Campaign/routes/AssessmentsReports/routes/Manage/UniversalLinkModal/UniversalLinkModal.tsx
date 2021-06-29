@@ -12,6 +12,7 @@ interface Props {
   campaignId: string
   campaignAssessmentId: number
   universalLink: string
+  manageUniversalLink: boolean
   close(): void
   deactivateUniversalLink(campaignId: string, id: number): void
   regenerateUniversalLink(campaignId: string, id: number): void
@@ -32,6 +33,7 @@ const UniversalLinkModal: React.FC<Props> = ({
   campaignId,
   campaignAssessmentId: id,
   universalLink,
+  manageUniversalLink,
   close,
   deactivateUniversalLink,
   regenerateUniversalLink,
@@ -51,7 +53,7 @@ const UniversalLinkModal: React.FC<Props> = ({
       title="Universal Link"
       visible
       onCancel={close}
-      footer={[
+      footer={manageUniversalLink && [
         <Button key="deactivate" onClick={deactivate}>
           {I18n.t('universal_links.deactivate_link')}
         </Button>,

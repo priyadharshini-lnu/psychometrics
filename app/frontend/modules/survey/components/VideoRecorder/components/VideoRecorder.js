@@ -29,13 +29,11 @@ class VideoRecorder extends Component {
   constructor (props) {
     super(props)
 
-    const { fitInFrame } = this.props
     this.state = {
       deviceReady: false,
       recordingState: 'initialized',
       percent: {},
       key: 'player',
-      trackingEnabled: !!fitInFrame,
       hasMediaRecorder: true,
       errors: {},
     }
@@ -282,8 +280,7 @@ class VideoRecorder extends Component {
       })
 
       this.player.on('startRecord', () => {
-        const { trackingEnabled } = this.state
-        const { model, preview } = this.props
+        const { model, preview, fitInFrame } = this.props
 
         if (!preview) { this.getUploadUrl(model.id) }
         this.setState({ recordingState: 'recording' })
@@ -295,14 +292,13 @@ class VideoRecorder extends Component {
         this.player.controlBar.currentTimeDisplay.removeClass('hide')
 
         setTimeout(() => {
-          if (trackingEnabled && this.tracker) this.tracker.startTracking()
+          if (!!fitInFrame && this.tracker) this.tracker.startTracking()
         }, 2000)
       })
 
       this.player.on('finishRecord', async () => {
-        const { preview } = this.props
-        const { trackingEnabled } = this.state
-        if (trackingEnabled && this.tracker) this.tracker.stopTracking()
+        const { preview, fitInFrame } = this.props
+        if (!!fitInFrame && this.tracker) this.tracker.stopTracking()
         if (preview) {
           this.handleRecordingSaved()
         } else if (this.urlDetails) {
@@ -525,7 +521,7 @@ class VideoRecorder extends Component {
 
   render () {
     const {
-      key, deviceReady, recordingState, trackingEnabled,
+      key, deviceReady, recordingState,
     } = this.state
     const {
       fitInFrame, trackerOptions, recordingAllowed, disallowDiscard, extraControls,
@@ -538,7 +534,7 @@ class VideoRecorder extends Component {
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
         { extraControls }
-        { trackingEnabled
+        { !!fitInFrame
         && ['ready', 'recording', 'recorded'].includes(recordingState)
         && (
           <Tracker

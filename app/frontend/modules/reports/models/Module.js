@@ -6,7 +6,7 @@ import ModuleConfigs from 'rb/consts/ModuleConfigs'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import Presets from 'rb/consts/Presets'
 import AppStore from 'rb/store/AppStore'
-import { HOGAN, MINDMILL } from 'rb/models/Assessment'
+import { HOGAN, MINDMILL, SAVILLE } from 'rb/models/Assessment'
 import rstore from 'rb/store'
 import { UPDATE_MODULE } from 'rb/core/builder/module/actions'
 import Utils from 'modules/reports/utils/Utils'
@@ -108,6 +108,9 @@ _.extend(Module.prototype, {
     if (assessment.category === HOGAN || assessment.category === MINDMILL) {
       return 'ExternalFactor'
     }
+    if (assessment.category === SAVILLE) {
+      return 'SavilleFactor'
+    }
     switch (_.result(this.props, 'source.type')) {
       case 'Question':
         const question = getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
@@ -115,6 +118,19 @@ _.extend(Module.prototype, {
       default:
         return _.result(this.props, 'source.type')
     }
+  },
+
+  getScoreType () {
+    const assessment = AppStore.getAssessmentById(this.assessment_id)
+    if (assessment.category === 'saville') {
+      const sourceType = _.get(this.props, 'source.type')
+      return sourceType.replace('Saville#', '')
+    }
+    return _.get(this.props, 'source.type')
+  },
+
+  getValueType () {
+    return _.get(this.props, 'source.valueType')
   },
 
   getSourceModel () {
@@ -135,6 +151,10 @@ _.extend(Module.prototype, {
       case 'RawScale':
       case 'PercentileSubscale':
       case 'PercentileScale':
+      case 'Saville#Ipsative':
+      case 'Saville#Nipsative':
+      case 'Saville#Normative':
+      case 'Saville#Raw':
         return this.props.source.factors
       default:
     }
@@ -160,7 +180,7 @@ _.extend(Module.prototype, {
   },
 
   canShowDataSet (type, category) {
-    if (category === HOGAN || category === MINDMILL) { return true }
+    if (category === HOGAN || category === MINDMILL || category === SAVILLE) { return true }
     if (this.props.sourceType === 'ResultText') {
       if (['Question', 'Factor', 'EmbeddedData'].includes(type)) { return false }
     }

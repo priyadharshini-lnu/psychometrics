@@ -2,15 +2,35 @@
 
 class Administration::NormPolicy < Administration::BasePolicy
   def index?
-    super || @user.has_grant?(:norms, :view)
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :view)
   end
 
   def create?
-    super || @user.has_grant?(:norms, :manage)
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
   end
 
   def editor?
     @user.is?(:superadmin)
+  end
+
+  def edit?
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
+  end
+
+  def copy?
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
+  end
+
+  def actions?
+    edit? & copy? & destroy?
+  end
+
+  def import?
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
+  end
+
+  def export?
+    @user.is?(:superadmin) || @user.has_grant?(:norms, :view)
   end
 
   def change_cell?

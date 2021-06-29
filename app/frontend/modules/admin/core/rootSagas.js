@@ -15,7 +15,8 @@ import { watchers as campaignAssessment } from '../modules/campaigns/core/assess
 import { watchers as user } from '../modules/campaigns/core/users'
 import { watchers as campaign } from '../modules/campaigns/core/list'
 import { watchers as assessors } from '../modules/campaigns/core/assessors'
-
+import { watchers as userAssessments } from '../modules/campaigns/core/userAssessments'
+import { watchers as userReports } from '../modules/campaigns/core/userReports'
 
 export default function* () {
   yield all([
@@ -34,5 +35,7 @@ export default function* () {
     ...campaign,
     ...flow,
     ...assessors,
+    ...userAssessments,
+    ...userReports,
   ])
 }

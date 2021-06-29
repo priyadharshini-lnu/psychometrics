@@ -15,6 +15,7 @@ export default function ManagerList ({
   editUser,
   removeUser,
   total,
+  permissions,
   page,
   searchTerm,
   match: {
@@ -41,7 +42,7 @@ export default function ManagerList ({
             path="/participants/managers"
             searchTerm={searchTerm}
           />
-          <ToolsDropdown />
+          <ToolsDropdown permissions={permissions} />
         </Col>
       </Row>
       <Row>

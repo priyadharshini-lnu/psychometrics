@@ -12,12 +12,19 @@ export const getCorrectResults = (model, mockFactorIds = []) => {
     if (mockFactorIds.length) {
       factors = AppStore.factorsByAssessmentId(model.assessment_id).filter(f => mockFactorIds.includes(f.id))
     }
+    const assessment = AppStore.getAssessmentById(model.assessment_id)
+    let scoreType = null
+    if (assessment.category === 'saville') { scoreType = model.getScoreType() }
+
     ResultStore.setMockResults(
       model.assessment_id,
       model.getSourceType(),
       model.getSourceModel(),
       factors,
+      scoreType,
+      model.props.source.valueType,
     )
+
     if (model.isMultiFiltering() && model.props.filter
       && Array.isArray(model.props.filter) && model.props.filter.length) {
       return _.map(model.props.filter, f => ({

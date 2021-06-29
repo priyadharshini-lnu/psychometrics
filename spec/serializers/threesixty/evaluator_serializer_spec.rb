@@ -5,6 +5,7 @@ require 'rails_helper'
 describe Threesixty::EvaluatorSerializer do
   describe '#to_hash' do
     let(:campaign) { create(:campaign) }
+    let(:current_user) { create(:superadmin) }
     let(:dustin) { create(:user, email: 'dustin@poirier.com') }
     let!(:subject) do
       create(:threesixty_subject, user: dustin, campaign: campaign)
@@ -36,7 +37,9 @@ describe Threesixty::EvaluatorSerializer do
     end
 
     it do
-      result = described_class.new(evaluator_with_subject, counters: counters, option: option).to_hash
+      result = described_class.new(
+        evaluator_with_subject, counters: counters, option: option, current_user: current_user
+      ).to_hash
       expect(result[:is_subject]).to eq true
       expect(result[:user][:email]).to eq 'dustin@poirier.com'
       expect(result[:evaluators]).to eq '4 / 5'
@@ -46,7 +49,9 @@ describe Threesixty::EvaluatorSerializer do
     end
 
     it do
-      result = described_class.new(evaluator, counters: counters, option: option).to_hash
+      result = described_class.new(
+        evaluator, counters: counters, option: option, current_user: current_user
+      ).to_hash
       expect(result[:is_subject]).to eq false
       expect(result[:evaluators]).to eq nil
       expect(result[:evaluations]).to eq '3 / 5'

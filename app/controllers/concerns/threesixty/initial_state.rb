@@ -23,7 +23,6 @@ module Threesixty::InitialState
         }
       }.merge(campaign_intial_state),
       config: {
-        isFrame: use_iframe?,
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags
       },
@@ -32,10 +31,6 @@ module Threesixty::InitialState
         url: Settings.live_chat.base_url,
         token: live_chat_token,
         enabled: @current_project.enable_live_chat
-      },
-      examus: {
-        url: Rails.application.secrets.examus[:url],
-        integrationName: Rails.application.secrets.examus[:integration_name]
       }
     }
   end

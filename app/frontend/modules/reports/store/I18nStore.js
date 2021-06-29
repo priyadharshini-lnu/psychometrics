@@ -19,7 +19,7 @@ const TRANSLATED_MODULES = {
   Table: ['FactorsTable', 'StrengthClusters', 'InnovationStyles'],
   Graph: ['Circumplex'],
 }
-const EXTERNAL_CATEGORIES = ['hogan', 'mindmill']
+const EXTERNAL_CATEGORIES = ['hogan', 'mindmill', 'saville']
 // Template Structure
 // {
 //  question: {
@@ -124,6 +124,14 @@ _.extend(I18nStore.prototype, {
     return _.get(this.locales, ['external/factor', assessmentId, `${factor.id}/${factor.type}`], factor.name)
   },
 
+  tSavilleFactorName (assessmentId, factor) {
+    return _.get(this.locales, ['external/factor', assessmentId, this.savilleFactorTranslationKey(factor)], factor.name)
+  },
+
+  savilleFactorTranslationKey (factor) {
+    return factor.id
+  },
+
   tOccupation (occupation, key) {
     if (this.locales && this.locales.occupation && this.locales.occupation[occupation.id]) {
       if (this.locales.occupation[occupation.id] && this.locales.occupation[occupation.id][Utils.toSnakeCase(key)]) {
@@ -198,7 +206,8 @@ _.extend(I18nStore.prototype, {
     AppStore.assessments.filter(x => EXTERNAL_CATEGORIES.includes(x.category) && x.factors)
       .forEach((x) => {
         x.factors.forEach((f) => {
-          _.setWith(result, ['external/factor', x.id, `${f.id}/${f.type}`], f.name, Object)
+          const factorKey = x.category === 'saville' ? this.savilleFactorTranslationKey(f) : `${f.id}/${f.type}`
+          _.setWith(result, ['external/factor', x.id, factorKey], f.name, Object)
         })
       })
     return result

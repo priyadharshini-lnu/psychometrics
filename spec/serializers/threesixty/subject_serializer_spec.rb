@@ -3,8 +3,11 @@
 require 'rails_helper'
 
 describe Threesixty::SubjectSerializer do
+  let(:current_user) { create(:superadmin) }
+
   describe 'subject is also evaluator' do
     let(:user) { create(:user, email: 'dustin@poirier.com') }
+
     let(:project) { create(:project) }
     let(:campaign) { create(:campaign, project: project) }
     let(:option) do
@@ -29,7 +32,7 @@ describe Threesixty::SubjectSerializer do
     end
 
     it do
-      result = described_class.new(subject, option: option, counters: counters).to_hash
+      result = described_class.new(subject, option: option, counters: counters, current_user: current_user).to_hash
       expect(result[:evaluators]).to eq '4 / 5'
       expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
       expect(result[:evaluations]).to eq '3 / 5'
@@ -65,8 +68,12 @@ describe Threesixty::SubjectSerializer do
     end
 
     it do
-      result = described_class.new(subject, option: option,
-                                   nomination_requirement: nomination_requirement, counters: counters).to_hash
+      result = described_class.new(
+        subject, option: option,
+        nomination_requirement: nomination_requirement,
+        counters: counters,
+        current_user: current_user
+      ).to_hash
       expect(result[:evaluators]).to eq '5 / 5'
       expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
       expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED

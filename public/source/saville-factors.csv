@@ -1,0 +1,1111 @@
+assessment_id,factor_id,name,score_type,value_type
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_PACE,Pace,Raw,Percentile
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_PACE,Pace,Raw,Sten
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_PACE,Pace,Raw,T
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_PACE,Pace,Raw,Z
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_TOTALSCORE,Abstract,Raw,Percentile
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_TOTALSCORE,Abstract,Raw,Sten
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_TOTALSCORE,Abstract,Raw,T
+2d96b504-98bd-4872-bd03-f93493cefa21,ABSTREAS_RX_TOTALSCORE,Abstract,Raw,Z
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_PACE,Pace,Raw,Percentile
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_PACE,Pace,Raw,Sten
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_PACE,Pace,Raw,T
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_PACE,Pace,Raw,Z
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_TOTALSCORE,Diagrammatic,Raw,Percentile
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_TOTALSCORE,Diagrammatic,Raw,Sten
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_TOTALSCORE,Diagrammatic,Raw,T
+df3fe097-4394-4bef-8abc-eaf36b0fbe0e,DIAGANA_RX_TOTALSCORE,Diagrammatic,Raw,Z
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_PACE,Pace,Raw,Percentile
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_PACE,Pace,Raw,Sten
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_PACE,Pace,Raw,T
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_PACE,Pace,Raw,Z
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_TOTALSCORE,Diagrammatic,Raw,Percentile
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_TOTALSCORE,Diagrammatic,Raw,Sten
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_TOTALSCORE,Diagrammatic,Raw,T
+1fed08da-44ba-46b6-9be5-2c3b7aec066a,DIAGREAS_RX_TOTALSCORE,Diagrammatic,Raw,Z
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_PACE,Pace,Raw,Percentile
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_PACE,Pace,Raw,Sten
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_PACE,Pace,Raw,T
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_PACE,Pace,Raw,Z
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_TOTALSCORE,Error Checking,Raw,Percentile
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_TOTALSCORE,Error Checking,Raw,Sten
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_TOTALSCORE,Error Checking,Raw,T
+4d37344b-e66e-4a00-9314-929c2c8030d2,ERRCHK_RX_TOTALSCORE,Error Checking,Raw,Z
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_PACE,Pace,Raw,Percentile
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_PACE,Pace,Raw,Sten
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_PACE,Pace,Raw,T
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_PACE,Pace,Raw,Z
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_TOTALSCORE,Mechanical,Raw,Percentile
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_TOTALSCORE,Mechanical,Raw,Sten
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_TOTALSCORE,Mechanical,Raw,T
+28eea6cb-c094-4975-9c78-9ad67e8c3fcf,MECHREAS_RX_TOTALSCORE,Mechanical,Raw,Z
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_PACE,Pace,Raw,Percentile
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_PACE,Pace,Raw,Sten
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_PACE,Pace,Raw,T
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_PACE,Pace,Raw,Z
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_TOTALSCORE,Numerical,Raw,Percentile
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_TOTALSCORE,Numerical,Raw,Sten
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_TOTALSCORE,Numerical,Raw,T
+4c1665e2-eee3-4e92-8f31-70a6b0e55e93,NUMCOMP_RX_TOTALSCORE,Numerical,Raw,Z
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_PACE,Pace,Raw,Percentile
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_PACE,Pace,Raw,Sten
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_PACE,Pace,Raw,T
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_PACE,Pace,Raw,Z
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_TOTALSCORE,Spatial,Raw,Percentile
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_TOTALSCORE,Spatial,Raw,Sten
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_TOTALSCORE,Spatial,Raw,T
+73f44184-eed3-400d-b4bb-14925e4502d3,SPAREAS_RX_TOTALSCORE,Spatial,Raw,Z
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_DIAG,Pace,Raw,Percentile
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_DIAG,Pace,Raw,Sten
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_DIAG,Pace,Raw,T
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_DIAG,Pace,Raw,Z
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_NUM,Pace,Raw,Percentile
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_NUM,Pace,Raw,Sten
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_NUM,Pace,Raw,T
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_NUM,Pace,Raw,Z
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_VERB,Pace,Raw,Percentile
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_VERB,Pace,Raw,Sten
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_VERB,Pace,Raw,T
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_PACE_VERB,Pace,Raw,Z
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Percentile
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Sten
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_DIAG,Diagrammatic,Raw,T
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Z
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_NUM,Numerical,Raw,Percentile
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_NUM,Numerical,Raw,Sten
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_NUM,Numerical,Raw,T
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_NUM,Numerical,Raw,Z
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_VERB,Verbal,Raw,Percentile
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_VERB,Verbal,Raw,Sten
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_VERB,Verbal,Raw,T
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_SUBSCORE_VERB,Verbal,Raw,Z
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_TOTALSCORE,Total Score,Raw,Percentile
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_TOTALSCORE,Total Score,Raw,Sten
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_TOTALSCORE,Total Score,Raw,T
+62827908-1916-4e58-8f03-6b9df8c7c6a5,SWIFTANA_RX_TOTALSCORE,Total Score,Raw,Z
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_NUM,Pace,Raw,Percentile
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_NUM,Pace,Raw,Sten
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_NUM,Pace,Raw,T
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_NUM,Pace,Raw,Z
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_VERB,Pace,Raw,Percentile
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_VERB,Pace,Raw,Sten
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_VERB,Pace,Raw,T
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_PACE_VERB,Pace,Raw,Z
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_NUM,Numerical,Raw,Percentile
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_NUM,Numerical,Raw,Sten
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_NUM,Numerical,Raw,T
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_NUM,Numerical,Raw,Z
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_VERB,Verbal,Raw,Percentile
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_VERB,Verbal,Raw,Sten
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_VERB,Verbal,Raw,T
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_SUBSCORE_VERB,Verbal,Raw,Z
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_TOTALSCORE,Total Score,Raw,Percentile
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_TOTALSCORE,Total Score,Raw,Sten
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_TOTALSCORE,Total Score,Raw,T
+d3dd8bf1-73ad-41dc-84c1-cccfba5464bf,SWIFTANAVN_RX_TOTALSCORE,Total Score,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_DIAG,Pace,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_DIAG,Pace,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_DIAG,Pace,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_DIAG,Pace,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_ERRCHK,Pace,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_ERRCHK,Pace,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_ERRCHK,Pace,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_ERRCHK,Pace,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_MECH,Pace,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_MECH,Pace,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_MECH,Pace,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_MECH,Pace,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_NUM,Pace,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_NUM,Pace,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_NUM,Pace,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_NUM,Pace,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_SPA,Pace,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_SPA,Pace,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_SPA,Pace,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_SPA,Pace,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_VERB,Pace,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_VERB,Pace,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_VERB,Pace,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_PACE_VERB,Pace,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_DIAG,Diagrammatic,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_MECH,Mechanical,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_MECH,Mechanical,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_MECH,Mechanical,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_MECH,Mechanical,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_NUM,Numerical,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_NUM,Numerical,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_NUM,Numerical,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_NUM,Numerical,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_SPA,Spatial,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_SPA,Spatial,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_SPA,Spatial,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_SPA,Spatial,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_VERB,Verbal,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_VERB,Verbal,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_VERB,Verbal,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_SUBSCORE_VERB,Verbal,Raw,Z
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_TOTALSCORE,Total Score,Raw,Percentile
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_TOTALSCORE,Total Score,Raw,Sten
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_TOTALSCORE,Total Score,Raw,T
+be83f750-6cda-4539-88f6-f50b8db0daa7,SWIFTAPP_RX_TOTALSCORE,Total Score,Raw,Z
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_ERRCHK,Pace,Raw,Percentile
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_ERRCHK,Pace,Raw,Sten
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_ERRCHK,Pace,Raw,T
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_ERRCHK,Pace,Raw,Z
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_NUM,Pace,Raw,Percentile
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_NUM,Pace,Raw,Sten
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_NUM,Pace,Raw,T
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_NUM,Pace,Raw,Z
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_VERB,Pace,Raw,Percentile
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_VERB,Pace,Raw,Sten
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_VERB,Pace,Raw,T
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_PACE_VERB,Pace,Raw,Z
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,Percentile
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,Sten
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,T
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_ERRCHK,Error Checking,Raw,Z
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_NUM,Numerical,Raw,Percentile
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_NUM,Numerical,Raw,Sten
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_NUM,Numerical,Raw,T
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_NUM,Numerical,Raw,Z
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_VERB,Verbal,Raw,Percentile
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_VERB,Verbal,Raw,Sten
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_VERB,Verbal,Raw,T
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_SUBSCORE_VERB,Verbal,Raw,Z
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_TOTALSCORE,Total Score,Raw,Percentile
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_TOTALSCORE,Total Score,Raw,Sten
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_TOTALSCORE,Total Score,Raw,T
+96cd4c90-71b7-41d8-87dd-66bf8ef28cd7,SWIFTCOMP_RX_TOTALSCORE,Total Score,Raw,Z
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_ABST,Pace,Raw,Percentile
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_ABST,Pace,Raw,Sten
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_ABST,Pace,Raw,T
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_ABST,Pace,Raw,Z
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_NUM,Pace,Raw,Percentile
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_NUM,Pace,Raw,Sten
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_NUM,Pace,Raw,T
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_NUM,Pace,Raw,Z
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_VERB,Pace,Raw,Percentile
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_VERB,Pace,Raw,Sten
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_VERB,Pace,Raw,T
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_PACE_VERB,Pace,Raw,Z
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_ABST,Abstract,Raw,Percentile
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_ABST,Abstract,Raw,Sten
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_ABST,Abstract,Raw,T
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_ABST,Abstract,Raw,Z
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_NUM,Numerical,Raw,Percentile
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_NUM,Numerical,Raw,Sten
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_NUM,Numerical,Raw,T
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_NUM,Numerical,Raw,Z
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_VERB,Verbal,Raw,Percentile
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_VERB,Verbal,Raw,Sten
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_VERB,Verbal,Raw,T
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_SUBSCORE_VERB,Verbal,Raw,Z
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_TOTALSCORE,Total Score,Raw,Percentile
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_TOTALSCORE,Total Score,Raw,Sten
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_TOTALSCORE,Total Score,Raw,T
+1df70675-a331-47ae-a3a4-4ff235c036a0,SWIFTEXEC_RX_TOTALSCORE,Total Score,Raw,Z
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_DIAG,Pace,Raw,Percentile
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_DIAG,Pace,Raw,Sten
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_DIAG,Pace,Raw,T
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_DIAG,Pace,Raw,Z
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_MECH,Pace,Raw,Percentile
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_MECH,Pace,Raw,Sten
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_MECH,Pace,Raw,T
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_MECH,Pace,Raw,Z
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_SPA,Pace,Raw,Percentile
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_SPA,Pace,Raw,Sten
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_SPA,Pace,Raw,T
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_PACE_SPA,Pace,Raw,Z
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Percentile
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Sten
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_DIAG,Diagrammatic,Raw,T
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_DIAG,Diagrammatic,Raw,Z
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_MECH,Mechanical,Raw,Percentile
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_MECH,Mechanical,Raw,Sten
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_MECH,Mechanical,Raw,T
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_MECH,Mechanical,Raw,Z
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_SPA,Spatial,Raw,Percentile
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_SPA,Spatial,Raw,Sten
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_SPA,Spatial,Raw,T
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_SUBSCORE_SPA,Spatial,Raw,Z
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_TOTALSCORE,Total Score,Raw,Percentile
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_TOTALSCORE,Total Score,Raw,Sten
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_TOTALSCORE,Total Score,Raw,T
+1c02b020-81a1-4ba7-8926-67f955f8b410,SWIFTTECH_RX_TOTALSCORE,Total Score,Raw,Z
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_PACE,Pace,Raw,Percentile
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_PACE,Pace,Raw,Sten
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_PACE,Pace,Raw,T
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_PACE,Pace,Raw,Z
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_TOTALSCORE,Verbal,Raw,Percentile
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_TOTALSCORE,Verbal,Raw,Sten
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_TOTALSCORE,Verbal,Raw,T
+7709c5e7-8ceb-4539-8b15-6fdeadf282b7,VERBANA_RX_TOTALSCORE,Verbal,Raw,Z
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_PACE,Pace,Raw,Percentile
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_PACE,Pace,Raw,Sten
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_PACE,Pace,Raw,T
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_PACE,Pace,Raw,Z
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_TOTALSCORE,Verbal,Raw,Percentile
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_TOTALSCORE,Verbal,Raw,Sten
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_TOTALSCORE,Verbal,Raw,T
+59102bdd-6294-4f88-8d07-275bd1bd680e,VERBCOMP_RX_TOTALSCORE,Verbal,Raw,Z
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CONRANK,Consistency of Rankings,Ipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_ANST,Analyst,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_ANST,Analyst,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_ASST,Assertor,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_ASST,Assertor,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_FINI,Finisher,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_FINI,Finisher,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_INNO,Innovator,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_INNO,Innovator,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_OPTI,Optimist,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_OPTI,Optimist,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_RELA,Relator,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_RELA,Relator,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_STRI,Striver,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_STRI,Striver,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_SUPP,Supporter,Nipsative,Rank
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_INDIVWORKROLE_SUPP,Supporter,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_RATACQ,Ratings Acquiescence,Normative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CONRANK,Consistency of Rankings,Ipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_RATACQ,Ratings Acquiescence,Normative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CONRANK,Consistency of Rankings,Ipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_RATACQ,Ratings Acquiescence,Normative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CONRANK,Consistency of Rankings,Ipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_RATACQ,Ratings Acquiescence,Normative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CONRANK,Consistency of Rankings,Ipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_RATACQ,Ratings Acquiescence,Normative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CONRANK,Consistency of Rankings,Ipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_RATACQ,Ratings Acquiescence,Normative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_CONRANK,Consistency of Rankings,Ipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_ACDR,Achievement Drive,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_ACOR,Action Oriented,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_BIPI,Big Picture,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_BUUT,Building Up the Team,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_COVI,Compelling Vision,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_CRPA,Creating Partnerships,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_CUDE,Customer Delivery,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_ENER,Energy,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_EXLE,Experiential Learning,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_EXPA,Expressing Passion,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_FOCU,Focus,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_OPTH,Options Thinking,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_PERS,Persistence,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_POMI,Positive Mindset,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_PRSE,Problem Seeking,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_PRSO,Problem Solving,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_PUNE,Purposeful Networking,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_SAVV,Savvy,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_SEDE,Self-determining,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_STOT,Staying on Track,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPDIMENSION_SYNT,Synthesis,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPSECTION_BUCA,Building Capability,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPSECTION_CRSO,Creating Superior Opportunities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPSECTION_GEZO,Getting in the Zone,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPSECTION_OUTW,Opening Up to the World,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPSECTION_SEPO,Seeing Possibilities,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_EPSECTION_STZO,Staying in the Zone,Nipsative,Sten
+a830e4ab-bc66-4238-92e0-6e6fd3fd1edf,WAVEFS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_COMM,Communication,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_EXRE,Expert Reputation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_MARI,Managed Risk,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_NEPM,New Products/Markets,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_ORCO,Organisational Commitment,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_ORGR,Organisational Growth,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_ORTR,Organisational Transformation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_SEPD,Service & Product Delivery,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_SUTE,Successful Teams,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_ADMI,Administrator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CATA,Catalyst,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CHAG,Change Agent,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_COLL,Collaborator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CONS,Consulter,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_COOR,Co-ordinator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CRHA,Crisis Handler,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_ENTH,Enthusiast,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_EXAD,Expert Advisor,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_FACI,Facilitator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_GRSE,Growth Seeker,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_INNO,Innovator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_INSP,Inspirer,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_INTE,Intellectual,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_PERS,Persuader,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_REGU,Regulator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_STOP,Strategic Opportunist,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_TECH,Technician,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_ANIN,Analysing Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_APEX,Applying Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BECR,Being Creative,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BEOR,Being Organised,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BRTC,Being Resilient to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHOB,Challenging Objections,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHVI,Changing Views,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_DERA,Developing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_HAPR,Handling Pressure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MASB,Maintaining Self-Belief,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MAST,Maintaining Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PRIN,Presenting Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PUTA,Pursuing Targets,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_SUPE,Supporting People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_UNCN,Understanding Customer Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_WOCO,Working Co-operatively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_BEDI,Being Disciplined,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_CLDE,Closing Deals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DELE,Developing Leads,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DESO,Developing Solutions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_IDNE,Identifying Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_REFO,Results Focused,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_STPO,Staying Positive,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_WOCO,Working Collaboratively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_ACMF,Account Management Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_NEBF,New Business Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_SALF,Sales Leadership Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_ACDR,Achievement Drive,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_ACOR,Action Oriented,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_BIPI,Big Picture,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_BUUT,Building Up the Team,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_COVI,Compelling Vision,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_CRPA,Creating Partnerships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_CUDE,Customer Delivery,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_ENER,Energy,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_EXLE,Experiential Learning,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_EXPA,Expressing Passion,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_FOCU,Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_OPTH,Options Thinking,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_PERS,Persistence,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_POMI,Positive Mindset,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_PRSE,Problem Seeking,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_PRSO,Problem Solving,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_PUNE,Purposeful Networking,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_SAVV,Savvy,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_SEDE,Self-determining,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_STOT,Staying on Track,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPDIMENSION_SYNT,Synthesis,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPSECTION_BUCA,Building Capability,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPSECTION_CRSO,Creating Superior Opportunities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPSECTION_GEZO,Getting in the Zone,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPSECTION_OUTW,Opening Up to the World,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPSECTION_SEPO,Seeing Possibilities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_EPSECTION_STZO,Staying in the Zone,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_ANIN,Analysing Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_APEX,Applying Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BECR,Being Creative,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BEOR,Being Organised,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BRTC,Being Resilient to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHOB,Challenging Objections,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHVI,Changing Views,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_DERA,Developing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_HAPR,Handling Pressure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MASB,Maintaining Self-Belief,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MAST,Maintaining Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PRIN,Presenting Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PUTA,Pursuing Targets,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_SUPE,Supporting People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_UNCN,Understanding Customer Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_WOCO,Working Co-operatively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_BEDI,Being Disciplined,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_CLDE,Closing Deals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DELE,Developing Leads,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DESO,Developing Solutions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_IDNE,Identifying Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_REFO,Results Focused,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_STPO,Staying Positive,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_WOCO,Working Collaboratively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_ACMF,Account Management Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_NEBF,New Business Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_SALF,Sales Leadership Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_ADMI,Administrator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_DRIV,Driver,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_EXAN,Expert Analyst,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_NEGO,Negotiator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_PERS,Persuader,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_REBU,Relationship Builder,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_RESO,Resolver,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESSTYLESSECTION_STRA,Strategist,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_GISU,Giving Support,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_ANST,Analyst,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_ANST,Analyst,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_ASST,Assertor,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_ASST,Assertor,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_FINI,Finisher,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_FINI,Finisher,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_INNO,Innovator,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_INNO,Innovator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_OPTI,Optimist,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_OPTI,Optimist,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_RELA,Relator,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_RELA,Relator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_STRI,Striver,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_STRI,Striver,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_SUPP,Supporter,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_INDIVWORKROLE_SUPP,Supporter,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_AUTO,Autonomous,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_AUTO,Autonomous,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_CRIT,Critical,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_CRIT,Critical,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_DARI,Daring,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_DARI,Daring,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_DISR,Disruptive,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_DISR,Disruptive,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_EXPR,Expressive,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_EXPR,Expressive,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_OBLI,Obliging,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_OBLI,Obliging,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_PERF,Perfectionist,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_PERF,Perfectionist,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_PROC,Procedural,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_PROC,Procedural,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_UNPR,Unpredictable,Nipsative,Rank
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADRISKAREA_UNPR,Unpredictable,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_ANIN,Analysing Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_APEX,Applying Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BECR,Being Creative,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BEOR,Being Organised,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BRTC,Being Resilient to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHOB,Challenging Objections,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHVI,Changing Views,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_DERA,Developing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_HAPR,Handling Pressure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MASB,Maintaining Self-Belief,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MAST,Maintaining Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PRIN,Presenting Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PUTA,Pursuing Targets,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_SUPE,Supporting People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_UNCN,Understanding Customer Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_WOCO,Working Co-operatively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_BEDI,Being Disciplined,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_CLDE,Closing Deals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DELE,Developing Leads,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DESO,Developing Solutions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_IDNE,Identifying Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_REFO,Results Focused,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_STPO,Staying Positive,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_WOCO,Working Collaboratively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_ACMF,Account Management Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_NEBF,New Business Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_SALF,Sales Leadership Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_COMM,Communication,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_EXRE,Expert Reputation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_MARI,Managed Risk,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_NEPM,New Products/Markets,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_ORCO,Organisational Commitment,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_ORGR,Organisational Growth,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_ORTR,Organisational Transformation,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_SEPD,Service & Product Delivery,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTAREA_SUTE,Successful Teams,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_ADMI,Administrator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CATA,Catalyst,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CHAG,Change Agent,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_COLL,Collaborator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CONS,Consulter,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_COOR,Co-ordinator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_CRHA,Crisis Handler,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_ENTH,Enthusiast,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_EXAD,Expert Advisor,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_FACI,Facilitator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_GRSE,Growth Seeker,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_INNO,Innovator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_INSP,Inspirer,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_INTE,Intellectual,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_PERS,Persuader,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_REGU,Regulator,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_STOP,Strategic Opportunist,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_LEADIMPACTSTYLE_TECH,Technician,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_CONRANK,Consistency of Rankings,Ipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_RATACQ,Ratings Acquiescence,Normative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_ANIN,Analysing Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_APEX,Applying Expertise,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BECR,Being Creative,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BEOR,Being Organised,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BRTC,Being Resilient to Change,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_BURE,Building Relationships,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHOB,Challenging Objections,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_CHVI,Changing Views,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_DERA,Developing Rapport,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_HAPR,Handling Pressure,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MASB,Maintaining Self-Belief,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_MAST,Maintaining Standards,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PRIN,Presenting Information,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_PUTA,Pursuing Targets,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_SUPE,Supporting People,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_UNCN,Understanding Customer Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPDIMENSION_WOCO,Working Co-operatively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_BEDI,Being Disciplined,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_CLDE,Closing Deals,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DELE,Developing Leads,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_DESO,Developing Solutions,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_IDNE,Identifying Needs,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_REFO,Results Focused,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_STPO,Staying Positive,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESCPSECTION_WOCO,Working Collaboratively,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_ACMF,Account Management Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_NEBF,New Business Focus,Nipsative,Sten
+bf1af0e0-a0d7-4d4d-9859-cd9876b5cc32,WAVEPS_SALESFOCUS_SALF,Sales Leadership Focus,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CONRANK,Consistency of Rankings,Ipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_GISU,Giving Support,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_RATACQ,Ratings Acquiescence,Normative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CONRANK,Consistency of Rankings,Ipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_ADPA,Adopting Practical Approaches,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_ARIN,Articulating Information,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_CHID,Challenging Ideas,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_CHTH,Checking Things,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_COPE,Convincing People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_COSC,Conveying Self-Confidence,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DEEX,Developing Expertise,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DEST,Developing Strategies,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DIPE,Directing People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_DOFA,Documenting Facts,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EMCH,Embracing Change,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EMIN,Empowering Individuals,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_ESRA,Establishing Rapport,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EXIN,Examining Information,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_EXPO,Exploring Possibilities,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_FOPR,Following Procedures,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_GEID,Generating Ideas,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_IMPE,Impressing People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_INDA,Interpreting Data,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_INFE,Inviting Feedback,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_INWP,Interacting with People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_MADE,Making Decisions,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_MATA,Managing Tasks,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_METI,Meeting Timescales,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_PRIN,Providing Insights,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_PROU,Producing Output,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_PUGO,Pursuing Goals,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_RECO,Resolving Conflict,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_SEOP,Seizing Opportunities,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_SHCO,Showing Composure,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_TAAC,Taking Action,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_TEWO,Team Working,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_THPO,Thinking Positively,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_UNPE,Understanding People,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_UPST,Upholding Standards,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPDIMENSION_VAIN,Valuing Individuals,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_ADTC,Adjusting to Change,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_BURE,Building Relationships,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_COIN,Communicating Information,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_CRIN,Creating Innovation,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_DRSU,Driving Success,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_EVPR,Evaluating Problems,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_GISU,Giving Support,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_INIS,Investigating Issues,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_PRDE,Processing Details,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_PRLE,Providing Leadership,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_SHRE,Showing Resilience,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_CPSECTION_STTA,Structuring Tasks,Nipsative,Sten
+a6db5c4b-8d1e-426c-b215-db638327f44f,WORKSTR_RATACQ,Ratings Acquiescence,Normative,Sten
