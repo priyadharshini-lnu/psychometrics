@@ -68,7 +68,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "browserslist": "^4.16.6",
-    "caniuse-lite": "^1.0.30001214",
+    "caniuse-lite": "^1.0.30001237",
     "classnames": "^2.3.1",
     "codemirror": "^5.61.1",
     "conditional-wrap": "^1.0.2",
@@ -210,7 +210,7 @@
     "webpack-dev-server": "^3.11.1"
   },
   "resolutions": {
-    "caniuse-lite": "^1.0.30001214"
+    "caniuse-lite": "^1.0.30001237"
   },
   "husky": {
     "hooks": {
