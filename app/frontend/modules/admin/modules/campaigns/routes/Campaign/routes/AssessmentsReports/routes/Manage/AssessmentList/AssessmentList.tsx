@@ -36,6 +36,10 @@ const AssessmentList: React.FC<Props> = ({
   openModal,
   activateUniversalLink,
   rescoreResponses,
+  exportRawResults,
+  exportScoringResults,
+  exportNormedResults,
+  exportRawFactorScores,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -173,6 +177,10 @@ const AssessmentList: React.FC<Props> = ({
                       campaignId: parsedCampaignId,
                       openModal,
                       rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
+                      exportRawResults,
+                      exportScoringResults,
+                      exportNormedResults,
+                      exportRawFactorScores,
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -197,10 +205,15 @@ interface ActionMenuProps {
   openModal(name: string, data?: { projectId?: number, assessment?: Assessment,
     campaignId: number, campaignAssessmentId: number }): void
   rescoreResponses(): void
+  exportRawResults: Props['exportRawResults']
+  exportScoringResults: Props['exportScoringResults']
+  exportNormedResults: Props['exportNormedResults']
+  exportRawFactorScores: Props['exportRawFactorScores']
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses,
+  campaignId, assessment, openModal, rescoreResponses, exportRawResults,
+  exportScoringResults, exportNormedResults, exportRawFactorScores,
 }) => {
   const { id, name, permissions } = assessment
 
@@ -209,62 +222,86 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
   }
 
+  const handleRawExport = (with_labels: boolean) => {
+    exportRawResults(campaignId, id, with_labels).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.raw_results_export_scheduled'))
+    })
+  }
+
+  const handleScoringExport = () => {
+    exportScoringResults(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.scoring_results_export_scheduled'))
+    })
+  }
+
+  const handleNormedResultExport = () => {
+    exportNormedResults(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.norm_results_export_scheduled'))
+    })
+  }
+
+  const handleRawFactorExport = () => {
+    exportRawFactorScores(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.raw_factor_export_scheduled'))
+    })
+  }
+
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
         {permissions.exportRawResults && (
         <Menu.Item key="export_raw_labels">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx?with_labels=1`}
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleRawExport(true)}
           >
             Raw (with labels)
-          </a>
+          </div>
         </Menu.Item>
         )}
         {permissions.exportRawResults && (
         <Menu.Item key="export_raw">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx`}
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleRawExport(false)}
           >
             Raw (without labels)
-          </a>
+          </div>
         </Menu.Item>
         )}
         { permissions.exportScoringResults && (
         <Menu.Item key="export_scoring">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_scoring_results.xlsx`}
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleScoringExport()}
           >
             Scoring
-          </a>
+          </div>
         </Menu.Item>
         )}
         { permissions.exportNormedResults && (
         <Menu.Item key="export_normed">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_normed_results.xlsx`}
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleNormedResultExport()}
           >
             Normed Factor Scores
-          </a>
+          </div>
         </Menu.Item>
         )}
         { permissions.exportRawFactorScores && (
         <Menu.Item key="export_raw_scores">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_factor_scores.xlsx`}
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleRawFactorExport()}
           >
             Raw Factor Scores
-          </a>
+          </div>
         </Menu.Item>
         )}
         { permissions.exportExternalResults && (

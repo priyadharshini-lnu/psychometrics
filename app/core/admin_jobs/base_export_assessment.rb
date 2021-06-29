@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+module AdminJobs
+  class BaseExportAssessment < BaseExportXlsx
+    def valid?
+      campaign.present? && assessment.present?
+    end
+
+    def generate_title_link
+      {
+        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessments_reports/manage",
+        label: "#{campaign.name} - #{assessment.name}"
+      }
+    end
+
+    def generate_details
+      [[I18n.t('common.model.assessment'), file_link || assessment.name]]
+    end
+
+    private
+
+    def assessment
+      @assessment ||= Assessment.find_by(id: record.data['assessment_id'])
+    end
+  end
+end
