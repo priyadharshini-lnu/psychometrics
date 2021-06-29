@@ -2,9 +2,8 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
-import styles from '../MultipleChoice.scss'
+import styles from '../../styles.scss'
 import { NOT_APPLICABLE } from '../../../MatrixTable/components/Consts'
-import connect from '../../connect'
 
 class DropdownPreview extends Component {
   static propTypes = {
@@ -79,4 +78,4 @@ class DropdownPreview extends Component {
   }
 }
 
-export default connect(DropdownPreview)
+export default DropdownPreview

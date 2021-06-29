@@ -46,7 +46,6 @@ module Threesixty
       def create_participant
         @subject.participants.create!(
           evaluator_id: evaluator.id,
-          project_id: threesixty_campaign.campaign.project_id,
           campaign: threesixty_campaign.campaign,
           subject_id: subject.user_id,
           relationship_id: params[:relationship_id],

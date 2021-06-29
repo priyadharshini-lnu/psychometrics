@@ -82,19 +82,12 @@ module Administration
       end
 
       def update_norm
-        form = CampaignAssessments::UpdateNormForm.from_params(params)
-        if form.valid?
-          campaign_assessment.update!(form.attributes)
+        campaign_assessment.update_norm!(params[:norm_id])
 
-          if params[:apply]
-            AdminJob.call(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
-          end
-          render json: {
-            norm_name: campaign_assessment.norm.name
-          }
-        else
-          render json: { errors: form.errors.messages.values }, status: 422
+        if params[:apply]
+          AdminJob.call(:rescore_assessment, { campaign_id: campaign.id, assessment_id: assessment.id }, current_user)
         end
+        render json: { norm_name: campaign_assessment.norm_name }
       end
 
       def update_assessor_form

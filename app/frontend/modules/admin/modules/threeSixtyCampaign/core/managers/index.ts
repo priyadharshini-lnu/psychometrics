@@ -6,9 +6,32 @@ const FETCH_MANAGERS = 'threeSixty/managers/FETCH_MANAGERS'
 interface State {
   list: []
   total: number
+  permissions: Permissions
 }
 
-export const defaultState = { list: [], total: 0 }
+interface Permissions {
+  editDimension: boolean
+  exportCompletionStatus: boolean
+  exportResults: boolean
+  manageDatasheets: boolean
+  manageRelationships: boolean
+  resetAllNominations: boolean
+  resetAllParticipants: boolean
+}
+
+export const defaultState = {
+  list: [],
+  total: 0,
+  permissions: {
+    editDimension: false,
+    exportCompletionStatus: false,
+    exportResults: false,
+    manageDatasheets: false,
+    manageRelationships: false,
+    resetAllNominations: false,
+    resetAllParticipants: false,
+  },
+}
 
 export const fetchManagers = (campaignId: number, page = '', q = '') => ({
   type: FETCH_MANAGERS,
@@ -23,12 +46,16 @@ export const fetchManagers = (campaignId: number, page = '', q = '') => ({
 interface FetchResponse {
   managers: []
   total: number
+  permissions: Permissions
 }
 type FetchType = ApiActionResponse<FetchResponse>
 
 const HANDLERS = {
   [FETCH_MANAGERS]: (state: State, action: FetchType) => ({
-    ...state, list: action.response.managers, total: action.response.total,
+    ...state,
+    list: action.response.managers,
+    total: action.response.total,
+    permissions: action.response.permissions,
   }),
 }
 

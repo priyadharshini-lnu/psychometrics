@@ -1,8 +1,9 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, Switch, message,
+  Table, Menu, Row, Col, Switch, message,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
 
@@ -24,6 +25,7 @@ type Props = RouteComponentProps & OwnProps & PropsFromRedux
 const ReportList: React.FC<Props> = ({
   reports: {
     list,
+    reportPermissions,
   },
   match: { params: { projectId, campaignId } },
   openModal,
@@ -70,6 +72,7 @@ const ReportList: React.FC<Props> = ({
             render={({ userAccess, id }) => (
               <Switch
                 checked={userAccess}
+                disabled={!reportPermissions.toggleUserAccess}
                 onChange={() => openModal('ToggleUserAccessModal',
                   { campaignId, campaignReportId: id, userAccess })}
               />
@@ -81,6 +84,7 @@ const ReportList: React.FC<Props> = ({
             render={({ assessorAccess, id }) => (
               <Switch
                 checked={assessorAccess}
+                disabled={!reportPermissions.toggleAssessorAccess}
                 onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
               />
             )}
@@ -89,26 +93,26 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('common.column.action')}
             key="action"
             render={report => (
-              <Dropdown
-                overlay={() => (
-                    ActionsMenu({
-                      projectId,
-                      campaignId: parsedCampaignId,
-                      campaignReportId: report.id,
-                      reportId: report.reportId,
-                      openModal,
-                      exportData: handleExportData,
-                    }) as React.ReactElement
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    projectId,
+                    campaignId: parsedCampaignId,
+                    campaignReportId: report.id,
+                    reportId: report.reportId,
+                    permissions: report.permissions,
+                    openModal,
+                    exportData: handleExportData,
+                  }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
                 )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
+              />
             )}
           />
-
         </Table>
       </Col>
     </Row>
@@ -121,36 +125,44 @@ interface ActionMenuProps {
   reportId: number
   campaignReportId: number
   openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
+  permissions: {
+    export: boolean
+    remove: boolean
+  }
   exportData(campaignId: number, reportId: number): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, reportId, campaignReportId, openModal, exportData,
+  campaignId, reportId, campaignReportId, openModal, permissions, exportData,
 }) => (
   <Menu>
-    <Menu.Item key="export">
-      <div
-        role="button"
-        tabIndex={-1}
-      >
+    {permissions.export && (
+      <Menu.Item key="export">
         <div
           role="button"
           tabIndex={-1}
-          onClick={() => exportData(campaignId, reportId)}
         >
-          {I18n.t('campaign_report.actions.export_data')}
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => exportData(campaignId, reportId)}
+          >
+            {I18n.t('campaign_report.actions.export_data')}
+          </div>
         </div>
-      </div>
-    </Menu.Item>
-    <Menu.Item key="delete">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
-      >
-        {I18n.t('common.actions.remove')}
-      </div>
-    </Menu.Item>
+      </Menu.Item>
+    )}
+    {permissions.remove && (
+      <Menu.Item key="delete">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
+    )}
   </Menu>
 )
 

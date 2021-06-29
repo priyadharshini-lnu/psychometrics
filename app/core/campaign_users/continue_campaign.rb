@@ -9,9 +9,12 @@ module CampaignUsers
     end
 
     def call
-      campaign_user.update_attributes(attributes)
+      examus_session_url = transaction do
+        campaign_user.update_attributes(attributes) if campaign_user.interrupted_campaign?
+        Examus::GetSessionUrl.call!(campaign_user) if campaign_user.proctoring_enabled?
+      end
 
-      broadcast :ok
+      broadcast :ok, { examus_session_url: examus_session_url }
     end
 
     private

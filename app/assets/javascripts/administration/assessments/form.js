@@ -1,4 +1,5 @@
 function AssessmentsForm () {
+  var integrations = ['mindmill', 'hogan', 'saville']
   this.init = function() {
     this.startListening()
     $(document).on('change', '#assessments_form #resource_type', this.onResourceTypeChange);
@@ -19,22 +20,26 @@ function AssessmentsForm () {
 
   this.onResourceTypeChange = function(event) {
     var value = arguments[0].target.value
-    switch (value) {
-      case 'Assessments::Mindmill':
-        $('#assessments_form').find('.common:not(.mindmill)').addClass('hidden').find(":input").attr('disabled', true)
-        $('#assessments_form').find('.hogan:not(.mindmill)').addClass('hidden').find(":input").attr('disabled', true)
-        $('#assessments_form').find('.mindmill:not(.common)').removeClass('hidden').find(":input").removeAttr('disabled')
-        break;
-      case 'Assessments::Hogan':
-        $('#assessments_form').find('.common:not(.hogan)').addClass('hidden').find(":input").attr('disabled', true)
-        $('#assessments_form').find('.mindmill:not(.hogan)').addClass('hidden').find(":input").attr('disabled', true)
-        $('#assessments_form').find('.hogan:not(.common)').removeClass('hidden').find(":input").removeAttr('disabled')
-        break;
-      default:
-        $('#assessments_form').find('.common').removeClass('hidden').find(":input").removeAttr('disabled', true)
-        $('#assessments_form').find('.mindmill:not(.common)').addClass('hidden').find(":input").attr('disabled', true)
-        $('#assessments_form').find('.hogan:not(.common)').addClass('hidden').find(":input").attr('disabled', true)
+    if (value == "Assessments::Common") {
+      $('#assessments_form').find('.common').removeClass('hidden').find(":input").removeAttr('disabled', true)
+      integrations.forEach(function(integrationName) {
+        $('#assessments_form').find('.' + integrationName + ':not(.common)').addClass('hidden').find(":input").attr('disabled', true)
+      })
+      return
     }
+
+    this.showHideFieldsForExternalIntegrations(value)
+  }.bind(this)
+
+  this.showHideFieldsForExternalIntegrations = function (integrationType) {
+    var integrationsTypeArray = integrationType.toLowerCase().split('::')
+    var className = integrationsTypeArray[1]
+
+    $('#assessments_form').find('.common:not(.' + className + ')').addClass('hidden').find(":input").attr('disabled', true)
+    integrations.forEach(function (integrationName) {
+      $('#assessments_form').find('.' + integrationName + ':not(.' + className + ')').addClass('hidden').find(":input").attr('disabled', true)
+    })
+    $('#assessments_form').find('.' + className + ':not(.common)').removeClass('hidden').find(":input").removeAttr('disabled')
   }
 }
 

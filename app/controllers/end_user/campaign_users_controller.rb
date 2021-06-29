@@ -4,27 +4,15 @@ class EndUser::CampaignUsersController < ApplicationController
   before_action :set_campaign_user
 
   def begin_campaign
-    command = campaign.proctoring_enabled? ? 'BeginProctoredCampaign' : 'BeginRegularCampaign'
-    "CampaignUsers::#{command}".constantize.call(@campaign_user) do
-      on(:ok) do |out|
-        options = { json: @campaign_user, serializer: ::EndUser::ProctoredCampaignUserSerializer }
-        if campaign.proctoring_enabled?
-          options[:jwt_token] = out[:token]
-          options[:session_id] = out[:session_id]
-        end
+    data = CampaignUsers::BeginCampaign.call!(@campaign_user)
 
-        render options
-      end
-      on(:error) do |error|
-        render json: { error: error[:message] }, status: 400
-      end
-    end
+    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
   end
 
   def continue_campaign
-    CampaignUsers::ContinueCampaign.call!(@campaign_user)
+    data = CampaignUsers::ContinueCampaign.call!(@campaign_user)
 
-    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer
+    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
   end
 
   private

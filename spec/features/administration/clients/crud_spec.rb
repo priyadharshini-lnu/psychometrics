@@ -38,6 +38,7 @@ feature 'CRUD Client' do
     given!(:tenancy) { create(:tenancy) }
     given!(:project) { create(:project, :sub_campaign_level, parent: tenancy) }
     given!(:admin) { create(:client_admin, memberships_options: [{ client: tenancy }]) }
+
     before { login_as admin }
 
     context 'without manage privileges' do
@@ -50,7 +51,7 @@ feature 'CRUD Client' do
     context 'with manage privileges' do
       before do
         admin.memberships.first.grants.update(data: admin.memberships.first.grants.data.
-        merge!(clients: ['manage']))
+        merge!(projects: ['manage'], campaigns: ['manage']))
       end
 
       scenario 'I can create any client within tte' do

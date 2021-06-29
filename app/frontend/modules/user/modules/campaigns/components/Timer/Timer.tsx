@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Statistic, notification as antdNotification } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
+import moment from 'moment'
 import cs from 'classnames'
 
 import styles from './styles.scss'
@@ -13,7 +14,7 @@ const TIMER_STATES = {
   90: 'danger',
 }
 
-interface Props {
+interface TimerProps {
   seconds: number | null
   onFinish(): void
   notification?: boolean
@@ -21,14 +22,14 @@ interface Props {
   theme?: string
 }
 
-export const Timer: FC<Props> = ({
+export const Timer: FC<TimerProps> = ({
   seconds,
   onFinish,
   notification = false,
   background = 'green',
   theme = 'withBackground',
 }) => {
-  const [countDownValue, setCountDownValue] = useState<number| undefined>(undefined)
+  const [countDownValue, setCountDownValue] = useState<number | undefined>(undefined)
 
   useEffect(() => {
     if (!seconds) return
@@ -84,6 +85,33 @@ export const Timer: FC<Props> = ({
       onFinish={() => onFinish()}
       prefix={theme === 'withBackground' && <ClockCircleOutlined className="me-2" />}
       className={cs(styles.timer, timerStyle, bgClass)}
+    />
+  )
+}
+
+interface StaticTimeProps extends Pick<TimerProps, 'theme'> {
+  expiryDate: moment.Moment | null
+}
+
+export const StaticTime: FC<StaticTimeProps> = ({
+  expiryDate,
+  theme = 'withBackground',
+}) => {
+  if (expiryDate === null) {
+    return null
+  }
+
+  const expiryDateInFormat = moment(expiryDate).format('L LT')
+
+  const timerStyle = theme === 'withBackground' ? styles.withBg : styles.plain
+
+  return (
+    <Statistic
+      value={`${expiryDateInFormat}`}
+      prefix={
+        theme === 'withBackground' && <ClockCircleOutlined className="me-2" />
+      }
+      className={cs(styles.timer, timerStyle)}
     />
   )
 }

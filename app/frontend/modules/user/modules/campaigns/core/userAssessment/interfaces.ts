@@ -3,7 +3,6 @@ export interface UserAssessment {
   assessmentId: number
   assessmentCategory: string
   assessmentName: string
-  hoganUrl: string
   timing: string
   completionPercent: number | null
   mindmill: boolean

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { ConfigProvider } from 'antd'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
-import { setStore } from 'store/StoreWatchman'
+import { setStore, getStore } from 'store/StoreWatchman'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'modules/survey/core/preview/FlowProcessor/consts'
 import ConnectionCheck from 'components/ConnectionCheck'
@@ -20,7 +20,7 @@ class AssessmentContainer extends Component {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
       langPartial, result, selectedLocale, isAnonymousAssessment, rstore,
-      notAnEndPage, initialized, dontSaveStore, showScoringOnEndPage, showQuestionScoring,
+      notAnEndPage, initialized, showScoringOnEndPage, showQuestionScoring,
     } = this.props
 
     this.langPartial = langPartial
@@ -49,7 +49,7 @@ class AssessmentContainer extends Component {
       },
       result: dbResult,
     })
-    if (!dontSaveStore) {
+    if (!getStore()) {
       setStore(rstore)
     }
   }

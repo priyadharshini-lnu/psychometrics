@@ -26,6 +26,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def new
     @_resource = resource_class.new
     @_resource.build_hogan_assessment_setting
+    @_resource.build_saville_assessment_setting
     @_resource.set_default_color
   end
 
@@ -68,6 +69,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def edit
     @_resource.build_hogan_assessment_setting if @_resource.hogan_assessment_setting.blank?
+    @_resource.build_saville_assessment_setting if @_resource.saville_assessment_setting.blank?
     add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
   end
 
@@ -165,6 +167,8 @@ class Administration::AssessmentsController < Administration::BaseController
                                      :icon, :icon_color, :remove_icon,
                                      :enable_video_check, :enable_audio_check, :enable_network_check,
                                      :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
+                                     saville_assessment_setting_attributes:
+                                     %i[id saville_assessment_id saville_norm_id],
                                      resources: %i[assessmentId questionId])
   end
 end

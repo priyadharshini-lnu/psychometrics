@@ -16,8 +16,8 @@
                                       data: { live_search: true,
                                               max_options: Report::MAX_ASSESSMENT_COUNT,
                                               max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
-                                              dynamic_selectable_url: url_for(action: :hogan_reports, assessment_ids: '__id__', hogan_report_id: f.object.hogan_report_setting&.hogan_report_id),
-                                              dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id',
+                                              dynamic_selectable_url: url_for(action: :external_reports, assessment_ids: '__id__', external_report_id: f.object.hogan_report_setting&.hogan_report_id || f.object.saville_report_setting&.saville_report_id),
+                                              dynamic_selectable_target: 'select.external_reports_setting',
                                               include_blank: t('.none_external') }}
         - if (resource.assigns_reports.any? || resource.clients_reports.any?) && resource.errors[:assessments].blank?
           span.help-block.text-danger.margin-top-minus-10
@@ -33,13 +33,25 @@
           = hogan.input :hogan_report_id,
                         as: :select,
                         collection: [],
-                        input_html: { multiple: false },
+                        input_html: { multiple: false, class: 'external_reports_setting' },
                         wrapper_html: { class: 'resource_hogan hidden' },
                         disabled: true,
                         include_hidden: false
           = hogan.input :_destroy,
                         as: :hidden,
                         wrapper_html: { class: 'resource_hogan destroy' },
+                        :input_html => { :value => 1 }
+        = f.simple_fields_for :saville_report_setting do |saville|
+          = saville.input :saville_report_id,
+                        as: :select,
+                        collection: [],
+                        input_html: { multiple: false, class: 'external_reports_setting' },
+                        wrapper_html: { class: 'resource_saville hidden' },
+                        disabled: true,
+                        include_hidden: false
+          = saville.input :_destroy,
+                        as: :hidden,
+                        wrapper_html: { class: 'resource_saville destroy' },
                         :input_html => { :value => 1 }
         = f.input :default_language,
                   collection: I18n.available_locales.map { |locale| [t("languages.#{locale}"), locale] },

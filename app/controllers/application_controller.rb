@@ -8,7 +8,8 @@ class ApplicationController < ::BaseController
   # Authentication user/manager
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
-  after_action :allow_iframe, if: proc { use_iframe? }
+  after_action :allow_iframe_for_sso, if: proc { inside_sso_iframe? }
+  after_action :allow_iframe_for_examus, if: proc { inside_examus_iframe? }
   around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -19,7 +20,6 @@ class ApplicationController < ::BaseController
     return 'devise'     if request.controller_class.to_s.start_with?('Administration')
     return 'ecommerce'  if request.controller_class.to_s.start_with?('Ecommerce')
     return 'devise'     if request.controller_class.to_s.start_with?('Devise')
-    return 'iframe'     if use_iframe?
 
     'users_new' # NOTE: seems it does not use anywhere
   end
@@ -35,8 +35,23 @@ class ApplicationController < ::BaseController
 
   protected
 
-  def use_iframe?
+  def inside_examus_iframe?
+    return true if session[:examus_origin]
+    return false if params['examus-client-origin'].nil? || !params['examus-client-origin'].end_with?('examus.net')
+
+    session[:examus_origin] = params['examus-client-origin']
+  end
+
+  def allow_iframe_for_examus
+    response.headers['Content-Security-Policy'] = "frame-ancestors #{session[:examus_origin]}"
+  end
+
+  def inside_sso_iframe?
     session[:sso].try(:[], 'display') == 'iframe'
+  end
+
+  def allow_iframe_for_sso
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 
   private
@@ -88,12 +103,6 @@ class ApplicationController < ::BaseController
         redirect_to root_url
       end
     end
-  end
-
-  # Allows to be in Iframe
-  #
-  def allow_iframe
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 
   def user_not_authorized

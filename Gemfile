@@ -225,6 +225,7 @@ group :test do
   gem 'simplecov', '~> 0.21.2'
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.6.0'
+  gem 'webmock', '~> 3.12.2'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'with_model', '~> 2.1.5'
 end
@@ -234,3 +235,5 @@ gem 'rqrcode'
 
 # a scheduling add-on for sidekiq
 gem 'sidekiq-cron', '~> 1.1.0'
+
+gem 'xml-simple', '~> 1.1.5'

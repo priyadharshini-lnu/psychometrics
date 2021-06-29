@@ -51,28 +51,42 @@ class User < ApplicationRecord
   include TwoFactorAuthenticatable
 
   DEFAULT_ADMIN_GRANTS = {
+    clients: %w[view],
+    projects: %w[view],
     assessments: %w[view],
     reports: %w[view],
     communications: %w[view manage]
   }.with_indifferent_access.freeze
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
+    clients: %w[view],
     assessments: %w[view],
-    communications: %w[view manage]
+    communications: %w[view manage],
+    campaigns: %w[view manage manage_users manage_options show manage_messages],
+    assessors: %w[view manage],
+    results: %w[view_report report_data raw_responses scores],
+    registration_codes: %w[view manage],
+    datasheet: %w[view manage],
+    dimension: %w[manage],
+    report: %w[manage]
+
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
+    clients: %w[view view_licenses manage],
+    projects: %w[view manage manage_admins manage_users],
     norms: %w[view manage],
     dimensions: %w[view manage],
-    clients: %w[manage design],
-    assessments: %w[view manage assign export import],
-    translations: %w[export import],
-    reports: %w[view manage],
+    assessments: %w[view manage],
     questions: %w[view manage],
     libraries: %w[view manage],
     communications: %w[view manage],
-    projects: %w[view manage],
-    assigns: %w[view]
+    reports: %w[view manage],
+    results: %w[view_report report_data raw_responses scores],
+    campaign: %w[view show manage manage_users manage_options manage_messages],
+    assessors: %w[view manage],
+    registration_codes: %w[view manage],
+    datasheet: %w[view manage]
   }.with_indifferent_access.freeze
 
   # Authentication

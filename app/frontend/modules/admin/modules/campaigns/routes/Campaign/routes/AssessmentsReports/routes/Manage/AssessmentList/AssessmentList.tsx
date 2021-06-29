@@ -1,10 +1,11 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message,
+  Table, Menu, Row, Col, message,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import _ from 'lodash'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
@@ -67,20 +68,22 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
             render={({
-              normName, id, isExternal,
+              normName, id, isExternal, isSaville,
             }) => {
-              if (isExternal) {
+              if (isExternal && !isSaville) {
                 return I18n.t('common.text.na')
               }
               return (
-                <a
-                  onClick={
-                    () => openModal('UpdateNormModal',
-                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                  }
-                >
-                  {normName || I18n.t('common.text.default')}
-                </a>
+                permissions.updateNorm ? (
+                  <a
+                    onClick={
+                      () => openModal('UpdateNormModal',
+                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                    }
+                  >
+                    {normName || I18n.t('common.text.default')}
+                  </a>
+                ) : normName || I18n.t('common.text.default')
               )
             }}
           />
@@ -90,14 +93,16 @@ const AssessmentList: React.FC<Props> = ({
             render={({
               assessorFormName, id,
             }) => (
-              <a
-                onClick={
-                    () => openModal('UpdateAssessorFormModal',
-                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                  }
-              >
-                {assessorFormName || I18n.t('common.text.na')}
-              </a>
+              permissions.updateAssessorForm ? (
+                <a
+                  onClick={
+                      () => openModal('UpdateAssessorFormModal',
+                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                    }
+                >
+                  {assessorFormName || I18n.t('common.text.na')}
+                </a>
+              ) : assessorFormName || I18n.t('common.text.na')
             )}
           />
 
@@ -116,15 +121,15 @@ const AssessmentList: React.FC<Props> = ({
               return (
                 <a
                   onClick={
-                    () => openModal('UpdateLocalesModal',
-                      {
-                        projectId: parsedProjectId,
-                        campaignId: parsedCampaignId,
-                        campaignAssessmentId: id,
-                        availableLocales,
-                        allLocales,
-                      })
-                  }
+                  () => openModal('UpdateLocalesModal',
+                    {
+                      projectId: parsedProjectId,
+                      campaignId: parsedCampaignId,
+                      campaignAssessmentId: id,
+                      availableLocales,
+                      allLocales,
+                    })
+                }
                 >
                   {_.isEmpty(availableLocales) ? I18n.t('frontend.manage') : _.join(availableLocales, ', ')}
                 </a>
@@ -132,63 +137,63 @@ const AssessmentList: React.FC<Props> = ({
             }}
           />
 
-          {permissions.enableUniversalLink
-            && (
-            <Column
-              title={I18n.t('campaign_assessment.column.universal_link')}
-              key="universalLink"
-              render={({
-                enableUniversalLinks, universalLink, id, isExternal,
-              }) => {
-                if (isExternal) {
-                  return I18n.t('common.text.na')
-                }
-                if (enableUniversalLinks && !isExternal) {
-                  return (
-                    <a
-                      onClick={
-                          () => openModal('UniversalLinkModal',
-                            {
-                              projectId: parsedProjectId,
-                              campaignId: parsedCampaignId,
-                              campaignAssessmentId: id,
-                              universalLink,
-                            })
-                        }
-                    >
-                      {I18n.t('frontend.manage')}
-                    </a>
-                  )
-                }
-                return <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
-              }}
-            />
-            )}
+          <Column
+            title={I18n.t('campaign_assessment.column.universal_link')}
+            key="universalLink"
+            render={({
+              enableUniversalLinks, universalLink, id, isExternal,
+            }) => {
+              if (enableUniversalLinks && !isExternal) {
+                return (
+                  <a
+                    onClick={
+                        () => openModal('UniversalLinkModal',
+                          {
+                            projectId: parsedProjectId,
+                            campaignId: parsedCampaignId,
+                            campaignAssessmentId: id,
+                            universalLink,
+                            manageUniversalLink: permissions.enableUniversalLink,
+                          })
+                      }
+                  >
+                    {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
+                  </a>
+                )
+              }
+              return (
+                permissions.enableUniversalLink ? (
+                  <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
+                ) : I18n.t('common.text.na')
+              )
+            }}
+          />
+
           <Column
             title={I18n.t('common.column.action')}
             key="action"
             render={assessment => (
-              <Dropdown
-                overlay={() => (
-                    ActionsMenu({
-                      assessment,
-                      currentUser,
-                      reports,
-                      campaignId: parsedCampaignId,
-                      openModal,
-                      rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
-                      exportRawResults,
-                      exportScoringResults,
-                      exportNormedResults,
-                      exportRawFactorScores,
-                    }) as React.ReactElement
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    assessment,
+                    currentUser,
+                    reports,
+                    campaignId: parsedCampaignId,
+                    openModal,
+                    rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
+                    exportRawResults,
+                    exportScoringResults,
+                    exportNormedResults,
+                    exportRawFactorScores,
+                  }) as React.ReactElement
+                }
+                innerElement={(
+                  <a>
+                    <MoreOutlined />
+                  </a>
                 )}
-                trigger={['click']}
-              >
-                <a>
-                  <MoreOutlined />
-                </a>
-              </Dropdown>
+              />
             )}
           />
         </Table>
@@ -271,7 +276,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
         )}
-        { permissions.exportScoringResults && (
+        {permissions.exportScoringResults && (
         <Menu.Item key="export_scoring">
           <div
             role="button"
@@ -282,7 +287,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
         )}
-        { permissions.exportNormedResults && (
+        {permissions.exportNormedResults && (
         <Menu.Item key="export_normed">
           <div
             role="button"
@@ -293,7 +298,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
         )}
-        { permissions.exportRawFactorScores && (
+        {permissions.exportRawFactorScores && (
         <Menu.Item key="export_raw_scores">
           <div
             role="button"
@@ -304,54 +309,59 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </div>
         </Menu.Item>
         )}
-        { permissions.exportExternalResults && (
-        <Menu.Item key="export_external">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
-          >
-            External
-          </a>
-        </Menu.Item>
+        {permissions.exportExternalResults && (
+          <Menu.Item key="export_external">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
+            >
+              External
+            </a>
+          </Menu.Item>
         )}
       </Menu.ItemGroup>
-      { permissions.importResults && (
-      <Menu.ItemGroup key="import" title="Import">
-        <Menu.Item key="import_raw">
-          <a
-            onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
-          >
-            Raw
-          </a>
-        </Menu.Item>
-        <Menu.Item key="import_scoring">
-          <a
-            onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
-          >
-            Scoring
-          </a>
-        </Menu.Item>
-      </Menu.ItemGroup>
+
+      {permissions.importResults && (
+        <Menu.ItemGroup key="import" title="Import">
+          <Menu.Item key="import_raw">
+            <a
+              onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
+            >
+              Raw
+            </a>
+          </Menu.Item>
+          <Menu.Item key="import_scoring">
+            <a
+              onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
+            >
+              Scoring
+            </a>
+          </Menu.Item>
+        </Menu.ItemGroup>
       )}
       <Menu.Divider />
-      <Menu.Item key="rescoring">
-        <a
-          onClick={handleRescoreResponse}
-        >
-          {I18n.t('campaign_assessment.modals.rescore_response.title')}
-        </a>
-      </Menu.Item>
+      {permissions.rescoreResponses && (
+        <Menu.Item key="rescoring">
+          <a
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('campaign_assessment.modals.rescore_response.title')}
+          </a>
+        </Menu.Item>
+      )}
       <Menu.Divider />
-      <Menu.Item key="remove">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
+      {permissions.remove && (
+        <Menu.Item key="remove">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 }

@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+class SavilleReportSetting < ApplicationRecord
+  belongs_to :report
+
+  validates :saville_report_id, presence: true
+
+  before_save -> { self.saville_report_id = saville_report_id&.downcase }
+end

@@ -1,0 +1,97 @@
+import React, { FC, lazy, Suspense } from 'react'
+import { Spin } from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
+import size from 'lodash/size'
+
+import {
+  getI18n,
+  getQuestionScoring,
+} from 'modules/survey/core/preview/FlowProcessor/selectors'
+
+import { RootState } from 'modules/survey/core/rootReducers'
+import { PreviewModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+
+import { SafeHTML } from 'components/SafeHTML'
+import { ScoringTable } from './components/ScoringTable'
+
+const SingleAnswerPreview = lazy(
+  () => import('./components/types/SingleAnswerPreview'),
+)
+const MultipleAnswerPreview = lazy(
+  () => import('./components/types/MultipleAnswerPreview'),
+)
+const DropdownPreview = lazy(() => import('./components/types/DropdownPreview'))
+const SelectBoxPreview = lazy(
+  () => import('./components/types/SelectBoxPreview'),
+)
+const MultiSelectBoxPreview = lazy(
+  () => import('./components/types/MultiSelectBoxPreview'),
+)
+
+interface OwnProps {
+  model: PreviewModel
+  readOnly: boolean
+}
+
+const connector = connect(
+  ({ preview }: RootState, { model: { id } }: OwnProps) => ({
+    showQuestionScoring: preview.showQuestionScoring,
+    factors: preview.factors,
+    scores: getQuestionScoring(preview, id),
+    I18n: getI18n(preview),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type Props = PropsFromRedux & OwnProps
+
+export const PreviewComponent: FC<Props> = ({
+  showQuestionScoring,
+  factors,
+  scores,
+  I18n,
+  model,
+  readOnly,
+}) => {
+  const {
+    props: { type },
+    isNeedToAddLtrManually,
+  } = model
+
+  const answerTypeProps = {
+    model,
+    readOnly,
+    I18n,
+  }
+
+  return (
+    <div>
+      <Suspense fallback={<Spin />}>
+        <SafeHTML
+          html={I18n.tQuestion(model, 'questionText')}
+          className={`mb-4 ${isNeedToAddLtrManually ? 'ltr' : ''}`}
+          config="adminRichText"
+        />
+        {type === 'SingleAnswer' && (
+          <SingleAnswerPreview {...answerTypeProps} />
+        )}
+        {type === 'MultipleAnswer' && (
+          <MultipleAnswerPreview {...answerTypeProps} />
+        )}
+        {type === 'Dropdown' && <DropdownPreview {...answerTypeProps} />}
+        {type === 'SelectBox' && <SelectBoxPreview {...answerTypeProps} />}
+        {type === 'MultiSelectBox' && (
+          <MultiSelectBoxPreview {...answerTypeProps} />
+        )}
+        {showQuestionScoring && scores && size(scores) !== 0 && (
+          <div>
+            <ScoringTable factors={factors} scoring={scores} I18n={I18n} />
+          </div>
+        )}
+      </Suspense>
+    </div>
+  )
+}
+
+export const Preview = connector(PreviewComponent)

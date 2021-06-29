@@ -12,8 +12,9 @@ module Administration
         @_resources = filter_form.result.page(params[:page])
 
         render json: {
-          list: @_resources.map { |r| RegistrationCodeSerializer.new(r) },
-          total: @_resources.count
+          list: @_resources.map { |r| RegistrationCodeSerializer.new(r, current_user: current_user) },
+          total: @_resources.count,
+          permissions: permissions
         }
       end
 
@@ -60,6 +61,17 @@ module Administration
       end
 
       private
+
+      def permissions
+        GetPermissionsHash.call!(
+          Administration::RegistrationCodePolicy,
+          current_user,
+          nil,
+          [
+            'create'
+          ]
+        )
+      end
 
       def resource_class
         RegistrationCode

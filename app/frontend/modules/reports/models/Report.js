@@ -3,7 +3,7 @@ import { EventEmitter } from 'fbemitter'
 import { perform } from 'rb/core/temp/socket'
 import I18nStore from 'rb/store/I18nStore'
 import {
-  PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE,
+  PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE, SAVILLE,
 } from 'rb/models/Assessment'
 import Filter from './Filter'
 
@@ -40,6 +40,12 @@ export const SOURCE_TYPES = {
     { value: 'PercentileScale', label: 'Percentile Scale', condition: true },
     { value: 'PercentileSubscale', label: 'Percentile Subscale', condition: true },
     { value: 'RawScale', label: 'RAW Scale', condition: true },
+  ],
+  [SAVILLE]: [
+    { value: 'Saville#Ipsative', label: 'Ipsative', condition: true },
+    { value: 'Saville#Nipsative', label: 'Nipsative', condition: true },
+    { value: 'Saville#Normative', label: 'Normative', condition: true },
+    { value: 'Saville#Raw', label: 'Raw', condition: true },
   ],
 }
 

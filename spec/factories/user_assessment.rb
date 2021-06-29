@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :user_assessment do
     campaign
-    users_result
+    users_result { create(:users_result, without_user_assessment: true) }
     assessment
     evaluator { create(:user) }
     subject { create(:user) }

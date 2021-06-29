@@ -116,7 +116,9 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
   def check_campaign_reports_and_assesment_response(parsed_response)
     report_response = parsed_response['reports'].first
-    expect(report_response.keys).to eq(%w[id report_id name user_access assessor_access report_family_name])
+    expect(report_response.keys).to eq(
+      %w[id report_id name user_access assessor_access report_family_name permissions]
+    )
     expect(report_response).to include({
       'name' => report.name,
       'report_family_name' => report_family.name,
@@ -140,6 +142,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         assessor_form_name
         assessor_form_id
         permissions
+        is_saville
         available_locales
         all_locales
       ]
@@ -147,7 +150,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     expect(assessment_response).to include({
       'name' => assessment.name,
       'category' => assessment.category,
-      'norm_name' => nil
+      'norm_name' => nil,
+      'is_saville' => false
     })
 
     assessment_response = parsed_response['assessor_assessments'].first
@@ -161,7 +165,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         'export_raw_factor_scores' => policy.export_raw_factor_scores?,
         'export_raw_results' => policy.export_raw_results?,
         'export_scoring_results' => policy.export_scoring_results?,
-        'import_results' => policy.import_results?
+        'import_results' => policy.import_results?,
+        'rescore_responses' => policy.rescore_responses?
       }
     })
   end

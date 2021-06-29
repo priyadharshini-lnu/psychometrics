@@ -31,7 +31,7 @@ module Administration::Threesixty
     end
 
     def export_completion_status?
-      super_admins_or_admins?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end
 
     def export_results?
@@ -48,6 +48,18 @@ module Administration::Threesixty
 
     def update?
       super_admins_or_admins?
+    end
+
+    def edit_subject_report?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
+    def manage_reports_options?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
+    end
+
+    def manage_campaign_options?
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
     end
   end
 end

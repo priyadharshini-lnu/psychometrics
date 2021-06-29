@@ -4,7 +4,7 @@ module Administration::Threesixty
   class BasePolicy < Administration::BasePolicy
     attr_reader :threesixty_campaign, :user
 
-    def initialize(user, record, extra)
+    def initialize(user, record, extra = {})
       @user = user
       @threesixty_campaign = extra[:threesixty_campaign]
       @record = [record].flatten.last

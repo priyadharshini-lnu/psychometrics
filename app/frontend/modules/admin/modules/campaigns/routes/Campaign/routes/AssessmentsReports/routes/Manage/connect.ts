@@ -8,6 +8,7 @@ import {
   REGENERATE_REPORTS,
   bulkDownload,
   BULK_DOWNLOAD,
+  get as getReports,
 } from 'modules/admin/modules/campaigns/core/reports'
 import { isRequestInProgress } from 'modules/admin/core/request'
 
@@ -16,6 +17,7 @@ const connecter = connect(
     selectedIds: getSelectedIds(state),
     regenerateInProgress: isRequestInProgress(state, REGENERATE_REPORTS),
     bulkDownloadInProgress: isRequestInProgress(state, BULK_DOWNLOAD),
+    reports: getReports(state),
   }),
   {
     fetchAssessmentAndReports,

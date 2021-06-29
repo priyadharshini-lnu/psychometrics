@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { getCorrectPickerFromDateFormat } from 'modules/survey/utils/date'
+import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
 import Selectors from './Selectors'
 import Values from './Values'
 
@@ -144,7 +144,10 @@ _.extend(Custom.prototype, {
 
   currentDateForFormat (format) {
     let now = moment()
-    const picker = getCorrectPickerFromDateFormat(format)
+    const picker = DATE_FORMAT_OPTIONS.find(
+      dateFormatOption => dateFormatOption.value === format,
+    )?.picker ?? 'date'
+
     if (picker === 'date') {
       now = now.startOf('day')
     } else if (picker === 'month') {

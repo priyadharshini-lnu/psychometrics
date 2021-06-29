@@ -3,27 +3,32 @@
 module Administration
   class UserReportPolicy < Administration::BasePolicy
     def create?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      @user.is?(:superadmin) || @user.has_grant?(:campaign, :manage_users)
     end
 
     def show?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:results, :view_report)
     end
 
     def pdf_preview?
-      show?
+      @user.is?(:superadmin) || @user.has_grant?(:results, :view_report)
     end
 
     def download?
-      show?
+      @user.is?(:superadmin) || @user.has_grant?(:results, :view_report)
     end
 
     def regenerate?
-      show?
+      @user.is?(:superadmin) || @user.has_grant?(:campaign, :manage_users)
+    end
+
+    def destroy?
+      (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)) &&
+        record&.not_prepared?
     end
 
     def toggle_user_access?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+      @user.is?(:superadmin) || @user.has_grant?(:campaign, :manage_users)
     end
   end
 end

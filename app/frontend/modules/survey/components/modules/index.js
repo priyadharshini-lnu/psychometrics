@@ -1,4 +1,8 @@
-import MultipleChoice, { MultipleChoiceProperties, MultipleChoiceScoring } from './MultipleChoice'
+import {
+  MultipleChoice,
+  MultipleChoiceProperties,
+  MultipleChoiceScoring,
+} from './MultipleChoice'
 import StaticContent, { StaticContentProperties } from './StaticContent'
 import { TextEntryProperties, TextEntryScoring, TextEntry } from './TextEntry'
 import MatrixTable, { MatrixTableProperties, MatrixTableScoring } from './MatrixTable'

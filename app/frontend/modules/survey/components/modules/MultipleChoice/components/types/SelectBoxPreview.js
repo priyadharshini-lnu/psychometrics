@@ -1,9 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../MultipleChoice.scss'
+import styles from '../../styles.scss'
 import { NOT_APPLICABLE } from '../../../MatrixTable/components/Consts'
-import connect from '../../connect'
 
 class SelectBoxPreview extends Component {
   static propTypes = {
@@ -51,4 +50,4 @@ class SelectBoxPreview extends Component {
   }
 }
 
-export default connect(SelectBoxPreview)
+export default SelectBoxPreview

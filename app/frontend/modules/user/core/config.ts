@@ -4,7 +4,6 @@ import { RootState } from 'modules/user/core/rootReducers'
 export const get = (state: RootState) => _.get(state, ['config'])
 
 export const defaultState = {
-  isFrame: false,
   agileAssetsUrl: '',
 }
 

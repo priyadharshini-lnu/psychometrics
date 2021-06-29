@@ -7,6 +7,10 @@ class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
     option.dig('manager', 'can_approves_evaluations') && manager?(@record.threesixty_subject)
   end
 
+  def index?
+    @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
+  end
+
   def show?
     return false unless manage? && !@record.threesixty_subject.evaluation_status_completed?
 

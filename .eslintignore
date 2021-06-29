@@ -1,2 +1,2 @@
-!.eslintrc.js
 app/frontend/__tests__
+jest-setup.js

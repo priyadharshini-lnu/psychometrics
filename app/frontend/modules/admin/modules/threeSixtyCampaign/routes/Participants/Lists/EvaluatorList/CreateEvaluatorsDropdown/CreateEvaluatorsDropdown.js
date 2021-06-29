@@ -1,27 +1,37 @@
 import React from 'react'
 import {
-  Button, Dropdown, Menu,
+  Button, Menu,
 } from 'antd'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
-const CreateEvaluatorsDropdown = ({ openModal }) => {
+const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
   const menu = (
     <Menu>
-      <Menu.Item onClick={() => openModal('CreateEvaluatorModal')} key="1">
-        Add Evaluators...
-      </Menu.Item>
-      <Menu.Item key="2" onClick={() => openModal('EvaluatorImportModal')}>Import Evaluators...</Menu.Item>
+      {permissions.addEvaluator && (
+        <Menu.Item onClick={() => openModal('CreateEvaluatorModal')} key="1">
+          Add Evaluators...
+        </Menu.Item>
+      )}
+      {permissions.importEvaluator && (
+        <Menu.Item key="2" onClick={() => openModal('EvaluatorImportModal')}>Import Evaluators...</Menu.Item>
+      )}
     </Menu>
   )
 
   return (
-    <Dropdown overlay={menu} className="mrm" trigger={['click']}>
-      <Button type="primary">
-        <PlusOutlined />
-        <span>Add Evaluators</span>
-        <DownOutlined />
-      </Button>
-    </Dropdown>
+    <ConditionalDropdown
+      menu={menu}
+      className="mrm"
+      hideForEmptyMenu
+      innerElement={(
+        <Button type="primary">
+          <PlusOutlined />
+          <span>Add Evaluators</span>
+          <DownOutlined />
+        </Button>
+      )}
+    />
   )
 }
 

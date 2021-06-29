@@ -5,13 +5,13 @@ import {
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { isRtl } from 'utils/locales'
+import { isInsideIframe } from 'utils/isInsideIframe'
 import './styles.scss'
 
 const { Content } = Layout
 const { I18n } = window
 
 export default function AgileAssign ({
-  isFrame,
   agileAssetsUrl,
 }) {
   const initializeAgile = () => {
@@ -45,7 +45,7 @@ export default function AgileAssign ({
       <Content className="fluid-container">
         <PageHeader
           className="page-header"
-          backIcon={!isFrame && (
+          backIcon={!isInsideIframe() && (
             <Space>
                 {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
                 {` ${I18n.t('assessments.page.back')}`}

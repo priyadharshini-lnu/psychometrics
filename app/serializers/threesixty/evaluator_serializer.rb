@@ -2,7 +2,7 @@
 
 module Threesixty
   class EvaluatorSerializer < ActiveModel::Serializer
-    attributes :id, :status, :report_status, :is_subject, :evaluations, :evaluators
+    attributes :id, :status, :report_status, :is_subject, :evaluations, :evaluators, :permissions
     has_one :user, serializer: UserSerializer
 
     def status
@@ -40,6 +40,25 @@ module Threesixty
 
     def counters
       @instance_options[:counters][object.user_id]
+    end
+
+    def permissions
+      GetPermissionsHash.call!(
+        Administration::Threesixty::EvaluatorPolicy,
+        current_user,
+        object,
+        [
+          %w[login spoof],
+          'edit',
+          'remove_from_campaign'
+        ]
+      )
+    end
+
+    private
+
+    def current_user
+      @instance_options[:current_user]
     end
   end
 end

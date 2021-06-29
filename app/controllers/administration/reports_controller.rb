@@ -51,6 +51,7 @@ module Administration
     def new
       @_resource = resource_class.new
       @_resource.build_hogan_report_setting
+      @_resource.build_saville_report_setting
       @_resource.set_default_color
     end
 
@@ -58,39 +59,35 @@ module Administration
       @_resource = resource_class.new(resource_params)
       resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
       # TODO: (ivan) Move creating and updating to Command and Form
-      resource.hogan_report_setting&.delete if resource.hogan_report_setting&.hogan_report_id.blank?
+      resource.reload_hogan_report_setting if resource.hogan_report_setting&.hogan_report_id.blank?
+      resource.reload_saville_report_setting if resource.saville_report_setting&.saville_report_id.blank?
 
       respond_to do |format|
         if resource.save
           format.js
         else
           resource.build_hogan_report_setting if resource.hogan_report_setting.blank?
+          resource.build_saville_report_setting if resource.saville_report_setting.blank?
           format.js { render :new }
         end
       end
     end
 
-    def hogan_reports
+    def external_reports
       assessment_ids = params[:assessment_ids].to_s.split(',').compact
-      hogan_assessment_ids = HoganAssessmentSetting.
-                             where(assessment_id: assessment_ids).
-                             pluck(:hogan_assessment_id).
-                             uniq
-      @reports = if hogan_assessment_ids
-                   Settings.providers.hogan.reports.select do |report|
-                     report[:assessment_ids].to_set == hogan_assessment_ids.to_set
-                   end
-                 else
-                   []
-                 end
-      respond_to do |format|
-        format.json
+      reports = hogan_reports(assessment_ids)
+      reports = saville_reports(assessment_ids) if reports.empty?
+      reports_array = reports.map do |r|
+        { id: r.id.downcase, name: "#{r.name} - #{r.id}", selected: params[:external_report_id] == r.id.downcase }
       end
+
+      render json: reports_array
     end
 
     # GET /administration/resources/1/edit
     def edit
       @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
+      @_resource.build_saville_report_setting if @_resource.saville_report_setting.blank?
       add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
     end
 
@@ -101,6 +98,7 @@ module Administration
           format.js
         else
           @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
+          @_resource.build_saville_report_setting if @_resource.saville_report_setting.blank?
           format.js { render :edit }
         end
       end
@@ -182,7 +180,8 @@ module Administration
       report_params = params.require(:resource).permit(:name, :owner_id, :mindmill, :icon, :icon_color, :props,
                                                        :remove_icon, :default_language, report_family_ids: [],
                                                        assessment_ids: [],
-                                       hogan_report_setting_attributes: %i[id hogan_report_id _destroy])
+                                       hogan_report_setting_attributes: %i[id hogan_report_id _destroy],
+                                       saville_report_setting_attributes: %i[id saville_report_id _destroy])
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids
       # are empty and causes errors
       # Does this need a better fix?
@@ -197,6 +196,28 @@ module Administration
       user       = user_token && User.find_by(authentication_token: user_token.to_s)
       sign_in(user, store: false) if user
       authenticate_user!
+    end
+
+    def hogan_reports(assessment_ids)
+      hogan_assessment_ids = HoganAssessmentSetting.where(assessment_id: assessment_ids).
+                             pluck(:hogan_assessment_id).uniq
+      return [] unless hogan_assessment_ids.count.positive? && hogan_assessment_ids.count == assessment_ids.count
+
+      Settings.providers.hogan.reports.select do |report|
+        report[:assessment_ids].to_set == hogan_assessment_ids.to_set
+      end
+    end
+
+    def saville_reports(assessment_ids)
+      return [] unless assessment_ids.count == 1
+
+      saville_assessment_ids = SavilleAssessmentSetting.where(assessment_id: assessment_ids).
+                               pluck(:saville_assessment_id).uniq
+      assessment = Settings.providers.saville.assessments.find { |a| saville_assessment_ids.include?(a[:id].downcase) }
+
+      return [] unless assessment
+
+      Settings.providers.saville.reports.select { |r| assessment[:report_ids].include?(r[:id]) }
     end
   end
 end

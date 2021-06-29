@@ -3,18 +3,21 @@
 module EndUser
   class UserAssessmentSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
+    attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :assessment_category,
                :assessment_extra, :assessment_id, :status, :completion_percent, :need_confirm, :available_locales,
                :selected_locale
-    attribute :mindmill_url, if: -> { object.assessment.mindmill? }
-    attribute :hogan_url, if: -> { object.assessment.hogan? }
 
     def status
       object.real_status
     end
 
     def url
-      object.assessment.agile? ? agile_user_assessment_path(object) : pass_user_assessment_path(object)
+      return agile_user_assessment_path(object) if object.assessment.agile?
+      return pass_mindmill_user_assessment_path(object) if object.assessment.mindmill?
+      return pass_hogan_user_assessment_path(object.id) if object.assessment.hogan?
+      return pass_saville_user_assessment_path(object.id) if object.assessment.saville?
+
+      pass_user_assessment_path(object)
     end
 
     def type
@@ -40,22 +43,6 @@ module EndUser
       return 'Percentile' if type == 'percentile'
 
       raise "Not supported hogan type #{type}"
-    end
-
-    def mindmill
-      object.assessment.mindmill?
-    end
-
-    def mindmill_url
-      pass_mindmill_user_assessment_path(object)
-    end
-
-    def hogan
-      object.assessment.hogan?
-    end
-
-    def hogan_url
-      pass_hogan_user_assessment_path(object.id)
     end
 
     def completion_percent

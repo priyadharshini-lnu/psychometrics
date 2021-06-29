@@ -12,6 +12,15 @@ describe Campaigns::Users::AddReport do
     end.to change { UserReport.count }.by(1)
   end
 
+  it 'create saville_user_assessment if assessment is of type saville' do
+    assessment = create(:assessment, :saville)
+    report = create(:report, assessments: [assessment])
+    described_class.call!(campaign_user, report, assessments: report.assessments)
+    saville_user_assessment = assessment.saville_user_assessments.first
+
+    expect(saville_user_assessment.norm_id).to eq(assessment.saville_norm_id)
+  end
+
   it "doesn't adds UserReport if it is already added" do
     create(:user_report, report: report, campaign: campaign_user.campaign, user: campaign_user.user)
     expect { described_class.call!(campaign_user, report, assessments: report.assessments) }.

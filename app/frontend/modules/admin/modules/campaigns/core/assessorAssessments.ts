@@ -23,6 +23,9 @@ export const AssessorAssessmentTR = t.type({
   subjectName: t.string,
   subjectEmail: t.string,
   status: t.string,
+  permissions: t.type({
+    resetEvaluation: t.boolean,
+  }),
 })
 
 export const StateTR = t.type({

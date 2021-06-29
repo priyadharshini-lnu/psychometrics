@@ -41,7 +41,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
 
     it 'with apply = true' do
       expect(AdminJob).to receive(:call).
-        with(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
+        with(:rescore_assessment, { campaign_id: campaign.id, assessment_id: assessment.id }, current_user)
 
       post :update_norm, params: {
         id: assessment.id,

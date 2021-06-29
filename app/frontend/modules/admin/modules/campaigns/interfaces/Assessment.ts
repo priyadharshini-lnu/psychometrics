@@ -21,5 +21,7 @@ export default interface Assessment {
     exportRawFactorScores: boolean
     exportExternalResults: boolean
     importResults: boolean
+    remove: boolean
+    rescoreResponses: boolean
   }
 }

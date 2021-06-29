@@ -46,6 +46,7 @@ function ReportsForm () {
 
     toggleVisibility(options, 'mindmill');
     toggleVisibility(options, 'hogan');
+    toggleVisibility(options, 'saville');
   }
 
   this.onResourceHoganReportSettingChange = function(event) {

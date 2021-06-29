@@ -169,7 +169,6 @@ module DataMigration
         norm_id = assign_with_result.norm_data.fetch('id', nil) if assign_with_result.norm_data
 
         user_assessment = UserAssessment.new(
-          project_id: project.id,
           campaign_id: subject.id,
           subject_id: assign.membership.user_id,
           evaluator_id: assign.membership.user_id,

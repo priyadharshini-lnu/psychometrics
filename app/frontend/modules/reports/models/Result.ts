@@ -42,7 +42,7 @@ const INDIVIDUAL_FILTER = {
   conditions: [{ type: 'RelationShip', props: { predicate: 'Is', value: 'Self' } }],
 }
 
-export default class Result {
+export default class Result<ExternalScoring = unknown> {
   // name: string
   user: object
 
@@ -57,7 +57,7 @@ export default class Result {
   resultsByFilter: ResultsByFilter
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  externalScoring: any
+  externalScoring: ExternalScoring
 
   dataSheet: object
 
@@ -194,4 +194,11 @@ export default class Result {
     const questions = getQuestions(store.getState().report, this.assessmentId)
     return GetQuestionScoringWithoutFactors.run(this.assessmentId, questionScoring, this.dimensionId, questions)
   }
+}
+
+export interface SavilleScore {
+  id: string
+  score_type: string
+  value_type: string
+  score: number
 }

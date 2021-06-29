@@ -8,9 +8,12 @@ import {
   DatabaseOutlined,
 } from '@ant-design/icons'
 import routeUtils from 'utils/route'
+import { get as getCurrentUser } from 'core/currentUser'
+import { connect } from 'react-redux'
 import settings from '../settings'
 
-const MyMenu = ({ history, routes }) => {
+
+const MyMenu = ({ history, routes, currentUser }) => {
   const onClick = ({ key }) => routeUtils.moveTo(history, settings.urlPrefix, key)
 
   return (
@@ -19,10 +22,12 @@ const MyMenu = ({ history, routes }) => {
         <UserOutlined />
         Participants
       </Menu.Item>
-      <Menu.Item key="/messages/options">
-        <MailOutlined />
-        Messages
-      </Menu.Item>
+      {currentUser.permissions.manageMessages && (
+        <Menu.Item key="/messages/options">
+          <MailOutlined />
+          Messages
+        </Menu.Item>
+      )}
       <Menu.Item key="/reports/options">
         <PieChartOutlined />
         Reports
@@ -35,4 +40,6 @@ const MyMenu = ({ history, routes }) => {
   )
 }
 
-export default withRouter(MyMenu)
+export default withRouter(connect(state => ({
+  currentUser: getCurrentUser(state),
+}), {})(MyMenu))

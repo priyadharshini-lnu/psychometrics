@@ -31,6 +31,7 @@ const ASSESSMENT_CATEGORY_ICONS = {
   case_study: 'case_study',
   organisational: 'survey',
   agile: 'agile',
+  saville: 'saville',
 }
 
 interface Props {
