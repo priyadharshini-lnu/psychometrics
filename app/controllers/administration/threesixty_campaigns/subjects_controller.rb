@@ -113,7 +113,7 @@ module Administration
             'reset_all_nominations',
             'edit_user'
           ],
-          project_id: threesixty_campaign.campaign.project_id
+          threesixty_campaign.campaign.project_id
         )
       end
 

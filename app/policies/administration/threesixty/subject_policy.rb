@@ -4,7 +4,7 @@ module Administration
   module Threesixty
     class SubjectPolicy < BasePolicy
       def index?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :view, @project_id)
       end
 
       def spoof?
@@ -12,103 +12,103 @@ module Administration
       end
 
       def import?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage_users, @project_id)
       end
 
       def manage_datasheets?
-        user.is?(:superadmin) || user.has_grant?(:datasheets, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:datasheets, :manage, @project_id)
       end
 
       def manage_relationships?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def approve_report?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def remove_report_approval?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def release_report?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def hold_report?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def remove_report_hold_release?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def mark_as_done?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def unmark_as_done?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       def export_results?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage_users, @project_id)
       end
 
       def export_completion_status?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :view, @project_id)
       end
 
       def edit_dimension?
-        user.is?(:superadmin) || user.has_grant?(:dimensions, :manage)
+        user.is?(:superadmin) || user.has_client_grant?(:dimensions, :manage, @project_id)
       end
 
       def reset_all_participants?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage_users, @project_id)
       end
 
       def reset_all_nominations?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage_users, @project_id)
       end
 
       def edit_user?
-        user.is?(:superadmin) || user.has_grant?(:projects, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:projects, :manage_users, @project_id)
       end
 
       def view_report?
-        user.is?(:superadmin) || user.has_grant?(:results, :view_report)
+        user.is?(:superadmin) || user.has_client_grant?(:results, :view_report, @project_id)
       end
 
       def download_report?
-        user.is?(:superadmin) || user.has_grant?(:results, :view_report)
+        user.is?(:superadmin) || user.has_client_grant?(:results, :view_report, @project_id)
       end
 
       def view_responses?
-        user.is?(:superadmin) || user.has_grant?(:results, :raw_responses)
+        user.is?(:superadmin) || user.has_client_grant?(:results, :raw_responses, @project_id)
       end
 
       def remove_subject?
-        user.is?(:superadmin) || user.has_grant?(:projects, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:projects, :manage_users, @project_id)
       end
 
       def remove_from_campaign?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage_users, @project_id)
       end
 
       def create_all?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :manage_users)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage_users, @project_id)
       end
 
       def search?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :view, @project_id)
       end
 
       def preview_report?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :view, @project_id)
       end
 
       def download_example_import_file?
-        user.is?(:superadmin) || user.has_grant?(:campaigns, :view)
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :view, @project_id)
       end
     end
   end

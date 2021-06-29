@@ -99,7 +99,8 @@ module Administration
         if form.valid?
           ::Campaigns::Users::Create.call(form, campaign, current_user) do
             on(:ok) do |user|
-              return render json: user, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
+              return render json: user, serializer: Administration::Campaigns::UserSerializer,
+                campaign_id: campaign.id, project_id: campaign.project_id
             end
             on(:error) do |errors|
               return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
@@ -151,13 +152,6 @@ module Administration
       end
 
       private
-
-      # def pundit_user
-      #   {
-      #     user: current_user,
-      #     project_id: campaign.project_id
-      #   }
-      # end
 
       def pundit_authorize
         authorize(

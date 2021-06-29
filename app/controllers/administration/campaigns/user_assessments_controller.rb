@@ -44,6 +44,14 @@ module Administration
 
       private
 
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: campaign.project_id
+        )
+      end
+
       def assessment
         resource
       end

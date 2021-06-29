@@ -71,7 +71,7 @@ module UserRoles
     project = project_id && Client.find_by(id: project_id)
 
     project_based_client_ids = [].tap do |arr|
-      arr.concat(project.tenancy? ? [project&.id] : [project&.id, project&.client&.id])
+      arr.concat(project.tenancy? ? [project.id] : [project.id, project.client.id])
     end.compact
 
     memberships.where(client_id: project_based_client_ids).any? { |m| m.has_grant?(scope, grant) }

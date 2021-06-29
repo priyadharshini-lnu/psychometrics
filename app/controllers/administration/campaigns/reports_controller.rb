@@ -26,7 +26,7 @@ module Administration
 
       def toggle_user_access
         ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
-        render json: resource, serializer: Administration::CampaignReportSerializer
+        render json: resource, serializer: Administration::CampaignReportSerializer, project_id: campaign.project_id
       end
 
       def toggle_assessor_access

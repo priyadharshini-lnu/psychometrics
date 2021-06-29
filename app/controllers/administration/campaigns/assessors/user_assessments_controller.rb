@@ -24,7 +24,8 @@ module Administration
                  with_context(campaign: campaign, assessor: assessor)
           if form.valid?
             user_assessment = ::Assessors::UserAssessments::Create.call!(form)
-            render json: user_assessment, serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer
+            render json: user_assessment, serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
+              project_id: campaign.project_id
           else
             render json: { errors: form.errors.messages }, status: :unprocessable_entity
           end

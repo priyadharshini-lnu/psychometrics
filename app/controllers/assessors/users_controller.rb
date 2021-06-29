@@ -12,7 +12,7 @@ class Assessors::UsersController < Administration::BaseController
     paginated_users = users.page(params[:page])
     serialized_users = ActiveModelSerializers::SerializableResource.new(
       paginated_users, each_serializer: Administration::Assessors::UserSerializer,
-      current_user: current_user,
+      current_user: current_user, project_id: campaign.project_id,
       evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
         paginated_users.pluck(:id), current_user, params[:campaign_id]
       )
@@ -28,16 +28,30 @@ class Assessors::UsersController < Administration::BaseController
     user_assessments = UserAssessment.where(evaluator: current_user, subject: @user, campaign_id: params[:campaign_id])
     user_reports = UserReport.assessor_report_for_campaign(params[:campaign_id]).where(user_id: @user.id)
     serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
-      user_assessments, each_serializer: Administration::Assessors::UserAssessmentSerializer
+      user_assessments, each_serializer: Administration::Assessors::UserAssessmentSerializer,
+      project_id: campaign.project_id
     )
     serialized_user_reports = ActiveModelSerializers::SerializableResource.new(
       user_reports, each_serializer: Administration::Assessors::UserReportSerializer
     )
     render json: {
-      user: Administration::Assessors::UserSerializer.new(@user, current_user: current_user).to_h,
+      user: Administration::Assessors::UserSerializer.new(@user, current_user: current_user,
+        project_id: campaign.project_id).to_h,
       user_assessments: serialized_user_assessments,
       user_reports: serialized_user_reports
     }
+  end
+
+  def pundit_authorize
+    authorize(
+      resource || resource_class,
+      nil,
+      project_id: campaign.project_id
+    )
+  end
+
+  def campaign
+    @campaign ||= Campaign.find_by(id: params[:campaign_id])
   end
 
   def dashboard

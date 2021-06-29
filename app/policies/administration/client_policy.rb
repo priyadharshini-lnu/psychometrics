@@ -15,7 +15,7 @@ module Administration
     end
 
     def copy?
-      if record.project?
+      if record.project? || record.campaign? || record.sub_campaign?
         record.active? && (@user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id))
       else
         record.active? && @user.is?(:superadmin)
@@ -23,16 +23,16 @@ module Administration
     end
 
     def destroy?
-      if record.prime_project?
-        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      if record.project? || record.campaign? || record.sub_campaign?
+        @user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id)
       else
         @user.is?(:superadmin)
       end
     end
 
     def edit?
-      if record.prime_project?
-        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      if record.project? || record.campaign? || record.sub_campaign?
+        @user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id)
       else
         @user.is?(:superadmin)
       end
@@ -43,7 +43,7 @@ module Administration
     end
 
     def manage_project?
-      @user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id)
+      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
     end
 
     def new?
@@ -52,7 +52,7 @@ module Administration
 
     def manage_campaign?
       return true if @user.is?(:superadmin)
-      return true if @user.has_grant?(:campaigns, :manage)
+      return true if @user.has_client_grant?(:campaigns, :manage, @project_id)
 
       false
     end
@@ -74,7 +74,7 @@ module Administration
     end
 
     def project_admins?
-      record.prime_project? && @user.has_grant?(:projects, :manage_admins)
+      record.prime_project? && @user.has_client_grant?(:projects, :manage_admins, @project_id)
     end
 
     def search_users?

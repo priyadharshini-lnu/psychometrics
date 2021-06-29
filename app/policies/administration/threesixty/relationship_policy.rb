@@ -4,7 +4,7 @@ module Administration
   module Threesixty
     class RelationshipPolicy < BasePolicy
       def fetch_with_usage?
-        create?
+        user.is?(:superadmin) || user.has_client_grant?(:campaigns, :manage, @project_id)
       end
 
       class Scope < Scope

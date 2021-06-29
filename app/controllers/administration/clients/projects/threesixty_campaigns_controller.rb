@@ -157,7 +157,7 @@ module Administration
               edit_subject_report
               manage_reports_options
             ],
-            project_id: project.id
+            project.id
           )
           permissions.transform_keys! { |k| k.camelcase(:lower) }
         end

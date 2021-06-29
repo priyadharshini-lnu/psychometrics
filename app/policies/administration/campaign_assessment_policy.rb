@@ -5,23 +5,23 @@ module Administration
     include ::Administration::Common::AssessmentExportPolicy
 
     def update?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_users, @project_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_users, @project_id)
     end
 
     def import_results?
-      @user.is?(:superadmin) || @user.has_grant?(:results, :reset_responses)
+      @user.is?(:superadmin) || @user.has_client_grant?(:results, :reset_responses, @project_id)
     end
 
     def update_norm?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_users, @project_id)
     end
 
     def update_assessor_form?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_users, @project_id)
     end
 
     def can_configure_universal_links?
@@ -29,11 +29,11 @@ module Administration
     end
 
     def enable_universal_link?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_users, @project_id)
     end
 
     def attach_to_group?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_users, @project_id)
     end
   end
 end

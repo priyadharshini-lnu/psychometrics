@@ -34,11 +34,12 @@ module Administration
 
       private
 
-      def pundit_user
-        {
-          user: current_user,
-          project_id: project.id
-        }
+      def pundit_authorize
+        authorize(
+          resource || UserAssessment,
+          nil,
+          project_id: client.id
+        )
       end
 
       def set_resource_class

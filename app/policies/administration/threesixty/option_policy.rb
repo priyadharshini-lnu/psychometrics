@@ -4,15 +4,15 @@ module Administration
   module Threesixty
     class OptionPolicy < BasePolicy
       def participant_options?
-        super_admins_or_admins?
+        @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_options, @project_id)
       end
 
       def report_options?
-        participant_options?
+        @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_options, @project_id)
       end
 
       def message_options?
-        participant_options?
+        @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage_options, @project_id)
       end
     end
   end

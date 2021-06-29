@@ -12,8 +12,8 @@ class BasePolicy
   class Scope
     attr_reader :user, :scope
 
-    def initialize(context, scope)
-      @user = context[:user]
+    def initialize(user, scope)
+      @user = user
       @scope = [scope].flatten.last
     end
 
