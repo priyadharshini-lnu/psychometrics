@@ -2,8 +2,6 @@
 
 module Saville
   class MakeRequest < BaseCommand
-    WSDL_URL = Rails.application.secrets.saville.wsdl_url
-
     private_attr_reader :action, :xml_file_name, :attributes
 
     def initialize(action, xml_file_name, attributes)
@@ -39,7 +37,7 @@ module Saville
 
     def client
       Savon.client(
-        wsdl: WSDL_URL,
+        wsdl: Rails.application.secrets.saville.wsdl_url,
         soap_version: 1,
         log_level: :debug,
         logger: Rails.logger,
