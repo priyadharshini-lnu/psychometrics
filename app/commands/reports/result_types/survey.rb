@@ -5,7 +5,9 @@ module Reports
     class Survey < BaseType
       def call
         user_result = context.find_user_result_by(data['assessmentId'])
-        question = Question.find_by!(id: data['questionId'], assessment_id: data['assessmentId'])
+        question = context.resources.dig(:questions, data['questionId'])
+        raise ActiveRecord::RecordNotFound unless question
+
         parser = "Exports::Assessments::Questions::#{question.type}".constantize
         header = parser.headers(question)[:question_id_header]
         header_without_duration = header.select { |a| a.exclude?('duration') }

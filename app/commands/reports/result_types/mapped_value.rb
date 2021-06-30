@@ -5,7 +5,8 @@ module Reports
     class MappedValue < BaseType
       def call
         source = data.dig('source')
-        result = context.get_class_map[source['type'].to_sym].constantize.call(context, source).try(:[], :value)
+        result = ::Reports::BuildResults::CLASS_MAP[source['type'].to_sym].
+                 constantize.call(context, source).try(:[], :value)
         {
           key: 'mapped_value',
           name: data['label'],
