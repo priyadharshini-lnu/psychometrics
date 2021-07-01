@@ -582,6 +582,7 @@ en:
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
         copy_dimension: Copy Dimension
+        export_report_data: Export report data
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
         import_raw_data: Import Raw Data
@@ -603,6 +604,8 @@ en:
     close: Close
     details: Details
     errors: Errors
+    export_report_data:
+      title: Link to download report data
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
@@ -870,6 +873,7 @@ en:
     column:
       assessment_name: Assessment name
       assessor_form: Assessor Form
+      locales: Locales
       norm: Norm
       status: Status
       universal_link: Universal link
@@ -899,6 +903,10 @@ en:
         success_msg: Assessor Form successfully uploaded
         title: Update Assessor Form
         update: Update
+      update_locales:
+        select_locales: Select Locales
+        success_msg: Locales successfully updated
+        title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
         select_norm: Select Norm
@@ -919,6 +927,7 @@ en:
   campaign_report:
     actions:
       bulk_download: Bulk Download
+      export_data: Export Data
     column:
       assessor_access: Assessor Access
       report_bundle: Report Bundle
@@ -934,6 +943,7 @@ en:
       report_bundle_placeholder: Select a report bundle
     messages:
       bulk_download_successful: Bulk report download job scheduled successfully
+      export_report_data_scheduled: Report data export job scheduled successfully
     modals:
       remove:
         apply: Apply this changes to existing users in this campaign.
@@ -1042,6 +1052,7 @@ en:
       delete: Delete
       remove: Remove
       reset: Reset
+      update: Update
     column:
       action: Action
       category: Category
@@ -2317,6 +2328,10 @@ en:
       import: Import Users
   user_assessments:
     modals:
+      actions:
+        allow_edit:
+          name: Allow Edit
+          success_message: Assessment %{name} is ready for edit
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
         successfully: "%{name} assessment removed successfully."
@@ -2384,6 +2399,8 @@ en:
     min_word: Your response must be atleast %{min} words
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
     must_select: Please select from %{min} to %{max} choices
+    not_in_future: Selected date should not be in future
+    not_in_past: Selected date should not be in past
     number: Your response must be a number
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question

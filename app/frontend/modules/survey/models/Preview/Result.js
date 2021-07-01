@@ -53,7 +53,10 @@ _.extend(Result.prototype, {
     }
 
     if (this.question.validation.type === 'Custom') {
-      return this.processCustomValidation()
+      return _.find(
+        _.map(this.question.validation.customValidations, validation => this.processCustomValidation(validation)),
+        val => val,
+      )
     }
 
     const Validation = Validations[this.question.validation.type]
@@ -64,12 +67,11 @@ _.extend(Result.prototype, {
     return validation.validate(this.moduleResult.results())
   },
 
-  processCustomValidation () {
-    const message = I18n().tCustomValidation(this.question)
+  processCustomValidation (validation) {
+    const message = I18n().tCustomValidation(this.question, validation.message)
     if (!message) { return }
 
-    const { conditions } = this.question.validation.args
-
+    const { conditions } = validation
     const validations = conditions.map(
       condition => new Validations.Custom(condition, [this.question], {}, this),
     )
@@ -93,7 +95,7 @@ _.extend(Result.prototype, {
       prev = result
     })
 
-    if (res) {
+    if (!res) {
       return { type: 'Custom', message }
     }
   },

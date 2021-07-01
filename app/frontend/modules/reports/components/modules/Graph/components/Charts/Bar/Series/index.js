@@ -13,6 +13,7 @@ import PickGroupRank from './PickGroupRank'
 import TextEntry from './TextEntry'
 import MatrixTable from './MatrixTable'
 import DataSheet from './DataSheet'
+import SavilleFactor from './SavilleFactor'
 
 export default {
   Slider,
@@ -30,4 +31,5 @@ export default {
   TextEntry,
   MatrixTable,
   DataSheet,
+  SavilleFactor,
 }

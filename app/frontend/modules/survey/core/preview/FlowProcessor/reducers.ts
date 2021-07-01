@@ -219,6 +219,11 @@ const HANDLERS = {
       : state.blocks
     const end = expired || state.end
     const questions = currentBlock?.questions ? _.keyBy(currentBlock.questions, 'id') : {}
+    const newQuestions = _.reduce(questions, (acc, q, key) => ({
+      ...acc,
+      [key]: { ...state.questions[q.id], ...q },
+    }), state.questions)
+
     return end && !state.showSubmitPage ? {
       ...state,
       end,
@@ -232,10 +237,7 @@ const HANDLERS = {
       end,
       blocks,
       locales: translations,
-      questions: {
-        ...state.questions,
-        ...questions,
-      },
+      questions: newQuestions,
     }
   },
   [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {

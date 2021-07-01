@@ -88,7 +88,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
 
   dispatch(emptyErrors())
 
-  if (preview.currentElement) {
+  if (preview.currentElement && !action.ignoreBackBtn) {
     const questionIds = questions.map(q => q.id)
     if (!_.find(preview.prevPages, { element: preview.currentElement, page: preview.currentPage })) {
       dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage, questionIds }))

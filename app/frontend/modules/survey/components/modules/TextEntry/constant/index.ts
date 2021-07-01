@@ -1,3 +1,9 @@
+import { PickerMode as DatePickerModes } from 'rc-picker/lib/interface'
+
+import { DateFormat } from 'modules/survey/interfaces/questions/TextEntry'
+
+const { I18n } = window
+
 export const ANSWER_TYPE_OPTIONS = [
   {
     label: 'Single line',
@@ -38,5 +44,49 @@ export const ANSWER_TYPE_OPTIONS = [
   {
     label: 'Email',
     value: 'Email',
+  },
+]
+
+interface DateFormatOption {
+  label: string
+  value: DateFormat
+  picker: DatePickerModes
+}
+
+export const DATE_FORMAT_OPTIONS: Array<DateFormatOption> = [
+  {
+    label: I18n.t(
+      'administration.survey_builder.property_panel.date_format_options.dd_mm_yyy',
+    ),
+    value: DateFormat['DD-MM-YYYY'],
+    picker: 'date',
+  },
+  {
+    label: I18n.t(
+      'administration.survey_builder.property_panel.date_format_options.yyyy_mm_dd',
+    ),
+    value: DateFormat['YYYY-MM-DD'],
+    picker: 'date',
+  },
+  {
+    label: I18n.t(
+      'administration.survey_builder.property_panel.date_format_options.mm_yyyy',
+    ),
+    value: DateFormat['MM-YYYY'],
+    picker: 'month',
+  },
+  {
+    label: I18n.t(
+      'administration.survey_builder.property_panel.date_format_options.yyyy_mm',
+    ),
+    value: DateFormat['YYYY-MM'],
+    picker: 'month',
+  },
+  {
+    label: I18n.t(
+      'administration.survey_builder.property_panel.date_format_options.yyyy',
+    ),
+    value: DateFormat.YYYY,
+    picker: 'year',
   },
 ]

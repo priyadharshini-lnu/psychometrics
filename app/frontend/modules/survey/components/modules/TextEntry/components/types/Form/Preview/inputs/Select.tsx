@@ -31,6 +31,7 @@ const Select: React.FC<Props> = ({
         onChange={(value: string | string[]): void => onChange(index, value)}
         className={styles.formSelect}
         mode={multi ? MULTIPLE : undefined}
+        showSearch
       >
         {optionList?.map((option: string, i: number) => (
           <Option key={i} value={option}>

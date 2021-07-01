@@ -605,6 +605,7 @@ CREATE TABLE public.campaign_assessments (
     norm_type character varying,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
+    available_locales text[] DEFAULT '{}'::text[],
     saville_norm_id character varying
 );
 
@@ -2836,6 +2837,39 @@ ALTER SEQUENCE public.saville_assessment_settings_id_seq OWNED BY public.saville
 
 
 --
+-- Name: saville_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saville_factors (
+    id bigint NOT NULL,
+    assessment_id character varying,
+    factor_id character varying,
+    name character varying,
+    score_type character varying,
+    value_type character varying
+);
+
+
+--
+-- Name: saville_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saville_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saville_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saville_factors_id_seq OWNED BY public.saville_factors.id;
+
+
+--
 -- Name: saville_report_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4232,6 +4266,13 @@ ALTER TABLE ONLY public.saville_assessment_settings ALTER COLUMN id SET DEFAULT 
 
 
 --
+-- Name: saville_factors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_factors ALTER COLUMN id SET DEFAULT nextval('public.saville_factors_id_seq'::regclass);
+
+
+--
 -- Name: saville_report_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4998,6 +5039,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.saville_assessment_settings
     ADD CONSTRAINT saville_assessment_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saville_factors saville_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_factors
+    ADD CONSTRAINT saville_factors_pkey PRIMARY KEY (id);
 
 
 --
@@ -8269,6 +8318,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210606072330'),
 ('20210606105059'),
 ('20210610160411'),
-('20210617154459');
+('20210614064633'),
+('20210616195712'),
+('20210617154459'),
+('20210621071756'),
+('20210623082242'),
+('20210627110306');
 
 

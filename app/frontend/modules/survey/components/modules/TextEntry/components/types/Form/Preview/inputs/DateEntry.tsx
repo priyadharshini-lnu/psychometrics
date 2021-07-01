@@ -1,39 +1,42 @@
 import React from 'react'
 import { DatePicker } from 'antd'
 import moment, { Moment } from 'moment'
-import { Question } from '../../interfaces'
 
-const FORMAT = 'YYYY-MM-DD'
+import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
 
 interface Props {
-  name: string
-  model: Question
-  index: number
+  value: string
+  onChange: (value: string | null) => void
+  dateFormat: string
   readOnly: boolean
-  onChange: (i: number, value: string) => void
 }
 
-const DateEntry: React.FC<Props> = ({
-  onChange, model: { result: { answers } }, index, readOnly,
+export const DateEntry: React.FC<Props> = ({
+  onChange,
+  value,
+  dateFormat,
+  readOnly,
 }) => {
-  const { value } = answers[index]
-
-  const handleOnChange = (date: Moment | null): void => {
-    const newValue = date ? date.format(FORMAT) : ''
-    onChange(index, newValue)
+  const handleAnswerChange = (value: Moment | null): void => {
+    if (value) {
+      onChange(value.format(dateFormat))
+    } else {
+      onChange(null)
+    }
   }
 
-  const dateValue = value ? moment(value, FORMAT) : moment(moment.now())
+  const pickerMode = DATE_FORMAT_OPTIONS.find(
+    dateFormatOption => dateFormatOption.value === dateFormat,
+  )?.picker ?? 'date'
 
   return (
     <DatePicker
+      allowClear
       disabled={readOnly}
-      allowClear={false}
-      format="YYYY-MM-DD"
-      onChange={handleOnChange}
-      value={dateValue}
+      picker={pickerMode}
+      format={dateFormat}
+      value={value ? moment(value, dateFormat) : null}
+      onChange={handleAnswerChange}
     />
   )
 }
-
-export default DateEntry

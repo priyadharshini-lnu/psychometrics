@@ -5,12 +5,25 @@ import styles from './QuestionCondition.scss'
 import Bool from './Bool'
 import Simple from './Simple'
 import Input from './Input'
+import Select from './Select'
+import Date from './Date'
 import AnswerManager from '../models/AnswerManager'
 
 const Conditions = {
   bool: Bool,
   input: Input,
   simple: Simple,
+  date: Date,
+}
+
+const FormTypes = {
+  Date,
+  DateTime: Date,
+  Input,
+  TextArea: Input,
+  Select,
+  MultiSelect: Select,
+  Checkbox: Bool,
 }
 
 class QuestionCondition extends React.Component {
@@ -101,9 +114,17 @@ class QuestionCondition extends React.Component {
   }
 
   renderCondition () {
-    const { condition } = this.props
+    const { questions, condition } = this.props
     if (!condition.type) {
       return (<div className={styles.predicates} />)
+    }
+    const question = questions[condition.subject]
+    if (question.props.type === 'Form') {
+      const field = question.props.formTypes[condition.answer]
+      if (field?.name) {
+        const View = FormTypes[field.name]
+        return <View {...this.props} field={field} />
+      }
     }
     const View = Conditions[condition.type]
     return (<View {...this.props} />)

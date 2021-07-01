@@ -5,14 +5,13 @@ import { Menu, Input } from 'antd'
 import Utils from 'modules/survey/utils/Utils'
 import { DnDElement } from 'components/DnD'
 import { useInputFocus } from 'hooks/useInputFocus'
+import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 import styles from '../../../FormStyle.scss'
-import { Question } from '../../../interfaces'
-import { FormType } from '../../../interfaces/Question'
 import Option from './Option'
 
 interface Props {
-  type: FormType
-  model: Question
+  type: BuilderModel['props']['formTypes'][0]
+  model: BuilderModel
   index: number
 }
 
@@ -34,6 +33,8 @@ const OptionList: React.FC<Props> = ({
     return optionList.map(option => ({ id: Utils.genId(), text: option }))
   }
 
+  const getLines = (text: string) => text.split(/(\n|\u2028)/).map(t => t.trim()).filter(t => t.length)
+
   const [options, setOptions] = useState<OptionListState[]>(addIdToOptionList(optionList))
 
   useEffect(() => {
@@ -49,18 +50,22 @@ const OptionList: React.FC<Props> = ({
 
   const onPasteEventHandler = (e): void => {
     const clipboardText = e.clipboardData.getData('text')
-    if (clipboardText.indexOf('\n') === -1) return
+    const lines = getLines(clipboardText)
+    if (lines.length <= 1) return
     addOptions(clipboardText)
     setText('')
     setFocus(true)
   }
 
   const addOptions = (text: string) => {
-    text && model.changeArrayProps({
-      collection: 'formTypes',
-      i: index,
-      val: { ...type, optionList: [...optionList, ...(text.split('\n'))] },
-    }, false)
+    const lines = getLines(text)
+    if (lines.length > 0) {
+      model.changeArrayProps({
+        collection: 'formTypes',
+        i: index,
+        val: { ...type, optionList: [...optionList, ...lines] },
+      }, false)
+    }
   }
 
   const removeOption = (i: number): void => {

@@ -38,12 +38,6 @@ module EndUser
       object.assessment.name
     end
 
-    def available_locales
-      return object.assessment.agile.translations.keys if object.assessment.agile?
-
-      ['en'] + ::Translation.available_translation_for_assessment(object.assessment.id)
-    end
-
     def normalize_hogan_type(type)
       return 'Raw' if type == 'RAW'
       return 'Percentile' if type == 'percentile'

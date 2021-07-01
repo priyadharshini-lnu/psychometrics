@@ -70,7 +70,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def available_translations
-    ::Translation.available_translation_for_assessment(object.assessment_id)
+    participant&.available_locales || ['en']
   end
 
   def translations
@@ -145,6 +145,7 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def external_scoring
     return object.external_results if object.assessment.mindmill?
+    return object.external_results['scores'] || [] if object.assessment.saville?
 
     if object.assessment.hogan?
       score = object.external_results

@@ -3,6 +3,7 @@ import Factor from './Factor'
 import DataSheet from './DataSheet'
 import Question from './Question'
 import BaseExternalFactor from './BaseExternalFactor'
+import { SavilleFactor } from './SavilleFactor'
 
 export default {
   EmbeddedData,
@@ -15,4 +16,8 @@ export default {
   RawScale: BaseExternalFactor,
   PercentileScale: BaseExternalFactor,
   PercentileSubscale: BaseExternalFactor,
+  'Saville#Ipsative': SavilleFactor,
+  'Saville#Nipsative': SavilleFactor,
+  'Saville#Normative': SavilleFactor,
+  'Saville#Raw': SavilleFactor,
 }

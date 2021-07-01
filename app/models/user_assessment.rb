@@ -21,8 +21,8 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   has_one :threesixty_campaign, through: :campaign
-  delegate :selected_locale, to: :users_result, allow_nil: true
   delegate :saville_assessment_id, :saville?, to: :assessment
+  delegate :selected_locale, :timed?, to: :users_result, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -58,6 +58,15 @@ class UserAssessment < ApplicationRecord
     return UserReport.none if saville_reports.blank?
 
     UserReport.where(report_id: saville_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_id)
+  end
+
+  def available_locales
+    assessment_locales = assessment.agile.translations.keys if assessment.agile?
+    assessment_locales ||= ['en'] + ::Translation.available_translation_for_assessment(assessment.id)
+    campaign_assessment_locales = campaign_assessment&.available_locales
+    return assessment_locales if campaign_assessment_locales.blank?
+
+    (campaign_assessment_locales & assessment_locales).presence || ['en']
   end
 
   def norm_data

@@ -1,11 +1,12 @@
 import React from 'react'
+import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 import MultiInlineEditor from '../../../../../../MultiInlineEditor'
 import styles from './EmailStyle.scss'
 import commonStyles from '../commonStyles.scss'
 
 interface Props {
-  title: string
-  titleDescription: string
+  title: BuilderModel['props']['title']
+  titleDescription: BuilderModel['props']['titleDescription']
   changeProps: (value: string, key: string) => void
 }
 const Header: React.FC<Props> = ({

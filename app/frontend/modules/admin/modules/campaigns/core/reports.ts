@@ -30,6 +30,7 @@ export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'campaigns/reports/REGENERATE_REPORTS'
 export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
 export const BULK_DOWNLOAD = 'campaigns/reports/BULK_DOWNLOAD'
+export const EXPORT_DATA = 'campaigns/reports/EXPORT_DATA'
 
 export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
   type: REMOVE,
@@ -86,6 +87,14 @@ export const bulkDownload = (campaignId: number, ids: number[]) => ({
     url: `/administration/new_campaigns/${campaignId}/reports/bulk_download`,
     body: { ids },
     loader: true,
+  },
+})
+
+export const exportData = (campaignId: number, reportId: number) => ({
+  type: EXPORT_DATA,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/reports/${reportId}/export`,
   },
 })
 

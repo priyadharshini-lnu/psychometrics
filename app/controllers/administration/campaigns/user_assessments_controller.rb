@@ -42,6 +42,12 @@ module Administration
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
 
+      def allow_edit
+        ::UserAssessments::AllowEdit.call!(resource)
+
+        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+      end
+
       private
 
       def pundit_authorize

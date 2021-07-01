@@ -28,5 +28,10 @@ module Administration
       !record&.assessment&.mindmill? && !record&.assessment&.hogan? &&
         (@user.is?(:superadmin) || @user.has_client_grant?(:results, :reset_responses, @project_id))
     end
+
+    def allow_edit?
+      !record.assessment.external? && !record.assessment.agile? && !record.timed? && record.completed? &&
+        (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users))
+    end
   end
 end

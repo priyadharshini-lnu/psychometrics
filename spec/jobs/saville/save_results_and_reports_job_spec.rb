@@ -3,59 +3,203 @@
 require 'rails_helper'
 
 RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
-  it "doesn't raise exeception if SavilleUserAssessment is not found with particular receipt_id" do
-    response = %(
-      <AssessmentResult>
-        <ReceiptId>
-          <IdValue>123</IdValue>
-        </ReceiptId>
-      </AssessmentResult>
-    )
+  describe 'saville assessment is not present' do
+    it "doesn't raise exeception if SavilleUserAssessment is not found with particular receipt_id" do
+      response = %(
+        <AssessmentResult>
+          <ReceiptId>
+            <IdValue>123</IdValue>
+          </ReceiptId>
+        </AssessmentResult>
+      )
 
-    expect { described_class.new.perform(response) }.to_not raise_exception
+      expect { described_class.new.perform(response) }.to_not raise_exception
+    end
   end
 
-  it "doesn't return exception if results are blank" do
-    request_id = '123'
-    create(:saville_user_assessment, request_id: request_id)
-    response = %(
-      <AssessmentResult>
-        <ReceiptId>
-          <IdValue>#{request_id}</IdValue>
-        </ReceiptId>
-      </AssessmentResult>
-    )
+  describe 'saville assessment is not present' do
+    let(:saville_user_assessment) { create(:saville_user_assessment, request_id: 123) }
+    let(:user_assessment) { saville_user_assessment.user_assessment }
+    let!(:report) { create(:report, :saville, assessments: [user_assessment.assessment]) }
 
-    expect { described_class.new.perform(response) }.to_not raise_exception
-  end
+    it "doesn't return exception if results are blank" do
+      response = %(
+        <AssessmentResult>
+          <ReceiptId>
+            <IdValue>#{saville_user_assessment.request_id}</IdValue>
+          </ReceiptId>
+        </AssessmentResult>
+      )
 
-  it 'saves pdf to user report' do
-    request_id = '123'
-    saville_user_assessment = create(:saville_user_assessment, request_id: request_id)
-    user_assessment = saville_user_assessment.user_assessment
-    report = create(:report, :saville, assessments: [user_assessment.assessment])
-    user_report = create(:user_report, report: report, campaign_id: user_assessment.campaign_id,
-      user_id: user_assessment.subject_id, pdf: nil, status: :not_prepared)
+      expect { described_class.new.perform(response) }.to_not raise_exception
+    end
 
-    response = %(
-      <AssessmentResult>
-        <ReceiptId>
-          <IdValue>#{request_id}</IdValue>
-        </ReceiptId>
-        <Results>
-          <SupportingMaterials>
-            <Id><IdValue>#{report.saville_report_id}</IdValue></Id>
-            <EmbeddedData>
-              <EncodedContent>#{file_fixture('base64pdf.txt').read}</EncodedContent>
-            </EmbeddedData>
-          </SupportingMaterials>
-        </Results>
-      </AssessmentResult>
-    )
+    it 'saves pdf to user report' do
+      user_report = create(:user_report, report: report, campaign_id: user_assessment.campaign_id,
+        user_id: user_assessment.subject_id, pdf: nil, status: :not_prepared)
 
-    described_class.new.perform(response)
-    user_report.reload
-    expect(user_report.status).to eq('prepared')
-    expect(user_report.pdf?).to eq(true)
+      response = %(
+        <AssessmentResult>
+          <ReceiptId>
+            <IdValue>#{saville_user_assessment.request_id}</IdValue>
+          </ReceiptId>
+          <Results>
+            <SupportingMaterials>
+              <Id><IdValue>#{report.saville_report_id}</IdValue></Id>
+              <EmbeddedData>
+                <EncodedContent>#{file_fixture('base64pdf.txt').read}</EncodedContent>
+              </EmbeddedData>
+            </SupportingMaterials>
+          </Results>
+        </AssessmentResult>
+      )
+
+      described_class.new.perform(response)
+      user_report.reload
+      expect(user_report.status).to eq('prepared')
+      expect(user_report.pdf?).to eq(true)
+    end
+
+    it 'saves scores' do
+      create(:user_report, report: report, campaign_id: user_assessment.campaign_id,
+        user_id: user_assessment.subject_id, pdf: nil, status: :not_prepared)
+
+      response = %(
+        <AssessmentResult>
+          <ReceiptId>
+            <IdValue>#{saville_user_assessment.request_id}</IdValue>
+          </ReceiptId>
+          <Results>
+            <SupportingMaterials>
+              <Id><IdValue>#{report.saville_report_id}</IdValue></Id>
+              <EmbeddedData>
+                <EncodedContent>#{file_fixture('base64pdf.txt').read}</EncodedContent>
+              </EmbeddedData>
+            </SupportingMaterials>
+            <DetailResult>
+              <Description>Ratings Acquiescence</Description>
+                <CompetencyAssessed>
+                  <CompetencyId idOwner="Saville Consulting">
+                    <IdValue name="Reference">WAVEFS_RATACQ</IdValue>
+                    <IdValue name="Type">Normative</IdValue>
+                  </CompetencyId>
+                </CompetencyAssessed>
+              <Score type="sten">1</Score>
+            </DetailResult>
+            <DetailResult>
+              <Description>Consistency of Rankings</Description>
+              <CompetencyAssessed>
+                <CompetencyId idOwner="Saville Consulting">
+                  <IdValue name="Reference">WAVEFS_CONRANK</IdValue>
+                  <IdValue name="Type">Ipsative</IdValue>
+                </CompetencyId>
+              </CompetencyAssessed>
+              <Score type='Percentile'>2.0</Score>
+            </DetailResult>
+          </Results>
+        </AssessmentResult>
+      )
+
+      described_class.new.perform(response)
+      scores = user_assessment.users_result.reload.external_results['scores']
+      expect(scores).to eq(
+        [
+          { 'id' => 'WAVEFS_RATACQ', 'score' => 1.0, 'score_type' => 'Normative', 'value_type' => 'sten' },
+          { 'id' => 'WAVEFS_CONRANK', 'score' => 2.0, 'score_type' => 'Ipsative', 'value_type' => 'Percentile' }
+        ]
+      )
+    end
+
+    it 'merges scores from multiple results and returns uniq values' do
+      create(:user_report, report: report, campaign_id: user_assessment.campaign_id,
+        user_id: user_assessment.subject_id, pdf: nil, status: :not_prepared)
+
+      response = %(
+        <AssessmentResult>
+          <ReceiptId>
+            <IdValue>#{saville_user_assessment.request_id}</IdValue>
+          </ReceiptId>
+          <Results>
+            <DetailResult>
+              <Description>Ratings Acquiescence</Description>
+                <CompetencyAssessed>
+                  <CompetencyId idOwner="Saville Consulting">
+                    <IdValue name="Reference">WAVEFS_RATACQ</IdValue>
+                    <IdValue name="Type">Normative</IdValue>
+                  </CompetencyId>
+                </CompetencyAssessed>
+              <Score type='sten'>1</Score>
+            </DetailResult>
+            <DetailResult>
+              <Description>Consistency of Rankings</Description>
+              <CompetencyAssessed>
+                <CompetencyId idOwner="Saville Consulting">
+                  <IdValue name="Reference">WAVEFS_CONRANK</IdValue>
+                  <IdValue name="Type">Ipsative</IdValue>
+                </CompetencyId>
+              </CompetencyAssessed>
+              <Score type="Percentile">2.0</Score>
+            </DetailResult>
+          </Results>
+          <Results>
+            <DetailResult>
+              <Description>Ratings Acquiescence</Description>
+                <CompetencyAssessed>
+                  <CompetencyId idOwner="Saville Consulting">
+                    <IdValue name="Reference">WAVEFS_RATACQ</IdValue>
+                    <IdValue name="Type">Raw</IdValue>
+                  </CompetencyId>
+                </CompetencyAssessed>
+              <Score type='sten'>2</Score>
+            </DetailResult>
+            <DetailResult>
+              <Description>Consistency of Rankings</Description>
+              <CompetencyAssessed>
+                <CompetencyId idOwner="Saville Consulting">
+                  <IdValue name="Reference">WAVEFS_CONRANK</IdValue>
+                  <IdValue name="Type">Ipsative</IdValue>
+                </CompetencyId>
+              </CompetencyAssessed>
+              <Score type='Percentile'>2.0</Score>
+            </DetailResult>
+          </Results>
+        </AssessmentResult>
+      )
+
+      described_class.new.perform(response)
+      scores = user_assessment.users_result.reload.external_results['scores']
+      expect(scores).to eq(
+        [
+          { 'id' => 'WAVEFS_RATACQ', 'score' => 1.0, 'score_type' => 'Normative', 'value_type' => 'sten' },
+          { 'id' => 'WAVEFS_CONRANK', 'score' => 2.0, 'score_type' => 'Ipsative', 'value_type' => 'Percentile' },
+          { 'id' => 'WAVEFS_RATACQ', 'score' => 2.0, 'score_type' => 'Raw', 'value_type' => 'sten' }
+        ]
+      )
+    end
+
+    it 'saves metadata' do
+      create(:user_report, report: report, campaign_id: user_assessment.campaign_id,
+        user_id: user_assessment.subject_id, pdf: nil, status: :not_prepared)
+
+      response = %(
+        <AssessmentResult>
+          <ReceiptId>
+            <IdValue>#{saville_user_assessment.request_id}</IdValue>
+          </ReceiptId>
+          <Results>
+            <SupportingMaterials>
+              <EffectiveDate>
+                <StartDate>2021-06-09</StartDate>
+                <EndDate>2022-06-10</EndDate>
+              </EffectiveDate>
+            </SupportingMaterials>
+          </Results>
+        </AssessmentResult>
+      )
+
+      described_class.new.perform(response)
+      meta_data = user_assessment.users_result.reload.external_results['meta_data']
+      expect(meta_data).to eq({ 'start_date' => '2021-06-09', 'end_date' => '2022-06-10' })
+    end
   end
 end

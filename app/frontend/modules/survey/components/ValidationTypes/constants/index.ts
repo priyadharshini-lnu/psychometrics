@@ -16,4 +16,6 @@ export const LABELS = {
   MinWords: 'Minimum words',
   MaxWords: 'Maximum words',
   WordsRange: 'Words range',
+  NotInPast: 'Not In Past',
+  NotInFuture: 'Not In Future',
 }
