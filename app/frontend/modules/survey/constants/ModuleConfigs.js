@@ -9,6 +9,7 @@ const ModuleConfigs = {
   MultipleChoice: {
     moduleName: 'Multiple Choice',
     defaultChoiceText: i => `Click to write Choice ${i}`,
+    defaultChoiceImage: '',
     icon: 'check-square-o',
     validations: {
       MultipleAnswer: ['Least', 'Range'],

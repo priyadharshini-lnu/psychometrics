@@ -41,8 +41,7 @@ module Lambdas
     def send_message_to_sqs
       Aws::SQS::Client.new.send_message({
         queue_url: lambda_config.dig(:url_to_pdf, :sqs_url),
-        message_body: jwt_request_body,
-        message_group_id: 'group1'
+        message_body: jwt_request_body
       })
     end
 
