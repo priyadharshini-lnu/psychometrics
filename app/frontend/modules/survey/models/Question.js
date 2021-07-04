@@ -139,6 +139,9 @@ _.extend(Question.prototype, {
       if (!this.props.choicesTexts[i]) {
         this.props.choicesTexts[i] = this.moduleConfig.defaultChoiceText(i + 1)
       }
+      if (!this.props.choicesImages[i]) {
+        this.props.choicesImages[i] = this.moduleConfig.defaultChoiceImage
+      }
     }
     if (!undo) {
       Action('QuestionChangeChoices', this, { oldValue, newValue: this.props.choices })

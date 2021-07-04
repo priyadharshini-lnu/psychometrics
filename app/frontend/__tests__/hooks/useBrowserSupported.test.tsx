@@ -66,6 +66,7 @@ test('It should return correct supported value for a feature on a browser', () =
   expect(result.current[0]).toBeTruthy()
 })
 
+
 test('It should show correct minimum browser support values for unsupported feature on browser', () => {
   const { result } = renderHook(() =>
     useBrowserSupportChecks(BROWSER_FEATURES.pushAPI, 'safari', '10')
@@ -73,8 +74,8 @@ test('It should show correct minimum browser support values for unsupported feat
 
   expect(result.current[0]).toBeFalsy()
   expect(result.current[1]).toEqual({
-    and_chr: 90,
-    and_ff: 87,
+    and_chr: 91,
+    and_ff: 89,
     chrome: 50,
     edge: 17,
     firefox: 44,

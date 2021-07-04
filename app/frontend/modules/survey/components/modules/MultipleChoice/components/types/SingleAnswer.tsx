@@ -4,7 +4,7 @@ import { Radio, Space } from 'antd'
 import LabelEditor from 'components/LabelEditor'
 import {
   ImageChoiceBuilder,
-  ImageNotApplicableChoice,
+  NotApplicableImageChoice,
 } from 'modules/survey/components/modules/MultipleChoice/components/ImageChoiceBuilder'
 import Socket from 'modules/survey/cable'
 import LibraryTransport from 'modules/survey/cable/LibraryChannel'
@@ -94,7 +94,7 @@ const SingleAnswer: FC<Props> = ({ model }) => {
         ))}
         {notApplicable && (
           <Radio>
-            {withImageChoice && <ImageNotApplicableChoice />}
+            {withImageChoice && <NotApplicableImageChoice />}
             <LabelEditor
               value={notApplicableLabel}
               onChange={handleNotApplicableLabelChange}
