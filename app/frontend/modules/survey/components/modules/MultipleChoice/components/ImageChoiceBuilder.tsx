@@ -22,7 +22,7 @@ export const ImageChoiceBuilder: FC<Props> = ({ index, src, onClick }) => (
   </span>
 )
 
-export const ImageNotApplicableChoice: FC = () => (
+export const NotApplicableImageChoice: FC = () => (
   <Avatar
     icon={<StopOutlined />}
     gap={16}

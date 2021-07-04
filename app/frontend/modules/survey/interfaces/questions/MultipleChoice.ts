@@ -10,6 +10,14 @@ export interface PropertiesModel
 
 export interface PreviewModel extends BasePreviewModel<Props, ModuleConfig> {
   isNeedToAddLtrManually: boolean
+  choicesIds: number[]
+  result: {
+    question_id: number
+    answer(selected: number): void
+    answers: Array<{ index: number; value: boolean }>
+    notApplicable: boolean
+    reduxAnswer(): void
+  }
 }
 
 interface Props {
