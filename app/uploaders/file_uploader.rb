@@ -31,8 +31,8 @@ class FileUploader < CarrierWave::Uploader::Base
     %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls]
   end
 
-  def filename
-    File.basename(path) if path.present?
+  def real_filename
+    model.read_attribute(:file)
   end
 
   protected
