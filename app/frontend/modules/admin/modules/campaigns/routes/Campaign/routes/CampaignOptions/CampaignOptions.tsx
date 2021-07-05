@@ -99,7 +99,7 @@ const CampaignOptions: React.FC<Props> = ({
                 <Col span={2}>
                   <label>{I18n.t('administration.time_zone')}</label>
                 </Col>
-                <Col span={5}>
+                <Col span={8}>
                   <TimeZoneSelect
                     {...parametersForField('timeZone')}
                   />
