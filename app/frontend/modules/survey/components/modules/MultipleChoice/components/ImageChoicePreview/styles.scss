@@ -3,39 +3,36 @@
 .grid {
   display: grid;
   grid-gap: 1em;
-}
-
-.card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border-radius: 10px;
-  border: 2px solid $normal-color;
-  cursor: pointer;
-  & > img {
-    width: 100%;
-    object-fit: cover;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 10px;
+    border: 2px solid $normal-color;
     cursor: pointer;
+    & > img {
+      width: 100%;
+      object-fit: contain;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      cursor: pointer;
+    }
+    .previewButton {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-end: 0;
+      margin: 1rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+    .checkmarkButton {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      margin: 1rem;
+    }
   }
-}
-
-.previewButton {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-end: 0;
-  margin: 1rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #fff;
-}
-
-.checkmarkButton {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  margin: 1rem;
 }
 
 .answer {
