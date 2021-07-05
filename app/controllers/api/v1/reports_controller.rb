@@ -21,7 +21,7 @@ module Api
           raise Errors::Api::AssessmentIsNotPassedError, "Assessments for report #{report.id} are not completed"
         end
 
-        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call(report, results, true)[:ok],
+        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call!(report, results),
                                                    user_report: user_report).to_h
       end
 

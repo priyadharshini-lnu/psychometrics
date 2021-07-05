@@ -12,6 +12,11 @@ export const RESCORE_RESPONSES = 'campaigns/assessments/RESCORE_RESPONSES'
 export const REMOVE = 'campaigns/assessments/REMOVE'
 export const UPDATE_AVAILABLE_LOCALES = 'campaigns/userAssessments/UPDATE_AVAILABLE_LOCALES'
 
+const EXPORT_RAW_RESULTS = 'campaigns/userAssessments/EXPORT_RAW_RESULT'
+const EXPORT_SCORING_RESULTS = 'campaigns/userAssessments/EXPORT_SCORING_RESULTS'
+const EXPORT_NORMED_RESULTS = 'campaigns/userAssessments/EXPORT_NORMED_RESULTS'
+const EXPORT_RAW_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_RAW_FACTOR_RESULTS'
+
 export const activateUniversalLink = (campaignId: string, id: number) => ({
   type: ACTIVATE_UNIVERSAL_LINK,
   request: {
@@ -116,6 +121,43 @@ export const updateAvailableLocales = (
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_available_locales`,
     body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
+
+export const exportRawResults = (campaignId: number, assessmentId: number, withLabels: boolean) => ({
+  type: EXPORT_RAW_RESULTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_results`,
+    body: { withLabels },
+    loader: true,
+  },
+})
+
+export const exportScoringResults = (campaignId: number, assessmentId: number) => ({
+  type: EXPORT_SCORING_RESULTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_scoring_results`,
+    loader: true,
+  },
+})
+
+export const exportNormedResults = (campaignId: number, assessmentId: number) => ({
+  type: EXPORT_NORMED_RESULTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_normed_results`,
+    loader: true,
+  },
+})
+
+export const exportRawFactorScores = (campaignId: number, assessmentId: number) => ({
+  type: EXPORT_RAW_FACTOR_SCORES,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_factor_scores`,
     loader: true,
   },
 })

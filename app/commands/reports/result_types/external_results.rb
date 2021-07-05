@@ -4,12 +4,15 @@ module Reports
   module ResultTypes
     class ExternalResults < BaseType
       def call
-        assign = context.find_assign_by(data['assessmentId'])
+        user_result = context.find_user_result_by(data['assessmentId'])
+        if user_result&.assessment_id == data['assessmentId']
+          value =  user_result.external_results.try(:[], data['key'])
+        end
         {
           key: data['key'],
           name: data['label'],
           config_data: data,
-          value: assign&.assessment_id == data['assessmentId'] ? assign.external_results.try(:[], data['key']) : nil
+          value: value
         }
       end
     end

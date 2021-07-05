@@ -23,9 +23,9 @@ module Reports
       #
       def get_occupation
         # Finds assign
-        assign = context.find_assign_by(data['assessmentId'])
+        user_result = context.find_user_result_by(data['assessmentId'])
         # Sorts occupations
-        sorted_occupations = (assign.occupations || []).sort_by { |occupation| occupation['value'] }
+        sorted_occupations = (user_result.occupations || []).sort_by { |occupation| occupation['value'] }
         sorted_occupations.reverse! if data['order'] == 'desc'
 
         # Gets occupation

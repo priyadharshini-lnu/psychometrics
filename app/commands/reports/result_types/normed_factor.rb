@@ -4,26 +4,22 @@ module Reports
   module ResultTypes
     class NormedFactor < BaseType
       def call
-        assign = context.find_assign_by(data['assessmentId'])
-        # Skip if can't find factor
-        factor = nil
-        factor_alias = nil
-        factor = Factor.find(data['factorId'])
-        factor_alias = factor.aliases.find_by(report_id: context.report.id)
-        # Skip if the assign is for another assessment
+        user_result = context.find_user_result_by(data['assessmentId'])
+        factor_name = context.resources.dig(:factor_names, data['factorId'])
+        raise ActiveRecord::RecordNotFound unless factor_name
 
-        return decorate(factor, factor_alias) unless assign&.assessment_id == data['assessmentId']
+        return decorate(factor_name) unless user_result&.assessment_id == data['assessmentId']
 
-        decorate(factor, factor_alias, assign.scoring&.dig(data['factorId']&.to_s, 'norm_score'))
+        decorate(factor_name, user_result.scoring&.dig(data['factorId']&.to_s, 'norm_score'))
       rescue ActiveRecord::RecordNotFound => e
         Rails.logger.warn e.message
-        decorate(factor, factor_alias)
+        decorate(factor_name)
       end
 
-      def decorate(factor, factor_alias, result = nil)
+      def decorate(factor_name, result = nil)
         {
           key: data['factorId'],
-          name: data['label'] || factor_alias&.name || factor&.name,
+          name: data['label'] || factor_name,
           config_data: data,
           value: result
         }
