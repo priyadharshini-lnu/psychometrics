@@ -10,7 +10,7 @@ const DefaultProps = {
   MultipleChoice: {
     choices: 3,
     choicesTexts: ['Click to write Choice 1', 'Click to write Choice 2', 'Click to write Choice 3'],
-    choicesImages: [],
+    choicesImages: ['', '', ''],
     questionText: 'Click to write the question text',
     type: 'SingleAnswer',
     position: 'Vertical',

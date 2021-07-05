@@ -5480,13 +5480,6 @@ CREATE INDEX index_campaign_assessments_on_campaign_assessment_group_id ON publi
 
 
 --
--- Name: index_campaign_assessments_on_campaign_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_campaign_assessments_on_campaign_assessment_id ON public.campaign_assessments USING btree (campaign_id, assessment_id);
-
-
---
 -- Name: index_campaign_assessments_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 

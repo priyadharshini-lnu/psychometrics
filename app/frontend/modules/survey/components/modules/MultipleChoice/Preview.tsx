@@ -15,17 +15,19 @@ import { SafeHTML } from 'components/SafeHTML'
 import { ScoringTable } from './components/ScoringTable'
 
 const SingleAnswerPreview = lazy(
-  () => import('./components/types/SingleAnswerPreview'),
+  () => import(/* webpackChunkName: "mc-singleAnswerPreview" */ './components/types/SingleAnswerPreview'),
 )
 const MultipleAnswerPreview = lazy(
-  () => import('./components/types/MultipleAnswerPreview'),
+  () => import(/* webpackChunkName: "mc-multipleAnswerPreview" */ './components/types/MultipleAnswerPreview'),
 )
-const DropdownPreview = lazy(() => import('./components/types/DropdownPreview'))
+const DropdownPreview = lazy(
+  () => import(/* webpackChunkName: "mc-dropdownPreview" */ './components/types/DropdownPreview'),
+)
 const SelectBoxPreview = lazy(
-  () => import('./components/types/SelectBoxPreview'),
+  () => import(/* webpackChunkName: "mc-selectBoxPreview" */ './components/types/SelectBoxPreview'),
 )
 const MultiSelectBoxPreview = lazy(
-  () => import('./components/types/MultiSelectBoxPreview'),
+  () => import(/* webpackChunkName: "mc-multiSelectBoxPreview" */ './components/types/MultiSelectBoxPreview'),
 )
 
 interface OwnProps {
