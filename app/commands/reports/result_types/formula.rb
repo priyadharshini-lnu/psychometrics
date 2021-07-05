@@ -14,7 +14,7 @@ module Reports
       def call
         formula_op = data.dig('formula', 'op')
         results = formula_args.map do |arg|
-          context.get_class_map[arg['type'].to_sym].constantize.call(context, arg).try(:[], :value)
+          Reports::BuildResults::CLASS_MAP[arg['type'].to_sym].constantize.call(context, arg).try(:[], :value)
         end.flatten.compact
         {
           key: data['key'] || 'formula',

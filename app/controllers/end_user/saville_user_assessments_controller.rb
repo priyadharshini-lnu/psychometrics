@@ -18,7 +18,7 @@ class EndUser::SavilleUserAssessmentsController < ApplicationController
 
   def redirect
     campaign = @user_assessment.campaign
-    @user_assessment.completed!
+    @user_assessment.completed! if Saville::GetAssessmentStatus.call!(@user_assessment) == 'Completed'
 
     redirect_to(assessment_completed_path(campaign.id))
   end

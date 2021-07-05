@@ -11,6 +11,7 @@ describe Assessments::Export::AgileRaw do
     create(
       :users_result,
       subject: user,
+      evaluator: user,
       campaign: campaign,
       assessment: assessment,
       answers: YAML.load_file("#{Rails.root}/spec/fixtures/agile_answers.yml")
@@ -64,12 +65,12 @@ describe Assessments::Export::AgileRaw do
       expected_second_row = [
         users_result.encoded_id,
         users_result.campaign.try(:name),
-        users_result.user.first_name,
-        users_result.user.last_name,
-        users_result.user.email,
-        users_result.assessment_id,
+        users_result.subject.first_name,
+        users_result.subject.last_name,
+        users_result.subject.email,
+        assessment.id,
         users_result.completed_at.try(:strftime, '%D %r'),
-        users_result.assessment.name,
+        assessment.name,
         nil,
         'equal',
         1.502
