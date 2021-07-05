@@ -2,11 +2,14 @@
 
 module Reports
   class ExportData < BaseCommand
-    private_attr_reader :report, :campaign, :header_style, :sub_header_style, :content_style
+    private_attr_reader :report, :campaign, :header_style, :sub_header_style, :content_style, :configuration_sections,
+                        :resources
 
     def initialize(report, campaign)
       @report = report
       @campaign = campaign
+      @configuration_sections = report.data_configuration['sections'] || []
+      @resources = ::Reports::GetDataConfigurationResources.call!(report)
     end
 
     # rubocop:disable Metrics/AbcSize
@@ -23,7 +26,7 @@ module Reports
           # Draws headers and collect data
           #
           header_position = 0
-          (report.data_configuration['sections'] || []).each do |section|
+          configuration_sections.each do |section|
             # Builds Sub Headers
             sub_headers = build_sub_headers(section).flatten
             sub_headers_size = sub_headers.size - 1
@@ -44,9 +47,8 @@ module Reports
             header_position = cells_range.last + 1
           end
 
-          # TODO: (atanych): too many N+1 queries. Might be resolved by cached_find. https://youtu.be/q8ausBZTrxU?t=400
-          users_results.group_by(&:subject_id).each do |_, results|
-            results = ::Reports::BuildResults.call(report, results, true)[:ok].flatten
+          users_results.includes(:subject).group_by(&:subject_id).each do |_, results|
+            results = ::Reports::BuildResults.call(report, results, resources)[:ok].flatten
             sheet.add_row(results.map { |r| r[:value] }, style: content_style)
           end
         end
@@ -81,21 +83,13 @@ module Reports
       )
     end
 
-    # Gets factor title
-    #
-    def fetch_factor_label(factor_id)
-      factor = Factor.select(:id, :name).find_by(id: factor_id)
-      factor_alias = factor.aliases.find_by(report_id: report.id)
-      factor_alias&.name || factor&.name
-    end
-
     # Builds sub headers
     #
     def build_sub_headers(section)
       sub_headers = section['data'] || []
       sub_headers.map do |sub_header|
         label = sub_header['label']
-        label ||= fetch_factor_label(sub_header['factorId']) if sub_header['factorId']
+        label ||= resources.dig(:factor_names, sub_header['factorId']) if sub_header['factorId']
         label ||= sub_header['key'].humanize if sub_header['key']
         label || ''
       end

@@ -34,7 +34,7 @@ module UserAssessments
         next unless user_report.generatable?
         next if user_report.report.data_configuration.empty?
 
-        built_results = ::Reports::BuildResults.call(user_report.report, user_report.user_results, true)[:ok]
+        built_results = ::Reports::BuildResults.call!(user_report.report, user_report.user_results)
         data = {
           campaign: user_assessment.campaign,
           subject: user_assessment.subject,

@@ -112,11 +112,13 @@ _.extend(Custom.prototype, {
   },
 
   DoesNotContains () {
-    return this.resultValue().toString().search(this.value) === -1
+    const result = this.resultValue()
+    return result && result.toString().search(this.value) === -1
   },
 
   MatchesRegexp () {
-    return this.resultValue().toString().match(new RegExp(this.value))
+    const result = this.resultValue()
+    return result && result.toString().match(new RegExp(this.value))
   },
 
   NotInPast () {

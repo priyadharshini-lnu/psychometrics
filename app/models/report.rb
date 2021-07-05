@@ -82,7 +82,7 @@ class Report < ApplicationRecord
   has_one :hogan_report_setting
   has_one :saville_report_setting
   accepts_nested_attributes_for :hogan_report_setting, allow_destroy: true
-  accepts_nested_attributes_for :saville_report_setting
+  accepts_nested_attributes_for :saville_report_setting, allow_destroy: true
 
   #   VALIDATIONS
   #
