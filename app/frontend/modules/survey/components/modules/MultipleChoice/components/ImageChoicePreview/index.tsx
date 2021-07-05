@@ -88,7 +88,7 @@ export const ImageChoices: FC<Props> = ({
           <label
             className={styles.card}
             htmlFor={`radio-${choiceId}`}
-            style={{ borderColor: choiceAnswer ? '#01837F' : '#d9d9d9' }}
+            style={{ borderColor: choiceAnswer ? '#00B4A9' : '#d9d9d9' }}
             key={choiceId}
           >
             <span
@@ -139,7 +139,7 @@ export const ImageChoices: FC<Props> = ({
         visible={isPreviewModalOpen}
         onCancel={() => toggleImagePreviewer()}
       >
-        <img src={imagePreviewSrc} width="100%" height="100%" loading="eager" />
+        <img src={imagePreviewSrc} width="100%" height="100%" loading="lazy" />
       </Modal>
     </form>
   )

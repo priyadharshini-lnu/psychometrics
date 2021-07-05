@@ -116,7 +116,7 @@ class Properties extends Component {
                 <label className={styles.inputLabel}>
                   Url
                 </label>
-                <input onChange={this.changeUrl} />
+                <input value={model.props.url} onChange={this.changeUrl} />
               </div>
             </div>
             )

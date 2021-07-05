@@ -337,9 +337,7 @@ Rails.application.routes.draw do
             post :assign_multiple
           end
         end
-        resources :reports, only: %i[index] do
-          get :export
-        end
+        resources :reports, only: %i[index]
         namespace :reports do
           resources :regenerates, only: %i[new create]
         end

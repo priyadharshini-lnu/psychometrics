@@ -19,7 +19,11 @@ class AdminJobRecord < ApplicationRecord
     import_assessors: 8,
     import_datasheet: 9,
     copy_dimension: 10,
-    export_report_data: 11
+    export_report_data: 11,
+    assessment_raw_result_export: 12,
+    assessment_scoring_export: 13,
+    assessment_norm_export: 14,
+    assessment_raw_factor_export: 15
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }

@@ -27,8 +27,8 @@ const CodeFormModal: React.FC<Props> = ({
     ...values,
     id: code && code.id,
     disabled: !values.disabled,
-    startDate: values.startDate.format('YYYY-MM-DD HH:mm'),
-    endDate: values.endDate.format('YYYY-MM-DD HH:mm'),
+    startDate: values.startDate.format(),
+    endDate: values.endDate.format(),
   })
 
   return (

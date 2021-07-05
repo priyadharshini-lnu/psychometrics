@@ -28,7 +28,7 @@ export class Image extends Component {
       return (
         <div
           className={styles.image}
-          style={{ backgroundImage: `url(${model.props.url})` }}
+          style={{ backgroundImage: `url("${model.props.url}")` }}
           onLoad={this.load}
           onDoubleClick={this.openEditor}
         />
