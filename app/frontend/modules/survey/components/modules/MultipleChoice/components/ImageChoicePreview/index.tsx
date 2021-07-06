@@ -15,7 +15,6 @@ interface Props {
   isImagePreviewEnable: PreviewModel['props']['isImagePreviewEnable']
   imageChoiceSize: PreviewModel['props']['imageChoiceSize']
   choicesIds: PreviewModel['choicesIds']
-  choicesImages: PreviewModel['props']['choicesImages']
   answers: PreviewModel['result']['answers']
   notApplicable: PreviewModel['props']['notApplicable']
   isNotApplicableChecked: PreviewModel['result']['notApplicable']
@@ -32,7 +31,6 @@ export const ImageChoices: FC<Props> = ({
   imageChoiceSize,
   isImagePreviewEnable,
   answers,
-  choicesImages,
   handleChoiceChange,
   model,
   defaultChoiceText,
@@ -78,7 +76,9 @@ export const ImageChoices: FC<Props> = ({
         const choice = answers.find(answer => answer.index === choiceId)
         const choiceAnswer = choice?.value ?? false
 
-        const choiceImage = choicesImages[choiceId]
+        const choiceImage = I18n.tQuestion(model, `choicesImages${choiceId + 1}`, {
+          choice: choiceId,
+        })
 
         const choiceText = I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
           choice: choiceId,
