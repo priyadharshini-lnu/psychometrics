@@ -1101,6 +1101,8 @@ providers:
           - E1D45CEF-8599-4888-BE78-7D8E53CEC66A
           - C11548CA-FE01-445F-88EA-0F6ACE4474D0
           - 430A9596-D773-4C24-9B83-2A96E7168679
+          - 8D285935-9DF4-4D1B-B66A-CCB4C823DD6B
+          - 53750F89-D185-4A0A-B6F4-C4676F50AC48
         report_ids:
           - 0FB7FC8B-9E26-4FB7-AAA3-27CB1CFC5C10
           - 65789477-C495-4AFE-9087-1A9402E8BF5C
@@ -1126,6 +1128,8 @@ providers:
           - 442865C1-14E7-49A3-BEAB-69563FA5D145
           - DF91FEA8-3417-494A-8C11-335C6E047B9A
           - A0AEFB82-6E7E-4FE1-B003-893EEE88704C
+          - 243D812B-8EA5-4987-B787-641B11ACBF25
+          - C69FD2F7-AE0C-48D4-B53A-D09E627D7E95
         report_ids:
           - 70945782-6B50-4C80-8EE6-308BD6D92A45
       - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
@@ -1204,6 +1208,9 @@ providers:
           - 5F533E15-A7F1-47A3-BAAA-B0773845459B
           - 70C4E175-716F-47D5-8233-98BBEF5F36FE
           - 4C75B6E8-307E-48B8-A3A1-52A72AA7830C
+          - C0033CE3-ECBB-41B9-A5A6-62C3B9429597
+          - 8093A2DE-1EB9-40E5-80E0-F73FCC236FE5
+          - 216C7F4D-D141-47E9-B2D1-89219C264B02
         report_ids:
           - 0B623B16-D4CC-4992-B560-7584348D49E8
           - CF7AAD43-6657-4DEE-A273-76D1F79DE456
@@ -1513,6 +1520,20 @@ providers:
         name: Verbal Comprehension Aptitude & Pace (Rx) - Individual Contributors (INT, IA, 2016)
       - id: 94437446-E07B-4CF2-B3EF-32717D16F00E
         name: Verbal Comprehension Aptitude & Pace (Rx) - Mixed Occupational Group (INT, IA, 2016)
+      - id: 243D812B-8EA5-4987-B787-641B11ACBF25
+        name: Swift Analysis Aptitude & Pace (Rx) - Graduates - All (GCC, IA, 2021)
+      - id: C69FD2F7-AE0C-48D4-B53A-D09E627D7E95
+        name: Swift Analysis Aptitude & Pace (Rx) - Professionals & Managers (GCC, IA, 2021)
+      - id: 8D285935-9DF4-4D1B-B66A-CCB4C823DD6B
+        name: Wave Focus Styles V4 - Graduates - All (GCC, IA, 2021)
+      - id: 53750F89-D185-4A0A-B6F4-C4676F50AC48
+        name: Wave Focus Styles V4 - Professionals & Managers (GCC, IA, 2021)
+      - id: C0033CE3-ECBB-41B9-A5A6-62C3B9429597
+        name: Wave Professional Styles V4 - Graduates - All (GCC, IA, 2021)
+      - id: 8093A2DE-1EB9-40E5-80E0-F73FCC236FE5
+        name: Wave Professional Styles V4 - Professionals & Managers (GCC, IA, 2021)
+      - id: 216C7F4D-D141-47E9-B2D1-89219C264B02
+        name: Wave Professional Styles V4 - Senior Managers & Executives (GCC, IA, 2021)
     reports:
       - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
         name: Abstract Reasoning Aptitude-Rx (IA)
