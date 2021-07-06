@@ -30,7 +30,6 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
       position,
       imageChoiceSize,
       isImagePreviewEnable,
-      choicesImages,
     },
   } = model
 
@@ -61,7 +60,6 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
         imageChoiceSize={imageChoiceSize}
         defaultChoiceText={moduleConfig.defaultChoiceText}
         choicesIds={choicesIds}
-        choicesImages={choicesImages}
         answers={result.answers}
         notApplicable={notApplicable}
         isNotApplicableChecked={result.notApplicable}
