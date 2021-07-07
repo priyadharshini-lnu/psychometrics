@@ -3,11 +3,7 @@
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
-      if @for_project
-        super || @user.has_client_grant?(:projects, :view, @project_id)
-      else
-        super || @user.has_grant?(:clients, :view)
-      end
+      super || @user.has_grant?(:clients, :view)
     end
 
     def view_licenses?
@@ -16,7 +12,7 @@ module Administration
 
     def copy?
       if record.project? || record.campaign? || record.sub_campaign?
-        record.active? && (@user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id))
+        record.active? && (@user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id))
       else
         record.active? && @user.is?(:superadmin)
       end
@@ -24,7 +20,7 @@ module Administration
 
     def destroy?
       if record.project? || record.campaign? || record.sub_campaign?
-        @user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id)
+        @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id)
       else
         @user.is?(:superadmin)
       end
@@ -32,7 +28,7 @@ module Administration
 
     def edit?
       if record.project? || record.campaign? || record.sub_campaign?
-        @user.is?(:superadmin) || @user.has_client_grant?(:projects, :manage, @project_id)
+        @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id)
       else
         @user.is?(:superadmin)
       end
@@ -43,7 +39,7 @@ module Administration
     end
 
     def manage_project?
-      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id)
     end
 
     def new?
@@ -52,7 +48,7 @@ module Administration
 
     def manage_campaign?
       return true if @user.is?(:superadmin)
-      return true if @user.has_client_grant?(:campaigns, :manage, @project_id)
+      return true if @user.has_permission?(:campaigns, :manage, project_id)
 
       false
     end
@@ -70,11 +66,11 @@ module Administration
     end
 
     def manage_project_admins?
-      @user.has_client_grant?(:projects, :manage_admins, @project_id)
+      @user.has_permission?(:projects, :manage_admins, project_id)
     end
 
     def project_admins?
-      record.prime_project? && @user.has_client_grant?(:projects, :manage_admins, @project_id)
+      record.prime_project? && @user.has_permission?(:projects, :manage_admins, project_id)
     end
 
     def search_users?

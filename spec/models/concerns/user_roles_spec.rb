@@ -9,7 +9,7 @@ describe UserRoles do
   let(:membership_grant_with_report_view) { create(:membership_grants, data: { reports: %w[view] }) }
   let(:membership_grant_without_report_view) { create(:membership_grants, data: { campaigns: %w[view] }) }
 
-  context '#has_client_grant?' do
+  context '#has_permission?' do
     it 'returns true if passed project_id is of project and its project or client memebrship has specific grant' do
       project_membership = create(:project_admin_membership, user: user,
         grants: membership_grant_with_report_view, client: project)
@@ -17,7 +17,18 @@ describe UserRoles do
         grants: membership_grant_without_report_view, client: project.client)
 
       expect(
-        project_membership.user.has_client_grant?(:reports, :view, project_membership.client_id)
+        project_membership.user.has_permission?(:reports, :view, project_membership.client_id)
+      ).to eq(true)
+    end
+
+    it 'returns true if passed project_id is of project and its not project but client memebrship has specific grant' do
+      project_membership = create(:project_admin_membership, user: user,
+        grants: membership_grant_without_report_view, client: project)
+      _client_membership = create(:client_admin_membership, user: user,
+        grants: membership_grant_with_report_view, client: project.client)
+
+      expect(
+        project_membership.user.has_permission?(:reports, :view, project_membership.client_id)
       ).to eq(true)
     end
 
@@ -28,7 +39,7 @@ describe UserRoles do
         grants: membership_grant_without_report_view, client: project.client)
 
       expect(
-        project_membership.user.has_client_grant?(:reports, :view, project_membership.client_id)
+        project_membership.user.has_permission?(:reports, :view, project_membership.client_id)
       ).to eq(false)
     end
 
@@ -39,7 +50,7 @@ describe UserRoles do
 
       expect(
         client_memebership_with_report_view_grant.user.
-          has_client_grant?(:reports, :view, client_memebership_with_report_view_grant.client_id)
+          has_permission?(:reports, :view, client_memebership_with_report_view_grant.client_id)
       ).to eq(true)
     end
 
@@ -50,7 +61,7 @@ describe UserRoles do
 
       expect(
         client_memebership_without_report_view_grant.user.
-          has_client_grant?(:reports, :view, client_memebership_without_report_view_grant.client_id)
+          has_permission?(:reports, :view, client_memebership_without_report_view_grant.client_id)
       ).to eq(true)
     end
   end

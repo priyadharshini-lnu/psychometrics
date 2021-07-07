@@ -2,12 +2,11 @@
 
 module Administration
   class BasePolicy
-    attr_reader :user, :project_id, :for_project, :membership, :record
+    attr_reader :user, :project_id, :membership, :record
 
     def initialize(user, record, extra = {})
       @user = user
       @project_id = extra[:project_id]
-      @for_project = extra[:for_project]
       @record = [record].flatten.last
     end
 

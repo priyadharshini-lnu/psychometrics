@@ -67,8 +67,8 @@ module UserRoles
     memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 
-  def has_client_grant?(scope, grant, project_id)
-    project = project_id && Client.find_by(id: project_id)
+  def has_permission?(scope, grant, project_id)
+    project = Client.find(project_id)
 
     project_based_client_ids = [].tap do |arr|
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.client.id])

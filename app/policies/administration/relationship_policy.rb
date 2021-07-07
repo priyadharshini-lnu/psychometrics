@@ -3,11 +3,11 @@
 module Administration
   class RelationshipPolicy < Administration::BasePolicy
     def fetch_with_usage?
-      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage, @project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id)
     end
 
     def create?
-      @user.is?(:superadmin) || @user.has_client_grant?(:campaigns, :manage, @project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id)
     end
 
     class Scope < Scope

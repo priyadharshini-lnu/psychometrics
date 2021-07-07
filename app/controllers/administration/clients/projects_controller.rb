@@ -7,8 +7,10 @@ module Administration
       before_action :ensure_client
       before_action :set_resource, only: %i[search_users show edit update destroy sidebar toggle_status copy archive]
       before_action :set_privacy_link_enabled, only: %i[new edit create update]
+      append_before_action :pundit_authorize, except: [:index]
 
       def index
+        authorize :project, nil, { project_id: client.id }
         @filter_term = params.dig(:q, :filterable_fields)
         @_filter_form = policy_scope(resource_class).
                         projects_of(client.id).
@@ -93,8 +95,7 @@ module Administration
           resource || resource_class,
           nil,
           {
-            project_id: client.id,
-            for_project: true
+            project_id: client.id
           }
         )
       end
