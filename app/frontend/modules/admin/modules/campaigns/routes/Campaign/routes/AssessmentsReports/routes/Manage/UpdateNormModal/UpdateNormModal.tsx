@@ -11,11 +11,6 @@ import { PropsFromRedux } from './connect'
 const { I18n } = window
 const { Option } = Select
 
-interface FormAttrs {
-  normId: number
-  apply: boolean
-}
-
 export interface OwnProps {
   close(): void
   campaignAssessmentId: number,

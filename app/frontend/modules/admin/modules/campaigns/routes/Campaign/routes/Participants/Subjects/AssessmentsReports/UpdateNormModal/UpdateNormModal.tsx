@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Form, Select,
+  Modal, Button, Form, Select, message,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
@@ -10,11 +10,6 @@ import { PropsFromRedux } from './connect'
 
 const { I18n } = window
 const { Option } = Select
-
-interface FormAttrs {
-  normId: number
-  apply: boolean
-}
 
 export interface OwnProps {
   close(): void
@@ -35,8 +30,10 @@ const UpdateNormModal: React.FC<Props> = ({
   const [_fields, setFields] = useState({})
 
   const handleUpdate = (params) => {
-    updateNorm(campaignId, campaignAssessmentId, params)
-    close()
+    updateNorm(campaignId, campaignAssessmentId, params).then(() => {
+      message.info(I18n.t('campaign_assessment.modals.update_norm.success_msg'))
+      close()
+    })
   }
 
   return (

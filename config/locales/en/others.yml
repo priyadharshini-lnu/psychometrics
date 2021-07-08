@@ -919,7 +919,7 @@ en:
       update_norm:
         apply: Apply this change to existing users in this campaign
         select_norm: Select Norm
-        success_msg: Norms successfully uploaded
+        success_msg: Norms successfully updated
         title: Update Norm
         update: Update
       update_time:

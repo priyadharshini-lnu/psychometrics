@@ -16,7 +16,7 @@ const defaultState = {
   list: [],
 }
 
-const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
+export const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
 export const ALLOW_EDIT_OF_ASSESSMENT = 'campaigns/userAssessments/ALLOW_EDIT_OF_ASSESSMENT'
@@ -36,6 +36,7 @@ export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_norm`,
     body: { ...body, campaignAssessmentId },
+    loader: true,
   },
 })
 
