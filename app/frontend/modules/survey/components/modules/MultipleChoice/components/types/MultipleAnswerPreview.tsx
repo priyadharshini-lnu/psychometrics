@@ -19,7 +19,7 @@ interface Props {
   I18n: I18nInterface
 }
 
-export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
+export const MultipleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
   const forceUpdate = useForceUpdate()
 
   const {
@@ -38,11 +38,12 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
 
   const handleChoiceChange = (event?: ChangeEvent<HTMLInputElement>) => {
     const value = event?.target?.value ?? ''
+    const checked = event?.target?.checked ?? false
 
     result.notApplicable = false
 
     if (value.length !== 0) {
-      result.answer(parseInt(value, 10))
+      result.answer(parseInt(value, 10), checked)
     }
 
     forceUpdate()
@@ -62,6 +63,7 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
         <ImageChoices
           id={id}
           isImagePreviewEnable={isImagePreviewEnable}
+          multiple
           imageChoiceSize={imageChoiceSize}
           defaultChoiceText={moduleConfig.defaultChoiceText}
           choicesIds={choicesIds}
@@ -107,7 +109,7 @@ interface TextChoicesProps {
   readOnly: boolean
   I18n: I18nInterface
   model: PreviewModel
-  handleChoiceChange(event: ChangeEvent<HTMLInputElement>): void
+  handleChoiceChange(event: ChangeEvent<HTMLInputElement>, index?: number): void
   handleNotApplicableChange(): void
 }
 
@@ -116,12 +118,12 @@ const TextChoices: FC<TextChoicesProps> = ({
   position,
   choicesIds,
   answers,
+  notApplicable,
   isNotApplicableChecked,
   defaultChoiceText,
-  notApplicable,
   readOnly,
-  model,
   I18n,
+  model,
   handleChoiceChange,
   handleNotApplicableChange,
 }) => {
@@ -131,7 +133,7 @@ const TextChoices: FC<TextChoicesProps> = ({
 
   return (
     <ol
-      className={cs(styles.list, styles[position], styles.singleAnswer)}
+      className={cs(styles.list, styles[position], styles.multipleAnswer)}
       style={listStyles}
     >
       {choicesIds.map((choiceId) => {
@@ -148,7 +150,7 @@ const TextChoices: FC<TextChoicesProps> = ({
             <label className={`${styles.label} ${styles.labelButton}`}>
               <span className={cs('fa fa-check', styles.checkIcon)} />
               <input
-                type="radio"
+                type="checkbox"
                 name={`${id}`}
                 className={styles.input}
                 disabled={readOnly}
@@ -202,19 +204,17 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
     }`}
   >
     <label className={`${styles.label} ${styles.labelButton}`}>
-      <span className={cs('fa fa-check', styles.checkIcon)} />
       <input
-        type="radio"
-        name={`${id}`}
+        type="checkbox"
         className={styles.input}
         disabled={readOnly}
-        checked={checked}
+        name={`${id}`}
         value=""
-        onChange={onChange}
+        onClick={onChange}
       />
       <span>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
     </label>
   </li>
 )
 
-export default SingleAnswerPreview
+export default MultipleAnswerPreview
