@@ -1,4 +1,4 @@
-import { Factor } from 'modules/reports/core/interfaces/Factor'
+import { Factor } from './Factor'
 
 export interface Assessment {
   factors: Factor[]
