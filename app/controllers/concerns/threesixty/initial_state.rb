@@ -12,11 +12,6 @@ module Threesixty::InitialState
   def set_init_state
     @current_project ||= GetProjectBySubdomain.call!(request.subdomain)
 
-    @current_membership = current_user.memberships.find do |m|
-      (m.project_admin? &&
-        m.client_id == @current_project.id) || (m.client_admin? && m.client_id == @current_project.parent_id)
-    end
-
     @init_state = {
       campaigns: {
         project: {
@@ -45,7 +40,7 @@ module Threesixty::InitialState
   end
 
   def serialized_current_user
-    ::Threesixty::CurrentUserSerializer.new(current_user, current_membership: @current_membership).
+    ::Threesixty::CurrentUserSerializer.new(current_user, project_id: @current_project.id).
       as_json.
       deep_transform_keys! { |key| key.to_s.camelize(:lower) }
   end

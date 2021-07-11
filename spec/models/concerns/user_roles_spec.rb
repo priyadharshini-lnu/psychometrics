@@ -21,7 +21,7 @@ describe UserRoles do
       ).to eq(true)
     end
 
-    it 'returns true if passed project_id is of project and its not project but client memebrship has specific grant' do
+    it "returns true if passed project_id is of project and user doesn't have project grant but has client grant" do
       project_membership = create(:project_admin_membership, user: user,
         grants: membership_grant_without_report_view, client: project)
       _client_membership = create(:client_admin_membership, user: user,
