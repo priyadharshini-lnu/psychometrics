@@ -58,6 +58,12 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
             background: #646464;
             color: #FFF;
           }
+          &.internal-icon-image {
+            background: none;
+            img {
+              max-width: 28px;
+            }
+          }
         }
 
       }

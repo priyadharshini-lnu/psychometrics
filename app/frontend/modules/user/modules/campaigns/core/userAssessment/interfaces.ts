@@ -3,6 +3,7 @@ export interface UserAssessment {
   assessmentId: number
   assessmentCategory: string
   assessmentName: string
+  assessmentIconUrl: string | null
   timing: string
   completionPercent: number | null
   mindmill: boolean
