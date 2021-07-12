@@ -5,65 +5,27 @@ require 'rails_helper'
 describe Reports::BuildResults do
   context '.call' do
     let(:report)           { double('report', data_configuration: data_configuration, id: 1) }
-    let(:client)           { double('client') }
-    let(:norm)             { double('norm', id: 1) }
-    let(:factors_norm)     { double('factors_norm') }
-    let(:membership)       { double('membership', user: user) }
-    let(:user)             { double('user', first_name: 'Jon', last_name: 'Snow') }
-    let(:assigns_report)   { double('assigns_report') }
-    let(:aliases)          { double('aliases') }
-    let(:assign) do
-      double('assign', membership: membership,
-                       external_results: external_results,
-                       assessment_id: 1,
-                       norm_data: norm_data,
-                       scoring: scoring)
-    end
-    let(:factor) do
-      double('factor', id: 1,
-                       name: 'Test factor',
-                       parent_id: nil,
-                       sub_factor_ids: [2, 3],
-                       aliases: aliases,
-                       factors_norms: [factors_norm])
-    end
-
-    let(:build_results_command) { described_class.new(report, [assign]) }
-
-    # ATTRIBUTES
-    # Contains data of External Results from Mindmill or Hogan
-    let(:external_results) { { 'ed.attempted' => 1, 'ed.correct' => 2 } }
-    # Contains Data Configuration for Report
-    let(:data_configuration) { YAML.safe_load(file_fixture('reports/data_configuration.yml').read) }
-    # Contains Norm data
-    let(:norm_data) { { 'id' => 1, 'type' => 'YTI' } }
-    # Contains scoring results
+    let(:user)             { create(:user, first_name: 'Jon', last_name: 'Snow') }
     let(:scoring) do
       {
         '1' => { 'results' => [1, 2, 3], 'norm_score' => 3 },
         '2' => { 'results' => [4, 5, 6], 'norm_score' => 5.5 }
       }
     end
-
-    # Mapped Value
-    let(:mapped_value) { { 'value' => 3 } }
-
-    # SUBJECT
-    # subject { described_class.new(report, client) }
-
-    before(:each) do
-      allow(Report).to        receive(:find).and_return(report)
-      allow(Client).to        receive(:find).and_return(client)
-      allow(Factor).to        receive(:find).and_return(factor)
-      allow(Norm).to          receive(:find).and_return(norm)
-      allow(FactorsNorm).to   receive(:find_by!).and_return(factors_norm)
-      allow(factors_norm).to  receive(:detect_normed_result).and_return(3)
-      allow(aliases).to receive(:find_by).and_return(nil)
+    let(:user_result) do
+      create(:users_result,
+             subject: user,
+             external_results: external_results,
+             scoring: scoring)
     end
+    let(:build_results_command) { described_class.new(report, [user_result]) }
+    let(:external_results) { { 'ed.attempted' => 1, 'ed.correct' => 2 } }
+    let(:data_configuration) { YAML.safe_load(file_fixture('reports/data_configuration.yml').read) }
+    let(:mapped_value) { { 'value' => 3 } }
 
     context 'UserData' do
       let(:data) { { 'key' => 'first_name', 'label' => 'First Name' } }
-      subject { Reports::ResultTypes::UserData.call(build_results_command, data) }
+      subject { Reports::ResultTypes::User.call(build_results_command, data) }
 
       it { is_expected.to eq(key: 'first_name', name: 'First Name', value: user.first_name, config_data: data) }
       context 'when data is not valid' do
@@ -76,7 +38,7 @@ describe Reports::BuildResults do
     end
 
     context 'ExternalResults' do
-      let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => 1, 'label' => 'Attempted' } }
+      let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => user_result.assessment_id, 'label' => 'Attempted' } }
       subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }
 
       it {
@@ -97,21 +59,28 @@ describe Reports::BuildResults do
     end
 
     context 'NormedFactor' do
-      let(:data) { { 'assessmentId' => 1, 'factorId' => 1 } }
+      before(:each) do
+        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+          and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
+      end
+
+      let(:data) { { 'assessmentId' => user_result.assessment_id, 'factorId' => 1 } }
       subject { Reports::ResultTypes::NormedFactor.call(build_results_command, data) }
 
       it do
-        is_expected.to eq(key: 1, name: 'Test factor', value: 3, config_data: data)
+        data['factorId'] = 1
+        is_expected.to eq(key: 1, name: 'Test factor1', value: 3, config_data: data)
       end
 
       it do
         data['factorId'] = 2
-        is_expected.to eq(key: 2, name: 'Test factor', value: 5.5, config_data: data)
+        is_expected.to eq(key: 2, name: 'Test factor2', value: 5.5, config_data: data)
       end
 
       it 'assessment ID not exists' do
+        data['factorId'] = 1
         data['assessmentId'] = 'not_exists'
-        is_expected.to eq(key: 1, name: 'Test factor', value: nil, config_data: data)
+        is_expected.to eq(key: 1, name: 'Test factor1', value: nil, config_data: data)
       end
     end
 
@@ -188,11 +157,11 @@ describe Reports::BuildResults do
               'args' => [{
                 'type' => 'normed_factor',
                 'factorId' => 1,
-                'assessmentId' => 1
+                'assessmentId' => user_result.assessment_id
               }, {
                 'type' => 'normed_factor',
                 'factorId' => 2,
-                'assessmentId' => 1
+                'assessmentId' => user_result.assessment_id
               }]
             }
           },
@@ -229,14 +198,16 @@ describe Reports::BuildResults do
       end
       subject { Reports::ResultTypes::MappedValue.call(build_results_command, data) }
 
-      it {
+      it do
+        expect(::Reports::GetDataConfigurationResources).to receive(:call!).
+          and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
         is_expected.to eq(
           key: 'mapped_value',
           name: 'Overall Aspiration Score',
           value: 4,
           config_data: data
         )
-      }
+      end
     end
   end
 end

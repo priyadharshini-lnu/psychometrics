@@ -39,7 +39,8 @@ module Assessments
             #
             UsersResult.joins(:user_assessment).
               where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
-              includes(user_assessment: %i[subject evaluator]).find_each(batch_size: 100) do |res|
+              includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
+              find_each(batch_size: 100) do |res|
               raw_scores.each_key do |factor_id|
                 raw_scores[factor_id] = res.scoring&.dig(factor_id.to_s, 'score')
               end

@@ -6,7 +6,10 @@ import { MoreOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { useParams } from 'react-router-dom'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
-import { rescoreResponses } from 'modules/admin/modules/campaigns/core/assessments/actions'
+import {
+  rescoreResponses, exportRawResults, exportScoringResults, exportNormedResults,
+  exportRawFactorScores,
+} from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { get as getAssessorAssessment } from 'modules/admin/modules/campaigns/core/campaignAssessorAssessments'
@@ -18,6 +21,10 @@ const connecter = connect(
   }),
   {
     rescoreResponses,
+    exportRawResults,
+    exportScoringResults,
+    exportNormedResults,
+    exportRawFactorScores,
     openModal,
   },
 )
@@ -26,12 +33,16 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 const { Column } = Table
 const { I18n } = window
 
-type Props =PropsFromRedux
+type Props = PropsFromRedux
 
 const AssessmentList: React.FC<Props> = ({
   assessments,
   rescoreResponses,
   openModal,
+  exportRawResults,
+  exportScoringResults,
+  exportNormedResults,
+  exportRawFactorScores,
 }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -61,6 +72,10 @@ const AssessmentList: React.FC<Props> = ({
                     openModal,
                     campaignId: parsedCampaignId,
                     rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
+                    exportRawResults,
+                    exportScoringResults,
+                    exportNormedResults,
+                    exportRawFactorScores,
                   }) as React.ReactElement
                 }
                 innerElement={(
@@ -85,10 +100,15 @@ interface ActionMenuProps {
     campaignId: number, campaignAssessmentId: number
   }): void
   rescoreResponses(): void
+  exportRawResults: Props['exportRawResults']
+  exportScoringResults: Props['exportScoringResults']
+  exportNormedResults: Props['exportNormedResults']
+  exportRawFactorScores: Props['exportRawFactorScores']
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses,
+  campaignId, assessment, openModal, rescoreResponses, exportRawResults,
+  exportScoringResults, exportNormedResults, exportRawFactorScores,
 }) => {
   const { id, name, permissions } = assessment
 
@@ -97,64 +117,86 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
   }
 
+  const handleRawExport = (with_labels: boolean) => {
+    exportRawResults(campaignId, id, with_labels).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.raw_results_export_scheduled'))
+    })
+  }
+
+  const handleScoringExport = () => {
+    exportScoringResults(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.scoring_results_export_scheduled'))
+    })
+  }
+
+  const handleNormedResultExport = () => {
+    exportNormedResults(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.norm_results_export_scheduled'))
+    })
+  }
+
+  const handleRawFactorExport = () => {
+    exportRawFactorScores(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.raw_factor_export_scheduled'))
+    })
+  }
+
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
         {permissions.exportRawResults && (
           <Menu.Item key="export_raw_labels">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={
-                `/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx?with_labels=1`
-              }
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={() => handleRawExport(true)}
             >
               Raw (with labels)
-            </a>
+            </div>
           </Menu.Item>
         )}
         {permissions.exportRawResults && (
           <Menu.Item key="export_raw">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx`}
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={() => handleRawExport(false)}
             >
               Raw (without labels)
-            </a>
+            </div>
           </Menu.Item>
         )}
         {permissions.exportScoringResults && (
           <Menu.Item key="export_scoring">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_scoring_results.xlsx`}
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={() => handleScoringExport()}
             >
               Scoring
-            </a>
+            </div>
           </Menu.Item>
         )}
         {permissions.exportNormedResults && (
           <Menu.Item key="export_normed">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_normed_results.xlsx`}
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={() => handleNormedResultExport()}
             >
               Normed Factor Scores
-            </a>
+            </div>
           </Menu.Item>
         )}
         {permissions.exportRawFactorScores && (
           <Menu.Item key="export_raw_scores">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_factor_scores.xlsx`}
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={() => handleRawFactorExport()}
             >
               Raw Factor Scores
-            </a>
+            </div>
           </Menu.Item>
         )}
         {permissions.exportExternalResults && (

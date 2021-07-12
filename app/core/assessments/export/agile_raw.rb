@@ -20,18 +20,18 @@ module Assessments
         [
           res.encoded_id,
           campaign.name,
-          res.user.first_name,
-          res.user.last_name,
-          res.user.email,
-          res.assessment_id,
+          res.subject.first_name,
+          res.subject.last_name,
+          res.subject.email,
+          @assessment.id,
           res.completed_at.try(:strftime, '%D %r'),
-          res.assessment.name,
+          @assessment.name,
           ''
         ]
       end
 
       def results
-        UsersResult.joins(:user_assessment).
+        UsersResult.includes(:user_assessment, :subject).
           where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id })
       end
     end

@@ -1,3 +1,5 @@
+import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+
 export default interface RawResult {
   scoring: RawResultScoring
   embedded_data: {
@@ -13,6 +15,7 @@ export default interface RawResult {
   external_scoring: any
   data_sheet: object
   subject_datasheet: object
+  media_responses: MediaResponse[]
 }
 
 export interface ScoringResult {

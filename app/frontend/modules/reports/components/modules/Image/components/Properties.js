@@ -7,11 +7,13 @@ import Select from 'react-select'
 import AssessmentProperties from 'rb/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import QuestionsSelect from './QuestionsSelect'
 import connect from '../connect'
 
 const TYPE_OPTIONS = [
   { label: 'Simple Image', value: 'SimpleImage' },
   { label: 'Conditional Image', value: 'ConditionalImage' },
+  { label: 'Uploaded Image', value: 'ResponseImage' },
 ]
 
 class Properties extends Component {
@@ -79,7 +81,7 @@ class Properties extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, questions } = this.props
     return (
       <div>
         <div className={styles.title}>Image Options</div>
@@ -116,7 +118,17 @@ class Properties extends Component {
                 <label className={styles.inputLabel}>
                   Url
                 </label>
-                <input onChange={this.changeUrl} />
+                <input value={model.props.url} onChange={this.changeUrl} />
+              </div>
+            </div>
+            )
+          }
+          {
+            model.props.sourceType === 'ResponseImage'
+            && (
+            <div>
+              <div className={styles.block}>
+                <QuestionsSelect questions={questions} model={model} onSelect={this.update} />
               </div>
             </div>
             )

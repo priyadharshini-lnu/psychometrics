@@ -47,11 +47,19 @@ RSpec.describe EndUser::SavilleUserAssessmentsController, type: :controller do
   end
 
   describe 'GET redirect' do
-    it 'mark user_assessment as completed and redirect to campaign' do
+    it 'mark user_assessment as completed if saville assessment is completed and redirect to campaign' do
+      allow(Saville::GetAssessmentStatus).to receive(:call!).and_return('Completed')
       get :redirect, params: { id: user_assessment.id }
 
       expect(user_assessment.reload.completed?).to eq(true)
       expect(response).to redirect_to(assessment_completed_path(campaign))
+    end
+
+    it "doesn't mark user_assessment as completed if saville assessment is not completed" do
+      allow(Saville::GetAssessmentStatus).to receive(:call!).and_return('InCompleted')
+      get :redirect, params: { id: user_assessment.id }
+
+      expect(user_assessment.reload.completed?).to eq(false)
     end
   end
 end
