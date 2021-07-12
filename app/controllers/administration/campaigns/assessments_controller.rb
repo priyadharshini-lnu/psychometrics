@@ -128,7 +128,11 @@ module Administration
       end
 
       def pundit_authorize
-        authorize campaign_assessment || assessment
+        authorize(
+          campaign_assessment || assessment,
+          nil,
+          project_id: campaign.project_id
+        )
       end
 
       def import_params

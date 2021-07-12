@@ -27,7 +27,8 @@ module Administration
             %w[login_as spoof],
             'reset_password',
             %w[remove destroy]
-          ]
+          ],
+          instance_options[:project_id]
         )
       end
 

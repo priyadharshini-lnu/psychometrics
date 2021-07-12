@@ -2,12 +2,13 @@
 
 module Administration::Threesixty
   class BasePolicy < Administration::BasePolicy
-    attr_reader :threesixty_campaign, :user
+    attr_reader :threesixty_campaign, :user, :project_id
 
     def initialize(user, record, extra = {})
       @user = user
-      @threesixty_campaign = extra[:threesixty_campaign]
       @record = [record].flatten.last
+      @threesixty_campaign = extra[:threesixty_campaign]
+      @project_id = extra[:project_id]
     end
 
     def index?

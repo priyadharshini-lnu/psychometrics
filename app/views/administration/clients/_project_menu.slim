@@ -1,4 +1,4 @@
-- if policy(:membership).can_manage_project_admins?
+- if policy(:membership, { project_id: project.id }).can_manage_project_admins?
   = active_link_to(t('administration.navigation.project_admins'), administration_client_project_admins_path(project), class: 'btn btn-default')
 - if policy(:datasheet).index?
   = active_link_to(t('administration.navigation.datasheets'), administration_project_datasheet_rows_path(project), class: 'btn btn-default')

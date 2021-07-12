@@ -40,7 +40,8 @@ module Administration
             'edit',
             'copy',
             %w[delete destroy]
-          ]
+          ],
+          instance_options[:project_id]
         )
       end
 

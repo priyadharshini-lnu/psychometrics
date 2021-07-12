@@ -5,20 +5,20 @@ module Administration
     module Assessors
       class UserAssessmentPolicy < Administration::BasePolicy
         def index?
-          @user.is?(:superadmin) || @user.has_grant?(:assessors, :view)
+          @user.is?(:superadmin) || @user.has_permission?(:assessors, :view, project_id)
         end
 
         def create?
-          @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+          @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
         end
 
         def bulk_delete?
-          @user.is?(:superadmin) || @user.has_grant?(:assessors, :manage)
+          @user.is?(:superadmin) || @user.has_permission?(:assessors, :manage, project_id)
         end
 
         def reset?
-          @user.is?(:superadmin) || (@user.has_grant?(:campaigns, :manage_users) &&
-            @user.has_grant?(:assessors, :manage))
+          @user.is?(:superadmin) || (@user.has_permission?(:campaigns, :manage_users, project_id) &&
+            @user.has_permission?(:assessors, :manage, project_id))
         end
       end
     end

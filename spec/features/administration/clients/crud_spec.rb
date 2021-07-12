@@ -51,7 +51,7 @@ feature 'CRUD Client' do
     context 'with manage privileges' do
       before do
         admin.memberships.first.grants.update(data: admin.memberships.first.grants.data.
-        merge!(projects: ['manage'], campaigns: ['manage']))
+        merge!(projects: %w[manage view], campaigns: ['manage']))
       end
 
       scenario 'I can create any client within tte' do

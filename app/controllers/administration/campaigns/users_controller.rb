@@ -25,8 +25,10 @@ module Administration
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
               users.page(params[:page]),
-              each_serializer: Administration::Campaigns::UserSerializer, current_user: current_user,
-              campaign_id: campaign.id
+              each_serializer: Administration::Campaigns::UserSerializer,
+              current_user: current_user,
+              campaign_id: campaign.id,
+              project_id: campaign.project_id
             )
 
             render json: {
@@ -50,7 +52,8 @@ module Administration
             'import',
             'edit',
             %w[remove destroy]
-          ]
+          ],
+          campaign.project_id
         )
       end
 
@@ -96,7 +99,8 @@ module Administration
         if form.valid?
           ::Campaigns::Users::Create.call(form, campaign, current_user) do
             on(:ok) do |user|
-              return render json: user, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
+              return render json: user, serializer: Administration::Campaigns::UserSerializer,
+                campaign_id: campaign.id, project_id: campaign.project_id
             end
             on(:error) do |errors|
               return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
@@ -150,7 +154,12 @@ module Administration
       private
 
       def pundit_authorize
-        authorize(resource || User, nil, policy_class: Campaigns::UserPolicy)
+        authorize(
+          resource || User,
+          nil,
+          project_id: campaign.project_id,
+          policy_class: Campaigns::UserPolicy
+        )
       end
 
       def resource_class

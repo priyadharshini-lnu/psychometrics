@@ -4,8 +4,9 @@ module Assessors
   class BasePolicy
     attr_reader :user, :record
 
-    def initialize(user, record, extra = {})
-      @user = user
+    def initialize(context, record, extra = {})
+      @user = context[:user]
+      @membership = context[:membership]
       @record = [record].flatten.last
       @extra = extra
     end

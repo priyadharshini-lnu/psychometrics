@@ -124,6 +124,14 @@ module Administration
 
     private
 
+    def pundit_authorize
+      authorize(
+        resource || resource_class,
+        nil,
+        project_id: resource.id
+      )
+    end
+
     def set_resource_class
       @_resource_class ||= Client # rubocop:disable Naming/MemoizedInstanceVariableName
     end

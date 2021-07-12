@@ -51,11 +51,16 @@ module Administration
           %w[remove destroy],
           'allow_edit',
           %w[reset_results reset]
-        ]
+        ],
+        campaign.project_id
       )
     end
 
     private
+
+    def campaign
+      instance_options[:campaign]
+    end
 
     def current_user
       instance_options[:current_user]
