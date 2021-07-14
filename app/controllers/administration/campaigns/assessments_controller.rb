@@ -48,15 +48,13 @@ module Administration
       end
 
       def export_external_results
-        result =
-          if assessment.mindmill?
-            ::Assessments::Export::Mindmill.call!(assessment, campaign)
-          else
-            ::Assessments::Export::Hogan.call!(assessment, campaign)
-          end
-        respond_to do |format|
-          format.xlsx { send_data result.to_stream.read, filename: "assessment-#{assessment.id}-external-results.xlsx" }
-        end
+        AdminJob.call(
+          :external_assessment_export,
+          { assessment_id: assessment.id, campaign_id: campaign.id },
+          current_user
+        )
+
+        head :ok
       end
 
       def rescore_responses

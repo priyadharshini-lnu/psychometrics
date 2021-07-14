@@ -587,6 +587,7 @@ en:
         bulk_reports: Bulk Reports
         copy_dimension: Copy Dimension
         export_report_data: Export report data
+        external_assessment_export: External Results Export
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
         import_raw_data: Import Raw Data
@@ -882,6 +883,7 @@ en:
       status: Status
       universal_link: Universal link
     messages:
+      external_results_export_scheduled: External Assessment export job scheduled successfully
       norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
       raw_results_export_scheduled: Assessment Raw Results export job scheduled successfully

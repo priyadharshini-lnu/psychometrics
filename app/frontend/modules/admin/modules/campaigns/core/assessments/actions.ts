@@ -16,6 +16,7 @@ const EXPORT_RAW_RESULTS = 'campaigns/userAssessments/EXPORT_RAW_RESULT'
 const EXPORT_SCORING_RESULTS = 'campaigns/userAssessments/EXPORT_SCORING_RESULTS'
 const EXPORT_NORMED_RESULTS = 'campaigns/userAssessments/EXPORT_NORMED_RESULTS'
 const EXPORT_RAW_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_RAW_FACTOR_RESULTS'
+const EXPORT_EXTERNAL_RESULTS = 'campaigns/userAssessments/EXPORT_EXTERNAL_RESULTS'
 
 export const activateUniversalLink = (campaignId: string, id: number) => ({
   type: ACTIVATE_UNIVERSAL_LINK,
@@ -158,6 +159,15 @@ export const exportRawFactorScores = (campaignId: number, assessmentId: number) 
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_factor_scores`,
+    loader: true,
+  },
+})
+
+export const exportExternalResults = (campaignId: number, assessmentId: number) => ({
+  type: EXPORT_EXTERNAL_RESULTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_external_results`,
     loader: true,
   },
 })
