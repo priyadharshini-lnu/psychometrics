@@ -5,7 +5,7 @@ module Assessors
     attr_reader :user, :record
 
     def initialize(context, record, extra = {})
-      @user = context[:user]
+      @user = context[:user] || context
       @membership = context[:membership]
       @record = [record].flatten.last
       @extra = extra
