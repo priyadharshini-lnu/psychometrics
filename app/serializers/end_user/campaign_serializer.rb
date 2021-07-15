@@ -26,7 +26,8 @@ module EndUser
     end
 
     def user_assessments
-      UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id)
+      UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id).
+        joins(:assessment).where.not(assessments: { category: :mindmill })
     end
 
     def user_reports
