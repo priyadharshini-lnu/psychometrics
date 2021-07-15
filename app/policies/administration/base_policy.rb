@@ -2,7 +2,7 @@
 
 module Administration
   class BasePolicy
-    attr_reader :user, :project_id, :membership, :record
+    attr_reader :user, :project_id, :record
 
     def initialize(user, record, extra = {})
       @user = user
