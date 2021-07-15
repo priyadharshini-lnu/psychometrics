@@ -157,7 +157,7 @@ module Administration
         authorize(
           resource || User,
           nil,
-          project_id: campaign.project_id,
+          project_id: project.id,
           policy_class: Campaigns::UserPolicy
         )
       end
