@@ -11,7 +11,7 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
     end
 
     def update?
@@ -19,7 +19,7 @@ module Administration
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
     end
 
     class Scope < Scope

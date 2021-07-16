@@ -10,11 +10,11 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   end
 
   def destroy?
-    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
   end
 
   def edit?
-    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
   end
 
   def update?
@@ -22,7 +22,7 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   end
 
   def copy?
-    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
   end
 
   def actions?

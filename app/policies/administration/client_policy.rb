@@ -93,7 +93,7 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
+      @user.is?(:superadmin) || @user.has_permission?(:clients, :design, project_id)
     end
 
     def export?

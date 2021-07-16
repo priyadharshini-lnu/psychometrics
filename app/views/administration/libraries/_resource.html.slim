@@ -16,8 +16,9 @@ tr id=dom_id(resource)
     - if resource.file?
       button.btn.btn-default.btn-rounded.btn-xs.copy-coded-url data-toggle="tooltip" data-title="#{resource.file.url}"
         i.fa.fa-copy
-    - if policy(resource).actions?
+    - if policy(resource, { project_id: resource.owner_id }).edit?
       = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
+    - if policy(resource, { project_id: resource.owner_id }).destroy?
       = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
         span.fa.fa-times
