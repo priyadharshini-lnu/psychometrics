@@ -26,6 +26,7 @@ module Agiles
     end
 
     def pick_random_question_set(groups)
+      random_set = nil
       iterate_blocks(groups) do |block|
         random_sets = Set.new
         questions = block.dig('questions')
@@ -33,7 +34,8 @@ module Agiles
           q['randomSet'] ||= 1
           random_sets.add q['randomSet']
         end
-        random_set = random_sets.to_a.sample
+        # Retain previous set if exists in block
+        random_set = random_sets.include?(random_set) ? random_set : random_sets.to_a.sample
         questions.select! { |q| q['randomSet'] == random_set }
       end
     end

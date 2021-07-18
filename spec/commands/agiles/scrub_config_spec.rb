@@ -87,6 +87,76 @@ describe Agiles::ScrubConfig do
                         { 'first': 1 },
                         { 'second': 2 }
                       ]
+                    },
+                    {
+                      'id': 'nf-1-ass-block-2',
+                      'type': 'Comparator',
+                      'randomise': true,
+                      'questions': [
+                        {
+                          'id': 'cmp-5',
+                          'randomSet': 1,
+                          'text': 'questions:nf.which_is_greater',
+                          'left': '7',
+                          'right': '12',
+                          'answers': ['hello-world']
+                        },
+                        {
+                          'id': 'cmp-6',
+                          'randomSet': 1,
+                          'text': 'questions:nf.which_is_greater',
+                          'left': '5',
+                          'right': '7',
+                          'answers': ['hello-world']
+                        },
+                        {
+                          'id': 'cmp-7',
+                          'randomSet': 2,
+                          'text': 'questions:nf.which_is_greater',
+                          'left': '7',
+                          'right': '12',
+                          'answers': ['hello-world']
+                        },
+                        {
+                          'id': 'cmp-8',
+                          'randomSet': 2,
+                          'text': 'questions:nf.which_is_greater',
+                          'left': '5',
+                          'right': '7',
+                          'answers': ['hello-world']
+                        }
+                      ],
+                      'scoring': [
+                        { 'first': 1 },
+                        { 'second': 2 }
+                      ]
+                    },
+                    {
+                      'id': 'nf-1-ass-block-3',
+                      'type': 'Comparator',
+                      'randomise': true,
+                      'questions': [
+                        {
+                          'id': 'cmp-9',
+                          'randomSet': 3,
+                          'text': 'questions:nf.which_is_greater',
+                          'left': '7',
+                          'right': '12',
+                          'answers': ['hello-world']
+                        },
+                        {
+                          'id': 'cmp-10',
+                          'randomSet': 3,
+                          'text': 'questions:nf.which_is_greater',
+                          'left': '5',
+                          'right': '7',
+                          'answers': ['hello-world']
+                        }
+                      ],
+                      'scoring': [
+                        { 'first': 1 },
+                        { 'second': 2 }
+                      ]
                     }
                   ]
                 }
@@ -131,6 +201,20 @@ describe Agiles::ScrubConfig do
 
         expect(questions.length).to be(2)
         expect(questions).to all(include('randomSet': 2))
+      end
+
+      it 'retains the random set for subsequent blocks if exists' do
+        Kernel.srand 1
+        groups = subject[:ok]
+        Kernel.srand
+
+        first_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 0, 'questions')
+        second_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 1, 'questions')
+        third_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 2, 'questions')
+
+        expect(first_block_questions).to all(include('randomSet': 2))
+        expect(second_block_questions).to all(include('randomSet': 2))
+        expect(third_block_questions).to all(include('randomSet': 3))
       end
     end
   end
