@@ -164,7 +164,7 @@
     "retry-axios": "^2.4.0",
     "rrweb": "^0.9.13",
     "sass-loader": "^10.1.0",
-    "scroll-js": "^3.1.0",
+    "scroll-js": "^3.4.2",
     "seedrandom": "^3.0.5",
     "style-loader": "^0.23.1",
     "thread-loader": "^3.0.4",
