@@ -71,8 +71,7 @@ describe Campaigns::Reports::Add do
       report_family_id: nil,
       user_access: true,
       operation: form.operation,
-      assessments: report.assessments,
-      use_license: true
+      assessments: report.assessments
     )
 
     described_class.call!(form, campaign)

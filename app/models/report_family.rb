@@ -14,6 +14,7 @@ class ReportFamily < ApplicationRecord
   has_and_belongs_to_many :reports
   has_many :assessments, through: :reports, source: :assessment
   has_many :licenses
+  has_many :license_usages, through: :licenses
   has_many :clients, through: :licenses, source: :client
 
   validates :name, presence: true

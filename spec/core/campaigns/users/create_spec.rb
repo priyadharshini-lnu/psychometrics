@@ -11,6 +11,10 @@ describe Campaigns::Users::Create do
   let!(:campaign) { create(:campaign) }
   let!(:current_user) { create(:user) }
 
+  before(:each) do
+    allow(Licenses::Use).to receive(:call!)
+  end
+
   it "creates user record if user doesn't exists in the project" do
     expect do
       described_class.call!(form, campaign, current_user)
@@ -49,30 +53,6 @@ describe Campaigns::Users::Create do
       expect(Campaigns::Users::AddReport).to receive(:call!).twice
 
       described_class.call!(form, campaign, current_user)
-    end
-
-    it "uses license when when operation is 'add_and_allow_new_response' even if user exists" do
-      create(:user, email: form.email, project_id: campaign.project_id)
-      form.operation = 'add_and_allow_new_response'
-      expect do
-        described_class.call!(form, campaign, current_user)
-      end.to change { license.license_usages.count }.by(2)
-    end
-
-    it 'uses license when when user not present in project and newly added' do
-      expect do
-        described_class.call!(form, campaign, current_user)
-      end.to change { license.license_usages.count }.by(2)
-    end
-
-    it "doesn't uses license again if user have already used a license" do
-      form.operation = 'add_with_existing_response'
-      user = create(:user, email: form.email, project_id: campaign.project_id)
-      create(:license_usage, license: license, user: user)
-
-      expect do
-        described_class.call!(form, campaign, current_user)
-      end.to_not(change { license.license_usages.count })
     end
 
     it 'calls InvitationMailer if user are created through registration' do

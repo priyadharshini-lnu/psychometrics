@@ -14,7 +14,7 @@ module Campaigns
       end
 
       def call
-        Licenses::Use.call(campaign, user, report) if options[:use_license]
+        Licenses::Use.call!(campaign, user, report, options[:report_family_id])
         user_report = UserReport.create_with(
           user_access: options[:user_access],
           report_family_id: options[:report_family_id]
