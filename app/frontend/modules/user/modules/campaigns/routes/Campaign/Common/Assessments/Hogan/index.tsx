@@ -5,6 +5,7 @@ import {
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { History } from 'history'
 import truncate from 'lodash/truncate'
+import cs from 'classnames'
 
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 
@@ -71,6 +72,7 @@ const Hogan: React.FC<Props> = ({
     })
   }
 
+  const { assessmentIconUrl: iconUrl } = userAssessment
   return (
     <AssessmentCard size={size} withSidebar={withSidebar}>
       <Card
@@ -79,8 +81,12 @@ const Hogan: React.FC<Props> = ({
         cover={(
           <div className="internal-cover">
             <div className="internal-caption">
-              <div className="internal-icon hogan">
-                <span className="icon-hogan" />
+              <div className={cs({ 'internal-icon hogan': true, 'internal-icon-image': !!iconUrl })}>
+                {
+                  iconUrl
+                    ? <img src={iconUrl} />
+                    : <span className="icon-hogan" />
+                }
               </div>
               {userAssessment.status !== 'completed' && (
                 <div>

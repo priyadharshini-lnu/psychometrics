@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Lighthouse",
     "lastOpened": 0,
-    "created": 1612963478488
+    "created": 1618299916336
   },
   "iconSets": [
     {
@@ -56,12 +56,20 @@
     {
       "selection": [
         {
-          "order": 33,
+          "order": 46,
+          "id": 11,
+          "name": "saville",
+          "prevSize": 32,
+          "code": 59660,
+          "tempChar": ""
+        },
+        {
+          "order": 44,
           "id": 10,
           "name": "360",
           "prevSize": 32,
           "code": 59648,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 34,
@@ -69,7 +77,7 @@
           "name": "agile",
           "prevSize": 32,
           "code": 59649,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 35,
@@ -77,7 +85,7 @@
           "name": "assessment",
           "prevSize": 32,
           "code": 59650,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 36,
@@ -85,7 +93,7 @@
           "name": "case_study",
           "prevSize": 32,
           "code": 59651,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 37,
@@ -93,7 +101,7 @@
           "name": "email",
           "prevSize": 32,
           "code": 59652,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 38,
@@ -101,7 +109,7 @@
           "name": "hogan",
           "prevSize": 32,
           "code": 59653,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 39,
@@ -109,7 +117,7 @@
           "name": "lock",
           "prevSize": 32,
           "code": 59654,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 40,
@@ -117,7 +125,7 @@
           "name": "mindmill",
           "prevSize": 32,
           "code": 59655,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 41,
@@ -125,7 +133,7 @@
           "name": "otp",
           "prevSize": 32,
           "code": 59656,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 42,
@@ -133,7 +141,7 @@
           "name": "survey",
           "prevSize": 32,
           "code": 59657,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 43,
@@ -141,20 +149,41 @@
           "name": "user",
           "prevSize": 32,
           "code": 59658,
-          "tempChar": ""
+          "tempChar": ""
         }
       ],
       "id": 2,
       "metadata": {
         "name": "Lighthouse",
         "importSize": {
-          "width": 32,
-          "height": 32
+          "width": 24,
+          "height": 18
         }
       },
       "height": 1024,
       "prevSize": 32,
       "icons": [
+        {
+          "id": 11,
+          "paths": [
+            "M975.893 951.876v-879.753h293.257v879.753h-293.257zM536.016 951.876v-439.876h293.257v439.876h-293.257zM96.14 951.876v-879.753h293.257v879.753h-293.257z"
+          ],
+          "attrs": [
+            {}
+          ],
+          "width": 1365,
+          "isMulticolor": false,
+          "isMulticolor2": false,
+          "grid": 0,
+          "tags": [
+            "saville"
+          ],
+          "colorPermutations": {
+            "331771681411001191": [
+              {}
+            ]
+          }
+        },
         {
           "id": 10,
           "paths": [

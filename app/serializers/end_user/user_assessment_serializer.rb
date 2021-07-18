@@ -5,7 +5,7 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :assessment_category,
                :assessment_extra, :assessment_id, :status, :completion_percent, :need_confirm, :available_locales,
-               :selected_locale
+               :selected_locale, :assessment_icon_url
 
     def status
       object.real_status
@@ -36,6 +36,10 @@ module EndUser
 
     def assessment_name
       object.assessment.name
+    end
+
+    def assessment_icon_url
+      object.assessment.icon.thumb.url
     end
 
     def normalize_hogan_type(type)

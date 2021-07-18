@@ -3036,10 +3036,10 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@thetalententerprise/interactive-assessments@1.3.5":
-  version "1.3.5"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.3.5/1c7186ac4e3430b7254f0ad46da740f218f9511b4b1f8eaa0538261093340751#ab4f96c14f84ac86c1df9f4760fe066f58fe7d5b"
-  integrity sha512-OAcKExU8eTaroj69gfyiXFBJMquD5c8c7113rK8TqikMLjItPYFzDHZ5+2XGyWtE7v9Iwn/UM49OBKxZHnbw7A==
+"@thetalententerprise/interactive-assessments@1.3.7":
+  version "1.3.7"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.3.7/3be272a965966b85d3d9510e678d7c55de2c87164bf42386da79cec1fc21091b#d5a56c0a5a37c87940f5e5388a7eac494307a12c"
+  integrity sha512-d7ruMlHQt8F6fTFRuFZEDld2efr7uQs8qoT+zb4XrKLLBjThJiHbBtSeRaoyFgXJ1EnWjrpofkpxBpov80VtFQ==
 
 "@types/actioncable@^5.2.5":
   version "5.2.5"
