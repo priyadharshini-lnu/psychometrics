@@ -14,11 +14,11 @@ class Administration::NormPolicy < Administration::BasePolicy
   end
 
   def edit?
-    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
+    @user.is?(:superadmin) || @user.has_permission?(:norms, :manage, project_id)
   end
 
   def copy?
-    @user.is?(:superadmin) || @user.has_grant?(:norms, :manage)
+    @user.is?(:superadmin) || @user.has_permission?(:norms, :manage, project_id)
   end
 
   def actions?
@@ -30,7 +30,7 @@ class Administration::NormPolicy < Administration::BasePolicy
   end
 
   def export?
-    @user.is?(:superadmin) || @user.has_grant?(:norms, :view)
+    @user.is?(:superadmin) || @user.has_permission?(:norms, :view, project_id)
   end
 
   def change_cell?

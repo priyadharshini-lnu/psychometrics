@@ -7,8 +7,7 @@
         th = resource_class.human_attribute_name(:description)
         th = t('administration.libraries.index.owner')
         th.date = link_to_sort resource_class, :created_at, filter_form
-        - if policy(resource).actions?
-          th width='1%' = t('administration.actions')
+        th width='1%' = t('administration.actions')
     tbody
       - if resources.present?
         = render partial: 'resource', collection: resources
