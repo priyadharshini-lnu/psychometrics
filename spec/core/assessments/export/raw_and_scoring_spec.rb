@@ -9,7 +9,7 @@ describe Assessments::Export::RawAndScoring do
   let(:project) { create(:project) }
   let!(:relationship) { create(:relationship, type: :global, name: 'Self') }
   let(:assessment) { project.assessments.take }
-  let(:file_name) { 'assessment_export.xlsx' }
+  let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
 
   after do
     FileUtils.rm(file_name) if File.exist?(file_name)

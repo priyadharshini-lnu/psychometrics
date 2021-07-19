@@ -8,7 +8,7 @@ describe Exports::Assessments::AssessmentResultsExport do
   let(:client) { create(:tenancy) }
   let(:project) { create(:project) }
   let(:assessment) { project.assessments.take }
-  let(:file_name) { 'assessment_export.xlsx' }
+  let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
 
   after do
     FileUtils.rm(file_name) if File.exist?(file_name)
