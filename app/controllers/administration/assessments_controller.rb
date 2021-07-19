@@ -151,6 +151,14 @@ class Administration::AssessmentsController < Administration::BaseController
 
   private
 
+  def pundit_authorize
+    authorize(
+      resource || resource_class,
+      nil,
+      project_id: resource&.owner_id
+    )
+  end
+
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
     add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
