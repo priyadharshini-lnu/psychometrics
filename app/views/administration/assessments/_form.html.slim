@@ -15,9 +15,11 @@
                                               include_blank: false,
                                               wrapper_html: { class: 'hogan' }
         = f.simple_fields_for :saville_assessment_setting do |saville|
-          = saville.input :saville_assessment_id, collection: Settings.providers.saville.assessments.map { |h| [h[:name], h[:id]] },
-                                              include_blank: false,
-                                              wrapper_html: { class: 'saville' }
+          = saville.input :saville_assessment_id,
+                          collection: Settings.providers.saville.assessments.sort_by {|a| a[:name] }.map { |h| [h[:name], h[:id]] },
+                          include_blank: false,
+                          wrapper_html: { class: 'saville' },
+                          input_html: { data: { live_search: true } }
         = f.input :name, wrapper_html: { class: 'common mindmill hogan saville' }
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: policy_scope(Client).roots.order(name: :asc),
