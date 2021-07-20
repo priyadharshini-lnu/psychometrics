@@ -9,7 +9,7 @@ gem 'barnes',                     '~> 0.0.7'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday',                    '~> 1.3.0'
 gem 'jbuilder',                   '~> 2.10.0'
-gem 'jquery-rails',               '~> 4.3.5'
+gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 gem 'pg',                         '~> 0.19.0'
