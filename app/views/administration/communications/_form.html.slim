@@ -100,7 +100,8 @@
                 min_date: date_without_seconds_and_timezone
       h3 Message
       = f.input :subject
-      = f.input :body, input_html: { class: 'summernote_email' }
+      = f.input :body, as: :hidden, input_html: { id: 'body_value' }
+      #froala_editor
       = simple_format(t('.body_mustache'))
 
   .modal-footer

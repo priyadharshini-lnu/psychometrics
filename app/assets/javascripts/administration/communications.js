@@ -21,7 +21,6 @@ $(function () {
     }
 
     // Sync WYSIWYG with form
-    //$('#resource_body').val($('#resource_body').summernote('code'));
     var form = $('[data-behavior=communications-form]');
     if (form.length > 0) {
       $.ajax({

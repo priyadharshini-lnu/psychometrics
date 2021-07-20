@@ -39,7 +39,6 @@ source 'https://rails-assets.org/' do
   gem 'rails-assets-noty'
   gem 'rails-assets-quicksearch', '2.3.1'
   gem 'rails-assets-Sortable', '1.6.0'
-  gem 'rails-assets-summernote', '0.8.6'
   gem 'rails-assets-x-editable', '~> 1.5.0'
 end
 

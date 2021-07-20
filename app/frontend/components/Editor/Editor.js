@@ -6,14 +6,12 @@ import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 import FroalaEditor from 'react-froala-wysiwyg'
 import events from './events'
-
+import 'libs/Editor/commands/rtlLtr'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 
-import './froalaCommands'
-
 function Editor ({
-  content, handleContentChange, type, details, className,
+  content, handleContentChange, type, details, className, withPipedText = false,
 }) {
   const config = {
     iconsTemplate: 'font_awesome',
@@ -38,7 +36,6 @@ function Editor ({
       'audio',
     ],
     toolbarButtons: [
-      'pipedText',
       'fontFamily',
       'fontSize',
       'textColor',
@@ -103,6 +100,9 @@ function Editor ({
       },
     },
   }
+
+  withPipedText && config.toolbarButtons.unshift('pipedText')
+
   const ref = React.createRef()
 
   useEffect(() => {
