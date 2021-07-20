@@ -25,6 +25,7 @@ class Administration::FactorsController < Administration::BaseController
   def new
     @_resource = resource_class.new(dimension: @dimension)
     @form = Factors::SaveForm.from_model(resource)
+    set_init_state
   end
 
   def create
@@ -33,12 +34,14 @@ class Administration::FactorsController < Administration::BaseController
     if @form.valid?
       resource.save!
     else
+      set_init_state
       render :new
     end
   end
 
   def edit
     @form = Factors::SaveForm.from_model(resource)
+    set_init_state
   end
 
   def update
@@ -49,6 +52,7 @@ class Administration::FactorsController < Administration::BaseController
     if @form.valid?
       resource.save!
     else
+      set_init_state
       render :edit
     end
   end
@@ -87,6 +91,17 @@ class Administration::FactorsController < Administration::BaseController
 
   def set_resource_class
     @_resource_class ||= Factor # rubocop:disable Naming/MemoizedInstanceVariableName
+  end
+
+  def set_init_state
+    @intial_state = {
+      scoringStrategies: Factor.scoring_strategies.map do |key, _|
+        { key: key, value: I18n.t("administration.factors.form.scoring_strategies.#{key}") }
+      end,
+      factor: FactorSerializer.new(resource),
+      errors: @form&.errors&.messages,
+      factors: resource.dimension&.all_factors&.map { |factor| { key: factor.id, value: factor.name } }
+    }
   end
 
   def init_breadcrumbs

@@ -69,7 +69,6 @@ gem 'breadcrumbs_on_rails',       '~> 4.0.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
 gem 'ransack', '~> 2.3.0'
-gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.5'
 
