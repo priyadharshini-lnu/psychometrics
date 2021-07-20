@@ -27,8 +27,7 @@ module UsersResults
         status: UserAssessment.statuses[:not_started],
         completed_at: nil,
         completion_reason: nil,
-        norm_id: nil,
-        norm_type: nil
+        norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil
       )
       users_result.update!(
         answers: {},

@@ -2,23 +2,27 @@
 
 module UsersResults
   class Recompute < BaseCommand
-    private_attr_reader :user_result, :user_assessment, :current_user, :norm_id
+    private_attr_reader :user_result, :user_assessment, :current_user, :norm_id, :fixed_norm
 
     def initialize(user_result, current_user, options = {})
       @user_result = user_result
       @user_assessment = user_result.user_assessment
       @current_user = current_user
       @norm_id = options[:norm_id]
+      @fixed_norm = options[:fixed_norm] == true
     end
 
     def call
       if user_assessment.saville?
-        user_assessment.saville_user_assessment.update(norm_id: norm_id) if norm_id
+        if norm_id
+          user_assessment.saville_user_assessment.update!(norm_id: norm_id)
+          user_assessment.update!(fixed_norm: fixed_norm)
+        end
         Saville::AssessmentOrderRequest.call!(user_assessment) unless user_assessment.not_started?
         return broadcast :ok, user_result
       end
 
-      user_assessment.update(norm_id: norm_id) if norm_id
+      user_assessment.update!(norm_id: norm_id, fixed_norm: fixed_norm) if norm_id
       return broadcast :ok, user_result unless user_assessment.completed?
 
       if user_result.assessment.agile?
