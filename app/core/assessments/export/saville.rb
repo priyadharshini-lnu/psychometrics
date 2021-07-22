@@ -47,13 +47,14 @@ module Assessments
           result.encoded_id,
           user_name(result),
           result.evaluator.email,
+          I18n.t("activerecord.attributes.users_result.statuses.#{result.real_status}"),
           result.started_at&.strftime('%D %r'),
           result.completed_at&.strftime('%D %r')
         ]
       end
 
       def default_headers
-        ['Result ID', 'Full Name', 'Email', 'Started at', 'Completed at']
+        ['Result ID', 'Full Name', 'Email', 'Status', 'Started at', 'Completed at']
       end
 
       def user_name(result)
