@@ -105,7 +105,7 @@ feature 'CRUD Assessment' do
       client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.
         data.merge!(assessments: %w[view manage], dimensions: ['view']))
 
-      create_assessment(name: 'My assessment', dimension_name: dimension.name)
+      create_assessment(name: 'My assessment', dimension_name: dimension.name, owner_name: dimension.owner.name)
       wait_for_ajax(no_of_ajax_request: 2)
       expect(page).to have_content t('administration.assessments.create.successfully', name: 'My assessment')
       expect(page).to have_css('#assessments_list td a', text: 'My assessment')

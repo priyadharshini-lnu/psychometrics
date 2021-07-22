@@ -10,6 +10,7 @@ module Features
         within '#new_resource' do
           fill_in 'resource_name', with: opts[:name]
           select opts[:dimension_name], from: 'resource_dimension_id', visible: false
+          select opts[:owner_name], from: 'resource_owner_id', visible: false
           click_on 'Create'
         end
         wait_for_ajax(no_of_ajax_request: 2)
