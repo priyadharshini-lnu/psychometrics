@@ -16,7 +16,7 @@
                                               wrapper_html: { class: 'hogan' }
         = f.simple_fields_for :saville_assessment_setting do |saville|
           = saville.input :saville_assessment_id,
-                          collection: Settings.providers.saville.assessments.sort_by {|a| a[:name] }.map { |h| [h[:name], h[:id]] },
+                          collection: Settings.providers.saville.assessments.sort_by {|a| a[:name] }.map { |h| [h[:name], h[:id].downcase] },
                           include_blank: false,
                           wrapper_html: { class: 'saville' },
                           input_html: { data: { live_search: true } }
