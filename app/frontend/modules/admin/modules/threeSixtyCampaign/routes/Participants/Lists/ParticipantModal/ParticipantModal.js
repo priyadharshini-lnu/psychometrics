@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {
   Modal, Button, Tabs, Row, Col, Avatar,
 } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 
 import userPresenter from 'presenters/user'
 import styles from './styles.scss'
@@ -65,7 +66,7 @@ export default function ParticipantModal ({
 const Header = ({ user }) => (
   <Row type="flex" className={styles.header} align="middle">
     <Col span={6}>
-      <Avatar size={64} icon="user" />
+      <Avatar size={64} icon={<UserOutlined />} />
     </Col>
     <Col span={18}>
       <div>{userPresenter.getFullName(user)}</div>
