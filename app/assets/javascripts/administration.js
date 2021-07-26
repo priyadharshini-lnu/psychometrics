@@ -12,7 +12,6 @@
 //= require multiselect
 //= require quicksearch
 //= require bootstrap-add-clear
-//= require summernote
 //= require jquery-serialize-object
 //= require Sortable.js
 //= require lodash

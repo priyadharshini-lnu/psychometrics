@@ -15,7 +15,9 @@ module Saville
       results = Array.wrap(parsed_response.dig('Results'))
       return results if results.blank?
 
-      save_results(saville_user_assessment.user_assessment, results)
+      user_assessment = saville_user_assessment.user_assessment
+      save_results(user_assessment, results)
+      generate_internal_reports(user_assessment)
       results.each do |result|
         report_id = result.dig('SupportingMaterials', 'Id', 'IdValue', 'content')&.downcase
         base64_report = result.dig('SupportingMaterials', 'EmbeddedData', 'EncodedContent', 'content')
@@ -38,6 +40,14 @@ module Saville
       }
       user_assessment.users_result.update(external_results: results)
       user_assessment.completed!
+    end
+
+    def generate_internal_reports(user_assessment)
+      ::UsersResults::GenerateReports.call(
+        user_assessment.users_result,
+        user_assessment.user,
+        exceptUserReportIds: user_assessment.saville_user_reports.pluck(:id)
+      )
     end
 
     def parsed_meta_data(results)

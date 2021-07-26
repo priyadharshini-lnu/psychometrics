@@ -17,6 +17,7 @@ import RichEditorStore from 'rb/store/RichEditorStore'
 import I18nStore from 'rb/store/I18nStore'
 import Factors from 'rb/commands/Factors'
 import 'rb/commands/froalaCommands'
+import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
 import styles from './Text.scss'
 import config from './froalaConfig'
@@ -98,6 +99,32 @@ class Text extends Component {
     }
   }
 
+  getSavilleScore = () => {
+    const {
+      module: {
+        assessment_id: assessmentId,
+        props: {
+          source: { factors, type, valueType },
+        },
+      },
+    } = this.props
+    const factorId = factors && factors[0]
+    if (factorId) {
+      const externalScoring = _.get(ResultStore, ['results', assessmentId, 'externalScoring'])
+      const scoreType = type.replace('Saville#', '')
+      const assessment = AppStore.getAssessmentById(assessmentId)
+      const scores = getSavilleFactorsScore({
+        scoreType,
+        valueType,
+        scores: externalScoring,
+        assessmentId,
+        allFactors: assessment.factors,
+        scoreForFactorIds: [factorId],
+      })
+      return scores?.length ? scores[0].score : null
+    }
+  }
+
   lookupResultTextValue (model) {
     const sourceType = _.get(model, 'props.source.type')
     switch (sourceType) {
@@ -124,6 +151,11 @@ class Text extends Component {
           return Factors.LookupValue.call(externalScoring, sourceType, factor, 'string')
         }
         break
+      case 'Saville#Ipsative':
+      case 'Saville#Nipsative':
+      case 'Saville#Normative':
+      case 'Saville#Raw':
+        return this.getSavilleScore()
       default:
     }
     return ''

@@ -12,7 +12,8 @@ module Administration
           serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
             user_assessments.page(params[:page]),
             each_serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
-            current_user: current_user
+            current_user: current_user,
+            project_id: campaign.project_id
           )
 
           render json: { list: serialized_user_assessments, total: user_assessments.count }
@@ -23,7 +24,8 @@ module Administration
                  with_context(campaign: campaign, assessor: assessor)
           if form.valid?
             user_assessment = ::Assessors::UserAssessments::Create.call!(form)
-            render json: user_assessment, serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer
+            render json: user_assessment, serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
+              project_id: campaign.project_id
           else
             render json: { errors: form.errors.messages }, status: :unprocessable_entity
           end
@@ -47,6 +49,7 @@ module Administration
           authorize(
             resource || UserAssessment,
             nil,
+            project_id: campaign.project_id,
             policy_class: Administration::Campaigns::Assessors::UserAssessmentPolicy
           )
         end

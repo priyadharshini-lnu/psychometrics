@@ -37,6 +37,59 @@ describe Reports::BuildResults do
       end
     end
 
+    context 'SavilleResults' do
+      let(:user_result) do
+        create(:users_result,
+               subject: user,
+               external_results: {
+                 'scores' => [
+                   { 'id' => 'WAVEFS_RATACQ', 'score_type' => 'Normative', 'value_type' => 'sten', 'score' => 2 },
+                   { 'id' => 'WAVEFS_RATACQ', 'score_type' => 'Normative', 'value_type' => 'z', 'score' => 3 },
+                   { 'id' => 'WAVEFS_CONRANK', 'score_type' => 'Normative', 'value_type' => 'z', 'score' => 4 }
+                 ]
+               })
+      end
+      let(:build_result_command) { described_class.new(report, [user_result]) }
+
+      it 'matches factorId, score_type, value_type and return valid score' do
+        data = {
+          'type' => 'saville_result',
+          'factorId' => 'WAVEFS_RATACQ',
+          'scoreType' => 'Normative',
+          'valueType' => 'z',
+          'assessmentId' => user_result.assessment_id,
+          'label' => 'Factor'
+        }
+        result = Reports::ResultTypes::SavilleResults.call(build_result_command, data)
+
+        expect(result).to eq({
+          key: "#{data['factorId']}.#{data['scoreType']}.#{data['valueType']}",
+          name: data['label'],
+          config_data: data,
+          value: 3
+        })
+      end
+
+      it 'returns nil as value if no score for a factor is present' do
+        data = {
+          'type' => 'saville_result',
+          'factorId' => 'WAVEFS_RATACQ',
+          'scoreType' => 'Ipsative',
+          'valueType' => 'z',
+          'assessmentId' => user_result.assessment_id,
+          'label' => 'Factor'
+        }
+        result = Reports::ResultTypes::SavilleResults.call(build_results_command, data)
+
+        expect(result).to eq({
+          key: "#{data['factorId']}.#{data['scoreType']}.#{data['valueType']}",
+          name: data['label'],
+          config_data: data,
+          value: nil
+        })
+      end
+    end
+
     context 'ExternalResults' do
       let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => user_result.assessment_id, 'label' => 'Attempted' } }
       subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }

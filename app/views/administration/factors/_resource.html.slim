@@ -21,10 +21,12 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=do
   td.text-center.vertical_middle = resource.decorate.created_at
   td.text-center.vertical_middle = resource.decorate.updated_at
   td.actions-cell
-    - if policy(resource).actions?
+    - if policy(resource, { project_id: @dimension.owner_id }).edit?
       = link_to [:edit, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
         span.fa.fa-pencil
+    - if policy(resource, { project_id: @dimension.owner_id }).copy?
       = link_to [:copy, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy'), disable_with: t('.in_progress.copying') }
         span.fa.fa-copy
+    - if policy(resource, { project_id: @dimension.owner_id }).destroy?
       = link_to [:administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete'), disable_with: t('.in_progress.deleting')}
         span.fa.fa-times

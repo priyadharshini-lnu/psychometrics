@@ -1,6 +1,10 @@
 # Psychometrics
 
-<a href='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe'> <img src='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe' alt='Build Status'></a>
+<a href='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe'> <img src='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe' alt='Build Status'></a> [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/status.svg)](https://depfu.com)
+
+Javscript [![Depfu](https://badges.depfu.com/badges/135f3c3926127522be587c86206d855b/count.svg)](https://depfu.com/repos/github/TheTalentEnterprise/psychometrics?project_id=11658)
+
+Ruby [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/count.svg)](https://depfu.com/repos/github/TheTalentEnterprise/psychometrics?project_id=11657)
 
 ## Requisites
 

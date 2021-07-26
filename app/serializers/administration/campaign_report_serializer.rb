@@ -15,7 +15,8 @@ module Administration
         [
           'export',
           %w[remove destroy]
-        ]
+        ],
+        instance_options[:project_id]
       )
     end
 

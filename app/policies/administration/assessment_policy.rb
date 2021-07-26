@@ -17,24 +17,24 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     def update?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     # Can archive/unarchive Assessment
     def toggle_archive?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     def assessments?
@@ -42,7 +42,11 @@ module Administration
     end
 
     def questions?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :view, project_id)
+    end
+
+    def toggle_status?
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     def content_resources?
@@ -54,7 +58,7 @@ module Administration
     #   and user is Superadmin or user has grants
     def show?
       @record.common? &&
-        (super || @user.has_grant?(:assessments, :manage))
+        (super || @user.has_permission?(:assessments, :manage, project_id))
     end
 
     # Can open Websocket Channel for build Assessment (Blocks, Questions and etc.)
@@ -68,7 +72,7 @@ module Administration
     #   and user is Superadmin or user has grants
     def preview?
       @record.common? &&
-        (@user.is?(:superadmin) || @user.has_grant?(:assessments, :view))
+        (@user.is?(:superadmin) || @user.has_permission?(:assessments, :view, project_id))
     end
 
     def reports?
@@ -123,7 +127,7 @@ module Administration
     end
 
     def factors?
-      index?
+      super || @user.has_permission?(:assessments, :view, project_id)
     end
 
     def upload_data_sheet?
@@ -131,11 +135,11 @@ module Administration
     end
 
     def soft_delete?
-      destroy?
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     def restore?
-      destroy?
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id)
     end
 
     class Scope < Administration::BasePolicy::Scope
@@ -149,7 +153,7 @@ module Administration
             if @user.is?(:client_admin)
               @user.client_admin_client_ids
             else
-              @user.project_admin_clients.select('tte_id').distinct
+              @user.project_admin_clients_tte_ids.uniq
             end
           scope.where(owner_id: owner_ids)
         else

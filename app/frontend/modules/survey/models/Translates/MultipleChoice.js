@@ -12,6 +12,9 @@ class MultipleChoice extends BaseTranslate {
     if (/^choicesTexts/.test(field)) {
       return this.question.props.choicesTexts[extraData.choice]
     }
+    if (/^choicesImages/.test(field)) {
+      return this.question.props.choicesImages[extraData.choice]
+    }
   }
 
   exportLocales () {
@@ -23,6 +26,9 @@ class MultipleChoice extends BaseTranslate {
     }
     _.times(this.question.props.choices, (i) => {
       result[`choicesTexts${i + 1}`] = this.question.props.choicesTexts[i]
+      if (this.question.props.withImageChoice) {
+        result[`choicesImages${i + 1}`] = this.question.props.choicesImages[i]
+      }
     })
     return result
   }

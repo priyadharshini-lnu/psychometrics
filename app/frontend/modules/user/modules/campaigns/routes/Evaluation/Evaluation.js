@@ -55,6 +55,9 @@ export default function Evaluation ({
     fetchAssessment(params.campaignId, params.id, {
       isEdit: edit, isRead: read, step, approve_evaluation, lang,
     })
+    if (edit === 'true') {
+      history.replaceState(null, '', location.href.replace('edit=true', 'edit=false'))
+    }
   }, [])
 
   if (!loaded) { return null }

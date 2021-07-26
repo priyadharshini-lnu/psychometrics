@@ -27,7 +27,8 @@ module Administration
             nil,
             [
               %w[reset_evaluation reset]
-            ]
+            ],
+            instance_options[:project_id]
           )
         end
 

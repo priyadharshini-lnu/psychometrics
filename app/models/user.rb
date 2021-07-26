@@ -148,7 +148,7 @@ class User < ApplicationRecord
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
-  validate :validate_grants
+  # validate :validate_grants
 
   before_save :ensure_authentication_token
   before_save do

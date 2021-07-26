@@ -2,17 +2,20 @@
 
 module Licenses
   class Use < BaseCommand
-    private_attr_accessor :campaign, :user, :report, :client
+    private_attr_accessor :campaign, :user, :report, :report_family, :client
 
-    def initialize(campaign, user, report)
+    def initialize(campaign, user, report, report_family_id)
       @campaign = campaign
       @user = user
       @report = report
+      @report_family = ReportFamily.find(report_family_id)
       @client = campaign.client
     end
 
     def call
-      licenses = Licenses::FetchQuery.new(client, report).query
+      return broadcast :ok if report_family.license_usages.exists?(campaign: campaign, user: user)
+
+      licenses = Licenses::FetchQuery.new(client, report_family.id).query
 
       license = licenses.detect(&:enough_licenses?)
 

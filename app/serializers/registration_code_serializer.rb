@@ -24,7 +24,8 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
         'download_qrcode',
         %w[remove destroy],
         %w[edit update]
-      ]
+      ],
+      instance_options[:project_id]
     )
   end
 

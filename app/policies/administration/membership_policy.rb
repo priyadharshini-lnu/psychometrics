@@ -40,7 +40,7 @@ module Administration
     end
 
     def can_manage_project_admins?
-      @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_admins)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id)
     end
 
     def admins?
@@ -74,7 +74,7 @@ module Administration
     def overview_assigns?
       return false if record.scope == :administration
 
-      @user.is?(:superadmin) || @user.has_grant?(:assigns, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:assigns, :view, project_id)
     end
 
     def related_memberships(project, client)

@@ -3469,7 +3469,8 @@ CREATE TABLE public.user_assessments (
     norm_type character varying,
     status integer DEFAULT 0,
     completed_at timestamp without time zone,
-    completion_reason integer
+    completion_reason integer,
+    fixed_norm boolean DEFAULT false
 );
 
 
@@ -8331,6 +8332,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210621071756'),
 ('20210623082242'),
 ('20210627110306'),
-('20210627134315');
+('20210627134315'),
+('20210718070252');
 
 

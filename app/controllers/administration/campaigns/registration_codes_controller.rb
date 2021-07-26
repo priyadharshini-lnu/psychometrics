@@ -12,7 +12,9 @@ module Administration
         @_resources = filter_form.result.page(params[:page])
 
         render json: {
-          list: @_resources.map { |r| RegistrationCodeSerializer.new(r, current_user: current_user) },
+          list: @_resources.map do |r|
+            RegistrationCodeSerializer.new(r, current_user: current_user, project_id: campaign.project_id)
+          end,
           total: @_resources.count,
           permissions: permissions
         }
@@ -23,7 +25,8 @@ module Administration
                from_params(params[:resource], campaign_id: campaign.id)
         if form.valid?
           code = ::Campaigns::RegistrationCodes::Create.call!(form, campaign)
-          render json: code, serializer: RegistrationCodeSerializer
+          render json: code, serializer: RegistrationCodeSerializer,
+          project_id: campaign.project_id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -38,7 +41,7 @@ module Administration
                with_context(registration_code: resource)
         if form.valid?
           code = ::Campaigns::RegistrationCodes::Update.call!(form, resource)
-          render json: code, serializer: RegistrationCodeSerializer
+          render json: code, serializer: RegistrationCodeSerializer, project_id: campaign.project_id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -62,6 +65,14 @@ module Administration
 
       private
 
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: campaign.project_id
+        )
+      end
+
       def permissions
         GetPermissionsHash.call!(
           Administration::RegistrationCodePolicy,
@@ -69,7 +80,8 @@ module Administration
           nil,
           [
             'create'
-          ]
+          ],
+          campaign.project_id
         )
       end
 

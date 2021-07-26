@@ -25,7 +25,8 @@ class AdminJob < ApplicationJob
     assessment_raw_result_export: AdminJobs::AssessmentRawResultExport,
     assessment_scoring_export: AdminJobs::AssessmentScoringExport,
     assessment_norm_export: AdminJobs::AssessmentNormExport,
-    assessment_raw_factor_export: AdminJobs::AssessmentRawFactorExport
+    assessment_raw_factor_export: AdminJobs::AssessmentRawFactorExport,
+    external_assessment_export: AdminJobs::ExternalAssessmentExport
   }.freeze
 
   def perform(record)

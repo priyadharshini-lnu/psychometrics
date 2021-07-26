@@ -19,9 +19,11 @@
         label = t('.other_settings')
         = f.input :locales,
           as: :select,
-          collection: Settings.enduser_locales,
+          collection: Utility::Locale.end_user_locales.stringify_keys.to_a,
+          value_method: :first,
+          label_method: :second,
           include_blank: false,
-          include_hidden: false,
+          include_hidden: true,
           input_html: { multiple: true }
         = f.input :privacy_consent
         = f.input :strong_password_enabled
@@ -38,7 +40,7 @@
           = f.input :live_chat_token, label: t('.live_chat_token'), placeholder: t('.optional')
         = f.input :webhook, label: t('.webhook')
       .clearfix
-      -if policy(:client).design?
+      -if policy(:client, { project_id: client.id}).design?
         .well
           h3 Design
           // File input

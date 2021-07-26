@@ -72,7 +72,7 @@ export const SavilleFactor: React.FC<Props> = ({
         value={getValue(factors, selectedFactor)}
         options={factors}
         getOptionValue={opt => opt.id}
-        getOptionLabel={opt => (find(factors, opt) as Factor).name}
+        getOptionLabel={opt => (find(factors, opt) as Factor)?.name}
         isClearable={false}
         autoFocus={false}
         isMulti={!singleChoice}

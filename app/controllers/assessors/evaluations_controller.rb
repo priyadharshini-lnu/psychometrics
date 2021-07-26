@@ -39,7 +39,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
     attributes = attributes.merge(started_at: Time.now) unless user_result.started_at
     user_result.update(attributes)
 
-    ::UsersResults::Edit.call!(user_result) if params[:edit] == 'true'
+    ::UserAssessments::AllowEdit.call!(@assessor_assessment) if params[:edit] == 'true'
 
     if params[:read] == 'true'
       @assessor_assessment.status = :in_progress

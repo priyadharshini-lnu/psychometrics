@@ -48,15 +48,13 @@ module Administration
       end
 
       def export_external_results
-        result =
-          if assessment.mindmill?
-            ::Assessments::Export::Mindmill.call!(assessment, campaign)
-          else
-            ::Assessments::Export::Hogan.call!(assessment, campaign)
-          end
-        respond_to do |format|
-          format.xlsx { send_data result.to_stream.read, filename: "assessment-#{assessment.id}-external-results.xlsx" }
-        end
+        AdminJob.call(
+          :external_assessment_export,
+          { assessment_id: assessment.id, campaign_id: campaign.id },
+          current_user
+        )
+
+        head :ok
       end
 
       def rescore_responses
@@ -85,7 +83,9 @@ module Administration
         campaign_assessment.update_norm!(params[:norm_id])
 
         if params[:apply]
-          AdminJob.call(:rescore_assessment, { campaign_id: campaign.id, assessment_id: assessment.id }, current_user)
+          AdminJob.call(:rescore_assessment,
+                        { campaign_id: campaign.id, assessment_id: assessment.id, fixed_norm: true },
+                        current_user)
         end
         render json: { norm_name: campaign_assessment.norm_name }
       end
@@ -128,7 +128,11 @@ module Administration
       end
 
       def pundit_authorize
-        authorize campaign_assessment || assessment
+        authorize(
+          campaign_assessment || assessment,
+          nil,
+          project_id: campaign.project_id
+        )
       end
 
       def import_params

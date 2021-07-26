@@ -1,0 +1,81 @@
+# frozen_string_literal: true
+
+module Reports
+  class ResultSerializer < ActiveModel::Serializer
+    attributes :id, :status, :answers, :results, :scoring, :user_id, :assessment_id, :data_sheet, :relationship,
+               :norm_id, :embedded_data, :manager_evaluation_status, :subject_datasheet, :external_scoring
+
+    has_one :user, serializer: UserSerializer
+    has_many :media_responses, serializer: MediaResponseSerializer
+
+    def status
+      object.real_status
+    end
+
+    def results
+      object.answers
+    end
+
+    def user
+      object.evaluator
+    end
+
+    def user_id
+      object.evaluator_id
+    end
+
+    def manager_evaluation_status
+      object.user_assessment&.manager_evaluation_status
+    end
+
+    def relationship
+      return object.user_assessment&.relationship&.name if object.assessment.threesixty?
+
+      'Self'
+    end
+
+    def data_sheet
+      campaign.datasheet_data(object.evaluator.email)
+    end
+
+    def subject_datasheet
+      campaign.datasheet_data(object.subject.email)
+    end
+
+    def external_scoring
+      return object.external_results if object.assessment.mindmill?
+      return object.external_results['scores'] || [] if object.assessment.saville?
+
+      if object.assessment.hogan?
+        score = object.external_results
+        if score.present?
+          raw_scale = score.dig('scores', 'rawScores', 'scaleScores') || []
+          percentile_scale = score.dig('scores', 'percentileScores', 'scaleScores') || []
+          percentile_subscale = score.dig('scores', 'percentileScores', 'subscaleScores') || []
+          return {
+            'RawScale' => normalize_hogan(raw_scale),
+            'PercentileScale' => normalize_hogan(percentile_scale),
+            'PercentileSubscale' => normalize_hogan(percentile_subscale)
+          }
+        end
+      end
+      {}
+    end
+
+    def media_responses
+      object.media_responses.order(:created_at)
+    end
+
+    private
+
+    def campaign
+      @campaign ||= instance_options[:campaign]
+    end
+
+    def normalize_hogan(items)
+      items.each_with_object({}) do |v, res|
+        res[v['id'].to_s.rjust(2, '0')] = (v['scaleScore'] || v['subscaleScore']).to_f
+      end
+    end
+  end
+end

@@ -23,24 +23,24 @@ module Administration
     end
 
     def copy?
-      manage_report?
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     def edit?
-      manage_report?
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     def external_reports?
-      manage_report?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
     def upload_data_sheet?
-      manage_report?
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     # Can archive/unarchive Assessment
     def toggle_archive?
-      manage_report?
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
@@ -52,15 +52,13 @@ module Administration
     # Can preview Report
     # true if it's not Mindmill report and user is Superadmin
     def preview?
-      return true if @user.is?(:superadmin)
-
-      @user.is?(:client_admin, :project_admin) && @user.has_grant?(:assigns, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :view, project_id)
     end
 
     # Can export Report Data?
     #
     def export?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :view, project_id)
     end
 
     def left_menu?
@@ -72,7 +70,7 @@ module Administration
     end
 
     def toggle_status?
-      edit?
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     # Can regenerate reports if Superadmin
@@ -83,24 +81,15 @@ module Administration
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     def soft_delete?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     def restore?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
-    end
-
-    private
-
-    def manage_report?
-      permit = @user.has_grant?(:reports, :manage)
-      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
-      permit &&= ttes_ids.include?(record.owner_id) if record.is_a? ::Report
-      @user.is?(:superadmin) || permit
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
     end
 
     class Scope < Scope
@@ -109,13 +98,8 @@ module Administration
         return scope if @user.is?(:superadmin)
 
         tte_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
-        client_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
-        client_end_level_ids = Client.end_level.
-                               where('id in (?) or ancestry ~ ?', client_ids, "(/|^)(#{client_ids.join('|')})(/|$)").ids
-        scope.
-          enabled.
-          available_to_view.
-          joins(:clients).where('clients.id in (?) or reports.owner_id in (?)', client_end_level_ids, tte_ids)
+
+        scope.enabled.available_to_view.where(owner_id: tte_ids.uniq)
       end
     end
   end

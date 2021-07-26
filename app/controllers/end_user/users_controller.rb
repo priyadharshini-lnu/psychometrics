@@ -58,7 +58,7 @@ class EndUser::UsersController < ApplicationController
     form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user)
     if form.valid?
       current_user.update!(form.attributes)
-      render json: current_user, serializer: Threesixty::CurrentUserSerializer
+      render json: current_user, serializer: Threesixty::CurrentUserSerializer, project_id: @current_project.id
     else
       render json: { errors: form.errors.messages }, status: :bad_request
     end

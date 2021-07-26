@@ -19,7 +19,7 @@ describe Assessments::Export::AgileRaw do
   end
 
   let!(:user_assessment) { create(:user_assessment, subject: user, campaign: campaign, users_result: users_result) }
-  let(:file_name) { 'assessment_export.xlsx' }
+  let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
 
   after do
     FileUtils.rm(file_name) if File.exist?(file_name)

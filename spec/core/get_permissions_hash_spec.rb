@@ -5,6 +5,7 @@ require 'rails_helper'
 describe GetPermissionsHash do
   let(:current_user) { create(:superadmin) }
   let(:user_assessment) { create(:user_assessment) }
+  let(:project) { create(:project) }
 
   it 'returns permissions hash by checking policies' do
     policy = Administration::UserAssessmentPolicy.new(current_user, user_assessment)
@@ -16,7 +17,8 @@ describe GetPermissionsHash do
       [
         'update_additional_time',
         %w[reset_results reset]
-      ]
+      ],
+      project.id
     )
 
     expect(result).to eq({

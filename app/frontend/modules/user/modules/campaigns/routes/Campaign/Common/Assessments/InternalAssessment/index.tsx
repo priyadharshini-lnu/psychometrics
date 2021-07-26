@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import truncate from 'lodash/truncate'
+import cs from 'classnames'
 
 import routeUtils from 'utils/route'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
@@ -98,6 +99,8 @@ const InternalAssessment: React.FC<Props> = ({
     }
   }
 
+  const { assessmentIconUrl: iconUrl } = userAssessment
+
   return (
     <AssessmentCard size={size} withSidebar={withSidebar}>
       <Card
@@ -106,8 +109,12 @@ const InternalAssessment: React.FC<Props> = ({
         cover={(
           <div className="internal-cover">
             <div className="internal-caption">
-              <div className="internal-icon">
-                <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[userAssessment.assessmentCategory]}`} />
+              <div className={cs({ 'internal-icon': true, 'internal-icon-image': !!iconUrl })}>
+                {
+                  iconUrl
+                    ? <img src={iconUrl} />
+                    : <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[userAssessment.assessmentCategory]}`} />
+                }
               </div>
               {!['completed', 'ineligible', 'timed_out'].includes(userAssessment.status) && (
                 <div>

@@ -39,7 +39,6 @@ source 'https://rails-assets.org/' do
   gem 'rails-assets-noty'
   gem 'rails-assets-quicksearch', '2.3.1'
   gem 'rails-assets-Sortable', '1.6.0'
-  gem 'rails-assets-summernote', '0.8.6'
   gem 'rails-assets-x-editable', '~> 1.5.0'
 end
 
@@ -70,7 +69,6 @@ gem 'breadcrumbs_on_rails',       '~> 4.0.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
 gem 'ransack', '~> 2.3.0'
-gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.5'
 
@@ -201,7 +199,7 @@ group :development do
   gem 'bullet', '~> 6.1.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'debugger2'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.5.1'
   gem 'web-console', '~> 3.3.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.7.2'

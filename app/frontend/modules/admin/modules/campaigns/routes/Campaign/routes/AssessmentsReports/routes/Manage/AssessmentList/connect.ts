@@ -2,7 +2,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { get as getAssessments } from 'modules/admin/modules/campaigns/core/assessments'
 import {
   activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
-  exportNormedResults, exportRawFactorScores,
+  exportNormedResults, exportRawFactorScores, exportExternalResults,
 } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers.ts'
@@ -22,6 +22,7 @@ const connecter = connect(
     exportScoringResults,
     exportNormedResults,
     exportRawFactorScores,
+    exportExternalResults,
   },
 )
 

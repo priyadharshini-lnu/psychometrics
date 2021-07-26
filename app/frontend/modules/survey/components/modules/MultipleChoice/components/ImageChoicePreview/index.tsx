@@ -2,20 +2,22 @@ import React, {
   ChangeEvent, FC, useState, MouseEvent,
 } from 'react'
 import { Button, Modal, Typography } from 'antd'
-import { ExpandOutlined, CheckOutlined } from '@ant-design/icons'
+import { ExpandOutlined, CheckOutlined, StopOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
 import { PreviewModel } from 'modules/survey/interfaces/questions/MultipleChoice'
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
+import { EMPTY_IMAGE_SRC } from 'constants/image'
+
 import styles from './styles.scss'
 
 interface Props {
   id: PreviewModel['id']
+  multiple?: boolean
   isImagePreviewEnable: PreviewModel['props']['isImagePreviewEnable']
   imageChoiceSize: PreviewModel['props']['imageChoiceSize']
   choicesIds: PreviewModel['choicesIds']
-  choicesImages: PreviewModel['props']['choicesImages']
   answers: PreviewModel['result']['answers']
   notApplicable: PreviewModel['props']['notApplicable']
   isNotApplicableChecked: PreviewModel['result']['notApplicable']
@@ -23,28 +25,26 @@ interface Props {
   readOnly: boolean
   I18n: I18nInterface
   model: PreviewModel
-  handleChoiceChange(event: ChangeEvent<HTMLInputElement>): void
+  handleChoiceChange(event?: ChangeEvent<HTMLInputElement>): void
   handleNotApplicableChange(): void
 }
 
 export const ImageChoices: FC<Props> = ({
+  id,
+  multiple = false,
   choicesIds,
   imageChoiceSize,
   isImagePreviewEnable,
   answers,
-  choicesImages,
+  notApplicable,
+  isNotApplicableChecked,
+  handleNotApplicableChange,
   handleChoiceChange,
+  readOnly,
   model,
   defaultChoiceText,
   I18n,
 }) => {
-  let imageHeight = 22
-  if (imageChoiceSize === 'medium') {
-    imageHeight = 28
-  } else if (imageChoiceSize === 'large') {
-    imageHeight = 32
-  }
-
   const [imagePreviewSrc, setImagePreviewSrc] = useState('')
   const [isPreviewModalOpen, setPreviewModal] = useState(false)
 
@@ -67,68 +67,63 @@ export const ImageChoices: FC<Props> = ({
   }
 
   return (
-    <form
-      className={styles.grid}
-      style={{
-        gridTemplateColumns: `repeat(auto-fit, minmax(calc(${imageHeight}rem - 2rem), 1fr))`,
-      }}
-      onSubmit={event => event.preventDefault()}
-    >
-      {choicesIds.map((choiceId) => {
-        const choice = answers.find(answer => answer.index === choiceId)
-        const choiceAnswer = choice?.value ?? false
+    <>
+      <form
+        className={cs(
+          styles.grid,
+          { [styles.largeSize]: imageChoiceSize === 'large' },
+          { [styles.mediumSize]: imageChoiceSize === 'medium' },
+        )}
+        onSubmit={event => event.preventDefault()}
+      >
+        {choicesIds.map((choiceId) => {
+          const choice = answers.find(answer => answer.index === choiceId)
+          const choiceAnswer = choice?.value ?? false
 
-        const choiceImage = choicesImages[choiceId]
+          const choiceImage = I18n.tQuestion(
+            model,
+            `choicesImages${choiceId + 1}`,
+            {
+              choice: choiceId,
+            },
+          )
 
-        const choiceText = I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
-          choice: choiceId,
-        }) || defaultChoiceText(choiceId + 1)
+          const choiceText = I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
+            choice: choiceId,
+          }) || defaultChoiceText(choiceId + 1)
 
-        return (
-          <label
-            className={styles.card}
-            htmlFor={`radio-${choiceId}`}
-            style={{ borderColor: choiceAnswer ? '#00B4A9' : '#d9d9d9' }}
-            key={choiceId}
-          >
-            <span
-              className={cs(
-                styles.checkmarkButton,
-                'ant-btn ant-btn-circle ant-btn-icon-only',
-                { 'ant-btn-primary': choiceAnswer },
-              )}
-            >
-              {choiceAnswer && <CheckOutlined />}
-              <input
-                id={`radio-${choiceId}`}
-                type="radio"
-                className="hidden"
-                name={choiceText}
-                value={choiceId}
-                checked={choiceAnswer}
-                onChange={handleChoiceChange}
-              />
-            </span>
-            {isImagePreviewEnable && (
-              <Button
-                className={styles.previewButton}
-                shape="circle"
-                icon={<ExpandOutlined />}
-                onClick={event => toggleImagePreviewer(choiceImage, event)}
-              />
-            )}
-            <img
-              loading="lazy"
-              alt={choiceText}
+          return (
+            <ImageChoiceCard
+              key={choiceId}
+              id={id}
+              multiple={multiple}
+              choiceId={choiceId}
+              text={choiceText}
               src={choiceImage}
-              style={{ height: `${imageHeight}rem` }}
+              isImagePreviewEnable={isImagePreviewEnable}
+              onPreview={toggleImagePreviewer}
+              isChecked={choiceAnswer}
+              onChange={handleChoiceChange}
+              isDisabled={readOnly}
             />
-            <Typography.Text strong className="mt-2 mb-2 ta-c">
-              {choiceText}
-            </Typography.Text>
-          </label>
-        )
-      })}
+          )
+        })}
+        {notApplicable && (
+          <ImageChoiceCard
+            id={id}
+            multiple={multiple}
+            choiceId={-1}
+            text={I18n.tQuestion(model, 'notApplicableLabel')}
+            src={EMPTY_IMAGE_SRC}
+            isNotApplicableOption
+            isImagePreviewEnable={false}
+            onPreview={toggleImagePreviewer}
+            isChecked={isNotApplicableChecked}
+            onChange={handleNotApplicableChange}
+            isDisabled={readOnly}
+          />
+        )}
+      </form>
       <Modal
         centered
         wrapClassName={styles.modalWrap}
@@ -141,10 +136,80 @@ export const ImageChoices: FC<Props> = ({
       >
         <img src={imagePreviewSrc} width="100%" height="100%" loading="lazy" />
       </Modal>
-    </form>
+    </>
   )
 }
 
 export const NotApplicableImageChoice: FC = () => <div>image n/a</div>
+
+interface ImageChoiceCardProps {
+  id: PreviewModel['id']
+  multiple: boolean
+  choiceId: PreviewModel['choicesIds'][0]
+  text: string
+  src: PreviewModel['props']['choicesImages'][0]
+  isNotApplicableOption?: PreviewModel['props']['notApplicable']
+  isImagePreviewEnable: PreviewModel['props']['isImagePreviewEnable']
+  onPreview(previewSrc?: string, event?: React.MouseEvent | undefined): void
+  isChecked: boolean
+  onChange(event?: ChangeEvent<HTMLInputElement>): void
+  isDisabled: Props['readOnly']
+}
+
+const ImageChoiceCard: FC<ImageChoiceCardProps> = ({
+  id,
+  multiple,
+  choiceId,
+  text,
+  src = EMPTY_IMAGE_SRC,
+  isNotApplicableOption = false,
+  isImagePreviewEnable,
+  onPreview,
+  isChecked,
+  onChange,
+  isDisabled,
+}) => (
+  <label
+    className={cs(styles.card, { [styles.checked]: isChecked })}
+    htmlFor={`mc-input-${id}-${choiceId}`}
+    key={choiceId}
+  >
+    <span
+      className={cs(
+        styles.checkmarkButton,
+        'ant-btn ant-btn-circle ant-btn-icon-only',
+        { 'ant-btn-primary': isChecked },
+      )}
+    >
+      {isChecked && <CheckOutlined />}
+      <input
+        id={`mc-input-${id}-${choiceId}`}
+        type={multiple ? 'checkbox' : 'radio'}
+        name={`${id}`}
+        className="hidden"
+        value={choiceId}
+        disabled={isDisabled}
+        checked={isChecked}
+        onChange={onChange}
+      />
+    </span>
+    {isImagePreviewEnable && (
+      <Button
+        className={styles.previewButton}
+        shape="circle"
+        icon={<ExpandOutlined />}
+        onClick={event => onPreview(src, event)}
+      />
+    )}
+    {isNotApplicableOption ? (
+      <StopOutlined className={styles.notApplicable} />
+    ) : (
+      <img loading="lazy" alt={text} src={src} />
+    )}
+    <Typography.Text strong className="mt-2 mb-2 ta-c">
+      {text}
+    </Typography.Text>
+  </label>
+)
 
 export default ImageChoices

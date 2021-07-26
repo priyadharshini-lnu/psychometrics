@@ -13,7 +13,7 @@ export interface PreviewModel extends BasePreviewModel<Props, ModuleConfig> {
   choicesIds: number[]
   result: {
     question_id: number
-    answer(selected: number): void
+    answer(selected: number, value?: boolean): void
     answers: Array<{ index: number; value: boolean }>
     notApplicable: boolean
     reduxAnswer(): void

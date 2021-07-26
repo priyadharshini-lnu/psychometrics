@@ -2,19 +2,18 @@
 
 module Licenses
   class FetchQuery < Rectify::Query
-    private_attr_reader :client, :report
+    private_attr_reader :client, :report_family_id
 
-    def initialize(client, report)
+    def initialize(client, report_family_id)
       @client = client
-      @report = report
+      @report_family_id = report_family_id
     end
 
     def query
       client.
         licenses.
         available.
-        with_report_family(report.report_family_ids).
-        where(type: :common).
+        where(report_family_id: report_family_id, type: :common).
         order(end_date: :asc)
     end
   end

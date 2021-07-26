@@ -41,6 +41,14 @@ module Administration
 
       private
 
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: campaign.project_id
+        )
+      end
+
       def campaign_user
         CampaignUser.find_by!(campaign: campaign, user_id: params[:user_id])
       end

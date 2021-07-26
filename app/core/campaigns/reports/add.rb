@@ -50,16 +50,9 @@ module Campaigns
             report_family_id: report_family_id_for(report),
             user_access: user_access_for(report),
             operation: form.operation,
-            assessments: report.assessments,
-            use_license: use_new_license?(campaign_user.user, report)
+            assessments: report.assessments
           )
         end
-      end
-
-      def use_new_license?(user, report)
-        return true if form.operation == 'add_and_allow_new_response'
-
-        !Licenses::IsUsedByUser.call!(user, report)
       end
 
       def existing_report_ids

@@ -129,6 +129,8 @@ blocks:
       jobs:
         - name: Jest
           commands:
+            - cp config/database.yml.sample config/database.yml
+            - bundle exec rake i18n:js:export
             - yarn test:coverage
           execution_time_limit:
             minutes: 10

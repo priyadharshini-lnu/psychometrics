@@ -7,7 +7,8 @@ import initSentry from 'libs/initSentry'
 
 initSentry()
 
-ReactDOM.render(<FactorFormApp />, document.getElementById('factor-form-app'))
+// eslint-disable-next-line no-underscore-dangle
+ReactDOM.render(<FactorFormApp {...window.__FACTOR_FORM_PROPS__} />, document.getElementById('factor-form-app'))
 
 if (__DEV__) {
   if (module.hot) {

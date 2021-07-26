@@ -14,7 +14,7 @@ module UserReports
                           user_results.
                           joins(:user_assessment).
                           merge(UserAssessment.completed).map do |user_result|
-                            ::UsersResultSerializer.new(user_result, campaign: campaign).to_h
+                            ::Reports::ResultSerializer.new(user_result, campaign: campaign).to_h
                           end.group_by { |result| result[:assessment_id] }
 
       broadcast :ok, serialized_result
