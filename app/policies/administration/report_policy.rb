@@ -98,13 +98,8 @@ module Administration
         return scope if @user.is?(:superadmin)
 
         tte_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
-        client_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
-        client_end_level_ids = Client.end_level.
-                               where('id in (?) or ancestry ~ ?', client_ids, "(/|^)(#{client_ids.join('|')})(/|$)").ids
-        scope.
-          enabled.
-          available_to_view.
-          joins(:clients).where('clients.id in (?) or reports.owner_id in (?)', client_end_level_ids, tte_ids)
+
+        scope.enabled.available_to_view.where(owner_id: tte_ids.uniq)
       end
     end
   end

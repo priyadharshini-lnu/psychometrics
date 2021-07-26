@@ -25,11 +25,8 @@ module Administration
                 :report_families,
                 :hogan_report_setting
               ).
-              order(:name).
-              distinct
+              order(:name)
 
-      scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
-      scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.ransack(params[:q])
       @_resources = filter_form.result.page(params[:page])
 

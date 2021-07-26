@@ -41,7 +41,7 @@ module Administration
             'copy',
             %w[delete destroy]
           ],
-          instance_options[:project_id]
+          project.id
         )
       end
 
