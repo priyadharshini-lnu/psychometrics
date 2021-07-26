@@ -54,7 +54,11 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
-      resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
+
+      if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
+        resource.owner_id = current_user.client_admin_client_ids.first
+      end
+
       # TODO: (ivan) Move creating and updating to Command and Form
       resource.reload_hogan_report_setting if resource.hogan_report_setting&.hogan_report_id.blank?
       resource.reload_saville_report_setting if resource.saville_report_setting&.saville_report_id.blank?
