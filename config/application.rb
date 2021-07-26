@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'boot'
-
 require 'rails/all'
+require_relative '../lib/middlewares/set_locale_middleware'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -41,6 +41,8 @@ module Psychometrics
     config.to_prepare do
       Devise::Mailer.layout 'end_user_email' # email.haml or email.erb
     end
+
+    config.middleware.use SetLocaleMiddleware
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
