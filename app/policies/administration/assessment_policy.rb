@@ -153,7 +153,7 @@ module Administration
             if @user.is?(:client_admin)
               @user.client_admin_client_ids
             else
-              @user.project_admin_clients.select('tte_id').distinct
+              @user.project_admin_clients_tte_ids.uniq
             end
           scope.where(owner_id: owner_ids)
         else
