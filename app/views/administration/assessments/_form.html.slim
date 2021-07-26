@@ -21,10 +21,16 @@
                           wrapper_html: { class: 'saville' },
                           input_html: { data: { live_search: true } }
         = f.input :name, wrapper_html: { class: 'common mindmill hogan saville' }
-        = f.association :owner, collection: policy_scope(Client).roots.order(name: :asc),
-                                include_blank: t('administration.tte'),
-                                input_html: { data: { live_search: true } },
-                                wrapper_html: { class: 'common' }
+        - root_clients = policy_scope(Client).roots
+        - if current_user.is?(:superadmin)
+          = f.association :owner, collection: root_clients.order(name: :asc),
+                                  include_blank: t('administration.tte'),
+                                  input_html: { data: { live_search: true } },
+                                  wrapper_html: { class: 'common' }
+        - elsif current_user.is?(:client_admin) && root_clients.count > 1
+          = f.association :owner, collection: root_clients.order(name: :asc),
+                                    input_html: { data: { live_search: true } },
+                                    wrapper_html: { class: 'common' }
         = f.input :category, as: :select, collection: resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] },
                              include_blank: false,
                              wrapper_html: { class: 'common' }
