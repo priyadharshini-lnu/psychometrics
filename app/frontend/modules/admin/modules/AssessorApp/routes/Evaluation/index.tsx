@@ -10,6 +10,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import ReactMarkdown from 'react-markdown'
 import { SafeHTML } from 'components/SafeHTML'
+import { setStore, getStore } from 'store/StoreWatchman'
 import AssessorAssessment from './AssessorAssessment'
 import UserAssessment from './UserAssessment'
 import { fetchAssessorAssessments, changeAssessorForm, changeSubjectAssessment } from '../../core/evaluation'
@@ -41,6 +42,9 @@ const Evaluation = ({
   const params = new URLSearchParams(location.search)
 
   useEffect(() => {
+    if (!getStore()) {
+      setStore(store)
+    }
     fetchAll(parsedCampaignId, parsedUserId)
   }, [])
 
