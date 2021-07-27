@@ -43,7 +43,7 @@ const FILTER_QUESTION_TYPES = [
   'AudioResponse',
 ]
 
-export const getQuestions = (state: any, assessmentId: number) => {
+export const getQuestions = (state: RootState['report'], assessmentId: number) => {
   const assessment = state.builder.assessments[assessmentId]
   if (!assessment) { return {} }
   const blocks = denormalize(assessment.blocks, [blocksSchema], state.builder)

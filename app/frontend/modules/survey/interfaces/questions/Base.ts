@@ -96,3 +96,4 @@ type QuestionTypes =
   | 'SelectBox'
   | 'MultiSelectBox'
   | 'SideBySide'
+  | 'MatrixTable'

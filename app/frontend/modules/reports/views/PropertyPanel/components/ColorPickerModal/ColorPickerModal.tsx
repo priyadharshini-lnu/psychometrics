@@ -1,15 +1,15 @@
 import React from 'react'
 import _ from 'lodash'
-import { ColorResult, SketchPicker } from 'react-color'
+import { ColorResult, SketchPicker, RGBColor } from 'react-color'
 import { rgba2hex } from 'utils/color'
 import styles from './styles.scss'
-import { Close, ChangeColor, Color } from '../../../../core/temp/colorPicker'
+import { Close, ChangeColor } from '../../../../core/temp/colorPicker'
 
 interface Props {
   isOpen: boolean
   closePicker: Close
   changeColor: ChangeColor
-  color: Color
+  color: RGBColor | string
   onComplete: null | undefined | ((color: ColorResult) => void)
   onChange: null | undefined | ((color: ColorResult) => void)
 }
