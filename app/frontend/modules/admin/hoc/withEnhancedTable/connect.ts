@@ -12,7 +12,9 @@ export default connect(
     changeFilter: (tableName: string, filterName: string, filterValue: string) => (
       dispatch(changeFilter(tableName, filterName, filterValue))
     ),
-    changePage: (tableName: string, pageNumber: number) => dispatch(changePage(tableName, pageNumber)),
+    changePage: (tableName: string, pageNumber: number, pageSize?: number) => (
+      dispatch(changePage(tableName, pageNumber, pageSize))
+    ),
     removeFilter: (tableName: string, filterName: string) => dispatch(removeFilter(tableName, filterName)),
     changeSort: (tableName: string, columnName: string, order: string) => (
       dispatch(changeSort(tableName, columnName, order))

@@ -64,6 +64,7 @@ const CampaignList: React.FC<Props> = ({
   tableConfig: {
     filters,
     page,
+    pageSize,
   },
   tableConfig,
   changeFilter,
@@ -238,7 +239,7 @@ const CampaignList: React.FC<Props> = ({
       <div className="pl">
         <Pagination
           current={page}
-          pageSize={DEFAULT_PAGE_SIZE}
+          pageSize={pageSize || DEFAULT_PAGE_SIZE}
           total={total}
           onChange={changePage}
           hideOnSinglePage

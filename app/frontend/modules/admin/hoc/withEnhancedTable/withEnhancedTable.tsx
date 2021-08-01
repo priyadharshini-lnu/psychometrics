@@ -80,7 +80,6 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
     let tableFunctions = _.pick(props, ['changeFilter', 'changePage', 'removeFilter', 'changeSort'])
     tableFunctions = _.reduce(tableFunctions, (result, func, key) => {
       result[key] = _.curry(func)(tableName)
-
       return result
     }, {} as typeof tableFunctions)
 
