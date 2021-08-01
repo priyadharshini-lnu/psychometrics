@@ -3,7 +3,7 @@
 module Administration
   class CommunicationsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: %i[destroy copy download_history toggle_status sidebar]
+    before_action :set_resource, only: %i[destroy copy download_history toggle_status sidebar show]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize, except: [:sidebar]
     after_action :init_breadcrumbs
@@ -88,6 +88,14 @@ module Administration
     end
 
     private
+
+    def pundit_authorize
+      authorize(
+        resource || resource_class,
+        nil,
+        project_id: resource&.owner_id
+      )
+    end
 
     def clone_resource(resource)
       clone_resource = resource.clone
