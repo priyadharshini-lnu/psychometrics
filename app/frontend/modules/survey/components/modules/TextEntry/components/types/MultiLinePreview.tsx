@@ -1,25 +1,26 @@
-import React, { ChangeEvent, FC, useRef } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
 import { Row, Col } from 'antd'
+
+import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
 
 import useForceUpdate from 'hooks/useUpdate'
 import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/components/TextEntryCounter'
 import { SpeechToTextInput } from 'modules/survey/components/modules/TextEntry/components/SpeechToTextInput'
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  model: any
+  model: PreviewModel
   readOnly: boolean
-  awsSpeechTextPresignedUrl: string
   activeDictationOnQuestion: number
-  setDictationActiveOnQuestion: (questionId: number) => void
+  setDictationActiveOnQuestion(questionId: number): void
+  fetchAwsSpeechTextPresignedUrl(): Promise<{ response: { url: string } }>
 }
 
 const MultiLinePreview: FC<Props> = ({
   readOnly,
   model,
-  awsSpeechTextPresignedUrl,
   activeDictationOnQuestion,
   setDictationActiveOnQuestion,
+  fetchAwsSpeechTextPresignedUrl,
 }) => {
   const {
     props: { type, allowDictation },
@@ -28,6 +29,8 @@ const MultiLinePreview: FC<Props> = ({
   } = model
 
   const forceUpdate = useForceUpdate()
+
+  const [isDictating, setDictation] = useState(false)
 
   const updateModelAnswer = (value: string) => {
     model.result.answer(value)
@@ -42,17 +45,21 @@ const MultiLinePreview: FC<Props> = ({
     updateModelAnswer(value)
   }
 
-  const handleDictationToggle = (isStarted: boolean) => {
+  const handleDictationChange = (isStarted: boolean) => {
     if (isStarted) {
       setDictationActiveOnQuestion(questionId)
+      setDictation(true)
     } else {
       setDictationActiveOnQuestion(0)
+      setDictation(false)
     }
   }
 
   const value = result?.answers?.[0]?.value ?? ''
 
-  const isDictationDisabled = activeDictationOnQuestion !== questionId && activeDictationOnQuestion !== 0
+  const isDictationDisabled = (activeDictationOnQuestion !== questionId
+      && activeDictationOnQuestion !== 0)
+    || readOnly
 
   return (
     <div>
@@ -60,24 +67,24 @@ const MultiLinePreview: FC<Props> = ({
         <Col span={24}>
           {!readOnly && allowDictation ? (
             <SpeechToTextInput
-              preSignedUrl={awsSpeechTextPresignedUrl}
+              isDisabled={isDictationDisabled}
               value={value}
-              onChange={updateModelAnswer}
-              onToggle={handleDictationToggle}
-              isDisabled={isDictationDisabled || readOnly}
+              onValueChange={updateModelAnswer}
+              onDictationChange={handleDictationChange}
+              fetchPresignUrl={fetchAwsSpeechTextPresignedUrl}
             >
               <MultiLineTextArea
-                readOnly={readOnly}
-                value={value}
                 type={type}
+                disabled={isDictating || readOnly}
+                value={value}
                 handleOnChange={handleOnChange}
               />
             </SpeechToTextInput>
           ) : (
             <MultiLineTextArea
-              readOnly={readOnly}
-              value={value}
               type={type}
+              disabled={readOnly}
+              value={value}
               handleOnChange={handleOnChange}
             />
           )}
@@ -89,21 +96,19 @@ const MultiLinePreview: FC<Props> = ({
 }
 
 interface MultiLineTextAreaProps {
-  readOnly: boolean
-  value: string
   type: string
+  disabled: boolean
+  value: string
   handleOnChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
-  readOnly,
   type,
+  disabled,
   handleOnChange,
   value,
 }) => {
-  const ref = useRef<HTMLTextAreaElement>(null)
   const rows = type === 'MultiLine' ? 3 : 6
-  const disabled = readOnly
 
   return (
     <textarea
@@ -113,7 +118,6 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
       className="w-100 ant-input"
       onChange={handleOnChange}
       value={value}
-      ref={ref}
     />
   )
 }

@@ -4,24 +4,26 @@ import { connect } from 'react-redux'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import { setDictationActiveOnQuestion } from 'modules/survey/core/preview/FlowProcessor/actions'
+import {
+  setDictationActiveOnQuestion,
+  fetchAwsSpeechTextPresignedUrl,
+} from 'modules/survey/core/preview/FlowProcessor/actions'
 import {
   getI18n,
-  getAwsSpeechTextPresignedUrl,
   getQuestionWithActiveDictation,
 } from 'modules/survey/core/preview/FlowProcessor/selectors'
 
-import styles from './components/styles.scss'
 import Previews from './Previews'
-
 
 const connector = connect(
   ({ preview }) => ({
     I18n: getI18n(preview),
-    awsSpeechTextPresignedUrl: getAwsSpeechTextPresignedUrl(preview),
     activeDictationOnQuestion: getQuestionWithActiveDictation(preview),
   }),
-  { setDictationActiveOnQuestion },
+  {
+    setDictationActiveOnQuestion,
+    fetchAwsSpeechTextPresignedUrl,
+  },
 )
 
 class PreviewComponent extends Component {
@@ -31,18 +33,24 @@ class PreviewComponent extends Component {
 
   renderAnswersType () {
     const {
-      readOnly, model, awsSpeechTextPresignedUrl, activeDictationOnQuestion, setDictationActiveOnQuestion,
+      readOnly,
+      model,
+      model: {
+        props: { type },
+      },
+      activeDictationOnQuestion,
+      setDictationActiveOnQuestion,
+      fetchAwsSpeechTextPresignedUrl,
     } = this.props
-    const { type } = model.props
     const View = Previews[type]
 
     return (
       <View
         model={model}
         readOnly={readOnly}
-        awsSpeechTextPresignedUrl={awsSpeechTextPresignedUrl}
         activeDictationOnQuestion={activeDictationOnQuestion}
         setDictationActiveOnQuestion={setDictationActiveOnQuestion}
+        fetchAwsSpeechTextPresignedUrl={fetchAwsSpeechTextPresignedUrl}
       />
     )
   }
@@ -53,7 +61,7 @@ class PreviewComponent extends Component {
     return (
       <div>
         <SafeHTML
-          className={styles.questionTextPreview}
+          className="mb-4"
           html={I18n.tQuestion(model, 'questionText')}
           config="adminRichText"
         />

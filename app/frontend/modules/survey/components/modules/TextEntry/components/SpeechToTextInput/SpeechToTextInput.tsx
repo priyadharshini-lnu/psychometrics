@@ -1,10 +1,5 @@
 import React, {
-  FC,
-  RefObject,
-  useEffect,
-  useState,
-  ReactElement,
-  useRef,
+  FC, useEffect, useState, ReactElement, useRef,
 } from 'react'
 import {
   Button,
@@ -34,29 +29,25 @@ const LAST_ONE_MINUTE_OF_MAXIMUM_DICTATION_ALLOWED_IN_SECONDS = MAXIMUM_DICTATIO
 
 const { I18n } = window
 
-interface Props {
-  preSignedUrl: string
-  inputRef?: RefObject<HTMLTextAreaElement>
+export interface Props {
   value?: string
-  onChange: (value: string) => void
-  onToggle?: (isStarted: boolean) => void
+  onValueChange: (value: string) => void
+  onDictationChange?: (isStarted: boolean) => void
   isDisabled?: boolean
+  fetchPresignUrl(): Promise<{ response: { url: string } }>
   children: ReactElement
 }
 
 export const SpeechToTextInput: FC<Props> = ({
-  preSignedUrl = '',
   value = '',
-  onChange,
-  onToggle,
+  onValueChange,
+  onDictationChange,
+  fetchPresignUrl,
   isDisabled = false,
   children,
 }) => {
-  if (preSignedUrl.length === 0) {
-    return null
-  }
-
   const [isDictating, setDictationIndicator] = useState(false)
+  const [isLoading, setLoadingIndication] = useState(false)
   const [canRecordAudio, setCanRecordAudio] = useState(false)
   const [tooltipText, setTooltipText] = useState('')
 
@@ -75,7 +66,8 @@ export const SpeechToTextInput: FC<Props> = ({
 
   useEffect(() => {
     if (
-      navigator.mediaDevices !== undefined
+      navigator
+      && navigator.mediaDevices !== undefined
       && navigator.mediaDevices.getUserMedia !== undefined
     ) {
       setCanRecordAudio(true)
@@ -87,6 +79,8 @@ export const SpeechToTextInput: FC<Props> = ({
   }, [])
 
   const startDictation = async () => {
+    setLoadingIndication(true)
+
     try {
       const audioStream = await navigator.mediaDevices.getUserMedia({
         audio: true,
@@ -104,8 +98,18 @@ export const SpeechToTextInput: FC<Props> = ({
       audioContextRef.current = audioCtx
       audioAnalyzerRef.current = audioAnalyzer
 
+      const {
+        response: { url },
+      } = await fetchPresignUrl()
+
+      setLoadingIndication(false)
+
+      if (url.length === 0) {
+        throw new Error('no_url')
+      }
+
       transcribe({
-        url: preSignedUrl,
+        url,
         stream: audioStream,
         onTranscribe: handleTranscription,
         onError: handleTranscriptionError,
@@ -122,10 +126,29 @@ export const SpeechToTextInput: FC<Props> = ({
 
       setDictationIndicator(true)
       setTooltipText(I18n.t('assessments.dictation.dictation_active'))
-      onToggle && onToggle(true)
+
+      if (onDictationChange) {
+        onDictationChange(true)
+      }
     } catch (err) {
-      console.error('browser permission', err)
-      setTooltipText(I18n.t('assessments.dictation.allow_browser_permision'))
+      console.error('start dictation', err.name, err.message)
+      setLoadingIndication(false)
+
+      if (err && err.message === 'no_url') {
+        antdNotification.error({
+          message: I18n.t('assessments.dictation.dictation_not_started'),
+          description: I18n.t('assessments.dictation.no_dictation_url'),
+        })
+      } else if (err && err.name === 'NotAllowedError') {
+        antdNotification.warning({
+          message: I18n.t('assessments.dictation.dictation_not_started'),
+          description: I18n.t('assessments.dictation.allow_browser_permision'),
+        })
+      } else {
+        antdNotification.error({
+          message: I18n.t('assessments.dictation.dictation_not_started'),
+        })
+      }
     }
   }
 
@@ -157,7 +180,9 @@ export const SpeechToTextInput: FC<Props> = ({
 
     await audioContextRef.current?.close()
 
-    onToggle && onToggle(false)
+    if (onDictationChange) {
+      onDictationChange(false)
+    }
   }
 
   const handleTranscription: OnTranscribe = (transcription) => {
@@ -173,7 +198,7 @@ export const SpeechToTextInput: FC<Props> = ({
       .replace(/\r?\n|\r/g, ' ')
 
     const finalValue = `${initialValue} ${formattedTranscription}`
-    onChange(finalValue)
+    onValueChange(finalValue)
   }
 
   const handleTranscriptionError: OnTranscribeError = (
@@ -256,21 +281,25 @@ export const SpeechToTextInput: FC<Props> = ({
     ? 'danger'
     : 'secondary'
 
+  let buttonText = I18n.t('assessments.dictation.start_dictation')
+  if (isDictating) {
+    buttonText = I18n.t('assessments.dictation.stop_dictation')
+  }
+
   return (
     <>
       <div className="ta-e pb-4">
         <Space>
           <Tooltip title={tooltipText}>
-            <InfoCircleOutlined />
+            <InfoCircleOutlined aria-hidden="true" />
           </Tooltip>
           <Button
             type="ghost"
             onClick={isDictating ? stopDictation : startDictation}
             disabled={!canRecordAudio || isDisabled}
+            loading={isLoading}
           >
-            {isDictating
-              ? I18n.t('assessments.dictation.stop_dictation')
-              : I18n.t('assessments.dictation.start_dictation')}
+            {buttonText}
           </Button>
         </Space>
       </div>
