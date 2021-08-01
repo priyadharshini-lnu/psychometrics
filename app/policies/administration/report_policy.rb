@@ -97,13 +97,11 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
 
-        tte_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
+        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
 
-        report_permitted_tte_ids = tte_ids.uniq.each_with_object([]) do |tte_id, permitted_tte_ids|
-          permitted_tte_ids << tte_id if @user.has_permission?(:reports, :view, tte_id)
-        end
+        permitted_owner_ids = owner_ids.uniq.select { |owner_id| @user.has_permission?(:reports, :view, owner_id) }
 
-        scope.enabled.available_to_view.where(owner_id: report_permitted_tte_ids)
+        scope.enabled.available_to_view.where(owner_id: permitted_owner_ids)
       end
     end
   end
