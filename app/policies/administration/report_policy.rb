@@ -99,7 +99,11 @@ module Administration
 
         tte_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
 
-        scope.enabled.available_to_view.where(owner_id: tte_ids.uniq)
+        report_permitted_tte_ids = tte_ids.uniq.each_with_object([]) do |tte_id, permitted_tte_ids|
+          permitted_tte_ids << tte_id if @user.has_permission?(:reports, :view, tte_id)
+        end
+
+        scope.enabled.available_to_view.where(owner_id: report_permitted_tte_ids)
       end
     end
   end
