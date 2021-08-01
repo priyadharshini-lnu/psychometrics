@@ -5,6 +5,7 @@ module AgileUserResult
 
   def show
     if user_result.not_started?
+      user_result.update!(started_at: Time.now)
       user_result.in_progress!
       UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment
     end

@@ -108,7 +108,7 @@ RSpec.configure do |config|
             id: { type: 'integer' },
             name: { type: 'string' },
             campaign_id: { type: 'integer' },
-            status: { type: 'string' },
+            status: { type: 'string', enum: %w[not_ready generating failed ready] },
             assessments: { type: 'array', items: { '$ref' => '#/definitions/UserAssessment' } }
           }
         },
