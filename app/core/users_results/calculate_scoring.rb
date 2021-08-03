@@ -30,6 +30,7 @@ module UsersResults
       @scoring = {}
     end
 
+    # rubocop:disable Metrics/AbcSize
     def call
       factors_scoring = FactorsScoring.where(assessment_id: users_result.assessment_id).joins(:factor).all
       factors_scoring_map = factors_scoring.group_by(&:factor_id)
@@ -46,9 +47,9 @@ module UsersResults
           scoring_class = "::Scoring::#{question.try(:type)}".safe_constantize
 
           result = users_result.answers[question&.id&.to_s]
-          if scoring_class && result && question && !question_scoring.props.empty?
-            scoring_point = scoring_class.new.calculate(question, result, question_scoring.props)[:value]
-            scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
+          if scoring_class && result && result['answers'].present? && question && !question_scoring.props.empty?
+            scoring_point = scoring_class.new.calculate(question, result, question_scoring.props)[:value] || 0
+            scoring[factor_id][:results] << { question_id: question.id, value: scoring_point }
           end
           factors_question_count[factor_id] += 1 if scoring_class && question && !question_scoring.props.empty?
         end
@@ -59,6 +60,7 @@ module UsersResults
         users_result.assessment.dimension, factors_question_count
       )
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 
