@@ -129,7 +129,7 @@ gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct'
 gem 'fog-aws', '~> 2.0.1'
 gem 'inky-rb', '~> 1.3.8', require: 'inky'
-gem 'mini_magick', '~> 4.10.1'
+gem 'mini_magick', '~> 4.11.0'
 gem 'remotipart', '~> 1.3.1'
 
 gem 'ancestry', '~> 3.0.0'
