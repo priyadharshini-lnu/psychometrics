@@ -6,12 +6,12 @@ module Administration
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
 
     def edit
-      authorize user
+      authorize user, nil, policy_class: UserProfilePolicy
       @form = ::Users::AdminProfileEditForm.from_model(user)
     end
 
     def update
-      authorize user
+      authorize user, nil, policy_class: UserProfilePolicy
       @form = ::Users::AdminProfileEditForm.from_params(profile_params)
       if @form.valid?
         user = ::Users::AdminProfileUpdate.call!(@form, current_user)

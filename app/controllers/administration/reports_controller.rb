@@ -25,11 +25,8 @@ module Administration
                 :report_families,
                 :hogan_report_setting
               ).
-              order(:name).
-              distinct
+              order(:name)
 
-      scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
-      scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.ransack(params[:q])
       @_resources = filter_form.result.page(params[:page])
 
@@ -57,7 +54,11 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
-      resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
+
+      if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
+        resource.owner_id = current_user.client_admin_client_ids.first
+      end
+
       # TODO: (ivan) Move creating and updating to Command and Form
       resource.reload_hogan_report_setting if resource.hogan_report_setting&.hogan_report_id.blank?
       resource.reload_saville_report_setting if resource.saville_report_setting&.saville_report_id.blank?
@@ -165,6 +166,14 @@ module Administration
     end
 
     private
+
+    def pundit_authorize
+      authorize(
+        resource || resource_class,
+        nil,
+        project_id: resource&.owner_id
+      )
+    end
 
     def init_breadcrumbs
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]

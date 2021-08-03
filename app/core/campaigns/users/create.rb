@@ -52,17 +52,9 @@ module Campaigns
             report_family_id: campaign_report.report_family_id,
             user_access: campaign_report.user_access,
             operation: form.operation,
-            assessments: campaign_report.report.assessments,
-            use_license: use_new_license?(campaign_report.report)
+            assessments: campaign_report.report.assessments
           )
         end
-      end
-
-      def use_new_license?(report)
-        return true unless existing_user_in_project
-        return true if form.operation == 'add_and_allow_new_response'
-
-        !Licenses::IsUsedByUser.call!(user, report)
       end
 
       def send_invite_email

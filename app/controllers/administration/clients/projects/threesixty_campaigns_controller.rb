@@ -137,9 +137,9 @@ module Administration
         end
 
         def serialized_current_user
-          ::Threesixty::CurrentUserSerializer.new(current_user).
-            as_json.
-            deep_transform_keys! { |key| key.to_s.camelize(:lower) }
+          ::Threesixty::CurrentUserSerializer.new(
+            current_user, project_id: project.id
+          ).as_json.deep_transform_keys! { |key| key.to_s.camelize(:lower) }
         end
 
         def set_campaign_template_and_assessments
@@ -156,7 +156,8 @@ module Administration
             %w[
               edit_subject_report
               manage_reports_options
-            ]
+            ],
+            project.id
           )
           permissions.transform_keys! { |k| k.camelcase(:lower) }
         end

@@ -3,7 +3,7 @@
 module Administration
   class CampaignPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id)
     end
 
     def show?
@@ -11,15 +11,15 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id)
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id)
     end
 
     def manage_first_level?
@@ -27,26 +27,26 @@ module Administration
     end
 
     def manage_project?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
+      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_permission?(:clients, :manage, project_id))
     end
 
     def manage_threesixty?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
+      return true if @user.is?(:client_admin, :project_admin) && @user.has_permission?(:clients, :manage, project_id)
 
       false
     end
 
     def create?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id)
     end
 
     def projects?
-      @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:clients, :manage, project_id)
     end
 
     def sub_campaigns?
-      @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:clients, :manage, project_id)
     end
 
     def client_admins?
@@ -58,11 +58,11 @@ module Administration
     end
 
     def dimensions?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
+      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_permission?(:clients, :manage, project_id))
     end
 
     def archive?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id)
     end
 
     def edit_tte?
@@ -70,7 +70,7 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
+      @user.is?(:superadmin) || @user.has_permission?(:clients, :design, project_id)
     end
 
     def export?
@@ -86,23 +86,23 @@ module Administration
     end
 
     def templates_and_assessment?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id)
     end
 
     def fetch_campaign_options?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id)
     end
 
     def fetch_campaign_instructions?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id)
     end
 
     def update_campaign_options?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id)
     end
 
     def manage_messages?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_messages)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_messages, project_id)
     end
 
     class Scope < Scope

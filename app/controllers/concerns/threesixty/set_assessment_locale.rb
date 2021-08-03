@@ -11,7 +11,6 @@ module Threesixty::SetAssessmentLocale
     if params[:lang] && valid_locales.include?(params[:lang])
       @selected_locale = params[:lang]
       @users_result.update(selected_locale: @selected_locale) if @users_result.selected_locale != selected_locale
-
     elsif valid_locales.include?(fallback_locale)
       @selected_locale = fallback_locale
     end

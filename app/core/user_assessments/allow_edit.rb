@@ -16,10 +16,14 @@ module UserAssessments
           status: UserAssessment.statuses[:in_progress],
           completed_at: nil,
           completion_reason: nil,
-          norm_id: nil
+          norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil
         )
         user_result.update!(
+          answers: set_answers_as_dirty,
           scoring: nil,
+          occupations: nil,
+          embedded_data: nil,
+          meta_data: {},
           current_element: nil,
           current_page: nil,
           prev_pages: [],
@@ -39,6 +43,10 @@ module UserAssessments
         user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
       ).update(remove_pdf: true, status: :not_prepared)
+    end
+
+    def set_answers_as_dirty
+      user_result.answers&.each { |_, r| r['dirty'] = true }
     end
   end
 end

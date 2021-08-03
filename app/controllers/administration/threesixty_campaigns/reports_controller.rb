@@ -35,7 +35,8 @@ module Administration
           lang: params[:lang],
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
-          update_record: false
+          update_record: false,
+          async: true
         }
         respond_to do |format|
           format.json do
@@ -48,10 +49,6 @@ module Administration
             add_cookie_for_file_download
             data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
             send_file data[:file_path], type: 'application/pdf'
-          end
-          format.html do
-            data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
-            redirect_to data[:file_url]
           end
         end
       end

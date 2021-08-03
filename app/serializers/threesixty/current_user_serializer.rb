@@ -25,9 +25,16 @@ module Threesixty
         [
           %w[manage_options update_campaign_options],
           'manage_messages'
-        ]
+        ],
+        current_project_id
       )
       permissions.transform_keys! { |k| k.camelcase(:lower) }
+    end
+
+    private
+
+    def current_project_id
+      instance_options[:project_id]
     end
   end
 end

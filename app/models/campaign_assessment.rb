@@ -39,6 +39,10 @@ class CampaignAssessment < ApplicationRecord
     update!(norm_id: norm_id)
   end
 
+  def user_assessments
+    UserAssessment.where(campaign_id: campaign_id, assessment_id: assessment_id)
+  end
+
   private
 
   def saville_norm_name

@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
+import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 import AppStore from '../store/AppStore'
 import Filter from './Filter'
 import store from '../store'
@@ -32,6 +33,7 @@ import {
   SetScoring,
   SetScoringByQuestion,
   SetUsersScoring,
+  SetMediaResponses,
 } from './Results'
 
 // Attention!!!! it is hack. Used for individual response
@@ -49,6 +51,8 @@ export default class Result<ExternalScoring = unknown> {
   rawResults: RawResult[]
 
   notFilteredResults: RawResult[]
+
+  mediaResponses: MediaResponse[]
 
   dimensionId: number
 
@@ -102,6 +106,7 @@ export default class Result<ExternalScoring = unknown> {
     this.externalScoring = SetExternalScoring.run(this.rawResults)
     this.dataSheet = SetDataSheet.run(this.rawResults)
     this.groupedDataSheet = SetGroupedDataSheet.run(this.rawResults)
+    this.mediaResponses = SetMediaResponses.run(this.rawResults)
 
     if (_.isEmpty(filters)) return this
 

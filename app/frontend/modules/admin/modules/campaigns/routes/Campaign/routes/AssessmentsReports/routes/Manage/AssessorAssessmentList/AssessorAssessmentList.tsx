@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import {
   rescoreResponses, exportRawResults, exportScoringResults, exportNormedResults,
-  exportRawFactorScores,
+  exportRawFactorScores, exportExternalResults,
 } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -25,6 +25,7 @@ const connecter = connect(
     exportScoringResults,
     exportNormedResults,
     exportRawFactorScores,
+    exportExternalResults,
     openModal,
   },
 )
@@ -43,6 +44,7 @@ const AssessmentList: React.FC<Props> = ({
   exportScoringResults,
   exportNormedResults,
   exportRawFactorScores,
+  exportExternalResults,
 }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -76,6 +78,7 @@ const AssessmentList: React.FC<Props> = ({
                     exportScoringResults,
                     exportNormedResults,
                     exportRawFactorScores,
+                    exportExternalResults,
                   }) as React.ReactElement
                 }
                 innerElement={(
@@ -104,11 +107,13 @@ interface ActionMenuProps {
   exportScoringResults: Props['exportScoringResults']
   exportNormedResults: Props['exportNormedResults']
   exportRawFactorScores: Props['exportRawFactorScores']
+  exportExternalResults: Props['exportExternalResults']
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, assessment, openModal, rescoreResponses, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores,
+  exportExternalResults,
 }) => {
   const { id, name, permissions } = assessment
 
@@ -138,6 +143,12 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const handleRawFactorExport = () => {
     exportRawFactorScores(campaignId, id).then(() => {
       message.success(I18n.t('campaign_assessment.messages.raw_factor_export_scheduled'))
+    })
+  }
+
+  const handleExternalResultExport = () => {
+    exportExternalResults(campaignId, id).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.external_results_export_scheduled'))
     })
   }
 
@@ -201,13 +212,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         )}
         {permissions.exportExternalResults && (
           <Menu.Item key="export_external">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={() => handleExternalResultExport()}
             >
               External
-            </a>
+            </div>
           </Menu.Item>
         )}
       </Menu.ItemGroup>

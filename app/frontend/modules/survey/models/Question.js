@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
-/* eslint-disable default-case */
 import _ from 'lodash'
 import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
@@ -136,10 +135,10 @@ _.extend(Question.prototype, {
     this.props.choices = Utils.limit(val)
     this.props.choicesTexts.splice(this.props.choices)
     for (let i = 0; i < this.props.choices; i += 1) {
-      if (!this.props.choicesTexts[i]) {
+      if (this.props.choicesTexts && this.props.choicesTexts[i]) {
         this.props.choicesTexts[i] = this.moduleConfig.defaultChoiceText(i + 1)
       }
-      if (!this.props.choicesImages[i]) {
+      if (this.props.choicesImages && this.props.choicesImages[i]) {
         this.props.choicesImages[i] = this.moduleConfig.defaultChoiceImage
       }
     }
@@ -158,6 +157,7 @@ _.extend(Question.prototype, {
     if (!this.moduleConfig.customValidations) {
       return
     }
+    // eslint-disable-next-line default-case
     switch (this.type) {
       case 'MatrixTable':
         return this.customValidationMatrixAnswers()

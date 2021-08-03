@@ -48,8 +48,8 @@ module Saville
     def soap_header
       %(
         <AuthHeader xmlns="http://ws.sc-oasys.com/">
-          <Username>#{Rails.application.secrets.saville.dig(:credential, :user_name)}</Username>
-          <Password>#{Rails.application.secrets.saville.dig(:credential, :password)}</Password>
+          <Username>#{CGI.escape_html(Rails.application.secrets.saville.dig(:credential, :user_name))}</Username>
+          <Password>#{CGI.escape_html(Rails.application.secrets.saville.dig(:credential, :password))}</Password>
         </AuthHeader>
       )
     end

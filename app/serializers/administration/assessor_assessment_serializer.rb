@@ -17,7 +17,8 @@ module Administration
           export_normed_results
           export_external_results
           rescore_responses
-        ]
+        ],
+        campaign.project_id
       )
     end
 
@@ -25,6 +26,10 @@ module Administration
 
     def current_user
       instance_options[:current_user]
+    end
+
+    def campaign
+      instance_options[:campaign]
     end
   end
 end

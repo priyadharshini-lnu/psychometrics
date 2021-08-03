@@ -3,7 +3,7 @@
 module Administration
   class ClientsReportPolicy < Administration::BasePolicy
     def create?
-      super || @user.has_grant?(:reports, :manage)
+      super || @user.has_permission?(:reports, :manage, project_id)
     end
   end
 end

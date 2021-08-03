@@ -1,7 +1,14 @@
+import React from 'react'
+import { render } from '@testing-library/react'
+
 import {
   getSupportedBrowsersForCurrentOS,
+  UnsupportedBrowser,
 } from 'modules/survey/components/VideoRecorder/hoc/withLimitedTakes/UnsupportedBrowser'
-import { NAMES_FROM_UA_BROWSERS, UA_OperatingSystems } from 'modules/survey/constants/browser'
+import {
+  NAMES_FROM_UA_BROWSERS,
+  UA_OperatingSystems,
+} from 'modules/survey/constants/browser'
 
 const BrowserSupportForMediaRecorder = {
   and_chr: 90,
@@ -9,6 +16,18 @@ const BrowserSupportForMediaRecorder = {
   edge: 79,
   firefox: 29,
 }
+
+describe('Survey - Components - UnsupportedBrowsers', () => {
+  test('Should match snapshot with given list of supported browsers and os', () => {
+    const { asFragment } = render(
+      <UnsupportedBrowser
+        supportedBrowsers={BrowserSupportForMediaRecorder}
+        os={UA_OperatingSystems.MacOS}
+      />
+    )
+    expect(asFragment()).toMatchSnapshot()
+  })
+})
 
 describe('getSupportedBrowsersForCurrentOS function', () => {
   test('Should get only desktop browsers for Desktops', () => {
@@ -134,4 +153,3 @@ describe('getSupportedBrowsersForCurrentOS function', () => {
     ).toBeTruthy()
   })
 })
-

@@ -7,6 +7,7 @@ module Reports
     CLASS_MAP = {
       user_data: 'Reports::ResultTypes::User',
       external_result: 'Reports::ResultTypes::ExternalResults',
+      saville_result: 'Reports::ResultTypes::SavilleResults',
       normed_factor: 'Reports::ResultTypes::NormedFactor',
       formula: 'Reports::ResultTypes::Formula',
       ranked_occupations: 'Reports::ResultTypes::RankedOccupations',

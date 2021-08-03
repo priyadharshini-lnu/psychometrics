@@ -51,7 +51,7 @@ const ChoicesInput: FC<Props> = ({
 
   const handleOnIncrement = () => {
     let val = isNumber(value) ? value : model?.props?.choices
-    if (val) {
+    if (typeof val !== 'undefined') {
       val += 1
       val = val < getMaxValue() ? val : getMaxValue()
       updateModel(val)

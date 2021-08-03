@@ -190,8 +190,7 @@ the campaign\'s default assessments and reports.'
         before do
           campaign.assessments = [assessment]
           campaign.project.assessments = [assessment]
-          campaign.reports = assessment.reports
-          campaign.project.reports = assessment.reports
+          create(:campaign_report, campaign: campaign, report: report, report_family: report.report_families.first)
         end
         run_test! do |response|
           error = JSON.parse(response.body)
@@ -299,7 +298,7 @@ enough licenses for '#{report.name}'",
         end
 
         before do
-          allow(Licenses::Use).to receive(:call).and_return(true)
+          allow(Licenses::Use).to receive(:call!)
         end
 
         run_test! do |response|

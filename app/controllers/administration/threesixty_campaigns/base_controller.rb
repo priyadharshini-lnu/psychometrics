@@ -11,7 +11,12 @@ module Administration
       end
 
       def pundit_authorize
-        authorize(resource || resource_class, nil, threesixty_campaign: threesixty_campaign)
+        authorize(
+          resource || resource_class,
+          nil,
+          threesixty_campaign: threesixty_campaign,
+          project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+        )
       end
 
       def render_license_error(e)

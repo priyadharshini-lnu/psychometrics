@@ -6,7 +6,11 @@ describe UserAssessments::AllowEdit do
   let(:user_result) do
     create(
       :users_result,
+      answers: { '1' => { 'answers' => [] } },
       scoring: { '120' => { 'score' => 10 } },
+      occupations: { '1' => 'abc' },
+      embedded_data: { 'ip' => '129.1.1.1' },
+      meta_data: { 'id' => 1 },
       current_element: '1/1',
       current_page: '3',
       prev_pages: %w[1 2],
@@ -31,11 +35,20 @@ describe UserAssessments::AllowEdit do
     expect(user_assessment.completion_reason).to eq(nil)
     expect(user_assessment.norm_id).to eq(nil)
     expect(user_result.scoring).to eq(nil)
+    expect(user_result.occupations).to eq(nil)
+    expect(user_result.embedded_data).to eq(nil)
+    expect(user_result.meta_data).to eq({})
     expect(user_result.current_element).to eq(nil)
     expect(user_result.current_page).to eq(nil)
     expect(user_result.prev_pages).to eq([])
     expect(user_result.step).to eq(0)
     expect(user_result.progress).to eq(0)
+  end
+
+  it 'sets all answers as dirty' do
+    described_class.call(user_assessment)
+
+    expect(user_result.answers).to eq({ '1' => { 'answers' => [], 'dirty' => true } })
   end
 
   it 'removes report pdf' do

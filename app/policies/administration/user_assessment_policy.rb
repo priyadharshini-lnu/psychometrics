@@ -5,28 +5,28 @@ module Administration
     include ::Administration::Common::AssessmentExportPolicy
 
     def destroy?
-      @user.is?(:superadmin) || !record.completed? && @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || !record.completed? && @user.has_permission?(:campaigns, :manage_users, project_id)
     end
 
     def update_norm?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
     end
 
     def update_additional_time?
       !record&.assessment&.external? &&
-        (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)) &&
+        (@user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)) &&
         %w[completed timed_out].include?(record&.real_status) &&
         record&.users_result&.expired?
     end
 
     def rescore_response?
       !record&.assessment&.external? &&
-        @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users)
+        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
     end
 
     def reset?
       !record&.assessment&.mindmill? && !record&.assessment&.hogan? &&
-        (@user.is?(:superadmin) || @user.has_grant?(:results, :reset_responses))
+        (@user.is?(:superadmin) || @user.has_permission?(:results, :reset_responses, project_id))
     end
 
     def allow_edit?

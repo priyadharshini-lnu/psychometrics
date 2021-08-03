@@ -34,7 +34,8 @@ module Administration
           [
             %w[remove destroy],
             %w[login_as spoof]
-          ]
+          ],
+          instance_options[:project_id]
         )
       end
 

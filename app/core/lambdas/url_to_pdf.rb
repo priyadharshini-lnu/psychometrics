@@ -11,7 +11,7 @@ module Lambdas
     end
 
     def call
-      if lambda_config.dig(:url_to_pdf, :sqs_url)
+      if options[:async] && lambda_config.dig(:url_to_pdf, :sqs_url)
         send_message_to_sqs
       else
         make_http_request

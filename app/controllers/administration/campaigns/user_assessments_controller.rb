@@ -8,8 +8,8 @@ module Administration
 
       def update_norm
         user_result = resource.users_result
-
-        ::UsersResults::Recompute.call!(user_result, current_user, params.permit(:norm_id))
+        options = { norm_id: params[:norm_id], fixed_norm: true }
+        ::UsersResults::Recompute.call!(user_result, current_user, options)
 
         render json: { norm_name: resource.norm_name }
       end
@@ -49,6 +49,14 @@ module Administration
       end
 
       private
+
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: campaign.project_id
+        )
+      end
 
       def assessment
         resource

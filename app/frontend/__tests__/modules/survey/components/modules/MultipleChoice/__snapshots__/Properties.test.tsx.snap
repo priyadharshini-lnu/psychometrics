@@ -10,7 +10,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
         class="ant-typography"
       >
         <strong>
-          administration.survey_builder.property_panel.answer_type
+          Answer type
         </strong>
       </span>
       <div
@@ -41,9 +41,9 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
           </span>
           <span
             class="ant-select-selection-item"
-            title="administration.survey_builder.property_panel.multiple_choice_types.single_answer"
+            title="Single answer"
           >
-            administration.survey_builder.property_panel.multiple_choice_types.single_answer
+            Single answer
           </span>
         </div>
         <span
@@ -96,7 +96,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
               class="ant-typography"
             >
               <strong>
-                administration.survey_builder.property_panel.no_of_choices
+                No. of choices
               </strong>
             </span>
           </div>
@@ -201,7 +201,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
             />
           </span>
           <span>
-            administration.survey_builder.property_panel.add_n_a_option
+            Add N/A option
           </span>
         </label>
       </div>
@@ -215,7 +215,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
             class="ant-typography"
           >
             <strong>
-              administration.survey_builder.property_panel.orientation.title
+              Orientation
             </strong>
           </span>
           <div
@@ -238,7 +238,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
                 />
               </span>
               <span>
-                administration.survey_builder.property_panel.orientation.vertical
+                Vertical
               </span>
             </label>
             <label
@@ -257,7 +257,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
                 />
               </span>
               <span>
-                administration.survey_builder.property_panel.orientation.horizontal
+                Horizontal
               </span>
             </label>
           </div>
@@ -287,7 +287,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
           />
         </span>
         <span>
-          administration.survey_builder.property_panel.image_multi_choice_properties.enable
+          With images
         </span>
       </label>
     </div>

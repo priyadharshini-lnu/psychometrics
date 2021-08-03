@@ -1,4 +1,7 @@
-import React, { ChangeEvent, FC, lazy } from 'react'
+import React, {
+  ChangeEvent, FC, lazy, Suspense,
+} from 'react'
+import { Spin } from 'antd'
 import cs from 'classnames'
 
 import useForceUpdate from 'hooks/useUpdate'
@@ -8,7 +11,7 @@ import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfa
 
 import styles from '../../styles.scss'
 
-const ImageChoices = lazy(() => import(/* webpackChunkName: "mc-imageChoicePreview" */ '../ImageChoicePreview'))
+const ImageChoices = lazy(() => import('../ImageChoicePreview'))
 
 interface Props {
   model: PreviewModel
@@ -33,13 +36,14 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
     },
   } = model
 
-  const handleChoiceChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { value },
-    } = event
+  const handleChoiceChange = (event?: ChangeEvent<HTMLInputElement>) => {
+    const value = event?.target?.value ?? ''
 
     result.notApplicable = false
-    result.answer(parseInt(value, 10))
+
+    if (value.length !== 0) {
+      result.answer(parseInt(value, 10))
+    }
 
     forceUpdate()
   }
@@ -54,21 +58,23 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
 
   if (withImageChoice) {
     return (
-      <ImageChoices
-        id={id}
-        isImagePreviewEnable={isImagePreviewEnable}
-        imageChoiceSize={imageChoiceSize}
-        defaultChoiceText={moduleConfig.defaultChoiceText}
-        choicesIds={choicesIds}
-        answers={result.answers}
-        notApplicable={notApplicable}
-        isNotApplicableChecked={result.notApplicable}
-        readOnly={readOnly}
-        model={model}
-        I18n={I18n}
-        handleChoiceChange={handleChoiceChange}
-        handleNotApplicableChange={handleNotApplicableChange}
-      />
+      <Suspense fallback={<Spin />}>
+        <ImageChoices
+          id={id}
+          isImagePreviewEnable={isImagePreviewEnable}
+          imageChoiceSize={imageChoiceSize}
+          defaultChoiceText={moduleConfig.defaultChoiceText}
+          choicesIds={choicesIds}
+          answers={result.answers}
+          notApplicable={notApplicable}
+          isNotApplicableChecked={result.notApplicable}
+          readOnly={readOnly}
+          model={model}
+          I18n={I18n}
+          handleChoiceChange={handleChoiceChange}
+          handleNotApplicableChange={handleNotApplicableChange}
+        />
+      </Suspense>
     )
   }
 
@@ -131,6 +137,7 @@ const TextChoices: FC<TextChoicesProps> = ({
       {choicesIds.map((choiceId) => {
         const choice = answers.find(answer => answer.index === choiceId)
         const choiceAnswer = choice?.value ?? false
+
         return (
           <li
             className={`${styles.listItem} ${styles.liButton} ${
@@ -142,7 +149,7 @@ const TextChoices: FC<TextChoicesProps> = ({
               <span className={cs('fa fa-check', styles.checkIcon)} />
               <input
                 type="radio"
-                name={`${id}-choice`}
+                name={`${id}`}
                 className={styles.input}
                 disabled={readOnly}
                 value={choiceId}
@@ -198,7 +205,7 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
       <span className={cs('fa fa-check', styles.checkIcon)} />
       <input
         type="radio"
-        name={`${id}-choice`}
+        name={`${id}`}
         className={styles.input}
         disabled={readOnly}
         checked={checked}

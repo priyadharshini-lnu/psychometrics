@@ -8,6 +8,12 @@ $(function () {
   });
 
   $(document).on('click', '[data-behavior=export-pdf]', function (e) {
+    e.preventDefault()
+    if ($(this).data('usesLambda')) {
+      $.get($(this).attr('href'))
+      noty({ text: I18n.t('threesixty.report_generation_in_progress'), layout: 'topCenter', type: 'success' });
+      return
+    }
     if ($(this).find('.ladda-button')[0].hasAttribute('data-loading')) return false;
     $.fileDownload($(this).attr('href'), {
       successCallback: function(url) {

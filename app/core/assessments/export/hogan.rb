@@ -82,6 +82,7 @@ module Assessments
           res.encoded_id,
           user_name(res),
           res.evaluator.email,
+          I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
           res.evaluator.hogan_credential&.participant_id,
           res.created_at&.strftime('%D %r'),
           res.completed_at&.strftime('%D %r')
@@ -95,7 +96,7 @@ module Assessments
       end
 
       def default_headers
-        ['result ID', 'First and Last name', 'User email', 'participant ID', 'started at', 'completed at']
+        ['result ID', 'First and Last name', 'User email', 'Status', 'participant ID', 'started at', 'completed at']
       end
 
       def user_name(res)

@@ -112,7 +112,8 @@ module Administration
             'reset_all_participants',
             'reset_all_nominations',
             'edit_user'
-          ]
+          ],
+          threesixty_campaign.campaign.project_id
         )
       end
 

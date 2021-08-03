@@ -99,15 +99,6 @@ export default function List ({
         }}
       />
       <Table.Column
-        title="Duration"
-        key="duration"
-        render={({ result: { createdAt, completedAt } }) => {
-          if (completedAt) {
-            return moment.utc(moment(completedAt).diff(moment(createdAt))).format('HH[h] mm[m] ss[s]')
-          }
-        }}
-      />
-      <Table.Column
         key="actions"
         render={({
           id, result, evaluator,

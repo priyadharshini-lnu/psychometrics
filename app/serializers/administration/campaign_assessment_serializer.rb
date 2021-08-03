@@ -47,7 +47,8 @@ module Administration
           'export_external_results',
           'rescore_responses',
           %w[remove destroy]
-        ]
+        ],
+        instance_options[:project_id]
       )
     end
 

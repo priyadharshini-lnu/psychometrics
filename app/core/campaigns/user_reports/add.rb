@@ -19,7 +19,6 @@ module Campaigns
               report_family_id: report_family_id_for(report),
               user_access: user_access_for(report),
               operation: form.operation,
-              use_license: use_new_license?(campaign_user.user, report),
               assessments: get_assessments_for(report),
               norm_ids: form.assessments || []
             )
@@ -31,12 +30,6 @@ module Campaigns
       end
 
       private
-
-      def use_new_license?(user, report)
-        return true if form.add_and_allow_new_response?
-
-        !Licenses::IsUsedByUser.call!(user, report)
-      end
 
       def reports
         @reports ||= Report.where(id: form.report_ids)

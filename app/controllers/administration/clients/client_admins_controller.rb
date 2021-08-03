@@ -91,11 +91,7 @@ module Administration
 
       def destroy
         authorize resource_class, :can_manage_client_admins?
-        if resource.user.memberships.count == 1
-          resource.user.destroy
-        else
-          resource.destroy
-        end
+        resource.destroy
         respond_to do |format|
           format.html do
             redirect_back(

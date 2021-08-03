@@ -48,6 +48,9 @@ const AssessorAssessment: React.FC<Props> = ({
     if (+currentAssessorFormId === userAssessmentId) {
       fetch(userAssessmentId, { edit: edit === 'true', read: read === 'true' })
     }
+    if (edit === 'true') {
+      history.replaceState(null, '', location.href.replace('edit=true', 'edit=false'))
+    }
   }, [currentAssessorFormId])
 
   const bodyStyles = { padding: 0 }

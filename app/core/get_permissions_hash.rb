@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
 class GetPermissionsHash < BaseCommand
-  private_attr_accessor :policy_class, :current_user, :record, :permission_names
+  private_attr_accessor :policy_class, :current_user, :record,
+                        :permission_names, :project_id
 
-  def initialize(policy_class, current_user, record, permission_names)
+  def initialize(policy_class, current_user, record, permission_names, project_id)
     @policy_class = policy_class
     @current_user = current_user
     @record       = record
+    @project_id   = project_id
     @permission_names = permission_names
   end
 
   def call
-    policy = policy_class.new(current_user, record)
+    policy = policy_class.new(
+      current_user, record, { project_id: project_id }
+    )
     permissions_hash = {}
     permission_names.each do |permission|
       if permission.is_a?(Array)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Foundation from 'rb/components/Foundation'
+import ResultStore from 'rb/store/ResultStore'
 import GetImageURL from './GetImageURL'
 import styles from './Image.scss'
 
@@ -38,6 +39,24 @@ export class Image extends Component {
         <div
           className={styles.image}
           style={{ backgroundImage: `url(${GetImageURL.run(model)})` }}
+          onLoad={this.load}
+        />
+      )
+    }
+    if (preview && model.props.sourceType === 'ResponseImage') {
+      const result = ResultStore.results[model.assessment_id]
+      if (!result) { return this.renderText() }
+
+      const mediaResponse = _.find(result.mediaResponses, mr => mr.question_id === model.props.sourceQuestion)
+      if (!mediaResponse) { return this.renderText() }
+      return (
+        <img
+          className={`${styles.image} ${styles.responseImage}`}
+          src={mediaResponse.url}
+          style={{
+            maxWidth: model.props.position.width,
+            maxHeight: model.props.position.height,
+          }}
           onLoad={this.load}
         />
       )

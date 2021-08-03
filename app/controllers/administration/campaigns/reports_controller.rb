@@ -26,7 +26,7 @@ module Administration
 
       def toggle_user_access
         ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
-        render json: resource, serializer: Administration::CampaignReportSerializer
+        render json: resource, serializer: Administration::CampaignReportSerializer, project_id: campaign.project_id
       end
 
       def toggle_assessor_access
@@ -44,16 +44,18 @@ module Administration
       def assessments_and_reports
         reports = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_reports.includes(:report),
-          each_serializer: Administration::CampaignReportSerializer, current_user: current_user
+          each_serializer: Administration::CampaignReportSerializer,
+          current_user: current_user, project_id: campaign.project_id
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(:norm, :assessment),
-          each_serializer: Administration::CampaignAssessmentSerializer, current_user: current_user
+          each_serializer: Administration::CampaignAssessmentSerializer,
+          current_user: current_user, project_id: campaign.project_id
         )
-
         assessor_assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.assessor_assessments,
-          each_serializer: Administration::AssessorAssessmentSerializer, current_user: current_user
+          each_serializer: Administration::AssessorAssessmentSerializer,
+          current_user: current_user, campaign: campaign
         )
 
         render json: {
@@ -90,6 +92,14 @@ module Administration
 
       private
 
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: campaign.project_id
+        )
+      end
+
       def aseessment_permissions
         GetPermissionsHash.call!(
           Administration::CampaignAssessmentPolicy,
@@ -100,7 +110,8 @@ module Administration
             update_norm
             update_assessor_form
             update_available_locales
-          ]
+          ],
+          campaign.project_id
         )
       end
 
@@ -115,7 +126,8 @@ module Administration
             'regenerate',
             'toggle_user_access',
             'toggle_assessor_access'
-          ]
+          ],
+          campaign.project_id
         )
       end
 

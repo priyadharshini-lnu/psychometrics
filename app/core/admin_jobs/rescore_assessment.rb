@@ -5,7 +5,8 @@ module AdminJobs
     def call
       if campaign_assessment
         norm_data = {
-          norm_id: campaign_assessment.saville? ? campaign_assessment.saville_norm_id : campaign_assessment.norm_id
+          norm_id: campaign_assessment.saville? ? campaign_assessment.saville_norm_id : campaign_assessment.norm_id,
+          fixed_norm: record.data['fixed_norm']
         }
       end
       results.find_each do |res|

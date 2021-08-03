@@ -19,7 +19,7 @@ export default function FileDetails ({
     <div>
       <div className={styles.fileName}>
         {/* eslint-disable no-script-url */}
-        <a href={fileDetails.url ? fileDetails.url : 'javascript:void(0)'} download>
+        <a href={fileDetails.url ? fileDetails.url : 'javascript:void(0)'} target="_blank" rel="noreferrer" download>
           <FileOutlined className={styles.fileIcon} />
           {fileDetails.filename}
         </a>

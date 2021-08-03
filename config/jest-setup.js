@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom'
+import I18n from 'i18n-js'
 
-global.I18n = {
-  t: key => key,
-}
+global.I18n = I18n
+require('../app/assets/javascripts/administration/i18n/translations.js')
 
 // ref : https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
 Object.defineProperty(window, 'matchMedia', {

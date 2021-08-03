@@ -40,7 +40,12 @@ module Administration
       end
 
       def pundit_authorize
-        authorize(resource || User, nil, policy_class: Campaigns::UniversalLinkPolicy)
+        authorize(
+          resource || User,
+          nil,
+          policy_class: Campaigns::UniversalLinkPolicy,
+          project_id: campaign.project_id
+        )
       end
 
       def assessment

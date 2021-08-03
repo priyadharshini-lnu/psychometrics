@@ -441,6 +441,7 @@
     "a": 2,
     "b": 2
   },
+  "media_responses": [],
   "is_self": false,
   "as_manager": true,
   "manager_evaluation_status": "waiting",

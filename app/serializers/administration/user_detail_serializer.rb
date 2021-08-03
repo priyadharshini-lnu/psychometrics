@@ -62,7 +62,8 @@ module Administration
           'regenerate_report',
           'toggle_status',
           %w[remove destroy]
-        ]
+        ],
+        campaign.project_id
       )
     end
 

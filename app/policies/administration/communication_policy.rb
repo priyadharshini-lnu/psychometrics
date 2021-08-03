@@ -11,15 +11,15 @@ module Administration
     end
 
     def show?
-      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:communications, :view, project_id)
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:communications, :manage, project_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
+      @user.is?(:superadmin) || @user.has_permission?(:communications, :manage, project_id)
     end
 
     def new_form?
@@ -27,7 +27,7 @@ module Administration
     end
 
     def download_history?
-      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:communications, :view, project_id)
     end
 
     class Scope < Scope

@@ -17,7 +17,8 @@ module Administration
           [
             'create',
             %w[manage_options update_campaign_options]
-          ]
+          ],
+          instance_options[:project_id]
         )
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end

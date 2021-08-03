@@ -6,6 +6,10 @@ describe Campaigns::Users::AddReport do
   let(:campaign_user) { create(:campaign_user) }
   let(:report) { create(:report, assessments: [create(:assessment)]) }
 
+  before(:each) do
+    allow(Licenses::Use).to receive(:call!)
+  end
+
   it 'adds UserReport if not already added' do
     expect do
       described_class.call!(campaign_user, report, assessments: report.assessments)

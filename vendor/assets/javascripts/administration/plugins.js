@@ -229,62 +229,6 @@ $(function() {
 
         }// END Custom Content Scroller
 
-        // Summernote
-        var uiSummernote = function(){
-            /* Extended summernote editor */
-            if($(".summernote").length > 0){
-                $(".summernote").summernote({height: 250,
-                                             codemirror: {
-                                                mode: 'text/html',
-                                                htmlMode: true,
-                                                lineNumbers: true,
-                                                theme: 'default'
-                                              }
-                });
-            }
-            /* END Extended summernote editor */
-
-            /* Lite summernote editor */
-            if($(".summernote_lite").length > 0){
-
-                $(".summernote_lite").on("focus",function(){
-
-                    $(".summernote_lite").summernote({height: 100, focus: true,
-                                                      toolbar: [
-                                                          ["style", ["bold", "italic", "underline", "clear"]],
-                                                          ["insert",["link","picture","video"]]
-                                                      ]
-                                                     });
-                });
-            }
-            /* END Lite summernote editor */
-
-            /* Email summernote editor */
-            if($(".summernote_email").length > 0){
-
-                $(".summernote_email").summernote({
-                                                  height: 300,
-                                                  focus: false,
-                                                  dialogsInBody: true,
-                                                  toolbar: [
-                                                      ['style', ['bold', 'italic', 'underline', 'clear']],
-                                                      ['insert', ['link']],
-                                                      ['font', ['strikethrough']],
-                                                      ['fontsize', ['fontsize']],
-                                                      ['color', ['color']],
-                                                      ['para', ['ul', 'ol', 'paragraph']],
-                                                      ['height', ['height']]
-                                                  ]
-
-                                                 });
-
-            }
-            /* END Email summernote editor */
-
-        }// END Summernote
-
-
-
         return {
             sidebarPosition: function() {
               uiSidebarPosition();
@@ -294,7 +238,6 @@ $(function() {
                 uiDatatable();
                 uiRangeSlider();
                 uiScroller();
-                uiSummernote();
             }
         }
 
@@ -356,11 +299,7 @@ $(function() {
     window.uiElements.init();
     window.templatePlugins.init();
 
-  // summernote modals fix
   $(document)
-      .on('summernote.init', '.summernote_email', function (e) {
-        $('body').children('.modal').attr('data-backdrop', '');
-      })
       .on('show.bs.modal', function (e) {
         if ($(e.target).parent('#modal-container').length) return;
         $('#modal-container').css({position: 'relative', zIndex: 100});
