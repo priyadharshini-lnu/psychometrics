@@ -16,7 +16,7 @@ import UserAssessment from './UserAssessment'
 import { fetchAssessorAssessments, changeAssessorForm, changeSubjectAssessment } from '../../core/evaluation'
 
 const { TabPane } = Tabs
-const { I18n } = window
+const { I18n, x_navigation_minimize } = window
 
 const connector = connect((state: RootState) => ({
   evaluation: state.assessors.evaluation,
@@ -46,6 +46,9 @@ const Evaluation = ({
       setStore(store)
     }
     fetchAll(parsedCampaignId, parsedUserId)
+    if (x_navigation_minimize) {
+      x_navigation_minimize('close')
+    }
   }, [])
 
   useEffect(() => {
