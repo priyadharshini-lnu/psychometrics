@@ -5,10 +5,8 @@
   data-locales="#{@results[:translations].to_json}"
   data-result="#{@results.to_json}"]
 
-
-- if Settings.react_dev.assessments
-  = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'
-  = javascript_include_tag 'http://localhost:3000/psychometrics_preview.js'
-- else
-  = javascript_include_tag :psychometrics_vendor
-  = javascript_include_tag :psychometrics_preview
+= javascript_pack_tag 'survey'
+= javascript_pack_tag 'vendors2'
+= javascript_pack_tag 'vendors'
+= javascript_pack_tag 'interactiveAssessments'
+= javascript_pack_tag 'assessment/preview'
