@@ -10,7 +10,6 @@ module Administration
       append_before_action :pundit_authorize, except: %i[index sidebar]
 
       def index
-        authorize :project, nil, { project_id: client.id }
         @filter_term = params.dig(:q, :filterable_fields)
         @_filter_form = policy_scope(resource_class).
                         projects_of(client.id).
