@@ -79,7 +79,7 @@ module Imports
 
       def import_factor_norms(factor, row, ceil)
         raw_range = (ceil...ceil + FactorsNorm::LEVELS.size * 2)
-        return if @current_sheet[row][raw_range].map(&:value).compact.empty?
+        return if @current_sheet[row][raw_range].compact.map(&:value).compact.empty?
 
         factors_norm       = FactorsNorm.new(norm_id: @norm.id, factor_id: factor.id)
         factors_norm.props = []
