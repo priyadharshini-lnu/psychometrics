@@ -42,18 +42,11 @@ class Administration::NormPolicy < Administration::BasePolicy
       scope = super
       return scope if @user.is?(:superadmin)
 
-      if @user.has_grant?(:norms, :view)
-        owner_ids =
-          if @user.is?(:client_admin)
-            @user.client_admin_client_ids
-          else
-            @user.project_admin_clients.select('tte_id').distinct
-          end
+      owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
 
-        scope.where(owner_id: owner_ids)
-      else
-        scope.none
-      end
+      permitted_owner_ids = owner_ids.uniq.select { |owner_id| @user.has_permission?(:norms, :view, owner_id) }
+
+      scope.where(owner_id: permitted_owner_ids)
     end
   end
 end
