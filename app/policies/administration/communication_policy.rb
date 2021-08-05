@@ -11,7 +11,7 @@ module Administration
     end
 
     def show?
-      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
+      @user.is?(:superadmin) || @user.has_permission?(:communications, :view, project_id)
     end
 
     def copy?
@@ -19,7 +19,7 @@ module Administration
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permision?(:communications, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:communications, :manage, project_id)
     end
 
     def new_form?
@@ -34,23 +34,14 @@ module Administration
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)
-        return scope.none unless has_scope?
 
-        @user.is?(:client_admin) ? client_admin_scope(scope) : project_admin_scope(scope)
-      end
+        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
 
-      private
+        permitted_owner_ids = owner_ids.uniq.select do |owner_id|
+          @user.has_permission?(:communications, :view, owner_id)
+        end
 
-      def has_scope?
-        @user.has_grant?(:communications, :view) && (@user.is?(:client_admin) || @user.is?(:project_admin))
-      end
-
-      def client_admin_scope(scope)
-        scope.where(owner_id: @user.client_admin_client_ids)
-      end
-
-      def project_admin_scope(scope)
-        scope.where(project_id: @user.project_admin_client_ids).where.not(owner_id: nil)
+        scope.where(owner_id: permitted_owner_ids)
       end
     end
   end
