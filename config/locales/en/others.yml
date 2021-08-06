@@ -1646,6 +1646,7 @@ en:
     update:
       successfully: Profile updated
   registration_code:
+    allowed_domains: Allowed domains
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
   reports:

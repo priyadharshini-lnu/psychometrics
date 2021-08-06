@@ -3,7 +3,6 @@ import {
   Modal, Button, Spin, Form,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import _ from 'lodash'
 import { FormProps, FormInstance } from 'antd/lib/form'
 import { ModalProps } from 'antd/lib/modal'
 import { FieldData } from 'rc-field-form/lib/interface'
@@ -64,8 +63,6 @@ const ResourceFormModal: React.FC<Props> = (props) => {
 
   const isEdit = () => !!resource || !!resourceId
 
-  const readableResourceName = (): string => _.capitalize(resourceName)
-
   const handleSuccessfulSubmission = (response: object) => {
     onSuccessfulSubmission && onSuccessfulSubmission(response)
     close()
@@ -81,7 +78,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const getTitle = () => {
     if (title) { return title }
 
-    return `${isEdit() ? 'Edit' : 'Add'} ${readableResourceName()}`
+    return `${isEdit() ? 'Edit' : 'Add'} ${resourceName}`
   }
 
   const renderTitle = () => {
