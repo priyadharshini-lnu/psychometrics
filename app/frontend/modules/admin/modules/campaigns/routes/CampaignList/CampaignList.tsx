@@ -242,7 +242,6 @@ const CampaignList: React.FC<Props> = ({
           pageSize={pageSize || DEFAULT_PAGE_SIZE}
           total={total}
           onChange={changePage}
-          hideOnSinglePage
         />
       </div>
       <Modals modals={MODALS} />
