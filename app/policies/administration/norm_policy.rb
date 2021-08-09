@@ -42,11 +42,11 @@ class Administration::NormPolicy < Administration::BasePolicy
       scope = super
       return scope if @user.is?(:superadmin)
 
-      owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
-
-      permitted_owner_ids = owner_ids.uniq.select { |owner_id| @user.has_permission?(:norms, :view, owner_id) }
-
-      scope.where(owner_id: permitted_owner_ids)
+      is_client_admin_user = @user.is?(:client_admin)
+      clients = is_client_admin_user ? @user.client_admin_clients : @user.project_admin_clients
+      permitted_clients = clients.select { |client| @user.has_permission?(:norms, :view, client.id) }
+      permitted_owner_ids = is_client_admin_user ? permitted_clients.pluck(:id) : permitted_clients.pluck(:tte_id)
+      scope.where(owner_id: permitted_owner_ids.uniq)
     end
   end
 end
