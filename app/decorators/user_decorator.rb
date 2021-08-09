@@ -50,14 +50,26 @@ class UserDecorator < BaseDecorator
   end
 
   def clients_hierarchy
-    admin_levels = object.project_admin_clients.map do |client|
-      path = h.administration_client_project_campaigns_path(client.parent_id, client) if client.subtenancy?
+    admin_levels = admin_end_level_hierarchy
+    end_levels = []
+    end_levels = client_end_level_hierarchy unless object.is?(:project_admin)
+    end_levels.concat(clients_hierarchy_for_regular_user).join('<br/>')
+    if object.is?(:client_admin) || object.is?(:superadmin)
+      admin_levels.concat(client_admin_hierarchy_for_user).join('<br/>')
+    end
+    [admin_levels, end_levels].reject(&:empty?).join('<br/>').html_safe
+  end
+
+  def admin_end_level_hierarchy
+    object.project_admin_clients.map do |client|
+      path = h.administration_client_project_admins_path(client)
       path ||= h.administration_client_users_path(client)
       h.link_to client.decorate.display_name, path
-    end.join('<br/>')
+    end
+  end
 
-    # TODO: refactor
-    end_levels = object.clients.end_level.map do |client|
+  def client_end_level_hierarchy
+    object.clients.end_level.map do |client|
       clients_array = client.path.order(:id)
       whole_path = clients_array.map do |c|
         next if c.tenancy?
@@ -72,9 +84,12 @@ class UserDecorator < BaseDecorator
       end.compact.join(' > ')
       "&#187; #{whole_path}"
     end
-    end_levels.concat(clients_hierarchy_for_regular_user).join('<br/>')
+  end
 
-    [admin_levels, end_levels].reject(&:empty?).join('<br/>').html_safe
+  def client_admin_hierarchy_for_user
+    object.client_admin_clients.map do |client|
+      "&#187; #{h.link_to(client.decorate.display_name, h.administration_client_users_path(client))}"
+    end
   end
 
   def clients_hierarchy_for_regular_user
