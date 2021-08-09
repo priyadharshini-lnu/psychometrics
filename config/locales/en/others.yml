@@ -902,8 +902,10 @@ en:
         title: Import Scoring Results data
         upload: Upload
       remove:
+        helper_text: 'DANGER: Selecting this will remove all users responses for this assessment in this campaign.'
+        msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
         successfully: "%{name} assessment removed successfully."
-        title: Remove assessment %{name}?
+        title: Remove assessment?
       rescore_response:
         message: Rescoring scheduled for assessment %{name}
         title: Rescore Responses
