@@ -46,3 +46,7 @@ MINDMILL_KEY: 'fake_key'
 # SENTRY_URL:
 
 REAL_ENV: development
+AWS_ACCESS_KEY_ID: dummy_key
+AWS_SECRET_ACCESS_KEY: dummy_secret
+AWS_REGION: eu-west-1
+AWS_S3_BUCKET: dummy_bucket

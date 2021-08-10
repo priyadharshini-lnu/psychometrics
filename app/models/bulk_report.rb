@@ -7,6 +7,10 @@ class BulkReport < ApplicationRecord
 
   mount_uploaders :files, BulkReportUploader
 
+  def store_dir
+    "uploads/#{self.class.to_s.underscore}/files/#{id}"
+  end
+
   def input_dir
     Rails.root.join('tmp', 'bulk_reports', id.to_s).to_s
   end
