@@ -64,11 +64,10 @@ function ReportList ({
                   strokeColor="#00B4AA"
                 />
                 <div className="value">
-                  {reportsCounters.completedReports}
-                  {' '}
-                  of
-                  {' '}
-                  {reportsCounters.totalReports}
+                  {I18n.t('threesixty.progress_text', {
+                    completed: reportsCounters.completedReports,
+                    total: reportsCounters.totalReports,
+                  })}
                 </div>
               </div>
             </div>
@@ -105,8 +104,8 @@ function ReportList ({
         <Modal
           title={(
             <div className="help-modal-header">
-              <div className="letter-icon">R</div>
-              Reports help
+              <div className="letter-icon">{I18n.t('threesixty.reports')[0].toUpperCase()}</div>
+              {I18n.t('threesixty.reports_help_modal.title')}
             </div>
           )}
           visible={showHelp}

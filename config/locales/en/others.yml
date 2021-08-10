@@ -2185,6 +2185,8 @@ en:
     evaluation: Evaluation
     evaluation_closed_message: Evaluation is closed for this subject
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
+    evaluation_help_modal:
+      title: Evaluation help
     evaluations: Evaluations
     evaluator: Evaluator
     export_pdf: Export PDF
@@ -2206,6 +2208,8 @@ en:
     nominate: Nominate
     nominate_evaluators: Nominate Evaluators to
     nomination: Nomination
+    nomination_help_modal:
+      title: Nomination help
     nomination_predicates:
       atleast: At least %{count}
       atmost: At most %{count}
@@ -2245,6 +2249,7 @@ en:
       report_generation_message: Report is being generated. We will let you know when the report is ready.
     processing: Processing
     processing_report: Processing Report
+    progress_text: "%{completed} of %{total}"
     question:
       chat_type:
         input_placeholder: Write your Message...
@@ -2263,6 +2268,8 @@ en:
     report_for: Report for
     report_generation_in_progress: Report is being generated. We will let you know when the report is ready.
     reports: Reports
+    reports_help_modal:
+      title: Reports help
     reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
     reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations
     save: Save

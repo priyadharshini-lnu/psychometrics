@@ -184,11 +184,10 @@ function EvaluationList ({
                 strokeColor="#00B4AA"
               />
               <div className="value">
-                {evaluationsCounters.completedEvaluations}
-                {' '}
-                of
-                {' '}
-                {evaluationsCounters.totalEvaluations}
+                {I18n.t('threesixty.progress_text', {
+                  completed: evaluationsCounters.completedEvaluations,
+                  total: evaluationsCounters.totalEvaluations,
+                })}
               </div>
             </div>
           </div>
@@ -225,8 +224,8 @@ function EvaluationList ({
       <Modal
         title={(
           <div className="help-modal-header">
-            <div className="letter-icon">E</div>
-            Evaluation help
+            <div className="letter-icon">{I18n.t('threesixty.evaluations')[0].toUpperCase()}</div>
+            {I18n.t('threesixty.evaluation_help_modal.title')}
           </div>
         )}
         visible={showHelp}
