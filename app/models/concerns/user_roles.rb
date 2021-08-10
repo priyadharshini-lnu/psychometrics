@@ -74,7 +74,7 @@ module UserRoles
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.parent_id])
     end.compact
 
-    memberships.where(client_id: project_based_client_ids).any? { |m| m.has_grant?(scope, grant) }
+    memberships.includes(:grants).where(client_id: project_based_client_ids).any? { |m| m.has_grant?(scope, grant) }
   end
 
   def superadmin?
