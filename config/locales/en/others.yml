@@ -332,6 +332,7 @@ en:
         type: License for
         types:
           common: Common
+          proctoring: Proctoring
           threesixty: Threesixty
         unlimited: Unlimited
         used_number: Used License Number
