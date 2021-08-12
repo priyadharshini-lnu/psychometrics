@@ -1,12 +1,18 @@
 #psychometrics_preview.html_preview[data-is-threesixty="true"
-  data-type="#{current_user.superadmin? ? 'pass_assessment' : 'view_results'}"
+  data-type="view_results"
   data-results-url="/administration/threesixty_campaigns/#{@threesixty_campaign.id}/subjects/#{@_resource.id}/evaluations/#{@participant.evaluator_id}"
   data-data="#{@assessment.to_json}"
   data-locales="#{@results[:translations].to_json}"
-  data-result="#{@results.to_json}"]
+  data-result="#{@results.to_json}"
+  data-show-as-single-page="true"
+  data-read-only="true"]
 
 = javascript_pack_tag 'survey'
+= stylesheet_pack_tag 'survey'
 = javascript_pack_tag 'vendors2'
+= stylesheet_pack_tag 'vendors2'
 = javascript_pack_tag 'vendors'
+= stylesheet_pack_tag 'vendors'
 = javascript_pack_tag 'interactiveAssessments'
 = javascript_pack_tag 'assessment/preview'
+= stylesheet_pack_tag 'assessment/preview'
