@@ -10,7 +10,6 @@ module Administration
       append_before_action :pundit_authorize, except: %i[index sidebar]
 
       def index
-        authorize :project, nil, { project_id: client.id }
         @filter_term = params.dig(:q, :filterable_fields)
         @_filter_form = policy_scope(resource_class).
                         projects_of(client.id).
@@ -106,12 +105,15 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
-                                         :remove_background, :remove_logo, :applicable_level, :number,
-                                         :privacy_consent, :two_factor_enabled, :strong_password_enabled,
-                                         :login_box_position, :secondary_logo, :remove_secondary_logo,
-                                         :webhook, :enable_live_chat, :live_chat_token, locales: [],
-                                         privacy_link_attributes: %i[id text link _destroy])
+        params.
+          require(:resource).
+          permit(:name, :subdomain, :logo, :background, :background_color,
+                 :remove_background, :remove_logo, :applicable_level, :number,
+                 :privacy_consent, :two_factor_enabled, :strong_password_enabled,
+                 :login_box_position, :secondary_logo, :remove_secondary_logo,
+                 :webhook, :enable_live_chat, :live_chat_token, locales: [],
+                  privacy_link_attributes: %i[id text link _destroy]).
+          reverse_merge({ locales: [] })
       end
 
       def set_privacy_link_enabled

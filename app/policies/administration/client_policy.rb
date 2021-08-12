@@ -113,7 +113,12 @@ module Administration
         return scope if @user.is?(:superadmin)
 
         # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
-        clients_scope = @user.is?(:client_admin) ? @user.client_admin_clients : @user.project_admin_clients
+        permission = @user.is?(:client_admin) ? :clients : :projects
+        clients_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
+
+        permitted_clients_ids = clients_ids.select { |client_id| @user.has_permission?(permission, :view, client_id) }
+
+        clients_scope = scope.where(id: permitted_clients_ids)
         clients = clients_scope.not_retails.select(:id, :ancestry)
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
         client_ids = client_ids.nil? ? [] : client_ids

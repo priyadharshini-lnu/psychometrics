@@ -1447,7 +1447,13 @@
           "type": "integer"
         },
         "status": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "not_ready",
+            "generating",
+            "failed",
+            "ready"
+          ]
         },
         "assessments": {
           "type": "array",

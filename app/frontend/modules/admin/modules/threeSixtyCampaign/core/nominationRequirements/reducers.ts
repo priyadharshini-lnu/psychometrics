@@ -113,7 +113,9 @@ const HANDLERS = {
 export default createReducer(HANDLERS, defaultState, (state, action) => _.reduce(
   innerReducers,
   (state, reducer, branchName) => (
-    updateIn(state, ['list', state.selectedIndex, branchName], subState => reducer(subState, action))
+    state.list.length > 0
+      ? updateIn(state, ['list', state.selectedIndex, branchName], subState => reducer(subState, action))
+      : state
   ),
   state,
 ))
