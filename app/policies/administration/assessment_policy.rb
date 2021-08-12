@@ -148,17 +148,11 @@ module Administration
         scope = scope.order(:name)
         return scope if @user.is?(:superadmin)
 
-        if @user.has_grant?(:assessments, :view)
-          owner_ids =
-            if @user.is?(:client_admin)
-              @user.client_admin_client_ids
-            else
-              @user.project_admin_clients_tte_ids.uniq
-            end
-          scope.where(owner_id: owner_ids)
-        else
-          scope.none
-        end
+        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
+
+        permitted_owner_ids = owner_ids.uniq.select { |owner_id| @user.has_permission?(:assessments, :view, owner_id) }
+
+        scope.where(owner_id: permitted_owner_ids)
       end
     end
   end

@@ -332,6 +332,7 @@ en:
         type: License for
         types:
           common: Common
+          proctoring: Proctoring
           threesixty: Threesixty
         unlimited: Unlimited
         used_number: Used License Number
@@ -666,8 +667,10 @@ en:
       browser_unsupported: Your browser does not support Audio input
       dictation_active: Dictation is now active
       dictation_disabled: Dictation is currently disabled or is being used by another question
+      dictation_not_started: Speech dictation failed to start
       dictation_stopped: Speech dictation stopped
       listening: Listening
+      no_dictation_url: Server failed to respond for speech to text capability
       notifications:
         autostopped: Dictation was auto stopped due to continued silence for %{autocutoff} seconds
         refresh_page: Unable to continue speech dictation, try again by refreshing the page
@@ -748,6 +751,7 @@ en:
       name: Name
       previous_assessments_required: Assessments should be completed in order
       previous_group_required: Previous group should be completed before
+      title: Assessment Group
     menu:
       manage: Manage
       sequencing: Sequencing
@@ -900,8 +904,10 @@ en:
         title: Import Scoring Results data
         upload: Upload
       remove:
+        helper_text: 'DANGER: Selecting this will remove all users responses for this assessment in this campaign.'
+        msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
         successfully: "%{name} assessment removed successfully."
-        title: Remove assessment %{name}?
+        title: Remove assessment?
       rescore_response:
         message: Rescoring scheduled for assessment %{name}
         title: Rescore Responses
@@ -958,7 +964,8 @@ en:
     modals:
       remove:
         apply: Apply this changes to existing users in this campaign.
-        title: Remove Report
+        msg_text: You are trying to delete <strong>"%{reportName}"</strong> Report
+        title: Remove Report?
       user_access:
         apply: Apply this changes to existing users in this campaign.
         title:
@@ -1391,8 +1398,8 @@ en:
     manage: Manage
     'no': 'No'
     resource:
-      create_success: "%{resourceName} added successfully"
-      update_success: "%{resourceName} updated successfully"
+      create_success: "%{readableResourceName} added successfully"
+      update_success: "%{readableResourceName} updated successfully"
     update: Update
     upload: Upload
     'yes': 'Yes'
@@ -1644,6 +1651,12 @@ en:
     update:
       successfully: Profile updated
   registration_code:
+    allowed_domains: Allowed domains
+    modals:
+      remove:
+        content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?
+        successfully: Registration code '%{code}' removed successfully.
+      title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
   reports:
@@ -2185,6 +2198,8 @@ en:
     evaluation: Evaluation
     evaluation_closed_message: Evaluation is closed for this subject
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
+    evaluation_help_modal:
+      title: Evaluation help
     evaluations: Evaluations
     evaluator: Evaluator
     export_pdf: Export PDF
@@ -2206,6 +2221,8 @@ en:
     nominate: Nominate
     nominate_evaluators: Nominate Evaluators to
     nomination: Nomination
+    nomination_help_modal:
+      title: Nomination help
     nomination_predicates:
       atleast: At least %{count}
       atmost: At most %{count}
@@ -2245,6 +2262,7 @@ en:
       report_generation_message: Report is being generated. We will let you know when the report is ready.
     processing: Processing
     processing_report: Processing Report
+    progress_text: "%{completed} of %{total}"
     question:
       chat_type:
         input_placeholder: Write your Message...
@@ -2263,6 +2281,8 @@ en:
     report_for: Report for
     report_generation_in_progress: Report is being generated. We will let you know when the report is ready.
     reports: Reports
+    reports_help_modal:
+      title: Reports help
     reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
     reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations
     save: Save

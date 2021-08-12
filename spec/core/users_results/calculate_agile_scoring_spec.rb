@@ -146,7 +146,6 @@ describe UsersResults::CalculateAgileScoring do
       status: :completed,
       completed_at: Time.now,
       norm_id: @norm.id,
-      norm_type: 'percentile',
       assessment: create(:assessment, dimension_id: @norm.dimension_id)
     )
     @users_result = user_assessment.users_result
@@ -180,8 +179,7 @@ describe UsersResults::CalculateAgileScoring do
       answers: results,
       assessment: create(:assessment, dimension: @norm.dimension),
       completed_at: Time.now,
-      norm_id: @norm.id,
-      norm_type: 'percentile'
+      norm_id: @norm.id
     )
     @users_result = user_assessment.users_result
     @agile = create(:agile, assessment: user_assessment.assessment, config: config)

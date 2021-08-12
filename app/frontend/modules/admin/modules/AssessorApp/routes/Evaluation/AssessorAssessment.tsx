@@ -82,7 +82,6 @@ const AssessorAssessment: React.FC<Props> = ({
             rstore={store}
             showScoringOnEndPage
             showQuestionScoring
-            forceUpdateStore
           />
         )}
       </Content>

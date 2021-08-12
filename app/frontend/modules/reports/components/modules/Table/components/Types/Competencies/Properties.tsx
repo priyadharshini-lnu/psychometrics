@@ -1,0 +1,97 @@
+import React, { FC } from 'react'
+
+import Module from 'modules/reports/core/interfaces/Module'
+
+import ColorSet from 'modules/reports/components/ColorSet'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import PropertyFilter from 'modules/reports/components/PropertyFilter'
+import ColorPicker from 'modules/reports/components/ColorPicker'
+import PropertyFonts from 'modules/reports/components/PropertyFonts'
+import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
+import QuestionList from './dataSources/QuestionList'
+import FactorList from './dataSources/FactorList'
+import MilestoneList from './MilestoneList'
+
+interface Props {
+  model: Module
+}
+
+const Properties: FC<Props> = ({ model }) => {
+  const {
+    props: { sourceType },
+  } = model
+
+  const onChange = (key: string, value: unknown) => {
+    model.props[key] = value
+    model.update()
+  }
+
+  return (
+    <div>
+      <div>Font</div>
+      <PropertyFonts model={model} colors={false} />
+      <div className="mt-2">Competencies</div>
+      <SourceTypeButtonGroup model={model} onChange={onChange} />
+      {sourceType === 'Factor' && (
+        <FactorList model={model} onChange={onChange} />
+      )}
+      {sourceType === 'Question' && (
+        <QuestionList model={model} onChange={onChange} />
+      )}
+      <div className="mtm">
+        <PropertyFilter model={model} />
+      </div>
+      <div className={styles.block}>
+        Header Colours
+        <div className={styles.flexRow}>
+          <ColorPicker
+            color={model.props.mainHeaderColor}
+            onChange={color => onChange('mainHeaderColor', color.hex)}
+          />
+          <ColorPicker
+            color={model.props.secondHeaderColor}
+            onChange={color => onChange('secondHeaderColor', color.hex)}
+          />
+        </div>
+      </div>
+      <div className="margin-top-10">
+        Show
+        <div className={styles.flexRow}>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.showLabels}
+              onChange={e => onChange('showLabels', e.currentTarget.checked)}
+            />
+            Labels
+          </label>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.showValues}
+              onChange={e => onChange('showValues', e.currentTarget.checked)}
+            />
+            Values
+          </label>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.showLines}
+              onChange={e => onChange('showLines', e.currentTarget.checked)}
+            />
+            Lines
+          </label>
+        </div>
+      </div>
+      <div className="mtm">
+        <ColorSet model={model} />
+      </div>
+      <MilestoneList model={model} />
+    </div>
+  )
+}
+
+export default Properties

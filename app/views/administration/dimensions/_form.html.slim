@@ -4,10 +4,15 @@
 
     .form-inputs.clearfix
       = f.input :name
+      - root_clients = policy_scope(Client).roots
       - if current_user.is?(:superadmin)
         = f.association :owner,
-                        collection: policy_scope(Client).roots.order(:name),
+                        collection: root_clients.order(:name),
                         include_blank: t('administration.tte'),
+                        input_html: { data: { live_search: true } }
+      - elsif current_user.is?(:client_admin) && root_clients.count > 1
+        = f.association :owner,
+                        collection: root_clients.order(:name),
                         input_html: { data: { live_search: true } }
       div.row.row-no-padding
         = f.input :occupations_enabled, inline_label: t('.enable_occupations'), wrapper_html: { class: 'col-md-6' }

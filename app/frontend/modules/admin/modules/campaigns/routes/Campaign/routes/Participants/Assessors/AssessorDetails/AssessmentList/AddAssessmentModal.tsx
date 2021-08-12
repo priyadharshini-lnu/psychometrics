@@ -67,6 +67,7 @@ const AddAssessmentModal: React.FC<Props> = ({
     <ResourceFormModal
       requestScope="assessorAssessment"
       resourceName="subject"
+      readableResourceName="Subject"
       resourceBaseUrl={
       `/administration/new_campaigns/${parsedCampaignId}/assessors/${parsedAssessorId}/user_assessments/`
       }

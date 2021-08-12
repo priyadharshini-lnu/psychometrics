@@ -7,6 +7,6 @@ class UserReportDecorator < BaseDecorator
   }.freeze
 
   def api_status
-    NORMALIZED_STATUSES[object.status]
+    NORMALIZED_STATUSES[object.status] || object.status
   end
 end

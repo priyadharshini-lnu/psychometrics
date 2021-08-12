@@ -602,7 +602,6 @@ CREATE TABLE public.campaign_assessments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    norm_type character varying,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
     available_locales text[] DEFAULT '{}'::text[],
@@ -2625,7 +2624,6 @@ CREATE TABLE public.reports (
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    type integer DEFAULT 0,
     owner_id integer,
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
@@ -3466,7 +3464,6 @@ CREATE TABLE public.user_assessments (
     assessment_id bigint,
     users_result_id bigint,
     norm_id bigint,
-    norm_type character varying,
     status integer DEFAULT 0,
     completed_at timestamp without time zone,
     completion_reason integer,
@@ -5485,6 +5482,13 @@ CREATE INDEX index_campaign_assessments_on_campaign_assessment_group_id ON publi
 --
 
 CREATE INDEX index_campaign_assessments_on_campaign_id ON public.campaign_assessments USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_assessments_on_campaign_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_assessments_on_campaign_id_and_assessment_id ON public.campaign_assessments USING btree (campaign_id, assessment_id);
 
 
 --
@@ -8333,6 +8337,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210623082242'),
 ('20210627110306'),
 ('20210627134315'),
-('20210718070252');
+('20210715124554'),
+('20210718070252'),
+('20210728151708'),
+('20210804125607'),
+('20210805081530');
 
 

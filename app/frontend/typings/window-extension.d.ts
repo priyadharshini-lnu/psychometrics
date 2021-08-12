@@ -16,5 +16,6 @@ declare global {
         email: string
       }
     }
+    x_navigation_minimize: (state: string) => null
   }
 }

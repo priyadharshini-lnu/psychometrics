@@ -103,11 +103,10 @@ function NominationList ({
                 strokeColor="#00B4AA"
               />
               <div className="value">
-                {nominationsCounters.completedNominations}
-                {' '}
-                of
-                {' '}
-                {nominationsCounters.totalNominations}
+                {I18n.t('threesixty.progress_text', {
+                  completed: nominationsCounters.completedNominations,
+                  total: nominationsCounters.totalNominations,
+                })}
               </div>
             </div>
           </div>
@@ -136,8 +135,8 @@ function NominationList ({
       <Modal
         title={(
           <div className="help-modal-header">
-            <div className="letter-icon">N</div>
-            Nominations help
+            <div className="letter-icon">{I18n.t('threesixty.nominations')[0].toUpperCase()}</div>
+            {I18n.t('threesixty.nomination_help_modal.title')}
           </div>
         )}
         visible={showHelp}

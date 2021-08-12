@@ -111,11 +111,10 @@ const Form: React.FC<Props & PropsFromRedux> = ({
           mode="multiple"
           value={assessor.assessmentIds}
           onChange={ids => setAssessor({ ...assessor, assessmentIds: ids })}
+          filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {assessments.map(a => (
-            <Select.Option key={a.id} value={a.id}>
-              {a.name}
-            </Select.Option>
+            <Select.Option key={a.id} value={a.id}>{a.name}</Select.Option>
           ))}
         </Select>
       </AntForm.Item>

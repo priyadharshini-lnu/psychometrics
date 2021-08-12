@@ -58,6 +58,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="campaign"
+      readableResourceName="Campaign"
       resourceBaseUrl={`/administration/projects/${projectId}/new_campaigns`}
       resource={campaign}
       showSuccessMessages

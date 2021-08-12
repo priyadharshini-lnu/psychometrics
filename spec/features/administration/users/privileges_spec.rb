@@ -10,6 +10,7 @@ feature 'User Privileges', clean: false do
     @admin_user = @admin_membership.user
     @manager_membership = create(:manager_membership, client: @project)
     @norm = create(:norm, owner: @client)
+    @dimension = create(:dimension, owner: @client)
   end
 
   given(:admin_membership) { @admin_membership.reload }
@@ -17,6 +18,7 @@ feature 'User Privileges', clean: false do
   given(:client) { @client.reload }
   given(:manager_membership) { @manager_membership.reload }
   given(:norm) { @norm.reload }
+  given(:dimension) { @dimension.reload }
   # TODO: fix
   #   context 'As SuperAdmin user' do
   #     before(:context) { reload_context }
