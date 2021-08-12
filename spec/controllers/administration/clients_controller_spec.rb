@@ -4,7 +4,10 @@ require 'rails_helper'
 RSpec.describe Administration::ClientsController, type: :controller do
   let!(:client) { create(:tenancy) }
   let!(:client_admin_membership) { create(:client_admin_membership) }
-  let!(:project_admin_membership) { create(:project_admin_membership) }
+  let!(:membership_grant_with_clients_view) do
+    create(:membership_grants, data: { clients: %w[view], projects: %w[view] })
+  end
+  let!(:project_admin_membership) { create(:project_admin_membership, grants: membership_grant_with_clients_view) }
 
   describe 'As superadmin  user' do
     let(:current_user) { create(:superadmin) }
