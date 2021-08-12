@@ -751,6 +751,7 @@ en:
       name: Name
       previous_assessments_required: Assessments should be completed in order
       previous_group_required: Previous group should be completed before
+      title: Assessment Group
     menu:
       manage: Manage
       sequencing: Sequencing
@@ -1397,8 +1398,8 @@ en:
     manage: Manage
     'no': 'No'
     resource:
-      create_success: "%{resourceName} added successfully"
-      update_success: "%{resourceName} updated successfully"
+      create_success: "%{readableResourceName} added successfully"
+      update_success: "%{readableResourceName} updated successfully"
     update: Update
     upload: Upload
     'yes': 'Yes'
@@ -1651,6 +1652,11 @@ en:
       successfully: Profile updated
   registration_code:
     allowed_domains: Allowed domains
+    modals:
+      remove:
+        content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?
+        successfully: Registration code '%{code}' removed successfully.
+      title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
   reports:

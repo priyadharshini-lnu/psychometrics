@@ -33,7 +33,8 @@ const CodeFormModal: React.FC<Props> = ({
 
   return (
     <ResourceFormModal
-      resourceName="registration code"
+      resourceName="registrationCodes"
+      readableResourceName={I18n.t('registration_code.modals.title')}
       requestScope="campaigns"
       resourceBaseUrl={`/administration/new_campaigns/${campaignId}/registration_codes`}
       resource={code}
