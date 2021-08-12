@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
-import { Modal, Checkbox } from 'antd'
+import { Modal, Checkbox, Typography } from 'antd'
+import { SafeHTML } from 'components/SafeHTML'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window
+const { Paragraph } = Typography
 
 export interface OwnProps {
   close(): void
   campaignReportId: number
   campaignId: number
+  reportName: string
 }
 
 export type Props = OwnProps & PropsFromRedux
 
 const RemoveReportModal: React.FC<Props> = ({
-  close, campaignId, remove, campaignReportId,
+  close, campaignId, remove, campaignReportId, reportName,
 }) => {
   const [removeUserReports, setRemoveUserReports] = useState(false)
 
@@ -32,6 +35,9 @@ const RemoveReportModal: React.FC<Props> = ({
       onCancel={close}
       onOk={handleRemoveReport}
     >
+      <Paragraph>
+        <SafeHTML html={I18n.t('campaign_report.modals.remove.msg_text', { reportName })} />
+      </Paragraph>
       <Checkbox checked={removeUserReports} onChange={() => setRemoveUserReports(!removeUserReports)}>
         {I18n.t('campaign_report.modals.remove.apply')}
       </Checkbox>

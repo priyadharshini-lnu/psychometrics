@@ -963,7 +963,8 @@ en:
     modals:
       remove:
         apply: Apply this changes to existing users in this campaign.
-        title: Remove Report
+        msg_text: You are trying to delete <strong>"%{reportName}"</strong> Report
+        title: Remove Report?
       user_access:
         apply: Apply this changes to existing users in this campaign.
         title:
