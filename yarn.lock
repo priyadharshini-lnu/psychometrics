@@ -3100,10 +3100,10 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
   integrity sha512-Z6DoceYb/1xSg5+e+ZlPZ9v0N16ZvZ+wYMraFue4HYrE4ttONKtsvruIRf6t9TBR0YvSOfi1hUU0fJfBLCDYow==
 
-"@types/actioncable@^5.2.5":
-  version "5.2.5"
-  resolved "https://registry.yarnpkg.com/@types/actioncable/-/actioncable-5.2.5.tgz#afe7d1d765f360bcdc88005b45588d148c5362b7"
-  integrity sha512-lXxf7qEzjWJanq9PqpsCKzmRTYj6PrxsFOzCU/kXSn7OuHdraI4nF/GOqyOJwRSjNQg3O5LrX2wy0xEg/DXgfg==
+"@types/actioncable@^5.2.7":
+  version "5.2.7"
+  resolved "https://registry.yarnpkg.com/@types/actioncable/-/actioncable-5.2.7.tgz#b42de922ba32f1a46c863df1ed32807ab08dda80"
+  integrity sha512-HVpCvvE4Att0vSfCVNHf3gmCoqQPlySWIhH4THkG4r0hc0IcvRa0gIVyd9ekswMf3WiBsDc52OKnduIZQ7qcRw==
 
 "@types/aria-query@^4.2.0":
   version "4.2.1"
