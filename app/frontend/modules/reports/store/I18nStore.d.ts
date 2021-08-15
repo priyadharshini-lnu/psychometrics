@@ -1,8 +1,7 @@
-
 declare class I18nStore {
   constructor()
 
-  t(code, data): string
+  t(code, data = {}): string
 
   tQuestion (question, field, extraData): string
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
+import { Space, Typography, Select } from 'antd'
 import AssessmentProperties from 'rb/components/modules/CommonProperties/AssessmentProperties'
 import AppStore from 'rb/store/AppStore'
 import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
@@ -8,48 +7,62 @@ import _ from 'lodash'
 import ModuleConfigs from 'rb/consts/ModuleConfigs'
 import { PropTypes as PropertyVies } from './Types'
 
+const TABLE_TYPE_OPTIONS = [
+  { value: 'SimpleTable', label: 'Simple Table' },
+  { value: 'ThreeSixtyDefault', label: 'Default 360' },
+  { value: 'HighestLowest', label: 'Highest/Lowest' },
+  { value: 'GapAssessment', label: 'Gap Assessment' },
+  { value: 'ThreeSixtyReportSummary', label: '360 Report Summary' },
+  { value: 'VideoResponse', label: 'Video Response' },
+  { value: 'SingleValue', label: 'Single Value' },
+  { value: 'Competencies', label: 'Competencies' },
+  { value: 'ResponseSummary', label: 'Response Summary Statistics' },
+  { value: 'FactorQuestionsScore', label: 'Factor - Questions Mean Score' },
+  { value: 'FactorsTable', label: 'Factors' },
+  { value: 'CPIOccupations', label: 'Career - Occupations' },
+  { value: 'PotentialCareerShort', label: 'Career - Potential (short)' },
+  { value: 'PotentialCareerFull', label: 'Career - Potential (full)' },
+  { value: 'PotentialKeyCareerTracks', label: 'Career - Key Tracks' },
+  { value: 'StrengthClusters', label: 'Career - Strength Clusters' },
+  { value: 'InnovationStyles', label: 'Innovation Styles' },
+]
+
 class Properties extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
-
-  changeType = (e) => {
+  handleTableTypeChange = (value) => {
     const { model } = this.props
-    const type = e.currentTarget.getAttribute('type')
-    if (model.props.type === type) return null
 
-    model.props.type = type
+    if (model.props.type === value) return null
+
+    model.props.type = value
     model.props.rowData = null
     model.props.headerData = null
 
-
-    const defaultProps = ModuleConfigs.Table.defaultProps[type] || {}
+    const defaultProps = ModuleConfigs.Table.defaultProps[value] || {}
     model.props = { ...model.props, ...defaultProps }
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
 
-    if (['FactorsTable', 'StrengthClusters'].includes(type)) {
-      model.props.source = { factors: _.map(AppStore.subfactors[dimensionId], this.factor) }
+    if (['FactorsTable', 'StrengthClusters'].includes(value)) {
+      model.props.source = {
+        factors: _.map(AppStore.subfactors[dimensionId], this.factor),
+      }
     }
-    this.update()
-  }
-
-  factor = f => ({
-    id: f.id, alias: `${f.alias.substring(0, 24)}`,
-  })
-
-  update = () => {
-    const { model } = this.props
     model.update()
     this.forceUpdate()
   }
+
+  factor = f => ({
+    id: f.id,
+    alias: `${f.alias.substring(0, 24)}`,
+  })
 
   changeAssessment = (assessmentId) => {
     const { model } = this.props
     model.assessment_id = assessmentId
     clearAfterAssessmentChange(model)
-    this.update()
+    model.update()
+    this.forceUpdate()
   }
 
   renderTypeProps () {
@@ -63,78 +76,31 @@ class Properties extends Component {
 
   render () {
     const { model } = this.props
+    const {
+      props: { type },
+      assessment_id,
+    } = model
+
     return (
-      <div>
-        <div className={styles.title}>Table Options</div>
-        <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />
-        <hr className={styles.divider} />
-        <span className={styles.label}>Table Type</span>
-        <div className={styles.dropdownWrapper}>
-          <button
-            type="button"
-            data-toggle="dropdown"
-            className={`btn btn-default dropdown-toggle ${styles.menuButton}`}
-          >
-            <span>{model.moduleConfig.labels[model.props.type]}</span>
-            <span className="caret" />
-          </button>
-          <div className={`dropdown-menu ${styles.dropdown}`} role="menu">
-            <div className={styles.item} type="SimpleTable" onClick={this.changeType}>
-              Simple Table
-            </div>
-            <div className={styles.item} type="ThreeSixtyDefault" onClick={this.changeType}>
-              Default 360
-            </div>
-            <div className={styles.item} type="HighestLowest" onClick={this.changeType}>
-              Highest/Lowest
-            </div>
-            <div className={styles.item} type="GapAssessment" onClick={this.changeType}>
-              Gap Assessment
-            </div>
-            <div className={styles.item} type="ThreeSixtyReportSummary" onClick={this.changeType}>
-              360 Report Summary
-            </div>
-            <div className={styles.item} type="VideoResponse" onClick={this.changeType}>
-              Video Response
-            </div>
-            <div className={styles.item} type="SingleValue" onClick={this.changeType}>
-              Single Value
-            </div>
-            <div className={styles.item} type="Competencies" onClick={this.changeType}>
-              Competencies
-            </div>
-            <div className={styles.item} type="ResponseSummary" onClick={this.changeType}>
-              Response Summary Statistics
-            </div>
-            <div className={styles.item} type="FactorQuestionsScore" onClick={this.changeType}>
-              Factor - Questions Mean Score
-            </div>
-            <div className={styles.item} type="FactorsTable" onClick={this.changeType}>
-              Factors
-            </div>
-            <div className={styles.item} type="CPIOccupations" onClick={this.changeType}>
-              Career - Occupations
-            </div>
-            <div className={styles.item} type="PotentialCareerShort" onClick={this.changeType}>
-              Career - Potential (short)
-            </div>
-            <div className={styles.item} type="PotentialCareerFull" onClick={this.changeType}>
-              Career - Potential (full)
-            </div>
-            <div className={styles.item} type="PotentialKeyCareerTracks" onClick={this.changeType}>
-              Career - Key Tracks
-            </div>
-            <div className={styles.item} type="StrengthClusters" onClick={this.changeType}>
-              Career - Strength Clusters
-            </div>
-            <div className={styles.item} type="InnovationStyles" onClick={this.changeType}>
-              Innovation Styles
-            </div>
-          </div>
+      <Space size="small" direction="vertical" className="w-100">
+        <Typography.Text strong>Table options</Typography.Text>
+        <div>
+          <Typography.Text>Table type</Typography.Text>
+          <Select
+            className="w-100"
+            style={{ maxWidth: 'calc(220px - 30px)' }}
+            size="small"
+            options={TABLE_TYPE_OPTIONS}
+            value={type}
+            onChange={this.handleTableTypeChange}
+          />
         </div>
-        <hr className={styles.divider} />
+        <AssessmentProperties
+          assessmentId={assessment_id}
+          changeAssessment={this.changeAssessment}
+        />
         {this.renderTypeProps()}
-      </div>
+      </Space>
     )
   }
 }
