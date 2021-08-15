@@ -17,6 +17,7 @@ interface Props extends HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
 interface SanitizeConfig {
   default: Config
   adminRichText: Config
+  label: Config
 }
 
 const sanitizeConfig: SanitizeConfig = {
@@ -24,6 +25,10 @@ const sanitizeConfig: SanitizeConfig = {
   adminRichText: {
     ADD_TAGS: ['iframe'],
     ADD_ATTR: ['target'],
+  },
+  label: {
+    ALLOWED_TAGS: ['span', 'br', 'nobr', 'small', 'strong', 'em'],
+    ALLOWED_ATTR: ['dir'],
   },
 }
 
