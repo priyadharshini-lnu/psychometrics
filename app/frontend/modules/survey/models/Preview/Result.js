@@ -68,7 +68,7 @@ _.extend(Result.prototype, {
   },
 
   processCustomValidation (validation) {
-    const message = I18n().tCustomValidation(this.question, validation.message)
+    const message = I18n().tCustomValidation(this.question, validation.message, validation.uuid)
     if (!message) { return }
 
     const { conditions } = validation

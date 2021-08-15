@@ -15,8 +15,10 @@ export default {
     if (!TranslateModule) { throw new Error(`Add Translate module for type: ${this.type}`) }
     const object = new TranslateModule(this)
     const response = object.exportLocales()
-    if (this.validation.message) {
-      response.customValidationText = this.validation.message
+    if (this.validation.customValidations) {
+      this.validation.customValidations.forEach((validation) => {
+        response[`customValidationText_${validation.uuid}`] = validation.message
+      })
     }
     return response
   },

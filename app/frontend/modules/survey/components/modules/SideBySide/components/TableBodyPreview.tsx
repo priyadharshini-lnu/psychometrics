@@ -138,7 +138,9 @@ export class TableBodyPreview extends Component<Props> {
                       <Popover
                         content={(
                           <Typography.Paragraph style={{ maxWidth: '25rem' }}>
-                            {rowDescriptions[choice]}
+                            {I18n.tQuestion(model, `rowDescriptions${choice + 1}`, {
+                              choice,
+                            })}
                           </Typography.Paragraph>
                         )}
                         arrowPointAtCenter

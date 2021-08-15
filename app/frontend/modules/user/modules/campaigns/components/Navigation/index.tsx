@@ -140,7 +140,7 @@ const Navigation: FC<PropsFromRedux> = ({
           }
           </Link>
         </Col>
-        <Col flex="1 1 auto">
+        <Col lg={12} md={3}>
           <Menu
             key="menu"
             mode="horizontal"

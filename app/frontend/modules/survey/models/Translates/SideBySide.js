@@ -9,6 +9,9 @@ class SideBySide extends BaseTranslate {
     if (/^choicesTexts/.test(field)) {
       return this.question.props.choicesTexts[extraData.choice]
     }
+    if (/^rowDescriptions/.test(field)) {
+      return this.question.props.rowDescriptions?.[extraData.choice]
+    }
     if (/^answersTexts/.test(field)) {
       return this.question.props.columnsData[extraData.group].answersTexts[extraData.answer]
     }
@@ -29,6 +32,9 @@ class SideBySide extends BaseTranslate {
     })
     _.times(this.question.props.choices, (i) => {
       result[`choicesTexts${i + 1}`] = this.question.props.choicesTexts[i]
+    })
+    _.times(this.question.props.choices, (i) => {
+      result[`rowDescriptions${i + 1}`] = this.question.props.rowDescriptions?.[i]
     })
     return result
   }
