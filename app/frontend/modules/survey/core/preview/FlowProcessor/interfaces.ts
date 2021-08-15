@@ -161,7 +161,7 @@ export interface I18nInterface {
   lookup(code: string): string
   tQuestion (question: any, field: string, extraData?: any): string
   tBlock (block: any, key: string, path: string[]): string
-  tCustomValidation (question: Question, message: string): string
+  tCustomValidation (question: Question, message: string, uuid: string): string
 }
 
 export interface QuestionErrors {
