@@ -18,6 +18,7 @@ interface SanitizeConfig {
   default: Config
   adminRichText: Config
   label: Config
+  error: Config
 }
 
 const sanitizeConfig: SanitizeConfig = {
@@ -27,6 +28,10 @@ const sanitizeConfig: SanitizeConfig = {
     ADD_ATTR: ['target'],
   },
   label: {
+    ALLOWED_TAGS: ['span', 'br', 'nobr', 'small', 'strong', 'em'],
+    ALLOWED_ATTR: ['dir'],
+  },
+  error: {
     ALLOWED_TAGS: ['span', 'br', 'nobr', 'small', 'strong', 'em'],
     ALLOWED_ATTR: ['dir'],
   },
