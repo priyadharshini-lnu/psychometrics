@@ -11,6 +11,12 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 50px;
+    @media(max-width: $screen-lg) {
+      padding: 0 20px;
+    }
+    @media(max-width: $screen-md) {
+      padding: 0;
+    }
   }
 
   .rounded-box {
