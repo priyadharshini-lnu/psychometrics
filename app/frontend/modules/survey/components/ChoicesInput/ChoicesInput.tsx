@@ -32,10 +32,6 @@ const ChoicesInput: FC<Props> = ({
 
   const getMaxValue = () => maxValue || MAX_VALUE
 
-  const updateModel = (val) => {
-    onChange && onChange(val)
-  }
-
   const handleOnChange = (e) => {
     if (!e.currentTarget.value.match(/\D/)) {
       let value = parseInt(e.currentTarget.value, 10)
@@ -45,7 +41,7 @@ const ChoicesInput: FC<Props> = ({
         value = value < getMaxValue() ? value : getMaxValue()
       }
 
-      updateModel(value)
+      onChange(value)
     }
   }
 
@@ -54,7 +50,7 @@ const ChoicesInput: FC<Props> = ({
     if (typeof val !== 'undefined') {
       val += 1
       val = val < getMaxValue() ? val : getMaxValue()
-      updateModel(val)
+      onChange(val)
     }
   }
 
@@ -63,7 +59,8 @@ const ChoicesInput: FC<Props> = ({
     if (val) {
       val -= 1
       val = val < getMinValue() ? getMinValue() : val
-      updateModel(val)
+
+      onChange(val)
     }
   }
 
