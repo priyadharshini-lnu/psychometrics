@@ -13,9 +13,10 @@
 .overlayControls {
   pointer-events: none;
   position: absolute;
-  top: 20px;
+  top: 0.5rem;
   left: 0;
-  right: 0;
+  right: 0.5rem;
+  line-height: 5rem;
   text-align: center;
   z-index: 1;
   :global(.ant-btn) {
@@ -24,7 +25,8 @@
 }
 
 .currentTakeNo {
-  font-size: 6em;
+  text-align: end;
+  font-size: 6rem;
   color: white;
   text-shadow: 0 0 4px black;
 }
