@@ -1,6 +1,8 @@
 ---
 en:
   administration:
+    smtp_settings:
+      smtp: Smpt
     actions: Actions
     active: Active
     administrator:
@@ -293,6 +295,7 @@ en:
       occupations_factors: Factors
       products: Products
       project_admins: Project Admins
+      settings: Settings
       projects: Projects
       psychometrics: Psychometrics
       question_center: Question Center
