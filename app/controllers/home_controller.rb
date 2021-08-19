@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
       campaign_user = user_assessment.campaign_user
       CampaignUsers::BeginCampaign.call(campaign_user) if campaign_user.not_started?
-      redirect_url = pass_user_assessment_path(params[:user_assessment_id])
+      redirect_url = UserAssessments::GetUrl.call!(user_assessment)
       redirect_to(redirect_url) && return
     end
 

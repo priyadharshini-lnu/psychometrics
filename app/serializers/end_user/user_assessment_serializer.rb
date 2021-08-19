@@ -12,12 +12,7 @@ module EndUser
     end
 
     def url
-      return agile_user_assessment_path(object) if object.assessment.agile?
-      return pass_mindmill_user_assessment_path(object) if object.assessment.mindmill?
-      return pass_hogan_user_assessment_path(object.id) if object.assessment.hogan?
-      return pass_saville_user_assessment_path(object.id) if object.assessment.saville?
-
-      pass_user_assessment_path(object)
+      UserAssessments::GetUrl.call!(object)
     end
 
     def type
