@@ -132,19 +132,14 @@ _.extend(Question.prototype, {
 
   setChoices (val, undo) {
     const oldValue = this.props.choices
+
     this.props.choices = Utils.limit(val)
     this.props.choicesTexts.splice(this.props.choices)
-    for (let i = 0; i < this.props.choices; i += 1) {
-      if (this.props.choicesTexts && this.props.choicesTexts[i]) {
-        this.props.choicesTexts[i] = this.moduleConfig.defaultChoiceText(i + 1)
-      }
-      if (this.props.choicesImages && this.props.choicesImages[i]) {
-        this.props.choicesImages[i] = this.moduleConfig.defaultChoiceImage
-      }
-    }
+
     if (!undo) {
       Action('QuestionChangeChoices', this, { oldValue, newValue: this.props.choices })
     }
+
     this.update()
   },
 
