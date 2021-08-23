@@ -21,7 +21,8 @@ module Administration
                         result.
                         includes(:reports, :assessments, :project, :threesixty_campaign)
             serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
-              campaigns.page(params[:page]), each_serializer: Administration::Campaigns::CampaignSerializer,
+              campaigns.page(params[:page]).per(params[:size] || 25),
+              each_serializer: Administration::Campaigns::CampaignSerializer,
               current_user: current_user, project_id: params[:project_id]
             )
             render json: {

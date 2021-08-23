@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { Modal, Checkbox, message } from 'antd'
+import {
+  Modal, Checkbox, message, Typography,
+} from 'antd'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import { SafeHTML } from 'components/SafeHTML'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window
+const { Text, Paragraph } = Typography
 
 export interface OwnProps {
   close(): void
@@ -21,7 +25,6 @@ const RemoveAssessmentModal: React.FC<Props> = ({
 
   const { name } = assessment
 
-
   const handleRemoveAssessment = () => {
     remove(campaignId, campaignAssessmentId, { removeUserAssessments })
     message.success(I18n.t('campaign_assessment.modals.remove.successfully', { name }))
@@ -31,15 +34,20 @@ const RemoveAssessmentModal: React.FC<Props> = ({
   return (
     <Modal
       width={650}
-      title={I18n.t('campaign_assessment.modals.remove.title', { name })}
+      title={I18n.t('campaign_assessment.modals.remove.title')}
       visible
       centered
       okText={I18n.t('common.text.continue')}
       onCancel={close}
       onOk={handleRemoveAssessment}
     >
+      <Paragraph>
+        <SafeHTML html={I18n.t('campaign_assessment.modals.remove.msg_text', { name })} />
+      </Paragraph>
       <Checkbox checked={removeUserAssessments} onChange={() => setRemoveUserAssessments(!removeUserAssessments)}>
         {I18n.t('campaign_report.modals.remove.apply')}
+        <br />
+        <Text type="danger">{I18n.t('campaign_assessment.modals.remove.helper_text')}</Text>
       </Checkbox>
     </Modal>
   )

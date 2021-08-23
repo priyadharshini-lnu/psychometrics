@@ -2903,6 +2903,8 @@ en:
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Question?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
+      toggle_status:
+        successfully: Successfully updated.
     report_families:
       copy:
         error: 'Report Bundle #%{id} was not copied.'

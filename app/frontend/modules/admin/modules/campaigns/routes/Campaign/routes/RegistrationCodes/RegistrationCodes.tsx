@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Button, Menu, Row, Col, Pagination, message, Popconfirm,
+  Dropdown, Table, Button, Menu, Row, Col, Pagination, message, Modal,
 } from 'antd'
 import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
-  QrcodeOutlined, DownloadOutlined, CopyOutlined,
+  QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
@@ -15,6 +15,7 @@ import Modals from 'modules/admin/components/Modals'
 import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { formatedDate } from 'utils/time'
+import { SafeHTML } from 'components/SafeHTML'
 import CodeModal from './CodeModal'
 
 const MODALS = {
@@ -133,7 +134,7 @@ const RegistrationCodes: React.FC<Props> = ({
                       text={code.url}
                       onCopy={() => message.info('URL is copied to clipboard successfully')}
                     >
-                      <Button shape="round" icon={<CopyOutlined />} />
+                      <Button type="text" icon={<CopyOutlined />} />
                     </CopyToClipboard>
                   )}
                   {code.permissions.downloadQrcode && (
@@ -147,9 +148,7 @@ const RegistrationCodes: React.FC<Props> = ({
                       )}
                       trigger={['click']}
                     >
-                      <Button shape="round" icon={<QrcodeOutlined />}>
-                        QR code
-                      </Button>
+                      <Button type="text" icon={<QrcodeOutlined />} />
                     </Dropdown>
                   )}
                   <ConditionalDropdown
@@ -163,7 +162,9 @@ const RegistrationCodes: React.FC<Props> = ({
                           disabled: !code.disabled,
                         },
                       }),
+                      onCancelConfirm: () => destroy(campaignId, code.id),
                       permissions: code.permissions,
+                      code,
                     }) as React.ReactElement}
                     innerElement={(
                       <Button type="link">
@@ -171,18 +172,6 @@ const RegistrationCodes: React.FC<Props> = ({
                       </Button>
                     )}
                   />
-                  {code.permissions.remove && (
-                    <Popconfirm
-                      title="Are you sure?"
-                      onConfirm={() => destroy(campaignId, code.id)}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Button danger shape="round">
-                        <CloseOutlined />
-                      </Button>
-                    </Popconfirm>
-                  )}
                 </>
               )}
             />
@@ -205,9 +194,12 @@ const RegistrationCodes: React.FC<Props> = ({
 
 interface ActionMenuProps {
   onEdit(): void
+  onCancelConfirm(): void
   permissions: {
     edit: boolean
+    remove: boolean
   }
+  code: RegistrationCode
 }
 
 interface QRCodeMenuProps {
@@ -247,21 +239,50 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
 )
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, permissions,
-}) => (
-  <Menu>
-    {permissions.edit && (
-      <Menu.Item key="edit">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={onEdit}
-        >
-          Edit
-        </div>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+  onEdit, onCancelConfirm, permissions, code: { code },
+}) => {
+  const handleRemove = () => {
+    Modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: <SafeHTML html={I18n.t('registration_code.modals.remove.content', { code })} />,
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        onCancelConfirm()
+        message.success(I18n.t('registration_code.modals.remove.successfully', { code }))
+      },
+    })
+  }
+
+  return (
+    <Menu>
+      {permissions.edit && (
+        <Menu.Item key="edit">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={onEdit}
+          >
+            Edit
+          </div>
+        </Menu.Item>
+      )}
+      {permissions.remove && (
+        <Menu.Item key="remove">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleRemove}
+          >
+            Remove
+          </div>
+        </Menu.Item>
+      )}
+    </Menu>
+  )
+}
 
 export default withEnhancedTable(RegistrationCodes, 'RegistrationCodes', { maintainHistory: true })

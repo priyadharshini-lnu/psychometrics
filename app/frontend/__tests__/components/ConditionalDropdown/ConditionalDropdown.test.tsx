@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, screen, within, fireEvent } from '@testing-library/react'
+import { render, within, fireEvent } from '@testing-library/react'
 import { Menu } from 'antd'
 
 import ConditionalDropdown from 'components/ConditionalDropdown'

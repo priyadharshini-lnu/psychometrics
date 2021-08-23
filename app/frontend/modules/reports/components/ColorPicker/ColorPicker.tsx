@@ -1,12 +1,12 @@
 import React from 'react'
-import { ColorResult } from 'react-color'
+import { ColorResult, RGBColor } from 'react-color'
 import styles from './styles.scss'
-import { Open, Color } from '../../core/temp/colorPicker'
+import { Open } from '../../core/temp/colorPicker'
 
 interface Props {
   openPicker: Open
-  color: Color
-  onComplete: null | undefined | ((color: ColorResult) => void)
+  color: RGBColor | string
+  onComplete?: null | undefined | ((color: ColorResult) => void)
   onChange: null | undefined | ((color: ColorResult) => void)
 }
 

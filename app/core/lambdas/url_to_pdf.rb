@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Lambdas
-  class UrlToPdf < BaseCommand
-    include Rails.application.routes.url_helpers
-
+  class UrlToPdf < Base
     private_attr_reader :options
 
     def initialize(options)
@@ -11,19 +9,15 @@ module Lambdas
     end
 
     def call
-      if options[:async] && lambda_config.dig(:url_to_pdf, :sqs_url)
-        send_message_to_sqs
-      else
-        make_http_request
-      end
+      make_request_to_lambda
 
       broadcast :ok, s3_download_url
     end
 
     private
 
-    def lambda_config
-      @lambda_config ||= Rails.application.secrets.aws[:lambda]
+    def lambda_details
+      @lambda_details ||= Rails.application.secrets.aws.dig(:lambda, :url_to_pdf)
     end
 
     def s3_download_url
@@ -38,31 +32,6 @@ module Lambdas
                               response_content_disposition: content_disposition).to_s
     end
 
-    def send_message_to_sqs
-      Aws::SQS::Client.new.send_message({
-        queue_url: lambda_config.dig(:url_to_pdf, :sqs_url),
-        message_body: jwt_request_body
-      })
-    end
-
-    def make_http_request
-      request_thread = Thread.new do
-        Faraday.post(lambda_config.dig(:url_to_pdf, :url)) do |req|
-          req.options.timeout = 280
-          req.body = jwt_request_body
-        end
-      end
-      request_thread.join unless options[:async]
-    end
-
-    def jwt_request_body
-      JWT.encode(
-        { data: request_body, exp: expiry_time.from_now.to_i },
-        lambda_config[:signing_secret],
-        'HS256'
-      )
-    end
-
     def request_body
       body = options.slice(:url, :width, :height).
              merge(
@@ -72,14 +41,6 @@ module Lambdas
       return body unless options[:async]
 
       body.merge(webhookUrl: lambda_notifications_url)
-    end
-
-    def webhook_message
-      JWT.encode(
-        { data: options[:webhook_message], exp: expiry_time.from_now.to_i },
-        lambda_config[:signing_secret],
-        'HS256'
-      )
     end
 
     def lambda_notifications_url
@@ -98,10 +59,6 @@ module Lambdas
         key: options[:output_file_path],
         expires_in: expiry_time.to_i
       )
-    end
-
-    def expiry_time
-      12.hours
     end
   end
 end

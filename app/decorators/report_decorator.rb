@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class ReportDecorator < BaseDecorator
-  def type
-    I18n.t("administration.reports.types.#{object.type}")
-  end
-
   # Returns a round image or circle with the specified color and two letters of the name
   #
   def icon

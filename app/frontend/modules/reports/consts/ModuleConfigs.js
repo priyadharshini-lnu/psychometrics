@@ -235,6 +235,8 @@ export default {
       },
       GapAssessment: {
         sourceType: 'Factor',
+        factorIds: [],
+        questionsChoices: [],
       },
       SingleValue: {
         sourceType: 'Factor',

@@ -17,4 +17,12 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
   })),
-});
+})
+
+// Fill all need media device properties for test here
+Object.defineProperty(window.navigator, 'mediaDevices', {
+  writable: true,
+  value: {
+    getUserMedia: jest.fn().mockResolvedValueOnce('mock-media-stream'),
+  },
+})

@@ -45,7 +45,7 @@ const UserAssessment: React.FC<Props> = ({
 }) => {
   useEffect(() => {
     if (!subjectForm) {
-      setTimeout(() => fetch(subjectAssessmentId), 1000)
+      fetch(subjectAssessmentId)
     }
   }, [])
 

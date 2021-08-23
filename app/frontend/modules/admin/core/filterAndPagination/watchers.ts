@@ -25,7 +25,7 @@ function* genSetTableConfigFromUrl () {
 function* genSetUrlFromTableConfig ({ payload: { tableName } }: ActionsReturnType) {
   const { pathname } = yield select(getLocation)
   const tableConfig: TableConfig = yield select(state => getTableConfigs(tableName, state))
-  const tableConfigForUlr = _.pick(tableConfig, ['filters', 'page', 'sort'])
+  const tableConfigForUlr = _.pick(tableConfig, ['filters', 'page', 'sort', 'pageSize'])
 
   if (tableConfig.maintainHistory) {
     yield put(push(`${pathname}?${qs.stringify(tableConfigForUlr)}`))

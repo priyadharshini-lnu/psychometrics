@@ -33,7 +33,10 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
-      resource.owner_id = current_user.client_admin_client_ids.first if current_user.is?(:client_admin)
+
+      if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
+        resource.owner_id = current_user.client_admin_client_ids.first
+      end
 
       respond_to do |format|
         if resource.save

@@ -34,6 +34,7 @@ const CodeFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="registrationCodes"
+      readableResourceName={I18n.t('registration_code.modals.title')}
       requestScope="campaigns"
       resourceBaseUrl={`/administration/new_campaigns/${campaignId}/registration_codes`}
       resource={code}
@@ -88,7 +89,7 @@ const CodeFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="restrictedDomains"
-            label={I18n.t('registration_code.restricted_domains')}
+            label={I18n.t('registration_code.allowed_domains')}
           >
             <TextArea
               placeholder={I18n.t('registration_code.one_domain_per_line')}

@@ -1,26 +1,33 @@
 import React from 'react'
-import Select from 'react-select'
+import { Select, Typography } from 'antd'
+
 import AppStore from 'modules/reports/store/AppStore'
-import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
 
 interface Props {
   assessmentId: number
   changeAssessment: (assessmentId: number) => void
 }
 
-const AssessmentProperties: React.FC<Props> = ({ assessmentId, changeAssessment }) => {
-  const selectOptions = AppStore.assessments.map(a => ({ label: a.name, value: a.id }))
+const AssessmentProperties: React.FC<Props> = ({
+  assessmentId,
+  changeAssessment,
+}) => {
+  const assessmentOptions = AppStore.assessments.map(assessment => ({
+    label: assessment.name,
+    value: assessment.id,
+  }))
+
   return (
     <div>
-      <div className="form-group">
-        <span className={styles.label}>Assessment</span>
-        <Select
-          options={selectOptions}
-          value={getValue(selectOptions, assessmentId)}
-          onChange={a => changeAssessment(a?.value)}
-        />
-      </div>
+      <Typography.Text>Assessment</Typography.Text>
+      <Select
+        className="w-100"
+        style={{ maxWidth: 'calc(220px - 30px)' }}
+        size="small"
+        options={assessmentOptions}
+        value={assessmentId}
+        onChange={value => changeAssessment(value)}
+      />
     </div>
   )
 }

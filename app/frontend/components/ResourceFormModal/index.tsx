@@ -3,11 +3,10 @@ import {
   Modal, Button, Spin, Form,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import _ from 'lodash'
 import { FormProps, FormInstance } from 'antd/lib/form'
 import { ModalProps } from 'antd/lib/modal'
 import { FieldData } from 'rc-field-form/lib/interface'
-import ResourceFrom from '../ResourceForm'
+import ResourceForm from '../ResourceForm'
 import { Status as ResourceStatus } from '../ResourceForm/constants'
 import { Resource } from '../ResourceForm/interfaces'
 
@@ -19,6 +18,7 @@ interface Props {
   }): ReactElement
   close(): void
   title?: string
+  readableResourceName?: string
   resource?: Resource
   resourceId?: number
   resourceBaseUrl: string
@@ -45,6 +45,7 @@ interface Request {
 const ResourceFormModal: React.FC<Props> = (props) => {
   const {
     title,
+    readableResourceName,
     resourceName,
     close,
     modalProps,
@@ -64,8 +65,6 @@ const ResourceFormModal: React.FC<Props> = (props) => {
 
   const isEdit = () => !!resource || !!resourceId
 
-  const readableResourceName = (): string => _.capitalize(resourceName)
-
   const handleSuccessfulSubmission = (response: object) => {
     onSuccessfulSubmission && onSuccessfulSubmission(response)
     close()
@@ -81,7 +80,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const getTitle = () => {
     if (title) { return title }
 
-    return `${isEdit() ? 'Edit' : 'Add'} ${readableResourceName()}`
+    return `${isEdit() ? 'Edit' : 'Add'} ${readableResourceName || resourceName}`
   }
 
   const renderTitle = () => {
@@ -120,7 +119,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
       ]}
       {...modalProps || {}}
     >
-      <ResourceFrom
+      <ResourceForm
         {...props}
         storeManager={{ ...store, ...(storeManager || {}) }}
         onStatusChange={setResourceStatus}

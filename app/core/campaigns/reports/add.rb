@@ -34,7 +34,7 @@ module Campaigns
           assessment_params = form.assessment_map[assessment.id] || {}
           attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
           attrs[:saville_norm_id] = assessment.saville_norm_id if assessment.saville?
-          campaign.campaign_assessments.find_or_create_by!(attrs)
+          campaign.campaign_assessments.create_with(attrs).find_or_create_by!(assessment: assessment)
         end
 
         return if form.operation == 'skip_existing'

@@ -5,17 +5,10 @@ export const OPEN = 'report/temp/colorPicker/OPEN'
 export const CLOSE = 'report/temp/colorPicker/CLOSE'
 export const CHANGE_COLOR = 'report/temp/colorPicker/CHANGE_COLOR'
 
-export type Color = {
-  r: number | string
-  g: number | string
-  b: number | string
-  a: number | string
-} & string
-
 interface OpenParams {
   onChange: null | undefined | ((color: ColorResult) => void)
   onComplete: null | undefined | ((color: ColorResult) => void)
-  color: Color | ColorResult | RGBColor | null | undefined
+  color: ColorResult | RGBColor | string | null | undefined
 }
 
 export const open = ({ onChange, onComplete, color }: OpenParams) => ({
@@ -28,7 +21,7 @@ export const close = () => ({ type: CLOSE })
 
 interface State {
   isOpen: boolean
-  color: Color | ColorResult | RGBColor | null | undefined
+  color: ColorResult | RGBColor | string | null | undefined
   onChange: null | undefined | ((color: ColorResult) => void)
   onComplete: null | undefined | ((color: ColorResult) => void)
 }

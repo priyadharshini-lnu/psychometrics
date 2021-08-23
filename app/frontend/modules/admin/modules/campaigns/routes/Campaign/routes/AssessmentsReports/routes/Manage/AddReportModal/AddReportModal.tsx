@@ -80,6 +80,7 @@ const AddReportModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="report"
+      readableResourceName="Report"
       requestScope={requestScope}
       resourceBaseUrl={resourceBaseUrl}
       showSuccessMessages

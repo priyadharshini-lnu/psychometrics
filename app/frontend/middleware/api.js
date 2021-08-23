@@ -33,7 +33,7 @@ const buildUrl = ({
 const bodyFromTableConfig = (tableConfig) => {
   if (!tableConfig) { return {} }
 
-  const data = { filters: tableConfig.filters || {}, page: tableConfig.page }
+  const data = { filters: tableConfig.filters || {}, page: tableConfig.page, size: tableConfig.pageSize }
   if (_.isEmpty(tableConfig.sort)) return data
   return setIn(data, ['filters', 's'], `${_.snakeCase(tableConfig.sort.columnName)} ${tableConfig.sort.order}`)
 }

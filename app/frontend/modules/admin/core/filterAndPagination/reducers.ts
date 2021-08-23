@@ -1,6 +1,7 @@
 import { createReducer } from 'utils/redux'
 import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
+import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import {
   InitTableReturnType,
   ChangeSortReturnType,
@@ -23,6 +24,7 @@ export const defaultTableConfig: TableConfig = {
   filters: {},
   sort: {},
   page: 1,
+  pageSize: DEFAULT_PAGE_SIZE,
   initialized: false,
   maintainHistory: false,
 }
@@ -46,12 +48,12 @@ const HANDLERS = {
       filters => ({ ...filters, [filterName]: filterValue }),
     )
   ),
-  [CHANGE_PAGE]: (state: State, { payload: { tableName, pageNumber } }: ChangePageReturnType) => (
-    updateIn(
-      state,
-      [tableName, 'page'],
-      () => pageNumber,
-    )
+  [CHANGE_PAGE]: (state: State, { payload: { tableName, pageNumber, pageSize } }: ChangePageReturnType) => (
+    {
+      ...state,
+      ...{ [tableName]: { ...state[tableName], page: pageNumber, pageSize } },
+    }
+
   ),
   [CHANGE_SORT]: (state: State, { payload: { tableName, columnName, order } }: ChangeSortReturnType) => (
     updateIn(

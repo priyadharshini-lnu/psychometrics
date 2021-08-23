@@ -22,8 +22,14 @@ module Administration
       end
 
       def create
+        form = Licenses::CreateForm.new(resource_params.merge(client_id: client.root.id))
         @_resource = client.root.licenses.build(resource_params)
-        render :new unless resource.save
+        if form.valid?
+          resource.save
+        else
+          resource.validate
+          render :new
+        end
       end
 
       def update
