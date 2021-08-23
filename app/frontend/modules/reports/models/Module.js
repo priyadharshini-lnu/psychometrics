@@ -124,6 +124,7 @@ _.extend(Module.prototype, {
     const assessment = AppStore.getAssessmentById(this.assessment_id)
     if (assessment.category === 'saville') {
       const sourceType = _.get(this.props, 'source.type')
+      if (!sourceType) { return _.get(this.props, 'source.type') }
       return sourceType.replace('Saville#', '')
     }
     return _.get(this.props, 'source.type')
