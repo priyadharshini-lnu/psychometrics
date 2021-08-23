@@ -167,7 +167,7 @@
 
           // attach events per each point
           for (j = 0; j < len; j++) {
-            const elemPoint = pick(eventElement.elementPoint[j].graphic, eventElement.elementPoint[j])
+            const elemPoint = eventElement.elementPoint[j] && pick(eventElement.elementPoint[j].graphic, eventElement.elementPoint[j])
 
             if (elemPoint && elemPoint !== UNDEFINED) {
               customEvents.add(elemPoint, eventElement.eventsPoint, eventElement.elementPoint[j], this)
