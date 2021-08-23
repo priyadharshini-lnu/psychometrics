@@ -24,6 +24,11 @@ declare class ResultStore {
           >
         }
       >
+      getAverageFactorScore(filter: number): Array<{
+        id: number
+        avg: number
+        name: string
+      }>
       getTopFactorByRank(topPosition: number): {
         alias: string
         description: string

@@ -79,7 +79,7 @@ interface OwnProps {
 
 type Props = PropsFromRedux & OwnProps
 
-const QuestionComponent: FC<Props> = ({
+const QuestionTypeComponent: FC<Props> = ({
   filters: [leftFilter, rightFilter],
   gapType,
   assessment_id,
@@ -187,42 +187,44 @@ const QuestionComponent: FC<Props> = ({
   return (
     <div className={styles.table}>
       <table>
-        {showPositiveGapTable && (
-          <>
-            <THeader
-              title={
+        <tbody>
+          {showPositiveGapTable && (
+            <>
+              <THeader
+                title={
                 showTitle
                   ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
                   : ''}
-              leftFilter={leftFilter}
-              rightFilter={rightFilter}
-            />
-            <TBody
-              gaps={positiveGaps}
-              emptyText={I18nStore.t(
-                'reports.modules.gap_assessment.no_positive_gaps',
-              )}
-            />
-          </>
-        )}
-        {showNegativeGapsTable && (
-          <>
-            <THeader
-              title={
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={positiveGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_positive_gaps',
+                )}
+              />
+            </>
+          )}
+          {showNegativeGapsTable && (
+            <>
+              <THeader
+                title={
                 showTitle
                   ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
                   : ''}
-              leftFilter={leftFilter}
-              rightFilter={rightFilter}
-            />
-            <TBody
-              gaps={negativeGaps}
-              emptyText={I18nStore.t(
-                'reports.modules.gap_assessment.no_negative_gaps',
-              )}
-            />
-          </>
-        )}
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={negativeGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_negative_gaps',
+                )}
+              />
+            </>
+          )}
+        </tbody>
       </table>
     </div>
   )
@@ -390,6 +392,6 @@ const TBody: FC<TBodyProps> = ({ gaps, emptyText }) => {
   )
 }
 
-const Question = connector(QuestionComponent)
+const QuestionType = connector(QuestionTypeComponent)
 
-export default Question
+export default QuestionType

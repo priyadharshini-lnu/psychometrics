@@ -173,44 +173,46 @@ const Factor: FC<Props> = ({
   return (
     <div className={styles.table}>
       <table>
-        {showPositiveGapTable && (
-          <>
-            <THeader
-              title={
+        <tbody>
+          {showPositiveGapTable && (
+            <>
+              <THeader
+                title={
                 showTitle
                   ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
                   : ''
               }
-              leftFilter={leftFilter}
-              rightFilter={rightFilter}
-            />
-            <TBody
-              gaps={positiveGaps}
-              emptyText={I18nStore.t(
-                'reports.modules.gap_assessment.no_positive_gaps',
-              )}
-            />
-          </>
-        )}
-        {showNegativeGapTable && (
-          <>
-            <THeader
-              title={
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={positiveGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_positive_gaps',
+                )}
+              />
+            </>
+          )}
+          {showNegativeGapTable && (
+            <>
+              <THeader
+                title={
                 showTitle
                   ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
                   : ''
               }
-              leftFilter={leftFilter}
-              rightFilter={rightFilter}
-            />
-            <TBody
-              gaps={negativeGaps}
-              emptyText={I18nStore.t(
-                'reports.modules.gap_assessment.no_negative_gaps',
-              )}
-            />
-          </>
-        )}
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={negativeGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_negative_gaps',
+                )}
+              />
+            </>
+          )}
+        </tbody>
       </table>
     </div>
   )

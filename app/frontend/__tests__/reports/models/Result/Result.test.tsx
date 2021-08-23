@@ -245,38 +245,47 @@ test('getAverageFactorScore(filterId)', () => {
     expect(_.take(factors, 9)).toStrictEqual([
         {
             "avg": 4.5,
+            "id": 2343,
             "name": "Logical (2)"
         },
         {
             "avg": 4,
+            "id": 2337,
             "name": "Resourceful (2)"
         },
         {
             "avg": 4,
+            "id": 2338,
             "name": "Structured (2)"
         },
         {
             "avg": 4,
+            "id": 2339,
             "name": "Experiential (2)"
         },
         {
             "avg": 4,
+            "id": 2340,
             "name": "Flexible (2)"
         },
         {
             "avg": 4,
+            "id": 2379,
             "name": "2342_sub_1"
         },
         {
             "avg": 3,
+            "id": 2336,
             "name": "Social (2)"
         },
         {
             "avg": 3,
+            "id": 2380,
             "name": "2342_sub_2"
         },
         {
             "avg": 2.33,
+            "id": 2335,
             "name": "Receptive (2)"
         }
     ])
