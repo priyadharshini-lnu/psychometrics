@@ -6,6 +6,13 @@ module Administration
       before_action :set_resource, only: %i[update]
 
       def update
+        form = SmtpSettings::Form.from_params(resource_params)
+        if form.valid?
+          project.smtp_setting.update(form.attributes.except(:authentication))
+          head :ok
+        else
+          render json: { errors: form.errors.messages }, status: 422
+        end
       end
 
       private

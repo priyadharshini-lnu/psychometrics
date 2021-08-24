@@ -31,8 +31,8 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
   const { projectId } = useParams<{ projectId: string }>()
   
   return (
-    <Row justify="space-between" className="pm">
-      <Col sm={24} md={8} >
+    <Row justify="space-between" className="pl">
+      <Col sm={24} md={8}>
         <ResourceForm
           resourceName="smtpSetting"
           requestScope="campaigns"
@@ -40,6 +40,7 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
           resource={smtpSetting}
           storeManager={{ form, fields, setFields }}
           showSuccessMessages
+          formProps={{ layout: "horizontal", labelCol: { sm: 24, md: 10, lg: 8, xl: 8 }, labelAlign: 'left' }}
         >
           {({ form }) => (
             <>
@@ -51,14 +52,14 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
               </Form.Item>
 
               <Form.Item
-                name="from_name"
+                name="fromName"
                 label={I18n.t('administration.smtp_settings.from_name')}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
-                name="from_email"
+                name="fromEmail"
                 label={I18n.t('administration.smtp_settings.from_email')}
               >
                 <Input />
@@ -67,6 +68,13 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
               <Form.Item
                 name="host"
                 label={I18n.t('administration.smtp_settings.host')}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                name="port"
+                label={I18n.t('administration.smtp_settings.port')}
               >
                 <Input />
               </Form.Item>
@@ -92,7 +100,7 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
               {form.getFieldValue('authentication') &&
                 <>
                   <Form.Item
-                    name="authentication_type"
+                    name="authenticationType"
                     label={I18n.t('administration.smtp_settings.authentication_type')}
                   >
                     <Radio.Group>
@@ -103,7 +111,7 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
                   </Form.Item>
 
                   <Form.Item
-                    name="user_name"
+                    name="userName"
                     label={I18n.t('administration.smtp_settings.user_name')}
                   >
                     <Input />

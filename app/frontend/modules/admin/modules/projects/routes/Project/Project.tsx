@@ -26,9 +26,7 @@ export const Project = ({ history }) => {
 
   const activePath = () => {
     const path = routeUtils.getActiveRoutePath(routes)
-    if (path.includes('/settings')) {
-      return '/settings'
-    }
+    if (path.includes('/settings')) { return '/settings/smtp' }
 
     return path
   }
@@ -57,7 +55,7 @@ export const Project = ({ history }) => {
         }]}
       />
       )}
-      <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
+      <Menu onSelect={onSelect} selectedKeys={[activePath()]} mode="horizontal">
         <Menu.Item key="/new_campaigns">{I18n.t('common.model.campaigns')}</Menu.Item>
         <Menu.Item key="/datasheet">{I18n.t('common.model.datasheet')}</Menu.Item>
         <Menu.Item key="project_admins">{I18n.t('administration.breadcrumbs.project_admins')}</Menu.Item>

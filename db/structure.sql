@@ -2948,6 +2948,8 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.smtp_settings (
     id bigint NOT NULL,
+    from_name character varying,
+    from_email character varying,
     host character varying,
     encryption integer,
     port integer,

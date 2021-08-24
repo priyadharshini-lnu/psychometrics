@@ -5,7 +5,8 @@ module Administration
     class SmtpSettingSerializer < ActiveModel::Serializer
       format 'lower_camel'
 
-      attributes :id, :host, :encryption, :port, :user_name, :password, :authentication_type, :enabled
+      attributes :id, :from_name, :from_email, :host, :encryption, :port, :user_name, :password,
+                 :authentication_type, :enabled
     end
   end
 end

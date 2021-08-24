@@ -151,6 +151,7 @@ const ResourceForm: React.FC<Props> = ({
             || I18n.t(`frontend.resource.${operation()}_success`, { resourceName: readableResourceName() })
           message.success(messageText)
         }
+        removeErrors()
         onSuccessfulSubmission && onSuccessfulSubmission(response)
       })
       .catch((errors: Error) => {
@@ -159,6 +160,13 @@ const ResourceForm: React.FC<Props> = ({
         handleStatusChange(Status.SaveFailed)
         handleErrors(errors)
       })
+  }
+
+  const removeErrors = () => {
+    const newFields = store.fields.map((field) => (
+      { ...field, errors: undefined }
+    ))
+    store.setFields(newFields)
   }
 
   const handleErrors = (errors: Error) => {
