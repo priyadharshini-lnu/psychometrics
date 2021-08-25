@@ -24,8 +24,9 @@ module UsersResults
         private
 
         def calc_score(results)
+          factor = factor_data[:factor]
           if results.blank?
-            nil
+            0 if factors_question_count[factor.id]&.positive?
           else
             sum_of_score = results.sum do |result|
               res = Array.wrap(result['value'])

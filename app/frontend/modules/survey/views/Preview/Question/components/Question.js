@@ -6,6 +6,7 @@ import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
 import { initAudioPlayer } from 'modules/survey/hooks/useAudioPlayer'
 import { isEmailTextEntryQuestion } from 'modules/survey/utils/question'
+import { SafeHTML } from 'components/SafeHTML'
 import styles from './Question.scss'
 
 class Question extends Component {
@@ -55,7 +56,7 @@ class Question extends Component {
     return (
       errors.map((err, i) => (
         <div key={i} className={styles.error} style={this.addLtrStyleIfNeed(err.message || '')}>
-          {err.message}
+          <SafeHTML as="div" html={err.message} config="error" />
         </div>
       ))
     )

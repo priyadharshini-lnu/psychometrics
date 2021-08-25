@@ -24,9 +24,9 @@ module UsersResults
       end
 
       # { factor_id => {"blocks" => [] }, ... }
-      scoring = get_factors_scoring
+      scoring, factors_question_count = get_factors_scoring
 
-      broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm, dimension)
+      broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm, dimension, factors_question_count)
     end
 
     private
@@ -47,12 +47,15 @@ module UsersResults
         end
       end.flatten
 
+      factors_question_count = {}
+
       factor_ids.each do |factor_id|
         scoring[factor_id.to_s] = { results: [] }
         factor_questions = questions.select do |question|
           question['scoring'].detect { |s| s['factorId'] == factor_id }
         end
 
+        factors_question_count[factor_id] = factor_questions.length
         factor_questions.each do |factor_question|
           scoring_class = "::AgileScoring::#{factor_question['question_type']}".safe_constantize
           result = results[factor_question['id']]
@@ -63,7 +66,7 @@ module UsersResults
           scoring[factor_id.to_s][:results] << { question_id: factor_question['id'], value: scoring_point }
         end
       end
-      scoring
+      return scoring, factors_question_count
     end
   end
 end

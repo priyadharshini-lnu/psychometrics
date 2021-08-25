@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import _ from 'lodash'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import Series from './Series'
@@ -61,11 +60,12 @@ class Properties extends Component {
 
   render3DOptions () {
     const { model } = this.props
+    const graphOptions = ['3D', 'Standard']
     return (
       <div className="margin-top-10">
         <span className={styles.label}>Graph Subtype</span>
         <select className="form-control" value={model.props.graphicalRepresentation} onChange={this.change3D}>
-          {_.map(['3D', 'Standard'], (name, i) => (<option key={i} value={name}>{name}</option>))}
+          {graphOptions.map((option, idx) => (<option key={idx} value={option}>{option}</option>))}
         </select>
       </div>
     )
@@ -73,6 +73,7 @@ class Properties extends Component {
 
   renderLegendPosition () {
     const { model } = this.props
+    const positionOptions = ['Top Left', 'Top Middle', 'Top Right', 'Bottom Left', 'Bottom Middle', 'Bottom Right']
     return (
       <div className="margin-top-10">
         <span className={styles.label}>Legend Position</span>
@@ -81,8 +82,8 @@ class Properties extends Component {
           value={model.props.legendPosition || 'Bottom Middle'}
           onChange={this.changeLegendPosition}
         >
-          {_.map(['Top Left', 'Top Middle', 'Top Right', 'Bottom Left', 'Bottom Middle', 'Bottom Right'], (name, i) => (
-            <option key={i} value={name}>{name}</option>
+          {positionOptions.map((position, idx) => (
+            <option key={idx} value={position}>{position}</option>
           ))}
         </select>
       </div>
@@ -91,11 +92,12 @@ class Properties extends Component {
 
   renderPositionOptions () {
     const { model } = this.props
+    const graphSubtypeOptions = ['Vertical', 'Horizontal']
     return (
       <div className="margin-top-10">
         <span className={styles.label}>Graph Subtype</span>
         <select className="form-control" value={model.props.graphicalPosition} onChange={this.changeGraphicalPosition}>
-          {_.map(['Vertical', 'Horizontal'], (name, i) => (<option key={i} value={name}>{name}</option>))}
+          {graphSubtypeOptions.map((subtype, idx) => (<option key={idx} value={subtype}>{subtype}</option>))}
         </select>
       </div>
     )
@@ -122,8 +124,8 @@ class Properties extends Component {
     const { model } = this.props
     return (
       <div>
-        <div className="margin-top-10">
-          <label style={{ fontWeight: 'normal' }}>
+        <div className="mt-4">
+          <label className="font-normal">
             <input
               type="checkbox"
               checked={model.props.xAxisLinesHide || false}
@@ -132,14 +134,24 @@ class Properties extends Component {
             Hide X-axis gridlines
           </label>
         </div>
-        <div className="margin-top-10">
-          <label style={{ fontWeight: 'normal' }}>
+        <div className="mt-4">
+          <label className="font-normal">
             <input
               type="checkbox"
               checked={model.props.yAxisLinesHide || false}
               onChange={e => this.checkboxHandler('yAxisLinesHide', e)}
             />
             Hide Y-axis gridlines
+          </label>
+        </div>
+        <div className="mt-4">
+          <label className="font-normal">
+            <input
+              type="checkbox"
+              checked={model.props.xAxisLabelHide || false}
+              onChange={e => this.checkboxHandler('xAxisLabelHide', e)}
+            />
+            Hide X-axis title
           </label>
         </div>
       </div>
@@ -166,7 +178,7 @@ class Properties extends Component {
 
     return (
       <select className="form-control" value={model.props.dataFormat} onChange={this.changeDataFormat}>
-        {_.map(funcs, (name, i) => (<option key={i} value={name}>{name}</option>))}
+        {funcs.map((name, idx) => (<option key={idx} value={name}>{name}</option>))}
       </select>
     )
   }

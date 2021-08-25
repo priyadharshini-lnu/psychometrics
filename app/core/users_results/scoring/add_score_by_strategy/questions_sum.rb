@@ -7,11 +7,14 @@ module UsersResults
         private
 
         def calc_score(results)
-          return nil if results.blank?
-
-          results.sum do |result|
-            res = Array.wrap(result['value'])
-            res.sum / res.size.to_f
+          factor = factor_data[:factor]
+          if results.blank?
+            0 if factors_question_count[factor.id]&.positive?
+          else
+            results.sum do |result|
+              res = Array.wrap(result['value'])
+              res.sum / res.size.to_f
+            end
           end
         end
       end

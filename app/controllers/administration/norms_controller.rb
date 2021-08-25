@@ -111,6 +111,16 @@ class Administration::NormsController < Administration::BaseController
 
   private
 
+  def pundit_authorize
+    authorize(
+      resource || resource_class,
+      nil,
+      {
+        project_id: resource&.owner_id
+      }
+    )
+  end
+
   def five_scale_editor; end
 
   def percentile_editor; end

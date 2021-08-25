@@ -73,6 +73,16 @@ class Administration::DimensionsController < Administration::BaseController
 
   private
 
+  def pundit_authorize
+    authorize(
+      resource || resource_class,
+      nil,
+      {
+        project_id: resource&.owner_id
+      }
+    )
+  end
+
   def set_resource_class
     @_resource_class ||= Dimension # rubocop:disable Naming/MemoizedInstanceVariableName
   end
