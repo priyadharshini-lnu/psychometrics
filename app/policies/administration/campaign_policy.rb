@@ -30,6 +30,10 @@ module Administration
       @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_permission?(:clients, :manage, project_id))
     end
 
+    def manage_admins?
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id)
+    end
+
     def manage_threesixty?
       return true if @user.is?(:superadmin)
       return true if @user.is?(:client_admin, :project_admin) && @user.has_permission?(:clients, :manage, project_id)
