@@ -1,5 +1,7 @@
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { createReducer } from 'utils/redux'
 
 export const get = (state: RootState) => _.get(state, ['project', 'smtpSetting'])
 
@@ -16,6 +18,9 @@ interface State {
 
 const defaultState = {} as State
 
-export function reducer (state = defaultState) {
-  return state
+export const UPDATE = 'resource/campaigns/smtpSetting/UPDATE'
+
+const HANDLERS = {
+  [UPDATE]: (_, { response }: ApiActionResponse<State>) => response,
 }
+export const reducer = createReducer(HANDLERS, defaultState)

@@ -9,7 +9,7 @@ module Administration
         form = SmtpSettings::Form.from_params(resource_params)
         if form.valid?
           project.smtp_setting.update(form.attributes.except(:authentication))
-          head :ok
+          render json: project.smtp_setting, serializer: ::Administration::Projects::SmtpSettingSerializer
         else
           render json: { errors: form.errors.messages }, status: 422
         end

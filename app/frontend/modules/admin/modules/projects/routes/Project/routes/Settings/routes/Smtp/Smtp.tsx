@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
@@ -7,14 +7,16 @@ import {
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
   get as getSmtpSetting,
+  UPDATE,
 } from 'modules/admin/modules/projects/core/smtpSetting'
-import { FieldData } from 'rc-field-form/lib/interface'
 import { useParams } from 'react-router-dom'
 import ResourceForm from 'components/ResourceForm'
+import { isRequestInProgress } from 'modules/admin/core/request'
 
 const connector = connect(
   (state: RootState) => ({
     smtpSetting: getSmtpSetting(state),
+    isUpdating: isRequestInProgress(state, UPDATE),
   }),
   {
   },
@@ -26,10 +28,20 @@ type Props = PropsFromRedux
 
 const { I18n } = window
 
-const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
+const ENCRYPTION_TO_PORT_MAPPIN = {
+  none: 25,
+  ssl: 465,
+  tls: 465,
+}
+
+const SmtpComponent: React.FC<Props> = ({ smtpSetting, isUpdating }) => {
   const [form] = Form.useForm()
-  const [fields, setFields] = useState<FieldData[] | []>([])
   const { projectId } = useParams<{ projectId: string }>()
+
+  const handleEncryptionChange = (encryption: string) => {
+    const port = ENCRYPTION_TO_PORT_MAPPIN[encryption]
+    form.setFieldsValue({ port })
+  }
 
   return (
     <Row justify="space-between" className="pl">
@@ -39,7 +51,7 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
           requestScope="campaigns"
           resourceBaseUrl={`/administration/projects/${projectId}/smtp_settings`}
           resource={smtpSetting}
-          storeManager={{ form, fields, setFields }}
+          storeManager={{ form }}
           showSuccessMessages
           formProps={{
             layout: 'horizontal',
@@ -48,6 +60,9 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
             },
             labelAlign: 'left',
             initialValues: { authentication: !isEmpty(smtpSetting.userName) },
+            onValuesChange: (changedValues) => {
+              if (changedValues.encryption) { handleEncryptionChange(changedValues.encryption) }
+            },
           }}
         >
           {({ form }) => (
@@ -82,13 +97,6 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
               </Form.Item>
 
               <Form.Item
-                name="port"
-                label={I18n.t('administration.smtp_settings.port')}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item
                 name="encryption"
                 label={I18n.t('administration.smtp_settings.encryption')}
               >
@@ -97,6 +105,13 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
                   <Radio value="ssl">{I18n.t('administration.smtp_settings.encryption_types.ssl')}</Radio>
                   <Radio value="tls">{I18n.t('administration.smtp_settings.encryption_types.tls')}</Radio>
                 </Radio.Group>
+              </Form.Item>
+
+              <Form.Item
+                name="port"
+                label={I18n.t('administration.smtp_settings.port')}
+              >
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -143,7 +158,7 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting }) => {
                   </>
                 )
               }
-              <Button type="primary" htmlType="submit">Save</Button>
+              <Button type="primary" htmlType="submit" loading={isUpdating}>{I18n.t('common.actions.update')}</Button>
             </>
           )}
         </ResourceForm>

@@ -171,6 +171,7 @@ const ResourceForm: React.FC<Props> = ({
 
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
+    removeErrors()
     _.each(errors, (error: string | string[], name: string) => {
       const field = _.find(store.fields, field => _.includes(field.name as string[], name))
       const errors: string[] = _.castArray(error)
