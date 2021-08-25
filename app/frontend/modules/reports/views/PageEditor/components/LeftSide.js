@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import store from 'rb/store/PageList'
 import { DropTarget } from 'react-dnd'
 import PageModel from 'rb/models/Page'
+import throttle from 'lodash/throttle'
 import PageLabel from './PageLabel'
 import styles from './PageEditor.scss'
 
@@ -12,6 +13,12 @@ const fieldTarget = {
 
 class PageEditor extends Component {
   storeListener = null
+
+  movePage = throttle((id, atIndex) => {
+    const { updatePagePositions } = this.props
+    // const { page, index } = this.findPage(id)
+    updatePagePositions(id, atIndex)
+  }, 200)
 
   componentDidMount () {
     this.storeListener = store.addListener('change', this.update)
@@ -26,12 +33,6 @@ class PageEditor extends Component {
     store.update()
   }
 
-  movePage = (id, atIndex) => {
-    const { updatePagePositions } = this.props
-    // const { page, index } = this.findPage(id)
-
-    updatePagePositions(id, atIndex)
-  }
 
   findPage = (id) => {
     const { pages } = this.props
