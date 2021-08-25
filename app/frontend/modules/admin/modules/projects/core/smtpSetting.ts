@@ -1,4 +1,3 @@
-import { number } from 'fp-ts'
 import _ from 'lodash'
 import { RootState } from 'modules/admin/core/rootReducers'
 
@@ -8,10 +7,10 @@ interface State {
   id: number
   host: string
   encryption: string
-  port:number
-  user_name: string
+  port: number
+  userName: string
   password: string
-  authentication_type: string
+  authenticationType: string
   enabled: boolean
 }
 

@@ -13,8 +13,12 @@ export const Project = ({ history }) => {
   const prefix = `${settings.urlPrefix}/:projectId`
   const { projectId } = useParams<{ projectId: string}>()
   const path = routeUtils.getActiveRoutePath(routes)
-  const showBreadcrumbs = ['/new_campaigns', '/datasheet'].includes(path)
-  const pageName = path === '/new_campaigns' ? I18n.t('common.model.campaigns') : I18n.t('common.model.datasheet')
+  const showBreadcrumbs = ['/new_campaigns', '/datasheet', '/settings'].includes(path)
+  const pageName = () => ({
+    '/new_campaigns': I18n.t('common.model.campaigns'),
+    '/datasheet': I18n.t('common.model.datasheet'),
+    '/settings': I18n.t('administration.breadcrumbs.settings'),
+  }[path])
 
   const onSelect = ({ key }) => {
     if (key === 'project_admins') {
@@ -51,7 +55,7 @@ export const Project = ({ history }) => {
           link: state => `/administration/projects/${state.project.id}/new_campaigns`,
           label: state => state.project.name,
         }, {
-          label: () => pageName,
+          label: () => pageName(),
         }]}
       />
       )}

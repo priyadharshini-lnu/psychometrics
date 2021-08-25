@@ -163,7 +163,7 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const removeErrors = () => {
-    const newFields = store.fields.map((field) => (
+    const newFields = store.fields.map(field => (
       { ...field, errors: undefined }
     ))
     store.setFields(newFields)

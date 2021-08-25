@@ -19,7 +19,9 @@ module ProjectInitialState
                   to_h,
       project: {
         smtpSetting: ActiveModelSerializers::SerializableResource.new(
-          project.smtp_setting, { key_transform: :camel_lower, serializer: ::Administration::Projects::SmtpSettingSerializer }
+          project.smtp_setting, {
+            key_transform: :camel_lower, serializer: ::Administration::Projects::SmtpSettingSerializer
+          }
         ).as_json
       },
       config: {
