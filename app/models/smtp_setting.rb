@@ -9,9 +9,10 @@ class SmtpSetting < ApplicationRecord
   enum authentication_type: { plain: 0, login: 1, cram_md5: 2 }
 
   def from_name_and_email
-    return "#{I18n.t('mailer.from')} <no-reply@#{Settings.domain}>" unless enabled?
+    no_reply_email = "no-reply@#{Settings.domain}"
+    return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
 
-    "#{from_name} <#{from_email}>"
+    "#{from_name} <#{from_email.presence || no_reply_email}>"
   end
 
   def settings_for_email

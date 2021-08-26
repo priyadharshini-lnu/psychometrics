@@ -141,7 +141,7 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   before_create :set_hogan_group_name, if: :project?
   before_create -> { self.migrated = true }, if: :project?
-  before_create :create_smtp_setting
+  after_create :create_smtp_setting
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
