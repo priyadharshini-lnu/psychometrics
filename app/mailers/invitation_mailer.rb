@@ -10,15 +10,14 @@ class InvitationMailer < ApplicationMailer
     project = client.project
     @subdomain = project.subdomain
     smtp_setting project.smtp_setting
-    options = {
+    mail(
       from: smtp_setting.from_name_and_email,
       to: @resource.email,
       subject: I18n.t('devise.mailer.invitation_instructions.subject'),
       template_path: '/devise/mailer',
-      template_name: 'invitation_instructions'
-    }
-    options = options.merge(delivery_method_options: smtp_setting.settings_for_email) if smtp_setting.enabled?
-    mail(options)
+      template_name: 'invitation_instructions',
+      delivery_method_options: smtp_setting.settings_for_email
+    )
   end
 
   def invite_admin(user_id, token)

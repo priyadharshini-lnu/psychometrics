@@ -15,6 +15,9 @@ declare global {
         id: string
         email: string
       }
+    },
+    Utils: {
+      isElementInViewport: (HTMLElement) => boolean
     }
   }
 }

@@ -9,15 +9,14 @@ class CommunicationEmailMailer < ApplicationMailer
     body = Mustache.render(@communication_email.communication.body, data)
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{body}")
     smtp_setting = recipient.project.smtp_setting
-    options = {
+    mail(
       from: smtp_setting.from_name_and_email,
       to: recipient.email,
       subject: @communication_email.communication.subject,
       body: body,
-      content_type: 'text/html'
-    }
-    options = options.merge(delivery_method_options: smtp_setting.settings_for_email) if smtp_setting.enabled?
-    mail(options)
+      content_type: 'text/html',
+      delivery_method_options: smtp_setting.settings_for_email
+    )
     @communication_email.update(sent_at: Time.current)
   end
 

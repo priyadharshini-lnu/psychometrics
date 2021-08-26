@@ -13,6 +13,7 @@ en:
       authentication_type: Authentication Type
       user_name: User Name
       password: Password
+      test_settings: Test Settings
       encryption_types:
         none: None
         ssl: SSL
@@ -21,6 +22,9 @@ en:
         plain: Plain
         login: Login
         cram_md5: cram md5
+      test_modal:
+        title: Test SMTP setting
+        success_message: Test Email sent to %{email_id}.
     actions: Actions
     active: Active
     administrator:

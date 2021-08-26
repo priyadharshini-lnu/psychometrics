@@ -4,6 +4,7 @@ import isEmpty from 'lodash/isEmpty'
 import {
   Row, Col, Form, Input, Button, Switch, Radio,
 } from 'antd'
+import { MailOutlined } from '@ant-design/icons'
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
   get as getSmtpSetting,
@@ -12,6 +13,9 @@ import {
 import { useParams } from 'react-router-dom'
 import ResourceForm from 'components/ResourceForm'
 import { isRequestInProgress } from 'modules/admin/core/request'
+import Modals from 'modules/admin/components/Modals'
+import { openModal } from 'modules/admin/core/ui/modals'
+import { TestSettingModal } from './TestSettingModal'
 
 const connector = connect(
   (state: RootState) => ({
@@ -19,6 +23,7 @@ const connector = connect(
     isUpdating: isRequestInProgress(state, UPDATE),
   }),
   {
+    openModal,
   },
 )
 
@@ -34,7 +39,11 @@ const ENCRYPTION_TO_PORT_MAPPIN = {
   tls: 465,
 }
 
-const SmtpComponent: React.FC<Props> = ({ smtpSetting, isUpdating }) => {
+const MODALS = {
+  TestSettingModal,
+}
+
+const SmtpComponent: React.FC<Props> = ({ smtpSetting, isUpdating, openModal }) => {
   const [form] = Form.useForm()
   const { projectId } = useParams<{ projectId: string }>()
 
@@ -46,6 +55,17 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting, isUpdating }) => {
   return (
     <Row justify="space-between" className="pl">
       <Col sm={24} md={8}>
+        <div style={{ height: '24px' }}>
+          <Button
+            onClick={() => {
+              openModal('TestSettingModal', { projectId, smtpSettingId: smtpSetting.id })
+            }}
+            icon={<MailOutlined />}
+            className="float-r"
+          >
+            {I18n.t('administration.smtp_settings.test_settings')}
+          </Button>
+        </div>
         <ResourceForm
           resourceName="smtpSetting"
           requestScope="campaigns"
@@ -163,6 +183,7 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting, isUpdating }) => {
           )}
         </ResourceForm>
       </Col>
+      <Modals modals={MODALS} />
     </Row>
   )
 }

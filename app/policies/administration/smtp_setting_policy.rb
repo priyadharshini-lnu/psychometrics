@@ -5,5 +5,9 @@ module Administration
     def update?
       @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, record.project_id)
     end
+
+    def send_test_email?
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, record.project_id)
+    end
   end
 end

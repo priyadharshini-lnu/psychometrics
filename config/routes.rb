@@ -228,7 +228,11 @@ Rails.application.routes.draw do
     resources :projects, :new_projects do
       scope module: :projects do
         resources :datasheet_rows, concerns: :datasheet_management
-        resources :smtp_settings, only: %i[show update]
+        resources :smtp_settings, only: %i[show update] do
+          member do
+            post :send_test_email
+          end
+        end
       end
 
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
