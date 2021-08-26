@@ -91,7 +91,7 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
           onChange={handleChatAnswerCount}
         />
       )}
-      {['SingleLine', 'MultiLine', 'EssayTextBox'].includes(type) && (
+      {['MultiLine', 'EssayTextBox'].includes(type) && (
         <VoiceDictationCheckbox
           checked={allowDictation}
           onChange={handleDictationOptionChange}

@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
-  post '/lambda_notifications/url_to_pdf', 'lambda_notifications/url_to_pdf'
+  post '/lambda_notifications/url_to_pdf'
+  post '/lambda_notifications/zip_s3_files'
 
   concern :media_uploades do
     member do

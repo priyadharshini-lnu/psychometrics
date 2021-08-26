@@ -89,6 +89,16 @@ class Administration::FactorsController < Administration::BaseController
 
   private
 
+  def pundit_authorize
+    authorize(
+      resource || resource_class,
+      nil,
+      {
+        project_id: resource.dimension&.owner_id
+      }
+    )
+  end
+
   def set_resource_class
     @_resource_class ||= Factor # rubocop:disable Naming/MemoizedInstanceVariableName
   end

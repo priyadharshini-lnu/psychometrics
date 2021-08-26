@@ -16,7 +16,7 @@ import {
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
-  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING, AWS_SPEECH_TO_TEXT_URL,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING,
   ACTIVE_DICTATION_ON_QUESTION,
 } from './consts'
 import {
@@ -30,7 +30,7 @@ import {
   MarkMediaResponseAsSelected, FetchQuestionScoring,
   ShowEnd,
 } from './interfaces'
-import { AwsSpeechTextPresignedUrlAction, SetDictationActiveOnQuestion } from './actions'
+import { SetDictationActiveOnQuestion } from './actions'
 
 const { I18n } = window
 type State = DefaultState
@@ -76,7 +76,6 @@ const defaultState: State = {
   factors: [],
   scoring: null,
   showScoringOnEndPage: false,
-  awsSpeechTextPresignedURL: '',
   showQuestionScoring: false,
   activeDictationOnQuestion: 0,
 }
@@ -284,10 +283,6 @@ const HANDLERS = {
   [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
-  [AWS_SPEECH_TO_TEXT_URL]: (
-    state: State,
-    { response: { url } }: AwsSpeechTextPresignedUrlAction,
-  ) => ({ ...state, awsSpeechTextPresignedURL: url }),
   [FETCH_QUESTION_SCORING]: (state: State, { response }: FetchQuestionScoring) => ({
     ...state, scoring: response,
   }),

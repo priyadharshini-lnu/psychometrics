@@ -13,8 +13,14 @@ import Legend from '../Legend'
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
 
-function Question ({ filters, model, questions }) {
-  const enhanceFiltersByValue = (question, choice) => {
+const connector = connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}))
+
+const QuestionComponent = ({ filters, model, questions }) => {
+  const { props: { questionsChoices } } = model
+
+  const enhanceFiltersByValue = (questionId, choiceId) => {
     if (!ResultStore.realResults) {
       const { milestones } = model.props
       return buildFakeData({ filters, milestones })
@@ -27,10 +33,10 @@ function Question ({ filters, model, questions }) {
         'resultsByFilter',
         filter.id,
         'questions',
-        question.id,
+        questionId,
       ], [])
       const values = _.map(answers, (answer) => {
-        const choiceAnswers = answer.filter(a => a.choice === choice.id)
+        const choiceAnswers = answer.filter(a => a.choice === choiceId)
         return _.meanBy(choiceAnswers, (a) => {
           if (a.values) {
             return _.meanBy(a.values, val => val.recode_value)
@@ -45,18 +51,6 @@ function Question ({ filters, model, questions }) {
     return enhancedFilters
   }
 
-  const findQuestion = () => _.find(
-    questions, question => question.id === model.props.questionId,
-  )
-
-  const findQuestionChoices = () => {
-    const question = findQuestion()
-    return model.props.questionChoiceIds.map(id => ({
-      name: I18nStore.tQuestion(question, `choicesTexts${id + 1}`, { choice: id }),
-      id,
-    }))
-  }
-
   const {
     milestones, mainHeaderColor, secondHeaderColor,
   } = model.props
@@ -64,11 +58,7 @@ function Question ({ filters, model, questions }) {
   const filterIdsHavingResults = new Set()
   const filtersHavingResults = () => filters.filter(f => filterIdsHavingResults.has(f.id))
 
-  const question = findQuestion()
-
-  if (!question) return null
-
-  const questionChoices = findQuestionChoices()
+  const filteredQuestionsChoices = questionChoicesToTableValues(questionsChoices, questions)
 
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / milestones.length
   const getDescStyle = results => ({ minHeight: `${FILTER_ROW_HEIGHT * results.length}px` })
@@ -113,12 +103,14 @@ function Question ({ filters, model, questions }) {
             </tr>
           </thead>
           <tbody>
-            {questionChoices.map((questionChoice) => {
-              const results = enhanceFiltersByValue(question, questionChoice).filter(r => r.value > 0)
+            {filteredQuestionsChoices.map((questionChoice) => {
+              const results = enhanceFiltersByValue(questionChoice.questionId, questionChoice.choiceId)
+                .filter(r => r.value > 0)
+
               results.forEach(r => filterIdsHavingResults.add(r.id))
               const descStyle = getDescStyle(results)
               return (
-                <tr key={questionChoice.id}>
+                <tr key={`${questionChoice.questionId}_${questionChoice.choiceId}`}>
                   <td>
                     <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
                   </td>
@@ -142,7 +134,30 @@ function Question ({ filters, model, questions }) {
   )
 }
 
+export const questionChoicesToTableValues = (questionsChoices = [], allQuestions = {}) => {
+  const filteredQuestionsChoics = []
 
-export default connect((state, { model }) => ({
-  questions: getQuestions(state.report, model.assessment_id),
-}), {})(Question)
+  questionsChoices.forEach((questionChoices) => {
+    const { questionId, choiceIds } = questionChoices
+
+    if (Object.values(allQuestions).length > 0) {
+      const question = allQuestions ?. [questionId] ?? null
+
+      if (question) {
+        choiceIds.forEach((choiceId) => {
+          filteredQuestionsChoics.push({
+            questionId,
+            choiceId,
+            name: I18nStore.tQuestion(question, `choicesTexts${choiceId + 1}`, { choice: choiceId }),
+          })
+        })
+      }
+    }
+  })
+
+  return filteredQuestionsChoics
+}
+
+const Question = connector(QuestionComponent)
+
+export default Question

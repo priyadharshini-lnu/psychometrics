@@ -1,5 +1,5 @@
 .pagebreak{
-  z-index: 200;
+  z-index: 1;
   height: 40px;
   margin: 2px -2px;
   padding: 0 4px;
@@ -14,12 +14,12 @@
   &:hover{
     .addBtn{
       opacity: 1;
-      z-index: 9999;
+      z-index: 1;
     }
 
     .moveBtn{
       opacity: 1;
-      z-index: 9999;
+      z-index: 1;
     }
   }
 }

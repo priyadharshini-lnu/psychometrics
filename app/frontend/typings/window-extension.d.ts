@@ -19,5 +19,6 @@ declare global {
     Utils: {
       isElementInViewport: (HTMLElement) => boolean
     }
+    x_navigation_minimize: (state: string) => null
   }
 }

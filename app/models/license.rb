@@ -41,7 +41,7 @@ class License < ApplicationRecord
                               date: Date.today)
                     }
 
-  enum type: { common: 0, threesixty: 1 }, _prefix: :type
+  enum type: { common: 0, threesixty: 1, proctoring: 2 }, _prefix: :type
 
   def used_overuse_number
     number >= used_number ? 0 : used_number - number

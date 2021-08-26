@@ -11,7 +11,6 @@ import {
 import {
   nextPage,
   prevPage,
-  fetchAwsSpeechTextPresignedUrl,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from 'modules/survey/core/rootReducers'
 import { fetchCampaignOptions } from 'modules/user/modules/campaigns/core/campaign'
@@ -40,6 +39,5 @@ export default connect(
     nextPage,
     prevPage,
     fetchCampaignOptions,
-    fetchAwsSpeechTextPresignedUrl,
   },
 )

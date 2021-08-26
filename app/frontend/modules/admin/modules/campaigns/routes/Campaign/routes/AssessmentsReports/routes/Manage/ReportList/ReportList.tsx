@@ -100,6 +100,7 @@ const ReportList: React.FC<Props> = ({
                     campaignId: parsedCampaignId,
                     campaignReportId: report.id,
                     reportId: report.reportId,
+                    reportName: report.name,
                     permissions: report.permissions,
                     openModal,
                     exportData: handleExportData,
@@ -124,7 +125,8 @@ interface ActionMenuProps {
   campaignId: number
   reportId: number
   campaignReportId: number
-  openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
+  reportName: string
+  openModal(name: string, data?: { campaignId: number, campaignReportId: number, reportName: string }): void
   permissions: {
     export: boolean
     remove: boolean
@@ -133,7 +135,7 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, reportId, campaignReportId, openModal, permissions, exportData,
+  campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData,
 }) => (
   <Menu>
     {permissions.export && (
@@ -157,7 +159,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <div
           role="button"
           tabIndex={-1}
-          onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
+          onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId, reportName })}
         >
           {I18n.t('common.actions.remove')}
         </div>

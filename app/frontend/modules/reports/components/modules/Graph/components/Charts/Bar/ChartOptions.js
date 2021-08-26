@@ -1,7 +1,8 @@
-import _ from 'lodash'
+import merge from 'lodash/merge'
 
 export default function ChartOptions (model, changeLabel, props, format) {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
+  const [...colorsObjectList] = model.props.colors
   let xAxisOptions = {}
   if (model.props.xAxisLinesHide) {
     xAxisOptions = {
@@ -21,9 +22,9 @@ export default function ChartOptions (model, changeLabel, props, format) {
     },
     title: false,
     subtitle: false,
-    colors: _.map(model.props.colors, 'color'),
+    colors: colorsObjectList.map(colorObj => colorObj.color),
     credits: { enabled: false },
-    xAxis: _.merge(xAxisOptions, {
+    xAxis: merge(xAxisOptions, {
       type: 'category',
       labels: {
         style: {
@@ -37,6 +38,7 @@ export default function ChartOptions (model, changeLabel, props, format) {
             changeLabel(this)
           },
         },
+        enabled: !model.props.xAxisLabelHide,
       },
     }),
     yAxis: {

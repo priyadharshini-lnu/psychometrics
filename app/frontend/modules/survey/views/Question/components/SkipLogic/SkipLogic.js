@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Alert } from 'antd'
 import styles from './SkipLogic.scss'
 import Condition from './Condition'
 
@@ -22,9 +23,17 @@ class SkipLogicList extends Component {
       return (<div />)
     }
 
+    const maybeShowNote = _.find(skipLogic, { destination: 'SpecificBlock' })
 
     return (
       <div className={styles.skipLogicList}>
+        {maybeShowNote && (
+          <Alert
+            message="NOTE: Specific Block option under the
+            Skip logic functionality is not working with configured Flow"
+            type="warning"
+          />
+        )}
         {_.map(skipLogic, (condition, id) => (
           <Condition
             blocks={blocks}

@@ -21,8 +21,8 @@ import HighestLowestScore from './HighestLowestScore/HighestLowestScore'
 import HighestLowestScoreProps from './HighestLowestScore/Properties'
 import HighestLowestQuestion from './HighestLowestQuestion/HighestLowestQuestion'
 import HighestLowestQuestionProps from './HighestLowestQuestion/Properties'
-import GapAssessment from './GapAssessment/GapAssessment'
-import GapAssessmentProps from './GapAssessment/Properties'
+import { GapAssessment } from './GapAssessment/GapAssessment'
+import { Properties as GapAssessmentProperties } from './GapAssessment/Properties'
 import GapAssessmentScoring from './GapAssessmentScoring/GapAssessmentScoring'
 import GapAssessmentScoringProps from './GapAssessmentScoring/Properties'
 import SingleValueScoring from './SingleValueScoring/SingleValueScoring'
@@ -71,7 +71,7 @@ export const PropTypes = {
   SimpleTable: SimpleTableProps,
   ThreeSixtyDefault: ThreeSixtyDefaultProps,
   HighestLowest: HighestLowestProps,
-  GapAssessment: GapAssessmentProps,
+  GapAssessment: GapAssessmentProperties,
   ThreeSixtyReportSummary: ThreeSixtyReportSummaryProps,
   VideoResponse: VideoResponseProps,
   SingleValue: SingleValueProps,

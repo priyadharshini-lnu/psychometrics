@@ -30,6 +30,12 @@ declare class AppStore {
 
   report: {
     getFilterNameById(id: string): string
+    filters: Array<{
+      id: number
+      assessmentId: number
+      name: string
+      minRequiredResponses: number
+    }>
   }
 }
 

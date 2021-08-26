@@ -260,8 +260,6 @@ export const getMediaResponseByQuestionId = (state, questionId: number) => (
   getMediaResponsesByQuestionId(state, questionId)[0]
 )
 
-export const getAwsSpeechTextPresignedUrl = state => state.awsSpeechTextPresignedURL
-
 export const getQuestionScoring = (
   store,
   questionId,

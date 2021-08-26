@@ -44,7 +44,6 @@ class PropertyFilter extends Component {
           value={getValue(SELECT_OPTIONS, model.props.filter)}
           options={SELECT_OPTIONS}
           autoFocus={false}
-          isClearable
           getOptionValue={opt => opt.value}
           getLabelValue={opt => opt.label}
           hideSelectedOptions

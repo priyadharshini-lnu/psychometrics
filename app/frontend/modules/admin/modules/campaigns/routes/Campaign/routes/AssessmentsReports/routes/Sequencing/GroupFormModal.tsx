@@ -22,6 +22,7 @@ const GroupFormModal: React.FC<Props> = ({
 }) => (
   <ResourceFormModal
     resourceName="assessment_groups"
+    readableResourceName={I18n.t('assessments_reports.add_group_form.title')}
     requestScope="campaigns"
     resourceBaseUrl={`/administration/new_campaigns/${campaignId}/campaign_assessment_groups`}
     resource={group}

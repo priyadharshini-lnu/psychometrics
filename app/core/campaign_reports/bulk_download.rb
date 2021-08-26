@@ -12,6 +12,36 @@ module CampaignReports
     end
 
     def call
+      if Settings.features.zip_s3_files_lambda
+        bulk_download_with_lambda
+        broadcast :waiting
+      else
+        bulk_download_without_lambda
+        broadcast :ok, bulk_report
+      end
+    end
+
+    private
+
+    def bulk_download_with_lambda
+      file_details = user_reports_with_pdf.each_with_object([]) do |ur, acc|
+        acc << {
+          s3FilePath: ur.pdf.path,
+          zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize}-#{ur.campaign_id}.pdf"
+        }
+      end
+      file_name = "bulk-report-#{Date.today.strftime('%F')}"
+      zip_file_key = "#{bulk_report.store_dir}/#{file_name}"
+      webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
+
+      Lambdas::ZipS3Files.call!(
+        file_details: file_details,
+        zip_file_key: zip_file_key,
+        webhook_message: webhook_message
+      )
+    end
+
+    def bulk_download_without_lambda
       create_input_directory
       download_user_reports_from_s3
 
@@ -22,8 +52,6 @@ module CampaignReports
 
       broadcast :ok, bulk_report
     end
-
-    private
 
     def create_input_directory
       input_dir = bulk_report.input_dir

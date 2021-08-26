@@ -8,18 +8,22 @@ module AdminJobs
     def call
       bulk_report = ::CampaignReports::BulkDownload.call!(campaign_reports, owner, record)
 
-      content = [
-        content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),
-        content_tag(:ul) do
-          bulk_report.files.map do |file|
-            content_tag(:li) do
-              content_tag(:a, file.store_dir, href: file.url)
-            end
-          end.join.html_safe
-        end
-      ].join.html_safe
+      if bulk_report
+        content = [
+          content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),
+          content_tag(:ul) do
+            bulk_report.files.map do |file|
+              content_tag(:li) do
+                content_tag(:a, file.store_dir, href: file.url)
+              end
+            end.join.html_safe
+          end
+        ].join.html_safe
 
-      broadcast :ok, { content: content }
+        broadcast :ok, { content: content }
+      end
+
+      broadcast :waiting
     end
 
     def valid?

@@ -223,6 +223,7 @@ export const fetchAwsSpeechTextPresignedUrl = (): ApiAction<AwsSpeechTextPresign
     {
       method: 'get',
       url: '/transcribe/pre_sign_url',
+      loader: true,
     },
 })
 

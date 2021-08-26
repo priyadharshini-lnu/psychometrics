@@ -28,7 +28,10 @@ class Administration::NormsController < Administration::BaseController
     @_resource = resource_class.new(resource_params)
     resource.creator = current_user
     resource.updater = current_user
-    resource.owner_id = current_user.client_admin_client_ids.first if current_user.is?(:client_admin)
+
+    if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
+      resource.owner_id = current_user.client_admin_clients.not_archived&.first&.id
+    end
 
     respond_to do |format|
       if resource.save
@@ -107,6 +110,16 @@ class Administration::NormsController < Administration::BaseController
   end
 
   private
+
+  def pundit_authorize
+    authorize(
+      resource || resource_class,
+      nil,
+      {
+        project_id: resource&.owner_id
+      }
+    )
+  end
 
   def five_scale_editor; end
 

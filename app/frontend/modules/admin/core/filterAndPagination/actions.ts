@@ -22,9 +22,9 @@ export const removeFilter = (tableName: string, filterName: string) => ({
   payload: { tableName, filterName },
 })
 
-export const changePage = (tableName: string, pageNumber: number) => ({
+export const changePage = (tableName: string, pageNumber: number, pageSize?: number) => ({
   type: CHANGE_PAGE,
-  payload: { tableName, pageNumber },
+  payload: { tableName, pageNumber, pageSize },
 })
 
 export const changeSort = (tableName: string, columnName: string, order: string) => ({

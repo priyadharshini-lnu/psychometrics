@@ -27,6 +27,7 @@ interface Request {
 export type OwnProps = {
   resourceName: string
   resourceBaseUrl: string,
+  readableResourceName?: string
   requestScope?: string
   resource?: Resource
   resourceId?: number
@@ -52,6 +53,7 @@ const ResourceForm: React.FC<Props> = ({
   resource,
   resourceId,
   resourceName,
+  readableResourceName,
   request,
   defaultRequest,
   showSuccessMessages,
@@ -106,7 +108,6 @@ const ResourceForm: React.FC<Props> = ({
 
   const isEdit = () => !!resource || !!resourceId
   const operation = () => (isEdit() ? 'update' : 'create')
-  const readableResourceName = (): string => _.capitalize(resourceName)
 
   const makeRequest = (name: string, ...args) => {
     const requestFunction = (request && request[name]) || defaultRequest[name]
@@ -147,8 +148,9 @@ const ResourceForm: React.FC<Props> = ({
         handleStatusChange(Status.SaveSuccessful)
         if (showSuccessMessages) {
           let messageText = I18n.lookup(`frontend.${resourceName}.${operation()}_success`)
+          const readableResourceText = readableResourceName || _.capitalize(resourceName)
           messageText = messageText
-            || I18n.t(`frontend.resource.${operation()}_success`, { resourceName: readableResourceName() })
+            || I18n.t(`frontend.resource.${operation()}_success`, { readableResourceName: readableResourceText })
           message.success(messageText)
         }
         removeErrors()

@@ -412,12 +412,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -604,8 +604,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    saville_norm_id character varying,
-    available_locales text[] DEFAULT '{}'::text[]
+    available_locales text[] DEFAULT '{}'::text[],
+    saville_norm_id character varying
 );
 
 
@@ -3224,7 +3224,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -3652,12 +3653,12 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     selected_locale character varying,
@@ -7665,7 +7666,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --

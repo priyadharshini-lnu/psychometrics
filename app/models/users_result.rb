@@ -25,7 +25,7 @@ class UsersResult < ApplicationRecord
   scope :mindmill, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:mindmill] }) }
   scope :agile, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:agile] }) }
 
-  delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :norm_type, :status, :real_status,
+  delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,
            :norm_data, :completed_at, :completion_reason, :user_reports, :available_locales,
            to: :user_assessment, allow_nil: true
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,

@@ -34,11 +34,12 @@ class Properties extends Component {
 
   renderPositionOptions () {
     const { model } = this.props
+    const graphSubtypeOptions = ['Vertical', 'Horizontal']
     return (
       <div>
         <span className={styles.label}>Graph Subtype</span>
         <select className="form-control" value={model.props.graphicalPosition} onChange={this.changeGraphicalPosition}>
-          {_.map(['Vertical', 'Horizontal'], (name, i) => (<option key={i} value={name}>{name}</option>))}
+          {graphSubtypeOptions.map((subtype, idx) => (<option key={idx} value={subtype}>{subtype}</option>))}
         </select>
       </div>
     )
@@ -48,8 +49,8 @@ class Properties extends Component {
     const { model } = this.props
     return (
       <div>
-        <div className="margin-top-10">
-          <label style={{ fontWeight: 'normal' }}>
+        <div className="mt-4">
+          <label className="font-normal">
             <input
               type="checkbox"
               checked={model.props.xAxisLinesHide || false}
@@ -58,14 +59,24 @@ class Properties extends Component {
             Hide X-axis gridlines
           </label>
         </div>
-        <div className="margin-top-10">
-          <label style={{ fontWeight: 'normal' }}>
+        <div className="mt-4">
+          <label className="font-normal">
             <input
               type="checkbox"
               checked={model.props.yAxisLinesHide || false}
               onChange={e => this.checkboxHandler('yAxisLinesHide', e)}
             />
             Hide Y-axis gridlines
+          </label>
+        </div>
+        <div className="mt-4">
+          <label className="font-normal">
+            <input
+              type="checkbox"
+              checked={model.props.xAxisLabelHide || false}
+              onChange={e => this.checkboxHandler('xAxisLabelHide', e)}
+            />
+            Hide X-axis title
           </label>
         </div>
       </div>

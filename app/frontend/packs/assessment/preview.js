@@ -16,7 +16,8 @@ const root = document.getElementById(ID)
 
 const {
   data, type, locales, isThreesixty, dashboardUrl, selectedLocale, isAnonymousAssessment,
-  langPartial, result, agileAssetsUrl, agileAssignUrl, notAnEndPage, resultsUrl,
+  langPartial, result, agileAssetsUrl, agileAssignUrl, notAnEndPage, resultsUrl, showAsSinglePage,
+  readOnly,
 } = root.dataset
 
 const props = {
@@ -34,6 +35,8 @@ const props = {
   agileAssignUrl,
   notAnEndPage,
   resultsUrl,
+  showAsSinglePage,
+  readOnly,
 }
 
 ReactDOM.render(

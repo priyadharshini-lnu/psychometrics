@@ -11,7 +11,7 @@ module Users
 
     validates :first_name, :last_name, :email, presence: true
     validates :email, format: { with: Devise.email_regexp }
-    validates :password, strong_password: true
+    validates :password, strong_password: true, confirmation: true
 
     def map_model(model)
       self.weekly_license_stats = model.settings['weekly_license_stats']
