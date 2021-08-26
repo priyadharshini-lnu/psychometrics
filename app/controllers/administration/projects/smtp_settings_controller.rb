@@ -19,9 +19,9 @@ module Administration
         form = ::EmailTest::Form.from_params(params)
         if form.valid?
           SmtpSettingMailer.test_email(resource, form.to_email).deliver_later
-          render json: :ok
+          head :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 422
         end
       end
 
