@@ -21,6 +21,7 @@ interface Request {
   fetchResource(): void
   createResource(values: object): void
   updateResource(values: object): void
+  submit(values: object): void
 }
 
 
@@ -115,6 +116,8 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const saveRequest = (values: object) => {
+    if (request?.submit) { return request.submit(values) }
+
     const requestName = isEdit() ? 'updateResource' : 'createResource'
     return makeRequest(requestName, values)
   }

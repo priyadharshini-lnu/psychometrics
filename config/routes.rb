@@ -230,8 +230,11 @@ Rails.application.routes.draw do
       scope module: :projects do
         resources :datasheet_rows, concerns: :datasheet_management
         resources :smtp_settings, only: %i[show update] do
-          member do
+          collection do
             post :send_test_email
+          end
+          member do
+            post :validate_settings
           end
         end
       end

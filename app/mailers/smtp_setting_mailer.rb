@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class SmtpSettingMailer < ApplicationMailer
-  def test_email(smtp_setting, to_email)
+  def test_email(smtp_attributes, to_email)
+    smtp_setting = SmtpSetting.new(smtp_attributes)
     mail(
       from: smtp_setting.from_name_and_email,
       to: to_email,

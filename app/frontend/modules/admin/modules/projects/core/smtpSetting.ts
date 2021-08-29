@@ -6,7 +6,7 @@ import { createReducer } from 'utils/redux'
 
 export const get = (state: RootState) => _.get(state, ['project', 'smtpSetting'])
 
-interface State {
+export interface State {
   id: number
   host: string
   encryption: string
@@ -19,20 +19,42 @@ interface State {
 
 const defaultState = {} as State
 
-export const UPDATE = 'resource/campaigns/smtpSetting/UPDATE'
+export const VALIDATE_SETTINGS = 'resource/campaigns/smtpSetting/VALIDATE_SETTINGS'
+export const SAVE_SETTINGS = 'resource/campaigns/smtpSetting/SAVE_SETTINGS'
 export const TEST_SETTINGS = 'resource/campaigns/smtpSetting/TEST_SETTINGS'
 
-export const sendTestEmail = (projectId: number, smtpSettingId: number, to_email: string): ApiAction<void> => ({
-  type: TEST_SETTINGS,
+export const validateSettings = (projectId: number, smtpSettingId: number, resource: State): ApiAction<void> => ({
+  type: VALIDATE_SETTINGS,
   request: {
     method: 'post',
-    url: `/administration/projects/${projectId}/smtp_settings/${smtpSettingId}/send_test_email`,
-    body: { to_email },
+    url: `/administration/projects/${projectId}/smtp_settings/${smtpSettingId}/validate_settings`,
+    body: { resource },
     loader: true,
   },
 })
 
+export const saveSettings = (projectId: number, smtpSettingId: number, resource: State): ApiAction<void> => ({
+  type: SAVE_SETTINGS,
+  request: {
+    method: 'put',
+    url: `/administration/projects/${projectId}/smtp_settings/${smtpSettingId}`,
+    body: { resource },
+    loader: true,
+  },
+})
+
+export const sendTestEmail = (projectId: number, smtpSetting: State, to_email: string): ApiAction<void> => ({
+  type: TEST_SETTINGS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/smtp_settings/send_test_email`,
+    body: { ...smtpSetting, to_email },
+    loader: true,
+  },
+})
+
+
 const HANDLERS = {
-  [UPDATE]: (_, { response }: ApiActionResponse<State>) => response,
+  [SAVE_SETTINGS]: (_, { response }: ApiActionResponse<State>) => response,
 }
 export const reducer = createReducer(HANDLERS, defaultState)

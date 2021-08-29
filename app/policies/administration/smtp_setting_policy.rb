@@ -3,11 +3,21 @@
 module Administration
   class SmtpSettingPolicy < Administration::BasePolicy
     def update?
-      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, record.project_id)
+      can_manage_smtp_setting?
+    end
+
+    def validate_settings?
+      can_manage_smtp_setting?
     end
 
     def send_test_email?
-      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, record.project_id)
+      can_manage_smtp_setting?
+    end
+
+    private
+
+    def can_manage_smtp_setting?
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project.id)
     end
   end
 end

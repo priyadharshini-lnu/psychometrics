@@ -19,7 +19,7 @@ module SmtpSettings
       if: -> { apply_all_field_validation? && authentication? }
     validates :from_email, format: { with: Devise.email_regexp }, allow_blank: true
     validates :port, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 655_35 }, allow_blank: true
-    validates :host, presence: true, format: { with: RegexConstants::DOMAIN_REGEX }
+    validates :host, format: { with: RegexConstants::DOMAIN_REGEX }, allow_blank: true
 
     def apply_all_field_validation?
       return false unless enabled?
@@ -27,6 +27,10 @@ module SmtpSettings
       %i[from_email host port].any? do |attribute|
         public_send(attribute).present?
       end
+    end
+
+    def attributes
+      super.except(:authentication)
     end
   end
 end

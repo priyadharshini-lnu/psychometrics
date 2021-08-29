@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
-  Row, Col, Form, Input, Button, Switch, Radio,
+  Row, Col, Form, Input, Button, Switch, Radio, Space, message,
 } from 'antd'
 import { MailOutlined } from '@ant-design/icons'
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
   get as getSmtpSetting,
-  UPDATE,
+  SAVE_SETTINGS,
+  VALIDATE_SETTINGS,
+  saveSettings,
+  validateSettings,
+  State,
 } from 'modules/admin/modules/projects/core/smtpSetting'
 import { useParams } from 'react-router-dom'
+import { useUpdateEffect } from 'hooks/useUpdateEffect'
 import ResourceForm from 'components/ResourceForm'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import Modals from 'modules/admin/components/Modals'
@@ -20,10 +25,13 @@ import { TestSettingModal } from './TestSettingModal'
 const connector = connect(
   (state: RootState) => ({
     smtpSetting: getSmtpSetting(state),
-    isUpdating: isRequestInProgress(state, UPDATE),
+    isUpdating: isRequestInProgress(state, SAVE_SETTINGS),
+    isValidating: isRequestInProgress(state, VALIDATE_SETTINGS),
   }),
   {
     openModal,
+    saveSettings,
+    validateSettings,
   },
 )
 
@@ -43,36 +51,53 @@ const MODALS = {
   TestSettingModal,
 }
 
-const SmtpComponent: React.FC<Props> = ({ smtpSetting, isUpdating, openModal }) => {
+const SmtpComponent: React.FC<Props> = ({
+  smtpSetting, isUpdating, isValidating, saveSettings, validateSettings, openModal,
+}) => {
   const [form] = Form.useForm()
   const { projectId } = useParams<{ projectId: string }>()
+  const parsedProjectId = parseInt(projectId, 10)
+
+  enum SubmitFormType {
+    None = 'none',
+    Validation = 'validation',
+    Update = 'update'
+  }
+  const [submitFormFor, setsubmitFormFor] = useState<SubmitFormType>(SubmitFormType.None)
+
+  useUpdateEffect(() => {
+    if (submitFormFor !== SubmitFormType.None) { form.submit() }
+  }, [submitFormFor])
 
   const handleEncryptionChange = (encryption: string) => {
     const port = ENCRYPTION_TO_PORT_MAPPIN[encryption]
     form.setFieldsValue({ port })
   }
 
+  const formSubmitRequest = (values: State) => {
+    if (submitFormFor === SubmitFormType.Update) {
+      return saveSettings(parsedProjectId, smtpSetting.id, values).then(() => {
+        message.success(I18n.t('administration.smtp_settings.update_success_msg'))
+      }).finally(() => setsubmitFormFor(SubmitFormType.None))
+    }
+
+    return validateSettings(parsedProjectId, smtpSetting.id, values).then(() => {
+      openModal('TestSettingModal', { projectId, smtpSetting: form.getFieldsValue(true) })
+    }).finally(() => setsubmitFormFor(SubmitFormType.None))
+  }
+
   return (
     <Row justify="space-between" className="pl">
       <Col sm={24} md={8}>
-        <div style={{ height: '24px' }}>
-          <Button
-            onClick={() => {
-              openModal('TestSettingModal', { projectId, smtpSettingId: smtpSetting.id })
-            }}
-            icon={<MailOutlined />}
-            className="float-r"
-          >
-            {I18n.t('administration.smtp_settings.test_settings')}
-          </Button>
-        </div>
         <ResourceForm
           resourceName="smtpSetting"
           requestScope="campaigns"
           resourceBaseUrl={`/administration/projects/${projectId}/smtp_settings`}
           resource={smtpSetting}
           storeManager={{ form }}
-          showSuccessMessages
+          request={{
+            submit: formSubmitRequest,
+          }}
           formProps={{
             layout: 'horizontal',
             labelCol: {
@@ -178,7 +203,22 @@ const SmtpComponent: React.FC<Props> = ({ smtpSetting, isUpdating, openModal }) 
                   </>
                 )
               }
-              <Button type="primary" htmlType="submit" loading={isUpdating}>{I18n.t('common.actions.update')}</Button>
+              <Space>
+                <Button
+                  type="primary"
+                  loading={isUpdating}
+                  onClick={() => { setsubmitFormFor(SubmitFormType.Update) }}
+                >
+                  {I18n.t('common.actions.update')}
+                </Button>
+                <Button
+                  icon={<MailOutlined />}
+                  loading={isValidating}
+                  onClick={() => { setsubmitFormFor(SubmitFormType.Validation) }}
+                >
+                  {I18n.t('administration.smtp_settings.send_test_email')}
+                </Button>
+              </Space>
             </>
           )}
         </ResourceForm>

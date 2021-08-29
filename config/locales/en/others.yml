@@ -1401,8 +1401,6 @@ en:
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
-    smtpSetting:
-      update_success: SMTP settings updated successfully
     update: Update
     upload: Upload
     'yes': 'Yes'

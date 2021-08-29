@@ -7,10 +7,13 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   TEST_SETTINGS,
   sendTestEmail,
+
+  State as SmtpSetting,
 } from 'modules/admin/modules/projects/core/smtpSetting'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import ErrorAlertBox from 'components/ErrorAlertBox'
+
 
 const connecter = connect(
   (state: RootState) => ({
@@ -23,7 +26,7 @@ const connecter = connect(
 
 interface OwnProps {
   projectId: number
-  smtpSettingId: number
+  smtpSetting: SmtpSetting
   close(): void
 }
 
@@ -33,13 +36,13 @@ export type Props = OwnProps & PropsFromRedux
 const { I18n } = window
 
 const TestSettingModalComponent: React.FC<Props> = ({
-  loading, projectId, smtpSettingId, sendTestEmail, close,
+  loading, projectId, smtpSetting, sendTestEmail, close,
 }) => {
   const [email, setEmail] = useState<string>('')
   const [errors, setErrors] = useState(null)
 
   const handleOnSubmit = () => {
-    sendTestEmail(projectId, smtpSettingId, email)
+    sendTestEmail(projectId, smtpSetting, email)
       .then(() => {
         close()
         setErrors(null)
@@ -68,7 +71,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
       <ErrorAlertBox errors={errors} className="mbm" />
       <Input
         placeholder="Enter email address"
-        prefix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+        prefix={<MailOutlined />}
         value={email as string}
         size="large"
         onChange={e => setEmail(e.target.value)}
