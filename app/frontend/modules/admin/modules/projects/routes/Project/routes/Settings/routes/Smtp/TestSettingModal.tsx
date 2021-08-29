@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Modal, Button, message, Input,
+  Modal, Button, message, Input, Alert,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined, MailOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -11,7 +11,7 @@ import {
 } from 'modules/admin/modules/projects/core/smtpSetting'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { isRequestInProgress } from 'modules/admin/core/request'
-import ErrorAlertBox from 'components/ErrorAlertBox'
+import isEmpty from 'lodash/isEmpty'
 
 
 const connecter = connect(
@@ -67,7 +67,16 @@ const TestSettingModalComponent: React.FC<Props> = ({
         </Button>,
       ]}
     >
-      <ErrorAlertBox errors={errors} className="mbm" />
+      {!isEmpty(errors) && (
+      <Alert
+        style={{ whiteSpace: 'pre' }}
+        description={errors}
+        type="error"
+        className="mbm"
+        showIcon
+        message={null}
+      />
+      )}
       <Input
         placeholder="Enter email address"
         prefix={<MailOutlined />}

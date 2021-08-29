@@ -3085,6 +3085,9 @@ en:
         none: None
         ssl: SSL
         tls: TLS
+      errors:
+        authentication_failed: Username or password is incorrect
+        host_unreachable: Unable to connect to the host. Either host, port or encryption is incorrect
       from_email: From email
       from_name: From name
       host: Host

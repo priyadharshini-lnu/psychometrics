@@ -74,7 +74,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
 
   describe 'POST send_test_email' do
     it 'sends test email if to_email provided is valid' do
-      expect(SmtpSettingMailer).to receive_message_chain(:test_email, :deliver_later)
+      expect(SmtpSettingMailer).to receive_message_chain(:test_email, :deliver_now!)
 
       post :send_test_email, params: {
         project_id: project.id,
@@ -93,7 +93,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
       }, format: :json
 
       parsed_response = JSON.parse(response.body)
-      expected_response = { 'errors' => { 'to_email' => ['Email is invalid'] } }
+      expected_response = { 'errors' => ['Email is invalid'] }
       expect(parsed_response).to eq(expected_response)
       expect(response.status).to eq(422)
     end
