@@ -7,7 +7,6 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   TEST_SETTINGS,
   sendTestEmail,
-
   State as SmtpSetting,
 } from 'modules/admin/modules/projects/core/smtpSetting'
 import { RootState } from 'modules/admin/core/rootReducers'

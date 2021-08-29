@@ -14,7 +14,6 @@ export const Settings = ({ history }) => {
     routeUtils.moveTo(history, prefix, key)
   }
 
-
   return (
     <div>
       <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">

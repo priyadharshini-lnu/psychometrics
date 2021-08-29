@@ -12,7 +12,7 @@ import {
   VALIDATE_SETTINGS,
   saveSettings,
   validateSettings,
-  State,
+  State as SmtpSetting,
 } from 'modules/admin/modules/projects/core/smtpSetting'
 import { useParams } from 'react-router-dom'
 import { useUpdateEffect } from 'hooks/useUpdateEffect'
@@ -74,7 +74,7 @@ const SmtpComponent: React.FC<Props> = ({
     form.setFieldsValue({ port })
   }
 
-  const formSubmitRequest = (values: State) => {
+  const formSubmitRequest = (values: SmtpSetting) => {
     if (submitFormFor === SubmitFormType.Update) {
       return saveSettings(parsedProjectId, smtpSetting.id, values).then(() => {
         message.success(I18n.t('administration.smtp_settings.update_success_msg'))
