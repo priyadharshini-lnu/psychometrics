@@ -48,7 +48,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
 
   describe 'PUT update' do
     it 'sends test email if to_email provided is valid' do
-      expect(SmtpSettingMailer).to receive(:test_email)
+      expect(SmtpSettingMailer).to receive_message_chain(:test_email, :deliver_later)
 
       post :send_test_email, params: {
         project_id: project.id,

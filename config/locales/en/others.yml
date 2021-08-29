@@ -1070,8 +1070,8 @@ en:
       delete: Delete
       remove: Remove
       reset: Reset
-      update: Update
       send: Send
+      update: Update
     column:
       action: Action
       category: Category
@@ -1382,8 +1382,6 @@ en:
       create_success: The group is successfully created
       update_success: The group is successfully updated
     background_reading: Background Reading
-    smtpSetting:
-      update_success: SMTP settings updated successfully
     campaign:
       actions:
         remove:
@@ -1403,6 +1401,8 @@ en:
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
+    smtpSetting:
+      update_success: SMTP settings updated successfully
     update: Update
     upload: Upload
     'yes': 'Yes'

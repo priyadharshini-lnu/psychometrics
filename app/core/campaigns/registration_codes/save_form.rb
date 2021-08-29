@@ -3,8 +3,6 @@
 module Campaigns
   module RegistrationCodes
     class SaveForm < Rectify::Form
-      DOMAIN_REGEX = /\A((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}\Z/.freeze
-
       attribute :name, String
       attribute :code, String
       attribute :total_count, Integer
@@ -30,7 +28,7 @@ module Campaigns
 
       def validate_restricted_domains
         restricted_domains&.each do |domain|
-          unless DOMAIN_REGEX.match?(domain)
+          unless RegexConstants::DOMAIN_REGEX.match?(domain)
             errors.add(:restricted_domains, I18n.t('administration.clients.registration_codes.errors.incorrect_domain'))
             break
           end

@@ -1,30 +1,6 @@
 ---
 en:
   administration:
-    smtp_settings:
-      smtp: Smpt
-      enabled: Enabled
-      from_name: From name
-      from_email: From email
-      host: Host
-      encryption: Encryption
-      port: Port
-      authentication: Authentication
-      authentication_type: Authentication Type
-      user_name: User Name
-      password: Password
-      test_settings: Test Settings
-      encryption_types:
-        none: None
-        ssl: SSL
-        tls: TLS
-      authentication_types:
-        plain: Plain
-        login: Login
-        cram_md5: cram md5
-      test_modal:
-        title: Test SMTP setting
-        success_message: Test Email sent to %{email_id}.
     actions: Actions
     active: Active
     administrator:
@@ -317,13 +293,13 @@ en:
       occupations_factors: Factors
       products: Products
       project_admins: Project Admins
-      settings: Settings
       projects: Projects
       psychometrics: Psychometrics
       question_center: Question Center
       registration_codes: Registration Codes
       report_families: Report Bundles
       reports: Reports
+      settings: Settings
       statistics: Statistics
       sub_campaigns: Sub Campaigns
       sub_factors: Sub-Factors
@@ -3096,6 +3072,30 @@ en:
     save: Save
     search: Search
     show: Show
+    smtp_settings:
+      authentication: Authentication
+      authentication_type: Authentication Type
+      authentication_types:
+        cram_md5: cram md5
+        login: Login
+        plain: Plain
+      enabled: Enabled
+      encryption: Encryption
+      encryption_types:
+        none: None
+        ssl: SSL
+        tls: TLS
+      from_email: From email
+      from_name: From name
+      host: Host
+      password: Password
+      port: Port
+      smtp: Smpt
+      test_modal:
+        success_message: Test Email sent to %{email_id}.
+        title: Test SMTP setting
+      test_settings: Test Settings
+      user_name: User Name
     sub_factors:
       copy:
         error: 'Sub-Factor #%{id} was not copied.'
