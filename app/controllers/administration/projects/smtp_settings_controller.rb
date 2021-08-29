@@ -3,7 +3,7 @@
 module Administration
   module Projects
     class SmtpSettingsController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update send_test_email]
+      before_action :set_resource, only: %i[update]
 
       def update
         form = SmtpSettings::Form.from_params(resource_params)

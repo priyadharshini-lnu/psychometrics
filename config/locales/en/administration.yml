@@ -3090,12 +3090,12 @@ en:
       host: Host
       password: Password
       port: Port
+      send_test_email: Send Test Email
       smtp: Smtp
-      update_success_msg: SMTP setting updated successfully.
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
-      send_test_email: Send Test Email
+      update_success_msg: SMTP setting updated successfully.
       user_name: User Name
     sub_factors:
       copy:

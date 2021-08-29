@@ -12,7 +12,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
   describe 'PUT update' do
     it 'updates smtp_setting if params are valid' do
       build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465').attributes
-      get :update, params: {
+      put :update, params: {
         project_id: project.id,
         id: smtp_setting.id,
         resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465').attributes
@@ -31,7 +31,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
     end
 
     it "doesn't updates smtp_setting if validation fails" do
-      get :update, params: {
+      put :update, params: {
         project_id: project.id,
         id: smtp_setting.id,
         resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '').attributes
@@ -46,13 +46,38 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
     end
   end
 
-  describe 'PUT update' do
+  describe 'POST validate_settings' do
+    it 'returns 200 response smtp_setting is valid' do
+      build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465').attributes
+      post :validate_settings, params: {
+        project_id: project.id,
+        resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465').attributes
+      }, format: :json
+
+      expect(response.status).to eq(200)
+      expect(response.body).to eq('')
+    end
+
+    it 'returns error ifsmtp_setting is not valid' do
+      post :validate_settings, params: {
+        project_id: project.id,
+        resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '').attributes
+      }, format: :json
+
+      parsed_response = JSON.parse(response.body)
+      expected_response = { 'errors' => { 'port' => ["can't be blank"] } }
+      expect(parsed_response).to eq(expected_response)
+      expect(smtp_setting.host).to_not eq('gmail.com')
+      expect(response.status).to eq(422)
+    end
+  end
+
+  describe 'POST send_test_email' do
     it 'sends test email if to_email provided is valid' do
       expect(SmtpSettingMailer).to receive_message_chain(:test_email, :deliver_later)
 
       post :send_test_email, params: {
         project_id: project.id,
-        id: smtp_setting.id,
         to_email: 'james@cc.com'
       }, format: :json
 
@@ -64,7 +89,6 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
 
       post :send_test_email, params: {
         project_id: project.id,
-        id: smtp_setting.id,
         to_email: 'abc'
       }, format: :json
 

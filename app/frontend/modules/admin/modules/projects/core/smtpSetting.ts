@@ -23,11 +23,11 @@ export const VALIDATE_SETTINGS = 'resource/campaigns/smtpSetting/VALIDATE_SETTIN
 export const SAVE_SETTINGS = 'resource/campaigns/smtpSetting/SAVE_SETTINGS'
 export const TEST_SETTINGS = 'resource/campaigns/smtpSetting/TEST_SETTINGS'
 
-export const validateSettings = (projectId: number, smtpSettingId: number, resource: State): ApiAction<void> => ({
+export const validateSettings = (projectId: number, resource: State): ApiAction<void> => ({
   type: VALIDATE_SETTINGS,
   request: {
     method: 'post',
-    url: `/administration/projects/${projectId}/smtp_settings/${smtpSettingId}/validate_settings`,
+    url: `/administration/projects/${projectId}/smtp_settings/validate_settings`,
     body: { resource },
     loader: true,
   },

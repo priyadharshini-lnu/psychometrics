@@ -81,7 +81,7 @@ const SmtpComponent: React.FC<Props> = ({
       }).finally(() => setsubmitFormFor(SubmitFormType.None))
     }
 
-    return validateSettings(parsedProjectId, smtpSetting.id, values).then(() => {
+    return validateSettings(parsedProjectId, values).then(() => {
       openModal('TestSettingModal', { projectId, smtpSetting: form.getFieldsValue(true) })
     }).finally(() => setsubmitFormFor(SubmitFormType.None))
   }

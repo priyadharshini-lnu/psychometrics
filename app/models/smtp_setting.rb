@@ -24,10 +24,9 @@ class SmtpSetting < ApplicationRecord
       user_name: user_name,
       password: password,
       authentication: authentication_type,
-      enable_starttls_auto: true
     }
     return options.merge(tls: true) if encryption_tls?
-    return options.merge(sls: true) if encryption_ssl?
+    return options.merge(ssl: true) if encryption_ssl?
 
     options
   end
