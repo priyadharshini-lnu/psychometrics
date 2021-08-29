@@ -3091,7 +3091,7 @@ en:
       password: Password
       port: Port
       send_test_email: Send Test Email
-      smtp: Smtp
+      smtp: SMTP
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting

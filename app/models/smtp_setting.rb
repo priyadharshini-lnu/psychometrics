@@ -23,7 +23,7 @@ class SmtpSetting < ApplicationRecord
       port: port,
       user_name: user_name,
       password: password,
-      authentication: authentication_type,
+      authentication: authentication_type
     }
     return options.merge(tls: true) if encryption_tls?
     return options.merge(ssl: true) if encryption_ssl?
