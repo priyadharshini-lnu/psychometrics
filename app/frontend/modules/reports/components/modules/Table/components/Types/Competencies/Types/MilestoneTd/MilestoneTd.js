@@ -61,7 +61,11 @@ function FilterComponent ({
   return (
     <div className={cs(classes)} style={style}>
       <FilterAvatar filter={filter} fontSize={fontSize} showLabel={showLabels} />
-      {showValues && <div className={styles.value} style={{ fontSize: `${fontSize}em` }}>{filter.value}</div>}
+      {showValues && (
+        <div className={styles.value} style={{ fontSize: `${fontSize}em` }}>
+          {filter.value.toFixed(2)}
+        </div>
+      )}
     </div>
   )
 }
