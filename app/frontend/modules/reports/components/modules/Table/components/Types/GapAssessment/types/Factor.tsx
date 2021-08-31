@@ -172,98 +172,102 @@ const Factor: FC<Props> = ({
 
   return (
     <div className={styles.table}>
-      {showPositiveGapTable && (
-        <Table
-          title={
-            showTitle
-              ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
-              : ''
-          }
-          emptyText={I18nStore.t(
-            'reports.modules.gap_assessment.no_positive_gaps',
+      <table>
+        <tbody>
+          {showPositiveGapTable && (
+            <>
+              <THeader
+                title={
+                showTitle
+                  ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
+                  : ''
+              }
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={positiveGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_positive_gaps',
+                )}
+              />
+            </>
           )}
-          leftFilter={leftFilter}
-          rightFilter={rightFilter}
-          gaps={positiveGaps}
-        />
-      )}
-      {showNegativeGapTable && (
-        <Table
-          title={
-            showTitle
-              ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
-              : ''
-          }
-          emptyText={I18nStore.t(
-            'reports.modules.gap_assessment.no_negative_gaps',
+          {showNegativeGapTable && (
+            <>
+              <THeader
+                title={
+                showTitle
+                  ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
+                  : ''
+              }
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={negativeGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_negative_gaps',
+                )}
+              />
+            </>
           )}
-          leftFilter={leftFilter}
-          rightFilter={rightFilter}
-          gaps={negativeGaps}
-        />
-      )}
+        </tbody>
+      </table>
     </div>
   )
 }
 
-interface TableProps {
+interface THeaderProps {
   title: string
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
+}
+
+const THeader: FC<THeaderProps> = ({ leftFilter, rightFilter, title }) => (
+  <>
+    {title.length !== 0 && (
+    <tr>
+      <th className={styles.label} colSpan={6}>
+        {title}
+      </th>
+    </tr>
+    )}
+    <tr>
+      <th className={styles.label}>
+        {I18nStore.t('reports.modules.gap_assessment.rank')}
+      </th>
+      <th className={styles.label}>
+        {I18nStore.t('reports.modules.gap_assessment.item')}
+      </th>
+      <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
+      <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
+      <th className={styles.label}>
+        {I18nStore.t('reports.modules.gap_assessment.gap')}
+      </th>
+    </tr>
+  </>
+)
+
+interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
 }
 
-const Table: FC<TableProps> = ({
-  leftFilter,
-  rightFilter,
-  title,
-  gaps,
-  emptyText,
-}) => (
-  <table>
-    <thead>
-      {title.length !== 0 && (
-        <tr>
-          <td className={styles.label} colSpan={6}>
-            {title}
-          </td>
-        </tr>
-      )}
-      <tr>
-        <td className={styles.label}>
-          {I18nStore.t('reports.modules.gap_assessment.rank')}
-        </td>
-        <td className={styles.label}>
-          {I18nStore.t('reports.modules.gap_assessment.item')}
-        </td>
-        <td className={styles.label}>{I18nStore.tFilterName(leftFilter)}</td>
-        <td className={styles.label}>{I18nStore.tFilterName(rightFilter)}</td>
-        <td className={styles.label}>
-          {I18nStore.t('reports.modules.gap_assessment.gap')}
-        </td>
-      </tr>
-    </thead>
-    <TBody gaps={gaps} emptyText={emptyText} />
-  </table>
-)
-
-const TBody: FC<Pick<TableProps, 'gaps' | 'emptyText'>> = ({
+const TBody: FC<TBodyProps> = ({
   gaps,
   emptyText,
 }) => {
   if (gaps.length === 0) {
     return (
-      <tbody>
-        <tr>
-          <td colSpan={5}>{emptyText}</td>
-        </tr>
-      </tbody>
+      <tr>
+        <td colSpan={5}>{emptyText}</td>
+      </tr>
     )
   }
 
   return (
-    <tbody>
+    <>
       {gaps.map((gap, i) => (
         <tr key={i}>
           <td>{i + 1}</td>
@@ -273,7 +277,7 @@ const TBody: FC<Pick<TableProps, 'gaps' | 'emptyText'>> = ({
           <td>{Utils.round(gap.diff, 2)}</td>
         </tr>
       ))}
-    </tbody>
+    </>
   )
 }
 

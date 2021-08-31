@@ -3,6 +3,7 @@ import React from 'react'
 import { I18n } from 'store/StoreWatchman'
 import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
 import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { SafeHTML } from 'components/SafeHTML'
 import styles from '../FormStyle.scss'
 import commonStyles from '../../../styles.scss'
 import inputs from './inputs'
@@ -57,10 +58,14 @@ const Form: React.FC<Props> = ({
         const { name: inputName } = getType(i)
         return (
           <li className={styles.listItem} key={i}>
-            <span className={styles.previewLabel}>
-              {I18n().tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
-                || moduleConfig.defaultChoiceText(i + 1)}
-            </span>
+            <SafeHTML
+              as="span"
+              className={styles.previewLabel}
+              config="label"
+              html={I18n().tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                || moduleConfig.defaultChoiceText(i + 1)
+              }
+            />
             <div className={styles.inputContainer}>
               {inputName === 'Date' && (
                 <DateEntry

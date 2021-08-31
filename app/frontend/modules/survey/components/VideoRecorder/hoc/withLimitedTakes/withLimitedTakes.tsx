@@ -4,7 +4,6 @@ import {
 } from 'antd'
 import { SelectOutlined, CheckOutlined } from '@ant-design/icons'
 import axios from 'axios'
-import cs from 'classnames'
 import find from 'lodash/find'
 import findIndex from 'lodash/findIndex'
 
@@ -112,7 +111,7 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
       <div className={styles.overlayControls}>
         <Row>
           <Col span="4" offset="20">
-            <div className={cs(styles.currentTakeNo, 'text-align-c')}>{currentTakeIndex + 1}</div>
+            <div className={styles.currentTakeNo}>{currentTakeIndex + 1}</div>
           </Col>
         </Row>
       </div>

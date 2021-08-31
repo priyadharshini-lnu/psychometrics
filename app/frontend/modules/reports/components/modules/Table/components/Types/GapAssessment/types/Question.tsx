@@ -79,7 +79,7 @@ interface OwnProps {
 
 type Props = PropsFromRedux & OwnProps
 
-const QuestionComponent: FC<Props> = ({
+const QuestionTypeComponent: FC<Props> = ({
   filters: [leftFilter, rightFilter],
   gapType,
   assessment_id,
@@ -186,36 +186,46 @@ const QuestionComponent: FC<Props> = ({
 
   return (
     <div className={styles.table}>
-      {showPositiveGapTable && (
-        <Table
-          title={
-            showTitle
-              ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
-              : ''
-          }
-          emptyText={I18nStore.t(
-            'reports.modules.gap_assessment.no_positive_gaps',
+      <table>
+        <tbody>
+          {showPositiveGapTable && (
+            <>
+              <THeader
+                title={
+                showTitle
+                  ? I18nStore.t('reports.modules.gap_assessment.positive_gap')
+                  : ''}
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={positiveGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_positive_gaps',
+                )}
+              />
+            </>
           )}
-          leftFilter={leftFilter}
-          rightFilter={rightFilter}
-          gaps={positiveGaps}
-        />
-      )}
-      {showNegativeGapsTable && (
-        <Table
-          title={
-            showTitle
-              ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
-              : ''
-          }
-          emptyText={I18nStore.t(
-            'reports.modules.gap_assessment.no_negative_gaps',
+          {showNegativeGapsTable && (
+            <>
+              <THeader
+                title={
+                showTitle
+                  ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
+                  : ''}
+                leftFilter={leftFilter}
+                rightFilter={rightFilter}
+              />
+              <TBody
+                gaps={negativeGaps}
+                emptyText={I18nStore.t(
+                  'reports.modules.gap_assessment.no_negative_gaps',
+                )}
+              />
+            </>
           )}
-          leftFilter={leftFilter}
-          rightFilter={rightFilter}
-          gaps={negativeGaps}
-        />
-      )}
+        </tbody>
+      </table>
     </div>
   )
 }
@@ -273,10 +283,7 @@ const selectedQuestionsChoicesToTableValues = (
 }
 
 const getAllQuestionsChoices = (
-  allQuestions: Record<
-    number,
-    BaseQuestionModelInProperties<BaseQuestionProps>
-  >,
+  allQuestions: Record<number, BaseQuestionModelInProperties<BaseQuestionProps>>,
 ) => {
   const filteredQuestions = Object.values(allQuestions)
     .filter(question => AVAILABLE_QUESTION_TYPES.includes(question.type))
@@ -321,67 +328,56 @@ type Gap = {
   factor: Record<string, unknown>
 }
 
-interface TableProps {
+interface THeaderProps {
   title: string
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
+}
+
+const THeader: FC<THeaderProps> = ({ title, leftFilter, rightFilter }) => (
+  <>
+    {title.length === 0 && (
+      <tr>
+        <th className={styles.label} colSpan={6}>
+          {title}
+        </th>
+      </tr>
+    )}
+    <tr>
+      <th className={styles.label}>
+        {I18nStore.t('reports.modules.gap_assessment.rank')}
+      </th>
+      <th className={styles.label}>
+        {I18nStore.t('reports.modules.gap_assessment.scoring_category')}
+      </th>
+      <th className={styles.label}>
+        {I18nStore.t('reports.modules.gap_assessment.item')}
+      </th>
+      <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
+      <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
+      <th className={styles.label}>
+        {I18nStore.t('reports.modules.gap_assessment.gap')}
+      </th>
+    </tr>
+  </>
+)
+
+interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
 }
 
-const Table: FC<TableProps> = ({
-  title,
-  emptyText,
-  leftFilter,
-  rightFilter,
-  gaps,
-}) => (
-  <table>
-    <thead>
-      {title.length === 0 && (
-        <tr>
-          <td className={styles.label} colSpan={6}>
-            {title}
-          </td>
-        </tr>
-      )}
-      <tr>
-        <td className={styles.label}>
-          {I18nStore.t('reports.modules.gap_assessment.rank')}
-        </td>
-        <td className={styles.label}>
-          {I18nStore.t('reports.modules.gap_assessment.scoring_category')}
-        </td>
-        <td className={styles.label}>
-          {I18nStore.t('reports.modules.gap_assessment.item')}
-        </td>
-        <td className={styles.label}>{I18nStore.tFilterName(leftFilter)}</td>
-        <td className={styles.label}>{I18nStore.tFilterName(rightFilter)}</td>
-        <td className={styles.label}>
-          {I18nStore.t('reports.modules.gap_assessment.gap')}
-        </td>
-      </tr>
-    </thead>
-    <TBody gaps={gaps} emptyText={emptyText} />
-  </table>
-)
-
-const TBody: FC<Pick<TableProps, 'gaps' | 'emptyText'>> = ({
-  gaps,
-  emptyText,
-}) => {
+const TBody: FC<TBodyProps> = ({ gaps, emptyText }) => {
   if (gaps.length === 0) {
     return (
-      <tbody>
-        <tr>
-          <td colSpan={6}>{emptyText}</td>
-        </tr>
-      </tbody>
+      <tr>
+        <td colSpan={6}>{emptyText}</td>
+      </tr>
     )
   }
 
   return (
-    <tbody>
+    <>
       {gaps.map((gap, i) => (
         <tr key={i}>
           <td>{i + 1}</td>
@@ -392,10 +388,10 @@ const TBody: FC<Pick<TableProps, 'gaps' | 'emptyText'>> = ({
           <td>{Utils.round(gap.diff, 2)}</td>
         </tr>
       ))}
-    </tbody>
+    </>
   )
 }
 
-const Question = connector(QuestionComponent)
+const QuestionType = connector(QuestionTypeComponent)
 
-export default Question
+export default QuestionType

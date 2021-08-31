@@ -200,7 +200,7 @@ const HANDLERS = {
         return { ...user, active: !user.active }
       }))
     }
-    return setIn(state, ['current', 'active'], _.get(state, ['current', 'active']))
+    return setIn(state, ['current', 'active'], !_.get(state, ['current', 'active']))
   },
   // eslint-disable-next-line max-len
   [EXTEND_TIME]: (state: State, { response }: FetchSingleType) => ({
