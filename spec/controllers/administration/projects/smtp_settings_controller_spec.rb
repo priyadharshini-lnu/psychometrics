@@ -11,7 +11,6 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
 
   describe 'PUT update' do
     it 'updates smtp_setting if params are valid' do
-      build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465').attributes
       put :update, params: {
         project_id: project.id,
         id: smtp_setting.id,
@@ -22,11 +21,25 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
       parsed_response = JSON.parse(response.body)
       expected_response = smtp_setting.slice(
         :id, :authentication_type, :enabled, :encryption, :from_name, :from_email,
-        :host, :user_name, :password, :port
+        :host, :user_name, :port
       )
       expect(parsed_response).to eq(expected_response)
       expect(smtp_setting.host).to eq('gmail.com')
       expect(smtp_setting.port).to eq(465)
+      expect(response.status).to eq(200)
+    end
+
+    it "doesn't update password if password is blank" do
+      old_password = 'password'
+      smtp_setting.update(password: old_password)
+      put :update, params: {
+        project_id: project.id,
+        id: smtp_setting.id,
+        resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465', password: '').attributes
+      }, format: :json
+      smtp_setting.reload
+
+      expect(smtp_setting.reload.password).to eq(old_password)
       expect(response.status).to eq(200)
     end
 
@@ -78,6 +91,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
 
       post :send_test_email, params: {
         project_id: project.id,
+        resource: build(:smtp_setting).attributes,
         to_email: 'james@cc.com'
       }, format: :json
 
@@ -89,6 +103,7 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
 
       post :send_test_email, params: {
         project_id: project.id,
+        resource: build(:smtp_setting).attributes,
         to_email: 'abc'
       }, format: :json
 
