@@ -107,6 +107,7 @@ const SmtpComponent: React.FC<Props> = ({
             initialValues: { authentication: !isEmpty(smtpSetting.userName) },
             onValuesChange: (changedValues) => {
               if (changedValues.encryption) { handleEncryptionChange(changedValues.encryption) }
+              if (changedValues.authentication) { form.setFieldsValue({ authenticationType: 'plain' }) }
             },
           }}
         >

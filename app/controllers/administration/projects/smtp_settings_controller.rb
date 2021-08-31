@@ -6,7 +6,7 @@ module Administration
       before_action :set_resource, only: %i[update]
 
       def update
-        form = SmtpSettings::Form.from_params(resource_params)
+        form = SmtpSettings::Form.from_params(smtp_setting_params)
         if form.valid?
           project.smtp_setting.update(form.attributes)
           render json: project.smtp_setting, serializer: ::Administration::Projects::SmtpSettingSerializer
@@ -16,7 +16,7 @@ module Administration
       end
 
       def validate_settings
-        form = SmtpSettings::Form.from_params(resource_params)
+        form = SmtpSettings::Form.from_params(smtp_setting_params)
         if form.valid?
           head :ok
         else
@@ -26,7 +26,7 @@ module Administration
 
       def send_test_email
         form = ::EmailTest::Form.from_params(params)
-        smtp_attributes = SmtpSettings::Form.from_params(params).attributes
+        smtp_attributes = SmtpSettings::Form.from_params(smtp_setting_params).attributes
         if form.valid?
           error = nil
           begin
@@ -47,6 +47,12 @@ module Administration
       end
 
       private
+
+      def smtp_setting_params
+        new_params = resource_params
+        new_params[:password] = project.smtp_setting.password if new_params[:password].blank?
+        new_params
+      end
 
       def resource_class
         @resource_class ||= ::SmtpSetting

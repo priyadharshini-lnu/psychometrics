@@ -69,7 +69,6 @@ const TestSettingModalComponent: React.FC<Props> = ({
     >
       {!isEmpty(errors) && (
       <Alert
-        style={{ whiteSpace: 'pre' }}
         description={errors}
         type="error"
         className="mbm"

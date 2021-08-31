@@ -48,7 +48,7 @@ export const sendTestEmail = (projectId: number, smtpSetting: State, to_email: s
   request: {
     method: 'post',
     url: `/administration/projects/${projectId}/smtp_settings/send_test_email`,
-    body: { ...smtpSetting, to_email },
+    body: { resource: smtpSetting, to_email },
     loader: true,
   },
 })
