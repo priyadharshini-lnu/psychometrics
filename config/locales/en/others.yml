@@ -118,7 +118,7 @@ en:
               invalid: Reply to email is invalid
             subject:
               blank: Subject can't be blank
-        email_template_test_mail:
+        email_test_form:
           attributes:
             to_email:
               blank: Email field can't be blank
@@ -1070,6 +1070,7 @@ en:
       delete: Delete
       remove: Remove
       reset: Reset
+      send: Send
       update: Update
     column:
       action: Action

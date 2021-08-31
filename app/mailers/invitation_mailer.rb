@@ -7,13 +7,16 @@ class InvitationMailer < ApplicationMailer
     @resource = User.find(user_id)
     @token = token
     client = Client.find(invited_to_id)
-    @subdomain = @resource.is?(:regular) ? client.project.subdomain : nil
+    project = client.project
+    @subdomain = project.subdomain
+    smtp_setting project.smtp_setting
     mail(
-      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
+      from: smtp_setting.from_name_and_email,
       to: @resource.email,
       subject: I18n.t('devise.mailer.invitation_instructions.subject'),
       template_path: '/devise/mailer',
-      template_name: 'invitation_instructions'
+      template_name: 'invitation_instructions',
+      delivery_method_options: smtp_setting.settings_for_email
     )
   end
 
