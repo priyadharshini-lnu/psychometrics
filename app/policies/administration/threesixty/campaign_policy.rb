@@ -51,15 +51,15 @@ module Administration::Threesixty
     end
 
     def edit_subject_report?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     def manage_reports_options?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end
 
     def manage_campaign_options?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options, project_id)
+      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options, project_id: project_id)
     end
   end
 end

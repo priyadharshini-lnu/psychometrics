@@ -11,11 +11,11 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_permission?(:libraries, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:libraries, :manage, project_id: project_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permission?(:libraries, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:libraries, :manage, project_id: project_id)
     end
 
     def open_channel?

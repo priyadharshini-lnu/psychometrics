@@ -14,11 +14,11 @@ class Administration::NormPolicy < Administration::BasePolicy
   end
 
   def edit?
-    @user.is?(:superadmin) || @user.has_permission?(:norms, :manage, project_id)
+    @user.is?(:superadmin) || @user.has_permission?(:norms, :manage, project_id: project_id)
   end
 
   def copy?
-    @user.is?(:superadmin) || @user.has_permission?(:norms, :manage, project_id)
+    @user.is?(:superadmin) || @user.has_permission?(:norms, :manage, project_id: project_id)
   end
 
   def actions?
@@ -30,7 +30,7 @@ class Administration::NormPolicy < Administration::BasePolicy
   end
 
   def export?
-    @user.is?(:superadmin) || @user.has_permission?(:norms, :view, project_id)
+    @user.is?(:superadmin) || @user.has_permission?(:norms, :view, project_id: project_id)
   end
 
   def change_cell?
@@ -44,7 +44,7 @@ class Administration::NormPolicy < Administration::BasePolicy
 
       is_client_admin_user = @user.is?(:client_admin)
       clients = is_client_admin_user ? @user.client_admin_clients : @user.project_admin_clients
-      permitted_clients = clients.select { |client| @user.has_permission?(:norms, :view, client.id) }
+      permitted_clients = clients.select { |client| @user.has_permission?(:norms, :view, project_id: client.id) }
       permitted_owner_ids = is_client_admin_user ? permitted_clients.pluck(:id) : permitted_clients.pluck(:tte_id)
       scope.where(owner_id: permitted_owner_ids.uniq)
     end

@@ -4,39 +4,45 @@ module Administration
   module Common
     module AssessmentExportPolicy
       def export_results?
-        @user.is?(:superadmin) || (@user.has_permission?(:results, :raw_responses, project_id) && @record.common?)
+        @user.is?(:superadmin) || (@user.has_permission?(
+          :results, :raw_responses, project_id: project_id
+        ) && @record.common?)
       end
 
       def export_raw_results?
-        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :raw_responses, project_id))
+        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(
+          :results, :raw_responses, project_id: project_id
+        ))
       end
 
       def export_scoring_results?
-        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id))
+        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id: project_id))
       end
 
       def export_normed_results?
-        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id))
+        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id: project_id))
       end
 
       def export_raw_factor_scores?
-        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id))
+        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id: project_id))
       end
 
       def export_external_results?
-        !@record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id))
+        !@record.common? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id: project_id))
       end
 
       def export_hogan_results?
-        @record.hogan? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id))
+        @record.hogan? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id: project_id))
       end
 
       def export_mindmill_results?
-        @record.mindmill? && (@user.is?(:superadmin) || @user.has_permission?(:results, :scores, project_id))
+        @record.mindmill? && (@user.is?(:superadmin) || @user.has_permission?(
+          :results, :scores, project_id: project_id
+        ))
       end
 
       def rescore_responses?
-        @user.is?(:superadmin) || @user.has_permission?(:results, :rescore_responses, project_id)
+        @user.is?(:superadmin) || @user.has_permission?(:results, :rescore_responses, project_id: project_id)
       end
     end
   end

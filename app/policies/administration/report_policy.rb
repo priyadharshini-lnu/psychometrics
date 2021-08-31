@@ -23,11 +23,11 @@ module Administration
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     def external_reports?
@@ -35,12 +35,12 @@ module Administration
     end
 
     def upload_data_sheet?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     # Can archive/unarchive Assessment
     def toggle_archive?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
@@ -52,13 +52,13 @@ module Administration
     # Can preview Report
     # true if it's not Mindmill report and user is Superadmin
     def preview?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :view, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :view, project_id: project_id)
     end
 
     # Can export Report Data?
     #
     def export?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :view, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :view, project_id: project_id)
     end
 
     def left_menu?
@@ -70,7 +70,7 @@ module Administration
     end
 
     def toggle_status?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     # Can regenerate reports if Superadmin
@@ -81,15 +81,15 @@ module Administration
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     def soft_delete?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     def restore?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     class Scope < Scope

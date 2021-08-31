@@ -5,23 +5,23 @@ module Administration
     include ::Administration::Common::AssessmentExportPolicy
 
     def update?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
     end
 
     def import_results?
-      @user.is?(:superadmin) || @user.has_permission?(:results, :reset_responses, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:results, :reset_responses, project_id: project_id)
     end
 
     def update_norm?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
     end
 
     def update_assessor_form?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
     end
 
     def update_available_locales?
@@ -33,11 +33,11 @@ module Administration
     end
 
     def enable_universal_link?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
     end
 
     def attach_to_group?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
     end
   end
 end
