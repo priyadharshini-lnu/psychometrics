@@ -12,7 +12,7 @@ module UsersResults
 
     def call
       result =
-        users_result.answers.transform_values do |answer|
+        users_result.answers&.transform_values do |answer|
           question_recoding = question_recoding_map[answer['question_id']] ||
                               lookup_default_recoding(answer['question_id'])
           if question_recoding
