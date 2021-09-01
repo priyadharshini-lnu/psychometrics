@@ -65,7 +65,7 @@
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "browserslist": "^4.16.6",
+    "browserslist": "^4.16.8",
     "caniuse-lite": "^1.0.30001237",
     "classnames": "^2.3.1",
     "codemirror": "^5.62.2",
