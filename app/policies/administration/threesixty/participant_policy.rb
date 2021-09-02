@@ -8,7 +8,7 @@ module Administration
       end
 
       def destroy?
-        user.is?(:superadmin) || @user.has_permission?(:projects, :manage_users, project_id)
+        user.is?(:superadmin) || @user.has_permission?(:projects, :manage_users, project_id: project_id)
       end
     end
   end

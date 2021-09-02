@@ -17,7 +17,7 @@ describe UserRoles do
         grants: membership_grant_without_report_view, client: project.client)
 
       expect(
-        project_membership.user.has_permission?(:reports, :view, project_membership.client_id)
+        project_membership.user.has_permission?(:reports, :view, project_id: project_membership.client_id)
       ).to eq(true)
     end
 
@@ -28,7 +28,7 @@ describe UserRoles do
         grants: membership_grant_with_report_view, client: project.client)
 
       expect(
-        project_membership.user.has_permission?(:reports, :view, project_membership.client_id)
+        project_membership.user.has_permission?(:reports, :view, project_id: project_membership.client_id)
       ).to eq(true)
     end
 
@@ -39,7 +39,7 @@ describe UserRoles do
         grants: membership_grant_without_report_view, client: project.client)
 
       expect(
-        project_membership.user.has_permission?(:reports, :view, project_membership.client_id)
+        project_membership.user.has_permission?(:reports, :view, project_id: project_membership.client_id)
       ).to eq(false)
     end
 
@@ -50,7 +50,7 @@ describe UserRoles do
 
       expect(
         client_memebership_with_report_view_grant.user.
-          has_permission?(:reports, :view, client_memebership_with_report_view_grant.client_id)
+          has_permission?(:reports, :view, project_id: client_memebership_with_report_view_grant.client_id)
       ).to eq(true)
     end
 
@@ -61,7 +61,7 @@ describe UserRoles do
 
       expect(
         client_memebership_without_report_view_grant.user.
-          has_permission?(:reports, :view, client_memebership_without_report_view_grant.client_id)
+          has_permission?(:reports, :view, project_id: client_memebership_without_report_view_grant.client_id)
       ).to eq(true)
     end
   end

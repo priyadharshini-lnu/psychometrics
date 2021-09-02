@@ -10,11 +10,11 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   end
 
   def destroy?
-    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
   end
 
   def edit?
-    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
   end
 
   def update?
@@ -22,7 +22,7 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   end
 
   def copy?
-    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id)
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
   end
 
   def actions?
@@ -35,7 +35,7 @@ class Administration::DimensionPolicy < Administration::BasePolicy
       return scope if @user.is?(:superadmin)
 
       permitted_owner_ids = @user.client_admin_client_ids.uniq.select do |owner_id|
-        @user.has_permission?(:dimensions, :view, owner_id)
+        @user.has_permission?(:dimensions, :view, project_id: owner_id)
       end
       scope.where(owner_id: permitted_owner_ids)
     end

@@ -7,12 +7,14 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def send_mail?
     (
-      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_users, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_users, project_id: project_id)
     ) && !@record.is_anonym?
   end
 
   def change_password?
-    (@user.is?(:superadmin) || @user.has_permission?(:projects, :manage_users, project_id)) && !@record.is_anonym?
+    (@user.is?(:superadmin) || @user.has_permission?(
+      :projects, :manage_users, project_id: project_id
+    )) && !@record.is_anonym?
   end
 
   def new?
@@ -40,7 +42,9 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def update?
-    @user.is?(:superadmin) || @user.is?(:assessor) || @user.has_permission?(:projects, :manage_users, project_id)
+    @user.is?(:superadmin) || @user.is?(:assessor) || @user.has_permission?(
+      :projects, :manage_users, project_id: project_id
+    )
   end
 
   def toggle_status?
