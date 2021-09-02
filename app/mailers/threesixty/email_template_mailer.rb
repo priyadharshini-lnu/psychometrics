@@ -5,7 +5,8 @@ module Threesixty
     def test_email(email_template, to_email)
       smtp_setting = email_template.project.smtp_setting
       from_name = email_template.from || smtp_setting.from_name
-      from_email = smtp_setting.enabled? ? smtp_setting.from_email : "no-reply@#{Settings.domain}"
+      from_email = smtp_setting.enabled? && smtp_setting.from_email.presence
+      from_email ||= "no-reply@#{Settings.domain}"
       mail(
         from: "#{from_name} <#{from_email}>",
         to: to_email,

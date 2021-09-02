@@ -5,7 +5,8 @@ module Threesixty
     def send_email(schedule_email, context)
       smtp_setting = context[:recipient].project.smtp_setting
       from_name = schedule_email.from || smtp_setting.from_name
-      from_email = smtp_setting.enabled? ? smtp_setting.from_email : "no-reply@#{Settings.domain}"
+      from_email = smtp_setting.enabled? && smtp_setting.from_email.presence
+      from_email ||= "no-reply@#{Settings.domain}"
       mail(
         from: "#{from_name} <#{from_email}>",
         to: context[:recipient].email,
