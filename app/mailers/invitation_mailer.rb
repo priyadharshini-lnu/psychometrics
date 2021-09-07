@@ -9,7 +9,7 @@ class InvitationMailer < ApplicationMailer
     client = Client.find(invited_to_id)
     project = client.project
     @subdomain = project.subdomain
-    smtp_setting project.smtp_setting
+    smtp_setting = project.smtp_setting
     mail(
       from: smtp_setting.from_name_and_email,
       to: @resource.email,
