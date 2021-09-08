@@ -20,7 +20,7 @@ hashids_length:
 features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>
-  proctoring: <%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
+  proctoring: true #<%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
   url_to_pdf_lambda: <%= ENV.fetch('URL_TO_PDF_LAMBDA_ENABLED', 'false') == 'true' %>
   zip_s3_files_lambda: <%= ENV.fetch('ZIP_S3_FILES_LAMBDA_ENABLED', 'false') == 'true' %>
 bulk_reports:

@@ -7,8 +7,9 @@ describe Examus::FindOrCreateSession do
 
   it "creates proctoring_session if it already doesn't exists" do
     expect(campaign_user.proctoring_sessions).to be_blank
-    proctoring_session = described_class.call!(campaign_user)
+    proctoring_session, type = described_class.call!(campaign_user)
     expect(proctoring_session).to_not eq(nil)
+    expect(type).to_not eq(:new)
     expect(proctoring_session.started_at).to_not eq(nil)
     expect(proctoring_session.session_id).to_not eq(nil)
   end

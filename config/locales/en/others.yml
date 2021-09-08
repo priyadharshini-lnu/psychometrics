@@ -1497,6 +1497,7 @@ en:
       profile: Profile
   licenses:
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
+    not_enough_proctoring_credits: Not enough credits to begin proctoring session
   loading: Processing...
   mailer:
     from: The Talent Enterprise
