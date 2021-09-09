@@ -27,7 +27,8 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
+      @record.provider_internal? &&
+        (@user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id))
     end
 
     def external_reports?
