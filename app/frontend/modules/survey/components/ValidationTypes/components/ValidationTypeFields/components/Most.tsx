@@ -3,22 +3,22 @@ import { Input, Typography } from 'antd'
 
 import { ValidationFieldsProps } from '../interfaces'
 
-const Least: FC<ValidationFieldsProps> = ({
+const Most: FC<ValidationFieldsProps> = ({
   model,
   changeValidationArg,
 }) => (
   <div className="mt-2">
     <div className="pb-2">
-      <Typography.Text className="pb-2">At least</Typography.Text>
+      <Typography.Text className="pb-2">At most</Typography.Text>
     </div>
     <Input
-      name="minValue"
+      name="maxValue"
       className="w-100"
       type="text"
       onChange={changeValidationArg}
-      value={model?.validation?.args?.minValue ?? ''}
+      value={model?.validation?.args?.maxValue ?? ''}
     />
   </div>
 )
 
-export default Least
+export default Most
