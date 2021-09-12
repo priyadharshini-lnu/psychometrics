@@ -1,4 +1,5 @@
 import CampaignList from 'modules/admin/modules/campaigns/routes/CampaignList'
+import { Settings } from './Settings'
 import { Datasheet } from './Datasheet'
 
 export const routes = [
@@ -9,5 +10,13 @@ export const routes = [
   {
     path: '/datasheet',
     component: Datasheet,
+  },
+  {
+    path: '/settings',
+    component: Settings,
+  },
+  {
+    path: '/settings/*',
+    component: Settings,
   },
 ]

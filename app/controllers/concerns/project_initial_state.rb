@@ -17,6 +17,13 @@ module ProjectInitialState
       currentUser: ::Administration::Campaigns::CurrentUserSerializer.
                   new(current_user, current_membership: current_membership, project_id: project.id).
                   to_h,
+      project: {
+        smtpSetting: ActiveModelSerializers::SerializableResource.new(
+          project.smtp_setting, {
+            key_transform: :camel_lower, serializer: ::Administration::Projects::SmtpSettingSerializer
+          }
+        ).as_json
+      },
       config: {
         availableLocales: I18n.available_locales,
         features: feature_flags,

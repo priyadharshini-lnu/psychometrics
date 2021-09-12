@@ -21,6 +21,7 @@ interface Request {
   fetchResource(): void
   createResource(values: object): void
   updateResource(values: object): void
+  submit(values: object): void
 }
 
 
@@ -115,6 +116,8 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const saveRequest = (values: object) => {
+    if (request?.submit) { return request.submit(values) }
+
     const requestName = isEdit() ? 'updateResource' : 'createResource'
     return makeRequest(requestName, values)
   }
@@ -153,6 +156,7 @@ const ResourceForm: React.FC<Props> = ({
             || I18n.t(`frontend.resource.${operation()}_success`, { readableResourceName: readableResourceText })
           message.success(messageText)
         }
+        removeErrors()
         onSuccessfulSubmission && onSuccessfulSubmission(response)
       })
       .catch((errors: Error) => {
@@ -163,8 +167,16 @@ const ResourceForm: React.FC<Props> = ({
       })
   }
 
+  const removeErrors = () => {
+    const newFields = store.fields.map(field => (
+      { ...field, errors: undefined }
+    ))
+    store.setFields(newFields)
+  }
+
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
+    removeErrors()
     _.each(errors, (error: string | string[], name: string) => {
       const field = _.find(store.fields, field => _.includes(field.name as string[], name))
       const errors: string[] = _.castArray(error)

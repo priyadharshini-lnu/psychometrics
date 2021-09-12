@@ -10,6 +10,7 @@ export const fetch = (
   request: {
     url: `${resourceBaseUrl}/${resourceId}`,
     method: 'GET',
+    loader: true,
   },
 })
 
@@ -23,6 +24,7 @@ export const create = (
   request: {
     url: resourceBaseUrl,
     method: 'POST',
+    loader: true,
     body: { resource: data },
   },
 })
@@ -39,6 +41,7 @@ export const update = (
   request: {
     url: `${resourceBaseUrl}/${resourceId}`,
     method: 'PUT',
+    loader: true,
     body: { resource: data },
   },
 })
