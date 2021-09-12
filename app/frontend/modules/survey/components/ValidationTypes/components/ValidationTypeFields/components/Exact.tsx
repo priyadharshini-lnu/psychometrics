@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-
-import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
+import { Input, Typography } from 'antd'
 
 import { ValidationFieldsProps } from '../interfaces'
 
@@ -8,13 +7,16 @@ const Exact: FC<ValidationFieldsProps> = ({
   model,
   changeValidationArg,
 }) => (
-  <div>
-    <div className={styles.label}>Exactly</div>
-    <input
+  <div className="mt-2">
+    <div className="pb-2">
+      <Typography.Text className="pb-2">Exactly</Typography.Text>
+    </div>
+    <Input
+      name="exactValue"
+      className="w-100"
       type="text"
       onChange={changeValidationArg}
-      name="exactValue"
-      value={model.validation.args.exactValue || ''}
+      value={model?.validation?.args?.exactValue ?? ''}
     />
   </div>
 )

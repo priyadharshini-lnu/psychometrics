@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-
-import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
+import { Input, Typography } from 'antd'
 
 import { ValidationFieldsProps } from '../interfaces'
 
@@ -8,13 +7,16 @@ const Most: FC<ValidationFieldsProps> = ({
   model,
   changeValidationArg,
 }) => (
-  <div>
-    <div className={styles.label}>At Most</div>
-    <input
+  <div className="mt-2">
+    <div className="pb-2">
+      <Typography.Text className="pb-2">At most</Typography.Text>
+    </div>
+    <Input
+      name="maxValue"
+      className="w-100"
       type="text"
       onChange={changeValidationArg}
-      name="maxValue"
-      value={model.validation.args.maxValue || ''}
+      value={model?.validation?.args?.maxValue ?? ''}
     />
   </div>
 )

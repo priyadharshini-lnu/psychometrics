@@ -1,11 +1,11 @@
-import _ from 'lodash'
+import extend from 'lodash/extend'
 import { I18n } from 'modules/survey/store/StoreWatchman'
 
 const Exact = function ({ exactValue }) {
   this.exactValue = +exactValue
 }
 
-_.extend(Exact.prototype, {
+extend(Exact.prototype, {
   validate (answers) {
     if (answers.length !== this.exactValue) {
       return {

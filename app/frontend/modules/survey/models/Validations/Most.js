@@ -1,11 +1,11 @@
-import _ from 'lodash'
+import extend from 'lodash/extend'
 import { I18n } from 'modules/survey/store/StoreWatchman'
 
 const Most = function ({ maxValue }) {
   this.maxValue = +maxValue
 }
 
-_.extend(Most.prototype, {
+extend(Most.prototype, {
   validate (answers) {
     if (answers.length > this.maxValue) {
       return {
