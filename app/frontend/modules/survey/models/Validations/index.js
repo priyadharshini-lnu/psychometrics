@@ -1,4 +1,6 @@
 import Least from './Least'
+import Most from './Most'
+import Exact from './Exact'
 import Range from './Range'
 import RangeHotSpot from './RangeHotSpot'
 import LeastHotSpot from './LeastHotSpot'
@@ -19,6 +21,8 @@ import Custom from './Custom'
 
 export default {
   Least,
+  Most,
+  Exact,
   Range,
   Custom,
   MaxLength,
