@@ -6,6 +6,8 @@ import Utils from 'utils'
 
 import Content from './components/Content'
 import Least from './components/Least'
+import Most from './components/Most'
+import Exact from './components/Exact'
 import MaxLength from './components/MaxLength'
 import MinLength from './components/MinLength'
 import MustRankBetween from './components/MustRankBetween'
@@ -50,6 +52,14 @@ export const ValidationTypeFields: FC<Props> = ({ model, update }) => {
 
   if (validationType === 'Least' || validationType === 'LeastHotSpot') {
     return <Least {...validationTypeFieldParams} />
+  }
+
+  if (validationType === 'Most') {
+    return <Most {...validationTypeFieldParams} />
+  }
+
+  if (validationType === 'Exact') {
+    return <Exact {...validationTypeFieldParams} />
   }
 
   if (

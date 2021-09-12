@@ -118,7 +118,7 @@ en:
               invalid: Reply to email is invalid
             subject:
               blank: Subject can't be blank
-        email_template_test_mail:
+        email_test_form:
           attributes:
             to_email:
               blank: Email field can't be blank
@@ -1070,6 +1070,7 @@ en:
       delete: Delete
       remove: Remove
       reset: Reset
+      send: Send
       update: Update
     column:
       action: Action
@@ -2420,6 +2421,7 @@ en:
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
+    exact: Please select exactly %{count} choice(s)
     file_upload:
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
@@ -2430,6 +2432,7 @@ en:
     max_word: Your response must not be more than %{max} words.
     min_character: Your response must be at least %{min} characters.
     min_word: Your response must be atleast %{min} words
+    most: Please select at most %{max} choice(s)
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
     must_select: Please select from %{min} to %{max} choices
     not_in_future: Selected date should not be in future

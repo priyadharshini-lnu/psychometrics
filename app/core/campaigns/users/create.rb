@@ -61,13 +61,13 @@ module Campaigns
         communication = Communication.new_users_recipients.order(created_at: :desc).find_by(campaign: campaign)
         return communication.emails.create(campaign_user_id: campaign_user.id) if communication
 
-        if throught_registration?
+        if through_registration?
           raw_token = ::Users::FindOrCreateInvitationToken.call!(user)
           InvitationMailer.invite(user.id, user.project_id, raw_token).deliver_later
         end
       end
 
-      def throught_registration?
+      def through_registration?
         current_user.nil?
       end
     end

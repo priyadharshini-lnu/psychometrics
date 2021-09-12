@@ -60,8 +60,8 @@ class Client < ApplicationRecord
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
 
-  # Users and Memberships
   has_one :retail_user, class_name: 'User'
+  has_one :smtp_setting, dependent: :destroy, foreign_key: :project_id
   has_many :memberships # on delete cascade
   has_many :users, through: :memberships
   has_many :assigns, through: :memberships, source: :assigns
@@ -141,6 +141,7 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   before_create :set_hogan_group_name, if: :project?
   before_create -> { self.migrated = true }, if: :project?
+  after_create :create_smtp_setting
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
