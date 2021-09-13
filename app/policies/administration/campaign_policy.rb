@@ -33,7 +33,7 @@ module Administration
     end
 
     def manage_admins?
-      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id: project_id)
     end
 
     def manage_threesixty?
