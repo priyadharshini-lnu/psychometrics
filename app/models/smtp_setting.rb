@@ -16,7 +16,7 @@ class SmtpSetting < ApplicationRecord
   end
 
   def settings_for_email
-    return if !enabled? || host.blank?
+    return if !enabled? || host.blank? || !Settings.features.smtp_enabled
 
     options = {
       address: host,

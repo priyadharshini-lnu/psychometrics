@@ -30,7 +30,7 @@ module UsersResults
       @scoring = {}
     end
 
-    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def call
       factors_scoring = FactorsScoring.where(assessment_id: users_result.assessment_id).joins(:factor).all
       factors_scoring_map = factors_scoring.group_by(&:factor_id)
@@ -47,8 +47,10 @@ module UsersResults
           scoring_class = "::Scoring::#{question.try(:type)}".safe_constantize
 
           result = users_result.answers[question&.id&.to_s]
-          if scoring_class && result && result['answers'].present? && question && !question_scoring.props.empty?
-            scoring_point = scoring_class.new.calculate(question, result, question_scoring.props)[:value] || 0
+          result_present = result && (result['answers'].present? || result['not_applicable'].present?)
+          if scoring_class && result_present && question && !question_scoring.props.empty?
+            scoring_point = scoring_class.new.calculate(question, result, question_scoring.props)[:value]
+            scoring_point ||= 0 if result['answers'].present?
             scoring[factor_id][:results] << { question_id: question.id, value: scoring_point }
           end
           factors_question_count[factor_id] += 1 if scoring_class && question && !question_scoring.props.empty?
@@ -60,7 +62,7 @@ module UsersResults
         users_result.assessment.dimension, factors_question_count
       )
     end
-    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     private
 

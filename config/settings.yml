@@ -23,6 +23,8 @@ features:
   proctoring: <%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
   url_to_pdf_lambda: <%= ENV.fetch('URL_TO_PDF_LAMBDA_ENABLED', 'false') == 'true' %>
   zip_s3_files_lambda: <%= ENV.fetch('ZIP_S3_FILES_LAMBDA_ENABLED', 'false') == 'true' %>
+  smtp_enabled: <%= ENV.fetch('SMTP_ENABLED', 'false') == 'true' %>
+  webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
