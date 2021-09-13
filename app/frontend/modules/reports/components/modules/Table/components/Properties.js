@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Space, Typography, Select } from 'antd'
-import AssessmentProperties from 'rb/components/modules/CommonProperties/AssessmentProperties'
-import AppStore from 'rb/store/AppStore'
-import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
+import AssessmentProperties from 'modules/reports/components/modules/CommonProperties/AssessmentProperties'
+import AppStore from 'modules/reports/store/AppStore'
+import clearAfterAssessmentChange from 'modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import _ from 'lodash'
-import ModuleConfigs from 'rb/consts/ModuleConfigs'
+import ModuleConfigs from 'modules/reports/consts/ModuleConfigs'
 import { PropTypes as PropertyVies } from './Types'
 
 const TABLE_TYPE_OPTIONS = [

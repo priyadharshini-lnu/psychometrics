@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modules } from 'rb/components/modules'
-import store from 'rb/store/PageList'
-import AppStore from 'rb/store/AppStore'
+import { Modules } from 'modules/reports/components/modules'
+import store from 'modules/reports/store/PageList'
+import AppStore from 'modules/reports/store/AppStore'
 import styles from './Page.scss'
 
 class Page extends Component {

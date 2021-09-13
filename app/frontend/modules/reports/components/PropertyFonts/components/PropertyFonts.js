@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import ColorPicker from 'rb/components/ColorPicker'
+import ColorPicker from 'modules/reports/components/ColorPicker'
 
 export const FONTS = {
   Arial: 'arial, helvetica, sans-serif',

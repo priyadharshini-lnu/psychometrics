@@ -1,10 +1,10 @@
 import React from 'react'
 import _ from 'lodash'
-import AppStore from 'rb/store/AppStore'
-import I18nStore from 'rb/store/I18nStore'
-import ResultStore from 'rb/store/ResultStore'
-import PreviewStore from 'rb/store/PreviewStore'
-import math from 'rb/utils/math'
+import AppStore from 'modules/reports/store/AppStore'
+import I18nStore from 'modules/reports/store/I18nStore'
+import ResultStore from 'modules/reports/store/ResultStore'
+import PreviewStore from 'modules/reports/store/PreviewStore'
+import math from 'modules/reports/utils/math'
 import styles from '../styles.scss'
 
 const Factor = ({ model }) => {

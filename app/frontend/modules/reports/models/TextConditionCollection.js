@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import I18nStore from 'rb/store/I18nStore'
+import I18nStore from 'modules/reports/store/I18nStore'
 import TextCondition from './TextCondition'
 
 const TextConditionCollection = function (attrs = {}, module) {

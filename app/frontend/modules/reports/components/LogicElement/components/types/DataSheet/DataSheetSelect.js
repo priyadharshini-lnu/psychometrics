@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'rb/store/AppStore'
+import AppStore from 'modules/reports/store/AppStore'
 import css from './DataSheet.scss'
 
 export default class DataSheetSelect extends Component {

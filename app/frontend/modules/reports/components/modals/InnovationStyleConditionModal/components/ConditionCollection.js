@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'rb/store/AppStore'
+import AppStore from 'modules/reports/store/AppStore'
 import styles from './InnovationStyleConditionModal.scss'
 import ConditionList from './ConditionList'
 import localStyles from './types/Scoring/Scoring.scss'

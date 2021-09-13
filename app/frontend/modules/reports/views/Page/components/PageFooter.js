@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PageModel from 'rb/models/Page'
-import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
+import PageModel from 'modules/reports/models/Page'
+import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
 import styles from './Page.scss'
 
 class PageFooter extends Component {

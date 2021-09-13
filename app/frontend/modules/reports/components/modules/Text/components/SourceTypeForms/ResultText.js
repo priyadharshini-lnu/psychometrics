@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DataSource from 'rb/components/DataSourceMenu'
+import DataSource from 'modules/reports/components/DataSourceMenu'
 import PropTypes from 'prop-types'
 
 export default class ResultText extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import { PAGE_SIZES } from 'rb/models/Report'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import { PAGE_SIZES } from 'modules/reports/models/Report'
 import connect from './connect'
 
 class ReportProperties extends Component {

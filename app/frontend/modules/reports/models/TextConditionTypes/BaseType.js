@@ -1,4 +1,4 @@
-import ResultStore from 'rb/store/ResultStore'
+import ResultStore from 'modules/reports/store/ResultStore'
 
 class BaseType {
   constructor (condition, assessmentId) {

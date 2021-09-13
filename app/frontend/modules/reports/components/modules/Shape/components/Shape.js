@@ -1,5 +1,5 @@
 import React from 'react'
-import Foundation from 'rb/components/Foundation'
+import Foundation from 'modules/reports/components/Foundation'
 import styles from './Shape.scss'
 
 const Text = (props) => {

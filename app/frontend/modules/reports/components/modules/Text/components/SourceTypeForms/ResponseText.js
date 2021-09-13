@@ -3,8 +3,8 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
-import * as QuestionPresenter from 'rb/presenters/QuestionPresenter'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import * as QuestionPresenter from 'modules/reports/presenters/QuestionPresenter'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import ResponseTextByQuestionType from '../ResponseTextByQuestionType'
 
 const VALID_QUESTIONS = _.keys(ResponseTextByQuestionType)

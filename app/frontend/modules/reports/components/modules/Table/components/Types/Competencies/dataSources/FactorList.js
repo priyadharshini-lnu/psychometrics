@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
-import AppStore from 'rb/store/AppStore'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import AppStore from 'modules/reports/store/AppStore'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 
 export default function FactorList ({ model, onChange }) {
   const assessment = AppStore.getAssessmentById(model.assessment_id)

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import PropertyFonts from 'rb/components/PropertyFonts'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import PropertyFonts from 'modules/reports/components/PropertyFonts'
 import _ from 'lodash'
 import Select from 'react-select'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 
 const SELECT_OPTIONS = _.times(30, i => ({
   value: i + 1,

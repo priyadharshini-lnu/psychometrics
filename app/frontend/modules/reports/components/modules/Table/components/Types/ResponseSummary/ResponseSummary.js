@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import AppStore from 'rb/store/AppStore'
+import AppStore from 'modules/reports/store/AppStore'
 import Table from '../../Table'
 import styles from './ResponseSummary.scss'
 

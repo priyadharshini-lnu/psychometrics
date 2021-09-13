@@ -3,8 +3,8 @@ import {
   select, takeEvery, take, put, call,
 } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
-import { ENABLE, DISABLE } from 'rb/core/builder/actions'
-import NotificationDispatcher from 'rb/dispatchers/NotificationDispatcher'
+import { ENABLE, DISABLE } from 'modules/reports/core/builder/actions'
+import NotificationDispatcher from 'modules/reports/dispatchers/NotificationDispatcher'
 import { RequestsPool } from 'modules/reports/middleware/Socket'
 import Socket from '../../cable/socket'
 

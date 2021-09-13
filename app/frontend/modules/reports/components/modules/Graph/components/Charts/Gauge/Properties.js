@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import ColorPicker from 'rb/components/ColorPicker'
-import ChoicesInput from 'rb/components/ChoicesInput'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import ColorPicker from 'modules/reports/components/ColorPicker'
+import ChoicesInput from 'modules/reports/components/ChoicesInput'
 
 class Properties extends Component {
   static propTypes = {
