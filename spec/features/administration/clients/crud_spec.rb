@@ -41,6 +41,11 @@ feature 'CRUD Client' do
 
     before { login_as admin }
 
+    before do
+      admin.memberships.first.grants.update(data: admin.memberships.first.grants.data.
+      merge!(projects: %w[view], campaigns: ['manage']))
+    end
+
     context 'without manage privileges' do
       scenario 'I cant create any client' do
         visit administration_client_projects_path(tenancy)
