@@ -38,7 +38,7 @@ module UsersResults
         end
 
         def calc_percentage(results, total_questions)
-          if results.blank? || total_questions.nil?
+          if results.select { |r| r['value'].present? }.blank? || total_questions.nil?
             nil
           else
             correct_answer_count = results.sum do |result|
