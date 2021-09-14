@@ -35,9 +35,9 @@ module Administration
       end
 
       def send_test_email
-        form = ::Threesixty::EmailTemplateTestMailForm.from_params(params)
+        form = ::EmailTest::Form.from_params(params)
         if form.valid?
-          ::Threesixty::EmailTemplateMailer.test_email(resource, params[:to_email]).deliver_later
+          ::Threesixty::EmailTemplateMailer.test_email(resource, form.to_email).deliver_later
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request

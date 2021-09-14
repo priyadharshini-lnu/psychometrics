@@ -10,20 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -426,12 +412,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -618,8 +604,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    saville_norm_id character varying,
-    available_locales text[] DEFAULT '{}'::text[]
+    available_locales text[] DEFAULT '{}'::text[],
+    saville_norm_id character varying
 );
 
 
@@ -2961,6 +2947,48 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: smtp_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.smtp_settings (
+    id bigint NOT NULL,
+    from_name character varying,
+    from_email character varying,
+    host character varying,
+    encryption integer DEFAULT 0,
+    port integer,
+    user_name character varying,
+    encrypted_password character varying,
+    encrypted_password_iv character varying,
+    authentication_type integer DEFAULT 0,
+    enabled boolean DEFAULT false,
+    "boolean" boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    project_id bigint NOT NULL
+);
+
+
+--
+-- Name: smtp_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.smtp_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: smtp_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.smtp_settings_id_seq OWNED BY public.smtp_settings.id;
+
+
+--
 -- Name: tasks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3200,7 +3228,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -3628,12 +3657,12 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     selected_locale character varying,
@@ -4299,6 +4328,13 @@ ALTER TABLE ONLY public.saville_report_settings ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.saville_user_assessments_id_seq'::regclass);
+
+
+--
+-- Name: smtp_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.smtp_settings ALTER COLUMN id SET DEFAULT nextval('public.smtp_settings_id_seq'::regclass);
 
 
 --
@@ -5086,6 +5122,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: smtp_settings smtp_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.smtp_settings
+    ADD CONSTRAINT smtp_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6370,6 +6414,13 @@ CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.savi
 
 
 --
+-- Name: index_smtp_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_smtp_settings_on_project_id ON public.smtp_settings USING btree (project_id);
+
+
+--
 -- Name: index_tasks_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7599,6 +7650,14 @@ ALTER TABLE ONLY public.license_usages
 
 
 --
+-- Name: smtp_settings fk_rails_c49f929933; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.smtp_settings
+    ADD CONSTRAINT fk_rails_c49f929933 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_histories fk_rails_c9b5f538f9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7611,7 +7670,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -8355,11 +8414,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210627110306'),
 ('20210627134315'),
 ('20210715124554'),
-('20210717125228'),
 ('20210718070252'),
 ('20210728151708'),
 ('20210804125607'),
 ('20210805081530'),
-('20210812053648');
+('20210812053648'),
+('20210823132111');
 
 

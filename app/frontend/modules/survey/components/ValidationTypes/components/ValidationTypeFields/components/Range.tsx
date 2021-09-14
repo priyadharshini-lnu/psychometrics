@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-
-import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
+import { Input, Typography } from 'antd'
 
 import { ValidationFieldsProps } from '../interfaces'
 
@@ -9,22 +8,26 @@ const Range: FC<ValidationFieldsProps> = ({
   changeValidationArg,
 }) => (
   <>
-    <div>
-      <div className={styles.label}>At Least</div>
-      <input
+    <div className="mt-2">
+      <div className="pb-2">
+        <Typography.Text className="pb-2">At least</Typography.Text>
+      </div>
+      <Input
+        name="minValue"
+        className="w-100"
         type="text"
         onChange={changeValidationArg}
-        name="minValue"
-        value={model.validation.args.minValue || ''}
+        value={model?.validation?.args?.minValue ?? ''}
       />
     </div>
-    <div>
-      <div className={styles.label}>No More Than</div>
-      <input
+    <div className="mt-2">
+      <Typography.Text className="pb-2">No more than</Typography.Text>
+      <Input
+        name="maxValue"
+        className="w-100"
         type="text"
         onChange={changeValidationArg}
-        name="maxValue"
-        value={model.validation.args.maxValue || ''}
+        value={model?.validation?.args?.maxValue ?? ''}
       />
     </div>
   </>

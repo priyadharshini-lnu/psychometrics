@@ -1,6 +1,8 @@
 export const LABELS = {
   Least: 'At Least',
   LeastHotSpot: 'At Least',
+  Most: 'At Most',
+  Exact: 'Exactly',
   Range: 'Answers Range',
   RangeHotSpot: 'Answers Range',
   MinLength: 'Minimum characters',

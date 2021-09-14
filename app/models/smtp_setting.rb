@@ -1,0 +1,33 @@
+# frozen_string_literal: true
+
+class SmtpSetting < ApplicationRecord
+  belongs_to :project, class_name: 'Client'
+
+  attr_encrypted :password, key: Base64.decode64(Rails.application.secrets.encrypted_key.to_s)
+
+  enum encryption: { none: 0, ssl: 1, tls: 2 }, _prefix: true
+  enum authentication_type: { plain: 0, login: 1, cram_md5: 2 }
+
+  def from_name_and_email
+    no_reply_email = "no-reply@#{Settings.domain}"
+    return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
+
+    "#{from_name} <#{from_email.presence || no_reply_email}>"
+  end
+
+  def settings_for_email
+    return if !enabled? || host.blank? || !Settings.features.smtp_enabled
+
+    options = {
+      address: host,
+      port: port,
+      user_name: user_name,
+      password: password,
+      authentication: authentication_type
+    }
+    return options.merge(tls: true) if encryption_tls?
+    return options.merge(ssl: true) if encryption_ssl?
+
+    options
+  end
+end
