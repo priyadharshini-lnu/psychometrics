@@ -12,7 +12,7 @@ const ModuleConfigs = {
     defaultChoiceImage: '',
     icon: 'check-square-o',
     validations: {
-      MultipleAnswer: ['Least', 'Range'],
+      MultipleAnswer: ['Least', 'Most', 'Range', 'Exact'],
       MultiSelectBox: ['Least', 'Range'],
     },
     randomization: true,

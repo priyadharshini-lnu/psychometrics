@@ -299,6 +299,7 @@ en:
       registration_codes: Registration Codes
       report_families: Report Bundles
       reports: Reports
+      settings: Settings
       statistics: Statistics
       sub_campaigns: Sub Campaigns
       sub_factors: Sub-Factors
@@ -3071,6 +3072,34 @@ en:
     save: Save
     search: Search
     show: Show
+    smtp_settings:
+      authentication: Authentication
+      authentication_type: Authentication Type
+      authentication_types:
+        cram_md5: cram md5
+        login: Login
+        plain: Plain
+      enabled: Enabled
+      encryption: Encryption
+      encryption_types:
+        none: None
+        ssl: SSL
+        tls: TLS
+      errors:
+        authentication_failed: Username or password is incorrect
+        host_unreachable: Unable to connect to the host. Either host, port or encryption is incorrect
+      from_email: From email
+      from_name: From name
+      host: Host
+      password: Password
+      port: Port
+      send_test_email: Send Test Email
+      smtp: SMTP
+      test_modal:
+        success_message: Test Email sent to %{email_id}.
+        title: Test SMTP setting
+      update_success_msg: SMTP setting updated successfully.
+      user_name: User Name
     sub_factors:
       copy:
         error: 'Sub-Factor #%{id} was not copied.'

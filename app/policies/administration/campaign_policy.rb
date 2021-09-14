@@ -32,6 +32,10 @@ module Administration
       ))
     end
 
+    def manage_admins?
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id: project_id)
+    end
+
     def manage_threesixty?
       return true if @user.is?(:superadmin)
       return true if @user.is?(

@@ -127,7 +127,7 @@ module Administration
     end
 
     def factors?
-      super || @user.has_permission?(:assessments, :view, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :view, project_id: project_id)
     end
 
     def upload_data_sheet?

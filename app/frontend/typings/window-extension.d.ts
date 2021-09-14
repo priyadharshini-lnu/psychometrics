@@ -15,6 +15,9 @@ declare global {
         id: string
         email: string
       }
+    },
+    Utils: {
+      isElementInViewport: (HTMLElement) => boolean
     }
     x_navigation_minimize: (state: string) => null
   }

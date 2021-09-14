@@ -3,6 +3,10 @@
 class WebhookSystemJob < ::WebhookSystem::Job
   queue_as :webhooks
 
+  def perform(subscription, event)
+    super(subscription, event) if Settings.features.webhooks_enabled
+  end
+
   rescue_from(::WebhookSystem::Job::RequestFailed) do |error|
     Sentry.capture_exception(error)
     raise error

@@ -26,6 +26,14 @@ module Administration
       def ensure_project
         project || raise(Pundit::NotAuthorizedError)
       end
+
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: project
+        )
+      end
     end
   end
 end

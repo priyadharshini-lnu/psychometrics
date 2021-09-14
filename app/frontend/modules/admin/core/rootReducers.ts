@@ -6,6 +6,7 @@ import tables from 'modules/admin/core/filterAndPagination/reducers'
 import preview from 'modules/survey/core/preview'
 import connection from 'core/connection'
 import campaignReducers from '../modules/campaigns/core'
+import { reducer as smtpSettingReducer } from '../modules/projects/core/smtpSetting'
 import subjects from '../modules/threeSixtyCampaign/core/subjects'
 import evaluators from '../modules/threeSixtyCampaign/core/evaluators'
 import managers from '../modules/threeSixtyCampaign/core/managers'
@@ -52,6 +53,7 @@ const createRootReducer = history => combineReducers({
   project: combineReducers({
     datasheetFields,
     relationships,
+    smtpSetting: smtpSettingReducer,
   }),
   ui: combineReducers({
     modals,

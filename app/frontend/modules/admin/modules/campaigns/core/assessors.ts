@@ -173,7 +173,7 @@ export interface State {
   availableAssessments: Assessment[]
   form: {
     attrs: AssessorFormItem[]
-    errors: unknown
+    errors: null | { [key: string]: string[] }
   }
   total: number
   permissions: {

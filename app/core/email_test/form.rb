@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-module Threesixty
-  class EmailTemplateTestMailForm < Rectify::Form
+module EmailTest
+  class Form < Rectify::Form
+    mimic :email_test_form
+
     attribute :to_email, String
 
     validates :to_email, presence: true
