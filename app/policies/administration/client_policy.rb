@@ -12,7 +12,7 @@ module Administration
 
     def copy?
       if record.project? || record.campaign? || record.sub_campaign?
-        record.active? && (@user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id))
+        record.active? && (@user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id))
       else
         record.active? && @user.is?(:superadmin)
       end
@@ -20,7 +20,7 @@ module Administration
 
     def destroy?
       if record.project? || record.campaign? || record.sub_campaign?
-        @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id)
+        @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id)
       else
         @user.is?(:superadmin)
       end
@@ -28,7 +28,7 @@ module Administration
 
     def edit?
       if record.project? || record.campaign? || record.sub_campaign?
-        @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id)
+        @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id)
       else
         @user.is?(:superadmin)
       end
@@ -39,7 +39,7 @@ module Administration
     end
 
     def manage_project?
-      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id)
     end
 
     def new?
@@ -48,7 +48,7 @@ module Administration
 
     def manage_campaign?
       return true if @user.is?(:superadmin)
-      return true if @user.has_permission?(:campaigns, :manage, project_id)
+      return true if @user.has_permission?(:campaigns, :manage, project_id: project_id)
 
       false
     end
@@ -66,11 +66,11 @@ module Administration
     end
 
     def manage_project_admins?
-      @user.has_permission?(:projects, :manage_admins, project_id)
+      @user.has_permission?(:projects, :manage_admins, project_id: project_id)
     end
 
     def project_admins?
-      record.prime_project? && @user.has_permission?(:projects, :manage_admins, project_id)
+      record.prime_project? && @user.has_permission?(:projects, :manage_admins, project_id: project_id)
     end
 
     def search_users?
@@ -93,7 +93,7 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin) || @user.has_permission?(:clients, :design, project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:clients, :design, project_id: project_id)
     end
 
     def export?
@@ -114,11 +114,15 @@ module Administration
 
         # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
         permission = @user.is?(:client_admin) ? :clients : :projects
+
         clients_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
 
-        permitted_clients_ids = clients_ids.select { |client_id| @user.has_permission?(permission, :view, client_id) }
+        permitted_clients_ids = clients_ids.select do |client_id|
+          @user.has_permission?(permission, :view, project_id: client_id)
+        end
 
         clients_scope = scope.where(id: permitted_clients_ids)
+
         clients = clients_scope.not_retails.select(:id, :ancestry)
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
         client_ids = client_ids.nil? ? [] : client_ids

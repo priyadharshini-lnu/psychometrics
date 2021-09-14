@@ -67,14 +67,17 @@ module UserRoles
     memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 
-  def has_permission?(scope, grant, project_id)
-    project = Client.find(project_id)
+  def has_permission?(scope, grant, project_id: nil, campaign_id: nil)
+    project = project_id ? Client.find(project_id) : Campaign.find(campaign_id).project
 
     project_based_client_ids = [].tap do |arr|
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.parent_id])
     end.compact
 
-    memberships.includes(:grants).where(client_id: project_based_client_ids).any? { |m| m.has_grant?(scope, grant) }
+    project_memberships = memberships.includes(:grants).where(client_id: project_based_client_ids)
+    campaign_memberships = memberships.includes(:grants).where(campaign_id: campaign_id) if campaign_id
+
+    (project_memberships + campaign_memberships.to_a).any? { |m| m.has_grant?(scope, grant) }
   end
 
   def superadmin?

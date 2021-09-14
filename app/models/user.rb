@@ -52,23 +52,18 @@ class User < ApplicationRecord
 
   DEFAULT_ADMIN_GRANTS = {
     clients: %w[view],
-    projects: %w[view],
-    assessments: %w[view],
-    reports: %w[view],
-    communications: %w[view manage]
+    projects: %w[view manage manage_admins manage_users],
+    campaigns: %w[view manage manage_users manage_options manage_messages],
+    communications: %w[view manage],
+    results: %w[view_report report_data raw_responses scores]
   }.with_indifferent_access.freeze
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     clients: %w[view],
-    assessments: %w[view],
+    campaigns: %w[view manage manage_users manage_options manage_messages],
     communications: %w[view manage],
-    campaigns: %w[view manage manage_users manage_options show manage_messages],
     assessors: %w[view manage],
-    results: %w[view_report report_data raw_responses scores],
-    registration_codes: %w[view manage],
-    datasheet: %w[view manage],
-    dimension: %w[manage],
-    report: %w[manage]
+    results: %w[view_report report_data raw_responses scores]
 
   }.with_indifferent_access.freeze
 

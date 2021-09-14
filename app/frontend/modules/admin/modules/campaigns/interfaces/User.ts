@@ -12,5 +12,6 @@ export default interface User {
     resetPassword: boolean
     remove: boolean
     manageOptions: boolean
+    manageAdmins: boolean
   }
 }

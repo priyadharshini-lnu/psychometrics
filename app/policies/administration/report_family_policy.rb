@@ -3,7 +3,7 @@
 module Administration
   class ReportFamilyPolicy < ReportPolicy
     def index?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+      @user.is?(:superadmin)
     end
 
     def create?

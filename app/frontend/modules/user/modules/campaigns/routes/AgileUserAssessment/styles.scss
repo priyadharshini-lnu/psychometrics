@@ -1,11 +1,16 @@
+@import 'styles/variables';
+
 :global {
   .agile-content {
     display: flex;
     justify-content: center;
     align-items: center;
     width: calc(100vw - 20px);
-    height: calc(var(--vh, 1vh) * 100 - 190px);
+    height: calc(var(--vh, 1vh) * 100 - 194px);
     margin: 0 8px;
+    @media(max-width: $screen-lg) {
+      height: calc(var(--vh, 1vh) * 100 - 120px);
+    }
   }
   .agile-container {
     overflow: visible !important;

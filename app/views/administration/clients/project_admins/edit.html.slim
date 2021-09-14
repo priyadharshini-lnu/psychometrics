@@ -13,7 +13,7 @@
               a data-toggle="tab" href="#tab-grants" role="tab" = t('.grants')
         .panel-body.tab-content
           #tab-first.tab-pane.active
-            - is_read_only = !policy(resource, { project_id: project.id }).can_manage_project_admins?
+            - is_read_only = !policy(:membership, { project_id: project.id }).can_manage_project_admins?
             = f.simple_fields_for :user do |u|
               = u.input :email, readonly: is_read_only
               = u.input :first_name, readonly: is_read_only
