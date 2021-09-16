@@ -6,6 +6,7 @@ class CommunicationEmailMailer < ApplicationMailer
     @communication_email = CommunicationEmail.preload(:communication).find(email_id)
     data = recipient.slice(:first_name, :last_name, :email)
     data[:user_link] = accept_invitation_link
+    data[:user_url] = accept_invitation_url
     body = Mustache.render(@communication_email.communication.body, data)
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{body}")
     smtp_setting = recipient.project.smtp_setting
@@ -35,16 +36,19 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   def accept_invitation_link
+    "<a href=#{accept_invitation_url}> #{I18n.t('devise.mailer.invitation_instructions.accept')} </a>"
+  end
+
+  def accept_invitation_url
     if recipient.invitation_accepted?
       options = { domain: Settings.domain, subdomain: entity.project.subdomain }
-      url = url_for([:root, options])
+      url_for([:root, options])
     else
       token = create_raw_invitation_token
       options = { id: @recipient_id, invitation_token: token, domain: Settings.domain,
                   subdomain: entity.project.subdomain }
-      url = url_for([:accept, recipient.role_scope, :invitation, options])
+      url_for([:accept, recipient.role_scope, :invitation, options])
     end
-    "<a href=#{url}> #{I18n.t('devise.mailer.invitation_instructions.accept')} </a>"
   end
 
   def create_raw_invitation_token
