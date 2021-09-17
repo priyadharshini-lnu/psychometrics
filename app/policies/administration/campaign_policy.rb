@@ -80,7 +80,7 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin) || @user.has_permission?(:clients, :design, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :design, project_id: project_id)
     end
 
     def export?
