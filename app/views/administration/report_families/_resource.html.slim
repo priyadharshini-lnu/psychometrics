@@ -3,9 +3,10 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
   td = link_to resource.name, administration_report_family_reports_path(resource)
   td = resource.decorate.created_at
   td = resource.decorate.updated_at
-  - if policy(resource_class).actions?
-    td.actions-cell
+  td.actions-cell
+    - if policy(resource_class).edit?
       = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
+    - if policy(resource_class).destroy?
       = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
         span.fa.fa-times
