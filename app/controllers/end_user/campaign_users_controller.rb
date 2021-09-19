@@ -13,9 +13,11 @@ class EndUser::CampaignUsersController < ApplicationController
   end
 
   def continue_campaign
-    _, type = Examus::FindOrCreateSession.call!(@campaign_user)
-    if type == :new && !Licenses::IsEnoughLicenseCredits.call!(@campaign_user)
-      render json: { errors: I18n.t('licenses.not_enough_proctoring_credits') }, status: 422 && return
+    if @campaign_user.campaign.campaign_options.proctoring_enabled?
+      _, type = Examus::FindOrCreateSession.call!(@campaign_user)
+      if type == :new && !Licenses::IsEnoughLicenseCredits.call!(@campaign_user)
+        render json: { errors: I18n.t('licenses.not_enough_proctoring_credits') }, status: 422 && return
+      end
     end
     data = CampaignUsers::ContinueCampaign.call!(@campaign_user)
     render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
