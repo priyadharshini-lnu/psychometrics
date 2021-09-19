@@ -8,7 +8,11 @@ export default {
     const factors = _.reduce(scoring, (factors: AverageFactor[], score: ScoringData, factorId: string) => {
       const factorData = AppStore.mapFactors[dimensionId][factorId]
       if (factorData) {
-        return [...factors, { id: factorData.id, avg: _.round(_.meanBy(score.results, 'value'), 2), name: score.name }]
+        return [...factors, {
+          id: factorData.id,
+          avg: _.round(_.meanBy(score.results, 'value') || 0, 2),
+          name: score.name,
+        }]
       }
       return factors
     }, [])
