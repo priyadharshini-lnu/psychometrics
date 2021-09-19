@@ -9,7 +9,7 @@ module Licenses
     end
 
     def call
-      return broadcast(:ok, true) unless campaign_user.campaign.campaign_options.proctoring_enabled?
+      return broadcast(:ok, true) unless campaign_user.proctoring_enabled?
 
       license = campaign_user.campaign.proctoring_license
       credits = Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)
