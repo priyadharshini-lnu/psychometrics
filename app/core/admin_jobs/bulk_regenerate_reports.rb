@@ -4,8 +4,10 @@ module AdminJobs
   class BulkRegenerateReports < AdminJobs::Base
     def call
       user_reports = campaign_reports.map(&:user_reports).flatten
-
-      ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
+      options = {
+        low_priority: true
+      }
+      ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, options, record)
 
       broadcast :waiting
     end

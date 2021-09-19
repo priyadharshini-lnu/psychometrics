@@ -37,7 +37,7 @@ module UserReports
       data = UserReports::GeneratePdf.call!(
         user_report,
         current_user,
-        options.merge(async: true, admin_job_record_id: job_record&.id, low_priority: true)
+        options.merge(async: true, admin_job_record_id: job_record&.id)
       )
       return unless data[:file_path]
 

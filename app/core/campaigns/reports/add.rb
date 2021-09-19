@@ -50,7 +50,10 @@ module Campaigns
             report_family_id: report_family_id_for(report),
             user_access: user_access_for(report),
             operation: form.operation,
-            assessments: report.assessments
+            assessments: report.assessments,
+            pdf_options: {
+              low_priority: true
+            }
           )
         end
       end
