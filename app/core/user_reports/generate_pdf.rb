@@ -49,7 +49,8 @@ module UserReports
       lambda_option = default_report_export_options.merge(
         output_file_path: "#{options[:file_path] || user_report.pdf.store_dir}/#{report_file_name}",
         webhook_message: webhook_message,
-        async: options[:async]
+        async: options[:async],
+        low_priority: options[:low_priority]
       )
 
       file_url = Lambdas::UrlToPdf.call!(lambda_option)

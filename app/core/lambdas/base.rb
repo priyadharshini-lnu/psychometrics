@@ -13,7 +13,7 @@ module Lambdas
     private
 
     def make_request_to_lambda
-      if lambda_details[:sqs_url]
+      if sqs_url
         send_message_to_sqs
       else
         make_http_request
@@ -22,7 +22,7 @@ module Lambdas
 
     def send_message_to_sqs
       Aws::SQS::Client.new.send_message({
-        queue_url: lambda_details[:sqs_url],
+        queue_url: sqs_url,
         message_body: jwt_request_body
       })
     end
@@ -35,6 +35,14 @@ module Lambdas
         end
       end
       request_thread.join unless options[:async]
+    end
+
+    def sqs_url
+      if options[:low_priority] || lambda_details[:priority_sqs_url].nil?
+        lambda_details[:sqs_url]
+      else
+        lambda_details[:priority_sqs_url]
+      end
     end
 
     def jwt_request_body

@@ -91,7 +91,7 @@ module Campaigns
       end
 
       def generate_report_pdf(user_report)
-        ::UserReports::GenerateAndSavePdfJob.perform_later(user_report, user)
+        ::UserReports::GenerateAndSavePdfJob.perform_later(user_report, user, options[:pdf_options] || {})
       end
     end
   end
