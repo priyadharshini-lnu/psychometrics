@@ -3,7 +3,7 @@
 module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
-               :mindmill, :hogan, :instructions, :logo,
+               :mindmill, :hogan, :instructions,
                :evaluations_counters, :nominations_counters, :reports_counters, :nominations,
                :managed_subjects, :is_subject, :status
 
@@ -41,12 +41,8 @@ module Threesixty
       }
     end
 
-    def logo
-      object.logo.url
-    end
-
     def instructions
-      object.instruction_templates.enabled.map do |instruction|
+      object.instruction_templates.enabled.includes(:translations).map do |instruction|
         {
           name: instruction.name,
           content: Threesixty::PipedText::Perform.call!(instruction.content,
