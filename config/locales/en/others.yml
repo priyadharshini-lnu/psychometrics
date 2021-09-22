@@ -1668,6 +1668,7 @@ en:
       view: View Report
     modules:
       common:
+        all_factors: All factors
         almost_always: Almost Always
         less_typical: Less Typical
         moderate: Moderate
