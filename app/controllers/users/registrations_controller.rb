@@ -4,17 +4,21 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     layout 'devise'
     before_action :configure_permitted_parameters
+    helper_method :via_sms_invite_code?
 
     def new
-      @form = Users::RegisterForm.new.with_context(code: params['code'])
+      @form = if via_sms_invite_code?
+                Users::Registration::WithSmsInviteCodeForm.new(sms_invite_code: params[:sms_invite_code])
+              else
+                Users::Registration::WithRegistrationCodeForm.new(registration_code: params[:code])
+              end
     end
 
     def create
-      @form = Users::RegisterForm.from_params(sign_up_params).
-              with_context(project: @current_project, code: sign_up_params[:registration_code])
+      @form = form_class.from_params(sign_up_params).with_context(project: @current_project)
 
       if @form.valid?
-        Users::Register.call(@form, @current_project) do
+        registration_command_class.call(@form, @current_project) do
           on(:error) do
             @form.errors[:base].clear
             @form.errors[:base] << I18n.t('administration.clients.registration_codes.errors.license_issue')
@@ -33,13 +37,29 @@ module Users
 
     protected
 
+    def registration_command_class
+      via_sms_invite_code? ? Users::Registration::WithSmsInviteCode : Users::Registration::WithRegistrationCode
+    end
+
+    def form_class
+      via_sms_invite_code? ? Users::Registration::WithSmsInviteCodeForm : Users::Registration::WithRegistrationCodeForm
+    end
+
+    def via_sms_invite_code?
+      params[:sms_invite_code].present? || sign_up_params[:sms_invite_code].present?
+    end
+
+    def via_registration_code?
+      params['code'].present? || sign_up_params[:registration_code].present?
+    end
+
     def after_sign_up_path_for(_resource)
       root_path
     end
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up) do |u|
-        u.permit(:email, :registration_code, :first_name, :last_name)
+        u.permit(:email, :registration_code, :sms_invite_code, :first_name, :last_name)
       end
     end
   end

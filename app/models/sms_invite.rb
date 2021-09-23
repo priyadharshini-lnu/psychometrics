@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+class SmsInvite < ApplicationRecord
+  has_shortened_urls
+  belongs_to :campaign
+  belongs_to :creator, class_name: 'User', foreign_key: :creator_id
+  belongs_to :registered_user, class_name: 'User', foreign_key: :registered_user_id
+  has_one :project, through: :campaign
+
+  enum status: { not_invited: 0, invited: 1, registered: 2 }
+
+  ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
+    parent.table[:status]
+  end
+
+  scope :filterable_fields, lambda { |query|
+    where(
+      'sms_invites.first_name ILIKE :query OR sms_invites.last_name ILIKE :query OR sms_invites.mobile_no ILIKE :query',
+      query: "%#{query}%"
+    )
+  }
+
+  delegate :email, to: :registered_user, allow_nil: true
+
+  def self.ransackable_scopes(_)
+    %i[filterable_fields]
+  end
+end

@@ -237,12 +237,12 @@ ar:
         password_label: كلمه السر
     registrations:
       new:
-        code: رمز التسجيل
         email: البريد الإلكتروني
         first_name: الاسم الاول
         instruction: املأ التفاصيل أدناه للتسجيل وإنشاء حساب جديد
         last_name: إسم العائلة
         privacy_notice: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
+        registration_code: رمز التسجيل
         submit: تسجيل
         tabs:
           register: تسجيل

@@ -41,13 +41,16 @@ div class=([@current_project&.login_box_position || 'right', 'box', 'devise', na
                   i.icon-email
                 = f.input_field :email, placeholder: t('.email'), class: 'form-control input-lg'
             span.help-block.small.mbm = t('.privacy_notice')
+            - if via_sms_invite_code?
+                = f.input :sms_invite_code, as: :hidden
+            - else
+              = form_group_for f, :registration_code do
+                .registrationCode.input-group
+                  span#registrationCode.input-group-addon
+                    i.icon-otp
+                  = f.input_field :registration_code, as: :string, placeholder: t('.registration_code'), maxlength: 32,
+                    class: 'form-control input-lg'
 
-            = form_group_for f, :registration_code do
-              .registrationCode.input-group
-                span#registrationCode.input-group-addon
-                  i.icon-otp
-                = f.input_field :registration_code, as: :string, placeholder: t('.code'), maxlength: 32, value: @form.context.code,
-                  class: 'form-control input-lg'
             span.help-block = raw t('.terms_notice', terms_url: 'https://thetalententerprise.com/privacy-statement/')
 
             .actions.mvm

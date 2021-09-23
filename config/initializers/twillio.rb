@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+Twilio.configure do |config|
+  config.account_sid = Rails.application.secrets.twilio[:account_sid]
+  config.auth_token = Rails.application.secrets.twilio[:auth_token]
+end

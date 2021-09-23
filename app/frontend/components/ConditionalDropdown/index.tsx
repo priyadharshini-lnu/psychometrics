@@ -7,7 +7,7 @@ import compact from 'lodash/compact'
 import castArray from 'lodash/castArray'
 
 interface Props {
-  menu: ReactElement
+  menu: ReactElement | null
   innerElement?: ReactElement
   className?: string
   hideForEmptyMenu?: boolean

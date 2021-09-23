@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  get '/s/:id' => 'shortener/shortened_urls#show', as: :shortened
   post '/lambda_notifications/url_to_pdf'
   post '/lambda_notifications/zip_s3_files'
 
@@ -120,6 +121,15 @@ Rails.application.routes.draw do
 
     resources :new_campaigns, only: [] do
       scope module: :campaigns do
+        resources :sms_invites, only: %i[index] do
+          collection do
+            post :import
+            get :search
+            get :download_example_import_file
+          end
+        end
+        resources :sms_records, only: %i[create]
+
         resources :datasheet_rows, concerns: :datasheet_management
 
         resources :registration_codes do
