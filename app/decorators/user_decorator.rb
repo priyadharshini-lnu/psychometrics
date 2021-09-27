@@ -109,7 +109,7 @@ class UserDecorator < BaseDecorator
       project = campaign.project
       client = campaign.client
       whole_path = [
-        h.link_to(client.decorate.display_name, h.administration_client_users_path(client)),
+        h.link_to(client.decorate.display_name, h.administration_client_client_admins_path(client)),
         h.link_to(project.decorate.display_name, h.administration_client_project_campaigns_path(client, project)),
         h.link_to(campaign.decorate.display_name, campaign_path(campaign, project, client))
       ].join(' > ')
