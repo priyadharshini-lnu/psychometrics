@@ -10,7 +10,6 @@ module Sms
     end
 
     def call
-      client = Twilio::REST::Client.new
       client.messages.create(
         from: Rails.application.secrets.twilio[:from_mobile_no],
         to: to_mobile_no,
@@ -18,6 +17,13 @@ module Sms
       )
 
       broadcast :ok
+    end
+
+    def client
+      account_sid = Rails.application.secrets.twilio[:account_sid]
+      api_key = Rails.application.secrets.twilio[:api_key]
+      api_secret = Rails.application.secrets.twilio[:api_secret]
+      Twilio::REST::Client.new api_key, api_secret, account_sid
     end
   end
 end
