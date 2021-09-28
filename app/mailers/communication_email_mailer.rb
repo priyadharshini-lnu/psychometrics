@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
-require 'mustache'
 class CommunicationEmailMailer < ApplicationMailer
+  layout 'end_user_email'
+
   def create(email_id)
     @communication_email = CommunicationEmail.preload(:communication).find(email_id)
+    @resource = recipient
     data = recipient.slice(:first_name, :last_name, :email)
     data[:user_link] = accept_invitation_link
     data[:user_url] = accept_invitation_url
-    body = Mustache.render(@communication_email.communication.body, data)
-    Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{body}")
+    @body = Mustache.render(@communication_email.communication.body, data)
+    Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
     smtp_setting = recipient.project.smtp_setting
     mail(
       from: smtp_setting.from_name_and_email,
       to: recipient.email,
       subject: @communication_email.communication.subject,
-      body: body,
       content_type: 'text/html',
+      template_path: '/mailer/communication_email',
       delivery_method_options: smtp_setting.settings_for_email
     )
     @communication_email.update(sent_at: Time.current)
