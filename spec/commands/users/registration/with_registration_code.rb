@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-describe Users::Register do
+describe Users::Registration::WithRegistrationCode do
   let(:registration_code) { create(:registration_code, use_count: 546) }
   let(:project) { registration_code.project }
 
   before do
-    @form = Users::RegisterForm.from_params(
+    @form = Users::Registration::WithRegistrationCodeForm.from_params(
       'email' => 'email-1@tte-test.com', 'first_name' => 'Tester',
       'last_name' => 'Person', 'registration_code' => 'tte-2019',
       'password' => 'ComplexPass123',

@@ -2827,6 +2827,11 @@ en:
         title: Factor's options
       toggle_status:
         successfully: Factor was successfully updated.
+    participants:
+      tabs:
+        assessors: Assessors
+        sms_invites: SMS Invites
+        subjects: Subjects
     products:
       copy:
         error: Product
@@ -3073,6 +3078,44 @@ en:
     save: Save
     search: Search
     show: Show
+    sms_invites:
+      columns:
+        created_at: Created At
+        created_by: Created By
+        email: Email
+        first_name: First Name
+        last_name: Last Name
+        mobile_no: Mobile No
+      import:
+        download_example_csv: Download Example csv
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+        title: SMS Invite import
+      send_sms:
+        fields:
+          link_expiry: Link Expiry
+          locale: Locale
+          message: Message
+          statuses: Statuses
+          users: Users
+        modal:
+          btn_name: Send SMS
+          title: Send SMS
+        pipetext_details: |
+          {{{first_name}}} - Recipient First Name
+          <br />
+          {{{last_name}}} - Recipient Last Name
+          <br />
+          {{{invite_url}}} - Registration Link
+        success_msg: You request to send SMS have been scheduled. Please check the status in the notifications.
+      statuses:
+        all: All
+        invited: Invited
+        not_invited: Not Invited
+        registered: Registered
+      tools:
+        export: Export SMS Invites
+        import: Import SMS Invites
+        send_sms: Send SMS
     smtp_settings:
       authentication: Authentication
       authentication_type: Authentication Type

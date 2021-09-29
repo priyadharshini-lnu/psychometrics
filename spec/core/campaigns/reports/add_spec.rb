@@ -71,7 +71,10 @@ describe Campaigns::Reports::Add do
       report_family_id: nil,
       user_access: true,
       operation: form.operation,
-      assessments: report.assessments
+      assessments: report.assessments,
+      pdf_options: {
+        low_priority: true
+      }
     )
 
     described_class.call!(form, campaign)

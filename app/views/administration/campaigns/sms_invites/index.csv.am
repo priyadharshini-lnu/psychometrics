@@ -1,0 +1,12 @@
+
+csv << headers
+
+sms_invites.each do |sms_invite|
+  row = [
+          sms_invite.first_name,
+          sms_invite.last_name,
+          sms_invite.mobile_no,
+          sms_invite.locale
+         ]
+  csv << row
+end

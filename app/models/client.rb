@@ -102,6 +102,7 @@ class Client < ApplicationRecord
   has_many :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) },
            foreign_key: :tte_id, class_name: 'Client'
   has_many :project_campaigns, class_name: 'Campaign', foreign_key: :project_id
+  has_many :sms_invites, through: :project_campaigns
 
   has_many :norms
   has_many :dimensions

@@ -204,12 +204,12 @@ de:
         subject: Anweisungen zum Zurücksetzen Ihres Passworts
     registrations:
       new:
-        code: Registrierungscode
         email: E-Mail-Addresse
         first_name: Vorname
         instruction: Füllen Sie die folgenden Details aus, um sich zu registrieren und ein neues Konto zu erstellen
         last_name: Nachname
         privacy_notice: Wir respektieren Ihre Privatsphäre und tolerieren keinen Spam. Wir werden Ihre Daten niemals an Dritte weitergeben.
+        registration_code: Registrierungscode
         submit: Anmeldung
         tabs:
           register: Registrieren

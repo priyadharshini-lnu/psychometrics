@@ -46,6 +46,8 @@ class Campaign < ApplicationRecord
   has_many :users, through: :campaign_users
   has_many :registration_codes, dependent: :destroy
   has_many :assessors, dependent: :destroy
+  has_many :sms_invites
+  has_many :sms_records
 
   accepts_nested_attributes_for :campaign_options
 

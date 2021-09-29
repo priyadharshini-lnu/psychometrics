@@ -118,8 +118,7 @@ export const fetchAvailableAssessments = (campaignId: string | number) => ({
   },
 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const importAssessors = (campaignId: number, body: any) => ({
+export const importAssessors = (campaignId: number, body: FormData) => ({
   type: IMPORT,
   campaignId,
   request: {

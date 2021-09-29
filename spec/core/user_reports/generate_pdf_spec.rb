@@ -118,6 +118,7 @@ describe UserReports::GeneratePdf do
       expect(::Lambdas::UrlToPdf).to receive(:call!).with(
         report.pdf_dimension.merge(
           url: report_url,
+          low_priority: nil,
           output_file_path: "#{user_report.pdf.store_dir}/#{report_file_name}",
           webhook_message: {
             user_report_id: user_report.id,
