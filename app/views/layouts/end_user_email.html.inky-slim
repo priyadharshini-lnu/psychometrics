@@ -18,4 +18,5 @@ html[xmlns="http://www.w3.org/1999/xhtml"]
                   columns.email-content
                     = yield
               = render 'mailer/footer'
+              = render 'mailer/copyright'
             = render 'mailer/powered_by'

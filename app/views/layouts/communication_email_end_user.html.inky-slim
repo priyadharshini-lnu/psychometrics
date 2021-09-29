@@ -12,11 +12,9 @@ html[xmlns="http://www.w3.org/1999/xhtml"]
             spacer[size="48"]
             container.email-container
               spacer[size="32"]
-              = render 'mailer/admin_logo'
               container.email-container
                 row
                   columns.email-content
                     = yield
-              = render 'mailer/footer'
               = render 'mailer/copyright'
             = render 'mailer/powered_by'
