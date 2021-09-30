@@ -36,6 +36,87 @@ en:
         simple_design:
           design: Design
           or: Or
+    administrators:
+      drawers:
+        edit:
+          can_manage: Manage
+          can_manage_messages: Manage messages
+          can_manage_options: Manage options
+          can_manage_users: Manage users
+          can_rescore_responses: Rescore responses
+          can_reset_responses: Reset responses
+          can_view: View
+          can_view_raw_responses: View raw responses
+          can_view_report: View report
+          can_view_report_data: View report data
+          can_view_scores: View scores
+          create_failed: Unable to create Admin '%{name}', please contact your administrator
+          create_success: Admin '%{name}' created successfully
+          first_name: First name
+          first_name_required: First name is required
+          last_name: Last name
+          last_name_required: Last name is required
+          next: Next
+          no_edit_permission: You do not have permission to edit admin '%{name}'
+          permission_assessment: Assessments
+          permission_assessors: Assessors
+          permission_campaigns: Campaigns
+          permission_communication: Communication center
+          permission_datasheet: Datasheets
+          permission_dimension: Dimensions
+          permission_media: Media library
+          permission_norm: Norms
+          permission_question: Questions
+          permission_regcode: Registration codes
+          permission_report: Reports
+          permission_results: Results
+          permissions: Permissions
+          save: Save
+          search_placeholder: Enter email to edit an existing admin or add a new one
+          update: Update
+          update_failed: Admin '%{name}' update failed
+          update_success: Unable to update Admin '%{name}', please contact your administrator
+        view:
+          first_name: First name
+          last_name: Last name
+          role: Campaign Admin
+          title_campaign: Campaign admin
+          title_campaign_add: Add campaign admin
+          title_campaign_edit: Edit campaign admin
+      list:
+        actions:
+          cancel_text: Cancel
+          change_password: Reset password
+          delete: Delete
+          edit: Edit
+          login: Login as admin
+          no_permission: Insufficient permissions
+          send_email: Send email
+        columns:
+          actions: Actions
+          campaigns_list: Campaigns list
+          created_at: Created at
+          email: Email
+          id: Id
+          name: Name
+        header:
+          add_admin: Add admin
+          search_admins: Search admins
+      modals:
+        delete:
+          cancelText: Cancel
+          content: Are you sure you want to delete admin '%{name}'?
+          okText: Yes, delete
+          onFailed: Unable to delete Admin '%{name}', please contact your administrator
+          onSuccess: Admin '%{name}' deleted successfully
+          title: Delete admin
+        resetPassword:
+          cancelText: Cancel
+          content: Are you sure you want to send a reset password link to '%{email}'?
+          okText: Yes, send
+          onFailed: Unable to send reset password link to '%{email}', please contact your administrator
+          onSuccess: Reset password link successfully sent to '%{email}'
+          title: Reset admin password
     all: " - All - "
     any: " - Any - "
     assessments:

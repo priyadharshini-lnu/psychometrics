@@ -42,8 +42,8 @@
 #  direct_otp                     :string
 #  direct_otp_sent_at             :datetime
 #  totp_timestamp                 :timestamp
-#
 
+# rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
   include UserScopes
   include UserRoles
@@ -60,16 +60,29 @@ class User < ApplicationRecord
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     clients: %w[view],
-    campaigns: %w[view manage manage_users manage_options manage_messages],
+    campaigns: %w[view manage manage_users manage_options manage_messages manage_admins],
     communications: %w[view manage],
     assessors: %w[view manage],
     results: %w[view_report report_data raw_responses scores]
+  }.with_indifferent_access.freeze
 
+  DEFAULT_CAMPAIGN_ADMIN_GRANTS = {
+    clients: %w[view],
+    projects: %w[view],
+    assessments: %w[view],
+    communications: %w[view manage],
+    campaigns: %w[view manage manage_users manage_options show manage_messages manage_admins],
+    assessors: %w[view manage],
+    results: %w[view_report report_data raw_responses scores],
+    registration_codes: %w[view manage],
+    datasheets: %w[view manage],
+    dimensions: %w[manage],
+    reports: %w[manage]
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
     clients: %w[view view_licenses manage],
-    projects: %w[view manage manage_admins manage_users],
+    projects: %w[view manage manage_admins manage_users manage_admins],
     norms: %w[view manage],
     dimensions: %w[view manage],
     assessments: %w[view manage],
@@ -78,7 +91,7 @@ class User < ApplicationRecord
     communications: %w[view manage],
     reports: %w[view manage],
     results: %w[view_report report_data raw_responses scores],
-    campaign: %w[view show manage manage_users manage_options manage_messages],
+    campaign: %w[view show manage manage_users manage_options manage_messages manage_admins],
     assessors: %w[view manage],
     registration_codes: %w[view manage],
     datasheet: %w[view manage]
@@ -109,6 +122,12 @@ class User < ApplicationRecord
   has_many :communications, foreign_key: 'creator_id'
   has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE, disabled: false }) },
            through: :memberships, source: 'client'
+  has_many :campaign_admin_campaigns, lambda {
+    where(memberships: { role: Membership::CAMPAIGN_ADMIN_ROLE, disabled: false })
+  }, through: :memberships, source: 'campaign'
+  has_many :campaign_admin_clients, lambda {
+    where(memberships: { role: Membership::CAMPAIGN_ADMIN_ROLE, disabled: false })
+  }, through: :memberships, source: 'client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
@@ -191,7 +210,7 @@ class User < ApplicationRecord
     self.skip_invitation = true
     super(invited_by, options)
 
-    if is?(:superadmin, :client_admin, :project_admin)
+    if is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
       InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
     else
       InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
@@ -293,3 +312,5 @@ class User < ApplicationRecord
     end
   end
 end
+
+# rubocop:enable Metrics/ClassLength

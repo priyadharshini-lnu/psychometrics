@@ -22,3 +22,40 @@ interface IPayload<P, T = any> extends AnyAction { // eslint-disable-line @types
 
 export type Payload<P, T = any> = IPayload<P, T> // eslint-disable-line @typescript-eslint/no-explicit-any
 export type CustomAction<P, T = string> = P & Action<T>
+
+export const appendToList = <
+  State extends { list: Array<{ id: number | null }>; total: number },
+  Response extends { id: number | null }
+>(
+    state: State,
+    response: Response,
+  ): State => {
+  const doesItemExistsInList = state.list.some(
+    item => item.id === response.id,
+  )
+
+  return {
+    ...state,
+    list: doesItemExistsInList
+      ? state.list.map((item) => {
+        if (item.id === response.id) {
+          return response
+        }
+        return item
+      })
+      : [response, ...state.list],
+    total: doesItemExistsInList ? state.total : state.total + 1,
+  }
+}
+
+export const removeFromList = <
+  State extends { list: Array<{ id: number | null }>; total: number },
+  Response extends { id: number | null }
+>(
+    state: State,
+    response: Response,
+  ): State => ({
+    ...state,
+    list: state.list.filter(admin => admin.id !== response.id),
+    total: state.total - 1,
+  })

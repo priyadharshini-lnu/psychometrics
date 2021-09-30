@@ -75,8 +75,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -1986,7 +1984,8 @@ CREATE TABLE public.memberships (
     project_membership_id integer,
     ancestry character varying,
     role integer DEFAULT 0 NOT NULL,
-    already_invited boolean DEFAULT false NOT NULL
+    already_invited boolean DEFAULT false NOT NULL,
+    campaign_id integer
 );
 
 
@@ -8419,6 +8418,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210804125607'),
 ('20210805081530'),
 ('20210812053648'),
+('20210823120858'),
 ('20210823132111');
 
 

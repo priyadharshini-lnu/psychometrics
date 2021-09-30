@@ -1082,6 +1082,7 @@ en:
       name: Name
       status: Status
     model:
+      admins: Admins
       assessment: Assessment
       assessments: Assessments
       assessors: Assessors

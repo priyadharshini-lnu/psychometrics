@@ -2,6 +2,7 @@ import { Participants, Subjects, Assessors } from './Participants'
 import AssessmentsReports from './AssessmentsReports'
 import RegistrationCodes from './RegistrationCodes'
 import { Datasheet } from './Datasheet'
+import { Admins } from './Admins'
 import CampaignOptions from './CampaignOptions'
 
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/registration_codes', component: RegistrationCodes },
   { path: '/datasheet', component: Datasheet },
+  { path: '/admins', component: Admins },
   { path: '/options', component: CampaignOptions },
 ]
 
