@@ -61,11 +61,13 @@ en:
           permission_assessment: Assessments
           permission_assessors: Assessors
           permission_campaigns: Campaigns
+          permission_client: Clients
           permission_communication: Communication center
           permission_datasheet: Datasheets
           permission_dimension: Dimensions
           permission_media: Media library
           permission_norm: Norms
+          permission_project: Projects
           permission_question: Questions
           permission_regcode: Registration codes
           permission_report: Reports

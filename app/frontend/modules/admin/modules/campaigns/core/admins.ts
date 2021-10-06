@@ -128,6 +128,7 @@ export const UPDATE = 'campaigns/admins/UPDATE_ADMIN'
 export type UpdateRequest = {
   resource: {
     userAttributes: {
+      email: Admin['email']
       firstName: Admin['firstName']
       lastName: Admin['lastName']
     }

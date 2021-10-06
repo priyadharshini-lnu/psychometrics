@@ -112,6 +112,12 @@ const AddEditDrawerComponent: FC<Props> = ({
       email: admin.email,
       firstName: admin?.firstName ?? '',
       lastName: admin?.lastName ?? '',
+      [`clients-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
+        GrantType.view
+      ),
+      [`projects-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
+        GrantType.view
+      ),
       [`campaigns-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
         GrantType.view
       ),
@@ -221,6 +227,7 @@ const AddEditDrawerComponent: FC<Props> = ({
       | CreateAdminRequest['resource']['userAttributes']
     if (isEditMode) {
       userAttributes = {
+        email,
         firstName,
         lastName,
       }
@@ -405,6 +412,52 @@ const AddEditDrawerComponent: FC<Props> = ({
             <Typography.Title level={5}>
               {I18n.t('administration.administrators.drawers.edit.permissions')}
             </Typography.Title>
+            <Row gutter={24}>
+              <Col span={4}>
+                <Typography.Text strong>
+                  {I18n.t(
+                    'administration.administrators.drawers.edit.permission_client',
+                  )}
+                </Typography.Text>
+              </Col>
+              <Col>
+                <Form.Item
+                  name={`clients-${GrantType.view}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.can_view',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Divider />
+            <Row gutter={24}>
+              <Col span={4}>
+                <Typography.Text strong>
+                  {I18n.t(
+                    'administration.administrators.drawers.edit.permission_project',
+                  )}
+                </Typography.Text>
+              </Col>
+              <Col>
+                <Form.Item
+                  name={`projects-${GrantType.view}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.can_view',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Divider />
             <Row gutter={24}>
               <Col span={4}>
                 <Typography.Text strong>
