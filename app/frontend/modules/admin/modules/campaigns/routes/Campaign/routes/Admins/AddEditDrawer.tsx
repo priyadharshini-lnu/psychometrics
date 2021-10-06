@@ -112,11 +112,17 @@ const AddEditDrawerComponent: FC<Props> = ({
       email: admin.email,
       firstName: admin?.firstName ?? '',
       lastName: admin?.lastName ?? '',
-      [`clients-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
+      [`clients-${GrantType.view}`]: admin?.grants?.data?.clients?.includes(
         GrantType.view
       ),
-      [`projects-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
+      [`projects-${GrantType.view}`]: admin?.grants?.data?.projects?.includes(
         GrantType.view
+      ),
+      [`assessments-${GrantType.view}`]: admin?.grants?.data?.assessments?.includes(
+        GrantType.view
+      ),
+      [`assessments-${GrantType.manage}`]: admin?.grants?.data?.assessments?.includes(
+        GrantType.manage
       ),
       [`campaigns-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
         GrantType.view
@@ -159,9 +165,9 @@ const AddEditDrawerComponent: FC<Props> = ({
       [`assessors-${GrantType.view}`]: admin?.grants?.data?.assessors?.includes(
         GrantType.view
       ),
-      [`registration_codes-${GrantType.view}`]:
+      [`registrationCodes-${GrantType.view}`]:
         admin?.grants?.data?.registrationCodes?.includes(GrantType.view),
-      [`registration_codes-${GrantType.manage}`]:
+      [`registrationCodes-${GrantType.manage}`]:
         admin?.grants?.data?.registrationCodes?.includes(GrantType.manage),
       [`datasheets-${GrantType.view}`]: admin?.grants?.data?.datasheets?.includes(
         GrantType.view
