@@ -132,13 +132,13 @@ const AddEditDrawerComponent: FC<Props> = ({
         admin?.grants?.data?.campaigns?.includes(GrantType.manage_messages),
       [`communications-${GrantType.view}`]:
         admin?.grants?.data?.communications?.includes(GrantType.view),
-      [`communications-${GrantType.view}`]:
-        admin?.grants?.data?.communications?.includes(GrantType.view),
+      [`communications-${GrantType.manage}`]:
+        admin?.grants?.data?.communications?.includes(GrantType.manage),
       [`reports-${GrantType.view}`]: admin?.grants?.data?.reports?.includes(
         GrantType.view
       ),
-      [`reports-${GrantType.view}`]: admin?.grants?.data?.reports?.includes(
-        GrantType.view
+      [`reports-${GrantType.manage}`]: admin?.grants?.data?.reports?.includes(
+        GrantType.manage
       ),
       [`results-${GrantType.view_report}`]:
         admin?.grants?.data?.results?.includes(GrantType.view_report),
@@ -159,15 +159,15 @@ const AddEditDrawerComponent: FC<Props> = ({
       [`assessors-${GrantType.view}`]: admin?.grants?.data?.assessors?.includes(
         GrantType.view
       ),
-      [`registration-${GrantType.view}`]:
+      [`registration_codes-${GrantType.view}`]:
         admin?.grants?.data?.registrationCodes?.includes(GrantType.view),
-      [`registration-${GrantType.view}`]:
-        admin?.grants?.data?.registrationCodes?.includes(GrantType.view),
+      [`registration_codes-${GrantType.manage}`]:
+        admin?.grants?.data?.registrationCodes?.includes(GrantType.manage),
       [`datasheets-${GrantType.view}`]: admin?.grants?.data?.datasheets?.includes(
         GrantType.view
       ),
-      [`datasheets-${GrantType.view}`]: admin?.grants?.data?.datasheets?.includes(
-        GrantType.view
+      [`datasheets-${GrantType.manage}`]: admin?.grants?.data?.datasheets?.includes(
+        GrantType.manage
       ),
     }
   }
@@ -227,6 +227,7 @@ const AddEditDrawerComponent: FC<Props> = ({
       | CreateAdminRequest['resource']['userAttributes']
     if (isEditMode) {
       userAttributes = {
+        id: admin?.userId,
         email,
         firstName,
         lastName,

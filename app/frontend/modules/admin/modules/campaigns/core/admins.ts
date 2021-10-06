@@ -125,7 +125,7 @@ export const search = (
 })
 
 export const UPDATE = 'campaigns/admins/UPDATE_ADMIN'
-export type UpdateRequest = {
+export type CreateRequest = {
   resource: {
     userAttributes: {
       email: Admin['email']
@@ -134,6 +134,13 @@ export type UpdateRequest = {
     }
     grantsAttributes: {
       data: Admin['grants']['data']
+    }
+  }
+}
+export type UpdateRequest = CreateRequest & {
+  resource: {
+    userAttributes: {
+      id: Admin['userId']
     }
   }
 }
@@ -159,13 +166,6 @@ export const update = (
 })
 
 export const CREATE = 'campaigns/admins/CREATE_ADMIN'
-export type CreateRequest = UpdateRequest & {
-  resource: {
-    userAttributes: {
-      email: Admin['email']
-    }
-  }
-}
 export const create = (
   campaignId: number,
   body: CreateRequest,
