@@ -220,6 +220,7 @@ const AddEditDrawerComponent: FC<Props> = ({
       assessors: grants?.assessors ?? [],
       registrationCodes: grants?.registrationCodes ?? [],
       datasheets: grants?.datasheets ?? [],
+      assessments: grants?.assessments ?? [],
     }
 
     let userAttributes:
@@ -672,7 +673,7 @@ const AddEditDrawerComponent: FC<Props> = ({
               </Col>
               <Col>
                 <Form.Item
-                  name={`registration-${GrantType.view}`}
+                  name={`registrationCodes-${GrantType.view}`}
                   valuePropName="checked"
                   noStyle
                 >
@@ -683,7 +684,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                   </Checkbox>
                 </Form.Item>
                 <Form.Item
-                  name={`registration-${GrantType.manage}`}
+                  name={`registrationCodes-${GrantType.manage}`}
                   valuePropName="checked"
                   noStyle
                 >

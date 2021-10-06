@@ -35,6 +35,7 @@ const AdminGrantsTR = t.type({
     datasheets: t.array(t.string),
     communications: t.array(t.string),
     registrationCodes: t.array(t.string),
+    assessments: t.array(t.string),
   }),
 })
 const AdminCampaignsTR = t.array(
