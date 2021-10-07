@@ -94,7 +94,6 @@ const vendors = [
   'lodash',
   'redux-logger',
   'action-cable-react',
-  'react-addons-update',
   'moment',
   'libs/conditions',
   'libs/library',

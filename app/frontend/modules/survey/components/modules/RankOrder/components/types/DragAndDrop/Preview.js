@@ -5,9 +5,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
-import update from 'react-addons-update'
-import styles from './DragAndDrop.scss'
+
+import { updateIn } from 'utils/immutable'
 import DescriptionPreview from '../../DescriptionPreview'
+
+import styles from './DragAndDrop.scss'
+
 
 const itemSource = {
   beginDrag (props) {
@@ -126,14 +129,16 @@ class Preview extends Component {
     const { data } = this.state
     const dragItem = data[dragIndex]
 
-    this.setState(update(this.state, {
-      data: {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, dragItem],
-        ],
+    const updatedData = updateIn(
+      this.state,
+      ['data'], (data) => {
+        const dataCopy = [...data]
+        dataCopy.splice(dragIndex, 1)
+        dataCopy.splice(hoverIndex, 0, dragItem)
+        return dataCopy
       },
-    }))
+    )
+    this.setState(updatedData)
   }
 
   endMoveItem = () => {

@@ -4,7 +4,8 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropTarget } from 'react-dnd'
-import update from 'react-addons-update'
+
+import { updateIn } from 'utils/immutable'
 import Card from './Card'
 import styles from '../DragAndDrop.scss'
 
@@ -42,23 +43,23 @@ class Container extends Component {
   pushCard = (cardId) => {
     const { readOnly } = this.props
     if (readOnly) { return }
-    this.setState(update(this.state, {
-      cards: {
-        $push: [cardId],
-      },
-    }))
+    const updatedCards = updateIn(
+      this.state,
+      ['cards'],
+      cards => ([...cards, cardId]),
+    )
+    this.setState(updatedCards)
   }
 
   removeCard = (index) => {
     const { readOnly } = this.props
     if (readOnly) { return }
-    this.setState(update(this.state, {
-      cards: {
-        $splice: [
-          [index, 1],
-        ],
-      },
-    }))
+    const updatedCards = updateIn(
+      this.state,
+      ['cards'],
+      cards => [...cards.slice(0, index), ...cards.slice(index + 1)],
+    )
+    this.setState(updatedCards)
   }
 
   moveCard = (dragIndex, hoverIndex) => {
@@ -67,14 +68,17 @@ class Container extends Component {
     const { cards } = this.state
     const dragCard = cards[dragIndex]
 
-    this.setState(update(this.state, {
-      cards: {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, dragCard],
-        ],
+    const updatedCards = updateIn(
+      this.state,
+      ['cards'],
+      (cards) => {
+        const cardsCopy = [...cards]
+        cardsCopy.splice(dragIndex, 1)
+        cardsCopy.splice(hoverIndex, 0, dragCard)
+        return cardsCopy
       },
-    }))
+    )
+    this.setState(updatedCards)
   }
 
   updateResults = () => {
