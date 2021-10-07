@@ -1,7 +1,8 @@
 import React from 'react'
 import Select from 'react-select'
-import AppStore from 'rb/store/AppStore'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import AppStore from 'modules/reports/store/AppStore'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
+import I18nStore from 'modules/reports/store/I18nStore'
 
 export default function FactorList ({ model, onChange }) {
   const assessment = AppStore.getAssessmentById(model.assessment_id)
@@ -20,7 +21,7 @@ export default function FactorList ({ model, onChange }) {
         isClearable={false}
         isMulti
         onChange={factors => onChange('factorIds', (factors || []).map(f => f.id))}
-        placeholder="All Responses"
+        placeholder={I18nStore.t('reports.modules.common.all_factors')}
       />
     </div>
   )

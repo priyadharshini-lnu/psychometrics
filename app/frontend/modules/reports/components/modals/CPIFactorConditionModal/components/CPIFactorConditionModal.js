@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import CPIConditionCollection from 'rb/models/CPIConditionCollection'
+import CPIConditionCollection from 'modules/reports/models/CPIConditionCollection'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionCollection from './ConditionCollection'
 

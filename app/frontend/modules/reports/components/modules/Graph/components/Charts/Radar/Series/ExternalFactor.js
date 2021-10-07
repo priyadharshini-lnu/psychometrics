@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Factors from 'rb/commands/Factors'
+import Factors from 'modules/reports/commands/Factors'
 
 export const Functions = {}
 

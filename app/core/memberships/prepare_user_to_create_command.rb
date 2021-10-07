@@ -10,7 +10,7 @@ module Memberships
     end
 
     def call
-      return broadcast :invalid if form.invalid?
+      return broadcast :invalid, form if form.invalid?
 
       user = User.find_or_create_by(email: form.email, project_id: nil)
       membership = Membership.new(user: user)

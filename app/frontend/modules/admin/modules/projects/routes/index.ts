@@ -1,5 +1,5 @@
 import { Project } from './Project'
-import Campaign from '../../campaigns/routes/Campaign'
+import { Campaign } from '../../campaigns/routes/Campaign'
 import UsersAssessmentsReports from '../../campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
 import AssessorsDetails from '../../campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
 import ReportPreview from '../../campaigns/routes/ReportPreview'

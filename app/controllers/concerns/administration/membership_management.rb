@@ -1,0 +1,112 @@
+# frozen_string_literal: true
+
+module Administration
+  module MembershipManagement
+    extend ActiveSupport::Concern
+
+    included do
+      skip_after_action :verify_policy_scoped, only: %i[index show find_or_create_user]
+      prepend_before_action :set_resource_class
+      before_action :set_resource, only: %i[show update destroy spoof reset_password]
+    end
+
+    def index
+      respond_to do |format|
+        format.json do
+          serialized_admins = ActiveModelSerializers::SerializableResource.new(
+            admins.page(params[:page]),
+            each_serializer: Administration::Memberships::WithPermissionsSerializer,
+            current_user: current_user,
+            project_id: campaign.project_id
+          )
+
+          render json: {
+            list: serialized_admins,
+            total: admins.count,
+            permissions: permissions
+          }
+        end
+      end
+    end
+
+    def show
+      render json: resource, serializer: Administration::Memberships::WithGrantsAndPermissionsSerializer,
+        current_user: current_user, project_id: campaign.project_id
+    end
+
+    def find_or_create_user
+      form = ::Memberships::PrepareUserForm.from_params(params)
+      ::Memberships::PrepareUserToCreateCommand.call(form, default_grants) do
+        on(:ok) do |admin|
+          return render json: admin, serializer: Administration::Memberships::WithGrantsSerializer,
+              current_user: current_user, project_id: campaign.project_id
+        end
+        on(:invalid) { |f| return render json: { errors: f.errors.full_messages.first }, status: 400 }
+      end
+    end
+
+    def create
+      ::Memberships::CreateAdminCommand.
+        call(
+          resource_class.new(permitted_resource_params), project, current_user, role, campaign
+        ) do
+        on(:ok) do |admin|
+          return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
+              current_user: current_user, project_id: campaign.project_id
+        end
+      end
+    end
+
+    def update
+      form = ::Memberships::CreateForm.from_params(permitted_resource_params['user_attributes'])
+      ::Campaigns::Admins::Update.call(resource, form, current_user, permitted_resource_params) do
+        on(:ok) do |admin|
+          return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
+            current_user: current_user, project_id: campaign.project_id
+        end
+        on(:invalid) do |f|
+          return render json: { errors: f.errors.full_messages.first }, status: 400
+        end
+        on(:error) { |error| return render json: { errors: error }, status: 422 }
+      end
+    end
+
+    def destroy
+      resource.destroy!
+      render json: { id: resource.id }, status: :ok
+    end
+
+    def spoof
+      sign_in(resource.user)
+      redirect_url ||= administration_root_path
+      flash.now[:success] = t('.successfully', name: resource.decorate.display_name)
+      redirect_to redirect_url
+    end
+
+    def reset_password
+      resource.user.send_reset_password_instructions
+      render json: :ok
+    end
+
+    private
+
+    def set_resource_class
+      @_resource_class ||= Membership # rubocop:disable Naming/MemoizedInstanceVariableName
+    end
+
+    def pundit_authorize
+      authorize(
+        resource_class,
+        nil,
+        project_id: project_id,
+        policy_class: policy_class_name
+      )
+    end
+
+    def permitted_resource_params
+      params.require(:resource).permit(
+        ::Memberships::PermittedAdminParams.call!(params[:action], current_user, resource)
+      )
+    end
+  end
+end

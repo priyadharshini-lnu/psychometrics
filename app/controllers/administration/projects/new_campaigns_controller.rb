@@ -5,6 +5,7 @@ module Administration
     class NewCampaignsController < Administration::Projects::BaseController
       include ::ProjectInitialState
 
+      prepend_before_action :set_resource_class
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
       before_action :set_campaign, only: %i[
@@ -17,7 +18,8 @@ module Administration
         respond_to do |format|
           format.html
           format.json do
-            campaigns = project.project_campaigns.ransack(params[:filters]).
+            campaigns = policy_scope(resource_class).where(project_id: project.id).
+                        ransack(params[:filters]).
                         result.
                         includes(:reports, :assessments, :project, :threesixty_campaign)
             serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
@@ -118,6 +120,10 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def set_resource_class
+        @_resource_class ||= Campaign # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       private

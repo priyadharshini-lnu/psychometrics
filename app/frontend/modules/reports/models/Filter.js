@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Socket from 'rb/cable'
+import Socket from 'modules/reports/cable'
 import FilterCondition from './FilterCondition'
 
 const Filter = function (attrs = {}) {

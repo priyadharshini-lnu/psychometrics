@@ -1,4 +1,4 @@
-import AppStore from 'rb/store/AppStore'
+import AppStore from 'modules/reports/store/AppStore'
 import { normalize } from 'normalizr'
 import {
   SOCKET_MESSAGE,

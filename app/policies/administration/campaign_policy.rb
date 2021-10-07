@@ -80,7 +80,7 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin) || @user.has_permission?(:clients, :design, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :design, project_id: project_id)
     end
 
     def export?
@@ -117,7 +117,8 @@ module Administration
 
     class Scope < Scope
       def resolve
-        return scope if @user.is?(:superadmin)
+        return scope if @user.is?(:superadmin, :client_admin, :project_admin)
+        return scope.where(id: @user.campaign_admin_campaign_ids) if @user.is?(:campaign_admin)
 
         scope
       end

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
-import ChoicesInput from 'rb/components/ChoicesInput'
+import store from 'modules/reports/store/PropertyPanelStore'
+import ChoicesInput from 'modules/reports/components/ChoicesInput'
 import styles from '../../../views/PropertyPanel/components/PropertyPanel.scss'
 
 class PropertyPagination extends Component {

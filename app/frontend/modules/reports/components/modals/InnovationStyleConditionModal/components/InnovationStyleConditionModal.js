@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import InnovationStyleConditionCollection from 'rb/models/InnovationStyleConditionCollection'
+import InnovationStyleConditionCollection from 'modules/reports/models/InnovationStyleConditionCollection'
 import styles from './InnovationStyleConditionModal.scss'
 import ConditionCollection from './ConditionCollection'
 

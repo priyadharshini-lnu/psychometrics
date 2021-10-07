@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Foundation from 'rb/components/Foundation'
-import ResultStore from 'rb/store/ResultStore'
+import Foundation from 'modules/reports/components/Foundation'
+import ResultStore from 'modules/reports/store/ResultStore'
 import GetImageURL from './GetImageURL'
 import styles from './Image.scss'
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import PropertyFonts from 'rb/components/PropertyFonts'
-import PropertyPagination from 'rb/components/PropertyPagination'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import PropertyFonts from 'modules/reports/components/PropertyFonts'
+import PropertyPagination from 'modules/reports/components/PropertyPagination'
 
 const Properties = ({ model }) => (
   <div>

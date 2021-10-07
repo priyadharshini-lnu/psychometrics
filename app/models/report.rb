@@ -139,6 +139,10 @@ class Report < ApplicationRecord
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
 
+  def empty?
+    !modules.exists?
+  end
+
   # Copy report with nested resources
   def clone
     @cloned_item = deep_clone(

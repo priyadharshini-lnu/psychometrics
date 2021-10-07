@@ -59,16 +59,6 @@ module.exports = function config (api) {
           regenerator: true,
         },
       ],
-      [
-        // TODO: Remove later and depend on webpack resolution only
-        'babel-plugin-module-resolver',
-        {
-          root: ['./app/frontend'],
-          alias: {
-            rb: './app/frontend/modules/reports',
-          },
-        },
-      ],
       isProductionEnv && [
         'babel-plugin-transform-react-remove-prop-types',
         {

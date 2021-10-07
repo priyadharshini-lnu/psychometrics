@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import ResultStore from 'rb/store/ResultStore'
+import ResultStore from 'modules/reports/store/ResultStore'
 import { getFilterName } from './Factor'
 
 export const Functions = {}

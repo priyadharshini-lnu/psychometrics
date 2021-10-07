@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Select from 'react-select'
-import PropertyPanelStore from 'rb/store/PropertyPanelStore'
-import Utils from 'rb/utils/Utils'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import PropertyPanelStore from 'modules/reports/store/PropertyPanelStore'
+import Utils from 'modules/reports/utils/Utils'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 

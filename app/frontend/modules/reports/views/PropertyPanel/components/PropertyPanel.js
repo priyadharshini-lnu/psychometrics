@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Properties } from 'rb/components/modules'
-import ModuleModel from 'rb/models/Module'
-import LayoutManager from 'rb/models/LayoutManager'
+import { Properties } from 'modules/reports/components/modules'
+import ModuleModel from 'modules/reports/models/Module'
+import LayoutManager from 'modules/reports/models/LayoutManager'
 import styles from './PropertyPanel.scss'
 import ColorPickerModal from './ColorPickerModal'
 

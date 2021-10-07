@@ -43,14 +43,17 @@ module Campaigns
         )
         return user_assessment if user_assessment
 
+        existing_result = existing_user_result_to_copy(assessment)
+        user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)
         user_assessment = UserAssessment.create(
-          users_result_id: user_result(assessment).id,
+          users_result_id:  user_result.id,
           campaign: campaign,
           assessment_id: assessment.id,
           subject: user,
           norm_id: norm_assessment[:norm_id],
           evaluator: user,
-          relationship: Relationship.self_relationship
+          relationship: Relationship.self_relationship,
+          status: existing_result&.status || :not_started
         )
 
         if assessment.saville?
@@ -64,17 +67,13 @@ module Campaigns
         user_assessment
       end
 
-      def user_result(assessment)
-        return create_new_user_result(assessment) if options[:operation] == 'add_and_allow_new_response'
+      def existing_user_result_to_copy(assessment)
+        return if options[:operation] == 'add_and_allow_new_response'
 
-        user_result = campaign_user.evaluation_results.
-                      joins(:user_assessment).
-                      order(created_at: :desc).
-                      find_by(user_assessments: { assessment_id: assessment.id })
-
-        return UsersResults::Copy.call!(user_result) if user_result
-
-        create_new_user_result(assessment)
+        campaign_user.evaluation_results.
+          joins(:user_assessment).
+          order(created_at: :desc).
+          find_by(user_assessments: { assessment_id: assessment.id })
       end
 
       def create_new_user_result(assessment)

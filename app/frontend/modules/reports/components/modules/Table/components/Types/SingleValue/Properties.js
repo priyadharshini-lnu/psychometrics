@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import PropertyFilter from 'rb/components/PropertyFilter'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import PropertyFilter from 'modules/reports/components/PropertyFilter'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import dataSources from './dataSources'
 

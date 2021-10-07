@@ -1,4 +1,4 @@
-import AppStore from 'rb/store/AppStore'
+import AppStore from 'modules/reports/store/AppStore'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from '../../Condition.scss'

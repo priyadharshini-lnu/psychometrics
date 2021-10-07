@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 import _ from 'lodash'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import PropertyFilter from 'rb/components/PropertyFilter'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import PropertyFilter from 'modules/reports/components/PropertyFilter'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 

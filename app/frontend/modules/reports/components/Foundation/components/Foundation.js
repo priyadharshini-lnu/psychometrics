@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import interact from 'interact.js'
-import panelStore from 'rb/store/PropertyPanelStore'
-import AppStore from 'rb/store/AppStore'
+import panelStore from 'modules/reports/store/PropertyPanelStore'
+import AppStore from 'modules/reports/store/AppStore'
 import styles from './Foundation.scss'
 
 const { $ } = window

@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import AppStore from 'rb/store/AppStore'
+import AppStore from 'modules/reports/store/AppStore'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import Types from './Types'

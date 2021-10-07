@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import I18nStore from 'rb/store/I18nStore'
+import I18nStore from 'modules/reports/store/I18nStore'
 import { Functions, Formats, VALUES } from '../../Base/Series/HotSpot'
 
 export default {

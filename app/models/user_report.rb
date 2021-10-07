@@ -12,6 +12,7 @@ class UserReport < ApplicationRecord
 
   delegate :client, to: :campaign
   delegate :saville_report_id, to: :report
+  delegate :empty?, to: :report, prefix: true
 
   mount_base64_uploader :pdf, PdfUploader, file_name: proc { 'report' }
 
@@ -38,10 +39,14 @@ class UserReport < ApplicationRecord
     UserReports::GetUserResultsQuery.new(self).query
   end
 
-  def generatable?
+  def all_assessments_are_completed?
     completed_assessment_ids = user_results.includes(:user_assessment).pluck('user_assessments.assessment_id')
 
     report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
+  end
+
+  def generatable?
+    all_assessments_are_completed? && !report_empty?
   end
 
   def publish_to_webhook

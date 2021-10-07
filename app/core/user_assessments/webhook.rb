@@ -31,7 +31,7 @@ module UserAssessments
 
     def publish_results_available
       user_assessment.user_reports.each do |user_report|
-        next unless user_report.generatable?
+        next unless user_report.all_assessments_are_completed?
         next if user_report.report.data_configuration.empty?
 
         built_results = ::Reports::BuildResults.call!(user_report.report, user_report.user_results)

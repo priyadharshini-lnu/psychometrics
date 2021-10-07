@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ColorPicker from 'rb/components/ColorPicker'
-import { FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE } from 'rb/components/PropertyFonts/components/PropertyFonts'
+import ColorPicker from 'modules/reports/components/ColorPicker'
+import { FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE } from 'modules/reports/components/PropertyFonts/components/PropertyFonts'
 import styles from '../ConditionalTextModal.scss'
 
 export class ConditionCollection extends Component {

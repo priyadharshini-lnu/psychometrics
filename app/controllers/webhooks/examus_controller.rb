@@ -13,6 +13,7 @@ module Webhooks
 
     def create
       @proctoring_session&.update_attributes(results: params['examu'], completed_at: params['sessionEnd'])
+      Examus::RecalculateCredits.call!(@proctoring_session)
 
       render json: 'OK', status: :ok
     end

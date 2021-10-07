@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/PromptStore'
+import store from 'modules/reports/store/PromptStore'
 import styles from './Prompt.scss'
 
 const { Header } = Modal

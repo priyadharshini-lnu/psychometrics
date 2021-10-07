@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'rb/store/I18nStore'
-import store from 'rb/store/PropertyPanelStore'
+import I18nStore from 'modules/reports/store/I18nStore'
+import store from 'modules/reports/store/PropertyPanelStore'
 import Formats from './formats'
 
 export default class MultipleChoice extends Component {
