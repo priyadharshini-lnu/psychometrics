@@ -659,7 +659,7 @@ en:
       download_csv: Download CSV
       evaluate: Evaluate
       extend_time: Extend time
-      goto_dashboard: Go To Dashboard
+      goto_dashboard: Click here to continue
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       rescore: Rescore
@@ -858,6 +858,7 @@ en:
       message: Please use latest version of the browsers
   campaign:
     all_activities_are_completed: All activities are now complete.
+    all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
     begin: Begin your tasks
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
@@ -870,6 +871,7 @@ en:
       edit: Re-evaluate
       title: Confirm
       view: View
+    goto_dashboard: Go to the Dashboard
     in_progress: In Progress
     ineligible: Ineligible
     instructions:

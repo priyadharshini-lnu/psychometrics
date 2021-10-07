@@ -11,41 +11,17 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
 
   .ant-result {
     &.custom-result {
-      color: #fff;
-      display: grid;
-      padding: 15px;
-      background: #029c37;
+      background: white;
       border-radius: 10px;
-
-      align-items: center;
-      grid-template-columns: 72px auto;
-      grid-template-rows: 36px 36px;
-      grid-auto-flow: column;
-
-      .ant-result-icon {
-        grid-column: 1;
-        grid-row: 1 / span 2;
-
-        margin: 0;
-
-        > .anticon {
-          color: inherit;
-          font-size: 45px;
+      padding: 34px 32px;
+      .ant-result-icon{
+        margin-bottom: 12px;
+        &>.anticon {
+          font-size: 50px;
         }
       }
-
-      .ant-result-title {
-        color: inherit;
-        font-size: 16px;
-        font-weight: 600;
-        align-self: end;
-        justify-self: start;
-      }
-
-      .ant-result-subtitle {
-        color: inherit;
-        align-self: start;
-        justify-self: start;
+      .ant-result-extra {
+        margin: 20px 0 0 0;
       }
     }
   }

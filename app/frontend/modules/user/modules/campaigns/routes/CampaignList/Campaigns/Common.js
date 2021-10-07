@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react'
 import {
-  Row, Col, Card, Tooltip,
+  Row, Col, Card, Tooltip, Progress,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import truncate from 'lodash/truncate'
+import round from 'lodash/round'
 
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 
@@ -15,6 +16,8 @@ import hogan from './hogan.png'
 import './styles.scss'
 
 export default function Common ({ campaign }) {
+  const totalProgress = round(campaign.completionPercentage)
+
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
       <Link to={`/campaigns/${campaign.id}`}>
@@ -30,6 +33,9 @@ export default function Common ({ campaign }) {
               </div>
               {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
               {campaign.hogan && <img className="service" src={hogan} alt="" />}
+              <div className="card-progress">
+                <Progress percent={totalProgress} />
+              </div>
             </div>
           )}
         >
