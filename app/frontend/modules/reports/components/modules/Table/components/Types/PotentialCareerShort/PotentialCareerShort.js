@@ -2,9 +2,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import ResultStore from 'rb/store/ResultStore'
-import I18nStore from 'rb/store/I18nStore'
-import AppStore from 'rb/store/AppStore'
+import ResultStore from 'modules/reports/store/ResultStore'
+import I18nStore from 'modules/reports/store/I18nStore'
+import AppStore from 'modules/reports/store/AppStore'
 import styles from './PotentialCareerShort.scss'
 
 const MockFactors = [

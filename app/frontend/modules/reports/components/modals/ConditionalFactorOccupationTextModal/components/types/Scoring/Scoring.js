@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Utils from 'rb/utils/Utils'
+import Utils from 'modules/reports/utils/Utils'
 import styles from '../../Condition.scss'
 import localStyles from './Scoring.scss'
 

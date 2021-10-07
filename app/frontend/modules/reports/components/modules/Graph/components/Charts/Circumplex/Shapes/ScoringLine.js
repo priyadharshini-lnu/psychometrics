@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import * as d3 from 'd3'
-import Utils from 'rb/utils/Utils'
+import Utils from 'modules/reports/utils/Utils'
 import BaseArc from './BaseArc'
 
 class ScoringLine extends BaseArc {

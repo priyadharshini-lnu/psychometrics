@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import AppStore from 'rb/store/AppStore'
-import Modals from 'rb/components/modals'
-import Prompt from 'rb/components/Prompt'
+import AppStore from 'modules/reports/store/AppStore'
+import Modals from 'modules/reports/components/modals'
+import Prompt from 'modules/reports/components/Prompt'
 import Library from 'libs/library'
-import PageEditor from 'rb/views/PageEditor'
+import PageEditor from 'modules/reports/views/PageEditor'
 import styles from './Dashboard.scss'
 import Header from '../Header'
-import 'rb/styles/core.scss'
+import 'modules/reports/styles/core.scss'
 
 export class Dashboard extends Component {
   componentDidMount () {

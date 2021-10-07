@@ -19,7 +19,7 @@ module Threesixty
       evaluators = scope.
                    where(evaluator_id: current_user.id).
                    where.not(evaluator_nomination_status: :declined).
-                   includes(:evaluator)
+                   includes(:evaluator, :users_result, :assessment, :subject)
       evaluators = evaluators.where.not(subject_id: current_user.id) unless subject_evaluate_self?
       evaluators = evaluators.where(manager_nomination_status: :approved) if manager_can_approve_nominations?
       evaluators

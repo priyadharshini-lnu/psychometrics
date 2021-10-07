@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PageList'
-import Page from 'rb/views/Page'
-import LabelEditor from 'rb/components/LabelEditor'
+import store from 'modules/reports/store/PageList'
+import Page from 'modules/reports/views/Page'
+import LabelEditor from 'modules/reports/components/LabelEditor'
 import styles from './PageListView.scss'
 
 export class PageListView extends Component {

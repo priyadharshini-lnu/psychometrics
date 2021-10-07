@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import Select from 'react-select'
 import React from 'react'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import connect from './connect'
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']

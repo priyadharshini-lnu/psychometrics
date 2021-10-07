@@ -138,6 +138,12 @@ table.table.grants-table
                       'manage_users', resource.has_grant?(:campaigns, :manage_users), id: dom_id(u, :campaigns_manage_users)
               | Manage Users
 
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_admins', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                      'manage_admins', resource.has_grant?(:campaigns, :manage_admins), id: dom_id(u, :campaigns_manage_admins)
+              | Manage Admins
+
           - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_options', project: project)
             label.text-nowrap
               = check_box_tag 'resource[grants_attributes][data][campaigns][]',

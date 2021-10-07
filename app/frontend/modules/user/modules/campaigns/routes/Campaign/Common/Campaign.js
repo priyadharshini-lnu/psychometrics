@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Layout, Row, Col, Alert, List, Avatar, Button, Result, Tooltip,
 } from 'antd'
@@ -33,6 +33,8 @@ export default function Campaign ({
   history, match, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
   loginHogan, acceptPolicy, fetchCampaign, beginCampaign, continueCampaign,
 }) {
+  const [showError, setShowError] = useState(false)
+
   const {
     isTimedCampaign,
     campaignUser: {
@@ -71,12 +73,16 @@ export default function Campaign ({
   const onBeginCampaign = () => {
     beginCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }) => {
       if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
+    }).catch((error) => {
+      setShowError(error)
     })
   }
 
   const onContinueCampaign = () => {
     continueCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }) => {
       if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
+    }).catch((error) => {
+      setShowError(error)
     })
   }
 
@@ -134,6 +140,8 @@ export default function Campaign ({
                   instructions={instructions}
                   showBegin={canBeginCampaign}
                   showContinue={canContinueCampaign}
+                  proctoringEnabled={proctoringEnabled}
+                  enoughProctoringCredits={!showError}
                   onBegin={onBeginCampaign}
                   onContinue={onContinueCampaign}
                 />

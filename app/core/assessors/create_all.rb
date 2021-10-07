@@ -64,7 +64,7 @@ module Assessors
           create_by_invite: assessor_attrs[:assessor_password].blank?,
           project: nil
         )
-        user.invite_assessor!(current_user)
+        user.invite_assessor!
       end
       user
     end

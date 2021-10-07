@@ -1835,7 +1835,11 @@ CREATE TABLE public.license_usages (
     registration_code_id bigint,
     status_updated_by_id integer,
     status_updated_at timestamp without time zone,
-    status integer DEFAULT 0
+    status integer DEFAULT 0,
+    proctoring_session_id integer,
+    proctoring_credits_debited integer,
+    proctoring_credits_credited integer,
+    proctoring_session_duration integer
 );
 
 
@@ -1982,7 +1986,8 @@ CREATE TABLE public.memberships (
     project_membership_id integer,
     ancestry character varying,
     role integer DEFAULT 0 NOT NULL,
-    already_invited boolean DEFAULT false NOT NULL
+    already_invited boolean DEFAULT false NOT NULL,
+    campaign_id integer
 );
 
 
@@ -8681,6 +8686,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210728151708'),
 ('20210804125607'),
 ('20210805081530'),
+('20210812053648'),
+('20210823120858'),
 ('20210823132111'),
 ('20210830121355'),
 ('20210913092232'),

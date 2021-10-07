@@ -9,6 +9,7 @@ class EndUser::UsersController < ApplicationController
   initial_state_for %i[dashboard]
   skip_before_action :authenticate_user!, only: %i[change_locale]
 
+  # rubocop:disable Metrics/AbcSize
   def dashboard
     respond_to do |format|
       format.html {}
@@ -18,7 +19,8 @@ class EndUser::UsersController < ApplicationController
         user_campaigns = current_user.campaign_users.where(active: true).pluck(:campaign_id) |
                          subject_campaigns | evaluator_campaigns
 
-        campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.group_by(&:type)
+        campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
+                    includes(:threesixty_campaign).group_by(&:type)
 
         json = @single_assigns.uniq.map do |assign|
           next if assign.membership.client.migrated?
@@ -42,6 +44,7 @@ class EndUser::UsersController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def accept_privacy
     current_user.create_privacy_consent!
@@ -58,6 +61,7 @@ class EndUser::UsersController < ApplicationController
     form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user)
     if form.valid?
       current_user.update!(form.attributes)
+      bypass_sign_in(current_user, scope: :user)
       render json: current_user, serializer: Threesixty::CurrentUserSerializer, project_id: @current_project.id
     else
       render json: { errors: form.errors.messages }, status: :bad_request

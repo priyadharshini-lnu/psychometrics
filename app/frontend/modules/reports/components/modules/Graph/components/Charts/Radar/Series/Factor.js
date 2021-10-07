@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import ResultStore from 'rb/store/ResultStore'
-import AppStore from 'rb/store/AppStore'
+import ResultStore from 'modules/reports/store/ResultStore'
+import AppStore from 'modules/reports/store/AppStore'
 
 export const Functions = {}
 

@@ -2,19 +2,21 @@
 
 module Memberships
   class CreateAdminCommand < Rectify::Command
-    attr_reader :membership, :role, :client, :creator
+    attr_reader :membership, :role, :client, :creator, :campaign
 
-    def initialize(membership, client, creator, role)
+    def initialize(membership, client, creator, role, campaign = nil)
       @membership = membership
       @creator = creator
       @role = role
       @client = client
+      @campaign = campaign
     end
 
     def call
       membership.tap do |m|
         m.role = role
         m.client = client
+        m.campaign = campaign if campaign
       end
 
       admin = User.find_by(email: membership.user&.email, project_id: nil)

@@ -32,9 +32,21 @@ module Reports
     end
 
     def all_factor_ids
-      configuration_sections.map do |section|
-        section['data'].map { |sub_header| sub_header['factorId'] }.compact
-      end.flatten
+      map_factor_ids(configuration_sections)
+    end
+
+    def map_factor_ids(data)
+      ids = case data
+              when Array
+                data.map { |d| map_factor_ids(d) }
+              when Hash
+                data.map do |k, v|
+                  next v if k == 'factorId'
+
+                  map_factor_ids(v)
+                end
+            end
+      ids.nil? ? [] : ids.flatten.compact
     end
 
     def all_question_ids

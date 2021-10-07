@@ -1,7 +1,7 @@
 /* eslint-disable import/no-mutable-exports */
 import React, { Component } from 'react'
-import store from 'rb/store/PageList'
-import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
+import store from 'modules/reports/store/PageList'
+import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
 import { DragSource, DropTarget } from 'react-dnd'
 import styles from './PageEditor.scss'
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
+  Table, Menu, Row, Col, Input, Select, Pagination, Avatar, Tooltip,
 } from 'antd'
 import cs from 'classnames'
 import { Link } from 'react-router-dom'
@@ -12,7 +12,6 @@ import moment from 'moment'
 import { STATUSES, DEFAULT_PAGE_SIZE, TYPES } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
-import array from 'utils/array'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
@@ -32,6 +31,7 @@ const { I18n } = window
 const { Column } = Table
 const { Search } = Input
 const { Option } = Select
+const MAX_AVATARS = 2
 
 interface Props {
   fetch(projectId: string, tableConfig: TableConfig): void
@@ -261,33 +261,26 @@ interface ResourcesProps {
   type: string
 }
 
-const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => {
-  const tags = () => (
-    resources.map((resource: Resource) => (
+const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
+  <Avatar.Group maxCount={MAX_AVATARS}>
+    {resources.map((resource: Resource) => (
       <Tooltip placement="top" title={resource.name} key={resource.id}>
-        <a href={`/administration/${type}/${resource.id}`} target="_blank" rel="noopener noreferrer">
-          {resource.iconUrl ? (
-            <Avatar src={resource.iconUrl} />
-          ) : (
-            <Avatar
-              style={{
-                backgroundColor: resource.iconColor,
-              }}
-            >
-              {resource.name.substring(0, 2)}
-            </Avatar>
-          )}
-        </a>
+        {resource.iconUrl ? (
+          <Avatar src={resource.iconUrl} />
+        ) : (
+          <Avatar
+            style={{
+              backgroundColor: resource.iconColor,
+              cursor: 'default',
+            }}
+          >
+            {resource.name.substring(0, 2)}
+          </Avatar>
+        )}
       </Tooltip>
-    ))
-  )
-
-  return (
-    <>
-      {array.joinJSXElements(tags(), ' ')}
-    </>
-  )
-}
+    ))}
+  </Avatar.Group>
+)
 
 interface ActionMenuProps {
   onEdit(): void

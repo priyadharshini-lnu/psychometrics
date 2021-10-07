@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import TextConditionCollection from 'rb/models/TextConditionCollection'
-import AppStore from 'rb/store/AppStore'
+import TextConditionCollection from 'modules/reports/models/TextConditionCollection'
+import AppStore from 'modules/reports/store/AppStore'
 import styles from './ConditionalTextModal.scss'
 import ConditionCollection from './ConditionCollection'
 

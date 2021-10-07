@@ -1,6 +1,6 @@
 import React from 'react'
-import PropertyFilter from 'rb/components/PropertyFilter'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
+import PropertyFilter from 'modules/reports/components/PropertyFilter'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
 
 const Properties = ({ model }) => (
   <div>

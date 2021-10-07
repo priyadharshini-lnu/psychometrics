@@ -45,7 +45,7 @@ module MediaResponses
       question = Question.find(question_id)
       duration = question.props['duration'] || 10
 
-      (duration / 30.0).ceil
+      (duration / 10.0).ceil
     end
   end
 end

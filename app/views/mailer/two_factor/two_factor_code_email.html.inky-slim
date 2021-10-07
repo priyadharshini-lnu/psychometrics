@@ -15,6 +15,3 @@ container.email-container
     columns.email-content
       p You are receiving this email because you tried to log in to your Lighthouse account with The Talent Enterprise. Please do not disclose the above OTP to anyone.
       p If you did not try to login, please login and update your password.
-  row
-    columns.email-content
-      = simple_format(t("devise.mailer.reset_password_instructions.regards"))

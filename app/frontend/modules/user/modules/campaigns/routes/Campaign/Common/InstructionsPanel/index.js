@@ -1,5 +1,5 @@
 import React from 'react'
-import { Collapse, Button } from 'antd'
+import { Collapse, Button, Alert } from 'antd'
 import { CaretRightOutlined, CaretLeftOutlined } from '@ant-design/icons'
 
 import { SafeHTML } from 'components/SafeHTML'
@@ -12,6 +12,7 @@ const { I18n } = window
 
 export default function InstructionsPanel ({
   instructionsEnabled, instructions, showBegin, showContinue, onBegin, onContinue,
+  proctoringEnabled, enoughProctoringCredits,
 }) {
   const showActions = showBegin || showContinue
   const activePanels = [
@@ -45,15 +46,19 @@ export default function InstructionsPanel ({
               <Button
                 type="primary"
                 onClick={onContinue}
+                disabled={proctoringEnabled && !enoughProctoringCredits}
                 icon={rtl ? <CaretLeftOutlined /> : <CaretRightOutlined />}
               >
                 {I18n.t('campaign.continue')}
               </Button>
             )}
+            {proctoringEnabled && !enoughProctoringCredits
+              && <Alert message={I18n.t('licenses.not_enough_proctoring_credits')} type="error" />}
             {showBegin && (
               <Button
                 type="primary"
                 onClick={onBegin}
+                disabled={proctoringEnabled && !enoughProctoringCredits}
                 icon={rtl ? <CaretLeftOutlined /> : <CaretRightOutlined />}
               >
                 {I18n.t('campaign.begin')}

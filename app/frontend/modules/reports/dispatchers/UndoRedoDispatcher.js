@@ -1,5 +1,5 @@
 import { EventEmitter } from 'fbemitter'
-import store from 'rb/store/UndoRedoStore'
+import store from 'modules/reports/store/UndoRedoStore'
 import NotificationDispatcher from './NotificationDispatcher'
 
 const dispatcher = new EventEmitter()

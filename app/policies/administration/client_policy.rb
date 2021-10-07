@@ -93,7 +93,7 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin) || @user.has_permission?(:clients, :design, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :design, project_id: project_id)
     end
 
     def export?
@@ -116,6 +116,8 @@ module Administration
         permission = @user.is?(:client_admin) ? :clients : :projects
 
         clients_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
+
+        clients_ids.concat(@user.campaign_admin_client_ids) if @user.is?(:campaign_admin)
 
         permitted_clients_ids = clients_ids.select do |client_id|
           @user.has_permission?(permission, :view, project_id: client_id)

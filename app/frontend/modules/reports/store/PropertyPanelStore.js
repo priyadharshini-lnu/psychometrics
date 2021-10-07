@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import HeaderStore from 'rb/store/HeaderStore'
+import HeaderStore from 'modules/reports/store/HeaderStore'
 
 const PropertyPanel = function () {
   this.type = 'Report'

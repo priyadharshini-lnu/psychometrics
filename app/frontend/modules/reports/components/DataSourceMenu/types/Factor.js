@@ -2,8 +2,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Select from 'react-select'
-import AppStore from 'rb/store/AppStore'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import AppStore from 'modules/reports/store/AppStore'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 
 const ALL_FACTORS = 'All Factors'
 

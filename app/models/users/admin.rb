@@ -43,10 +43,9 @@ module Users
       :user
     end
 
-    def invite_assessor!(invited_by)
-      self.skip_invitation = true
-      invite!(invited_by, {})
-      InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
+    def invite_assessor!
+      raw_token = ::Users::FindOrCreateInvitationToken.call!(self)
+      InvitationMailer.invite_admin(id, raw_token).deliver_later
     end
   end
 end

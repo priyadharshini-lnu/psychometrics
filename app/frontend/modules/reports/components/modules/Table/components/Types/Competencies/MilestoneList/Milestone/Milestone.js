@@ -1,6 +1,6 @@
 import React from 'react'
 import cs from 'classnames'
-import ColorPicker from 'rb/components/ColorPicker'
+import ColorPicker from 'modules/reports/components/ColorPicker'
 import styles from './styles.scss'
 
 export default function Milestone ({ milestone, onRemove, onUpdate }) {

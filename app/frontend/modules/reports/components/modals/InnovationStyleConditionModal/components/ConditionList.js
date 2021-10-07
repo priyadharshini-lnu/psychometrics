@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import TextCondition from 'rb/models/TextCondition'
+import TextCondition from 'modules/reports/models/TextCondition'
 import styles from './InnovationStyleConditionModal.scss'
 import Condition from './Condition'
 

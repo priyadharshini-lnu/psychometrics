@@ -7,7 +7,7 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
     - else
       = resource.decorate.status
   td
-    - if policy(:report, { project_id: resource.owner_id }).edit?
+    - if policy(resource, { project_id: resource.owner_id }).edit?
       = link_to resource.name, administration_report_path(resource)
     - else
       = resource.name
@@ -20,7 +20,7 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
     - if policy(:report, { project_id: resource.owner_id }).preview?
       = link_to({ action: :preview, id: resource }, class: 'btn btn-default btn-rounded btn-sm  preview', data: { toggle: 'tooltip', title: t('.tooltips.preview') })
         i.fa.fa-eye
-    - if policy(:report, { project_id: resource.owner_id }).edit?
+    - if policy(resource, { project_id: resource.owner_id }).edit?
       = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
     - if policy(:report, { project_id: resource.owner_id }).copy?

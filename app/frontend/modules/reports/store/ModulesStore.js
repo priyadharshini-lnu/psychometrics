@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Module from 'rb/models/Module'
-import PageList from 'rb/store/PageList'
+import Module from 'modules/reports/models/Module'
+import PageList from 'modules/reports/store/PageList'
 
 const ModulesStore = function (data, page, completedAssessments) {
   this.page = page

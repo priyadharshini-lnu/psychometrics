@@ -1,0 +1,6 @@
+row
+  columns.email-copyright.footer
+    |  © 
+    = Time.now.year
+    |  Lighthouse. All rights reserved 
+  spacer[size="16"]

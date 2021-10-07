@@ -53,6 +53,13 @@ FactoryBot.define do
       role { Membership::PROJECT_ADMIN_ROLE }
     end
 
+    factory :campaign_admin_membership do
+      association :user, factory: :user
+      association :grants, factory: :membership_grants, data: User::DEFAULT_CAMPAIGN_ADMIN_GRANTS
+      campaign factory: :campaign
+      role { Membership::CAMPAIGN_ADMIN_ROLE }
+    end
+
     factory :manager_membership do
       role { Membership::MANAGER_ROLE }
     end

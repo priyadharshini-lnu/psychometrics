@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import cs from 'classnames'
-import Utils from 'rb/utils/Utils'
+import Utils from 'modules/reports/utils/Utils'
 import Milestone from './Milestone'
 import styles from './styles.scss'
 

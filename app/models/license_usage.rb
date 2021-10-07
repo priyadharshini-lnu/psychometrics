@@ -23,7 +23,7 @@ class LicenseUsage < ApplicationRecord
 
   enum status: { active: 0, inactive: 1 }
 
-  after_create :increase_license_used_number
+  after_create :increase_license_used_number, unless: -> { license.type_proctoring? }
 
   ransack_searchable_json_fields :subject_name, :campaign_name, :subject_email, column: :extras
   ransack_alias :subject, :subject_name_or_subject_email_or_campaign_name

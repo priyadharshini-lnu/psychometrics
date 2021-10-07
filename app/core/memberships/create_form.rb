@@ -5,6 +5,7 @@ module Memberships
     attribute :first_name, String
     attribute :last_name, String
     attribute :parent_id, Integer
+    attribute :email, String
 
     validates :email, presence: true
     validates :email, format: { with: Devise.email_regexp }
