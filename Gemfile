@@ -137,7 +137,7 @@ gem 'browser', '~> 4.0.0'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 5.1.3'
+gem 'sidekiq', '~> 5.2.9'
 
 gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
