@@ -98,7 +98,7 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
 
-        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_ids
+        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
 
         owner_ids.concat(@user.campaign_admin_client_ids) if @user.is?(:campaign_admin)
 
