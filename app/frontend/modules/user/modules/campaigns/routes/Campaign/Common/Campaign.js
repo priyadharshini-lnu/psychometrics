@@ -127,7 +127,7 @@ export default function Campaign ({
                         : I18n.t('campaign.all_activities_are_completed')
                     }
                     extra={campaignsCount > 1 && (
-                      <Button type="primary">
+                      <Button href="/" type="primary">
                         {I18n.t('campaign.goto_dashboard')}
                       </Button>
                     )}
