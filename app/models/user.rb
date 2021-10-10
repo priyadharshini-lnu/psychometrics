@@ -71,7 +71,7 @@ class User < ApplicationRecord
     projects: %w[view],
     assessments: %w[view],
     communications: %w[view manage],
-    campaigns: %w[view manage manage_users manage_options show manage_messages manage_admins],
+    campaigns: %w[view manage manage_users manage_options show manage_messages],
     assessors: %w[view manage],
     results: %w[view_report report_data raw_responses scores],
     registration_codes: %w[view manage],

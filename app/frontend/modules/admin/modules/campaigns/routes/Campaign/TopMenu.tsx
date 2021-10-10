@@ -69,10 +69,12 @@ const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
         <DatabaseOutlined />
         {I18n.t('common.model.datasheet')}
       </Menu.Item>
-      <Menu.Item key="/admins">
-        <SolutionOutlined />
-        {I18n.t('common.model.admins')}
-      </Menu.Item>
+      {currentUser.permissions.manageCampaignAdmins && (
+        <Menu.Item key="/admins">
+          <SolutionOutlined />
+          {I18n.t('common.model.admins')}
+        </Menu.Item>
+      )}
       {currentUser.permissions.manageOptions && (
         <Menu.Item key="/options">
           <SettingOutlined />

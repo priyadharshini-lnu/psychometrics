@@ -17,6 +17,7 @@ module Administration
           [
             'create',
             'manage_admins',
+            'manage_campaign_admins',
             %w[manage_options update_campaign_options]
           ],
           instance_options[:project_id]

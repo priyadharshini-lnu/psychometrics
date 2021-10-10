@@ -13,5 +13,6 @@ export default interface User {
     remove: boolean
     manageOptions: boolean
     manageAdmins: boolean
+    manageCampaignAdmins: boolean
   }
 }
