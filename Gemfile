@@ -16,7 +16,6 @@ gem 'pg',                         '~> 0.19.0'
 gem 'puma',                       '~> 4.3.6'
 gem 'rails',                      '~> 5.2.0'
 gem 'sassc-rails', '~> 2.1.2'
-gem 'staccato-rails'
 gem 'uglifier', '~> 3.0.2'
 
 source 'https://rails-assets.org/' do
@@ -172,6 +171,8 @@ gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
+gem 'shortener', '~> 0.8.2'
+gem 'twilio-ruby', '~>  5.58.1'
 gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'master'
 
 group :development, :test do

@@ -14,11 +14,11 @@ class UsersResultDecorator < BaseDecorator
   end
 
   def completed_at_with_time
-    object.completed_at.try(:strftime, '%D %r')
+    object.completed_at.try(:strftime, '%F %T')
   end
 
   def started_at_with_time
-    object.started_at.try(:strftime, '%D %r')
+    object.started_at.try(:strftime, '%F %T')
   end
 
   def display_name

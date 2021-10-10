@@ -75,6 +75,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -2946,6 +2948,118 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: shortened_urls; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.shortened_urls (
+    id bigint NOT NULL,
+    owner_id integer,
+    owner_type character varying(20),
+    url text NOT NULL,
+    unique_key character varying(10) NOT NULL,
+    category character varying,
+    use_count integer DEFAULT 0 NOT NULL,
+    expires_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: shortened_urls_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.shortened_urls_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: shortened_urls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.shortened_urls_id_seq OWNED BY public.shortened_urls.id;
+
+
+--
+-- Name: sms_invites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sms_invites (
+    id bigint NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    mobile_no character varying,
+    locale character varying DEFAULT 'en'::character varying,
+    code character varying,
+    status integer DEFAULT 0,
+    registered_user_id bigint,
+    creator_id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    expiry timestamp without time zone
+);
+
+
+--
+-- Name: sms_invites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sms_invites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sms_invites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sms_invites_id_seq OWNED BY public.sms_invites.id;
+
+
+--
+-- Name: sms_records; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sms_records (
+    id bigint NOT NULL,
+    message character varying,
+    link_expiry timestamp without time zone,
+    filters jsonb DEFAULT '{}'::jsonb,
+    creator_id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sms_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sms_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sms_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sms_records_id_seq OWNED BY public.sms_records.id;
+
+
+--
 -- Name: smtp_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4330,6 +4444,27 @@ ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nex
 
 
 --
+-- Name: shortened_urls id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shortened_urls ALTER COLUMN id SET DEFAULT nextval('public.shortened_urls_id_seq'::regclass);
+
+
+--
+-- Name: sms_invites id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_invites ALTER COLUMN id SET DEFAULT nextval('public.sms_invites_id_seq'::regclass);
+
+
+--
+-- Name: sms_records id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_records ALTER COLUMN id SET DEFAULT nextval('public.sms_records_id_seq'::regclass);
+
+
+--
 -- Name: smtp_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5121,6 +5256,30 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: shortened_urls shortened_urls_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shortened_urls
+    ADD CONSTRAINT shortened_urls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sms_invites sms_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_invites
+    ADD CONSTRAINT sms_invites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sms_records sms_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_records
+    ADD CONSTRAINT sms_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -6413,6 +6572,76 @@ CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.savi
 
 
 --
+-- Name: index_shortened_urls_on_category; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_shortened_urls_on_category ON public.shortened_urls USING btree (category);
+
+
+--
+-- Name: index_shortened_urls_on_owner_id_and_owner_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_shortened_urls_on_owner_id_and_owner_type ON public.shortened_urls USING btree (owner_id, owner_type);
+
+
+--
+-- Name: index_shortened_urls_on_unique_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_shortened_urls_on_unique_key ON public.shortened_urls USING btree (unique_key);
+
+
+--
+-- Name: index_shortened_urls_on_url; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (url);
+
+
+--
+-- Name: index_sms_invites_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_invites_on_campaign_id ON public.sms_invites USING btree (campaign_id);
+
+
+--
+-- Name: index_sms_invites_on_campaign_id_and_mobile_no; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sms_invites_on_campaign_id_and_mobile_no ON public.sms_invites USING btree (campaign_id, mobile_no);
+
+
+--
+-- Name: index_sms_invites_on_creator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_invites_on_creator_id ON public.sms_invites USING btree (creator_id);
+
+
+--
+-- Name: index_sms_invites_on_registered_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_invites_on_registered_user_id ON public.sms_invites USING btree (registered_user_id);
+
+
+--
+-- Name: index_sms_records_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_records_on_campaign_id ON public.sms_records USING btree (campaign_id);
+
+
+--
+-- Name: index_sms_records_on_creator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_records_on_creator_id ON public.sms_records USING btree (creator_id);
+
+
+--
 -- Name: index_smtp_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6833,6 +7062,22 @@ CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (em
 
 
 --
+-- Name: sms_invites creator_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_invites
+    ADD CONSTRAINT creator_id FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: sms_records creator_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_records
+    ADD CONSTRAINT creator_id FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_options fk_rails_0437d1f6f7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6990,6 +7235,14 @@ ALTER TABLE ONLY public.assessors
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_2397339a92 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE SET NULL;
+
+
+--
+-- Name: sms_invites fk_rails_24c0e9c4ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_invites
+    ADD CONSTRAINT fk_rails_24c0e9c4ce FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -7193,6 +7446,14 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
+-- Name: sms_records fk_rails_58b8df5ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_records
+    ADD CONSTRAINT fk_rails_58b8df5ee3 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: clients fk_rails_5b49237ec1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7350,6 +7611,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_8538dc1cd7 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: sms_invites fk_rails_860e8cda3d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_invites
+    ADD CONSTRAINT fk_rails_860e8cda3d FOREIGN KEY (registered_user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -8419,6 +8688,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210805081530'),
 ('20210812053648'),
 ('20210823120858'),
-('20210823132111');
+('20210823132111'),
+('20210830121355'),
+('20210913092232'),
+('20210917131407'),
+('20210919105932');
 
 

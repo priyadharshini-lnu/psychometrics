@@ -167,6 +167,25 @@ en:
               blank: Registration code is required
               incorrect_email_domain: This email address is not valid for the entered registration code
               invalid: Registration code is invalid
+            sms_invite_code:
+              invalid: SMS Invite code is invalid
+        sms_invites_create:
+          attributes:
+            first_name:
+              blank: First name can't be blank
+            last_name:
+              blank: Last name can't be blank
+            locale:
+              inclusion: Wrong locale.
+            mobile_no:
+              blank: Mobile number can't be blank
+              invalid: Mobile number should start with plus, followed by international code and then the number
+              invite_exists_in_campaign: SMS Invite with same mobile number already exists
+        sms_invites_import:
+          attributes:
+            import_data:
+              duplicated_mobile_numbers: 'The following mobile numbers are duplicated in CSV: %{mobile_numbers}'
+              invalid_header: Invalid header. Export SMS invite to get the correct headers
         super_admin_edit:
           attributes:
             email:
@@ -593,11 +612,13 @@ en:
         import_datasheet: Import Datasheet
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
+        import_sms_invites: Import SMS Invite
         import_users: Import Users
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
+        send_sms_invites: Send SMS invites
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -1068,6 +1089,7 @@ en:
       cancel: Cancel
       close: Close
       delete: Delete
+      import: Import
       remove: Remove
       reset: Reset
       send: Send
@@ -1090,6 +1112,7 @@ en:
       datasheet: Datasheet
       report: Report
       reports: Reports
+      sms_invite: SMS Invite
     text:
       cancel: Cancel
       confirm: Confirm
@@ -1233,12 +1256,12 @@ en:
     registrations:
       destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
       new:
-        code: Registration Code
         email: Email Address
         first_name: First Name
         instruction: Fill in the details below to register and create a new account
         last_name: Last Name
         privacy_notice: We respect your privacy and do not tolerate spam. We will never give away your information to any third party.
+        registration_code: Registration Code
         submit: Register
         tabs:
           register: Register
@@ -1402,6 +1425,8 @@ en:
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
+    sms_records:
+      create_success: SMS job scheduled successfully
     update: Update
     upload: Upload
     'yes': 'Yes'

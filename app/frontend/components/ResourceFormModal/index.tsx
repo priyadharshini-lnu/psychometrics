@@ -34,6 +34,7 @@ interface Props {
   formProps?: FormProps
   transformValues?(values: object): object
   scrollToFirstError?: boolean
+  submitButtonName?: string
 }
 
 interface Request {
@@ -53,6 +54,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
     resourceId,
     onSuccessfulSubmission,
     storeManager,
+    submitButtonName,
   } = props
 
   const [resourceStatus, setResourceStatus] = useState<string | null>(null)
@@ -97,6 +99,12 @@ const ResourceFormModal: React.FC<Props> = (props) => {
     return getTitle()
   }
 
+  const buttonName = (): string => {
+    if (submitButtonName) return submitButtonName
+
+    return isEdit() ? 'Update' : 'Add'
+  }
+
   return (
     <Modal
       width={650}
@@ -114,7 +122,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
           disabled={resourceStatus === ResourceStatus.Saving}
         >
           {saveButtonIcon()}
-          {isEdit() ? 'Update' : 'Add'}
+          {buttonName()}
         </Button>,
       ]}
       {...modalProps || {}}

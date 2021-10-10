@@ -1,4 +1,6 @@
-import { Participants, Subjects, Assessors } from './Participants'
+import {
+  Participants, Subjects, Assessors, SmsInvites,
+} from './Participants'
 import AssessmentsReports from './AssessmentsReports'
 import RegistrationCodes from './RegistrationCodes'
 import { Datasheet } from './Datasheet'
@@ -14,6 +16,7 @@ const routes = [
     routes: [
       { path: '/participants/subjects', component: Subjects },
       { path: '/participants/assessors', component: Assessors },
+      { path: '/participants/sms_invites', component: SmsInvites },
     ],
   },
   { path: '/assessments_reports/*', component: AssessmentsReports },

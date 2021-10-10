@@ -31,8 +31,6 @@ module UsersResults
         compute_common_assessment_scoring
       end
 
-      ::UsersResults::GenerateReports.call!(user_result, current_user)
-
       broadcast :ok, user_result
     end
 

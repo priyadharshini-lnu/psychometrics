@@ -5,6 +5,7 @@ require 'rails_helper'
 describe Reports::GetDataConfigurationResources do
   let(:factor1) { create(:factor) }
   let(:factor2) { create(:factor) }
+  let(:factor3) { create(:factor) }
   let!(:factor1_alias) { create(:factors_alias, factor: factor1, report: report, name: 'alias_factor') }
   let(:question) { create(:question) }
   let(:report) do
@@ -13,7 +14,14 @@ describe Reports::GetDataConfigurationResources do
         {
           'data' => [
             { 'type' => 'normed_factor', 'label' => 'Reasonify', 'factorId' => factor1.id },
-            { 'type' => 'normed_factor', 'label' => 'Reasonify', 'factorId' => factor2.id }
+            { 'type' => 'normed_factor', 'label' => 'Reasonify', 'factorId' => factor2.id },
+            {
+              'type' => 'formula',
+              'formula' => {
+                'op' => 'AVERAGE',
+                'args' => [{ 'type' => 'normed_factor', 'label' => 'Reasonify', 'factorId' => factor3.id }]
+              }
+            }
           ]
         },
         {
@@ -30,6 +38,7 @@ describe Reports::GetDataConfigurationResources do
     expected = {}
     expected[factor1.id] = factor1_alias.name
     expected[factor2.id] = factor2.name
+    expected[factor3.id] = factor3.name
     expect(result[:factor_names]).to eq(expected)
   end
 

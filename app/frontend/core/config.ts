@@ -18,6 +18,7 @@ export const defaultState: ConfigState = {
 
 export const getFeatures = (state): FeaturesFlags => _.get(state, ['config', 'features'], {})
 export const isProjectMigrated = (state: RootState): boolean => _.get(state, ['config', 'isProjectMigrated'])
+export const availableLocales = (state: RootState): string[] => _.get(state, ['config', 'availableLocales'], [])
 
 const HANDLERS = {}
 

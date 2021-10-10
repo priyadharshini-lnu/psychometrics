@@ -7,9 +7,9 @@ import FlowCondition from './FlowCondition'
 const FlowElement = function (attrs = {}, parentPath = null, index = 0) {
   this.uuid = attrs.uuid || genUUID()
   this.type = attrs.type
-  this.parent = {} // ?
+  this.parent = {}
   this.props = attrs.props || {}
-  this.path = parentPath ? parentPath.concat(index) : [index]
+  this.path = _.isArray(parentPath) ? parentPath.concat(index) : [index]
   if (this.props.conditions && this.props.conditions.length) {
     this.props.conditions = _.map(this.props.conditions, condition => new FlowCondition(condition))
   }
@@ -26,7 +26,7 @@ _.extend(FlowElement.prototype, {
   },
 
   newElement () {
-    this.elements.push(new FlowElement({}, this))
+    this.elements.push(new FlowElement({}, this.path))
   },
 
   remove (el) {
