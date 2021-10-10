@@ -1,48 +1,19 @@
-/**
- * @template P props
- */
-export interface BasePreviewModel<P = {}, T = ''> extends BaseModel<P, T> {}
+import { BaseProps } from '../Base'
 
-/**
- * @template P props
- */
-export interface BasePropertiesModel<P = {}, T = ''> extends BaseModel<P, T> {
+export interface BasePreviewModel<Props = {}, Type = ''>
+  extends BaseModel<Props, Type> {}
+
+export interface BasePropertiesModel<Props = {}, Type = ''>
+  extends BaseModel<Props, Type> {
   update: () => void
 }
 
-/**
- * @template P Question props
- */
-interface BaseModel<P = {}, T = ''> {
+interface BaseModel<Props = {}, Type = ''> {
   id: number
   name: string | null
   position: number
-  type: T
+  type: Type
   removed: boolean
   assessment_id: number
-  props: BaseProps<T> & P
+  props: BaseProps<Type> & Props
 }
-
-interface BaseProps<T = ''> {
-  type: T extends 'Table'
-    ? TablePropTypes
-    : T extends 'Graph'
-    ? GraphPropTypes
-    : ''
-  position: {
-    left: number
-    top: number
-    width: number
-    height: number
-  }
-  style: {
-    backgroundColor: string
-    fontSize: string
-    fontFamily: string
-    width: string
-  }
-}
-
-type TablePropTypes = 'GapAssessment' | 'Competencies'
-
-type GraphPropTypes = 'Bubble'

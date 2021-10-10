@@ -1,8 +1,11 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import merge from 'lodash/merge'
+import React, { useEffect, useRef } from 'react'
 import Highcharts from 'highcharts'
-import styles from './Bar.scss'
+import { Chart } from 'highcharts-v9'
+
+import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
+import { SourceModel } from 'modules/reports/interfaces/graphs/Base'
+import styles from './styles.scss'
 import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
@@ -14,32 +17,31 @@ const Formats = {
   Percentile: '{point.y:.1f}%',
 }
 
-class Bar extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-    animation: PropTypes.bool,
-  }
+interface Props {
+  model: PropertiesModel
+  animation?: boolean
+}
 
-  static defaultProps = {
-    animation: false,
-  }
+type Label = {
+  value: string
+}
 
-  componentDidMount () {
-    this.renderChart()
-  }
+export const Bar: React.FC<Props> = ({ model, animation = false }) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const chartRef = useRef<Chart>()
 
-  componentDidUpdate () {
-    this.renderChart()
-  }
+  useEffect(() => {
+    renderChart()
+  })
 
-  componentWillUnmount () {
-    if (this.chart) {
-      this.chart.destroy()
-    }
-  }
+  useEffect(
+    () => () => {
+      chartRef.current && chartRef.current.destroy()
+    },
+    [],
+  )
 
-  get3DOptions () {
-    const { model } = this.props
+  const get3DOptions = () => {
     if (model.props.graphicalRepresentation === '3D') {
       return {
         enabled: true,
@@ -54,41 +56,49 @@ class Bar extends Component {
     }
   }
 
-  changeBarLabel = (collectionName, label) => {
-    const { model } = this.props
+  const changeBarLabel = (collectionName: string, label: Label) => {
     changeLabel(model, label.value, collectionName)
   }
 
-  renderChart () {
-    const { model, animation } = this.props
-    if (this.chart) {
-      this.chart.destroy()
-      this.chart = null
+  const renderChart = () => {
+    if (chartRef.current) {
+      chartRef.current.destroy()
+      chartRef.current = undefined
     }
-    if (!model.props.source) { return null }
+    if (!model.props.source) {
+      return null
+    }
 
     const sourceType = model.getSourceType()
-    const sourceModel = model.getSourceModel()
-    if (sourceType === 'EmbeddedData' && !sourceModel.name) { return null }
+    const sourceModel: SourceModel = model.getSourceModel()
+    if (sourceType === 'EmbeddedData' && !sourceModel.name) {
+      return null
+    }
     const data = Series[sourceType]
-    if (!data) { return null }
+    if (!data) {
+      return null
+    }
     const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat)
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
-    if (!series.length) { return null }
+    if (!series.length) {
+      return null
+    }
     let legendVerticalPosition = 'Bottom'
     let legendHorizontalPosition = 'Middle'
     if (model.props.legendPosition) {
       [legendVerticalPosition, legendHorizontalPosition] = model.props.legendPosition.split(' ')
     }
-    if (legendHorizontalPosition === 'Middle') { legendHorizontalPosition = 'Center' }
-    this.chart = Highcharts.chart(
-      this.container,
-      _.merge(
-        ChartOptions(model, e => this.changeBarLabel(data.collection, e), this.props, format),
+    if (legendHorizontalPosition === 'Middle') {
+      legendHorizontalPosition = 'Center'
+    }
+    chartRef.current = Highcharts.chart(
+      containerRef.current,
+      merge(
+        ChartOptions(model, e => changeBarLabel(data.collection, e), { model, animation }, format),
         {
           chart: {
             type: model.props.graphicalPosition === 'Vertical' ? 'column' : 'bar',
-            options3d: this.get3DOptions(),
+            options3d: get3DOptions(),
           },
           animation,
           legend: {
@@ -114,13 +124,8 @@ class Bar extends Component {
         },
       ),
     )
+    return null
   }
 
-  render () {
-    return (
-      <div ref={(ref) => { this.container = ref }} className={styles.graph} />
-    )
-  }
+  return <div ref={containerRef} className={styles.graph} />
 }
-
-export default Bar

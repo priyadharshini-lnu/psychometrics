@@ -1692,6 +1692,29 @@ en:
       add: Add Report
       download: Download report
       view: View Report
+    builder:
+      graph:
+        properties:
+          barWeight: Bar Weight
+          dataFormat: Data Fromat
+          graphOption3D: 3D
+          graphOptionStandard: Standard
+          graphSubType: Graph Subtype
+          graphTypeHorizontal: Horizontal
+          graphTypeVertical: Vertical
+          hideXAxisLine: Hide X-axis gridlines
+          hideXAxisTitle: Hide X-axis title
+          hideYAxisLine: Hide Y-axis gridlines
+          legendPosition: Legend Position
+          maxValueLabel: Max Value (number)
+          maxValueLabelPlaceholder: Max Value
+          positionBottomLeft: Bottom Left
+          positionBottomMiddle: Bottom Middle
+          positionBottomRight: Bottom Right
+          positionTopLeft: Top Left
+          positionTopMiddle: Top Middle
+          positionTopRight: Top Right
+          showLegend: Show Legend
     modules:
       common:
         all_factors: All factors

@@ -1,6 +1,8 @@
 import merge from 'lodash/merge'
 
-export default function ChartOptions (model, changeLabel, props, format) {
+import { PropertiesModel } from 'modules/reports/interfaces/graphs/StackedBar'
+
+export default function ChartOptions (model: PropertiesModel) {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
   const [...colorsObjectList] = model.props.colors
   let xAxisOptions = {}
@@ -16,37 +18,26 @@ export default function ChartOptions (model, changeLabel, props, format) {
   }
   return {
     chart: {
-      type: 'column',
-      height: model.props.position.height,
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
-    title: false,
-    subtitle: false,
     colors: colorsObjectList.map(colorObj => colorObj.color),
-    credits: { enabled: false },
+    credits: {
+      enabled: false,
+    },
+    title: false,
+    tooltip: false,
     xAxis: merge(xAxisOptions, {
-      type: 'category',
       labels: {
         style: {
           fontSize: fontSize || '11px',
           color: color || '#000',
           fontFamily,
         },
-        events: {
-          click (e) {
-            e.stopPropagation()
-            changeLabel(this)
-          },
-        },
-        enabled: !model.props.xAxisLabelHide,
       },
+      categories: [''],
     }),
     yAxis: {
-      max: model.props.maxValue,
       gridLineWidth: model.props.yAxisLinesHide ? 0 : 1,
-      title: {
-        text: null,
-      },
       labels: {
         style: {
           fontSize: fontSize || '11px',
@@ -54,19 +45,17 @@ export default function ChartOptions (model, changeLabel, props, format) {
           fontFamily,
         },
       },
+      min: 0,
+      max: 100,
+      title: false,
     },
-    plotOptions: {
-      series: {
-        animation: props.animation,
-        borderWidth: 0,
-        dataLabels: {
-          enabled: !!model.propsshowValues,
-          format,
-        },
+    legend: {
+      reversed: true,
+      itemStyle: {
+        fontSize: fontSize || '11px',
+        color: color || '#000',
+        fontFamily,
       },
-    },
-    tooltip: {
-      enabled: false,
     },
   }
 }
