@@ -208,7 +208,7 @@ const HANDLERS = {
   [RESET]: (state: State) => ({
     ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
-  [SAVE_RESULTS]: (state: State, {
+  [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
       expired, current_block: currentBlock, factors, scoring, translations,
     },

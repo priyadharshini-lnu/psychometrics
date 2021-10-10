@@ -8,7 +8,6 @@ import ResourceFormModal from 'components/ResourceFormModal'
 const { I18n } = window
 
 interface Props {
-  projectId: string
   campaignId: string
   close(): void
   user?: {

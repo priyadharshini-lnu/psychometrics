@@ -7,9 +7,7 @@ import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import _ from 'lodash'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
-import Report from 'modules/admin/modules/campaigns/interfaces/Report'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -32,8 +30,6 @@ const AssessmentList: React.FC<Props> = ({
     permissions,
   },
   match: { params: { projectId, campaignId } },
-  currentUser,
-  reports,
   openModal,
   activateUniversalLink,
   rescoreResponses,
@@ -178,8 +174,6 @@ const AssessmentList: React.FC<Props> = ({
                 menu={
                   ActionsMenu({
                     assessment,
-                    currentUser,
-                    reports,
                     campaignId: parsedCampaignId,
                     openModal,
                     rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
@@ -207,8 +201,6 @@ const AssessmentList: React.FC<Props> = ({
 interface ActionMenuProps {
   campaignId: number
   assessment: Assessment
-  currentUser: User
-  reports: Report[]
   openModal(name: string, data?: { projectId?: number, assessment?: Assessment,
     campaignId: number, campaignAssessmentId: number }): void
   rescoreResponses(): void

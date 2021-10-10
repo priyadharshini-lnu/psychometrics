@@ -346,7 +346,6 @@ const AdminsComponent: FC<Props> = ({
           drawerMode === DrawerMode.Add || drawerMode === DrawerMode.Edit
         }
         isEditMode={drawerMode === DrawerMode.Edit}
-        projectId={projectId}
         campaignId={campaignId}
         adminId={drawerAdminId}
         handleClose={handleDrawerClose}

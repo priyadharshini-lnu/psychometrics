@@ -56,7 +56,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 interface OwnProps {
   isVisible: boolean
   isEditMode: boolean
-  projectId: number
   campaignId: number
   adminId: string
   handleClose: () => void

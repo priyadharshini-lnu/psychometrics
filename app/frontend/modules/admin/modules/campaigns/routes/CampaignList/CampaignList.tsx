@@ -197,12 +197,12 @@ const CampaignList: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.listing.assessments')}
               key="assessments"
-              render={({ assessments }) => <ResourcesTag resources={assessments} type="assessments" />}
+              render={({ assessments }) => <ResourcesTag resources={assessments} />}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.reports')}
               key="reports"
-              render={({ reports }) => <ResourcesTag resources={reports} type="reports" />}
+              render={({ reports }) => <ResourcesTag resources={reports} />}
             />
             <Column
               title={I18n.t('administration.campaigns.actions')}
@@ -258,7 +258,6 @@ interface Resource {
 
 interface ResourcesProps {
   resources: Resource[]
-  type: string
 }
 
 const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (

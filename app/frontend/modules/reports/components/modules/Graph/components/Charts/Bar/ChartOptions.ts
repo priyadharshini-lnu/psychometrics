@@ -10,7 +10,7 @@ type Props = {
 type changeLabelFun = (e: Highcharts.Axis) => void
 
 export default function ChartOptions (
-  model: PropertiesModel,
+  { ...model }: PropertiesModel,
   changeLabel: changeLabelFun,
   props: Props,
   format: string,

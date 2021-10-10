@@ -5,7 +5,7 @@ import {
   exportNormedResults, exportRawFactorScores, exportExternalResults,
 } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from 'modules/admin/core/ui/modals'
-import { RootState } from 'modules/admin/core/rootReducers.ts'
+import { RootState } from 'modules/admin/core/rootReducers'
 
 const connecter = connect(
   (state: RootState) => ({
