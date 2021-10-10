@@ -51,7 +51,6 @@ const TextEntry: FC<Props> = ({ model }) => {
     <section>
       <div className="mt-4">
         <TextEditor
-          model={model}
           value={questionText}
           onChange={handleOnTextChange}
         />
