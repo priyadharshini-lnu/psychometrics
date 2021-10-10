@@ -3,6 +3,10 @@
 module Api
   module V1
     class ProjectsController < Api::V1::BaseController
+      def show
+        render json: project, serializer: Api::V1::ProjectSerializer
+      end
+
       def create
         form = Api::V1::Projects::CreateForm.from_params(params)
         if form.valid?

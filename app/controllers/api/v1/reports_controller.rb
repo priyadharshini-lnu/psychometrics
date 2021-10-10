@@ -60,6 +60,18 @@ module Api
           end
       end
 
+      def update
+        user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
+        user_report.update!(user_report_params)
+        render json: user_report, serializer: Api::V1::UserReportSerializer
+      end
+
+      def destroy
+        user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
+        user_report.destroy!
+        render json: user_report, serializer: Api::V1::UserReportSerializer
+      end
+
       private
 
       def campaign_id
@@ -68,6 +80,10 @@ module Api
 
       def serialization_params
         params.permit(:include_factors, :include_occupations, :report, :since).to_h.symbolize_keys
+      end
+
+      def user_report_params
+        params.permit(:user_access, :asessor_access)
       end
 
       def no_config_message(report_id)

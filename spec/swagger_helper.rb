@@ -137,6 +137,23 @@ RSpec.configure do |config|
           },
           required: %w[email first_name last_name campaign_ids]
         },
+        GetUser: {
+          type: 'object',
+          items: {
+            first_name: { type: 'string', 'x-nullable': true },
+            last_name: { type: 'string', 'x-nullable': true },
+            email: { type: 'string' },
+            campaign_ids: {
+              type: 'array',
+              items: { type: 'integer' },
+              'x-nullable': true,
+              description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
+, "campaigns" will be used'
+            },
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
+          },
+          required: %w[email first_name last_name campaign_ids]
+        },
         UpdatedUser: {
           type: 'object',
           properties: {

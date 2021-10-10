@@ -3,6 +3,15 @@
 module Api
   module V1
     class UsersController < Api::V1::BaseController
+      def index
+        user = project.client.users.find_by(email: params[:email])
+        if user
+          render json: user, serializer: Api::V1::UserSerializer
+        else
+          raise Errors::Api::ResourceNotFoundError, "User with email=#{params[:email]} was not found"
+        end
+      end
+
       def create
         normalized_params = API::NormalizeCampaignParams.call!(params)
         form = Api::V1::Users::CreateForm.from_params(normalized_params).with_context(project: project)
