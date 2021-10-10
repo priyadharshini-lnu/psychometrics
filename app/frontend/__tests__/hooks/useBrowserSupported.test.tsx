@@ -74,8 +74,8 @@ test('It should show correct minimum browser support values for unsupported feat
 
   expect(result.current[0]).toBeFalsy()
   expect(result.current[1]).toEqual({
-    and_chr: 91,
-    and_ff: 89,
+    and_chr: 92,
+    and_ff: 90,
     chrome: 50,
     edge: 17,
     firefox: 44,
