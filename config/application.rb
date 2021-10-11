@@ -39,7 +39,7 @@ module Psychometrics
     ).to_s
 
     config.to_prepare do
-      Devise::Mailer.layout 'end_user_email' # email.haml or email.erb
+      Devise::Mailer.layout '/mailer/layouts/end_user_email'
     end
 
     config.middleware.use SetLocaleMiddleware
