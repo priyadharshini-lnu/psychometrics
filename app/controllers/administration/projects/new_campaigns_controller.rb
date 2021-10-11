@@ -54,8 +54,6 @@ module Administration
       end
 
       def show
-        authorize(Campaign, nil)
-
         respond_to do |format|
           format.html { render :index }
           format.json do

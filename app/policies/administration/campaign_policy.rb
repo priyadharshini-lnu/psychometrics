@@ -7,7 +7,7 @@ module Administration
     end
 
     def show?
-      @user.is?(:superadmin, :client_admin, :project_admin)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id: project_id)
     end
 
     def edit?
@@ -108,7 +108,7 @@ module Administration
     end
 
     def fetch_campaign_instructions?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end
 
     def update_campaign_options?
