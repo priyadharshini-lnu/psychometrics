@@ -2,7 +2,7 @@
 
 module Reports
   class BuildResults < BaseCommand
-    attr_reader :report, :users_results, :resources
+    attr_reader :report, :users_results, :resources, :refs
 
     CLASS_MAP = {
       user_data: 'Reports::ResultTypes::User',
@@ -13,20 +13,32 @@ module Reports
       ranked_occupations: 'Reports::ResultTypes::RankedOccupations',
       survey_response: 'Reports::ResultTypes::Survey',
       assign: 'Reports::ResultTypes::Assign',
-      mapped_value: 'Reports::ResultTypes::MappedValue'
+      mapped_value: 'Reports::ResultTypes::MappedValue',
+      ref: 'Reports::ResultTypes::Ref'
     }.freeze
 
     def initialize(report, users_results, data = nil)
       @report = report
       @users_results = users_results
       @resources = data || ::Reports::GetDataConfigurationResources.call!(report)
+      @refs = {}
     end
 
     def call
+      calculate_refs
       result = report.flat_data_configuration.map do |data|
         CLASS_MAP[data['type'].to_sym].constantize.call(self, data)
       end
       broadcast :ok, result
+    end
+
+    def calculate_refs
+      @refs = {}
+      refs_list = report.data_configuration['refs'] || []
+      refs_list.each do |data|
+        key = data['ref_id']
+        @refs[key] = CLASS_MAP[data['type'].to_sym].constantize.call(self, data)
+      end
     end
 
     def find_user_result_by(assessment_id)

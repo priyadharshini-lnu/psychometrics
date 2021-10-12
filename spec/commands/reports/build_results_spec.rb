@@ -147,8 +147,11 @@ describe Reports::BuildResults do
 
       context 'normal flow' do
         before(:each) do
-          allow(data).to receive(:dig).with('formula', 'args').and_return([{ 'type' => 'normed_factor' }])
-          allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return(value: [1, 2, 3])
+          normed_factor_arg = { 'type' => 'normed_factor' }
+          allow(data).to receive(:dig).with('formula', 'args').and_return(Array.new(3, normed_factor_arg))
+          allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return(
+            { value: 1 }, { value: 2 }, { value: 3 }
+          )
         end
 
         it 'AVERAGE' do
@@ -202,6 +205,7 @@ describe Reports::BuildResults do
       let(:data) do
         {
           'type' => 'mapped_value',
+          'id' => 'overall_aspiration_score',
           'label' => 'Overall Aspiration Score',
           'source' => {
             'type' => 'formula',
@@ -255,11 +259,60 @@ describe Reports::BuildResults do
         expect(::Reports::GetDataConfigurationResources).to receive(:call!).
           and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
         is_expected.to eq(
-          key: 'mapped_value',
+          key: 'overall_aspiration_score',
           name: 'Overall Aspiration Score',
           value: 4,
           config_data: data
         )
+      end
+    end
+
+    context 'Ref' do
+      let(:data_configuration) do
+        {
+          "refs": [
+            {
+              "ref_id": 'factor_x',
+              "type": 'normed_factor',
+              "assessmentId": user_result.assessment.id,
+              "factorId": 1
+            }
+          ],
+          "sections": [
+            {
+              "data": [
+                {
+                  "type": 'ref',
+                  "ref": 'factor_x'
+                }
+              ]
+            }
+          ]
+        }
+      end
+
+      let(:report) { create(:report, data_configuration: data_configuration) }
+      before(:each) do
+        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+          and_return({ factor_names: { 1 => 'Test factor1' } })
+      end
+
+      subject { described_class.call!(report, [user_result]) }
+
+      it 'resolves to the ref' do
+        is_expected.to eq([
+                            {
+                              config_data: {
+                                'assessmentId' => user_result.assessment.id,
+                                'factorId' => 1,
+                                'ref_id' => 'factor_x',
+                                'type' => 'normed_factor'
+                              },
+                              key: 1,
+                              name: 'Test factor1',
+                              value: 3
+                            }
+                          ])
       end
     end
   end
