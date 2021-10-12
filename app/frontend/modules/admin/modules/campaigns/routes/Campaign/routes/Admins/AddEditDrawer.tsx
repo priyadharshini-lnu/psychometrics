@@ -118,12 +118,6 @@ const AddEditDrawerComponent: FC<Props> = ({
       [`projects-${GrantType.view}`]: admin?.grants?.data?.projects?.includes(
         GrantType.view
       ),
-      [`assessments-${GrantType.view}`]: admin?.grants?.data?.assessments?.includes(
-        GrantType.view
-      ),
-      [`assessments-${GrantType.manage}`]: admin?.grants?.data?.assessments?.includes(
-        GrantType.manage
-      ),
       [`campaigns-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
         GrantType.view
       ),
@@ -140,12 +134,6 @@ const AddEditDrawerComponent: FC<Props> = ({
         admin?.grants?.data?.communications?.includes(GrantType.view),
       [`communications-${GrantType.manage}`]:
         admin?.grants?.data?.communications?.includes(GrantType.manage),
-      [`reports-${GrantType.view}`]: admin?.grants?.data?.reports?.includes(
-        GrantType.view
-      ),
-      [`reports-${GrantType.manage}`]: admin?.grants?.data?.reports?.includes(
-        GrantType.manage
-      ),
       [`results-${GrantType.view_report}`]:
         admin?.grants?.data?.results?.includes(GrantType.view_report),
       [`results-${GrantType.report_data}`]:
@@ -221,12 +209,10 @@ const AddEditDrawerComponent: FC<Props> = ({
       projects: grants?.projects ?? [],
       campaigns: grants?.campaigns ?? [],
       communications: grants?.communications ?? [],
-      reports: grants?.reports ?? [],
       results: grants?.results ?? [],
       assessors: grants?.assessors ?? [],
       registrationCodes: grants?.registrationCodes ?? [],
       datasheets: grants?.datasheets ?? [],
-      assessments: grants?.assessments ?? [],
     }
 
     let userAttributes:
@@ -470,40 +456,6 @@ const AddEditDrawerComponent: FC<Props> = ({
               <Col span={4}>
                 <Typography.Text strong>
                   {I18n.t(
-                    'administration.administrators.drawers.edit.permission_assessment',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`assessments-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`assessments-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
                     'administration.administrators.drawers.edit.permission_assessors',
                   )}
                 </Typography.Text>
@@ -691,40 +643,6 @@ const AddEditDrawerComponent: FC<Props> = ({
                 </Form.Item>
                 <Form.Item
                   name={`registrationCodes-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_report',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`reports-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`reports-${GrantType.manage}`}
                   valuePropName="checked"
                   noStyle
                 >
