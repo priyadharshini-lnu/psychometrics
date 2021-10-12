@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 
-import { Admins as CampaignAdmins } from 'modules/admin/modules/Admins'
+import { Admins as ThreeSixtyAdmins } from 'modules/admin/modules/Admins'
 
 import { ParentResourceType } from 'modules/admin/modules/Admins/constants'
 
 export const Admins: FC = () => (
-  <CampaignAdmins parentResourceType={ParentResourceType.Campaign} />
+  <ThreeSixtyAdmins parentResourceType={ParentResourceType.Campaign} />
 )

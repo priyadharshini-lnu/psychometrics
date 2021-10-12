@@ -5,6 +5,7 @@ import { connectRouter } from 'connected-react-router'
 import tables from 'modules/admin/core/filterAndPagination/reducers'
 import preview from 'modules/survey/core/preview'
 import connection from 'core/connection'
+import { reducer as adminsReducer } from 'modules/admin/modules/Admins/core'
 import campaignReducers from '../modules/campaigns/core'
 import { reducer as smtpSettingReducer } from '../modules/projects/core/smtpSetting'
 import subjects from '../modules/threeSixtyCampaign/core/subjects'
@@ -33,6 +34,7 @@ import datasheetReducers from '../modules/DatasheetManagement/core'
 
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
+  admins: adminsReducer,
   threeSixtyCampaign: combineReducers({
     subjects,
     evaluators,

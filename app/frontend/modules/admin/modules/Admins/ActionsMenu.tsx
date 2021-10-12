@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react'
 import { Button, Menu, Tooltip } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 
-import { Admin } from 'modules/admin/modules/campaigns/core/admins'
+import { Admin } from 'modules/admin/modules/Admins/core'
 
 import ConditionalDropdown from 'components/ConditionalDropdown'
 

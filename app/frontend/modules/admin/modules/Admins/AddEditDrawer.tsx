@@ -28,10 +28,10 @@ import {
   CreateRequest as CreateAdminRequest,
   create as createAdmin,
   CREATE as CREATE_ADMIN,
-} from 'modules/admin/modules/campaigns/core/admins'
+} from 'modules/admin/modules/Admins/core'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { GrantType } from './constants'
+import { GrantType, ParentResourceType } from './constants'
 
 const { I18n } = window
 
@@ -55,6 +55,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
   isVisible: boolean
+  parentResourceType: ParentResourceType
+  parentResourceId: number
   isEditMode: boolean
   campaignId: number
   adminId: string
@@ -65,6 +67,8 @@ type Props = PropsFromRedux & OwnProps
 
 const AddEditDrawerComponent: FC<Props> = ({
   isVisible,
+  parentResourceType,
+  parentResourceId,
   isEditMode,
   campaignId,
   adminId,
@@ -93,9 +97,9 @@ const AddEditDrawerComponent: FC<Props> = ({
     form.resetFields()
 
     if (isEditMode) {
-      fetchAdmin(campaignId, parseInt(adminId, 10))
+      fetchAdmin(parentResourceType, parentResourceId, parseInt(adminId, 10))
     }
-  }, [adminId, campaignId, isEditMode])
+  }, [adminId, parentResourceId, isEditMode])
 
   const drawerTitle = isEditMode
     ? I18n.t('administration.administrators.drawers.view.title_campaign_edit')
@@ -126,9 +130,8 @@ const AddEditDrawerComponent: FC<Props> = ({
       [`campaigns-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
         GrantType.view
       ),
-      [`campaigns-${GrantType.manage}`]: admin?.grants?.data?.campaigns?.includes(
-        GrantType.manage
-      ),
+      [`campaigns-${GrantType.manage}`]:
+        admin?.grants?.data?.campaigns?.includes(GrantType.manage),
       [`campaigns-${GrantType.manage_users}`]:
         admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
       [`campaigns-${GrantType.manage_options}`]:
@@ -186,7 +189,7 @@ const AddEditDrawerComponent: FC<Props> = ({
     form.resetFields()
 
     if (email.trim().length !== 0) {
-      searchAdmin(campaignId, email)
+      searchAdmin(parentResourceType, parentResourceId, email)
     }
   }
 
@@ -258,7 +261,8 @@ const AddEditDrawerComponent: FC<Props> = ({
     try {
       if (isEditMode) {
         await updateAdmin(
-          campaignId,
+          parentResourceType,
+          parentResourceId,
           admin?.id ?? 0,
           updateData as UpdateAdminRequest,
         )
@@ -268,7 +272,11 @@ const AddEditDrawerComponent: FC<Props> = ({
           }),
         )
       } else {
-        await createAdmin(campaignId, updateData as CreateAdminRequest)
+        await createAdmin(
+          parentResourceType,
+          parentResourceId,
+          updateData as CreateAdminRequest,
+        )
         message.success(
           I18n.t('administration.administrators.drawers.edit.create_success', {
             name: `${firstName} ${lastName}`,

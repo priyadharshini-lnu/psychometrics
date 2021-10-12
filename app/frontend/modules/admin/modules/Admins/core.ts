@@ -6,6 +6,7 @@ import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { ParentResourceType } from './constants'
 
 const AdminInfoTR = {
   id: t.union([t.null, t.number]),
@@ -68,7 +69,8 @@ const FetchResponseTR = t.type({
 type FetchResponse = t.TypeOf<typeof FetchResponseTR>
 type FetchAction = ApiActionResponse<FetchResponse>
 export const fetch = (
-  campaignId: number,
+  parentResourceType: ParentResourceType,
+  parentResourceId: number,
   tableConfig: TableConfig,
 ): ApiAction<FetchResponse> => ({
   type: FETCH,
@@ -78,14 +80,15 @@ export const fetch = (
     camelize: true,
     tableConfig,
     typedResponse: FetchResponseTR,
-    url: `/administration/new_campaigns/${campaignId}/admins`,
+    url: `/administration/${parentResourceType}/${parentResourceId}/admins`,
   },
 })
 
 export const FETCH_SINGLE = 'campaigns/admins/FETCH_SINGLE_ADMIN'
 type FetchSingleAction = ApiActionResponse<Admin>
 export const fetchSingle = (
-  campaignId: number,
+  parentResourceType: ParentResourceType,
+  parentResourceId: number,
   adminId: Admin['id'],
 ): ApiAction<Admin> => ({
   type: FETCH_SINGLE,
@@ -94,7 +97,36 @@ export const fetchSingle = (
     loader: true,
     camelize: true,
     typedResponse: AdminTR,
-    url: `/administration/new_campaigns/${campaignId}/admins/${adminId}`,
+    url: `/administration/${parentResourceType}/${parentResourceId}/admins/${adminId}`,
+  },
+})
+
+export const CREATE = 'campaigns/admins/CREATE_ADMIN'
+export type CreateRequest = {
+  resource: {
+    userAttributes: {
+      email: Admin['email']
+      firstName: Admin['firstName']
+      lastName: Admin['lastName']
+    }
+    grantsAttributes: {
+      data: Admin['grants']['data']
+    }
+  }
+}
+export const create = (
+  parentResourceType: ParentResourceType,
+  parentResourceId: number,
+  body: CreateRequest,
+): ApiAction<UpdateResponse> => ({
+  type: CREATE,
+  request: {
+    method: 'post',
+    body,
+    loader: true,
+    camelize: true,
+    typedResponse: UpdateResponseTR,
+    url: `/administration/${parentResourceType}/${parentResourceId}/admins`,
   },
 })
 
@@ -109,7 +141,8 @@ const SearchResponseTR = t.type({
 type SearchResponse = t.TypeOf<typeof SearchResponseTR>
 type SearchAction = ApiActionResponse<SearchResponse>
 export const search = (
-  campaignId: number,
+  parentResourceType: ParentResourceType,
+  parentResourceId: number,
   email: Admin['email'],
 ): ApiAction<SearchResponse> => ({
   type: SEARCH,
@@ -121,23 +154,11 @@ export const search = (
     loader: true,
     camelize: true,
     typedResponse: SearchResponseTR,
-    url: `/administration/new_campaigns/${campaignId}/admins/find_or_create_user`,
+    url: `/administration/${parentResourceType}/${parentResourceId}/admins/find_or_create_user`,
   },
 })
 
 export const UPDATE = 'campaigns/admins/UPDATE_ADMIN'
-export type CreateRequest = {
-  resource: {
-    userAttributes: {
-      email: Admin['email']
-      firstName: Admin['firstName']
-      lastName: Admin['lastName']
-    }
-    grantsAttributes: {
-      data: Admin['grants']['data']
-    }
-  }
-}
 export type UpdateRequest = CreateRequest & {
   resource: {
     userAttributes: {
@@ -151,7 +172,8 @@ const UpdateResponseTR = t.type({
 })
 type UpdateResponse = t.TypeOf<typeof UpdateResponseTR>
 export const update = (
-  campaignId: number,
+  parentResourceType: ParentResourceType,
+  parentResourceId: number,
   adminId: Admin['id'],
   body: UpdateRequest,
 ): ApiAction<UpdateResponse> => ({
@@ -162,23 +184,7 @@ export const update = (
     loader: true,
     camelize: true,
     typedResponse: UpdateResponseTR,
-    url: `/administration/new_campaigns/${campaignId}/admins/${adminId}`,
-  },
-})
-
-export const CREATE = 'campaigns/admins/CREATE_ADMIN'
-export const create = (
-  campaignId: number,
-  body: CreateRequest,
-): ApiAction<UpdateResponse> => ({
-  type: CREATE,
-  request: {
-    method: 'post',
-    body,
-    loader: true,
-    camelize: true,
-    typedResponse: UpdateResponseTR,
-    url: `/administration/new_campaigns/${campaignId}/admins`,
+    url: `/administration/${parentResourceType}/${parentResourceId}/admins/${adminId}`,
   },
 })
 
@@ -189,7 +195,8 @@ const RemoveResponseTR = t.type({
 type RemoveResponse = t.TypeOf<typeof RemoveResponseTR>
 type RemoveAction = ApiActionResponse<RemoveResponse>
 export const remove = (
-  campaignId: number,
+  parentResourceType: ParentResourceType,
+  parentResourceId: number,
   adminId: Admin['id'],
 ): ApiAction<RemoveResponse> => ({
   type: REMOVE,
@@ -198,7 +205,7 @@ export const remove = (
     loader: true,
     camelize: true,
     typedResponse: RemoveResponseTR,
-    url: `/administration/new_campaigns/${campaignId}/admins/${adminId}`,
+    url: `/administration/${parentResourceType}/${parentResourceId}/admins/${adminId}`,
   },
 })
 
@@ -206,7 +213,8 @@ export const RESET_PASSWORD = 'campaigns/admins/RESET_PASSWORD'
 const ResetPasswordTR = t.literal('ok')
 type ResetPassword = t.TypeOf<typeof ResetPasswordTR>
 export const resetPassword = (
-  campaignId: number,
+  parentResourceType: ParentResourceType,
+  parentResourceId: number,
   adminId: Admin['id'],
 ): ApiAction<ResetPassword> => ({
   type: RESET_PASSWORD,
@@ -215,7 +223,7 @@ export const resetPassword = (
     loader: true,
     camelize: true,
     typedResponse: ResetPasswordTR,
-    url: `/administration/new_campaigns/${campaignId}/admins/${adminId}/reset_password`,
+    url: `/administration/${parentResourceType}/${parentResourceId}/admins/${adminId}/reset_password`,
   },
 })
 
@@ -256,9 +264,9 @@ const HANDLERS = {
   [REMOVE]: (state: State, { response }: RemoveAction) => removeFromList(state, response),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export const reducer = createReducer(HANDLERS, defaultState)
 
-export const getList = (state: RootState) => state.campaigns.admins.list
-export const getTotal = (state: RootState) => state.campaigns.admins.total
-export const getPermissions = (state: RootState) => state.campaigns.admins.permissions
-export const getCurrent = (state: RootState) => state.campaigns.admins.current
+export const getList = (state: RootState) => state.admins.list
+export const getTotal = (state: RootState) => state.admins.total
+export const getPermissions = (state: RootState) => state.admins.permissions
+export const getCurrent = (state: RootState) => state.admins.current

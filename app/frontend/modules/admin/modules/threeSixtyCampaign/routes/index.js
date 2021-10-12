@@ -2,6 +2,7 @@ import Participants from './Participants'
 import Messages from './Messages'
 import Reports from './Reports'
 import Datasheet from './Datasheet'
+import { Admins } from './Admins'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -21,6 +22,10 @@ const routes = [
         ],
       },
     ],
+  },
+  {
+    path: '/admins',
+    component: Admins,
   },
   {
     path: '/messages/options',

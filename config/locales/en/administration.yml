@@ -383,6 +383,7 @@ en:
       report_families: Report Bundles
       reports: Reports
       settings: Settings
+      smtp_settings: SMTP settings
       statistics: Statistics
       sub_campaigns: Sub Campaigns
       sub_factors: Sub-Factors

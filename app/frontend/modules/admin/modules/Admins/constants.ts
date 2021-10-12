@@ -22,3 +22,8 @@ export enum GrantType {
   reset_responses = 'reset_responses',
   rescrore_responses = 'rescore_responses',
 }
+
+export enum ParentResourceType {
+  Project = 'projects',
+  Campaign = 'new_campaigns',
+}

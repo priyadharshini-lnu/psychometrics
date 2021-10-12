@@ -16,9 +16,10 @@ import {
   FETCH_SINGLE as FETCH_CAMPAIGN_SINGLE_ADMINS,
   getCurrent as getCurrentAdmin,
   Admin,
-} from 'modules/admin/modules/campaigns/core/admins'
+} from 'modules/admin/modules/Admins/core'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { ParentResourceType } from './constants'
 
 const { I18n } = window
 
@@ -36,6 +37,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
   isVisible: boolean
+  parentResourceType: ParentResourceType
+  parentResourceId: number
   adminId: string
   projectId: number
   campaignId: number
@@ -47,6 +50,8 @@ type Props = OwnProps & PropsFromRedux
 
 const DetailsDrawerComponent: FC<Props> = ({
   isVisible,
+  parentResourceType,
+  parentResourceId,
   adminId,
   projectId,
   campaignId,
@@ -58,7 +63,7 @@ const DetailsDrawerComponent: FC<Props> = ({
 }) => {
   useEffect(() => {
     if (isVisible && adminId && adminId.length !== 0) {
-      fetchAdmin(campaignId, parseInt(adminId, 10))
+      fetchAdmin(parentResourceType, parentResourceId, parseInt(adminId, 10))
     }
   }, [adminId, campaignId])
 

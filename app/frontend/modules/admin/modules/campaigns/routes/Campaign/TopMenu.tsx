@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
@@ -10,8 +10,8 @@ import {
   SolutionOutlined,
 } from '@ant-design/icons'
 
-import routeUtils from 'utils/route'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
+import routeUtils from 'utils/route'
 
 const { I18n } = window
 
@@ -20,61 +20,67 @@ interface Props {
   currentUser: User
 }
 
-const ROUTES = [
-  '/participants',
-  '/assessments_reports',
-  '/registration_codes',
-  '/datasheet',
-  '/admins',
-  '/options',
-]
-
 const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
   const { pathname } = useLocation()
 
   const history = useHistory()
 
-  const onClick = ({ key }) => {
+  const handleOnSelect = ({ key }) => {
     const basePath = routeUtils.getBasePath(prefix)
-    history.push(`${basePath}${key}`)
+    history.push(`${basePath}/${key}`)
   }
 
-  const selectedActiveKeys = useMemo(() => {
-    const selectedMenu = ROUTES.find(route => pathname.includes(route))
-    const selectedMenuInArray = selectedMenu ? [selectedMenu] : []
-
-    return selectedMenuInArray
-  }, [pathname])
+  const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
+    if (pathname.includes('/participants')) {
+      return ['participants']
+    }
+    if (pathname.includes('/assessments_reports')) {
+      return ['assessments_reports']
+    }
+    if (pathname.includes('/registration_codes')) {
+      return ['registration_codes']
+    }
+    if (pathname.includes('/datasheet')) {
+      return ['datasheet']
+    }
+    if (pathname.includes('/admins')) {
+      return ['admins']
+    }
+    if (pathname.includes('/options')) {
+      return ['options']
+    }
+    return undefined
+  }
 
   return (
     <Menu
-      onSelect={onClick}
-      selectedKeys={selectedActiveKeys}
+      onSelect={handleOnSelect}
+      selectedKeys={getActiveMenuKey(pathname)}
       mode="horizontal"
       data-testid="top-level-navigation"
     >
-      <Menu.Item key="/participants">
+      <Menu.Item key="participants">
         <UserOutlined />
         Participants
       </Menu.Item>
-      <Menu.Item key="/assessments_reports">
-        <PieChartOutlined />
-        Assessments & Reports
-      </Menu.Item>
-      <Menu.Item key="/registration_codes">
-        <QrcodeOutlined />
-        Registration codes
-      </Menu.Item>
-      <Menu.Item key="/datasheet">
-        <DatabaseOutlined />
-        {I18n.t('common.model.datasheet')}
-      </Menu.Item>
-      <Menu.Item key="/admins">
+      <Menu.Item key="admins">
         <SolutionOutlined />
         {I18n.t('common.model.admins')}
       </Menu.Item>
+      <Menu.Item key="assessments_reports">
+        <PieChartOutlined />
+        Assessments & Reports
+      </Menu.Item>
+      <Menu.Item key="registration_codes">
+        <QrcodeOutlined />
+        Registration codes
+      </Menu.Item>
+      <Menu.Item key="datasheet">
+        <DatabaseOutlined />
+        {I18n.t('common.model.datasheet')}
+      </Menu.Item>
       {currentUser.permissions.manageOptions && (
-        <Menu.Item key="/options">
+        <Menu.Item key="options">
           <SettingOutlined />
           Options
         </Menu.Item>
