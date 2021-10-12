@@ -6299,6 +6299,13 @@ CREATE INDEX index_memberships_on_client_id ON public.memberships USING btree (c
 
 
 --
+-- Name: index_memberships_on_client_id_and_role_and_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_memberships_on_client_id_and_role_and_campaign_id ON public.memberships USING btree (client_id, role, campaign_id);
+
+
+--
 -- Name: index_memberships_on_hris; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8692,6 +8699,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210830121355'),
 ('20210913092232'),
 ('20210917131407'),
-('20210919105932');
+('20210919105932'),
+('20211011143418');
 
 
