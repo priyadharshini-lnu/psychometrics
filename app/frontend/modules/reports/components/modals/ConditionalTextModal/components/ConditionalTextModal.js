@@ -88,6 +88,7 @@ export class ConditionalTextModal extends Component {
         <Footer>
           <button className="btn btn-default" style={{ float: 'left' }} onClick={this.addCollection}>
             Add
+            {' '}
             {this.getBtnLabel(module.type)}
           </button>
           <button className="btn btn-success" onClick={this.save}>Save</button>

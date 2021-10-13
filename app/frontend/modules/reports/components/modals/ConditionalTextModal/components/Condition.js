@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
 import { SOURCE_TYPES } from 'modules/reports/models/Report'
+import { connect } from 'react-redux'
 import styles from './Condition.scss'
 import Types from './types'
 import DefaultValues from './DefaultValues'
@@ -138,4 +139,10 @@ class Condition extends Component {
   }
 }
 
-export default Condition
+const conenctor = connect(
+  state => ({
+    factors: state.report.builder.factors,
+  }),
+)
+
+export default conenctor(Condition)
