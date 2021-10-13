@@ -7,6 +7,7 @@ import {
   ADD_NORM_RULE, REMOVE_NORM_RULE, UPDATE_FLOW,
   TOGGLE_ENABLE_BACK, TOGGLE_ENABLE_PROGRESS, SAVE,
   SAVE_REQUEST, SAVE_FAILURE, UPDATE_EXTRA, SAVE_DATA_SHEET,
+  TOGGLE_ENABLE_SINGLE_QUESTION,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -30,6 +31,7 @@ export const defaultState = {
     offset: null,
   },
   trash: [],
+  options: {},
 }
 
 const HANDLERS = {
@@ -109,6 +111,9 @@ const HANDLERS = {
   [UPDATE_FLOW]: (state, { flow }) => ({ ...state, flow }),
   [TOGGLE_ENABLE_BACK]: state => setIn(state, ['enable_back'], !state.enable_back),
   [TOGGLE_ENABLE_PROGRESS]: state => setIn(state, ['enable_progress'], !state.enable_progress),
+  [TOGGLE_ENABLE_SINGLE_QUESTION]: state => setIn(
+    state, ['options', 'enable_single_question_page'], !state.options.enable_single_question_page,
+  ),
   [SAVE_REQUEST]: state => setIn(state, ['saving'], true),
   [SAVE_FAILURE]: state => setIn(state, ['saving'], false),
   [SAVE]: state => setIn(state, ['saving'], false),

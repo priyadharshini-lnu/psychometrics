@@ -35,6 +35,7 @@ Object {
     },
     "assessmentCategory": undefined,
     "assessmentTimedOut": false,
+    "backButtonPressed": false,
     "blocks": Object {
       "1": Object {
         "id": 1,
@@ -147,6 +148,7 @@ Object {
     "embeddedData": Object {},
     "enableBack": false,
     "enableProgress": true,
+    "enableSingleQuestionPage": undefined,
     "end": false,
     "errors": Object {},
     "expiryDate": undefined,
@@ -165,6 +167,7 @@ Object {
     "mediaResponses": undefined,
     "mediaUrl": "/assigns/1",
     "metaData": Object {},
+    "nextButtonPressed": false,
     "normRules": Array [],
     "normalizedTree": Object {
       "0": Object {
@@ -220,6 +223,7 @@ Object {
         "type": "Block",
       },
     },
+    "options": Object {},
     "prevPages": Array [],
     "questions": Object {
       "1": Object {
@@ -369,6 +373,7 @@ Object {
         "loaded": false,
         "name": "",
         "norm_rules": Array [],
+        "options": Object {},
         "propPanel": Object {
           "offset": null,
           "question": null,
@@ -428,6 +433,7 @@ Object {
     "activeDictationOnQuestion": 0,
     "allPages": Object {},
     "assessmentTimedOut": false,
+    "backButtonPressed": false,
     "blocks": Object {},
     "currentElement": null,
     "currentPage": 0,
@@ -438,6 +444,7 @@ Object {
     "embeddedData": Object {},
     "enableBack": false,
     "enableProgress": false,
+    "enableSingleQuestionPage": false,
     "end": false,
     "errors": Object {},
     "expiryDate": null,
@@ -453,7 +460,9 @@ Object {
     "locales": null,
     "mediaResponses": Array [],
     "mediaUrl": null,
+    "nextButtonPressed": false,
     "normalizedTree": Object {},
+    "options": Object {},
     "prevPages": Array [],
     "questions": Object {},
     "readOnly": false,
@@ -480,6 +489,7 @@ Object {
         "loaded": false,
         "name": "",
         "norm_rules": Array [],
+        "options": Object {},
         "propPanel": Object {
           "offset": null,
           "question": null,

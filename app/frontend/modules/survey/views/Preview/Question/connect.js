@@ -1,6 +1,9 @@
 import { connect } from 'react-redux'
 import { moduleConfig } from 'core/builder/assessment/question/selectors'
 import { getQuestionErrors, getQuestionResults } from 'core/preview/FlowProcessor/selectors'
+import {
+  nextPage,
+} from 'modules/survey/core/preview/FlowProcessor/actions'
 
 export default connect(
   ({ preview }, { model }) => ({
@@ -11,5 +14,6 @@ export default connect(
     result: getQuestionResults(preview, model.id),
   }),
   {
+    nextPage,
   },
 )

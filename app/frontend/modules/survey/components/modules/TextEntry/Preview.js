@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { SafeHTML } from 'components/SafeHTML'
-
 import {
   setDictationActiveOnQuestion,
   fetchAwsSpeechTextPresignedUrl,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
+
+
 import {
   getI18n,
   getQuestionWithActiveDictation,
@@ -19,6 +20,7 @@ const connector = connect(
   ({ preview }) => ({
     I18n: getI18n(preview),
     activeDictationOnQuestion: getQuestionWithActiveDictation(preview),
+    singleQuestionFlow: preview.enableSingleQuestionPage,
   }),
   {
     setDictationActiveOnQuestion,
@@ -41,6 +43,8 @@ class PreviewComponent extends Component {
       activeDictationOnQuestion,
       setDictationActiveOnQuestion,
       fetchAwsSpeechTextPresignedUrl,
+      nextPage,
+      singleQuestionFlow,
     } = this.props
     const View = Previews[type]
 
@@ -51,6 +55,8 @@ class PreviewComponent extends Component {
         activeDictationOnQuestion={activeDictationOnQuestion}
         setDictationActiveOnQuestion={setDictationActiveOnQuestion}
         fetchAwsSpeechTextPresignedUrl={fetchAwsSpeechTextPresignedUrl}
+        nextPage={nextPage}
+        singleQuestionFlow={singleQuestionFlow}
       />
     )
   }

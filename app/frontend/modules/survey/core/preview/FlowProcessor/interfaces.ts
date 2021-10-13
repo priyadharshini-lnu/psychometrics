@@ -23,6 +23,10 @@ export interface Question {
   isNeedToAddLtrManually?: boolean
 }
 
+export interface AssessmentOptions {
+  enable_single_question_page?: boolean
+}
+
 export interface Block {
   id: number;
   deleted?: boolean
@@ -85,6 +89,14 @@ export interface InProgressQuestion {
   progressState: string,
 }
 
+interface Options {
+  enableSingleQuestionPage?: boolean
+}
+
+interface OpitionsData {
+  enable_single_question_page?: boolean
+}
+
 export interface Highlight {
   id: string,
   assessmentId?: number,
@@ -101,6 +113,7 @@ export interface DefaultState {
   isThreesixty: boolean
   enableBack: boolean
   enableProgress: boolean
+  enableSingleQuestionPage: boolean
   linear: boolean
   end: boolean
   hideHiddenQuestions: boolean
@@ -144,6 +157,9 @@ export interface DefaultState {
   showScoringOnEndPage: boolean
   showQuestionScoring: boolean
   activeDictationOnQuestion: number
+  options: Options
+  backButtonPressed: boolean
+  nextButtonPressed: boolean
 }
 
 export interface MediaResponse {
@@ -194,6 +210,7 @@ export interface InitData {
   readOnly: boolean
   enable_back: boolean
   enable_progress: boolean
+  enable_single_question_page: boolean
   norm_rules: []
   locales: any
   agileAssetsUrl: string
@@ -204,6 +221,7 @@ export interface InitData {
   showScoringOnEndPage: boolean
   showQuestionScoring: boolean
   factors: []
+  options: OpitionsData
 }
 export interface Result {
   id: number

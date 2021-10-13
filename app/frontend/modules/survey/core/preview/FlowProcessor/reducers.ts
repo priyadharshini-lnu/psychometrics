@@ -17,7 +17,7 @@ import {
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING,
-  ACTIVE_DICTATION_ON_QUESTION,
+  ACTIVE_DICTATION_ON_QUESTION, NEXT_BUTTON_PRESSED, BACK_BUTTON_PRESSED,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -78,6 +78,10 @@ const defaultState: State = {
   showScoringOnEndPage: false,
   showQuestionScoring: false,
   activeDictationOnQuestion: 0,
+  enableSingleQuestionPage: false,
+  options: {},
+  nextButtonPressed: false,
+  backButtonPressed: false,
 }
 
 const HANDLERS = {
@@ -120,7 +124,8 @@ const HANDLERS = {
       resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
-      allPages: InitPages.run(data, (result.id || Date.now()).toString()),
+      enableSingleQuestionPage: data.options.enable_single_question_page,
+      allPages: InitPages.run(data, (result.id || Date.now()).toString(), data.options),
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
@@ -150,6 +155,7 @@ const HANDLERS = {
       scoring: result.scoring,
       showScoringOnEndPage: data.showScoringOnEndPage,
       showQuestionScoring: data.showQuestionScoring,
+      options: data.options || {},
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {
@@ -283,6 +289,8 @@ const HANDLERS = {
   [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
+  [NEXT_BUTTON_PRESSED]: (state: State) => ({ ...state, backButtonPressed: false, nextButtonPressed: true }),
+  [BACK_BUTTON_PRESSED]: (state: State) => ({ ...state, backButtonPressed: true, nextButtonPressed: false }),
   [FETCH_QUESTION_SCORING]: (state: State, { response }: FetchQuestionScoring) => ({
     ...state, scoring: response,
   }),
