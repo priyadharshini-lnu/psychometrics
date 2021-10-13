@@ -56,7 +56,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 interface OwnProps {
   isVisible: boolean
   isEditMode: boolean
-  projectId: number
+  isAddMode: boolean
   campaignId: number
   adminId: string
   handleClose: () => void
@@ -67,6 +67,7 @@ type Props = PropsFromRedux & OwnProps
 const AddEditDrawerComponent: FC<Props> = ({
   isVisible,
   isEditMode,
+  isAddMode,
   campaignId,
   adminId,
   handleClose,
@@ -81,22 +82,78 @@ const AddEditDrawerComponent: FC<Props> = ({
   admin,
 }) => {
   type FormDataType = {
-    [x: string]: string | boolean | undefined
     email: string
     firstName: string
     lastName: string
-  }
+  } & Record<string, string | boolean | undefined>
 
   const [form] = Form.useForm<FormDataType>()
 
   useEffect(() => {
-    // Clear existing form values if present
-    form.resetFields()
-
     if (isEditMode) {
       fetchAdmin(campaignId, parseInt(adminId, 10))
     }
-  }, [adminId, campaignId, isEditMode])
+  }, [isEditMode, adminId])
+
+  useEffect(() => {
+    form.resetFields()
+
+    if (isEditMode || isAddMode) {
+      if (admin && admin.email && admin.email.length !== 0) {
+        const formFieldsValues = {
+          email: admin.email,
+          firstName: admin?.firstName ?? '',
+          lastName: admin?.lastName ?? '',
+          [`clients-${GrantType.view}`]: admin?.grants?.data?.clients?.includes(
+            GrantType.view
+          ),
+          [`projects-${GrantType.view}`]:
+            admin?.grants?.data?.projects?.includes(GrantType.view),
+          [`assessors-${GrantType.view}`]:
+            admin?.grants?.data?.assessors?.includes(GrantType.view),
+          [`assessors-${GrantType.manage}`]:
+            admin?.grants?.data?.assessors?.includes(GrantType.manage),
+          [`campaigns-${GrantType.view}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.view),
+          [`campaigns-${GrantType.manage}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.manage),
+          [`campaigns-${GrantType.manage_users}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
+          [`campaigns-${GrantType.manage_options}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.manage_options),
+          [`campaigns-${GrantType.manage_messages}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.manage_messages),
+          [`communications-${GrantType.view}`]:
+            admin?.grants?.data?.communications?.includes(GrantType.view),
+          [`communications-${GrantType.manage}`]:
+            admin?.grants?.data?.communications?.includes(GrantType.manage),
+          [`datasheets-${GrantType.view}`]:
+            admin?.grants?.data?.datasheets?.includes(GrantType.view),
+          [`datasheets-${GrantType.manage}`]:
+            admin?.grants?.data?.datasheets?.includes(GrantType.manage),
+          [`registrationCodes-${GrantType.view}`]:
+            admin?.grants?.data?.registrationCodes?.includes(GrantType.view),
+          [`registrationCodes-${GrantType.manage}`]:
+            admin?.grants?.data?.registrationCodes?.includes(GrantType.manage),
+          [`results-${GrantType.view_report}`]:
+            admin?.grants?.data?.results?.includes(GrantType.view_report),
+          [`results-${GrantType.report_data}`]:
+            admin?.grants?.data?.results?.includes(GrantType.report_data),
+          [`results-${GrantType.raw_responses}`]:
+            admin?.grants?.data?.results?.includes(GrantType.raw_responses),
+          [`results-${GrantType.scores}`]:
+            admin?.grants?.data?.results?.includes(GrantType.scores),
+          [`results-${GrantType.reset_responses}`]:
+            admin?.grants?.data?.results?.includes(GrantType.reset_responses),
+          [`results-${GrantType.rescrore_responses}`]:
+            admin?.grants?.data?.results?.includes(
+              GrantType.rescrore_responses
+            ),
+        }
+        form.setFieldsValue(formFieldsValues)
+      }
+    }
+  }, [admin?.id])
 
   const drawerTitle = isEditMode
     ? I18n.t('administration.administrators.drawers.view.title_campaign_edit')
@@ -105,66 +162,6 @@ const AddEditDrawerComponent: FC<Props> = ({
   const actionButtonText = isEditMode
     ? I18n.t('administration.administrators.drawers.edit.update')
     : I18n.t('administration.administrators.drawers.edit.save')
-
-  let formInitialValues: FormDataType | undefined
-  if (admin && admin.email && admin.email.length !== 0) {
-    formInitialValues = {
-      email: admin.email,
-      firstName: admin?.firstName ?? '',
-      lastName: admin?.lastName ?? '',
-      [`clients-${GrantType.view}`]: admin?.grants?.data?.clients?.includes(
-        GrantType.view
-      ),
-      [`projects-${GrantType.view}`]: admin?.grants?.data?.projects?.includes(
-        GrantType.view
-      ),
-      [`campaigns-${GrantType.view}`]: admin?.grants?.data?.campaigns?.includes(
-        GrantType.view
-      ),
-      [`campaigns-${GrantType.manage}`]: admin?.grants?.data?.campaigns?.includes(
-        GrantType.manage
-      ),
-      [`campaigns-${GrantType.manage_users}`]:
-        admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
-      [`campaigns-${GrantType.manage_options}`]:
-        admin?.grants?.data?.campaigns?.includes(GrantType.manage_options),
-      [`campaigns-${GrantType.manage_messages}`]:
-        admin?.grants?.data?.campaigns?.includes(GrantType.manage_messages),
-      [`communications-${GrantType.view}`]:
-        admin?.grants?.data?.communications?.includes(GrantType.view),
-      [`communications-${GrantType.manage}`]:
-        admin?.grants?.data?.communications?.includes(GrantType.manage),
-      [`results-${GrantType.view_report}`]:
-        admin?.grants?.data?.results?.includes(GrantType.view_report),
-      [`results-${GrantType.report_data}`]:
-        admin?.grants?.data?.results?.includes(GrantType.report_data),
-      [`results-${GrantType.raw_responses}`]:
-        admin?.grants?.data?.results?.includes(GrantType.raw_responses),
-      [`results-${GrantType.scores}`]: admin?.grants?.data?.results?.includes(
-        GrantType.scores
-      ),
-      [`results-${GrantType.reset_responses}`]:
-        admin?.grants?.data?.results?.includes(GrantType.reset_responses),
-      [`results-${GrantType.rescrore_responses}`]:
-        admin?.grants?.data?.results?.includes(GrantType.rescrore_responses),
-      [`assessors-${GrantType.view}`]: admin?.grants?.data?.assessors?.includes(
-        GrantType.view
-      ),
-      [`assessors-${GrantType.view}`]: admin?.grants?.data?.assessors?.includes(
-        GrantType.view
-      ),
-      [`registrationCodes-${GrantType.view}`]:
-        admin?.grants?.data?.registrationCodes?.includes(GrantType.view),
-      [`registrationCodes-${GrantType.manage}`]:
-        admin?.grants?.data?.registrationCodes?.includes(GrantType.manage),
-      [`datasheets-${GrantType.view}`]: admin?.grants?.data?.datasheets?.includes(
-        GrantType.view
-      ),
-      [`datasheets-${GrantType.manage}`]: admin?.grants?.data?.datasheets?.includes(
-        GrantType.manage
-      ),
-    }
-  }
 
   const onClose = () => {
     form.resetFields()
@@ -327,13 +324,17 @@ const AddEditDrawerComponent: FC<Props> = ({
                 {actionButtonText}
               </Button>
             )}
-            <Button htmlType="reset" onClick={onClose}>
+            <Button
+              htmlType="reset"
+              form="add_edit_admin_form"
+              onClick={onClose}
+            >
               {I18n.t('administration.administrators.list.actions.cancel_text')}
             </Button>
           </Space>
         </Col>
       </Row>
-      {!isEditMode && admin === null && (
+      {isAddMode && admin === null && (
         <>
           <Typography.Text strong>
             {I18n.t('administration.administrators.list.columns.email')}
@@ -357,12 +358,12 @@ const AddEditDrawerComponent: FC<Props> = ({
       <Skeleton loading={isFetching || isSearching} active title>
         {admin !== null && (
           <Form
-            name="add_edit_admin_form"
+            id="add_edit_admin_form"
             form={form}
             layout="vertical"
+            autoComplete="off"
             scrollToFirstError
             preserve={false}
-            initialValues={formInitialValues}
             onFinish={handleOnSubmit}
           >
             <Form.Item
