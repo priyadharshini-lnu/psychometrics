@@ -38,7 +38,7 @@ module Administration
         owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
 
         permitted_owner_ids = owner_ids.uniq.select do |owner_id|
-          @user.has_permission?(:communications, :view, owner_id)
+          @user.has_permission?(:communications, :view, project_id: owner_id)
         end
 
         scope.where(owner_id: permitted_owner_ids)
