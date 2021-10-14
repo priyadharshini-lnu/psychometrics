@@ -100,7 +100,7 @@ class UserDecorator < BaseDecorator
 
   def client_admin_hierarchy_for_user
     object.client_admin_clients.map do |client|
-      "&#187; #{h.link_to(client.decorate.display_name, h.administration_client_users_path(client))}"
+      "&#187; #{h.link_to(client.decorate.display_name, h.administration_client_client_admins_path(client))}"
     end
   end
 
