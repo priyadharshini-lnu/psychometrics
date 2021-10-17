@@ -32,12 +32,12 @@ module Administration
       end
 
       def new_step_1
-        @form = Memberships::PrepareUserForm.new
+        @form = ::Memberships::PrepareUserForm.new
         render 'new', locals: { form: 'fetch_user_form' }
       end
 
       def new_step_2
-        @form = Memberships::PrepareUserForm.from_params(params)
+        @form = ::Memberships::PrepareUserForm.from_params(params)
         Memberships::PrepareUserToCreateCommand.call(@form, User::DEFAULT_PROJECT_ADMIN_GRANTS) do
           on(:invalid) { render 'new', locals: { form: 'fetch_user_form' } }
           on(:ok) do |res|
