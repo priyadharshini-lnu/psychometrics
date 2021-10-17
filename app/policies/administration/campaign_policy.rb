@@ -119,6 +119,18 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_messages, project_id: project_id)
     end
 
+    def manage_campaigns?
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage, project_id: project_id)
+    end
+
+    def view_registration_codes?
+      @user.is?(:superadmin) || @user.has_permission?(:registration_codes, :view, project_id: project_id)
+    end
+
+    def view_datasheets?
+      @user.is?(:superadmin) || @user.has_permission?(:datasheets, :view, project_id: project_id)
+    end
+
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin, :client_admin, :project_admin)

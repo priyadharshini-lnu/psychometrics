@@ -18,7 +18,10 @@ module Administration
             'create',
             'manage_admins',
             'manage_campaign_admins',
-            %w[manage_options update_campaign_options]
+            %w[manage_options update_campaign_options],
+            'manage_campaigns',
+            'view_registration_codes',
+            'view_datasheets'
           ],
           instance_options[:project_id]
         )

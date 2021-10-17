@@ -14,5 +14,8 @@ export default interface User {
     manageOptions: boolean
     manageAdmins: boolean
     manageCampaignAdmins: boolean
+    manageCampaigns: boolean
+    viewRegistrationCodes: boolean
+    viewDatasheets: boolean
   }
 }
