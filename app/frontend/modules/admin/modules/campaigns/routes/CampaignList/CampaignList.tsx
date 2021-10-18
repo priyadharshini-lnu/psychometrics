@@ -1,24 +1,53 @@
 import React, { useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Avatar, Tooltip,
+  Table,
+  Menu,
+  Row,
+  Col,
+  Input,
+  Pagination,
+  Avatar,
+  Tooltip,
+  Space,
 } from 'antd'
-import cs from 'classnames'
-import { Link } from 'react-router-dom'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { MoreOutlined, AppstoreOutlined } from '@ant-design/icons'
-import _ from 'lodash'
+import { MoreOutlined } from '@ant-design/icons'
 import moment from 'moment'
-import { STATUSES, DEFAULT_PAGE_SIZE, TYPES } from 'constants/campaign'
+import capitalize from 'lodash/capitalize'
+import map from 'lodash/map'
+
+import {
+  fetch,
+  FETCH,
+  get as getCampaign,
+  remove,
+} from 'modules/admin/modules/campaigns/core/list'
+import { openModal } from 'modules/admin/core/ui/modals'
+import { get as getTotal } from 'modules/admin/modules/campaigns/core/total'
+import { get as getPermissions } from 'modules/admin/modules/campaigns/core/permissions'
+import { get as getCurrentUser } from 'core/currentUser'
+import { isProjectMigrated } from 'core/config'
+import { isRequestInProgress } from 'modules/admin/core/request'
+import { RootState } from 'modules/admin/core/rootReducers'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import {
+  STATUSES,
+  DEFAULT_PAGE_SIZE,
+  TYPES,
+  FILTER_PREDICATES,
+} from 'constants/campaign'
+
+import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import Modals from 'modules/admin/components/Modals/'
 import ConditionalDropdown from 'components/ConditionalDropdown'
-import styles from './styles.scss'
-import CreateCampaignDropdown from './CreateCampaignDropdown'
-import CommonCampaignFormModal from './CommonCampaignFormModal'
-import RemoveCampaignModal from './RemoveCampaignModal'
-import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
+import { CountDisplay } from 'components/CountDisplay'
 import Breadcrumb from '../../components/Breadcrumb'
+import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
+import RemoveCampaignModal from './RemoveCampaignModal'
+import CommonCampaignFormModal from './CommonCampaignFormModal'
+import CreateCampaignDropdown from './CreateCampaignDropdown'
 
 const MODALS = {
   CommonCampaignFormModal,
@@ -30,130 +59,113 @@ const { I18n } = window
 
 const { Column } = Table
 const { Search } = Input
-const { Option } = Select
 const MAX_AVATARS = 2
 
-interface Props {
-  fetch(projectId: string, tableConfig: TableConfig): void
-  list: Campaign[],
-  total: number,
-  permissions: {
-    create: boolean
+const connector = connect(
+  (state: RootState) => ({
+    list: getCampaign(state),
+    isLoading: isRequestInProgress(state, FETCH),
+    total: getTotal(state),
+    permissions: getPermissions(state),
+    currentUser: getCurrentUser(state),
+    isProjectMigrated: isProjectMigrated(state),
+  }),
+  {
+    fetch,
+    openModal,
+    remove,
   },
-  match: {
-    params: {
-      projectId: string
-    }
-  }
-  tableConfig: TableConfig
-  changeFilter(filtername: string, filterValue: string): void
-  removeFilter(filtername: string): void
-  onTableChange(): void
-  getSortOrder(column: string): 'descend' | 'ascend'
-  changePage(page: number): void
-  openModal(name: string, data?: { projectId: string, campaign: object }): void
-  isProjectMigrated: boolean
-}
+)
 
-const CampaignList: React.FC<Props> = ({
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type Props = PropsFromRedux & TableProps
+
+const CampaignListComponent: React.FC<Props> = ({
   fetch,
+  isLoading,
   list,
   total,
   permissions,
-  match: { params: { projectId } },
-  tableConfig: {
-    filters,
-    page,
-    pageSize,
-  },
+  tableConfig: { filters, page, pageSize },
+  getFilteredValue,
   tableConfig,
   changeFilter,
-  removeFilter,
   onTableChange,
   getSortOrder,
   changePage,
   openModal,
   isProjectMigrated,
 }) => {
+  const params = useParams<{ projectId: string }>()
+  const projectId = parseInt(params.projectId, 10)
+
   useEffect(() => {
     fetch(projectId, tableConfig)
   }, [tableConfig])
 
-  const handleStatusChange = (value: string): void => {
-    if (value === 'All') { return removeFilter('statusEq') }
-
-    changeFilter('statusEq', value)
-  }
-
-  const handleTypeChange = (value: string): void => {
-    if (value === 'All') { return removeFilter('typeEq') }
-
-    changeFilter('typeEq', value)
-  }
-
   return (
     <div>
       {!isProjectMigrated && (
-      <Breadcrumb
-        request={{
-          fields: ['project', 'client'],
-          data: {
-            projectId: parseInt(projectId, 10),
-          },
-        }}
-        crumbs={[{
-          link: () => '/administration',
-          label: () => I18n.t('administration.clients.tenancies'),
-        }, {
-          link: state => `/administration/clients/${state.client.id}/projects`,
-          label: state => state.client.name,
-        }, {
-          label: state => state.project.name,
-        }]}
-      />
+        <Breadcrumb
+          request={{
+            fields: ['project', 'client'],
+            data: {
+              projectId,
+            },
+          }}
+          crumbs={[
+            {
+              link: () => '/administration',
+              label: () => I18n.t('administration.clients.tenancies'),
+            },
+            {
+              link: state => `/administration/clients/${state.client.id}/projects`,
+              label: state => state.client.name,
+            },
+            {
+              label: state => state.project.name,
+            },
+          ]}
+        />
       )}
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} Campaigns`}</span>
-        </Col>
-        <div className="float-r">
-          <span className={styles.filterLabel}>Type:</span>
-          <Select
-            defaultValue="All"
-            value={filters.typeEq || 'All'}
-            className={cs(styles.typeFilter, 'mrm')}
-            onChange={handleTypeChange}
-          >
-            <Option value="All" key="All">All</Option>
-            {_.map(TYPES, (val: string) => <Option value={val} key={val}>{_.capitalize(val)}</Option>)}
-          </Select>
-          <span className={styles.filterLabel}>Status:</span>
-          <Select
-            defaultValue="All"
-            value={filters.statusEq || 'All'}
-            className={styles.statusFilter}
-            onChange={handleStatusChange}
-          >
-            <Option value="All" key="All">All</Option>
-            {_.map(STATUSES, (val: string) => <Option value={val} key={val}>{_.capitalize(val)}</Option>)}
-          </Select>
-          <Search
-            placeholder="Search"
-            className={styles.searchInput}
-            value={filters.filterableFields}
-            onChange={e => changeFilter('filterableFields', e.target.value)}
+      <Row
+        justify="space-between"
+        align="middle"
+        className="pt-4 pb-4 ps-4 pe-4"
+      >
+        <Col>
+          <CountDisplay
+            selectedCount={0}
+            totalCount={total}
+            isLoading={isLoading}
           />
-          {permissions.create && (
-          <div className={styles.newCampaignButton}>
-            <CreateCampaignDropdown openModal={openModal} projectId={projectId} />
-          </div>
-          )}
-        </div>
+        </Col>
+        <Col>
+          <Space>
+            <Search
+              placeholder="Search"
+              value={filters.filterableFields}
+              onChange={e => changeFilter('filterableFields', e.target.value)}
+            />
+            {permissions.create && (
+              <CreateCampaignDropdown
+                openModal={openModal}
+                projectId={projectId}
+              />
+            )}
+          </Space>
+        </Col>
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            rowKey={row => row?.id ?? -1}
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            loading={isLoading}
+          >
             <Column
               title={I18n.t('administration.campaigns.listing.id')}
               dataIndex="id"
@@ -166,38 +178,57 @@ const CampaignList: React.FC<Props> = ({
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, isThreesixty, campaignUrl }) => (
-                isThreesixty ? <a href={campaignUrl}>{name}</a> : <Link to={campaignUrl}>{name}</Link>
-              )}
+              render={({ name, isThreesixty, campaignUrl }) => (isThreesixty ? (
+                <a href={campaignUrl}>{name}</a>
+              ) : (
+                <Link to={campaignUrl}>{name}</Link>
+              ))
+              }
             />
             <Column
               title={I18n.t('administration.dates.start')}
               key="startDate"
               sorter
               sortOrder={getSortOrder('startDate')}
-              render={({ startDate }) => (startDate ? moment(startDate).format('L LT') : ' - ')}
+              render={({ startDate }) => (startDate ? moment(startDate).format('L LT') : ' - ')
+              }
             />
             <Column
               title={I18n.t('administration.dates.end')}
               key="endDate"
               sorter
               sortOrder={getSortOrder('endDate')}
-              render={({ endDate }) => (endDate ? moment(endDate).format('L LT') : ' - ')}
+              render={({ endDate }) => (endDate ? moment(endDate).format('L LT') : ' - ')
+              }
             />
             <Column
               title={I18n.t('administration.campaigns.listing.status')}
               key="status"
-              render={({ status }) => _.capitalize(status)}
+              render={({ status }) => capitalize(status)}
+              filterMultiple={false}
+              filters={map(STATUSES, status => ({
+                text: capitalize(status),
+                value: status,
+              }))}
+              filteredValue={getFilteredValue('status')}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.type')}
               key="type"
-              render={({ type }) => _.capitalize(type)}
+              render={({ type }) => capitalize(type)}
+              filterMultiple={false}
+              filters={map(TYPES, type => ({
+                text: capitalize(type),
+                value: type,
+              }))}
+              filteredValue={getFilteredValue('type')}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.assessments')}
               key="assessments"
-              render={({ assessments }) => <ResourcesTag resources={assessments} />}
+              render={({ assessments }) => (
+                <ResourcesTag resources={assessments} />
+              )}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.reports')}
@@ -216,12 +247,19 @@ const CampaignList: React.FC<Props> = ({
                           projectId,
                           campaign: {
                             ...campaign,
-                            startDate: campaign.startDate && moment(campaign.startDate),
-                            endDate: campaign.endDate && moment(campaign.endDate),
+                            startDate:
+                              campaign.startDate && moment(campaign.startDate),
+                            endDate:
+                              campaign.endDate && moment(campaign.endDate),
                           },
                         })
                       },
-                      onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
+                      onDelete: () => {
+                        openModal('RemoveCampaignModal', {
+                          projectId,
+                          campaign,
+                        })
+                      },
                       campaign,
                     }) as React.ReactElement
                   }
@@ -288,7 +326,9 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, onDelete, campaign,
+  onEdit,
+  onDelete,
+  campaign,
 }) => {
   const { permissions } = campaign
 
@@ -296,27 +336,15 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     <Menu>
       {permissions.edit && (
         <Menu.Item key="edit">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={onEdit}
-          >
+          <div role="button" tabIndex={-1} onClick={onEdit}>
             Edit
           </div>
         </Menu.Item>
       )}
-      {permissions.copy && (
-        <Menu.Item key="copy">
-          Copy
-        </Menu.Item>
-      )}
+      {permissions.copy && <Menu.Item key="copy">Copy</Menu.Item>}
       {permissions.delete && (
         <Menu.Item key="delete">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={onDelete}
-          >
+          <div role="button" tabIndex={-1} onClick={onDelete}>
             Delete
           </div>
         </Menu.Item>
@@ -325,4 +353,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   )
 }
 
-export default withEnhancedTable(CampaignList, 'campaignList', { maintainHistory: true })
+export const CampaignList = withEnhancedTable(
+  connector(CampaignListComponent),
+  'campaignList',
+  {
+    maintainHistory: true,
+    filterPredicates: FILTER_PREDICATES,
+  },
+)

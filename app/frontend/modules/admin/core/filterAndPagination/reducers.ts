@@ -15,6 +15,7 @@ import {
   REMOVE_FILTER,
   CHANGE_SORT,
   SET_TABLE_CONFIG,
+  REMOVE_SORT,
 } from './actions'
 import { State, TableConfig } from './interfaces'
 
@@ -59,7 +60,20 @@ const HANDLERS = {
     updateIn(
       state,
       [tableName, 'sort'],
-      () => ({ columnName, order }),
+      () => ({
+        columnName,
+        order,
+      }),
+    )
+  ),
+  [REMOVE_SORT]: (state: State, { payload: { tableName } }: RemoveFilterReturnType) => (
+    updateIn(
+      state,
+      [tableName, 'sort'],
+      () => ({
+        columnName: undefined,
+        order: undefined,
+      }),
     )
   ),
   [REMOVE_FILTER]: (state: State, { payload: { tableName, filterName } }: RemoveFilterReturnType) => (
