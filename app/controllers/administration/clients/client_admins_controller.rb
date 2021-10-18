@@ -35,7 +35,7 @@ module Administration
 
       def new_step_2
         @form = ::Memberships::PrepareUserForm.from_params(params)
-        Memberships::PrepareUserToCreateCommand.call(@form, User::DEFAULT_ADMIN_GRANTS) do
+        ::Memberships::PrepareUserToCreateCommand.call(@form, User::DEFAULT_ADMIN_GRANTS) do
           on(:invalid) { render 'new', locals: { form: 'fetch_user_form' } }
           on(:ok) do |res|
             self.resource = res
