@@ -89,10 +89,16 @@ module Reports
       sub_headers = section['data'] || []
       sub_headers.map do |sub_header|
         label = sub_header['label']
+        label ||= ref_label(sub_header['ref']) if sub_header['type'] == 'ref'
         label ||= resources.dig(:factor_names, sub_header['factorId']) if sub_header['factorId']
         label ||= sub_header['key'].humanize if sub_header['key']
         label || ''
       end
+    end
+
+    def ref_label(ref)
+      refs = report.data_configuration['refs'] || []
+      refs.find { |r| r['ref_id'] == ref }&.dig('label')
     end
   end
 end

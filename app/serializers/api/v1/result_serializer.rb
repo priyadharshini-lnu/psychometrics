@@ -3,7 +3,7 @@
 module Api
   module V1
     class ResultSerializer < ActiveModel::Serializer
-      attributes :user_data, :assessments, :campaign_id
+      attributes :user_data, :assessments, :computed_scores, :campaign_id
 
       def initialize(object, instance_options = {})
         super(object, instance_options)
@@ -11,7 +11,9 @@ module Api
       end
 
       def user_data
-        user_data = object.select { |row| row.dig(:config_data, 'type') == 'user_data' }
+        user_data = object.select do |row|
+          row.dig(:config_data, 'type') == 'user_data'
+        end
         user_data.each_with_object({}) { |row, result| result[row[:key]] = row[:value] }
       end
 
@@ -24,6 +26,15 @@ module Api
         assessments = Assessment.where(id: assessment_ids).all
         assessments.map do |assessment|
           Api::V1::Results::AssessmentSerializer.new(assessment, rows: object).to_h
+        end
+      end
+
+      def computed_scores
+        scores = object.reject do |row|
+          row.dig(:config_data, 'assessmentId').present? || row.dig(:config_data, 'type') == 'user_data'
+        end
+        scores.map do |score|
+          Api::V1::Results::ComputedScoreSerializer.new(score).to_h
         end
       end
     end
