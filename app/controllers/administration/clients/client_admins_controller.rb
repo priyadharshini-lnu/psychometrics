@@ -46,7 +46,7 @@ module Administration
 
       def create
         authorize resource_class, :can_manage_client_admins?
-        Memberships::CreateAdminCommand.
+        ::Memberships::CreateAdminCommand.
           call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|

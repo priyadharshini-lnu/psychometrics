@@ -53,7 +53,7 @@ module Administration
           :can_manage_project_admins?,
           project_id: client.id
         )
-        Memberships::CreateAdminCommand.
+        ::Memberships::CreateAdminCommand.
           call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
