@@ -48,6 +48,7 @@ interface Props {
   getSortOrder(column: string): 'descend' | 'ascend'
   changePage(page: number): void
   openModal(name: string, data?: { campaignId: string, user?: User }): void
+  exportCompletionStatuses(campaignId: number): Promise<void>
 }
 
 const statusToColor = {
@@ -80,6 +81,7 @@ const UserList: React.FC<Props> = ({
   remove,
   toggleActive,
   resetPassword,
+  exportCompletionStatuses,
 }) => {
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -99,7 +101,12 @@ const UserList: React.FC<Props> = ({
           <span className="mlm">{`${total} Users`}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
+          <ToolsDropdown
+            campaignId={parseInt(campaignId, 10)}
+            exportCompletionStatuses={exportCompletionStatuses}
+            openModal={openModal}
+            permissions={permissions}
+          />
           <Select
             defaultValue="All"
             value={filters.isAnonymEq || 'All'}

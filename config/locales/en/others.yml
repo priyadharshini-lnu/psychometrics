@@ -605,6 +605,7 @@ en:
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         export_report_data: Export report data
         external_assessment_export: External Results Export
@@ -908,6 +909,7 @@ en:
       status: Status
       universal_link: Universal link
     messages:
+      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
       external_results_export_scheduled: External Assessment export job scheduled successfully
       norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
@@ -1109,6 +1111,7 @@ en:
       assessments: Assessments
       assessors: Assessors
       campaigns: Campaigns
+      completion_statuses: Completion Statuses
       datasheet: Datasheet
       report: Report
       reports: Reports
