@@ -17,9 +17,16 @@ module Administration
           [
             'create',
             'manage_admins',
-            %w[manage_options update_campaign_options]
+            'manage_campaign_admins',
+            %w[manage_options update_campaign_options],
+            'manage_campaigns',
+            'view_registration_codes',
+            'view_datasheets'
           ],
-          instance_options[:project_id]
+          {
+            project_id: instance_options[:project_id],
+            campaign_id: instance_options[:campaign_id]
+          }
         )
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end

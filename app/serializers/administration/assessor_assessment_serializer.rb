@@ -18,7 +18,10 @@ module Administration
           export_external_results
           rescore_responses
         ],
-        campaign.project_id
+        {
+          project_id: instance_options[:project_id],
+          campaign_id: instance_options[:campaign_id]
+        }
       )
     end
 
@@ -26,10 +29,6 @@ module Administration
 
     def current_user
       instance_options[:current_user]
-    end
-
-    def campaign
-      instance_options[:campaign]
     end
   end
 end

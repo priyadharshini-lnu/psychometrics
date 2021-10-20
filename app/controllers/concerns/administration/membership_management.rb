@@ -17,7 +17,8 @@ module Administration
             admins.page(params[:page]),
             each_serializer: Administration::Memberships::WithPermissionsSerializer,
             current_user: current_user,
-            project_id: campaign.project_id
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
           )
 
           render json: {
@@ -31,7 +32,7 @@ module Administration
 
     def show
       render json: resource, serializer: Administration::Memberships::WithGrantsAndPermissionsSerializer,
-        current_user: current_user, project_id: campaign.project_id
+        current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
     end
 
     def find_or_create_user
@@ -62,7 +63,7 @@ module Administration
       ::Campaigns::Admins::Update.call(resource, form, current_user, permitted_resource_params) do
         on(:ok) do |admin|
           return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
-            current_user: current_user, project_id: campaign.project_id
+            current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
         end
         on(:invalid) do |f|
           return render json: { errors: f.errors.full_messages.first }, status: 400
@@ -99,6 +100,7 @@ module Administration
         resource_class,
         nil,
         project_id: project_id,
+        campaign_id: campaign.id,
         policy_class: policy_class_name
       )
     end

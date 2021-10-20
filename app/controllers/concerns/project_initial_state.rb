@@ -15,7 +15,12 @@ module ProjectInitialState
     end
     @init_state = {
       currentUser: ::Administration::Campaigns::CurrentUserSerializer.
-                  new(current_user, current_membership: current_membership, project_id: project.id).
+                  new(
+                    current_user,
+                    current_membership: current_membership,
+                    project_id: project.id,
+                    campaign_id: @campaign&.id
+                  ).
                   to_h,
       project: {
         smtpSetting: ActiveModelSerializers::SerializableResource.new(

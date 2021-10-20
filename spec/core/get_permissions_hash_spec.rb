@@ -18,7 +18,9 @@ describe GetPermissionsHash do
         'update_additional_time',
         %w[reset_results reset]
       ],
-      project.id
+      {
+        project_id: project.id
+      }
     )
 
     expect(result).to eq({

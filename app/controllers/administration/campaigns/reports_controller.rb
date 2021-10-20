@@ -26,7 +26,7 @@ module Administration
 
       def toggle_user_access
         ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
-        render json: resource, serializer: Administration::CampaignReportSerializer, project_id: campaign.project_id
+        render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id
       end
 
       def toggle_assessor_access
@@ -45,17 +45,18 @@ module Administration
         reports = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_reports.includes(:report),
           each_serializer: Administration::CampaignReportSerializer,
-          current_user: current_user, project_id: campaign.project_id
+          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(:norm, :assessment),
           each_serializer: Administration::CampaignAssessmentSerializer,
-          current_user: current_user, project_id: campaign.project_id
+          current_user: current_user, project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
         assessor_assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.assessor_assessments,
           each_serializer: Administration::AssessorAssessmentSerializer,
-          current_user: current_user, campaign: campaign
+          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
         )
 
         render json: {
@@ -96,7 +97,8 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
       end
 
@@ -111,7 +113,10 @@ module Administration
             update_assessor_form
             update_available_locales
           ],
-          campaign.project_id
+          {
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
         )
       end
 
@@ -127,7 +132,10 @@ module Administration
             'toggle_user_access',
             'toggle_assessor_access'
           ],
-          campaign.project_id
+          {
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
         )
       end
 

@@ -28,7 +28,10 @@ module Administration
             [
               %w[reset_evaluation reset]
             ],
-            instance_options[:project_id]
+            {
+              project_id: instance_options[:project_id],
+              campaign_id: instance_options[:campaign_id]
+            }
           )
         end
 

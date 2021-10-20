@@ -17,12 +17,16 @@ class PreviewContainer extends Component {
     const {
       data, results, locales, selectedLocale,
     } = parent.dataset
+
     if (locales) {
       I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
       I18nStore.locales = JSON.parse(locales)
     }
     const { user, campaign } = parent.dataset
     const parsedData = JSON.parse(data)
+    if (_.isEmpty(I18nStore.locales) && parsedData.locales) {
+      I18nStore.locales = parsedData.locales
+    }
     const normalizedData = normalize(parsedData, schema)
     store.init(parsedData, results ? JSON.parse(results) : null, user, campaign)
     rstore.dispatch(init(normalizedData))

@@ -5,7 +5,7 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
-               :is_timed_campaign
+               :is_timed_campaign, :campaigns_count
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
@@ -43,6 +43,10 @@ module EndUser
 
     def ungrouped_assessments_ids
       object.campaign_assessments.ungrouped.order(:position).map(&:assessment_id)
+    end
+
+    def campaigns_count
+      current_user.campaigns.visible_to_end_user.count
     end
 
     private

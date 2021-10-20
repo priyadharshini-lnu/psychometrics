@@ -28,7 +28,6 @@ const AdminGrantsTR = t.type({
   membershipId: t.union([t.null, t.number]),
   data: t.partial({
     clients: t.array(t.string),
-    reports: t.array(t.string),
     results: t.array(t.string),
     projects: t.array(t.string),
     assessors: t.array(t.string),
@@ -36,7 +35,6 @@ const AdminGrantsTR = t.type({
     datasheets: t.array(t.string),
     communications: t.array(t.string),
     registrationCodes: t.array(t.string),
-    assessments: t.array(t.string),
   }),
 })
 const AdminCampaignsTR = t.array(

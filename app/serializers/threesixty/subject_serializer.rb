@@ -55,7 +55,9 @@ module Threesixty
           'remove_subject',
           'remove_from_campaign'
         ],
-        current_project_id
+        {
+          project_id: current_project_id
+        }
       )
     end
 

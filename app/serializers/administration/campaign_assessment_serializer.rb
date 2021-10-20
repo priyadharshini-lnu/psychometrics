@@ -48,7 +48,10 @@ module Administration
           'rescore_responses',
           %w[remove destroy]
         ],
-        instance_options[:project_id]
+        {
+          project_id: instance_options[:project_id],
+          campaign_id: instance_options[:campaign_id]
+        }
       )
     end
 
