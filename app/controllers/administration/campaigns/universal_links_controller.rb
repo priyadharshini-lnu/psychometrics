@@ -44,7 +44,8 @@ module Administration
           resource || User,
           nil,
           policy_class: Campaigns::UniversalLinkPolicy,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
       end
 

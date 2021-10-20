@@ -367,6 +367,7 @@ en:
         parent_id: Direct Manager
         report_ids: Report IDs
         roles:
+          campaign_admin: Campaign Admin
           client_admin: Client Admin
           manager: Manager
           member: User

@@ -35,7 +35,10 @@ module Administration
             %w[remove destroy],
             %w[login_as spoof]
           ],
-          instance_options[:project_id]
+          {
+            project_id: instance_options[:project_id],
+            campaign_id: instance_options[:campaign_id]
+          }
         )
       end
 

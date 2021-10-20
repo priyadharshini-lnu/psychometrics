@@ -52,7 +52,10 @@ module Administration
           'allow_edit',
           %w[reset_results reset]
         ],
-        campaign.project_id
+        {
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
+        }
       )
     end
 

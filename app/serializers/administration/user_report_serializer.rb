@@ -26,7 +26,10 @@ module Administration
           %w[remove destroy],
           %w[toggle_access toggle_user_access]
         ],
-        campaign.project_id
+        {
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
+        }
       )
     end
 

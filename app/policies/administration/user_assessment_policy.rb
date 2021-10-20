@@ -6,29 +6,36 @@ module Administration
 
     def destroy?
       @user.is?(:superadmin) || !record.completed? && @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
     end
 
     def update_norm?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def update_additional_time?
       !record&.assessment&.external? &&
-        (@user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)) &&
-        %w[completed timed_out].include?(record&.real_status) &&
+        (@user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+        )) && %w[completed timed_out].include?(record&.real_status) &&
         record&.users_result&.expired?
     end
 
     def rescore_response?
-      !record&.assessment&.external? &&
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+      !record&.assessment&.external? && @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def reset?
-      !record&.assessment&.mindmill? && !record&.assessment&.hogan? &&
-        (@user.is?(:superadmin) || @user.has_permission?(:results, :reset_responses, project_id: project_id))
+      !record&.assessment&.mindmill? && !record&.assessment&.hogan? && (
+        @user.is?(:superadmin) || @user.has_permission?(
+          :results, :reset_responses, project_id: project_id, campaign_id: campaign_id
+        )
+      )
     end
 
     def allow_edit?

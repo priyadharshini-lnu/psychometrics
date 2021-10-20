@@ -47,7 +47,10 @@ module Administration
             'import',
             %w[add create_all]
           ],
-          campaign.project_id
+          {
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
         )
       end
 
@@ -82,7 +85,7 @@ module Administration
       def show
         render json: resource.user,
           serializer: Administration::Assessors::UserSerializer,
-          project_id: campaign.project_id
+          project_id: campaign.project_id, campaign_id: campaign.id
       end
 
       def create
@@ -112,6 +115,7 @@ module Administration
           resource || Assessor,
           nil,
           project_id: campaign.project_id,
+          campaign_id: campaign.id,
           policy_class: Administration::Campaigns::AssessorPolicy
         )
       end

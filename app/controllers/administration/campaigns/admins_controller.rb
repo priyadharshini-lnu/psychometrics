@@ -41,7 +41,10 @@ module Administration
           current_user,
           nil,
           %w[create],
-          campaign.project_id
+          {
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
         )
       end
     end

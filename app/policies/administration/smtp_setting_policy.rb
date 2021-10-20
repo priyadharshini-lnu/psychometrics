@@ -17,7 +17,7 @@ module Administration
     private
 
     def can_manage_smtp_setting?
-      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project.id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id)
     end
   end
 end

@@ -7,14 +7,17 @@ module Administration
 
       prepend_before_action :set_resource_class
       skip_after_action :verify_policy_scoped, only: %i[index show]
-      append_before_action :pundit_authorize
       before_action :set_campaign, only: %i[
         show update assessments_and_reports fetch_campaign_options
         fetch_campaign_instructions update_campaign_options destroy
       ]
+      append_before_action :pundit_authorize, except: [:index]
       initial_state_for %i[index show]
 
       def index
+        unless current_user.campaign_admin_campaigns.where(project_id: params[:project_id]).exists?
+          authorize(Campaign, nil, { project_id: params[:project_id] })
+        end
         respond_to do |format|
           format.html
           format.json do
@@ -42,7 +45,9 @@ module Administration
           current_user,
           nil,
           %w[create],
-          params[:project_id]
+          {
+            project_id: params[:project_id]
+          }
         )
       end
 
@@ -130,7 +135,10 @@ module Administration
         authorize(
           @campaign || Campaign,
           nil,
-          project_id: params[:project_id]
+          {
+            project_id: params[:project_id],
+            campaign_id: @campaign&.id
+          }
         )
       end
 

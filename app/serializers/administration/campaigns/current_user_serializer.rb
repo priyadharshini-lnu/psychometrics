@@ -23,7 +23,10 @@ module Administration
             'view_registration_codes',
             'view_datasheets'
           ],
-          instance_options[:project_id]
+          {
+            project_id: instance_options[:project_id],
+            campaign_id: instance_options[:campaign_id]
+          }
         )
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end

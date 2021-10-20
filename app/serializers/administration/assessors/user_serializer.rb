@@ -30,7 +30,10 @@ module Administration
             'add_subject',
             %w[remove_subject destroy]
           ],
-          instance_options[:project_id]
+          {
+            project_id: instance_options[:project_id],
+            campaign_id: instance_options[:campaign_id]
+          }
         )
       end
 

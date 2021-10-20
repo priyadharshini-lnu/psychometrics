@@ -69,13 +69,16 @@ module UserRoles
   end
 
   def has_permission?(scope, grant, project_id: nil, campaign_id: nil)
-    project = project_id ? Client.find(project_id) : Campaign.find(campaign_id).project
+    project = Client.find(project_id)
 
     project_based_client_ids = [].tap do |arr|
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.parent_id])
     end.compact
 
-    project_memberships = memberships.includes(:grants).where(client_id: project_based_client_ids)
+    project_memberships = memberships.includes(:grants).where(
+      client_id: project_based_client_ids, role: [Membership::CLIENT_ADMIN_ROLE, Membership::PROJECT_ADMIN_ROLE]
+    )
+
     campaign_memberships = memberships.includes(:grants).where(campaign_id: campaign_id) if campaign_id
 
     (project_memberships + campaign_memberships.to_a).any? { |m| m.has_grant?(scope, grant) }

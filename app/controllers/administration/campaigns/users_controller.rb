@@ -53,7 +53,10 @@ module Administration
             'edit',
             %w[remove destroy]
           ],
-          campaign.project_id
+          {
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
         )
       end
 
@@ -158,6 +161,7 @@ module Administration
           resource || User,
           nil,
           project_id: project.id,
+          campaign_id: campaign.id,
           policy_class: Campaigns::UserPolicy
         )
       end

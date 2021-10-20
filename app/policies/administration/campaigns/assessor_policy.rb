@@ -4,7 +4,9 @@ module Administration
   module Campaigns
     class AssessorPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin) || @user.has_permission?(:assessors, :view, project_id: project_id)
+        @user.is?(:superadmin) || @user.has_permission?(
+          :assessors, :view, project_id: project_id, campaign_id: campaign_id
+        )
       end
 
       def available_assessments?
@@ -12,18 +14,24 @@ module Administration
       end
 
       def create_all?
-        @user.is?(:superadmin) || (@user.has_permission?(:assessors, :manage, project_id: project_id) &&
-          @user.has_permission?(:campaigns, :manage_users, project_id: project_id))
+        @user.is?(:superadmin) || (
+          @user.has_permission?(:assessors, :manage, project_id: project_id, campaign_id: campaign_id) &&
+          @user.has_permission?(:campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id)
+        )
       end
 
       def destroy?
-        @user.is?(:superadmin) || (@user.has_permission?(:assessors, :manage, project_id: project_id) &&
-          @user.has_permission?(:campaigns, :manage_users, project_id: project_id))
+        @user.is?(:superadmin) || (
+          @user.has_permission?(:assessors, :manage, project_id: project_id, campaign_id: campaign_id) &&
+          @user.has_permission?(:campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id)
+        )
       end
 
       def import?
-        @user.is?(:superadmin) || (@user.has_permission?(:assessors, :manage, project_id: project_id) &&
-          @user.has_permission?(:campaigns, :manage_users, project_id: project_id))
+        @user.is?(:superadmin) || (
+          @user.has_permission?(:assessors, :manage, project_id: project_id, campaign_id: campaign_id) &&
+          @user.has_permission?(:campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id)
+        )
       end
 
       def show?

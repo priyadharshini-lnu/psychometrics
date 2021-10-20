@@ -70,7 +70,9 @@ module Administration
       private
 
       def manage_admins?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_admins, project_id: project_id)
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :manage_admins, project_id: project_id, campaign_id: campaign_id
+        )
       end
     end
   end
