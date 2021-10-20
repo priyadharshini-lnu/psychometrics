@@ -5,6 +5,7 @@ import {
   SettingOutlined,
   ShopOutlined,
   DatabaseOutlined,
+  // UserOutlined,
   // SolutionOutlined,
 } from '@ant-design/icons'
 
@@ -28,6 +29,9 @@ export const Project: FC = () => {
     // includes only primary level tabs and not secondary tabs
     if (pathname.includes('/new_campaigns')) {
       return ['new_campaigns']
+    }
+    if (pathname.includes('/users')) {
+      return ['users']
     }
     if (pathname.includes('/admins')) {
       return ['admins']
@@ -53,12 +57,19 @@ export const Project: FC = () => {
         return I18n.t('common.model.campaigns')
       case 'admins':
         return I18n.t('administration.breadcrumbs.admins')
-      case 'users':
+      case 'users': {
+        if (pathname.includes('participants')) {
+          return I18n.t('administration.breadcrumbs.participants')
+        }
+        if (pathname.includes('assessors')) {
+          return I18n.t('administration.breadcrumbs.assessors')
+        }
         return I18n.t('administration.breadcrumbs.users')
+      }
       case 'datasheet':
         return I18n.t('common.model.datasheet')
       case 'settings': {
-        if (pathname.includes('/settings/smtp')) {
+        if (pathname.includes('smtp')) {
           return I18n.t('administration.breadcrumbs.smtp_settings')
         }
         return I18n.t('administration.breadcrumbs.settings')
@@ -104,7 +115,12 @@ export const Project: FC = () => {
           <ShopOutlined />
           {I18n.t('common.model.campaigns')}
         </Menu.Item>
-        {/* <Menu.Item key="admins">
+        {/* Uncomment tabs when API changes are available */}
+        {/* <Menu.Item key="users">
+          <UserOutlined />
+          {I18n.t('administration.breadcrumbs.users')}
+        </Menu.Item>
+        <Menu.Item key="admins">
           <SolutionOutlined />
           {I18n.t('administration.breadcrumbs.admins')}
         </Menu.Item> */}

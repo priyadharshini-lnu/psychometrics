@@ -1,5 +1,6 @@
 import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { RootState } from 'modules/admin/core/rootReducers'
 
 const FETCH = 'ui/breadcrumbs/FETCH'
 
@@ -49,5 +50,7 @@ export type FetchReturnType = ReturnType<typeof fetch>
 const HANDLERS = {
   [FETCH]: (state: State, { response }: ApiActionResponse<State>): State => response,
 }
+
+export const getProject = (state: RootState) => state.ui.breadcrumbs.project
 
 export default createReducer(HANDLERS, defaultState)

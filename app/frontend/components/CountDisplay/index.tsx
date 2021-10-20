@@ -5,7 +5,7 @@ import { AppstoreOutlined } from '@ant-design/icons'
 const { I18n } = window
 
 interface Props {
-  selectedCount: number
+  selectedCount?: number
   totalCount: number
   isLoading?: boolean
 }
