@@ -68,7 +68,9 @@ module Administration
       end
 
       def extend_time?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id: project_id)
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        )
       end
 
       def export_completion_status?
@@ -78,7 +80,9 @@ module Administration
       end
 
       def search?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id: project_id)
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        )
       end
 
       def import?
