@@ -71,6 +71,10 @@ class License < ApplicationRecord
       size
   end
 
+  def enough_license_credits?(credits)
+    number + overuse_number - used_number >= credits
+  end
+
   private
 
   def license_expire_validation

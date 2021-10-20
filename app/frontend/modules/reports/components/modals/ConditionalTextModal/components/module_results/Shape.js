@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ColorPicker from 'rb/components/ColorPicker'
+import ColorPicker from 'modules/reports/components/ColorPicker'
 import styles from '../ConditionalTextModal.scss'
 
 export class ConditionCollection extends Component {

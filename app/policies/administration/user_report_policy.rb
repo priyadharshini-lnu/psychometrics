@@ -7,7 +7,9 @@ module Administration
     end
 
     def show?
-      @user.is?(:superadmin) || @user.has_permission?(:results, :view_report, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(
+        :results, :view_report, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def pdf_preview?
@@ -15,7 +17,9 @@ module Administration
     end
 
     def download?
-      @user.is?(:superadmin) || @user.has_permission?(:results, :view_report, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(
+        :results, :view_report, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def regenerate?
@@ -23,12 +27,15 @@ module Administration
     end
 
     def destroy?
-      (@user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)) &&
-        record&.not_prepared?
+      (@user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )) && record&.not_prepared?
     end
 
     def toggle_user_access?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
     end
   end
 end

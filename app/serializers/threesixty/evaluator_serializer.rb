@@ -52,7 +52,9 @@ module Threesixty
           'edit',
           'remove_from_campaign'
         ],
-        instance_options[:project_id]
+        {
+          project_id: instance_options[:project_id]
+        }
       )
     end
 

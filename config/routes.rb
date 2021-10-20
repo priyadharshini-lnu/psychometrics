@@ -138,6 +138,16 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :admins do
+          member do
+            get :spoof
+            get :reset_password
+          end
+          collection do
+            get :find_or_create_user
+          end
+        end
+
         resources :reports, only: %i[create destroy] do
           collection do
             get :report_families

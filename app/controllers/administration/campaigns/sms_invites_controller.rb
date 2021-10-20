@@ -87,7 +87,9 @@ module Administration
           current_user,
           nil,
           %w[import export send_sms],
-          campaign.project_id
+          {
+            project_id: campaign.project_id
+          }
         )
       end
     end

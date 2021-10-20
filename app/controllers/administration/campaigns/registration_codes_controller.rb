@@ -13,7 +13,9 @@ module Administration
 
         render json: {
           list: @_resources.map do |r|
-            RegistrationCodeSerializer.new(r, current_user: current_user, project_id: campaign.project_id)
+            RegistrationCodeSerializer.new(
+              r, current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+            )
           end,
           total: @_resources.count,
           permissions: permissions
@@ -26,7 +28,7 @@ module Administration
         if form.valid?
           code = ::Campaigns::RegistrationCodes::Create.call!(form, campaign)
           render json: code, serializer: RegistrationCodeSerializer,
-          project_id: campaign.project_id
+          project_id: campaign.project_id, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -41,7 +43,8 @@ module Administration
                with_context(registration_code: resource)
         if form.valid?
           code = ::Campaigns::RegistrationCodes::Update.call!(form, resource)
-          render json: code, serializer: RegistrationCodeSerializer, project_id: campaign.project_id
+          render json: code, serializer: RegistrationCodeSerializer,
+            project_id: campaign.project_id, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -69,7 +72,8 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
       end
 
@@ -81,7 +85,10 @@ module Administration
           [
             'create'
           ],
-          campaign.project_id
+          {
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
         )
       end
 

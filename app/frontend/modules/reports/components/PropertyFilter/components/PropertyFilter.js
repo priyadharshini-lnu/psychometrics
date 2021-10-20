@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import AppStore from 'rb/store/AppStore'
+import AppStore from 'modules/reports/store/AppStore'
 import Select from 'react-select'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import styles from './PropertyFilter.scss'
 
 const SKIPPED_QUESTION_TYPES_FOR_MULTIFILTERING = ['PickGroupRank', 'MatrixTable', 'HotSpot']

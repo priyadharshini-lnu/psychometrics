@@ -20,18 +20,21 @@
 # already_invited        :boolean          default(FALSE)
 #
 
+# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
     MEMBER_ROLE = 'member',
     MANAGER_ROLE = 'manager',
     PROJECT_ADMIN_ROLE = 'project_admin',
-    CLIENT_ADMIN_ROLE = 'client_admin'
+    CLIENT_ADMIN_ROLE = 'client_admin',
+    CAMPAIGN_ADMIN_ROLE = 'campaign_admin'
   ].freeze
 
   SCOPES = {
     PROJECT_ADMIN_ROLE => :administration,
     CLIENT_ADMIN_ROLE => :administration,
+    CAMPAIGN_ADMIN_ROLE => :administration,
     MANAGER_ROLE => :user,
     MEMBER_ROLE => :user
   }.freeze
@@ -42,6 +45,7 @@ class Membership < ApplicationRecord
   delegate :is_anonym?, to: :user
 
   belongs_to :client
+  belongs_to :campaign
   belongs_to :user, inverse_of: :memberships, touch: true
   belongs_to :project_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   accepts_nested_attributes_for :user
@@ -68,7 +72,7 @@ class Membership < ApplicationRecord
            through: :reports_accesses, source: :report
 
   validates :client, :user, presence: true
-  validates :client_id, uniqueness: { scope: %i[user_id role] }
+  validates :client_id, uniqueness: { scope: %i[user_id role campaign_id] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
   validate :relevant_role, if: -> { client.present? }
   validate :client_admin_scope, if: -> { project_admin? }
@@ -85,6 +89,7 @@ class Membership < ApplicationRecord
   scope :completed, -> { where(assigns_completed: true) }
   scope :client_admin_role, -> { where(role: CLIENT_ADMIN_ROLE) }
   scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
+  scope :campaign_admin_role, -> { where(role: CAMPAIGN_ADMIN_ROLE) }
   scope :with_client, ->(client_id) { where(client_id: client_id) }
   scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
   scope :member_or_manager, -> { where(role: %i[member manager]) }
@@ -234,6 +239,8 @@ class Membership < ApplicationRecord
                 client.project?
               when MANAGER_ROLE, MEMBER_ROLE
                 client.end_level? || (project? && client.project?)
+              when CAMPAIGN_ADMIN_ROLE
+                true
               else
                 false
             end
@@ -262,3 +269,5 @@ class Membership < ApplicationRecord
     end
   end
 end
+
+# rubocop:enable Metrics/ClassLength

@@ -71,7 +71,7 @@ class ClientDecorator < BaseDecorator
 
   def client_project_admins(resource)
     client_project_admins_memberships.map do |membership|
-      if h.policy(Membership, { project_id: resource.id }).can_manage_project_admins?
+      if h.policy(membership, { project_id: resource.id }).can_manage_project_admins?
         h.link_to(
           membership.user.decorate.display_name,
           h.edit_administration_client_project_admin_path(membership.client_id, membership),

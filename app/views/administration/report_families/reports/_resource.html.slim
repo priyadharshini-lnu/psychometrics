@@ -3,7 +3,7 @@ tr
   td = resource.name
   td = resource.decorate.created_at
   td = resource.decorate.updated_at
-  - if policy(resource_class).actions?
+  - if policy(resource).actions?
     td.actions-cell
       = link_to({ action: :destroy, id: resource },
                 remote: true,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import cs from 'classnames'
-import { DATA_SHEET } from 'rb/models/Module'
+import { DATA_SHEET } from 'modules/reports/models/Module'
 import styles from './BaseTypeProperties.scss'
 
 class BaseTypeProperties extends Component {

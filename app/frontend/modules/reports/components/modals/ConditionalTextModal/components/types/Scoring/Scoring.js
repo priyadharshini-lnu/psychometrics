@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'rb/store/AppStore'
-import { PSYCHOMETRIC, AGILE } from 'rb/models/Assessment'
-import { DATA_SHEET } from 'rb/models/Module'
+import AppStore from 'modules/reports/store/AppStore'
+import { PSYCHOMETRIC, AGILE } from 'modules/reports/models/Assessment'
+import { DATA_SHEET } from 'modules/reports/models/Module'
 import localStyles from './Scoring.scss'
 import styles from '../../Condition.scss'
 

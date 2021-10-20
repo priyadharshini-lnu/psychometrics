@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import ResultStore from 'rb/store/ResultStore'
-import AppStore from 'rb/store/AppStore'
-import I18nStore from 'rb/store/I18nStore'
-import store from 'rb/store/PropertyPanelStore'
+import ResultStore from 'modules/reports/store/ResultStore'
+import AppStore from 'modules/reports/store/AppStore'
+import I18nStore from 'modules/reports/store/I18nStore'
+import store from 'modules/reports/store/PropertyPanelStore'
 import styles from './CPIOccupations.scss'
 
 class CPIOccupations extends Component {

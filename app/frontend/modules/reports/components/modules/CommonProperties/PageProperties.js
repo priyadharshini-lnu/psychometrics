@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import Module from 'rb/models/Module'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import Module from 'modules/reports/models/Module'
 import connect from './connect'
 
 class PageProperties extends Component {

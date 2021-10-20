@@ -29,13 +29,13 @@ module Administration
       end
 
       def new_step_1
-        @form = Memberships::PrepareUserForm.new
+        @form = ::Memberships::PrepareUserForm.new
         render 'new', locals: { form: 'fetch_user_form' }
       end
 
       def new_step_2
-        @form = Memberships::PrepareUserForm.from_params(params)
-        Memberships::PrepareUserToCreateCommand.call(@form, User::DEFAULT_ADMIN_GRANTS) do
+        @form = ::Memberships::PrepareUserForm.from_params(params)
+        ::Memberships::PrepareUserToCreateCommand.call(@form, User::DEFAULT_ADMIN_GRANTS) do
           on(:invalid) { render 'new', locals: { form: 'fetch_user_form' } }
           on(:ok) do |res|
             self.resource = res
@@ -46,7 +46,7 @@ module Administration
 
       def create
         authorize resource_class, :can_manage_client_admins?
-        Memberships::CreateAdminCommand.
+        ::Memberships::CreateAdminCommand.
           call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|

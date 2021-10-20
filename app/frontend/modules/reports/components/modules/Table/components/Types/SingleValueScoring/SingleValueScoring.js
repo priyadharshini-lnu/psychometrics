@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import Utils from 'rb/utils'
-import AppStore from 'rb/store/AppStore'
-import ResultStore from 'rb/store/ResultStore'
-import I18nStore from 'rb/store/I18nStore'
-import Scoring from 'rb/models/Scoring'
+import Utils from 'modules/reports/utils'
+import AppStore from 'modules/reports/store/AppStore'
+import ResultStore from 'modules/reports/store/ResultStore'
+import I18nStore from 'modules/reports/store/I18nStore'
+import Scoring from 'modules/reports/models/Scoring'
 import styles from './SingleValueScoring.scss'
 
 const MockData = {

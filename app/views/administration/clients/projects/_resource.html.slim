@@ -1,4 +1,4 @@
-- if current_user.is?(:superadmin) || current_user.is?(:client_admin) || resource.project_admin_ids.include?(current_user.id)
+- if current_user.is?(:superadmin, :client_admin, :campaign_admin) || resource.project_admin_ids.include?(current_user.id)
   tr data-sidebar=url_for(sidebar_administration_client_project_path(client, resource)) id=dom_id(resource)
     td = resource.id
     td.nowrap
@@ -28,7 +28,7 @@
     td = resource.parent.account_manager&.decorate&.display_name
     td
       = resource.decorate.client_project_admins(resource)
-      - if policy(Membership, { project_id: client.id }).can_manage_project_admins?
+      - if policy(resource, { project_id: resource.id }).manage_project_admins?
         .add-icon-box
           = link_to new_step_1_administration_client_project_admins_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus

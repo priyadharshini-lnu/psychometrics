@@ -22,16 +22,17 @@ module EndUser
     end
 
     def groups
-      object.campaign_assessment_groups.order(:position)
+      object.campaign_assessment_groups.order(:position).includes(:campaign_assessments)
     end
 
     def user_assessments
       UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id).
-        joins(:assessment).where.not(assessments: { category: :mindmill })
+        includes({ assessment: :agile }, :users_result, :campaign, :evaluator).
+        where.not(assessments: { category: :mindmill })
     end
 
     def user_reports
-      object.user_reports.eager_load(:report).
+      object.user_reports.eager_load(:report, :user).
         where(user_id: current_user.id, user_access: true).
         merge(Report.assignable)
     end

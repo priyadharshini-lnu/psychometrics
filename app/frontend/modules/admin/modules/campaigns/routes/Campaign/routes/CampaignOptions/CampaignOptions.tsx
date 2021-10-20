@@ -68,6 +68,17 @@ const CampaignOptions: React.FC<Props> = ({
     ),
   })
 
+  const parametersForFixedTimeField = () => ({
+    value: (options || {}).fixedTime,
+    onChange: (value: boolean) => update(
+      parsedProjectId, parsedCampaignId, {
+        ...options,
+        fixedTime: value,
+        proctoringEnabled: value ? options.proctoringEnabled : false,
+      },
+    ),
+  })
+
   const parametersForFixedTimeDuration = ({
     value: options.fixedTimeDuration ? options.fixedTimeDuration : 0,
     onChange: (value: number) => update(
@@ -111,7 +122,7 @@ const CampaignOptions: React.FC<Props> = ({
 
         <Option
           label={I18n.t('administration.campaigns.options.fixed_time')}
-          {...parametersForField('fixedTime')}
+          {...parametersForFixedTimeField()}
         />
 
         {options.fixedTime && (

@@ -73,6 +73,7 @@ module UserScopes
     }
 
     scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
+    scope :campaign_admins, -> { joins(:memberships).where(memberships: { role: Membership::CAMPAIGN_ADMIN_ROLE }) }
 
     scope :eq_id, ->(id) { where(id: id) }
     scope :filterable_fields, lambda { |search_term|

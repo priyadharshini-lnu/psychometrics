@@ -7,9 +7,16 @@ FactoryBot.define do
     start_date { Date.today }
     end_date { Date.today + 10.days }
 
+    association :client, factory: :tenancy
+
     factory :threesixty_license do
       used_number { 10 }
       type { 'threesixty' }
+    end
+
+    factory :proctoring_license do
+      used_number { 0 }
+      type { 'proctoring' }
     end
   end
 end

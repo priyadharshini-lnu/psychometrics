@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import Utils from 'rb/utils'
-import ResultStore from 'rb/store/ResultStore'
+import Utils from 'modules/reports/utils'
+import ResultStore from 'modules/reports/store/ResultStore'
 import Table from '../../Table'
 import styles from './HrisData.scss'
 

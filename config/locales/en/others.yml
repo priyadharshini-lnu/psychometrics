@@ -367,6 +367,7 @@ en:
         parent_id: Direct Manager
         report_ids: Report IDs
         roles:
+          campaign_admin: Campaign Admin
           client_admin: Client Admin
           manager: Manager
           member: User
@@ -1107,6 +1108,7 @@ en:
       name: Name
       status: Status
     model:
+      admins: Admins
       assessment: Assessment
       assessments: Assessments
       assessors: Assessors
@@ -1526,6 +1528,7 @@ en:
       profile: Profile
   licenses:
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
+    not_enough_proctoring_credits: Not enough credits to begin proctoring session
   loading: Processing...
   mailer:
     from: The Talent Enterprise
@@ -1695,6 +1698,7 @@ en:
       view: View Report
     modules:
       common:
+        all_factors: All factors
         almost_always: Almost Always
         less_typical: Less Typical
         moderate: Moderate

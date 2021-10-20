@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/PropertyPanelStore'
+import store from 'modules/reports/store/PropertyPanelStore'
 import styles from './Label.scss'
 
 class LabelCell extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import ResultStore from 'rb/store/ResultStore'
-import userPresenter from 'rb/presenters/userPresenter'
-import I18nStore from 'rb/store/I18nStore'
+import ResultStore from 'modules/reports/store/ResultStore'
+import userPresenter from 'modules/reports/presenters/userPresenter'
+import I18nStore from 'modules/reports/store/I18nStore'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
 

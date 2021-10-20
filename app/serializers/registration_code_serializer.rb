@@ -25,7 +25,10 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
         %w[remove destroy],
         %w[edit update]
       ],
-      instance_options[:project_id]
+      {
+        project_id: instance_options[:project_id],
+        campaign_id: instance_options[:campaign_id]
+      }
     )
   end
 

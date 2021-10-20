@@ -24,9 +24,20 @@ const buildUrl = ({
     return url
   }
 
-  const normalizedBody = humps.decamelizeKeys({ ...bodyFromTableConfig(tableConfig), ...body })
+  const normalizedBody = humps.decamelizeKeys({
+    ...bodyFromTableConfig(tableConfig),
+    ...body,
+  })
+  const query = queryString.stringify(normalizedBody, {
+    arrayFormat: 'bracket',
+  })
+  if (query.length !== 0) {
+    return `${url}?${queryString.stringify(normalizedBody, {
+      arrayFormat: 'bracket',
+    })}`
+  }
 
-  return `${url}?${queryString.stringify(normalizedBody, { arrayFormat: 'bracket' })}`
+  return url
 }
 
 // Sends data in the format required by ransack gem

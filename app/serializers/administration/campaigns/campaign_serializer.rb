@@ -41,7 +41,10 @@ module Administration
             'copy',
             %w[delete destroy]
           ],
-          project.id
+          {
+            project_id: project.id,
+            campaign_id: object.id
+          }
         )
       end
 

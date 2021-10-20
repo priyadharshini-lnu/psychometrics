@@ -48,6 +48,7 @@ class Campaign < ApplicationRecord
   has_many :assessors, dependent: :destroy
   has_many :sms_invites
   has_many :sms_records
+  has_many :memberships
 
   accepts_nested_attributes_for :campaign_options
 
@@ -67,6 +68,10 @@ class Campaign < ApplicationRecord
 
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
+
+  def proctoring_license
+    client.active_licenses.where(type: :proctoring).first
+  end
 
   def real_status
     return 'closed' if end_date && end_date < Time.now

@@ -1,4 +1,4 @@
-import ActionHistory from 'rb/utils/History'
+import ActionHistory from 'modules/reports/utils/History'
 
 let actionHistory = new ActionHistory()
 

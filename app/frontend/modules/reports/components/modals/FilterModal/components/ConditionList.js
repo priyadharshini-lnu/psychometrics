@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import FilterCondition from 'rb/models/FilterCondition'
+import FilterCondition from 'modules/reports/models/FilterCondition'
 import styles from './FilterModal.scss'
 import Condition from './Condition'
 

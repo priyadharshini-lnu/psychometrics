@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Select from 'react-select'
-import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 
 class BaseExternalFactor extends Component {
   getOptions = () => {

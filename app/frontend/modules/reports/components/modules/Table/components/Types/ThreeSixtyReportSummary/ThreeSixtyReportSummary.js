@@ -1,9 +1,9 @@
 import React from 'react'
 import cs from 'classnames'
 import { getIn } from 'utils/immutable'
-import I18nStore from 'rb/store/I18nStore'
-import AppStore from 'rb/store/AppStore'
-import ResultStore from 'rb/store/ResultStore'
+import I18nStore from 'modules/reports/store/I18nStore'
+import AppStore from 'modules/reports/store/AppStore'
+import ResultStore from 'modules/reports/store/ResultStore'
 import _ from 'lodash'
 import styles from './styles.scss'
 

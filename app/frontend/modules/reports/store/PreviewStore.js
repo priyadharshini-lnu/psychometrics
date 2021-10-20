@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Result from 'rb/models/Result'
+import Result from 'modules/reports/models/Result'
 import PageList from './PageList'
 import AppStore from './AppStore'
 import ResultStore from './ResultStore'

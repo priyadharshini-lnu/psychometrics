@@ -27,7 +27,8 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
+      @record.provider_internal? &&
+        (@user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: @record.owner_id))
     end
 
     def external_reports?
@@ -97,7 +98,9 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
 
-        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
+        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
+
+        owner_ids.concat(@user.campaign_admin_client_ids) if @user.is?(:campaign_admin)
 
         permitted_owner_ids = owner_ids.uniq.select do |owner_id|
           @user.has_permission?(:reports, :view, project_id: owner_id)

@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import AppStore from 'rb/store/AppStore'
-import I18nStore from 'rb/store/I18nStore'
+import AppStore from 'modules/reports/store/AppStore'
+import I18nStore from 'modules/reports/store/I18nStore'
 
 export const Functions = {
   Count (data, index) {

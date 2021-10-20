@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DataSource from 'rb/components/DataSourceMenu'
-import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import PropertyFilter from 'rb/components/PropertyFilter'
+import DataSource from 'modules/reports/components/DataSourceMenu'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import PropertyFilter from 'modules/reports/components/PropertyFilter'
 
 class Properties extends Component {
   static propTypes = {

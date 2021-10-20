@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ConditionModel from 'rb/models/logic/Condition'
+import ConditionModel from 'modules/reports/models/logic/Condition'
 import css from './ConditionList.scss'
 import Condition from './Condition'
 import { MOVE_TO_NEW_ROW } from '../Constants'

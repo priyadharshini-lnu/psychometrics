@@ -12,7 +12,6 @@ html[xmlns="http://www.w3.org/1999/xhtml"]
             spacer[size="48"]
             container.email-container
               spacer[size="32"]
-              = render 'mailer/end_user_logo'
               container.email-container
                 row
                   columns.email-content

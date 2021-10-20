@@ -2,13 +2,13 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import Dashboard from 'rb/views/layouts/Dashboard'
-import I18nStore from 'rb/store/I18nStore'
-import UndoRedoDispatcher from 'rb/dispatchers/UndoRedoDispatcher'
+import Dashboard from 'modules/reports/views/layouts/Dashboard'
+import I18nStore from 'modules/reports/store/I18nStore'
+import UndoRedoDispatcher from 'modules/reports/dispatchers/UndoRedoDispatcher'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
-import ResultStore from 'rb/store/ResultStore'
-import Result from 'rb/models/Result'
+import ResultStore from 'modules/reports/store/ResultStore'
+import Result from 'modules/reports/models/Result'
 import store from '../store'
 
 class AppContainer extends Component {

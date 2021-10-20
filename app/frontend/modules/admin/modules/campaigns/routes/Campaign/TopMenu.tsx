@@ -7,7 +7,9 @@ import {
   PieChartOutlined,
   QrcodeOutlined,
   DatabaseOutlined,
+  SolutionOutlined,
 } from '@ant-design/icons'
+
 import routeUtils from 'utils/route'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 
@@ -23,6 +25,7 @@ const ROUTES = [
   '/assessments_reports',
   '/registration_codes',
   '/datasheet',
+  '/admins',
   '/options',
 ]
 
@@ -54,18 +57,30 @@ const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
         <UserOutlined />
         Participants
       </Menu.Item>
-      <Menu.Item key="/assessments_reports">
-        <PieChartOutlined />
-        Assessments & Reports
-      </Menu.Item>
-      <Menu.Item key="/registration_codes">
-        <QrcodeOutlined />
-        Registration codes
-      </Menu.Item>
-      <Menu.Item key="/datasheet">
-        <DatabaseOutlined />
-        {I18n.t('common.model.datasheet')}
-      </Menu.Item>
+      {currentUser.permissions.manageCampaigns && (
+        <Menu.Item key="/assessments_reports">
+          <PieChartOutlined />
+          Assessments & Reports
+        </Menu.Item>
+      )}
+      {currentUser.permissions.viewRegistrationCodes && (
+        <Menu.Item key="/registration_codes">
+          <QrcodeOutlined />
+          Registration codes
+        </Menu.Item>
+      )}
+      {currentUser.permissions.viewDatasheets && (
+        <Menu.Item key="/datasheet">
+          <DatabaseOutlined />
+          {I18n.t('common.model.datasheet')}
+        </Menu.Item>
+      )}
+      {currentUser.permissions.manageCampaignAdmins && (
+        <Menu.Item key="/admins">
+          <SolutionOutlined />
+          {I18n.t('common.model.admins')}
+        </Menu.Item>
+      )}
       {currentUser.permissions.manageOptions && (
         <Menu.Item key="/options">
           <SettingOutlined />

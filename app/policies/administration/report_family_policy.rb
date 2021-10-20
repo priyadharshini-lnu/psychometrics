@@ -10,6 +10,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
+    def edit?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)

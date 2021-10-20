@@ -412,12 +412,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -604,8 +604,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
-    saville_norm_id character varying
+    saville_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[]
 );
 
 
@@ -1835,7 +1835,11 @@ CREATE TABLE public.license_usages (
     registration_code_id bigint,
     status_updated_by_id integer,
     status_updated_at timestamp without time zone,
-    status integer DEFAULT 0
+    status integer DEFAULT 0,
+    proctoring_session_id integer,
+    proctoring_credits_debited integer,
+    proctoring_credits_credited integer,
+    proctoring_session_duration integer
 );
 
 
@@ -1982,7 +1986,8 @@ CREATE TABLE public.memberships (
     project_membership_id integer,
     ancestry character varying,
     role integer DEFAULT 0 NOT NULL,
-    already_invited boolean DEFAULT false NOT NULL
+    already_invited boolean DEFAULT false NOT NULL,
+    campaign_id integer
 );
 
 
@@ -3336,8 +3341,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -3765,12 +3769,12 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     selected_locale character varying,
@@ -6301,6 +6305,13 @@ CREATE INDEX index_memberships_on_hris ON public.memberships USING gin (hris);
 
 
 --
+-- Name: index_memberships_on_user_id_and_role_and_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_memberships_on_user_id_and_role_and_campaign_id ON public.memberships USING btree (user_id, role, campaign_id);
+
+
+--
 -- Name: index_mindmill_credentials_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7005,6 +7016,13 @@ CREATE INDEX index_webhook_subscriptions_on_active ON public.webhook_subscriptio
 --
 
 CREATE INDEX index_webhook_subscriptions_on_project_id ON public.webhook_subscriptions USING btree (project_id);
+
+
+--
+-- Name: membership_columns_uniq_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX membership_columns_uniq_index ON public.memberships USING btree (client_id, user_id, role, campaign_id);
 
 
 --
@@ -7933,7 +7951,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -8681,10 +8699,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210728151708'),
 ('20210804125607'),
 ('20210805081530'),
+('20210812053648'),
+('20210823120858'),
 ('20210823132111'),
 ('20210830121355'),
 ('20210913092232'),
 ('20210917131407'),
-('20210919105932');
+('20210919105932'),
+('20211011143418'),
+('20211013070031');
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Foundation from 'rb/components/Foundation'
+import Foundation from 'modules/reports/components/Foundation'
 import styles from './TableModule.scss'
 import Types from './Types'
 

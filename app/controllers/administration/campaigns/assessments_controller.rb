@@ -131,7 +131,8 @@ module Administration
         authorize(
           campaign_assessment || assessment,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
       end
 

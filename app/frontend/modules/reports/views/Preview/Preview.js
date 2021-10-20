@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PreviewStore'
-import PageList from 'rb/store/PageList'
-import LogicResolver from 'rb/models/logic/LogicResolver'
+import store from 'modules/reports/store/PreviewStore'
+import PageList from 'modules/reports/store/PageList'
+import LogicResolver from 'modules/reports/models/logic/LogicResolver'
 import Page from './Page'
 
 export class Preview extends Component {
