@@ -55,7 +55,9 @@ module Administration
             reset_all_participants
             reset_all_nominations
           ],
-          threesixty_campaign.campaign.project_id
+          {
+            project_id: threesixty_campaign.campaign.project_id
+          }
         )
       end
 
