@@ -52,7 +52,9 @@ module Administration
       end
 
       def update?
-        @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_users, project_id: project_id)
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+        )
       end
 
       def reset_password?
