@@ -64,25 +64,25 @@ const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
         Participants
       </Menu.Item>
       {currentUser.permissions.manageCampaigns && (
-        <Menu.Item key="/assessments_reports">
+        <Menu.Item key="assessments_reports">
           <PieChartOutlined />
           Assessments & Reports
         </Menu.Item>
       )}
       {currentUser.permissions.viewRegistrationCodes && (
-        <Menu.Item key="/registration_codes">
+        <Menu.Item key="registration_codes">
           <QrcodeOutlined />
           Registration codes
         </Menu.Item>
       )}
       {currentUser.permissions.viewDatasheets && (
-        <Menu.Item key="/datasheet">
+        <Menu.Item key="datasheet">
           <DatabaseOutlined />
           {I18n.t('common.model.datasheet')}
         </Menu.Item>
       )}
       {currentUser.permissions.manageCampaignAdmins && (
-        <Menu.Item key="/admins">
+        <Menu.Item key="admins">
           <SolutionOutlined />
           {I18n.t('common.model.admins')}
         </Menu.Item>
