@@ -1,7 +1,7 @@
 import React, { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Row, PageHeader } from 'antd'
+import { Col, Row, PageHeader } from 'antd'
 
 import { RootState } from 'modules/user/core/rootReducers'
 import { get as getCurrentUser } from 'core/currentUser'
@@ -76,6 +76,9 @@ const CampaignList: FC<PropsFromRedux> = ({
         )}
       />
       <Row gutter={[32, 32]}>
+        <Col span={24}>
+          {I18n.t('campaign.dashboard_instructions')}
+        </Col>
         {campaigns.map((campaign) => {
           const Component = Campaigns[campaign.type]
 

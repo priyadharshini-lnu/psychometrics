@@ -11,7 +11,7 @@ module Administration
 
       def assessments
         object.campaign_assessments.map do |g|
-          CampaignAssessmentSerializer.new(g, { project_id: g.campaign.project_id }).to_h
+          CampaignAssessmentSerializer.new(g, { project_id: g.campaign.project_id, campaign_id: g.campaign.id }).to_h
         end
       end
     end

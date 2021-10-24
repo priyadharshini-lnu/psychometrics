@@ -6,7 +6,8 @@ module Reports
 
     def initialize(report)
       @report = report
-      @configuration_sections = report.data_configuration['sections']
+      @configuration_sections = report.data_configuration['sections'].clone
+      @configuration_sections << { 'data' => report.data_configuration['refs'] } if report.data_configuration['refs']
     end
 
     def call

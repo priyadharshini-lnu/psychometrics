@@ -72,7 +72,7 @@ class Membership < ApplicationRecord
            through: :reports_accesses, source: :report
 
   validates :client, :user, presence: true
-  validates :client_id, uniqueness: { scope: %i[user_id role] }
+  validates :client_id, uniqueness: { scope: %i[user_id role campaign_id] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
   validate :relevant_role, if: -> { client.present? }
   validate :client_admin_scope, if: -> { project_admin? }

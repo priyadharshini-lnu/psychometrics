@@ -413,12 +413,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -605,8 +605,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    saville_norm_id character varying,
-    available_locales text[] DEFAULT '{}'::text[]
+    available_locales text[] DEFAULT '{}'::text[],
+    saville_norm_id character varying
 );
 
 
@@ -2986,6 +2986,39 @@ ALTER SEQUENCE public.shortened_urls_id_seq OWNED BY public.shortened_urls.id;
 
 
 --
+-- Name: sms_histories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sms_histories (
+    id bigint NOT NULL,
+    sms_invite_id bigint NOT NULL,
+    sms_record_id bigint NOT NULL,
+    status character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sms_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sms_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sms_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sms_histories_id_seq OWNED BY public.sms_histories.id;
+
+
+--
 -- Name: sms_invites; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3342,7 +3375,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -3770,12 +3804,12 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     selected_locale character varying,
@@ -4448,6 +4482,13 @@ ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.shortened_urls ALTER COLUMN id SET DEFAULT nextval('public.shortened_urls_id_seq'::regclass);
+
+
+--
+-- Name: sms_histories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories ALTER COLUMN id SET DEFAULT nextval('public.sms_histories_id_seq'::regclass);
 
 
 --
@@ -5264,6 +5305,14 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.shortened_urls
     ADD CONSTRAINT shortened_urls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sms_histories sms_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT sms_histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -6299,6 +6348,13 @@ CREATE INDEX index_memberships_on_client_id ON public.memberships USING btree (c
 
 
 --
+-- Name: index_memberships_on_client_id_and_role_and_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_memberships_on_client_id_and_role_and_campaign_id ON public.memberships USING btree (client_id, role, campaign_id);
+
+
+--
 -- Name: index_memberships_on_hris; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6597,6 +6653,20 @@ CREATE UNIQUE INDEX index_shortened_urls_on_unique_key ON public.shortened_urls 
 --
 
 CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (url);
+
+
+--
+-- Name: index_sms_histories_on_sms_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_histories_on_sms_invite_id ON public.sms_histories USING btree (sms_invite_id);
+
+
+--
+-- Name: index_sms_histories_on_sms_record_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_histories_on_sms_record_id ON public.sms_histories USING btree (sms_record_id);
 
 
 --
@@ -7010,6 +7080,13 @@ CREATE INDEX index_webhook_subscriptions_on_active ON public.webhook_subscriptio
 --
 
 CREATE INDEX index_webhook_subscriptions_on_project_id ON public.webhook_subscriptions USING btree (project_id);
+
+
+--
+-- Name: membership_columns_uniq_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX membership_columns_uniq_index ON public.memberships USING btree (client_id, user_id, role, campaign_id);
 
 
 --
@@ -7574,6 +7651,14 @@ ALTER TABLE ONLY public.innovation_styles
 
 
 --
+-- Name: sms_histories fk_rails_79c274d22c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT fk_rails_79c274d22c FOREIGN KEY (sms_record_id) REFERENCES public.sms_records(id);
+
+
+--
 -- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7774,6 +7859,14 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 
 --
+-- Name: sms_histories fk_rails_9d612c8fc8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT fk_rails_9d612c8fc8 FOREIGN KEY (sms_invite_id) REFERENCES public.sms_invites(id);
+
+
+--
 -- Name: saville_report_settings fk_rails_9dbdc763fd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7938,7 +8031,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -8693,4 +8786,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210913092232'),
 ('20210917131407'),
 ('20210919105932'),
-('20211011103826');
+('20211011103826'),
+('20211011143418'),
+('20211013070031'),
+('20211018074847');
+
+

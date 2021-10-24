@@ -37,6 +37,7 @@ export default function Campaign ({
 
   const {
     isTimedCampaign,
+    campaignsCount,
     campaignUser: {
       expiryDate,
     },
@@ -126,7 +127,16 @@ export default function Campaign ({
                   <Result
                     status="success"
                     title={I18n.t('campaign.thank_you_for_time')}
-                    subTitle={I18n.t('campaign.all_activities_are_completed')}
+                    subTitle={
+                      campaignsCount > 1
+                        ? I18n.t('campaign.all_activities_are_completed_multiple')
+                        : I18n.t('campaign.all_activities_are_completed')
+                    }
+                    extra={campaignsCount > 1 && (
+                      <Button href="/" type="primary">
+                        {I18n.t('campaign.goto_dashboard')}
+                      </Button>
+                    )}
                     className="custom-result mvl"
                   />
                 )}

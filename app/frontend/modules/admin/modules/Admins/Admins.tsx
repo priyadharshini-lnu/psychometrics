@@ -360,6 +360,7 @@ const AdminsComponent: FC<Props> = ({
         parentResourceType={parentResourceType}
         parentResourceId={parentResourceId}
         isEditMode={drawerMode === DrawerMode.Edit}
+        isAddMode={drawerMode === DrawerMode.Add}
         campaignId={campaignId}
         adminId={drawerAdminId}
         handleClose={handleDrawerClose}

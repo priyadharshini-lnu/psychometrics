@@ -106,7 +106,7 @@ module Administration
     private
 
     def pundit_authorize
-      authorize(resource || resource_class, nil, project_id: project.id)
+      authorize(resource || resource_class, nil, project_id: project.id, campaign_id: campaign&.id)
     end
 
     def permissions
@@ -114,7 +114,7 @@ module Administration
         Administration::DatasheetRowPolicy,
         current_user, nil,
         ['export', 'import', 'update', 'edit', %w[add create], %w[delete destroy], %w[view show]],
-        project.id
+        { project_id: project.id, campaign_id: campaign&.id }
       )
     end
 

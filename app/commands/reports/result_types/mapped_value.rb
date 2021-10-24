@@ -8,7 +8,7 @@ module Reports
         result = ::Reports::BuildResults::CLASS_MAP[source['type'].to_sym].
                  constantize.call(context, source).try(:[], :value)
         {
-          key: 'mapped_value',
+          key: data['id'],
           name: data['label'],
           config_data: data,
           value: calculate(result)

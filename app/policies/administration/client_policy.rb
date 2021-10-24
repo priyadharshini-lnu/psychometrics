@@ -66,7 +66,7 @@ module Administration
     end
 
     def manage_project_admins?
-      @user.has_permission?(:projects, :manage_admins, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id: project_id)
     end
 
     def project_admins?
@@ -117,10 +117,13 @@ module Administration
 
         clients_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
 
-        clients_ids.concat(@user.campaign_admin_client_ids) if @user.is?(:campaign_admin)
+        if @user.is?(:campaign_admin)
+          clients_ids.concat(@user.campaign_admin_client_ids)
+          @campaign_ids = @user.campaign_admin_campaigns.pluck(:id)
+        end
 
         permitted_clients_ids = clients_ids.select do |client_id|
-          @user.has_permission?(permission, :view, project_id: client_id)
+          @user.has_permission?(permission, :view, project_id: client_id, campaign_id: @campaign_ids)
         end
 
         clients_scope = scope.where(id: permitted_clients_ids)

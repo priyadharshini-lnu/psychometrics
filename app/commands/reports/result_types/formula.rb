@@ -13,14 +13,21 @@ module Reports
 
       def call
         formula_op = data.dig('formula', 'op')
+        total_weight = 0
         results = formula_args.map do |arg|
-          Reports::BuildResults::CLASS_MAP[arg['type'].to_sym].constantize.call(context, arg).try(:[], :value)
-        end.flatten.compact
+          weight = arg['weight'] || 1
+          score = Reports::BuildResults::CLASS_MAP[arg['type'].to_sym].constantize.call(context, arg).try(:[], :value)
+          if score.present?
+            score *= weight
+            total_weight += weight
+          end
+          score
+        end.flatten
         {
-          key: data['key'] || 'formula',
+          key: data['id'] || 'formula',
           name: data['label'],
           config_data: data,
-          value: calc(results, formula_op)
+          value: calc(results, formula_op, total_weight)
         }
       end
 
@@ -28,10 +35,11 @@ module Reports
         data.dig('formula', 'args') || []
       end
 
-      def calc(results, formula_op)
+      def calc(results, formula_op, total_weight)
         return if results.blank?
+        return if results.any?(&:nil?)
 
-        return (results.inject(0.0, :+) / results.size.to_f).round(2) if formula_op == AVERAGE
+        return (results.inject(0.0, :+) / total_weight.to_f).round(2) if formula_op == AVERAGE
         return results.min if formula_op == MIN
         return results.max if formula_op == MAX
         return results.inject(&:+) if formula_op == ADD

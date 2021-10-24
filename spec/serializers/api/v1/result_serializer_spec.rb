@@ -36,6 +36,7 @@ describe Api::V1::ResultSerializer do
     is_expected.to eq(
       campaign_id: user_report.campaign_id,
       user_data: { 'first_name' => 'Shuja', 'last_name' => 'GPTS' },
+      computed_scores: [],
       assessments: [
         {
           id: 17,

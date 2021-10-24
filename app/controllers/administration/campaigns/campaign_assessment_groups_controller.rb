@@ -29,6 +29,15 @@ module Administration
 
       private
 
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
+        )
+      end
+
       def resource_params
         (params[:resource] || params[:campaign_assessment_group]).
           permit(:name, :previous_assessments_required, :previous_group_required, :position)

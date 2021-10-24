@@ -16,6 +16,8 @@ module Administration
       end
 
       def campaign
+        return nil unless params[:new_campaign_id]
+
         @campaign ||= Campaign.find(params[:new_campaign_id])
       end
 
@@ -31,7 +33,7 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: project
+          project_id: project.id
         )
       end
     end
