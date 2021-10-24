@@ -1,11 +1,12 @@
 tr id=dom_id(resource)
   td = resource.id
-  - if resource.campaign&.threesixty?
-    =link_to(resource.campaign.name, administration_client_project_threesixty_campaign_path(client, resource.campaign.project, resource.campaign.threesixty_campaign))
-  - if resource.campaign&.common?
-    =link_to(resource.campaign.name, administration_new_project_new_campaign_path(resource.campaign.project, resource.campaign))
-  - else 
-    td = resource.extras['campaign_name']
+  td
+    - if resource.campaign&.threesixty?
+      =link_to(resource.campaign.name, administration_client_project_threesixty_campaign_path(client, resource.campaign.project, resource.campaign.threesixty_campaign))
+    - if resource.campaign&.common?
+      =link_to(resource.campaign.name, administration_project_new_campaign_path(resource.campaign.project, resource.campaign))
+    - else
+      = resource.extras['campaign_name']
   td = resource.extras['subject_name']
   td = resource.extras['subject_email']
   td = resource.decorate.formatted_date_time(:created_at)
