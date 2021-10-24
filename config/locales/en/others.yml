@@ -711,6 +711,10 @@ en:
       managers_assessments_button: Action Planning
       managers_dashboard_button: Managers Dashboard
       user_dashboard_button: User Dashboard
+    instructions:
+      begin_assessment: Begin Assessment
+      cancel: Cancel
+      default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
     messages:
       finish: "Thank you for your time. \nYour responses have now been recorded."
     page:

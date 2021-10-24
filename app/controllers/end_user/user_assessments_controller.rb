@@ -3,8 +3,8 @@
 class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
   layout 'layouts/end_user'
-  initial_state_for %i[pass]
-  before_action :set_user_assessment, only: %i[assessment show pass]
+  initial_state_for %i[pass begin]
+  before_action :set_user_assessment, only: %i[assessment show pass begin]
 
   def assessment
     @selected_locale = @user_assessment.selected_locale || user_locale
@@ -21,7 +21,6 @@ class EndUser::UserAssessmentsController < ApplicationController
     user_result.update(last_activity_at: DateTime.current)
 
     @selected_locale = @user_assessment.selected_locale || user_locale
-
     render json: user_result, serializer: UsersResultSerializer,
                  campaign: @user_assessment.campaign, participant: @user_assessment,
                  current_user: current_user, locale: @selected_locale,
@@ -38,6 +37,21 @@ class EndUser::UserAssessmentsController < ApplicationController
     set_locale
 
     UserAssessments::Pass.call!(@user_assessment, lang)
+
+    respond_to do |format|
+      format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
+    end
+  end
+
+  def begin
+    lang = params[:lang] || @user_assessment.selected_locale || user_locale
+    if @current_project.available_locales.include?(lang.to_s)
+      cookies[:locale] = lang
+      current_user&.update_column(:locale, lang)
+    end
+    set_locale
+
+    UserAssessments::Begin.call!(@user_assessment, lang)
 
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }

@@ -876,6 +876,7 @@ Rails.application.routes.draw do
         member do
           get :assessment
           get :pass
+          get :begin
         end
       end
 

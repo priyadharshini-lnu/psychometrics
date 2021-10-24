@@ -8,6 +8,9 @@ export default connect(
     agileAssignUrl: preview.agileAssignUrl,
     agileAssetsUrl: preview.agileAssetsUrl,
     showSubmitPage: preview.showSubmitPage,
+    started: preview.started,
+    fixedTimed: preview.fixedTimed,
+    instructions: preview.instructions,
   }),
   {
   },

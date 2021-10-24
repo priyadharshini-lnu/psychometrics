@@ -188,6 +188,10 @@ class Assessment < ApplicationRecord
     category == AGILE
   end
 
+  def fixed_timed?
+    extra['timer']&.positive?
+  end
+
   class << self
     # Available role for the filter form
     #

@@ -258,7 +258,9 @@ CREATE TABLE public.assessments (
     resources json,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
-    deleted_by_id bigint
+    deleted_by_id bigint,
+    options json DEFAULT '{}'::json,
+    instructions json
 );
 
 
@@ -6305,13 +6307,6 @@ CREATE INDEX index_memberships_on_hris ON public.memberships USING gin (hris);
 
 
 --
--- Name: index_memberships_on_user_id_and_role_and_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_memberships_on_user_id_and_role_and_campaign_id ON public.memberships USING btree (user_id, role, campaign_id);
-
-
---
 -- Name: index_mindmill_credentials_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8706,7 +8701,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210913092232'),
 ('20210917131407'),
 ('20210919105932'),
-('20211011143418'),
-('20211013070031');
-
-
+('20211011103826'),
+('20211013070031'),
+('20211017084949');

@@ -21,6 +21,8 @@ export const SAVE_FAILURE = 'survey/assessment/SAVE_FAILURE'
 export const SAVE_DATA_SHEET = 'builder/assessment/SAVE_DATA_SHEET'
 export const UPLOAD_DATA_SHEET = 'builder/assessment/UPLOAD_DATA_SHEET'
 export const UPDATE_EXTRA = 'builder/assessment/UPDATE_EXTRA'
+export const TOGGLE_INSTRUCTIONS = 'builder/assessment/TOGGLE_INSTRUCTIONS'
+export const UPDATE_INSTRUCTIONS_CONTENT = 'builder/assessment/UPDATE_INSTRUCTIONS_CONTENT'
 
 export const selectQuestion = (question, offset) => ({ type: SELECT_QUESTION, question, offset })
 
@@ -68,3 +70,7 @@ export const uploadDataSheet = (id, body) => ({
     body,
   },
 })
+
+export const toggleInstructions = () => ({ type: TOGGLE_INSTRUCTIONS })
+
+export const updateInstructionsContent = content => ({ type: UPDATE_INSTRUCTIONS_CONTENT, content })

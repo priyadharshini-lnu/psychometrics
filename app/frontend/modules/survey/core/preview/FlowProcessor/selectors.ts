@@ -217,7 +217,7 @@ export const getHighlightByType = ({ preview },
   resourceType: type,
 }
 
-export const getI18n = ({ locales }): I18nInterface => ({
+export const getI18n = ({ locales, instructions }): I18nInterface => ({
   t (code: string, data: any): string {
     return I18n.t(code, data)
   },
@@ -246,6 +246,9 @@ export const getI18n = ({ locales }): I18nInterface => ({
   },
   tCustomValidation (question: any, message: string, uuid: string): string {
     return _.get(locales, ['question', question.id, `customValidationText_${uuid}`], message)
+  },
+  tInstructions () {
+    return _.get(locales, ['instructions', 0, 'content']) || instructions.content
   },
 })
 

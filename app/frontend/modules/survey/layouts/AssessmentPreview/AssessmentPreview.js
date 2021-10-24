@@ -4,10 +4,13 @@ import Page from 'views/Preview/Page'
 import EndPage from 'views/Preview/EndPage'
 import SubmitPage from 'views/Preview/SubmitPage'
 import SinglePage from 'modules/survey/views/Preview/SinglePage'
+import Instructions from 'modules/survey/views/Preview/Instructions'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
+
 
 const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
+  started, type,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
 
@@ -55,6 +58,10 @@ const AssessmentPreview = ({
 
   if (showSubmitPage) {
     return <SubmitPage />
+  }
+
+  if (type !== 'preview_assessment' && !started) {
+    return <Instructions />
   }
 
   return (
