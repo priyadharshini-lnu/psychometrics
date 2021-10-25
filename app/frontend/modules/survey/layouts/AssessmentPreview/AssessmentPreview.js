@@ -10,7 +10,7 @@ import { InteractiveAssessments } from '@thetalententerprise/interactive-assessm
 
 const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
-  started, type,
+  started, type, isAnonymousAssessment,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
 
@@ -60,7 +60,7 @@ const AssessmentPreview = ({
     return <SubmitPage />
   }
 
-  if (type !== 'preview_assessment' && !started) {
+  if (type !== 'preview_assessment' && !isAnonymousAssessment && !started) {
     return <Instructions />
   }
 

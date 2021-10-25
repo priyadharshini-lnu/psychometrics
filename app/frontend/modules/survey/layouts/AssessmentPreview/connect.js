@@ -11,6 +11,7 @@ export default connect(
     started: preview.started,
     fixedTimed: preview.fixedTimed,
     instructions: preview.instructions,
+    isAnonymousAssessment: preview.isAnonymousAssessment,
   }),
   {
   },

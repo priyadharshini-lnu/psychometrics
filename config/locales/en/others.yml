@@ -715,6 +715,7 @@ en:
       begin_assessment: Begin Assessment
       cancel: Cancel
       default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
+      title: Instructions
     messages:
       finish: "Thank you for your time. \nYour responses have now been recorded."
     page:
