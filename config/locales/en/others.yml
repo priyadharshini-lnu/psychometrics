@@ -474,12 +474,14 @@ en:
           admin: Admin
           admins:
             admin: Admin
+            campaign_admin: Campaign Admin
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
           assessor: Assessor
           assessor_form: Assessor Form
+          campaign_admin: Campaign Admin
           case_study: Case study
           client_admin: Client Admin
           hogan: Hogan
@@ -2061,6 +2063,7 @@ en:
         parent_id: Direct Manager
         report_ids: Report IDs
         roles:
+          campaign_admin: Campaign Admin
           client_admin: Client Admin
           manager: Manager
           member: User

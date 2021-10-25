@@ -58,6 +58,7 @@ class UserDecorator < BaseDecorator
       admin_levels.concat(client_admin_hierarchy_for_user).join('<br/>')
     end
     admin_levels.concat(assessor_hierarchy_for_user).join('<br/>') if object.assessors.any?
+    admin_levels.concat(campaign_admin_hierarchy_for_user).join('<br/>') if object.is?(:campaign_admin)
 
     [admin_levels, end_levels].reject(&:empty?).join('<br/>').html_safe
   end
@@ -67,6 +68,13 @@ class UserDecorator < BaseDecorator
       path = h.administration_client_project_admins_path(client)
       path ||= h.administration_client_users_path(client)
       h.link_to client.decorate.display_name, path
+    end
+  end
+
+  def campaign_admin_hierarchy_for_user
+    object.campaign_admin_campaigns.map do |campaign|
+      path = h.administration_project_new_campaign_path(campaign.project, campaign)
+      h.link_to campaign.decorate.display_name, path
     end
   end
 
