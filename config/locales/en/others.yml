@@ -2268,6 +2268,7 @@ en:
     options:
       global:
         cannot_re_edit: Participants cannot edit evaluations
+        disable_all_evaluations: Disable all evaluations
     or: Or
     page_title: Signify 360° Review - Apply Level
     participant_list:

@@ -27,6 +27,7 @@ function EvaluationList ({
   const evaluationHelp = _.find(instructions, { name: 'evaluation_help' })
   const canNotEvaluate = (item) => {
     if (item.subjectEvaluationClosed) { return true }
+    if (options.global.disableAllEvaluations) { return true }
 
     return options.global.canNotEditEvaluation && isEvaluationCompleted(item)
   }
