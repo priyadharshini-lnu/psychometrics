@@ -4,7 +4,8 @@ import {
   Menu, Dropdown, List, Collapse, Progress, Modal, Tooltip,
 } from 'antd'
 import {
-  CheckSquareFilled, InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
+  InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
+  CheckCircleFilled,
 } from '@ant-design/icons'
 import { SafeHTML } from 'components/SafeHTML'
 import userPresenter from 'presenters/user'
@@ -94,12 +95,13 @@ function EvaluationList ({
       <List.Item>
         <div className="evaluation-item list-item">
           {isEvaluationCompleted(item)
-            ? <a><CheckSquareFilled className="status-icon" /></a>
-            : <div className="empty-square" />}
+            ? <a><CheckCircleFilled className="status-icon complete" /></a>
+            : <CheckCircleFilled className="status-icon" />}
           {' '}
+
           <Link
             to={getPath(item)}
-            style={{ display: 'flex', flex: 1 }}
+            style={{ display: 'flex', flex: 1, alignItems: 'center' }}
             disabled={canNotEvaluate(item)}
             onClick={e => handleAssessmentLinkClick(e, item)}
           >
@@ -108,10 +110,16 @@ function EvaluationList ({
             </Tooltip>
           </Link>
 
-          {subjectEvaluationClosed && (
-          <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
-            <InfoCircleOutlined />
-          </Tooltip>
+          {options.global.disableAllEvaluations && (
+            <Tooltip placement="top" title={I18n.t('threesixty.evaluation_all_closed_message')}>
+              <InfoCircleOutlined />
+            </Tooltip>
+          )}
+
+          {!options.global.disableAllEvaluations && subjectEvaluationClosed && (
+            <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
+              <InfoCircleOutlined />
+            </Tooltip>
           )}
 
           {showDeclineEvaluationDropdown(item)

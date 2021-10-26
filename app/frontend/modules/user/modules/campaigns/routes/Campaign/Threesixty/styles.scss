@@ -112,6 +112,10 @@
         margin-inline-end: 8px;
         border-radius: 6px;
         overflow: hidden;
+
+        &.complete {
+          color: $success-color;
+        }
       }
 
       .empty-square {

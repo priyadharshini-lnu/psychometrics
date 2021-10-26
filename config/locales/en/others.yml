@@ -2234,6 +2234,7 @@ en:
       delete_successful: Email schedule deleted successfully
     evaluate: Evaluate
     evaluation: Evaluation
+    evaluation_all_closed_message: Currently all the nominations are awaiting approval
     evaluation_closed_message: Evaluation is closed for this subject
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
     evaluation_help_modal:
