@@ -13,7 +13,7 @@ describe Client, type: :model do
     end
 
     it 'should be correct' do
-      expect(project.reload.hogan_group_name).to eq("#{project.client.name} - #{project.subdomain}")
+      expect(project.reload.hogan_group_name).to eq("#{project.client.name}-#{project.id}")
     end
   end
 
