@@ -11,6 +11,7 @@ import {
   Question, Block, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
   I18nInterface, Highlight, MediaResponse,
 } from './interfaces'
+import BranchProcessor from './commands/BranchProcessor'
 
 let { I18n } = window
 if (I18n) {
@@ -131,6 +132,12 @@ export const getPrevBlockIds = (state): string[] => {
     if (!el || path === state.currentElement) {
       return state.currentPage > 0 ? [...ids, el.props.current] : ids
     }
+    if (el.type === 'Branch' && !BranchProcessor.run(state, el)) {
+      path = getNextElementId(state, path)
+      // eslint-disable-next-line no-continue
+      continue
+    }
+
     ids = el.type === 'Block' ? [...ids, el.props.current] : ids
     path = getChildOrNextElementId(state, path)
   }
@@ -171,6 +178,12 @@ export const getPossibleBlocks = (state): string[] => {
       // eslint-disable-next-line no-continue
       continue
     }
+
+    if (el.type === 'Branch' && !BranchProcessor.run(state, el)) {
+      path = getNextElementId(state, path)
+      // eslint-disable-next-line no-continue
+      continue
+    }
     ids = el.type === 'Block' ? [...ids, el.props.current] : ids
     if ((maybeTopEnd === path) || (maybeEnd === path)) {
       return ids
@@ -194,7 +207,6 @@ export const getPossibleQuestionsCount = (state): number => {
   const blockIds = getPossibleBlocks(state)
   const [current, ...ids] = blockIds
   if (!current) { return 0 }
-
   const count = getQuestionsCount(state, ids)
   const currentPage = state.allPages[current]
   return count + pagesQuestions(_.takeRight(currentPage, currentPage.length - state.currentPage))
