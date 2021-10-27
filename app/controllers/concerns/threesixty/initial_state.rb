@@ -24,7 +24,10 @@ module Threesixty::InitialState
       }.merge(campaign_intial_state),
       config: {
         agileAssetsUrl: Settings.agile_config.asset_url,
-        features: feature_flags
+        features: feature_flags,
+        maintenance: {
+          remainingTime: remaining_maintenance_time
+        }
       },
       currentUser: serialized_current_user,
       liveChat: {
@@ -47,5 +50,9 @@ module Threesixty::InitialState
 
   def campaign_intial_state
     {}
+  end
+
+  def remaining_maintenance_time
+    (ENV['MAINTENANCE_START_DATETME'].to_time - Time.now).to_i if ENV['MAINTENANCE_START_DATETME']
   end
 end

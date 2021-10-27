@@ -2,9 +2,9 @@
 
 class ApplicationController < ::BaseController
   include AuthenticateAnonymousUser
-
   layout :layout_by_resource
 
+  before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   # Authentication user/manager
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
@@ -13,6 +13,9 @@ class ApplicationController < ::BaseController
   around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_action :redirect_to_ae_domain, if: :redirect_to_ae_enabled?
+
+  DOMAIN_REGEXP = %r{^((?:http|https):\/\/.+\.)com}.freeze
 
   # Sets particular layout in depends of conditions
   #
@@ -52,6 +55,15 @@ class ApplicationController < ::BaseController
 
   def allow_iframe_for_sso
     response.headers['X-Frame-Options'] = 'ALLOWALL'
+  end
+
+  def redirect_to_maintenance
+    redirect_to maintenance_url
+  end
+
+  def redirect_to_ae_domain
+    url = request.original_url
+    redirect_to url.gsub(DOMAIN_REGEXP, '\1ae') if url.match(DOMAIN_REGEXP)
   end
 
   private
@@ -118,5 +130,13 @@ class ApplicationController < ::BaseController
 
   def render_423
     render file: "#{Rails.root}/public/423.html", layout: false, status: :locked
+  end
+
+  def redirect_to_ae_enabled?
+    return false unless Rails.env.production?
+    return false unless ENV['UAE_DATA_MIGRATION_REDIRECT_ENABLED'] == 'true'
+
+    domains = (ENV['UAE_DATA_MIGRATION_SUBDOMAINS'] || '').split(',')
+    domains.include?(@current_project&.subdomain)
   end
 end

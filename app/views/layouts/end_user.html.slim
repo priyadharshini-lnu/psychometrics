@@ -31,6 +31,9 @@ html
 
 
   body.end-user class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
+    - if show_maintenance_alert?
+      div style="color: #fff;width: 100%;padding: 20px;font-size: 16px;background: #fa8c16;"
+        = t('maintenance_message', maintenance_time_frame)
     = yield
     #notification-center-container
     = javascript_pack_tag 'notificationCenter'
