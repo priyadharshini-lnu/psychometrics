@@ -140,7 +140,7 @@ class Client < ApplicationRecord
   validate :allowed_data, if: -> { operator }
 
   before_validation :ensure_subdomain, if: :retail?
-  before_create :set_hogan_group_name, if: :project?
+  after_create :set_hogan_group_name, if: :project?
   before_create -> { self.migrated = true }, if: :project?
   after_create :create_smtp_setting
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
@@ -268,6 +268,7 @@ class Client < ApplicationRecord
 
   def set_hogan_group_name
     self.hogan_group_name = generate_hogan_group_name
+    save!
   end
 
   def assessment_universal_links_enabled?(assessment_id)
@@ -281,7 +282,11 @@ class Client < ApplicationRecord
   private
 
   def generate_hogan_group_name
-    "#{client.name.gsub(/[^0-9A-Za-z\s]/, '')} - #{project.subdomain}"
+    [
+      ENV['SERVER_NAME'],
+      client.name.gsub(/[^0-9A-Za-z\s]/, ''),
+      project.id
+    ].compact.join('-')
   end
 
   def generate_subdomain

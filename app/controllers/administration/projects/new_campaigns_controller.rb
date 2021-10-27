@@ -79,7 +79,7 @@ module Administration
         form = ::Campaigns::Form.from_params(@campaign.attributes.merge(campaign_params))
         if form.valid?
           @campaign.update!(form.attributes)
-          render json: campaign, serializer: Administration::Campaigns::CampaignSerializer
+          render json: @campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422
         end

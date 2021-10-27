@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UserAssessments
-  class Pass < BaseCommand
+  class Begin < BaseCommand
     private_attr_reader :user_assessment, :lang
 
     def initialize(user_assessment, lang = nil)
@@ -12,9 +12,8 @@ module UserAssessments
     def call
       return broadcast :ok if user_assessment.completed?
 
-      UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment.not_started?
       user_assessment.users_result.update(build_user_result_params)
-      user_assessment.in_progress! unless @user_assessment.assessment.fixed_timed?
+      user_assessment.in_progress!
 
       broadcast :ok
     end
@@ -24,12 +23,8 @@ module UserAssessments
     def build_user_result_params
       params = {}
       params[:selected_locale] = lang if lang
-
-      if !@user_assessment.assessment.fixed_timed? && !@user_assessment.assessment.instructions&.dig('enabled')
-        params[:started_at] = Time.now unless user_assessment.users_result.started_at
-      end
       params[:expiry_date] = time.second.from_now if time
-
+      params[:started_at] = Time.now unless user_assessment.users_result.started_at
       params
     end
 

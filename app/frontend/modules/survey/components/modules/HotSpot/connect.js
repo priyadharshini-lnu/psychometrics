@@ -3,8 +3,8 @@ import { select } from 'modules/survey/core/temp/hotSpot'
 import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
 
 export default connect(
-  ({ preview, survey: { temp: { hotSpot: { shapeIndex } } } }) => ({
-    shapeIndex,
+  ({ preview, survey }) => ({
+    shapeIndex: survey?.ui?.hotSpot?.shapeIndex,
     I18n: getI18n(preview),
   }),
   {

@@ -6,6 +6,7 @@ class Campaign < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
   after_create_commit :ensure_campaign_options
+  after_create :set_uniq_code
 
   belongs_to :project, class_name: 'Client'
 
@@ -126,5 +127,14 @@ class Campaign < ApplicationRecord
     return if campaign_options.present?
 
     create_campaign_options!
+  end
+
+  def set_uniq_code
+    self.uniq_code = [
+      ENV['SERVER_NAME'],
+      project.id,
+      id
+    ].compact.join('-')
+    save!
   end
 end

@@ -23,7 +23,8 @@ module Builders
     def save
       ActiveRecord::Base.transaction do
         @assessment.update(@assessment_params.slice(
-                             :flow, :norm_rules, :enable_back, :enable_progress, :extra, :data_sheet_columns
+                             :flow, :norm_rules, :enable_back, :enable_progress, :extra, :data_sheet_columns,
+                             :instructions
                            ))
         @assessment_params[:blocks].each do |block_params|
           id = block_params.delete(:id)

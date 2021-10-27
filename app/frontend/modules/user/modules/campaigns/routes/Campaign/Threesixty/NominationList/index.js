@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   List, Collapse, Progress, Modal, Tooltip,
 } from 'antd'
-import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
+import { CheckCircleFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { SafeHTML } from 'components/SafeHTML'
 import _ from 'lodash'
@@ -25,8 +25,8 @@ const NominationItem = (item) => {
         style={{ display: 'flex', alignItems: 'center' }}
       >
         {isNominationCompleted
-          ? <CheckSquareFilled className="status-icon" />
-          : <div className="empty-square" />}
+          ? <CheckCircleFilled className="status-icon complete" />
+          : <CheckCircleFilled className="status-icon" />}
         {' '}
         <Tooltip placement="topLeft" title={email}>
           {userPresenter.selfUserName(item)}

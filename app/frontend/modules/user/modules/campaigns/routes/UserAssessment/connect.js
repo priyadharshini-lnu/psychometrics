@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   userAssessment: state.campaigns.userAssessment,
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
+  started: state.preview.started,
 })
 
 const mapDispatchToProps = {

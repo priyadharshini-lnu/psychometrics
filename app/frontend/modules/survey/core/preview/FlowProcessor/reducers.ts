@@ -78,6 +78,9 @@ const defaultState: State = {
   showScoringOnEndPage: false,
   showQuestionScoring: false,
   activeDictationOnQuestion: 0,
+  started: false,
+  instructions: { enabled: false, content: '' },
+  fixedTimed: false,
 }
 
 const HANDLERS = {
@@ -150,6 +153,9 @@ const HANDLERS = {
       scoring: result.scoring,
       showScoringOnEndPage: data.showScoringOnEndPage,
       showQuestionScoring: data.showQuestionScoring,
+      started: data.type === 'preview_assessment' || !!result.started_at,
+      instructions: data.instructions,
+      fixedTimed: data.fixed_timed,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

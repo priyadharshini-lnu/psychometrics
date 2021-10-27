@@ -12,6 +12,7 @@ module Exports
 
           process_branch('block', data, sheet, assessment_id)
           process_branch('question', data, sheet, assessment_id)
+          process_branch('instructions', data, sheet, assessment_id)
         end
       end
 

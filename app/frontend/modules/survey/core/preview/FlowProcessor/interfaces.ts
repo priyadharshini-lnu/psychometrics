@@ -144,6 +144,9 @@ export interface DefaultState {
   showScoringOnEndPage: boolean
   showQuestionScoring: boolean
   activeDictationOnQuestion: number
+  started: boolean
+  instructions: { enabled: boolean, content: string }
+  fixedTimed: boolean
 }
 
 export interface MediaResponse {
@@ -161,6 +164,7 @@ export interface I18nInterface {
   tQuestion (question: any, field: string, extraData?: any): string
   tBlock (block: any, key: string, path: string[]): string
   tCustomValidation (question: Question, message: string, uuid: string): string
+  tInstructions(): string
 }
 
 export interface QuestionErrors {
@@ -204,6 +208,8 @@ export interface InitData {
   showScoringOnEndPage: boolean
   showQuestionScoring: boolean
   factors: []
+  instructions: {enabled: boolean, content: string}
+  fixed_timed: boolean
 }
 export interface Result {
   id: number
@@ -217,6 +223,7 @@ export interface Result {
   factors: []
   answers?: {}
   expiry_date: Date
+  started_at: Date
   meta_data: {}
   status: string
   timed_out: boolean

@@ -74,6 +74,11 @@ const routes = [
     exact: true,
   },
   {
+    path: '/user_assessments/:userAssessmentId/begin',
+    main: UserAssessment,
+    exact: true,
+  },
+  {
     path: '/agile_user_assessments/:userAssessmentId',
     main: AgileUserAssessment,
     exact: true,
