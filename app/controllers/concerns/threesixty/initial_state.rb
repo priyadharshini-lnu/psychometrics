@@ -53,6 +53,6 @@ module Threesixty::InitialState
   end
 
   def remaining_maintenance_time
-    (ENV['MAINTENANCE_START_DATETME'].to_time - Time.now).to_i if ENV['MAINTENANCE_START_DATETME']
+    (ENV['MAINTENANCE_START_DATETIME'].to_time - Time.now).to_i if ENV['MAINTENANCE_START_DATETIME']
   end
 end

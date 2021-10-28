@@ -4,9 +4,9 @@ class ApplicationController < ::BaseController
   include AuthenticateAnonymousUser
   layout :layout_by_resource
 
-  before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   # Authentication user/manager
   before_action :set_client_by_subdomain
+  before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   append_before_action :set_membership, if: :user_signed_in?
   after_action :allow_iframe_for_sso, if: proc { inside_sso_iframe? }
   after_action :allow_iframe_for_examus, if: proc { inside_examus_iframe? }
