@@ -1429,6 +1429,8 @@ en:
     delete: Delete
     edit: Edit
     login: Login
+    maintenance:
+      notification: Lighthouse will be down for scheduled maintenance in 60 seconds
     manage: Manage
     'no': 'No'
     resource:
@@ -1558,6 +1560,8 @@ en:
         notice: Note - You can unsubscribe to this weekly email from your profile page.
         subject: Weekly license usage stats
         weekly_stats: 'Past week license usage stats :'
+  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
+  maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   managers:
     assessments:
       index:

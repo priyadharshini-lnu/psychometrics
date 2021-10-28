@@ -52,4 +52,40 @@ module ApplicationHelper
 
     administration_root_path
   end
+
+  def show_maintenance_alert?
+    return false unless maintenance_start_date
+
+    maintenance_subdomains.empty? || maintenance_subdomains.include?(@current_project&.subdomain)
+  end
+
+  def maintenance_started?
+    return false unless maintenance_start_date
+
+    (maintenance_subdomains.empty? || maintenance_subdomains.include?(@current_project&.subdomain)) &&
+      Time.now > maintenance_start_date && Time.now < maintenance_end_date
+  end
+
+  def maintenance_subdomains
+    @maintenance_subdomains ||= (ENV['UAE_DATA_MIGRATION_SUBDOMAINS'] || '').split(',')
+  end
+
+  def maintenance_start_date
+    @maintenance_start_date ||= ENV['MAINTENANCE_START_DATETIME']&.to_time
+  end
+
+  def maintenance_end_date
+    maintenance_start_date + (ENV['MAINTENANCE_DURATION'] || 0).to_i.minutes
+  end
+
+  def duration
+    ((ENV['MAINTENANCE_DURATION'] || 0).to_i / 60.0).round(1)
+  end
+
+  def maintenance_time_frame
+    {
+      start_date: maintenance_start_date.utc.strftime('%B %d, %Y at %l:%M%p GMT'), # October 30, 2021 at 3:30pm GST
+      duration: duration
+    }
+  end
 end
