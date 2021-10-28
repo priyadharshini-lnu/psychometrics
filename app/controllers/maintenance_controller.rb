@@ -7,4 +7,8 @@ class MaintenanceController < ApplicationController
   def index
     redirect_to root_url unless helpers.maintenance_started?
   end
+
+  def skip_authentication?
+    true
+  end
 end
