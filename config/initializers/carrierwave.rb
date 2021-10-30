@@ -26,7 +26,7 @@ fog_credentials = if ENV['MINIO_ENDPOINT'].present?
                       provider: 'AWS',
                       aws_access_key_id: Rails.application.secrets.access_key_id,
                       aws_secret_access_key: Rails.application.secrets.secret_access_key,
-                      region: Rails.application.secrets.aws.region
+                      region: Rails.application.secrets.region
                     }
                   end
 

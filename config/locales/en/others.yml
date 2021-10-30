@@ -2189,7 +2189,6 @@ en:
     add: Add
     and: And
     approve: Approve
-    deny: Deny
     approve_all: Approve All
     approve_all_successful: Approved all nominations
     approve_evaluations: Approve Evaluations
@@ -2228,6 +2227,7 @@ en:
     decline: Decline
     decline_invite: Decline Invite
     denied: Denied
+    deny: Deny
     deny_all: Deny All
     deny_all_successful: Denied all nominations
     download_pdf: Download PDF
