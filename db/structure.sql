@@ -259,7 +259,7 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json
+    instructions json DEFAULT '{}'::json
 );
 
 
@@ -8704,6 +8704,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210919105932'),
 ('20211013070031'),
 ('20211017084949'),
-('20211026125300');
+('20211026125300'),
+('20211027170600');
 
 

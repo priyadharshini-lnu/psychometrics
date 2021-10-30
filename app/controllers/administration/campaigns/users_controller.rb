@@ -4,6 +4,7 @@ module Administration
   module Campaigns
     class UsersController < Administration::Projects::BaseController
       before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password extend_time]
+      skip_before_action :pundit_authorize, only: %i[spoof]
 
       def index
         users = campaign.
@@ -144,6 +145,7 @@ module Administration
       end
 
       def spoof
+        authorize(resource, nil, policy_class: Campaigns::UserPolicy)
         spoof_token = SecureRandom.urlsafe_base64(64)
         resource.update_column(:spoof_token, spoof_token)
 
