@@ -2189,6 +2189,7 @@ en:
     add: Add
     and: And
     approve: Approve
+    deny: Deny
     approve_all: Approve All
     approve_all_successful: Approved all nominations
     approve_evaluations: Approve Evaluations
