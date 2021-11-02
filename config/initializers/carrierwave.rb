@@ -1,25 +1,22 @@
 # frozen_string_literal: true
 
-fog_credentials = {
-  provider: 'AWS',
-  aws_access_key_id: Rails.application.secrets.access_key_id,
-  aws_secret_access_key: Rails.application.secrets.secret_access_key,
-  region: Rails.application.secrets.region
-}
-
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 
 fog_credentials = if ENV['MINIO_ENDPOINT'].present?
                     Aws.config.update(
                       endpoint: ENV['MINIO_ENDPOINT'],
-                      force_path_style: true
+                      force_path_style: true,
+                      credentials: Aws::Credentials.new(
+                        Rails.application.secrets.minio[:access_key_id],
+                        Rails.application.secrets.minio[:secret_access_key]
+                      )
                     )
                     {
                       provider: 'AWS',
-                      aws_access_key_id: Rails.application.secrets.minio[:access_key_id],
-                      aws_secret_access_key: Rails.application.secrets.minio[:secret_access_key],
                       endpoint: ENV['MINIO_ENDPOINT'],
-                      path_style: true
+                      path_style: true,
+                      aws_access_key_id: Rails.application.secrets.minio[:access_key_id],
+                      aws_secret_access_key: Rails.application.secrets.minio[:secret_access_key]
                     }
                   else
                     {
