@@ -9,17 +9,26 @@ fog_credentials = {
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 
-if ENV['MINIO_ENDPOINT'].present?
-  Aws.config.update(
-    endpoint: ENV['MINIO_ENDPOINT'],
-    force_path_style: true,
-    region: 'us-east-1'
-  )
-  fog_credentials = fog_credentials.merge(
-    endpoint: ENV['MINIO_ENDPOINT'],
-    path_style: true
-  )
-end
+fog_credentials = if ENV['MINIO_ENDPOINT'].present?
+                    Aws.config.update(
+                      endpoint: ENV['MINIO_ENDPOINT'],
+                      force_path_style: true
+                    )
+                    {
+                      provider: 'AWS',
+                      aws_access_key_id: Rails.application.secrets.minio[:access_key_id],
+                      aws_secret_access_key: Rails.application.secrets.minio[:secret_access_key],
+                      endpoint: ENV['MINIO_ENDPOINT'],
+                      path_style: true
+                    }
+                  else
+                    {
+                      provider: 'AWS',
+                      aws_access_key_id: Rails.application.secrets.access_key_id,
+                      aws_secret_access_key: Rails.application.secrets.secret_access_key,
+                      region: Rails.application.secrets.region
+                    }
+                  end
 
 if Rails.env.test?
   CarrierWave.configure do |config|
