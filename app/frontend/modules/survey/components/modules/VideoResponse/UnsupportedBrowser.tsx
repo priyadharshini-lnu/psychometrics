@@ -86,7 +86,7 @@ export const getSupportedBrowsersForCurrentOS = (
 }[] => {
   const supportedBrowserNames = Object.keys(supportedBrowsers)
 
-  const browsersBasedOnOS = BROWSERS_ON_OS_TYPES[operatingSystem]
+  const browsersBasedOnOS = BROWSERS_ON_OS_TYPES ?. [operatingSystem] ?? []
 
   const osCompatBrowserNames = browsersBasedOnOS.filter(
     browserBasedOnOS => supportedBrowserNames.includes(browserBasedOnOS),

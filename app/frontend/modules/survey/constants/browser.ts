@@ -6,6 +6,8 @@ export const UA_Browsers = {
   Firefox: 'firefox',
   FirefoxMobile: 'and_ff',
   Edge: 'edge',
+  Samsung: 'samsung',
+  Opera: 'opera',
 }
 
 export const UA_OperatingSystems = {
@@ -39,7 +41,7 @@ export const BROWSERS_ON_OS_TYPES = {
     UA_Browsers.Chrome,
     UA_Browsers.Edge,
   ],
-  [UA_OperatingSystems.Windows]: [
+  [UA_OperatingSystems.Linux]: [
     UA_Browsers.Firefox,
     UA_Browsers.Chrome,
     UA_Browsers.Edge,
@@ -70,4 +72,30 @@ export const BROWSER_FEATURES = {
   mediaRecorderAPI: 'mediarecorder',
   cssFlexibleBoxLayoutModule: 'flexbox',
   pushAPI: 'push-api',
+}
+
+// Based on feature summary of entire api support in browsers
+export const MIN_BROWSER_FEATURE_SUPPORT = {
+  [BROWSER_FEATURES.mediaRecorderAPI]: {
+    [UA_Browsers.Edge]: 79,
+    [UA_Browsers.Firefox]: 29,
+    [UA_Browsers.FirefoxMobile]: null,
+    [UA_Browsers.Chrome]: 49,
+    [UA_Browsers.ChromeMobile]: 94,
+    [UA_Browsers.Safari]: 14.1,
+    [UA_Browsers.SafariMobile]: 14.8,
+    [UA_Browsers.Samsung]: 5,
+    [UA_Browsers.Opera]: 36,
+  },
+  [BROWSER_FEATURES.cssFlexibleBoxLayoutModule]: {
+    [UA_Browsers.Edge]: 84,
+    [UA_Browsers.Firefox]: 63,
+    [UA_Browsers.FirefoxMobile]: 92,
+    [UA_Browsers.Chrome]: 84,
+    [UA_Browsers.ChromeMobile]: 94,
+    [UA_Browsers.Safari]: 14.1,
+    [UA_Browsers.SafariMobile]: 14.8,
+    [UA_Browsers.Samsung]: 14,
+    [UA_Browsers.Opera]: 73,
+  },
 }

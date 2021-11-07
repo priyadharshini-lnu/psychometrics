@@ -1,18 +1,18 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import { useBrowserSupportChecks } from 'hooks/useBrowserSupportChecks'
-import { BROWSER_FEATURES } from 'modules/survey/constants/browser'
+import { useBrowserSupportChecksWithCaniuse } from 'hooks/useBrowserSupportChecksWithCaniuse'
+import { BROWSER_FEATURES, UA_Browsers } from 'modules/survey/constants/browser'
 
 test('It should return falsy when no browser is supplied', () => {
   const { result } = renderHook(() =>
-    useBrowserSupportChecks(BROWSER_FEATURES.cssFlexibleBoxLayoutModule, '', '11')
+    useBrowserSupportChecksWithCaniuse(BROWSER_FEATURES.cssFlexibleBoxLayoutModule, '', '11')
   )
 
   expect(result.current[0]).toBeFalsy()
 })
 
 test('It should return falsy when no feature is supplied', () => {
-  const { result } = renderHook(() => useBrowserSupportChecks('', 'safari', '11'))
+  const { result } = renderHook(() => useBrowserSupportChecksWithCaniuse('', UA_Browsers.Safari, '11'))
 
   expect(result.current[0]).toBeFalsy()
 })
@@ -21,7 +21,7 @@ test('It should return correct feature is supplied', () => {
   let browserFeatures = BROWSER_FEATURES.mediaRecorderAPI
 
   const { result, rerender } = renderHook(() =>
-    useBrowserSupportChecks(browserFeatures, 'safari', '11')
+    useBrowserSupportChecksWithCaniuse(browserFeatures, UA_Browsers.Safari, '11')
   )
 
   expect(result.current[2]).toEqual('MediaRecorder API')
@@ -36,31 +36,31 @@ test('It should return correct feature is supplied', () => {
 test('It should return correct supported value for a feature on a browser', () => {
   const browserFeatures = BROWSER_FEATURES.mediaRecorderAPI
 
-  let browserName = 'safari'
+  let browserName = UA_Browsers.Safari
   let browserVersion = '14'
 
   const { result, rerender } = renderHook(() =>
-    useBrowserSupportChecks(browserFeatures, browserName, browserVersion)
+    useBrowserSupportChecksWithCaniuse(browserFeatures, browserName, browserVersion)
   )
 
   expect(result.current[0]).toBeFalsy()
 
-  browserName = 'and_ff'
+  browserName = UA_Browsers.FirefoxMobile
   browserVersion = '86'
   rerender()
   expect(result.current[0]).toBeFalsy()
 
-  browserName = 'edge'
+  browserName = UA_Browsers.Edge
   browserVersion = '18'
   rerender()
   expect(result.current[0]).toBeFalsy()
 
-  browserName = 'ios_saf'
+  browserName = UA_Browsers.SafariMobile
   browserVersion = '11'
   rerender()
   expect(result.current[0]).toBeFalsy()
 
-  browserName = 'and_chr'
+  browserName = UA_Browsers.ChromeMobile
   browserVersion = '90'
   rerender()
   expect(result.current[0]).toBeTruthy()
@@ -68,17 +68,40 @@ test('It should return correct supported value for a feature on a browser', () =
 
 
 test('It should show correct minimum browser support values for unsupported feature on browser', () => {
-  const { result } = renderHook(() =>
-    useBrowserSupportChecks(BROWSER_FEATURES.pushAPI, 'safari', '10')
+  let browserFeature = BROWSER_FEATURES.pushAPI
+  let browserName = UA_Browsers.Safari
+  let browserVersion = '10'
+  const { result, rerender } = renderHook(() =>
+    useBrowserSupportChecksWithCaniuse(browserFeature, browserName, browserVersion)
   )
-
   expect(result.current[0]).toBeFalsy()
   expect(result.current[1]).toEqual({
-    and_chr: 92,
-    and_ff: 90,
+    and_chr: 94,
+    and_ff: 92,
     chrome: 50,
     edge: 17,
     firefox: 44,
+    opera: 42,
+    samsung: 4,
   })
   expect(result.current[2]).toEqual('Push API')
+
+  browserFeature = BROWSER_FEATURES.cssFlexibleBoxLayoutModule
+  browserName = UA_Browsers.Opera
+  browserVersion = '10'
+  rerender()
+  expect(result.current[0]).toBeFalsy()
+  expect(result.current[1]).toEqual({
+    and_chr: 94,
+    and_ff: 92,
+    chrome: 21,
+    edge: 12,
+    firefox: 28,
+    ios_saf: 7,
+    opera: 12.1,
+    safari: 6.1,
+    samsung: 4,
+  })
+  expect(result.current[2]).toEqual('CSS Flexible Box Layout Module')
+
 })

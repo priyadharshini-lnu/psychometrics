@@ -7,7 +7,11 @@ import isEmpty from 'lodash/isEmpty'
 import { BROWSER_FEATURES, UA_Browsers } from 'modules/survey/constants/browser'
 import { convertToUserAgentBrowserName } from 'modules/survey/utils/browser'
 
-export const useBrowserSupportChecks = (
+/**
+ * Currently unused in the project, will be considered for future use by adding caniuse-lite to package.json
+ * if useBrowserSupportChecks becomes too complex to manage
+ */
+export const useBrowserSupportChecksWithCaniuse = (
   featureName: string,
   uaBrowserName = '',
   browserAbsoluteVersion = '',
@@ -20,7 +24,6 @@ export const useBrowserSupportChecks = (
     : browserAbsoluteVersion
 
   if (browser.length === 0 || version.length === 0) {
-    console.error('Browser or its version are empty')
     return [false, {}, ''] as const
   }
 
@@ -28,7 +31,6 @@ export const useBrowserSupportChecks = (
     featureName.length === 0
     || !Object.values(BROWSER_FEATURES).includes(featureName)
   ) {
-    console.error('Feature name is empty')
     return [false, {}, ''] as const
   }
 
@@ -38,7 +40,6 @@ export const useBrowserSupportChecks = (
   )
 
   if (title.length === 0 || isEmpty(featureStatistics)) {
-    console.error('Feature name is invalid')
     return [false, {}, ''] as const
   }
 
@@ -101,9 +102,26 @@ export const useBrowserSupportChecks = (
 
   // Get browserlist compatible browser name and version
   const [browserNameVersion] = useMemo(
-    () => browserslist(`${browser} ${version}`),
+    () => browserslist(`${browser} ${version}`, {
+      ignoreUnknownVersions: true,
+    }),
     [browser, version],
   )
+
+  // From all world browsers filter out only our app's compatible ones
+  const compatBrowserStatistics = filterUncompatBrowserStatistics(
+    featureStatistics,
+  )
+
+  // From list of app's compatible browsers, filter out the ones which supports "The Feature"
+  const supportedBrowsers = useMemo(
+    () => getSupportedBrowsers(compatBrowserStatistics),
+    [featureName],
+  )
+
+  if (browserNameVersion === undefined) {
+    return [false, supportedBrowsers, title] as const
+  }
 
   const [
     browserslistBrowserName,
@@ -116,16 +134,6 @@ export const useBrowserSupportChecks = (
     ] ?? ''
   const isSupported = queryTag === 'y'
 
-  // From all world browsers filter out only our app's compatible ones
-  const compatBrowserStatistics = filterUncompatBrowserStatistics(
-    featureStatistics,
-  )
-
-  // From list of app's compatible browsers, filter out the ones which supports "The Feature"
-  const supportedBrowsers = useMemo(
-    () => getSupportedBrowsers(compatBrowserStatistics),
-    [featureName],
-  )
 
   return [isSupported, supportedBrowsers, title] as const
 }

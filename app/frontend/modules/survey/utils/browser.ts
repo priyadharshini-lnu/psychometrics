@@ -19,17 +19,11 @@ export const convertToUserAgentBrowserName = (
   if (browserName === 'Edge') {
     return UA_Browsers.Edge
   }
-  if (browserName === 'Android Browser') {
-    return 'android'
+  if (browserName === 'Android Browser' || browserName === 'Samsung Browser') {
+    return UA_Browsers.Samsung
   }
   if (browserName === 'Opera') {
-    return 'opera'
-  }
-  if (browserName === 'Opera Mobi' || browserName === 'Opera Mobile') {
-    return 'op_mob'
-  }
-  if (browserName === 'Opera Mini') {
-    return 'op_mini'
+    return UA_Browsers.Opera
   }
   return ''
 }
