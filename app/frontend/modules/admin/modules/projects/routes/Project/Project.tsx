@@ -78,7 +78,9 @@ const ProjectComponent: React.FC<Props> = ({ currentUser, history }) => {
         {currentUser.permissions.manageAdmins && (
           <Menu.Item key="project_admins">{I18n.t('administration.breadcrumbs.project_admins')}</Menu.Item>
         )}
-        <Menu.Item key="/settings/smtp">{I18n.t('administration.breadcrumbs.settings')}</Menu.Item>
+        {currentUser.permissions.manageProjectSmtpSettings && (
+          <Menu.Item key="/settings/smtp">{I18n.t('administration.breadcrumbs.settings')}</Menu.Item>
+        )}
       </Menu>
       <RouteList routes={routes} urlPrefix={prefix} />
     </div>

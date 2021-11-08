@@ -98,7 +98,7 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin) || @user.has_permission?(:projects, :design, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(:project_settings, :design, project_id: project_id)
     end
 
     def export?
@@ -152,6 +152,12 @@ module Administration
     def view_datasheets?
       @user.is?(:superadmin) || @user.has_permission?(
         :datasheets, :view, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def manage_project_smtp_settings?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :project_settings, :smtp, project_id: project_id
       )
     end
 
