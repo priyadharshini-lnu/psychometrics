@@ -7,6 +7,8 @@ module Threesixty
     attribute :subject, String
     attribute :content, String
     attribute :consolidated, Boolean, default: false
+    attribute :daily_digest, Boolean, default: false
+    attribute :schedule_time, String
 
     validates :from, :reply_to_email, :subject, :content, presence: true
     validates :reply_to_email, format: { with: Devise.email_regexp }, allow_blank: true

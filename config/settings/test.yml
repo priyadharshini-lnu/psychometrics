@@ -9,3 +9,4 @@ features:
   smtp_enabled: true
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
+timezone: Asia/Dubai

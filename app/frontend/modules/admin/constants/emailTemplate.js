@@ -5,6 +5,8 @@ export const EVALUATOR_REMINDER = 'evaluator_reminder'
 export const SUBJECT_INVITE = 'subject_invite'
 export const SUBJECT_REMINDER = 'subject_reminder'
 export const CUSTOM_MESSAGE = 'custom_message'
+export const APPROVE_NOMINATION = 'approve_nomination'
+
 
 export const CATEGORIES = {
   REMINDERS,
@@ -19,3 +21,4 @@ export const NAME = {
 }
 
 export const CONSOLIDATED_EMAIL_NAMES = [EVALUATOR_INVITE, EVALUATOR_REMINDER]
+export const DAILY_DIGEST_EMAILS = [APPROVE_NOMINATION]

@@ -30,6 +30,8 @@ global_job_config:
       value: '1'
     - name: COVERALLS_PARALLEL
       value: 'true'
+    - name: TZ
+      value: Asia/Dubai
   prologue:
     commands:
       - sudo swapoff -a && sudo fallocate -l 2G /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
