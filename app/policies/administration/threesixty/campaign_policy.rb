@@ -54,6 +54,10 @@ module Administration::Threesixty
       @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
+    def edit_assessment?
+      @user.is?(:superadmin) || @user.has_permission?(:assessment, :manage, project_id: project_id)
+    end
+
     def manage_reports_options?
       @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end

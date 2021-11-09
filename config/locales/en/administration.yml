@@ -3525,6 +3525,22 @@ en:
         welcome_message:
           description: This message will be displayed to subjects when they log in to begin the assessment or view their task list
           name: Welcome Message
+      menu:
+        assessment:
+          title: Assessment
+        datasheet:
+          title: Datasheet
+        messages:
+          title: Messages
+        participants:
+          title: Participants
+        report:
+          menu:
+            report_options:
+              title: Report Options
+            subject_report:
+              title: Subject Report
+          title: Report
       reports:
         show:
           title: Subject Report
