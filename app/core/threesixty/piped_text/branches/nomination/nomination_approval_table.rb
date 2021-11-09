@@ -29,7 +29,8 @@ module Threesixty
                             relationships: { name: 'Manager', type: Relationship.types[:global] }
                           ).pluck(:subject_id)
 
-            Threesixty::Participant.where(campaign_id: campaign.campaign_id, subject_id: subject_ids)
+            Threesixty::Participant.where(campaign_id: campaign.campaign_id, subject_id: subject_ids).
+              where(manager_nomination_status: :waiting)
           end
         end
       end
