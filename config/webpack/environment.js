@@ -54,7 +54,7 @@ if (__DEV__) {
 
 // Uncomment to activate bundle analyzer
 // environment.plugins.insert(
-//  'BundleAnalyzerPlugin',
+//   'BundleAnalyzerPlugin',
 //   new BundleAnalyzerPlugin(),
 // )
 
@@ -145,6 +145,11 @@ const vendors2 = [
   'remarkable',
   'highcharts',
   'autolinker',
+  'caniuse-lite',
+  '@sentry',
+  'crypto-js',
+  'rrweb',
+  'interact.js',
 ]
 
 environment.config.merge({
