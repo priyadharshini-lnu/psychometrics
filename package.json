@@ -85,7 +85,7 @@
     "fbemitter": "^2.0.2",
     "file-loader": "^3.0.1",
     "fork-ts-checker-webpack-plugin": "^6.2.13",
-    "fp-ts": "^2.11.2",
+    "fp-ts": "^2.11.5",
     "green-audio-player": "^1.1.2",
     "highcharts": "^4.2.7",
     "highcharts-3d": "0.1.2",
