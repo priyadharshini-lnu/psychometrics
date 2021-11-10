@@ -13,6 +13,8 @@ import {
 import { connect } from 'react-redux'
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 
+import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bubble'
+
 import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { RootState } from 'modules/reports/core/rootReducers'
@@ -25,10 +27,14 @@ interface DataPoint {
   y: number
 }
 
+type AssessmentFactor = {
+  id: string
+  name: string
+}
+
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  model?: any
-  factors: object[]
+  model: PropertiesModel
+  factors: AssessmentFactor[]
 }
 
 const Properties: FC<Props> = ({ model, factors }) => {
@@ -299,8 +305,7 @@ const Properties: FC<Props> = ({ model, factors }) => {
 }
 
 interface FactorsSelectProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  propertiesOptions: any
+  propertiesOptions: AssessmentFactor[]
   onChange: (value: number) => void
   placeholder: string
   value: number
