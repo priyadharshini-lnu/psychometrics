@@ -10,11 +10,11 @@ class Table extends Component {
     colData: PropTypes.array.isRequired,
     getRow: PropTypes.func.isRequired,
     rowsCount: PropTypes.number.isRequired,
-    showHedaer: PropTypes.bool,
+    showHeader: PropTypes.bool,
   }
 
-  defaultProps = {
-    showHedaer: true,
+  static defaultProps = {
+    showHeader: true,
   }
 
   renderCell = (data, key) => {
@@ -47,13 +47,13 @@ class Table extends Component {
 
   render () {
     const {
-      rowsCount, colData, showHedaer,
+      rowsCount, colData, showHeader,
     } = this.props
     return (
       <div className={styles.table}>
         <table className={styles.content}>
           <tbody>
-            {showHedaer && colData.length > 0 && this.renderHeadingRow(colData)}
+            {showHeader && colData.length > 0 && this.renderHeadingRow(colData)}
             {_.times(rowsCount, this.renderRow)}
           </tbody>
         </table>
