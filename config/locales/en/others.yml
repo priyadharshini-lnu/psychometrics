@@ -1361,6 +1361,12 @@ en:
         new:
           register: Register
           sign_in: Sign in
+  emails:
+    nomination_approval_table:
+      evaluator_name: Evaluator Name
+      number: 'No'
+      relationship: Relationship
+      subject_name: Subject Name
   empty: Empty
   enums:
     communication:

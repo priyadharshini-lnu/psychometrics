@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
-  Input, Row, Col, Button, Empty, message, Switch, Select,
+  Input, Row, Col, Button, Empty, message, Switch, Select, TimePicker,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
-import { CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
+import { CONSOLIDATED_EMAIL_NAMES, DAILY_DIGEST_EMAILS } from 'modules/admin/constants/emailTemplate'
 import routeUtils from 'utils/route'
 import cs from 'classnames'
 import { SafeHTML } from 'components/SafeHTML'
@@ -91,6 +91,7 @@ export default function Emails ({
         <div className={styles.content}>
           <ErrorAlertBox errors={errors} scrollToError className="mtl mbl" />
           <ConsolidatedSwitch selectedTemplate={selectedTemplate} update={update} />
+          <DailyDigest selectedTemplate={selectedTemplate} update={update} />
           <Input
             addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
             value={selectedTemplate.from}
@@ -190,5 +191,34 @@ function ConsolidatedSwitch ({ selectedTemplate, update }) {
       {'  '}
       <span>Consolidated</span>
     </div>
+  )
+}
+
+function DailyDigest ({ selectedTemplate, update }) {
+  if (!_.includes(DAILY_DIGEST_EMAILS, selectedTemplate.name)) {
+    return null
+  }
+
+  return (
+    <>
+      <div className="mbm">
+        <Switch
+          checked={selectedTemplate.dailyDigest}
+          onChange={(checked) => { update(selectedTemplate.id, 'dailyDigest', checked) }}
+        />
+        {'  '}
+        <span>Daily Digest</span>
+      </div>
+      {selectedTemplate.dailyDigest && (
+        <div className="mbm">
+          <TimePicker
+            value={moment(selectedTemplate.scheduleTime || Date.now())}
+            format="HH:mm"
+            className={cs(['mbm', styles.smallWidthInput])}
+            onChange={(e) => { update(selectedTemplate.id, 'scheduleTime', e.toString()) }}
+          />
+        </div>
+      )}
+    </>
   )
 }

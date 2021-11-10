@@ -21,7 +21,8 @@ module Administration
             %w[manage_options update_campaign_options],
             'manage_campaigns',
             'view_registration_codes',
-            'view_datasheets'
+            'view_datasheets',
+            'manage_project_smtp_settings'
           ],
           {
             project_id: instance_options[:project_id],
