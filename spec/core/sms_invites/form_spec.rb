@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe SmsInvites::CreateForm do
+describe SmsInvites::Form do
   let(:campaign) { create(:campaign) }
   let(:valid_args) { attributes_for(:sms_invite) }
 

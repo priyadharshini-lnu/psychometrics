@@ -20,7 +20,10 @@ RSpec.describe Administration::Campaigns::SmsInvitesController, type: :controlle
       expect(parsed_response['permissions']).to eq({
         'import' => true,
         'export' => true,
-        'send_sms' => true
+        'send_sms' => true,
+        'create' => true,
+        'destroy' => true,
+        'update' => true
       })
       expect(parsed_response['list']).to match_array(
         [

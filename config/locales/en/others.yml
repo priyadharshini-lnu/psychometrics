@@ -1097,6 +1097,7 @@ en:
       cancel: Cancel
       close: Close
       delete: Delete
+      edit: Edit
       import: Import
       remove: Remove
       reset: Reset
@@ -1434,6 +1435,9 @@ en:
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
+    smsInvites:
+      create_success: SMS Invite added successfully
+      update_success: SMS Invite updated successfully
     sms_records:
       create_success: SMS job scheduled successfully
     update: Update

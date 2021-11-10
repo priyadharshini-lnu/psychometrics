@@ -3216,6 +3216,8 @@ en:
     search: Search
     show: Show
     sms_invites:
+      actions:
+        add: Add SMS Invite
       columns:
         created_at: Created At
         created_by: Created By
@@ -3223,10 +3225,19 @@ en:
         first_name: First Name
         last_name: Last Name
         mobile_no: Mobile No
+      form_modal:
+        first_name: First Name
+        last_name: Last Name
+        locale: Locale
+        mobile_no: Mobile no
+        title: Sms Invite
       import:
         download_example_csv: Download Example csv
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: SMS Invite import
+      messages:
+        delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
+        delete_success: SMS Invite deleted successfully
       send_sms:
         fields:
           link_expiry: Link Expiry

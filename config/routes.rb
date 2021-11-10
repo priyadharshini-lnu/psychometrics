@@ -121,7 +121,7 @@ Rails.application.routes.draw do
 
     resources :new_campaigns, only: [] do
       scope module: :campaigns do
-        resources :sms_invites, only: %i[index] do
+        resources :sms_invites, only: %i[index create update destroy] do
           collection do
             post :import
             get :search
@@ -776,6 +776,7 @@ Rails.application.routes.draw do
   namespace :webhooks do
     resource :examus, only: %i[create]
     post '/saville/results', to: 'saville#results', as: :saville
+    post 'sms_histories', to: 'sms_histories#status', as: :sms_histories
   end
 
   devise_scope :user do

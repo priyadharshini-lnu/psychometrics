@@ -2,18 +2,21 @@
 
 module Sms
   class Send < BaseCommand
-    private_attr_reader :to_mobile_no, :message
+    private_attr_reader :to_mobile_no, :message, :options
 
-    def initialize(to_mobile_no, message)
+    def initialize(to_mobile_no, message, options = {})
       @to_mobile_no = to_mobile_no
       @message = message
+      @options = options
     end
 
     def call
       client.messages.create(
-        from: Rails.application.secrets.twilio[:from_mobile_no],
-        to: to_mobile_no,
-        body: message
+        options.merge(
+          from: Rails.application.secrets.twilio[:from_mobile_no],
+          to: to_mobile_no,
+          body: message
+        )
       )
 
       broadcast :ok

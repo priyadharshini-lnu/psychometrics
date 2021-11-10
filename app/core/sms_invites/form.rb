@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SmsInvites
-  class CreateForm < Rectify::Form
+  class Form < Rectify::Form
     mimic :sms_invites_create
 
     attribute :first_name, String
@@ -15,7 +15,9 @@ module SmsInvites
     validate :invite_exists_in_campaign
 
     def invite_exists_in_campaign
-      return unless context.campaign.sms_invites.exists?(mobile_no: mobile_no)
+      existing_sms_invite = context.campaign.sms_invites.where(mobile_no: mobile_no)
+      existing_sms_invite = existing_sms_invite.where.not(id: context.sms_invite.id) if context.sms_invite
+      return unless existing_sms_invite.exists?
 
       errors.add(:mobile_no, :invite_exists_in_campaign)
     end
