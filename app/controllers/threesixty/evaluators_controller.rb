@@ -18,7 +18,8 @@ module Threesixty
           subject: @subject,
           params: params,
           nominator: current_user,
-          evaluator: form.user
+          evaluator: form.user,
+          creator: current_user
         )
 
         is_approve_nomination_sendable = Threesixty::Emails::IsApproveNominationSendable.call!(
@@ -68,7 +69,12 @@ module Threesixty
     def destroy
       @nomination = @subject.participants.find_by(evaluator_id: params[:id])
       authorize @nomination, nil, policy_class: ::Threesixty::NominationPolicy
-      @nomination.destroy
+
+      if !@campaign.option.participants['cannot_remove_nomination_set_by_manager_and_admin']
+        @nomination.destroy
+      elsif @nomination.created_by_id == current_user.id
+        @nomination.destroy
+      end
       render json: nil
     end
 

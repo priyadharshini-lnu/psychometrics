@@ -259,7 +259,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json
+    instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json
 );
 
 
@@ -2988,6 +2989,39 @@ ALTER SEQUENCE public.shortened_urls_id_seq OWNED BY public.shortened_urls.id;
 
 
 --
+-- Name: sms_histories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sms_histories (
+    id bigint NOT NULL,
+    sms_invite_id bigint NOT NULL,
+    sms_record_id bigint NOT NULL,
+    status character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sms_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sms_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sms_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sms_histories_id_seq OWNED BY public.sms_histories.id;
+
+
+--
 -- Name: sms_invites; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3630,7 +3664,8 @@ CREATE TABLE public.user_assessments (
     status integer DEFAULT 0,
     completed_at timestamp without time zone,
     completion_reason integer,
-    fixed_norm boolean DEFAULT false
+    fixed_norm boolean DEFAULT false,
+    created_by_id integer
 );
 
 
@@ -4455,6 +4490,13 @@ ALTER TABLE ONLY public.shortened_urls ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: sms_histories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories ALTER COLUMN id SET DEFAULT nextval('public.sms_histories_id_seq'::regclass);
+
+
+--
 -- Name: sms_invites id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5268,6 +5310,14 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.shortened_urls
     ADD CONSTRAINT shortened_urls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sms_histories sms_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT sms_histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -6604,6 +6654,20 @@ CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (u
 
 
 --
+-- Name: index_sms_histories_on_sms_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_histories_on_sms_invite_id ON public.sms_histories USING btree (sms_invite_id);
+
+
+--
+-- Name: index_sms_histories_on_sms_record_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_histories_on_sms_record_id ON public.sms_histories USING btree (sms_record_id);
+
+
+--
 -- Name: index_sms_invites_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7585,6 +7649,14 @@ ALTER TABLE ONLY public.innovation_styles
 
 
 --
+-- Name: sms_histories fk_rails_79c274d22c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT fk_rails_79c274d22c FOREIGN KEY (sms_record_id) REFERENCES public.sms_records(id);
+
+
+--
 -- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7782,6 +7854,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_9cb58b8a3f FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: sms_histories fk_rails_9d612c8fc8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT fk_rails_9d612c8fc8 FOREIGN KEY (sms_invite_id) REFERENCES public.sms_invites(id);
 
 
 --
@@ -8704,8 +8784,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210913092232'),
 ('20210917131407'),
 ('20210919105932'),
+('20211011103826'),
 ('20211013070031'),
 ('20211017084949'),
+('20211018074847'),
 ('20211026125300'),
 ('20211027170600'),
-('20211102165147');
+('20211102165147'),
+('20211111110056');
