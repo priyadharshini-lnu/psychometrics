@@ -10,4 +10,8 @@ export default interface AssessmentInterface {
   extra: any
   data_sheet_columns: { name: string, type: string }[]
   options: {}
+  instructions: {
+    enabled: boolean
+    content: string
+  }
 }

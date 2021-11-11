@@ -1,0 +1,91 @@
+@import 'modules/user/styles/variables';
+@import 'styles/variables';
+
+.container {
+  width: 100%;
+  min-height: 50vh;
+  padding: 10px;
+  margin: 12px 0;
+  margin-left: 12px;
+  position: relative;
+}
+
+:global {
+  .rtl {
+    :local(.container) {
+      margin-left: 0;
+      margin-right: 12px;
+    }
+  }
+}
+
+.box {
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
+  border: 1px solid #d9d9d9;
+  background-color: $white;
+}
+
+.content {
+  overflow: auto;
+  padding: 26px;
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-button {
+    background: rgba(0, 0, 0, 0.3);
+    height: 15px;
+    border-radius: 50%;
+  }
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  img {
+    max-width: 100%;
+  }
+  table {
+    max-width: 100%;
+  }
+}
+
+:global(.rtl) {
+  .left {
+    right: 0;
+    left: unset;
+  }
+
+  .right {
+    left: 0;
+    right: unset;
+  }
+}
+
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+  padding: 0 12px;
+  .next {
+    margin-left: 5px;
+  }
+
+}
+
+:global {
+  .rtl {
+    :local {
+      .next {
+        margin-right: 5px;
+        margin-left: 0;
+      }
+    }
+  }
+}

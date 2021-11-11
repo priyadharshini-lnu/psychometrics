@@ -3,7 +3,7 @@
 module Imports
   module Translations
     class AssessmentImport < Imports::BaseImport
-      TRANSLATABLE_BRANCHES = %w[block question].freeze
+      TRANSLATABLE_BRANCHES = %w[block question instructions].freeze
 
       attr_accessor :assessment_id
       validates :assessment_id, presence: true
@@ -71,9 +71,11 @@ module Imports
         TRANSLATABLE_BRANCHES.each do |branch|
           collect_translations[branch]&.each do |id, locales|
             # If can't find question/block for specified assessment, then add error
-            unless assessment.public_send(branch.pluralize).where(id: id).exists?
-              errors.add(:base, I18n.t('administration.imports.errors.translation.error',
-                                       id: id, error: "Can't find #{branch}")) && next
+            unless branch == 'instructions'
+              unless assessment.public_send(branch.pluralize).where(id: id).exists?
+                errors.add(:base, I18n.t('administration.imports.errors.translation.error',
+                                         id: id, error: "Can't find #{branch}")) && next
+              end
             end
 
             locales.each do |locale, props|

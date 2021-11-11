@@ -37,6 +37,7 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def remaining_assessment_time
     return unless object.expiry_date
+    return if object.not_started?
 
     assessment_time_left = [object.expiry_date - Time.now, 0].max
 

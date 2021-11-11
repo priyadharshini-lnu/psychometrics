@@ -1,4 +1,4 @@
-import { CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
+import { DAILY_DIGEST_EMAILS, CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
 
 const FIELDS = [
   {
@@ -170,6 +170,17 @@ const FIELDS = [
         name: 'Subject Relationship Table',
         type: 'link',
         value: '{{st://SubjectRelationshipTable}}',
+      },
+    ],
+  },
+  {
+    branch: 'Nominations',
+    supportedTypes: DAILY_DIGEST_EMAILS,
+    fields: [
+      {
+        name: 'Nomination Approval Table',
+        type: 'link',
+        value: '{{nat://NominationApprovalTable}}',
       },
     ],
   },

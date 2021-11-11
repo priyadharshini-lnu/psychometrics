@@ -1,28 +1,43 @@
 import React, { FC } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
   SettingOutlined,
   ShopOutlined,
   DatabaseOutlined,
   // UserOutlined,
-  // SolutionOutlined,
+  SolutionOutlined,
 } from '@ant-design/icons'
 
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from 'modules/admin/modules/projects/settings'
 import RouteList from 'components/RouteList'
+import { connect, ConnectedProps } from 'react-redux'
 import { routes } from './routes'
 
 const { I18n } = window
 
-export const Project: FC = () => {
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: state.currentUser,
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux
+
+export const ProjectComponent: FC<Props> = ({ currentUser }) => {
   const { projectId } = useParams<{ projectId: string }>()
   const history = useHistory()
   const { pathname } = useLocation()
 
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${projectId}/${key}`)
+    if (key === 'admins') {
+      window.location.pathname = `/administration/clients/${projectId}/project_admins`
+    } else {
+      history.push(`${settings.urlPrefix}/${projectId}/${key}`)
+    }
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
@@ -119,19 +134,23 @@ export const Project: FC = () => {
         {/* <Menu.Item key="users">
           <UserOutlined />
           {I18n.t('administration.breadcrumbs.users')}
-        </Menu.Item>
-        <Menu.Item key="admins">
-          <SolutionOutlined />
-          {I18n.t('administration.breadcrumbs.admins')}
         </Menu.Item> */}
         <Menu.Item key="datasheet">
           <DatabaseOutlined />
           {I18n.t('common.model.datasheet')}
         </Menu.Item>
-        <Menu.Item key="settings">
-          <SettingOutlined />
-          {I18n.t('administration.breadcrumbs.settings')}
-        </Menu.Item>
+        {currentUser.permissions.manageAdmins && (
+          <Menu.Item key="admins">
+            <SolutionOutlined />
+            {I18n.t('administration.breadcrumbs.project_admins')}
+          </Menu.Item>
+        )}
+        {currentUser.permissions.manageProjectSmtpSettings && (
+          <Menu.Item key="settings">
+            <SettingOutlined />
+            {I18n.t('administration.breadcrumbs.settings')}
+          </Menu.Item>
+        )}
       </Menu>
       <RouteList
         routes={routes}
@@ -140,3 +159,5 @@ export const Project: FC = () => {
     </div>
   )
 }
+
+export const Project = connecter(ProjectComponent)

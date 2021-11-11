@@ -7,6 +7,10 @@
 - projects_manage_users_id = dom_id(u, :projects_manage_users)
 - projects_design_id = dom_id(u, :projects_design)
 
+- project_settings_design_id = dom_id(u, :project_settings_design)
+- project_settings_smtp_id = dom_id(u, :project_settings_smtp)
+- project_settings_sms_id = dom_id(u, :project_settings_sms)
+
 - norms_view_id = dom_id(u, :norms_view)
 - norms_manage_id = dom_id(u, :norms_manage)
 
@@ -100,11 +104,22 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][projects][]',
                         'manage_users', resource.has_grant?(:projects, :manage_users), id: projects_manage_users_id
                 | Manage Users
-            - if policy(:membership).manage_grants_for_action?('projects', 'design', client: client)
+
+    - if policy(:membership).manage_grants_for_actions?('project_settings', ['design', 'smtp', 'sms'], client: client)
+      tr
+        td Project Settings
+        td
+          div.grants-grid
+            - if policy(:membership).manage_grants_for_action?('project_settings', 'design', client: client)
               label
-                = check_box_tag 'resource[grants_attributes][data][projects][]',
-                        'design', resource.has_grant?(:projects, :design), id: projects_design_id
+                = check_box_tag 'resource[grants_attributes][data][project_settings][]',
+                        'design', resource.has_grant?(:project_settings, :design), id: project_settings_design_id, data: { turn_off: [project_settings_design_id] }
                 | Design
+            - if policy(:membership).manage_grants_for_action?('project_settings', 'smtp', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][project_settings][]',
+                        'smtp', resource.has_grant?(:project_settings, :smtp), id: project_settings_smtp_id, data: { turn_on: [project_settings_smtp_id] }
+                | SMTP
 
     - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'manage_messages'], client: client)
       tr

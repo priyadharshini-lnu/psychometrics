@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { openModal } from 'modules/admin/core/ui/modals'
 import {
   toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage, saveAssessment, updateExtra,
+  toggleInstructions,
 } from 'modules/survey/core/builder/assessment/actions'
 import { createBlock } from 'modules/survey/core/builder/assessment/block/actions'
 import { trashItems, blocksWithQuestions } from 'core/builder/assessment/selectors'
@@ -15,6 +16,7 @@ export default connect(
     flow: state.survey.builder.flow,
     blocksWithQuestions: blocksWithQuestions(state.survey.builder, state.survey.builder.assessment.blocks),
     trash: trashItems(state),
+    instructions: state.survey.builder.assessment.instructions,
   }),
   {
     openDataSheetModal: data => openModal('dataSheetModal', data),
@@ -27,5 +29,6 @@ export default connect(
     toggleSingleQuestionPage,
     saveAssessment,
     updateExtra,
+    toggleInstructions,
   },
 )

@@ -714,6 +714,11 @@ en:
       managers_assessments_button: Action Planning
       managers_dashboard_button: Managers Dashboard
       user_dashboard_button: User Dashboard
+    instructions:
+      begin_assessment: Begin Assessment
+      cancel: Cancel
+      default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
+      title: Instructions
     messages:
       finish: "Thank you for your time. \nYour responses have now been recorded."
     page:
@@ -1362,6 +1367,12 @@ en:
         new:
           register: Register
           sign_in: Sign in
+  emails:
+    nomination_approval_table:
+      evaluator_name: Evaluator Name
+      number: 'No'
+      relationship: Relationship
+      subject_name: Subject Name
   empty: Empty
   enums:
     communication:
@@ -1430,6 +1441,8 @@ en:
     delete: Delete
     edit: Edit
     login: Login
+    maintenance:
+      notification: Lighthouse will be down for scheduled maintenance in 60 seconds
     manage: Manage
     'no': 'No'
     resource:
@@ -1562,6 +1575,8 @@ en:
         notice: Note - You can unsubscribe to this weekly email from your profile page.
         subject: Weekly license usage stats
         weekly_stats: 'Past week license usage stats :'
+  maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
+  maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   managers:
     assessments:
       index:
@@ -2251,6 +2266,7 @@ en:
     decline: Decline
     decline_invite: Decline Invite
     denied: Denied
+    deny: Deny
     deny_all: Deny All
     deny_all_successful: Denied all nominations
     download_pdf: Download PDF
@@ -2262,6 +2278,7 @@ en:
       delete_successful: Email schedule deleted successfully
     evaluate: Evaluate
     evaluation: Evaluation
+    evaluation_all_closed_message: Currently all the nominations are awaiting approval
     evaluation_closed_message: Evaluation is closed for this subject
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
     evaluation_help_modal:
@@ -2297,6 +2314,7 @@ en:
     options:
       global:
         cannot_re_edit: Participants cannot edit evaluations
+        disable_all_evaluations: Disable all evaluations
     or: Or
     page_title: Signify 360° Review - Apply Level
     participant_list:
@@ -2509,7 +2527,7 @@ en:
     title:
       one: There is one error, please check your responses
       other: There are %{count} errors, please check your responses
-    word_count: 'Words count '
+    word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
   'yes': 'Yes'
   your: Your

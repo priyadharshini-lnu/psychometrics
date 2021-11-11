@@ -57,6 +57,12 @@ module Threesixty
           name: 'answer',
           class_name: 'Threesixty::PipedText::Branches::Answer',
           required_context: %i[result]
+        },
+        {
+          key: 'nat',
+          name: 'nomination_table',
+          class_name: 'Threesixty::PipedText::Branches::NominationBranch',
+          required_context: %i[subject threesixty_campaign]
         }
       ].freeze
 

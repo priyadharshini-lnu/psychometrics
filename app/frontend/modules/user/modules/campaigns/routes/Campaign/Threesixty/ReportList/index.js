@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import {
   List, Collapse, Modal, Progress, Tooltip,
 } from 'antd'
-import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
+import { CheckCircleFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import ConfirmationModal from 'components/ConfirmationModal'
 import { SafeHTML } from 'components/SafeHTML'
 import userPresenter from 'presenters/user'
@@ -84,8 +84,8 @@ function ReportList ({
           <div className="report-row">
             <a onClick={() => showReport(subjectReport)}>
               {!subjectReport.approved
-                ? <CheckSquareFilled className="status-icon" />
-                : <div className="empty-square" />}
+                ? <CheckCircleFilled className="status-icon complete" />
+                : <CheckCircleFilled className="status-icon" />}
               {I18n.t('threesixty.view_my_report')}
             </a>
           </div>
@@ -124,8 +124,8 @@ const ReportItem = ({ item, showReport }) => (
   <List.Item>
     <a onClick={showReport}>
       {!item.approval_status
-        ? <CheckSquareFilled className="status-icon" />
-        : <div className="empty-square" />}
+        ? <CheckCircleFilled className="status-icon complete" />
+        : <CheckCircleFilled className="status-icon" />}
       {' '}
       <Tooltip placement="topLeft" title={item.user.email}>
         {userPresenter.selfUserName(item)}

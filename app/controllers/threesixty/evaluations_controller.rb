@@ -71,10 +71,12 @@ module Threesixty
         @participant.create_users_result(
           last_activity_at: DateTime.current,
           expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
+          started_at: DateTime.current,
           answers: {}
         )
         @participant.update(status: :in_progress)
       end
+      @participant.users_result.update(started_at: DateTime.current) unless @participant.users_result.started_at
       @participant.users_result
     end
 
