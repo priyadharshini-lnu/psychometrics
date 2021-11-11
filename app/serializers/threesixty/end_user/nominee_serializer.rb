@@ -16,6 +16,8 @@ module Threesixty::EndUser
     def can_remove
       if options.participants.dig('subject', 'cannot_remove_nomination_set_by_manager_and_admin')
         object.created_by_id == object.subject_id
+      else
+        true
       end
     end
 

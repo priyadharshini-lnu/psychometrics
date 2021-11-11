@@ -70,9 +70,8 @@ module Threesixty
       @nomination = @subject.participants.find_by(evaluator_id: params[:id])
       authorize @nomination, nil, policy_class: ::Threesixty::NominationPolicy
 
-      if !@campaign.option.participants['cannot_remove_nomination_set_by_manager_and_admin']
-        @nomination.destroy
-      elsif @nomination.created_by_id == current_user.id
+      if !@campaign.option.participants.dig('subject', 'cannot_remove_nomination_set_by_manager_and_admin') ||
+         @nomination.created_by_id == current_user.id
         @nomination.destroy
       end
       render json: nil
