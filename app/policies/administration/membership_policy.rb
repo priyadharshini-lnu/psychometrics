@@ -9,6 +9,7 @@ module Administration
     GRANT_PARAMETERS = [data: [
       clients: [],
       projects: [],
+      project_settings: [],
       campaigns: [],
       norms: [],
       dimensions: [],

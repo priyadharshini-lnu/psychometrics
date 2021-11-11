@@ -54,12 +54,14 @@ export class Header extends Component {
   }
 
   export = () => {
-    const { blocksWithQuestions } = this.props
+    const { blocksWithQuestions, instructions } = this.props
     const result = {
       block: {},
       question: {},
       flow: {},
+      instructions: { [null]: { content: instructions.content } },
     }
+
     _.each(blocksWithQuestions, (block) => {
       result.block[block.id] = {
         staticContent: _.get(block, ['props', 'staticContent', 'value']),
@@ -107,6 +109,7 @@ export class Header extends Component {
   render () {
     const {
       assessment, assessment: { extra, saving }, toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage,
+      instructions, toggleInstructions,
     } = this.props
 
     const isThreeSixtyAsessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
@@ -186,6 +189,11 @@ export class Header extends Component {
               id="main_menu"
             >
               <MenuItem onSelect={this.createBlock}>Add Block</MenuItem>
+              <MenuItem onSelect={toggleInstructions}>
+                {instructions.enabled ? 'Hide' : 'Show'}
+                {' '}
+                Instructions
+              </MenuItem>
               <MenuItem onSelect={this.openSearchPopup}>Copy Block From...</MenuItem>
               <MenuItem onSelect={this.export}>Export Translations</MenuItem>
               <li>

@@ -1,0 +1,36 @@
+<style>
+  .nomination-approval-table {
+    border-collapse: collapse;
+    border: none;
+  }
+
+  .nomination-approval-table th {
+      font-weight: bold;
+      color: #666;
+    }
+
+  .nomination-approval-table td, th {
+    padding: 8px;
+    border: 1px solid #eaeaea;
+  }
+</style>
+<table class='nomination-approval-table'>
+  <thead>
+    <tr>
+      <th><%= t('emails.nomination_approval_table.number') %></th>
+      <th><%= t('emails.nomination_approval_table.subject_name') %></th>
+      <th><%= t('emails.nomination_approval_table.evaluator_name') %></th>
+      <th><%= t('emails.nomination_approval_table.relationship') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @nominations.each.with_index do |participant, i|%>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= participant.subject.decorate.full_name %></td>
+        <td><%= participant.evaluator.decorate.full_name %></td>
+        <td><%= participant.relationship.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

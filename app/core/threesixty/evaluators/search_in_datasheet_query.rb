@@ -30,12 +30,12 @@ module Threesixty
 
       def sql
         <<-SQL.strip_heredoc
-          SELECT datasheet_rows.id, datasheet_rows.email, null as first_name, null as last_name
+          SELECT datasheet_rows.id, datasheet_rows.email, "data"->>'First Name' as first_name, "data"->>'Last Name' as last_name
             FROM datasheet_rows
             JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and (
               datasheets.project_id = :project_id OR datasheets.campaign_id = :campaign_id
             )
-            WHERE datasheet_rows.email ILIKE :query
+            WHERE datasheet_rows.email ILIKE :query OR "data"->>'First Name' ILIKE :query OR "data"->>'Last Name' ILIKE :query
           LIMIT :limit
         SQL
       end

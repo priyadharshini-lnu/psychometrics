@@ -13,6 +13,7 @@ export default interface User {
     remove: boolean
     manageOptions: boolean
     manageAdmins: boolean
+    manageProjectSmtpSettings: boolean
     manageCampaignAdmins: boolean
     manageCampaigns: boolean
     viewRegistrationCodes: boolean

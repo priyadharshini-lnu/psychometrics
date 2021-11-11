@@ -19,6 +19,10 @@ export default function GlobalSection ({
         label={I18n.t('threesixty.options.global.cannot_re_edit')}
         {...parametersForSwitch('canNotEditEvaluation')}
       />
+      <ExpandableOption
+        label={I18n.t('threesixty.options.global.disable_all_evaluations')}
+        {...parametersForSwitch('disableAllEvaluations')}
+      />
     </OptionSection>
   )
 }

@@ -3497,6 +3497,7 @@ en:
           description: This message is sent to managers when a subject requests approval
           name: Request Approval
         schedule_email: Schedule Email
+        schedule_time: Schedule Time
         send_test_email: Send Test Email
         subject: Subject
         subject_invite:

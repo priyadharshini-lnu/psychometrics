@@ -33,7 +33,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
     {
       evaluator: object.evaluator,
       subject: object.subject,
-      threesixty_campaign: @instance_options[:campaign],
+      threesixty_campaign: @instance_options[:threesixty_campaign],
       result: object
     }
   end

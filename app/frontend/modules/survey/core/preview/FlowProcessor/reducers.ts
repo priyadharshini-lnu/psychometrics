@@ -82,6 +82,9 @@ const defaultState: State = {
   options: {},
   nextButtonPressed: false,
   backButtonPressed: false,
+  started: false,
+  instructions: { enabled: false, content: '' },
+  fixedTimed: false,
 }
 
 const HANDLERS = {
@@ -156,6 +159,9 @@ const HANDLERS = {
       showScoringOnEndPage: data.showScoringOnEndPage,
       showQuestionScoring: data.showQuestionScoring,
       options: data.options || {},
+      started: data.type === 'preview_assessment' || !!result.started_at,
+      instructions: data.instructions,
+      fixedTimed: data.fixed_timed,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

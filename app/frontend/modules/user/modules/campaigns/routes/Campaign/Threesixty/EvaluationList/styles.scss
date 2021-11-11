@@ -22,6 +22,13 @@
         margin-left: 8px;
         font-size: 1.5em;
       }
+
+      .status-icon {
+        color: $dark-gray;
+        &.complete {
+          color: $success-color;
+        }
+      }
     }
 
     .panel-header {

@@ -1,21 +1,41 @@
 # frozen_string_literal: true
 
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
+
+fog_credentials = if ENV['MINIO_ENDPOINT'].present?
+                    Aws.config.update(
+                      endpoint: ENV['MINIO_ENDPOINT'],
+                      force_path_style: true,
+                      credentials: Aws::Credentials.new(
+                        Rails.application.secrets.minio[:access_key_id],
+                        Rails.application.secrets.minio[:secret_access_key]
+                      )
+                    )
+                    {
+                      provider: 'AWS',
+                      endpoint: ENV['MINIO_ENDPOINT'],
+                      path_style: true,
+                      aws_access_key_id: Rails.application.secrets.minio[:access_key_id],
+                      aws_secret_access_key: Rails.application.secrets.minio[:secret_access_key]
+                    }
+                  else
+                    {
+                      provider: 'AWS',
+                      aws_access_key_id: Rails.application.secrets.access_key_id,
+                      aws_secret_access_key: Rails.application.secrets.secret_access_key,
+                      region: Rails.application.secrets.region
+                    }
+                  end
+
 if Rails.env.test?
   CarrierWave.configure do |config|
     config.asset_host = "#{Settings.protocol}://#{Settings.domain}:#{Settings.port}"
     config.storage = :file
   end
 else
-  # rubocop:disable Metrics/BlockLength
   CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
-    config.fog_credentials = {
-      provider: 'AWS',
-      aws_access_key_id: Rails.application.secrets.access_key_id,
-      aws_secret_access_key: Rails.application.secrets.secret_access_key,
-      region: Rails.application.secrets.region
-    }
-
+    config.fog_credentials = fog_credentials
     config.fog_directory = Rails.application.secrets.directory
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
     config.storage = :fog
@@ -23,7 +43,9 @@ else
     config.validate_unique_filename = false
     config.fog_aws_accelerate = Settings.aws.s3.accelerated
     config.asset_host =
-      if Settings.file_host.present?
+      if ENV['MINIO_ENDPOINT'].present?
+        nil
+      elsif Settings.file_host.present?
         "https://#{Settings.file_host}"
       else
         s3_endpoint =
@@ -36,5 +58,4 @@ else
         "https://#{domain}"
       end
   end
-  # rubocop:enable Metrics/BlockLength
 end

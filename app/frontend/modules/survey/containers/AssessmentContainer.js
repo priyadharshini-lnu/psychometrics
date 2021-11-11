@@ -92,7 +92,7 @@ class AssessmentContainer extends Component {
         <DndProvider backend={HTML5Backend}>
           <div className="ant-row">
             {disabled && this.overlay()}
-            <AssessmentPreview showAsSinglePage={showAsSinglePage} />
+            <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
           </div>
         </DndProvider>
       </ConfigProvider>

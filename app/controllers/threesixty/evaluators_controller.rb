@@ -26,12 +26,20 @@ module Threesixty
         )
 
         if !result.manager_nomination_approved? && is_approve_nomination_sendable
-          Threesixty::Emails::Send.call!(
-            Threesixty::Emails::Name::APPROVE_NOMINATION,
-            threesixty_campaign: @campaign,
-            subject: @subject,
-            evaluator: result.threesixty_evaluator
-          )
+          template = @campaign.email_templates.find_by(name: Threesixty::Emails::Name::APPROVE_NOMINATION)
+
+          if template.daily_digest
+            Threesixty::Emails::ScheduleApprovalNominationEmail.call!(
+              @campaign, template, @subject, result.threesixty_evaluator
+            )
+          else
+            Threesixty::Emails::Send.call!(
+              Threesixty::Emails::Name::APPROVE_NOMINATION,
+              threesixty_campaign: @campaign,
+              subject: @subject,
+              evaluator: result.threesixty_evaluator
+            )
+          end
         else
           send_evaluator_invite_email(result.threesixty_evaluator)
         end

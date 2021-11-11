@@ -38,6 +38,7 @@ export default function UserAssessment ({
     initialized,
     enableProgress,
     type,
+    started,
   },
   preview,
   markAssessmentTimedOut,
@@ -102,7 +103,7 @@ export default function UserAssessment ({
                   <div>Assessment</div>
                 </div>
                 )}
-                {type !== 'preview_block' && enableProgress && (
+                {type !== 'preview_block' && enableProgress && started && (
                   <Progress key="3" percent={progress} {...progressBarProps} />
                 )}
               </Space>

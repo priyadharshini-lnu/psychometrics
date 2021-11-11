@@ -3344,7 +3344,9 @@ CREATE TABLE public.threesixty_email_templates (
     meta jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    consolidated boolean DEFAULT false NOT NULL
+    consolidated boolean DEFAULT false NOT NULL,
+    daily_digest boolean,
+    schedule_time character varying
 );
 
 
@@ -8786,6 +8788,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211017084949'),
 ('20211018074847'),
 ('20211026125300'),
-('20211027170600');
+('20211027170600'),
+('20211102165147');
 
 

@@ -1,6 +1,7 @@
 import { createReducer } from 'utils/redux'
 import { updateIn, setIn } from 'utils/immutable'
 import Rule from 'models/Rule'
+import { get } from 'lodash'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
@@ -8,6 +9,7 @@ import {
   TOGGLE_ENABLE_BACK, TOGGLE_ENABLE_PROGRESS, SAVE,
   SAVE_REQUEST, SAVE_FAILURE, UPDATE_EXTRA, SAVE_DATA_SHEET,
   TOGGLE_ENABLE_SINGLE_QUESTION,
+  TOGGLE_INSTRUCTIONS, UPDATE_INSTRUCTIONS_CONTENT,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -32,6 +34,7 @@ export const defaultState = {
   },
   trash: [],
   options: {},
+  instructions: {},
 }
 
 const HANDLERS = {
@@ -43,6 +46,7 @@ const HANDLERS = {
     return ({
       ...state,
       ...assessment,
+      instructions: assessment.instructions || {},
       // fix wrong norms initializing app/models/assessments/common.rb:23
       norm_rules: _.isEmpty(assessment.norm_rules) ? [] : assessment.norm_rules.map(r => new Rule(r)),
       propPanel: {
@@ -119,6 +123,12 @@ const HANDLERS = {
   [SAVE]: state => setIn(state, ['saving'], false),
   [UPDATE_EXTRA]: (state, { extra }) => ({ ...state, extra }),
   [SAVE_DATA_SHEET]: (state, { data }) => setIn(state, ['data_sheet_columns'], data),
+  [TOGGLE_INSTRUCTIONS]: state => setIn(
+    state, ['instructions', 'enabled'], !get(state, ['instructions', 'enabled']),
+  ),
+  [UPDATE_INSTRUCTIONS_CONTENT]: (state, { content }) => setIn(
+    state, ['instructions', 'content'], content,
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)

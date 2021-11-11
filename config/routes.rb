@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post '/lambda_notifications/url_to_pdf'
   post '/lambda_notifications/zip_s3_files'
 
+  get '/maintenance', to: 'maintenance#index', as: :maintenance
+
   concern :media_uploades do
     member do
       get :upload_media_url
@@ -877,6 +879,7 @@ Rails.application.routes.draw do
         member do
           get :assessment
           get :pass
+          get :begin
         end
       end
 
