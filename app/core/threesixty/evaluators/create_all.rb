@@ -69,7 +69,7 @@ module Threesixty
         ) do |participant|
           participant.manager_nomination_status = :approved
           participant.relationship = evaluator[:relationship]
-          participant.created_by = @creator&.id
+          participant.created_by_id = @creator&.id
         end
       end
 
