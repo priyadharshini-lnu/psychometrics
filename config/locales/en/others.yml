@@ -474,12 +474,14 @@ en:
           admin: Admin
           admins:
             admin: Admin
+            campaign_admin: Campaign Admin
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
           assessor: Assessor
           assessor_form: Assessor Form
+          campaign_admin: Campaign Admin
           case_study: Case study
           client_admin: Client Admin
           hogan: Hogan
@@ -606,6 +608,7 @@ en:
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         export_report_data: Export report data
         external_assessment_export: External Results Export
@@ -917,6 +920,7 @@ en:
       status: Status
       universal_link: Universal link
     messages:
+      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
       external_results_export_scheduled: External Assessment export job scheduled successfully
       norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
@@ -1098,6 +1102,7 @@ en:
       cancel: Cancel
       close: Close
       delete: Delete
+      edit: Edit
       import: Import
       remove: Remove
       reset: Reset
@@ -1118,6 +1123,7 @@ en:
       assessments: Assessments
       assessors: Assessors
       campaigns: Campaigns
+      completion_statuses: Completion Statuses
       datasheet: Datasheet
       report: Report
       reports: Reports
@@ -1442,6 +1448,9 @@ en:
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
+    smsInvites:
+      create_success: SMS Invite added successfully
+      update_success: SMS Invite updated successfully
     sms_records:
       create_success: SMS job scheduled successfully
     update: Update
@@ -1711,6 +1720,29 @@ en:
       add: Add Report
       download: Download report
       view: View Report
+    builder:
+      graph:
+        properties:
+          barWeight: Bar Weight
+          dataFormat: Data Fromat
+          graphOption3D: 3D
+          graphOptionStandard: Standard
+          graphSubType: Graph Subtype
+          graphTypeHorizontal: Horizontal
+          graphTypeVertical: Vertical
+          hideXAxisLine: Hide X-axis gridlines
+          hideXAxisTitle: Hide X-axis title
+          hideYAxisLine: Hide Y-axis gridlines
+          legendPosition: Legend Position
+          maxValueLabel: Max Value (number)
+          maxValueLabelPlaceholder: Max Value
+          positionBottomLeft: Bottom Left
+          positionBottomMiddle: Bottom Middle
+          positionBottomRight: Bottom Right
+          positionTopLeft: Top Left
+          positionTopMiddle: Top Middle
+          positionTopRight: Top Right
+          showLegend: Show Legend
     modules:
       common:
         all_factors: All factors
@@ -2050,6 +2082,7 @@ en:
         parent_id: Direct Manager
         report_ids: Report IDs
         roles:
+          campaign_admin: Campaign Admin
           client_admin: Client Admin
           manager: Manager
           member: User
@@ -2233,6 +2266,7 @@ en:
     decline: Decline
     decline_invite: Decline Invite
     denied: Denied
+    deny: Deny
     deny_all: Deny All
     deny_all_successful: Denied all nominations
     download_pdf: Download PDF

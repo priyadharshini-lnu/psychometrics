@@ -47,7 +47,8 @@ export default function ThreeSixtyReportSummary ({ model }) {
   }
 
 
-  let filters = (model.props.filter || []).map(id => _.find(AppStore.report.filters, { id }))
+  let filters = (Array.isArray(model.props.filter) ? model.props.filter : [])
+    .map(id => _.find(AppStore.report.filters, { id }))
   filters = _.compact(filters)
 
   if (!filters.length) return null

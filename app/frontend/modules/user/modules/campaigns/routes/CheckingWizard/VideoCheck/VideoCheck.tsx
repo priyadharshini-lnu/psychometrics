@@ -6,7 +6,6 @@ import { CheckOutlined, RightOutlined } from '@ant-design/icons'
 import * as faceapi from 'face-api.js'
 import { browserName } from 'react-device-detect'
 import ColoredButton from 'components/ColoredButton'
-import { Config } from 'modules/user/modules/campaigns/core/checkingWizard/interfaces'
 import _ from 'lodash'
 import InitVideo from './InitVideo'
 import styles from './styles.scss'
@@ -23,7 +22,6 @@ const { I18n } = window
 
 interface Props {
   nextStep: () => void
-  config: Config
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

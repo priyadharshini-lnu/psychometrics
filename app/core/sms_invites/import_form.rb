@@ -20,7 +20,7 @@ module SmsInvites
 
     def validate_body
       import_data.each_with_index do |attrs, index|
-        form = ::SmsInvites::CreateForm.new(attrs).with_context(campaign: context.campaign)
+        form = ::SmsInvites::Form.new(attrs).with_context(campaign: context.campaign)
         errors.add(:import_data, "Row #{index + 1}: #{form.errors.messages.values.first.first}") if form.invalid?
       end
     end

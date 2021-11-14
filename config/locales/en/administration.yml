@@ -351,6 +351,7 @@ en:
       admins: Admins
       assessments: Assessments
       assessor_dashboard: Assessor Dashboard
+      assessors: Assessors
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
@@ -374,6 +375,7 @@ en:
       norms_editor: Norm Editor
       occupations: Occupations
       occupations_factors: Factors
+      participants: Participants
       products: Products
       project_admins: Project Admins
       projects: Projects
@@ -383,6 +385,7 @@ en:
       report_families: Report Bundles
       reports: Reports
       settings: Settings
+      smtp_settings: SMTP settings
       statistics: Statistics
       sub_campaigns: Sub Campaigns
       sub_factors: Sub-Factors
@@ -2391,6 +2394,9 @@ en:
       toggle_status:
         successfully: Dimension was successfully updated.
     disable: Disable
+    document_titles:
+      project_assessors: Assessors | %{project}
+      project_participants: Participants | %{project}
     edit: Edit
     enable: Enable
     factors:
@@ -2971,6 +2977,54 @@ en:
       edit:
         success: Profile was successfully updated.
         title: Profile Editor
+    project_participants:
+      cancel: Cancel
+      column_actions: Actions
+      column_campaigns: Campaigns
+      column_createdAt: Created At
+      column_created_at: Created at
+      column_email: Email
+      column_id: Id
+      column_name: Name
+      delete: Delete
+      edit: Edit
+      edit_participant: Edit participant
+      filter_campaigns: No campaigns
+      form_first_name: First name
+      form_last_name: Last name
+      reset_password: Reset password
+      save: Save
+      search_user: Search user
+      send_email: Send email
+    project_users:
+      cancel: Cancel
+      change_password: Change password
+      column_actions: Actions
+      column_campaigns: Campaigns
+      column_created_at: Created at
+      column_email: Email
+      column_id: Id
+      column_name: Name
+      confirm_delete: Yes, delete
+      confirm_send: Yes, send
+      delete: Delete
+      delete_error: Could not delete assessor '%{name}'. Please contact your administrator.
+      delete_success: Assessor '%{name}' was successfully deleted.
+      edit: Edit
+      edit_assessor: Edit assessor
+      filter_campaigns: With no campaigns
+      form_first_name: First name
+      form_last_name: Last name
+      modal_delete_content: Are you sure you want to delete assessor '%{name}'?
+      modal_delete_title: Delete assessor
+      modal_reset_email_content: Are you sure you want send password reset link to '%{email}'?
+      model_reset_email: Reset assessor's password
+      no_edit_permission: You do not have permission to edit assessor '%{name}'
+      reset_mail_error: Could not send reset password link to '%{email}'. Please contact your administrator.
+      reset_mail_success: Reset password link successfully sent to '%{email}'
+      save: Save
+      search_accessor: Search accessors
+      send_email: Send email
     psychometrics: Psychometrics
     questions:
       copy:
@@ -3162,6 +3216,8 @@ en:
     search: Search
     show: Show
     sms_invites:
+      actions:
+        add: Add SMS Invite
       columns:
         created_at: Created At
         created_by: Created By
@@ -3169,10 +3225,19 @@ en:
         first_name: First Name
         last_name: Last Name
         mobile_no: Mobile No
+      form_modal:
+        first_name: First Name
+        last_name: Last Name
+        locale: Locale
+        mobile_no: Mobile no
+        title: Sms Invite
       import:
         download_example_csv: Download Example csv
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: SMS Invite import
+      messages:
+        delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
+        delete_success: SMS Invite deleted successfully
       send_sms:
         fields:
           link_expiry: Link Expiry

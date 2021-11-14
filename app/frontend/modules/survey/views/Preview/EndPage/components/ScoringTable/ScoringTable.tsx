@@ -12,7 +12,6 @@ interface ScoringTableProps {
   scoring: any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   factors: any
-  dashboardUrl: string
   showScoringOnEndPage: boolean
   I18n: I18nInterface
   userAssessmentId: number

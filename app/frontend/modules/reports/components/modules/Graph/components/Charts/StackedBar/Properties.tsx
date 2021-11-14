@@ -1,0 +1,98 @@
+import React from 'react'
+import { Checkbox, Typography, Space } from 'antd'
+
+import useUpdate from 'hooks/useUpdate'
+import { PropertiesModel } from 'modules/reports/interfaces/graphs/StackedBar'
+import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import ChoicesInput from 'modules/reports/components/ChoicesInput'
+import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphPropertyDropdown'
+
+const { I18n } = window
+
+type Props = {
+  model: PropertiesModel
+}
+
+type AxisDisplayOptions = {
+  label: string,
+  propName: string
+}
+
+const graphSubtypeOptions = [
+  I18n.t('reports.builder.graph.properties.graphTypeVertical'),
+  I18n.t('reports.builder.graph.properties.graphTypeHorizontal'),
+]
+const axisDisplayOptions = [
+  { label: I18n.t('reports.builder.graph.properties.hideXAxisLine'), propName: 'xAxisLinesHide' },
+  { label: I18n.t('reports.builder.graph.properties.hideYAxisLine'), propName: 'yAxisLinesHide' },
+]
+
+export const StackedBarProperties: React.FC<Props> = ({ model }) => {
+  const forceUpdate = useUpdate()
+  const { pointWidth } = model.props
+  const update = () => {
+    model.update()
+    forceUpdate()
+  }
+
+  const checkboxHandler = (type: string, e: CheckboxChangeEvent) => {
+    model.props[type] = e.target.checked
+    update()
+  }
+
+  const changePointWidth = (value: string) => {
+    model.props.pointWidth = value
+    update()
+  }
+
+  const changeGraphicalPosition = (value: string) => {
+    model.props.graphicalPosition = value
+    update()
+  }
+
+  return (
+    <Space direction="vertical">
+      <GraphPropertyDropdown
+        options={graphSubtypeOptions}
+        label={I18n.t('reports.builder.graph.properties.graphSubType')}
+        value={model.props.graphicalPosition}
+        changeHandler={changeGraphicalPosition}
+      />
+      <BarWeight value={pointWidth} changeHandler={changePointWidth} />
+      <AxisOptions model={model} changeHandler={checkboxHandler} options={axisDisplayOptions} />
+    </Space>
+  )
+}
+
+interface AxisOptionsProps {
+  model: PropertiesModel
+  options: AxisDisplayOptions []
+  changeHandler: (type: string, e: CheckboxChangeEvent) => void
+}
+
+const AxisOptions: React.FC<AxisOptionsProps> = ({ model, changeHandler, options }) => (
+  <Space direction="vertical">
+    {options.map(displayOption => (
+      <Checkbox
+        key={displayOption.label}
+        checked={model.props[displayOption.propName] || false}
+        onChange={e => changeHandler(displayOption.propName, e)}
+        className="font-normal"
+      >
+        {displayOption.label}
+      </Checkbox>
+    ))}
+  </Space>
+)
+
+interface BarWeightProps {
+  value: string
+  changeHandler: (value: string) => void
+}
+
+const BarWeight: React.FC<BarWeightProps> = ({ value, changeHandler }) => (
+  <>
+    <Typography.Text>{I18n.t('reports.builder.graph.properties.barWeight')}</Typography.Text>
+    <ChoicesInput value={value} onChange={changeHandler} minValue={10} maxValue={100} />
+  </>
+)

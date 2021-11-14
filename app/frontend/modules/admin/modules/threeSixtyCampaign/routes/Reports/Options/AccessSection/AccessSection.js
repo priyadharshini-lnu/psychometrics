@@ -22,7 +22,13 @@ export default function AccessSection ({
         label="Subject can access their reports"
         {...parametersForSwitch('selfCanAccess')}
         disabled={disable}
-      />
+      >
+        <ExpandableOption
+          label="Disable report download"
+          type="checkbox"
+          {...parametersForSwitch('disableDownloadReport')}
+        />
+      </ExpandableOption>
       <ExpandableOption
         label="Manager can access subject reports"
         {...parametersForSwitch('managerCanAccess')}

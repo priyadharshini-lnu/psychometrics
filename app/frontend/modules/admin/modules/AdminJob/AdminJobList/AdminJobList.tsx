@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  List, Badge, Button, Row, Col,
+  List, Badge, Button, Row, Col, Popover,
 } from 'antd'
 import humps from 'humps'
 import {
@@ -36,45 +36,54 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
 
   const handleInfiniteOnLoad = () => fetch(adminJobs.length)
 
+  const content = (
+    <div className={styles.list}>
+      <InfiniteScroll
+        initialLoad={false}
+        pageStart={0}
+        loadMore={handleInfiniteOnLoad}
+        hasMore={hasMore}
+        useWindow={false}
+      >
+        <List
+          itemLayout="vertical"
+          dataSource={adminJobs}
+          renderItem={job => <AdminJob job={job} read={read} />}
+          header={(
+            <Row>
+              <Col span="12">
+                <h3 className="pt8 pl24">{I18n.t('admin_jobs.notifications')}</h3>
+              </Col>
+              <Col span="12" className="text-align-r">
+                <Button
+                  type="link"
+                  disabled={!unread}
+                  icon={<CheckOutlined />}
+                  onClick={readAll}
+                >
+                  {I18n.t('admin_jobs.mark_as_read')}
+                </Button>
+              </Col>
+            </Row>
+          )}
+        />
+      </InfiniteScroll>
+    </div>
+  )
+
   return (
     <div className={styles.container}>
-      <Badge count={unread} overflowCount={9} offset={[-10, 17]}>
-        <span onClick={handleClick} className={`fa fa-bell ${styles.bellIcon}`} />
-      </Badge>
-      {active && (
-        <div className={styles.list}>
-          <InfiniteScroll
-            initialLoad={false}
-            pageStart={0}
-            loadMore={handleInfiniteOnLoad}
-            hasMore={hasMore}
-            useWindow={false}
-          >
-            <List
-              itemLayout="vertical"
-              dataSource={adminJobs}
-              renderItem={job => <AdminJob job={job} read={read} />}
-              header={(
-                <Row>
-                  <Col span="12">
-                    <h3 className="pt8 pl24">{I18n.t('admin_jobs.notifications')}</h3>
-                  </Col>
-                  <Col span="12" className="text-align-r">
-                    <Button
-                      type="link"
-                      disabled={!unread}
-                      icon={<CheckOutlined />}
-                      onClick={readAll}
-                    >
-                      {I18n.t('admin_jobs.mark_as_read')}
-                    </Button>
-                  </Col>
-                </Row>
-            )}
-            />
-          </InfiniteScroll>
-        </div>
-      )}
+
+      <Popover
+        placement="bottomRight"
+        content={content}
+        trigger="click"
+        overlayClassName={styles.overlay}
+      >
+        <Badge count={unread} overflowCount={9} offset={[-10, 17]}>
+          <span onClick={handleClick} className={`fa fa-bell ${styles.bellIcon}`} />
+        </Badge>
+      </Popover>
     </div>
   )
 }

@@ -4,7 +4,9 @@ import { Checkbox } from 'antd'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import update from 'react-addons-update'
+
+import { updateIn } from 'utils/immutable'
+
 import styles from '../styles.scss'
 
 const LIKERT_TYPES = ['Drop Down', 'Single Answer', 'Multiple Answer']
@@ -84,11 +86,12 @@ export class Menu extends Component {
     if (i === collection.length - 1) { return }
 
     const item = collection[i]
-    model.props.columnsData = update(collection, {
-      $splice: [
-        [i, 1],
-        [i + 1, 0, item],
-      ],
+
+    model.props = updateIn(model.props, ['columnsData'], (columnsData) => {
+      const columnsDataCopy = [...columnsData]
+      columnsDataCopy.splice(i, 1)
+      columnsDataCopy.splice(i + 1, 0, item)
+      return columnsDataCopy
     })
 
     this.update()
@@ -99,12 +102,14 @@ export class Menu extends Component {
     const i = index
     if (i === 0) { return }
     const collection = model.props.columnsData
+
     const item = collection[i]
-    model.props.columnsData = update(collection, {
-      $splice: [
-        [i, 1],
-        [i - 1, 0, item],
-      ],
+
+    model.props = updateIn(model.props, ['columnsData'], (columnsData) => {
+      const columnsDataCopy = [...columnsData]
+      columnsDataCopy.splice(i, 1)
+      columnsDataCopy.splice(i - 1, 0, item)
+      return columnsDataCopy
     })
     this.update()
   }

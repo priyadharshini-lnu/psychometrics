@@ -69,15 +69,12 @@ module Administration
       end
 
       def export_completion_status
-        headers['Content-Disposition'] = 'attachment; filename="completion_statuses.csv"'
-        headers['Content-Type'] ||= 'text/csv'
-        user_assessments = UserAssessment.where(campaign_id: campaign.id).
-                           includes(:users_result, :evaluator, :assessment)
-
-        render :export_completion_status, locals: {
-          user_assessments: user_assessments,
-          headers: UsersResultDecorator.export_headers
-        }
+        AdminJob.call(
+          :completion_status_export,
+          { campaign_id: campaign.id },
+          current_user
+        )
+        head :ok
       end
 
       def import

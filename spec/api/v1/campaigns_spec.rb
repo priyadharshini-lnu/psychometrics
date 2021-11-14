@@ -12,6 +12,60 @@ describe 'Campaigns' do
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 
+  path '/projects/{project_id}/campaigns/{campaign_id}' do
+    get 'Get a campaign' do
+      operationId 'GetCampaign'
+      description 'Get project campaign'
+      tags 'Campaigns'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+
+      response '200', 'Campaign duplicated' do
+        schema '$ref' => '#/definitions/Campaign'
+        examples 'application/json' => {
+          'id': 770,
+          'name': 'Sales Executive Recruitment May 2020',
+          'created_at': '2019-03-05T10:56:53.349+04:00',
+          'updated_at': '2019-03-05T10:56:53.349+04:00'
+        }
+
+        let(:campaign_id) { campaign.id }
+        let(:project_id) { project.id }
+
+        run_test! do |response|
+          campaign = JSON.parse(response.body)
+          expect(campaign).to have_key('id')
+        end
+      end
+
+      response '404', 'Campaign not found' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { 1111 }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          'code': 1005,
+          'message': 'Resource not found',
+          'more_info': 'Campaign with id=111 is not found',
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1005,
+            'message' => 'Resource not found',
+            'more_info' => 'Campaign with id=1111 is not found',
+            'meta' => nil
+          )
+        end
+      end
+    end
+  end
+
   path '/projects/{project_id}/campaigns/{campaign_id}/duplicate' do
     post 'Duplicate a campaign' do
       operationId 'DuplicateCampaign'

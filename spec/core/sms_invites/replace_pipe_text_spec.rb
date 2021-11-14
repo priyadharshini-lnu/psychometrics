@@ -25,7 +25,19 @@ describe SmsInvites::ReplacePipeText do
       domain: Settings.domain,
       host: Settings.domain,
       port: Settings.port,
-      subdomain: sms_invite.project.subdomain,
+      subdomain: Settings.subdomain,
+      id: sms_invite.shortened_urls.last.unique_key
+    )
+
+    expect(result).to eq("Invite Url: #{invite_url}")
+  end
+
+  it 'replaces {{invite_url}} pipetext with invite_url containing short_url_host' do
+    short_url_host = 'https://short_url_host.com'
+    allow(Settings).to receive(:short_url_host).and_return(short_url_host)
+    result = described_class.call!('Invite Url: {{{invite_url}}}', sms_invite)
+    invite_url = shortened_url(
+      host: short_url_host,
       id: sms_invite.shortened_urls.last.unique_key
     )
 

@@ -23,11 +23,13 @@ module Administration
                 id: resource.id,
                 name: resource.name,
                 reportId: resource.report_id,
+                assessmentId: resource.assessment_id,
                 dimensionId: resource.assessment.dimension_id,
                 options: {
                   participants: resource.option.participants
                 },
-                campaignReportPermissions: campaign_report_permissions
+                campaignReportPermissions: campaign_report_permissions,
+                campaignAssessmentPermissions: campaign_assessment_permissions
               }
             },
             currentUser: serialized_current_user,
@@ -146,6 +148,15 @@ module Administration
           @assessments = project.project_campaigns.where(type: 'threesixty').
                          map(&:threesixty_campaign).map(&:assessment)
           @campaign_templates = CampaignTemplate.all
+        end
+
+        def campaign_assessment_permissions
+          GetPermissionsHash.call!(
+            Administration::Threesixty::CampaignPolicy,
+            current_user,
+            nil,
+            %w[edit_assessment]
+          ).transform_keys! { |k| k.camelcase(:lower) }
         end
 
         def campaign_report_permissions

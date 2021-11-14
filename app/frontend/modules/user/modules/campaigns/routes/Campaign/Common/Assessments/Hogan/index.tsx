@@ -3,7 +3,6 @@ import {
   Row, Col, Card, Progress, Input, Tag, Tooltip,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
-import { History } from 'history'
 import truncate from 'lodash/truncate'
 import cs from 'classnames'
 
@@ -35,7 +34,6 @@ interface HoganData {
 interface Props {
   userAssessment: UserAssessment
   acceptPolicy(): Promise<unknown>
-  history: History
   size: number
   withSidebar: boolean
   disabled: boolean

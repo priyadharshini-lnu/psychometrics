@@ -13,6 +13,7 @@ class UserReport < ApplicationRecord
   delegate :client, to: :campaign
   delegate :saville_report_id, to: :report
   delegate :empty?, to: :report, prefix: true
+  delegate :external_report?, to: :report
 
   mount_base64_uploader :pdf, PdfUploader, file_name: proc { 'report' }
 
@@ -46,7 +47,7 @@ class UserReport < ApplicationRecord
   end
 
   def generatable?
-    all_assessments_are_completed? && !report_empty?
+    all_assessments_are_completed? && (external_report? || !report_empty?)
   end
 
   def publish_to_webhook

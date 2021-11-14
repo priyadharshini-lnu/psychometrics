@@ -1,4 +1,4 @@
-export default function ChartOptions (model) {
+export default function ChartOptions ({ ...model }) {
   return {
     pane: {
       startAngle: -150,
@@ -51,6 +51,7 @@ export default function ChartOptions (model) {
 
     legend: {
       labelFormatter () {
+        // eslint-disable-next-line react/no-this-in-sfc
         return `<span style="color:${this.color}">${this.name}</span>`
       },
       symbolWidth: 0,

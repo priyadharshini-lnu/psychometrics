@@ -19,8 +19,7 @@ export const GapAssessment: FC<Props> = ({ model }) => {
     },
     assessment_id,
   } = model
-
-  const filterIds = filter?.slice(0, 2) ?? []
+  const filterIds = Array.isArray(filter) ? filter.slice(0, 2) : []
   const firstFilter = AppStore.report.filters.find(
     appStoreFilter => appStoreFilter.id === filterIds[0],
   )

@@ -1,4 +1,4 @@
-import CampaignList from './CampaignList'
+import { CampaignList } from './CampaignList'
 import { Campaign } from './Campaign'
 import UsersAssessmentsReports from './Campaign/routes/Participants/Subjects/AssessmentsReports'
 import AssessorsDetails from './Campaign/routes/Participants/Assessors/AssessorDetails'

@@ -33,7 +33,6 @@ export const VideoResponse: FC<Props> = ({
     <div>
       <div className="mt-4">
         <TextEditor
-          model={model}
           value={model.props.questionText}
           onChange={handleOnChange}
         />

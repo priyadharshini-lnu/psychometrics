@@ -4,7 +4,7 @@ import store from 'modules/admin/store'
 import { Provider } from 'react-redux'
 import RouteList from 'components/RouteList'
 import routes from './routes'
-import Menu from './components/Menu'
+import { TopMenu } from './components/TopMenu'
 import settings from './settings'
 
 export default function App () {
@@ -12,7 +12,7 @@ export default function App () {
     <div className="ms" style={{ background: 'white' }}>
       <Provider store={store}>
         <Router>
-          <Menu routes={routes} />
+          <TopMenu />
           <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
         </Router>
       </Provider>

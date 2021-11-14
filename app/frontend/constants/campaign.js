@@ -1,4 +1,3 @@
-
 const ACTIVE = 'active'
 const INACTIVE = 'inactive'
 const CLOSED = 'closed'
@@ -9,6 +8,11 @@ export const STATUSES = {
   CLOSED,
   INACTIVE,
   ARCHIVED,
+}
+
+export const FILTER_PREDICATES = {
+  status: 'Eq',
+  type: 'Eq',
 }
 
 export const DEFAULT_PAGE_SIZE = 25

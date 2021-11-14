@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  changeFilter, changePage, removeFilter, changeSort, initTable,
+  changeFilter, changePage, removeFilter, changeSort, initTable, removeSort,
 } from 'modules/admin/core/filterAndPagination/actions'
 import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
 
@@ -19,6 +19,7 @@ export default connect(
     changeSort: (tableName: string, columnName: string, order: string) => (
       dispatch(changeSort(tableName, columnName, order))
     ),
+    removeSort: (tableName: string) => dispatch(removeSort(tableName)),
     initTable: (tableName: string, maintainHistory: boolean) => dispatch(initTable(tableName, maintainHistory)),
   }),
 )

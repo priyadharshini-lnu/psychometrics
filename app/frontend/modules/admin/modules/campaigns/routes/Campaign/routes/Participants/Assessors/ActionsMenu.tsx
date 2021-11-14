@@ -1,13 +1,11 @@
 import React from 'react'
 import { Menu, Modal, message } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
 
 const { I18n } = window
 
 interface ActionMenuProps {
   campaignId: string
-  currentUser: User
   id: number
   email: string
   permissions: {

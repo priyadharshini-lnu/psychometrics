@@ -27,7 +27,7 @@ const ReportList: React.FC<Props> = ({
     list,
     reportPermissions,
   },
-  match: { params: { projectId, campaignId } },
+  match: { params: { campaignId } },
   openModal,
   selectRecords,
   toggleAssessorAccess,
@@ -96,7 +96,6 @@ const ReportList: React.FC<Props> = ({
               <ConditionalDropdown
                 menu={
                   ActionsMenu({
-                    projectId,
                     campaignId: parsedCampaignId,
                     campaignReportId: report.id,
                     reportId: report.reportId,
@@ -121,7 +120,6 @@ const ReportList: React.FC<Props> = ({
 }
 
 interface ActionMenuProps {
-  projectId: string
   campaignId: number
   reportId: number
   campaignReportId: number

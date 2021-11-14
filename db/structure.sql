@@ -234,10 +234,10 @@ CREATE TABLE public.ar_internal_metadata (
 --
 
 CREATE TABLE public.assessments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     category character varying,
-    dimension_id integer,
+    dimension_id bigint,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -259,7 +259,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json
+    instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json
 );
 
 
@@ -409,16 +410,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -487,17 +488,17 @@ ALTER SEQUENCE public.assigns_reports_id_seq OWNED BY public.assigns_reports.id;
 --
 
 CREATE TABLE public.blocks (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessment_id integer,
+    assessment_id bigint,
     deleted_at timestamp without time zone,
     props json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer
+    template_id bigint
 );
 
 
@@ -529,8 +530,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -744,8 +744,8 @@ ALTER SEQUENCE public.campaign_reports_id_seq OWNED BY public.campaign_reports.i
 CREATE TABLE public.campaign_templates (
     id bigint NOT NULL,
     name character varying,
-    assessment_id integer,
-    report_id integer,
+    assessment_id bigint,
+    report_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -956,12 +956,12 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 --
 
 CREATE TABLE public.comments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     text character varying,
     created_by integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
+    commentable_id bigint,
     commentable_type character varying
 );
 
@@ -1027,7 +1027,7 @@ CREATE TABLE public.communications (
     id integer NOT NULL,
     subject character varying,
     body text,
-    assessment_id integer,
+    assessment_id bigint,
     client_id integer,
     recipients integer DEFAULT 0,
     delivery_rule integer,
@@ -1043,7 +1043,8 @@ CREATE TABLE public.communications (
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL
+    stop_reminder boolean DEFAULT false NOT NULL,
+    last_ran_time timestamp without time zone
 );
 
 
@@ -1257,7 +1258,7 @@ ALTER SEQUENCE public.datasheets_id_seq OWNED BY public.datasheets.id;
 --
 
 CREATE TABLE public.dimensions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
@@ -1429,12 +1430,12 @@ ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
 --
 
 CREATE TABLE public.factors (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer,
-    parent_id integer,
+    dimension_id bigint,
+    parent_id bigint,
     disabled boolean DEFAULT false,
     icon character varying,
     description text,
@@ -1501,10 +1502,10 @@ ALTER SEQUENCE public.factors_id_seq OWNED BY public.factors.id;
 --
 
 CREATE TABLE public.factors_norms (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     type public.factors_norms_types,
-    factor_id integer,
-    norm_id integer,
+    factor_id bigint,
+    norm_id bigint,
     props json
 );
 
@@ -1533,11 +1534,11 @@ ALTER SEQUENCE public.factors_norms_id_seq OWNED BY public.factors_norms.id;
 --
 
 CREATE TABLE public.factors_scoring (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     props json,
-    factor_id integer,
-    assessment_id integer,
-    question_id integer
+    factor_id bigint,
+    assessment_id bigint,
+    question_id bigint
 );
 
 
@@ -1605,7 +1606,7 @@ CREATE TABLE public.highlights (
     assessment_id bigint,
     user_id bigint,
     data jsonb DEFAULT '{}'::jsonb NOT NULL,
-    resource_id integer NOT NULL,
+    resource_id bigint NOT NULL,
     resource_type character varying NOT NULL
 );
 
@@ -1791,7 +1792,7 @@ ALTER SEQUENCE public.innovation_styles_id_seq OWNED BY public.innovation_styles
 --
 
 CREATE TABLE public.libraries (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     description text,
     type integer DEFAULT 0,
@@ -2050,14 +2051,14 @@ ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_crede
 --
 
 CREATE TABLE public.norms (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     disabled boolean DEFAULT false,
     created_by integer,
     updated_by integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer,
+    dimension_id bigint,
     owner_id integer,
     norm_type integer DEFAULT 0
 );
@@ -2120,11 +2121,11 @@ ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
 --
 
 CREATE TABLE public.occupations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     icon character varying,
     description text,
-    dimension_id integer,
+    dimension_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     full_description text,
@@ -2146,9 +2147,9 @@ CREATE TABLE public.occupations (
 --
 
 CREATE TABLE public.occupations_factors (
-    id integer NOT NULL,
-    occupation_id integer,
-    factor_id integer,
+    id bigint NOT NULL,
+    occupation_id bigint,
+    factor_id bigint,
     predicate character varying,
     value double precision,
     created_at timestamp without time zone NOT NULL,
@@ -2465,14 +2466,14 @@ ALTER SEQUENCE public.question_recoding_id_seq OWNED BY public.question_recoding
 --
 
 CREATE TABLE public.questions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     "position" integer,
     type character varying,
     props json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    block_id integer,
+    block_id bigint,
     deleted_at timestamp without time zone,
     required_validation json,
     validation json,
@@ -2480,8 +2481,8 @@ CREATE TABLE public.questions (
     skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer,
-    assessment_id integer,
+    template_id bigint,
+    assessment_id bigint,
     owner_id integer
 );
 
@@ -2616,7 +2617,7 @@ ALTER SEQUENCE public.report_families_id_seq OWNED BY public.report_families.id;
 --
 
 CREATE TABLE public.report_families_reports (
-    report_id integer,
+    report_id bigint,
     report_family_id integer
 );
 
@@ -2626,8 +2627,8 @@ CREATE TABLE public.report_families_reports (
 --
 
 CREATE TABLE public.reports (
-    id integer NOT NULL,
-    assessment_id integer,
+    id bigint NOT NULL,
+    assessment_id bigint,
     name character varying,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
@@ -2636,12 +2637,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint
@@ -2687,13 +2688,13 @@ ALTER SEQUENCE public.reports_accesses_id_seq OWNED BY public.reports_accesses.i
 --
 
 CREATE TABLE public.reports_filters (
-    id integer NOT NULL,
-    report_id integer,
+    id bigint NOT NULL,
+    report_id bigint,
     name character varying,
     conditions json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessment_id integer,
+    assessment_id bigint,
     min_required_responses integer DEFAULT 0
 );
 
@@ -2741,8 +2742,8 @@ ALTER SEQUENCE public.reports_id_seq OWNED BY public.reports.id;
 --
 
 CREATE TABLE public.reports_modules (
-    id integer NOT NULL,
-    page_id integer,
+    id bigint NOT NULL,
+    page_id bigint,
     name character varying,
     props json,
     "position" integer,
@@ -2778,8 +2779,8 @@ ALTER SEQUENCE public.reports_modules_id_seq OWNED BY public.reports_modules.id;
 --
 
 CREATE TABLE public.reports_pages (
-    id integer NOT NULL,
-    report_id integer,
+    id bigint NOT NULL,
+    report_id bigint,
     name character varying,
     props json,
     "position" integer,
@@ -2985,6 +2986,39 @@ CREATE SEQUENCE public.shortened_urls_id_seq
 --
 
 ALTER SEQUENCE public.shortened_urls_id_seq OWNED BY public.shortened_urls.id;
+
+
+--
+-- Name: sms_histories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sms_histories (
+    id bigint NOT NULL,
+    sms_invite_id bigint NOT NULL,
+    sms_record_id bigint NOT NULL,
+    status character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sms_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sms_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sms_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sms_histories_id_seq OWNED BY public.sms_histories.id;
 
 
 --
@@ -3346,7 +3380,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -3578,15 +3613,15 @@ ALTER SEQUENCE public.threesixty_subjects_id_seq OWNED BY public.threesixty_subj
 --
 
 CREATE TABLE public.translations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     translateable_type character varying,
-    translateable_id integer,
+    translateable_id bigint,
     props json DEFAULT '{}'::json,
     locale character varying(10),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     resource_type character varying,
-    resource_id integer
+    resource_id bigint
 );
 
 
@@ -3774,12 +3809,12 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     selected_locale character varying,
@@ -4452,6 +4487,13 @@ ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.shortened_urls ALTER COLUMN id SET DEFAULT nextval('public.shortened_urls_id_seq'::regclass);
+
+
+--
+-- Name: sms_histories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories ALTER COLUMN id SET DEFAULT nextval('public.sms_histories_id_seq'::regclass);
 
 
 --
@@ -5268,6 +5310,14 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.shortened_urls
     ADD CONSTRAINT shortened_urls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sms_histories sms_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT sms_histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -6604,6 +6654,20 @@ CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (u
 
 
 --
+-- Name: index_sms_histories_on_sms_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_histories_on_sms_invite_id ON public.sms_histories USING btree (sms_invite_id);
+
+
+--
+-- Name: index_sms_histories_on_sms_record_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_histories_on_sms_record_id ON public.sms_histories USING btree (sms_record_id);
+
+
+--
 -- Name: index_sms_invites_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7585,6 +7649,14 @@ ALTER TABLE ONLY public.innovation_styles
 
 
 --
+-- Name: sms_histories fk_rails_79c274d22c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT fk_rails_79c274d22c FOREIGN KEY (sms_record_id) REFERENCES public.sms_records(id);
+
+
+--
 -- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7782,6 +7854,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_9cb58b8a3f FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: sms_histories fk_rails_9d612c8fc8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT fk_rails_9d612c8fc8 FOREIGN KEY (sms_invite_id) REFERENCES public.sms_invites(id);
 
 
 --
@@ -8704,8 +8784,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210913092232'),
 ('20210917131407'),
 ('20210919105932'),
+('20211011103826'),
 ('20211013070031'),
 ('20211017084949'),
+('20211018074847'),
 ('20211026125300'),
 ('20211027170600'),
-('20211102165147');
+('20211102165147'),
+('20211114082155');
+
+

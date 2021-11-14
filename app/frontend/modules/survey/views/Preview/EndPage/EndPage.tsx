@@ -71,7 +71,6 @@ const EndPage: FC<Props> = ({
         showScoringOnEndPage={showScoringOnEndPage}
         scoring={scoring}
         factors={factors}
-        dashboardUrl={dashboardUrl}
         I18n={I18n}
         userAssessmentId={user_assessment_id}
       />

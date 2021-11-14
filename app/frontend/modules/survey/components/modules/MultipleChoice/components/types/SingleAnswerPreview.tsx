@@ -17,11 +17,14 @@ interface Props {
   model: PreviewModel
   readOnly: boolean
   I18n: I18nInterface
+  nextPage: () => {}
+  singleQuestionFlow?: boolean
 }
 
-export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
+export const SingleAnswerPreview: FC<Props> = ({
+  model, readOnly, I18n, nextPage, singleQuestionFlow,
+}) => {
   const forceUpdate = useForceUpdate()
-
   const {
     id,
     result,
@@ -44,7 +47,9 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
     if (value.length !== 0) {
       result.answer(parseInt(value, 10))
     }
-
+    if (singleQuestionFlow) {
+      nextPage()
+    }
     forceUpdate()
   }
 
@@ -52,7 +57,9 @@ export const SingleAnswerPreview: FC<Props> = ({ model, readOnly, I18n }) => {
     result.answers = []
     result.notApplicable = true
     result.reduxAnswer()
-
+    if (singleQuestionFlow) {
+      nextPage()
+    }
     forceUpdate()
   }
 

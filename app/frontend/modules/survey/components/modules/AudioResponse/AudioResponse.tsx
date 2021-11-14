@@ -32,7 +32,6 @@ export const AudioResponse: FC<Props> = ({
     <div>
       <div className="mt-4">
         <TextEditor
-          model={model}
           value={questionText}
           onChange={handleOnTextChange}
         />

@@ -22,7 +22,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource)
+        params[:resource]
       end
 
       def ensure_project

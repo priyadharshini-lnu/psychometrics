@@ -5,8 +5,8 @@ import {
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
 interface Props {
-  openModal(name: string, data?: { projectId: string }): void
-  projectId: string
+  openModal(name: string, data?: { projectId: number }): void
+  projectId: number
 }
 
 const CreateCampaignDropdown: React.FC<Props> = ({ openModal, projectId }) => {

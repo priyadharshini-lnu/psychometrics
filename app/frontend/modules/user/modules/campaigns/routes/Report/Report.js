@@ -18,7 +18,7 @@ export default function Report ({
       locales,
     }, report, results, user, campaign, approvalStatus, isSelf,
   }, match: { params }, fetchReport, updateStatus, downloadReport,
-  options: { approval: { managerApprovesReports } }, history,
+  options: { approval: { managerApprovesReports }, access: { disableDownloadReport } }, history,
 }) {
   useEffect(() => {
     fetchReport(params.campaignId, params.id)
@@ -56,7 +56,7 @@ export default function Report ({
             </div>
           )}
           onBack={() => history.push(`/threesixty_campaigns/${params.campaignId}`)}
-          extra={[
+          extra={!disableDownloadReport && [
             <Button
               key="download"
               icon={<DownloadOutlined />}
