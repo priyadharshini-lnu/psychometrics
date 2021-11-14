@@ -61,14 +61,8 @@ export default NetworkCheck
 
 
 interface ViewProps {
-    nextStep: () => void
-    updateMetrics: (data: Metrics) => void
-    resetMetrics: () => void
     updateStatus: (status: string) => void
-    measures: Metrics
-    config: Config
 }
-
 interface Metrics {
   download: number | null
   upload: number | null
@@ -94,7 +88,12 @@ const getCheckListStatus = (value: number | null, threshold: number): CheckListS
   return CheckListStatus.Done
 }
 
-const FailedView: React.FC<ViewProps> = ({ measures, updateStatus, config: { network } }) => (
+type FailedViewProps = {
+  measures: Metrics
+  config: Config
+} & ViewProps
+
+const FailedView: React.FC<FailedViewProps> = ({ measures, updateStatus, config: { network } }) => (
   <>
     <span className={styles.icon} />
     <div className={cardStyles.title}>{I18n.t('checking_wizard.network_check.please_check_connection')}</div>
@@ -126,14 +125,18 @@ interface Progress {
   pass: number
   percentDone: number
 }
-
+type InProgressViewProps = {
+  nextStep: () => void
+  resetMetrics: () => void
+  updateMetrics: (data: Metrics) => void
+} & Omit<FailedViewProps, 'updateStatus'>
 
 const PASSES = {
   download: 7,
   upload: 4,
 }
 
-const InProgressView: React.FC<ViewProps> = ({
+const InProgressView: React.FC<InProgressViewProps> = ({
   nextStep, measures, resetMetrics, updateMetrics, config: { network, speedOfMeApiToken },
 }) => {
   const [progress, setProgress] = useState(0)

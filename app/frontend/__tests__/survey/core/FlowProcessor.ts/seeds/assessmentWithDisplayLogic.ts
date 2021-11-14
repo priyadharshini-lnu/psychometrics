@@ -17,6 +17,7 @@ const assessmentWithEmbededData = {
       },
     ],
   },
+  options: {},
   norm_rules: [],
   enable_back: false,
   enable_progress: true,
@@ -155,7 +156,7 @@ const assessmentWithEmbededData = {
           },
           validation: {
             type: 'None',
-            args: { },
+            args: {},
           },
           required_validation: {
             enabled: false,

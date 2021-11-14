@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react'
-import _ from 'lodash'
-import { TableConfig, State as TableConfigs } from 'modules/admin/core/filterAndPagination/interfaces'
+import pick from 'lodash/pick'
+import reduce from 'lodash/reduce'
+import curry from 'lodash/curry'
+import forEach from 'lodash/forEach'
+import { FilterValue } from 'antd/lib/table/interface'
+
+import { State as TableConfigs } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
   changeFilterType,
   removeFilterType,
   changePageType,
   changeSortType,
+  removeSortType,
   initTableType,
 } from 'modules/admin/core/filterAndPagination/actions'
 
@@ -21,6 +27,7 @@ interface Props {
   removeFilter: removeFilterType,
   changePage: changePageType
   changeSort: changeSortType
+  removeSort: removeSortType
   initTable: initTableType
 }
 
@@ -34,41 +41,56 @@ interface SorterProps {
   order?: string
 }
 
-interface PropsPassed extends Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onTableChange(_pagination: any, _filter: any, sorter: SorterProps): void
-  getSortOrder(column: string): 'ascend' | 'descend'
-  tableConfig: TableConfig
-  maintainHistory: boolean
-}
-
 export interface Options {
   maintainHistory: boolean
+  filterPredicates?: Record<string, string>
 }
 
 const withEnhancedTable = (WrappedComponent, tableName: string, options: Options) => (
   (props: Props) => {
-    const { changeSort, initTable, tables } = props
+    const {
+      tables, initTable, changeSort, removeSort, changeFilter, removeFilter,
+    } = props
+
+    const { maintainHistory, filterPredicates } = options
+
     const tableConfig = tables[tableName]
 
     useEffect(() => {
-      initTable(tableName, options.maintainHistory)
+      initTable(tableName, maintainHistory)
     }, [])
 
-    if (!tableConfig) { return null }
+    if (!tableConfig) {
+      return null
+    }
 
-    const handleTableChange = (_pagination, _filter, sorter: SorterProps) => {
+    const handleTableChange = (_pagination, filters: Record<string, FilterValue | null>, sorter: SorterProps) => {
       const { columnKey, order } = sorter
-      let newOrder: string | undefined
 
-      // order is not returned by antd if we toggle the sort order of allready selected column
-      if (order) {
-        newOrder = _.findKey(ORDER_MAPPING, (v: string) => v === order)
-      } else {
-        newOrder = tableConfig.sort.order === 'asc' ? 'desc' : 'asc'
+      if (columnKey && order === undefined) {
+        removeSort(tableName)
+      }
+      if (columnKey && order) {
+        const mappedOrder = Object.keys(ORDER_MAPPING).find(key => ORDER_MAPPING[key] === order)
+        if (mappedOrder) {
+          changeSort(tableName, columnKey, mappedOrder)
+        }
       }
 
-      if (newOrder) { changeSort(tableName, columnKey, newOrder) }
+      if (Object.keys(filters).length && filterPredicates) {
+        forEach(filters, (filterValues, columnKey) => {
+          const filterPredicate = filterPredicates?.[columnKey] ?? ''
+          const filterWithPredicate = `${columnKey}${filterPredicate}`
+
+          if (filterValues === null) {
+            removeFilter(tableName, filterWithPredicate)
+          } else {
+            filterValues.forEach((filterValue) => {
+              changeFilter(tableName, filterWithPredicate, filterValue as string)
+            })
+          }
+        })
+      }
     }
 
     const getSortOrder = (column: string): false | 'ascend' | 'descend' => {
@@ -77,13 +99,23 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
       return tableConfig.sort.order && ORDER_MAPPING[tableConfig.sort.order]
     }
 
-    let tableFunctions = _.pick(props, ['changeFilter', 'changePage', 'removeFilter', 'changeSort'])
-    tableFunctions = _.reduce(tableFunctions, (result, func, key) => {
-      result[key] = _.curry(func)(tableName)
+    const getFilteredValue = (column: string): FilterValue | null | undefined => {
+      const filterPredicate = filterPredicates?.[column] ?? ''
+      const filterWithPredicate = `${column}${filterPredicate}`
+      const filterValue = tableConfig.filters[filterWithPredicate]
+
+      if (filterValue) {
+        return [filterValue]
+      }
+
+      return null
+    }
+
+    let tableFunctions = pick(props, ['changeFilter', 'changePage', 'removeFilter', 'changeSort'])
+    tableFunctions = reduce(tableFunctions, (result, func, key) => {
+      result[key] = curry(func)(tableName)
       return result
     }, {} as typeof tableFunctions)
-
-    const { maintainHistory } = options
 
     if (tableConfig.initialized) {
       return (
@@ -94,6 +126,7 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
           tableConfig={tables[tableName]}
           onTableChange={handleTableChange}
           getSortOrder={getSortOrder}
+          getFilteredValue={getFilteredValue}
         />
       )
     }

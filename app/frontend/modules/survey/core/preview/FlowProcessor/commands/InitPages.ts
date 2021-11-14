@@ -1,9 +1,9 @@
 import _ from 'lodash'
-import { BlocksInterface, PageInterface } from '../interfaces'
+import { BlocksInterface, PageInterface, AssessmentOptions } from '../interfaces'
 import RandomizeBlockQuestions from './RandomizeBlockQuestions'
 
 const InitPages = {
-  run (data: BlocksInterface, seed = ''): {[key: number]: PageInterface[]} {
+  run (data: BlocksInterface, seed = '', options: AssessmentOptions = {}): {[key: number]: PageInterface[]} {
     const { blocks } = data
     return _.reduce(blocks, (pages, b) => {
       if (b.deleted) { return pages }
@@ -11,11 +11,19 @@ const InitPages = {
 
       const questions = _.reduce(b.questions, (questions: number[], q) => {
         if (q.deleted) { return questions }
+
         if (q.type === 'PageBreak') {
           if (questions.length) {
             pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
           }
           return []
+        }
+
+        if (options.enable_single_question_page) {
+          if (questions.length > 0) {
+            pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
+          }
+          return [q.id]
         }
 
         if (q.display_logic) {
@@ -36,9 +44,11 @@ const InitPages = {
           pages[b.id] = [...pages[b.id], attrs]
           return []
         }
+
         if (!_.includes(questions, q.id)) {
           questions = [...questions, q.id]
         }
+
         return questions
       }, [])
 

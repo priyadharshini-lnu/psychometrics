@@ -15,6 +15,7 @@ export const REMOVE_NORM_RULE = 'survey/assessment/REMOVE_NORM_RULE'
 export const UPDATE_FLOW = 'survey/assessment/UPDATE_FLOW'
 export const TOGGLE_ENABLE_BACK = 'survey/assessment/TOGGLE_ENABLE_BACK'
 export const TOGGLE_ENABLE_PROGRESS = 'survey/assessment/TOGGLE_ENABLE_PROGRESS'
+export const TOGGLE_ENABLE_SINGLE_QUESTION = 'survey/assessment/TOGGLE_ENABLE_SINGLE_QUESTION'
 export const SAVE = 'survey/assessment/SAVE'
 export const SAVE_REQUEST = 'survey/assessment/SAVE_REQUEST'
 export const SAVE_FAILURE = 'survey/assessment/SAVE_FAILURE'
@@ -39,6 +40,7 @@ export const updateFlow = flow => ({ type: UPDATE_FLOW, flow })
 
 export const toggleEnableBack = () => ({ type: TOGGLE_ENABLE_BACK })
 export const toggleEnableProgress = () => ({ type: TOGGLE_ENABLE_PROGRESS })
+export const toggleSingleQuestionPage = () => ({ type: TOGGLE_ENABLE_SINGLE_QUESTION })
 
 export const saveAssessment = (data) => {
   const builder = {

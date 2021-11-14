@@ -3,8 +3,7 @@ export interface State {
 }
 
 export interface TableConfig {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  filters: { [key: string]: any },
+  filters: Record<string, string>,
   sort: {
     columnName?: string
     order?: string

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropTarget } from 'react-dnd'
-import update from 'react-addons-update'
+
+import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
 import styles from './ColorSet.scss'
 import Swatch from './Swatch'
@@ -58,13 +59,13 @@ let ColorSet = class extends Component {
   remove = (id) => {
     const { model } = this.props
     const { index } = this.findSwatch(id)
-    this.setState(update(model.props, {
-      colors: {
-        $splice: [
-          [index, 1],
-        ],
-      },
-    }))
+    const updatedColors = updateIn(
+      model.props,
+      ['colors'],
+      colors => [...colors.slice(0, index), ...colors.slice(index + 1),
+      ],
+    )
+    this.setState(updatedColors)
     this.update()
   }
 

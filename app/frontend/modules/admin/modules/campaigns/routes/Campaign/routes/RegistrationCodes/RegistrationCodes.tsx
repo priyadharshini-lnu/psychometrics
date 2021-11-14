@@ -50,7 +50,7 @@ const RegistrationCodes: React.FC<Props> = ({
   list,
   total,
   permissions,
-  match: { params: { projectId, campaignId } },
+  match: { params: { campaignId } },
   tableConfig: {
     page,
   },
@@ -141,7 +141,6 @@ const RegistrationCodes: React.FC<Props> = ({
                     <Dropdown
                       overlay={() => (
                         QRCodeMenu({
-                          projectId,
                           campaignId,
                           code,
                         }) as React.ReactElement
@@ -203,7 +202,6 @@ interface ActionMenuProps {
 }
 
 interface QRCodeMenuProps {
-  projectId: string
   campaignId: string
   code: RegistrationCode
 }

@@ -13,15 +13,15 @@ export class Scoring extends Component {
   }
 
   getSubjects (assessment) {
-    const { condition } = this.props
+    const { condition, factors } = this.props
     if (condition.type === DATA_SHEET) {
       return AppStore.report.dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
     }
     if (assessment.category === PSYCHOMETRIC || assessment.category === AGILE) {
-      return AppStore.factors[assessment.dimensionId]
+      return factors[assessment.dimensionId]
     }
 
-    return assessment.factors.filter(f => f.type === condition.type)
+    return factors[assessment.dimensionId]
   }
 
   changeSubject = (e) => {

@@ -5,6 +5,7 @@ import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { setIn, updateIn } from 'utils/immutable'
 
 export const STATUSES = ['not_invited', 'invited', 'registered']
 
@@ -26,16 +27,26 @@ const SmsInviteListResponseTR = t.type({
     import: t.boolean,
     export: t.boolean,
     sendSms: t.boolean,
+    create: t.boolean,
+    destroy: t.boolean,
   }),
 })
 
 export type SmsInvite = t.TypeOf<typeof SmsInviteTR>
 export type State = t.TypeOf<typeof SmsInviteListResponseTR>
 
-const defaultState: State = { list: [], total: 0, permissions: { import: false, export: false, sendSms: false } }
+const defaultState: State = {
+  list: [],
+  total: 0,
+  permissions: {
+    create: false, destroy: false, import: false, export: false, sendSms: false,
+  },
+}
 
 export const get = (state: RootState): State => lodashGet(state, ['campaigns', 'smsInvites'])
 
+export const CREATE = 'resource/campaigns/smsInvites/CREATE'
+export const UPDATE = 'resource/campaigns/smsInvites/UPDATE'
 export const FETCH = 'camapaigns/smsInvites/FETCH'
 
 export const fetch = (campaignId: string, tableConfig: TableConfig): ApiAction<State> => ({
@@ -91,8 +102,33 @@ export const sendSms = (campaignId: number, body: object) => ({
   },
 })
 
+const REMOVE = 'camapaigns/smsInvites/REMOVE'
+type RemoveType = ApiActionResponse<number>
+export const remove = (campaignId: string, smsInviteId: number) => ({
+  type: REMOVE,
+  request: {
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/sms_invites/${smsInviteId}`,
+  },
+})
+
 const HANDLERS = {
   [FETCH]: (_: State, { response }: ApiActionResponse<State>) => response,
+  [CREATE]: (state: State, { response }: ApiActionResponse<SmsInvite>) => (
+    setIn(state, ['list'], [response, ...state.list])
+  ),
+  [UPDATE]: (state: State, { response }: ApiActionResponse<SmsInvite>) => (
+    updateIn(state, ['list'], (smsInvites: SmsInvite[]) => smsInvites.map((smsInvite) => {
+      if (smsInvite.id === response.id) { return response }
+
+      return smsInvite
+    }))
+  ),
+  [REMOVE]: (state: State, { response }: RemoveType) => (
+    updateIn(state, ['list'], (smsInvites: SmsInvite[]) => smsInvites.filter(
+      smsInvite => smsInvite.id !== response,
+    ))
+  ),
 }
 
 export const reducer = createReducer(HANDLERS, defaultState)

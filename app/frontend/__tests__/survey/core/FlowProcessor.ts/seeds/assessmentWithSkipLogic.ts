@@ -7,6 +7,7 @@ const assessmentWithEmbededData = {
   norm_rules: [],
   enable_back: false,
   enable_progress: true,
+  options: {},
   blocks: [
     {
       id: 1,
@@ -133,7 +134,7 @@ const assessmentWithEmbededData = {
           },
           validation: {
             type: 'None',
-            args: { },
+            args: {},
           },
           required_validation: {
             enabled: false,

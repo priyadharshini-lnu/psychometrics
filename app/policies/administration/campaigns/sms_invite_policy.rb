@@ -7,6 +7,18 @@ module Administration
         @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id: project_id)
       end
 
+      def create?
+        can_manage_sms_invites?
+      end
+
+      def update?
+        can_manage_sms_invites?
+      end
+
+      def destroy?
+        can_manage_sms_invites?
+      end
+
       def import?
         can_manage_sms_invites?
       end

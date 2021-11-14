@@ -21,7 +21,8 @@ describe SmsInvites::SendSmsInvites do
   end
 
   it 'replaces pipe text from sms message to send and sends out sms' do
-    expect(Sms::Send).to receive(:call!).with(sms_invite.mobile_no, "Hi #{sms_invite.first_name}")
+    expect(Sms::Send).to receive(:call!).
+      with(sms_invite.mobile_no, "Hi #{sms_invite.first_name}", hash_including(:status_callback))
     described_class.call!(sms_record, job_record)
   end
 
@@ -42,5 +43,12 @@ describe SmsInvites::SendSmsInvites do
 
     expect(job_record.total_tasks).to eq(1)
     expect(job_record.completed_tasks).to eq(1)
+  end
+
+  it 'create sms_history' do
+    described_class.call!(sms_record, job_record)
+    sms_history = sms_invite.sms_histories.last
+
+    expect(sms_history).to_not eq(nil)
   end
 end

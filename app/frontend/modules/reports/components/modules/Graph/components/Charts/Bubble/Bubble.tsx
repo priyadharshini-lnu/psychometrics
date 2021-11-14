@@ -5,6 +5,10 @@ import Highcharts, { Chart } from 'highcharts-v9'
 import highChartMore from 'highcharts-v9/highcharts-more'
 import _ from 'lodash'
 
+import {
+  PropertiesModel, SeriesDataIdPoint, ColorsFromPallet, Size,
+} from 'modules/reports/interfaces/graphs/Bubble'
+
 import { getCorrectResults } from '../ResultManager'
 import { createFactorSeries, getFactorValue } from './series/factors'
 import {
@@ -13,13 +17,10 @@ import {
   ChartOptions,
 } from './chartOptions'
 
-import { SeriesDataIdPoint, ColorsFromPallet, Size } from './interfaces/graph'
-
 highChartMore(Highcharts)
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  model: any
+  model: PropertiesModel
 }
 
 const Bubble: FC<Props> = ({ model }) => {
@@ -57,8 +58,7 @@ const Bubble: FC<Props> = ({ model }) => {
   return <div className="h-100 w-100" ref={chartContainer} />
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getBubbleChartOptions = (model: any, size: Size): ChartOptions => {
+const getBubbleChartOptions = (model: PropertiesModel, size: Size): ChartOptions => {
   const {
     source,
     seriesValueIds,
@@ -100,7 +100,7 @@ const getBubbleChartOptions = (model: any, size: Size): ChartOptions => {
   let seriesData: SeriesDataIdPoint[] = []
   const usedFactorIds = _(seriesValueIds)
     .map(s => [s.x, s.y])
-    .concat(xMeanValueId, yMeanValueId)
+    .concat([xMeanValueId], [yMeanValueId])
     .flatten()
     .compact()
     .uniq()

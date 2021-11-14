@@ -19,6 +19,10 @@ module Api
         render json: campaigns, each_serializer: Api::V1::UserCampaignSerializer
       end
 
+      def show
+        render json: campaign, serializer: Api::V1::CampaignSerializer
+      end
+
       def assign_user
         normalized_params = API::NormalizeCampaignParams.call!(params)
         form = Api::V1::Campaigns::AttachToUserForm.from_params(normalized_params).

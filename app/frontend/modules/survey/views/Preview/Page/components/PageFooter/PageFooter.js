@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import cs from 'classnames'
 import { Button, Popconfirm } from 'antd'
 import { isRtl } from 'utils/locales'
@@ -13,10 +12,6 @@ const { I18n } = window
 class PageFooter extends Component {
   state = {
     popConfirmVisibleFor: null,
-  }
-
-  static propTypes = {
-    page: PropTypes.object.isRequired,
   }
 
   componentDidMount () {

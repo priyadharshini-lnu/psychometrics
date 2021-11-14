@@ -19,6 +19,7 @@ import {
   hideEnd,
   setIsSimulation,
   fetchQuestionScoring,
+  backButtonPressed,
 } from './actions'
 import {
   getPrevPage,
@@ -60,6 +61,7 @@ function* genPrevPage () {
   const questions = pageQuestions(state.preview)
   const prev = getPrevPage(state.preview)
   if (prev) {
+    yield put(backButtonPressed())
     yield put(setDirtyResults(_.map(questions, 'id')))
     yield put(changeElement(prev.element, prev.page))
     yield put(removePrevPage())

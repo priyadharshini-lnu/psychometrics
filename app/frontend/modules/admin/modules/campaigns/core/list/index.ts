@@ -21,12 +21,13 @@ export const UPDATE = 'resource/campaign/UPDATE'
 export const REMOVE = 'resource/campaign/REMOVE'
 export const FETCH_TEMPLATES_AND_ASSESSMENTS = 'campaigns/FETCH_TEMPLATES_AND_ASSESSMENTS'
 
-export const fetch = (projectId: string, tableConfig: TableConfig) => ({
+export const fetch = (projectId: number, tableConfig: TableConfig) => ({
   type: FETCH,
   request: {
     method: 'get',
     debounce: 500,
     tableConfig,
+    loader: true,
     url: `/administration/projects/${projectId}/new_campaigns`,
   },
 })

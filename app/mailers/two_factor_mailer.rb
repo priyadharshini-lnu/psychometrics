@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TwoFactorMailer < ApplicationMailer
-  layout 'end_user_email'
+  layout '/mailer/layouts/end_user_email'
+
   default from: "#{I18n.t('mailer.from')} <no-reply@#{Settings.domain}>"
 
   def two_factor_code_email(user, code)

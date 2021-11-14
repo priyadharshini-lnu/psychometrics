@@ -139,7 +139,7 @@ class ResponseSummary extends Component {
           rowsCount={this.rowData.length}
           colData={this.colData()}
           getRow={this.getRow}
-          showHedaer={false}
+          showHeader={false}
         />
       </div>
     )

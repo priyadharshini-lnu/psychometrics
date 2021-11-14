@@ -72,7 +72,7 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
               )}
               key={URL_TYPE.AUDIO}
             >
-              <InputUrl editor={editor} onUrlChange={onUrlChange} type={URL_TYPE.AUDIO} />
+              <InputUrl onUrlChange={onUrlChange} type={URL_TYPE.AUDIO} />
             </TabPane>
             <TabPane
               tab={(
@@ -83,7 +83,7 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
               )}
               key={URL_TYPE.VIDEO}
             >
-              <InputUrl editor={editor} onUrlChange={onUrlChange} type={URL_TYPE.VIDEO} />
+              <InputUrl onUrlChange={onUrlChange} type={URL_TYPE.VIDEO} />
             </TabPane>
           </Tabs>
         </>
@@ -106,7 +106,7 @@ const VideoPlayer: React.FC<PlayerProps> = ({ url }) => (
   </div>
 )
 
-interface InputUrlProps extends Props { onUrlChange(val: string): void, type: string }
+interface InputUrlProps { onUrlChange(val: string): void, type: string }
 
 const InputUrl: React.FC<InputUrlProps> = ({ onUrlChange, type }) => {
   const inputRef = useRef<HTMLInputElement>(null)

@@ -47,6 +47,7 @@ export const REMOVE_ASSESSMENT = 'campaigns/userAssessments/REMOVE'
 export const EXTEND_ASSESSMENT_TIME = 'campaigns/userAssessments/EXTEND_ASSESSMENT_TIME'
 export const CREATE_REPORT = 'resource/userReport/report/CREATE'
 export const REMOVE_REPORT = 'resource/campaigns/report/REMOVE'
+export const EXPORT_COMPLETION_STATUSES = 'resource/campaigns/report/EXPORT_COMPLETION_STATUSES'
 
 export interface ShortUser {
   firstName: string
@@ -83,6 +84,15 @@ export const importUsers = (campaignId: number, body: any): ApiAction<ShortUser[
     loader: true,
   },
 })
+
+export const exportCompletionStatuses = (campaignId: number): ApiAction<{}> => ({
+  type: EXPORT_COMPLETION_STATUSES,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/users/export_completion_status`,
+  },
+})
+
 
 export const remove = (campaignId: string, id: number) => ({
   type: REMOVE,

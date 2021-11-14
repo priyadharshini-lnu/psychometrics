@@ -3,6 +3,8 @@
 module Administration
   module Campaigns
     class SmsInvitesController < Administration::Projects::BaseController
+      before_action :set_resource, only: %i[update destroy]
+
       def index
         sms_invites = campaign.
                       sms_invites.
@@ -36,6 +38,36 @@ module Administration
             }
           end
         end
+      end
+
+      def create
+        form = ::SmsInvites::Form.from_params(resource_params).
+               with_context(campaign: campaign)
+        if form.valid?
+          sms_invite = campaign.sms_invites.create!(
+            form.attributes.merge(creator: current_user)
+          )
+          render json: sms_invite, serializer: SmsInvitesSerializer
+        else
+          render json: { errors: form.errors.messages }, status: 422
+        end
+      end
+
+      def update
+        form = ::SmsInvites::Form.from_params(resource_params).
+               with_context(campaign: campaign, sms_invite: resource)
+        if form.valid?
+          resource.update!(form.attributes)
+          render json: resource, serializer: SmsInvitesSerializer
+        else
+          render json: { errors: form.errors.messages }, status: 422
+        end
+      end
+
+      def destroy
+        resource.destroy!
+
+        render json: resource.id
       end
 
       def import
@@ -72,6 +104,12 @@ module Administration
         @resource_class ||= SmsInvite
       end
 
+      def set_resource
+        @_resource = policy_scope(
+          resource_class, policy_scope_class: Administration::Campaigns::SmsInvitePolicy::Scope
+        ).find(params[:id])
+      end
+
       def pundit_authorize
         authorize(
           resource || resource_class,
@@ -86,7 +124,7 @@ module Administration
           Administration::Campaigns::SmsInvitePolicy,
           current_user,
           nil,
-          %w[import export send_sms],
+          %w[import export send_sms create update destroy],
           {
             project_id: campaign.project_id
           }

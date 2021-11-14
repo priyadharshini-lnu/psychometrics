@@ -23,12 +23,17 @@ module SmsInvites
         url_params.merge(sms_invite_code: sms_invite.code)
       )
       short_url = Shortener::ShortenedUrl.generate(invite_url, owner: sms_invite)
+      short_invite_url = if Settings.short_url_host
+                           shortened_url(id: short_url.unique_key, host: Settings.short_url_host)
+                         else
+                           shortened_url(
+                             url_params.merge(id: short_url.unique_key, subdomain: Settings.subdomain)
+                           )
+                         end
       data = {
         first_name: sms_invite.first_name,
         last_name: sms_invite.last_name,
-        invite_url: shortened_url(
-          url_params.merge(id: short_url.unique_key)
-        )
+        invite_url: short_invite_url
       }
 
       broadcast :ok, Mustache.render(message, data)

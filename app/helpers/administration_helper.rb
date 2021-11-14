@@ -105,13 +105,15 @@ module AdministrationHelper
       super_admin: 'Users::SuperAdmin',
       client_admin: 'client_admin',
       project_admin: 'project_admin',
+      campaign_admin: 'campaign_admin',
       regular: 'member'
     }
 
     access_level = {
-      super_admin: %i[super_admin client_admin project_admin regular],
-      client_admin: %i[project_admin regular],
-      project_admin: %i[regular]
+      super_admin: %i[super_admin client_admin project_admin campaign_admin regular],
+      client_admin: %i[project_admin campaign_admin regular],
+      project_admin: %i[regular campaign_admin],
+      campaign_admin: %i[regular]
     }.with_indifferent_access
 
     user_roles = user.memberships.pluck(:role)

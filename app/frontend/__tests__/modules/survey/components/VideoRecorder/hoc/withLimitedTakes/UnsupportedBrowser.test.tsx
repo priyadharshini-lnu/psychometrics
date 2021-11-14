@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import {
   getSupportedBrowsersForCurrentOS,
   UnsupportedBrowser,
-} from 'modules/survey/components/VideoRecorder/hoc/withLimitedTakes/UnsupportedBrowser'
+} from 'modules/survey/components/modules/VideoResponse/UnsupportedBrowser'
 import {
   NAMES_FROM_UA_BROWSERS,
   UA_OperatingSystems,

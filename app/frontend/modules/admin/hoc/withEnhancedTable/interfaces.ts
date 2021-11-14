@@ -1,3 +1,5 @@
+import { FilterValue } from 'antd/lib/table/interface'
+
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 
 export interface TableProps {
@@ -6,5 +8,6 @@ export interface TableProps {
   removeFilter(filterName: string): void
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
+  getFilteredValue(column: string): FilterValue | null | undefined
   changePage(page: number): void
 }

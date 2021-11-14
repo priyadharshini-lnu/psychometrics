@@ -6,7 +6,6 @@ import { UPLOAD_STATES } from 'modules/survey/constants/media'
 const { I18n } = window
 
 interface Props {
-  playerState: string
   percent: number
   uploadState: string
   discardRecording(): void

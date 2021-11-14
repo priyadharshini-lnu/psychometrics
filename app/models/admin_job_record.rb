@@ -26,7 +26,8 @@ class AdminJobRecord < ApplicationRecord
     assessment_raw_factor_export: 15,
     external_assessment_export: 16,
     import_sms_invites: 17,
-    send_sms_invites: 18
+    send_sms_invites: 18,
+    completion_status_export: 19
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }

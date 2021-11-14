@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import ContentEditable from 'react-contenteditable'
 
 import { SafeHTML } from 'components/SafeHTML'
@@ -8,12 +7,6 @@ import styles from './TextEditor.scss'
 
 export class TextEditor extends Component {
   hover = false
-
-  static propTypes = {
-    value: PropTypes.string.isRequired,
-    styles: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-  }
 
   constructor (props) {
     super(props)

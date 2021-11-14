@@ -11,7 +11,6 @@ import { perform } from 'modules/survey/core/temp/socket'
 import NotificationDispatcher from 'modules/survey/dispatchers/NotificationDispatcher'
 import SerializeAssessment from 'modules/survey/core/builder/assessment/SerializeAssessment'
 import { TYPES as CAMPAIGN_TYPES } from 'constants/campaign'
-
 import styles from './Header.scss'
 
 const { I18n } = window
@@ -109,7 +108,7 @@ export class Header extends Component {
 
   render () {
     const {
-      assessment, assessment: { extra, saving }, toggleEnableBack, toggleEnableProgress,
+      assessment, assessment: { extra, saving }, toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage,
       instructions, toggleInstructions,
     } = this.props
 
@@ -219,6 +218,11 @@ export class Header extends Component {
               </MenuItem>
               <MenuItem onSelect={toggleEnableProgress}>
                 {_.result(assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
+              </MenuItem>
+              <MenuItem onSelect={toggleSingleQuestionPage}>
+                {_.result(assessment, 'options.enable_single_question_page')
+                  ? 'Disable Single Question Per Page'
+                  : 'Enable Single Question Per Page'}
               </MenuItem>
               {!isThreeSixtyAsessment
               && (

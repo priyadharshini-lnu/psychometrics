@@ -99,7 +99,7 @@ const HANDLERS = {
   [LOAD_QUESTIONS]: (state: State, { response, requestAction: { assessmentId } }: LoadQuestionsType) => setIn(
     state, ['assessmentQuestions', assessmentId], response,
   ),
-  [ADD_RESOURCE]: (state: State) => ({
+  [ADD_RESOURCE]: ({ ...state }: State) => ({
     ...state, resources: [...state.resources, { assessmentId: state.defaultAssessmen, questionId: null }],
   }),
   [CHANGE_RESOURCE]: (state: State, { index, resource }: ChangeResourceType) => setIn(

@@ -36,7 +36,7 @@ export const downloadReport = (campaignId, id, lang) => ({
 export const defaultState = {
   loaded: false,
   user: {},
-  options: { reports: { approval: {} } },
+  options: { reports: { approval: {}, access: {} } },
   report: {},
   results: {},
 }
