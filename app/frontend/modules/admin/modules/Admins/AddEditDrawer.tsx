@@ -108,11 +108,6 @@ const AddEditDrawerComponent: FC<Props> = ({
           email: admin.email,
           firstName: admin?.firstName ?? '',
           lastName: admin?.lastName ?? '',
-          [`clients-${GrantType.view}`]: admin?.grants?.data?.clients?.includes(
-            GrantType.view
-          ),
-          [`projects-${GrantType.view}`]:
-            admin?.grants?.data?.projects?.includes(GrantType.view),
           [`assessors-${GrantType.view}`]:
             admin?.grants?.data?.assessors?.includes(GrantType.view),
           [`assessors-${GrantType.manage}`]:
@@ -416,51 +411,6 @@ const AddEditDrawerComponent: FC<Props> = ({
             <Typography.Title level={5}>
               {I18n.t('administration.administrators.drawers.edit.permissions')}
             </Typography.Title>
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_client',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`clients-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_project',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`projects-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
             <Divider />
             <Row gutter={24}>
               <Col span={4}>
@@ -742,6 +692,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                 </Form.Item>
               </Col>
             </Row>
+            <Divider />
           </Form>
         )}
       </Skeleton>
