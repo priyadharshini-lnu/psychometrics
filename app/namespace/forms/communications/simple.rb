@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'reform/form/coercion'
+# require "reform/form/dry"
 module Forms
   module Communications
     class Simple < Base
@@ -14,14 +15,14 @@ module Forms
                  :user_ids, :stop_reminder_datetime
 
       property :assessment_id
-      property :owner_id, type: Types::Form::Int
-      property :client_id, type: Types::Form::Int
-      property :project_id, type: Types::Form::Int
-      property :campaign_id, type: Types::Form::Int
-      property :sub_campaign_id, type: Types::Form::Int
-      property :end_level_id, type: Types::Form::Int
+      property :owner_id, type: Types::Params::Integer.optional
+      property :client_id, type: Types::Params::Integer.optional
+      property :project_id, type: Types::Params::Integer.optional
+      property :campaign_id, type: Types::Params::Integer.optional
+      property :sub_campaign_id, type: Types::Params::Integer.optional
+      property :end_level_id, type: Types::Params::Integer.optional
       property :reminder_type, default: 'custom'
-      property :stop_reminder, type: Types::Form::Bool
+      property :stop_reminder, type: Types::Params::Bool.optional
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
