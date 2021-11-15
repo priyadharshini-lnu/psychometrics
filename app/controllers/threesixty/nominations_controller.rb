@@ -54,7 +54,10 @@ module Threesixty
       participants = @subject.participants.where(manager_nomination_status: :waiting)
       participant_list = participants.to_a
       participants.update_all(manager_nomination_status: params[:status])
-      participant_list.each { |participant| send_nomination_denied_email(participant) } if params[:status] == 'denied'
+      participant_list.each do |participant|
+        send_evaluator_invite_email(participant) if params[:status] == 'approved'
+        send_nomination_denied_email(participant) if params[:status] == 'denied'
+      end
 
       render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
     end
@@ -67,6 +70,17 @@ module Threesixty
 
     def set_subject
       @subject = @campaign.subjects.find(params[:nomination_id] || params[:id])
+    end
+
+    def send_evaluator_invite_email(participant)
+      return unless @campaign.option.messages['send_invite_to_new_evaluator']
+
+      Threesixty::Emails::Send.call!(
+        Threesixty::Emails::Name::EVALUATOR_INVITE,
+        threesixty_campaign: @campaign,
+        subject: @subject,
+        evaluator: participant.threesixty_evaluator
+      )
     end
 
     def send_nomination_denied_email(participant)
