@@ -58,7 +58,7 @@ function EvaluationList ({
           key={evaluator.id}
           onClick={() => {
             // eslint-disable-next-line max-len
-            history.push(`/threesixty_campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approve_evaluation=true&step=0`)
+            history.push(`/threesixty_campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approve_evaluation=true&read=true`)
           }}
         >
           {userPresenter.getFullNameWithEmail(evaluator.user)}
