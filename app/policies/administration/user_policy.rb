@@ -61,7 +61,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def destroy?
-    @user.is?(:superadmin)
+    @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
   end
 
   def reset_password?
