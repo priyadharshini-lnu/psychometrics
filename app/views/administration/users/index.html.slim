@@ -13,11 +13,11 @@
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
-
-          = f.input :role_scope_in,
-                    collection: roles_dropdown(current_user),
-                    input_html: { multiple: true, title: 'Roles'},
-                    label: false
+          - if current_user.is?(:superadmin)
+            = f.input :role_scope_in,
+                      collection: roles_dropdown(current_user),
+                      input_html: { multiple: true, title: 'Roles'},
+                      label: false
           = f.input :memberships_client_id_in,
                     collection: policy_scope(Client).order(:name),
                     input_html: { data: { live_search: true }, multiple: true, title: t('.client_tenancy') },

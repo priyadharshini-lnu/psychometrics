@@ -105,8 +105,13 @@ class Administration::UserPolicy < Administration::BasePolicy
     def resolve
       return scope if @user.is?(:superadmin)
 
-      client_ids = @user.is?(:client_admin) ? @user.client_admin_project_ids : @user.project_admin_client_ids
-      scope.enabled.joins(:memberships).where(memberships: { client_id: client_ids })
+      project_ids = @user.is?(:client_admin) ? @user.client_admin_project_ids : @user.project_admin_client_ids
+
+      permitted_project_ids = project_ids.select do |project_id|
+        @user.has_permission?(:projects, :manage_users, project_id: project_id)
+      end
+
+      scope.where(project_id: permitted_project_ids)
     end
   end
 end
