@@ -10,7 +10,7 @@ declare global {
     antdLocale: {}
     PsyGlobalState: {
       realEnv: 'development' | 'review' | 'staging' | 'production'
-      sentryClientDns: string,
+      sentryUrl: string,
       currentUser: {
         id: string
         email: string
