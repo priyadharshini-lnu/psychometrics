@@ -2203,6 +2203,7 @@ en:
           specific_datetime: Send at
         invitation: Invitation
         kind: Communication Types
+        new_assignment: New Assignment
         new_users: New Users
         other: Other
         reminder: Reminder

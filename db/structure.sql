@@ -1044,7 +1044,7 @@ CREATE TABLE public.communications (
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
     stop_reminder boolean DEFAULT false NOT NULL,
-    last_ran_time timestamp without time zone
+    last_ran_at timestamp without time zone
 );
 
 

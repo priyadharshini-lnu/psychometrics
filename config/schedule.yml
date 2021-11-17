@@ -11,6 +11,12 @@ communications_other_type_job:
   class: Communications::OtherTypeJob
   queue: communication
 
+new_assignment_communications:
+  cron: "*/5 * * * *" # At every 5th minute
+  class: Communications::NewAssignmentJob
+  queue: communication
+
+
 threesixty_send_scheduled_email_job:
   cron: "*/1 * * * *" # At every minute
   class: Threesixty::SendScheduledEmailJob
