@@ -15177,11 +15177,6 @@ react-select@^3.0.8:
     react-input-autosize "^2.2.2"
     react-transition-group "^2.2.1"
 
-react-slider@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/react-slider/-/react-slider-1.0.8.tgz#a60877ca9acd18f61fce6786346223aedceff053"
-  integrity sha512-GXnw6b7V3yeGiaOZJeQHbdOmQT+z5LlYni+3g1C0vAfKtdoQEO/fW2Iesz7ZEIt/Lf5E5hW5UsRbAiWQkZU+GA==
-
 react-spring@^9.3.0:
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-9.3.0.tgz#4d71eecbfd4f0823bf67e5943d2b0fb77f3e26ad"

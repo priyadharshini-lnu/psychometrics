@@ -1,4 +1,4 @@
-import Slider from './types/Slider'
+import { Slider } from './types/Slider'
 import Bar from './types/Bar'
 import Star from './types/Star'
 import Previews from './Previews'

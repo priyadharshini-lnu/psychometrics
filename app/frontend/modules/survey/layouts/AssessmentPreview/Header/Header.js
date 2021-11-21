@@ -3,8 +3,12 @@ import { SafeHTML } from 'components/SafeHTML'
 import styles from './Header.scss'
 
 const Header = ({
-  langs, hideHiddenQuestions, ignoreValidation, toggleHiddenQuestions,
-  toggleIgnoreValidation, reset,
+  langs,
+  hideHiddenQuestions,
+  ignoreValidation,
+  toggleHiddenQuestions,
+  toggleIgnoreValidation,
+  reset,
 }) => (
   <div className={`panel-heading ${styles.menu}`}>
     <div className={styles.preview}>
@@ -22,7 +26,9 @@ const Header = ({
       </label>
     </div>
     <div className={styles.restart}>
-      <button className="btn btn-success" onClick={reset}>Click Here to Start Over</button>
+      <button className="btn btn-success" style={{ whiteSpace: 'break-spaces' }} onClick={reset}>
+        Click Here to Start Over
+      </button>
     </div>
     <SafeHTML html={langs} />
   </div>
