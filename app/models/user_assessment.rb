@@ -10,6 +10,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :assessor
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
+  belongs_to :created_by
   has_one :saville_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign

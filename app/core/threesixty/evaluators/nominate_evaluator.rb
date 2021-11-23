@@ -5,14 +5,17 @@ module Threesixty
     class NominateEvaluator < BaseCommand
       private_attr_reader :subject, :threesixty_campaign, :params, :project, :nominator, :evaluator
 
-      def initialize(threesixty_campaign:, subject:, params:, nominator:, evaluator: nil)
+      # rubocop:disable Metrics/ParameterLists
+      def initialize(threesixty_campaign:, subject:, params:, nominator:, evaluator: nil, creator: nil)
         @threesixty_campaign = threesixty_campaign
         @project = threesixty_campaign.project
         @subject = subject
         @params = params
         @nominator = nominator
         @evaluator = evaluator
+        @creator = creator
       end
+      # rubocop:enable Metrics/ParameterLists
 
       def call
         ActiveRecord::Base.transaction do
@@ -49,7 +52,8 @@ module Threesixty
           campaign: threesixty_campaign.campaign,
           subject_id: subject.user_id,
           relationship_id: params[:relationship_id],
-          manager_nomination_status: manager_nomination_status
+          manager_nomination_status: manager_nomination_status,
+          created_by_id: @creator&.id
         )
       end
 

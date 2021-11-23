@@ -14,7 +14,7 @@ module UserAssessments
 
       UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment.not_started?
       user_assessment.users_result.update(build_user_result_params)
-      user_assessment.in_progress! unless @user_assessment.assessment.fixed_timed?
+      user_assessment.in_progress! unless instructions_enabled?
 
       broadcast :ok
     end
@@ -25,12 +25,16 @@ module UserAssessments
       params = {}
       params[:selected_locale] = lang if lang
 
-      if !@user_assessment.assessment.fixed_timed? && !@user_assessment.assessment.instructions&.dig('enabled')
-        params[:started_at] = Time.now unless user_assessment.users_result.started_at
-      end
+      return params if instructions_enabled?
+
+      params[:started_at] = Time.now unless user_assessment.users_result.started_at
       params[:expiry_date] = time.second.from_now if time
 
       params
+    end
+
+    def instructions_enabled?
+      @user_assessment.assessment.fixed_timed? || @user_assessment.assessment.instructions&.dig('enabled')
     end
 
     def time

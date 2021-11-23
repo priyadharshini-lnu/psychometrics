@@ -23,7 +23,7 @@ module UsersResults::ControllerConcern
             serializer: UsersResultUpdateSerializer,
             current_block_id: params[:current_block_id],
             current_user: current_user,
-            threesxity_campaign: @users_result.campaign.threesixty_campaign
+            threesixty_campaign: @users_result.campaign.threesixty_campaign
   end
 
   def update_meta_data

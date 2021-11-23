@@ -41,7 +41,7 @@ const FactorType: FC<Props> = ({ assessment_id, filterId, factorIds }) => {
     const allowedFactors = result.filter(factorResult => factorIds.includes(factorResult.id))
     const sortedFactors = allowedFactors.sort(
       (firstFactor, secondFactor) => secondFactor.avg - firstFactor.avg,
-    )
+    ).filter(r => r.avg > 0)
 
     const highestFactors = sortedFactors.slice(0, 5)
     const lowestFactors = sortedFactors.slice(-5).reverse()

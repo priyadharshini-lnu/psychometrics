@@ -33,7 +33,10 @@ export const FETCH_BY_LOCALES = 'threeSixty/emailTemplates/FETCH_BY_LOCALES'
 
 
 const LocaleTR = t.type({
-  content: t.union([t.string, t.null]), locale: t.string, subject: t.string, id: t.number,
+  content: t.union([t.string, t.null]),
+  locale: t.string,
+  subject: t.union([t.string, t.null]),
+  id: t.number,
 })
 const LocaleList = t.array(LocaleTR)
 const FetchByLocalesTR = t.type({
