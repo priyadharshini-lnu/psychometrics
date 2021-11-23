@@ -45,13 +45,13 @@ class Communication < ApplicationRecord
   belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id, optional: true
   belongs_to :creator, class_name: 'User'
 
-  enum recipients: { all: 0, selected: 1, new_users: 2 }, _suffix: true
+  enum recipients: { all: 0, selected: 1, new_users: 2, new_assignment: 3 }, _suffix: true
   enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }
   enum delivery_rule: { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
 
+  before_create -> { self.last_ran_at ||= Time.now }, if: :new_assignment_recipients?
   after_validation :set_delivery_interval, if: :reminder?
-  after_initialize :parse_delivery_interval, if: :reminder?
-
+  after_initialize :parse_delivery_interval, if: -> { new_record? && reminder? }
   after_commit :send_email_now, on: :create
   after_create_commit ::Callbacks::Models::Communications::CreateSendEmailJob.new
 

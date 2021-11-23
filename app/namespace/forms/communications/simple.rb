@@ -53,12 +53,12 @@ module Forms
       validates :delivery_rule,
                 presence: true,
                 inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:reminder] },
-                if: proc { reminder? && recipients != 'new_users' }
+                if: proc { reminder? && %w[new_users new_assignment].exclude?(recipients) }
 
       validates :delivery_rule,
                 presence: true,
                 inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:invitation] },
-                if: -> { invitation? && recipients != 'new_users' }
+                if: -> { invitation? && %w[new_users new_assignment].exclude?(recipients) }
 
       validates :delivery_rule,
                 presence: true,

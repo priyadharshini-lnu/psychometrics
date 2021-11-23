@@ -22,11 +22,8 @@ module Threesixty
 
             ::UserAssessments::AllowEdit.call!(@participant)
           end
-          if params[:is_read] == 'true'
-            render(json: { error: '403' }, status: 403) && return unless policy(@participant).show?
 
-            set_read_results
-          end
+          set_read_results if params[:is_read] == 'true'
 
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,

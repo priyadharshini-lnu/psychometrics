@@ -46,7 +46,9 @@ module Facades
       end
 
       def show_delivery_rules?
-        form.kind.present? && form.recipients != 'new_users' && form.kind != 'completion'
+        form.kind.present? &&
+          %w[new_users new_assignment].exclude?(form.recipients) &&
+          form.kind != 'completion'
       end
 
       def show_assessments?

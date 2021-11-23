@@ -4045,10 +4045,10 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@thetalententerprise/interactive-assessments@1.4.2":
-  version "1.4.2"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.4.2/60789ed5ad8736a332f934c52bf29ba8077939ab3f3de7108207470c24d678da#0c9cf8557cb9b62e0533e286bdbd98f8ee2f69c9"
-  integrity sha512-1wIQ8pE5tOv7p31mFNh6pC5vUZyvUxa0oFZoUSln44N+tkjrjppNuqMpot3aG8G00M0qQHpECtRytyOIVEsEew==
+"@thetalententerprise/interactive-assessments@1.5.0-beta":
+  version "1.5.0-beta"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.5.0-beta/c07762bac5a5ab868bfae244bd25618ad0db3d8a06ad915a0d5d9b6dbbaf8c92#c081d7c1ccd4684636698a3e181c13032871bd7a"
+  integrity sha512-42ymGqIKFvGw3gtC04STfeNITJvmvvwpYLVaxnpBvTwqeih+fdBdFH7/PcxbzJXjpdmO7WcNdIP7Vlpisx/M2Q==
 
 "@trysound/sax@0.1.1":
   version "0.1.1"
@@ -12421,7 +12421,7 @@ node-releases@^1.1.71:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.71.tgz#cb1334b179896b1c89ecfdd4b725fb7bbdfc7dbb"
   integrity sha512-zR6HoT6LrLCRBwukmrVbHv0EpEQjksO6GmFcZQQuCAy139BEsoVKPYnf3jongYW83fAa1torLGYwxxky/p28sg==
 
-node-releases@^1.1.73, node-releases@^1.1.77:
+node-releases@^1.1.77:
   version "1.1.77"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.77.tgz#50b0cfede855dd374e7585bf228ff34e57c1c32e"
   integrity sha512-rB1DUFUNAN4Gn9keO2K1efO35IDK7yKHCdCaIMvFO7yUYmmZYeDjnGKle26G4rwj+LKRQpjyUUvMkPglwGCYNQ==
