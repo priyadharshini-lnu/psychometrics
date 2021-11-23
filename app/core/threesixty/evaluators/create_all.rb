@@ -3,11 +3,12 @@
 module Threesixty
   module Evaluators
     class CreateAll < BaseCommand
-      def initialize(evaluators, threesixty_campaign)
+      def initialize(evaluators, threesixty_campaign, creator = nil)
         @evaluators = evaluators
         @threesixty_campaign = threesixty_campaign
         @project = threesixty_campaign.campaign.project
         @existing_evaluators_whose_password_not_changed = []
+        @creator = creator
       end
 
       def call
@@ -68,6 +69,7 @@ module Threesixty
         ) do |participant|
           participant.manager_nomination_status = :approved
           participant.relationship = evaluator[:relationship]
+          participant.created_by_id = @creator&.id
         end
       end
 

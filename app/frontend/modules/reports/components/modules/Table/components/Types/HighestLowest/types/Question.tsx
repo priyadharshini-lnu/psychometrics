@@ -152,7 +152,7 @@ const QuestionTypeComponent: FC<Props> = ({
         factorName: factor?.name ?? '',
         value: round(value, 2) || 0,
       }
-    })
+    }).filter(r => r.value > 0)
 
     const sortedResults = results.sort(
       (firstResult, secondResult) => secondResult.value - firstResult.value,
