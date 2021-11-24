@@ -1,22 +1,25 @@
-import merge from 'lodash/merge'
+import { Options, AxisLabelsFormatterContextObject } from 'highcharts-v9'
 import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
-import Highcharts from 'highcharts'
 
-type Props = {
-  model: PropertiesModel
-  animation: boolean
-}
-
-type changeLabelFun = (e: Highcharts.Axis) => void
+type changeLabelFun = (labelObj: AxisLabelsFormatterContextObject<string>) => void
 
 export default function ChartOptions (
   { ...model }: PropertiesModel,
-  changeLabel: changeLabelFun,
-  props: Props,
+  animation: boolean,
   format: string,
-) {
+  changeLabel: changeLabelFun,
+): Options {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
   const [...colorsObjectList] = model.props.colors
+  const { type } = model.props.source
+  const events = type === 'Question' ? {
+    click () {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      changeLabel(this)
+    },
+  } : null
+
   let xAxisOptions = {}
   if (model.props.xAxisLinesHide) {
     xAxisOptions = {
@@ -34,11 +37,16 @@ export default function ChartOptions (
       height: model.props.position.height,
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
-    title: false,
-    subtitle: false,
+    title: {
+      text: '',
+    },
+    subtitle: {
+      text: '',
+    },
     colors: colorsObjectList.map(colorObj => colorObj.color),
     credits: { enabled: false },
-    xAxis: merge(xAxisOptions, {
+    xAxis: {
+      ...xAxisOptions,
       type: 'category',
       labels: {
         style: {
@@ -46,17 +54,14 @@ export default function ChartOptions (
           color: color || '#000',
           fontFamily,
         },
-        events: {
-          click (e) {
-            e.stopPropagation()
-            changeLabel(this)
-          },
-        },
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        events,
         enabled: !model.props.xAxisLabelHide,
       },
-    }),
+    },
     yAxis: {
-      max: model.props.maxValue,
+      max: model.props.maxValue ? parseInt(model.props.maxValue, 10) : null,
       gridLineWidth: model.props.yAxisLinesHide ? 0 : 1,
       title: {
         text: null,
@@ -71,7 +76,7 @@ export default function ChartOptions (
     },
     plotOptions: {
       series: {
-        animation: props.animation,
+        animation,
         borderWidth: 0,
         dataLabels: {
           enabled: !!model.propsshowValues,
