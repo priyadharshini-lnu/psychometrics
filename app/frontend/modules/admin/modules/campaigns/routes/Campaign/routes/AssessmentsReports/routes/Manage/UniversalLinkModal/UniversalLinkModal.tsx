@@ -53,12 +53,16 @@ const UniversalLinkModal: React.FC<Props> = ({
       title="Universal Link"
       visible
       onCancel={close}
-      footer={manageUniversalLink && [
+      footer={manageUniversalLink ? [
         <Button key="deactivate" onClick={deactivate}>
           {I18n.t('universal_links.deactivate_link')}
         </Button>,
         <Button key="regenerate" type="primary" onClick={regenerate}>
           {I18n.t('universal_links.regenerate_link')}
+        </Button>,
+      ] : [
+        <Button key="universal_link_close" onClick={close}>
+          {I18n.t('universal_links.close')}
         </Button>,
       ]}
     >
