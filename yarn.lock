@@ -14984,13 +14984,6 @@ react-csv@^2.0.3:
   resolved "https://registry.yarnpkg.com/react-csv/-/react-csv-2.0.3.tgz#f5d17a3c71107d9bcbe580049350200debdc042a"
   integrity sha512-exyAdFLAxtuM4wNwLYrlKyPYLiJ7e0mv9tqPAd3kq+k1CiJFtznevR3yP0icv5q/y200w+lzNgi7TQn1Wrhu0w==
 
-react-device-detect@^1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-1.17.0.tgz#a00b4fd6880cebfab3fd8a42a79dc0290cdddca9"
-  integrity sha512-bBblIStwpHmoS281JFIVqeimcN3LhpoP5YKDWzxQdBIUP8S2xPvHDgizLDhUq2ScguLfVPmwfF5y268EEQR60w==
-  dependencies:
-    ua-parser-js "^0.7.24"
-
 react-dnd-html5-backend@^9.4.0:
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-9.4.0.tgz#5b1d192f57d103298657cde1fe0eabdbf2726311"
@@ -17432,11 +17425,6 @@ typescript@3.8.2:
 ua-parser-js@^0.7.18:
   version "0.7.19"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
-
-ua-parser-js@^0.7.24:
-  version "0.7.24"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.24.tgz#8d3ecea46ed4f1f1d63ec25f17d8568105dc027c"
-  integrity sha512-yo+miGzQx5gakzVK3QFfN0/L9uVhosXBBO7qmnk7c2iw1IhL212wfA3zbnI54B0obGwC/5NWub/iT9sReMx+Fw==
 
 ua-parser-js@^1.0.1:
   version "1.0.1"

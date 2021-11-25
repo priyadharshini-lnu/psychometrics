@@ -1,24 +1,25 @@
+import _ from 'lodash'
 import React, { useReducer, useRef, useEffect } from 'react'
 import {
   Button, Card, Col,
 } from 'antd'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
 import * as faceapi from 'face-api.js'
-import { browserName } from 'react-device-detect'
+
+import { BROWSER_NAME } from 'utils/uaParser'
 import ColoredButton from 'components/ColoredButton'
-import _ from 'lodash'
 import InitVideo from './InitVideo'
-import styles from './styles.scss'
 import Progress from '../Progress'
 import CheckList from '../CheckList'
+
 import reducer, {
   initialState, updateAccess, updateFaceDetection, failFaceDetectionByTimeout,
 } from './reducer'
 import { CheckListStatus } from '../interfaces'
 
+import styles from './styles.scss'
 
 const { I18n } = window
-
 
 interface Props {
   nextStep: () => void
@@ -31,7 +32,7 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [state, dispatch] = useReducer(reducer, initialState)
 
-
+  // console.log('this is video check')
   useEffect(() => {
     if (!videoRef.current) return
 
@@ -108,7 +109,7 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
               {state.access === CheckListStatus.Failed && (
               <ColoredButton type="primary" className={styles.allowButton} color="green">
                 <a
-                  href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${browserName}`}
+                  href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${BROWSER_NAME}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

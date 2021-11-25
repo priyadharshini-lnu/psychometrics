@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
+
 import {
-  browserName,
-  browserVersion,
-  osName,
-  osVersion,
-  getUA,
-} from 'react-device-detect'
+  BROWSER_NAME, BROWSER_VERSION, OS_NAME, OS_VERSION, USER_AGENT,
+} from 'utils/uaParser'
 
 import styles from './MetaInfo.scss'
 
@@ -14,11 +11,11 @@ const { screen } = window
 const MetaInfoPreview = ({ readOnly, model }) => {
   useEffect(() => {
     const answer = {
-      browser: browserName,
-      version: browserVersion,
-      os: `${osName} ${osVersion}`,
+      browser: BROWSER_NAME,
+      version: BROWSER_VERSION,
+      os: `${OS_NAME} ${OS_VERSION}`,
       screen: `${screen.width}x${screen.height}`,
-      userAgent: getUA,
+      userAgent: USER_AGENT,
     }
 
     // answer is prototype function

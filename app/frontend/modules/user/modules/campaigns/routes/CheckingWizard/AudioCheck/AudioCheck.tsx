@@ -3,7 +3,8 @@ import _ from 'lodash'
 import {
   Button, Card, Col,
 } from 'antd'
-import { browserName } from 'react-device-detect'
+
+import { BROWSER_NAME } from 'utils/uaParser'
 import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
 import { RECORDER_STATES } from 'modules/survey/constants/media'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
@@ -209,7 +210,7 @@ const IntroCard: React.FC<IntroCardProps> = ({ requestAccess, state, preSignedUr
       {state.access === CheckListStatus.Failed && (
       <ColoredButton type="primary" className={styles.allowButton} color="green">
         <a
-          href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${browserName}`}
+          href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${BROWSER_NAME}`}
           target="_blank"
           rel="noopener noreferrer"
         >

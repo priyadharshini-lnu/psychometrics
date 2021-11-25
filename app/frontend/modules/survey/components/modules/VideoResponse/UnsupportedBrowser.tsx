@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import {
   Button, Card, Result, Space, Typography,
 } from 'antd'
-import { osName } from 'react-device-detect'
+import { OS_NAME } from 'utils/uaParser'
 
 import ChromeIcon from 'modules/survey/assets/icons/chrome.r.svg'
 import FirefoxIcon from 'modules/survey/assets/icons/firefox.r.svg'
@@ -27,7 +27,7 @@ export const UnsupportedBrowser: FC<Props> = ({
   supportedBrowsers,
   os = '',
 }) => {
-  const operatingSystem = os.length === 0 ? osName : os
+  const operatingSystem = os.length === 0 ? OS_NAME : os
 
   const supportedBrowsersForCurrentOS = getSupportedBrowsersForCurrentOS(
     supportedBrowsers,
