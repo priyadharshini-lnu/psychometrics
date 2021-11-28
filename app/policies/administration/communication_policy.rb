@@ -35,12 +35,15 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
 
-        client_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
-        permitted_client_ids = client_ids.select do |client_id|
+        permitted_client_ids = @user.client_admin_client_ids.select do |client_id|
           @user.has_permission?(:communications, :view, project_id: client_id)
         end
 
-        scope.where('client_id IN (:ids) or project_id IN (:ids)', ids: permitted_client_ids)
+        permitted_project_ids = @user.project_admin_client_ids.select do |project_id|
+          @user.has_permission?(:communications, :view, project_id: project_id)
+        end
+
+        scope.where('client_id IN (?) or project_id IN (?)', permitted_client_ids, permitted_project_ids)
       end
     end
   end
