@@ -54,7 +54,7 @@ const menu: React.FC<Props> = ({
       </Menu.Item>
     )}
     {permissions.sendSms && (
-      <Menu.Item key="import">
+      <Menu.Item key="sendSms">
         <a onClick={() => openModal('SendSmsModal', { campaignId })}>
           {I18n.t('administration.sms_invites.tools.send_sms')}
         </a>

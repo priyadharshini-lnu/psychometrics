@@ -1,12 +1,10 @@
 import React from 'react'
 import { Card, Col, Button } from 'antd'
-import { Config } from 'modules/user/modules/campaigns/core/checkingWizard/interfaces'
 import { RightOutlined, SafetyCertificateOutlined } from '@ant-design/icons'
 import styles from '../CardStyles.scss'
 
 interface Props {
   nextStep: () => void
-  config: Config
 }
 const { I18n } = window
 

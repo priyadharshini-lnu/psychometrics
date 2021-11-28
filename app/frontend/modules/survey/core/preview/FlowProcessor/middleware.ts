@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import {
   showErrors, emptyErrors, showPage, changeElement, showEnd, hideQuestion, showQuestion,
-  addPrevPage, setEmbeddedData,
+  addPrevPage, setEmbeddedData, nextButtonPressed,
 } from './actions'
 import { NEXT_PAGE } from './consts'
 import {
@@ -119,6 +119,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     }
   }
 
+  dispatch(nextButtonPressed())
   nextPage()
 }
 

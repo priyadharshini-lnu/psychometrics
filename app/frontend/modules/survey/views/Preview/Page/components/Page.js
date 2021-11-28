@@ -89,6 +89,7 @@ class Page extends Component {
       },
       preview: {
         ignoreValidation, readOnly, type,
+        backButtonPressed,
       },
       isDisconnected,
     } = this.props
@@ -103,7 +104,13 @@ class Page extends Component {
           {staticContent && <StaticContent key={blockId} />}
           <div className={cs(styles.questionsBlock, { staticBlockQuestionList: staticContent })}>
             {!ignoreValidation && !_.isEmpty(errors) && this.renderErrors(page)}
-            <QuestionList readOnly={readOnly} page={page} questions={questions} />
+            <QuestionList
+              readOnly={readOnly}
+              page={page}
+              questions={questions}
+              backButtonPressed={backButtonPressed}
+              nextPage={nextPage}
+            />
           </div>
         </div>
         {type !== 'preview_block' && (

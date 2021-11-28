@@ -12,7 +12,7 @@ class HoganReportSetting < ApplicationRecord
   private
 
   def set_norm_id_and_language_id
-    report = Settings.providers.hogan.reports.detect { |r| r.id == hogan_report_id }
+    report = Settings.providers.hogan.reports.detect { |r| r.id.downcase == hogan_report_id }
 
     self.hogan_norm_id = report&.norm_id
     self.hogan_language_id = report&.language_id

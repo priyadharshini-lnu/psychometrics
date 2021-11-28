@@ -29,26 +29,6 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
-  describe 'export_completion_status' do
-    it 'check response' do
-      users_result = create(:users_result, evaluator: user, assessment: assessment)
-      create(:user_assessment,
-             campaign: campaign,
-             assessment: assessment,
-             subject: user,
-             evaluator: user,
-             users_result: users_result)
-
-      get :export_completion_status, format: 'csv', params: { new_campaign_id: campaign.id }
-
-      parsed_response = CSV.parse(response.body)
-
-      expect(parsed_response.length).to eq(2)
-      expect(parsed_response.last[2]).to eq('tester@gmail.com')
-      expect(parsed_response.last[4]).to eq('Test Assessment')
-    end
-  end
-
   describe 'import' do
     it 'run action successfully' do
       file = Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/users_export.csv'), 'text/csv')

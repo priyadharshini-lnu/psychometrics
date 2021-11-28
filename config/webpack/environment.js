@@ -54,7 +54,7 @@ if (__DEV__) {
 
 // Uncomment to activate bundle analyzer
 // environment.plugins.insert(
-//  'BundleAnalyzerPlugin',
+//   'BundleAnalyzerPlugin',
 //   new BundleAnalyzerPlugin(),
 // )
 
@@ -94,7 +94,6 @@ const vendors = [
   'lodash',
   'redux-logger',
   'action-cable-react',
-  'react-addons-update',
   'moment',
   'libs/conditions',
   'libs/library',
@@ -146,6 +145,11 @@ const vendors2 = [
   'remarkable',
   'highcharts',
   'autolinker',
+  'caniuse-lite',
+  '@sentry',
+  'crypto-js',
+  'rrweb',
+  'interact.js',
 ]
 
 environment.config.merge({

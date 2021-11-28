@@ -3,12 +3,9 @@ import { Tag } from 'antd'
 import { I18n } from 'store/StoreWatchman'
 import styles from './styles.scss'
 import { Question } from '../../interfaces'
-import { ViewEnum } from '../../constants'
 
 interface Props {
   model: Question
-  readOnly?: boolean
-  setView: (view: ViewEnum) => void
 }
 
 interface ContactsProps {

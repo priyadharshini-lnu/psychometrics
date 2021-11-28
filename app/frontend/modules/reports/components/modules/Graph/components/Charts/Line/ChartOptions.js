@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function ChartOptions (model) {
+export default function ChartOptions ({ ...model }) {
   return {
     chart: {
       plotBackgroundColor: null,

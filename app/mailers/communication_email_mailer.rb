@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommunicationEmailMailer < ApplicationMailer
-  layout 'communication_email_end_user'
+  layout '/mailer/layouts/end_user_email_without_footer'
 
   def create(email_id)
     @communication_email = CommunicationEmail.preload(:communication).find(email_id)

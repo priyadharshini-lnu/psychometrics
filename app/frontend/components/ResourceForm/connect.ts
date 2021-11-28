@@ -5,15 +5,15 @@ import { OwnProps } from './ResourceForm'
 const connecter = connect(
   () => ({}),
   (dispatch, {
-    resourceName, resourceBaseUrl, resource, resourceId, requestScope,
+    resourceName, resourceBaseUrl, resource, resourceId, requestScope, mockRequest,
   }: OwnProps) => {
     const id = resourceId || (resource && resource.id) as number
 
     return {
       defaultRequest: {
-        fetchResource: () => dispatch(fetch(requestScope, resourceName, resourceBaseUrl, id)),
-        createResource: body => dispatch(create(requestScope, resourceName, resourceBaseUrl, body)),
-        updateResource: body => dispatch(update(requestScope, resourceName, resourceBaseUrl, id, body)),
+        fetchResource: () => dispatch(fetch(requestScope, resourceName, resourceBaseUrl, id, mockRequest)),
+        createResource: body => dispatch(create(requestScope, resourceName, resourceBaseUrl, body, mockRequest)),
+        updateResource: body => dispatch(update(requestScope, resourceName, resourceBaseUrl, id, body, mockRequest)),
       },
     }
   },

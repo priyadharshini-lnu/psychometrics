@@ -40,6 +40,7 @@ const assessmentWithEmbededData = {
       },
     ],
   },
+  options: {},
   norm_rules: [],
   enable_back: false,
   enable_progress: true,

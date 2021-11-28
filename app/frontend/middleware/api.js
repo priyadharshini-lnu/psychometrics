@@ -111,7 +111,7 @@ const apiMiddleware = () => next => (action) => {
     })
     .finally(() => {
       if (loader) {
-        next({ type: LOADING_COMPLETE })
+        next({ type: LOADING_COMPLETE, payload: { name: SUCCESS } })
       }
     })
 

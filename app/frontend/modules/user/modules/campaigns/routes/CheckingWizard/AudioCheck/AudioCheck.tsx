@@ -4,7 +4,6 @@ import {
   Button, Card, Col,
 } from 'antd'
 import { browserName } from 'react-device-detect'
-import { Config } from 'modules/user/modules/campaigns/core/checkingWizard/interfaces'
 import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
 import { RECORDER_STATES } from 'modules/survey/constants/media'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
@@ -32,7 +31,6 @@ const { I18n } = window
 interface Props {
   nextStep: () => void
   preSignUrl: () => void
-  config: Config
   preSignedUrl: string
   transcribeSupportedLocales: string[]
 }
@@ -118,9 +116,6 @@ const AudioCheck: React.FC<Props> = ({
         {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access)
          && (
          <IntroCard
-           level={level}
-           transcribeSupportedLocales={transcribeSupportedLocales}
-           pulse={pulse}
            requestAccess={requestAccess}
            state={state}
            preSignedUrl={preSignedUrl}
@@ -132,8 +127,6 @@ const AudioCheck: React.FC<Props> = ({
           transcribeSupportedLocales={transcribeSupportedLocales}
           level={level}
           state={state}
-          requestAccess={requestAccess}
-          preSignedUrl={preSignedUrl}
         />
         )}
       </Col>
@@ -179,15 +172,19 @@ const AudioCheck: React.FC<Props> = ({
 export default AudioCheck
 
 interface CardProps {
-  requestAccess: () => void
   state: State
+}
+type IntroCardProps = {
+  requestAccess: () => void
   preSignedUrl: string
-  transcribeSupportedLocales: string[]
+} & CardProps
+type RecordCardProps = {
   level: AudioLevel
   pulse: number
-}
+  transcribeSupportedLocales: string[]
+} & CardProps
 
-const IntroCard: React.FC<CardProps> = ({ requestAccess, state, preSignedUrl }) => (
+const IntroCard: React.FC<IntroCardProps> = ({ requestAccess, state, preSignedUrl }) => (
   <Card className={styles.card}>
     <div className={styles.title}>{I18n.t('checking_wizard.audio_check.title')}</div>
     <div className={styles.audio}>
@@ -225,7 +222,7 @@ const IntroCard: React.FC<CardProps> = ({ requestAccess, state, preSignedUrl }) 
 )
 
 
-const RecordCard: React.FC<CardProps> = ({
+const RecordCard: React.FC<RecordCardProps> = ({
   level, pulse, state, transcribeSupportedLocales,
 }) => (
   <Card className={styles.card}>

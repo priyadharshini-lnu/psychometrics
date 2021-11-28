@@ -22,12 +22,15 @@
 
   .modal-footer
     .btn-group
-      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'submit btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'
 
 javascript:
   $(function(){
     $('#new_resource, #edit_resource').on('submit', function(event) {
+      var $submit = $(this).find('.submit')
+      $submit.parent().prepend('<i class="fa fa-refresh fa-spin loading" style="padding: 8px;"></i>')
+      $submit.attr('disabled', 'disabled')
       event.stopPropagation(); // Stop stuff happening
       event.preventDefault(); // Totally stop stuff happening
 
@@ -47,8 +50,11 @@ javascript:
         processData : false,
         type        : 'POST',
         success     : function(data, textStatus, jqXHR){
-
-        }
+        },
+        error: function(data, textStatus, jqXHR){
+          $submit.parent().find('.loading').remove()
+          $submit.removeAttr('disabled')
+        },
       });
     });
   });

@@ -1,6 +1,6 @@
 import reduce from 'lodash/reduce'
 
-import { SeriesDataIdPoint } from '../interfaces/graph'
+import { SeriesDataIdPoint } from 'modules/reports/interfaces/graphs/Bubble'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getFactorValue = (results: any, factor: number): number => {

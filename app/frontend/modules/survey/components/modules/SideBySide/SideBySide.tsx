@@ -29,7 +29,6 @@ const SideBySide: FC<Props> = ({ model }) => {
     <div>
       <div className="mt-4">
         <TextEditor
-          model={model}
           value={questionText}
           onChange={handleOnTextChange}
         />

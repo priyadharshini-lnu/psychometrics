@@ -3,7 +3,7 @@
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:clients, :view)
+      super || @user.is?(:campaign_admin) || @user.has_grant?(:clients, :view)
     end
 
     def view_licenses?
@@ -117,14 +117,11 @@ module Administration
 
         clients_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
 
-        if @user.is?(:campaign_admin)
-          clients_ids.concat(@user.campaign_admin_client_ids)
-          @campaign_ids = @user.campaign_admin_campaigns.pluck(:id)
+        permitted_clients_ids = clients_ids.select do |client_id|
+          @user.has_permission?(permission, :view, project_id: client_id)
         end
 
-        permitted_clients_ids = clients_ids.select do |client_id|
-          @user.has_permission?(permission, :view, project_id: client_id, campaign_id: @campaign_ids)
-        end
+        permitted_clients_ids.concat(@user.campaign_admin_client_ids) if @user.is?(:campaign_admin)
 
         clients_scope = scope.where(id: permitted_clients_ids)
 

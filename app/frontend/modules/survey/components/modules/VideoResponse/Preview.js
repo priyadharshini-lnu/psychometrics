@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 
 import {
   getI18n,
@@ -14,11 +13,12 @@ import {
   removeMediaResponse,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 
-import textEntryStyles from 'components/modules/TextEntry/components/styles.scss'
 import VideoRecorder from 'components/VideoRecorder'
 import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
 import { SafeHTML } from 'components/SafeHTML'
-
+import { checkBrowserSupportForFeature } from 'utils/checkBrowserSupportForFeature'
+import { BROWSER_FEATURES } from 'modules/survey/constants/browser'
+import { UnsupportedBrowser } from './UnsupportedBrowser'
 import VideoPlayer from './VideoPlayer'
 
 const connector = connect(
@@ -37,17 +37,63 @@ const connector = connect(
   },
 )
 
-class PreviewComponent extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
+const PreviewComponent = ({
+  model,
+  I18n,
+  markQuestionInProgress,
+  removeQuestionInProgress,
+  addMediaResponse,
+  removeMediaResponse,
+  type,
+  mediaUrl,
+  isAssessmentTimedOut,
+  mediaResponses,
+  readOnly,
+}) => {
+  const { isBrowserSupported, supportedBrowsers } = checkBrowserSupportForFeature(
+    BROWSER_FEATURES.mediaRecorderAPI,
+  )
 
+  return (
+    <div>
+      <SafeHTML
+        html={I18n.tQuestion(model, 'questionText')}
+        className="mb-4"
+        config="adminRichText"
+      />
+      {isBrowserSupported ? (
+        <SupportedVideoRecorder
+          model={model}
+          markQuestionInProgress={markQuestionInProgress}
+          removeQuestionInProgress={removeQuestionInProgress}
+          addMediaResponse={addMediaResponse}
+          removeMediaResponse={removeMediaResponse}
+          type={type}
+          mediaUrl={mediaUrl}
+          isAssessmentTimedOut={isAssessmentTimedOut}
+          mediaResponses={mediaResponses}
+          readOnly={readOnly}
+        />
+      ) : (
+        <UnsupportedBrowser supportedBrowsers={supportedBrowsers} />
+      )}
+    </div>
+  )
+}
+
+class SupportedVideoRecorder extends Component {
   constructor (props) {
     super(props)
     this.VideoRecorderComponent = VideoRecorder
-    const { model: { props: { maxTakes } } } = props
+    const {
+      model: {
+        props: { maxTakes },
+      },
+    } = props
     if (maxTakes && maxTakes !== '') {
-      this.VideoRecorderComponent = withLimitedTakes(VideoRecorder, { maxTakes })
+      this.VideoRecorderComponent = withLimitedTakes(VideoRecorder, {
+        maxTakes,
+      })
     }
   }
 
@@ -76,10 +122,7 @@ class PreviewComponent extends Component {
 
     if (readOnly) {
       return (
-        <VideoPlayer
-          mediaResponse={mediaResponses[0]}
-          mediaUrl={mediaUrl}
-        />
+        <VideoPlayer mediaResponse={mediaResponses[0]} mediaUrl={mediaUrl} />
       )
     }
 
@@ -106,18 +149,7 @@ class PreviewComponent extends Component {
   }
 
   render () {
-    const { model, I18n } = this.props
-    I18n.tQuestion(model, 'questionText')
-    return (
-      <div>
-        <SafeHTML
-          className={textEntryStyles.questionTextPreview}
-          html={I18n.tQuestion(model, 'questionText')}
-          config="adminRichText"
-        />
-        {this.renderVideoRecorder()}
-      </div>
-    )
+    return <>{this.renderVideoRecorder()}</>
   }
 }
 

@@ -1,26 +1,32 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Row, Col, Input, Select, Pagination,
+  Table, Row, Col, Input, Select, Pagination, Button, Space, Menu, message, Modal,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { AppstoreOutlined } from '@ant-design/icons'
+import {
+  AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
+} from '@ant-design/icons'
 import settings from 'modules/admin/settings'
 import Modals from 'modules/admin/components/Modals/'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { useParams } from 'react-router-dom'
 import {
   fetch,
+  remove,
   get as getSmsInvites,
   STATUSES,
+  SmsInvite,
 } from 'modules/admin/modules/campaigns/core/smsInvites'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import ConditionalDropdown from 'components/ConditionalDropdown'
 import { ImportModal as ImportSmsInvites } from './ImportModal'
 import { ToolsDropdown } from './ToolsDropdown'
 import styles from './styles.scss'
 import { SendSmsModal } from './SendSmsModal'
+import { FormModal as SmsInviteFormModal } from './FormModal'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -29,6 +35,7 @@ const connecter = connect(
   {
     fetch,
     openModal,
+    remove,
   },
 )
 
@@ -43,6 +50,7 @@ type Props = OwnProps & TableProps & PropsFromRedux
 const MODALS = {
   ImportSmsInvites,
   SendSmsModal,
+  SmsInviteFormModal,
 }
 
 const { Column } = Table
@@ -68,6 +76,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
   getSortOrder,
   changePage,
   openModal,
+  remove,
 }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -82,6 +91,23 @@ const SmsInvitesComponent: React.FC<Props> = ({
     changeFilter('statusEq', value)
   }
 
+  const handleDelete = (smsInvite: SmsInvite) => {
+    Modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('administration.sms_invites.messages.delete_confirm_text', { mobile_no: smsInvite.mobileNo }),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        remove(campaignId, smsInvite.id).then(() => {
+          message.success(I18n.t('administration.sms_invites.messages.delete_success'))
+        })
+      },
+    })
+  }
+
   return (
     <div>
       <Row justify="space-between" className="pm">
@@ -89,7 +115,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">{`${total} ${I18n.t('common.model.sms_invite')}`}</span>
         </Col>
-        <div>
+        <Space>
           <Select
             defaultValue="All"
             value={filters.statusEq || 'All'}
@@ -112,7 +138,14 @@ const SmsInvitesComponent: React.FC<Props> = ({
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
           <ToolsDropdown campaignId={parsedCampaignId} openModal={openModal} permissions={permissions} />
-        </div>
+
+          {permissions.create && (
+            <Button type="primary" onClick={() => openModal('SmsInviteFormModal', { campaignId })}>
+              <PlusOutlined />
+              <span>{I18n.t('administration.sms_invites.actions.add')}</span>
+            </Button>
+          )}
+        </Space>
       </Row>
       <Row>
         <Col span={24}>
@@ -165,6 +198,26 @@ const SmsInvitesComponent: React.FC<Props> = ({
               key="createdBy"
               dataIndex="createdBy"
             />
+            <Column
+              title={I18n.t('common.column.action')}
+              key="action"
+              render={smsInvite => (
+                <ConditionalDropdown
+                  menu={
+                    ActionsMenu({
+                      onEdit: () => openModal('SmsInviteFormModal', { campaignId, smsInvite }),
+                      permissions,
+                      onRemove: () => handleDelete(smsInvite),
+                    }) as React.ReactElement
+                  }
+                  innerElement={(
+                    <a>
+                      <MoreOutlined />
+                    </a>
+                  )}
+                />
+              )}
+            />
           </Table>
         </Col>
       </Row>
@@ -182,6 +235,39 @@ const SmsInvitesComponent: React.FC<Props> = ({
   )
 }
 
+interface ActionsMenu {
+  onEdit(): void
+  onRemove(): void
+  permissions: Props['smsInvites']['permissions']
+}
+
+const ActionsMenu = ({ onEdit, onRemove, permissions }) => (
+  <Menu>
+    {permissions.update && (
+    <Menu.Item key="edit">
+      <div
+        role="button"
+        tabIndex={-1}
+        onClick={onEdit}
+      >
+        {I18n.t('common.actions.edit')}
+      </div>
+    </Menu.Item>
+    )}
+
+    {permissions.destroy && (
+    <Menu.Item key="delete">
+      <div
+        role="button"
+        tabIndex={-1}
+        onClick={onRemove}
+      >
+        {I18n.t('common.actions.remove')}
+      </div>
+    </Menu.Item>
+    )}
+  </Menu>
+)
 export const SmsInvites = connecter(
   withEnhancedTable<{}>(SmsInvitesComponent, 'smsInvites', { maintainHistory: true }),
 )

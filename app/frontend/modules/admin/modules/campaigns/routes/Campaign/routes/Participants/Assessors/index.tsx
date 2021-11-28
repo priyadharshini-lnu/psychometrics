@@ -81,7 +81,6 @@ const AssessorList: React.FC<Props> = ({
   changePage,
   openModal,
   remove,
-  currentUser,
 }) => {
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -156,7 +155,6 @@ const AssessorList: React.FC<Props> = ({
                   menu={
                     ActionsMenu({
                       campaignId,
-                      currentUser,
                       id: assessor.id,
                       email: assessor.email,
                       permissions: assessor.permissions,

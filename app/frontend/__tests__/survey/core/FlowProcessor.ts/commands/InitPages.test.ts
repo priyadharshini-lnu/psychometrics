@@ -12,16 +12,16 @@ test('deleted question', () => {
     id: 1,
     questions: [question(1, { deleted: true })],
   }]
-  expect(InitPages.run({ blocks })).toStrictEqual({1: []})
+  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [] })
 })
 
 
 test('deleted question', () => {
   const blocks = [{
     id: 1,
-    questions: [question(1), question(2, { deleted: true }),question(3)],
+    questions: [question(1), question(2, { deleted: true }), question(3)],
   }]
-  expect(InitPages.run({ blocks })).toStrictEqual({1: [{questions:[1,3], blockId: 1}]})
+  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 3], blockId: 1 }] })
 })
 
 test('simple block with one page', () => {
@@ -103,4 +103,38 @@ test('simple two blocks', () => {
   }]
 
   expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 2, 3], blockId: 1 }], 2: [{ questions: [4, 5], blockId: 2 }] })
+})
+
+
+test('with single_question_page', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1), question(2), question(3)],
+  },
+  {
+    id: 2,
+    questions: [question(4), question(5)],
+  }]
+
+  expect(InitPages.run({ blocks }, 0, { enable_single_question_page: true })).toStrictEqual({
+    1: [
+      {
+        questions: [1], blockId: 1
+      },
+      {
+        questions: [2], blockId: 1
+      },
+      {
+        questions: [3], blockId: 1
+      }
+    ],
+    2: [
+      {
+        questions: [4], blockId: 2
+      },
+      {
+        questions: [5], blockId: 2
+      }
+    ]
+  })
 })

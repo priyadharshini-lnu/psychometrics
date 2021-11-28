@@ -34,7 +34,7 @@ export const MultipleChoice: FC<Props> = ({ model }) => {
   return (
     <div style={{ position: 'relative' }}>
       <div className="mt-4">
-        <TextEditor model={model} value={questionText} onChange={changeText} />
+        <TextEditor value={questionText} onChange={changeText} />
       </div>
       <Suspense fallback={<Spin />}>
         {type === 'SingleAnswer' && (

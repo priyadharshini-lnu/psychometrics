@@ -10,6 +10,7 @@ react_dev:
   assessments: false
 privacy_url: <%= ENV.fetch('PRIVACY_URL', 'https://thetalententerprise.com/privacy-statement/') %>
 terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-service/') %>
+short_url_host: <%= ENV.fetch('SHORT_URL_HOST', nil) %>
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>

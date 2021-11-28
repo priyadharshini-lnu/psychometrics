@@ -1,5 +1,5 @@
 import { SeriesBubbleOptions, Options } from 'highcharts-v9'
-import { Size } from './interfaces/graph'
+import { AdditionalChartOptions } from 'modules/reports/interfaces/graphs/Bubble'
 
 export interface ChartOptions extends Options {
   series?: SeriesBubbleOptions[]
@@ -96,21 +96,6 @@ export const defaultChartOptions: ChartOptions = {
       },
     },
   },
-}
-
-interface AdditionalChartOptions {
-  backgroundColor: string
-  xMean: number
-  xMeanTitle: string
-  yMean: number
-  yMeanTitle: string
-  xMin: number
-  xMax: number
-  yMin: number
-  yMax: number
-  colors: string[]
-  size: Size
-  bubbleSize: number
 }
 
 export const additionalChartOptions = ({

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Menu,
+  Button, Menu, message,
 } from 'antd'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
@@ -12,6 +12,7 @@ const menu = ({
   campaignId,
   openModal,
   permissions,
+  onExport,
 }) => (
   <Menu>
     {permissions.exportUsers && (
@@ -20,10 +21,8 @@ const menu = ({
       </Menu.Item>
     )}
     {permissions.exportCompletionStatus && (
-      <Menu.Item key="export_completion">
-        <a href={`/administration/new_campaigns/${campaignId}/users/export_completion_status.csv`}>
-          {I18n.t('user.toolbar.export_completion_status')}
-        </a>
+      <Menu.Item key="export_completion" onClick={() => onExport()}>
+        {I18n.t('user.toolbar.export_completion_status')}
       </Menu.Item>
     )}
     {permissions.import && (
@@ -37,6 +36,7 @@ const menu = ({
 interface Props {
   campaignId: number
   openModal(name: string, data?: { campaignId: string, user?: User }): void
+  exportCompletionStatuses(campaignId: number): Promise<void>
   permissions: {
     exportUsers: boolean,
     exportCompletionStatus: boolean,
@@ -44,23 +44,34 @@ interface Props {
   }
 }
 
-const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissions }) => (
-  <ConditionalDropdown
-    menu={menu({
-      campaignId,
-      openModal,
-      permissions,
-    })}
-    innerElement={(
-      <Button>
-        <ToolOutlined />
-        <span>Tools</span>
-        <DownOutlined />
-      </Button>
+const ToolsDropdown: React.FC<Props> = ({
+  campaignId, openModal, permissions, exportCompletionStatuses,
+}) => {
+  const onExport = () => {
+    exportCompletionStatuses(campaignId).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled'))
+    })
+  }
+
+  return (
+    <ConditionalDropdown
+      menu={menu({
+        campaignId,
+        openModal,
+        permissions,
+        onExport,
+      })}
+      innerElement={(
+        <Button>
+          <ToolOutlined />
+          <span>Tools</span>
+          <DownOutlined />
+        </Button>
     )}
-    className="mrm"
-    hideForEmptyMenu
-  />
-)
+      className="mrm"
+      hideForEmptyMenu
+    />
+  )
+}
 
 export default ToolsDropdown

@@ -12,6 +12,24 @@ module Api
 
         render json: user_assessments.map { |a| Api::V1::UserAssessmentSerializer.new(a).to_h }
       end
+
+      def update
+        user_assessment = UserAssessment.find!(params[:id])
+        user_assessment.update!(user_assessment_params)
+        render json: user_assessment, serializer: Api::V1::UserAssessmentSerializer
+      end
+
+      def destroy
+        user_assessment = UserAssessment.find(params[:id])
+        user_assessment.destroy!
+        render json: user_assessments
+      end
+
+      private
+
+      def user_assessment_params
+        params.permit(:norm_id)
+      end
     end
   end
 end

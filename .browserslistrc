@@ -1,2 +1,9 @@
 defaults
 not ie 11
+not op_mini all
+not and_uc <= 1000
+not op_mob <= 1000
+not and_qq  <= 1000
+not kaios <= 1000
+not Baidu <=1000
+not android <=1000

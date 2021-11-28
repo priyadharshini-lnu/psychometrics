@@ -11,11 +11,7 @@ import { InProgressQuestion, MediaResponse } from 'modules/survey/core/preview/F
 
 import { I18n } from 'modules/survey/store/StoreWatchman'
 import useMap from 'hooks/useMap'
-import { useBrowserSupportChecks } from 'hooks/useBrowserSupportChecks'
-import { BROWSER_FEATURES } from 'modules/survey/constants/browser'
-
 import MultipleTakeButtons from './MultipleTakeButtons'
-import { UnsupportedBrowser } from './UnsupportedBrowser'
 
 import styles from './styles.scss'
 
@@ -131,19 +127,6 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
       errors={errors}
     />
   )
-
-  // Check for Media Recorder API browser support
-  const [isBrowserSupported, supportedBrowsers] = useBrowserSupportChecks(
-    BROWSER_FEATURES.mediaRecorderAPI,
-  )
-
-  if (!isBrowserSupported) {
-    return (
-      <UnsupportedBrowser
-        supportedBrowsers={supportedBrowsers}
-      />
-    )
-  }
 
   if (maxTakes === 1) {
     return renderWrappedComponent()

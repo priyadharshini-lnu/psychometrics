@@ -232,7 +232,6 @@ export const AudioRecorder: React.FC<Props> = ({
           {recordingState === RECORDER_STATES.RECORDED ? (
             <PlayerControl
               percent={percent}
-              playerState={playerState}
               uploadState={uploadState}
               saveRecording={saveRecording}
               discardRecording={discardRecording}

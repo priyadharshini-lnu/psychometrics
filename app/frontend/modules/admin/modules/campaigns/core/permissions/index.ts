@@ -17,7 +17,9 @@ export interface State {
 
 type FetchType = ApiActionResponse<State>
 
-export const get = (state): {} => _.get(state, ['campaigns', 'permissions'])
+export const get = (state): {
+  create?: boolean,
+} => _.get(state, ['campaigns', 'permissions'])
 
 const HANDLERS = {
   [FETCH]: (_: {}, { response }: FetchType) => response.permissions,

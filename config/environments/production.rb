@@ -96,7 +96,7 @@ Rails.application.configure do
   }
 
   config.assets.configure do |env|
-    env.gzip = false
+    env.gzip = true
   end
 
   # Ignore bad email addresses and do not raise email delivery errors.

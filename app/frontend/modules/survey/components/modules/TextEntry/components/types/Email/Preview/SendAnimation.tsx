@@ -2,12 +2,9 @@ import React from 'react'
 import { I18n } from 'store/StoreWatchman'
 import { Result } from 'antd'
 import TweenOne from 'rc-tween-one'
-import { Question } from '../interfaces'
 import { ViewEnum } from '../constants'
 
 interface Props {
-  model: Question
-  readOnly?: boolean
   setView: (view: ViewEnum) => void
 }
 

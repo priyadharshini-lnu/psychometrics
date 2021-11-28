@@ -15,7 +15,6 @@ import campaignOptions from './campaignOptions'
 import assessorAssessments from './assessorAssessments'
 import campaignAssessorAssessments from './campaignAssessorAssessments'
 import { reducer as smsInvites } from './smsInvites'
-import admins from './admins'
 
 export default combineReducers({
   list,
@@ -34,5 +33,4 @@ export default combineReducers({
   assessorAssessments,
   campaignAssessorAssessments,
   smsInvites,
-  admins,
 })

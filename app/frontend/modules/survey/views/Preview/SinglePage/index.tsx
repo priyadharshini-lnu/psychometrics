@@ -19,7 +19,7 @@ const SinglePage: React.FC<Props> = ({
     <div className={cs(styles.block)}>
       <div>
         <div className={cs(styles.questionsBlock)}>
-          <QuestionList page={null} readOnly questions={questions} />
+          <QuestionList page={null} readOnly questions={questions} backButtonPressed={false} />
         </div>
       </div>
     </div>

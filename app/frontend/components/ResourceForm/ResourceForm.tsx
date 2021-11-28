@@ -48,6 +48,7 @@ export type OwnProps = {
     form: FormInstance, status: string, isEdit: boolean, fieldsUtil: FieldsUtil,
   }): ReactElement
   scrollToFirstError?: boolean
+  mockRequest?: boolean
 }
 
 const ResourceForm: React.FC<Props> = ({

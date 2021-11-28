@@ -9,11 +9,14 @@ import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/co
 interface Props {
   model: PreviewModel
   readOnly: boolean
+  nextPage: () => {}
+  singleQuestionFlow: boolean
 }
 
-const SingleLinePreview: FC<Props> = ({ model, readOnly }) => {
+const SingleLinePreview: FC<Props> = ({
+  model, readOnly, nextPage, singleQuestionFlow,
+}) => {
   const forceUpdate = useForceUpdate()
-
   const {
     result,
     props: { type },
@@ -28,6 +31,12 @@ const SingleLinePreview: FC<Props> = ({ model, readOnly }) => {
     forceUpdate()
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && singleQuestionFlow) {
+      nextPage()
+    }
+  }
+
   const value = (result.answers[0] && result.answers[0].value) || ''
   return (
     <div>
@@ -37,6 +46,7 @@ const SingleLinePreview: FC<Props> = ({ model, readOnly }) => {
             autoComplete="off"
             disabled={readOnly}
             onChange={handleOnChange}
+            onKeyDown={handleKeyDown}
             value={value}
             type={type === 'SingleLine' ? 'text' : 'password'}
           />

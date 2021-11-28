@@ -33,6 +33,7 @@ const MultiSelectBoxPreview = lazy(
 interface OwnProps {
   model: PreviewModel
   readOnly: boolean
+  nextPage: () => {}
 }
 
 const connector = connect(
@@ -41,6 +42,7 @@ const connector = connect(
     factors: preview.factors,
     scores: getQuestionScoring(preview, id),
     I18n: getI18n(preview),
+    singleQuestionFlow: preview.enableSingleQuestionPage,
   }),
 )
 
@@ -55,6 +57,8 @@ export const PreviewComponent: FC<Props> = ({
   I18n,
   model,
   readOnly,
+  nextPage,
+  singleQuestionFlow,
 }) => {
   const {
     props: { type },
@@ -65,6 +69,8 @@ export const PreviewComponent: FC<Props> = ({
     model,
     readOnly,
     I18n,
+    nextPage,
+    singleQuestionFlow,
   }
 
   return (
