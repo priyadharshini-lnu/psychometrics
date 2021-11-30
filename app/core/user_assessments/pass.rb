@@ -34,6 +34,8 @@ module UserAssessments
     end
 
     def instructions_enabled?
+      return false if user_assessment.interrupted?
+
       @user_assessment.assessment.fixed_timed? || @user_assessment.assessment.instructions&.dig('enabled')
     end
 
