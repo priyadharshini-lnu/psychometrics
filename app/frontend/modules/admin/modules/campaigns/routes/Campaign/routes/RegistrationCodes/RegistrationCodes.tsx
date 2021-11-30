@@ -211,25 +211,21 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
   campaignId,
 }) => (
   <Menu>
-    <Menu.Item key="png">
+    <Menu.Item key="png" icon={<DownloadOutlined />}>
       <a
         download
         // eslint-disable-next-line max-len
         href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
       >
-        <DownloadOutlined />
-        {' '}
         PNG
       </a>
     </Menu.Item>
-    <Menu.Item key="svg">
+    <Menu.Item key="svg" icon={<DownloadOutlined />}>
       <a
         download
         // eslint-disable-next-line max-len
         href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.svg`}
       >
-        <DownloadOutlined />
-        {' '}
         SVG
       </a>
     </Menu.Item>
