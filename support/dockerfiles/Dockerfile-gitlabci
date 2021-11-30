@@ -1,4 +1,4 @@
-FROM circleci/ruby:2.7.0-stretch
+FROM circleci/ruby:2.5.1-stretch
 
 # node installations command expect to run as root
 USER root

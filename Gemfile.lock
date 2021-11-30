@@ -439,7 +439,7 @@ GEM
     highline (2.0.3)
     hirb (0.7.3)
     htmlentities (4.3.4)
-    httpi (2.4.4)
+    httpi (2.5.0)
       rack
       socksify
     i18n (1.8.10)
@@ -873,7 +873,8 @@ GEM
       rack (>= 1.4, < 3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    wasabi (3.5.0)
+    wasabi (3.6.1)
+      addressable
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
     web-console (3.3.1)
