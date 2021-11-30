@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import {
-  BROWSER_NAME, BROWSER_VERSION, OS_NAME, OS_VERSION, USER_AGENT,
+  BROWSER_NAME, BROWSER_VERSION, OS_NAME, OS_VERSION, UA_STRING,
 } from 'utils/uaParser'
 
 import styles from './MetaInfo.scss'
@@ -15,7 +15,7 @@ const MetaInfoPreview = ({ readOnly, model }) => {
       version: BROWSER_VERSION,
       os: `${OS_NAME} ${OS_VERSION}`,
       screen: `${screen.width}x${screen.height}`,
-      userAgent: USER_AGENT,
+      userAgent: UA_STRING,
     }
 
     // answer is prototype function
