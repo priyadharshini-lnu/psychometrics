@@ -42,10 +42,10 @@ global_job_config:
       - cache restore bundle--gems-$(checksum Gemfile.lock)
       - cache restore node-modules-$(checksum yarn.lock)
       - cache restore webpack-compile-$(checksum webpack-files.txt)
-      - sem-version ruby 2.5.1
+      - sem-version ruby 2.7.4
       - sem-version node 14.15.1
       - node --version
-      - gem install bundler -v '2.1.4'
+      - gem install bundler -v '2.2.31'
       - MAKE="make --jobs $(nproc)" bundle install -j $(nproc) --retry 3  --without development --path vendor/bundle
 auto_cancel:
   queued:

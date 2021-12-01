@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.7.4'
 gem 'bundler',                    '>= 1.8.4'
 gem 'rack',                       '~> 2.2.0'
 
@@ -78,7 +78,7 @@ gem 'i18n-js',                    '~> 3.6.0'
 gem 'annotate', '~> 2.7.0'
 gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
-gem 'config',                     '~> 1.2.1'
+gem 'config',                     '~> 2.2.1'
 gem 'figaro',                     '~> 1.1.1'
 
 gem 'premailer-rails', '~> 1.10.3'
@@ -142,10 +142,10 @@ gem 'sidekiq', '~> 5.2.9'
 gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
 
-gem 'dry-types', '~> 0.12.2'
+gem 'dry-types', '~> 1.2.1'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.14.0'
-gem 'reform-rails', '~> 0.1.7'
+gem 'reform-rails', '~> 0.2.3'
 gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
 
