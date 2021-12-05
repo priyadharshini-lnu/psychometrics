@@ -1,9 +1,9 @@
+import isEmpty from 'lodash/isEmpty'
 import { useMemo } from 'react'
 import { feature, features, StatsByAgentID } from 'caniuse-lite'
 import browserslist from 'browserslist'
-import { browserName, browserVersion, isMobile } from 'react-device-detect'
-import isEmpty from 'lodash/isEmpty'
 
+import { BROWSER_NAME, BROWSER_VERSION, IS_MOBILE } from 'utils/uaParser'
 import { BROWSER_FEATURES, UA_Browsers } from 'modules/survey/constants/browser'
 import { convertToUserAgentBrowserName } from 'modules/survey/utils/browser'
 
@@ -17,10 +17,10 @@ export const useBrowserSupportChecksWithCaniuse = (
   browserAbsoluteVersion = '',
 ) => {
   const browser = uaBrowserName.length === 0
-    ? convertToUserAgentBrowserName(browserName, isMobile)
+    ? convertToUserAgentBrowserName(BROWSER_NAME, IS_MOBILE)
     : uaBrowserName
   const version = browserAbsoluteVersion.length === 0
-    ? browserVersion
+    ? BROWSER_VERSION
     : browserAbsoluteVersion
 
   if (browser.length === 0 || version.length === 0) {
