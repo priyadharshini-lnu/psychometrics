@@ -120,8 +120,6 @@ const AddEditDrawerComponent: FC<Props> = ({
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
           [`campaigns-${GrantType.manage_options}`]:
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_options),
-          [`campaigns-${GrantType.manage_messages}`]:
-            admin?.grants?.data?.campaigns?.includes(GrantType.manage_messages),
           [`communications-${GrantType.view}`]:
             admin?.grants?.data?.communications?.includes(GrantType.view),
           [`communications-${GrantType.manage}`]:
@@ -496,17 +494,6 @@ const AddEditDrawerComponent: FC<Props> = ({
                   <Checkbox>
                     {I18n.t(
                       'administration.administrators.drawers.edit.can_manage_options',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`campaigns-${GrantType.manage_messages}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage_messages',
                     )}
                   </Checkbox>
                 </Form.Item>
