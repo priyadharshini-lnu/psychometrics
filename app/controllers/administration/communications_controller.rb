@@ -93,7 +93,8 @@ module Administration
       authorize(
         resource || resource_class,
         nil,
-        project_id: resource&.owner_id
+        project_id: resource&.project_id,
+        campaign_id: resource&.campaign_id
       )
     end
 
