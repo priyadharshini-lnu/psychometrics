@@ -1,6 +1,4 @@
-import {} from 'react-device-detect'
-
-import { checkBrowserSupportForFeature } from 'utils/checkBrowserSupportForFeature'
+import { checkBrowserSupportForFeature } from 'utils/uaParser'
 import {
   BROWSER_FEATURES,
   MIN_BROWSER_FEATURE_SUPPORT,

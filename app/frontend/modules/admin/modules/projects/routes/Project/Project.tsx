@@ -126,28 +126,23 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
         selectedKeys={getActiveMenuKey(pathname)}
         mode="horizontal"
       >
-        <Menu.Item key="new_campaigns">
-          <ShopOutlined />
+        <Menu.Item key="new_campaigns" icon={<ShopOutlined />}>
           {I18n.t('common.model.campaigns')}
         </Menu.Item>
         {/* Uncomment tabs when API changes are available */}
-        {/* <Menu.Item key="users">
-          <UserOutlined />
+        {/* <Menu.Item key="users" icon={<UserOutlined />}>
           {I18n.t('administration.breadcrumbs.users')}
         </Menu.Item> */}
-        <Menu.Item key="datasheet">
-          <DatabaseOutlined />
+        <Menu.Item key="datasheet" icon={<DatabaseOutlined />}>
           {I18n.t('common.model.datasheet')}
         </Menu.Item>
         {currentUser.permissions.manageAdmins && (
-          <Menu.Item key="admins">
-            <SolutionOutlined />
+          <Menu.Item key="admins" icon={<SolutionOutlined />}>
             {I18n.t('administration.breadcrumbs.project_admins')}
           </Menu.Item>
         )}
         {currentUser.permissions.manageProjectSmtpSettings && (
-          <Menu.Item key="settings">
-            <SettingOutlined />
+          <Menu.Item key="settings" icon={<SettingOutlined />}>
             {I18n.t('administration.breadcrumbs.settings')}
           </Menu.Item>
         )}

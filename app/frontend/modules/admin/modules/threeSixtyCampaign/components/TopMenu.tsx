@@ -72,8 +72,7 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
       selectedKeys={getActiveMenuKey(pathname)}
       mode="horizontal"
     >
-      <Menu.Item key="participants">
-        <UserOutlined />
+      <Menu.Item key="participants" icon={<UserOutlined />}>
         {I18n.t('administration.threesixty_campaigns.menu.participants.title')}
       </Menu.Item>
       {/* <Menu.Item key="admins">
@@ -81,22 +80,18 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
         {I18n.t('common.model.admins')}
       </Menu.Item> */}
       {currentUser.permissions.manageMessages && (
-        <Menu.Item key="messages/options">
-          <MessageOutlined />
+        <Menu.Item key="messages/options" icon={<MessageOutlined />}>
           {I18n.t('administration.threesixty_campaigns.menu.messages.title')}
         </Menu.Item>
       )}
-      <Menu.Item key="reports/options">
-        <PieChartOutlined />
+      <Menu.Item key="reports/options" icon={<PieChartOutlined />}>
         {I18n.t('administration.threesixty_campaigns.menu.report.title')}
       </Menu.Item>
-      <Menu.Item key="datasheets">
-        <DatabaseOutlined />
+      <Menu.Item key="datasheets" icon={<DatabaseOutlined />}>
         {I18n.t('administration.threesixty_campaigns.menu.datasheet.title')}
       </Menu.Item>
       {assessmentPermissions?.editAssessment && (
-      <Menu.Item key="assessment_builder">
-        <FormOutlined />
+      <Menu.Item key="assessment_builder" icon={<FormOutlined />}>
         {I18n.t('administration.threesixty_campaigns.menu.assessment.title')}
       </Menu.Item>
       )}
