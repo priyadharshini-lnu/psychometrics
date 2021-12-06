@@ -8,7 +8,8 @@ module Administration
 
       def index
         render json: campaign,
-         serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+          serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer,
+          current_user: current_user
       end
 
       def create
