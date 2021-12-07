@@ -8,4 +8,8 @@ module LocalesHelper
   def rtl?
     LOCALES[I18n.locale[0...2]] == 'rtl'
   end
+
+  def dir
+    rtl? ? 'rtl' : 'ltr'
+  end
 end

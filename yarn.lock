@@ -4045,10 +4045,10 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@thetalententerprise/interactive-assessments@1.5.0-beta":
-  version "1.5.0-beta"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.5.0-beta/c07762bac5a5ab868bfae244bd25618ad0db3d8a06ad915a0d5d9b6dbbaf8c92#c081d7c1ccd4684636698a3e181c13032871bd7a"
-  integrity sha512-42ymGqIKFvGw3gtC04STfeNITJvmvvwpYLVaxnpBvTwqeih+fdBdFH7/PcxbzJXjpdmO7WcNdIP7Vlpisx/M2Q==
+"@thetalententerprise/interactive-assessments@1.5.1":
+  version "1.5.1"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.5.1/6e0d09700a6d4454c581475eacae331ffb17756029e1f0413e8aad46cc20c1b4#703168bcd03896fc81560d7b8015ed21e2bb6f3e"
+  integrity sha512-V117bUC+PHTcUhT1NGRn3JQdjtOt8e47vC8DO84AiNFyonUcK8xESskRwiC141658bfhbFBG4aIgO5tT7/iWLw==
 
 "@trysound/sax@0.1.1":
   version "0.1.1"
@@ -6105,10 +6105,10 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000939, caniuse-lite@^1.0.30000940, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001265.tgz#0613c9e6c922e422792e6fcefdf9a3afeee4f8c3"
   integrity sha512-YzBnspggWV5hep1m9Z6sZVLOt7vrju8xWooFAgN6BA5qvy98qPAPb7vNUzypFaoh2pb3vlfzbDO8tB57UPGbtw==
 
-caniuse-lite@^1.0.30001272:
-  version "1.0.30001272"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001272.tgz#8e9790ff995e9eb6e1f4c45cd07ddaa87cddbb14"
-  integrity sha512-DV1j9Oot5dydyH1v28g25KoVm7l8MTxazwuiH3utWiAS6iL/9Nh//TGwqFEeqqN8nnWYQ8HHhUq+o4QPt9kvYw==
+caniuse-lite@^1.0.30001283:
+  version "1.0.30001283"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001283.tgz#8573685bdae4d733ef18f78d44ba0ca5fe9e896b"
+  integrity sha512-9RoKo841j1GQFSJz/nCXOj0sD7tHBtlowjYlrqIUS812x9/emfBLBt6IyMz1zIaYc/eRL8Cs6HPUVi2Hzq4sIg==
 
 capture-exit@^2.0.0:
   version "2.0.0"
