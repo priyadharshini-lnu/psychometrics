@@ -9,7 +9,8 @@ module Administration
       def update
         resource.update(resource_params)
         render json: resource,
-         serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer
+         serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
+         current_user: current_user
       end
 
       def attach_to_group
