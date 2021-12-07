@@ -51,7 +51,7 @@ class Communication < ApplicationRecord
 
   before_create -> { self.last_ran_at ||= Time.now }, if: :new_assignment_recipients?
   after_validation :set_delivery_interval, if: :reminder?
-  after_initialize :parse_delivery_interval, if: -> { new_record? && reminder? }
+  after_initialize :parse_delivery_interval, if: -> { reminder? }
   after_commit :send_email_now, on: :create
   after_create_commit ::Callbacks::Models::Communications::CreateSendEmailJob.new
 
