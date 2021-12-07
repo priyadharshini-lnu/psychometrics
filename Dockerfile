@@ -1,4 +1,4 @@
-FROM ruby:2.5.1-slim as ruby-base
+FROM ruby:2.7.4-slim as ruby-base
 
 # Default env vars (applies to containers made from this image)
 # Can be overriden at run-time with -e
