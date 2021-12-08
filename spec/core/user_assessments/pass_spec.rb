@@ -24,7 +24,7 @@ describe UserAssessments::Pass do
       user_assessment.status = 'interrupted'
       described_class.call!(user_assessment, nil)
 
-      expect(user_assessment.status).to eq('interrupted')
+      expect(user_assessment.status).to eq('in_progress')
       expect(user_assessment.users_result.selected_locale).to be_nil
     end
 
@@ -98,9 +98,9 @@ describe UserAssessments::Pass do
       user_assessment.status = 'interrupted'
       described_class.call!(user_assessment, nil)
 
-      expect(user_assessment.status).to eq('interrupted')
+      expect(user_assessment.status).to eq('in_progress')
       expect(user_assessment.users_result.selected_locale).to be_nil
-      expect(user_assessment.users_result.expiry_date).to eq(nil)
+      expect(user_assessment.users_result.expiry_date).to eq(20.second.from_now)
     end
 
     it 'status = completed' do

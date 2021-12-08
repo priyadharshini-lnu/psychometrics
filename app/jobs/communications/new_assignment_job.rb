@@ -13,6 +13,7 @@ module Communications
         select(
           'communications.id',
           'communications.campaign_id',
+          'communications.kind',
           'array_agg(distinct user_assessments.subject_id) as subject_ids'
         ).
         group('communications.id').

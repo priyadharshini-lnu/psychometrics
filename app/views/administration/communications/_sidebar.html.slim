@@ -1,10 +1,10 @@
 ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
   li.xn-title.title = t('.title')
-  - if policy(resource).show?
+  - if policy(resource, { project_id: resource.project_id }).show?
     li = link_to t('.view'), administration_communication_path(resource)
-  - if policy(resource, { porject_id: resource.project_id }).download_history?
+  - if policy(resource, { project_id: resource.project_id }).download_history?
     li = link_to t('.download'), [:download_history, :administration, resource]
-  - if policy(resource, { porject_id: resource.project_id }).copy?
+  - if policy(resource, { project_id: resource.project_id }).copy?
     li = link_to t('.copy'), [:copy, :administration, resource], remote: true
-  - if policy(resource, { porject_id: resource.project_id }).destroy?
+  - if policy(resource, { project_id: resource.project_id }).destroy?
     li = link_to(t('.destroy'), { action: :destroy, id: resource }, remote: true, method: :delete, data: { confirm: resource.decorate.delete_confirmation })

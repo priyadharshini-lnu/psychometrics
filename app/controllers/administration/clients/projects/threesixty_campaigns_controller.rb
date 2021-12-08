@@ -155,7 +155,8 @@ module Administration
             Administration::Threesixty::CampaignPolicy,
             current_user,
             nil,
-            %w[edit_assessment]
+            %w[edit_assessment],
+            project_id: project.id
           ).transform_keys! { |k| k.camelcase(:lower) }
         end
 
@@ -168,9 +169,7 @@ module Administration
               edit_subject_report
               manage_reports_options
             ],
-            {
-              project_id: project.id
-            }
+            project_id: project.id
           )
           permissions.transform_keys! { |k| k.camelcase(:lower) }
         end
