@@ -14,14 +14,14 @@ class Page extends Component {
     const { model } = this.props
     if (!module.type) { return }
     const View = Modules[module.type]
-    return <View key={i} module={module} page={model} preview animation />
+    return <View key={i} module={module} page={model} preview />
   }
 
   renderShadowModule = (module, i) => {
     const { model } = this.props
     if (module.onPage(model)) { return }
     const View = Modules[module.type]
-    return <View key={i} module={module} page={model} preview animation />
+    return <View key={i} module={module} page={model} preview />
   }
 
   render () {
