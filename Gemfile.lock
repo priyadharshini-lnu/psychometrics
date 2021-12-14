@@ -21,13 +21,14 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/webhook_system.git
-  revision: c40a9f37a119cb4329ea444121908b30779c5bb7
+  revision: b57d68db73cdb0cf71adae42d78b73328170f115
   branch: master
   specs:
     webhook_system (2.2.0)
       activejob
       activerecord (> 3.2)
       activesupport (> 3.2)
+      attr_encrypted (~> 3.1.0)
       faraday (~> 1.3)
       faraday-encoding (>= 0.0.2, < 1.0)
       ph_model
@@ -68,7 +69,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active_attr (0.15.2)
+    active_attr (0.15.3)
       actionpack (>= 3.0.2, < 7.0)
       activemodel (>= 3.0.2, < 7.0)
       activesupport (>= 3.0.2, < 7.0)

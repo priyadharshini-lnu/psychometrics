@@ -41,6 +41,8 @@ module Administration
         @_resource.privacy_consent = false if @_resource.privacy_consent.nil?
         @_resource.privacy_link.present? || @_resource.build_privacy_link
         @_resource.webhook = @_resource.webhook_subscription&.url
+        @_resource.webhook_auth_enabled = @_resource.webhook_subscription&.auth_enabled
+        @_resource.webhook_username = @_resource.webhook_subscription&.username
       end
 
       def export
@@ -55,11 +57,17 @@ module Administration
 
       def update
         resource.modifier = current_user
-        resource.assign_attributes(resource_params)
+        resource.assign_attributes(project_params)
         resource.operator = current_user
         respond_to do |format|
           if resource.save
-            WebhookSubscriptions::Save.call!(resource, resource_params[:webhook])
+            WebhookSubscriptions::Save.call!(
+              resource,
+              resource_params[:webhook],
+              resource_params[:webhook_auth_enabled],
+              resource_params[:webhook_username],
+              resource_params[:webhook_password]
+            )
             format.js
           else
             format.js { render :edit }
@@ -68,14 +76,20 @@ module Administration
       end
 
       def create
-        @_resource ||= resource_class.new(resource_params)
+        @_resource ||= resource_class.new(project_params)
         resource.parent = client
         resource.creator = current_user
         resource.modifier = current_user
         resource.operator = current_user
         respond_to do |format|
           if resource.save
-            WebhookSubscriptions::Save.call!(resource, resource_params[:webhook])
+            WebhookSubscriptions::Save.call!(
+              resource,
+              resource_params[:webhook],
+              resource_params[:webhook_auth_enabled],
+              resource_params[:webhook_username],
+              resource_params[:webhook_password]
+            )
             format.js
           else
             format.js { render :new }
@@ -111,9 +125,14 @@ module Administration
                  :remove_background, :remove_logo, :applicable_level, :number,
                  :privacy_consent, :two_factor_enabled, :strong_password_enabled,
                  :login_box_position, :secondary_logo, :remove_secondary_logo,
-                 :webhook, :enable_live_chat, :live_chat_token, locales: [],
-                  privacy_link_attributes: %i[id text link _destroy]).
+                 :enable_live_chat, :live_chat_token,
+                 :webhook, :webhook_auth_enabled, :webhook_username, :webhook_password,
+                 locales: [], privacy_link_attributes: %i[id text link _destroy]).
           reverse_merge({ locales: [] })
+      end
+
+      def project_params
+        resource_params.except(:webhook, :webhook_auth_enabled, :webhook_username, :webhook_password)
       end
 
       def set_privacy_link_enabled
