@@ -207,7 +207,7 @@ GEM
       rails (>= 5.0)
     browser (4.0.0)
     builder (3.2.4)
-    bullet (6.1.4)
+    bullet (6.1.5)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (11.1.3)
