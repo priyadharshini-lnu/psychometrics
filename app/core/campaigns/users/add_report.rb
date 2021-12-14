@@ -53,7 +53,9 @@ module Campaigns
           norm_id: norm_assessment[:norm_id],
           evaluator: user,
           relationship: Relationship.self_relationship,
-          status: existing_result&.status || :not_started
+          status: existing_result&.status || :not_started,
+          completed_at: existing_result&.completed_at,
+          completion_reason: existing_result&.completion_reason
         )
 
         if assessment.saville?
