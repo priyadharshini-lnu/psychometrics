@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 ruby '2.7.4'
-gem 'bundler',                    '>= 1.8.4'
+gem 'bundler',                    '~> 2.2.31'
 gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
@@ -198,8 +198,6 @@ end
 
 group :development do
   gem 'bullet', '~> 6.1.0'
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'debugger2'
   gem 'listen', '~> 3.5.1'
   gem 'web-console', '~> 3.3.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

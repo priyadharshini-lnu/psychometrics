@@ -47,7 +47,7 @@ export const InputField: FC<InputFieldProps> = ({
     return (
       <InputNumber
         className="w-100"
-        value={fieldItemProps.value as number}
+        value={fieldItemProps.value}
         onChange={fieldItemProps.onChange}
       />
     )
@@ -65,7 +65,7 @@ export const InputField: FC<InputFieldProps> = ({
   if (type === 'HTML') {
     return (
       <HTMLEditor
-        content={fieldItemProps.value as string}
+        content={fieldItemProps.value}
         handleContentChange={fieldItemProps.onChange}
       />
     )
