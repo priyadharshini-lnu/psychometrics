@@ -164,9 +164,12 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin, :client_admin, :project_admin)
-        return scope.where(id: @user.campaign_admin_campaign_ids) if @user.is?(:campaign_admin)
 
-        scope
+        permitted_campaign_ids = @user.campaign_admin_campaigns.select do |campaign|
+          @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
+        end.pluck(:id)
+
+        scope.where(id: permitted_campaign_ids)
       end
     end
   end
