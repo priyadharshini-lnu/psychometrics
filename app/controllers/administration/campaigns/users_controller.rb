@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class UsersController < Administration::Projects::BaseController
+    class UsersController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password extend_time]
       skip_before_action :pundit_authorize, only: %i[spoof]
 
@@ -171,7 +171,7 @@ module Administration
       end
 
       def set_resource
-        @_resource = policy_scope(resource_class, policy_scope_class: Campaigns::UserPolicy::Scope).find(params[:id])
+        @_resource = campaign.users.find(params[:id])
       end
 
       def campaign_user

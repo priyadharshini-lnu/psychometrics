@@ -163,13 +163,24 @@ module Administration
 
     class Scope < Scope
       def resolve
-        return scope if @user.is?(:superadmin, :client_admin, :project_admin)
+        return scope if @user.is?(:superadmin)
+
+        permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
+          @user.has_permission?(:campaigns, :view, project_id: project_id)
+        end
+
+        permitted_project_admin_project_ids = @user.project_admin_client_ids.select do |project_id|
+          @user.has_permission?(:campaigns, :view, project_id: project_id)
+        end
 
         permitted_campaign_ids = @user.campaign_admin_campaigns.select do |campaign|
           @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
         end.pluck(:id)
 
-        scope.where(id: permitted_campaign_ids)
+        scope.where(
+          'id IN (?) OR project_id IN (?)',
+          permitted_campaign_ids, (permitted_client_admin_project_ids + permitted_project_admin_project_ids)
+        )
       end
     end
   end

@@ -90,16 +90,6 @@ module Administration
           :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
         )
       end
-
-      class Scope < Administration::BasePolicy::Scope
-        def resolve
-          return scope if @user.is?(:superadmin)
-
-          project_ids = @user.is?(:client_admin) ? @user.client_admin_project_ids : @user.project_admin_client_ids
-          campaign_ids = Campaign.where(project: project_ids).pluck(:id)
-          scope.enabled.joins(:campaign_users).where(campaign_users: { campaign_id: campaign_ids })
-        end
-      end
     end
   end
 end
