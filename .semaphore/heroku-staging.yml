@@ -58,7 +58,7 @@ blocks:
           - cp config/database.yml.sample config/database.yml
           - cp config/application.yml.sample  config/application.yml
           - node --version
-          - gem install bundler -v '2.1.4'
+          - gem install bundler -v '2.2.31'
           - bundle install -j $(nproc) --retry 3  --without development --path vendor/bundle
           - cache store bundle-prod-gems-$(checksum Gemfile.lock) vendor/bundle
           - yarn install --pure-lockfile
