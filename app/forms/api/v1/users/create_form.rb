@@ -17,7 +17,7 @@ module Api
           user = ::Users::Regular.find_by(email: email, project_id: context.project.id)
           return unless user
 
-          raise Errors::Api::EmailExistsError.new(
+          raise Api::Errors::EmailExists.new(
             "Email address #{email} is already taken",
             existing_user: user.as_json(only: %w[id first_name last_name email created_at])
           )
