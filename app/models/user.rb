@@ -88,6 +88,7 @@ class User < ApplicationRecord
     campaign: %w[view show manage manage_users manage_options manage_messages manage_admins],
     assessors: %w[view manage],
     registration_codes: %w[view manage],
+    sms_invites: %w[view manage],
     datasheet: %w[view manage]
   }.with_indifferent_access.freeze
 

@@ -72,6 +72,7 @@ en:
           permission_regcode: Registration codes
           permission_report: Reports
           permission_results: Results
+          permission_sms_invites: SMS Invites
           permissions: Permissions
           save: Save
           search_placeholder: Enter email to edit an existing admin or add a new one

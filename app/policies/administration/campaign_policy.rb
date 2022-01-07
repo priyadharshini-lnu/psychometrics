@@ -161,6 +161,12 @@ module Administration
       )
     end
 
+    def view_sms_invites?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :sms_invites, :view, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)

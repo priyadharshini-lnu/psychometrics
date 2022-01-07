@@ -115,6 +115,7 @@ module Administration
           resource || resource_class,
           nil,
           project_id: project.id,
+          campaign_id: campaign.id,
           policy_class: Administration::Campaigns::SmsInvitePolicy
         )
       end
@@ -126,7 +127,8 @@ module Administration
           nil,
           %w[import export send_sms create update destroy],
           {
-            project_id: campaign.project_id
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
           }
         )
       end

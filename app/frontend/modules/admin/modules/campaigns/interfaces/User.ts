@@ -17,6 +17,7 @@ export default interface User {
     manageCampaignAdmins: boolean
     manageCampaigns: boolean
     viewRegistrationCodes: boolean
+    viewSmsInvites: boolean
     viewDatasheets: boolean
   }
 }

@@ -14,7 +14,8 @@ module Administration
         results: [],
         assessors: [],
         registration_codes: [],
-        datasheets: []
+        datasheets: [],
+        sms_invites: []
       ]].freeze
 
       def index?

@@ -22,7 +22,8 @@ module Administration
             'manage_campaigns',
             'view_registration_codes',
             'view_datasheets',
-            'manage_project_smtp_settings'
+            'manage_project_smtp_settings',
+            'view_sms_invites'
           ],
           {
             project_id: instance_options[:project_id],
