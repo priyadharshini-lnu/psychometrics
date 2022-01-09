@@ -55,13 +55,21 @@ module EndUser
     end
 
     def set_user_assessment_and_result
-      @user_assessment = UserAssessment.find_by(
+      @user_assessment = find_user_assessment
+      if @user_assessment.nil?
+        Users::CreateAnonymCampaignUser.call!(@campaign_assessment, @current_user)
+        @user_assessment = find_user_assessment
+      end
+      @user_result = @user_assessment.users_result
+    end
+
+    def find_user_assessment
+      UserAssessment.find_by(
         campaign_id: @campaign_assessment.campaign_id,
         assessment_id: @campaign_assessment.assessment_id,
         subject: @current_user,
         evaluator: @current_user
       )
-      @user_result = @user_assessment.users_result
     end
 
     def render_assessment_and_result
