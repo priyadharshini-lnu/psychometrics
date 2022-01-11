@@ -6,10 +6,8 @@ import {
 } from 'antd'
 import {
   MenuOutlined,
-  QuestionCircleOutlined,
   UserOutlined,
 } from '@ant-design/icons'
-import cs from 'classnames'
 import { SafeHTML } from 'components/SafeHTML'
 
 import { RootState } from 'modules/user/core/rootReducers'
@@ -151,23 +149,13 @@ const Navigation: FC<PropsFromRedux> = ({
             triggerSubMenuAction="click"
             selectedKeys={activeMenuKey}
             onClick={({ key }) => changeActiveMenuKey([`${key}`])}
-            className="ta-e"
+            className="justify-end"
           >
             <LocaleSwitcherSubmenu
               isLocaleLoading={isLocaleLoading}
               isLocaleSwitcherHidden={isLocaleSwitcherHidden}
               handleLocaleChange={handleLocaleChange}
             />
-
-            <Menu.Item
-              key="help"
-              onClick={() => toggleModalVisibility(ModalKeys.HELP, ModalVisibiltyStates.OPEN)
-              }
-              title={I18n.t('navigation.help')}
-              className={cs(styles.menuItemIcons, 'hidden')}
-            >
-              <QuestionCircleOutlined />
-            </Menu.Item>
 
             <ProfileSubmenu
               isAnonym={isAnonym}
