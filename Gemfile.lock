@@ -897,7 +897,7 @@ GEM
     websocket-extensions (0.1.5)
     wisper (2.0.0)
     wisper-rspec (1.1.0)
-    with_model (2.1.5)
+    with_model (2.1.6)
       activerecord (>= 5.2)
     xml-simple (1.1.8)
     xpath (3.2.0)
