@@ -68,6 +68,13 @@ const Navigation: FC<PropsFromRedux> = ({
   const { pathname } = useLocation()
   const [isLocaleLoading, toggleLocaleLoadingTo] = useState(false)
 
+  const currentLocale: string = I18n.currentLocale()
+  const locales: string[] = I18n.availableLocales
+
+  const localesWithoutCurrentLocale = locales.filter(
+    locale => locale !== currentLocale,
+  )
+
   const PAGES_TO_HIDE_LOCALE_SWITCHER = [
     '/pass', '/anonym', '/evaluations', '/agile_user_assessments', '/user_assessments',
   ]
@@ -151,11 +158,12 @@ const Navigation: FC<PropsFromRedux> = ({
             onClick={({ key }) => changeActiveMenuKey([`${key}`])}
             className="justify-end"
           >
-            <LocaleSwitcherSubmenu
-              isLocaleLoading={isLocaleLoading}
-              isLocaleSwitcherHidden={isLocaleSwitcherHidden}
-              handleLocaleChange={handleLocaleChange}
-            />
+            {(isLocaleSwitcherHidden || localesWithoutCurrentLocale.length === 0) ? null : (
+              <LocaleSwitcherSubmenu
+                isLocaleLoading={isLocaleLoading}
+                handleLocaleChange={handleLocaleChange}
+              />
+            )}
 
             <ProfileSubmenu
               isAnonym={isAnonym}
