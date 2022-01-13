@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class SmsRecordsController < Administration::Projects::BaseController
+    class SmsRecordsController < Administration::Campaigns::BaseController
       def create
         form = SmsRecords::Form.from_params(resource_params)
 
@@ -30,6 +30,7 @@ module Administration
           resource || resource_class,
           nil,
           project_id: project.id,
+          campaign_id: campaign.id,
           policy_class: Administration::Campaigns::SmsInvitePolicy
         )
       end
