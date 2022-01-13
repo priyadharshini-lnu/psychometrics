@@ -2504,6 +2504,7 @@ en:
         invalid_assign: Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty
         invalid_format: There is no Email column
         norm:
+          dimension_not_found: Dimension %{dimension_name} for %{client_name} was not found
           factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"
           factors_mismatch: "[#%{coords}] dimension %{dimension} does not have factor %{factor}"
           not_set_dimension: The name of the Dimension should be written in A-1
