@@ -140,7 +140,7 @@ class Report < ApplicationRecord
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
 
-  def empty?
+  def modules_empty?
     !modules.exists?
   end
 

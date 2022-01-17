@@ -108,6 +108,21 @@ describe 'Reports' do
       parameter name: :campaign_id, in: :query, type: :string, required: false,
       description: 'if is not filled, the system takes the last campaign id'
 
+      before do
+        create(:factor, dimension: dimension)
+        create(:factor, dimension: dimension)
+
+        config = {
+          sections: [{
+            data: [
+              { type: 'normed_factor', factorId: dimension.factors.first.id, assessmentId: assessment.id },
+              { type: 'normed_factor', factorId: dimension.factors.last.id, assessmentId: assessment.id }
+            ]
+          }]
+        }
+        report.update(owner: project, data_configuration: config)
+      end
+
       response '200', 'Success' do
         schema '$ref' => '#/definitions/ReportResults'
         examples 'application/json' => {

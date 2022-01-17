@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
   Menu, Dropdown, List, Collapse, Progress, Modal, Tooltip,
 } from 'antd'
@@ -99,8 +98,8 @@ function EvaluationList ({
             : <CheckCircleFilled className="status-icon" />}
           {' '}
 
-          <Link
-            to={getPath(item)}
+          <a
+            href={getPath(item)}
             style={{ display: 'flex', flex: 1, alignItems: 'center' }}
             disabled={canNotEvaluate(item)}
             onClick={e => handleAssessmentLinkClick(e, item)}
@@ -108,7 +107,7 @@ function EvaluationList ({
             <Tooltip placement="topLeft" title={email}>
               <div className={styles.flex}>{userPresenter.selfUserName(item, subject)}</div>
             </Tooltip>
-          </Link>
+          </a>
 
           {options.global.disableAllEvaluations && (
             <Tooltip placement="top" title={I18n.t('threesixty.evaluation_all_closed_message')}>

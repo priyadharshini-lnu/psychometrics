@@ -8,7 +8,7 @@ module Api
         if user
           render json: user, serializer: Api::V1::UserSerializer
         else
-          raise Errors::Api::ResourceNotFoundError, "User with email=#{params[:email]} was not found"
+          raise Api::Errors::ResourceNotFound, "User with email=#{params[:email]} was not found"
         end
       end
 
@@ -27,7 +27,7 @@ module Api
               active: campaign_attrs[:active]
             )
             response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
-              on(:error) { |error| raise Errors::Api::NotEnoughLicencesError, error }
+              on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
             end
             response[:ok]
           end.sample
@@ -56,7 +56,7 @@ module Api
                with_context(campaign_user: campaign_user, campaign: campaign)
         if form.valid?
           ::Campaigns::UserReports::Add.call(form, campaign_user) do
-            on(:error) { |error| raise Errors::Api::NotEnoughLicencesError, error }
+            on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
           render json: campaign_user, serializer: Api::V1::UserAssessmentsAndReportsSerializer
         else
@@ -72,7 +72,7 @@ module Api
         @campaign ||=
           begin
             c = Campaign.find_by(project_id: project.id, id: params[:campaign_id])
-            raise Errors::Api::ResourceNotFoundError, "Campaign with id=#{params[:campaign_id]} was not found" unless c
+            raise Api::Errors::ResourceNotFound, "Campaign with id=#{params[:campaign_id]} was not found" unless c
 
             c
           end
@@ -83,7 +83,7 @@ module Api
           begin
             cu = CampaignUser.find_by(user: user, campaign: campaign)
             unless cu
-              raise Errors::Api::ResourceNotFoundError,
+              raise Api::Errors::ResourceNotFound,
                     "User #{user&.id} does not belong to the campaign with id=#{campaign.id}"
             end
 
