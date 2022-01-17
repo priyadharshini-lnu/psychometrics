@@ -15,14 +15,14 @@ module Forms
                  :user_ids, :stop_reminder_datetime
 
       property :assessment_id
-      property :owner_id, type: Types::Params::Integer.optional
-      property :client_id, type: Types::Params::Integer.optional
-      property :project_id, type: Types::Params::Integer.optional
-      property :campaign_id, type: Types::Params::Integer.optional
-      property :sub_campaign_id, type: Types::Params::Integer.optional
-      property :end_level_id, type: Types::Params::Integer.optional
+      property :owner_id, type: Types::Params::Integer | Types::Params::Nil
+      property :client_id, type: Types::Params::Integer | Types::Params::Nil
+      property :project_id, type: Types::Params::Integer | Types::Params::Nil
+      property :campaign_id, type: Types::Params::Integer | Types::Params::Nil
+      property :sub_campaign_id, type: Types::Params::Integer | Types::Params::Nil
+      property :end_level_id, type: Types::Params::Integer | Types::Params::Nil
       property :reminder_type, default: 'custom'
-      property :stop_reminder, type: Types::Params::Bool.optional
+      property :stop_reminder, type: Types::Params::Bool | Types::Params::Nil
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
