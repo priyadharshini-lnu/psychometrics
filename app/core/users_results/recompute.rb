@@ -13,14 +13,9 @@ module UsersResults
     end
 
     def call
-      if user_assessment.saville?
-        if norm_id
-          user_assessment.saville_user_assessment.update!(norm_id: norm_id)
-          user_assessment.update!(fixed_norm: fixed_norm)
-        end
-        Saville::AssessmentOrderRequest.call!(user_assessment) unless user_assessment.not_started?
-        return broadcast :ok, user_result
-      end
+      return broadcast :ok, set_pearson_norm if user_assessment.pearson?
+      return broadcast :ok, recompute_saville_assessment if user_assessment.saville?
+      return broadcast :ok, recompute_pearson_assessment if user_assessment.pearson?
 
       user_assessment.update!(norm_id: norm_id, fixed_norm: fixed_norm) if norm_id
       return broadcast :ok, user_result unless user_assessment.completed?
@@ -35,6 +30,25 @@ module UsersResults
     end
 
     private
+
+    def recompute_saville_assessment
+      if norm_id
+        user_assessment.saville_user_assessment.update!(norm_id: norm_id)
+        user_assessment.update!(fixed_norm: fixed_norm)
+      end
+      Saville::AssessmentOrderRequest.call!(user_assessment) unless user_assessment.not_started?
+    end
+
+    def recompute_pearson_assessment
+      Pearson::SaveScoresAndReports.call!(user_assessment)
+    end
+
+    def set_pearson_norm
+      if norm_id && user_assessment.not_started?
+        user_assessment.pearson_user_assessment.update!(norm_id: norm_id)
+        user_assessment.update!(fixed_norm: fixed_norm)
+      end
+    end
 
     def compute_common_assessment_scoring
       user_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(user_result)

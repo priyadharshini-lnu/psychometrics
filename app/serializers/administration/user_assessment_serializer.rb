@@ -3,7 +3,7 @@
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
-               :additional_time, :is_expired, :is_external, :is_saville
+               :additional_time, :is_expired, :is_external, :has_external_norm
 
     delegate :name, :category, to: :assessment
 
@@ -14,7 +14,7 @@ module Administration
     end
 
     def norms
-      return assessment.saville_norms if assessment.saville?
+      return assessment.external_norms if assessment.has_external_norm?
 
       assessment.norms.map { |n| NormSerializer.new(n).to_h }
     end
@@ -31,8 +31,8 @@ module Administration
       user_result&.expired?
     end
 
-    def is_saville # rubocop:disable Naming/PredicateName
-      assessment.saville?
+    def has_external_norm # rubocop:disable Naming/PredicateName
+      assessment.has_external_norm?
     end
 
     def is_external # rubocop:disable Naming/PredicateName

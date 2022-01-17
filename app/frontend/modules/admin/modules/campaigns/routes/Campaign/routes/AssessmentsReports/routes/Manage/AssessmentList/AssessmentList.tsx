@@ -65,9 +65,9 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
             render={({
-              normName, id, isExternal, isSaville,
+              normName, id, isExternal, hasExternalNorm,
             }) => {
-              if (isExternal && !isSaville) {
+              if (isExternal && !hasExternalNorm) {
                 return I18n.t('common.text.na')
               }
               return (

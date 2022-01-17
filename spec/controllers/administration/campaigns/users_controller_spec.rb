@@ -144,8 +144,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'additional_time' => nil,
       'is_expired' => false,
       'is_external' => false,
-      'is_saville' => false,
-      'status' => 'not_started'
+      'status' => 'not_started',
+      'has_external_norm' => false
     })
   end
 end

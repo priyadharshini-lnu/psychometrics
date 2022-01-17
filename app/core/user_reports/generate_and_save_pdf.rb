@@ -26,6 +26,7 @@ module UserReports
         generate_mindminl_report(user_report) if report.mindmill?
         generate_hogan_report(user_report) if report.hogan?
         generate_saville_report(user_report) if report.provider_saville?
+        generate_pearson_report(user_report) if report.provider_pearson?
         generate_internal_report(user_report) if report.provider_internal?
         job_record&.increment_completed_tasks! unless async_report_generation?(report)
       end
@@ -59,6 +60,12 @@ module UserReports
     def generate_saville_report(user_report)
       user_report.user_results.includes(:user_assessment).each do |ur|
         Saville::AssessmentOrderRequest.call!(ur.user_assessment)
+      end
+    end
+
+    def generate_pearson_report(user_report)
+      user_report.user_results.includes(:user_assessment).each do |ur|
+        Pearson::SaveScoresAndReports.call!(ur.user_assessment)
       end
     end
 

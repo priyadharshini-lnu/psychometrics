@@ -1,5 +1,5 @@
 function AssessmentsForm () {
-  var integrations = ['mindmill', 'hogan', 'saville']
+  var integrations = ['mindmill', 'hogan', 'saville', 'pearson']
   this.init = function() {
     this.startListening()
     $(document).on('change', '#assessments_form #resource_type', this.onResourceTypeChange);
@@ -16,6 +16,7 @@ function AssessmentsForm () {
 
   this.fireResourceType = function() {
     $('#assessments_form #resource_type').change();
+    $('#assessments_form #pearson_assessment_id').change()
   }
 
   this.onResourceTypeChange = function(event) {

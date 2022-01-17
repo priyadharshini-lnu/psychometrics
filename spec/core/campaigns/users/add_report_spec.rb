@@ -25,6 +25,16 @@ describe Campaigns::Users::AddReport do
     expect(saville_user_assessment.norm_id).to eq(assessment.saville_norm_id)
   end
 
+  it 'create pearson_user_assessment if assessment is of type pearson' do
+    assessment = create(:assessment, :pearson)
+    report = create(:report, assessments: [assessment])
+    described_class.call!(campaign_user, report, assessments: report.assessments)
+    pearson_user_assessment = assessment.pearson_user_assessments.first
+
+    expect(pearson_user_assessment).to_not eq(nil)
+    expect(pearson_user_assessment.norm_id).to eq(assessment.pearson_norm_id)
+  end
+
   it "doesn't adds UserReport if it is already added" do
     create(:user_report, report: report, campaign: campaign_user.campaign, user: campaign_user.user)
     expect { described_class.call!(campaign_user, report, assessments: report.assessments) }.

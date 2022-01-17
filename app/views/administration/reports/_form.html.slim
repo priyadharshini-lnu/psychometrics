@@ -34,6 +34,12 @@
                              input_html: {disabled: true},
                              include_blank: false
 
+        = f.input :provider, as: :select,
+                      collection: [[t('.none_external'), 'internal'], [t('.load_from_pearson'), 'pearson']],
+                      wrapper_html: { class: 'resource_pearson hidden' },
+                      input_html: { disabled: true },
+                      include_blank: false
+
         = f.simple_fields_for :hogan_report_setting do |hogan|
           = hogan.input :hogan_report_id,
                         as: :select,

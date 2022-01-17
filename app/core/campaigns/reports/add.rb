@@ -33,7 +33,7 @@ module Campaigns
         get_assessments_for(report).each do |assessment|
           assessment_params = form.assessment_map[assessment.id] || {}
           attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
-          attrs[:saville_norm_id] = assessment.saville_norm_id if assessment.saville?
+          attrs[:external_norm_id] = assessment.external_norm_id if assessment.has_external_norm?
           campaign.campaign_assessments.create_with(attrs).find_or_create_by!(assessment: assessment)
         end
 

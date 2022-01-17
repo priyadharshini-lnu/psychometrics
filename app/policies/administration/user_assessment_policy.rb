@@ -11,9 +11,9 @@ module Administration
     end
 
     def update_norm?
-      @user.is?(:superadmin) || @user.has_permission?(
+      (@user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      )) && (!record.assessment.pearson? || record.not_started?)
     end
 
     def update_additional_time?
@@ -31,7 +31,7 @@ module Administration
     end
 
     def reset?
-      !record&.assessment&.mindmill? && !record&.assessment&.hogan? && (
+      !record&.assessment&.mindmill? && !record&.assessment&.hogan? && !record&.assessment&.pearson? && (
         @user.is?(:superadmin) || @user.has_permission?(
           :results, :reset_responses, project_id: project_id, campaign_id: campaign_id
         )

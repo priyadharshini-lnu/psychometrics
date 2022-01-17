@@ -36,6 +36,9 @@ class Client < ApplicationRecord
   include RansackSearchableFields
   attr_writer :license_msg
   attribute :webhook, :string
+  attribute :webhook_auth_enabled, :boolean
+  attribute :webhook_username, :string
+  attribute :webhook_password, :string
 
   HIERARCHY_LEVEL = {
     project: 1,

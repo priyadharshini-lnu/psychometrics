@@ -157,6 +157,7 @@ en:
           hogan: Hogan
           mindmill: Mindmill
           organisational: Org Surveys
+          pearson: Pearson
           psychometric: Psychometrics
           saville: Saville
           threesixty: Threesixty
@@ -176,6 +177,7 @@ en:
             hogan: Hogan
             mindmill: Mindmill
             organisational: Org Surveys
+            pearson: Pearson
             psychometric: Psychometrics
             saville: Saville
             threesixty: Threesixty
@@ -653,6 +655,7 @@ en:
             hogan: Hogan
             mindmill: Mindmill
             organisational: Org Surveys
+            pearson: Pearson
             psychometric: Psychometrics
             saville: Saville
             threesixty: Threesixty
@@ -672,6 +675,7 @@ en:
               hogan: Hogan
               mindmill: Mindmill
               organisational: Org Surveys
+              pearson: Pearson
               psychometric: Psychometrics
               saville: Saville
               threesixty: Threesixty
@@ -1414,6 +1418,9 @@ en:
           privacy_text: Privacy text
           project_number: Project Number
           webhook: Webhook
+          webhook_auth_enabled: Enable Webhook Authentication
+          webhook_password: Password
+          webhook_username: Username
         header:
           actions: Actions
         index:
@@ -3123,6 +3130,7 @@ en:
       edit:
         header: Edit Report Name
       form:
+        load_from_pearson: Load from Pearson
         load_mindmill_report: Load from Mindmill
         none_external: None - Use report builder
         select_family: Select Report Bundle

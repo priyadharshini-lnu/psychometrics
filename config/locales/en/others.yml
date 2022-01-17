@@ -237,6 +237,7 @@ en:
           hogan: Hogan
           mindmill: Mindmill
           organisational: Surveys
+          pearson: Pearson
           psychometric: Assessment
           saville: Saville
         category: Category
@@ -251,6 +252,7 @@ en:
           common: TTE Assessment
           hogan: Hogan
           mindmill: Mindmill Assessment
+          pearson: Pearson Assessment
           saville: Saville Assessment
         updated_at: Modified Date
       assign:
@@ -489,6 +491,7 @@ en:
           member: User
           mindmill: Mindmill
           organisational: Organisational
+          pearson: Pearson
           project_admin: Project Admin
           psychometric: Psychometric
           regular: Regular

@@ -142,6 +142,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: project_id)
     end
 
+    def pearson_norms?
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: project_id)
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super

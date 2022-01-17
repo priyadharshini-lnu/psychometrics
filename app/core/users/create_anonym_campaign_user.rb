@@ -37,7 +37,8 @@ module Users
       users_result = UsersResult.create(
         last_activity_at: DateTime.current,
         expiry_date: assessment.extra['timer']&.second&.from_now,
-        answers: {}
+        answers: {},
+        started_at: Time.now
       )
       UserAssessment.create(
         assessment: assessment,
