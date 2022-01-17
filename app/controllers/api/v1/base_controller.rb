@@ -6,13 +6,13 @@ module Api
       before_action :auth
       skip_before_action :verify_authenticity_token
 
-      rescue_from Errors::ApiError, with: :render_error
+      rescue_from Api::Errors::ApiError, with: :render_error
 
       def auth
         @api_key      = fetch_api_key
         @current_user = api_key&.user
-        raise Errors::Api::AuthError unless api_key
-        raise Errors::Api::AuthError, 'API User is disabled' if @current_user&.disabled
+        raise Api::Errors::InvalidAuthentication unless api_key
+        raise Api::Errors::InvalidAuthentication, 'API User is disabled' if @current_user&.disabled
       end
 
       attr_reader :current_user, :api_key
@@ -22,7 +22,7 @@ module Api
           begin
             user_id = params[:user_id] || params[:id]
             u       = ::Users::Regular.find_by(project_id: params[:project_id], id: user_id)
-            raise Errors::Api::ResourceNotFoundError, "User with id=#{user_id} was not found" unless u
+            raise Api::Errors::ResourceNotFound, "User with id=#{user_id} was not found" unless u
 
             u
           end
@@ -43,7 +43,7 @@ module Api
                   has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id] || params[:id])
               end
 
-            raise Errors::Api::ResourceNotFoundError, "Project with id=#{params[:project_id]} was not found" unless p
+            raise Api::Errors::ResourceNotFound, "Project with id=#{params[:project_id]} was not found" unless p
 
             p
           end
@@ -54,7 +54,7 @@ module Api
       end
 
       def render_validation_errors(form)
-        raise Errors::Api::ValidationError, form.errors.full_messages.first
+        raise Api::Errors::ValidationFailed, form.errors.full_messages.first
       end
 
       def render_error(e)
