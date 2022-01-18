@@ -198,7 +198,7 @@ end
 
 group :development do
   gem 'bullet', '~> 7.0.1'
-  gem 'listen', '~> 3.5.1'
+  gem 'listen', '~> 3.7.1'
   gem 'web-console', '~> 3.3.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.7.2'
