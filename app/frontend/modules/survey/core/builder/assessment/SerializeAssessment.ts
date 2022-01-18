@@ -57,6 +57,7 @@ const AssessmentSerializer = (data: any): AssessmentInterface => ({
   name: data.name,
   flow: data.flow,
   norm_rules: data.norm_rules,
+  default_norm_id: data.default_norm_id,
   enable_back: data.enable_back,
   enable_progress: data.enable_progress,
   extra: data.extra,
