@@ -1,8 +1,21 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/devise_failure_app'
+require_relative '../../lib/saml/get_idp_settings'
+require_relative '../../lib/saml/resource_locator'
+require_relative '../../lib/saml/failed_callback_handler'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+# rubocop:disable Metrics/BlockLength
 Devise.setup do |config|
+  config.saml_default_user_key = :email
+  config.idp_settings_adapter = Saml::GetIdpSettings
+  config.saml_resource_locator = Saml::ResourceLocator
+  config.saml_failed_callback = Saml::FailedCallbackHandler
+  config.saml_use_subject = true
+  config.saml_route_helper_prefix = 'saml'
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -295,7 +308,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -306,10 +319,9 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
-  # end
+  config.warden do |manager|
+    manager.failure_app = DeviseFailureApp
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
@@ -337,3 +349,4 @@ Devise.setup do |config|
   config.second_factor_resource_id = 'id' # Field or method name used to set value for 2FA remember cookie
   config.delete_cookie_on_logout = false # Delete cookie when user signs out, to force 2FA again on login
 end
+# rubocop:enable Metrics/BlockLength

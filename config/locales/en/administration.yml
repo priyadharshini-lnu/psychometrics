@@ -3215,6 +3215,24 @@ en:
         yti: YTI
       update:
         successfully: Report %{name} was successfully updated.
+    saml_settings:
+      after_signout_url: After Signout Url
+      cert: Certificate
+      cert_fingerprint: Certificate Fingerprint
+      cert_fingerprint_algorithm: Cert Fingerprint Algorithm
+      config_details:
+        acs_url: Assertion Consumer Service URL
+        copied: Copied %{element}
+        issuer: Entity Id/Issuer
+        title: Configure Idp with following info
+      enabled: Enabled
+      enforced: Enforce SAML
+      entity_id: Entity ID/Issuer
+      saml: SAML
+      saml_setting: SAML Setting
+      sso_service_url: SSO Service Url
+      successfully_saved_msg: SAML Setting saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
+      verify_and_save: Verify & Save Setting
     save: Save
     search: Search
     show: Show

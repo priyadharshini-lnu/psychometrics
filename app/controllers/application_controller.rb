@@ -38,6 +38,16 @@ class ApplicationController < ::BaseController
 
   protected
 
+  def add_cookie(name, value)
+    secure = Settings.protocol == 'https'
+    cookies[name] = {
+      value: value,
+      httponly: true,
+      secure: secure,
+      same_site: secure ? 'None' : 'Lax'
+    }
+  end
+
   def inside_examus_iframe?
     return true if session[:examus_origin]
     return false if params['examus-client-origin'].nil? || !params['examus-client-origin'].end_with?('examus.net')

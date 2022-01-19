@@ -45,6 +45,7 @@ end
 gem 'devise',                     '~> 4.7.3'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.2'
+gem 'devise_saml_authenticatable', '~> 1.7.0'
 gem 'pundit',                     '~> 2.1.0'
 gem 'two_factor_authentication',  '~> 2.2.0'
 

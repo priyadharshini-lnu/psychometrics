@@ -62,6 +62,7 @@ class Client < ApplicationRecord
 
   has_one :retail_user, class_name: 'User'
   has_one :smtp_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
   has_many :memberships # on delete cascade
   has_many :users, through: :memberships
   has_many :assigns, through: :memberships, source: :assigns
@@ -142,7 +143,7 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   after_create :set_hogan_group_name, if: :project?
   before_create -> { self.migrated = true }, if: :project?
-  after_create :create_smtp_setting
+  after_create :create_smtp_setting, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -154,6 +155,9 @@ class Client < ApplicationRecord
   mount_base64_uploader :logo, ImageUploader
   mount_base64_uploader :background, BackgroundUploader
   mount_base64_uploader :secondary_logo, ImageUploader
+
+  delegate :details, to: :saml_setting, prefix: true
+  delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
@@ -184,6 +188,10 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
+
+  def saml_setting
+    super || build_saml_setting
+  end
 
   def available_locales
     return locales if locales.any?

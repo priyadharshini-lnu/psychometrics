@@ -1,9 +1,13 @@
 import { Smtp } from './Smtp'
+import { Saml } from './Saml'
 
 export const routes = [
-  { redirect: true, from: '', to: '/smtp' },
   {
     path: '/smtp',
     component: Smtp,
+  },
+  {
+    path: '/saml',
+    component: Saml,
   },
 ]

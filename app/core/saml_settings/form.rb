@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+module SamlSettings
+  class Form < Rectify::Form
+    mimic :saml_setting
+
+    attribute :enabled, Boolean
+    attribute :enforced, Boolean
+    attribute :entity_id, String
+    attribute :sso_service_url, String
+    attribute :cert, String
+    attribute :after_signout_url, String
+
+    validates :entity_id, :sso_service_url, :cert, presence: true
+    validates :after_signout_url, http_url: { presence: false }
+    validate :certificate_invalid, if: -> { cert.present? }
+
+    def certificate_invalid
+      OpenSSL::X509::Certificate.new(cert)
+    rescue OpenSSL::X509::CertificateError
+      errors.add(:cert, :invalid_cert)
+    end
+  end
+end

@@ -93,7 +93,7 @@ class User < ApplicationRecord
   }.with_indifferent_access.freeze
 
   # Authentication
-  devise :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
+  devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :timeoutable, request_keys: { subdomain: false }
 

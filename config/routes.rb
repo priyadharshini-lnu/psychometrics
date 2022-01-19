@@ -251,6 +251,11 @@ Rails.application.routes.draw do
     resources :projects, :new_projects do
       scope module: :projects do
         resources :datasheet_rows, concerns: :datasheet_management
+        resources :saml_settings, only: %i[create update] do
+          collection do
+            post :test_saml
+          end
+        end
         resources :smtp_settings, only: %i[update] do
           collection do
             post :send_test_email

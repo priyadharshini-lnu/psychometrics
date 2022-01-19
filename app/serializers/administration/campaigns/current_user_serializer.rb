@@ -30,6 +30,9 @@ module Administration
             campaign_id: instance_options[:campaign_id]
           }
         )
+        permissions['manage_project_saml_setting'] = Administration::SamlSettingPolicy.new(
+          object, SamlSetting, project_id: instance_options[:project_id], campaign_id: instance_options[:campaign_id]
+        ).update?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
     end
