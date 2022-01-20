@@ -260,7 +260,6 @@ GEM
     coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    columnize (0.9.0)
     concurrent-ruby (1.1.9)
     config (2.2.3)
       deep_merge (~> 1.2, >= 1.2.1)
@@ -286,10 +285,6 @@ GEM
       activemodel
       activesupport
     debug_inspector (0.0.3)
-    debugger-linecache (1.2.0)
-    debugger2 (1.0.0.beta2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
     declarative (0.0.20)
     deep_cloneable (2.4.0)
       activerecord (>= 3.1.0, < 6)
@@ -952,7 +947,6 @@ DEPENDENCIES
   database_cleaner (~> 2.0.1)
   date_validator (~> 0.9.0)
   db-clone!
-  debugger2
   deep_cloneable (~> 2.4.0)
   derailed_benchmarks (~> 1.7.0)
   devise (~> 4.7.3)

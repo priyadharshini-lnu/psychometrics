@@ -22,7 +22,7 @@
 class AssessmentSerializer < ActiveModel::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
              :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,
-             :resources_content, :resources_translations, :instructions, :fixed_timed, :options
+             :resources_content, :resources_translations, :instructions, :fixed_timed, :options, :default_norm_id
 
   def blocks
     object.blocks.
