@@ -19,7 +19,7 @@ global_job_config:
     - name: NODE_OPTIONS
       value: '--max_old_space_size=8192'
     - name: BUNDLER_VERSION
-      value: 2.1.4
+      value: 2.2.31
     - name: PARALLEL_TEST_PROCESSORS
       value: '3'
     - name: WEB_CONCURRENCY
