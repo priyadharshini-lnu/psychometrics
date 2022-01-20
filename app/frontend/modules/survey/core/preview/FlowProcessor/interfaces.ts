@@ -228,6 +228,7 @@ export interface InitData {
   options: OpitionsData
   instructions: {enabled: boolean, content: string}
   fixed_timed: boolean
+  default_norm_id: number
 }
 export interface Result {
   id: number

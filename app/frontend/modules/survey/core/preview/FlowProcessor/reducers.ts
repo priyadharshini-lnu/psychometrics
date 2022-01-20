@@ -162,6 +162,7 @@ const HANDLERS = {
       started: data.type === 'preview_assessment' || !!result.started_at,
       instructions: data.instructions,
       fixedTimed: data.fixed_timed,
+      defaultNorm: data.default_norm_id,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

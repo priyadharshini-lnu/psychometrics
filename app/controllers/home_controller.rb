@@ -30,7 +30,13 @@ class HomeController < ApplicationController
   # To be used by the integrators when using SSO url in an iframe
   # as a workaround to Safari's cookie restrictions in iframe
   def identify
-    cookies.permanent[:ident_session] = 1
+    cookies[:ident_session] = {
+      value: 1,
+      httponly: true,
+      secure: true,
+      same_site: 'None',
+      expires: 6.hours
+    }
     redirect_url = params.fetch(:redirect_url) { root_path }
     redirect_to(redirect_url)
   end

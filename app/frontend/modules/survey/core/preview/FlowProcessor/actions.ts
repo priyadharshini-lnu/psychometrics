@@ -129,7 +129,13 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
   }
   const url = preview.resultsUrl || `/assigns/${preview.dbResult.id}`
   if (preview.end) {
-    const normData = NormResolver.run(preview.normRules, preview.hrisData, preview.questions, preview.results)
+    const normData = NormResolver.run(
+      preview.normRules,
+      preview.hrisData,
+      preview.questions,
+      preview.results,
+      preview.defaultNorm,
+    )
     if (preview.isThreesixty) {
       data.resource = { ...data.resource, norm_id: normData.id }
     } else {
