@@ -14,7 +14,6 @@ export enum GrantType {
   manage = 'manage',
   manage_users = 'manage_users',
   manage_options = 'manage_options',
-  manage_messages = 'manage_messages',
   view_report = 'view_report',
   report_data = 'report_data',
   raw_responses = 'raw_responses',

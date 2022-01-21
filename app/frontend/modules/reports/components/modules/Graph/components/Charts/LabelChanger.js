@@ -28,11 +28,10 @@ export const DefaultBehaviour = (model, label, question, collectionName) => {
   PromptStore.open(current, (value) => {
     collection[index] = value
     model.update()
-    this.forceUpdate()
   })
 }
 
-export const HotSpotBehaviour = (model, label, question, collectionName) => {
+export const HotSpotBehaviour = (model, label, collectionName) => {
   const val = label
   // TODO: remove this hack
   const collection = model.props[collectionName]
@@ -48,7 +47,6 @@ export const HotSpotBehaviour = (model, label, question, collectionName) => {
   PromptStore.open(current, (value) => {
     collection[index] = value
     model.update()
-    this.forceUpdate()
   })
 }
 
@@ -57,9 +55,9 @@ export const changeLabel = (model, label, collectionName = 'choicesTexts') => {
   const question = getQuestions(store.getState().report, assessmentId)[model.props.source.id]
   switch (question.type) {
     case 'HotSpot':
-      HotSpotBehaviour(label, question, collectionName)
+      HotSpotBehaviour(model, label, collectionName)
       break
     default:
-      DefaultBehaviour(label, question, collectionName)
+      DefaultBehaviour(model, label, question, collectionName)
   }
 }

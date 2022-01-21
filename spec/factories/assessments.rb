@@ -44,6 +44,13 @@ FactoryBot.define do
       dimension { nil }
       after(:create) { |assessment| create(:saville_assessment_setting, assessment: assessment) }
     end
+
+    trait :pearson do
+      category { Assessment::CATEGORIES[:pearson] }
+      type { ::Assessments::Pearson }
+      dimension { nil }
+      after(:create) { |assessment| create(:pearson_assessment_setting, assessment: assessment) }
+    end
   end
   factory :assessment_hogan, class: ::Assessments::Hogan do
     sequence(:name) { |i| "hogan assessment #{i}" }

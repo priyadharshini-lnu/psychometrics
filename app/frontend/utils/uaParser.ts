@@ -9,6 +9,17 @@ import { convertToUserAgentBrowserName } from 'modules/survey/utils/browser'
 
 const uaParser = new UAParser()
 
+export const BROWSER_NAME = uaParser.getBrowser().name ?? ''
+export const BROWSER_VERSION = uaParser.getBrowser().version ?? ''
+
+const DEVICE_TYPE = uaParser.getDevice().type ?? ''
+export const IS_MOBILE = DEVICE_TYPE === 'mobile' || DEVICE_TYPE === 'tablet'
+
+export const OS_NAME = uaParser.getOS().name ?? ''
+export const OS_VERSION = uaParser.getOS().version ?? ''
+
+export const UA_STRING = uaParser.getUA() ?? ''
+
 export const checkBrowserSupportForFeature = (
   featureName: string,
   uaString?: string,

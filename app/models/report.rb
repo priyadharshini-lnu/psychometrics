@@ -24,7 +24,8 @@ class Report < ApplicationRecord
     internal: 0,
     mindmill: 1,
     hogan: 2,
-    saville: 3
+    saville: 3,
+    pearson: 4
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10
@@ -269,6 +270,8 @@ class Report < ApplicationRecord
                       PROVIDERS[:saville]
                     elsif mindmill?
                       PROVIDERS[:mindmill]
+                    elsif provider == 'pearson'
+                      PROVIDERS[:pearson]
                     else
                       PROVIDERS[:internal]
                     end

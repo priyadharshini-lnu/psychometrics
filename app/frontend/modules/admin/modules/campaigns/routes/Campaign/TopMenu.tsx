@@ -56,40 +56,34 @@ const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
     <Menu
       onSelect={handleOnSelect}
       selectedKeys={getActiveMenuKey(pathname)}
+      // data-testid="top-level-navigation"
       mode="horizontal"
-      data-testid="top-level-navigation"
     >
-      <Menu.Item key="participants">
-        <UserOutlined />
+      <Menu.Item key="participants" icon={<UserOutlined />}>
         Participants
       </Menu.Item>
       {currentUser.permissions.manageCampaigns && (
-        <Menu.Item key="assessments_reports">
-          <PieChartOutlined />
+        <Menu.Item key="assessments_reports" icon={<PieChartOutlined />}>
           Assessments & Reports
         </Menu.Item>
       )}
       {currentUser.permissions.viewRegistrationCodes && (
-        <Menu.Item key="registration_codes">
-          <QrcodeOutlined />
+        <Menu.Item key="registration_codes" icon={<QrcodeOutlined />}>
           Registration codes
         </Menu.Item>
       )}
       {currentUser.permissions.viewDatasheets && (
-        <Menu.Item key="datasheet">
-          <DatabaseOutlined />
+        <Menu.Item key="datasheet" icon={<DatabaseOutlined />}>
           {I18n.t('common.model.datasheet')}
         </Menu.Item>
       )}
       {currentUser.permissions.manageCampaignAdmins && (
-        <Menu.Item key="admins">
-          <SolutionOutlined />
+        <Menu.Item key="admins" icon={<SolutionOutlined />}>
           {I18n.t('common.model.admins')}
         </Menu.Item>
       )}
       {currentUser.permissions.manageOptions && (
-        <Menu.Item key="options">
-          <SettingOutlined />
+        <Menu.Item key="options" icon={<SettingOutlined />}>
           Options
         </Menu.Item>
       )}

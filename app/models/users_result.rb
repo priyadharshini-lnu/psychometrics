@@ -27,6 +27,7 @@ class UsersResult < ApplicationRecord
 
   delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,
            :norm_data, :completed_at, :completion_reason, :user_reports, :available_locales,
+           :external_user_reports,
            to: :user_assessment, allow_nil: true
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
            to: :user_assessment, allow_nil: true)
@@ -59,30 +60,6 @@ class UsersResult < ApplicationRecord
 
   def user_id
     evaluator_id
-  end
-
-  def hogan_user_reports
-    hogan_reports = assessment.reports.select(&:hogan?)
-
-    return UserReport.none if hogan_reports.blank?
-
-    UserReport.where(
-      report_id: hogan_reports.pluck(:id),
-      user_id: subject_id,
-      campaign_id: user_assessment.campaign_id
-    )
-  end
-
-  def mindmill_user_reports
-    mindmill_reports = assessment.reports.select(&:mindmill?)
-
-    return UserReport.none if mindmill_reports.blank?
-
-    UserReport.where(
-      report_id: mindmill_reports.pluck(:id),
-      user_id: subject_id,
-      campaign_id: user_assessment.campaign_id
-    )
   end
 
   def extra_time_buffer_expired?

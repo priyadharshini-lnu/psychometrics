@@ -23,4 +23,34 @@ RSpec.describe Administration::AssessmentsController, type: :controller do
     expect(assessment.deleted_by).to eq(nil)
     expect(response).to render_template('refresh_list')
   end
+
+  describe 'GET pearson_norms' do
+    it 'gets pearson norm id and name for particulat assessment' do
+      pearson_assessment_id = '123'
+      expect(Pearson::GetAssessments).to receive(:call!).and_return(
+        [{
+          'productId' => pearson_assessment_id,
+          'norms' => {
+            'items' => [{
+              'normId' => 'n1',
+              'label' => 'norm1',
+              'supportedLanguage' => 'fr'
+            },
+                        {
+                          'normId' => 'n2',
+                          'label' => 'norm2',
+                          'supportedLanguage' => 'no'
+                        }]
+          }
+        }]
+      )
+      get :pearson_norms, params: { pearson_assessment_id: pearson_assessment_id, pearson_norm_id: 'n1' }
+
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response).to eq([
+                                      { 'id' => 'n1', 'name' => '(fr) norm1', 'selected' => true },
+                                      { 'id' => 'n2', 'name' => '(no) norm2', 'selected' => false }
+                                    ])
+    end
+  end
 end

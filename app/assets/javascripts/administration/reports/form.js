@@ -1,7 +1,8 @@
 function ReportsForm () {
   var providerReportDisabled = {
     mindmill: false,
-    hogan: false
+    hogan: false,
+    pearson: false
   }
   this.init = function() {
     this.startListening()
@@ -45,6 +46,7 @@ function ReportsForm () {
     var options = $('option:selected', this);
 
     toggleVisibility(options, 'mindmill');
+    toggleVisibility(options, 'pearson');
     toggleVisibility(options, 'hogan');
     toggleVisibility(options, 'saville');
   }

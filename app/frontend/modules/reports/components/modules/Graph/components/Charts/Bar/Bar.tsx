@@ -1,15 +1,20 @@
 import merge from 'lodash/merge'
 import React, { useEffect, useRef } from 'react'
-import Highcharts from 'highcharts'
-import { Chart } from 'highcharts-v9'
+import Highcharts, { Chart, AxisLabelsFormatterContextObject } from 'highcharts-v9'
+import Highcharts3D from 'highcharts-v9/highcharts-3d'
+import CustomEvents from 'highcharts-custom-events'
 
 import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
 import { SourceModel } from 'modules/reports/interfaces/graphs/Base'
-import styles from './styles.scss'
 import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
+
+import styles from './styles.scss'
+
+Highcharts3D(Highcharts)
+CustomEvents(Highcharts)
 
 const Formats = {
   Count: '{point.y}',
@@ -20,10 +25,6 @@ const Formats = {
 interface Props {
   model: PropertiesModel
   animation?: boolean
-}
-
-type Label = {
-  value: string
 }
 
 export const Bar: React.FC<Props> = ({ model, animation = false }) => {
@@ -56,8 +57,8 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
     }
   }
 
-  const changeBarLabel = (collectionName: string, label: Label) => {
-    changeLabel(model, label.value, collectionName)
+  const changeBarLabel = (collectionName: string, labelObj: AxisLabelsFormatterContextObject<string>) => {
+    changeLabel(model, labelObj.value, collectionName)
   }
 
   const renderChart = () => {
@@ -91,10 +92,10 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
     if (legendHorizontalPosition === 'Middle') {
       legendHorizontalPosition = 'Center'
     }
-    chartRef.current = Highcharts.chart(
+    chartRef.current = containerRef.current ? Highcharts.chart(
       containerRef.current,
       merge(
-        ChartOptions(model, e => changeBarLabel(data.collection, e), { model, animation }, format),
+        ChartOptions(model, animation, format, labelObj => changeBarLabel(data.collection, labelObj)),
         {
           chart: {
             type: model.props.graphicalPosition === 'Vertical' ? 'column' : 'bar',
@@ -123,7 +124,7 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
           series,
         },
       ),
-    )
+    ) : undefined
     return null
   }
 

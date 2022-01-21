@@ -45,7 +45,13 @@ module Administration
     end
 
     def user_assessments
-      object.user_assessments.where(campaign: campaign).includes(:users_result, :assessment)
+      object.user_assessments.where(campaign: campaign).includes(
+        :users_result,
+        :norm,
+        :pearson_user_assessment,
+        :saville_user_assessment,
+        assessment: %i[pearson_assessment_setting saville_assessment_setting dimension norms]
+      )
     end
 
     def user_reports

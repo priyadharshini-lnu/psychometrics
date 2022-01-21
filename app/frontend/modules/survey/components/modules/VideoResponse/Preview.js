@@ -16,7 +16,7 @@ import {
 import VideoRecorder from 'components/VideoRecorder'
 import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
 import { SafeHTML } from 'components/SafeHTML'
-import { checkBrowserSupportForFeature } from 'utils/checkBrowserSupportForFeature'
+import { checkBrowserSupportForFeature } from 'utils/uaParser'
 import { BROWSER_FEATURES } from 'modules/survey/constants/browser'
 import { UnsupportedBrowser } from './UnsupportedBrowser'
 import VideoPlayer from './VideoPlayer'

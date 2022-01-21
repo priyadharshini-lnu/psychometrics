@@ -15,6 +15,7 @@ module UserAssessments
       url = pass_mindmill_user_assessment_path(user_assessment) if assessment.mindmill?
       url = pass_hogan_user_assessment_path(user_assessment.id) if assessment.hogan?
       url = pass_saville_user_assessment_path(user_assessment.id) if assessment.saville?
+      url = pass_pearson_user_assessment_path(user_assessment.id) if assessment.pearson?
 
       url ||= pass_user_assessment_path(user_assessment)
 

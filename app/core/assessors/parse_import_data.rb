@@ -11,7 +11,7 @@ module Assessors
     def call
       csv =
         if import_data.is_a?(ActionDispatch::Http::UploadedFile) || import_data.is_a?(Rack::Test::UploadedFile)
-          CSV.read(import_data.path, 'r:bom|utf-8', headers: true)
+          CSV.read(import_data.path, encoding: 'r:bom|utf-8', headers: true)
         else
           CSV.new(URI.open(import_data.url), headers: true).read
         end

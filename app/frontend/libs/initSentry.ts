@@ -2,10 +2,10 @@ import * as Sentry from '@sentry/react'
 import SentryRRWeb from '@sentry/rrweb'
 
 const initSentry = () => {
-  const { sentryClientDns, realEnv, currentUser } = window.PsyGlobalState
+  const { sentryUrl, realEnv, currentUser } = window.PsyGlobalState
 
   Sentry.init({
-    dsn: sentryClientDns,
+    dsn: sentryUrl,
     environment: realEnv,
     normalizeDepth: 4,
     integrations: [new SentryRRWeb()],

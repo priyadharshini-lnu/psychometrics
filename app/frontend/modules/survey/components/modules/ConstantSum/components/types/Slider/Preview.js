@@ -1,93 +1,21 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Slider as CustomSlider } from 'components/Slider'
-import Utils from 'utils'
-import styles from './Slider.scss'
+import React from 'react'
+
+import { SliderQuestion } from 'modules/survey/components/modules/Components/SliderQuestion/SliderQuestion'
+
 import connect from '../../../connect'
 
-const TABLE_WIDTH = 700
+const SliderPreview = ({ model, I18n, readOnly }) => {
+  const { props } = model
+  const { numberOfDecimals } = props
 
-class SliderPreview extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
+  const changeValue = (choiceId, value) => {
+    if (readOnly) {
+      return
+    }
+    model.result.answer(choiceId, value, numberOfDecimals)
   }
 
-  changeValue = (i, value) => {
-    const { readOnly, model } = this.props
-    if (readOnly) { return }
-    const { props } = model
-    model.result.answer(i, value, props.numberOfDecimals)
-    _.debounce(this.forceUpdate.bind(this), 200, { maxWait: 1000 })()
-  }
-
-  render () {
-    const { model, I18n } = this.props
-    const { result, props } = model
-    const module = model.moduleConfig
-    const gridMargin = `-${TABLE_WIDTH * 0.75 / (2 * props.gridLines)}px`
-    return (
-      <div className={styles.table}>
-        <div className={`${styles.row} ${styles.labels}`}>
-          <div className={styles.firstColumn} />
-          <div className={styles.labelItems}>
-            {_.times(props.labels, i => (
-              <span key={i}>
-                {I18n.tQuestion(model, `labelsTexts${i + 1}`, { label: i })
-                || module.defaultLabelText(i + 1)}
-              </span>
-            ))}
-          </div>
-          <div className={styles.totalCeil}>&nbsp;</div>
-        </div>
-        <div className={`${styles.row} ${styles.gridLines}`}>
-          <div className={styles.firstColumn} />
-          <div className={styles.labelItems} style={{ marginLeft: gridMargin, marginRight: gridMargin }}>
-            {_.times(props.gridLines + 1, i => (
-              <span key={i}>
-                {props.minValue + Utils.round((props.maxValue - props.minValue) * i
-                  / props.gridLines, props.numberOfDecimals)}
-              </span>
-            ))}
-          </div>
-          <div className={styles.totalCeil}>&nbsp;</div>
-        </div>
-        {_.map(model.choicesIds, (i) => {
-          const object = _.find(result.answers, { index: i }) || {}
-          return (
-            <div key={i} className={styles.contentRow}>
-              <div className={styles.row}>
-                <div className={styles.firstColumn}>
-                  <div className={styles.item}>
-                    <span>
-                      {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
-                        || module.defaultChoiceText(i + 1)}
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.barOuterContainer}>
-                  <div className={styles.barContainer}>
-                    {_.times(props.gridLines, j => <div key={j} className={styles.barItem}>&nbsp;</div>)}
-                  </div>
-                  <div className={styles.progressBarContainer}>
-                    <CustomSlider
-                      onChange={value => this.changeValue(i, value)}
-                      value={object.value || 0}
-                      minValue={props.minValue}
-                      maxValue={props.maxValue}
-                    />
-                  </div>
-                </div>
-                <div className={styles.totalCeil}>
-                  <span>{object.value || 0}</span>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    )
-  }
+  return <SliderQuestion model={model} I18n={I18n} preview changeValue={changeValue} />
 }
 
-export default connect(SliderPreview)
+export const ConstSumSliderSliderPreview = connect(SliderPreview)
