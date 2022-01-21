@@ -80,7 +80,7 @@ gem 'annotate', '~> 2.7.0'
 gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
 gem 'config',                     '~> 2.2.1'
-gem 'figaro',                     '~> 1.1.1'
+gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails', '~> 1.10.3'
 
