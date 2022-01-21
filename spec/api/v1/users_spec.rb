@@ -44,6 +44,9 @@ describe 'Users' do
             {
               "id": '3456',
               "name": 'Thriving Index Assessment',
+              "description": 'Self-assessment to understand your signature strengths and potential blindspots',
+              "icon_url": 'https://some.aws.s3.com/icon1.jpg',
+              "poster_url": 'https://some.aws.s3.com/poster1.jpg',
               "url": 'https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875',
               "status": 'not_started'
             }
@@ -52,11 +55,22 @@ describe 'Users' do
 
         let(:project_id) { project.id }
         let(:user_id) { user.id }
+        let!(:user_assessment) { create(:user_assessment, subject: user, campaign: campaign) }
+        let(:assessment) { user_assessment.assessment }
+        before do
+          allow_any_instance_of(Assessment).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
+          allow_any_instance_of(Assessment).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
+        end
 
         run_test! do |response|
           sso_url = JSON.parse(response.body)
-          expect(sso_url['url']).to be
-          expect(sso_url['expires_at']).to be
+
+          expect(sso_url).to have_key('url')
+          expect(sso_url).to have_key('expires_at')
+          expect(sso_url).to have_key('expires_at')
+          expect(sso_url['assessments'].first['description']).to eq(assessment.description)
+          expect(sso_url['assessments'].first['icon_url']).to eq(assessment.icon.url)
+          expect(sso_url['assessments'].first['poster_url']).to eq(assessment.poster.url)
         end
       end
     end

@@ -9,7 +9,7 @@ module Api
                            joins(:users_result, :assessment).
                            index_by(&:assessment_id)
 
-        render json: user_reports.
+        render json: user_reports.includes(report: :modules).
           map { |r| Api::V1::UserReportSerializer.new(r, user_assessments: user_assessments).to_h }
       end
 

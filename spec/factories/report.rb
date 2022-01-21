@@ -22,6 +22,7 @@
 FactoryBot.define do
   factory :report do
     sequence(:name) { |i| "report #{i}" }
+    description { Faker::Lorem.characters(5) }
     extra { { icon_color: '#845EC2' } }
     report_families { [association(:report_family)] }
     assessments { build_list(:assessment, 1) }

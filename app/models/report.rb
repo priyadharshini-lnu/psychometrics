@@ -105,6 +105,7 @@ class Report < ApplicationRecord
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
+  mount_uploader :poster, ImageUploader
 
   def set_default_color
     self.icon_color = Settings.default_colors.sample

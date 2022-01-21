@@ -189,9 +189,10 @@ module Administration
 
     def resource_params
       report_params = params.require(:resource).permit(
-        :name, :provider, :owner_id, :mindmill, :icon, :icon_color, :props,
-        :remove_icon, :default_language, report_family_ids: [],
-        assessment_ids: [],
+        :name, :description, :provider, :owner_id, :mindmill, :icon, :icon_color, :props,
+        :remove_icon, :default_language,
+        :poster, :remove_poster,
+        report_family_ids: [], assessment_ids: [],
         hogan_report_setting_attributes: %i[id hogan_report_id _destroy],
         saville_report_setting_attributes: %i[id saville_report_id _destroy]
       )
