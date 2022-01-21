@@ -3,9 +3,10 @@
 module Imports
   module Xls
     class NormImport
-      def initialize(file, importer)
+      def initialize(file, importer, owner_id)
         @importer = importer
         @file     = file
+        @owner    = Client.find(owner_id)
         @cursor_x = 0
         @cursor_y = 0
       end
@@ -44,13 +45,18 @@ module Imports
 
         sheet_name_arr     = sheet_name.split
         @current_norm_type = sheet_name_arr.pop.downcase
+        @dimension ||= Dimension.find_by(name: dimension_name, owner: @owner) unless @dimension
+
         unless @dimension
-          @dimension     = Dimension.find_by(name: dimension_name)
-          @new_dimension = true unless @dimension
-          @dimension ||= Dimension.create(name: dimension_name)
+          raise Errors::ImportError, I18n.t('administration.imports.errors.norm.dimension_not_found',
+                                            dimension_name: dimension_name,
+                                            client_name: @owner.name)
         end
+
         unless @norm
-          @norm = Norm.new(name: sheet_name_arr.join(' '), dimension_id: @dimension.id, updated_by: @importer.id)
+          @norm = Norm.new(
+            name: sheet_name_arr.join(' '), dimension_id: @dimension.id, updated_by: @importer.id, owner: @owner
+          )
           @norm.gen_uniq_name if Norm.exists?(name: @norm.name)
           @norm.save!
         end
@@ -66,13 +72,12 @@ module Imports
           @cursor_x = factor_start_ceil
           @cursor_y = i
           factor    = Factor.find_by(dimension_id: @dimension.id, name: factor_name)
-          if !factor && !@new_dimension
+          unless factor
             raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factors_mismatch',
                                               coords:    human_coordinates,
                                               dimension: @dimension.name,
                                               factor:    factor_name)
           end
-          factor ||= @dimension.factors.create!(name: factor_name)
           import_factor_norms(factor, i, factor_start_ceil + 1)
         end
       end

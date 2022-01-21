@@ -169,6 +169,11 @@ en:
               invalid: Registration code is invalid
             sms_invite_code:
               invalid: SMS Invite code is invalid
+        saml_setting:
+          attributes:
+            after_signout_url:
+              invalid_http_url: Invalid URL. Specify the complete url with http or https protocol in it.
+          invalid_cert: Invalid certificate
         sms_invites_create:
           attributes:
             first_name:
@@ -1202,6 +1207,7 @@ en:
       last_attempt: You have one more attempt before your account is locked.
       locked: Your account is locked.
       not_found_in_database: Invalid %{authentication_keys} or password.
+      saml_user_not_present: User is not present in the system
       timeout: Your session expired. Please login again to continue.
       unauthenticated: You need to login or register before continuing.
       unconfirmed: You have to confirm your email address before continuing.
@@ -1304,6 +1310,7 @@ en:
         forgot_password: Forgot password?
         instruction: Please login with your personal account information
         keep_sign_in: Yes, Keep me signed in
+        login_with_sso: Login with Single Single On
         password_placeholder: Password
         submit: Login
         tabs:

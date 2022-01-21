@@ -3,10 +3,28 @@
 module Users
   class SessionsController < Devise::SessionsController
     layout 'devise'
+    before_action :check_if_saml_is_enforced, only: [:create]
+    before_action :compute_after_signout_path, only: [:destroy]
     before_action :perform_browser_check, only: [:new]
     after_action :redirect_to_return_url, only: [:new]
 
     private
+
+    def after_sign_out_path_for(_)
+      @after_signout_path
+    end
+
+    def compute_after_signout_path
+      @after_signout_path = if session[:saml_login] && @current_project.saml_setting.after_signout_url
+                              @current_project.saml_setting.after_signout_url
+                            else
+                              new_user_session_path
+                            end
+    end
+
+    def check_if_saml_is_enforced
+      redirect_to(new_saml_user_session_path) if @current_project.saml_enforced?
+    end
 
     def redirect_to_return_url
       return if flash[:timedout].blank?

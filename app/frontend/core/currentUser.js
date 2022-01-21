@@ -3,7 +3,6 @@ import { getIn } from 'utils/immutable'
 import { takeLatest, put } from 'redux-saga/effects'
 
 const CHANGE_LOCALE = 'threeSixty/users/CHANGE_LOCALE'
-const LOGOUT = 'threeSixty/users/LOGOUT'
 const SYNC = 'threeSixty/user/SYNC'
 const SET_USER = 'threeSixty/user/SET_USER'
 
@@ -18,14 +17,6 @@ export function hasGrant (user, scope, action) {
 }
 
 export const defaultState = null
-
-export const logout = () => ({
-  type: LOGOUT,
-  request: {
-    method: 'delete',
-    url: '/users/sign_out',
-  },
-})
 
 export const changeLocale = locale => ({
   type: CHANGE_LOCALE,

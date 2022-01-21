@@ -11,6 +11,7 @@ import { reducer as projectAssessorsReducers } from 'modules/admin/modules/proje
 import { reducer as projectParticipantsReducer } from 'modules/admin/modules/projects/core/participants'
 import campaignReducers from '../modules/campaigns/core'
 import { reducer as smtpSettingReducer } from '../modules/projects/core/smtpSetting'
+import { reducer as samlSettingReducer } from '../modules/projects/core/samlSetting'
 import subjects from '../modules/threeSixtyCampaign/core/subjects'
 import evaluators from '../modules/threeSixtyCampaign/core/evaluators'
 import managers from '../modules/threeSixtyCampaign/core/managers'
@@ -59,6 +60,7 @@ const createRootReducer = history => combineReducers({
     datasheetFields,
     relationships,
     smtpSetting: smtpSettingReducer,
+    samlSetting: samlSettingReducer,
     assessors: projectAssessorsReducers,
     participants: projectParticipantsReducer,
   }),
