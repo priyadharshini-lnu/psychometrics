@@ -10,7 +10,7 @@ class CampaignAssessment < ApplicationRecord
 
   before_create :set_position
 
-  delegate :common?, :hogan?, :mindmill?, :external?, :saville?, to: :assessment
+  delegate :common?, :hogan?, :mindmill?, :external?, :saville?, :has_external_norm?, to: :assessment
 
   def expired?
     Time.now > key_expires_at.to_i
@@ -28,13 +28,14 @@ class CampaignAssessment < ApplicationRecord
   end
 
   def norm_name
+    return pearson_norm_name if assessment.pearson?
     return saville_norm_name if assessment.saville?
 
     norm&.name
   end
 
   def update_norm!(norm_id)
-    return update!(saville_norm_id: norm_id) if assessment.saville?
+    return update!(external_norm_id: norm_id) if has_external_norm?
 
     update!(norm_id: norm_id)
   end
@@ -45,7 +46,11 @@ class CampaignAssessment < ApplicationRecord
 
   private
 
+  def pearson_norm_name
+    assessment.pearson_norms.find { |norm| norm[:id] == external_norm_id }.dig(:name)
+  end
+
   def saville_norm_name
-    Settings.providers.saville.norms.find { |norm| norm[:id] == saville_norm_id }&.dig(:name)
+    Settings.providers.saville.norms.find { |norm| norm[:id] == external_norm_id }&.dig(:name)
   end
 end

@@ -44,12 +44,14 @@ module Administration
 
       def assessments_and_reports
         reports = ActiveModelSerializers::SerializableResource.new(
-          campaign.campaign_reports.includes(:report),
+          campaign.campaign_reports.includes(:report, :report_family),
           each_serializer: Administration::CampaignReportSerializer,
           current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
-          campaign.campaign_assessments.includes(:norm, :assessment),
+          campaign.campaign_assessments.includes(
+            :norm, :assessor_form, assessment: %i[pearson_assessment_setting saville_assessment_setting norms]
+          ),
           each_serializer: Administration::CampaignAssessmentSerializer,
           current_user: current_user, project_id: campaign.project_id,
           campaign_id: campaign.id

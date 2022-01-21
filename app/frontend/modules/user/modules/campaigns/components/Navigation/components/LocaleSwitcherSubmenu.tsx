@@ -7,13 +7,11 @@ import styles from '../styles.scss'
 const { I18n } = window
 
 interface LocaleSwitcherSubmenuProps {
-  isLocaleSwitcherHidden: boolean
   isLocaleLoading: boolean
   handleLocaleChange: (localeKey: string) => Promise<void>
 }
 
 export const LocaleSwitcherSubmenu: FC<LocaleSwitcherSubmenuProps> = ({
-  isLocaleSwitcherHidden,
   isLocaleLoading,
   handleLocaleChange,
   ...restMenuProps
@@ -24,10 +22,6 @@ export const LocaleSwitcherSubmenu: FC<LocaleSwitcherSubmenuProps> = ({
   const localesWithoutCurrentLocale = locales.filter(
     locale => locale !== currentLocale,
   )
-
-  if (isLocaleSwitcherHidden || localesWithoutCurrentLocale.length === 0) {
-    return null
-  }
 
   let localeSubmenuTitle: JSX.Element = (
     <Space>

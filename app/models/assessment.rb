@@ -36,7 +36,8 @@ class Assessment < ApplicationRecord
     ASSESSOR_FORM = 'assessor_form',
     HOGAN = 'hogan',
     AGILE = 'agile',
-    SAVILLE = 'saville'
+    SAVILLE = 'saville',
+    PEARSON = 'pearson'
   ].freeze
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
@@ -47,7 +48,8 @@ class Assessment < ApplicationRecord
     hogan: HOGAN,
     agile: AGILE,
     assessor_form: ASSESSOR_FORM,
-    saville: SAVILLE
+    saville: SAVILLE,
+    pearson: PEARSON
   }.freeze
 
   # Assessments constant
@@ -55,7 +57,8 @@ class Assessment < ApplicationRecord
     common: 'Assessments::Common',
     mindmill: 'Assessments::Mindmill',
     hogan: 'Assessments::Hogan',
-    saville: 'Assessments::Saville'
+    saville: 'Assessments::Saville',
+    pearson: 'Assessments::Pearson'
   }.freeze
 
   # STATUSES constant
@@ -92,6 +95,7 @@ class Assessment < ApplicationRecord
   has_many :user_assessments, dependent: :restrict_with_error
   has_many :users_results, through: :user_assessments, dependent: :restrict_with_error
   has_many :saville_user_assessments, through: :user_assessments, dependent: :restrict_with_error
+  has_many :pearson_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
@@ -103,10 +107,11 @@ class Assessment < ApplicationRecord
 
   has_one :hogan_assessment_setting, dependent: :destroy
   has_one :saville_assessment_setting, dependent: :destroy
+  has_one :pearson_assessment_setting, dependent: :destroy
   has_one :agile
 
-  accepts_nested_attributes_for :hogan_assessment_setting, :saville_assessment_setting
-  before_save :delete_hogan_assessment_setting, :delete_saville_assessment_setting
+  accepts_nested_attributes_for :hogan_assessment_setting, :saville_assessment_setting, :pearson_assessment_setting
+  before_save :delete_hogan_assessment_setting, :delete_saville_assessment_setting, :delete_pearson_assessment_setting
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
   #
   ### END ASSOCIATIONS
@@ -122,10 +127,13 @@ class Assessment < ApplicationRecord
     coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
+  mount_uploader :poster, ImageUploader
 
   delegate :config, :translations, to: :agile, prefix: true
   delegate :saville_norm_id, :saville_assessment_id, :saville_norms,
            to: :saville_assessment_setting, allow_nil: true
+  delegate :pearson_norm_id, :pearson_assessment_id, :pearson_norms, :pearson_assessment_language,
+           to: :pearson_assessment_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
@@ -135,6 +143,7 @@ class Assessment < ApplicationRecord
   scope :mindmill, -> { where(type: TYPES[:mindmill]) }
   scope :hogan, -> { where(type: TYPES[:hogan]) }
   scope :saville, -> { where(type: TYPES[:saville]) }
+  scope :pearson, -> { where(type: TYPES[:pearson]) }
   scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
@@ -144,6 +153,20 @@ class Assessment < ApplicationRecord
   scope :with_category, lambda { |category|
     where(category: category)
   }
+
+  def has_external_norm?
+    saville? || pearson?
+  end
+
+  def external_norms
+    return pearson_norms if pearson?
+    return saville_norms if saville?
+  end
+
+  def external_norm_id
+    return pearson_norm_id if pearson?
+    return saville_norm_id if saville?
+  end
 
   # Copy assessment with nested resources
   def clone
@@ -180,8 +203,12 @@ class Assessment < ApplicationRecord
     type == TYPES[:saville]
   end
 
+  def pearson?
+    type == TYPES[:pearson]
+  end
+
   def external?
-    mindmill? || hogan? || saville?
+    mindmill? || hogan? || saville? || pearson?
   end
 
   def agile?
@@ -215,5 +242,9 @@ class Assessment < ApplicationRecord
 
   def delete_saville_assessment_setting
     saville_assessment_setting.destroy if saville_assessment_setting && !saville?
+  end
+
+  def delete_pearson_assessment_setting
+    saville_assessment_setting.destroy if pearson_assessment_setting && !pearson?
   end
 end

@@ -80,7 +80,8 @@ module AdministrationHelper
     assessments = Assessment.where(id: assessments.ids | report.assessments.ids) if report && !report.new_record?
     assessments.all.map do |a|
       disabled = report && (report.assigns_reports.any? || report.clients_reports.any?)
-      data = { mindmill: a.mindmill?, hogan: a.hogan?, psychometric: a.psychometric?, saville: a.saville? }
+      data = { mindmill: a.mindmill?, hogan: a.hogan?,
+               psychometric: a.psychometric?, saville: a.saville?, pearson: a.pearson? }
       [a.decorate.display_name, a.id, { disabled: disabled, data: data }]
     end
   end

@@ -3,13 +3,16 @@
 module Api
   module V1
     class SsoAssignSerializer < ActiveModel::Serializer
-      attributes :id, :campaign_id, :name, :url, :status
-      def id
-        object.assessment.id
+      attributes :id, :icon_url, :poster_url, :description, :campaign_id, :name, :url, :status
+
+      delegate :id, :name, :description, to: :assessment
+
+      def icon_url
+        assessment.icon.url
       end
 
-      def name
-        object.assessment.name
+      def poster_url
+        assessment.poster.url
       end
 
       def url
@@ -18,6 +21,12 @@ module Api
 
       def status
         object.status
+      end
+
+      private
+
+      def assessment
+        object.assessment
       end
     end
   end

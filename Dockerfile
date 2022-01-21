@@ -11,7 +11,7 @@ ENV YARN_VERSION 1.22.5
 
 # Build args - shell variables assigned at build time.
 # can be overridden at build time with --build-arg
-ENV BUNDLER_VERSION=2.1.4
+ENV BUNDLER_VERSION=2.2.31
 ENV RAILS_ENV=production
 ENV BUNDLE_PATH=/bundle/vendor
 

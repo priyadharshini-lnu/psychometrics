@@ -188,11 +188,14 @@ module Administration
     end
 
     def resource_params
-      report_params = params.require(:resource).permit(:name, :owner_id, :mindmill, :icon, :icon_color, :props,
-                                                       :remove_icon, :default_language, report_family_ids: [],
-                                                       assessment_ids: [],
-                                       hogan_report_setting_attributes: %i[id hogan_report_id _destroy],
-                                       saville_report_setting_attributes: %i[id saville_report_id _destroy])
+      report_params = params.require(:resource).permit(
+        :name, :description, :provider, :owner_id, :mindmill, :icon, :icon_color, :props,
+        :remove_icon, :default_language,
+        :poster, :remove_poster,
+        report_family_ids: [], assessment_ids: [],
+        hogan_report_setting_attributes: %i[id hogan_report_id _destroy],
+        saville_report_setting_attributes: %i[id saville_report_id _destroy]
+      )
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids
       # are empty and causes errors
       # Does this need a better fix?

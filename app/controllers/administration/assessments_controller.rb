@@ -27,6 +27,7 @@ class Administration::AssessmentsController < Administration::BaseController
     @_resource = resource_class.new
     @_resource.build_hogan_assessment_setting
     @_resource.build_saville_assessment_setting
+    @_resource.build_pearson_assessment_setting
     @_resource.set_default_color
   end
 
@@ -73,6 +74,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def edit
     @_resource.build_hogan_assessment_setting if @_resource.hogan_assessment_setting.blank?
     @_resource.build_saville_assessment_setting if @_resource.saville_assessment_setting.blank?
+    @_resource.build_pearson_assessment_setting if @_resource.pearson_assessment_setting.blank?
     add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
   end
 
@@ -152,6 +154,12 @@ class Administration::AssessmentsController < Administration::BaseController
     render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
   end
 
+  def pearson_norms
+    norms = PearsonAssessmentSetting.pearson_norms(params[:pearson_assessment_id], params[:pearson_norm_id])
+
+    render json: norms
+  end
+
   private
 
   def pundit_authorize
@@ -173,12 +181,15 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
-                                     :status, :icon, :icon_color, :remove_icon,
-                                     :enable_video_check, :enable_audio_check, :enable_network_check,
-                                     :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
-                                     saville_assessment_setting_attributes:
-                                     %i[id saville_assessment_id saville_norm_id],
-                                     resources: %i[assessmentId questionId], options: {})
+    params.require(:resource).permit(
+      :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
+      :status, :icon, :icon_color, :remove_icon, :poster, :remove_poster,
+      :enable_video_check, :enable_audio_check, :enable_network_check,
+      :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
+      saville_assessment_setting_attributes:
+      %i[id saville_assessment_id saville_norm_id],
+      pearson_assessment_setting_attributes: %i[id pearson_assessment_id pearson_norm_id],
+      resources: %i[assessmentId questionId], options: {}
+    )
   end
 end

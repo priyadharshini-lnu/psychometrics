@@ -36,7 +36,7 @@ module Api
               active: campaign_attrs[:active]
             )
             ::Campaigns::Users::Create.call(struct, campaign, current_user) do
-              on(:error) { raise Errors::Api::NotEnoughLicencesError, 'Not Enough Licenses' }
+              on(:error) { raise Api::Errors::NotEnoughLicences, 'Not Enough Licenses' }
             end
           end
           render json: Api::V1::UserSerializer.new(user.reload, project: project).to_h
@@ -71,7 +71,7 @@ module Api
         form = Api::V1::Campaigns::AssessmentsAndReportsForm.from_params(params).with_context(campaign: campaign)
         if form.valid?
           ::Campaigns::Reports::Add.call(form, campaign) do
-            on(:error) { |error| raise Errors::Api::NotEnoughLicencesError, error }
+            on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
           render json: campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
         else
@@ -83,7 +83,7 @@ module Api
         @campaign ||=
           begin
             c = Campaign.find_by(project_id: project.id, id: params[:id])
-            raise Errors::Api::ResourceNotFoundError, "Campaign with id=#{params[:id]} is not found" unless c
+            raise Api::Errors::ResourceNotFound, "Campaign with id=#{params[:id]} is not found" unless c
 
             c
           end

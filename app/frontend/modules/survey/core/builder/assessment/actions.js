@@ -12,6 +12,7 @@ export const MOVE_BLOCK_DOWN = 'survey/assessment/MOVE_BLOCK_DOWN'
 export const MOVE_BLOCK_UP = 'survey/assessment/MOVE_BLOCK_UP'
 export const ADD_NORM_RULE = 'survey/assessment/ADD_NORM_RULE'
 export const REMOVE_NORM_RULE = 'survey/assessment/REMOVE_NORM_RULE'
+export const CHANGE_DEFAULT_NORM = 'survey/assessment/CHANGE_DEFAULT_NORM'
 export const UPDATE_FLOW = 'survey/assessment/UPDATE_FLOW'
 export const TOGGLE_ENABLE_BACK = 'survey/assessment/TOGGLE_ENABLE_BACK'
 export const TOGGLE_ENABLE_PROGRESS = 'survey/assessment/TOGGLE_ENABLE_PROGRESS'
@@ -35,6 +36,8 @@ export const moveBlockUp = block => ({ type: MOVE_BLOCK_UP, block })
 
 export const addNormRule = rule => ({ type: ADD_NORM_RULE, rule })
 export const removeNormRule = index => ({ type: REMOVE_NORM_RULE, index })
+export const changeDefaultNorm = id => ({ type: CHANGE_DEFAULT_NORM, id })
+
 
 export const updateFlow = flow => ({ type: UPDATE_FLOW, flow })
 

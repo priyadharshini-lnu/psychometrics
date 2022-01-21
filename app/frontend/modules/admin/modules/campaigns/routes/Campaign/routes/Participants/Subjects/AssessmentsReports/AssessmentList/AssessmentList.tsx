@@ -72,9 +72,9 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
             render={({
-              normName, id, isExternal, isSaville, permissions,
+              normName, id, isExternal, hasExternalNorm, permissions,
             }) => {
-              if (isExternal && !isSaville) {
+              if ((isExternal && !hasExternalNorm)) {
                 return I18n.t('common.text.na')
               }
               return (

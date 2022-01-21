@@ -12,6 +12,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
   has_one :saville_user_assessment, dependent: :destroy
+  has_one :pearson_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
 
@@ -22,7 +23,9 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   has_one :threesixty_campaign, through: :campaign
-  delegate :saville_assessment_id, :saville?, to: :assessment
+  delegate :saville_assessment_id, :saville?, :pearson_assessment_id,
+           :pearson_assessment_language, :pearson?,
+           to: :assessment
   delegate :selected_locale, :timed?, to: :users_result, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
@@ -53,12 +56,16 @@ class UserAssessment < ApplicationRecord
     %i[filter_by_subject_or_assessment]
   end
 
-  def saville_user_reports
-    saville_reports = assessment.reports.select(&:provider_saville?)
+  def external_user_reports(type)
+    external_reports = assessment.reports.select(&:"provider_#{type}?")
 
-    return UserReport.none if saville_reports.blank?
+    return UserReport.none if external_reports.blank?
 
-    UserReport.where(report_id: saville_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_id)
+    UserReport.where(
+      report_id: external_reports.pluck(:id),
+      user_id: subject_id,
+      campaign_id: campaign_id
+    )
   end
 
   def available_locales
@@ -115,12 +122,16 @@ class UserAssessment < ApplicationRecord
     campaign_assessment&.norm_id
   end
 
-  def applicable_saville_norm_id
-    campaign_assessment&.saville_norm_id || assessment.saville_norm_id
+  def applicable_external_norm_id
+    campaign_assessment&.external_norm_id || assessment.external_norm_id
   end
 
   def saville_norm_id
     saville_user_assessment.norm_id
+  end
+
+  def pearson_norm_id
+    pearson_user_assessment.norm_id
   end
 
   def user_reports
@@ -128,6 +139,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def norm_name
+    return pearson_norm_name if assessment.pearson?
     return saville_norm_name if assessment.saville?
 
     norm&.name
@@ -137,5 +149,10 @@ class UserAssessment < ApplicationRecord
 
   def saville_norm_name
     Settings.providers.saville.norms.find { |norm| norm[:id] == saville_user_assessment.norm_id }&.dig(:name)
+  end
+
+  def pearson_norm_name
+    PearsonAssessmentSetting.pearson_norms(assessment.pearson_assessment_id).
+      find { |norm| norm[:id] == pearson_user_assessment.norm_id }&.dig(:name)
   end
 end

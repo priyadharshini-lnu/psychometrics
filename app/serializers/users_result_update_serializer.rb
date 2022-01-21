@@ -25,7 +25,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
     Assessments::GetTranslationWithPipetextReplaced.call!(
       object.assessment,
       piped_text_context: piped_text_context,
-      locale: object.selected_locale
+      locale: object.selected_locale || @instance_options[:locale]
     )
   end
 

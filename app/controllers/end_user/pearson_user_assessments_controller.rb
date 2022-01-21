@@ -1,0 +1,36 @@
+# frozen_string_literal: true
+
+class EndUser::PearsonUserAssessmentsController < ApplicationController
+  before_action :set_user_assessment, only: %i[pass redirect]
+
+  def pass
+    campaign = @user_assessment.campaign
+    return redirect_to(assessment_completed_path(campaign.id)) if @user_assessment.completed?
+
+    @user_assessment.users_result.update!(started_at: Time.now) if @user_assessment.users_result.started_at.nil?
+    @user_assessment.in_progress!
+    pearson_user_assessment = @user_assessment.pearson_user_assessment
+    return redirect_to(pearson_user_assessment.url) if pearson_user_assessment&.url
+
+    ::Pearson::CreateSchedule.call!(@user_assessment)
+
+    redirect_to pearson_user_assessment.url
+  end
+
+  def redirect
+    campaign = @user_assessment.campaign
+    status = Pearson::GetScheduleStatus.call!(@user_assessment)
+    if %w[Completed Has_Result].include?(status)
+      @user_assessment.update!(status: :completed, completed_at: Time.current)
+    end
+    Pearson::SaveScoresAndReportsJob.perform_later(@user_assessment)
+
+    redirect_to(assessment_completed_path(campaign.id))
+  end
+
+  private
+
+  def set_user_assessment
+    @user_assessment = UserAssessment.find_by!(id: params[:id], evaluator_id: current_user.id)
+  end
+end

@@ -550,6 +550,10 @@ Rails.application.routes.draw do
         put :restore
       end
 
+      collection do
+        get :pearson_norms
+      end
+
       scope module: 'assessments' do
         resources :assigns, only: %i[new create] do
           collection do
@@ -868,6 +872,13 @@ Rails.application.routes.draw do
       end
 
       resources :saville_user_assessments, only: [] do
+        member do
+          get :pass
+          get :redirect
+        end
+      end
+
+      resources :pearson_user_assessments, only: [] do
         member do
           get :pass
           get :redirect

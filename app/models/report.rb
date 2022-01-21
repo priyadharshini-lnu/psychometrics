@@ -24,7 +24,8 @@ class Report < ApplicationRecord
     internal: 0,
     mindmill: 1,
     hogan: 2,
-    saville: 3
+    saville: 3,
+    pearson: 4
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10
@@ -104,6 +105,7 @@ class Report < ApplicationRecord
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
+  mount_uploader :poster, ImageUploader
 
   def set_default_color
     self.icon_color = Settings.default_colors.sample
@@ -139,7 +141,7 @@ class Report < ApplicationRecord
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
 
-  def empty?
+  def modules_empty?
     !modules.exists?
   end
 
@@ -269,6 +271,8 @@ class Report < ApplicationRecord
                       PROVIDERS[:saville]
                     elsif mindmill?
                       PROVIDERS[:mindmill]
+                    elsif provider == 'pearson'
+                      PROVIDERS[:pearson]
                     else
                       PROVIDERS[:internal]
                     end

@@ -85,6 +85,7 @@ Object {
     "dbResult": Object {
       "id": 1,
     },
+    "defaultNorm": undefined,
     "elements": Array [
       Object {
         "elements": Array [],
@@ -369,6 +370,7 @@ Object {
       "assessment": Object {
         "blocks": Array [],
         "category": "",
+        "default_norm_id": null,
         "disabled": false,
         "factors": Array [],
         "flow": null,
@@ -492,6 +494,7 @@ Object {
       "assessment": Object {
         "blocks": Array [],
         "category": "",
+        "default_norm_id": null,
         "disabled": false,
         "factors": Array [],
         "flow": null,
