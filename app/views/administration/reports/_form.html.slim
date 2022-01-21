@@ -4,6 +4,7 @@
       = f.error_notification
       .form-inputs.clearfix
         = f.input :name
+        = f.input :description, as: :text
         - root_clients = policy_scope(Client).roots
         - if current_user.is?(:superadmin)
           = f.association :owner,

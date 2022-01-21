@@ -261,7 +261,8 @@ CREATE TABLE public.assessments (
     deleted_by_id bigint,
     instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
-    default_norm_id integer
+    default_norm_id integer,
+    poster character varying
 );
 
 
@@ -2711,7 +2712,9 @@ CREATE TABLE public.reports (
     category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
-    deleted_by_id bigint
+    deleted_by_id bigint,
+    description character varying,
+    poster character varying
 );
 
 
@@ -8929,6 +8932,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211219131442'),
 ('20220105075135'),
 ('20220105083037'),
-('20220114152459');
+('20220114152459'),
+('20220118121431'),
+('20220121064435');
 
 

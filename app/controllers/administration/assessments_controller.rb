@@ -183,7 +183,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def resource_params
     params.require(:resource).permit(
       :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
-      :status, :icon, :icon_color, :remove_icon,
+      :status, :icon, :icon_color, :remove_icon, :poster, :remove_poster,
       :enable_video_check, :enable_audio_check, :enable_network_check,
       :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
       saville_assessment_setting_attributes:

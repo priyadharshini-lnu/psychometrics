@@ -96,6 +96,9 @@ RSpec.configure do |config|
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            description: { type: 'string', 'x-nullable': true },
+            icon_url: { type: 'string', 'x-nullable': true },
+            poster_url: { type: 'string', 'x-nullable': true },
             campaign_id: { type: 'integer' },
             status: { type: 'string', enum: %w[not_started in_progress completed] },
             started_at: { type: 'string', 'x-nullable': true },
@@ -107,6 +110,17 @@ RSpec.configure do |config|
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            description: { type: 'string', 'x-nullable': true },
+            icon_url: { type: 'string', 'x-nullable': true },
+            poster_url: { type: 'string', 'x-nullable': true },
+            user_access: { type: 'boolean' },
+            output_type: {
+              type: 'object',
+              properties: {
+                pdf: { type: 'boolean' },
+                results: { type: 'boolean' }
+              }
+            },
             campaign_id: { type: 'integer' },
             status: { type: 'string', enum: %w[not_ready generating failed ready] },
             assessments: { type: 'array', items: { '$ref' => '#/definitions/UserAssessment' } }
@@ -425,6 +439,9 @@ RSpec.configure do |config|
             id: { type: 'integer' },
             campaign_id: { type: 'integer' },
             name: { type: 'string' },
+            description: { type: 'string', 'x-nullable': true },
+            icon_url: { type: 'string', 'x-nullable': true },
+            poster_url: { type: 'string', 'x-nullable': true },
             url: { type: 'string' },
             status: { type: 'string', enum: %w[not_started in_progress completed] }
           }

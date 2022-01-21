@@ -127,6 +127,7 @@ class Assessment < ApplicationRecord
     coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
+  mount_uploader :poster, ImageUploader
 
   delegate :config, :translations, to: :agile, prefix: true
   delegate :saville_norm_id, :saville_assessment_id, :saville_norms,

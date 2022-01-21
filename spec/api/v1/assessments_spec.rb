@@ -29,10 +29,14 @@ describe 'Assessments' do
         let(:user_id) { user.id }
         before do
           campaign_user = create(:campaign_user, campaign: campaign, user: user)
-          assessment = create(:assessment, :with_report, name: 'Super Assessment')
-          campaign_user.campaign.reports = assessment.reports
-          campaign_user.campaign.assessments = [assessment]
-          create(:user_assessment, subject: user, evaluator: user, assessment: assessment, campaign: campaign)
+          @assessment = create(:assessment, :with_report, name: 'Super Assessment')
+          campaign_user.campaign.reports = @assessment.reports
+          campaign_user.campaign.assessments = [@assessment]
+          @user_assessment = create(
+            :user_assessment, subject: user, evaluator: user, assessment: @assessment, campaign: campaign
+          )
+          allow_any_instance_of(Assessment).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
+          allow_any_instance_of(Assessment).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
         end
         schema type: 'array', items: { '$ref' => '#/definitions/UserAssessment' }
 
@@ -40,6 +44,9 @@ describe 'Assessments' do
           {
             "id": '11234',
             "name": 'Assessment 1',
+            "description": 'Assessment 1 Description',
+            "icon_url": 'https://some.aws.s3.com/icon1.jpg',
+            "poster_url": 'https://some.aws.s3.com/poster1.jpg',
             "campaign_id": 1,
             "status": 'completed',
             "started_at": '2019-03-04T15:47:33.570+04:00',
@@ -48,14 +55,9 @@ describe 'Assessments' do
           {
             "id": '11235',
             "name": 'Assessment 2',
-            "campaign_id": 1,
-            "status": 'completed',
-            "started_at": '2019-03-04T15:47:33.570+04:00',
-            "completed_at": '2019-03-04T15:47:33.570+04:00'
-          },
-          {
-            "id": '11236',
-            "name": 'Assessment 3',
+            "description": 'Assessment 2 Description',
+            "icon_url": 'https://some.aws.s3.com/icon2.jpg',
+            "poster_url": 'https://some.aws.s3.com/poster1.jpg',
             "campaign_id": 1,
             "status": 'completed',
             "started_at": '2019-03-04T15:47:33.570+04:00',
@@ -65,9 +67,12 @@ describe 'Assessments' do
 
         run_test! do |response|
           assessments = JSON.parse(response.body)
-          expect(assessments.first['name']).to eq 'Super Assessment'
-          expect(assessments.first).to have_key('id')
-          expect(assessments.first).to have_key('status')
+          expect(assessments.first['name']).to eq @assessment.name
+          expect(assessments.first['id']).to eq(@assessment.id)
+          expect(assessments.first['status']).to eq(@user_assessment.status)
+          expect(assessments.first['description']).to eq(@assessment.description)
+          expect(assessments.first['icon_url']).to eq(@assessment.icon.url)
+          expect(assessments.first['poster_url']).to eq(@assessment.poster.url)
         end
       end
 
