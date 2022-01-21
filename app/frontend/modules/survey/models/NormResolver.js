@@ -2,13 +2,14 @@ import _ from 'lodash'
 import LogicResolver from 'modules/survey/models/logic/LogicResolver'
 import LogicElementModel from 'models/logic/LogicElement'
 
-const NormResolver = function (rules, hris, questions = null, results = null) {
+const NormResolver = function (rules, hris, questions = null, results = null, defaultNorm = null) {
   this.questions = questions
   this.results = results
   this.rules = rules
   this.hris = hris || {}
   this.type = null
   this.id = null
+  this.defaultNorm = defaultNorm
 }
 
 _.extend(NormResolver.prototype, {
@@ -22,7 +23,7 @@ _.extend(NormResolver.prototype, {
     }) || {}
 
     return {
-      id: ruleWithNormId.norm_id,
+      id: ruleWithNormId.norm_id || this.defaultNorm,
     }
   },
 })

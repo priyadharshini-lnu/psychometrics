@@ -24,7 +24,7 @@ module Hogan
       user_result.update(external_results: participant_score)
       generate_internal_reports
 
-      user_result.hogan_user_reports.each do |user_report|
+      user_result.external_user_reports(:hogan).each do |user_report|
         participant_report = get_participant_report(user_report)
 
         return broadcast(:not_completed) if participant_report.blank?
@@ -41,7 +41,7 @@ module Hogan
       UsersResults::GenerateReports.call(
         user_result,
         user_result.user,
-        exceptUserReportIds: user_result.hogan_user_reports.pluck(:id)
+        exceptUserReportIds: user_result.external_user_reports(:hogan).pluck(:id)
       )
     end
 
@@ -67,7 +67,7 @@ module Hogan
     end
 
     def hogan_norm_id
-      norm_from_report = user_result.hogan_user_reports.first&.report&.hogan_report_setting&.hogan_norm_id
+      norm_from_report = user_result.external_user_reports(:hogan).first&.report&.hogan_report_setting&.hogan_norm_id
       return norm_from_report if norm_from_report
 
       user_assessment.assessment.hogan_assessment_setting.norm_id

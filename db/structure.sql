@@ -259,8 +259,10 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
+    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
-    instructions json DEFAULT '{}'::json
+    default_norm_id integer,
+    poster character varying
 );
 
 
@@ -607,7 +609,7 @@ CREATE TABLE public.campaign_assessments (
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
     available_locales text[] DEFAULT '{}'::text[],
-    saville_norm_id character varying
+    external_norm_id character varying
 );
 
 
@@ -2198,6 +2200,71 @@ ALTER SEQUENCE public.occupations_id_seq OWNED BY public.occupations.id;
 
 
 --
+-- Name: pearson_assessment_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.pearson_assessment_settings (
+    id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    pearson_assessment_id character varying NOT NULL,
+    pearson_norm_id character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pearson_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.pearson_assessment_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pearson_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.pearson_assessment_settings_id_seq OWNED BY public.pearson_assessment_settings.id;
+
+
+--
+-- Name: pearson_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.pearson_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    schedule_id character varying,
+    url character varying,
+    norm_id character varying
+);
+
+
+--
+-- Name: pearson_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.pearson_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pearson_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.pearson_user_assessments_id_seq OWNED BY public.pearson_user_assessments.id;
+
+
+--
 -- Name: privacy_consents; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2645,7 +2712,9 @@ CREATE TABLE public.reports (
     category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
-    deleted_by_id bigint
+    deleted_by_id bigint,
+    description character varying,
+    poster character varying
 );
 
 
@@ -3960,7 +4029,11 @@ CREATE TABLE public.webhook_subscriptions (
     active boolean NOT NULL,
     encrypted boolean DEFAULT false NOT NULL,
     secret text,
-    project_id bigint
+    project_id bigint,
+    auth_enabled boolean DEFAULT false,
+    username character varying,
+    encrypted_password character varying,
+    encrypted_password_iv character varying
 );
 
 
@@ -4373,6 +4446,20 @@ ALTER TABLE ONLY public.occupations ALTER COLUMN id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.occupations_factors ALTER COLUMN id SET DEFAULT nextval('public.occupations_factors_id_seq'::regclass);
+
+
+--
+-- Name: pearson_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.pearson_assessment_settings_id_seq'::regclass);
+
+
+--
+-- Name: pearson_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.pearson_user_assessments_id_seq'::regclass);
 
 
 --
@@ -5173,6 +5260,22 @@ ALTER TABLE ONLY public.occupations_factors
 
 ALTER TABLE ONLY public.occupations
     ADD CONSTRAINT occupations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pearson_assessment_settings pearson_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_assessment_settings
+    ADD CONSTRAINT pearson_assessment_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pearson_user_assessments pearson_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_user_assessments
+    ADD CONSTRAINT pearson_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -6408,13 +6511,6 @@ CREATE INDEX index_memberships_on_client_id ON public.memberships USING btree (c
 
 
 --
--- Name: index_memberships_on_client_id_and_role_and_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_memberships_on_client_id_and_role_and_campaign_id ON public.memberships USING btree (client_id, role, campaign_id);
-
-
---
 -- Name: index_memberships_on_hris; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6468,6 +6564,20 @@ CREATE INDEX index_occupations_factors_on_occupation_id ON public.occupations_fa
 --
 
 CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree (dimension_id);
+
+
+--
+-- Name: index_pearson_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pearson_assessment_settings_on_assessment_id ON public.pearson_assessment_settings USING btree (assessment_id);
+
+
+--
+-- Name: index_pearson_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pearson_user_assessments_on_user_assessment_id ON public.pearson_user_assessments USING btree (user_assessment_id);
 
 
 --
@@ -7374,6 +7484,14 @@ ALTER TABLE ONLY public.assessors
 
 
 --
+-- Name: pearson_assessment_settings fk_rails_2368fd589d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_assessment_settings
+    ADD CONSTRAINT fk_rails_2368fd589d FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: license_usages fk_rails_2397339a92; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7643,6 +7761,14 @@ ALTER TABLE ONLY public.communications
 
 ALTER TABLE ONLY public.saville_assessment_settings
     ADD CONSTRAINT fk_rails_6847f23cff FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: pearson_user_assessments fk_rails_6974a21fca; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_user_assessments
+    ADD CONSTRAINT fk_rails_6974a21fca FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -8862,7 +8988,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210917131407'),
 ('20210919105932'),
 ('20211011103826'),
-('20211011143418'),
 ('20211013070031'),
 ('20211017084949'),
 ('20211018074847'),
@@ -8871,6 +8996,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211102165147'),
 ('20211111110056'),
 ('20211114082155'),
-('20220104123545');
+('20211209113042'),
+('20211216105541'),
+('20211219131442'),
+('20220104123545'),
+('20220105075135'),
+('20220105083037'),
+('20220114152459'),
+('20220118121431'),
+('20220121064435');
 
 

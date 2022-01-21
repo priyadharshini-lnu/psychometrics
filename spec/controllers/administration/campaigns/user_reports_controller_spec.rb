@@ -122,7 +122,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     expect(assessment_response.keys).to eq(
       %w[
         id permissions assessment_id name category norm_name status norms norm_id
-        additional_time is_expired is_external is_saville
+        additional_time is_expired is_external has_external_norm
       ]
     )
     expect(assessment_response).to include({
@@ -132,7 +132,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       'norm_name' => nil,
       'norms' => [],
       'status' => 'not_started',
-      'is_saville' => false
+      'has_external_norm' => false
     })
   end
 end

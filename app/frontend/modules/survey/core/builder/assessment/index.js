@@ -8,7 +8,7 @@ import {
   ADD_NORM_RULE, REMOVE_NORM_RULE, UPDATE_FLOW,
   TOGGLE_ENABLE_BACK, TOGGLE_ENABLE_PROGRESS, SAVE,
   SAVE_REQUEST, SAVE_FAILURE, UPDATE_EXTRA, SAVE_DATA_SHEET,
-  TOGGLE_ENABLE_SINGLE_QUESTION,
+  TOGGLE_ENABLE_SINGLE_QUESTION, CHANGE_DEFAULT_NORM,
   TOGGLE_INSTRUCTIONS, UPDATE_INSTRUCTIONS_CONTENT,
 } from './actions'
 import {
@@ -27,6 +27,7 @@ export const defaultState = {
   flow: null,
   relationships: [],
   norm_rules: [],
+  default_norm_id: null,
   factors: [],
   propPanel: {
     question: null,
@@ -112,6 +113,7 @@ const HANDLERS = {
     const rules = state.norm_rules.filter((_r, i) => index !== i)
     return setIn(state, ['norm_rules'], rules)
   },
+  [CHANGE_DEFAULT_NORM]: (state, { id }) => (setIn(state, ['default_norm_id'], id)),
   [UPDATE_FLOW]: (state, { flow }) => ({ ...state, flow }),
   [TOGGLE_ENABLE_BACK]: state => setIn(state, ['enable_back'], !state.enable_back),
   [TOGGLE_ENABLE_PROGRESS]: state => setIn(state, ['enable_progress'], !state.enable_progress),

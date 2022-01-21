@@ -25,11 +25,15 @@ describe 'Reports' do
            campaign: campaign,
            users_result: user_result)
   end
+  let!(:user_report) { create(:user_report, report: report, user: user, campaign: campaign) }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   before do
     allow_any_instance_of(AssignsReport).to receive(:use_license) { 'nth' }
-    create(:user_report, report: report, user: user, campaign: campaign)
+    allow_any_instance_of(Report).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
+    allow_any_instance_of(Report).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
+    allow_any_instance_of(Assessment).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
+    allow_any_instance_of(Assessment).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
   end
 
   path '/projects/{project_id}/users/{user_id}/reports' do
@@ -51,12 +55,23 @@ describe 'Reports' do
           {
             "id": 127,
             "name": 'Thriving Index - Resource Pro',
+            "description": 'Description for Thriving Index - Resource Pro',
+            "icon_url": 'https://some.aws.s3.com/report_icon1.jpg',
+            "poster_url": 'https://some.aws.s3.com/report_poster1.jpg',
+            "user_access": false,
+            "output_type": {
+              "pdf": true,
+              "results": false
+            },
             "status": 'not_ready',
             "campaign_id": 1,
             "assessments": [
               {
                 "id": 91_731,
                 "name": 'Thriving Index Assessment',
+                "description": 'Self-assessment to understand your signature strengths and potential blindspots',
+                "icon_url": 'https://some.aws.s3.com/assessment_icon1.jpg',
+                "poster_url": 'https://some.aws.s3.com/assessment_poster1.jpg',
                 "status": 'not_started',
                 "started_at": '2019-01-06T20:54:05.714+04:00',
                 "completed_at": '2019-01-06T20:54:05.714+04:00'
@@ -66,12 +81,23 @@ describe 'Reports' do
           {
             "id": 110,
             "name": 'Custom Report',
+            "description": 'Description for Custom Report',
+            "icon_url": 'https://some.aws.s3.com/report_icon2.jpg',
+            "poster_url": 'https://some.aws.s3.com/report_poster2.jpg',
+            "user_access": true,
+            'output_type': {
+              "pdf": true,
+              "results": true
+            },
             "status": 'not_ready',
             "campaign_id": 1,
             "assessments": [
               {
                 "id": 91_731,
                 "name": 'Thriving Index Assessment',
+                "description": 'Self-assessment to understand your signature strengths and potential blindspots',
+                "icon_url": 'https://some.aws.s3.com/assessment_icon2.jpg',
+                "poster_url": 'https://some.aws.s3.com/assessment_poster2.jpg',
                 "status": 'not_started',
                 "started_at": '2019-01-06T20:54:05.714+04:00',
                 "completed_at": '2019-01-06T20:54:05.714+04:00'
@@ -85,11 +111,19 @@ describe 'Reports' do
 
         run_test! do |response|
           reports = JSON.parse(response.body)
-          expect(reports.first).to have_key('id')
-          expect(reports.first).to have_key('name')
-          expect(reports.first).to have_key('status')
+          expect(reports.first['id']).to eq(report.id)
+          expect(reports.first['name']).to eq(report.name)
+          expect(reports.first['description']).to eq(report.description)
+          expect(reports.first['icon_url']).to eq(report.icon.url)
+          expect(reports.first['poster_url']).to eq(report.poster.url)
+          expect(reports.first['user_access']).to eq(user_report.user_access)
+          expect(reports.first['status']).to eq(user_report.decorate.api_status)
+          expect(reports.first['output_type']).to eq({ 'pdf' => false, 'results' => false })
           expect(reports.first['assessments'].first['id']).to eq assessment.id
           expect(reports.first['assessments'].first['name']).to eq assessment.name
+          expect(reports.first['assessments'].first['description']).to eq assessment.description
+          expect(reports.first['assessments'].first['icon_url']).to eq assessment.icon.url
+          expect(reports.first['assessments'].first['poster_url']).to eq assessment.poster.url
         end
       end
     end
@@ -107,6 +141,21 @@ describe 'Reports' do
       parameter name: :report_id, in: :path, type: :string
       parameter name: :campaign_id, in: :query, type: :string, required: false,
       description: 'if is not filled, the system takes the last campaign id'
+
+      before do
+        create(:factor, dimension: dimension)
+        create(:factor, dimension: dimension)
+
+        config = {
+          sections: [{
+            data: [
+              { type: 'normed_factor', factorId: dimension.factors.first.id, assessmentId: assessment.id },
+              { type: 'normed_factor', factorId: dimension.factors.last.id, assessmentId: assessment.id }
+            ]
+          }]
+        }
+        report.update(owner: project, data_configuration: config)
+      end
 
       response '200', 'Success' do
         schema '$ref' => '#/definitions/ReportResults'

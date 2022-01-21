@@ -6,7 +6,7 @@
       .form-inputs.clearfix
         = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
                          include_blank: false,
-                         wrapper_html: { class: 'common mindmill hogan saville' }
+                         wrapper_html: { class: 'common mindmill hogan saville pearson' }
         = f.input :mindmill_id, collection: Settings.providers.mindmill.assessments.map { |m| [m[:name], m[:id]] },
                                 include_blank: false,
                                 wrapper_html: { class: 'mindmill' }
@@ -20,7 +20,21 @@
                           include_blank: false,
                           wrapper_html: { class: 'saville' },
                           input_html: { data: { live_search: true } }
-        = f.input :name, wrapper_html: { class: 'common mindmill hogan saville' }
+        = f.simple_fields_for :pearson_assessment_setting do |pearson|
+          = pearson.input :pearson_assessment_id,
+                          collection: Pearson::GetAssessments.call!.sort_by {|a| a['title'] }.map { |h| [h['title'], h['productId']] },
+                          include_blank: true,
+                          wrapper_html: { class: 'pearson' },
+                          input_html: { data: { live_search: true,
+                                                dynamic_selectable_url: url_for(action: :pearson_norms, pearson_assessment_id: '__id__', pearson_norm_id: f.object.pearson_assessment_setting&.pearson_norm_id),
+                                                dynamic_selectable_target: 'select.pearson_norm_id' }, id: 'pearson_assessment_id' }
+          = pearson.input :pearson_norm_id,
+                          collection: [],
+                          include_blank: false,
+                          wrapper_html: { class: 'pearson' },
+                          input_html: { data: { live_search: true }, class: 'pearson_norm_id' },
+                          include_hidden: false
+        = f.input :name, wrapper_html: { class: 'common mindmill hogan saville pearson' }
         - root_clients = policy_scope(Client).roots
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: root_clients.order(name: :asc),
@@ -36,14 +50,14 @@
                              wrapper_html: { class: 'common' }
         = f.input :status, as: :select, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] },
                            include_blank: false,
-                           wrapper_html: { class: 'common mindmill hogan saville' }
+                           wrapper_html: { class: 'common mindmill hogan saville pearson' }
         = f.association :dimension, collection: policy_scope(Dimension).all.sorted_by('name_asc'),
                                     include_blank: true,
                                     input_html: { data: { live_search: true } },
                                     wrapper_html: { class: 'common' }
         = f.input :timing, as: :text,
                            hint: t('.timing.hint'),
-                           wrapper_html: { class: 'common mindmill hogan saville' }
+                           wrapper_html: { class: 'common mindmill hogan saville pearson' }
         = f.input :description, as: :text, wrapper_html: { class: 'common mindmill hogan saville' }
         .clearfix
           = f.input :enable_video_check, as: :boolean

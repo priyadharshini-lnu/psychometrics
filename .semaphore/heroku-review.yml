@@ -13,7 +13,7 @@ global_job_config:
     - name: NODE_OPTIONS
       value: '--max_old_space_size=8192'
     - name: BUNDLER_VERSION
-      value: 2.1.4
+      value: 2.2.31
     - name: HEROKU_REMOTE
       value: https://git.heroku.com/tte-lighthouse.git
     - name: DATABASE_URL
@@ -50,7 +50,7 @@ blocks:
           - cache restore node-modules-prod-$(checksum yarn.lock)
           - cache restore webpack-compile-prod-$(checksum webpack-files.txt)
           - cache restore webpack-cache-prod-$SEMAPHORE_GIT_BRANCH-$(checksum webpack-files.txt),webpack-cache-prod-$SEMAPHORE_GIT_BRANCH,webpack-cache-prod
-          - sem-version ruby 2.5.1
+          - sem-version ruby 2.7.4
           - sem-version node 14.15.1
           - sem-service start postgres --username=postgres --password=postgres
           - sem-service start redis

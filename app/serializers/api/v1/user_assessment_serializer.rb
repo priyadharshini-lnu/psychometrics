@@ -3,10 +3,16 @@
 module Api
   module V1
     class UserAssessmentSerializer < ActiveModel::Serializer
-      attributes :id, :name, :status, :started_at, :completed_at, :campaign_id
+      attributes :id, :name, :description, :icon_url, :poster_url, :status, :started_at, :completed_at, :campaign_id
 
-      def id
-        object.assessment.id
+      delegate :id, :name, :description, to: :assessment
+
+      def icon_url
+        assessment.icon.url
+      end
+
+      def poster_url
+        assessment.poster.url
       end
 
       def status
@@ -21,8 +27,10 @@ module Api
         object.users_result.completed_at
       end
 
-      def name
-        object.assessment.name
+      private
+
+      def assessment
+        object.assessment
       end
     end
   end

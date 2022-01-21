@@ -29,7 +29,9 @@ export class MappingNorms extends Component {
   }
 
   render () {
-    const { assessment, close } = this.props
+    const {
+      assessment, close, normData, changeDefaultNorm, defaultNormId,
+    } = this.props
     return (
       <Modal show bsSize="lg" keyboard={false} dialogClassName={styles.modal}>
         <Header>
@@ -39,6 +41,19 @@ export class MappingNorms extends Component {
           </Title>
         </Header>
         <Body bsClass={styles.body}>
+          <div>
+            <div className={styles.row}>
+              <span>Default Norm</span>
+              <select
+                className={styles.select}
+                value={defaultNormId || undefined}
+                onChange={e => changeDefaultNorm(e.currentTarget.value)}
+              >
+                <option value={null} />
+                {_.map(normData, norm => (<option key={norm.id} value={norm.id || ''}>{norm.name}</option>))}
+              </select>
+            </div>
+          </div>
           {this.renderRules()}
           <div className={`${styles.addRuleButton} btn btn-default`} onClick={this.addRule}>
             <span className="fa fa-plus" />

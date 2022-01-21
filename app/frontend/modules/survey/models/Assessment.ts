@@ -4,6 +4,7 @@ export default interface AssessmentInterface {
   name: string
   flow: {}
   norm_rules: []
+  default_norm_id: number
   enable_back: boolean
   enable_progress: boolean
   blocks?: any[]

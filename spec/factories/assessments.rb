@@ -23,6 +23,7 @@
 FactoryBot.define do
   factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
+    description { Faker::Lorem.characters(5) }
     dimension
     extra { { icon_color: '#845EC2' } }
 
@@ -43,6 +44,13 @@ FactoryBot.define do
       type { ::Assessments::Saville }
       dimension { nil }
       after(:create) { |assessment| create(:saville_assessment_setting, assessment: assessment) }
+    end
+
+    trait :pearson do
+      category { Assessment::CATEGORIES[:pearson] }
+      type { ::Assessments::Pearson }
+      dimension { nil }
+      after(:create) { |assessment| create(:pearson_assessment_setting, assessment: assessment) }
     end
   end
   factory :assessment_hogan, class: ::Assessments::Hogan do

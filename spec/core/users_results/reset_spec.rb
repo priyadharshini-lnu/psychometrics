@@ -39,7 +39,7 @@ describe UsersResults::Reset do
   end
 
   it 'calls Saville::ResetAssessment is it is a saville assessment' do
-    allow(user_assessment).to receive(:saville_user_assessment).and_return(double)
+    allow(user_assessment.assessment).to receive(:saville?).and_return(true)
     expect(Saville::ResetAssessment).to receive(:call!).with(user_assessment)
 
     subject
