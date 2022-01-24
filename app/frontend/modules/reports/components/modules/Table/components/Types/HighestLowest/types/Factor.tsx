@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 
-import { PreviewModel } from 'modules/reports/interfaces/tables/HighestLowest'
+import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
+import cs from 'classnames'
 
 import AppStore from 'modules/reports/store/AppStore'
 import ResultStore from 'modules/reports/store/ResultStore'
 import I18nStore from 'modules/reports/store/I18nStore'
-import Text from '../../../Table/CellTypes/Text/Text'
 
 import styles from './styles.scss'
 
@@ -28,9 +28,13 @@ interface Props {
   assessment_id: PreviewModel['assessment_id']
   filterId: PreviewModel['props']['filter']
   factorIds: PreviewModel['props']['factorIds']
+  sections: TableSectionsType
+  tableStyle: TableStyleType
 }
 
-const FactorType: FC<Props> = ({ assessment_id, filterId, factorIds }) => {
+const FactorType: FC<Props> = ({
+  assessment_id, filterId, factorIds, sections, tableStyle,
+}) => {
   const calculateHighestLowest = (
     assessment_id: PreviewModel['assessment_id'],
     filterId: PreviewModel['props']['filter'],
@@ -43,7 +47,8 @@ const FactorType: FC<Props> = ({ assessment_id, filterId, factorIds }) => {
       (firstFactor, secondFactor) => secondFactor.avg - firstFactor.avg,
     ).filter(r => r.avg > 0)
 
-    const highestFactors = sortedFactors.slice(0, 5)
+    // splice to exclude highestScore entries from lowest
+    const highestFactors = sortedFactors.splice(0, 5)
     const lowestFactors = sortedFactors.slice(-5).reverse()
 
     return [highestFactors, lowestFactors]
@@ -70,19 +75,27 @@ const FactorType: FC<Props> = ({ assessment_id, filterId, factorIds }) => {
   const filterName = filter ? I18nStore.tFilterName(filter) : ''
 
   return (
-    <div className={styles.table}>
+    <div className={cs(styles.table, styles[tableStyle])}>
       <table>
         <tbody>
-          <THeaders
-            title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
-            filterName={filterName}
-          />
-          <TBody data={highestFactors} />
-          <THeaders
-            title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
-            filterName={filterName}
-          />
-          <TBody data={lowestFactors} />
+          {sections !== TableSectionsType.LOWEST && (
+            <>
+              <THeaders
+                title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
+                filterName={filterName}
+              />
+              <TBody data={highestFactors} />
+            </>
+          )}
+          {sections !== TableSectionsType.HIGHEST && (
+            <>
+              <THeaders
+                title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
+                filterName={filterName}
+              />
+              <TBody data={lowestFactors} />
+            </>
+          )}
         </tbody>
       </table>
     </div>
@@ -96,19 +109,19 @@ interface THeadersProps {
 
 const THeaders: FC<THeadersProps> = ({ title, filterName }) => (
   <>
-    <tr>
-      <th className={styles.label} colSpan={3}>
+    <tr className={styles.title}>
+      <th colSpan={3}>
         {title}
       </th>
     </tr>
-    <tr>
+    <tr className={styles.headers}>
       <th className={styles.label} scope="col">
         {I18nStore.t('reports.modules.highest_lowest.rank')}
       </th>
       <th className={styles.label} scope="col">
         {I18nStore.t('reports.modules.highest_lowest.category')}
       </th>
-      <th className={styles.label} scope="col">
+      <th className={cs(styles.label, styles.number)} scope="col">
         {filterName}
       </th>
     </tr>
@@ -125,10 +138,10 @@ interface TBodyProps {
 const TBody: FC<TBodyProps> = ({ data }) => (
   <>
     {data.map(({ avg, name }, index) => (
-      <tr key={index}>
-        <Text model={{ text: index + 1 }} />
-        <Text model={{ text: name }} />
-        <Text model={{ value: avg }} />
+      <tr key={index} className={styles.row}>
+        <td>{index + 1}</td>
+        <td>{name}</td>
+        <td className={styles.number}>{avg}</td>
       </tr>
     ))}
   </>
