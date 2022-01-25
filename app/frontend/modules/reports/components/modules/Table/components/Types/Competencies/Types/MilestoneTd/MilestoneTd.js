@@ -8,7 +8,7 @@ import FilterAvatar from '../../FilterAvatar'
 export default function MilestoneTd ({
   milestoneIndex, milestone: { min, max }, model, filters,
 }) {
-  const { showLines } = model.props
+  const { showLines, scoreBackgroundColor } = model.props
   const filteredResults = filters.filter(
     r => ((milestoneIndex === 0 && r.value >= parseFloat(min))
       || r.value > parseFloat(min)) && r.value <= parseFloat(max),
@@ -26,6 +26,11 @@ export default function MilestoneTd ({
           const result = _.get(keyedResults, filter.id, false)
           const position = result ? positionByValue(result.value) : 0
           const translateX = direction === 'left' ? -position : position
+          const style = {
+            [direction]: `${position}%`,
+            transform: `translateX(${translateX}%)`,
+            backgroundColor: scoreBackgroundColor,
+          }
           return (
             <div className={cs(styles.filter, { [styles.noLines]: !showLines })} key={filter.id}>
               {result && (
@@ -33,7 +38,7 @@ export default function MilestoneTd ({
                   key={filter.id}
                   filter={keyedResults[filter.id]}
                   model={model}
-                  style={{ [direction]: `${position}%`, transform: `translateX(${translateX}%)` }}
+                  style={style}
                   reversed={reverseLabel(result.value)}
                 />
               )}

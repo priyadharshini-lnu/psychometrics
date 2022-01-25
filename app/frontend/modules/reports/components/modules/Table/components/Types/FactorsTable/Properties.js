@@ -283,6 +283,15 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <div className={styles.block}>
+          Background Color
+          <div className={styles.flexRow}>
+            <ColorPicker
+              color={model.props.backgroundColor}
+              onChange={color => this.onChangeColor('backgroundColor', color.hex)}
+            />
+          </div>
+        </div>
+        <div className={styles.block}>
           Score Color
           <div className={styles.flexRow}>
             <ColorPicker
@@ -296,7 +305,7 @@ class Properties extends Component {
           <div className={styles.flexRow}>
             <ColorPicker
               color={model.props.scoreBackgroundColor}
-              onChange={color => this.onChangeColor('scoreBackgroundColor', color.hex)}
+              onChange={color => this.onChangeColor('scoreBackgroundColor', color.rgb)}
             />
           </div>
         </div>
