@@ -36,6 +36,7 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
       config = Rails.application.secrets.pearson
       url = Faker::Internet.url
       allow(Pearson::GetAuthToken).to receive(:call!)
+      allow_any_instance_of(UserAssessment).to receive(:pearson_assessment_language).and_return('en-Gb')
       stub_request(:post, "#{config[:base_api_url]}/v1/schedules").
         to_return({ body: { 'data' => { 'urls' => [{ 'url' => url }] } }.to_json })
 

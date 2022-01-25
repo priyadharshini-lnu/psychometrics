@@ -23,8 +23,7 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   has_one :threesixty_campaign, through: :campaign
-  delegate :saville_assessment_id, :saville?, :pearson_assessment_id,
-           :pearson_assessment_language, :pearson?,
+  delegate :saville_assessment_id, :saville?, :pearson_assessment_id, :pearson?,
            to: :assessment
   delegate :selected_locale, :timed?, to: :users_result, allow_nil: true
 
@@ -54,6 +53,10 @@ class UserAssessment < ApplicationRecord
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment]
+  end
+
+  def pearson_assessment_language
+    PearsonAssessmentSetting.pearson_assessment_language(pearson_assessment_id, pearson_norm_id)
   end
 
   def external_user_reports(type)
