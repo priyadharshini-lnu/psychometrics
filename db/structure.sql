@@ -75,8 +75,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -412,16 +410,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -486,6 +484,45 @@ ALTER SEQUENCE public.assigns_reports_id_seq OWNED BY public.assigns_reports.id;
 
 
 --
+-- Name: audit_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.audit_logs (
+    id bigint NOT NULL,
+    action character varying NOT NULL,
+    user_id bigint,
+    record_id bigint,
+    record_type character varying,
+    payload text,
+    request text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    campaign_id integer,
+    project_id integer,
+    client_id integer
+);
+
+
+--
+-- Name: audit_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.audit_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: audit_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.audit_logs_id_seq OWNED BY public.audit_logs.id;
+
+
+--
 -- Name: blocks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -532,7 +569,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -2704,12 +2742,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -3488,8 +3526,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -3918,12 +3955,12 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     selected_locale character varying,
@@ -4124,6 +4161,13 @@ ALTER TABLE ONLY public.assigns ALTER COLUMN id SET DEFAULT nextval('public.assi
 --
 
 ALTER TABLE ONLY public.assigns_reports ALTER COLUMN id SET DEFAULT nextval('public.assigns_reports_id_seq'::regclass);
+
+
+--
+-- Name: audit_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audit_logs ALTER COLUMN id SET DEFAULT nextval('public.audit_logs_id_seq'::regclass);
 
 
 --
@@ -4884,6 +4928,14 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.assigns_reports
     ADD CONSTRAINT assigns_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: audit_logs audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audit_logs
+    ADD CONSTRAINT audit_logs_pkey PRIMARY KEY (id);
 
 
 --
@@ -5857,6 +5909,27 @@ CREATE INDEX index_assigns_reports_on_report_id ON public.assigns_reports USING 
 --
 
 CREATE UNIQUE INDEX index_assigns_reports_on_report_id_and_assign_id ON public.assigns_reports USING btree (report_id, assign_id);
+
+
+--
+-- Name: index_audit_logs_on_action; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_action ON public.audit_logs USING btree (action);
+
+
+--
+-- Name: index_audit_logs_on_record_type_and_record_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_record_type_and_record_id ON public.audit_logs USING btree (record_type, record_id);
+
+
+--
+-- Name: index_audit_logs_on_user_id_and_action; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_user_id_and_action ON public.audit_logs USING btree (user_id, action);
 
 
 --
@@ -8991,11 +9064,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211013070031'),
 ('20211017084949'),
 ('20211018074847'),
+('20211018123332'),
 ('20211026125300'),
 ('20211027170600'),
 ('20211102165147'),
 ('20211111110056'),
 ('20211114082155'),
+('20211121115043'),
 ('20211209113042'),
 ('20211216105541'),
 ('20211219131442'),
@@ -9005,5 +9080,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220114152459'),
 ('20220118121431'),
 ('20220121064435');
-
-

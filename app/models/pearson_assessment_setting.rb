@@ -21,17 +21,26 @@ class PearsonAssessmentSetting < ApplicationRecord
     end.sort_by { |norm| norm[:name] }
   end
 
+  def self.assessment_setting(pearson_assessment_id)
+    Pearson::GetAssessments.call!.find { |a| a['productId'] == pearson_assessment_id }
+  end
+
+  def self.pearson_assessment_language(pearson_assessment_id, pearson_norm_id)
+    assessment_setting = assessment_setting(pearson_assessment_id)
+    assessment_setting.dig('norms', 'items').find { |n| n['normId'] == pearson_norm_id }['supportedLanguage']
+  end
+
   def pearson_norms
     self.class.pearson_norms(pearson_assessment_id)
   end
 
   def pearson_assessment_language
-    assessment_setting.dig('norms', 'items').find { |n| n['normId'] == pearson_norm_id }['supportedLanguage']
+    self.class.pearson_assessment_language(pearson_assessment_id, pearson_norm_id)
   end
 
   private
 
   def assessment_setting
-    Pearson::GetAssessments.call!.find { |a| a['productId'] == pearson_assessment_id }
+    self.class.assessment_setting(pearson_assessment_id)
   end
 end

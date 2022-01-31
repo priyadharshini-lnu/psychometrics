@@ -147,7 +147,7 @@ gem 'dry-types', '~> 1.5.0'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.14.0'
 gem 'reform-rails', '~> 0.2.3'
-gem 'validates_timeliness', '~> 4.0.2'
+gem 'validates_timeliness', '~> 5.0.0'
 gem 'virtus', '~> 1.0.5'
 
 # SOAP client
@@ -232,7 +232,7 @@ end
 gem 'rqrcode'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.1.0'
+gem 'sidekiq-cron', '~> 1.2.0'
 
 gem 'xml-simple', '~> 1.1.5'
 

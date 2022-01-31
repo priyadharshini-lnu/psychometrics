@@ -216,6 +216,10 @@ class User < ApplicationRecord
     project.parent
   end
 
+  def name
+    decorate.full_name
+  end
+
   private
 
   def generate_invitation_token

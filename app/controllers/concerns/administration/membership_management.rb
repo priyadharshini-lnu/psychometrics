@@ -78,6 +78,7 @@ module Administration
     end
 
     def spoof
+      audit! :sign_in_as, current_user, payload: { sign_in_as: resource.user.email }
       sign_in(resource.user)
       redirect_url ||= administration_root_path
       flash.now[:success] = t('.successfully', name: resource.decorate.display_name)

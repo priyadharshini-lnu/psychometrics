@@ -8,6 +8,7 @@ module Administration
 
       def update
         resource.update(resource_params)
+        audit! :update, resource, payload: resource_params, campaign: resource.campaign
         render json: resource,
          serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
          current_user: current_user
@@ -15,6 +16,8 @@ module Administration
 
       def attach_to_group
         ::CampaignAssessments::AttachToGroup.call!(resource, params[:group_id], params[:position])
+        audit! :attach_to_group, resource, payload: { group: params[:group_id], position: params[:position] },
+               campaign: resource.campaign
 
         render json: :ok
       end

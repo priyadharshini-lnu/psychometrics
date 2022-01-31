@@ -6,6 +6,10 @@ class CampaignAssessmentGroup < ApplicationRecord
 
   before_create :set_position
 
+  def log_attribute_for_delete
+    slice(:name, :position, :campaign_id)
+  end
+
   def set_position
     self.position = (campaign.campaign_assessment_groups.maximum('position') || 0) + 1 unless position
   end

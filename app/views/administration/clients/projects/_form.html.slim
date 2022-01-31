@@ -38,11 +38,11 @@
         = f.input :enable_live_chat, label: t('.enable_live_chat')
         #live_chat_token.mbm.pl class="#{resource.enable_live_chat ? '' : 'hidden'}"
           = f.input :live_chat_token, label: t('.live_chat_token'), placeholder: t('.optional')
-        = f.input :webhook, label: t('.webhook')
+        = f.input :webhook, label: t('.webhook'), as: 'url'
         = f.input :webhook_auth_enabled, label: t('.webhook_auth_enabled')
         #webhook_credentials.mbm.pl class="#{resource.webhook_auth_enabled ? '' : 'hidden'}"
-          = f.input :webhook_username, label: t('.webhook_username')
-          = f.input :webhook_password, label: t('.webhook_password'), placeholder: (resource.webhook_subscription&.password.blank? ? '' : '*****')
+          = f.input :webhook_username, label: t('.webhook_username'), input_html: { autocomplete: 'off' }
+          = f.input :webhook_password, label: t('.webhook_password'), placeholder: (resource.webhook_subscription&.password.blank? ? '' : '*****'), input_html: { autocomplete: 'off' }
       .clearfix
       -if policy(:client, { project_id: client.id}).design?
         .well

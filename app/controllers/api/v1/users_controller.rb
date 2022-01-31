@@ -29,6 +29,8 @@ module Api
             response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
               on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
             end
+            audit! :api_create, user, payload: params.permit!, campaign: campaign
+
             response[:ok]
           end.sample
           render json: Api::V1::UserSerializer.new(user, project: project).to_h
@@ -41,7 +43,10 @@ module Api
         form = Api::V1::Users::UpdateForm.from_params(params[:user]).with_context(project: project, user: user)
         ::Users::Update.call(form, project, user) do
           on(:invalid) { |f| render_validation_errors(f) }
-          on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
+          on(:ok) do |user|
+            audit! :api_update, user, payload: params.permit!, project: project
+            render json: Api::V1::UserSerializer.new(user, project: project).to_h
+          end
         end
       end
 
@@ -58,6 +63,7 @@ module Api
           ::Campaigns::UserReports::Add.call(form, campaign_user) do
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
+          audit! :assessments_reports, campaign_user, payload: params.permit!, campaign: campaign_user.campaign
           render json: campaign_user, serializer: Api::V1::UserAssessmentsAndReportsSerializer
         else
           render_validation_errors(form)

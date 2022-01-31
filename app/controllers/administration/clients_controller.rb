@@ -47,6 +47,7 @@ module Administration
       resource.operator = current_user
       respond_to do |format|
         if resource.save
+          audit! :create, resource, payload: resource_params, client: resource
           if resource.project? && current_user.is?(:project_admin)
             current_user.memberships.create!(client: resource, role: Membership::PROJECT_ADMIN_ROLE)
           end
@@ -63,6 +64,7 @@ module Administration
       resource.operator = current_user
       respond_to do |format|
         if resource.save
+          audit! :update, resource, payload: resource_params, client: resource
           format.js
         else
           format.js { render :edit }
@@ -72,6 +74,7 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
+      audit! :delete, resource, payload: resource.log_attribute_for_delete
       resource.destroy
       respond_to do |format|
         format.html do
@@ -83,6 +86,7 @@ module Administration
 
     def archive
       resource.update_attribute(:archived, true)
+      audit! :archive, resource, client: resource
       respond_to do |format|
         format.html do
           redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -95,6 +99,7 @@ module Administration
     #
     def toggle_status
       resource.toggle!(:disabled)
+      audit! :toggle_status, resource, client: resource
       respond_to do |format|
         format.html do
           redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -104,6 +109,7 @@ module Administration
     end
 
     def copy
+      audit! :copy, resource, client: resource
       ::Clients::CopyClient.call(resource) do
         on(:invalid) { render(:error, locals: { message: t('.error', name: resource.decorate.display_name) }) }
         on(:ok) { |cloned_resource| render :copy, locals: { cloned_resource: cloned_resource } }
@@ -113,6 +119,7 @@ module Administration
     def export
       @_resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :project_admins)
 
+      audit! :export, nil
       respond_to do |format|
         filename = "#{resource_class.model_name.plural}-#{Date.today}"
         format.csv do

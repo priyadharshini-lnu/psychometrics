@@ -25,6 +25,7 @@ module Administration
         form = Licenses::CreateForm.new(resource_params.merge(client_id: client.root.id))
         @_resource = client.root.licenses.build(resource_params)
         if form.valid?
+          audit! :create, resource, payload: resource_params, client: client
           resource.save
         else
           resource.validate
@@ -33,6 +34,7 @@ module Administration
       end
 
       def update
+        audit! :update, resource, payload: resource_params, client: client
         render :edit unless resource.update(resource_params)
       end
 
@@ -44,6 +46,7 @@ module Administration
 
       def toggle_status
         resource.toggle!(:disabled)
+        audit! :toggle_status, resource, client: client
         respond_to do |format|
           format.js
         end

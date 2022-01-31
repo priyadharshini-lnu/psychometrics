@@ -6,16 +6,16 @@ import get from 'lodash/get'
 import keyBy from 'lodash/keyBy'
 import meanBy from 'lodash/meanBy'
 import round from 'lodash/round'
+import cs from 'classnames'
 
 import { RootState } from 'modules/reports/core/rootReducers'
-import { PreviewModel } from 'modules/reports/interfaces/tables/HighestLowest'
+import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
 import { BasePreviewModel as BaseQuestionModelInPreview } from 'modules/survey/interfaces/questions/Base'
 
 import ResultStore from 'modules/reports/store/ResultStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import AppStore from 'modules/reports/store/AppStore'
-import Text from '../../../Table/CellTypes/Text/Text'
 
 import styles from './styles.scss'
 
@@ -83,6 +83,8 @@ interface OwnProps {
   assessment_id: PreviewModel['assessment_id']
   filterId: PreviewModel['props']['filter']
   questionsChoices: PreviewModel['props']['questionsChoices']
+  sections: TableSectionsType
+  tableStyle: TableStyleType
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -92,6 +94,8 @@ const QuestionTypeComponent: FC<Props> = ({
   assessment_id,
   questionsChoices,
   getQuestions,
+  sections,
+  tableStyle,
 }) => {
   const calculateHighestLowest = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -157,7 +161,8 @@ const QuestionTypeComponent: FC<Props> = ({
     const sortedResults = results.sort(
       (firstResult, secondResult) => secondResult.value - firstResult.value,
     )
-    const highestScoreChoices = sortedResults.slice(0, 5)
+    // splice to exclude highestScore entries from lowest
+    const highestScoreChoices = sortedResults.splice(0, 5)
     const lowestScoreChoices = sortedResults.slice(-5).reverse()
 
     return [highestScoreChoices, lowestScoreChoices]
@@ -181,19 +186,27 @@ const QuestionTypeComponent: FC<Props> = ({
   const filterName = filter ? I18nStore.tFilterName(filter) : ''
 
   return (
-    <div className={styles.table}>
+    <div className={cs(styles.table, styles[tableStyle])}>
       <table>
         <tbody>
-          <THeaders
-            title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
-            filterName={filterName}
-          />
-          <TBody data={highestChoices} />
-          <THeaders
-            title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
-            filterName={filterName}
-          />
-          <TBody data={lowestChoices} />
+          {sections !== TableSectionsType.LOWEST && (
+            <>
+              <THeaders
+                title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
+                filterName={filterName}
+              />
+              <TBody data={highestChoices} />
+            </>
+          )}
+          {sections !== TableSectionsType.HIGHEST && (
+            <>
+              <THeaders
+                title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
+                filterName={filterName}
+              />
+              <TBody data={lowestChoices} />
+            </>
+          )}
         </tbody>
       </table>
     </div>
@@ -292,12 +305,12 @@ interface THeadersProps {
 
 const THeaders: FC<THeadersProps> = ({ title, filterName }) => (
   <>
-    <tr>
-      <th className={styles.label} colSpan={4}>
+    <tr className={styles.title}>
+      <th colSpan={4}>
         {title}
       </th>
     </tr>
-    <tr>
+    <tr className={styles.headers}>
       <th className={styles.label}>
         {I18nStore.t('reports.modules.highest_lowest.rank')}
       </th>
@@ -307,7 +320,7 @@ const THeaders: FC<THeadersProps> = ({ title, filterName }) => (
       <th className={styles.label}>
         {I18nStore.t('reports.modules.highest_lowest.item')}
       </th>
-      <th className={styles.label}>{filterName}</th>
+      <th className={cs(styles.label, styles.number)}>{filterName}</th>
     </tr>
   </>
 )
@@ -325,11 +338,11 @@ interface TBodyProps {
 const TBody: FC<TBodyProps> = ({ data }) => (
   <>
     {data.map(({ factorName, questionName, value }, index) => (
-      <tr key={index}>
-        <Text model={{ text: index + 1 }} />
-        <Text model={{ text: factorName }} />
+      <tr key={index} className={styles.row}>
+        <td>{index + 1}</td>
+        <td>{factorName}</td>
         <td>{questionName}</td>
-        <Text model={{ value: value.toFixed(2) }} />
+        <td className={styles.number}>{value.toFixed(2)}</td>
       </tr>
     ))}
   </>

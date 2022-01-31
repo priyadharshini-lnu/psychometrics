@@ -38,7 +38,7 @@ RUN apt-get update -qq &&  apt-get install -yq build-essential git ruby-dev libp
 RUN curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
       && echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google-chrome.list \
       && apt-get update -qq \
-      && apt-get install -y --no-install-recommends google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 libxtst6 \
+      && apt-get install -y --no-install-recommends google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 libxtst6 libx11-xcb1 \
       && rm /etc/apt/sources.list.d/google-chrome.list \
       && apt-get clean \
       && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -7,6 +7,7 @@ import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel
 import PropertyFilter from 'modules/reports/components/PropertyFilter'
 import ColorPicker from 'modules/reports/components/ColorPicker'
 import PropertyFonts from 'modules/reports/components/PropertyFonts'
+import { rgba2hex } from 'utils/color'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import QuestionList from './dataSources/QuestionList'
 import FactorList from './dataSources/FactorList'
@@ -53,6 +54,13 @@ const Properties: FC<Props> = ({ model }) => {
             onChange={color => onChange('secondHeaderColor', color.hex)}
           />
         </div>
+      </div>
+      <div className={styles.block}>
+        Score Background Color
+        <ColorPicker
+          color={model.props.scoreBackgroundColor}
+          onChange={color => onChange('scoreBackgroundColor', rgba2hex(color.rgb))}
+        />
       </div>
       <div className="margin-top-10">
         Show

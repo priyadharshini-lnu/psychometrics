@@ -54,6 +54,10 @@ class Dimension < ApplicationRecord
     end
   }
 
+  def log_attribute_for_delete
+    slice(:owner_id, :name)
+  end
+
   def clone_and_save
     @cloned_dimension = deep_clone(
       include: [

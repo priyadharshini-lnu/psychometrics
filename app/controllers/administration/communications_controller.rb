@@ -39,6 +39,7 @@ module Administration
       respond_to do |format|
         if @communication_facade.form.validate(resource_params)
           @communication_facade.form.save
+          audit! :create, resource, payload: resource_params
           format.js
         else
           format.js { render :new }
@@ -48,6 +49,7 @@ module Administration
 
     def toggle_status
       resource.toggle(:disabled).save
+      audit! :toggle_status, resource
       respond_to do |format|
         format.js
       end
@@ -56,6 +58,7 @@ module Administration
     # DELETE /administration/resources/1
     def destroy
       resource.destroy
+      audit! :delete, resource, payload: resource.log_attribute_for_delete
       respond_to do |format|
         format.html do
           redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -66,12 +69,14 @@ module Administration
 
     def copy
       clone_resource(resource)
+      audit! :copy, resource
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       render :new
     end
 
     def download_history
       csv = ::Services::ExportCSV::CommunicationEmailsHistory.call(communication: resource).result
+      audit! :download_history, resource
       send_data csv, filename: "#{resource.subject}-#{Time.current}.csv"
     end
 

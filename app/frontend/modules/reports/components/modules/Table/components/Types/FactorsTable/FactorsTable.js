@@ -328,11 +328,12 @@ class FactorsTable extends Component {
 
   render () {
     const { module, model } = this.props
-    const { showBorder } = model.props
+    const { showBorder, backgroundColor } = model.props
     const { fontSize, fontFamily } = module.props.style
     const style = {
       fontSize,
       fontFamily,
+      backgroundColor: backgroundColor || false,
     }
     this.prepareRows()
     return (
