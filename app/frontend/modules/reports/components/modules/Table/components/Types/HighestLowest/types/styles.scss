@@ -7,17 +7,58 @@
 
   table {
     width: 100%;
-    td, th {
-      border: 1px solid #c9c9c9;
+  }
+
+  &.default {
+    table {
+      td, th {
+        border: 1px solid #c9c9c9;
+        text-align: center;
+        padding: 2px;
+      }
+    }
+    .title,.label {
+      min-width: 50px;
       text-align: center;
-      padding: 2px;
+      font-weight: bold;
+      background: #ebebeb;
+    }
+  }
+
+  &.minimal {
+    table {
+      .title th {
+        font-size: 140%;
+        padding-top: 0.8em;
+      }
+      .title:first-child th {
+        padding-top: 0;
+      }
+      .label {
+        text-transform: uppercase;
+        color: gray;
+        font-weight: normal;
+      }
+      .headers, .row {
+        td, th {
+          padding: 0.5em 0.4em;
+          &:first-child {
+            padding-inline-start: 0;
+          }
+          &:last-child {
+            padding-inline-end: 0;
+          }
+        }
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .headers {
+        border-top: 0;
+      }
+      .number {
+        text-align: end;
+      }
     }
   }
 }
 
-.label {
-  min-width: 50px;
-  text-align: center;
-  font-weight: bold;
-  background: #ebebeb;
-}

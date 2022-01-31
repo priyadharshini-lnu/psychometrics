@@ -9,4 +9,17 @@ interface Props {
   filter: number
   questionsChoices: Array<{ questionId: number; choiceIds: Array<number> }>
   factorIds: Array<number>
+  sections: TableSectionsType
+  tableStyle: TableStyleType
+}
+
+export enum TableSectionsType {
+  ALL = 0,
+  HIGHEST = 1,
+  LOWEST = 2,
+}
+
+export enum TableStyleType {
+  UNSTYLED = 'default',
+  MINIMAL = 'minimal',
 }

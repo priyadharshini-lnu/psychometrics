@@ -20,6 +20,7 @@ export default interface Module {
     sourceType: 'Factor' | 'Question'
     mainHeaderColor: RGBColor | string
     secondHeaderColor: RGBColor | string
+    scoreBackgroundColor: RGBColor | string
     showLabels: boolean
     showValues: boolean
     showLines: boolean

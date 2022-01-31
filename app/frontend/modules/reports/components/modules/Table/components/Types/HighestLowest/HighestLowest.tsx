@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Empty } from 'antd'
 
-import { PreviewModel } from 'modules/reports/interfaces/tables/HighestLowest'
+import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
 
 import QuestionType from './types/Question'
 import FactorType from './types/Factor'
@@ -13,7 +13,8 @@ interface Props {
 export const HighestLowest: FC<Props> = ({ model }) => {
   const {
     props: {
-      sourceType, filter, factorIds, questionsChoices,
+      sourceType, filter, factorIds, questionsChoices, sections = TableSectionsType.ALL,
+      tableStyle = TableStyleType.UNSTYLED,
     },
     assessment_id,
   } = model
@@ -33,6 +34,8 @@ export const HighestLowest: FC<Props> = ({ model }) => {
         assessment_id={assessment_id}
         filterId={filter}
         questionsChoices={questionsChoices}
+        sections={sections}
+        tableStyle={tableStyle}
       />
     )
   }
@@ -41,6 +44,8 @@ export const HighestLowest: FC<Props> = ({ model }) => {
       assessment_id={assessment_id}
       filterId={filter}
       factorIds={factorIds}
+      sections={sections}
+      tableStyle={tableStyle}
     />
   )
 }
