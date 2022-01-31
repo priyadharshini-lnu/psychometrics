@@ -4,7 +4,9 @@ module Administration
   module Campaigns
     class SmsInvitePolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id: project_id)
+        @user.is?(:superadmin) || @user.has_permission?(
+          :sms_invites, :view, project_id: project_id, campaign_id: campaign_id
+        )
       end
 
       def create?
@@ -24,7 +26,9 @@ module Administration
       end
 
       def export?
-        can_manage_sms_invites?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :sms_invites, :view, project_id: project_id, campaign_id: campaign_id
+        )
       end
 
       def send_sms?
@@ -42,7 +46,9 @@ module Administration
       private
 
       def can_manage_sms_invites?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        @user.is?(:superadmin) || @user.has_permission?(
+          :sms_invites, :manage, project_id: project_id, campaign_id: campaign_id
+        )
       end
     end
   end

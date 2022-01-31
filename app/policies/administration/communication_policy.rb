@@ -43,7 +43,7 @@ module Administration
           @user.has_permission?(:communications, :view, project_id: project_id)
         end
 
-        scope.where('client_id IN (?) or project_id IN (?)', permitted_client_ids, permitted_project_ids)
+        scope.where('client_id IN (?) or communications.project_id IN (?)', permitted_client_ids, permitted_project_ids)
       end
     end
   end

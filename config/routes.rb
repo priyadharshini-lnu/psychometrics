@@ -251,6 +251,11 @@ Rails.application.routes.draw do
     resources :projects, :new_projects do
       scope module: :projects do
         resources :datasheet_rows, concerns: :datasheet_management
+        resources :saml_settings, only: %i[create update] do
+          collection do
+            post :test_saml
+          end
+        end
         resources :smtp_settings, only: %i[update] do
           collection do
             post :send_test_email
@@ -272,16 +277,18 @@ Rails.application.routes.draw do
             post :search_users
           end
 
+          get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
+
           member do
             get :fetch_campaign_options
             get :fetch_campaign_instructions
             put :update_campaign_options
-            get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end
         end
       end
     end
+
     resources :projects do
       member do
         post :search_users

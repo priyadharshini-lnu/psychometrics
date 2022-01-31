@@ -10,6 +10,7 @@ module Administration
       clients: [],
       projects: [],
       project_settings: [],
+      sms_invites: [],
       campaigns: [],
       norms: [],
       dimensions: [],

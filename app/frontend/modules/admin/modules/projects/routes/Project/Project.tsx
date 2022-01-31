@@ -141,7 +141,7 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
             {I18n.t('administration.breadcrumbs.project_admins')}
           </Menu.Item>
         )}
-        {currentUser.permissions.manageProjectSmtpSettings && (
+        {(currentUser.permissions.manageProjectSmtpSettings || currentUser.permissions.manageProjectSamlSetting) && (
           <Menu.Item key="settings" icon={<SettingOutlined />}>
             {I18n.t('administration.breadcrumbs.settings')}
           </Menu.Item>

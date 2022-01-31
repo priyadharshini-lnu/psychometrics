@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 ruby '2.7.4'
-gem 'bundler',                    '>= 1.8.4'
+gem 'bundler',                    '~> 2.2.31'
 gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
@@ -45,6 +45,7 @@ end
 gem 'devise',                     '~> 4.7.3'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.2'
+gem 'devise_saml_authenticatable', '~> 1.7.0'
 gem 'pundit',                     '~> 2.1.0'
 gem 'two_factor_authentication',  '~> 2.2.0'
 
@@ -56,10 +57,10 @@ gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
-gem 'slim-rails',                 '~> 3.1.0'
+gem 'slim-rails',                 '~> 3.3.0'
 ### FORM BUILDERS
 gem 'cocoon', '1.2.9'
-gem 'simple_form',                '5.0.2'
+gem 'simple_form',                '5.1.0'
 ### Pagination helpers
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 gem 'kaminari',                   '~> 1.2.1'
@@ -79,7 +80,7 @@ gem 'annotate', '~> 2.7.0'
 gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
 gem 'config',                     '~> 2.2.1'
-gem 'figaro',                     '~> 1.1.1'
+gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails', '~> 1.10.3'
 
@@ -177,9 +178,9 @@ gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_syste
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'awesome_print', '~> 1.8.0'
+  gem 'awesome_print', '~> 1.9.2'
   gem 'byebug', platform: :mri
-  gem 'factory_bot_rails', '~> 6.1.0'
+  gem 'factory_bot_rails', '~> 6.2.0'
   gem 'hirb'
   gem 'parallel_tests', '~> 3.7'
   gem 'pry-byebug', '~> 3.9.0'
@@ -197,9 +198,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet', '~> 6.1.0'
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'listen', '~> 3.5.1'
+  gem 'bullet', '~> 7.0.1'
+  gem 'listen', '~> 3.7.1'
   gem 'web-console', '~> 3.3.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.7.2'
@@ -223,7 +223,7 @@ group :test do
   gem 'simplecov', '~> 0.21.2'
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.6.0'
-  gem 'webmock', '~> 3.12.2'
+  gem 'webmock', '~> 3.14.0'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'with_model', '~> 2.1.5'
 end

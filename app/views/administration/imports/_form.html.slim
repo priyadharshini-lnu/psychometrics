@@ -1,8 +1,18 @@
-= simple_form_for(@form, as: :import, url: { action: :create, resource: @import.resource, type: @import.format }, remote: true, html: { multipart: true }) do |f|
+= simple_form_for(Norm.new, as: :import, url: { action: :create, resource: @import.resource, type: @import.format }, remote: true, html: { multipart: true }) do |f|
   .modal-body
     div = t('.description')
     br
     .form-inputs.clearfix
+      - root_clients = policy_scope(Client).tenancies.not_archived
+      - if current_user.is?(:superadmin)
+        = f.association :owner,
+                        collection: root_clients.order(:name),
+                        include_blank: t('administration.tte'),
+                        input_html: { data: { live_search: true } }
+      - elsif current_user.is?(:client_admin) && root_clients.count >= 1
+        = f.association :owner,
+                        collection: root_clients.order(:name),
+                        input_html: { data: { live_search: true } }
       = f.input :file, as: :file
   .modal-footer
     .btn-group

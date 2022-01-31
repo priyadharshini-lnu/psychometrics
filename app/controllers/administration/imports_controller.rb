@@ -17,7 +17,9 @@ class Administration::ImportsController < Administration::BaseController
     respond_to do |format|
       if @form.valid?
         begin
-          @import.engine.new(@form.file.path, current_user).process
+          @import.engine.new(
+            @form.file.path, current_user, import_params[:owner_id]
+          ).process
         rescue ::Errors::ImportError => e
           format.js { render :error, locals: { message: e } }
         end
@@ -31,7 +33,7 @@ class Administration::ImportsController < Administration::BaseController
   private
 
   def import_params
-    params.require(:import).permit(:file)
+    params.require(:import).permit(:file, :owner_id)
   end
 
   def pundit_authorize

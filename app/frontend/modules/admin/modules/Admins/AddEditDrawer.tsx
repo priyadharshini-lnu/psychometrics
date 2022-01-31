@@ -120,6 +120,10 @@ const AddEditDrawerComponent: FC<Props> = ({
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
           [`campaigns-${GrantType.manage_options}`]:
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_options),
+          [`smsInvites-${GrantType.view}`]:
+            admin?.grants?.data?.smsInvites?.includes(GrantType.view),
+          [`smsInvites-${GrantType.manage}`]:
+            admin?.grants?.data?.smsInvites?.includes(GrantType.manage),
           [`communications-${GrantType.view}`]:
             admin?.grants?.data?.communications?.includes(GrantType.view),
           [`communications-${GrantType.manage}`]:
@@ -206,6 +210,7 @@ const AddEditDrawerComponent: FC<Props> = ({
       results: grants?.results ?? [],
       assessors: grants?.assessors ?? [],
       registrationCodes: grants?.registrationCodes ?? [],
+      smsInvites: grants?.smsInvites ?? [],
       datasheets: grants?.datasheets ?? [],
     }
 
@@ -494,6 +499,40 @@ const AddEditDrawerComponent: FC<Props> = ({
                   <Checkbox>
                     {I18n.t(
                       'administration.administrators.drawers.edit.can_manage_options',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Divider />
+            <Row gutter={24}>
+              <Col span={4}>
+                <Typography.Text strong>
+                  {I18n.t(
+                    'administration.administrators.drawers.edit.permission_sms_invites',
+                  )}
+                </Typography.Text>
+              </Col>
+              <Col>
+                <Form.Item
+                  name={`smsInvites-${GrantType.view}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.can_view',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item
+                  name={`smsInvites-${GrantType.manage}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.can_manage',
                     )}
                   </Checkbox>
                 </Form.Item>

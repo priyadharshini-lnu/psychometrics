@@ -16,7 +16,7 @@ import {
   getLogo,
   getName as getProjectName,
 } from 'modules/user/modules/campaigns/core/project'
-import { logout, get as getCurrentUser, changeLocale } from 'core/currentUser'
+import { get as getCurrentUser, changeLocale } from 'core/currentUser'
 import { isInsideIframe } from 'utils/isInsideIframe'
 import EditProfileModal from '../EditProfileModal'
 import { LocaleSwitcherSubmenu } from './components/LocaleSwitcherSubmenu'
@@ -30,7 +30,6 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = {
-  logout,
   changeLocale,
 }
 
@@ -54,7 +53,6 @@ const Navigation: FC<PropsFromRedux> = ({
   logo,
   projectName,
   isAnonym,
-  logout,
   changeLocale,
 }) => {
   if (isInsideIframe()) {
@@ -114,9 +112,8 @@ const Navigation: FC<PropsFromRedux> = ({
     }
   }
 
-  const handleLogout = async (): Promise<void> => {
-    await logout()
-    location.reload()
+  const handleLogout = () => {
+    window.location.href = '/users/sign_out'
   }
 
   return (
@@ -205,7 +202,7 @@ interface ProfileSubmenuProps {
     modalKey: string,
     modalVisibilityState: string
   ) => void
-  handleLogout: () => Promise<void>
+  handleLogout: () => void
 }
 
 const ProfileSubmenu: FC<

@@ -2880,6 +2880,45 @@ ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
 
 
 --
+-- Name: saml_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.saml_settings (
+    id bigint NOT NULL,
+    verified boolean DEFAULT false,
+    enabled boolean DEFAULT false,
+    enforced boolean DEFAULT false,
+    entity_id character varying,
+    sso_service_url character varying,
+    after_signout_url character varying,
+    cert text,
+    test_settings jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    project_id bigint NOT NULL
+);
+
+
+--
+-- Name: saml_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.saml_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saml_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.saml_settings_id_seq OWNED BY public.saml_settings.id;
+
+
+--
 -- Name: saville_assessment_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4543,6 +4582,13 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: saml_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_settings ALTER COLUMN id SET DEFAULT nextval('public.saml_settings_id_seq'::regclass);
+
+
+--
 -- Name: saville_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5366,6 +5412,14 @@ ALTER TABLE ONLY public.reports_pages
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saml_settings saml_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_settings
+    ADD CONSTRAINT saml_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6723,6 +6777,13 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 
 
 --
+-- Name: index_saml_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_settings_on_project_id ON public.saml_settings USING btree (project_id);
+
+
+--
 -- Name: index_saville_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7796,6 +7857,14 @@ ALTER TABLE ONLY public.sms_histories
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES public.communications(id) ON DELETE CASCADE;
+
+
+--
+-- Name: saml_settings fk_rails_7cfb21e09c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_settings
+    ADD CONSTRAINT fk_rails_7cfb21e09c FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -8930,6 +8999,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211209113042'),
 ('20211216105541'),
 ('20211219131442'),
+('20220104123545'),
 ('20220105075135'),
 ('20220105083037'),
 ('20220114152459'),
