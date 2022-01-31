@@ -17,6 +17,8 @@ module Hogan
     end
 
     def call
+      return broadcast(:no_hogan_report) unless has_hogan_report?
+
       participant_score = get_participant_score
 
       return broadcast(:not_completed) unless participant_score.present?
@@ -64,6 +66,14 @@ module Hogan
         norm_id: hogan_norm_id,
         provider: credentials.provider
       )
+    end
+
+    def has_hogan_report?
+      Services::Hogan::API::JSON::GetParticipantProfile.call!(
+        group: hogan_group_name,
+        participant_id: hogan_participant_id,
+        provider: credentials.provider
+      ).dig('reportDetails').present?
     end
 
     def hogan_norm_id

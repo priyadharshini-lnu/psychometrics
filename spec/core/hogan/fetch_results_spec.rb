@@ -20,6 +20,8 @@ describe Hogan::FetchResults do
 
   it 'when credentials are empty we create them' do
     allow(users_result).to receive(:external_user_reports).with(:hogan).and_return([user_report])
+    expect(Services::Hogan::API::JSON::GetParticipantProfile).to receive(:call!).
+      and_return({ 'reportDetails' => [{ id: 1 }] })
     expect(Services::Hogan::API::JSON::ParticipantReport).to receive(:call!).and_return(double('res', report: 'base64'))
     expect(Services::Hogan::API::JSON::ParticipantScore).to receive(:call!).and_return('results')
     Hogan::FetchResults.call!(users_result, user.hogan_credential, project)
