@@ -16,11 +16,14 @@ module Api
       def update
         user_assessment = UserAssessment.find!(params[:id])
         user_assessment.update!(user_assessment_params)
+        audit! :api_update, user_assessment, payload: params.permit!, campaign: user_assessment.campaign
         render json: user_assessment, serializer: Api::V1::UserAssessmentSerializer
       end
 
       def destroy
         user_assessment = UserAssessment.find(params[:id])
+        audit! :api_update, user_assessment, payload: user_assessment.log_attribute_for_delete,
+               campaign: user_assessment.campaign
         user_assessment.destroy!
         render json: user_assessments
       end

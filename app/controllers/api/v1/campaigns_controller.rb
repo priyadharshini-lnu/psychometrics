@@ -35,6 +35,7 @@ module Api
               operation: campaign_attrs[:existing_record],
               active: campaign_attrs[:active]
             )
+            audit! :assign_user, campaign, payload: campaign_attrs.permit!, campaign: campaign
             ::Campaigns::Users::Create.call(struct, campaign, current_user) do
               on(:error) { raise Api::Errors::NotEnoughLicences, 'Not Enough Licenses' }
             end
@@ -50,6 +51,7 @@ module Api
         if form.valid?
           normalized_params = ::Campaigns::NormalizeAPIRequest.call!(campaign_params)
           campaign = Campaign.create!(normalized_params.merge(project_id: project.id))
+          audit! :api_create, campaign, payload: params.permit!, campaign: campaign
           render json: campaign, serializer: Api::V1::CampaignSerializer
         else
           render_validation_errors(form)
@@ -61,6 +63,7 @@ module Api
         if form.valid?
           normalized_params = ::Campaigns::NormalizeAPIRequest.call!(campaign_params)
           campaign.update!(normalized_params)
+          audit! :api_update, campaign, payload: params.permit!, campaign: campaign
           render json: campaign, serializer: Api::V1::CampaignSerializer
         else
           render_validation_errors(form)
@@ -73,6 +76,7 @@ module Api
           ::Campaigns::Reports::Add.call(form, campaign) do
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
+          audit! :api_add_assessment_reports, campaign, payload: params.permit!, campaign: campaign
           render json: campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
         else
           render_validation_errors(form)

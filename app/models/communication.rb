@@ -155,6 +155,10 @@ class Communication < ApplicationRecord
     current_memberships.distinct.reject(&:already_invited?)
   end
 
+  def log_attribute_for_delete
+    slice(:client_id, :project_id, :campaign_id)
+  end
+
   private
 
   def send_email_now

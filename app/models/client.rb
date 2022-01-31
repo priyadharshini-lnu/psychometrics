@@ -333,6 +333,10 @@ class Client < ApplicationRecord
     errors.add(:report_ids) if (valid_ids & report_ids).to_set != report_ids.to_set
   end
 
+  def log_attribute_for_delete
+    slice(:name, :subdomain)
+  end
+
   def allowed_data
     if operator.is?(:project_admin)
       errors.add(:base) if root?

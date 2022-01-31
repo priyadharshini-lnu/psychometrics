@@ -5,6 +5,7 @@ module Api
     class BaseController < ActionController::Base
       before_action :auth
       skip_before_action :verify_authenticity_token
+      prepend AuditLogModule::ControllerHelper
 
       rescue_from Api::Errors::ApiError, with: :render_error
 

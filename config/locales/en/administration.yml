@@ -323,6 +323,16 @@ en:
     assigns_reports:
       edit:
         header: Edit report assignment
+    audit_log:
+      action: Action
+      campaign: Campaign
+      client: Client
+      id: Id
+      payload: Payload
+      project: Project
+      totle: Audit Log Info
+      type: Type
+      user: User
     back: Back
     base:
       id: id
@@ -2732,6 +2742,7 @@ en:
       admins: Admins
       assessments: Assessments
       assessor_dashboard: Assessor Dashboard
+      audit_logs: Audit Logs
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy

@@ -148,6 +148,10 @@ class UserAssessment < ApplicationRecord
     norm&.name
   end
 
+  def log_attribute_for_delete
+    slice(:campaign_id, :relationship_id, :subject_id, :evaluator_id, :status, :assessment_id)
+  end
+
   private
 
   def saville_norm_name

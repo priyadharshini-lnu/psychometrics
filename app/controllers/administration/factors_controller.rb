@@ -32,6 +32,7 @@ class Administration::FactorsController < Administration::BaseController
     @_resource = @dimension.factors.new(resource_params)
     @form = Factors::SaveForm.new(resource_params)
     if @form.valid?
+      audit! :create, resource, payload: params.permit!
       resource.save!
     else
       set_init_state
@@ -50,6 +51,7 @@ class Administration::FactorsController < Administration::BaseController
     resource.assign_attributes(resource_params)
 
     if @form.valid?
+      audit! :update, resource, payload: params.permit!
       resource.save!
     else
       set_init_state
@@ -60,6 +62,7 @@ class Administration::FactorsController < Administration::BaseController
   # DELETE /administration/resources/1
   def destroy
     resource.destroy
+    audit! :delete, resource, payload: resource.try(:log_attribute_for_delete)
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -72,6 +75,7 @@ class Administration::FactorsController < Administration::BaseController
     respond_to do |format|
       @cloned_resource = resource.clone_and_save
       if @cloned_resource
+        audit! :copy, @cloned_resource, payload: { source: resource.id }
         format.js
       else
         format.js { render :error, locals: { message: t('administration.factors.copy.error', id: resource.id) } }
@@ -82,6 +86,7 @@ class Administration::FactorsController < Administration::BaseController
   def toggle_status
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     resource.toggle(:disabled).save
+    audit! :toggle_status, resource
     respond_to do |format|
       format.js
     end

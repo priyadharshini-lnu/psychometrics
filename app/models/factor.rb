@@ -135,6 +135,10 @@ class Factor < ApplicationRecord
     (parent_factor_ids + parent_factors.map(&:ancestor_ids)).flatten
   end
 
+  def log_attribute_for_delete
+    slice(:name, :dimension_id, :scoring_strategy)
+  end
+
   private
 
   def increment_factors

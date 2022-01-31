@@ -40,5 +40,9 @@ module Threesixty
       STANDARD_360 => 'Standard 360',
       PREVIOUS_360 => 'Previous 360'
     }.freeze
+
+    def log_attribute_for_delete
+      slice(:campaign_id, :assessment_id, :report_id)
+    end
   end
 end

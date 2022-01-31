@@ -53,7 +53,10 @@ module Administration
 
       def destroy
         ::Campaigns::Remove.call(@campaign) do
-          on(:ok) { render json: @campaign.id }
+          on(:ok) do
+            audit! :delete, @campaign, payload: @campaign.log_attribute_for_delete, campaign: @campaign
+            render json: @campaign.id
+          end
           on(:error) { |errors| return render json: { errors: errors }, status: 422 }
         end
       end
@@ -79,6 +82,7 @@ module Administration
         form = ::Campaigns::Form.from_params(@campaign.attributes.merge(campaign_params))
         if form.valid?
           @campaign.update!(form.attributes)
+          audit! :update, campaign, payload: resource_params, campaign: @campaign
           render json: @campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -116,6 +120,7 @@ module Administration
         form = ::Campaigns::CampaignOptions::Form.from_params(attributes)
 
         if form.valid?
+          audit! :update_campaign_options, campaign, payload: campaign_options_params, campaign: @campaign
           Mobility.with_locale(params[:locale]) do
             campaign_options.update_attributes(campaign_options_params)
           end
@@ -150,6 +155,7 @@ module Administration
         form = ::Campaigns::Form.from_params(resource_params)
         if form.valid?
           campaign = Campaign.create!(form.attributes.merge(project_id: project.id))
+          audit! :create, campaign, payload: resource_params, campaign: @campaign
           render json: campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -160,6 +166,7 @@ module Administration
         form = ::Threesixty::Campaigns::CreateForm.from_params(resource_params)
         if form.valid?
           threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form)
+          audit! :create, threesixty_campaign, payload: resource_params, campaign: @campaign
           render json: threesixty_campaign.campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422

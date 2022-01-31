@@ -59,6 +59,10 @@ class Norm < ApplicationRecord
     end
   }
 
+  def log_attribute_for_delete
+    slice(:owner_id, :dimension_id, :name)
+  end
+
   def clone
     @cloned_item = deep_clone include: [:factors_norms]
     @cloned_item.gen_uniq_name

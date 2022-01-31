@@ -14,6 +14,7 @@ module Administration
 
         respond_to do |format|
           format.csv do
+            audit! :export_users, campaign, campaign: campaign
             headers['Content-Disposition'] = 'attachment; filename="users.csv"'
             headers['Content-Type'] ||= 'text/csv'
             render :index, locals: {
@@ -69,6 +70,7 @@ module Administration
       end
 
       def export_completion_status
+        audit! :export_completion_status, nil, campaign: campaign
         AdminJob.call(
           :completion_status_export,
           { campaign_id: campaign.id },
@@ -82,6 +84,7 @@ module Administration
         form = ::Campaigns::Users::ImportForm.new(import_data: import_data, operation: params[:operation]).
                with_context(campaign: campaign)
         if form.valid?
+          audit! :import_users, campaign, campaign: campaign
           AdminJob.call(:import_users, {
             operation: params[:operation], campaign_id: params[:new_campaign_id]
           }, current_user, params[:import_data])
@@ -100,6 +103,7 @@ module Administration
         if form.valid?
           ::Campaigns::Users::Create.call(form, campaign, current_user) do
             on(:ok) do |user|
+              audit! :create_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
               return render json: user, serializer: Administration::Campaigns::UserSerializer,
                 campaign_id: campaign.id, project_id: campaign.project_id
             end
@@ -115,6 +119,7 @@ module Administration
       def update
         form = ::Campaigns::Users::EditForm.from_params(resource_params).with_context(campaign: campaign)
         if form.valid?
+          audit! :update_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
           resource.update(form.attributes)
           render json: resource, serializer: Administration::Campaigns::UserSerializer,
             campaign_id: campaign.id, project_id: campaign.project_id
@@ -143,6 +148,7 @@ module Administration
 
       def spoof
         authorize(resource, nil, policy_class: Campaigns::UserPolicy)
+        audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
         spoof_token = SecureRandom.urlsafe_base64(64)
         resource.update_column(:spoof_token, spoof_token)
 
@@ -151,6 +157,7 @@ module Administration
 
       def extend_time
         ::CampaignUsers::AddAdditionalTime.call!(campaign_user, params[:additional_time] * 60)
+        audit! :extend_time, campaign_user, payload: { additional_time: params[:additional_time] }
         render json: resource, serializer: Administration::UserDetailSerializer, campaign: campaign
       end
 

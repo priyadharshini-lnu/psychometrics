@@ -32,6 +32,7 @@ class Administration::DimensionsController < Administration::BaseController
 
     respond_to do |format|
       if resource.save
+        audit! :create, resource, payload: params.permit!, user: current_user
         format.js
       else
         format.js { render :new }
@@ -41,6 +42,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def toggle_status
     resource.toggle(:disabled).save
+    audit! :toggle_status, resource
     respond_to do |format|
       format.js
     end
@@ -49,6 +51,7 @@ class Administration::DimensionsController < Administration::BaseController
   def update
     respond_to do |format|
       if resource.update(resource_params)
+        audit! :update, resource, payload: resource_params.permit!
         format.js
       else
         format.js { render :edit }
@@ -59,6 +62,7 @@ class Administration::DimensionsController < Administration::BaseController
   # DELETE /administration/resources/1
   def destroy
     resource.destroy
+    audit! :delete, resource, payload: resource.try(:log_attribute_for_delete)
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -68,6 +72,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def copy
+    audit! :copy, resource
     AdminJob.call(:copy_dimension, { dimension_id: resource.id }, current_user)
   end
 

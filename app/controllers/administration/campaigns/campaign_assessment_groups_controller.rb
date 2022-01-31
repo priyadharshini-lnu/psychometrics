@@ -14,16 +14,19 @@ module Administration
 
       def create
         group = campaign.campaign_assessment_groups.create(resource_params)
+        audit! :create, campaign, payload: resource_params, campaign: campaign
         render json: group, serializer: Administration::CampaignAssessmentGroups::GroupSerializer
       end
 
       def update
+        audit! :update, campaign, payload: resource_params, campaign: campaign
         resource.update(resource_params)
         render json: resource, serializer: Administration::CampaignAssessmentGroups::GroupSerializer
       end
 
       def destroy
         ::CampaignAssessmentGroups::Destroy.call!(campaign, resource)
+        audit! :delete, campaign, campaign: campaign, payload: resource.log_attribute_for_delete
 
         render json: params[:id]
       end

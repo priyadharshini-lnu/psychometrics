@@ -65,6 +65,7 @@ module Administration
 
       respond_to do |format|
         if resource.save
+          audit! :create, resource, payload: params.permit!
           format.js
         else
           resource.build_hogan_report_setting if resource.hogan_report_setting.blank?
@@ -96,6 +97,7 @@ module Administration
     def update
       respond_to do |format|
         if resource.update(resource_params)
+          audit! :update, resource, payload: params.permit!
           format.js
         else
           @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
@@ -109,6 +111,7 @@ module Administration
     def destroy
       resource.destroy
       respond_to do |format|
+        audit! :delete, resource, payload: resource.log_attribute_for_delete
         format.html do
           redirect_back(
             fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
@@ -129,6 +132,7 @@ module Administration
 
     def copy
       event = ::Reports::CopyReport.call(resource.id)
+      audit! :copy, resource
 
       respond_to do |format|
         if event[:ok]
@@ -144,6 +148,7 @@ module Administration
     #
     def toggle_status
       resource.toggle!(:disabled)
+      audit! :toggle_status, resource
       respond_to do |format|
         format.html do
           redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -162,6 +167,7 @@ module Administration
     # Sends to re-generate Reports for all passed Assessments
     #
     def regenerate
+      audit! :regenerate, resource
       ::Reports::BulkExportJob.perform_later([resource.id], current_user)
     end
 
