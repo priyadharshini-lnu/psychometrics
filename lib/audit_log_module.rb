@@ -32,7 +32,7 @@ module AuditLogModule
           client_id: client&.id,
           project_id: project&.id,
           campaign_id: campaign&.id,
-          payload: (payload || {}).to_h,
+          payload: (payload || {}).to_enum.to_h,
           user: user,
           request: request_info.to_h
         )

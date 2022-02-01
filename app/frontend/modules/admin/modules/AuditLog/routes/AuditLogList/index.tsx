@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import moment from 'moment'
 import styles from './styles.scss'
 
 const connecter = connect(
@@ -93,11 +94,11 @@ const AuditLogList: React.FC<Props> = (
         <Col span={24}>
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
             <Column
-              title={I18n.t('administration.audit_log.id')}
-              dataIndex="id"
-              key="id"
+              title={I18n.t('administration.audit_log.type')}
+              dataIndex="recordType"
+              key="recordType"
               sorter
-              sortOrder={getSortOrder('id')}
+              sortOrder={getSortOrder('recordType')}
             />
             <Column
               title={I18n.t('administration.audit_log.action')}
@@ -106,6 +107,16 @@ const AuditLogList: React.FC<Props> = (
               sortOrder={getSortOrder('name')}
               render={({ id, action }) => (
                 <Link to={`/administration/audit_logs/${id}`}>{action}</Link>
+              )}
+            />
+            <Column
+              title={I18n.t('administration.audit_log.created_at')}
+              dataIndex="createdAt"
+              key="createdAt"
+              sorter
+              sortOrder={getSortOrder('createdAt')}
+              render={createdAt => (
+                moment(createdAt).format('lll')
               )}
             />
             <Column

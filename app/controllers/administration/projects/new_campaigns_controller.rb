@@ -155,7 +155,7 @@ module Administration
         form = ::Campaigns::Form.from_params(resource_params)
         if form.valid?
           campaign = Campaign.create!(form.attributes.merge(project_id: project.id))
-          audit! :create, campaign, payload: resource_params, campaign: @campaign
+          audit! :create, campaign, payload: resource_params, campaign: campaign
           render json: campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -166,7 +166,7 @@ module Administration
         form = ::Threesixty::Campaigns::CreateForm.from_params(resource_params)
         if form.valid?
           threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form)
-          audit! :create, threesixty_campaign, payload: resource_params, campaign: @campaign
+          audit! :create, threesixty_campaign, payload: resource_params, campaign: campaign
           render json: threesixty_campaign.campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422
