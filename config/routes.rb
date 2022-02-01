@@ -90,7 +90,7 @@ Rails.application.routes.draw do
     scope module: :administrator do
       resource :sessions, only: %i[new create], path: '',
                path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
-        delete 'sign_out', to: 'sessions#destroy', as: :destroy
+        get 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :passwords, as: :password
       resource :invitations, only: [:update], as: :invitation do
