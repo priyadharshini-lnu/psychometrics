@@ -61,4 +61,8 @@ export default {
 
     return `rgba(${r},${g},${b},${opacity / 100})`
   },
+
+  nanFallback (val, fallback = null) {
+    return isNaN(val) ? fallback : val
+  },
 }
