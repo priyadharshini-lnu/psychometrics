@@ -6,7 +6,7 @@ module AuditLogModule
   class << self
     def audit!(action, record, options = {})
       campaign = options[:campaign]
-      project = options[:project] || campaign&.client
+      project = options[:project] || campaign&.project
       client = options[:client] || project&.client || campaign&.client
       payload = options[:payload]
       user = options[:user]

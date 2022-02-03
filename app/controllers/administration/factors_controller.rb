@@ -86,7 +86,7 @@ class Administration::FactorsController < Administration::BaseController
   def toggle_status
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     resource.toggle(:disabled).save
-    audit! :toggle_status, resource
+    audit! :toggle_status, resource, payload: { disabled: resource.disabled }
     respond_to do |format|
       format.js
     end

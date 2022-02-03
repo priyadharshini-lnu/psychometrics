@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { getCurrent, fetchCurrent } from 'modules/admin/modules/AuditLog/core'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Descriptions } from 'antd'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
@@ -45,10 +45,11 @@ const AuditLogList: React.FC<Props> = ({
     <div className={styles.main}>
       <Descriptions title={I18n.t('administration.audit_log.title')} bordered column={1}>
         <Descriptions.Item label={I18n.t('administration.audit_log.action')}>{record.action}</Descriptions.Item>
+        <Descriptions.Item label={I18n.t('administration.audit_log.type')}>{record.recordType}</Descriptions.Item>
         <Descriptions.Item label={I18n.t('administration.audit_log.user')}>{record.userName}</Descriptions.Item>
         {record.client && (
           <Descriptions.Item label="Client">
-            <a href={`/administration/clients/${record.client.id}`}>
+            <a href={`/administration/clients/${record.client.id}/projects`}>
               {record.client.id}
               ,
               {' '}
@@ -58,18 +59,22 @@ const AuditLogList: React.FC<Props> = ({
         )}
         {record.project && (
           <Descriptions.Item label={I18n.t('administration.audit_log.project')}>
-            {record.project.id}
-            ,
-            {' '}
-            {record.project.name}
+            <Link to={`/administration/projects/${record.project.id}/new_campaigns`}>
+              {record.project.id}
+              ,
+              {' '}
+              {record.project.name}
+
+            </Link>
           </Descriptions.Item>
         )}
         {record.campaign && (
           <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
-            {record.campaign.id}
-            ,
-            {' '}
-            {record.campaign.name}
+            <Link
+              to={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.campaignId}`}
+            >
+              {record.campaign.name}
+            </Link>
           </Descriptions.Item>
         )}
         <Descriptions.Item label={I18n.t('administration.audit_log.payload')}>

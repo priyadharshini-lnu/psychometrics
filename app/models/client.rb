@@ -290,6 +290,10 @@ class Client < ApplicationRecord
     !!assessments_clients.find_by(assessment_id: assessment_id)&.assessment_key
   end
 
+  def log_attribute_for_delete
+    slice(:name, :subdomain)
+  end
+
   private
 
   def generate_hogan_group_name
@@ -331,10 +335,6 @@ class Client < ApplicationRecord
     valid_ids = root.available_reports.distinct.pluck(:id) if prime_project?
     valid_ids ||= project.report_ids
     errors.add(:report_ids) if (valid_ids & report_ids).to_set != report_ids.to_set
-  end
-
-  def log_attribute_for_delete
-    slice(:name, :subdomain)
   end
 
   def allowed_data

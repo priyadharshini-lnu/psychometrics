@@ -331,7 +331,7 @@ en:
       id: Id
       payload: Payload
       project: Project
-      totle: Audit Log Info
+      title: Audit Log Info
       type: Record Type
       user: User
     back: Back

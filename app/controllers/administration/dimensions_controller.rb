@@ -42,7 +42,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def toggle_status
     resource.toggle(:disabled).save
-    audit! :toggle_status, resource
+    audit! :toggle_status, resource, payload: { disabled: resource.disabled }
     respond_to do |format|
       format.js
     end
@@ -72,7 +72,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def copy
-    audit! :copy, resource
+    audit! :copy, resource, payload: { source_id: resource.id }
     AdminJob.call(:copy_dimension, { dimension_id: resource.id }, current_user)
   end
 

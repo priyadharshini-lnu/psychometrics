@@ -118,7 +118,7 @@ module Administration
         resource_class.update(@_resource.id, disabled: !@_resource.membership_disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
-        audit! :toggle_status, resource
+        audit! :toggle_status, resource, payload: { disabled: resource.disabled }
         respond_to do |format|
           format.html do
             redirect_back(

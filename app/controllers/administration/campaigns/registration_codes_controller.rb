@@ -26,8 +26,8 @@ module Administration
         form = ::Campaigns::RegistrationCodes::SaveForm.
                from_params(params[:resource], campaign_id: campaign.id)
         if form.valid?
-          audit! :create, campaign, payload: params.permit!, project: campaign.project
           code = ::Campaigns::RegistrationCodes::Create.call!(form, campaign)
+          audit! :create, code, payload: params.permit!, campaign: campaign
           render json: code, serializer: RegistrationCodeSerializer,
           project_id: campaign.project_id, campaign_id: campaign.id
         else
@@ -43,8 +43,8 @@ module Administration
                            )).
                with_context(registration_code: resource)
         if form.valid?
-          audit! :update, campaign, payload: params.permit!, project: campaign.project
           code = ::Campaigns::RegistrationCodes::Update.call!(form, resource)
+          audit! :update, code, payload: params.permit!, campaign: campaign
           render json: code, serializer: RegistrationCodeSerializer,
             project_id: campaign.project_id, campaign_id: campaign.id
         else

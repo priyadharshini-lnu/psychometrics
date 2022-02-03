@@ -49,7 +49,7 @@ module Administration
 
     def toggle_status
       resource.toggle(:disabled).save
-      audit! :toggle_status, resource
+      audit! :toggle_status, resource, payload: { disabled: resource.disabled }
       respond_to do |format|
         format.js
       end
@@ -69,7 +69,6 @@ module Administration
 
     def copy
       clone_resource(resource)
-      audit! :copy, resource
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       render :new
     end

@@ -10,7 +10,7 @@ class AuditLogSerializer < ActiveModel::Serializer
   end
 
   class CampaignSerializer < ActiveModel::Serializer
-    attributes :id, :name
+    attributes :id, :name, :project_id
   end
 
   attributes :id, :action, :campaign_id, :client_id, :payload, :project_id,
