@@ -26,6 +26,10 @@ module Exports
           question_id_and_choice_headers(question)[:question_id_header].size
         end
 
+        def self.question_headers_except_duration_size(question)
+          question_id_and_choice_headers(question)[:question_id_header].size - 1
+        end
+
         def self.get_answers(result, question)
           result.answers[question.id.to_s].try(:[], 'answers')
         end

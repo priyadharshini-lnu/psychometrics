@@ -16,9 +16,14 @@ module Exports
         def self.result(user_result, question, scoring = false, _export_with_labels = false)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
+          all_answers = []
           answers = get_answers(user_result, question)
-          answers = retrieve_answers(answers, question, scoring)
-          formatted_answers(user_result, question, answers)
+          all_answers << if answers.present?
+                           retrieve_answers(answers, question, scoring)
+                         else
+                           ''
+                         end
+          formatted_answers(user_result, question, all_answers)
         end
 
         def self.retrieve_answers(answers, question, scoring)
