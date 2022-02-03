@@ -167,7 +167,7 @@ gem 'rswag-api', '~> 2.3.0'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
-gem 'activerecord-import', '~> 1.0.2'
+gem 'activerecord-import', '~> 1.3.0'
 gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
