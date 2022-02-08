@@ -46,6 +46,7 @@ const AuditLogList: React.FC<Props> = ({
       <Descriptions title={I18n.t('administration.audit_log.title')} bordered column={1}>
         <Descriptions.Item label={I18n.t('administration.audit_log.action')}>{record.action}</Descriptions.Item>
         <Descriptions.Item label={I18n.t('administration.audit_log.type')}>{record.recordType}</Descriptions.Item>
+        <Descriptions.Item label={I18n.t('administration.audit_log.record_id')}>{record.recordId}</Descriptions.Item>
         <Descriptions.Item label={I18n.t('administration.audit_log.user')}>{record.userName}</Descriptions.Item>
         {record.client && (
           <Descriptions.Item label="Client">
@@ -71,7 +72,7 @@ const AuditLogList: React.FC<Props> = ({
         {record.campaign && (
           <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
             <Link
-              to={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.campaignId}`}
+              to={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
             >
               {record.campaign.name}
             </Link>

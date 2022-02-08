@@ -16,6 +16,7 @@ const LogTR = t.type({
   project: t.any,
   campaign: t.any,
   recordType: t.union([t.string, t.null]),
+  recordId: t.union([t.number, t.null]),
   userId: t.union([t.number, t.undefined, t.null]),
 })
 
