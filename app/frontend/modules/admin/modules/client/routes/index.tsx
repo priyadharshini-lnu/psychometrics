@@ -5,38 +5,47 @@ import UsersAssessmentsReports
 import AssessorsDetails
   from 'modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
 import ReportPreview from 'modules/admin/modules/campaigns/routes/ReportPreview'
+import { Client } from './Client'
 
 export const routes = [
   {
-    path: '/:projectId',
+    path: '/clients/:clientId',
+    component: Client,
+  },
+  {
+    path: '/clients/:clientId/*',
+    component: Client,
+  },
+  {
+    path: '/projects/:projectId',
     component: Project,
   },
   {
-    path: '/:projectId/new_campaigns',
+    path: '/projects/:projectId/new_campaigns',
     component: Project,
   },
   {
-    path: '/:projectId/new_campaigns/:campaignId/users/:id',
+    path: '/projects/:projectId/new_campaigns/:campaignId/users/:id',
     component: UsersAssessmentsReports,
   },
   {
-    path: '/:projectId/new_campaigns/:campaignId/assessors/:id',
+    path: '/projects/:projectId/new_campaigns/:campaignId/assessors/:id',
     component: AssessorsDetails,
   },
   {
-    path: '/:projectId/new_campaigns/:campaignId/user_reports/:id',
+    path: '/projects/:projectId/new_campaigns/:campaignId/user_reports/:id',
     component: ReportPreview,
   },
   {
-    path: '/:projectId/new_campaigns/:campaignId',
+    path: '/projects/:projectId/new_campaigns/:campaignId',
     component: Campaign,
   },
   {
-    path: '/:projectId/new_campaigns/:campaignId/*',
+    path: '/projects/:projectId/new_campaigns/:campaignId/*',
     component: Campaign,
   },
   {
-    path: '/:projectId/*',
+    path: '/projects/:projectId/*',
     component: Project,
   },
 ]

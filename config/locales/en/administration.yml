@@ -368,6 +368,7 @@ en:
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
+      clientAdmins: Client Admins
       client_admins: Client Admins
       clients: Client Tenancies
       communication_center: Communication Center
@@ -3017,6 +3018,10 @@ en:
       save: Save
       search_user: Search user
       send_email: Send email
+    project_tabs:
+      design: Design
+      general: General
+      webhooks: Webhooks
     project_users:
       cancel: Cancel
       change_password: Change password
@@ -3046,6 +3051,8 @@ en:
       save: Save
       search_accessor: Search accessors
       send_email: Send email
+    projects:
+      addProject: Add Project
     psychometrics: Psychometrics
     questions:
       copy:
@@ -3244,14 +3251,17 @@ en:
         copied: Copied %{element}
         issuer: Entity Id/Issuer
         title: Configure Idp with following info
+      design: Design
       enabled: Enabled
       enforced: Enforce SAML
       entity_id: Entity ID/Issuer
+      general: General
       saml: SAML
       saml_setting: SAML Setting
       sso_service_url: SSO Service Url
       successfully_saved_msg: SAML Setting saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
       verify_and_save: Verify & Save Setting
+      webhooks: Webhooks
     save: Save
     search: Search
     show: Show

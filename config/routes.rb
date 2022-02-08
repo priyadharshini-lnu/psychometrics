@@ -446,6 +446,7 @@ Rails.application.routes.draw do
           post :generate_universal_link
         end
         resources :datasheet_rows, except: %i[show edit update]
+        get '*all', to: 'projects#index', constraints: { all: /.*/ }
       end
     end
 
