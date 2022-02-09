@@ -305,6 +305,7 @@ Rails.application.routes.draw do
     ### CLIENTS
     resources :clients do
       member do
+        get :edit
         get :copy
         get :sidebar
         patch :toggle_status
