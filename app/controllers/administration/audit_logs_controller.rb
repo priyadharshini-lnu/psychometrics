@@ -7,12 +7,12 @@ module Administration
 
     def index
       @q = policy_scope(::AuditLog).ransack(params[:filters])
-      @logs = @q.result.order('id desc').includes(:user).page(params[:page]).per(15)
+      @logs = @q.result.order('id desc').includes(:user)
       respond_to do |format|
         format.html
         format.json do
           render json: {
-            list: @logs.map { |l| AuditLogSerializer.new(l) },
+            list: @logs.page(params[:page]).per(25).map { |l| AuditLogSerializer.new(l) },
             total: @logs.count,
             types: policy_scope(::AuditLog).pluck(:record_type).uniq
           }

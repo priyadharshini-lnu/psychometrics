@@ -132,7 +132,7 @@ module Administration
 
     def copy
       event = ::Reports::CopyReport.call(resource.id)
-      audit! :copy, resource
+      audit! :copy, resource, payload: { source_id: resource.id }
 
       respond_to do |format|
         if event[:ok]
@@ -148,7 +148,7 @@ module Administration
     #
     def toggle_status
       resource.toggle!(:disabled)
-      audit! :toggle_status, resource
+      audit! :toggle_status, resource, payload: { disabled: resource.disabled }
       respond_to do |format|
         format.html do
           redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))

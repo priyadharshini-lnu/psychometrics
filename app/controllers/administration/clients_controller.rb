@@ -99,7 +99,7 @@ module Administration
     #
     def toggle_status
       resource.toggle!(:disabled)
-      audit! :toggle_status, resource, client: resource
+      audit! :toggle_status, resource, client: resource, payload: { disabled: resource.disabled }
       respond_to do |format|
         format.html do
           redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -109,7 +109,7 @@ module Administration
     end
 
     def copy
-      audit! :copy, resource, client: resource
+      audit! :copy, resource, client: resource, payload: { source_id: resource.id }
       ::Clients::CopyClient.call(resource) do
         on(:invalid) { render(:error, locals: { message: t('.error', name: resource.decorate.display_name) }) }
         on(:ok) { |cloned_resource| render :copy, locals: { cloned_resource: cloned_resource } }

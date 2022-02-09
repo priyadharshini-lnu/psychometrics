@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 class AuditLogSerializer < ActiveModel::Serializer
-  class ClientSerizlier < ActiveModel::Serializer
+  class ClientSerializer < ActiveModel::Serializer
     attributes :id, :name
   end
 
-  class ProjectSerizlier < ActiveModel::Serializer
+  class ProjectSerializer < ActiveModel::Serializer
     attributes :id, :name
   end
 
-  class CampaignSerizlier < ActiveModel::Serializer
-    attributes :id, :name
+  class CampaignSerializer < ActiveModel::Serializer
+    attributes :id, :name, :project_id
   end
 
   attributes :id, :action, :campaign_id, :client_id, :payload, :project_id,
-             :record_id, :record_type, :request, :user_id, :user_name
+             :record_id, :record_type, :request, :user_id, :user_name, :created_at
 
-  has_one :client, serizlier: ClientSerizlier
-  has_one :project, serizlier: ProjectSerizlier
-  has_one :campaign, serizlier: CampaignSerizlier
+  has_one :client, Serializer: ClientSerializer
+  has_one :project, Serializer: ProjectSerializer
+  has_one :campaign, Serializer: CampaignSerializer
 
   def user_name
     object.user&.decorate&.full_name

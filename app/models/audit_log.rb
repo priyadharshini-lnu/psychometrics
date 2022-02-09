@@ -7,7 +7,7 @@ class AuditLog < ApplicationRecord
   belongs_to :user, required: false
   belongs_to :record, polymorphic: true, required: false
   belongs_to :client
-  belongs_to :project
+  belongs_to :project, class_name: 'Client'
   belongs_to :campaign
   belongs_to :user
 

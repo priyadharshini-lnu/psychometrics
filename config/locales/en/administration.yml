@@ -327,11 +327,13 @@ en:
       action: Action
       campaign: Campaign
       client: Client
+      created_at: Created At
       id: Id
       payload: Payload
       project: Project
-      totle: Audit Log Info
-      type: Type
+      record_id: Record Id
+      title: Audit Log Info
+      type: Record Type
       user: User
     back: Back
     base:

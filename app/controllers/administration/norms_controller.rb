@@ -71,10 +71,9 @@ class Administration::NormsController < Administration::BaseController
     @cloned_resource         = resource.clone
     @cloned_resource.updater = current_user
     @cloned_resource.creator = current_user
-    audit! :copy, resource, payload: { source_id: resource.id }
     respond_to do |format|
       if @cloned_resource.save
-        audit! :copy, resource
+        audit! :copy, resource, payload: { source_id: resource.id }
         format.js
       else
         format.js { render :error, locals: { message: t('administration.norms.copy.error', id: resource.id) } }
@@ -84,7 +83,7 @@ class Administration::NormsController < Administration::BaseController
 
   def toggle_status
     resource.toggle(:disabled).save
-    audit! :toggle_status, resource
+    audit! :toggle_status, resource, payload: { disabled: resource.disabled }
     respond_to do |format|
       format.js
     end

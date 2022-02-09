@@ -20,6 +20,7 @@ module Exports
               answer['values'].map { |v| v + 1 }.join(',')
             ]
           end.flatten
+          answers = Array.new(question_headers_except_duration_size(question)) { '' } if answers.empty?
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
