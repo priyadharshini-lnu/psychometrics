@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-
+import { get as getCurrentCampaign, fetch } from 'modules/admin/modules/campaigns/core/current'
 import { RootState } from 'modules/admin/core/rootReducers'
-
 import RouteList from 'components/RouteList'
 import TopMenu from './TopMenu'
 import Breadcrumb from '../../components/Breadcrumb'
@@ -12,16 +11,30 @@ import routes from './routes'
 
 const { I18n } = window
 
-const connector = connect((state: RootState) => ({
-  currentUser: state.currentUser,
-}))
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+  }),
+  {
+    fetch,
+  },
+)
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Props = PropsFromRedux
+interface OwnProps {
+  fetch(id: number, projectId: number): Promise<void>
+}
 
-const CampaignComponent: React.FC<Props> = ({ currentUser }) => {
+type Props = PropsFromRedux & OwnProps
+
+const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { projectId } = useParams<{ projectId: string }>()
+
+  useEffect(() => {
+    fetch(parseInt(campaignId, 10), parseInt(projectId, 10))
+  }, [campaignId])
 
   return (
     <div>
@@ -52,7 +65,7 @@ const CampaignComponent: React.FC<Props> = ({ currentUser }) => {
       />
       <TopMenu
         prefix={`${settings.urlPrefix}/${campaignId}`}
-        currentUser={currentUser}
+        campaignPermissions={campaignPermissions}
       />
       <section data-testid="admin_campaign_section">
         <RouteList

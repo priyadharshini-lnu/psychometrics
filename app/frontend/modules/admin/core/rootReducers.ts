@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 
 import currentUser from 'core/currentUser'
+import current from 'modules/admin/modules/campaigns/core/current'
 import config from 'core/config'
 import tables from 'modules/admin/core/filterAndPagination/reducers'
 import preview from 'modules/survey/core/preview'
@@ -71,6 +72,7 @@ const createRootReducer = history => combineReducers({
     breadcrumbs,
   }),
   currentUser,
+  current,
   config,
   request,
   tables,

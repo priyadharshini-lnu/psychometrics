@@ -136,7 +136,7 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
         <Menu.Item key="datasheet" icon={<DatabaseOutlined />}>
           {I18n.t('common.model.datasheet')}
         </Menu.Item>
-        {currentUser.permissions.manageAdmins && (
+        {currentUser.permissions.manageProjectAdmins && (
           <Menu.Item key="admins" icon={<SolutionOutlined />}>
             {I18n.t('administration.breadcrumbs.project_admins')}
           </Menu.Item>

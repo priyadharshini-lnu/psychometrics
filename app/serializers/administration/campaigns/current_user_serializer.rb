@@ -11,19 +11,12 @@ module Administration
 
       def permissions
         permissions = GetPermissionsHash.call!(
-          Administration::CampaignPolicy,
+          Administration::ProjectPolicy,
           object,
           nil,
-          [
-            'create',
-            'manage_admins',
-            'manage_campaign_admins',
-            %w[manage_options update_campaign_options],
-            'manage_campaigns',
-            'view_registration_codes',
-            'view_datasheets',
-            'manage_project_smtp_settings',
-            'view_sms_invites'
+          %w[
+            manage_project_admins
+            manage_project_smtp_settings
           ],
           {
             project_id: instance_options[:project_id],

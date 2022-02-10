@@ -9,18 +9,17 @@ import {
   DatabaseOutlined,
   SolutionOutlined,
 } from '@ant-design/icons'
-
-import User from 'modules/admin/modules/campaigns/interfaces/User'
+import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from 'utils/route'
 
 const { I18n } = window
 
 interface Props {
   prefix?: string
-  currentUser: User
+  campaignPermissions: Campaign['permissions']
 }
 
-const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
+const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
   const { pathname } = useLocation()
 
   const history = useHistory()
@@ -62,27 +61,27 @@ const TopMenu: React.FC<Props> = ({ prefix, currentUser }) => {
       <Menu.Item key="participants" icon={<UserOutlined />}>
         Participants
       </Menu.Item>
-      {currentUser.permissions.manageCampaigns && (
+      {campaignPermissions.manageCampaigns && (
         <Menu.Item key="assessments_reports" icon={<PieChartOutlined />}>
           Assessments & Reports
         </Menu.Item>
       )}
-      {currentUser.permissions.viewRegistrationCodes && (
+      {campaignPermissions.viewRegistrationCodes && (
         <Menu.Item key="registration_codes" icon={<QrcodeOutlined />}>
           Registration codes
         </Menu.Item>
       )}
-      {currentUser.permissions.viewDatasheets && (
+      {campaignPermissions.viewDatasheets && (
         <Menu.Item key="datasheet" icon={<DatabaseOutlined />}>
           {I18n.t('common.model.datasheet')}
         </Menu.Item>
       )}
-      {currentUser.permissions.manageCampaignAdmins && (
+      {campaignPermissions.manageCampaignAdmins && (
         <Menu.Item key="admins" icon={<SolutionOutlined />}>
           {I18n.t('common.model.admins')}
         </Menu.Item>
       )}
-      {currentUser.permissions.manageOptions && (
+      {campaignPermissions.manageOptions && (
         <Menu.Item key="options" icon={<SettingOutlined />}>
           Options
         </Menu.Item>
