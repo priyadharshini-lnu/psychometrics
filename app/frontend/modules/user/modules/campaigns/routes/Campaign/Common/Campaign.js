@@ -63,7 +63,7 @@ export default function Campaign ({
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
   const canNotStartAssessment = needsProctoring || !hasStartedCampaign || campaignClosed
     || campaignUser.status === 'completed' || isCampaignInterrupted || campaignUserTimedOut
-  const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign
+  const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
   const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted)
     && !campaignClosed && !allAssessmentsComplete && !campaignUserTimedOut
   const showTimer = isTimedCampaign && hasStartedCampaign && !isCampaignInterrupted
@@ -123,7 +123,7 @@ export default function Campaign ({
                   onFinish={onTimerFinish}
                   showTimer={showTimer}
                 />
-                {allAssessmentsComplete && (
+                {!campaignClosed && allAssessmentsComplete && (
                   <Result
                     status="success"
                     title={I18n.t('campaign.thank_you_for_time')}
