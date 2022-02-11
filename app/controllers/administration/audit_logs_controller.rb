@@ -11,10 +11,13 @@ module Administration
       respond_to do |format|
         format.html
         format.json do
+          serialized_logs = @logs.page(params[:page]).includes(:client, :project, :campaign).per(25).
+                            map { |l| AuditLogSerializer.new(l) }
           render json: {
-            list: @logs.page(params[:page]).per(25).map { |l| AuditLogSerializer.new(l) },
+            list: serialized_logs,
             total: @logs.count,
-            types: policy_scope(::AuditLog).pluck(:record_type).uniq
+            types: policy_scope(::AuditLog).distinct(:record_type).pluck(:record_type).compact.sort,
+            actions: policy_scope(::AuditLog).distinct(:action).pluck(:action).compact.sort
           }
         end
       end

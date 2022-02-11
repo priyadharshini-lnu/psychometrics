@@ -327,11 +327,16 @@ en:
       action: Action
       campaign: Campaign
       client: Client
-      created_at: Created At
       id: Id
+      log_date: Log Date
       payload: Payload
       project: Project
       record_id: Record Id
+      reset: Reset
+      search: Search
+      search_campaign: Search by Campaign
+      search_client: Search by Client
+      search_project: Search by Proejct
       title: Audit Log Info
       type: Record Type
       user: User

@@ -1,17 +1,22 @@
 
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { get as getLogs, fetch, fetchActions } from 'modules/admin/modules/AuditLog/core'
 import {
-  Table, Row, Col, Pagination,
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker,
 } from 'antd'
-import { AppstoreOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import { Link } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import moment from 'moment'
+
+export const FILTER_PREDICATES = {
+  recordType: 'In',
+  action: 'In',
+}
 
 const connecter = connect(
   (state: RootState) => ({
@@ -32,21 +37,65 @@ const { I18n } = window
 const AuditLogList: React.FC<Props> = (
   {
     auditLogs: {
-      list, total,
+      list, total, types, actions,
     },
     fetch,
     tableConfig: {
       page,
     },
     tableConfig,
+    getFilteredValue,
     onTableChange,
-    getSortOrder,
+    changeFilter,
+    removeFilter,
     changePage,
   },
 ) => {
+  const [range, setRange] = useState<[moment.Moment, moment.Moment] | null>(null)
   useEffect(() => {
     fetch(tableConfig)
   }, [tableConfig])
+
+
+  const filterProps = type => ({
+    filterDropdown: ({
+      selectedKeys, confirm, setSelectedKeys,
+    }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          placeholder={I18n.t(`administration.audit_log.search_${type}`)}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          value={selectedKeys[0]}
+          style={{ marginBottom: 8, display: 'block' }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+            onClick={() => {
+              confirm({ closeDropdown: false })
+              changeFilter(`${type}_search`, `${selectedKeys[0]}`)
+            }}
+          >
+            {I18n.t('administration.audit_log.search')}
+          </Button>
+          <Button
+            onClick={() => {
+              removeFilter(`${type}_search`)
+              setSelectedKeys([])
+            }}
+            size="small"
+            style={{ width: 90 }}
+          >
+            {I18n.t('administration.audit_log.reset')}
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+  })
 
   return (
     <>
@@ -61,35 +110,68 @@ const AuditLogList: React.FC<Props> = (
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
             <Column
               title={I18n.t('administration.audit_log.type')}
-              dataIndex="recordType"
               key="recordType"
-              sorter
-              sortOrder={getSortOrder('recordType')}
+              filters={types.map((t: string) => ({ text: t, value: t }))}
+              filteredValue={getFilteredValue('recordType')}
             />
             <Column
               title={I18n.t('administration.audit_log.action')}
               key="action"
-              sorter
-              sortOrder={getSortOrder('name')}
+              filters={actions && actions.map((t: string) => ({ text: t, value: t }))}
+              filteredValue={getFilteredValue('action')}
               render={({ id, action }) => (
                 <Link to={`/administration/audit_logs/${id}`}>{action}</Link>
               )}
             />
             <Column
-              title={I18n.t('administration.audit_log.created_at')}
+              title={I18n.t('administration.audit_log.log_date')}
               dataIndex="createdAt"
               key="createdAt"
-              sorter
-              sortOrder={getSortOrder('createdAt')}
               render={createdAt => (
                 moment(createdAt).format('lll')
               )}
+              filterDropdown={({
+                confirm,
+              }) => (
+                <div style={{ padding: 8 }}>
+                  <DatePicker.RangePicker onChange={(dates: [moment.Moment, moment.Moment]) => setRange(dates)} />
+                  <div>
+                    <Button
+                      type="primary"
+                      icon={<SearchOutlined />}
+                      size="small"
+                      style={{ width: 90 }}
+                      onClick={() => {
+                        confirm({ closeDropdown: false })
+                        if (range) {
+                          changeFilter('created_at_gteq', range[0].startOf('day').toString())
+                          changeFilter('created_at_lteq', range[1].endOf('day').toString())
+                        }
+                      }}
+                    >
+                      {I18n.t('administration.audit_log.search')}
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setRange(null)
+                        removeFilter('created_at_gteq')
+                        removeFilter('created_at_lteq')
+                      }}
+                      size="small"
+                      style={{ width: 90 }}
+                    >
+                      {I18n.t('administration.audit_log.reset')}
+                    </Button>
+                  </div>
+                </div>
+              )}
+              filterIcon={filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />}
+
             />
             <Column
               title={I18n.t('administration.audit_log.client')}
               key="client"
-              sorter
-              sortOrder={getSortOrder('client')}
+              {...filterProps('client')}
               render={({ client, clientId }) => (
                 client
                   ? <Link to={`/administration/clients/${client.id}/projects`}>{client.name}</Link>
@@ -99,8 +181,7 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.project')}
               key="project"
-              sorter
-              sortOrder={getSortOrder('project')}
+              {...filterProps('project')}
               render={({ project, projectId }) => (
                 project
                   ? <Link to={`/administration/projects/${project.id}/new_campaigns`}>{project.name}</Link>
@@ -110,8 +191,7 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.campaign')}
               key="campaign"
-              sorter
-              sortOrder={getSortOrder('campaign')}
+              {...filterProps('campaign')}
               render={({ projectId, campaignId, campaign }) => (
                 campaign ? (
                   <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>
@@ -136,4 +216,7 @@ const AuditLogList: React.FC<Props> = (
   )
 }
 
-export default withEnhancedTable(connecter(AuditLogList), 'auidtLogList', { maintainHistory: true })
+export default withEnhancedTable(connecter(AuditLogList), 'auidtLogList', {
+  maintainHistory: true,
+  filterPredicates: FILTER_PREDICATES,
+})
