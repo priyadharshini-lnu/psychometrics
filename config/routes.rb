@@ -96,7 +96,7 @@ Rails.application.routes.draw do
     scope module: :administrator do
       resource :sessions, only: %i[new create], path: '',
                path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
-        delete 'sign_out', to: 'sessions#destroy', as: :destroy
+        get 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :passwords, as: :password
       resource :invitations, only: [:update], as: :invitation do
@@ -268,6 +268,7 @@ Rails.application.routes.draw do
             post :validate_settings
           end
         end
+        resources :integrations, only: %i[index create update destroy]
       end
 
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
@@ -560,6 +561,8 @@ Rails.application.routes.draw do
 
       collection do
         get :pearson_norms
+        get :projects
+        get :external_assessments
       end
 
       scope module: 'assessments' do
@@ -890,6 +893,12 @@ Rails.application.routes.draw do
         member do
           get :pass
           get :redirect
+        end
+      end
+
+      resources :iiht_user_assessments, only: [] do
+        member do
+          get :pass
         end
       end
 

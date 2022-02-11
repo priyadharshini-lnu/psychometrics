@@ -21,14 +21,15 @@ describe UsersResults::Reset do
       occupations: test,
       expiry_date: Time.now,
       last_activity_at: Time.now)
-    users_result.user_assessment.update(completed_at: Time.now, norm_id: norm.id, status: :completed)
+    users_result.user_assessment.update!(completed_at: Time.now, norm_id: norm.id, status: :completed)
     users_result
   end
   let(:user_report) do
     create(:user_report, :with_pdf, report: report, user: user, campaign: campaign, status: :prepared)
   end
   let(:user_assessment) do
-    create(:user_assessment, campaign: campaign, subject: user, assessment: assessment, users_result: users_result)
+    users_result.user_assessment
+    # create(:user_assessment, campaign: campaign, subject: user, assessment: assessment, users_result: users_result)
   end
   let!(:media_response) { create(:media_response, users_result: users_result) }
 
@@ -36,6 +37,28 @@ describe UsersResults::Reset do
 
   it '.call!' do
     expect(described_class).to respond_to(:'call!').with_unlimited_arguments
+  end
+
+  it "doesn't reset iiht assessment if number of allowed attempts is surpassed" do
+    allow(user_assessment).to receive(:iiht?).and_return(true)
+    allow(Iiht::GetScores).to receive(:call!).and_return({
+      'attemptsSoFar' => 5,
+      'totalAttempts' => 5
+    })
+
+    expect(subject[:error]).to eq(I18n.t('errors.messages.iiht_cannot_reset'))
+    expect(user_assessment.completed?).to eq(true)
+  end
+
+  it 'resets iiht assessment if number of allowed attempts is not surpassed' do
+    allow(user_assessment).to receive(:iiht?).and_return(true)
+    allow(Iiht::GetScores).to receive(:call!).and_return({
+      'attemptsSoFar' => 4,
+      'totalAttempts' => 5
+    })
+
+    expect(subject[:error]).to eq(nil)
+    expect(user_assessment.not_started?).to eq(true)
   end
 
   it 'calls Saville::ResetAssessment is it is a saville assessment' do

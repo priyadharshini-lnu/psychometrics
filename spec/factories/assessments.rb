@@ -39,6 +39,13 @@ FactoryBot.define do
       dimension { nil }
     end
 
+    trait :iiht do
+      category { Assessment::CATEGORIES[:iiht] }
+      type { ::Assessments::Iiht }
+      dimension { nil }
+      after(:create) { |assessment| create(:iiht_assessment_setting, assessment: assessment) }
+    end
+
     trait :saville do
       category { Assessment::CATEGORIES[:saville] }
       type { ::Assessments::Saville }

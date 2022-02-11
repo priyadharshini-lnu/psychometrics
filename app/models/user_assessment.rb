@@ -13,6 +13,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :created_by
   has_one :saville_user_assessment, dependent: :destroy
   has_one :pearson_user_assessment, dependent: :destroy
+  has_one :iiht_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
 
@@ -23,7 +24,8 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   has_one :threesixty_campaign, through: :campaign
-  delegate :saville_assessment_id, :saville?, :pearson_assessment_id, :pearson?,
+  delegate :saville_assessment_id, :saville?, :pearson_assessment_id,
+           :pearson_assessment_language, :pearson?, :iiht?,
            to: :assessment
   delegate :selected_locale, :timed?, to: :users_result, allow_nil: true
 

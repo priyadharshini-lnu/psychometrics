@@ -28,7 +28,8 @@ DynamicSelectable = (function() {
 
         values = $select.prop('multiple') ? values : values[0];
 
-        url = _this.constructUrl(values);
+        form = $select.closest('form')
+        url = _this.constructUrl(values, form);
         if (url) {
           return $.getJSON(url, function(data) {
             $.each(data, function(index, el) {
@@ -72,9 +73,20 @@ DynamicSelectable = (function() {
     return this.$targetSelect.html(content);
   };
 
-  DynamicSelectable.prototype.constructUrl = function(id) {
+  DynamicSelectable.prototype.constructUrl = function(id, form) {
+    let url = decodeURIComponent(this.urlTemplate)
     if (id && id !== '') {
-      return this.urlTemplate.replace(/__id__/, id);
+      url = url.replace(/__id__/, id)
+      const attrRegex = RegExp(/__([^--]+)->([a-zA-Z]+)__/, 'g')
+      const matches = url.matchAll(attrRegex)
+
+      for (const match of matches) {
+        const val = form.find(match[1])[match[2]]()
+        if (val) {
+          url = url.replace(match[0], val)
+        }
+      }
+      return url
     }
   };
 

@@ -31,6 +31,8 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
       firstRoute = '/smtp'
     } else if (currentUser.permissions.manageProjectSamlSetting) {
       firstRoute = '/saml'
+    } else if (currentUser.permissions.manageProjectIntegrations) {
+      firstRoute = '/integrations'
     }
     return [{ redirect: true, from: '', to: firstRoute }, ...routes]
   }
@@ -47,6 +49,9 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
         }
         {currentUser.permissions.manageProjectSamlSetting && (
           <Menu.Item key="/saml">{I18n.t('administration.saml_settings.saml')}</Menu.Item>)
+        }
+        {currentUser.permissions.manageProjectIntegrations && (
+          <Menu.Item key="/integrations">{I18n.t('administration.integrations.integrations')}</Menu.Item>)
         }
         {/* {currentUser.permissions.manageProjectGeneralSetting && (
           <Menu.Item key="/general">{I18n.t('administration.project_tabs.general')}</Menu.Item>)

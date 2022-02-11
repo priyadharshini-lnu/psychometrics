@@ -11,6 +11,10 @@ module UsersResults
 
     def call
       transaction do
+        if user_assessment.iiht? && cannot_reset_iiht?
+          return broadcast :error, I18n.t('errors.messages.iiht_cannot_reset')
+        end
+
         remove_reports if user_assessment.completed?
         reset_user_result
         remove_media_responses
@@ -21,6 +25,13 @@ module UsersResults
     end
 
     private
+
+    def cannot_reset_iiht?
+      response = Iiht::GetScores.call!(user_assessment)
+      return true if response.blank?
+
+      response['attemptsSoFar'] >= response['totalAttempts']
+    end
 
     def reset_user_result
       user_assessment.update!(

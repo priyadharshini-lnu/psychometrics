@@ -156,6 +156,7 @@ en:
           assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
+          iiht: IIHT
           mindmill: Mindmill
           organisational: Org Surveys
           pearson: Pearson
@@ -176,6 +177,7 @@ en:
             assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
+            iiht: IIHT
             mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
@@ -667,6 +669,7 @@ en:
             assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
+            iiht: IIHT
             mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
@@ -687,6 +690,7 @@ en:
               assessor_form: Assessor Form
               case_study: Case Studies
               hogan: Hogan
+              iiht: IIHT
               mindmill: Mindmill
               organisational: Org Surveys
               pearson: Pearson
@@ -2660,6 +2664,26 @@ en:
         title: Factor's options
       toggle_status:
         successfully: Factor was successfully updated.
+    integrations:
+      actions:
+        add: Add Integrations
+      columns:
+        active: Active
+        name: Integration Name
+      integrations: Integrations
+      modal:
+        iiht:
+          base_api_url: Base Api URL
+          company_id: Company ID
+          company_name: Company name
+          password: Password
+          user: User
+        title: Add
+      names:
+        iiht: IIHT
+      validations:
+        iiht:
+          company_present: Company with this ID and name is already present in other project
     libraries:
       create:
         successfully: Item %{name} was successfully created.

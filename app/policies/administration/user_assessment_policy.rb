@@ -31,16 +31,22 @@ module Administration
     end
 
     def reset?
-      !record&.assessment&.mindmill? && !record&.assessment&.hogan? && !record&.assessment&.pearson? && (
-        @user.is?(:superadmin) || @user.has_permission?(
-          :results, :reset_responses, project_id: project_id, campaign_id: campaign_id
-        )
-      )
+      assessment = record.assessment
+      has_permission_to_reset_assessment? &&
+        (assessment.common? || assessment.saville? || (assessment.iiht? && record.completed?))
     end
 
     def allow_edit?
       !record.assessment.external? && !record.assessment.agile? && !record.timed? && record.completed? &&
         (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users))
+    end
+
+    private
+
+    def has_permission_to_reset_assessment?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :results, :reset_responses, project_id: project_id, campaign_id: campaign_id
+      )
     end
   end
 end

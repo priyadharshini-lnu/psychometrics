@@ -63,6 +63,8 @@ module Campaigns
           user_assessment.create_saville_user_assessment(norm_id: user_assessment.applicable_external_norm_id)
         elsif assessment.pearson?
           user_assessment.create_pearson_user_assessment(norm_id: user_assessment.applicable_external_norm_id)
+        elsif assessment.iiht?
+          user_assessment.create_iiht_user_assessment
         end
 
         if assessment.hogan? && user.hogan_credential && user_assessment.completed?

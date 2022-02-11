@@ -162,6 +162,7 @@ gem 'enum_help', '~> 0.0.17'
 # A simple date validator for Rails
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
+gem 'encryptor', '~> 3.0.0'
 gem 'js-routes', '~> 1.4.4'
 gem 'rswag-api', '~> 2.3.0'
 gem 'rswag-ui', '~> 2.3.0'

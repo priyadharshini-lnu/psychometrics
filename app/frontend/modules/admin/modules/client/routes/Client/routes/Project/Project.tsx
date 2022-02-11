@@ -9,7 +9,7 @@ import {
   // UserOutlined,
   SolutionOutlined,
 } from '@ant-design/icons'
-
+import some from 'lodash/some'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from 'modules/admin/modules/client/routes/Client/routes/Project/settings'
 import RouteList from 'components/RouteList'
@@ -94,6 +94,11 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
     }
   }
 
+  const canShowSettingsTab = () => {
+    const permissions = ['manageProjectSmtpSettings', 'manageProjectSamlSetting', 'manageProjectIntegrations']
+    return some(permissions, permission => currentUser.permissions[permission])
+  }
+
   return (
     <div>
       <Breadcrumb
@@ -141,7 +146,7 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
             {I18n.t('administration.breadcrumbs.project_admins')}
           </Menu.Item>
         )}
-        {(currentUser.permissions.manageProjectSmtpSettings || currentUser.permissions.manageProjectSamlSetting) && (
+        {canShowSettingsTab() && (
           <Menu.Item key="settings" icon={<SettingOutlined />}>
             {I18n.t('administration.breadcrumbs.settings')}
           </Menu.Item>
