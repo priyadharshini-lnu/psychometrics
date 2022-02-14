@@ -9,21 +9,9 @@ export const FETCH_ASSESSMENTS_AND_REPORTS = 'campaigns/FETCH_ASSESSMENTS_AND_RE
 
 export const get = state => _.get(state, ['current'])
 
-const defaultState: State = {
-  permissions: {
-    addReport: false,
-    bulkDownload: false,
-    regenerate: false,
-  },
-}
-
-export interface State {
-  permissions: {
-    addReport: boolean
-    bulkDownload: boolean
-    regenerate: boolean
-  }
-}
+const defaultState = {
+  permissions: {},
+} as Campaign
 
 export const fetch = (id: number, projectId: number) => ({
   type: FETCH,
@@ -51,15 +39,10 @@ export const fetchAssessmentAndReports = (campaignId: string) => ({
 })
 
 type FetchAction = ApiActionResponse<Campaign>
-type FetchType = ApiActionResponse<{permissions: { assessmemntReportsManagePermissions: {} }}>
 
 const HANDLERS = {
   [FETCH]: (state: Campaign, { response }: FetchAction) => ({ ...state, ...response }),
   [UPDATE]: (state: Campaign, { response }: FetchAction) => ({ ...state, ...response }),
-  [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State,
-    { response }: FetchType) => ({
-    permissions: response.permissions.assessmemntReportsManagePermissions,
-  }),
 }
 
 export default createReducer(HANDLERS, defaultState)
