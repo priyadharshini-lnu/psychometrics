@@ -4,7 +4,7 @@ module Api
   module V1
     class UsersController < Api::V1::BaseController
       def index
-        user = project.client.users.find_by(email: params[:email])
+        user = project.end_users.find_by(email: params[:email])
         if user
           render json: user, serializer: Api::V1::UserSerializer
         else
