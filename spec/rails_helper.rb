@@ -16,6 +16,9 @@ require 'capybara_config'
 require 'rspec/mocks'
 require 'webmock/rspec'
 require 'savon/mock/spec_helper'
+require 'redlock/testing'
+
+Redlock::Client.testing_mode = :bypass
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 

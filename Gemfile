@@ -95,6 +95,7 @@ gem 'ckeditor'
 gem 'jquery-fileupload-rails', '~> 0.4.6'
 gem 'redis', '~> 4.1.3'
 gem 'redis-rails', '~> 5.0.2'
+gem 'redlock', '~> 1.2.2'
 
 # A workaround for `roo` since it requires an old version of rubyzip
 gem 'rubyzip', '~> 2.3'

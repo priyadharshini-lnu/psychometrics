@@ -67,7 +67,7 @@ module Campaigns
           user_assessment.create_iiht_user_assessment
         end
 
-        if assessment.hogan? && user.hogan_credential && user_assessment.completed?
+        if assessment.hogan? && user.hogan_credential
           Hogan::AddReportsJob.perform_later(user_assessment, [user_report],
                                              user.hogan_credential, user.project)
         end

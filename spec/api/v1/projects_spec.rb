@@ -6,6 +6,7 @@ require 'swagger_helper'
 describe 'Projects' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
+  let(:user) { create(:user, project: project) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
@@ -183,12 +184,12 @@ describe 'Projects' do
           ]
         }
 
-        let(:email) { CGI.escape membership.user.email }
+        let(:email) { CGI.escape user.email }
         let(:project_id) { project.id }
 
         run_test! do |response|
-          user = JSON.parse(response.body)
-          expect(user['email']).to eq membership.user.email
+          body = JSON.parse(response.body)
+          expect(body['email']).to eq user.email
         end
       end
 
