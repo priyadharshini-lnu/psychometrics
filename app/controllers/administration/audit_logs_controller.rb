@@ -11,7 +11,8 @@ module Administration
       respond_to do |format|
         format.html
         format.json do
-          serialized_logs = @logs.page(params[:page]).includes(:client, :project, :campaign).per(25).
+          serialized_logs = @logs.page(params[:page]).includes(:client, :project, :campaign).
+                            per(params[:size] || 25).
                             map { |l| AuditLogSerializer.new(l) }
           render json: {
             list: serialized_logs,

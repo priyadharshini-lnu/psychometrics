@@ -41,7 +41,7 @@ const AuditLogList: React.FC<Props> = (
     },
     fetch,
     tableConfig: {
-      page,
+      page, pageSize,
     },
     tableConfig,
     getFilteredValue,
@@ -51,13 +51,17 @@ const AuditLogList: React.FC<Props> = (
     changePage,
   },
 ) => {
-  const [range, setRange] = useState<[moment.Moment, moment.Moment] | null>(null)
   useEffect(() => {
     fetch(tableConfig)
   }, [tableConfig])
 
+  let initialRange: [moment.Moment, moment.Moment] | null = null
+  if (tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq) {
+    initialRange = [moment(tableConfig.filters.created_at_gteq), moment(tableConfig.filters.created_at_lteq)]
+  }
+  const [range, setRange] = useState<[moment.Moment, moment.Moment] | null>(initialRange || null)
 
-  const filterProps = type => ({
+  const filterProps = (type: string, value = '') => ({
     filterDropdown: ({
       selectedKeys, confirm, setSelectedKeys,
     }) => (
@@ -65,7 +69,7 @@ const AuditLogList: React.FC<Props> = (
         <Input
           placeholder={I18n.t(`administration.audit_log.search_${type}`)}
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          value={selectedKeys[0]}
+          value={selectedKeys[0] || value}
           style={{ marginBottom: 8, display: 'block' }}
         />
         <Space>
@@ -94,7 +98,7 @@ const AuditLogList: React.FC<Props> = (
         </Space>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
   })
 
   return (
@@ -111,6 +115,7 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.type')}
               key="recordType"
+              dataIndex="recordType"
               filters={types.map((t: string) => ({ text: t, value: t }))}
               filteredValue={getFilteredValue('recordType')}
             />
@@ -134,15 +139,18 @@ const AuditLogList: React.FC<Props> = (
                 confirm,
               }) => (
                 <div style={{ padding: 8 }}>
-                  <DatePicker.RangePicker onChange={(dates: [moment.Moment, moment.Moment]) => setRange(dates)} />
-                  <div>
+                  <DatePicker.RangePicker
+                    value={range}
+                    onChange={(dates: [moment.Moment, moment.Moment]) => setRange(dates)}
+                  />
+                  <div className="mtm flex justify-content-space-between">
                     <Button
                       type="primary"
                       icon={<SearchOutlined />}
                       size="small"
                       style={{ width: 90 }}
                       onClick={() => {
-                        confirm({ closeDropdown: false })
+                        confirm({ closeDropdown: true })
                         if (range) {
                           changeFilter('created_at_gteq', range[0].startOf('day').toString())
                           changeFilter('created_at_lteq', range[1].endOf('day').toString())
@@ -156,6 +164,7 @@ const AuditLogList: React.FC<Props> = (
                         setRange(null)
                         removeFilter('created_at_gteq')
                         removeFilter('created_at_lteq')
+                        confirm({ closeDropdown: true })
                       }}
                       size="small"
                       style={{ width: 90 }}
@@ -165,13 +174,12 @@ const AuditLogList: React.FC<Props> = (
                   </div>
                 </div>
               )}
-              filterIcon={filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />}
-
+              filterIcon={() => <SearchOutlined style={{ color: range ? '#1BAF99' : undefined }} />}
             />
             <Column
               title={I18n.t('administration.audit_log.client')}
               key="client"
-              {...filterProps('client')}
+              {...filterProps('client', tableConfig.filters.client)}
               render={({ client, clientId }) => (
                 client
                   ? <Link to={`/administration/clients/${client.id}/projects`}>{client.name}</Link>
@@ -181,7 +189,7 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.project')}
               key="project"
-              {...filterProps('project')}
+              {...filterProps('project', tableConfig.filters.project)}
               render={({ project, projectId }) => (
                 project
                   ? <Link to={`/administration/projects/${project.id}/new_campaigns`}>{project.name}</Link>
@@ -191,7 +199,7 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.campaign')}
               key="campaign"
-              {...filterProps('campaign')}
+              {...filterProps('campaign', tableConfig.filters.campaign)}
               render={({ projectId, campaignId, campaign }) => (
                 campaign ? (
                   <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>
@@ -206,7 +214,7 @@ const AuditLogList: React.FC<Props> = (
       <div className="pl">
         <Pagination
           current={page}
-          pageSize={DEFAULT_PAGE_SIZE}
+          pageSize={pageSize || DEFAULT_PAGE_SIZE}
           total={total}
           onChange={changePage}
           hideOnSinglePage
