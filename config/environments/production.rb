@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'syslog/logger'
-require 'uglifier'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -38,7 +37,7 @@ Rails.application.configure do
   }
   config.public_file_server.headers['Access-Control-Allow-Origin'] = '*' if Settings.asset_host.present?
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = Uglifier.new output: { comments: :none }
+  config.assets.js_compressor = :terser
   config.logger = Syslog::Logger.new 'psychometrics'
   # config.assets.css_compressor = :sass
 

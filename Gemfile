@@ -16,7 +16,7 @@ gem 'pg',                         '~> 0.19.0'
 gem 'puma',                       '~> 4.3.6'
 gem 'rails',                      '~> 5.2.0'
 gem 'sassc-rails', '~> 2.1.2'
-gem 'uglifier', '~> 3.0.2'
+gem 'terser', '~> 1.1.8'
 
 source 'https://rails-assets.org/' do
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
