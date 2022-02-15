@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { getCurrent, fetchCurrent } from 'modules/admin/modules/AuditLog/core'
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Descriptions } from 'antd'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
@@ -60,22 +60,22 @@ const AuditLogList: React.FC<Props> = ({
         )}
         {record.project && (
           <Descriptions.Item label={I18n.t('administration.audit_log.project')}>
-            <Link to={`/administration/projects/${record.project.id}/new_campaigns`}>
+            <a href={`/administration/projects/${record.project.id}/new_campaigns`}>
               {record.project.id}
               ,
               {' '}
               {record.project.name}
 
-            </Link>
+            </a>
           </Descriptions.Item>
         )}
         {record.campaign && (
           <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
-            <Link
-              to={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
+            <a
+              href={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
             >
               {record.campaign.name}
-            </Link>
+            </a>
           </Descriptions.Item>
         )}
         <Descriptions.Item label={I18n.t('administration.audit_log.payload')}>
