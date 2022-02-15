@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import Utils from 'modules/reports/utils/Utils'
 import AppStore from '../../store/AppStore'
 import { ScoringData } from './interfaces/ResultScoring'
 import { ResultsByFilter, TopFactor, TopFactorType } from './interfaces'
@@ -22,8 +23,8 @@ export default {
         || (factorType === TopFactorType.Factor && !isSubFactor)
       if (factorData && isValidFactorType) {
         return [...factors, {
-          meanRawScore: _.round(_.meanBy(d.results, 'value'), 2),
-          meanNormScore: _.round(_.meanBy(d.results, 'norm'), 2),
+          meanRawScore: Utils.nanFallback(_.round(_.meanBy(d.results, 'value'), 2)),
+          meanNormScore: Utils.nanFallback(_.round(_.meanBy(d.results, 'norm'), 2)),
           id: parseInt(factorId, 10),
           alias: d.name,
           description: factorData.description,

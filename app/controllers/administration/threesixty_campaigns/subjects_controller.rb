@@ -144,7 +144,7 @@ module Administration
       end
 
       def subjects_from_csv(file_path)
-        csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
+        csv = CSV.read(file_path, encoding: 'bom|utf-8', headers: true)
         csv.map { |row| row.to_h.symbolize_keys }
       end
     end

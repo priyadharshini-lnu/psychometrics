@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Card, Progress, Input, Tag, Tooltip,
+  Row, Col, Card, Progress, Input, Tag, Tooltip, message,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import truncate from 'lodash/truncate'
@@ -51,6 +51,9 @@ const Hogan: React.FC<Props> = ({
     setLoading(true)
     loginHogan(userAssessment.url).then((data) => {
       setHoganData(data.response)
+    }).catch(() => {
+      message.error(I18n.t('frontend.hogan.cannot_start'))
+      setLoading(false)
     })
   }
 

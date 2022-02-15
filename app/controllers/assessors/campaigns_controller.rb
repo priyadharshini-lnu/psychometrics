@@ -4,8 +4,10 @@ class Assessors::CampaignsController < Assessors::BaseController
   skip_after_action :verify_policy_scoped, only: :index
 
   def index
-    campaigns = policy_scope(Campaign).ransack(params[:filters]).
-                result
+    search = policy_scope(Campaign).ransack(params[:filters])
+    search.sorts = 'id desc' if search.sorts.empty?
+
+    campaigns = search.result
     paginated_campaigns = campaigns.page(params[:page])
     serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
       paginated_campaigns, each_serializer: Administration::Assessors::CampaignSerializer,
