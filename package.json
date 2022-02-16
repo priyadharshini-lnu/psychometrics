@@ -50,7 +50,7 @@
     "@svgr/webpack": "^5.5.0",
     "@thetalententerprise/interactive-assessments": "1.5.3",
     "@types/actioncable": "^5.2.7",
-    "@types/lodash": "^4.14.176",
+    "@types/lodash": "^4.14.178",
     "@types/lodash.set": "^4.3.6",
     "@types/react-redux": "^7.1.21",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
