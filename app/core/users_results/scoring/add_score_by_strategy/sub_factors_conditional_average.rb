@@ -11,7 +11,7 @@ module UsersResults
             data[:sum] += factor_sub_factor.weight if valid_score?(factor_sub_factor, score)
             data[:count] += factor_sub_factor.weight
           end
-          return nil if score_data[:count] == 0
+          return nil if score_data[:count].zero?
 
           score_data[:sum] * 100 / score_data[:count].to_f
         end

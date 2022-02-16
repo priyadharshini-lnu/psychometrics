@@ -11,10 +11,10 @@ module UsersResults
 
     def call
       new_scoring = if users_result.assessment.agile?
-        UsersResults::CalculateAgileScoring.call!(users_result)
-      else
-        UsersResults::CalculateScoring.call!(users_result)
-      end
+                      UsersResults::CalculateAgileScoring.call!(users_result)
+                    else
+                      UsersResults::CalculateScoring.call!(users_result)
+                    end
 
       factor_score_with_difference = {}
       saved_scoring&.each do |factor_id, scores|

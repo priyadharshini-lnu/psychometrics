@@ -2421,6 +2421,7 @@ en:
         header: Edit Factor Name
       form:
         no_icon: No Logo yet
+        use_sub_factor_norm_score: Use Factors norm score
         scoring_strategies:
           questions: Questions (Average)
           questions_sum: Questions (SUM)

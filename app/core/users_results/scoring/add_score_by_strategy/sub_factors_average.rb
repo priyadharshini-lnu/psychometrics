@@ -32,7 +32,7 @@ module UsersResults
             data[:sum] += get_sub_factor_score(v) * weight
             data[:count] += weight
           end
-          return nil if score_data[:count] == 0
+          return nil if score_data[:count].zero?
 
           score_data[:sum] / score_data[:count].to_f
         end

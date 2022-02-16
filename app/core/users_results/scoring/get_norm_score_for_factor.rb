@@ -46,7 +46,6 @@ module UsersResults
         return unless factor_data
         return scoring.dig(factor_id.to_s, 'zscore') unless factor_data[:factor].sub_factors_average_strategy?
 
-
         score_data = sub_factor_hash.each_with_object(sum: 0, count: 0) do |(k, v), data|
           zs = get_factor_zscore(k)
           break if !zs || !v.weight
