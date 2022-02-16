@@ -134,7 +134,7 @@ gem 'mini_magick', '~> 4.11.0'
 gem 'remotipart', '~> 1.3.1'
 
 gem 'ancestry', '~> 3.0.0'
-gem 'browser', '~> 4.0.0'
+gem 'browser', '~> 5.3.1'
 
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
