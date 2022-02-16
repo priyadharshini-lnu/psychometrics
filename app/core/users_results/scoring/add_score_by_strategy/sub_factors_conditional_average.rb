@@ -7,8 +7,8 @@ module UsersResults
         def calc_score(scoring)
           score_data = scoring.each_with_object(sum: 0, count: 0) do |(k, v), data|
             factor_sub_factor = factor_data[:sub_factor_hash][k.to_i]
-
-            data[:sum] += factor_sub_factor.weight if valid_score?(factor_sub_factor, v['score'])
+            score = factor_data[:factor].use_sub_factor_norm_score ? v['norm_score'] : v['score']
+            data[:sum] += factor_sub_factor.weight if valid_score?(factor_sub_factor, score)
             data[:count] += factor_sub_factor.weight
           end
 

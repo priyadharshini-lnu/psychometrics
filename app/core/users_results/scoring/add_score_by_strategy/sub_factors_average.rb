@@ -10,7 +10,7 @@ module UsersResults
 
           sub_extended_scoring =
             ::UsersResults::Scoring::AddScore.call!(
-              factor_hash, sub_factor_ids, extended_scoring, factors_question_count
+              factor_hash, sub_factor_ids, extended_scoring, norm, factor_norm_hash, factors_question_count
             )
 
           score =
@@ -27,8 +27,8 @@ module UsersResults
         def calc_score(scoring)
           score_data = scoring.each_with_object(sum: 0, count: 0) do |(k, v), data|
             weight = factor_data[:sub_factor_hash].try(:[], k.to_i).try(:[], :weight) || 1
-
-            data[:sum] += v['score'] * weight
+            score = factor_data[:factor].use_sub_factor_norm_score ? v['norm_score'] : v['score']
+            data[:sum] += score * weight
             data[:count] += weight
           end
 
