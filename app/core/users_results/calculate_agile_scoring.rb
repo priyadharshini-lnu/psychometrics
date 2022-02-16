@@ -2,13 +2,12 @@
 
 module UsersResults
   class CalculateAgileScoring < BaseCommand
-    private_attr_accessor :user_result, :agile, :norm, :results, :current_user, :dimension
+    private_attr_accessor :user_result, :agile, :norm, :results, :dimension
 
-    def initialize(user_result, current_user)
+    def initialize(user_result)
       @user_result = user_result
       assessment = user_result.user_assessment.assessment
       @agile = assessment.agile
-      @current_user = current_user
       @dimension = assessment.dimension
     end
 

@@ -4,7 +4,7 @@ module UsersResults
   class SaveAgileScoringJob < ApplicationJob
     def perform(user_result, current_user)
       user_result.update!(
-        scoring: ::UsersResults::CalculateAgileScoring.call!(user_result, current_user)
+        scoring: ::UsersResults::CalculateAgileScoring.call!(user_result)
       )
       UsersResults::GenerateReports.call(user_result, current_user)
       webhook = UserAssessments::Webhook.new(user_result.user_assessment)

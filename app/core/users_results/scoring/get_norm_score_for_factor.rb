@@ -3,20 +3,20 @@
 module UsersResults
   module Scoring
     class GetNormScoreForFactor < BaseCommand
-      attr_reader :factor, :sub_factor_hash, :norm, :scoring, :factor_norm_hash
+      attr_reader :factor, :sub_factor_hash, :factor_hash, :norm, :scoring, :factor_norm_hash
 
-      def initialize(factor_data, norm, scoring, factor_norm_hash)
-        @factor = factor_data[:factor]
-        @sub_factor_hash = factor_data[:sub_factor_hash]
+      def initialize(factor_id, factor_hash, norm, scoring, factor_norm_hash)
+        @factor = factor_hash.dig(factor_id, :factor)
+        @sub_factor_hash = factor_hash.dig(factor_id, :sub_factor_hash)
+        @factor_hash = factor_hash
         @scoring = scoring
         @factor_norm_hash = factor_norm_hash
         @norm = norm
       end
 
       def call
-        return broadcast :ok, scoring unless norm
-
         score = scoring.dig(factor.id.to_s)
+
         norm_score =
           if norm.percentile?
             calc_percentile_norm_score
@@ -41,8 +41,11 @@ module UsersResults
         zscore ? Ztable.percentile(zscore) : nil
       end
 
-      def get_factor_zscore
-        return scoring.dig(factor.id.to_s, 'zscore') unless factor.sub_factors_average_strategy?
+      def get_factor_zscore(factor_id)
+        factor_data = factor_hash[factor_id.to_i]
+        return unless factor_data
+        return scoring.dig(factor_id.to_s, 'zscore') unless factor_data[:factor].sub_factors_average_strategy?
+
 
         score_data = sub_factor_hash.each_with_object(sum: 0, count: 0) do |(k, v), data|
           zs = get_factor_zscore(k)

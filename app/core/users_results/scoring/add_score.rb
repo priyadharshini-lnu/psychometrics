@@ -32,12 +32,12 @@ module UsersResults
           score = extending_scoring.dig(factor.id.to_s, 'score')
           if norm.percentile?
             zscore = UsersResults::Scoring::GetZscoreForFactor.call!(
-              factor_data[:factor], score, norm, factor_norm_hash
+              factor, score, norm, factor_norm_hash
             )
             extending_scoring = extending_scoring.deep_merge(factor.id.to_s => { 'zscore' => zscore })
           end
           norm_score = UsersResults::Scoring::GetNormScoreForFactor.call!(
-            factor_data, norm, extending_scoring, factor_norm_hash
+            factor.id, factor_hash, norm, extending_scoring, factor_norm_hash
           )
           extending_scoring.deep_merge(factor.id.to_s => { 'norm_score' => norm_score })
         end
