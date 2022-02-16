@@ -122,7 +122,7 @@
     "postcss-safe-parser": "^4.0.1",
     "prop-types": "^15.7.2",
     "puppeteer": "1.19.0",
-    "qs": "^6.10.1",
+    "qs": "^6.10.3",
     "query-string": "^6.14.1",
     "raphael": "^2.2.1",
     "raw-loader": "^4.0.1",
