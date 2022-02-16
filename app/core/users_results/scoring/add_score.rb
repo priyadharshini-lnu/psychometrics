@@ -21,27 +21,25 @@ module UsersResults
           factor = factor_data[:factor]
 
           factor_scoring = extending_scoring[factor.id.to_s]
+          next extending_scoring if factor_scoring&.key?('score')
 
-          if factor_scoring&.key?('score')
-            extending_scoring
-          else
-            module_name = "::UsersResults::Scoring::AddScoreByStrategy::#{factor.scoring_strategy.camelize}".constantize
-            new_extended_scoring = module_name.call!(
-              factor_data, extending_scoring, factor_hash, norm, factor_norm_hash, factors_question_count
+          module_name = "::UsersResults::Scoring::AddScoreByStrategy::#{factor.scoring_strategy.camelize}".constantize
+          extending_scoring = module_name.call!(
+            factor_data, extending_scoring, factor_hash, norm, factor_norm_hash, factors_question_count
+          )
+          next extending_scoring unless norm
+
+          score = extending_scoring.dig(factor.id.to_s, 'score')
+          if norm.percentile?
+            zscore = UsersResults::Scoring::GetZscoreForFactor.call!(
+              factor_data[:factor], score, norm, factor_norm_hash
             )
-            if norm
-              score = new_extended_scoring.dig(factor.id.to_s, 'score')
-              zscore = UsersResults::Scoring::GetZscoreForFactor.call!(
-                factor_data[:factor], score, norm, factor_norm_hash
-              )
-              new_extended_scoring.deep_merge(factor.id.to_s => { 'zscore' => zscore })
-              norm_score = UsersResults::Scoring::GetNormScoreForFactor.call!(
-                factor_data, norm, new_extended_scoring, factor_norm_hash
-              )
-              new_extended_scoring = new_extended_scoring.deep_merge(factor.id.to_s => { 'norm_score' => norm_score })
-            end
-            new_extended_scoring
+            extending_scoring = extending_scoring.deep_merge(factor.id.to_s => { 'zscore' => zscore })
           end
+          norm_score = UsersResults::Scoring::GetNormScoreForFactor.call!(
+            factor_data, norm, extending_scoring, factor_norm_hash
+          )
+          extending_scoring.deep_merge(factor.id.to_s => { 'norm_score' => norm_score })
         end
 
         broadcast :ok, extended_scoring

@@ -13,8 +13,6 @@ module UsersResults
       end
 
       def call
-        return broadcast :ok, score if !norm || !norm.percentile?
-
         factor_norm = factor_norm_hash[factor.id]
         props = factor_norm&.props&.first || {}
         mean = props['mean']
