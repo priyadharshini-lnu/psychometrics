@@ -234,6 +234,10 @@ class Assessment < ApplicationRecord
     end
   end
 
+  def log_attribute_for_delete
+    slice(:name)
+  end
+
   private
 
   def delete_hogan_assessment_setting

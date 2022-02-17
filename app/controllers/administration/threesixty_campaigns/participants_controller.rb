@@ -25,6 +25,8 @@ module Administration
       def update
         resource.update!(resource_params)
         send_nomination_denied_email(resource) if resource_params[:manager_nomination_status] == 'denied'
+        audit! :update, resource, payload: resource_params, campaign: threesixty_campaign.campaign
+
         respond_to do |format|
           format.html do
             redirect_to administration_threesixty_campaign_subject_evaluation_path(threesixty_campaign,
@@ -38,6 +40,7 @@ module Administration
       def spoof
         user = User.find(params[:id])
         if user.is?(:superadmin, :project_admin)
+          audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
           sign_in(user)
         else
           spoof_token = SecureRandom.urlsafe_base64(64)
@@ -54,6 +57,7 @@ module Administration
       end
 
       def destroy
+        audit! :delete, resource, payload: resource.log_attribute_for_delete
         resource.destroy!
         render json: :ok
       end

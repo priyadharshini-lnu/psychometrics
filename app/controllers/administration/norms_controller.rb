@@ -35,6 +35,7 @@ class Administration::NormsController < Administration::BaseController
 
     respond_to do |format|
       if resource.save
+        audit! :create, resource, payload: params.permit!
         format.js
       else
         format.js { render :new }
@@ -46,6 +47,7 @@ class Administration::NormsController < Administration::BaseController
     resource.updater = current_user
     respond_to do |format|
       if resource.update(resource_params)
+        audit! :update, resource, payload: params.permit!
         format.js
       else
         format.js { render :edit }
@@ -58,6 +60,7 @@ class Administration::NormsController < Administration::BaseController
     resource.destroy
     respond_to do |format|
       format.html do
+        audit! :delete, resource, payload: resource.try(:log_attribute_for_delete)
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
       format.js
@@ -70,6 +73,7 @@ class Administration::NormsController < Administration::BaseController
     @cloned_resource.creator = current_user
     respond_to do |format|
       if @cloned_resource.save
+        audit! :copy, resource, payload: { source_id: resource.id }
         format.js
       else
         format.js { render :error, locals: { message: t('administration.norms.copy.error', id: resource.id) } }
@@ -79,6 +83,7 @@ class Administration::NormsController < Administration::BaseController
 
   def toggle_status
     resource.toggle(:disabled).save
+    audit! :toggle_status, resource, payload: { disabled: resource.disabled }
     respond_to do |format|
       format.js
     end
@@ -86,6 +91,7 @@ class Administration::NormsController < Administration::BaseController
 
   def export
     @factors_norms = FactorsNorm.export_structured_hash(resource)
+    audit! :export, resource
     respond_to do |format|
       format.xlsx do
         headers['Content-Disposition'] = "attachment; filename=\"#{resource.name}-#{Date.today}.xlsx\""

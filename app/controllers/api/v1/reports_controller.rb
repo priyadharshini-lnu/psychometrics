@@ -70,11 +70,13 @@ module Api
       def update
         user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
         user_report.update!(user_report_params)
+        audit! :api_update, user_report, payload: params.permit!, campaign: user_report.campaign
         render json: user_report, serializer: Api::V1::UserReportSerializer
       end
 
       def destroy
         user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
+        audit! :api_delete, user_report, payload: user_report.log_attribute_for_delete, campaign: user_report.campaign
         user_report.destroy!
         render json: user_report, serializer: Api::V1::UserReportSerializer
       end

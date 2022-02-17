@@ -87,6 +87,12 @@ Rails.application.routes.draw do
 
     resource :profiles, only: %i[update edit]
 
+    resources :audit_logs do
+      collection do
+        get :actions
+      end
+    end
+
     scope module: :administrator do
       resource :sessions, only: %i[new create], path: '',
                path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do

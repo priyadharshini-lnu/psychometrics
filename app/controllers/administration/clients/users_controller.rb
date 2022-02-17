@@ -44,6 +44,7 @@ module Administration
         @_resource = UserForm.
                      from_params(params[:resource]).
                      with_context(client: client)
+        audit! :create, resource, payload: resource_params, client: resource
         respond_to do |format|
           format.js do
             CreateUser.call(resource, [client], current_user) do
@@ -55,6 +56,8 @@ module Administration
 
       def assign_multiple
         return unless client.project?
+
+        audit! :assign_multiple, resource, payload: { admin_ids: params[:project_admin_ids] }, client: resource
 
         if client.update(project_admin_ids: client.root.projects_admins.
           where(id: params[:project_admin_ids]).distinct.ids)
@@ -77,6 +80,7 @@ module Administration
       # PATCH/PUT /administration/resources/1
       def update
         resource.user.modified_by_id = current_user.id
+        audit! :update, resource, payload: update_resource_params, client: resource
         respond_to do |format|
           if resource.update(update_resource_params)
             format.html do
@@ -96,6 +100,7 @@ module Administration
         else
           resource.destroy
         end
+        audit! :delete, resource, payload: resource.log_attribute_for_delete, client: resource
         respond_to do |format|
           format.html do
             redirect_back(
@@ -109,6 +114,7 @@ module Administration
       def export
         @_resources = policy_scope(::Membership).includes(:user).join_user.where(client_id: client.id)
 
+        audit! :export, client, client: client
         respond_to do |format|
           filename = "#{resource_class.model_name.plural}-#{Date.today}"
           format.csv do
@@ -120,6 +126,7 @@ module Administration
 
       def export_completion_status
         results = Exports::Assessments::CompletionStatusExport.new(client.id)
+        audit! :export_completion_status, client, client: client
         respond_to do |format|
           format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'completion_status_export.xlsx' }
         end
@@ -127,6 +134,7 @@ module Administration
 
       # Spoof as user
       def spoof
+        audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
         if resource.user.is?(:superadmin, :project_admin)
           sign_in(resource.user)
         else
@@ -143,6 +151,7 @@ module Administration
         resource.user.toggle!(:disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
+        audit! :toggle_status, resource, client: client, payload: { disabled: resource.disabled }
         respond_to do |format|
           format.html do
             redirect_back(
@@ -158,6 +167,7 @@ module Administration
         resource.toggle!(:disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
+        audit! :toggle_membership_status, resource, client: client
         respond_to do |format|
           format.html do
             redirect_back(
@@ -170,6 +180,7 @@ module Administration
 
       def reset_password
         resource.user.send_reset_password_instructions
+        audit! :reset_password, resource, client: client
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
 

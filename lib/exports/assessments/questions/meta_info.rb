@@ -9,14 +9,19 @@ module Exports
         # Parse RESULT data for XLSX
         def self.result(user_result, question, _scoring = false, _export_with_labels = false)
           answers = get_answers(user_result, question)
-          FIELDS.map { |field| answers.try(:[], field) unless answers.blank? }
+          answers = if answers.blank?
+                      Array.new(FIELDS.size) { '' }
+                    else
+                      FIELDS.map { |field| answers.try(:[], field) }
+                    end
+          answers << get_duration(user_result, question)
         end
 
         # Parse HEADER data for XLSX
         def self.question_id_header(question)
           parsed_header = []
           FIELDS.map { |field| parsed_header << "QID#{question.id}_#{field}" }
-          parsed_header
+          parsed_header << duration_header(question)
         end
       end
     end

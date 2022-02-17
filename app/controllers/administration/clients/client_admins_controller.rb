@@ -104,6 +104,7 @@ module Administration
 
       # Spoof as user
       def spoof
+        audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
         sign_in(resource.user)
         redirect_url ||= administration_root_path
         flash.now[:success] = t('.successfully', name: resource.decorate.display_name)
@@ -117,6 +118,7 @@ module Administration
         resource_class.update(@_resource.id, disabled: !@_resource.membership_disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
+        audit! :toggle_status, resource, payload: { disabled: resource.disabled }
         respond_to do |format|
           format.html do
             redirect_back(
@@ -129,6 +131,7 @@ module Administration
 
       def reset_password
         resource.user.send_reset_password_instructions
+        audit! :reset_password, resource
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
 

@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Warden::Manager.after_authentication do |user, _env, _opts|
+  AuditLogModule.audit! :sign_in_success, user, payload: { email: user.email }
+end
+
 Warden::Manager.after_set_user do |user, auth, opts|
   scope = opts[:scope]
   auth.request.session["#{scope}.id"] = user.id

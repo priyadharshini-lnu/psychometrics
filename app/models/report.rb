@@ -216,6 +216,10 @@ class Report < ApplicationRecord
     }
   end
 
+  def log_attribute_for_delete
+    slice(:name, :owner_id)
+  end
+
   private
 
   def max_assessments_count

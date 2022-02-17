@@ -40,6 +40,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
     respond_to do |format|
       if resource.save
+        audit! :create, resource, payload: params.permit!
         format.js
       else
         format.js { render :new }
@@ -81,6 +82,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def update
     respond_to do |format|
       if resource.update(resource_params)
+        audit! :update, resource, payload: params.permit!
         format.js
         format.json { render json: :ok }
       else
@@ -93,6 +95,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def destroy
     resource.destroy
     respond_to do |format|
+      audit! :delete, resource, payload: resource.log_attribute_for_delete
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end

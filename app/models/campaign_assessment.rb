@@ -44,6 +44,10 @@ class CampaignAssessment < ApplicationRecord
     UserAssessment.where(campaign_id: campaign_id, assessment_id: assessment_id)
   end
 
+  def log_attribute_for_delete
+    slice(:name)
+  end
+
   private
 
   def pearson_norm_name

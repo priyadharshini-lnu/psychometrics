@@ -291,6 +291,10 @@ class Client < ApplicationRecord
     !!assessments_clients.find_by(assessment_id: assessment_id)&.assessment_key
   end
 
+  def log_attribute_for_delete
+    slice(:name, :subdomain)
+  end
+
   private
 
   def generate_hogan_group_name

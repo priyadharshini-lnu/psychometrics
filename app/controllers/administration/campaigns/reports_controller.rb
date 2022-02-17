@@ -9,7 +9,10 @@ module Administration
         form = ::Campaigns::Reports::Form.from_params(resource_params)
         if form.valid?
           ::Campaigns::Reports::Add.call(form, campaign) do
-            on(:ok) { return assessments_and_reports }
+            on(:ok) do
+              audit! :create_report, campaign, campaign: campaign, payload: resource_params
+              return assessments_and_reports
+            end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
           end
         else

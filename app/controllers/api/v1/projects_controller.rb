@@ -13,6 +13,7 @@ module Api
           normalized_params = ::Projects::NormalizeAPIRequest.call!(project_params)
           project = ::Projects::Create.call!(normalized_params, current_user)
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
+          audit! :api_create, project, payload: params.permit!, project: project
           render json: project, serializer: Api::V1::ProjectSerializer
         else
           render_validation_errors(form)
@@ -25,6 +26,7 @@ module Api
           normalized_params = ::Projects::NormalizeAPIRequest.call!(project_params)
           project.update!(normalized_params)
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
+          audit! :api_update, project, payload: params.permit!, project: project
           render json: project, serializer: Api::V1::ProjectSerializer
         else
           render_validation_errors(form)
