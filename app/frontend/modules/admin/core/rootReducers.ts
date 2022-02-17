@@ -35,6 +35,7 @@ import mailHistories from '../modules/threeSixtyCampaign/core/mailHistories'
 import users from '../modules/threeSixtyCampaign/core/users'
 import assessorsReducers from '../modules/AssessorApp/core'
 import datasheetReducers from '../modules/DatasheetManagement/core'
+import auditLogs from '../modules/AuditLog/core'
 
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
@@ -78,6 +79,7 @@ const createRootReducer = history => combineReducers({
   datasheet: datasheetReducers,
   preview,
   connection,
+  auditLogs,
 })
 
 export type RootState = ReturnType<ReturnType<typeof createRootReducer>>

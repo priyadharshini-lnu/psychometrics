@@ -19,6 +19,7 @@ module Exports
                     map do |a|
             a['value'].is_a?(Numeric) ? (scoring && factors_scoring[a['index']] || 1) * a['value'] : ''
           end
+          answers = Array.new(question_headers_except_duration_size(question)) { '' } if answers.empty?
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end

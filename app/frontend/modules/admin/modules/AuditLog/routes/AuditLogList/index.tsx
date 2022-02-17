@@ -1,0 +1,230 @@
+
+import React, { useState, useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { get as getLogs, fetch, fetchActions } from 'modules/admin/modules/AuditLog/core'
+import {
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker,
+} from 'antd'
+import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
+import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
+import { Link } from 'react-router-dom'
+import { RootState } from 'modules/admin/core/rootReducers'
+import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
+import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import moment from 'moment'
+
+export const FILTER_PREDICATES = {
+  recordType: 'In',
+  action: 'In',
+}
+
+const connecter = connect(
+  (state: RootState) => ({
+    auditLogs: getLogs(state),
+  }),
+  {
+    fetch,
+    fetchActions,
+  },
+)
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = TableProps & PropsFromRedux
+
+const { Column } = Table
+const { I18n } = window
+
+const AuditLogList: React.FC<Props> = (
+  {
+    auditLogs: {
+      list, total, types, actions,
+    },
+    fetch,
+    tableConfig: {
+      page, pageSize,
+    },
+    tableConfig,
+    getFilteredValue,
+    onTableChange,
+    changeFilter,
+    removeFilter,
+    changePage,
+  },
+) => {
+  useEffect(() => {
+    fetch(tableConfig)
+  }, [tableConfig])
+
+  let initialRange: [moment.Moment, moment.Moment] | null = null
+  if (tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq) {
+    initialRange = [moment(tableConfig.filters.created_at_gteq), moment(tableConfig.filters.created_at_lteq)]
+  }
+  const [range, setRange] = useState<[moment.Moment, moment.Moment] | null>(initialRange || null)
+
+  const filterProps = (type: string, value = '') => ({
+    filterDropdown: ({
+      selectedKeys, confirm, setSelectedKeys,
+    }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          placeholder={I18n.t(`administration.audit_log.search_${type}`)}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          value={selectedKeys[0] || value}
+          style={{ marginBottom: 8, display: 'block' }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+            onClick={() => {
+              confirm({ closeDropdown: false })
+              changeFilter(`${type}_search`, `${selectedKeys[0]}`)
+            }}
+          >
+            {I18n.t('administration.audit_log.search')}
+          </Button>
+          <Button
+            onClick={() => {
+              removeFilter(`${type}_search`)
+              setSelectedKeys([])
+            }}
+            size="small"
+            style={{ width: 90 }}
+          >
+            {I18n.t('administration.audit_log.reset')}
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
+  })
+
+  return (
+    <>
+      <Row justify="space-between" className="pm">
+        <Col span={4} className="pls">
+          <AppstoreOutlined style={{ fontSize: '16px' }} />
+          <span className="mlm">{`${total} Audit Logs`}</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+            <Column
+              title={I18n.t('administration.audit_log.type')}
+              key="recordType"
+              dataIndex="recordType"
+              filters={types.map((t: string) => ({ text: t, value: t }))}
+              filteredValue={getFilteredValue('recordType')}
+            />
+            <Column
+              title={I18n.t('administration.audit_log.action')}
+              key="action"
+              filters={actions && actions.map((t: string) => ({ text: t, value: t }))}
+              filteredValue={getFilteredValue('action')}
+              render={({ id, action }) => (
+                <Link to={`/administration/audit_logs/${id}`}>{action}</Link>
+              )}
+            />
+            <Column
+              title={I18n.t('administration.audit_log.log_date')}
+              dataIndex="createdAt"
+              key="createdAt"
+              render={createdAt => (
+                moment(createdAt).format('lll')
+              )}
+              filterDropdown={({
+                confirm,
+              }) => (
+                <div style={{ padding: 8 }}>
+                  <DatePicker.RangePicker
+                    value={range}
+                    onChange={(dates: [moment.Moment, moment.Moment]) => setRange(dates)}
+                  />
+                  <div className="mtm flex justify-content-space-between">
+                    <Button
+                      type="primary"
+                      icon={<SearchOutlined />}
+                      size="small"
+                      style={{ width: 90 }}
+                      onClick={() => {
+                        confirm({ closeDropdown: true })
+                        if (range) {
+                          changeFilter('created_at_gteq', range[0].startOf('day').toString())
+                          changeFilter('created_at_lteq', range[1].endOf('day').toString())
+                        }
+                      }}
+                    >
+                      {I18n.t('administration.audit_log.search')}
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setRange(null)
+                        removeFilter('created_at_gteq')
+                        removeFilter('created_at_lteq')
+                        confirm({ closeDropdown: true })
+                      }}
+                      size="small"
+                      style={{ width: 90 }}
+                    >
+                      {I18n.t('administration.audit_log.reset')}
+                    </Button>
+                  </div>
+                </div>
+              )}
+              filterIcon={() => <SearchOutlined style={{ color: range ? '#1BAF99' : undefined }} />}
+            />
+            <Column
+              title={I18n.t('administration.audit_log.client')}
+              key="client"
+              {...filterProps('client', tableConfig.filters.client)}
+              render={({ client, clientId }) => (
+                client
+                  ? <a href={`/administration/clients/${client.id}/projects`}>{client.name}</a>
+                  : clientId && `${clientId} - deleted`
+              )}
+            />
+            <Column
+              title={I18n.t('administration.audit_log.project')}
+              key="project"
+              {...filterProps('project', tableConfig.filters.project)}
+              render={({ project, projectId }) => (
+                project
+                  ? <a href={`/administration/projects/${project.id}/new_campaigns`}>{project.name}</a>
+                  : projectId && `${projectId} - deleted`
+              )}
+            />
+            <Column
+              title={I18n.t('administration.audit_log.campaign')}
+              key="campaign"
+              {...filterProps('campaign', tableConfig.filters.campaign)}
+              render={({ projectId, campaignId, campaign }) => (
+                campaign ? (
+                  <a href={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>
+                    {campaign.name}
+                  </a>
+                ) : campaignId && `${campaignId} - deleted`
+              )}
+            />
+          </Table>
+        </Col>
+      </Row>
+      <div className="pl">
+        <Pagination
+          current={page}
+          pageSize={pageSize || DEFAULT_PAGE_SIZE}
+          total={total}
+          onChange={changePage}
+          hideOnSinglePage
+        />
+      </div>
+    </>
+  )
+}
+
+export default withEnhancedTable(connecter(AuditLogList), 'auidtLogList', {
+  maintainHistory: true,
+  filterPredicates: FILTER_PREDICATES,
+})

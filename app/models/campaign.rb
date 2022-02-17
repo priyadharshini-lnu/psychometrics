@@ -121,6 +121,10 @@ class Campaign < ApplicationRecord
     fixed_time? && fixed_time_duration.present?
   end
 
+  def log_attribute_for_delete
+    slice(:name, :project_id)
+  end
+
   private
 
   def ensure_campaign_options

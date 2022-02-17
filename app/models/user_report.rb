@@ -50,6 +50,10 @@ class UserReport < ApplicationRecord
     all_assessments_are_completed? && (external_report? || !report_modules_empty?)
   end
 
+  def log_attribute_for_delete
+    slice(:campaign_id, :report_id, :user_id)
+  end
+
   def publish_to_webhook
     user_result = user_results.first
     return if user_result.nil?

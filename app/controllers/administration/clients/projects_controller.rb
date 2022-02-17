@@ -47,6 +47,7 @@ module Administration
 
       def export
         @_resources = policy_scope(resource_class).projects_of(client.id).includes(:project_admins)
+        audit! :export, resource, client: client
         respond_to do |format|
           format.csv do
             headers['Content-Disposition'] = "attachment; filename=\"projects-#{Date.today}.csv\""
@@ -61,6 +62,7 @@ module Administration
         resource.operator = current_user
         respond_to do |format|
           if resource.save
+            audit! :update, resource, payload: resource_params, project: resource
             WebhookSubscriptions::Save.call!(
               resource,
               resource_params[:webhook],
@@ -83,6 +85,7 @@ module Administration
         resource.operator = current_user
         respond_to do |format|
           if resource.save
+            audit! :create, resource, payload: resource_params, project: resource
             WebhookSubscriptions::Save.call!(
               resource,
               resource_params[:webhook],

@@ -12,6 +12,7 @@ module Administration
         if form.valid?
           ::Campaigns::UserReports::Add.call(form, campaign_user) do
             on(:ok) do
+              audit! :create, campaign_user, payload: params.permit!, campaign: campaign
               render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
                 campaign: campaign_user.campaign
             end
@@ -23,6 +24,7 @@ module Administration
       end
 
       def destroy
+        audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
         resource.destroy!
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
@@ -30,12 +32,15 @@ module Administration
 
       def regenerate
         AdminJob.call(:bulk_regenerate_user_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
+        audit! :regenerate_report, resource, payload: { ids: params[:ids], campaign_id: campaign.id },
+               campaign: campaign
 
         head :ok
       end
 
       def toggle_user_access
         resource.toggle!(:user_access)
+        audit! :toggle_user_access, resource, campaign: campaign
         head :ok
       end
 

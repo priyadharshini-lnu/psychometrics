@@ -26,6 +26,7 @@ module Administration
         @_resource = client.root.licenses.build(resource_params)
         if form.valid?
           resource.save
+          audit! :create, resource, payload: resource_params, client: client
         else
           resource.validate
           render :new
@@ -33,6 +34,7 @@ module Administration
       end
 
       def update
+        audit! :update, resource, payload: resource_params, client: client
         render :edit unless resource.update(resource_params)
       end
 
@@ -44,6 +46,7 @@ module Administration
 
       def toggle_status
         resource.toggle!(:disabled)
+        audit! :toggle_status, resource, client: client, payload: { disabled: resource.disabled }
         respond_to do |format|
           format.js
         end

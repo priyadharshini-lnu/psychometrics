@@ -17,6 +17,7 @@ module Administration
                                                          relationships: { name: Relationship::ASSESSOR }
                                                        ).
                                                        group_by { |ua| [ua.subject_id, ua.evaluator_id] }
+            audit! :export_asessors, campaign, campaign: campaign
             headers['Content-Disposition'] = 'attachment; filename="assessors.csv"'
             headers['Content-Type'] ||= 'text/csv'
             render :index, locals: {
@@ -57,6 +58,7 @@ module Administration
       def create_all
         form = ::Assessors::CreateAllForm.from_params(params).with_context(campaign: campaign)
         if form.valid?
+          audit! :create_campaign_assessor, campaign, payload: params.permit!, campaign: campaign
           ::Assessors::CreateAll.call!(form.assessors, campaign, current_user)
           render json: :ok
         else
@@ -73,6 +75,7 @@ module Administration
         assessors = ::Assessors::ParseImportData.call!(params[:import_data])
         form = ::Assessors::CreateAllForm.from_params(assessors: assessors).with_context(campaign: campaign)
         if form.valid?
+          audit! :import_asessors, campaign, campaign: campaign
           AdminJob.call(
             :import_assessors, { campaign_id: params[:new_campaign_id] }, current_user, params[:import_data]
           )
@@ -103,6 +106,8 @@ module Administration
       end
 
       def spoof
+        audit! :sign_in_as, current_user, payload: { id: resource.user.id, sign_in_as: resource.user.email },
+          campaign: campaign
         sign_in(resource.user)
         flash.now[:success] = t('.successfully', name: resource.user.decorate.display_name)
         redirect_to assessors_dashboard_path

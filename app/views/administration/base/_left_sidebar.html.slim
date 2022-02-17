@@ -67,5 +67,9 @@
       = active_link_to(administration_campaign_templates_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.campaign_templates'), placement: 'right' })
         i.fa.fa-gear
         span.xn-text = t('administration.navigation.campaign_templates')
+    - if policy(:audit_log).index?
+      = active_link_to(administration_audit_logs_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.audit_logs'), placement: 'right' })
+        i.fa.fa-clipboard
+        span.xn-text = t('administration.navigation.audit_logs')
   /! END X-NAVIGATION
 /! END PAGE SIDEBAR

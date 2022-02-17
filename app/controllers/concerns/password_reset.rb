@@ -16,6 +16,7 @@ module PasswordReset
     @form = Users::PasswordResetForm.from_params(params[:user]).with_context(subdomain: request.subdomain)
 
     if @form.valid? && successfully_sent?(@form.user)
+      audit! :request_change_password, @form.user
       resource_class.send_reset_password_instructions(@form.user)
       respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     else

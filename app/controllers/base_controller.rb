@@ -3,6 +3,7 @@
 class BaseController < ActionController::Base
   include Pundit
   include SetLocale
+  prepend AuditLogModule::ControllerHelper
 
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
