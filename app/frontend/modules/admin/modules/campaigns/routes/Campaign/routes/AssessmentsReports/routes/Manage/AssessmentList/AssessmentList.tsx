@@ -88,19 +88,24 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessor_form')}
             key="assessorFormName"
             render={({
-              assessorFormName, id,
-            }) => (
-              permissions.updateAssessorForm ? (
-                <a
-                  onClick={
-                      () => openModal('UpdateAssessorFormModal',
-                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                    }
-                >
-                  {assessorFormName || I18n.t('common.text.na')}
-                </a>
-              ) : assessorFormName || I18n.t('common.text.na')
-            )}
+              assessorFormName, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              return (
+                permissions.updateAssessorForm && assessorFormName ? (
+                  <a
+                    onClick={
+                        () => openModal('UpdateAssessorFormModal',
+                          { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                      }
+                  >
+                    {assessorFormName}
+                  </a>
+                ) : assessorFormName || I18n.t('common.text.na')
+              )
+            }}
           />
 
           <Column
@@ -159,7 +164,7 @@ const AssessmentList: React.FC<Props> = ({
                 )
               }
               return (
-                permissions.enableUniversalLink ? (
+                permissions.enableUniversalLink && !isExternal ? (
                   <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
                 ) : I18n.t('common.text.na')
               )
