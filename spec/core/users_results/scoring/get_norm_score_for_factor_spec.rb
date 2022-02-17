@@ -65,6 +65,6 @@ describe ::UsersResults::Scoring::GetNormScoreForFactor do
     }
     result = described_class.call!(factor1.id, factor_hash, percentile_norm, scoring, nil)
 
-    expect(result).to eq(Ztable.percentile((10.0 * 2) / 1))
+    expect(result).to eq(nil)
   end
 end

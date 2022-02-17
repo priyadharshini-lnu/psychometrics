@@ -47,7 +47,7 @@ module UsersResults
 
         score_data = sub_factor_hash.each_with_object(sum: 0, count: 0) do |(k, v), data|
           zs = get_factor_zscore(k)
-          next if !zs || !v.weight
+          break if !zs || !v.weight
 
           data[:sum] += zs * v.weight
           data[:count] += v.weight
