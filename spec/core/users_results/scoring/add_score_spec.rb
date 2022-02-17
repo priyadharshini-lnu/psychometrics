@@ -309,12 +309,12 @@ describe UsersResults::Scoring::AddScore do
 
     sub_factor_hash = [
       create(:factors_sub_factor, factor: factor1, sub_factor: factor2, weight: 1),
-      create(:factors_sub_factor, factor: factor1, sub_factor: factor3, weight: 3),
+      create(:factors_sub_factor, factor: factor1, sub_factor: factor3, weight: 3)
     ].index_by(&:sub_factor_id)
     factor_hash = {
       factor1.id => { factor: factor1, sub_factor_hash: sub_factor_hash },
       factor2.id => { factor: factor2, sub_factor_hash: {} },
-      factor3.id => { factor: factor3, sub_factor_hash: {} },
+      factor3.id => { factor: factor3, sub_factor_hash: {} }
     }
     factor_ids = factor_hash.keys
 
@@ -352,7 +352,7 @@ describe UsersResults::Scoring::AddScore do
       factor3.id.to_s => {
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }], 'score' => 3.0, # (1 + 5) / 2.0 = 3.0
         'norm_score' => 2
-      },
+      }
     )
   end
 
