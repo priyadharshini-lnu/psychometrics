@@ -19,25 +19,24 @@ module UsersResults
       def call
         extended_scoring = factor_hash.fetch_values(*factor_ids).reduce(scoring) do |extending_scoring, factor_data|
           factor = factor_data[:factor]
-
           factor_scoring = extending_scoring[factor.id.to_s]
+          factor_norm = factor_norm_hash[factor.id]
+
           next extending_scoring if factor_scoring&.key?('score')
 
           module_name = "::UsersResults::Scoring::AddScoreByStrategy::#{factor.scoring_strategy.camelize}".constantize
           extending_scoring = module_name.call!(
             factor_data, extending_scoring, factor_hash, norm, factor_norm_hash, factors_question_count
           )
-          next extending_scoring unless norm
+          next extending_scoring if norm.nil?
 
           score = extending_scoring.dig(factor.id.to_s, 'score')
           if norm.percentile?
-            zscore = UsersResults::Scoring::GetZscoreForFactor.call!(
-              factor, score, norm, factor_norm_hash
-            )
+            zscore = UsersResults::Scoring::GetZscoreForFactor.call!(factor, score, factor_norm)
             extending_scoring = extending_scoring.deep_merge(factor.id.to_s => { 'zscore' => zscore })
           end
           norm_score = UsersResults::Scoring::GetNormScoreForFactor.call!(
-            factor.id, factor_hash, norm, extending_scoring, factor_norm_hash
+            factor.id, factor_hash, norm, extending_scoring, factor_norm
           )
           extending_scoring.deep_merge(factor.id.to_s => { 'norm_score' => norm_score })
         end

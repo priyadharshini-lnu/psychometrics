@@ -3,17 +3,15 @@
 module UsersResults
   module Scoring
     class GetZscoreForFactor < BaseCommand
-      attr_reader :factor, :score, :norm, :factor_norm_hash
+      attr_reader :factor, :score, :factor_norm
 
-      def initialize(factor, score, norm, factor_norm_hash)
+      def initialize(factor, score, factor_norm)
         @factor = factor
         @score = score
-        @norm = norm
-        @factor_norm_hash = factor_norm_hash
+        @factor_norm = factor_norm
       end
 
       def call
-        factor_norm = factor_norm_hash[factor.id]
         props = factor_norm&.props&.first || {}
         mean = props['mean']
         standard_deviation = props['standard_deviation']

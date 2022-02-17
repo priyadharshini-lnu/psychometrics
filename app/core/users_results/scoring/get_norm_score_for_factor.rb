@@ -3,14 +3,14 @@
 module UsersResults
   module Scoring
     class GetNormScoreForFactor < BaseCommand
-      attr_reader :factor, :sub_factor_hash, :factor_hash, :norm, :scoring, :factor_norm_hash
+      attr_reader :factor, :sub_factor_hash, :factor_hash, :norm, :scoring, :factor_norm
 
-      def initialize(factor_id, factor_hash, norm, scoring, factor_norm_hash)
+      def initialize(factor_id, factor_hash, norm, scoring, factor_norm)
         @factor = factor_hash.dig(factor_id, :factor)
         @sub_factor_hash = factor_hash.dig(factor_id, :sub_factor_hash)
         @factor_hash = factor_hash
         @scoring = scoring
-        @factor_norm_hash = factor_norm_hash
+        @factor_norm = factor_norm
         @norm = norm
       end
 
@@ -31,7 +31,6 @@ module UsersResults
       private
 
       def calc_standard_norm_score(score)
-        factor_norm = factor_norm_hash[factor.id]
         factor_norm&.calc_norm_level(score['score'])
       end
 
@@ -48,7 +47,7 @@ module UsersResults
 
         score_data = sub_factor_hash.each_with_object(sum: 0, count: 0) do |(k, v), data|
           zs = get_factor_zscore(k)
-          break if !zs || !v.weight
+          next if !zs || !v.weight
 
           data[:sum] += zs * v.weight
           data[:count] += v.weight
