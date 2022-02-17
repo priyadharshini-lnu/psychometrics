@@ -52,7 +52,7 @@ module UsersResults
           data[:sum] += zs * v.weight
           data[:count] += v.weight
         end
-        score_data ? score_data[:sum] / score_data[:count].to_f : nil
+        score_data && score_data[:count].positive? ? score_data[:sum] / score_data[:count].to_f : nil
       end
     end
   end
