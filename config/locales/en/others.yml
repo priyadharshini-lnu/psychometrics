@@ -1450,6 +1450,8 @@ en:
     change_password: Change password
     delete: Delete
     edit: Edit
+    hogan:
+      cannot_start: You can't start the hogan assessment right now. Please try after few minutes.
     login: Login
     maintenance:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds

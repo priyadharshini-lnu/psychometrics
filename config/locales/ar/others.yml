@@ -53,6 +53,11 @@ ar:
       managers_assessments_button: تخطيط العمل
       managers_dashboard_button: لوحة معلومات المدراء
       user_dashboard_button: لوحة معلومات المستخدم
+    instructions:
+      begin_assessment: ابدأ التقييم
+      cancel: إلغاء
+      default: هذا نشاط محدد بوقت ، بمجرد النقر فوق بدء التقييم ، سيكون لديك %{time} دقيقة لإكماله
+      title: تعليمات
     messages:
       finish: شكراً على وقتك الثمين. لقد تم تسجيل أجوبتك.
     page:
@@ -318,6 +323,10 @@ ar:
       cpi_occupations:
         occupations: المهن
         your_potential_suitability: الملائمة المحتملة الخاصة بك
+      factors_table:
+        description: الوصف
+        rank: المرتبة
+        score: الدرجة
       gap_assessment:
         gap: فجوة
         item: مؤشر

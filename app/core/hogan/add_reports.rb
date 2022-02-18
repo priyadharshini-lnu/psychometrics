@@ -33,16 +33,19 @@ module Hogan
     def add_participant_to_group
       return if credentials.present?
 
-      password = Devise.friendly_token.first(10)
-      participant_id = Services::Hogan::API::JSON::AddParticipantToGroup.call!(
-        group: group, password: password, provider: credentials&.provider
-      )
-      @credentials = HoganCredential.create!(
-        password: password,
-        participant_id: participant_id,
-        user_id: user_id,
-        provider: Rails.application.secrets.hogan[:default_provider]
-      )
+      lock_key = "locks/hogan_credential/#{user_id}"
+      lock_manager.lock!(lock_key, 2.minutes.in_milliseconds) do
+        password = Devise.friendly_token.first(10)
+        participant_id = Services::Hogan::API::JSON::AddParticipantToGroup.call!(
+          group: group, password: password, provider: credentials&.provider
+        )
+        @credentials = HoganCredential.create!(
+          password: password,
+          participant_id: participant_id,
+          user_id: user_id,
+          provider: Rails.application.secrets.hogan[:default_provider]
+        )
+      end
     end
 
     def add_participant_assessment
@@ -70,6 +73,10 @@ module Hogan
           provider: credentials&.provider
         )
       end
+    end
+
+    def lock_manager
+      @lock_manager ||= Redlock::Client.new([Redis.current])
     end
   end
 end

@@ -68,6 +68,7 @@ class Client < ApplicationRecord
   has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
   has_many :memberships # on delete cascade
   has_many :users, through: :memberships
+  has_many :end_users, class_name: 'User', foreign_key: :project_id
   has_many :assigns, through: :memberships, source: :assigns
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
            source: :membership,

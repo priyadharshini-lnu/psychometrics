@@ -10,15 +10,17 @@ module UsersResults
 
           sub_extended_scoring =
             ::UsersResults::Scoring::AddScore.call!(
-              factor_hash, sub_factor_ids, extended_scoring, factors_question_count
+              factor_hash, sub_factor_ids, extended_scoring, norm, factor_norm_hash, factors_question_count
             )
 
           score =
             if sub_factor_ids.blank?
               nil
             else
-              filtered_scoring = sub_extended_scoring.slice(*sub_factor_ids.map(&:to_s)).select { |_k, v| v['score'] }
-              calc_score(filtered_scoring).round(2)
+              filtered_scoring = sub_extended_scoring.slice(*sub_factor_ids.map(&:to_s)).select do |_k, v|
+                get_sub_factor_score(v)
+              end
+              calc_score(filtered_scoring)&.round(2)
             end
 
           broadcast :ok, sub_extended_scoring.deep_merge(factor.id.to_s => { 'score' => score })
@@ -27,12 +29,16 @@ module UsersResults
         def calc_score(scoring)
           score_data = scoring.each_with_object(sum: 0, count: 0) do |(k, v), data|
             weight = factor_data[:sub_factor_hash].try(:[], k.to_i).try(:[], :weight) || 1
-
-            data[:sum] += v['score'] * weight
+            data[:sum] += get_sub_factor_score(v) * weight
             data[:count] += weight
           end
+          return nil if score_data[:count].zero?
 
           score_data[:sum] / score_data[:count].to_f
+        end
+
+        def get_sub_factor_score(value)
+          factor_data[:factor].use_sub_factor_norm_score ? value['norm_score'] : value['score']
         end
       end
     end

@@ -11,6 +11,7 @@ module Factors
     attribute :icon, Object
     attribute :remove_icon, Boolean
     attribute :use_percentage, Boolean
+    attribute :use_sub_factor_norm_score, Boolean
 
     validates :name, presence: true
     validates :name, length: { maximum: 100 }, allow_blank: true
