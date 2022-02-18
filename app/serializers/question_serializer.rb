@@ -34,6 +34,7 @@ class QuestionSerializer < ActiveModel::Serializer
   end
 
   def props
+    return {} unless object.props
     return object.props unless object.props['questionText']
 
     object.props.merge(
