@@ -167,6 +167,32 @@ module Administration
       )
     end
 
+    def assign_user?
+      can_manage_campaign_users?
+    end
+
+    def assessments_reports?
+      can_manage_campaign?
+    end
+
+    def duplicate?
+      can_manage_campaign?
+    end
+
+    private
+
+    def can_manage_campaign?
+      @user.has_permission?(
+        :campaigns, :manage, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def can_manage_campaign_users?
+      @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)

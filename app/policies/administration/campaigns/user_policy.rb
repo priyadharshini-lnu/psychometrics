@@ -16,51 +16,35 @@ module Administration
       end
 
       def create?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        can_mange_campaign_users?
       end
 
       def add_report?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        can_mange_campaign_users?
       end
 
       def regenerate_report?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        can_mange_campaign_users?
       end
 
       def toggle_status?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        can_mange_campaign_users?
       end
 
       def edit?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        can_mange_campaign_users?
       end
 
       def destroy?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        can_mange_campaign_users?
       end
 
       def update?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        can_mange_campaign_users?
       end
 
       def reset_password?
-        (@user.is?(:superadmin) || @user.has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )) && !@record.is_anonym?
+        can_mange_campaign_users? && !@record.is_anonym?
       end
 
       def spoof?
@@ -86,7 +70,21 @@ module Administration
       end
 
       def import?
-        @user.is?(:superadmin) || @user.has_permission?(
+        can_mange_campaign_users?
+      end
+
+      def sso?
+        can_mange_campaign_users?
+      end
+
+      def assessments_reports?
+        can_mange_campaign_users?
+      end
+
+      private
+
+      def can_mange_campaign_users?
+        @user.has_permission?(
           :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
         )
       end

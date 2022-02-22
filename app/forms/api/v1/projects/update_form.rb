@@ -24,7 +24,7 @@ module Api
         validates :partner_logo, base64: { presence: false }
         validates :background_image, base64: { presence: false }
         validates :webhook, http_url: { presence: false }
-        validates :subdomain, length: { minimum: 3, maximum: 32 }
+        validates :subdomain, length: { minimum: 3, maximum: 32 }, allow_nil: true
 
         validate :validate_locales
         validate :validate_subdomain

@@ -4,6 +4,18 @@ module Administration
   class UserAssessmentPolicy < Administration::BasePolicy
     include ::Administration::Common::AssessmentExportPolicy
 
+    def index?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def update?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     def destroy?
       @user.is?(:superadmin) || !record.completed? && @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
@@ -44,7 +56,7 @@ module Administration
     private
 
     def has_permission_to_reset_assessment?
-      @user.is?(:superadmin) || @user.has_permission?(
+      @user.has_permission?(
         :results, :reset_responses, project_id: project_id, campaign_id: campaign_id
       )
     end

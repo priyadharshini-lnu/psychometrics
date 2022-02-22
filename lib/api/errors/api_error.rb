@@ -74,5 +74,14 @@ module Api
         @status = :precondition_failed
       end
     end
+
+    class Unauthorized < ApiError
+      def initialize(more_info = nil)
+        super(more_info)
+        @message = 'User not authorized to perform this action'
+        @code = 1008
+        @status = :unauthorized
+      end
+    end
   end
 end

@@ -69,6 +69,8 @@ module UserRoles
   end
 
   def has_permission?(scope, grant, project_id: nil, campaign_id: nil)
+    return true if is?(:superadmin)
+
     project = Client.find(project_id)
 
     project_based_client_ids = [].tap do |arr|

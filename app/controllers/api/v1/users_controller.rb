@@ -70,6 +70,17 @@ module Api
         end
       end
 
+      private
+
+      def pundit_authorize
+        authorize(
+          User,
+          nil,
+          policy_class: Administration::Campaigns::UserPolicy,
+          project_id: project.id
+        )
+      end
+
       def user_params
         params.require(:user).permit(:email, :first_name, :last_name, :password)
       end
