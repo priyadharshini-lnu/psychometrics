@@ -21,6 +21,8 @@ module UsersResults
           if norm.percentile?
             calc_percentile_norm_score
           else
+            return broadcast :ok, nil if score.nil?
+
             calc_standard_norm_score(score)
           end
         norm_score ||= score['percentage'] if factor&.use_percentage?

@@ -33,7 +33,7 @@ module UsersResults
 
     def score_equal?(score, other_score)
       score_type = %w[score percentage zscore norm_score]
-      score.slice(*score_type) == other_score.slice(*score_type)
+      score.slice(*score_type).compact == other_score.slice(*score_type).compact
     end
   end
 end
