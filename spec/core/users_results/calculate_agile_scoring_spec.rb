@@ -6,7 +6,7 @@ describe UsersResults::CalculateAgileScoring do
   describe "it broadcasts :invalid when users_result doesn't have answers" do
     let(:users_result) { create(:users_result, answers: nil) }
 
-    subject { described_class.call(users_result, users_result.subject) }
+    subject { described_class.call(users_result) }
 
     it 'broadcasts :invalid' do
       expect { subject }.to broadcast(:invalid)
@@ -18,7 +18,7 @@ describe UsersResults::CalculateAgileScoring do
       setup_data
     end
 
-    subject { described_class.call!(@users_result, @users_result.subject) }
+    subject { described_class.call!(@users_result) }
 
     it 'calculates and saves agile score' do
       expect(subject).to be
@@ -59,7 +59,7 @@ describe UsersResults::CalculateAgileScoring do
       setup_data_for_average_strategy
     end
 
-    subject { described_class.call!(@users_result, @users_result.subject) }
+    subject { described_class.call!(@users_result) }
 
     it 'calculates and saves agile score' do
       expect(subject).to be
