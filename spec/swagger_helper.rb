@@ -27,8 +27,8 @@ RSpec.configure do |config|
         },
         contact: {
           name: 'TTE Support',
-          email: 'info@thetalententerprise.com',
-          url: 'https://www.thetalententerprise.com'
+          email: 'support@thetalententerprise.com',
+          url: 'https://thetalententerprise.com'
         },
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',
         description:
@@ -63,6 +63,11 @@ RSpec.configure do |config|
 
           ### Results
           After the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.
+
+          ### Data Schema
+          While designing the parsers for the API responses and webhook results, the possibility of new properties being introduced to objects at any level should be considered with the ongoing updates of the Lighthouse APIs.
+
+          New attributes could also be added to the request schema but would be optional.
         DESCRIPTION
       },
       securityDefinitions: { basic: { type: :basic } },
@@ -196,11 +201,20 @@ RSpec.configure do |config|
           type: 'object',
           properties: {
             normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true },
+            raw_factors: { type: 'array', items: { '$ref' => '#/definitions/RawFactor' }, 'x-nullable': true },
             ranked_occupations: { type: 'array', items: { '$ref' => '#/definitions/RankedOccupation' },
                                   'x-nullable': true }
           }
         },
         NormedFactor: {
+          type: 'object',
+          properties: {
+            key: { type: 'string', 'x-nullable': true },
+            name: { type: 'string', 'x-nullable': true },
+            value: { type: 'string', 'x-nullable': true }
+          }
+        },
+        RawFactor: {
           type: 'object',
           properties: {
             key: { type: 'string', 'x-nullable': true },
