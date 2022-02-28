@@ -42,7 +42,6 @@ module Features
           fill_in 'resource_name', with: opts[:name]
           fill_in 'resource_subdomain', with: opts[:subdomain]
           fill_in 'resource_number', with: opts[:number]
-          select opts[:applicable_level], from: 'resource_applicable_level', visible: false
           click_on t('administration.create')
         end
         wait_for_ajax(no_of_ajax_request: 2)

@@ -9,6 +9,7 @@ module Reports
       external_result: 'Reports::ResultTypes::ExternalResults',
       saville_result: 'Reports::ResultTypes::SavilleResults',
       normed_factor: 'Reports::ResultTypes::NormedFactor',
+      raw_factor: 'Reports::ResultTypes::RawFactor',
       formula: 'Reports::ResultTypes::Formula',
       ranked_occupations: 'Reports::ResultTypes::RankedOccupations',
       survey_response: 'Reports::ResultTypes::Survey',

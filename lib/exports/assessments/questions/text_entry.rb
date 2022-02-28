@@ -44,7 +44,7 @@ module Exports
         end
 
         def self.formatted_answers(user_result, question, answers)
-          answers = question.of_sub_type?('Chat') ? [answers.join("\r\n")] : answers
+          answers = question.of_sub_type?('Chat') ? [answers.join("\r\n")] : answers.flatten
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end

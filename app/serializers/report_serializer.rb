@@ -156,6 +156,7 @@ class ReportSerializer < ActiveModel::Serializer
 
   def data_sheet_columns
     return object.data_sheet_columns unless object.category_threesixty?
+    return {} unless connected_campaign
 
     connected_campaign.nomalized_datasheet_columns
   end
@@ -167,7 +168,7 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def relationships
-    if object.category_threesixty?
+    if connected_campaign && object.category_threesixty?
       Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
     else
       non_threesixty_relationships
