@@ -7,7 +7,7 @@ module Libraries
         controller  = name.downcase.split('::').last
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
-          if policy(:library).open_channel?
+          if policy(:library).index?
             begin
               data            = yield(request['data'], current_user)
               response        = {

@@ -19,11 +19,15 @@ module Reports
     include Administration::Policies
 
     def subscribed
-      report = ::Report.includes(pages: [:modules]).find(params['report_id'])
-      transmit(
-        action: 'report_data',
-        data: ReportSerializer.new(report).to_hash(include: '**')
-      )
+      report = Report.includes(pages: [:modules]).find(params['report_id'])
+      if Administration::ReportPolicy.new(current_user, report).edit?
+        transmit(
+          action: 'report_data',
+          data: ReportSerializer.new(report).to_hash(include: '**')
+        )
+      else
+        reject
+      end
     end
 
     def pundit_user

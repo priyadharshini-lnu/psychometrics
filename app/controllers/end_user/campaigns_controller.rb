@@ -22,7 +22,8 @@ module EndUser
     private
 
     def set_campaign
-      @campaign = ::Campaign.visible_to_end_user.find_by!(id: params[:campaign_id] || params[:id])
+      campaign_ids = current_user.campaign_users.pluck(:campaign_id)
+      @campaign = ::Campaign.visible_to_end_user.where(id: campaign_ids).find(params[:campaign_id] || params[:id])
     end
   end
 end

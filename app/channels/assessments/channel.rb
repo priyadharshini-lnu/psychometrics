@@ -24,10 +24,14 @@ module Assessments
 
     def subscribed
       assessment = Assessment.find(params['assessment_id'])
-      transmit(
-        action: 'assessment_data',
-        data: Assessments::AssessmentSerializer.new(assessment).to_hash(include: '**')
-      )
+      if Administration::AssessmentPolicy.new(current_user, assessment).edit?
+        transmit(
+          action: 'assessment_data',
+          data: Assessments::AssessmentSerializer.new(assessment).to_hash(include: '**')
+        )
+      else
+        reject
+      end
     end
 
     def pundit_user

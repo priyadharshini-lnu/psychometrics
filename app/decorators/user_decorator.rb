@@ -31,7 +31,10 @@ class UserDecorator < BaseDecorator
 
   def change_password_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
+      title: I18n.t(
+        'administration.users.resource.confirmations.change_password.title',
+        name: html_escaped_display_name
+      ),
       body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
@@ -39,12 +42,12 @@ class UserDecorator < BaseDecorator
   def clients_name
     if h.current_user.is?(:superadmin)
       object.clients.
-        map { |client| client.decorate.display_name }.
+        map { |client| client.decorate.html_escaped_display_name }.
         join(', ')
     else
       object.clients.
         select { |client| h.current_user.client_ids.include?(client.id) }.
-        map { |client| client.decorate.display_name }.
+        map { |client| client.decorate.html_escaped_display_name }.
         join(', ')
     end
   end
@@ -67,14 +70,14 @@ class UserDecorator < BaseDecorator
     object.project_admin_clients.map do |client|
       path = h.administration_client_project_admins_path(client)
       path ||= h.administration_client_users_path(client)
-      h.link_to client.decorate.display_name, path
+      h.link_to client.decorate.html_escaped_display_name, path
     end
   end
 
   def campaign_admin_hierarchy_for_user
     object.campaign_admin_campaigns.map do |campaign|
       path = h.administration_project_new_campaign_path(campaign.project, campaign)
-      h.link_to campaign.decorate.display_name, path
+      h.link_to campaign.decorate.html_escaped_display_name, path
     end
   end
 
@@ -90,7 +93,7 @@ class UserDecorator < BaseDecorator
                  h.administration_client_project_campaign_sub_campaigns_path(clients_array[0], clients_array[1], c)
                end
         path ||= h.administration_client_users_path(c)
-        h.link_to c.decorate.display_name, path
+        h.link_to c.decorate.html_escaped_display_name, path
       end.compact.join(' > ')
       "&#187; #{whole_path}"
     end
@@ -99,16 +102,17 @@ class UserDecorator < BaseDecorator
   def assessor_hierarchy_for_user
     object.assessors.map do |assessor|
       "&#187; #{h.link_to(
-        assessor.campaign.name, h.administration_project_new_campaign_path(
-                                  assessor.campaign.project, assessor.campaign.project
-                                )
+        assessor.campaign.html_escaped_display_name, h.administration_project_new_campaign_path(
+                                                       assessor.campaign.project, assessor.campaign.project
+                                                     )
       )}"
     end
   end
 
   def client_admin_hierarchy_for_user
     object.client_admin_clients.map do |client|
-      "&#187; #{h.link_to(client.decorate.display_name, h.administration_client_client_admins_path(client))}"
+      link = h.link_to(client.decorate.html_escaped_display_name, h.administration_client_client_admins_path(client))
+      "&#187; #{link}"
     end
   end
 
@@ -117,9 +121,12 @@ class UserDecorator < BaseDecorator
       project = campaign.project
       client = campaign.client
       whole_path = [
-        h.link_to(client.decorate.display_name, h.administration_client_client_admins_path(client)),
-        h.link_to(project.decorate.display_name, h.administration_client_project_campaigns_path(client, project)),
-        h.link_to(campaign.decorate.display_name, campaign_path(campaign, project, client))
+        h.link_to(client.decorate.html_escaped_display_name, h.administration_client_client_admins_path(client)),
+        h.link_to(
+          project.decorate.html_escaped_display_name,
+          h.administration_client_project_campaigns_path(client, project)
+        ),
+        h.link_to(campaign.decorate.html_escaped_display_name, campaign_path(campaign, project, client))
       ].join(' > ')
       "&#187; #{whole_path}"
     end
@@ -138,7 +145,7 @@ class UserDecorator < BaseDecorator
 
   def delete_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
+      title: I18n.t('administration.users.resource.confirmations.delete.title', name: html_escaped_display_name),
       body: I18n.t('administration.users.resource.confirmations.delete.body')
     }.to_json
   end
@@ -147,7 +154,7 @@ class UserDecorator < BaseDecorator
     {
       title: I18n.t(
         'administration.users.resource.confirmations.membership.delete.title',
-        name: display_name, client_name: context[:client_name]
+        name: html_escaped_display_name, client_name: h.html_escape(context[:client_name])
       ),
       body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
     }.to_json
@@ -159,7 +166,7 @@ class UserDecorator < BaseDecorator
       title: I18n.t(
         'administration.users.resource.confirmations.toggle_status.title',
         status: status,
-        name: display_name
+        name: html_escaped_display_name
       ),
       body: I18n.t(
         'administration.users.resource.confirmations.toggle_status.body',
