@@ -43,7 +43,7 @@
         = f.input :webhook_auth_enabled, label: t('.webhook_auth_enabled')
         #webhook_credentials.mbm.pl class="#{resource.webhook_auth_enabled ? '' : 'hidden'}"
           = f.input :webhook_username, label: t('.webhook_username'), input_html: { autocomplete: 'off' }
-          = f.input :webhook_password, label: t('.webhook_password'), placeholder: (resource.webhook_subscription&.password.blank? ? '' : '*****'), input_html: { autocomplete: 'off' }
+          = f.input :webhook_password, label: t('.webhook_password'), placeholder: (resource.webhook_subscription&.password.blank? ? '' : '*****'), input_html: { autocomplete: 'new-password' }
       .clearfix
       -if policy(:client, { project_id: client.id}).design?
         .well
