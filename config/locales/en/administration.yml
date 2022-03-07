@@ -3079,6 +3079,40 @@ en:
       send_email: Send email
     projects:
       addProject: Add Project
+      design_settings:
+        background_label: Background
+        bg_upload: Upload
+        client_logo_label: Client Logo
+        color_label: Color
+        image_label: Image
+        logo_upload: Upload
+        position_center: Center
+        position_label: Login Box Position
+        position_left: Left
+        position_right: Right
+        sec_logo_label: Secondary Logo
+        sec_logo_upload: Upload
+      general_settings:
+        2fa: Enable Two factor authentication
+        dp_consent: Enable Data Processing consent
+        live_chat: Enable Live Chat
+        locales_label: Locales
+        name_label: Name
+        password: Enable Strong password
+        privacy_link: Enable Privacy Link
+        project_number_label: Project Number
+        save_changes: Save Changes
+        sub_domain_label: Sub Domain
+      webhook_settings:
+        add: Add Webhook
+        column_active: Active
+        column_description: Description
+        column_manage: Manage
+        column_status: Status
+        column_url: URL
+        delete: Delete
+        edit: Edit
+        search: Search Webhoook
     psychometrics: Psychometrics
     questions:
       copy:
