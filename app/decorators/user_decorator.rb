@@ -102,9 +102,9 @@ class UserDecorator < BaseDecorator
   def assessor_hierarchy_for_user
     object.assessors.map do |assessor|
       "&#187; #{h.link_to(
-        assessor.campaign.html_escaped_display_name, h.administration_project_new_campaign_path(
-                                                       assessor.campaign.project, assessor.campaign.project
-                                                     )
+        assessor.campaign.decorate.html_escaped_display_name, h.administration_project_new_campaign_path(
+                                                                assessor.campaign.project, assessor.campaign.project
+                                                              )
       )}"
     end
   end
