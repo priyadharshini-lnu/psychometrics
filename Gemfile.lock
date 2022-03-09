@@ -836,7 +836,7 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    timecop (0.9.4)
+    timecop (0.9.5)
     timeliness (0.4.4)
     tins (1.29.0)
       sync
