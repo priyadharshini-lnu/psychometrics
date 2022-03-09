@@ -152,7 +152,7 @@ gem 'validates_timeliness', '~> 5.0.0'
 gem 'virtus', '~> 1.0.5'
 
 # SOAP client
-gem 'savon', '~> 2.11.0'
+gem 'savon', '~> 2.12.1'
 # Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
