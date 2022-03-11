@@ -29,7 +29,7 @@ module UsersResults
           })
         end
 
-        norm = Norm.find_by(id: norm_data['id']) if norm_data['id']
+        norm = Norm.find_by(id: norm_data['id']) if norm_data.present? && norm_data['id']
         extended_scoring = ::UsersResults::Scoring::AddScore.call!(
           factor_hash, factor_hash.keys, scoring, norm, factor_norm_hash, factors_question_count
         )
