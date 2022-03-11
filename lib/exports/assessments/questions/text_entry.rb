@@ -21,7 +21,7 @@ module Exports
           all_answers << if answers.present?
                            retrieve_answers(answers, question, scoring)
                          else
-                           ''
+                           Array.new(question_headers_except_duration_size(question)) { '' }
                          end
           formatted_answers(user_result, question, all_answers)
         end

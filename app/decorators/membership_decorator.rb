@@ -25,7 +25,10 @@ class MembershipDecorator < BaseDecorator
 
   def change_password_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
+      title: I18n.t(
+        'administration.users.resource.confirmations.change_password.title',
+        name: html_escaped_display_name
+      ),
       body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
@@ -33,8 +36,8 @@ class MembershipDecorator < BaseDecorator
   def delete_confirmation
     {
       title: I18n.t('administration.users.resource.confirmations.membership.delete.title',
-                    name: display_name,
-                    client_name: context[:client_name]),
+                    name: html_escaped_display_name,
+                    client_name: h.html_escape(context[:client_name])),
       body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
     }.to_json
   end
@@ -42,7 +45,7 @@ class MembershipDecorator < BaseDecorator
   def detach_from_project_confirmation
     {
       title: I18n.t('administration.projects.users.confirmations.detach_from_project.title',
-                    name: display_name,
+                    name: html_escaped_display_name,
                     project_name: context[:project_name]),
       body: I18n.t('administration.projects.users.confirmations.detach_from_project.body')
     }.to_json
@@ -54,7 +57,7 @@ class MembershipDecorator < BaseDecorator
       title: I18n.t(
         'administration.users.resource.confirmations.toggle_status.title',
         status: status,
-        name: display_name
+        name: html_escaped_display_name
       ),
       body: I18n.t(
         'administration.users.resource.confirmations.toggle_status.body',
@@ -69,7 +72,7 @@ class MembershipDecorator < BaseDecorator
       title: I18n.t(
         'administration.users.resource.confirmations.membership.toggle_status.title',
         status: status,
-        name: display_name
+        name: html_escaped_display_name
       ),
       body: I18n.t(
         'administration.users.resource.confirmations.membership.toggle_status.body',
@@ -84,7 +87,7 @@ class MembershipDecorator < BaseDecorator
   end
 
   def clients_names
-    object.user.clients.map { |c| c.decorate.display_name }.join('<br>').html_safe
+    object.user.clients.map { |c| c.decorate.html_escaped_display_name }.join('<br>').html_safe
   end
 
   def created_at

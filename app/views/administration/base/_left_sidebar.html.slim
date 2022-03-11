@@ -59,10 +59,6 @@
       = active_link_to(administration_reports_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.reports'), placement: 'right' })
         i.fa.fa-pie-chart
         span.xn-text = t('administration.navigation.reports')
-    - if policy(:product).index?
-      = active_link_to(administration_products_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.products'), placement: 'right' })
-        i.fa.fa-shopping-basket
-        span.xn-text = t('administration.navigation.products')
     - if policy(:campaign_template).index?
       = active_link_to(administration_campaign_templates_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.campaign_templates'), placement: 'right' })
         i.fa.fa-gear

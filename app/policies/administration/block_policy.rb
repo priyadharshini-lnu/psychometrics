@@ -6,6 +6,10 @@ module Administration
       super || @user.has_grant?(:questions, :view)
     end
 
+    def edit?
+      @user.is?(:superadmin)
+    end
+
     def create?
       super || @user.has_grant?(:questions, :manage)
     end

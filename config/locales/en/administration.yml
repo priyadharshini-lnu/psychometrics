@@ -2419,6 +2419,8 @@ en:
         view: View Dimension
       toggle_status:
         successfully: Dimension was successfully updated.
+      update:
+        successfully: "%{name} dimension was updated successfully"
     disable: Disable
     document_titles:
       project_assessors: Assessors | %{project}

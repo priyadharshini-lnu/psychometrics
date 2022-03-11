@@ -687,7 +687,6 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :preview
-        put :regenerate
         post :upload_data_sheet
         patch :toggle_archive
         delete :soft_delete

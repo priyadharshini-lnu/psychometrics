@@ -16,7 +16,7 @@ class ClientDecorator < BaseDecorator
   def status_confirmation
     status = object.disabled? ? 'enable' : 'disable'
     {
-      title: I18n.t("administration.clients.resource.confirmations.#{status}.title", name: display_name),
+      title: I18n.t("administration.clients.resource.confirmations.#{status}.title", name: html_escaped_display_name),
       body: I18n.t("administration.clients.resource.confirmations.#{status}.body")[object.depth]
     }.to_json
   end
@@ -24,7 +24,7 @@ class ClientDecorator < BaseDecorator
   def delete_confirmation
     {
       title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title",
-                    name: display_name),
+                    name: html_escaped_display_name),
       body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")[object.depth]
     }.to_json
   end
@@ -32,7 +32,7 @@ class ClientDecorator < BaseDecorator
   def archive_confirmation
     {
       title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.title",
-                    name: display_name),
+                    name: html_escaped_display_name),
       body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.body")[object.depth]
     }.to_json
   end
@@ -56,7 +56,7 @@ class ClientDecorator < BaseDecorator
   def detach_from_project_confirmation
     {
       title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title',
-                    name: display_name, project_name: context[:project_name]),
+                    name: html_escaped_display_name, project_name: context[:project_name]),
       body: I18n.t('administration.projects.clients.confirmations.detach_from_project.body')
     }.to_json
   end
@@ -73,19 +73,20 @@ class ClientDecorator < BaseDecorator
     client_project_admins_memberships.map do |membership|
       if h.policy(membership, { project_id: resource.id }).can_manage_project_admins?
         h.link_to(
-          membership.user.decorate.display_name,
+          membership.user.decorate.html_escaped_display_name,
           h.edit_administration_client_project_admin_path(membership.client_id, membership),
           class: 'text-nowrap'
         )
       else
-        membership.user.decorate.display_name
+        membership.user.decorate.html_escaped_display_name
       end
     end.join('<br>').html_safe
   end
 
   def project_admins
     object.projects_admins.distinct.
-      map { |user| h.content_tag(:span, user.decorate.display_name, class: 'text-nowrap') }.join('<br>').html_safe
+      map { |user| h.content_tag(:span, user.decorate.html_escaped_display_name, class: 'text-nowrap') }.
+      join('<br>').html_safe
   end
 
   def client_project_admins_memberships
@@ -103,11 +104,11 @@ class ClientDecorator < BaseDecorator
   def client_admins(user)
     object.client_admin_memberships.map do |membership|
       if user.superadmin?
-        h.link_to(membership.user.decorate.display_name,
+        h.link_to(membership.user.decorate.html_escaped_display_name,
                   h.edit_administration_client_client_admin_path(membership.client_id, membership),
                   class: 'text-nowrap')
       else
-        membership.user.decorate.display_name
+        membership.user.decorate.html_escaped_display_name
       end
     end.join('<br>').html_safe
   end
@@ -120,9 +121,9 @@ class ClientDecorator < BaseDecorator
     report_ids = h.policy_scope(Report).ids
     object.reports.map do |report|
       if report_ids.include? report.id
-        h.link_to report.decorate.display_name, h.administration_report_path(report)
+        h.link_to report.decorate.html_escaped_display_name, h.administration_report_path(report)
       else
-        report.decorate.display_name
+        report.decorate.html_escaped_display_name
       end
     end.join(', ').html_safe
   end
@@ -130,7 +131,7 @@ class ClientDecorator < BaseDecorator
   def reports_names
     object.reports.map do |report|
       h.
-        content_tag(:span, report.decorate.display_name, class: 'text-nowrap')
+        content_tag(:span, report.decorate.html_escaped_display_name, class: 'text-nowrap')
     end.join(', ').html_safe
   end
 
