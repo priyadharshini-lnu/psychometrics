@@ -636,6 +636,7 @@ Rails.application.routes.draw do
     resources :users, except: [:create] do
       member do
         patch :toggle_status
+        patch :toggle_enable_2fa
         get :sidebar
         get :reset_password
       end

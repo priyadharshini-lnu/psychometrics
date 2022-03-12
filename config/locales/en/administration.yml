@@ -3688,6 +3688,9 @@ en:
             toggle_status:
               body: "<p>Are you sure you want to %{status} this Membership?</p>\n"
               title: "<strong>%{status}</strong> %{name}'s Membership?"
+          toggle_enable_2fa:
+            body: "<p>Are you sure you want to %{status} 2FA for %{name}?</p>\n"
+            title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>Are you sure you want to %{status} this User?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
@@ -3714,6 +3717,10 @@ en:
         title: User's options
       spoof:
         successfully: You was successfully login as %{name}
+      toggle_enable_2fa:
+        disable: Disable 2FA
+        enable: Enable 2FA
+        successfully: User %{name} was successfully updated.
       toggle_status:
         successfully: User %{name} was successfully updated.
       update:

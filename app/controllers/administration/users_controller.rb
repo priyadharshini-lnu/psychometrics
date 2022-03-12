@@ -2,7 +2,8 @@
 
 class Administration::UsersController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
+  before_action :set_resource, only: %i[show edit update destroy toggle_status
+                                        toggle_enable_2fa sidebar spoof reset_password]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -64,6 +65,19 @@ class Administration::UsersController < Administration::BaseController
     resource.toggle!(:disabled)
     resource.update!(modified_by_id: current_user.id)
     resource.memberships.update_all(disabled: resource.disabled)
+    respond_to do |format|
+      format.html do
+        redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
+      end
+      format.js
+    end
+  end
+
+  def toggle_enable_2fa
+    resource.toggle!(:enable_2fa)
+    resource.update!(modified_by_id: current_user.id)
+    audit! (resource.enable_2fa? ? :enable_2fa : :disable_2fa), resource, project: resource.project
+
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))

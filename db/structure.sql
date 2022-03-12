@@ -262,8 +262,7 @@ CREATE TABLE public.assessments (
     instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
     default_norm_id integer,
-    poster character varying,
-    project_id bigint
+    poster character varying
 );
 
 
@@ -1759,71 +1758,6 @@ ALTER SEQUENCE public.hogan_report_settings_id_seq OWNED BY public.hogan_report_
 
 
 --
--- Name: iiht_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.iiht_assessment_settings (
-    id bigint NOT NULL,
-    assessment_id bigint NOT NULL,
-    iiht_assessment_name character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: iiht_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.iiht_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: iiht_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.iiht_assessment_settings_id_seq OWNED BY public.iiht_assessment_settings.id;
-
-
---
--- Name: iiht_user_assessments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.iiht_user_assessments (
-    id bigint NOT NULL,
-    user_assessment_id bigint NOT NULL,
-    number_of_attempts integer DEFAULT 0 NOT NULL,
-    url character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: iiht_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.iiht_user_assessments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: iiht_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.iiht_user_assessments_id_seq OWNED BY public.iiht_user_assessments.id;
-
-
---
 -- Name: innovation_styles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1893,40 +1827,6 @@ CREATE SEQUENCE public.innovation_styles_id_seq
 --
 
 ALTER SEQUENCE public.innovation_styles_id_seq OWNED BY public.innovation_styles.id;
-
-
---
--- Name: integrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.integrations (
-    id bigint NOT NULL,
-    name integer DEFAULT 0 NOT NULL,
-    active boolean DEFAULT true,
-    config jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    project_id bigint NOT NULL
-);
-
-
---
--- Name: integrations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.integrations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: integrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.integrations_id_seq OWNED BY public.integrations.id;
 
 
 --
@@ -4022,7 +3922,8 @@ CREATE TABLE public.users (
     totp_timestamp timestamp without time zone,
     settings jsonb DEFAULT '{}'::jsonb,
     already_invited boolean DEFAULT false,
-    locale character varying
+    locale character varying,
+    enable_2fa boolean DEFAULT true NOT NULL
 );
 
 
@@ -4505,20 +4406,6 @@ ALTER TABLE ONLY public.hogan_report_settings ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- Name: iiht_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.iiht_assessment_settings_id_seq'::regclass);
-
-
---
--- Name: iiht_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.iiht_user_assessments_id_seq'::regclass);
-
-
---
 -- Name: innovation_styles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4530,13 +4417,6 @@ ALTER TABLE ONLY public.innovation_styles ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.innovation_styles_factors ALTER COLUMN id SET DEFAULT nextval('public.innovation_styles_factors_id_seq'::regclass);
-
-
---
--- Name: integrations id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.integrations ALTER COLUMN id SET DEFAULT nextval('public.integrations_id_seq'::regclass);
 
 
 --
@@ -5335,22 +5215,6 @@ ALTER TABLE ONLY public.hogan_report_settings
 
 
 --
--- Name: iiht_assessment_settings iiht_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings
-    ADD CONSTRAINT iiht_assessment_settings_pkey PRIMARY KEY (id);
-
-
---
--- Name: iiht_user_assessments iiht_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_user_assessments
-    ADD CONSTRAINT iiht_user_assessments_pkey PRIMARY KEY (id);
-
-
---
 -- Name: innovation_styles_factors innovation_styles_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5364,14 +5228,6 @@ ALTER TABLE ONLY public.innovation_styles_factors
 
 ALTER TABLE ONLY public.innovation_styles
     ADD CONSTRAINT innovation_styles_pkey PRIMARY KEY (id);
-
-
---
--- Name: integrations integrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.integrations
-    ADD CONSTRAINT integrations_pkey PRIMARY KEY (id);
 
 
 --
@@ -5980,13 +5836,6 @@ CREATE INDEX index_assessments_on_deleted_by_id ON public.assessments USING btre
 --
 
 CREATE INDEX index_assessments_on_dimension_id ON public.assessments USING btree (dimension_id);
-
-
---
--- Name: index_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assessments_on_project_id ON public.assessments USING btree (project_id);
 
 
 --
@@ -6613,20 +6462,6 @@ CREATE INDEX index_hogan_report_settings_on_report_id ON public.hogan_report_set
 
 
 --
--- Name: index_iiht_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_iiht_assessment_settings_on_assessment_id ON public.iiht_assessment_settings USING btree (assessment_id);
-
-
---
--- Name: index_iiht_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_iiht_user_assessments_on_user_assessment_id ON public.iiht_user_assessments USING btree (user_assessment_id);
-
-
---
 -- Name: index_innovation_styles_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6645,13 +6480,6 @@ CREATE INDEX index_innovation_styles_factors_on_innovation_style_id ON public.in
 --
 
 CREATE INDEX index_innovation_styles_on_dimension_id ON public.innovation_styles USING btree (dimension_id);
-
-
---
--- Name: index_integrations_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_integrations_on_project_id ON public.integrations USING btree (project_id);
 
 
 --
@@ -7693,27 +7521,11 @@ ALTER TABLE ONLY public.user_reports
 
 
 --
--- Name: assessments fk_rails_1acaaff98a; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessments
-    ADD CONSTRAINT fk_rails_1acaaff98a FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
 -- Name: assigns fk_rails_1b51e2cce0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_1b51e2cce0 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
-
-
---
--- Name: iiht_assessment_settings fk_rails_1d640cec6c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings
-    ADD CONSTRAINT fk_rails_1d640cec6c FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -8125,14 +7937,6 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
--- Name: iiht_user_assessments fk_rails_7c920335f3; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_user_assessments
-    ADD CONSTRAINT fk_rails_7c920335f3 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
-
-
---
 -- Name: saml_settings fk_rails_7cfb21e09c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8490,14 +8294,6 @@ ALTER TABLE ONLY public.license_usages
 
 ALTER TABLE ONLY public.smtp_settings
     ADD CONSTRAINT fk_rails_c49f929933 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
--- Name: integrations fk_rails_c64246fbe5; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.integrations
-    ADD CONSTRAINT fk_rails_c64246fbe5 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -9288,10 +9084,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220114152459'),
 ('20220118121431'),
 ('20220121064435'),
-('20220124132616'),
-('20220131060602'),
-('20220131062936'),
-('20220201110758'),
-('20220215140722');
+('20220215140722'),
+('20220311105318');
 
 
