@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown'
 import ResultStore from 'modules/reports/store/ResultStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { TopFactorType } from 'modules/reports/models/Results/interfaces'
+import BulletGraph from 'modules/reports/components/BulletGraph'
 import PieGraph from '../../../../../PieGraph'
 
 import styles from './FactorsTable.scss'
@@ -201,14 +202,18 @@ class FactorsTable extends Component {
     return (
       this.factorsData.map((factor, i) => {
         const conditions = _.filter(module.textConditions, { factorId: factor.id })
+        let conditionTitle = null
         let conditionText = null
         let conditionStrengths = null
         let conditionBlindspots = null
         let conditionLabel = null
         let conditionColor = null
+        let conditionBaselineScore = null
         const normedOrRawMeanScore = factor.meanNormScore || factor.meanRawScore
         if (ResultStore.realResults) {
           for (let i = 0; i < conditions.length; i += 1) {
+            conditionTitle = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
+              _.indexOf(module.textConditions, conditions[i]), 'title')
             conditionText = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'text')
             conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
@@ -218,6 +223,7 @@ class FactorsTable extends Component {
             conditionLabel = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'label')
             conditionColor = _.invoke(conditions[i], 'getColorByCondition', normedOrRawMeanScore)
+            conditionBaselineScore = _.invoke(conditions[i], 'getValueByCondition', normedOrRawMeanScore, 'baselineScore')
             if (conditionText) { break }
           }
         } else {
@@ -226,14 +232,16 @@ class FactorsTable extends Component {
           conditionBlindspots = factor.blindspots
           conditionLabel = factor.label
           conditionColor = factor.color
+          conditionBaselineScore = 3.5
         }
 
         conditionColor = conditionColor ?? '#666666'
 
         const {
-          tableStyle, minPosition, maxPosition, reverseOrder, source: { factors },
+          tableStyle = 'default', minPosition, maxPosition, reverseOrder, source: { factors },
           showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
           scoreProgressColor, scoreBackgroundColor, maxScoreValue,
+          scoreDisplay = 'circular', scoreRanges = [],
         } = model.props
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
 
@@ -261,7 +269,7 @@ class FactorsTable extends Component {
                   <div className={styles.content}>
                     {showName && (
                       <div className={styles.strength}>
-                        {I18nStore.tFactor(factor, 'alias')}
+                        {_.isEmpty(conditionTitle) ? I18nStore.tFactor(factor, 'alias') : conditionTitle}
                       </div>
                     )}
                     {showDescription && (
@@ -284,20 +292,33 @@ class FactorsTable extends Component {
               </td>
             )}
             {(showScore || showLabel) && (
-              <td className={showScore ? styles.score : null}>
+              <td className={cs({
+                [styles.score]: showScore,
+                [styles.circular]: scoreDisplay === 'circular',
+                [styles.bullet]: scoreDisplay === 'bullet',
+              })}
+              >
                 {showScore && (
-                  tableStyle !== 'compact'
-                    ? (
-                      <PieGraph
-                        strokeWidth="10"
-                        text={score}
-                        percent={Math.min(percent, 100)}
-                        progressColor={scoreProgressColor}
-                        backgroundColor={scoreBackgroundColor}
-                      />
-                    )
-                    : score
+                  tableStyle === 'default' && scoreDisplay === 'circular' && (
+                    <PieGraph
+                      strokeWidth="10"
+                      text={score}
+                      percent={Math.min(percent, 100)}
+                      progressColor={scoreProgressColor}
+                      backgroundColor={scoreBackgroundColor}
+                    />
+                  )
                 )}
+                {showScore && (
+                  tableStyle === 'default' && scoreDisplay === 'bullet' && (
+                    <BulletGraph
+                      scoreRanges={scoreRanges}
+                      baselineScore={conditionBaselineScore}
+                      score={percent}
+                    />
+                  )
+                )}
+                {showScore && tableStyle === 'compact' && score}
                 {!showScore && showLabel && (
                   <div className={styles.label} style={{ backgroundColor: conditionColor }}>{conditionLabel}</div>
                 )}

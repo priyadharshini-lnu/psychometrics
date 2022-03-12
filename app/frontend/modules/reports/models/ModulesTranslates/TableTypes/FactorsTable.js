@@ -2,7 +2,7 @@ import _ from 'lodash'
 import BaseTableTranslate from './BaseTableTranslate'
 
 class Module extends BaseTableTranslate {
-  textFields = ['text', 'strengths', 'blindspots', 'workstyles', 'label']
+  textFields = ['title', 'text', 'strengths', 'blindspots', 'workstyles', 'label']
 
   exportLocales () {
     const result = {

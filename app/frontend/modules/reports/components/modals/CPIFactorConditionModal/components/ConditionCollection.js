@@ -24,6 +24,10 @@ export class ConditionCollection extends Component {
     this.forceUpdate()
   }
 
+  changeTitle = (e) => {
+    this.changeText('title', e.currentTarget.value)
+  }
+
   changeDescription = (e) => {
     this.changeText('text', e.currentTarget.value)
   }
@@ -46,6 +50,10 @@ export class ConditionCollection extends Component {
 
   changeLabel = (e) => {
     this.changeText('label', e.currentTarget.value)
+  }
+
+  changeBaselineScore = (e) => {
+    this.changeText('baselineScore', e.currentTarget.value)
   }
 
   changeColor = (color) => {
@@ -94,6 +102,14 @@ export class ConditionCollection extends Component {
       <div className={styles.filterContainer}>
         {this.renderConditions()}
         Then show the following text:
+        <div>
+          <strong>Title</strong>
+          <input
+            className="form-control"
+            value={model.title || ''}
+            onChange={this.changeTitle}
+          />
+        </div>
         <div>
           <strong>Description</strong>
           <textarea
@@ -150,6 +166,15 @@ export class ConditionCollection extends Component {
             className="form-control"
             value={model.label || ''}
             onChange={this.changeLabel}
+          />
+        </div>
+        <div>
+          <strong>Baseline Score</strong>
+          <input
+            type="number"
+            className="form-control"
+            value={model.baselineScore || ''}
+            onChange={this.changeBaselineScore}
           />
         </div>
         <div style={{ position: 'relative' }}>
