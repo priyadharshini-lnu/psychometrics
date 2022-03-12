@@ -65,4 +65,12 @@ export default {
   nanFallback (val, fallback = null) {
     return isNaN(val) ? fallback : val
   },
+
+  scaleNumber (value, inMin, inMax, outMin, outMax) {
+    if (value < inMin || value > inMax) {
+      console.warn(`scale() value out of range: ${value}`)
+      return 0
+    }
+    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+  },
 }

@@ -1,0 +1,24 @@
+.bulletGraph {
+  position: relative;
+  .bands {
+    display: flex;
+    height: 1em;
+  }
+  .score {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 0.36em;
+    width: 2em;
+    margin-top: -0.18em;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .baselineScore {
+    position: absolute;
+    top: 50%;
+    height: 0.8em;
+    width: 0.2em;
+    margin-top: -0.4em;
+    background-color: #000;
+  }
+}
