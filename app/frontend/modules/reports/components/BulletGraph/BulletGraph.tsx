@@ -22,6 +22,7 @@ const BulletGraph: React.FC<Props> = ({ scoreRanges, baselineScore, score }) => 
   const min = _.minBy(scoreRanges, x => x.value)
 
   if (max === undefined || min === undefined || max.value <= min.value || !score) return null
+  const percWidth = (value: number) => (value * 100) / (max.value - min.value)
 
   const baselineScorePercentage = Utils.scaleNumber(baselineScore, min.value, max.value, 0, 100)
   return (
@@ -29,7 +30,7 @@ const BulletGraph: React.FC<Props> = ({ scoreRanges, baselineScore, score }) => 
       <div className={cs(styles.bands)}>
         {scoreRanges.map((scoreRange, i) => {
           if (i === scoreRanges.length - 1) return null
-          const width = Utils.scaleNumber(scoreRanges[i + 1].value - scoreRange.value, min.value, max.value, 0, 100)
+          const width = percWidth(scoreRanges[i + 1].value - scoreRange.value)
           const style = {
             display: 'block',
             width: `${width}%`,
