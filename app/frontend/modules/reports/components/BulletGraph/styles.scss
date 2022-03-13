@@ -2,7 +2,7 @@
   position: relative;
   .bands {
     display: flex;
-    height: 1em;
+    height: 1.6em;
   }
   .score {
     position: absolute;
@@ -11,7 +11,7 @@
     height: 0.36em;
     width: 2em;
     margin-top: -0.18em;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #222;
   }
   .baselineScore {
     position: absolute;
@@ -19,6 +19,6 @@
     height: 0.8em;
     width: 0.2em;
     margin-top: -0.4em;
-    background-color: #000;
+    background-color: rgba(0,0,0,0.7);
   }
 }

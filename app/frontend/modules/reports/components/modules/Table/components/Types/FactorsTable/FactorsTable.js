@@ -311,11 +311,14 @@ class FactorsTable extends Component {
                 )}
                 {showScore && (
                   tableStyle === 'default' && scoreDisplay === 'bullet' && (
-                    <BulletGraph
-                      scoreRanges={scoreRanges}
-                      baselineScore={conditionBaselineScore}
-                      score={percent}
-                    />
+                    <>
+                      <BulletGraph
+                        scoreRanges={scoreRanges}
+                        baselineScore={conditionBaselineScore}
+                        score={percent}
+                      />
+                      {showLabel && <div className={styles.bulletLabel}>{conditionLabel}</div>}
+                    </>
                   )
                 )}
                 {showScore && tableStyle === 'compact' && score}
