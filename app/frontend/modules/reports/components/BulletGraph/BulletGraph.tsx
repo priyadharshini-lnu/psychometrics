@@ -43,6 +43,7 @@ const BulletGraph: React.FC<Props> = ({ scoreRanges, baselineScore, score }) => 
         className={styles.score}
         style={{
           width: `${score}%`,
+          maxWidth: '100%',
         }}
       />
       <div
