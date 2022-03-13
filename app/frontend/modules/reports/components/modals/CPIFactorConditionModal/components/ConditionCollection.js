@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import cs from 'classnames'
+
 import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionList from './ConditionList'
@@ -172,7 +174,7 @@ export class ConditionCollection extends Component {
           <strong>Baseline Score</strong>
           <input
             type="number"
-            className="form-control"
+            className={cs('form-control', styles.smallInput)}
             value={model.baselineScore || ''}
             onChange={this.changeBaselineScore}
           />
