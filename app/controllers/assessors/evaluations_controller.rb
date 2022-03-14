@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Assessors::EvaluationsController < Assessors::BaseController
+  include ::Threesixty::SetAssessmentLocale
   before_action :set_assessor_assessment, only: %i[show]
   before_action :set_subject_user_assessment, only: %i[subject_assessment]
 
@@ -38,6 +39,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
     attributes = { last_activity_at: DateTime.current }
     attributes = attributes.merge(started_at: Time.now) unless user_result.started_at
     user_result.update(attributes)
+    set_locale_for_users_result(user_result)
 
     ::UserAssessments::AllowEdit.call!(@assessor_assessment) if params[:edit] == 'true'
 
