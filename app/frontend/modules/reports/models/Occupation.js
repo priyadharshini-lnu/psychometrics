@@ -51,7 +51,7 @@ _.extend(Occupation.prototype, {
         data += factor.weight
       }
     })
-    this.result = (data / _.sumBy(this.factors, 'weight')) || 0
+    this.result = _.round((data / _.sumBy(this.factors, 'weight')) || 0, 2)
     return this.calcStars(this.result)
   },
 })

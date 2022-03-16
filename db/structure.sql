@@ -1483,7 +1483,8 @@ CREATE TABLE public.factors (
     description text,
     scoring_strategy smallint DEFAULT 0 NOT NULL,
     code character varying,
-    use_percentage boolean DEFAULT false
+    use_percentage boolean DEFAULT false,
+    use_sub_factor_norm_score boolean
 );
 
 
@@ -4021,7 +4022,8 @@ CREATE TABLE public.users (
     totp_timestamp timestamp without time zone,
     settings jsonb DEFAULT '{}'::jsonb,
     already_invited boolean DEFAULT false,
-    locale character varying
+    locale character varying,
+    enable_2fa boolean DEFAULT true NOT NULL
 );
 
 
@@ -9290,6 +9292,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220124132616'),
 ('20220131060602'),
 ('20220131062936'),
-('20220201110758');
+('20220201110758'),
+('20220215140722'),
+('20220311105318');
 
 

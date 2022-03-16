@@ -323,6 +323,10 @@ ar:
       cpi_occupations:
         occupations: المهن
         your_potential_suitability: الملائمة المحتملة الخاصة بك
+      factors_table:
+        description: الوصف
+        rank: المرتبة
+        score: الدرجة
       gap_assessment:
         gap: فجوة
         item: مؤشر

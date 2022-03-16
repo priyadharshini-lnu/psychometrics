@@ -46,6 +46,7 @@ describe Api::V1::ResultSerializer do
               { id: 549, name: 'Accountability', value: 6 },
               { id: 554, name: 'Efficacy', value: 5 }
             ],
+            raw_factors: [],
             ranked_occupations: [
               {
                 id: 2,
@@ -62,6 +63,7 @@ describe Api::V1::ResultSerializer do
           name: 'ass 18',
           results: {
             normed_factors: [],
+            raw_factors: [],
             ranked_occupations: [
               {
                 id: 3,

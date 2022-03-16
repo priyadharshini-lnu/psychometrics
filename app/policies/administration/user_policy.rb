@@ -51,6 +51,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)) && !@record.is_anonym?
   end
 
+  def toggle_enable_2fa?
+    (@user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)) && !@record.is_anonym?
+  end
+
   def toggle_membership_status?
     current_user_record = @record.is_a?(Membership) ? @record.user : @record
     return true if @user.is?(:superadmin)

@@ -70,7 +70,7 @@ module Administration
       end
 
       def export_completion_status
-        audit! :export_completion_status, nil, campaign: campaign
+        audit! :export_completion_status, campaign, campaign: campaign
         AdminJob.call(
           :completion_status_export,
           { campaign_id: campaign.id },

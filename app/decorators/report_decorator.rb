@@ -17,7 +17,7 @@ class ReportDecorator < BaseDecorator
 
   def report_families
     if object.report_families.present?
-      object.report_families.distinct.map { |rf| rf.decorate.display_name }.join('<br>').html_safe
+      object.report_families.distinct.map { |rf| rf.decorate.html_escaped_display_name }.join('<br>').html_safe
     else
       ''
     end
@@ -32,7 +32,8 @@ class ReportDecorator < BaseDecorator
   def detach_confirmation
     {
       title: I18n.t(
-        "administration.#{object.class.model_name.plural}.resource.confirmations.detach.title", name: display_name
+        "administration.#{object.class.model_name.plural}.resource.confirmations.detach.title",
+        name: html_escaped_display_name
       ),
       body: I18n.t(
         "administration.#{object.class.model_name.plural}.resource.confirmations.detach.body"
@@ -44,7 +45,10 @@ class ReportDecorator < BaseDecorator
   #
   def remove_from_bundle_confirmation
     {
-      title: I18n.t('administration.report_families.reports.resource.confirmations.delete.title', name: display_name),
+      title: I18n.t(
+        'administration.report_families.reports.resource.confirmations.delete.title',
+        name: html_escaped_display_name
+      ),
       body: I18n.t('administration.report_families.reports.resource.confirmations.delete.body')
     }.to_json
   end

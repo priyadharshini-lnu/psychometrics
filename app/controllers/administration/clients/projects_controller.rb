@@ -83,6 +83,7 @@ module Administration
         resource.creator = current_user
         resource.modifier = current_user
         resource.operator = current_user
+        resource.applicable_level = :campaign
         respond_to do |format|
           if resource.save
             audit! :create, resource, payload: resource_params, project: resource

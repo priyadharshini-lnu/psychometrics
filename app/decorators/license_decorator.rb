@@ -44,7 +44,7 @@ class LicenseDecorator < BaseDecorator
       title: I18n.t(
         'administration.clients.licenses.resource.confirmations.toggle_status.title',
         status: status,
-        name: display_name
+        name: html_escaped_display_name
       ),
       body: I18n.t(
         'administration.clients.licenses.resource.confirmations.toggle_status.body',

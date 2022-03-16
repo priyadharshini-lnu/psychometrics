@@ -10,10 +10,14 @@ module Blocks
 
     def subscribed
       block = Block.find(params['block_id'])
-      transmit(
-        action: 'block_data',
-        data: BlockSerializer.new(block).to_hash(include: '**')
-      )
+      if Administration::BlockPolicy.new(current_user, block).edit?
+        transmit(
+          action: 'block_data',
+          data: BlockSerializer.new(block).to_hash(include: '**')
+        )
+      else
+        reject
+      end
     end
 
     def pundit_user

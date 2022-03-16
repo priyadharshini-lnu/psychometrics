@@ -26,7 +26,7 @@ class EndUser::CampaignUsersController < ApplicationController
   private
 
   def set_campaign_user
-    @campaign_user = CampaignUser.find(params[:id])
+    @campaign_user = current_user.campaign_users.find(params[:id])
   end
 
   def campaign

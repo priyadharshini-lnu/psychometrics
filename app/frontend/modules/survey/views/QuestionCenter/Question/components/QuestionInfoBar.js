@@ -67,7 +67,7 @@ class Question extends Component {
   renderRandomLabel () {
     const { model, moduleConfig } = this.props
     if (moduleConfig.randomization) {
-      return model.props.randomization.type !== 'No' && (
+      return model.props.randomization && model.props.randomization.type !== 'No' && (
         <div title="This question has randomization" className={styles.randomized}>
           <span className="fa fa-random" />
         </div>

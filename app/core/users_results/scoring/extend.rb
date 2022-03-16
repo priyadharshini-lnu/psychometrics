@@ -29,15 +29,10 @@ module UsersResults
           })
         end
 
+        norm = Norm.find_by(id: norm_data['id']) if norm_data.present? && norm_data['id']
         extended_scoring = ::UsersResults::Scoring::AddScore.call!(
-          factor_hash, factor_hash.keys, scoring, factors_question_count
+          factor_hash, factor_hash.keys, scoring, norm, factor_norm_hash, factors_question_count
         )
-        if norm_data.present?
-          extended_scoring = ::UsersResults::Scoring::AddZScore.call!(extended_scoring, norm_data, factor_norm_hash)
-          extended_scoring = ::UsersResults::Scoring::AddNormScore.call!(
-            extended_scoring, norm_data, factor_hash, factor_norm_hash
-          )
-        end
 
         broadcast :ok, extended_scoring
       end

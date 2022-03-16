@@ -21,7 +21,7 @@
   }
 
   th, td {
-    text-align: left;
+    text-align: start;
   }
 
   th {
@@ -127,6 +127,9 @@
       &.score {
         width: 5em;
         font-size: 1.25em;
+        &.bullet {
+          width: 9.5em;
+        }
       }
     }
   }
@@ -170,6 +173,11 @@
     font-weight: 600;
     transform: scale(.3) translateX(100%);
   }
+}
+
+.bulletLabel {
+  font-size: 0.7em;
+  font-weight: normal;
 }
 
 body[data-locale="ar"] {

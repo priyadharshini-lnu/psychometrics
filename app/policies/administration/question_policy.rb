@@ -11,15 +11,15 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
+      can_manage_question?
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
+      can_manage_question?
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
+      can_manage_question?
     end
 
     def actions?
@@ -34,22 +34,25 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:questions, :manage)
     end
 
+    private
+
+    def can_manage_question?
+      @user.is?(:superadmin) || @user.has_permission?(:questions, :manage, project_id: @record.owner_id)
+    end
+
     class Scope < Scope
       def resolve
         scope = super
+        scope = scope.order(:name)
         return scope if @user.is?(:superadmin)
 
-        if @user.has_grant?(:questions, :view)
-          owner_ids =
-            if @user.is?(:client_admin)
-              @user.client_admin_client_ids
-            else
-              @user.project_admin_clients.select('tte_id').distinct
-            end
-          scope.where(owner_id: owner_ids)
-        else
-          scope.none
+        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
+
+        permitted_owner_ids = owner_ids.uniq.select do |owner_id|
+          @user.has_permission?(:questions, :view, project_id: owner_id)
         end
+
+        scope.where(owner_id: permitted_owner_ids)
       end
     end
   end

@@ -81,6 +81,16 @@ module Administration
       add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
+    def pundit_authorize
+      authorize(
+        resource || resource_class,
+        nil,
+        {
+          project_id: resource&.owner_id
+        }
+      )
+    end
+
     # Set model
     def set_resource_class
       @_resource_class ||= Library # rubocop:disable Naming/MemoizedInstanceVariableName

@@ -60,7 +60,7 @@ module UsersResults
 
     def compute_agile_assessment_scoring
       user_result.update!(
-        scoring: ::UsersResults::CalculateAgileScoring.call!(user_result, current_user)
+        scoring: ::UsersResults::CalculateAgileScoring.call!(user_result)
       )
     end
 

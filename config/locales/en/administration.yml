@@ -329,11 +329,16 @@ en:
       action: Action
       campaign: Campaign
       client: Client
-      created_at: Created At
       id: Id
+      log_date: Log Date
       payload: Payload
       project: Project
       record_id: Record Id
+      reset: Reset
+      search: Search
+      search_campaign: Search by Campaign
+      search_client: Search by Client
+      search_project: Search by Proejct
       title: Audit Log Info
       type: Record Type
       user: User
@@ -2419,6 +2424,8 @@ en:
         view: View Dimension
       toggle_status:
         successfully: Dimension was successfully updated.
+      update:
+        successfully: "%{name} dimension was updated successfully"
     disable: Disable
     document_titles:
       project_assessors: Assessors | %{project}
@@ -2447,6 +2454,7 @@ en:
           sub_factors_conditional_average: Conditional Weighted Average of Factors
         scoring_strategies_tip: " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added."
         scoring_strategy: Scoring strategy
+        use_sub_factor_norm_score: Use Factors norm score
       index:
         icon: Icon
         new: Add
@@ -3748,6 +3756,9 @@ en:
             toggle_status:
               body: "<p>Are you sure you want to %{status} this Membership?</p>\n"
               title: "<strong>%{status}</strong> %{name}'s Membership?"
+          toggle_enable_2fa:
+            body: "<p>Are you sure you want to %{status} 2FA for %{name}?</p>\n"
+            title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>Are you sure you want to %{status} this User?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
@@ -3774,6 +3785,10 @@ en:
         title: User's options
       spoof:
         successfully: You was successfully login as %{name}
+      toggle_enable_2fa:
+        disable: Disable 2FA
+        enable: Enable 2FA
+        successfully: User %{name} was successfully updated.
       toggle_status:
         successfully: User %{name} was successfully updated.
       update:

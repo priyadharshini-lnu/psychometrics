@@ -22,15 +22,11 @@ feature 'CRUD Client' do
                                account_manager: 'super admin',
                                project_manager: 'super admin')
 
-      project = create_project(tenancy,
-                               name: 'Project',
-                               subdomain: 'projectabc',
-                               number: 2,
-                               applicable_level: 'Sub-Campaign',
-                               privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
-
-      campaign = create_campaign(tenancy, project, name: 'Campaign')
-      create_sub_campaign(tenancy, project, campaign, name: 'SubCampaign')
+      create_project(tenancy,
+                     name: 'Project',
+                     subdomain: 'projectabc',
+                     number: 2,
+                     privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
     end
   end
 
@@ -60,16 +56,12 @@ feature 'CRUD Client' do
       end
 
       scenario 'I can create any client within tte' do
-        new_project = create_project(tenancy,
-                                     name: 'New Project',
-                                     subdomain: 'newproject',
-                                     number: 2,
-                                     applicable_level: 'Sub-Campaign',
-                                     reports: [report.name],
-                                     privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
-
-        campaign = create_campaign(tenancy, new_project, name: 'Campaign')
-        create_sub_campaign(tenancy, new_project, campaign, name: 'SubCampaign')
+        create_project(tenancy,
+                       name: 'New Project',
+                       subdomain: 'newproject',
+                       number: 2,
+                       reports: [report.name],
+                       privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
       end
 
       scenario 'I cant create root' do
