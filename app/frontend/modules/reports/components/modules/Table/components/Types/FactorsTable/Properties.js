@@ -12,6 +12,7 @@ import ColorPicker from 'modules/reports/components/ColorPicker'
 import { rgba2hex } from 'utils/color'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
+import ScoreRangeList from './ScoreRangeList'
 
 const ALL_FACTORS = 'All Factors'
 
@@ -193,6 +194,24 @@ class Properties extends Component {
     )
   }
 
+  renderScoreDisplaySelect () {
+    const { model } = this.props
+    const layouts = [
+      { value: 'circular', label: 'Circular' },
+      { value: 'bullet', label: 'Bullet Graph' },
+    ]
+
+    return (
+      <select onChange={e => this.changeStyle('scoreDisplay', e)} value={model.props.scoreDisplay || 'circular'}>
+        {layouts.map((layout, i) => (
+          <option value={layout.value} key={i}>
+            {layout.label}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
   renderTableOptions () {
     const { model, model: { props: { mode } } } = this.props
     const options = [
@@ -229,7 +248,15 @@ class Properties extends Component {
   }
 
   render () {
-    const { model, model: { props: { mode, source: { factors } } } } = this.props
+    const {
+      model, model: {
+        props: {
+          mode, tableStyle, showScore,
+          scoreDisplay = 'circular',
+          source: { factors },
+        },
+      },
+    } = this.props
 
     return (
       <div>
@@ -292,24 +319,48 @@ class Properties extends Component {
             />
           </div>
         </div>
-        <div className={styles.block}>
-          Score Color
-          <div className={styles.flexRow}>
-            <ColorPicker
-              color={model.props.scoreProgressColor}
-              onChange={color => this.onChangeColor('scoreProgressColor', rgba2hex(color.rgb))}
-            />
-          </div>
-        </div>
-        <div className={styles.block}>
-          Score Background Color
-          <div className={styles.flexRow}>
-            <ColorPicker
-              color={model.props.scoreBackgroundColor}
-              onChange={color => this.onChangeColor('scoreBackgroundColor', rgba2hex(color.rgb))}
-            />
-          </div>
-        </div>
+        {showScore && (
+          tableStyle === 'default' && (
+            <>
+              <hr className={styles.divider} />
+              <div>
+                {'Score '}
+                {this.renderScoreDisplaySelect()}
+              </div>
+            </>
+          )
+        )}
+        {showScore && (
+          tableStyle === 'default' && scoreDisplay === 'circular' && (
+            <>
+              <div className={styles.block}>
+                Score Color
+                <div className={styles.flexRow}>
+                  <ColorPicker
+                    color={model.props.scoreProgressColor}
+                    onChange={color => this.onChangeColor('scoreProgressColor', rgba2hex(color.rgb))}
+                  />
+                </div>
+              </div>
+              <div className={styles.block}>
+                Score Background Color
+                <div className={styles.flexRow}>
+                  <ColorPicker
+                    color={model.props.scoreBackgroundColor}
+                    onChange={color => this.onChangeColor('scoreBackgroundColor', rgba2hex(color.rgb))}
+                  />
+                </div>
+              </div>
+            </>
+          )
+        )}
+        {showScore && (
+          tableStyle === 'default' && scoreDisplay === 'bullet' && (
+            <>
+              <ScoreRangeList model={model} />
+            </>
+          )
+        )}
         <div>Font</div>
         <PropertyFonts model={model} colors={false} />
         <hr className={styles.divider} />

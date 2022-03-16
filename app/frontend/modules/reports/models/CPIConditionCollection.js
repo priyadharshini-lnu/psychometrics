@@ -5,6 +5,7 @@ import CPICondition from './CPICondition'
 
 const CPIConditionCollection = function (attrs = {}, module) {
   this.id = attrs.id
+  this.title = attrs.title
   this.text = attrs.text
   this.strengths = attrs.strengths
   this.blindspots = attrs.blindspots
@@ -12,6 +13,7 @@ const CPIConditionCollection = function (attrs = {}, module) {
   this.possibleRoles = attrs.possibleRoles
   this.label = attrs.label
   this.color = attrs.color
+  this.baselineScore = attrs.baselineScore
   this.module = module
   this.factorId = attrs.factorId
   this.styles = attrs.styles || {}
@@ -29,6 +31,7 @@ _.extend(CPIConditionCollection.prototype, {
   toJSON () {
     return {
       id: this.id,
+      title: this.title,
       text: this.text,
       strengths: this.strengths,
       blindspots: this.blindspots,
@@ -36,6 +39,7 @@ _.extend(CPIConditionCollection.prototype, {
       possibleRoles: this.possibleRoles,
       label: this.label,
       color: this.color,
+      baselineScore: this.baselineScore,
       factorId: this.factorId,
       styles: this.styles,
       conditions: this.conditions,
@@ -79,6 +83,17 @@ _.extend(CPIConditionCollection.prototype, {
       result = result && cond.isValid(score)
     })
     return result ? this.color : null
+  },
+
+  getValueByCondition (score, key) {
+    if (this.conditions.length === 0) {
+      return null
+    }
+    let result = true
+    _.each(this.conditions, (cond) => {
+      result = result && cond.isValid(score)
+    })
+    return result ? _.get(this, key) : null
   },
 
   getStylesByCondition (score) {

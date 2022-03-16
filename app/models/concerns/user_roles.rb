@@ -70,6 +70,7 @@ module UserRoles
 
   def has_permission?(scope, grant, project_id: nil, campaign_id: nil)
     return true if is?(:superadmin)
+    return false unless project_id
 
     project = Client.find(project_id)
 

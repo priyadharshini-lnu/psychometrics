@@ -71,6 +71,20 @@ export default function Form (props) {
         </div>
         )
       }
+      {(resource.scoring_strategy === 'sub_factors_average'
+        || resource.scoring_strategy === 'sub_factors_conditional_average')
+        && (
+        <div className="mtm mbm">
+          <Checkbox
+            name="use_sub_factor_norm_score"
+            onChange={({ target }) => onChange({ currentTarget: { name: target.name, value: target.checked ? 1 : 0 } })}
+            checked={resource.use_sub_factor_norm_score}
+          >
+            {I18n.t('administration.factors.form.use_sub_factor_norm_score')}
+          </Checkbox>
+        </div>
+        )
+      }
       {resource.scoring_strategy !== 'questions' && resource.scoring_strategy !== 'questions_sum'
       && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
     </>

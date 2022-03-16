@@ -3,7 +3,7 @@
 module Api
   module V1
     module Results
-      class NormedFactorSerializer < ActiveModel::Serializer
+      class FactorSerializer < ActiveModel::Serializer
         attributes :id, :name, :value
 
         def id

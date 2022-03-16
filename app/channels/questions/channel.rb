@@ -9,10 +9,14 @@ module Questions
 
     def subscribed
       question = Question.find(params['question_id'])
-      transmit(
-        action: 'question_data',
-        data: QuestionSerializer.new(question).to_hash(include: '**')
-      )
+      if Administration::QuestionPolicy.new(current_user, question).edit?
+        transmit(
+          action: 'question_data',
+          data: QuestionSerializer.new(question).to_hash(include: '**')
+        )
+      else
+        reject
+      end
     end
 
     def pundit_user

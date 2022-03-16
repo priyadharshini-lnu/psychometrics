@@ -1,5 +1,7 @@
 import React from 'react'
 import cs from 'classnames'
+import { rgba2hex } from 'utils/color'
+import { RGBColor } from 'react-color'
 import styles from './styles.scss'
 
 interface Props {
@@ -7,7 +9,7 @@ interface Props {
   className: string
   text: string
   progressColor?: string
-  backgroundColor?: string
+  backgroundColor?: RGBColor
 }
 
 const strokeWidth = 10
@@ -38,7 +40,7 @@ const PieGraph: React.FC<Props> = ({
           r={radius}
           strokeWidth={`${strokeWidth}px`}
           style={{
-            stroke: backgroundColor ?? '#d8fefd',
+            stroke: (typeof backgroundColor === 'object') ? rgba2hex(backgroundColor) : backgroundColor,
           }}
         />
         <circle

@@ -74,7 +74,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
-  config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.allow_same_origin_as_host = true
   Rails.application.config.action_controller.forgery_protection_origin_check = false
   config.action_dispatch.default_headers.merge!(
     'Access-Control-Allow-Origin' => '*'

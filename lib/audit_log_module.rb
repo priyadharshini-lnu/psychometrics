@@ -22,13 +22,11 @@ module AuditLogModule
         }
       end
 
-      # Set nil if record is a new_record, do this for avoid create record.
-      record = nil if record&.new_record?
-
       Rails.logger.silence do
         AuditLog.create!(
           action: action,
-          record: record,
+          record_id: record&.id,
+          record_type: record&.class&.name,
           client_id: client&.id,
           project_id: project&.id,
           campaign_id: campaign&.id,

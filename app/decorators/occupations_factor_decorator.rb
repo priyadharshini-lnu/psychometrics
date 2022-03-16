@@ -2,7 +2,7 @@
 
 class OccupationsFactorDecorator < BaseDecorator
   def display_name
-    object.factor.name
+    object.factor.decorate.display_name
   end
 
   def condition

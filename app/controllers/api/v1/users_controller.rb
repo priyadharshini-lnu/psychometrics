@@ -29,7 +29,7 @@ module Api
             response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
               on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
             end
-            audit! :api_create, user, payload: params.permit!, campaign: campaign
+            audit! :api_create, response[:ok], payload: params.permit!, campaign: campaign
 
             response[:ok]
           end.sample

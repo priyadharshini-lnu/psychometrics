@@ -3,19 +3,8 @@
 module Users
   class PasswordResetForm < Rectify::Form
     attribute :email, String
-    attribute :user
 
     validates :email, presence: true
-    validates :email, format: { with: Devise.email_regexp }
-
-    validate :check_email_exists!
-
-    def check_email_exists!
-      project = GetProjectBySubdomain.call!(context.subdomain)
-
-      @user = User.find_by(email: email, project: project&.id)
-
-      errors.add(:email, :wrong_email) unless @user
-    end
+    validates :email, format: { with: Devise.email_regexp }, allow_blank: true
   end
 end

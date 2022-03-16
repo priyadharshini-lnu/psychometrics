@@ -10,7 +10,7 @@ module Administration
 
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview
-                                          regenerate upload_data_sheet toggle_archive soft_delete restore]
+                                          upload_data_sheet toggle_archive soft_delete restore]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -162,13 +162,6 @@ module Administration
       respond_to do |format|
         format.html
       end
-    end
-
-    # Sends to re-generate Reports for all passed Assessments
-    #
-    def regenerate
-      audit! :regenerate, resource
-      ::Reports::BulkExportJob.perform_later([resource.id], current_user)
     end
 
     private
