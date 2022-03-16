@@ -244,11 +244,11 @@ Rails.application.routes.draw do
             post :update_additional_time
           end
         end
-        resources :campaign_assessment_groups, only: %i[index create update destroy] do
-        end
+        resources :campaign_assessment_groups, only: %i[index create update destroy]
         resources :campaign_assessments, only: %i[update] do
           member do
             post :attach_to_group
+            put :update_external_config
           end
         end
       end
@@ -801,6 +801,7 @@ Rails.application.routes.draw do
     resource :examus, only: %i[create]
     post '/saville/results', to: 'saville#results', as: :saville
     post 'sms_histories', to: 'sms_histories#status', as: :sms_histories
+    post '/:project_id/iiht/results', to: 'iiht#results', as: :iiht
   end
 
   devise_scope :user do
@@ -861,6 +862,8 @@ Rails.application.routes.draw do
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
+
+      get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
 
       resources :hogan_user_assessments, only: [] do
         member do

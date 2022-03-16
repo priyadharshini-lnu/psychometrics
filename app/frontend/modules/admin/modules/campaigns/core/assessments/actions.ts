@@ -171,3 +171,15 @@ export const exportExternalResults = (campaignId: number, assessmentId: number) 
     loader: true,
   },
 })
+
+export const UPDATE_EXTERNAL_CONFIG = 'campaigns/assessments/UPDATE_EXTERNAL_CONFIG'
+export const updateExternalConfig = (campaignId: number, campaignAssessmentId: number, body: object) => ({
+  type: UPDATE_EXTERNAL_CONFIG,
+  request: {
+    method: 'put',
+    // eslint-disable-next-line max-len
+    url: `/administration/new_campaigns/${campaignId}/campaign_assessments/${campaignAssessmentId}/update_external_config`,
+    body,
+    loader: true,
+  },
+})

@@ -14,6 +14,7 @@ import {
 import { openModal } from 'modules/admin/core/ui/modals'
 import Modals from 'modules/admin/components/Modals'
 import { isRequestInProgress } from 'modules/admin/core/request'
+import map from 'lodash/map'
 import { IntegrationFormModal } from './IntegrationFormModal'
 
 const { Column } = Table
@@ -55,7 +56,7 @@ const IntegrationsComponent: React.FC<Props> = ({
   return (
     <>
       <Row className="pl">
-        <Col lg={10} md={15} sm={24}>
+        <Col lg={12} md={17} sm={24}>
           <Button
             type="primary"
             icon={<PlusOutlined />}
@@ -74,6 +75,22 @@ const IntegrationsComponent: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.integrations.columns.name')}
               render={({ name }) => I18n.t(`administration.integrations.names.${name}`)}
+            />
+            <Column
+              title={I18n.t('administration.integrations.columns.details')}
+              render={({ details }) => {
+                if (!details) { return null }
+
+                return map(details, (value, key) => (
+                  <>
+                    <b>
+                      {I18n.t(`administration.integrations.details.${key}`)}
+                      :
+                    </b>
+                    <div>{value}</div>
+                  </>
+                ))
+              }}
             />
             <Column
               title={I18n.t('common.column.action')}

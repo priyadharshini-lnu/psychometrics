@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EndUser::IihtUserAssessmentsController < ApplicationController
-  before_action :set_user_assessment, only: %i[pass redirect]
+  before_action :set_user_assessment, only: %i[pass]
 
   def pass
     campaign = @user_assessment.campaign
@@ -15,6 +15,16 @@ class EndUser::IihtUserAssessmentsController < ApplicationController
     ::Iiht::AddAssessment.call!(@user_assessment)
 
     redirect_to iiht_user_assessment.url
+  end
+
+  def redirect
+    user_assessment = current_user.user_assessments.find_by!(
+      campaign_id: params[:campaign_id], assessment_id: params[:assessment_id]
+    )
+    user_assessment.complete! unless user_assessment.completed?
+    ::Iiht::SaveScoresJob.perform_later(user_assessment)
+
+    redirect_to(assessment_completed_path(user_assessment.campaign_id))
   end
 
   private

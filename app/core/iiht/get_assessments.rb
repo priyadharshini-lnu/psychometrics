@@ -3,10 +3,12 @@
 module Iiht
   class GetAssessments < Base
     def call
-      data = Rails.cache.fetch("#{uniq_cache_key}/testListContent", expires_in: 1.days) do
-        response = client.get('testlistContent', { companyId: config['company_id'] })
+      data = Rails.cache.fetch("#{uniq_cache_key}/GetAssessments", expires_in: 1.days) do
+        response = client.get('GetAssessments', { tenantId: config['tenant_id'] })
 
-        ::JSON.parse(response.body).dig('data', 'tests')
+        data = ::JSON.parse(response.body).dig('result', 'assessments').map do |assessment|
+          assessment.slice('name', 'assessmentIdNumber', 'description')
+        end
       end
 
       broadcast :ok, data

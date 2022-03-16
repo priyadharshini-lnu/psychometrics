@@ -53,6 +53,10 @@ class UserAssessment < ApplicationRecord
 
   alias result users_result
 
+  def complete!
+    update!(status: :completed, completed_at: Time.current)
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[filter_by_subject_or_assessment]
   end

@@ -2,22 +2,29 @@
 
 module Integrations
   class IihtForm < Integrations::BaseForm
-    attribute :base_api_url, String
-    attribute :company_id, String
-    attribute :company_name, String
+    attribute :tenant_id, String
+    attribute :tenancy_name, String
     attribute :user, String
     attribute :password, String
 
-    validates :base_api_url, :company_id, :company_name, :user, presence: true
+    validates :tenant_id, :tenancy_name, :user, presence: true
     validates :password, presence: true, if: -> { context.integration.nil? }
-    validates :base_api_url, http_url: { presence: false }
-    validate :unique_company
+    validate :unique_tenant_id
+    validate :unique_tenancy_name
 
-    def unique_company
+    def unique_tenant_id
       scope = Integration.iiht
       scope = scope.where.not(id: context.integration.id) if context.integration
-      if scope.where("config ->> 'company_id' = ? AND config ->> 'company_name' = ?", company_id, company_name).exists?
-        errors.add(:base, I18n.t('administration.integrations.validations.iiht.company_present'))
+      if scope.where("config ->> 'tenant_id' = ?", tenant_id).exists?
+        errors.add(:base, I18n.t('administration.integrations.validations.iiht.tenant_id_present'))
+      end
+    end
+
+    def unique_tenancy_name
+      scope = Integration.iiht
+      scope = scope.where.not(id: context.integration.id) if context.integration
+      if scope.where("config ->> 'tenancy_name' = ?", tenancy_name).exists?
+        errors.add(:base, I18n.t('administration.integrations.validations.iiht.tenancy_name_present'))
       end
     end
 

@@ -7,9 +7,8 @@ describe Integrations::IihtForm do
     {
       name: 'iiht',
       active: true,
-      base_api_url: 'https://tte-iiht.com',
-      company_id: 'company_id',
-      company_name: 'company_name',
+      tenant_id: 'tenant_id',
+      tenancy_name: 'tenancy_name',
       user: 'user',
       password: 'password'
     }
@@ -49,25 +48,18 @@ describe Integrations::IihtForm do
     )
   end
 
-  it 'is invalid if base_api_url is not present' do
-    form = described_class.new(attributes.merge(base_api_url: '')).with_context(project: project)
+  it 'is invalid if tenant_id is not present' do
+    form = described_class.new(attributes.merge(tenant_id: '')).with_context(project: project)
 
     expect(form.valid?).to eq(false)
-    expect(form.errors[:base_api_url]).to eq(["can't be blank"])
+    expect(form.errors[:tenant_id]).to eq(["can't be blank"])
   end
 
-  it 'is invalid if company_id is not present' do
-    form = described_class.new(attributes.merge(company_id: '')).with_context(project: project)
+  it 'is invalid if tenancy_name is not present' do
+    form = described_class.new(attributes.merge(tenancy_name: '')).with_context(project: project)
 
     expect(form.valid?).to eq(false)
-    expect(form.errors[:company_id]).to eq(["can't be blank"])
-  end
-
-  it 'is invalid if company_name is not present' do
-    form = described_class.new(attributes.merge(company_name: '')).with_context(project: project)
-
-    expect(form.valid?).to eq(false)
-    expect(form.errors[:company_name]).to eq(["can't be blank"])
+    expect(form.errors[:tenancy_name]).to eq(["can't be blank"])
   end
 
   it 'is invalid if user is not present' do
@@ -92,26 +84,34 @@ describe Integrations::IihtForm do
     expect(form.errors[:name]).to eq(['This integration is already present for this project'])
   end
 
-  it 'is invalid is base_api_url format is incorrect' do
-    form = described_class.new(attributes.merge(base_api_url: 'abc')).with_context(project: project)
-
-    expect(form.valid?).to eq(false)
-    expect(form.errors[:base_api_url]).to eq(
-      ['Invalid URL. Specify the complete url with http or https protocol in it.']
-    )
-  end
-
-  describe '#unique_company' do
+  describe '#unique_tenant_id' do
     it 'when integration is not passed' do
-      create(:integration, name: :iiht, config: attributes.slice(:company_id, :company_name))
+      create(:integration, name: :iiht, config: attributes.slice(:tenant_id))
 
       form = described_class.new(attributes).with_context(project: project)
       expect(form.valid?).to eq(false)
-      expect(form.errors[:base]).to eq(['Company with this ID and name is already present in other project'])
+      expect(form.errors[:base]).to eq(['Tenant id is already present in other project'])
     end
 
     it 'when integration is not passed' do
-      integration = create(:integration, name: :iiht, config: { company_id: attributes[:company_id] })
+      integration = create(:integration, name: :iiht, config: { tenant_id: attributes[:tenant_id] })
+
+      form = described_class.new(attributes).with_context(project: project, integration: integration)
+      expect(form.valid?).to eq(true)
+    end
+  end
+
+  describe '#unique_tenancy_name' do
+    it 'when integration is not passed' do
+      create(:integration, name: :iiht, config: attributes.slice(:tenancy_name))
+
+      form = described_class.new(attributes).with_context(project: project)
+      expect(form.valid?).to eq(false)
+      expect(form.errors[:base]).to eq(['Tenancy name is already present in other project'])
+    end
+
+    it 'when integration is not passed' do
+      integration = create(:integration, name: :iiht, config: { tenancy_name: attributes[:tenancy_name] })
 
       form = described_class.new(attributes).with_context(project: project, integration: integration)
       expect(form.valid?).to eq(true)

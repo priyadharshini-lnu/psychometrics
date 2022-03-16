@@ -27,10 +27,13 @@
                                               }, id: 'projects'},
                           wrapper_html: { class: 'iiht' }
         = f.simple_fields_for :iiht_assessment_setting do |iiht|
-          = iiht.input :iiht_assessment_name, collection: [],
+          = iiht.input :iiht_assessment_id_number, collection: [[1, 20]],
                                               include_blank: false,
                                               input_html: { class: 'external_assessments_setting',  data: { live_search: true } },
                                               wrapper_html: { class: 'iiht' }
+          - schedule_config = iiht.object.iiht_schedule_config && iiht.object.errors[:iiht_schedule_config].blank? ? JSON.pretty_generate(iiht.object.iiht_schedule_config) : iiht.object.iiht_schedule_config
+          = iiht.input :iiht_schedule_config, as: :text, wrapper_html: { class: 'iiht' },
+                        input_html: { value: schedule_config }
         = f.input :mindmill_id, collection: Settings.providers.mindmill.assessments.map { |m| [m[:name], m[:id]] },
                                 include_blank: false,
                                 wrapper_html: { class: 'mindmill' }

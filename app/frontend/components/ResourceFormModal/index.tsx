@@ -21,7 +21,7 @@ interface Props {
   readableResourceName?: string
   resource?: Resource
   resourceId?: number
-  resourceBaseUrl: string
+  resourceBaseUrl?: string
   showSuccessMessages?: boolean
   onSuccessfulSubmission?(response: object): void
   request?: Partial<Request>

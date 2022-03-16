@@ -10,24 +10,16 @@ type OwneProps = {
 export const IihtForm: React.FC<OwneProps> = ({ integration }) => (
   <>
     <Form.Item
-      name="baseApiUrl"
-      label={I18n.t('administration.integrations.modal.iiht.base_api_url')}
+      name="tenantId"
+      label={I18n.t('administration.integrations.modal.iiht.tenant_id')}
       rules={[{ required: true }]}
     >
       <Input />
     </Form.Item>
 
     <Form.Item
-      name="companyId"
-      label={I18n.t('administration.integrations.modal.iiht.company_id')}
-      rules={[{ required: true }]}
-    >
-      <Input />
-    </Form.Item>
-
-    <Form.Item
-      name="companyName"
-      label={I18n.t('administration.integrations.modal.iiht.company_name')}
+      name="tenancyName"
+      label={I18n.t('administration.integrations.modal.iiht.tenancy_name')}
       rules={[{ required: true }]}
     >
       <Input />

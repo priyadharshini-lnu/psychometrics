@@ -39,23 +39,34 @@ describe UsersResults::Reset do
     expect(described_class).to respond_to(:'call!').with_unlimited_arguments
   end
 
-  it "doesn't reset iiht assessment if number of allowed attempts is surpassed" do
+  it "doesn't call Iiht::UpdateAttempts for iiht assessment if number of allowed attempts is not surpassed" do
+    schedule_id = 123
     allow(user_assessment).to receive(:iiht?).and_return(true)
+    allow(user_assessment).to receive_message_chain(:iiht_user_assessment, :schedule_id).and_return(schedule_id)
     allow(Iiht::GetScores).to receive(:call!).and_return({
-      'attemptsSoFar' => 5,
-      'totalAttempts' => 5
+      'schedules' => [{
+        'scheduleId' => schedule_id,
+        'availedAttempts' => 2,
+        'maxAttempts' => 3
+      }]
     })
+    expect(Iiht::UpdateAttempts).to_not receive(:call!)
 
-    expect(subject[:error]).to eq(I18n.t('errors.messages.iiht_cannot_reset'))
-    expect(user_assessment.completed?).to eq(true)
+    subject
   end
 
-  it 'resets iiht assessment if number of allowed attempts is not surpassed' do
+  it 'calls Iiht::UpdateAttempts for iiht assessment if number of allowed attempts is surpassed' do
+    schedule_id = 123
     allow(user_assessment).to receive(:iiht?).and_return(true)
+    allow(user_assessment).to receive_message_chain(:iiht_user_assessment, :schedule_id).and_return(schedule_id)
     allow(Iiht::GetScores).to receive(:call!).and_return({
-      'attemptsSoFar' => 4,
-      'totalAttempts' => 5
+      'schedules' => [{
+        'scheduleId' => schedule_id,
+        'availedAttempts' => 3,
+        'maxAttempts' => 3
+      }]
     })
+    expect(Iiht::UpdateAttempts).to receive(:call!).with(user_assessment)
 
     expect(subject[:error]).to eq(nil)
     expect(user_assessment.not_started?).to eq(true)

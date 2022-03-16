@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class CampaignAssessmentsController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update attach_to_group]
+      before_action :set_resource, only: %i[update attach_to_group update_external_config]
       before_action :pundit_authorize
 
       def update
@@ -12,6 +12,16 @@ module Administration
         render json: resource,
          serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
          current_user: current_user
+      end
+
+      def update_external_config
+        resource.update(external_config: params.dig(:campaign_assessment, :external_config))
+        if resource.valid?
+          audit! :update, resource, payload: resource_params, campaign: resource.campaign
+          render json: resource, serializer: Administration::CampaignAssessmentSerializer
+        else
+          render json: { errors: resource.errors.messages }, status: 422
+        end
       end
 
       def attach_to_group

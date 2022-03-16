@@ -2677,21 +2677,25 @@ en:
         add: Add Integrations
       columns:
         active: Active
+        details: Details
         name: Integration Name
+      details:
+        webhookUrl: Webhook URL
       integrations: Integrations
       modal:
         iiht:
-          base_api_url: Base Api URL
-          company_id: Company ID
-          company_name: Company name
           password: Password
+          tenancy_name: Tenancy name
+          tenant_id: Tenant ID
           user: User
+          webhook_url: Webhook URL
         title: Add
       names:
         iiht: IIHT
       validations:
         iiht:
-          company_present: Company with this ID and name is already present in other project
+          tenancy_name_present: Tenancy name is already present in other project
+          tenant_id_present: Tenant id is already present in other project
     libraries:
       create:
         successfully: Item %{name} was successfully created.

@@ -142,7 +142,7 @@ class Assessment < ApplicationRecord
            to: :saville_assessment_setting, allow_nil: true
   delegate :pearson_norm_id, :pearson_assessment_id, :pearson_norms, :pearson_assessment_language,
            to: :pearson_assessment_setting, allow_nil: true
-  delegate :iiht_assessment_name, to: :iiht_assessment_setting, allow_nil: true
+  delegate :iiht_assessment_id_number, :iiht_schedule_config, to: :iiht_assessment_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
@@ -182,7 +182,7 @@ class Assessment < ApplicationRecord
     return hogan_assessment_id if hogan?
     return saville_assessment_id if saville?
     return pearson_assessment_id if pearson?
-    return iiht_assessment_name if iiht?
+    return iiht_assessment_id_number if iiht?
   end
 
   # Copy assessment with nested resources

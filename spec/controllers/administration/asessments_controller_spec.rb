@@ -48,20 +48,20 @@ RSpec.describe Administration::AssessmentsController, type: :controller do
       create(:integration, name: :iiht, active: true, project: project)
       expect(Iiht::GetAssessments).to receive(:call!).and_return(
         [
-          { 'testName' => 'test1' },
-          { 'testName' => 'test2' }
+          { 'assessmentIdNumber' => '1', 'name' => 'test1' },
+          { 'assessmentIdNumber' => '2', 'name' => 'test2' }
         ]
       )
 
       get :external_assessments, params: {
-        project_id: project.id, type: Assessment::TYPES[:iiht], external_assessment_id: 'test2'
+        project_id: project.id, type: Assessment::TYPES[:iiht], external_assessment_id: '2'
       }
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq(
         [
-          { 'id' => 'test1', 'name' => 'test1', 'selected' => false },
-          { 'id' => 'test2', 'name' => 'test2', 'selected' => true }
+          { 'id' => '1', 'name' => 'test1', 'selected' => false },
+          { 'id' => '2', 'name' => 'test2', 'selected' => true }
         ]
       )
     end

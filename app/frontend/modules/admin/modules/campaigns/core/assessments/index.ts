@@ -15,6 +15,7 @@ import {
   FETCH_NORMS, UPDATE_NORM,
   REMOVE, UPDATE_ASSESSOR_FORM,
   UPDATE_AVAILABLE_LOCALES,
+  UPDATE_EXTERNAL_CONFIG,
 } from './actions'
 
 const defaultState: State = {
@@ -55,7 +56,7 @@ type UpdateNormType = ApiActionResponse<{normName: string}>
 type UpdateAssessorForm = ApiActionResponse<{assessorFormName: string, assessorFormId: number | undefined}>
 type UpdateAvailableLocales = ApiActionResponse<{ availableLocales: string[] }>
 type RemoveType = ApiActionResponse<number>
-
+type updateExternalConfig = ApiActionResponse<Assessment>
 
 const updateAssessment = (state: State, { response }: ActivateUniversalLinkType) => (
   updateIn(state, 'list', list => list.map(a => (a.id === response.id ? response : a)))
@@ -69,6 +70,7 @@ const HANDLERS = {
   [ACTIVATE_UNIVERSAL_LINK]: updateAssessment,
   [DEACTIVATE_UNIVERSAL_LINK]: updateAssessment,
   [REGENERATE_UNIVERSAL_LINK]: updateAssessment,
+  [UPDATE_EXTERNAL_CONFIG]: updateAssessment,
   [FETCH_NORMS]: (state, { response, requestAction: { request } }: FetchNormsType) => {
     const assessments = state.list.map((assessment: Assessment) => {
       if (assessment.id !== request.body.id) return assessment

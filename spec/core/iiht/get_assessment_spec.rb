@@ -5,15 +5,15 @@ require 'rails_helper'
 describe Iiht::GetAssessments do
   it 'gets Iiht assessments details' do
     project = create(:project)
-    config = { 'base_api_url' => 'https://tte-iiht.com', 'company_id' => '123' }
+    config = { 'tenant_id' => '123' }
     allow(project).to receive(:iiht_config).and_return(config)
     allow(Iiht::GetAuthToken).to receive(:call!)
-    expected_response = [{ 'id' => 1, 'testName' => 'testName' }]
-    stub_request(:get, "#{config['base_api_url']}/testlistContent").
+    expected_response = [{ 'assessmentIdNumber' => 1, 'name' => 'testName', 'description' => 'description1' }]
+    stub_request(:get, "#{Settings.iiht.base_api_url}/GetAssessments").
       with(query: {
-        companyId: config['company_id']
+        tenantId: config['tenant_id']
       }).
-      to_return({ body: { 'data' => { 'tests' => expected_response } }.to_json })
+      to_return({ body: { 'result' => { 'assessments' => expected_response } }.to_json })
     response = described_class.call!(project)
 
     expect(response).to eq(expected_response)

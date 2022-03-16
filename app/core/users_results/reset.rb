@@ -11,10 +11,7 @@ module UsersResults
 
     def call
       transaction do
-        if user_assessment.iiht? && cannot_reset_iiht?
-          return broadcast :error, I18n.t('errors.messages.iiht_cannot_reset')
-        end
-
+        reset_iiht_assessment if user_assessment.iiht?
         remove_reports if user_assessment.completed?
         reset_user_result
         remove_media_responses
@@ -26,11 +23,14 @@ module UsersResults
 
     private
 
-    def cannot_reset_iiht?
+    def reset_iiht_assessment
       response = Iiht::GetScores.call!(user_assessment)
-      return true if response.blank?
+      schedule = response.dig('schedules')&.find do |s|
+        s['scheduleId'] == user_assessment.iiht_user_assessment.schedule_id
+      end
+      return if schedule.blank?
 
-      response['attemptsSoFar'] >= response['totalAttempts']
+      Iiht::UpdateAttempts.call!(user_assessment) if schedule['availedAttempts'] >= schedule['maxAttempts']
     end
 
     def reset_user_result

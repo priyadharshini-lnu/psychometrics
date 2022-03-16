@@ -145,6 +145,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         has_external_norm
         available_locales
         all_locales
+        external_config
       ]
     )
     expect(assessment_response).to include({

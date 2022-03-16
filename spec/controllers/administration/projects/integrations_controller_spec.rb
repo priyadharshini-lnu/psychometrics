@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe Administration::Projects::IntegrationsController, type: :controller do
+  include Rails.application.routes.url_helpers
+
   let(:current_user) { create(:superadmin) }
   let(:project) { create(:project) }
 
@@ -12,9 +14,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
     {
       name: 'iiht',
       active: true,
-      base_api_url: 'https://tte-iiht.com',
-      company_id: 'company_id',
-      company_name: 'company_name',
+      tenant_id: 'tenant_id',
+      tenancy_name: 'tenancy_name',
       user: 'user',
       password: 'password'
     }
@@ -31,6 +32,16 @@ describe Administration::Projects::IntegrationsController, type: :controller do
       integration = project.reload.integrations.iiht.first
       expected_response = integration.attributes.slice('id', 'name', 'active').merge(
         integration.config.except('password')
+      ).merge(
+        'details' => {
+          'webhook_url' => webhooks_iiht_url(
+            host: Settings.domain,
+            subdomain: Settings.subdomain,
+            protocol: Settings.protocol,
+            port: Settings.port,
+            project_id: project.id
+          )
+        }
       )
 
       expect(response.status).to eq(200)
@@ -55,31 +66,31 @@ describe Administration::Projects::IntegrationsController, type: :controller do
     end
 
     it 'updates integrations if params are valid' do
-      update_company_id = '12'
+      update_tenant_id = '12'
       put :update, params: {
         project_id: project.id,
         id: integration.id,
-        resource: valid_params.merge(company_id: update_company_id)
+        resource: valid_params.merge(tenant_id: update_tenant_id)
       }, format: :json
 
       parsed_response = JSON.parse(response.body)
 
       expect(response.status).to eq(200)
-      expect(parsed_response['company_id']).to eq(update_company_id)
-      expect(integration.reload.config['company_id']).to eq(update_company_id)
+      expect(parsed_response['tenant_id']).to eq(update_tenant_id)
+      expect(integration.reload.config['tenant_id']).to eq(update_tenant_id)
     end
 
     it "doesn't update integration if params are not valid" do
-      update_company_id = '12'
+      update_tenant_id = '12'
       put :update, params: {
         project_id: project.id,
         id: integration.id,
-        resource: valid_params.merge(company_id: update_company_id, company_name: '')
+        resource: valid_params.merge(tenant_id: update_tenant_id, tenancy_name: '')
       }, format: :json
 
       parsed_response = JSON.parse(response.body)
       expect(response.status).to eq(422)
-      expect(parsed_response).to eq({ 'errors' => { 'company_name' => ["can't be blank"] } })
+      expect(parsed_response).to eq({ 'errors' => { 'tenancy_name' => ["can't be blank"] } })
     end
   end
 

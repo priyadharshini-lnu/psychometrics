@@ -4,7 +4,10 @@ module Iiht
   class GetAuthToken < Base
     def call
       token = find_or_generate_token
-      raise "Unable to generate IIHT auth token for project with id #{project.id}" unless token
+      unless token
+        self.class.clear_token(project)
+        raise "Unable to generate IIHT auth token for project with id #{project.id}"
+      end
 
       broadcast :ok, token
     end
@@ -22,7 +25,7 @@ module Iiht
 
     def find_or_generate_token
       Rails.cache.fetch(self.class.cache_key(project), expires_in: 55.minutes) do
-        client = Faraday.new(config['base_api_url']) do |connection|
+        client = Faraday.new(Settings.iiht.token_api_url) do |connection|
           connection.request :url_encoded
           connection.adapter Faraday.default_adapter
 
@@ -31,13 +34,15 @@ module Iiht
         end
 
         response = client.post(
-          'authenticate',
-          config.slice(
-            'company_id', 'company_name', 'user', 'password'
-          ).deep_transform_keys! { |key| key.camelize(:lower) }.to_json
+          '',
+          {
+            userNameOrEmailAddress: config['user'],
+            password: config['password'],
+            tenancyName: config['tenancy_name']
+          }.to_json
         )
 
-        ::JSON.parse(response.body).dig('token')
+        ::JSON.parse(response.body).dig('accessToken')
       end
     end
   end

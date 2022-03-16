@@ -649,7 +649,8 @@ CREATE TABLE public.campaign_assessments (
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
     available_locales text[] DEFAULT '{}'::text[],
-    external_norm_id character varying
+    external_norm_id character varying,
+    external_config jsonb
 );
 
 
@@ -1765,9 +1766,10 @@ ALTER SEQUENCE public.hogan_report_settings_id_seq OWNED BY public.hogan_report_
 CREATE TABLE public.iiht_assessment_settings (
     id bigint NOT NULL,
     assessment_id bigint NOT NULL,
-    iiht_assessment_name character varying,
+    iiht_assessment_id_number character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    iiht_schedule_config jsonb
 );
 
 
@@ -1800,7 +1802,8 @@ CREATE TABLE public.iiht_user_assessments (
     number_of_attempts integer DEFAULT 0 NOT NULL,
     url character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    schedule_id integer
 );
 
 
@@ -3914,7 +3917,12 @@ CREATE TABLE public.user_assessments (
     completed_at timestamp without time zone,
     completion_reason integer,
     fixed_norm boolean DEFAULT false,
-    created_by_id integer
+    created_by_id integer,
+    reset_count integer DEFAULT 0,
+    expiry_date timestamp without time zone,
+    additional_time integer,
+    selected_locale character varying,
+    started_at timestamp without time zone
 );
 
 
@@ -9294,6 +9302,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
+('20220218102808'),
+('20220311084649'),
 ('20220311105318');
 
 

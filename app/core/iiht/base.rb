@@ -4,22 +4,20 @@ module Iiht
   class Base < BaseCommand
     retry_on Faraday::UnauthorizedError, Faraday::ForbiddenError
 
-    private_attr_reader :project
-
     def initialize(project)
       @project = project
     end
 
     def client
       token = Iiht::GetAuthToken.call!(project)
-      @client ||= Faraday.new(config['base_api_url']) do |connection|
+      @client ||= Faraday.new(Settings.iiht.base_api_url) do |connection|
         connection.request :url_encoded
         connection.adapter Faraday.default_adapter
         connection.use Faraday::Response::RaiseError
 
         connection.headers['Accept'] = 'application/json'
         connection.headers['Content-Type'] = 'application/json'
-        connection.headers['token'] = token
+        connection.headers['Authorization'] = "Bearer #{token}"
       end
     end
 
@@ -38,6 +36,10 @@ module Iiht
 
     def uniq_cache_key
       self.class.uniq_cache_key(project)
+    end
+
+    def project
+      @project || user_assessment.project
     end
   end
 end

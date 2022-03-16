@@ -2,6 +2,8 @@
 
 module Iiht
   class AddAssessment < Base
+    include Rails.application.routes.url_helpers
+
     private_attr_reader :user_assessment
 
     def initialize(user_assessment)
@@ -10,19 +12,56 @@ module Iiht
     end
 
     def call
-      user = user_assessment.user
-      response = client.get('testAndLearnerSpecificUrl',
-                            {
-                              email: user.email,
-                              learnerfirstName: user.first_name,
-                              learnerLastName: user.last_name,
-                              testName: user_assessment.assessment.iiht_assessment_name,
-                              companyId: config['company_id']
-                            })
-      url = ::JSON.parse(response.body).dig('data')
-      user_assessment.iiht_user_assessment.update!(url: url)
+      response = client.post(
+        'GetAssessmentURLAsync',
+        request_body.to_json
+      )
+      result = ::JSON.parse(response.body).dig('result')
+      unless result['isSuccess']
+        raise "IIHT::GetScores failed for UserAssessment: #{user_assessment.id}. Error: #{result['errorMessage']}"
+      end
+
+      user_assessment.iiht_user_assessment.update!(url: result['scheduleLink'], schedule_id: result['scheduleId'])
 
       broadcast :ok
+    end
+
+    private
+
+    def request_body
+      user = user_assessment.user
+      {
+        tenantId: config['tenant_id'],
+        assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+        userEmailAddress: user.email,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        resultShareMode: [3],
+        scheduleConfig: schedule_config
+      }
+    end
+
+    def schedule_config
+      schedule_config = user_assessment.assessment.iiht_schedule_config || {}
+      schedule_config = schedule_config.merge(user_assessment.campaign_assessment&.external_config || {})
+      schedule_config.merge(
+        externalScheduleConfigArgs: {
+          campaign_id: user_assessment.campaign_id,
+          assessment_id: user_assessment.assessment_id
+        }.to_json,
+        assessmentConfig: {
+          enableShuffling: true,
+          resultType: 4,
+          redirectURL: iiht_assessment_redirect_url(
+            host: Settings.domain,
+            subdomain: user_assessment.project.subdomain,
+            protocol: Settings.protocol,
+            port: Settings.port,
+            campaign_id: user_assessment.campaign_id,
+            assessment_id: user_assessment.assessment_id
+          )
+        }
+      )
     end
   end
 end

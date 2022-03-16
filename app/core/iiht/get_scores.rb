@@ -6,20 +6,26 @@ module Iiht
 
     def initialize(user_assessment)
       @user_assessment = user_assessment
-      @project = user_assessment.project
     end
 
     def call
-      response = client.get('getResultsForTestNew',
-                            {
-                              testName: user_assessment.assessment.iiht_assessment_name,
-                              learnerEmail: user_assessment.user.email,
-                              companyId: config['company_id']
-                            })
+      response = client.get('GetUserAssessmentResult', request_body)
+      result = ::JSON.parse(response.body).dig('result')
+      unless result['isSuccess']
+        raise "IIHT::GetScores failed for UserAssessment: #{user_assessment.id}. Error: #{result['errorMessage']}"
+      end
 
-      data = ::JSON.parse(response.body).dig('data')
+      broadcast :ok, result
+    end
 
-      broadcast :ok, data
+    private
+
+    def request_body
+      {
+        assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+        userEmailAddress: user_assessment.user.email,
+        tenantId: config['tenant_id']
+      }
     end
   end
 end

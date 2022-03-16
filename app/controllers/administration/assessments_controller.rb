@@ -181,8 +181,8 @@ class Administration::AssessmentsController < Administration::BaseController
     assessments = []
     if params[:type] == Assessment::TYPES[:iiht] && params[:project_id]
       assessments = Iiht::GetAssessments.call!(Client.find(params[:project_id])).map do |a|
-        id = a['testName']
-        { id: id, name: id, selected: params[:external_assessment_id] == id }
+        id = a['assessmentIdNumber']
+        { id: id, name: a['name'], selected: params[:external_assessment_id] == id }
       end
     elsif params[:type] == Assessment::TYPES[:pearson] && Rails.application.secrets.pearson[:base_api_url]
       assessments = Pearson::GetAssessments.call!.sort_by { |a| a['title'] }.map do |a|
@@ -222,7 +222,7 @@ class Administration::AssessmentsController < Administration::BaseController
       saville_assessment_setting_attributes:
       %i[id saville_assessment_id saville_norm_id],
       pearson_assessment_setting_attributes: %i[id pearson_assessment_id pearson_norm_id],
-      iiht_assessment_setting_attributes: %i[id iiht_assessment_name],
+      iiht_assessment_setting_attributes: %i[id iiht_assessment_id_number iiht_schedule_config],
       resources: %i[assessmentId questionId], options: {}
     )
   end

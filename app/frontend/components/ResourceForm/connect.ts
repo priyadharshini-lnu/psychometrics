@@ -8,13 +8,16 @@ const connecter = connect(
     resourceName, resourceBaseUrl, resource, resourceId, requestScope, mockRequest,
   }: OwnProps) => {
     const id = resourceId || (resource && resource.id) as number
-
-    return {
-      defaultRequest: {
+    let defaultRequest = {}
+    if (resourceBaseUrl) {
+      defaultRequest = {
         fetchResource: () => dispatch(fetch(requestScope, resourceName, resourceBaseUrl, id, mockRequest)),
         createResource: body => dispatch(create(requestScope, resourceName, resourceBaseUrl, body, mockRequest)),
         updateResource: body => dispatch(update(requestScope, resourceName, resourceBaseUrl, id, body, mockRequest)),
-      },
+      }
+    }
+    return {
+      defaultRequest,
     }
   },
 )

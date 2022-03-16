@@ -553,10 +553,18 @@ en:
         invalid_http_url: Invalid URL. Specify the complete url with http or https protocol in it.
         not_uniqueness: Assign has already been taken
       models:
+        campaign_assessment:
+          attributes:
+            external_config:
+              invalid: External Config should be a valid josn
         factors_norm:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from
           score_to_must_be_number: Score to must be number
+        iiht_assessment_setting:
+          attributes:
+            iiht_schedule_config:
+              invalid: IIHT Schedule config should be a valid josn
         license:
           attributes:
             used_number:
@@ -959,6 +967,9 @@ en:
         success_msg: Assessor Form successfully uploaded
         title: Update Assessor Form
         update: Update
+      update_external_config:
+        text_placeholder: External json config
+        title: Update External Config
       update_locales:
         select_locales: Select Locales
         success_msg: Locales successfully updated
