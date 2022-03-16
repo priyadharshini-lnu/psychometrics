@@ -78,13 +78,13 @@ export const fetchAssessorAssessments = (parsedCampaignId: number, userId: numbe
   },
 })
 
-export const fetchAssessorAssessment = (evaluationId: number, { edit, read }) => ({
+export const fetchAssessorAssessment = (evaluationId: number, { edit, read, lang }) => ({
   type: FETCH_ASSESSOR_ASSESSMENT,
   request: {
     method: 'get',
     url: `/assessors/evaluations/${evaluationId}`,
     camelize: false,
-    body: { edit, read },
+    body: { edit, read, lang },
   },
   evaluationId,
 })

@@ -83,12 +83,11 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
   end
 
   it '[POST] reset' do
-    expect(::UsersResults::Reset).to receive(:call!)
-
     post :reset, params: {
       id: user_assessment.id,
       new_campaign_id: campaign.id
     }
+
     parsed_response = JSON.parse(response.body)
     expect(parsed_response.dig('user_assessments', 0, 'id')).to eq(user_assessment.id)
     expect(parsed_response['id']).to eq(user.id)

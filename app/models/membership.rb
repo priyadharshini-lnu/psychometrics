@@ -20,7 +20,6 @@
 # already_invited        :boolean          default(FALSE)
 #
 
-# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
@@ -75,7 +74,6 @@ class Membership < ApplicationRecord
   validates :client_id, uniqueness: { scope: %i[user_id role campaign_id] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
   validate :relevant_role, if: -> { client.present? }
-  validate :client_admin_scope, if: -> { project_admin? }
 
   before_save :set_project_membership, if: -> { client.end_level? }
   after_create_commit :create_invitation_emails
@@ -254,14 +252,6 @@ class Membership < ApplicationRecord
     end
   end
 
-  def client_admin_scope
-    # user can be client admin only within one tenancy
-    tte_id = user.project_admin_clients_tte_ids.sample
-    return unless tte_id
-
-    errors.add(:base, :admin_for_another_tte) if client.tte_id != tte_id
-  end
-
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
@@ -269,5 +259,3 @@ class Membership < ApplicationRecord
     end
   end
 end
-
-# rubocop:enable Metrics/ClassLength

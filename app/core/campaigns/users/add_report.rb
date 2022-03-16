@@ -32,7 +32,7 @@ module Campaigns
 
       private
 
-      # rubocop:disable Metrics/PerceivedComplexity
+      # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
       def add_assessment_to_user(assessment, user_report)
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         user_assessment = UserAssessment.find_by(
@@ -63,6 +63,8 @@ module Campaigns
           user_assessment.create_saville_user_assessment(norm_id: user_assessment.applicable_external_norm_id)
         elsif assessment.pearson?
           user_assessment.create_pearson_user_assessment(norm_id: user_assessment.applicable_external_norm_id)
+        elsif assessment.iiht?
+          user_assessment.create_iiht_user_assessment
         end
 
         if assessment.hogan? && user.hogan_credential
@@ -71,7 +73,7 @@ module Campaigns
         end
         user_assessment
       end
-      # rubocop:enable Metrics/PerceivedComplexity
+      # rubocop:enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
       def existing_user_result_to_copy(assessment)
         return if options[:operation] == 'add_and_allow_new_response'

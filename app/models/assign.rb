@@ -99,7 +99,7 @@ class Assign < ApplicationRecord
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
   after_commit :update_membership_completed
 
-  delegate :project_membership, to: :membership
+  delegate :project_membership, to: :membership, allow_nil: true
   delegate :threesixty?, to: :assessment
 
   def real_status

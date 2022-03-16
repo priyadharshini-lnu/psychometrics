@@ -28,11 +28,13 @@ class Administration::AssessmentsController < Administration::BaseController
     @_resource.build_hogan_assessment_setting
     @_resource.build_saville_assessment_setting
     @_resource.build_pearson_assessment_setting
+    @_resource.build_iiht_assessment_setting
     @_resource.set_default_color
   end
 
   def create
     @_resource = resource_class.new(resource_params)
+    @_resource.build_iiht_assessment_setting if @_resource.iiht? && @_resource.iiht_assessment_setting.blank?
 
     if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
       resource.owner_id = current_user.client_admin_client_ids.first
@@ -76,6 +78,7 @@ class Administration::AssessmentsController < Administration::BaseController
     @_resource.build_hogan_assessment_setting if @_resource.hogan_assessment_setting.blank?
     @_resource.build_saville_assessment_setting if @_resource.saville_assessment_setting.blank?
     @_resource.build_pearson_assessment_setting if @_resource.pearson_assessment_setting.blank?
+    @_resource.build_iiht_assessment_setting if @_resource.iiht_assessment_setting.blank?
     add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
   end
 
@@ -86,6 +89,7 @@ class Administration::AssessmentsController < Administration::BaseController
         format.js
         format.json { render json: :ok }
       else
+        resource.build_iiht_assessment_setting if resource.iiht? && resource.iiht_assessment_setting.blank?
         format.js { render :edit }
         format.json { render json: :fail }
       end
@@ -163,6 +167,32 @@ class Administration::AssessmentsController < Administration::BaseController
     render json: norms
   end
 
+  def projects
+    projects = policy_scope(Client).roots.find(params[:owner_id]).projects
+    projects = projects.joins(:integrations).merge(Integration.iiht.active) if params[:type] == Assessment::TYPES[:iiht]
+    projects = projects.map do |project|
+      { id: project.id, name: project.name, selected: params[:project_id] == project.id.to_s }
+    end
+
+    render json: projects
+  end
+
+  def external_assessments
+    assessments = []
+    if params[:type] == Assessment::TYPES[:iiht] && params[:project_id]
+      assessments = Iiht::GetAssessments.call!(Client.find(params[:project_id])).map do |a|
+        id = a['assessmentIdNumber']
+        { id: id, name: a['name'], selected: params[:external_assessment_id] == id }
+      end
+    elsif params[:type] == Assessment::TYPES[:pearson] && Rails.application.secrets.pearson[:base_api_url]
+      assessments = Pearson::GetAssessments.call!.sort_by { |a| a['title'] }.map do |a|
+        { id: a['productId'], name: a['title'], selected: params[:external_assessment_id] == a['productId'] }
+      end
+    end
+
+    render json: assessments
+  end
+
   private
 
   def pundit_authorize
@@ -188,10 +218,11 @@ class Administration::AssessmentsController < Administration::BaseController
       :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
       :status, :icon, :icon_color, :remove_icon, :poster, :remove_poster,
       :enable_video_check, :enable_audio_check, :enable_network_check,
-      :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
+      :owner_id, :project_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
       saville_assessment_setting_attributes:
       %i[id saville_assessment_id saville_norm_id],
       pearson_assessment_setting_attributes: %i[id pearson_assessment_id pearson_norm_id],
+      iiht_assessment_setting_attributes: %i[id iiht_assessment_id_number iiht_schedule_config],
       resources: %i[assessmentId questionId], options: {}
     )
   end

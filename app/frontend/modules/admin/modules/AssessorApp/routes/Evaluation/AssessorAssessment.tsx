@@ -8,9 +8,12 @@ import { getProgress } from 'core/preview/FlowProcessor/selectors'
 import _ from 'lodash'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { useLocation } from 'react-router-dom'
+import Language from 'modules/user/modules/campaigns/components/Language'
+import cs from 'classnames'
 import styles from './styles.scss'
 import { fetchAssessorAssessment, getAssessorForm, getCurrentAssessorForm } from '../../core/evaluation'
 
+const { I18n } = window
 const { Content } = Layout
 
 const connecter = connect((state: RootState, props: {userAssessmentId: number}) => ({
@@ -44,9 +47,10 @@ const AssessorAssessment: React.FC<Props> = ({
   const params = new URLSearchParams(search)
   const edit = params.get('edit')
   const read = params.get('read')
+  const lang = params.get('lang')
   useEffect(() => {
     if (+currentAssessorFormId === userAssessmentId) {
-      fetch(userAssessmentId, { edit: edit === 'true', read: read === 'true' })
+      fetch(userAssessmentId, { edit: edit === 'true', read: read === 'true', lang })
     }
     if (edit === 'true') {
       history.replaceState(null, '', location.href.replace('edit=true', 'edit=false'))
@@ -55,6 +59,9 @@ const AssessorAssessment: React.FC<Props> = ({
 
   const bodyStyles = { padding: 0 }
   const loaded = !!assessorForm
+  if (assessorForm?.result?.selected_locale?.code === 'ar') {
+    I18n.uiLocale = assessorForm.result.selected_locale.code
+  }
 
   return (
     <Card
@@ -67,9 +74,15 @@ const AssessorAssessment: React.FC<Props> = ({
       extra={[
         enableProgress
           && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
+        loaded && (
+          <Language
+            selectedLanguage={assessorForm.result.selected_locale}
+            availableTranslations={assessorForm.result.available_translations}
+          />
+        ),
       ]}
     >
-      <Content className="fluid-container">
+      <Content className={cs('fluid-container', assessorForm?.result?.selected_locale?.code === 'ar' ? 'rtl' : 'ltr')}>
         {loaded && (
           <AssessmentContainer
             id="pass_assessment"
@@ -80,6 +93,8 @@ const AssessorAssessment: React.FC<Props> = ({
             dashboardUrl={`/assessors/campaigns/${_.get(assessorForm, ['result', 'campaign_id'])}/users`}
             resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${_.get(assessorForm, ['result', 'id'])}`}
             rstore={store}
+            selectedLocale={assessorForm.result.selected_locale.code}
+            locales={assessorForm.result.translations}
             showScoringOnEndPage
             showQuestionScoring
           />

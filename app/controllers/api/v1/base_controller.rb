@@ -3,11 +3,16 @@
 module Api
   module V1
     class BaseController < ActionController::Base
+      include Pundit
+
       before_action :auth
+      before_action :ensure_project
+      before_action :pundit_authorize
       skip_before_action :verify_authenticity_token
       prepend AuditLogModule::ControllerHelper
 
       rescue_from Api::Errors::ApiError, with: :render_error
+      rescue_from Pundit::NotAuthorizedError, with: :render_not_authorized_error
 
       def auth
         @api_key      = fetch_api_key
@@ -22,7 +27,7 @@ module Api
         @user ||=
           begin
             user_id = params[:user_id] || params[:id]
-            u       = ::Users::Regular.find_by(project_id: params[:project_id], id: user_id)
+            u       = ::Users::Regular.find_by(project_id: project.id, id: user_id)
             raise Api::Errors::ResourceNotFound, "User with id=#{user_id} was not found" unless u
 
             u
@@ -30,24 +35,17 @@ module Api
       end
 
       def project
-        @project ||=
-          begin
-            p =
-              if current_user.superadmin?
-                Client.projects.find_by(id: params[:project_id] || params[:id])
-              else
-                memberships = current_user.memberships
-                project_ids = memberships.select(&:project_admin?).map(&:client_id)
-                client_ids  = memberships.select(&:client_admin?).map(&:client_id)
-                Client.projects.
-                  where.
-                  has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id] || params[:id])
-              end
+        @project ||= policy_scope(
+          Client, policy_scope_class: Administration::ClientPolicy::Scope
+        ).find_by(id: project_id)
+      end
 
-            raise Api::Errors::ResourceNotFound, "Project with id=#{params[:project_id]} was not found" unless p
+      def ensure_project
+        project || raise(Api::Errors::ResourceNotFound, "Project with id=#{project_id} was not found")
+      end
 
-            p
-          end
+      def project_id
+        params[:project_id] || params[:id]
       end
 
       def project_membership
@@ -59,6 +57,11 @@ module Api
       end
 
       def render_error(e)
+        render json: { code: e.code, message: e.message, more_info: e.more_info, meta: e.meta }, status: e.status
+      end
+
+      def render_not_authorized_error
+        e = Api::Errors::Unauthorized.new
         render json: { code: e.code, message: e.message, more_info: e.more_info, meta: e.meta }, status: e.status
       end
 

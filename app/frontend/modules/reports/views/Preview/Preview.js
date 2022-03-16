@@ -18,12 +18,17 @@ export class Preview extends Component {
   render () {
     const { localeDirection, loaded } = this.props
     if (!loaded) { return null }
+    const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
     return (
       <div style={{ position: 'relative' }} className={localeDirection}>
-        {PageList.list.map((page, i) => {
-          if (!(LogicResolver.run(page.displayLogic))) { return null }
-          return <Page model={page} key={i} />
-        })}
+        {visiblePages.map((page, i) => (
+          <Page
+            model={page}
+            key={i}
+            pageNumber={i + 1}
+            totalPages={visiblePages.length}
+          />
+        ))}
       </div>
     )
   }

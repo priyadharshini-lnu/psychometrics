@@ -156,6 +156,7 @@ en:
           assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
+          iiht: IIHT
           mindmill: Mindmill
           organisational: Org Surveys
           pearson: Pearson
@@ -176,6 +177,7 @@ en:
             assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
+            iiht: IIHT
             mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
@@ -375,6 +377,7 @@ en:
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
+      clientAdmins: Client Admins
       client_admins: Client Admins
       clients: Client Tenancies
       communication_center: Communication Center
@@ -671,6 +674,7 @@ en:
             assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
+            iiht: IIHT
             mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
@@ -691,6 +695,7 @@ en:
               assessor_form: Assessor Form
               case_study: Case Studies
               hogan: Hogan
+              iiht: IIHT
               mindmill: Mindmill
               organisational: Org Surveys
               pearson: Pearson
@@ -2667,6 +2672,30 @@ en:
         title: Factor's options
       toggle_status:
         successfully: Factor was successfully updated.
+    integrations:
+      actions:
+        add: Add Integrations
+      columns:
+        active: Active
+        details: Details
+        name: Integration Name
+      details:
+        webhookUrl: Webhook URL
+      integrations: Integrations
+      modal:
+        iiht:
+          password: Password
+          tenancy_name: Tenancy name
+          tenant_id: Tenant ID
+          user: User
+          webhook_url: Webhook URL
+        title: Add
+      names:
+        iiht: IIHT
+      validations:
+        iiht:
+          tenancy_name_present: Tenancy name is already present in other project
+          tenant_id_present: Tenant id is already present in other project
     libraries:
       create:
         successfully: Item %{name} was successfully created.
@@ -3027,6 +3056,10 @@ en:
       save: Save
       search_user: Search user
       send_email: Send email
+    project_tabs:
+      design: Design
+      general: General
+      webhooks: Webhooks
     project_users:
       cancel: Cancel
       change_password: Change password
@@ -3056,6 +3089,42 @@ en:
       save: Save
       search_accessor: Search accessors
       send_email: Send email
+    projects:
+      addProject: Add Project
+      design_settings:
+        background_label: Background
+        bg_upload: Upload
+        client_logo_label: Client Logo
+        color_label: Color
+        image_label: Image
+        logo_upload: Upload
+        position_center: Center
+        position_label: Login Box Position
+        position_left: Left
+        position_right: Right
+        sec_logo_label: Secondary Logo
+        sec_logo_upload: Upload
+      general_settings:
+        2fa: Enable Two factor authentication
+        dp_consent: Enable Data Processing consent
+        live_chat: Enable Live Chat
+        locales_label: Locales
+        name_label: Name
+        password: Enable Strong password
+        privacy_link: Enable Privacy Link
+        project_number_label: Project Number
+        save_changes: Save Changes
+        sub_domain_label: Sub Domain
+      webhook_settings:
+        add: Add Webhook
+        column_active: Active
+        column_description: Description
+        column_manage: Manage
+        column_status: Status
+        column_url: URL
+        delete: Delete
+        edit: Edit
+        search: Search Webhoook
     psychometrics: Psychometrics
     questions:
       copy:
@@ -3254,14 +3323,17 @@ en:
         copied: Copied %{element}
         issuer: Entity Id/Issuer
         title: Configure Idp with following info
+      design: Design
       enabled: Enabled
       enforced: Enforce SAML
       entity_id: Entity ID/Issuer
+      general: General
       saml: SAML
       saml_setting: SAML Setting
       sso_service_url: SSO Service Url
       successfully_saved_msg: SAML Setting saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
       verify_and_save: Verify & Save Setting
+      webhooks: Webhooks
     save: Save
     search: Search
     show: Show
@@ -3688,6 +3760,9 @@ en:
             toggle_status:
               body: "<p>Are you sure you want to %{status} this Membership?</p>\n"
               title: "<strong>%{status}</strong> %{name}'s Membership?"
+          toggle_enable_2fa:
+            body: "<p>Are you sure you want to %{status} 2FA for %{name}?</p>\n"
+            title: "<strong>%{status}</strong> 2FA"
           toggle_status:
             body: "<p>Are you sure you want to %{status} this User?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
@@ -3714,6 +3789,10 @@ en:
         title: User's options
       spoof:
         successfully: You was successfully login as %{name}
+      toggle_enable_2fa:
+        disable: Disable 2FA
+        enable: Enable 2FA
+        successfully: User %{name} was successfully updated.
       toggle_status:
         successfully: User %{name} was successfully updated.
       update:

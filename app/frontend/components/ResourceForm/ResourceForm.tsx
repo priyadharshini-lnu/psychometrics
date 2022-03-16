@@ -27,7 +27,7 @@ interface Request {
 
 export type OwnProps = {
   resourceName: string
-  resourceBaseUrl: string,
+  resourceBaseUrl?: string,
   readableResourceName?: string
   requestScope?: string
   resource?: Resource

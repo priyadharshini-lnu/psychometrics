@@ -66,10 +66,10 @@ class Client < ApplicationRecord
   has_one :retail_user, class_name: 'User'
   has_one :smtp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
-  has_many :memberships # on delete cascade
+  has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
+  has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
   has_many :end_users, class_name: 'User', foreign_key: :project_id
-  has_many :assigns, through: :memberships, source: :assigns
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
            source: :membership,
            class_name: 'Membership'
@@ -103,17 +103,23 @@ class Client < ApplicationRecord
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) },
            foreign_key: :tte_id, class_name: 'Client'
   has_many :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) },
-           foreign_key: :tte_id, class_name: 'Client'
+           foreign_key: :tte_id, class_name: 'Client', dependent: :destroy
   has_many :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) },
-           foreign_key: :tte_id, class_name: 'Client'
-  has_many :project_campaigns, class_name: 'Campaign', foreign_key: :project_id
-  has_many :sms_invites, through: :project_campaigns
+           foreign_key: :tte_id, class_name: 'Client', dependent: :destroy
+  has_many :project_campaigns, class_name: 'Campaign', foreign_key: :project_id, dependent: :destroy
+  has_many :sms_invites, through: :project_campaigns, dependent: :destroy
 
   has_many :norms
   has_many :dimensions
-  has_one :webhook_subscription, class_name: 'WebhookSystem::Subscription', foreign_key: :project_id
-  has_many :registration_codes, class_name: 'RegistrationCode', foreign_key: :end_level_id, inverse_of: :end_level
-  has_many :project_registration_codes, class_name: 'RegistrationCode', foreign_key: :project_id, inverse_of: :project
+
+  has_one :webhook_subscription, class_name: 'WebhookSystem::Subscription', foreign_key: :project_id,
+          dependent: :destroy
+  has_many :registration_codes, class_name: 'RegistrationCode', foreign_key: :end_level_id, inverse_of: :end_level,
+           dependent: :destroy
+  has_many :project_registration_codes, class_name: 'RegistrationCode', foreign_key: :project_id, inverse_of: :project,
+           dependent: :destroy
+  has_many :project_users, class_name: 'User', foreign_key: 'project_id', dependent: :destroy
+  has_many :integrations, dependent: :destroy, foreign_key: :project_id
 
   # TODO: use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
@@ -192,6 +198,10 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
+
+  def iiht_config
+    integrations.iiht.first.iiht_config
+  end
 
   def saml_setting
     super || build_saml_setting

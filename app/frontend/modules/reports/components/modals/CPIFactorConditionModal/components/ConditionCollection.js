@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import cs from 'classnames'
+
 import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionList from './ConditionList'
@@ -22,6 +24,10 @@ export class ConditionCollection extends Component {
     const { model } = this.props
     model[type] = text
     this.forceUpdate()
+  }
+
+  changeTitle = (e) => {
+    this.changeText('title', e.currentTarget.value)
   }
 
   changeDescription = (e) => {
@@ -46,6 +52,10 @@ export class ConditionCollection extends Component {
 
   changeLabel = (e) => {
     this.changeText('label', e.currentTarget.value)
+  }
+
+  changeBaselineScore = (e) => {
+    this.changeText('baselineScore', e.currentTarget.value)
   }
 
   changeColor = (color) => {
@@ -94,6 +104,14 @@ export class ConditionCollection extends Component {
       <div className={styles.filterContainer}>
         {this.renderConditions()}
         Then show the following text:
+        <div>
+          <strong>Title</strong>
+          <input
+            className="form-control"
+            value={model.title || ''}
+            onChange={this.changeTitle}
+          />
+        </div>
         <div>
           <strong>Description</strong>
           <textarea
@@ -150,6 +168,15 @@ export class ConditionCollection extends Component {
             className="form-control"
             value={model.label || ''}
             onChange={this.changeLabel}
+          />
+        </div>
+        <div>
+          <strong>Baseline Score</strong>
+          <input
+            type="number"
+            className={cs('form-control', styles.smallInput)}
+            value={model.baselineScore || ''}
+            onChange={this.changeBaselineScore}
           />
         </div>
         <div style={{ position: 'relative' }}>

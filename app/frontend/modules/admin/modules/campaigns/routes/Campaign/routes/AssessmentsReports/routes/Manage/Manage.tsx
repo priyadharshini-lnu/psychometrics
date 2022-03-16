@@ -18,6 +18,7 @@ import UpdateAssessorFormModal from './UpdateAssessorFormModal'
 import ImportScoringModal from './ImportScoringModal'
 import RemoveReportModal from './RemoveReportModal'
 import RemoveAssessmentModal from './RemoveAssessmentModal'
+import { UpdateExternalConfigModal } from './AssessmentList/UpdateExternalConfigModal'
 import ToggleUserAccessModal from './ToggleUserAccessModal'
 import UpdateLocalesModal from './UpdateLocalesModal'
 import { PropsFromRedux } from './connect'
@@ -34,6 +35,7 @@ const MODALS = {
   ToggleUserAccessModal,
   RemoveAssessmentModal,
   UpdateLocalesModal,
+  UpdateExternalConfigModal,
 }
 
 const { I18n } = window

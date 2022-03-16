@@ -37,9 +37,15 @@ module Administration
       end
 
       def reset
-        ::UsersResults::Reset.call!(resource)
-
-        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+        ::UsersResults::Reset.call(resource) do
+          on(:ok) do
+            return render json: resource.user, serializer: Administration::UserDetailSerializer,
+              campaign: resource.campaign
+          end
+          on(:error) do |error|
+            return render json: { errors: error }, status: 422
+          end
+        end
       end
 
       def allow_edit

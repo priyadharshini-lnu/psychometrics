@@ -11,6 +11,9 @@ react_dev:
 privacy_url: <%= ENV.fetch('PRIVACY_URL', 'https://thetalententerprise.com/privacy-statement/') %>
 terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-service/') %>
 short_url_host: <%= ENV.fetch('SHORT_URL_HOST', nil) %>
+iiht:
+  token_api_url: <%= ENV.fetch('IIHT_TOKEN_API_URL', nil) %>
+  base_api_url: <%= ENV.fetch('IIHT_BASE_API_URL', nil) %>
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
@@ -26,6 +29,7 @@ features:
   zip_s3_files_lambda: <%= ENV.fetch('ZIP_S3_FILES_LAMBDA_ENABLED', 'false') == 'true' %>
   smtp_enabled: <%= ENV.fetch('SMTP_ENABLED', 'false') == 'true' %>
   webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
+  react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:

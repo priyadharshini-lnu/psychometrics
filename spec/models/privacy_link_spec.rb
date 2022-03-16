@@ -22,7 +22,9 @@ RSpec.describe PrivacyLink, type: :model do
       privacy_link = build(:privacy_link, link: 'ftp://cc.com')
       expect(privacy_link.valid?).to eq(false)
 
-      expect(privacy_link.errors[:link]).to include('invalid url')
+      expect(privacy_link.errors[:link]).to include(
+        'Invalid URL. Specify the complete url with http or https protocol in it.'
+      )
     end
 
     it 'disallows invalid url' do
@@ -37,7 +39,9 @@ RSpec.describe PrivacyLink, type: :model do
       privacy_link = build(:privacy_link, link: 'cc.com')
       expect(privacy_link.valid?).to eq(false)
 
-      expect(privacy_link.errors[:link]).to include('invalid url')
+      expect(privacy_link.errors[:link]).to include(
+        'Invalid URL. Specify the complete url with http or https protocol in it.'
+      )
     end
 
     it 'allows url with http/https in url' do

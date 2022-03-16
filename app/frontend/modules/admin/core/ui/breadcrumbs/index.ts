@@ -9,6 +9,7 @@ export interface Request {
   data: {
     campaignId?: number
     projectId?: number
+    clientId?: number
   }
 }
 

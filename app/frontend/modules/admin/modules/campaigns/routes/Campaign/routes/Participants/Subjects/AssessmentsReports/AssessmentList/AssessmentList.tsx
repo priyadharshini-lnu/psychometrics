@@ -159,10 +159,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       content: I18n.t('campaign_assessment.modals.reset.content'),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
-      onOk: () => {
-        reset(campaignId, assessment.id).then(() => {
+      onOk: async () => {
+        try {
+          await reset(campaignId, assessment.id)
           message.success(I18n.t('campaign_assessment.modals.reset.successfully'))
-        })
+        } catch (error) {
+          message.error(error, 5)
+        }
       },
     })
   }

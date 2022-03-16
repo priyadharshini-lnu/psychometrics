@@ -123,6 +123,10 @@ en:
             to_email:
               blank: Email field can't be blank
               invalid: Email is invalid
+        iiht:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project
         import_one:
           attributes:
             email:
@@ -170,9 +174,6 @@ en:
             sms_invite_code:
               invalid: SMS Invite code is invalid
         saml_setting:
-          attributes:
-            after_signout_url:
-              invalid_http_url: Invalid URL. Specify the complete url with http or https protocol in it.
           invalid_cert: Invalid certificate
         sms_invites_create:
           attributes:
@@ -240,6 +241,7 @@ en:
           assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
+          iiht: IIHT
           mindmill: Mindmill
           organisational: Surveys
           pearson: Pearson
@@ -256,6 +258,7 @@ en:
         types:
           common: TTE Assessment
           hogan: Hogan
+          iiht: IIHT Assessment
           mindmill: Mindmill Assessment
           pearson: Pearson Assessment
           saville: Saville Assessment
@@ -492,6 +495,7 @@ en:
           case_study: Case study
           client_admin: Client Admin
           hogan: Hogan
+          iiht: IIHT
           manager: Manager
           member: User
           mindmill: Mindmill
@@ -546,16 +550,21 @@ en:
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte
+        invalid_http_url: Invalid URL. Specify the complete url with http or https protocol in it.
         not_uniqueness: Assign has already been taken
       models:
-        client:
+        campaign_assessment:
           attributes:
-            webhook:
-              invalid_http_url: Invalid url
+            external_config:
+              invalid: External Config should be a valid josn
         factors_norm:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from
           score_to_must_be_number: Score to must be number
+        iiht_assessment_setting:
+          attributes:
+            iiht_schedule_config:
+              invalid: IIHT Schedule config should be a valid josn
         license:
           attributes:
             used_number:
@@ -565,10 +574,6 @@ en:
           attributes:
             base:
               max_takes_limit_reached: Limit reached for maximum takes
-        privacy_link:
-          attributes:
-            link:
-              invalid_http_url: invalid url
         report:
           assessments_not_hogan: All Assessments must be Hogan type
           assessments_not_saville: All Assessment must be a Saville type
@@ -962,6 +967,9 @@ en:
         success_msg: Assessor Form successfully uploaded
         title: Update Assessor Form
         update: Update
+      update_external_config:
+        text_placeholder: External json config
+        title: Update External Config
       update_locales:
         select_locales: Select Locales
         success_msg: Locales successfully updated
@@ -1133,6 +1141,7 @@ en:
       campaigns: Campaigns
       completion_statuses: Completion Statuses
       datasheet: Datasheet
+      projects: Projects
       report: Report
       reports: Reports
       sms_invite: SMS Invite
@@ -1418,6 +1427,7 @@ en:
       carrierwave_direct_filename_invalid: ''
       confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
       expired: has expired, please request a new one
+      iiht_cannot_reset: This assessment can't be reset as maximum reset count has been reached.
       not_found: not found
       not_locked: was not locked
       not_saved:

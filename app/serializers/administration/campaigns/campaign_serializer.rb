@@ -39,7 +39,13 @@ module Administration
           [
             'edit',
             'copy',
-            %w[delete destroy]
+            %w[delete destroy],
+            'manage_campaign_admins',
+            %w[manage_options update_campaign_options],
+            'manage_campaigns',
+            'view_registration_codes',
+            'view_datasheets',
+            'view_sms_invites'
           ],
           {
             project_id: project.id,

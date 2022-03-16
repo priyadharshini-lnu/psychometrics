@@ -175,6 +175,29 @@ class UserDecorator < BaseDecorator
     }.to_json
   end
 
+  def toggle_enable_2fa_confirmation
+    status = object.enable_2fa? ? I18n.t('administration.disable') : I18n.t('administration.enable')
+    {
+      title: I18n.t(
+        'administration.users.resource.confirmations.toggle_enable_2fa.title',
+        status: status
+      ),
+      body: I18n.t(
+        'administration.users.resource.confirmations.toggle_enable_2fa.body',
+        name: html_escaped_display_name,
+        status: status.downcase
+      )
+    }.to_json
+  end
+
+  def toggle_enable_2fa_text
+    if object.enable_2fa?
+      I18n.t('administration.users.toggle_enable_2fa.disable')
+    else
+      I18n.t('administration.users.toggle_enable_2fa.enable')
+    end
+  end
+
   def self.export_headers
     I18n.with_locale(I18n.default_locale) do
       [

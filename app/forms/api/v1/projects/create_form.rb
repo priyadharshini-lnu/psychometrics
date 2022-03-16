@@ -6,7 +6,8 @@ module Api
       class CreateForm < UpdateForm
         attribute :client_id, Integer
 
-        validates :name, :subdomain, :data_processing_consent, :client_id, presence: true
+        validates :name, :subdomain, :client_id, presence: true
+        validates :data_processing_consent, inclusion: [true, false]
 
         validate :client_exists
 
