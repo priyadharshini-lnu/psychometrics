@@ -165,7 +165,7 @@ gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag-api', '~> 2.3.0'
+gem 'rswag-api', '~> 2.5.1'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
