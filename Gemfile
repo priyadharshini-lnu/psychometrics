@@ -82,7 +82,7 @@ gem 'draper',                     '~> 3.0.0'
 gem 'config',                     '~> 2.2.1'
 gem 'figaro',                     '~> 1.2.0'
 
-gem 'premailer-rails', '~> 1.10.3'
+gem 'premailer-rails', '~> 1.11.1'
 
 ### XLS import
 gem 'file_validators',            '~> 3.0.0'
