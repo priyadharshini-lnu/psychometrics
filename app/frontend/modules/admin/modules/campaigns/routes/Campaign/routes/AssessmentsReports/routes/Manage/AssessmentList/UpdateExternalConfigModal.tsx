@@ -31,7 +31,7 @@ export const UpdateExternalConfigModal: React.FC<Props> = ({
       }
     }
     request={{
-      updateResource: values => updateExternalConfig(campaignId, assessment.id, values),
+      updateResource: values => updateExternalConfig(campaignId, assessment.campaignAssessmentId, values),
     }}
     showSuccessMessages
     close={close}

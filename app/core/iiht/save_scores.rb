@@ -14,6 +14,7 @@ module Iiht
         s['scheduleId'] == user_assessment.iiht_user_assessment.schedule_id
       end
       user_assessment.users_result.update(external_results: schedule['attempts'].last)
+      ::UsersResults::GenerateReports.call(user_assessment.users_result, user_assessment.user)
 
       broadcast :ok
     end
