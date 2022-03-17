@@ -39,6 +39,7 @@ blocks:
     task:
       secrets:
         - name: tte-lighthouse
+        - name: heroku-http
       jobs:
         - name: Deploy to develop
           commands:
@@ -72,10 +73,6 @@ blocks:
               echo "No need to compile assets. Asset fetched from cache."
             fi
           - 'WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile'
-          - ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
-          - chmod 600 ~/.ssh/id_rsa_semaphore_heroku
-          - ssh-add ~/.ssh/id_rsa_semaphore_heroku
-          - git config --global url.ssh://git@heroku.com/.insteadOf https://git.heroku.com/
           - git remote add heroku $HEROKU_REMOTE
           - git config --global user.email "shuja@shabandri.com"
           - git config --global user.name "Shuja Shabandri"
