@@ -113,6 +113,7 @@ export default function InstructionList ({
               type={selectedTemplate.name}
               content={selectedLeftLocale.content || ''}
               handleContentChange={(value) => { update(selectedTemplate.id, 'content', value, leftLocale) }}
+              withPipedText
             />
             {rightLocale && (
             <div className={styles.comparisonBody}>

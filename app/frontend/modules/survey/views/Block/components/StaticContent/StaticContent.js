@@ -64,6 +64,7 @@ export default function StaticContent (props) {
           content={model.props.staticContent.value}
           handleContentChange={handleContentChange}
           className={styles.editor}
+          withPipedText
         />
         <PropertyPanel {...props} />
       </div>
