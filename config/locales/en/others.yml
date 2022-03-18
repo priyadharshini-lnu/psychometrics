@@ -1742,6 +1742,7 @@ en:
           graphSubType: Graph Subtype
           graphTypeHorizontal: Horizontal
           graphTypeVertical: Vertical
+          hideEmptyColumns: Hide Empty Columns
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines

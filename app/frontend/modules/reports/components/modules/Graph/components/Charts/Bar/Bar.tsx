@@ -6,6 +6,7 @@ import CustomEvents from 'highcharts-custom-events'
 
 import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
 import { SourceModel } from 'modules/reports/interfaces/graphs/Base'
+import Utils from 'modules/reports/utils/Utils'
 import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
@@ -61,6 +62,15 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
     changeLabel(model, labelObj.value, collectionName)
   }
 
+  const checkAndFilterEmptyValues = (results) => {
+    if (model.props.hideEmptyColumns === true) {
+      results.forEach((result) => {
+        result.data = Utils.filterItemsWithEmptyValues(result.data, 'y')
+      })
+    }
+    return results
+  }
+
   const renderChart = () => {
     if (chartRef.current) {
       chartRef.current.destroy()
@@ -79,7 +89,9 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
     if (!data) {
       return null
     }
-    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat)
+    const series = checkAndFilterEmptyValues(
+      data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat),
+    )
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
     if (!series.length) {
       return null
