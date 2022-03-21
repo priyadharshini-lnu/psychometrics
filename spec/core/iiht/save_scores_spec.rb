@@ -12,8 +12,20 @@ describe Iiht::SaveScores do
   let(:scores) do
     {
       'isSuccess' => true,
-      'schedules' => [{ 'attempts' => [{ 'number' => 1, 'score' => 1 }, { 'number' => 2, 'score' => 3 }] }]
+      'schedules' => [{
+        'attempts' => [
+          { 'number' => 1, 'score' => 1, 'actualEnd' => '2022-02-09 10:04:24' },
+          { 'number' => 2, 'score' => 3, 'actualEnd' => '2022-03-14 12:04:34' }
+        ]
+      }]
     }
+  end
+
+  it 'saves actualEnd from last attempt as completed_at' do
+    described_class.call!(user_assessment, scores)
+    completed_at = scores.dig('schedules', 0, 'attempts', 1, 'actualEnd').in_time_zone('UTC')
+
+    expect(user_assessment.completed_at).to eq(completed_at)
   end
 
   it 'saves last attempts from the passed scores' do
