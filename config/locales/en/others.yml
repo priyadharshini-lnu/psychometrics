@@ -1746,7 +1746,7 @@ en:
       graph:
         properties:
           barWeight: Bar Weight
-          dataFormat: Data Fromat
+          dataFormat: Data Format
           graphOption3D: 3D
           graphOptionStandard: Standard
           graphSubType: Graph Subtype
