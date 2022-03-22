@@ -73,4 +73,11 @@ export default {
     }
     return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
   },
+
+  filterItemsWithEmptyValues (records, key) {
+    return records.filter((record) => {
+      const value = record[key]
+      return !(isNaN(value) || value === 0 || value === null || value === '')
+    })
+  },
 }
