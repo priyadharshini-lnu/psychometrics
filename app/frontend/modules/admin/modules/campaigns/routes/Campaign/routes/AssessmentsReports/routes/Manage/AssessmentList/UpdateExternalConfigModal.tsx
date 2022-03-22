@@ -20,7 +20,7 @@ export const UpdateExternalConfigModal: React.FC<Props> = ({
   close, campaignId, assessment, updateExternalConfig,
 }) => (
   <ResourceFormModal
-    title={I18n.t('campaign_assessment.modals.remove.title')}
+    title={I18n.t('campaign_assessment.modals.update_external_config.title')}
     resourceName="campaignAssessment"
     readableResourceName="External Config"
     requestScope="campaignAssessment"
@@ -31,7 +31,7 @@ export const UpdateExternalConfigModal: React.FC<Props> = ({
       }
     }
     request={{
-      updateResource: values => updateExternalConfig(campaignId, assessment.id, values),
+      updateResource: values => updateExternalConfig(campaignId, assessment.campaignAssessmentId, values),
     }}
     showSuccessMessages
     close={close}

@@ -82,7 +82,7 @@ gem 'draper',                     '~> 3.0.0'
 gem 'config',                     '~> 2.2.1'
 gem 'figaro',                     '~> 1.2.0'
 
-gem 'premailer-rails', '~> 1.10.3'
+gem 'premailer-rails', '~> 1.11.1'
 
 ### XLS import
 gem 'file_validators',            '~> 3.0.0'
@@ -165,7 +165,7 @@ gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag-api', '~> 2.3.0'
+gem 'rswag-api', '~> 2.5.1'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 

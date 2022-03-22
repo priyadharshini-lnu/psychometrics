@@ -25,5 +25,6 @@ export default interface Assessment {
     rescoreResponses: boolean
     updateExternalConfig: boolean
   },
-  externalConfig: object
+  externalConfig: object,
+  campaignAssessmentId: number
 }
