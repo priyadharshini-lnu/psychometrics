@@ -3,7 +3,7 @@ tr id=dom_id(resource)
   td
     - if resource.campaign&.threesixty?
       =link_to(resource.campaign.name, administration_client_project_threesixty_campaign_path(client, resource.campaign.project, resource.campaign.threesixty_campaign))
-    - if resource.campaign&.common?
+    - elsif resource.campaign&.common?
       =link_to(resource.campaign.name, administration_project_new_campaign_path(resource.campaign.project, resource.campaign))
     - else
       = resource.extras['campaign_name']
