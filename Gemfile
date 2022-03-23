@@ -215,7 +215,7 @@ group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.35.3'
   gem 'capybara-screenshot', '~> 1.0.24'
-  gem 'coveralls_reborn', '~> 0.22.0', require: false
+  gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 1.8.7'
   gem 'rails-controller-testing', '~> 1.0.4'
