@@ -9,7 +9,7 @@ export default {
   ),
 }
 const { Option } = Select
-const PREDICATES = ['==', '!=', '>', '>=', '<', '<=']
+export const PREDICATES = ['==', '!=', '>', '>=', '<', '<=']
 
 const getColumns = (onChange, onRemove, errors) => [
   {
@@ -40,7 +40,7 @@ const getColumns = (onChange, onRemove, errors) => [
     render: record => (
       <Select
         style={{ width: '60px' }}
-        value={record?.predicate ?? ''}
+        value={record?.predicate}
         size="small"
         onChange={predicate => onChange({ ...record, predicate })}
       >

@@ -6,9 +6,11 @@ import { DnDProvider } from 'components/DnD'
 import styles from './styles.scss'
 import Title from './Title'
 import SubFactorRow from './SubFactorRow'
-import GetColumnsByStrategy from './GetColumnsByStrategy'
+import GetColumnsByStrategy, { PREDICATES } from './GetColumnsByStrategy'
 
 const FACTORS_SUB_FACTORS = 'factors_sub_factors'
+
+const defaultPredicate = PREDICATES[0]
 
 export default function SubFactorList ({
   factor, factors, onChange, errors,
@@ -24,7 +26,9 @@ export default function SubFactorList ({
   }
 
   const onAdd = (subFactor) => {
-    const value = [{ ...subFactor, position: factor[FACTORS_SUB_FACTORS].length + 1 }, ...factor[FACTORS_SUB_FACTORS]]
+    const value = [
+      { ...subFactor, predicate: defaultPredicate, position: factor[FACTORS_SUB_FACTORS].length + 1 },
+      ...factor[FACTORS_SUB_FACTORS]]
     onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value } })
   }
 
