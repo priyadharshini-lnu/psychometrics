@@ -57,7 +57,7 @@ gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
-gem 'slim-rails',                 '~> 3.3.0'
+gem 'slim-rails',                 '~> 3.4.0'
 ### FORM BUILDERS
 gem 'cocoon', '1.2.9'
 gem 'simple_form',                '5.1.0'
