@@ -11,6 +11,10 @@ module AdminJobs
         ::Assessments::Export::Hogan.call!(assessment, campaign)
       elsif assessment.saville?
         ::Assessments::Export::Saville.call!(assessment, campaign)
+      elsif assessment.iiht?
+        ::Assessments::Export::Iiht.call!(assessment, campaign)
+      elsif assessment.pearson?
+        ::Assessments::Export::Pearson.call!(assessment, campaign)
       end
     end
 

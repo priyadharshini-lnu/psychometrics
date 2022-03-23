@@ -7,8 +7,8 @@ class UserDecorator < BaseDecorator
     "#{object.first_name} #{object.last_name}"
   end
 
-  def full_name
-    [object.first_name, object.last_name].compact.join(' ')
+  def full_name(seprator: ' ')
+    [object.first_name, object.last_name].compact.join(seprator)
   end
 
   def can_manage_roles

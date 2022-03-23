@@ -146,6 +146,20 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: project_id)
     end
 
+    def projects?
+      can_manage_asssessment?
+    end
+
+    def external_assessments?
+      can_manage_asssessment?
+    end
+
+    private
+
+    def can_manage_asssessment?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :manage)
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super

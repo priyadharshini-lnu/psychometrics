@@ -2,16 +2,17 @@ import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 
 import currentUser from 'core/currentUser'
+import current from 'modules/admin/modules/campaigns/core/current'
 import config from 'core/config'
 import tables from 'modules/admin/core/filterAndPagination/reducers'
 import preview from 'modules/survey/core/preview'
 import connection from 'core/connection'
 import { reducer as adminsReducer } from 'modules/admin/modules/Admins/core'
-import { reducer as projectAssessorsReducers } from 'modules/admin/modules/projects/core/assessors'
-import { reducer as projectParticipantsReducer } from 'modules/admin/modules/projects/core/participants'
+import { reducer as projectAssessorsReducers } from 'modules/admin/modules/client/routes/Client/core/assessors'
+import { reducer as projectParticipantsReducer } from 'modules/admin/modules/client/routes/Client/core/participants'
 import campaignReducers from '../modules/campaigns/core'
-import { reducer as smtpSettingReducer } from '../modules/projects/core/smtpSetting'
-import { reducer as samlSettingReducer } from '../modules/projects/core/samlSetting'
+import { reducer as smtpSettingReducer } from '../modules/client/routes/Client/core/smtpSetting'
+import { reducer as samlSettingReducer } from '../modules/client/routes/Client/core/samlSetting'
 import subjects from '../modules/threeSixtyCampaign/core/subjects'
 import evaluators from '../modules/threeSixtyCampaign/core/evaluators'
 import managers from '../modules/threeSixtyCampaign/core/managers'
@@ -35,6 +36,7 @@ import mailHistories from '../modules/threeSixtyCampaign/core/mailHistories'
 import users from '../modules/threeSixtyCampaign/core/users'
 import assessorsReducers from '../modules/AssessorApp/core'
 import datasheetReducers from '../modules/DatasheetManagement/core'
+import { reducer as integrationsReducer } from '../modules/client/routes/Client/core/integrations'
 import auditLogs from '../modules/AuditLog/core'
 
 const createRootReducer = history => combineReducers({
@@ -64,6 +66,7 @@ const createRootReducer = history => combineReducers({
     samlSetting: samlSettingReducer,
     assessors: projectAssessorsReducers,
     participants: projectParticipantsReducer,
+    integrations: integrationsReducer,
   }),
   ui: combineReducers({
     modals,
@@ -71,6 +74,7 @@ const createRootReducer = history => combineReducers({
     breadcrumbs,
   }),
   currentUser,
+  current,
   config,
   request,
   tables,

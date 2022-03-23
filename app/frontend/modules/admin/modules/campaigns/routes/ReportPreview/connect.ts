@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  fetchSingle as fetchReport, getCurrent, download, DOWNLOAD, asyncDownload,
+  fetchSingle as fetchReport, getCurrent, download, DOWNLOAD, asyncDownload, clearUseReportDetails,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { isRequestInProgress } from 'modules/admin/core/request'
@@ -14,6 +14,7 @@ const connecter = connect((state: RootState) => ({
   fetchReport,
   download,
   asyncDownload,
+  clearUseReportDetails,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>

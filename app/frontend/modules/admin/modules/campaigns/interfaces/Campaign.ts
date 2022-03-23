@@ -12,8 +12,13 @@ export default interface Campaign {
   permissions: {
     edit: boolean
     delete: boolean
-    updateCampaignOptions: boolean
     copy: boolean
+    updateCampaignOptions: boolean
+    manageCampaigns: boolean
+    viewRegistrationCodes: boolean
+    viewDatasheets: boolean
+    manageCampaignAdmins: boolean
+    manageOptions: boolean
   }
 }
 

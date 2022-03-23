@@ -13,7 +13,7 @@ module Users
     def call
       return broadcast :invalid, form if form.invalid?
 
-      user.update!(form.attributes)
+      user.update!(form.attributes_with_values)
       broadcast :ok, user
     end
   end

@@ -3,6 +3,8 @@
 module Api
   module V1
     class ProjectsController < Api::V1::BaseController
+      skip_before_action :ensure_project, only: [:create]
+
       def show
         render json: project, serializer: Api::V1::ProjectSerializer
       end
@@ -31,6 +33,21 @@ module Api
         else
           render_validation_errors(form)
         end
+      end
+
+      private
+
+      def pundit_authorize
+        if project_params[:client_id].present? && !Client.exists?(id: project_params[:client_id])
+          raise Api::Errors::ResourceNotFound, "Client with id=#{params[:client_id]} is not found"
+        end
+
+        authorize(
+          @project || Client,
+          nil,
+          policy_class: Administration::ProjectPolicy,
+          project_id: @project&.id || project_params[:client_id]
+        )
       end
 
       def project_params

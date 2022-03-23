@@ -53,5 +53,11 @@ module Administration
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
     end
+
+    def update_external_config?
+      @record.iiht? && @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
   end
 end

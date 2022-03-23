@@ -27,11 +27,10 @@ class Campaign < ApplicationRecord
            :rules,
            to: :campaign_options
 
-  has_many :relationships, dependent: :destroy
   has_many :license_usages, inverse_of: :campaign
-  has_many :subjects, class_name: 'Threesixty::Subject', dependent: :restrict_with_error
-  has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :restrict_with_error
-  has_many :participants, class_name: 'Threesixty::Participant', dependent: :restrict_with_error
+  has_many :subjects, class_name: 'Threesixty::Subject', dependent: :destroy
+  has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :destroy
+  has_many :participants, class_name: 'Threesixty::Participant', dependent: :destroy
   has_many :user_reports, dependent: :destroy
   has_many :campaign_users, dependent: :destroy
   has_many :instruction_templates, -> { enabled }
@@ -50,6 +49,7 @@ class Campaign < ApplicationRecord
   has_many :sms_invites
   has_many :sms_records
   has_many :memberships
+  has_many :relationships, dependent: :destroy
 
   accepts_nested_attributes_for :campaign_options
 

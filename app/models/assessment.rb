@@ -37,7 +37,8 @@ class Assessment < ApplicationRecord
     HOGAN = 'hogan',
     AGILE = 'agile',
     SAVILLE = 'saville',
-    PEARSON = 'pearson'
+    PEARSON = 'pearson',
+    IIHT = 'iiht'
   ].freeze
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
@@ -49,7 +50,8 @@ class Assessment < ApplicationRecord
     agile: AGILE,
     assessor_form: ASSESSOR_FORM,
     saville: SAVILLE,
-    pearson: PEARSON
+    pearson: PEARSON,
+    iiht: IIHT
   }.freeze
 
   # Assessments constant
@@ -58,7 +60,8 @@ class Assessment < ApplicationRecord
     mindmill: 'Assessments::Mindmill',
     hogan: 'Assessments::Hogan',
     saville: 'Assessments::Saville',
-    pearson: 'Assessments::Pearson'
+    pearson: 'Assessments::Pearson',
+    iiht: 'Assessments::Iiht'
   }.freeze
 
   # STATUSES constant
@@ -68,6 +71,7 @@ class Assessment < ApplicationRecord
   ##
   belongs_to :dimension
   belongs_to :owner, class_name: 'Client'
+  belongs_to :project, class_name: 'Client'
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign
@@ -96,6 +100,7 @@ class Assessment < ApplicationRecord
   has_many :users_results, through: :user_assessments, dependent: :restrict_with_error
   has_many :saville_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :pearson_user_assessments, through: :user_assessments, dependent: :restrict_with_error
+  has_many :iiht_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
@@ -108,10 +113,13 @@ class Assessment < ApplicationRecord
   has_one :hogan_assessment_setting, dependent: :destroy
   has_one :saville_assessment_setting, dependent: :destroy
   has_one :pearson_assessment_setting, dependent: :destroy
+  has_one :iiht_assessment_setting, dependent: :destroy
   has_one :agile
 
-  accepts_nested_attributes_for :hogan_assessment_setting, :saville_assessment_setting, :pearson_assessment_setting
-  before_save :delete_hogan_assessment_setting, :delete_saville_assessment_setting, :delete_pearson_assessment_setting
+  accepts_nested_attributes_for :hogan_assessment_setting, :saville_assessment_setting, :pearson_assessment_setting,
+                                :iiht_assessment_setting
+  before_save :delete_hogan_assessment_setting, :delete_saville_assessment_setting, :delete_pearson_assessment_setting,
+              :delete_iiht_assessment_setting
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
   #
   ### END ASSOCIATIONS
@@ -134,6 +142,7 @@ class Assessment < ApplicationRecord
            to: :saville_assessment_setting, allow_nil: true
   delegate :pearson_norm_id, :pearson_assessment_id, :pearson_norms, :pearson_assessment_language,
            to: :pearson_assessment_setting, allow_nil: true
+  delegate :iiht_assessment_id_number, :iiht_schedule_config, to: :iiht_assessment_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
@@ -144,6 +153,7 @@ class Assessment < ApplicationRecord
   scope :hogan, -> { where(type: TYPES[:hogan]) }
   scope :saville, -> { where(type: TYPES[:saville]) }
   scope :pearson, -> { where(type: TYPES[:pearson]) }
+  scope :iiht, -> { where(type: TYPES[:iiht]) }
   scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
@@ -166,6 +176,13 @@ class Assessment < ApplicationRecord
   def external_norm_id
     return pearson_norm_id if pearson?
     return saville_norm_id if saville?
+  end
+
+  def external_assessment_id
+    return hogan_assessment_id if hogan?
+    return saville_assessment_id if saville?
+    return pearson_assessment_id if pearson?
+    return iiht_assessment_id_number if iiht?
   end
 
   # Copy assessment with nested resources
@@ -207,8 +224,12 @@ class Assessment < ApplicationRecord
     type == TYPES[:pearson]
   end
 
+  def iiht?
+    type == TYPES[:iiht]
+  end
+
   def external?
-    mindmill? || hogan? || saville? || pearson?
+    mindmill? || hogan? || saville? || pearson? || iiht?
   end
 
   def agile?
@@ -250,5 +271,9 @@ class Assessment < ApplicationRecord
 
   def delete_pearson_assessment_setting
     saville_assessment_setting.destroy if pearson_assessment_setting && !pearson?
+  end
+
+  def delete_iiht_assessment_setting
+    iiht_assessment_setting.destroy if iiht_assessment_setting && !iiht?
   end
 end

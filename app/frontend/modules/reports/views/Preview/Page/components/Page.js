@@ -8,20 +8,40 @@ import styles from './Page.scss'
 class Page extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
+    pageNumber: PropTypes.number.isRequired,
+    totalPages: PropTypes.number.isRequired,
   }
 
   renderModuleType = (module, i) => {
-    const { model } = this.props
+    const { model, pageNumber, totalPages } = this.props
     if (!module.type) { return }
     const View = Modules[module.type]
-    return <View key={i} module={module} page={model} preview />
+    return (
+      <View
+        key={i}
+        module={module}
+        page={model}
+        preview
+        pageNumber={pageNumber}
+        totalPages={totalPages}
+      />
+    )
   }
 
   renderShadowModule = (module, i) => {
-    const { model } = this.props
+    const { model, pageNumber, totalPages } = this.props
     if (module.onPage(model)) { return }
     const View = Modules[module.type]
-    return <View key={i} module={module} page={model} preview />
+    return (
+      <View
+        key={i}
+        module={module}
+        page={model}
+        preview
+        pageNumber={pageNumber}
+        totalPages={totalPages}
+      />
+    )
   }
 
   render () {

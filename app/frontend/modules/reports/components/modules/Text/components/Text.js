@@ -172,6 +172,8 @@ class Text extends Component {
       },
       questions,
       preview,
+      pageNumber,
+      totalPages,
     } = this.props
 
     if (sourceType === 'ResponseText') {
@@ -221,7 +223,7 @@ class Text extends Component {
           </div>
         )
       } if (sourceType === 'PipedText') {
-        const interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name)}}/g
+        const interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name|page_number|total_pages)}}/g
         const compiled = _.template(I18nStore.tModule(model, 'text'), { interpolate })
 
         const html = compiled({
@@ -230,7 +232,10 @@ class Text extends Component {
           completed_at: _.get(AppStore, 'report.result_completed_at', '{{completed_at}}'),
           norm_used: _.get(AppStore, ['report', 'norm_used', assessmentId], '{{norm_used}}'),
           locale_name: _.get(AppStore, ['report', 'result_locale', assessmentId], '{{locale_name}}'),
+          page_number: pageNumber,
+          total_pages: totalPages,
         })
+
         return (
           <SafeHTML
             ref={(ref) => { this.editor = ref }}

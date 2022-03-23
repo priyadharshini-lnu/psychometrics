@@ -13,10 +13,10 @@ gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 gem 'pg',                         '~> 0.19.0'
-gem 'puma',                       '~> 4.3.6'
+gem 'puma',                       '~> 5.6.2'
 gem 'rails',                      '~> 5.2.0'
 gem 'sassc-rails', '~> 2.1.2'
-gem 'uglifier', '~> 3.0.2'
+gem 'terser', '~> 1.1.8'
 
 source 'https://rails-assets.org/' do
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
@@ -82,10 +82,10 @@ gem 'draper',                     '~> 3.0.0'
 gem 'config',                     '~> 2.2.1'
 gem 'figaro',                     '~> 1.2.0'
 
-gem 'premailer-rails', '~> 1.10.3'
+gem 'premailer-rails', '~> 1.11.1'
 
 ### XLS import
-gem 'file_validators',            '~> 2.3.0'
+gem 'file_validators',            '~> 3.0.0'
 gem 'rubyXL',                     '~> 3.4.6'
 
 # For import csv
@@ -134,7 +134,7 @@ gem 'mini_magick', '~> 4.11.0'
 gem 'remotipart', '~> 1.3.1'
 
 gem 'ancestry', '~> 3.0.0'
-gem 'browser', '~> 4.0.0'
+gem 'browser', '~> 5.3.1'
 
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
@@ -152,7 +152,7 @@ gem 'validates_timeliness', '~> 5.0.0'
 gem 'virtus', '~> 1.0.5'
 
 # SOAP client
-gem 'savon', '~> 2.11.0'
+gem 'savon', '~> 2.12.1'
 # Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
@@ -163,12 +163,13 @@ gem 'enum_help', '~> 0.0.17'
 # A simple date validator for Rails
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
+gem 'encryptor', '~> 3.0.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag-api', '~> 2.3.0'
+gem 'rswag-api', '~> 2.5.1'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
-gem 'activerecord-import', '~> 1.0.2'
+gem 'activerecord-import', '~> 1.3.0'
 gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'

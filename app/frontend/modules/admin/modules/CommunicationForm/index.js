@@ -1,5 +1,5 @@
 import React from 'react'
-import Editor from '../../../../components/Editor/Editor'
+import EmailEditor from 'components/EmailEditor'
 
 export default function Form ({ elementId }) {
   const el = document.getElementById(elementId)
@@ -11,7 +11,7 @@ export default function Form ({ elementId }) {
 
   return (
     <div className="ant-form-vertical">
-      <Editor handleContentChange={onChange} content={el.value} />
+      <EmailEditor handleContentChange={onChange} content={el.value} />
     </div>
   )
 }

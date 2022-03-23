@@ -244,11 +244,11 @@ Rails.application.routes.draw do
             post :update_additional_time
           end
         end
-        resources :campaign_assessment_groups, only: %i[index create update destroy] do
-        end
+        resources :campaign_assessment_groups, only: %i[index create update destroy]
         resources :campaign_assessments, only: %i[update] do
           member do
             post :attach_to_group
+            put :update_external_config
           end
         end
       end
@@ -268,6 +268,7 @@ Rails.application.routes.draw do
             post :validate_settings
           end
         end
+        resources :integrations, only: %i[index create update destroy]
       end
 
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
@@ -305,6 +306,7 @@ Rails.application.routes.draw do
     ### CLIENTS
     resources :clients do
       member do
+        get :edit
         get :copy
         get :sidebar
         patch :toggle_status
@@ -446,6 +448,7 @@ Rails.application.routes.draw do
           post :generate_universal_link
         end
         resources :datasheet_rows, except: %i[show edit update]
+        get '*all', to: 'projects#index', constraints: { all: /.*/ }
       end
     end
 
@@ -558,6 +561,8 @@ Rails.application.routes.draw do
 
       collection do
         get :pearson_norms
+        get :projects
+        get :external_assessments
       end
 
       scope module: 'assessments' do
@@ -796,6 +801,7 @@ Rails.application.routes.draw do
     resource :examus, only: %i[create]
     post '/saville/results', to: 'saville#results', as: :saville
     post 'sms_histories', to: 'sms_histories#status', as: :sms_histories
+    post '/:project_id/iiht/results', to: 'iiht#results', as: :iiht
   end
 
   devise_scope :user do
@@ -857,6 +863,8 @@ Rails.application.routes.draw do
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
 
+      get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
+
       resources :hogan_user_assessments, only: [] do
         member do
           get :redirect
@@ -888,6 +896,12 @@ Rails.application.routes.draw do
         member do
           get :pass
           get :redirect
+        end
+      end
+
+      resources :iiht_user_assessments, only: [] do
+        member do
+          get :pass
         end
       end
 
