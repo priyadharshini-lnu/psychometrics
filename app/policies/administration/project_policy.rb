@@ -5,5 +5,37 @@ module Administration
     def index?
       super || @user.has_permission?(:projects, :view, project_id: project_id)
     end
+
+    def show?
+      can_view_project?
+    end
+
+    def create?
+      can_manage_project?
+    end
+
+    def update?
+      can_manage_project?
+    end
+
+    def manage_project_admins?
+      @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id: project_id)
+    end
+
+    def manage_project_smtp_settings?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :project_settings, :smtp, project_id: project_id
+      )
+    end
+
+    private
+
+    def can_manage_project?
+      @user.has_permission?(:projects, :manage, project_id: project_id)
+    end
+
+    def can_view_project?
+      @user.has_permission?(:projects, :view, project_id: project_id)
+    end
   end
 end

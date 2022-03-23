@@ -1,8 +1,8 @@
 function AssessmentsForm () {
-  var integrations = ['mindmill', 'hogan', 'saville', 'pearson']
+  var integrations = ['mindmill', 'hogan', 'saville', 'pearson', 'iiht']
   this.init = function() {
     this.startListening()
-    $(document).on('change', '#assessments_form #resource_type', this.onResourceTypeChange);
+    $(document).on('change', '#assessments_form #resource_type', this.showHideSections);
   }
 
   this.startListening = function() {
@@ -19,8 +19,8 @@ function AssessmentsForm () {
     $('#assessments_form #pearson_assessment_id').change()
   }
 
-  this.onResourceTypeChange = function(event) {
-    var value = arguments[0].target.value
+  this.showHideSections = function(event) {
+    var value = $('#assessments_form #resource_type').val()
     if (value == "Assessments::Common") {
       $('#assessments_form').find('.common').removeClass('hidden').find(":input").removeAttr('disabled', true)
       integrations.forEach(function(integrationName) {

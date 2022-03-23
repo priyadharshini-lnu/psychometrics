@@ -3,6 +3,9 @@
 module Api
   module V1
     class ReportsController < Api::V1::BaseController
+      before_action :set_user_report, only: %i[update destroy results pdf]
+      skip_before_action :ensure_project, :pundit_authorize, only: [:dimensions]
+
       def index
         user_reports = UserReport.where(user: user, campaign: campaign_id).includes(:report)
         user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
@@ -14,34 +17,31 @@ module Api
       end
 
       def results
-        user_report = UserReport.find_by(user: user, campaign_id: campaign_id, report_id: params[:id])
-
-        unless user_report
+        unless @user_report
           raise Api::Errors::ResourceNotFound,
                 "Report ID: #{params[:id]} not found for user in Campaign: #{campaign_id}."
         end
 
-        unless user_report.all_assessments_are_completed?
+        unless @user_report.all_assessments_are_completed?
           raise Api::Errors::AssessmentsNotCompleted, "Assessments for report #{report.id} are not completed"
         end
 
-        if user_report.report.data_configuration.empty?
+        if @user_report.report.data_configuration.empty?
           raise Api::Errors::ResourceNotConfigured, no_config_message(params[:id])
         end
 
-        results = user_report.user_results
+        results = @user_report.user_results
         render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call!(report, results),
-                                                   user_report: user_report).to_h
+                                                   user_report: @user_report).to_h
       end
 
       def pdf
-        user_report = UserReport.find_by(user: user, campaign_id: campaign_id, report_id: params[:id])
-        raise Api::Errors::ResourceNotFound, "Report with id=#{params[:id]} was not found" unless user_report
+        raise Api::Errors::ResourceNotFound, "Report with id=#{params[:id]} was not found" unless @user_report
 
         render json: {
-          url: user_report.pdf&.url,
-          status: user_report.decorate.api_status,
-          campaign_id: user_report.campaign_id
+          url: @user_report.pdf&.url,
+          status: @user_report.decorate.api_status,
+          campaign_id: @user_report.campaign_id
         }
       end
 
@@ -68,20 +68,32 @@ module Api
       end
 
       def update
-        user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
-        user_report.update!(user_report_params)
-        audit! :api_update, user_report, payload: params.permit!, campaign: user_report.campaign
-        render json: user_report, serializer: Api::V1::UserReportSerializer
+        @user_report.update!(user_report_params)
+        audit! :api_update, @user_report, payload: params.permit!, campaign: @user_report.campaign
+        render json: @user_report, serializer: Api::V1::UserReportSerializer
       end
 
       def destroy
-        user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
-        audit! :api_delete, user_report, payload: user_report.log_attribute_for_delete, campaign: user_report.campaign
-        user_report.destroy!
-        render json: user_report, serializer: Api::V1::UserReportSerializer
+        audit! :api_delete, @user_report, payload: @user_report.log_attribute_for_delete,
+          campaign: @user_report.campaign
+        @user_report.destroy!
+        render json: @user_report, serializer: Api::V1::UserReportSerializer
       end
 
       private
+
+      def pundit_authorize
+        authorize(
+          @user_report || UserReport,
+          nil,
+          policy_class: Administration::UserReportPolicy,
+          project_id: project.id
+        )
+      end
+
+      def set_user_report
+        @user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
+      end
 
       def campaign_id
         @campaign_id ||= params[:campaign_id] || user.campaigns.last.id

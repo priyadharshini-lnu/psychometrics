@@ -6,7 +6,7 @@ import {
 import { CheckOutlined } from '@ant-design/icons'
 import { NAME, CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
 import ErrorAlertBox from 'components/ErrorAlertBox'
-import Editor from 'components/Editor'
+import EmailEditor from 'components/EmailEditor'
 import cs from 'classnames'
 import TitleBar from './TitleBar'
 import styles from './styles.scss'
@@ -142,7 +142,8 @@ export default function EmailScheduleModal ({
           name="subject"
           onChange={handleInputChange}
         />
-        <Editor
+        <EmailEditor
+          withPipedText
           type={emailSchedule.name}
           content={emailSchedule.content}
           details={{ consolidation: emailSchedule.consolidated }}

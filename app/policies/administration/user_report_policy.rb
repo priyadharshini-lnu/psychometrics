@@ -37,5 +37,23 @@ module Administration
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
     end
+
+    def index?
+      @user.has_permission?(
+        :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def results?
+      @user.has_permission?(
+        :results, :report_data, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def pdf?
+      @user.has_permission?(
+        :results, :view_report, project_id: project_id, campaign_id: campaign_id
+      )
+    end
   end
 end

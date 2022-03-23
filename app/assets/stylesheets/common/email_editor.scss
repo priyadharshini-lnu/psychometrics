@@ -1,0 +1,40 @@
+table.email-table-no-border {
+  border-collapse: collapse;
+  td, th {
+    border: 0 !important;
+  }
+}
+
+table.email-table-light-borders {
+  border-collapse: collapse;
+  td,th {
+    padding: 4px;
+    border: 1px solid #ccc !important;
+  }
+}
+
+table.email-table-dark-borders {
+  border-collapse: collapse;
+  td,th {
+    padding: 4px; 
+    border: 1px solid #333 !important;
+  }
+}
+
+.email-table-light-header {
+  th {
+    background-color: #eaeaea !important;
+  }
+}
+
+.email-table-dark-header {
+  th {
+    border: 1px solid #333333 !important;
+    background-color: #333333 !important;
+    color: white !important;
+  }
+}
+
+.email-table-fullwidth {
+  width: 100% !important;
+}

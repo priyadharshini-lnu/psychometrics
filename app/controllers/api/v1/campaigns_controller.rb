@@ -3,9 +3,11 @@
 module Api
   module V1
     class CampaignsController < Api::V1::BaseController
+      before_action :set_campaign, only: %i[show update duplicate assessments_reports]
+
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
-        ::Campaigns::Duplicate.call(form, campaign) do
+        ::Campaigns::Duplicate.call(form, @campaign) do
           on(:invalid) { |f| render_validation_errors(f) }
           on(:ok) { |new_campaign| render json: Api::V1::CampaignSerializer.new(new_campaign).to_h }
         end
@@ -20,7 +22,7 @@ module Api
       end
 
       def show
-        render json: campaign, serializer: Api::V1::CampaignSerializer
+        render json: @campaign, serializer: Api::V1::CampaignSerializer
       end
 
       def assign_user
@@ -62,29 +64,31 @@ module Api
         form = Api::V1::Campaigns::UpdateForm.from_params(params)
         if form.valid?
           normalized_params = ::Campaigns::NormalizeAPIRequest.call!(campaign_params)
-          campaign.update!(normalized_params)
-          audit! :api_update, campaign, payload: params.permit!, campaign: campaign
-          render json: campaign, serializer: Api::V1::CampaignSerializer
+          @campaign.update!(normalized_params)
+          audit! :api_update, @campaign, payload: params.permit!, campaign: @campaign
+          render json: @campaign, serializer: Api::V1::CampaignSerializer
         else
           render_validation_errors(form)
         end
       end
 
       def assessments_reports
-        form = Api::V1::Campaigns::AssessmentsAndReportsForm.from_params(params).with_context(campaign: campaign)
+        form = Api::V1::Campaigns::AssessmentsAndReportsForm.from_params(params).with_context(campaign: @campaign)
         if form.valid?
-          ::Campaigns::Reports::Add.call(form, campaign) do
+          ::Campaigns::Reports::Add.call(form, @campaign) do
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
-          audit! :api_add_assessment_reports, campaign, payload: params.permit!, campaign: campaign
-          render json: campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
+          audit! :api_add_assessment_reports, @campaign, payload: params.permit!, campaign: @campaign
+          render json: @campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
         else
           render_validation_errors(form)
         end
       end
 
-      def campaign
-        @campaign ||=
+      private
+
+      def set_campaign
+        @campaign =
           begin
             c = Campaign.find_by(project_id: project.id, id: params[:id])
             raise Api::Errors::ResourceNotFound, "Campaign with id=#{params[:id]} is not found" unless c
@@ -96,6 +100,16 @@ module Api
       def campaign_params
         params.permit(
           :name, :status, :start_date, :end_date, :fixed_time, :duration, :enable_instructions, :instructions
+        )
+      end
+
+      def pundit_authorize
+        authorize(
+          @campaign || Campaign,
+          nil,
+          policy_class: Administration::CampaignPolicy,
+          project_id: project.id,
+          campaign_id: @campaign&.id
         )
       end
     end

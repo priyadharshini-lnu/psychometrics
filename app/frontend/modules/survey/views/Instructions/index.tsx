@@ -33,6 +33,7 @@ const Instructions: FC<Props> = (props) => {
             content={instructions.content}
             handleContentChange={updateInstructionsContent}
             className={styles.editor}
+            withPipedText
           />
         </div>
       </div>

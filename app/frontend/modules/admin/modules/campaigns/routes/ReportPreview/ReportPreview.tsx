@@ -24,13 +24,17 @@ type Props = PropsFromRedux & RouteComponentProps<Params>
 export default function ReportPreview ({
   userReport,
   match: { params: { campaignId, id } }, fetchReport, download, downloadInProgress,
-  features, asyncDownload,
+  features, asyncDownload, clearUseReportDetails,
 }: Props) {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
 
   useEffect(() => {
     fetchReport(parsedCampaignId, parsedId)
+
+    return () => {
+      clearUseReportDetails()
+    }
   }, [])
 
   const reportIsLoaded = (): boolean | undefined => (userReport && userReport.loaded)

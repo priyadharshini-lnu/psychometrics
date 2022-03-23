@@ -8,9 +8,24 @@ class CampaignAssessment < ApplicationRecord
 
   scope :ungrouped, -> { where(campaign_assessment_group_id: nil) }
 
+  validate :validate_external_config
+  before_save :parse_external_config
+
   before_create :set_position
 
-  delegate :common?, :hogan?, :mindmill?, :external?, :saville?, :has_external_norm?, to: :assessment
+  delegate :common?, :hogan?, :mindmill?, :external?, :saville?, :iiht?, :has_external_norm?, to: :assessment
+
+  def validate_external_config
+    return unless external_config.presence.is_a?(String)
+
+    JSON.parse(external_config)
+  rescue JSON::ParserError
+    errors.add(:external_config, :invalid)
+  end
+
+  def parse_external_config
+    self.external_config = external_config.presence.is_a?(String) ? JSON.parse(external_config) : nil
+  end
 
   def expired?
     Time.now > key_expires_at.to_i

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Editor from 'components/Editor'
+import EmailEditor from 'components/EmailEditor'
 import {
   Input, Row, Col, Button, Empty, message, Switch, Select, TimePicker,
 } from 'antd'
@@ -144,7 +144,8 @@ export default function Emails ({
             )}
           </div>
           <div className="display-flex">
-            <Editor
+            <EmailEditor
+              withPipedText
               className="flex1"
               type={selectedTemplate.name}
               content={selectedLeftLocale.content || ''}

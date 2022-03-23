@@ -9,18 +9,18 @@ module Threesixty
     has_one :option, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_one :project_datasheet, through: :campaign
     has_one :campaign_datasheet, through: :campaign, class_name: 'Datasheet',
-      foreign_key: :campaign_id, dependent: :destroy
+      foreign_key: :campaign_id
     has_one :campaign_options, through: :campaign
     has_many :nomination_requirements, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :participants, through: :campaign
     has_many :campaign_users, through: :campaign
     has_many :subjects, through: :campaign
     has_many :evaluators, through: :campaign
-    has_many :user_assessments, through: :campaign, dependent: :destroy
+    has_many :user_assessments, through: :campaign
     has_many :email_templates, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :email_schedules, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :instruction_templates, foreign_key: :threesixty_campaign_id, dependent: :destroy
-    has_many :users_results, through: :campaign, dependent: :destroy
+    has_many :users_results, through: :campaign
     has_many :reminder_histories, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :email_histories, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :license_usages, through: :campaign

@@ -9,6 +9,7 @@ import _ from 'lodash'
 import Select from 'react-select'
 import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import ColorPicker from 'modules/reports/components/ColorPicker'
+import { rgba2hex } from 'utils/color'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
@@ -314,7 +315,7 @@ class Properties extends Component {
           <div className={styles.flexRow}>
             <ColorPicker
               color={model.props.backgroundColor}
-              onChange={color => this.onChangeColor('backgroundColor', color.hex)}
+              onChange={color => this.onChangeColor('backgroundColor', rgba2hex(color.rgb))}
             />
           </div>
         </div>
@@ -337,7 +338,7 @@ class Properties extends Component {
                 <div className={styles.flexRow}>
                   <ColorPicker
                     color={model.props.scoreProgressColor}
-                    onChange={color => this.onChangeColor('scoreProgressColor', color.hex)}
+                    onChange={color => this.onChangeColor('scoreProgressColor', rgba2hex(color.rgb))}
                   />
                 </div>
               </div>
@@ -346,7 +347,7 @@ class Properties extends Component {
                 <div className={styles.flexRow}>
                   <ColorPicker
                     color={model.props.scoreBackgroundColor}
-                    onChange={color => this.onChangeColor('scoreBackgroundColor', color.rgb)}
+                    onChange={color => this.onChangeColor('scoreBackgroundColor', rgba2hex(color.rgb))}
                   />
                 </div>
               </div>

@@ -120,6 +120,9 @@ export const setUserReports = (userReports: UserReport[]) => ({
   userReports,
 })
 
+export const CLEAR_USER_REPORT_DETAILS = 'campaigns/userReports/CLEAR_USER_REPORT_DETAILS'
+export const clearUseReportDetails = () => ({ type: CLEAR_USER_REPORT_DETAILS })
+
 type FetchType = ApiActionResponse<{userReports: UserReport[]}>
 type FetchSingleType = ApiActionResponse<UserReportDetails>
 type RegenerateReports = ApiActionResponse<{}>
@@ -155,6 +158,7 @@ const HANDLERS = {
       return { ...userReport, userAccess: !userReport.userAccess }
     }))
   ),
+  [CLEAR_USER_REPORT_DETAILS]: (state: State) => ({ ...state, current: defaultState.current }),
 }
 
 function* genSetUserReports ({ response }: FetchType) {

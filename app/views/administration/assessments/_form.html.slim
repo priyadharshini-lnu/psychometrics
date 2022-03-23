@@ -4,9 +4,36 @@
       = f.error_notification
 
       .form-inputs.clearfix
+        - root_clients = policy_scope(Client).roots
         = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
                          include_blank: false,
-                         wrapper_html: { class: 'common mindmill hogan saville pearson' }
+                         wrapper_html: { class: 'common mindmill hogan saville pearson iiht' },
+                         input_html: { data: { live_search: true,
+                                                dynamic_selectable_url: url_for(action: :external_assessments, type: '__id__', external_assessment_id: f.object.external_assessment_id),
+                                                dynamic_selectable_target: 'select#pearson_assessment_id',
+                                              }}
+        = f.association :owner, collection: root_clients.order(name: :asc),
+                                  include_blank: true,
+                                  input_html: { data: { live_search: true,
+                                                        dynamic_selectable_url: url_for(action: :projects, owner_id: '__id__', type: '__select#resource_type->val__', project_id: f.object.project_id),
+                                                        dynamic_selectable_target: 'select#projects', include_blank: 'true',
+                                                      }, id: 'owner_id'},
+                                  wrapper_html: { class: 'iiht' }
+        = f.association :project, collection: [],
+                          include_blank: true,
+                          input_html: { data: { live_search: true,
+                                                dynamic_selectable_url: url_for(action: :external_assessments, project_id: '__id__', type: '__select#resource_type->val__', external_assessment_id: f.object.external_assessment_id),
+                                                dynamic_selectable_target: 'select.external_assessments_setting',
+                                              }, id: 'projects'},
+                          wrapper_html: { class: 'iiht' }
+        = f.simple_fields_for :iiht_assessment_setting do |iiht|
+          = iiht.input :iiht_assessment_id_number, collection: [[1, 20]],
+                                              include_blank: false,
+                                              input_html: { class: 'external_assessments_setting',  data: { live_search: true } },
+                                              wrapper_html: { class: 'iiht' }
+          - schedule_config = iiht.object.iiht_schedule_config && iiht.object.errors[:iiht_schedule_config].blank? ? JSON.pretty_generate(iiht.object.iiht_schedule_config) : iiht.object.iiht_schedule_config
+          = iiht.input :iiht_schedule_config, as: :text, wrapper_html: { class: 'iiht' },
+                        input_html: { value: schedule_config }
         = f.input :mindmill_id, collection: Settings.providers.mindmill.assessments.map { |m| [m[:name], m[:id]] },
                                 include_blank: false,
                                 wrapper_html: { class: 'mindmill' }
@@ -22,7 +49,7 @@
                           input_html: { data: { live_search: true } }
         = f.simple_fields_for :pearson_assessment_setting do |pearson|
           = pearson.input :pearson_assessment_id,
-                          collection: Pearson::GetAssessments.call!.sort_by {|a| a['title'] }.map { |h| [h['title'], h['productId']] },
+                          collection: [],
                           include_blank: true,
                           wrapper_html: { class: 'pearson' },
                           input_html: { data: { live_search: true,
@@ -34,8 +61,7 @@
                           wrapper_html: { class: 'pearson' },
                           input_html: { data: { live_search: true }, class: 'pearson_norm_id' },
                           include_hidden: false
-        = f.input :name, wrapper_html: { class: 'common mindmill hogan saville pearson' }
-        - root_clients = policy_scope(Client).roots
+        = f.input :name, wrapper_html: { class: 'common mindmill hogan saville pearson iiht' }
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: root_clients.order(name: :asc),
                                   include_blank: t('administration.tte'),

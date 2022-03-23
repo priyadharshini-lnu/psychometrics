@@ -38,6 +38,7 @@ const AssessmentList: React.FC<Props> = ({
   exportNormedResults,
   exportRawFactorScores,
   exportExternalResults,
+  updateExternalConfig,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -88,19 +89,24 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessor_form')}
             key="assessorFormName"
             render={({
-              assessorFormName, id,
-            }) => (
-              permissions.updateAssessorForm ? (
-                <a
-                  onClick={
-                      () => openModal('UpdateAssessorFormModal',
-                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                    }
-                >
-                  {assessorFormName || I18n.t('common.text.na')}
-                </a>
-              ) : assessorFormName || I18n.t('common.text.na')
-            )}
+              assessorFormName, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              return (
+                permissions.updateAssessorForm && assessorFormName ? (
+                  <a
+                    onClick={
+                        () => openModal('UpdateAssessorFormModal',
+                          { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                      }
+                  >
+                    {assessorFormName}
+                  </a>
+                ) : assessorFormName || I18n.t('common.text.na')
+              )
+            }}
           />
 
           <Column
@@ -159,7 +165,7 @@ const AssessmentList: React.FC<Props> = ({
                 )
               }
               return (
-                permissions.enableUniversalLink ? (
+                permissions.enableUniversalLink && !isExternal ? (
                   <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
                 ) : I18n.t('common.text.na')
               )
@@ -182,6 +188,7 @@ const AssessmentList: React.FC<Props> = ({
                     exportNormedResults,
                     exportRawFactorScores,
                     exportExternalResults,
+                    updateExternalConfig,
                   }) as React.ReactElement
                 }
                 innerElement={(
@@ -201,20 +208,22 @@ const AssessmentList: React.FC<Props> = ({
 interface ActionMenuProps {
   campaignId: number
   assessment: Assessment
-  openModal(name: string, data?: { projectId?: number, assessment?: Assessment,
-    campaignId: number, campaignAssessmentId: number }): void
+  openModal(name: string, data?: { projectId?: number, assessment?: Assessment, update?: Assessment,
+    updateExternalConfig?: Props['updateExternalConfig'],
+    campaignId: number, campaignAssessmentId?: number }): void
   rescoreResponses(): void
   exportRawResults: Props['exportRawResults']
   exportScoringResults: Props['exportScoringResults']
   exportNormedResults: Props['exportNormedResults']
   exportRawFactorScores: Props['exportRawFactorScores']
   exportExternalResults: Props['exportExternalResults']
+  updateExternalConfig: Props['updateExternalConfig']
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, assessment, openModal, rescoreResponses, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores,
-  exportExternalResults,
+  exportExternalResults, updateExternalConfig,
 }) => {
   const { id, name, permissions } = assessment
 
@@ -362,6 +371,19 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           >
             {I18n.t('common.actions.remove')}
           </div>
+        </Menu.Item>
+      )}
+
+      <Menu.Divider />
+      {permissions.updateExternalConfig && (
+        <Menu.Item key="updateExternalConfig">
+          <a
+            onClick={() => {
+              openModal('UpdateExternalConfigModal', { campaignId, assessment, updateExternalConfig })
+            }}
+          >
+            {I18n.t('campaign_assessment.modals.update_external_config.title')}
+          </a>
         </Menu.Item>
       )}
     </Menu>

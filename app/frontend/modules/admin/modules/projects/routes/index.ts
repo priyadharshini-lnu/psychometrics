@@ -1,8 +1,10 @@
-import { Project } from './Project'
-import { Campaign } from '../../campaigns/routes/Campaign'
-import UsersAssessmentsReports from '../../campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
-import AssessorsDetails from '../../campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
-import ReportPreview from '../../campaigns/routes/ReportPreview'
+import { Project } from 'modules/admin/modules/client/routes/Client/routes/Project'
+import { Campaign } from 'modules/admin/modules/campaigns/routes/Campaign'
+import UsersAssessmentsReports
+  from 'modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
+import AssessorsDetails
+  from 'modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
+import ReportPreview from 'modules/admin/modules/campaigns/routes/ReportPreview'
 
 export const routes = [
   {
