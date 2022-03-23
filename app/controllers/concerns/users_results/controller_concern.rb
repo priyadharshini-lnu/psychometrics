@@ -24,6 +24,7 @@ module UsersResults::ControllerConcern
             current_block_id: params[:current_block_id],
             current_user: current_user,
             threesixty_campaign: @users_result.campaign.threesixty_campaign,
+            campaign: @users_result.campaign,
             locale: current_user.locale
   end
 

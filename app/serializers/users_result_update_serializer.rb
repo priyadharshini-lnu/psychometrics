@@ -34,6 +34,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
       evaluator: object.evaluator,
       subject: object.subject,
       threesixty_campaign: @instance_options[:threesixty_campaign],
+      campaign: @instance_options[:campaign],
       result: object
     }
   end

@@ -91,7 +91,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
     {
       evaluator: user_assessment.evaluator,
       subject: user_assessment.subject,
-      threesixty_campaign: {},
+      campaign: user_assessment.campaign,
       result: user_assessment.users_result
     }
   end
