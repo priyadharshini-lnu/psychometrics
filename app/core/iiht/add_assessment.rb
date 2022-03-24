@@ -22,6 +22,7 @@ module Iiht
       end
 
       user_assessment.iiht_user_assessment.update!(url: result['scheduleLink'], schedule_id: result['scheduleId'])
+      ::Iiht::AllowAttempts.call!(user_assessment)
 
       broadcast :ok
     end

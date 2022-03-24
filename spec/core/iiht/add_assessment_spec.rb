@@ -18,6 +18,7 @@ describe Iiht::AddAssessment do
   before do
     allow_any_instance_of(described_class).to receive(:config).and_return(config)
     allow(Iiht::GetAuthToken).to receive(:call!)
+    allow(Iiht::AllowAttempts).to receive(:call!)
   end
 
   it 'adds iiht assement and updates iiht_user_assessment with url' do
