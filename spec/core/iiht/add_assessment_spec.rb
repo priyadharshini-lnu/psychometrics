@@ -50,7 +50,7 @@ describe Iiht::AddAssessment do
              firstName: user.first_name,
              lastName: user.last_name,
              resultShareMode: [3],
-             scheduleConfig: iiht_schedule_config.merge(base_schedule_config(user_assessment))
+             scheduleConfig: base_schedule_config(user_assessment).merge(iiht_schedule_config)
            }).
            to_return({ body: expected_response.to_json })
 
@@ -69,7 +69,7 @@ describe Iiht::AddAssessment do
              firstName: user.first_name,
              lastName: user.last_name,
              resultShareMode: [3],
-             scheduleConfig: external_config.merge(base_schedule_config(user_assessment))
+             scheduleConfig: base_schedule_config(user_assessment).merge(external_config)
            }).
            to_return({ body: expected_response.to_json })
 
@@ -82,9 +82,9 @@ describe Iiht::AddAssessment do
     allow(user_assessment.assessment).to receive(:iiht_schedule_config).and_return(iiht_schedule_config)
     external_config = { 'duration' => 60, 'totalAttempts' => 3 }
     allow(user_assessment).to receive_message_chain(:campaign_assessment, :external_config).and_return(external_config)
-    schedule_config = {
+    schedule_config = base_schedule_config(user_assessment).merge(
       'duration' => 60, 'passPercentage' => 40, 'totalAttempts' => 3
-    }.merge(base_schedule_config(user_assessment))
+    )
 
     stub = stub_request(:post, "#{Settings.iiht.base_api_url}/GetAssessmentURLAsync").
            with(body: {
@@ -105,7 +105,7 @@ describe Iiht::AddAssessment do
   private
 
   def base_schedule_config(user_assessment)
-    {
+    described_class::DEFAULT_SCHEDULE_CONFIG.merge(
       externalScheduleConfigArgs: {
         campaign_id: user_assessment.campaign_id,
         assessment_id: user_assessment.assessment_id
@@ -122,6 +122,6 @@ describe Iiht::AddAssessment do
           assessment_id: user_assessment.assessment_id
         )
       }
-    }
+    )
   end
 end
