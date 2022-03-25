@@ -244,10 +244,16 @@ Rails.application.routes.draw do
             post :update_additional_time
           end
         end
-        resources :campaign_assessment_groups, only: %i[index create update destroy]
+        resources :campaign_assessment_groups, only: %i[index create update destroy] do
+          collection do
+            post :update_positions
+          end
+        end
         resources :campaign_assessments, only: %i[update] do
+          collection do
+            post :update_positions
+          end
           member do
-            post :attach_to_group
             put :update_external_config
           end
         end

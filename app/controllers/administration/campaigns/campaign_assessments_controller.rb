@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class CampaignAssessmentsController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update attach_to_group update_external_config]
+      before_action :set_resource, only: %i[update update_external_config]
       before_action :pundit_authorize
 
       def update
@@ -12,6 +12,17 @@ module Administration
         render json: resource,
          serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
          current_user: current_user
+      end
+
+      def update_positions
+        campaign_assessments = update_position_params[:campaign_assessments]
+        ::CampaignAssessments::UpdatePositions.call(campaign, campaign_assessments) do
+          on(:ok) do
+            render json: campaign,
+            serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+          end
+          on(:error) { |errors| return render json: { errors: errors }, status: 400 }
+        end
       end
 
       def update_external_config
@@ -24,15 +35,11 @@ module Administration
         end
       end
 
-      def attach_to_group
-        ::CampaignAssessments::AttachToGroup.call!(resource, params[:group_id], params[:position])
-        audit! :attach_to_group, resource, payload: { group: params[:group_id], position: params[:position] },
-               campaign: resource.campaign
-
-        render json: :ok
-      end
-
       private
+
+      def update_position_params
+        params.permit(campaign_assessments: [%i[id position campaign_assessment_group_id]])
+      end
 
       def resource_params
         (params[:resource] || params[:campaign_assessment]).permit(:position, :campaign_assessment_group_id)
