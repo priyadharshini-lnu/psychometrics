@@ -37,9 +37,9 @@ class Assessors::EvaluationsController < Assessors::BaseController
   def show
     user_result = @assessor_assessment.users_result
     attributes = { last_activity_at: DateTime.current }
-    attributes = attributes.merge(started_at: Time.now) unless user_result.started_at
-    user_result.update(attributes)
-    set_locale_for_users_result(user_result)
+    attributes = attributes.merge(started_at: Time.now) unless @assessor_assessment.started_at
+    @assessor_assessment.update!(attributes)
+    set_locale_for_user_assessment(@assessor_assessment)
 
     ::UserAssessments::AllowEdit.call!(@assessor_assessment) if params[:edit] == 'true'
 
@@ -54,8 +54,8 @@ class Assessors::EvaluationsController < Assessors::BaseController
 
   def subject_assessment
     user_result = @subject_user_assessment.users_result
+    @subject_user_assessment.update(last_activity_at: DateTime.current)
 
-    user_result.update(last_activity_at: DateTime.current)
     render json: serialize_data(@subject_user_assessment, user_result)
   end
 

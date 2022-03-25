@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class UserAssessment < ApplicationRecord
-  belongs_to :user
   belongs_to :assessment
   belongs_to :campaign
   belongs_to :norm
@@ -27,7 +26,6 @@ class UserAssessment < ApplicationRecord
   delegate :saville_assessment_id, :saville?, :pearson_assessment_id,
            :pearson_assessment_language, :pearson?, :iiht?,
            to: :assessment
-  delegate :selected_locale, :timed?, to: :users_result, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -91,7 +89,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def real_status
-    return 'timed_out' if users_result&.expired? && !completed? && !ineligible? && !interrupted?
+    return 'timed_out' if expired? && !completed? && !ineligible? && !interrupted?
 
     status
   end
@@ -105,12 +103,16 @@ class UserAssessment < ApplicationRecord
     ::Communications::CompletionTypeJob.perform_later(users_result)
   end
 
-  def set_default_relationship
-    self.relationship_id = Relationship.self_relationship&.id unless relationship_id
-  end
-
   def user
     evaluator
+  end
+
+  def user_id
+    evaluator_id
+  end
+
+  def set_default_relationship
+    self.relationship_id = Relationship.self_relationship&.id unless relationship_id
   end
 
   def self.statuses_count
@@ -156,6 +158,26 @@ class UserAssessment < ApplicationRecord
 
   def log_attribute_for_delete
     slice(:campaign_id, :relationship_id, :subject_id, :evaluator_id, :status, :assessment_id)
+  end
+
+  def timed?
+    expiry_date.present?
+  end
+
+  def expired?
+    return false unless expiry_date
+
+    expiry_date < Time.current || campaign_time_over?
+  end
+
+  def campaign_time_over?
+    campaign_user&.real_expiry_date && campaign_user.real_expiry_date < Time.current
+  end
+
+  def extra_time_buffer_expired?
+    return false unless expiry_date
+
+    expiry_date.advance(minutes: 5) < Time.current
   end
 
   private

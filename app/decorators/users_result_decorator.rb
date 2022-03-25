@@ -10,7 +10,7 @@ class UsersResultDecorator < BaseDecorator
   end
 
   def started_at
-    I18n.l(object.started_at, format: :date) if object.started_at
+    I18n.l(object.user_assessment.started_at, format: :date) if object.user_assessment.started_at
   end
 
   def completed_at_with_time
@@ -18,7 +18,7 @@ class UsersResultDecorator < BaseDecorator
   end
 
   def started_at_with_time
-    object.started_at.try(:strftime, '%F %T')
+    object.user_assessment.started_at.try(:strftime, '%F %T')
   end
 
   def display_name
@@ -28,7 +28,7 @@ class UsersResultDecorator < BaseDecorator
   def selected_locale
     return nil unless object.completed_at
 
-    locale = object.selected_locale || I18n.default_locale
+    locale = object.user_assessment.selected_locale || I18n.default_locale
     I18n.t("languages.#{locale}", locale: I18n.default_locale)
   end
 

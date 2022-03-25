@@ -19,10 +19,6 @@ module Api
         object.users_result.status
       end
 
-      def started_at
-        object.users_result.started_at
-      end
-
       def completed_at
         object.users_result.completed_at
       end

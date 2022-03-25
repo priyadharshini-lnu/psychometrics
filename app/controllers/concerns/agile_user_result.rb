@@ -4,9 +4,8 @@ module AgileUserResult
   extend ActiveSupport::Concern
 
   def show
-    if user_result.not_started?
-      user_result.update!(started_at: Time.now)
-      user_result.in_progress!
+    if user_assessment.not_started?
+      user_assessment.update!(started_at: Time.now, status: :in_progress)
       UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment
     end
 
@@ -28,7 +27,7 @@ module AgileUserResult
   end
 
   def set_language
-    user_result.update!(selected_locale: params[:locale])
+    user_assessment.update!(selected_locale: params[:locale])
 
     head :ok
   end

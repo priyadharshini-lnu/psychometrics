@@ -13,7 +13,7 @@ module UsersResults::ControllerConcern
     result_params = ::UsersResults::ExtendResourceParams.call!(
       resource_params.to_h,
       params[:question_ids],
-      @users_result
+      @user_assessment
     )
 
     form = ::UsersResults::UpdatingForm.from_params(result_params)

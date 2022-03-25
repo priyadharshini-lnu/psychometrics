@@ -55,7 +55,7 @@ describe Assessments::Export::Saville do
       "#{user_result.evaluator.first_name}, #{user_result.evaluator.last_name}",
       user_result.evaluator.email,
       I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
-      user_result.started_at.try(:strftime, '%D %r'),
+      user_assessment.started_at.try(:strftime, '%D %r'),
       user_result.completed_at.try(:strftime, '%D %r'),
       nil,
       nil
@@ -85,7 +85,7 @@ describe Assessments::Export::Saville do
       "#{user_result.evaluator.first_name}, #{user_result.evaluator.last_name}",
       user_result.evaluator.email,
       I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
-      user_result.started_at.try(:strftime, '%D %r'),
+      user_assessment.started_at.try(:strftime, '%D %r'),
       user_result.completed_at.try(:strftime, '%D %r'),
       nil,
       nil

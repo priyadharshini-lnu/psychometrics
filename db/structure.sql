@@ -3922,7 +3922,8 @@ CREATE TABLE public.user_assessments (
     expiry_date timestamp without time zone,
     additional_time integer,
     selected_locale character varying,
-    started_at timestamp without time zone
+    started_at timestamp without time zone,
+    last_activity_at timestamp without time zone
 );
 
 
@@ -4071,14 +4072,8 @@ CREATE TABLE public.users_results (
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    expiry_date timestamp without time zone,
-    last_activity_at timestamp without time zone,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
-    selected_locale character varying,
-    additional_time integer,
-    reset_count integer DEFAULT 0,
-    started_at timestamp without time zone,
     prev_pages json DEFAULT '[]'::json,
     progress integer
 );
@@ -9304,6 +9299,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220215140722'),
 ('20220218102808'),
 ('20220311084649'),
-('20220311105318');
+('20220311105318'),
+('20220321102808');
 
 

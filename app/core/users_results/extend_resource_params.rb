@@ -2,25 +2,26 @@
 
 module UsersResults
   class ExtendResourceParams < BaseCommand
-    private_attr_reader :resource_params, :question_ids, :users_result
+    private_attr_reader :resource_params, :question_ids, :users_result, :user_assessment
 
-    def initialize(resource_params, question_ids, users_result)
+    def initialize(resource_params, question_ids, user_assessment)
       @resource_params = resource_params
       @question_ids = question_ids
-      @users_result = users_result
+      @user_assessment = user_assessment
+      @users_result = user_assessment.users_result
     end
 
     def call
-      if users_result.extra_time_buffer_expired?
+      if user_assessment.extra_time_buffer_expired?
         return broadcast :ok, status: 'completed', completion_reason: :time_out_online
       end
 
       params = resource_params.merge('last_activity_at' => Time.current)
-      params[:status] = users_result.expired? ? 'completed' : params[:status]
+      params[:status] = user_assessment.expired? ? 'completed' : params[:status]
 
       # if status is completed we have to fill in completion reason
       if params[:status] == 'completed'
-        params[:completion_reason] = users_result.expired? ? :time_out_online : :user_completed
+        params[:completion_reason] = user_assessment.expired? ? :time_out_online : :user_completed
       end
 
       return broadcast :ok, params unless params[answer_key.to_s]
@@ -29,7 +30,7 @@ module UsersResults
 
       answers = (users_result[answer_key]&.slice(*params_answers.keys) || {}).deep_merge(params_answers)
 
-      answers = add_duration(answers, question_ids, users_result.last_activity_at)
+      answers = add_duration(answers, question_ids, user_assessment.last_activity_at)
       answers = merge_with_existing(users_result, answers)
 
       broadcast :ok, params.merge(answer_key.to_s => answers)

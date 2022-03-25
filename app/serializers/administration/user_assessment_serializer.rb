@@ -19,16 +19,8 @@ module Administration
       assessment.norms.map { |n| NormSerializer.new(n).to_h }
     end
 
-    def norm_id
-      user_result&.norm_id
-    end
-
-    def additional_time
-      user_result&.additional_time
-    end
-
     def is_expired # rubocop:disable Naming/PredicateName
-      user_result&.expired?
+      object.expired?
     end
 
     def has_external_norm # rubocop:disable Naming/PredicateName

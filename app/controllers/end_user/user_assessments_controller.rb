@@ -17,11 +17,10 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   def show
-    user_result = @user_assessment.users_result
-    user_result.update(last_activity_at: DateTime.current)
+    @user_assessment.update(last_activity_at: DateTime.current)
 
     @selected_locale = @user_assessment.selected_locale || user_locale
-    render json: user_result, serializer: UsersResultSerializer,
+    render json: @user_assessment.users_result, serializer: UsersResultSerializer,
                  campaign: @user_assessment.campaign, participant: @user_assessment,
                  current_user: current_user, locale: @selected_locale,
                  piped_text_context: build_piped_context,
