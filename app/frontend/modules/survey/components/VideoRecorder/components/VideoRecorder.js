@@ -77,6 +77,38 @@ class VideoRecorder extends Component {
     errors: set(key, message, state.errors),
   }))
 
+  getUploadUrl = async (id) => {
+    const { mediaUrl } = this.props
+    try {
+      const response = await axiosInstance.get(`${mediaUrl}/upload_media_url.json?question_id=${id}`)
+      this.urlDetails = response.data
+      this.removeError('uploadUrl')
+    } catch (error) {
+      this.stopRecording()
+      this.setError('uploadUrl', _.get(error, ['response', 'data', 'error'], error.message))
+    }
+  }
+
+  setProgress = (e, batchNumber) => {
+    if (e.lengthComputable) {
+      let percentComplete = e.loaded / e.total
+      percentComplete = parseInt(percentComplete * 100, 10)
+      const { percent } = this.state
+      this.setState({ percent: { ...percent, [batchNumber]: percentComplete } })
+    }
+  }
+
+  getUploadProgressPercentage = () => {
+    let totalUploaded = 0
+    let total = 0
+    const { percent } = this.state
+    _.each(percent, (percent, batchNumber) => {
+      totalUploaded += (this.batches[batchNumber].size * percent / 100)
+      total += this.batches[batchNumber].size
+    })
+    return totalUploaded / total * 100
+  }
+
   removeError = key => this.setState(state => ({
     errors: unset(key, state.errors),
   }))
@@ -119,18 +151,6 @@ class VideoRecorder extends Component {
     }
   }
 
-  getUploadUrl = async (id) => {
-    const { mediaUrl } = this.props
-    try {
-      const response = await axiosInstance.get(`${mediaUrl}/upload_media_url.json?question_id=${id}`)
-      this.urlDetails = response.data
-      this.removeError('uploadUrl')
-    } catch (error) {
-      this.stopRecording()
-      this.setError('uploadUrl', _.get(error, ['response', 'data', 'error'], error.message))
-    }
-  }
-
   uploadFile = (urlDetails, batchNumber) => {
     const batchForUpload = this.batches[batchNumber]
     const blob = new Blob(batchForUpload.batchedBlobs, {
@@ -161,26 +181,6 @@ class VideoRecorder extends Component {
       console.error(err)
       this.setError('upload', err.message)
     })
-  }
-
-  setProgress = (e, batchNumber) => {
-    if (e.lengthComputable) {
-      let percentComplete = e.loaded / e.total
-      percentComplete = parseInt(percentComplete * 100, 10)
-      const { percent } = this.state
-      this.setState({ percent: { ...percent, [batchNumber]: percentComplete } })
-    }
-  }
-
-  getUploadProgressPercentage = () => {
-    let totalUploaded = 0
-    let total = 0
-    const { percent } = this.state
-    _.each(percent, (percent, batchNumber) => {
-      totalUploaded += (this.batches[batchNumber].size * percent / 100)
-      total += this.batches[batchNumber].size
-    })
-    return totalUploaded / total * 100
   }
 
   // eslint-disable-next-line react/sort-comp

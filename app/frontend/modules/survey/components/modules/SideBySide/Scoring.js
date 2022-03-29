@@ -13,6 +13,12 @@ export class Scoring extends Component {
     scoring: PropTypes.object.isRequired,
   }
 
+  setTemplate = (object, value) => {
+    const { scoring, model } = this.props
+    scoring.setTemplate(object, value, model)
+    this.forceUpdate()
+  }
+
   fillScoring = () => {
     const { scoring, model } = this.props
     if (scoring.isEmpty()) {
@@ -51,12 +57,6 @@ export class Scoring extends Component {
   clear = (object) => {
     const { scoring, model } = this.props
     scoring.clear(object, model)
-    this.forceUpdate()
-  }
-
-  setTemplate = (object, value) => {
-    const { scoring, model } = this.props
-    scoring.setTemplate(object, value, model)
     this.forceUpdate()
   }
 

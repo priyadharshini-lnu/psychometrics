@@ -4,15 +4,6 @@ import _ from 'lodash'
 import BlockModel from 'modules/survey/models/Block'
 import QuestionModel from 'modules/survey/models/Question'
 
-interface AssessmentInterface {
-  id: number
-  name: string
-  flow: {}
-  norm_rules: []
-  enable_back: boolean
-  enable_progress: boolean
-}
-
 const SerializeTrash = {
   run (items: any): any {
     return _.reduce(items, (trash, item) => {

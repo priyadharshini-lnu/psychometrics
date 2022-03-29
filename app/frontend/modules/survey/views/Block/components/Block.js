@@ -23,6 +23,10 @@ class Block extends Component {
     showDeleteConfirmation: false,
   }
 
+  onCancelConfirm = () => {
+    this.setState({ showDeleteConfirmation: false })
+  }
+
   expand = () => {
     const { opened } = this.state
     const { unselectQuestion } = this.props
@@ -94,10 +98,6 @@ class Block extends Component {
   unlinkTemplate = () => {
     const { unlinkTemplate, model } = this.props
     unlinkTemplate(model)
-  }
-
-  onCancelConfirm = () => {
-    this.setState({ showDeleteConfirmation: false })
   }
 
   openConfirmation = () => {

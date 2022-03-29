@@ -56,7 +56,6 @@ type UpdateNormType = ApiActionResponse<{normName: string}>
 type UpdateAssessorForm = ApiActionResponse<{assessorFormName: string, assessorFormId: number | undefined}>
 type UpdateAvailableLocales = ApiActionResponse<{ availableLocales: string[] }>
 type RemoveType = ApiActionResponse<number>
-type updateExternalConfig = ApiActionResponse<Assessment>
 
 const updateAssessment = (state: State, { response }: ActivateUniversalLinkType) => (
   updateIn(state, 'list', list => list.map(a => (a.id === response.id ? response : a)))

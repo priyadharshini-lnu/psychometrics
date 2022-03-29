@@ -9,22 +9,22 @@ export class Alias extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  selectAlias = (e, factor) => {
-    factor.edit = true
-    this.forceUpdate()
-  }
-
-  closeEdit = (e, factor) => {
-    factor.edit = false
-    this.forceUpdate()
-  }
-
   onChangeAlias = (e, factor) => {
     const { onChange } = this.props
     onChange(factor, e.currentTarget.value)
   }
 
   onBlurAlias = (e, factor) => {
+    factor.edit = false
+    this.forceUpdate()
+  }
+
+  selectAlias = (e, factor) => {
+    factor.edit = true
+    this.forceUpdate()
+  }
+
+  closeEdit = (e, factor) => {
     factor.edit = false
     this.forceUpdate()
   }

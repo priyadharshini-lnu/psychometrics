@@ -6,15 +6,15 @@ import { connect } from 'react-redux'
 import { getEmbeddedData } from 'modules/reports/core/builder/selectors'
 
 class EmbeddedData extends Component {
-  getOptions = () => {
-    const { embeddedData } = this.props
-    return embeddedData
-  }
-
   onChange = (data) => {
     const { model, onSelect } = this.props
     model.props.source.name = data.name
     onSelect()
+  }
+
+  getOptions = () => {
+    const { embeddedData } = this.props
+    return embeddedData
   }
 
   render () {

@@ -14,6 +14,10 @@ class CommentsList extends Component {
     hideDiscussion: false,
   }
 
+  onChange = (e) => {
+    this.setState({ value: e.currentTarget.value })
+  }
+
   showForm = () => {
     this.setState({ edit: true })
   }
@@ -38,10 +42,6 @@ class CommentsList extends Component {
     perform('comment_destroy', { id: comment.id }, () => {
       removeComment(model, comment)
     })
-  }
-
-  onChange = (e) => {
-    this.setState({ value: e.currentTarget.value })
   }
 
   toggleShow = () => {

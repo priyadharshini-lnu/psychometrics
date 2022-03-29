@@ -52,7 +52,7 @@ blocks:
           - cache restore webpack-compile-prod-$(checksum webpack-files.txt)
           - cache restore webpack-cache-prod-$SEMAPHORE_GIT_BRANCH-$(checksum webpack-files.txt),webpack-cache-prod-$SEMAPHORE_GIT_BRANCH,webpack-cache-prod
           - sem-version ruby 2.7.4
-          - sem-version node 14.15.1
+          - sem-version node 14.17.3
           - sem-service start postgres --username=postgres --password=postgres
           - sem-service start redis
           - cp config/database.yml.sample config/database.yml

@@ -28,9 +28,10 @@ class Properties extends Component {
     this.librarySocket = Socket.library()
   }
 
-  update = () => {
+  onSelectGraphic = (item) => {
     const { model } = this.props
-    model.update()
+    model.props.url = item.file
+    this.update()
   }
 
   changeUrl = (e) => {
@@ -44,10 +45,9 @@ class Properties extends Component {
     LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic, 'image')
   }
 
-  onSelectGraphic = (item) => {
+  update = () => {
     const { model } = this.props
-    model.props.url = item.file
-    this.update()
+    model.update()
   }
 
   changeSourceType = (obj) => {

@@ -1,4 +1,4 @@
-import { connect, ConnectedProps } from 'react-redux'
+import { connect } from 'react-redux'
 import {
   fetch,
   remove,
@@ -24,5 +24,3 @@ const connecter = connect(
   },
 )
 export default connecter
-
-type PropsFromRedux = ConnectedProps<typeof connecter>

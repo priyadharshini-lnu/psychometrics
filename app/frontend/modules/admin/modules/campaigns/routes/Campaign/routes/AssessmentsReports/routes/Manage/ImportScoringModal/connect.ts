@@ -1,9 +1,12 @@
 import { connect } from 'react-redux'
+
+import { RootState } from 'modules/admin/core/rootReducers'
+
 import { importScoringResults, IMPORT_SCORING_RESULTS } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { isRequestInProgress } from 'modules/admin/core/request'
 
 export default connect(
-  state => ({
+  (state: RootState) => ({
     loading: isRequestInProgress(state, IMPORT_SCORING_RESULTS),
   }),
   {

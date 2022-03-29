@@ -15,14 +15,23 @@ export class Assessment extends Component {
     reportsByAssessments: PropTypes.object.isRequired,
   }
 
-  remove = () => {
-    const { index, onRemove } = this.props
-    onRemove(index)
-  }
-
   getAssessmentOptions = () => {
     const { assessments, model } = this.props
     return [...assessments, { label: model.name, value: model.id }]
+  }
+
+  getReportOptions = () => {
+    const { reportsByAssessments, model } = this.props
+
+    return _.map(reportsByAssessments[model.id], r => ({
+      value: r.id,
+      label: r.name,
+    }))
+  }
+
+  remove = () => {
+    const { index, onRemove } = this.props
+    onRemove(index)
   }
 
   changeAssessment = (assessment) => {
@@ -34,15 +43,6 @@ export class Assessment extends Component {
     const { onChangeReports, index } = this.props
     const reports = _.map(rawReports, r => ({ id: r.value, name: r.label }))
     onChangeReports(index, reports)
-  }
-
-  getReportOptions = () => {
-    const { reportsByAssessments, model } = this.props
-
-    return _.map(reportsByAssessments[model.id], r => ({
-      value: r.id,
-      label: r.name,
-    }))
   }
 
   renderReportsSelect () {

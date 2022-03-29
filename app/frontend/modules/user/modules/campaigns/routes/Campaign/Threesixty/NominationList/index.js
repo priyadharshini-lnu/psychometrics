@@ -13,10 +13,10 @@ import connect from './connect'
 const { Panel } = Collapse
 
 const NominationItem = (item) => {
-  const campaignId = item?.campaignId ?? 0
-  const itemId = item?.id ?? 0
-  const isNominationCompleted = item?.isNominationCompleted ?? false
-  const email = item?.user?.email ?? ''
+  const { campaignId } = item || { campaignId: 0 }
+  const { id: itemId } = item || { id: 0 }
+  const { isNominationCompleted } = item || { isNominationCompleted: false }
+  const { user: { email } } = item ?? { user: { email: '' } }
 
   return (
     <List.Item className="list-item">

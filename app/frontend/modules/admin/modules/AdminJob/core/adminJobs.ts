@@ -80,7 +80,6 @@ export const read = (id: number): ApiAction<State> => ({
 type FetchType = ApiActionResponse<FetchResponse>
 type CreateType = ReturnType<typeof create>
 type UpdateType = ReturnType<typeof update>
-type ReadAllType = ApiActionResponse<{}>
 type ReadType = ApiActionResponse<ReadResponse>
 
 const HANDLERS = {

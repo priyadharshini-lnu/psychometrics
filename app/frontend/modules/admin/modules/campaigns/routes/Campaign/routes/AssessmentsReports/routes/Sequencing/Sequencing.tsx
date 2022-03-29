@@ -508,7 +508,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                 activeId in prefixedGroupWithPrefixedAssessmentIds ? (
                   <GroupedAssessmentContainer
                     campaignId={parsedCampaignId}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     group={getGroupById(groups, getItemIdFromSortingId(activeId))}
                     assessmentCount={getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).length}

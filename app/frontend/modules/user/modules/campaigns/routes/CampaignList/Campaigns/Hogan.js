@@ -42,7 +42,7 @@ const DownloadLink = ({ report, text }) => {
 }
 
 const ReportsMenu = (reports) => {
-  const reportMenuItems = (reports?.length > 0) ? reports : []
+  const reportMenuItems = reports || []
 
   return (
     <Menu>
