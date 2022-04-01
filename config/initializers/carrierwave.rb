@@ -5,12 +5,12 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 fog_credentials = if ENV['MINIO_ENDPOINT'].present?
                     Aws.config.update(
                       endpoint: ENV['MINIO_ENDPOINT'],
-                      force_path_style: true,
                       credentials: Aws::Credentials.new(
                         Rails.application.secrets.minio[:access_key_id],
                         Rails.application.secrets.minio[:secret_access_key]
                       )
                     )
+                    Aws.config[:s3] = { force_path_style: true }
                     {
                       provider: 'AWS',
                       endpoint: ENV['MINIO_ENDPOINT'],
