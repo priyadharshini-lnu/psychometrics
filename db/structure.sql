@@ -3245,11 +3245,16 @@ ALTER SEQUENCE public.shortened_urls_id_seq OWNED BY public.shortened_urls.id;
 
 CREATE TABLE public.sms_histories (
     id bigint NOT NULL,
-    sms_invite_id bigint NOT NULL,
     sms_record_id bigint NOT NULL,
     status character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    twilio_sid character varying,
+    segment_length integer,
+    price numeric,
+    first_name character varying,
+    last_name character varying,
+    mobile_no character varying
 );
 
 
@@ -7086,13 +7091,6 @@ CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (u
 
 
 --
--- Name: index_sms_histories_on_sms_invite_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_sms_histories_on_sms_invite_id ON public.sms_histories USING btree (sms_invite_id);
-
-
---
 -- Name: index_sms_histories_on_sms_record_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8337,14 +8335,6 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 
 --
--- Name: sms_histories fk_rails_9d612c8fc8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sms_histories
-    ADD CONSTRAINT fk_rails_9d612c8fc8 FOREIGN KEY (sms_invite_id) REFERENCES public.sms_invites(id);
-
-
---
 -- Name: saville_report_settings fk_rails_9dbdc763fd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9300,6 +9290,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
-('20220321102808');
+('20220321102808'),
+('20220329105142');
 
 

@@ -4,8 +4,8 @@ require 'rails_helper'
 
 describe Campaigns::Duplicate do
   let!(:membership) { create(:client_admin_membership) }
-  let!(:project) { create(:project, parent: membership.client, id: 101) }
-  let!(:campaign) { create(:campaign, project: project, id: 102) }
+  let!(:project) { create(:project, parent: membership.client) }
+  let!(:campaign) { create(:campaign, project: project) }
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
   let(:report) { assessment.reports.first }
 

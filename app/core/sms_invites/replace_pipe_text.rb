@@ -12,24 +12,11 @@ module SmsInvites
     end
 
     def call
-      url_params = {
-        protocol: Settings.protocol,
-        domain: Settings.domain,
-        host: Settings.domain,
-        port: Settings.port,
-        subdomain: sms_invite.project.subdomain
-      }
-      invite_url = new_user_registration_url(
-        url_params.merge(sms_invite_code: sms_invite.code)
+      invite_url = Utility::Url.generate(
+        :new_user_registration_url, sms_invite_code: sms_invite.code, subdomain: sms_invite.project.subdomain
       )
-      short_url = Shortener::ShortenedUrl.generate(invite_url, owner: sms_invite)
-      short_invite_url = if Settings.short_url_host
-                           shortened_url(id: short_url.unique_key, host: Settings.short_url_host)
-                         else
-                           shortened_url(
-                             url_params.merge(id: short_url.unique_key, subdomain: Settings.subdomain)
-                           )
-                         end
+      short_invite_url = Utility::Url.get_short_url(url: invite_url, owner: sms_invite)
+
       data = {
         first_name: sms_invite.first_name,
         last_name: sms_invite.last_name,

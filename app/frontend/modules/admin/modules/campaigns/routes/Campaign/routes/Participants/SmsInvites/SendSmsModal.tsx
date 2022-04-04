@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  STATUSES, SEARCH, search,
+  STATUSES, SEARCH, search, get as getSmsInvites,
 } from 'modules/admin/modules/campaigns/core/smsInvites'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import {
@@ -12,11 +12,15 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import debounce from 'lodash/debounce'
 import ResourceFormModal from 'components/ResourceFormModal'
 import { SafeHTML } from 'components/SafeHTML'
+import { SegmentedMessage } from 'sms-segments-calculator'
+import { InfoCircleOutlined } from '@ant-design/icons'
+import forEach from 'lodash/forEach'
 
 const connecter = connect(
   (state: RootState) => ({
     searching: isRequestInProgress(state, SEARCH),
     availableLocales: availableLocales(state),
+    inviteUrlLength: getSmsInvites(state).inviteUrlLength,
   }),
   {
     search,
@@ -40,8 +44,16 @@ const SendSmsModalComponent: React.FC<Props> = ({
   availableLocales,
   searching,
   search,
+  inviteUrlLength,
 }) => {
-  const [options, setOptions] = React.useState<{ label: string, value: number }[]>([])
+  const [form] = Form.useForm()
+  const [options, setOptions] = useState<{ label: string, value: number }[]>([])
+  const [minSegmentLength, setMinSegmentLength] = useState<number>(1)
+  const [maxSegmentLength, setMaxSegmentLength] = useState<number>(1)
+
+  const dummyPipeTextReplacement = {
+    first_name: '*'.repeat(10), last_name: '*'.repeat(10), invite_url: '*'.repeat(inviteUrlLength),
+  }
 
   const handleSearchUsers = debounce((searchText: string) => {
     search(campaignId, searchText).then(({ response }) => {
@@ -58,6 +70,28 @@ const SendSmsModalComponent: React.FC<Props> = ({
     linkExpiry: values.linkExpiry?.format(),
   })
 
+  const caculateAndSetSegmentLength = (text: string) => {
+    let minTextWithReplacedPipeText = text
+    forEach(
+      dummyPipeTextReplacement,
+      (value, key) => { minTextWithReplacedPipeText = text.replace(`{{{${key}}}}`, value) },
+    )
+    const maxTextWithReplacedPipeText = minTextWithReplacedPipeText.concat('*'.repeat(20))
+    const minSegmentsCount = new SegmentedMessage(minTextWithReplacedPipeText).segmentsCount
+    const maxSegmentsCount = new SegmentedMessage(maxTextWithReplacedPipeText).segmentsCount
+    setMinSegmentLength(minSegmentsCount)
+    setMaxSegmentLength(maxSegmentsCount)
+  }
+
+  const segmentLengthMessage = () => {
+    if (minSegmentLength !== maxSegmentLength) {
+      return I18n.t('administration.sms_invites.send_sms.segment_length_range_msg',
+        { min_segment_length: minSegmentLength, max_segment_length: maxSegmentLength })
+    }
+
+    return I18n.t('administration.sms_invites.send_sms.segment_length_msg', { segment_length: minSegmentLength })
+  }
+
   return (
     <ResourceFormModal
       resourceName="sms_records"
@@ -70,8 +104,14 @@ const SendSmsModalComponent: React.FC<Props> = ({
       modalProps={{ width: 620 }}
       submitButtonName={I18n.t('administration.sms_invites.send_sms.modal.btn_name')}
       transformValues={transformValues}
+      storeManager={{ form }}
+      formProps={{
+        onValuesChange: (changedValues) => {
+          if (changedValues.message) { caculateAndSetSegmentLength(changedValues.message) }
+        },
+      }}
     >
-      {() => (
+      {({ form }) => (
         <>
           <Form.Item name={['filters', 'localeIn']} label={I18n.t('administration.sms_invites.send_sms.fields.locale')}>
             <Select mode="multiple">
@@ -107,10 +147,17 @@ const SendSmsModalComponent: React.FC<Props> = ({
           <Form.Item name="linkExpiry" label={I18n.t('administration.sms_invites.send_sms.fields.link_expiry')}>
             <DatePicker showTime format="YYYY-MM-DD HH:mm" />
           </Form.Item>
-          <Form.Item name="message" label={I18n.t('administration.sms_invites.send_sms.fields.message')}>
+          <Form.Item noStyle name="message" label={I18n.t('administration.sms_invites.send_sms.fields.message')}>
             <Input.TextArea rows={3} />
           </Form.Item>
-          <SafeHTML html={I18n.lookup('administration.sms_invites.send_sms.pipetext_details')} />
+          {!!form.getFieldValue('message')?.length && (
+            <>
+              <InfoCircleOutlined />
+              {' '}
+              {segmentLengthMessage()}
+            </>
+          )}
+          <SafeHTML className="mt-3" html={I18n.lookup('administration.sms_invites.send_sms.pipetext_details')} />
         </>
       )}
     </ResourceFormModal>

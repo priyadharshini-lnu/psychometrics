@@ -15,15 +15,26 @@ module SmsInvites
     def call
       sms_invites = campaign.sms_invites.ransack(sms_record.filters).result
       job_record.update!(total_tasks: sms_invites.length)
-
+      errors = []
       sms_invites.find_each do |sms_invite|
         sms_invite.update(code: SecureRandom.alphanumeric(6), expiry: sms_record.link_expiry)
         message = SmsInvites::ReplacePipeText.call!(sms_record.message, sms_invite)
-        sms_history = sms_invite.sms_histories.create(sms_record: sms_record)
-        Sms::Send.call!(sms_invite.mobile_no, message, status_callback: status_callback(sms_history))
+        sms_history = SmsHistory.create(
+          sms_invite.slice(:first_name, :last_name, :mobile_no).merge(sms_record: sms_record)
+        )
+        begin
+          message = Sms::Send.call!(sms_invite.mobile_no, message, status_callback: status_callback(sms_history))
+          sms_history.update!(twilio_sid: message.sid)
+        rescue Twilio::REST::RestError
+          sms_invite.failed!
+          errors << I18n.t('administration.sms_invites.messages.failed_to_sent_invite', mobile_no: sms_invite.mobile_no)
+          next
+        end
+
         sms_invite.invited!
         job_record.increment_completed_tasks!
       end
+      broadcast :ok, { errors: errors }
     end
 
     def status_callback(sms_history)
