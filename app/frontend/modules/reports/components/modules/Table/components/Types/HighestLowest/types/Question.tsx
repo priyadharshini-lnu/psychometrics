@@ -85,6 +85,7 @@ interface OwnProps {
   questionsChoices: PreviewModel['props']['questionsChoices']
   sections: TableSectionsType
   tableStyle: TableStyleType
+  hideValues: boolean
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -96,6 +97,7 @@ const QuestionTypeComponent: FC<Props> = ({
   getQuestions,
   sections,
   tableStyle,
+  hideValues,
 }) => {
   const calculateHighestLowest = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -194,8 +196,9 @@ const QuestionTypeComponent: FC<Props> = ({
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
                 filterName={filterName}
+                hideValues={hideValues}
               />
-              <TBody data={highestChoices} />
+              <TBody data={highestChoices} hideValues={hideValues} />
             </>
           )}
           {sections !== TableSectionsType.HIGHEST && (
@@ -203,8 +206,9 @@ const QuestionTypeComponent: FC<Props> = ({
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
                 filterName={filterName}
+                hideValues={hideValues}
               />
-              <TBody data={lowestChoices} />
+              <TBody data={lowestChoices} hideValues={hideValues} />
             </>
           )}
         </tbody>
@@ -301,12 +305,13 @@ const getAllQuestionsChoices = (
 interface THeadersProps {
   title: string
   filterName: string
+  hideValues: boolean
 }
 
-const THeaders: FC<THeadersProps> = ({ title, filterName }) => (
+const THeaders: FC<THeadersProps> = ({ title, filterName, hideValues }) => (
   <>
     <tr className={styles.title}>
-      <th colSpan={4}>
+      <th colSpan={hideValues ? 3 : 4}>
         {title}
       </th>
     </tr>
@@ -320,7 +325,7 @@ const THeaders: FC<THeadersProps> = ({ title, filterName }) => (
       <th className={styles.label}>
         {I18nStore.t('reports.modules.highest_lowest.item')}
       </th>
-      <th className={cs(styles.label, styles.number)}>{filterName}</th>
+      {!hideValues && <th className={cs(styles.label, styles.number)}>{filterName}</th>}
     </tr>
   </>
 )
@@ -333,16 +338,17 @@ interface TBodyProps {
     factorName: string
     value: number
   }>
+  hideValues: boolean
 }
 
-const TBody: FC<TBodyProps> = ({ data }) => (
+const TBody: FC<TBodyProps> = ({ data, hideValues }) => (
   <>
     {data.map(({ factorName, questionName, value }, index) => (
       <tr key={index} className={styles.row}>
         <td>{index + 1}</td>
         <td>{factorName}</td>
         <td>{questionName}</td>
-        <td className={styles.number}>{value.toFixed(2)}</td>
+        {!hideValues && <td className={styles.number}>{value.toFixed(2)}</td>}
       </tr>
     ))}
   </>

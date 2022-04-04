@@ -11,6 +11,7 @@ interface Props {
   factorIds: Array<number>
   sections: TableSectionsType
   tableStyle: TableStyleType
+  hideValues: boolean
 }
 
 export enum TableSectionsType {
