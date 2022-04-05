@@ -131,7 +131,7 @@ const QuestionTypeComponent: FC<Props> = ({
         factor = find(factorMap, f => f.question_ids.includes(choice.questionId))
 
         return meanBy(
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           choiceAnswers,
           (a: {

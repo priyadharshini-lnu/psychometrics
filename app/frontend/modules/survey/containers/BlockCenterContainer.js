@@ -8,10 +8,6 @@ import { setStore } from 'store/StoreWatchman'
 import store from '../store'
 
 class BlockCenterContainer extends Component {
-  undoListener = null
-
-  redoListener = null
-
   componentDidMount () {
     setStore(store)
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
@@ -22,6 +18,10 @@ class BlockCenterContainer extends Component {
     this.undoListener.remove()
     this.redoListener.remove()
   }
+
+  undoListener = null
+
+  redoListener = null
 
   update = () => {
     this.forceUpdate()

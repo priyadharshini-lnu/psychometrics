@@ -31,7 +31,22 @@ module Administration
         render json: params[:id]
       end
 
+      def update_positions
+        groups = update_position_params[:campaign_assessment_groups]
+        ::CampaignAssessmentGroups::UpdatePositions.call(campaign, groups) do
+          on(:ok) do
+            render json: campaign,
+            serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+          end
+          on(:error) { |errors| return render json: { errors: errors }, status: 400 }
+        end
+      end
+
       private
+
+      def update_position_params
+        params.permit(campaign_assessment_groups: [%i[id position]])
+      end
 
       def pundit_authorize
         authorize(

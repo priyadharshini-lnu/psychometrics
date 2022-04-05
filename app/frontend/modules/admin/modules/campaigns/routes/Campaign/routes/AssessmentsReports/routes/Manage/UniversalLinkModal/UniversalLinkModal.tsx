@@ -18,17 +18,6 @@ interface Props {
   regenerateUniversalLink(campaignId: string, id: number): void
 }
 
-interface ReportFamily {
-  id: number
-  name: string
-  reports: Report[]
-}
-
-interface Report {
-  id: number
-  name: string
-}
-
 const UniversalLinkModal: React.FC<Props> = ({
   campaignId,
   campaignAssessmentId: id,

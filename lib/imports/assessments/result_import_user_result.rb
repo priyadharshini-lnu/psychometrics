@@ -98,14 +98,12 @@ module Imports
                               key(data['completion_reason'])
 
           norm_data = parse_norm_data(data['norm'], user_result.assessment_id)
-          user_result.assign_attributes(
-            started_at: parse_date(data['started_at'], index)
-          )
           user_result.user_assessment.update!(
             completed_at: parse_date(data['completed_at'], index),
             norm_id: norm_data[:id],
             status: status,
-            completion_reason: completion_reason
+            completion_reason: completion_reason,
+            started_at: parse_date(data['started_at'], index)
           )
 
           parsed_questions = {}

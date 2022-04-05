@@ -6,34 +6,6 @@ describe Reports::PrepareDataForReport do
   let!(:assessment) { create(:assessment, :with_report, name: 'first assessment') }
   let(:project) { create(:project) }
 
-  describe '.call' do
-    let(:campaign) { create(:campaign) }
-    let(:user) { create(:user, email: 'a@a.com') }
-    let!(:membership) { create(:membership, user: user, client: project) }
-    before do
-      create(:assign, membership: membership, assessment: assessment)
-    end
-
-    it do
-      args = {
-        project: project,
-        campaign: campaign,
-        subject: nil,
-        membership: user.memberships.join_user.find_by(client_id: project.id),
-        report: assessment.reports.first,
-        locale: 'en',
-        current_user: user
-      }
-
-      data = described_class.call!(args)
-      expect(JSON.parse(data[:user])['email']).to eq 'a@a.com'
-      expect(JSON.parse(data[:data])['assessments'].last['name']).to eq 'first assessment'
-      expect(data[:locales]).to eq '{}'
-      expect(data[:results]).to eq '{}'
-      expect(data[:available_translations]).to eq []
-    end
-  end
-
   describe '#lookup_results' do
     let(:threesixty_campaign) { create(:threesixty_campaign) }
     let(:subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }

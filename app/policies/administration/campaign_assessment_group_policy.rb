@@ -13,5 +13,9 @@ module Administration
     def update?
       create?
     end
+
+    def update_positions?
+      update?
+    end
   end
 end

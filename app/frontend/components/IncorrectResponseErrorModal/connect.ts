@@ -5,7 +5,7 @@ import {
   clearResponseDataMismatched,
 } from 'modules/admin/core/request'
 
-const connecter = connect(
+const connector = connect(
   (state: RootState) => ({
     ...getResponseDataMismatchRequest(state),
   }),
@@ -14,6 +14,6 @@ const connecter = connect(
   },
 )
 
-export type PropsFromRedux = ConnectedProps<typeof connecter>
+export type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default connecter
+export default connector

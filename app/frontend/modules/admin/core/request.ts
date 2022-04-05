@@ -1,14 +1,32 @@
 import lodashGet from 'lodash/get'
 
+import { RootState } from 'modules/admin/core/rootReducers'
+
 export const LOADING = 'request/LOADING'
 export const LOADING_COMPLETE = 'request/LOADING_COMPLETE'
 export const RESPONSE_DATA_MISMATCHED = 'request/RESPONSE_DATA_MISMATCHED'
 export const CLEAR_RESPONSE_DATA_MISMATCHED = 'request/CLEAR_RESPONSE_DATA_MISMATCHED'
 
-export const get = state => lodashGet(state, ['request'])
+export const get = (state: RootState): RequestState => lodashGet(state, ['request'])
 
-export const isRequestInProgress = (state, name) => {
-  const request = get(state).requests.find(request => request.name === name)
+type Request = {
+  name: string,
+  loading: boolean
+}
+
+type ResponseDataMismatchRequest = {
+  requestName: string,
+  errors: string
+  data: unknown
+}
+
+type RequestState = {
+  requests: Request[]
+  responseDataMismatchRequest: ResponseDataMismatchRequest
+}
+
+export const isRequestInProgress = (state: RootState, name: string) => {
+  const request = get(state).requests.find((request: Request) => request.name === name)
 
   if (request) {
     return request.loading
@@ -20,23 +38,22 @@ export const isRequestInProgress = (state, name) => {
 /**
  * @deprecated used for compatibilty with WithSkeletonHOC, should be improved in LH-1913
  */
-export const getLoadingState = state => get(state).requests.length !== 0
+export const getLoadingState = (state: RootState) => get(state).requests.length !== 0
 
-export const getResponseDataMismatchRequest = state => lodashGet(get(state), ['responseDataMismatchRequest'])
+export const getResponseDataMismatchRequest = (state: RootState) => lodashGet(
+  get(state), ['responseDataMismatchRequest'],
+)
 
-export const loading = () => ({ type: LOADING, name })
-export const loadingComplete = () => ({ type: LOADING_COMPLETE, name })
-
-export const setResponseDataMismatched = (requestName, errors, data) => ({
+export const setResponseDataMismatched = (requestName: string, errors: string, data: unknown) => ({
   type: RESPONSE_DATA_MISMATCHED,
   payload: { requestName, errors, data },
 })
 
 export const clearResponseDataMismatched = () => ({ type: CLEAR_RESPONSE_DATA_MISMATCHED })
 
-const defaultState = {
+const defaultState: RequestState = {
   requests: [],
-  responseDataMismatchRequest: {},
+  responseDataMismatchRequest: { requestName: '', errors: '', data: {} },
 }
 
 export default function reducer (state = defaultState, { type, payload }) {

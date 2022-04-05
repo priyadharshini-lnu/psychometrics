@@ -18,6 +18,10 @@ class Question extends Component {
     showDeleteConfirmation: false,
   }
 
+  onCancelConfirm = () => {
+    this.setState({ showDeleteConfirmation: false })
+  }
+
   remove = () => {
     const {
       block, model, removeQuestion,
@@ -38,10 +42,6 @@ class Question extends Component {
     const { offsetTop } = this.question
     select(model, offsetTop)
     this.forceUpdate()
-  }
-
-  onCancelConfirm = () => {
-    this.setState({ showDeleteConfirmation: false })
   }
 
   openConfirmation = () => {

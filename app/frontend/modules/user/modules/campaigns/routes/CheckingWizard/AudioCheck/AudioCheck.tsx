@@ -71,10 +71,10 @@ const AudioCheck: React.FC<Props> = ({
           stream,
           onTranscribe: (t: string) => handleTranscriptionResults(t, speechDetectionTimer),
           onError: () => {
-          recorderRef.current?.stop()
-          resetMetrics()
-          dispatch(updateSpeechDetection(CheckListStatus.Failed))
-          clearInterval(speechDetectionTimer)
+            recorderRef.current?.stop()
+            resetMetrics()
+            dispatch(updateSpeechDetection(CheckListStatus.Failed))
+            clearInterval(speechDetectionTimer)
           },
         })
       })

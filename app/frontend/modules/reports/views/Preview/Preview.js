@@ -5,8 +5,6 @@ import LogicResolver from 'modules/reports/models/logic/LogicResolver'
 import Page from './Page'
 
 export class Preview extends Component {
-  storeListener = null
-
   componentDidMount () {
     this.storeListener = store.addListener('change', () => this.forceUpdate())
   }
@@ -14,6 +12,8 @@ export class Preview extends Component {
   componentWillUnmount () {
     this.storeListener.remove()
   }
+
+  storeListener = null
 
   render () {
     const { localeDirection, loaded } = this.props

@@ -4,11 +4,11 @@ import store from 'modules/reports/store/PageList'
 import styles from './PageEditor.scss'
 
 export class PageEditor extends Component {
-  storeListener = null
-
   componentDidMount () {
     this.storeListener = store.addListener('change', this.update)
   }
+
+  storeListener = null
 
   update = () => {
     this.forceUpdate()

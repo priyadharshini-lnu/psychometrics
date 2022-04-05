@@ -15,6 +15,7 @@ declare module 'react-redux' {
   }
 
   export type InferApiActionCreatorType<TActionCreator extends (...args: any[]) => any> =
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     TActionCreator extends (...args: infer TParams) => ApiAction<infer RT>
     ? (...args: TParams) => Promise<InferResponseType<ReturnType<TActionCreator>>>
     : TActionCreator;
@@ -43,11 +44,13 @@ declare module 'react-redux' {
       mapDispatchToProps: MapDispatchToPropsForApiActionFunction<TDispatchProps, TOwnProps>
     ): InferableComponentEnhancerWithProps<TStateProps & TDispatchProps, TOwnProps>;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     <no_state = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState>(
       mapStateToProps: null | undefined,
       mapDispatchToProps: MapDispatchToPropsForApiActionFunction<TDispatchProps, TOwnProps>
     ): InferableComponentEnhancerWithProps<TDispatchProps, TOwnProps>;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     <no_state = {}, TDispatchProps = {}, TOwnProps = {}>(
       mapStateToProps: null | undefined,
       mapDispatchToProps: MapDispatchToPropsParam<TDispatchProps, TOwnProps>,

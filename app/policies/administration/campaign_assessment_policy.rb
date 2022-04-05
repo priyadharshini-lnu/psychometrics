@@ -48,7 +48,7 @@ module Administration
       )
     end
 
-    def attach_to_group?
+    def update_positions?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )

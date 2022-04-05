@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 
 import { useBrowserSupportChecksWithCaniuse } from 'hooks/useBrowserSupportChecksWithCaniuse'
-import { BROWSER_FEATURES, UA_Browsers } from 'modules/survey/constants/browser'
+import { BROWSER_FEATURES, UA_BROWSERS } from 'modules/survey/constants/browser'
 
 test('It should return falsy when no browser is supplied', () => {
   const { result } = renderHook(() =>
@@ -12,7 +12,7 @@ test('It should return falsy when no browser is supplied', () => {
 })
 
 test('It should return falsy when no feature is supplied', () => {
-  const { result } = renderHook(() => useBrowserSupportChecksWithCaniuse('', UA_Browsers.Safari, '11'))
+  const { result } = renderHook(() => useBrowserSupportChecksWithCaniuse('', UA_BROWSERS.Safari, '11'))
 
   expect(result.current[0]).toBeFalsy()
 })
@@ -21,7 +21,7 @@ test('It should return correct feature is supplied', () => {
   let browserFeatures = BROWSER_FEATURES.mediaRecorderAPI
 
   const { result, rerender } = renderHook(() =>
-    useBrowserSupportChecksWithCaniuse(browserFeatures, UA_Browsers.Safari, '11')
+    useBrowserSupportChecksWithCaniuse(browserFeatures, UA_BROWSERS.Safari, '11')
   )
 
   expect(result.current[2]).toEqual('MediaRecorder API')
@@ -36,7 +36,7 @@ test('It should return correct feature is supplied', () => {
 test('It should return correct supported value for a feature on a browser', () => {
   const browserFeatures = BROWSER_FEATURES.mediaRecorderAPI
 
-  let browserName = UA_Browsers.Safari
+  let browserName = UA_BROWSERS.Safari
   let browserVersion = '14'
 
   const { result, rerender } = renderHook(() =>
@@ -45,24 +45,24 @@ test('It should return correct supported value for a feature on a browser', () =
 
   expect(result.current[0]).toBeFalsy()
 
-  browserName = UA_Browsers.FirefoxMobile
+  browserName = UA_BROWSERS.FirefoxMobile
   browserVersion = '86'
   rerender()
   expect(result.current[0]).toBeFalsy()
 
-  browserName = UA_Browsers.Edge
+  browserName = UA_BROWSERS.Edge
   browserVersion = '18'
   rerender()
   expect(result.current[0]).toBeFalsy()
 
-  browserName = UA_Browsers.SafariMobile
+  browserName = UA_BROWSERS.SafariMobile
   browserVersion = '11'
   rerender()
   expect(result.current[0]).toBeFalsy()
 
   /*
   // Failing for some reason after caniuse-lite update
-  browserName = UA_Browsers.ChromeMobile
+  browserName = UA_BROWSERS.ChromeMobile
   browserVersion = '90'
   rerender()
   expect(result.current[0]).toBeTruthy()
@@ -72,7 +72,7 @@ test('It should return correct supported value for a feature on a browser', () =
 
 test('It should show correct minimum browser support values for unsupported feature on browser', () => {
   let browserFeature = BROWSER_FEATURES.pushAPI
-  let browserName = UA_Browsers.Safari
+  let browserName = UA_BROWSERS.Safari
   let browserVersion = '10'
   const { result, rerender } = renderHook(() =>
     useBrowserSupportChecksWithCaniuse(browserFeature, browserName, browserVersion)
@@ -90,7 +90,7 @@ test('It should show correct minimum browser support values for unsupported feat
   expect(result.current[2]).toEqual('Push API')
 
   browserFeature = BROWSER_FEATURES.cssFlexibleBoxLayoutModule
-  browserName = UA_Browsers.Opera
+  browserName = UA_BROWSERS.Opera
   browserVersion = '10'
   rerender()
   expect(result.current[0]).toBeFalsy()

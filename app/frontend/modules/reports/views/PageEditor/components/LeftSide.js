@@ -12,6 +12,10 @@ const fieldTarget = {
 }
 
 class PageEditor extends Component {
+  componentDidMount () {
+    this.storeListener = store.addListener('change', this.update)
+  }
+
   storeListener = null
 
   movePage = throttle((id, atIndex) => {
@@ -19,10 +23,6 @@ class PageEditor extends Component {
     // const { page, index } = this.findPage(id)
     updatePagePositions(id, atIndex)
   }, 200)
-
-  componentDidMount () {
-    this.storeListener = store.addListener('change', this.update)
-  }
 
   update = () => {
     this.forceUpdate()

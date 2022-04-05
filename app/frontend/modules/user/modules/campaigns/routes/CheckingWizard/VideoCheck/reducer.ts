@@ -34,7 +34,6 @@ export const failFaceDetectionByTimeout = () => ({
 
 type UpdateAccessType = ReturnType<typeof updateAccess>
 type UpdateFaceDetectionType = ReturnType<typeof updateFaceDetection>
-type FailFaceDetectionByTimeoutType = ReturnType<typeof failFaceDetectionByTimeout>
 
 const HANDLERS = {
   [UPDATE_ACCESS]: (state: State, { payload: { status } }: UpdateAccessType): State => ({ ...state, access: status }),

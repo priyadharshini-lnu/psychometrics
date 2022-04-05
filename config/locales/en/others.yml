@@ -636,6 +636,7 @@ en:
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
+        threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -792,19 +793,29 @@ en:
   assessments_reports:
     add_group_form:
       name: Name
-      previous_assessments_required: Assessments should be completed in order
-      previous_group_required: Previous group should be completed before
-      title: Assessment Group
+      previous_assessments_required: Assessments to runs in below order
+      previous_group_required: Previous group completion required
+      title: Assessment group
     menu:
       manage: Manage
       sequencing: Sequencing
     sequencing:
-      add_group: Add Group
-      no_assessments: Drag and drop the assessments from the ungrouped assessments
-      no_groups_description: Please create new group sequencing with below button
-      no_groups_title: You have no group in sequencing
-      no_ungrouped_assessments: Drag and drop the assessments to the ungrouped assessments
-      ungrouped_assessments: Ungrouped Assessments
+      add_group: Add group
+      assessments: Assessments
+      delete_group: Delete group
+      edit_group_name: Edit group name
+      modal:
+        delete:
+          cancel: Cancel
+          failed: Failed to delete "%{name}" group, please contact administrator
+          ok: Yes, delete
+          text: Are you sure you want to delete "%{name}" group?
+          title: Delete Group
+      move_assessment: Move assessment
+      move_group: Move group
+      no_assessments: Drag and drop the assessments
+      no_ungrouped_assessments: Drag and drop the assessments here for ungrouping
+      ungrouped_assessments: Ungrouped assessments
   assigns:
     assign:
       accept_privacy_modal:
@@ -1498,6 +1509,7 @@ en:
         description: Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>
         message: Report is ready
     threesixty:
+      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
@@ -2230,11 +2242,21 @@ en:
       approved: Approved
       denied: Denied
       waiting: Needs Approval
+    report_approval_status:
+      approved: Approved
+      denied: Denied
+      waiting: Waiting
+    report_release_status:
+      released: Released
+      waiting: Waiting
     report_statuses:
+      available: Available
       failed: Failed
       generating: Generating
+      incomplete: Incomplete
       not_prepared: Not Ready
       prepared: Done
+      released: Released
     statuses:
       completed: Completed
       declined: Declined
@@ -2476,6 +2498,19 @@ en:
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
         successfully: "%{name} assessment removed successfully."
+    status:
+      completed: Completed
+      in_progress: In Progress
+      ineligible: Ineligible
+      interrupted: Interrupted
+      not_started: Not Started
+      timed_out: Timed Out
+    statuses:
+      manager_nomination_status:
+        approved: Approved
+        declined: Declined
+        denied: Denied
+        waiting: Waiting
   user_reports:
     actions:
       regenerate: Regenerate

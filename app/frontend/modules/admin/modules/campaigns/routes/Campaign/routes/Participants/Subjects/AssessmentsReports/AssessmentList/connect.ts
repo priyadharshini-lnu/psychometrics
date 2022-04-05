@@ -3,7 +3,7 @@ import {
   get as getAssessments, rescoreResponse, reset, remove, allowEdit,
 } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { openModal } from 'modules/admin/core/ui/modals'
-import { RootState } from 'modules/admin/core/rootReducers.ts'
+import { RootState } from 'modules/admin/core/rootReducers'
 
 const connecter = connect(
   (state: RootState) => ({

@@ -4,18 +4,18 @@ import Select from 'react-select'
 import AppStore from 'modules/reports/store/AppStore'
 
 class DataSheet extends Component {
+  onChange = (data) => {
+    const { model, singleChoice, onSelect } = this.props
+    model.props.source.columns = singleChoice ? [data] : data
+    onSelect()
+  }
+
   getOptions = () => {
     const { onlyNumbers } = this.props
     if (onlyNumbers) {
       return AppStore.report.dataSheetColumns.filter(column => column.type === 'Number').map(d => d.name)
     }
     return AppStore.report.dataSheetColumns.map(d => d.name)
-  }
-
-  onChange = (data) => {
-    const { model, singleChoice, onSelect } = this.props
-    model.props.source.columns = singleChoice ? [data] : data
-    onSelect()
   }
 
   getValue () {

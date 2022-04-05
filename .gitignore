@@ -84,3 +84,6 @@ support/dev-ssl/*.key
 # Ignore local translations
 app/assets/javascripts/administration/i18n/translations.js
 app/assets/javascripts/i18n/translations.js
+
+# Ignore Dev Procfile
+Procfile.dev

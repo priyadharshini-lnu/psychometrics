@@ -12,13 +12,14 @@ class Trash extends Component {
     showDeleteConfirmation: false,
   }
 
-  expand = () => {
-    const { opened } = this.state
-    this.setState({ opened: !opened })
+  onCancel = () => {
+    this.setState({ showConfirmation: false, showDeleteConfirmation: false })
   }
 
-  showConfirmation = () => {
-    this.setState({ showConfirmation: true })
+  onConfirm = () => {
+    const { emptyTrash } = this.props
+    this.setState({ showConfirmation: false })
+    emptyTrash()
   }
 
   onPermanentDelete = (type, model) => {
@@ -37,14 +38,13 @@ class Trash extends Component {
     }
   }
 
-  onConfirm = () => {
-    const { emptyTrash } = this.props
-    this.setState({ showConfirmation: false })
-    emptyTrash()
+  expand = () => {
+    const { opened } = this.state
+    this.setState({ opened: !opened })
   }
 
-  onCancel = () => {
-    this.setState({ showConfirmation: false, showDeleteConfirmation: false })
+  showConfirmation = () => {
+    this.setState({ showConfirmation: true })
   }
 
   renderItem = (item, i) => {

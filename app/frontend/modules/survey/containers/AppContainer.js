@@ -11,12 +11,6 @@ import store from '../store'
 import routes from './routes'
 
 class AppContainer extends Component {
-  undoListener = null
-
-  redoListener = null
-
-  storeListener = null
-
   componentDidMount () {
     setStore(store)
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
@@ -27,6 +21,12 @@ class AppContainer extends Component {
     this.undoListener.remove()
     this.redoListener.remove()
   }
+
+  undoListener = null
+
+  redoListener = null
+
+  storeListener = null
 
   update = () => {
     this.forceUpdate()

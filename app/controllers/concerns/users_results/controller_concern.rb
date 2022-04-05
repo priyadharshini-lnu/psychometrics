@@ -13,7 +13,7 @@ module UsersResults::ControllerConcern
     result_params = ::UsersResults::ExtendResourceParams.call!(
       resource_params.to_h,
       params[:question_ids],
-      @users_result
+      @user_assessment
     )
 
     form = ::UsersResults::UpdatingForm.from_params(result_params)
@@ -24,6 +24,7 @@ module UsersResults::ControllerConcern
             current_block_id: params[:current_block_id],
             current_user: current_user,
             threesixty_campaign: @users_result.campaign.threesixty_campaign,
+            campaign: @users_result.campaign,
             locale: current_user.locale
   end
 

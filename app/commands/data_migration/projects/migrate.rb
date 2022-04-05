@@ -169,14 +169,16 @@ module DataMigration
         norm_id = assign_with_result.norm_data.fetch('id', nil) if assign_with_result.norm_data
 
         user_assessment = UserAssessment.new(
-          campaign_id: subject.id,
-          subject_id: assign.membership.user_id,
-          evaluator_id: assign.membership.user_id,
-          assessment_id: assign.assessment_id,
-          users_result_id: users_result.id,
-          status: assign_with_result.status,
-          completed_at: assign_with_result.completed_at,
-          norm_id: norm_id
+          assign_with_result.slice(
+            :status, :started_at, :completed_at, :reset_count, :expiry_date, :selected_locale, :additional_time
+          ).merge(
+            campaign_id: subject.id,
+            subject_id: assign.membership.user_id,
+            evaluator_id: assign.membership.user_id,
+            assessment_id: assign.assessment_id,
+            users_result_id: users_result.id,
+            norm_id: norm_id
+          )
         )
         user_assessment.save!
 
@@ -193,8 +195,7 @@ module DataMigration
           occupations innovation_styles
           embedded_data scoring step current_element
           current_page seedrandom meta_data external_results
-          selected_locale reset_count additional_time
-          expiry_date last_activity_at started_at
+          last_activity_at
         ]
         attributes = assign_with_result.attributes.slice(*attrs)
         attributes['answers'] = assign_with_result.results
@@ -295,11 +296,10 @@ module DataMigration
             evaluator_id: campaign_user.user_id,
             campaign_id: campaign_user.campaign_id
           ).includes(:users_result)
-          user_results = user_assessments.map(&:users_result).compact
 
-          started_at = user_results.map(&:started_at).compact.min
-          all_assessments_completed = user_results.all?(&:completed?)
-          no_assessments_started = user_results.all?(&:not_started?)
+          started_at = user_assessments.map(&:started_at).compact.min
+          all_assessments_completed = user_assessments.all?(&:completed?)
+          no_assessments_started = user_assessments.all?(&:not_started?)
 
           completion_status = :in_progress
           completion_status = :completed if all_assessments_completed

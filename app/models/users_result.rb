@@ -27,45 +27,13 @@ class UsersResult < ApplicationRecord
 
   delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,
            :norm_data, :completed_at, :completion_reason, :user_reports, :available_locales,
-           :external_user_reports,
+           :external_user_reports, :user, :user_id,
            to: :user_assessment, allow_nil: true
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
            to: :user_assessment, allow_nil: true)
 
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
-  end
-
-  def timed?
-    expiry_date.present?
-  end
-
-  def expired?
-    return false unless expiry_date
-
-    expiry_date < Time.current || campaign_time_over?
-  end
-
-  def campaign_time_over?
-    campaign_user&.real_expiry_date && campaign_user.real_expiry_date < Time.current
-  end
-
-  def campaign_user
-    campaign.campaign_users.find_by(user_id: user_id)
-  end
-
-  def user
-    evaluator
-  end
-
-  def user_id
-    evaluator_id
-  end
-
-  def extra_time_buffer_expired?
-    return false unless expiry_date
-
-    expiry_date.advance(minutes: 5) < Time.current
   end
 
   # TODO: Remove all reference of answer_key after Assign model is removed

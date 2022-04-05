@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations */
 import _ from 'lodash'
 import React, { Component } from 'react'
 import cs from 'classnames'
@@ -25,10 +24,6 @@ import GetText from './GetText'
 import GetStyles from './GetStyles'
 
 class Text extends Component {
-  editor = null
-
-  edit = false
-
   static propTypes = {
     module: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
@@ -70,6 +65,36 @@ class Text extends Component {
     module.update()
   }
 
+  getSavilleScore = () => {
+    const {
+      module: {
+        assessment_id: assessmentId,
+        props: {
+          source: { factors, type, valueType },
+        },
+      },
+    } = this.props
+    const factorId = factors && factors[0]
+    if (factorId) {
+      const externalScoring = _.get(ResultStore, ['results', assessmentId, 'externalScoring'])
+      const scoreType = type.replace('Saville#', '')
+      const assessment = AppStore.getAssessmentById(assessmentId)
+      const scores = getSavilleFactorsScore({
+        scoreType,
+        valueType,
+        scores: externalScoring,
+        assessmentId,
+        allFactors: assessment.factors,
+        scoreForFactorIds: [factorId],
+      })
+      return scores?.length ? scores[0].score : null
+    }
+  }
+
+  editor = null
+
+  edit = false
+
   openEditor = () => {
     const {
       openConditionalText, openConditionalFactorOccupationText, module, openRichEditor,
@@ -99,36 +124,10 @@ class Text extends Component {
     }
   }
 
-  getSavilleScore = () => {
-    const {
-      module: {
-        assessment_id: assessmentId,
-        props: {
-          source: { factors, type, valueType },
-        },
-      },
-    } = this.props
-    const factorId = factors && factors[0]
-    if (factorId) {
-      const externalScoring = _.get(ResultStore, ['results', assessmentId, 'externalScoring'])
-      const scoreType = type.replace('Saville#', '')
-      const assessment = AppStore.getAssessmentById(assessmentId)
-      const scores = getSavilleFactorsScore({
-        scoreType,
-        valueType,
-        scores: externalScoring,
-        assessmentId,
-        allFactors: assessment.factors,
-        scoreForFactorIds: [factorId],
-      })
-      return scores?.length ? scores[0].score : null
-    }
-  }
-
   lookupResultTextValue (model) {
     const sourceType = _.get(model, 'props.source.type')
     switch (sourceType) {
-      case 'DataSheet':
+      case 'DataSheet': {
         const columnName = _.get(model, ['props', 'source', 'columns', 0])
         if (columnName) {
           const field = _.find(AppStore.report.dataSheetColumns, { name: columnName })
@@ -140,17 +139,19 @@ class Text extends Component {
           return text
         }
         break
+      }
       case 'Count':
       case 'Score':
       case 'Stability':
       case 'RawScale':
-      case 'PercentileScale':
+      case 'PercentileScale': {
         const factor = _.get(model, ['props', 'source', 'factors', 0])
         if (factor) {
           const externalScoring = _.get(ResultStore, ['results', model.assessment_id, 'externalScoring'])
           return Factors.LookupValue.call(externalScoring, sourceType, factor, 'string')
         }
         break
+      }
       case 'Saville#Ipsative':
       case 'Saville#Nipsative':
       case 'Saville#Normative':
@@ -319,8 +320,8 @@ class Text extends Component {
         backgroundColor, fontColor, fontFamily, borderColor, fontSize,
       } = styles
       if (backgroundColor) {
-        // eslint-disable-next-line max-len
-        style.backgroundColor = `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
+        style.backgroundColor = `rgba(
+          ${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
       }
       if (borderColor) {
         style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`

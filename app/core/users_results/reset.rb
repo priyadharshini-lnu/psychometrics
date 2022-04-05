@@ -38,7 +38,12 @@ module UsersResults
         status: UserAssessment.statuses[:not_started],
         completed_at: nil,
         completion_reason: nil,
-        norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil
+        norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil,
+        reset_count: user_assessment.reset_count + 1,
+        expiry_date: nil,
+        additional_time: nil,
+        started_at: nil,
+        last_activity_at: nil
       )
       users_result.update!(
         answers: {},
@@ -46,16 +51,11 @@ module UsersResults
         occupations: nil,
         embedded_data: nil,
         step: 0,
-        expiry_date: nil,
-        last_activity_at: nil,
         meta_data: {},
-        additional_time: nil,
         current_element: nil,
         current_page: nil,
-        reset_count: users_result.reset_count + 1,
         prev_pages: [],
-        progress: 0,
-        started_at: nil
+        progress: 0
       )
     end
 

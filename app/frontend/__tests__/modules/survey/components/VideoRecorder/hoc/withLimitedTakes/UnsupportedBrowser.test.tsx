@@ -7,7 +7,7 @@ import {
 } from 'modules/survey/components/modules/VideoResponse/UnsupportedBrowser'
 import {
   NAMES_FROM_UA_BROWSERS,
-  UA_OperatingSystems,
+  UA_OPERATING_SYSTEMS,
 } from 'modules/survey/constants/browser'
 
 const BrowserSupportForMediaRecorder = {
@@ -22,7 +22,7 @@ describe('Survey - Components - UnsupportedBrowsers', () => {
     const { asFragment } = render(
       <UnsupportedBrowser
         supportedBrowsers={BrowserSupportForMediaRecorder}
-        os={UA_OperatingSystems.MacOS}
+        os={UA_OPERATING_SYSTEMS.MacOS}
       />
     )
     expect(asFragment()).toMatchSnapshot()
@@ -34,7 +34,7 @@ describe('getSupportedBrowsersForCurrentOS function', () => {
     // MediaRecorderAPI on Safari Desktop
     const supportedBrowsersForCurrentOS = getSupportedBrowsersForCurrentOS(
       BrowserSupportForMediaRecorder,
-      UA_OperatingSystems.MacOS
+      UA_OPERATING_SYSTEMS.MacOS
     )
 
     expect(supportedBrowsersForCurrentOS.length).toBeGreaterThan(0)
@@ -82,7 +82,7 @@ describe('getSupportedBrowsersForCurrentOS function', () => {
   test('Should get only mobile browsers for Mobiles', () => {
     const supportedBrowsersForCurrentOS = getSupportedBrowsersForCurrentOS(
       BrowserSupportForMediaRecorder,
-      UA_OperatingSystems.IOS
+      UA_OPERATING_SYSTEMS.IOS
     )
 
     expect(supportedBrowsersForCurrentOS.length).toBeGreaterThan(0)
@@ -130,7 +130,7 @@ describe('getSupportedBrowsersForCurrentOS function', () => {
   test('Versions should always be a number', () => {
     const supportedBrowsersForCurrentOS = getSupportedBrowsersForCurrentOS(
       BrowserSupportForMediaRecorder,
-      UA_OperatingSystems.MacOS
+      UA_OPERATING_SYSTEMS.MacOS
     )
 
     expect(
@@ -143,7 +143,7 @@ describe('getSupportedBrowsersForCurrentOS function', () => {
   test('Browser links should always be a non empty strings', () => {
     const supportedBrowsersForCurrentOS = getSupportedBrowsersForCurrentOS(
       BrowserSupportForMediaRecorder,
-      UA_OperatingSystems.Android
+      UA_OPERATING_SYSTEMS.Android
     )
 
     expect(

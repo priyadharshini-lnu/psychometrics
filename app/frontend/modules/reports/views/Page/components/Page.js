@@ -12,12 +12,20 @@ import DisplayLogic from './DisplayLogic/DisplayLogic'
 import Module from './Module'
 
 class Page extends Component {
-  storeListener = null
-
   static propTypes = {
     model: PropTypes.object.isRequired,
     last: PropTypes.bool,
     renderModules: PropTypes.bool,
+  }
+
+  storeListener = null
+
+  selectPage = (e) => {
+    const { model, unselectModules, selectModule } = this.props
+    e.stopPropagation()
+    unselectModules()
+    RichEditorStore.close()
+    selectModule('Page', model)
   }
 
   renderModuleType = (module, i) => {
@@ -32,14 +40,6 @@ class Page extends Component {
     const model = new ModuleModel(module, page)
     const View = Modules[model.type]
     return <View key={i} module={model} page={page} shadow />
-  }
-
-  selectPage = (e) => {
-    const { model, unselectModules, selectModule } = this.props
-    e.stopPropagation()
-    unselectModules()
-    RichEditorStore.close()
-    selectModule('Page', model)
   }
 
   render () {

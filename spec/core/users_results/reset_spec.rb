@@ -18,10 +18,11 @@ describe UsersResults::Reset do
       scoring: test,
       embedded_data: test,
       step: 100,
-      occupations: test,
-      expiry_date: Time.now,
-      last_activity_at: Time.now)
-    users_result.user_assessment.update!(completed_at: Time.now, norm_id: norm.id, status: :completed)
+      occupations: test)
+    users_result.user_assessment.update!(
+      completed_at: Time.now, norm_id: norm.id, status: :completed, expiry_date: Time.now,
+      last_activity_at: Time.now
+    )
     users_result
   end
   let(:user_report) do
@@ -83,14 +84,14 @@ describe UsersResults::Reset do
     expect { subject }.to change { users_result.answers }.from(test).to({}).
       and change { users_result.scoring }.from(test).to(nil).
       and change { users_result.embedded_data }.from(test).to(nil).
-      and change { users_result.norm_id }.from(norm.id).to(nil).
+      and change { user_assessment.norm_id }.from(norm.id).to(nil).
       and change { users_result.occupations }.from(test).to(nil).
-      and change { users_result.status }.from('completed').to('not_started').
-      and change { users_result.completed_at }.from(Time.now).to(nil).
+      and change { user_assessment.status }.from('completed').to('not_started').
+      and change { user_assessment.completed_at }.from(Time.now).to(nil).
       and change { users_result.step }.from(100).to(0).
-      and change { users_result.expiry_date }.from(Time.now).to(nil).
-      and change { users_result.last_activity_at }.from(Time.now).to(nil).
-      and change { users_result.reset_count }.from(0).to(1)
+      and change { user_assessment.expiry_date }.from(Time.now).to(nil).
+      and change { user_assessment.last_activity_at }.from(Time.now).to(nil).
+      and change { user_assessment.reset_count }.from(0).to(1)
   end
 
   it 'reset user_report data if assessment is completed' do

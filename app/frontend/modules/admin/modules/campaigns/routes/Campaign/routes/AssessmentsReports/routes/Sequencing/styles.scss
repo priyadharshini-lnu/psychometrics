@@ -1,0 +1,12 @@
+.maxWidth30Chars {
+  max-width: 20rem;
+}
+
+.minHeightForGroup {
+  min-height: 20rem;
+}
+
+.iconSecondaryColor {
+  // Desperate attempt, fix with LH-1231
+  color: rgba(0, 0, 0, 0.45) !important;
+}

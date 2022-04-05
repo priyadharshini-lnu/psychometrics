@@ -4,17 +4,17 @@ import { PAGE_SIZES } from 'modules/reports/models/Report'
 import connect from './connect'
 
 class ReportProperties extends Component {
-  changePageSize = ({ target }) => {
-    const { changeSize, report } = this.props
-    const size = PAGE_SIZES.find(size => size.label === target.value)
-    changeSize({ width: size.width, height: size.height, fontSize: report.props.sizes.fontSize })
-  }
-
   getPageSizeLabel = (report) => {
     const size = PAGE_SIZES.find(
       ({ width, height }) => width === report.props.sizes.width && height === report.props.sizes.height,
     )
     return size.label
+  }
+
+  changePageSize = ({ target }) => {
+    const { changeSize, report } = this.props
+    const size = PAGE_SIZES.find(size => size.label === target.value)
+    changeSize({ width: size.width, height: size.height, fontSize: report.props.sizes.fontSize })
   }
 
   render () {
