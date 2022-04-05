@@ -41,8 +41,8 @@ describe Assessments::Export::Pearson do
         subject_name,
         subject_email,
         'Self',
-        user_result.started_at.try(:strftime, '%D %r'),
-        user_result.completed_at.try(:strftime, '%D %r'),
+        user_assessment.started_at.try(:strftime, '%D %r'),
+        user_assessment.completed_at.try(:strftime, '%D %r'),
         I18n.t("activerecord.attributes.users_result.statuses.#{user_assessment.status}"),
         10,
         2
