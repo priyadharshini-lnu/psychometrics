@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-  Button, Menu,
+  Button, Menu, message,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 
 const menu = ({
   projectId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
-  openModal, dimensionId, permissions,
+  openModal, dimensionId, permissions, onExport,
 }) => (
   <Menu>
     {permissions.manageDatasheets && (
@@ -33,14 +33,8 @@ const menu = ({
       </Menu.Item>
     )}
     {permissions.exportCompletionStatus && (
-      <Menu.Item key="export_completion_status">
-        <a
-          href={`/administration/threesixty_campaigns/${campaignId}/export_completion_status.xlsx`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Export Completion Status
-        </a>
+      <Menu.Item key="export_completion_status" onClick={() => onExport()}>
+        Export Completion Status
       </Menu.Item>
     )}
     <Menu.Divider />
@@ -76,6 +70,7 @@ const menu = ({
 export default function ToolsDropdown ({
   resetCampaign, resetAllNominations, openModal, dimensionId,
   match: { params: { campaignId, projectId } }, permissions,
+  exportCompletionStatuses,
 }) {
   const resetCampaignWithConfirmation = (campaignId) => {
     openModal('ResetCampaignModal', {
@@ -90,6 +85,12 @@ export default function ToolsDropdown ({
     })
   }
 
+  const onExport = () => {
+    exportCompletionStatuses(campaignId).then(() => {
+      message.success(I18n.t('jobs.threesixty.export_completion_statuses_scheduled'))
+    })
+  }
+
   return (
     <ConditionalDropdown
       menu={menu({
@@ -100,6 +101,7 @@ export default function ToolsDropdown ({
         openModal,
         dimensionId,
         permissions,
+        onExport,
       })}
       className="mrm"
       hideForEmptyMenu

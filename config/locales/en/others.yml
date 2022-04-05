@@ -636,6 +636,7 @@ en:
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
+        threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -1508,6 +1509,7 @@ en:
         description: Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>
         message: Report is ready
     threesixty:
+      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
@@ -2240,11 +2242,21 @@ en:
       approved: Approved
       denied: Denied
       waiting: Needs Approval
+    report_approval_status:
+      approved: Approved
+      denied: Denied
+      waiting: Waiting
+    report_release_status:
+      released: Released
+      waiting: Waiting
     report_statuses:
+      available: Available
       failed: Failed
       generating: Generating
+      incomplete: Incomplete
       not_prepared: Not Ready
       prepared: Done
+      released: Released
     statuses:
       completed: Completed
       declined: Declined
@@ -2486,6 +2498,19 @@ en:
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
         successfully: "%{name} assessment removed successfully."
+    status:
+      completed: Completed
+      in_progress: In Progress
+      ineligible: Ineligible
+      interrupted: Interrupted
+      not_started: Not Started
+      timed_out: Timed Out
+    statuses:
+      manager_nomination_status:
+        approved: Approved
+        declined: Declined
+        denied: Denied
+        waiting: Waiting
   user_reports:
     actions:
       regenerate: Regenerate

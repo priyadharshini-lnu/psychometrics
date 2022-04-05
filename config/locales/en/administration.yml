@@ -1881,6 +1881,7 @@ en:
         update:
           successfully: Sub-Campaign %{name} was successfully updated.
       tenancies: Client Tenancies
+      threesixty_campaign: Threesixty Campaign
       threesixty_campaigns:
         create:
           successfully: Campaign %{name} was successfully created.

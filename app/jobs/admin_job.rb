@@ -29,7 +29,8 @@ class AdminJob < ApplicationJob
     external_assessment_export: AdminJobs::ExternalAssessmentExport,
     import_sms_invites: AdminJobs::ImportSmsInvites,
     send_sms_invites: AdminJobs::SendSmsInvites,
-    completion_status_export: AdminJobs::CompletionStatusExport
+    completion_status_export: AdminJobs::CompletionStatusExport,
+    threesixty_campaign_export_completion_status: AdminJobs::ThreesixtyCampaignExportCompletionStatus
   }.freeze
 
   def perform(record)
