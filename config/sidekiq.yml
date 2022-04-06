@@ -6,12 +6,13 @@ staging:
 production:
   :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 2 %>
 :queues:
-  - two_factor_codes
-  - external_results
-  - mailers
-  - communication
-  - reports
-  - webhooks
-  - cron_tasks
-  - default
-  - low_priority
+  - ["two_factor_codes", 10]
+  - ["external_results", 6]
+  - ["mailers", 6]
+  - ["webhooks", 5]
+  - ["communication", 4]
+  - ["mailers_low_priority", 3]
+  - ["reports", 3]
+  - ["cron_tasks", 3]
+  - ["default", 2]
+  - ["low_priority", 1]
