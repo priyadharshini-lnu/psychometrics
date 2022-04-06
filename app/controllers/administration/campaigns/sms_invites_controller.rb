@@ -33,6 +33,7 @@ module Administration
 
             render json: {
               list: serialized_sms_invites,
+              invite_url_length: Utility::Url.get_short_url(unique_key: '*' * Shortener.unique_key_length).length,
               total: sms_invites.count,
               permissions: permissions
             }

@@ -1,15 +1,11 @@
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { Menu as AntMenu, Button } from 'antd'
+import { Menu as AntMenu } from 'antd'
 import routeUtils from 'utils/route'
-import { PlusOutlined } from '@ant-design/icons'
 import routes from '../routes'
-import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window
-
-const SEQUENCING = '/sequencing'
 
 interface OwnProps {
   prefix?: string
@@ -22,7 +18,7 @@ interface Params {
 }
 
 const Menu: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = ({
-  history, prefix, openModal, match: { params: { campaignId } },
+  history, prefix,
 }) => {
   const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
 
@@ -41,14 +37,6 @@ const Menu: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = 
           {I18n.t('assessments_reports.menu.sequencing')}
         </AntMenu.Item>
       </AntMenu>
-      {location.pathname.includes(SEQUENCING) && (
-      <div className={styles.addGroup}>
-        <Button type="primary" onClick={() => openModal('GroupFormModal', { campaignId })}>
-          <PlusOutlined />
-          <span>{I18n.t('assessments_reports.sequencing.add_group')}</span>
-        </Button>
-      </div>
-      )}
     </div>
   )
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import {
@@ -30,7 +29,7 @@ interface AssessmentInterface {
 interface State {
   defaultAssessmen: string | null
   assessments: AssessmentInterface[]
-  assessmentQuestions: {[id: number]: {id: number, name: string, props: any}}
+  assessmentQuestions: {[id: number]: {id: number, name: string, props: unknown}}
   resources: ResourceInterface[]
 }
 
@@ -71,10 +70,8 @@ export const saveResources = (assessmentId: number, resources: ResourceInterface
 })
 
 type LoadAssessmentsType = ApiActionResponse<AssessmentInterface[]>
-type LoadQuestionsType = ApiActionResponse<{[id: number]: {id: number, name: string, props: any}}>
-type AddResourceType = ReturnType<typeof addResource>
+type LoadQuestionsType = ApiActionResponse<{[id: number]: {id: number, name: string, props: unknown}}>
 type ChangeResourceType = ReturnType<typeof changeResource>
-type RemoveResourceType = ReturnType<typeof removeResource>
 type ReorderResourceType = ReturnType<typeof reorderResources>
 type SaveResourceType = ApiActionResponse<ResourceInterface>
 

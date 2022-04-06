@@ -19,7 +19,7 @@ const MultiInlineEditor: React.FC<Props> = ({
   const [edit, setEdit] = useState<boolean>(false)
   const [text, setText] = useState<string>(value)
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const textAreaRef = useRef<TextArea>(null)
 

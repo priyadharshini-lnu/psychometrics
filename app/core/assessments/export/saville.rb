@@ -48,7 +48,7 @@ module Assessments
           user_name(result),
           result.evaluator.email,
           I18n.t("activerecord.attributes.users_result.statuses.#{result.real_status}"),
-          result.started_at&.strftime('%D %r'),
+          result.user_assessment.started_at&.strftime('%D %r'),
           result.completed_at&.strftime('%D %r')
         ]
       end

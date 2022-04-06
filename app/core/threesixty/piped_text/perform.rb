@@ -20,13 +20,13 @@ module Threesixty
           key: 'e',
           name: 'evaluator',
           class_name: 'Threesixty::PipedText::Branches::Evaluator',
-          required_context: %i[evaluator threesixty_campaign]
+          required_context: %i[evaluator]
         },
         {
           key: 's',
           name: 'subject',
           class_name: 'Threesixty::PipedText::Branches::Subject',
-          required_context: %i[subject threesixty_campaign]
+          required_context: %i[subject]
         },
         {
           key: 'st',

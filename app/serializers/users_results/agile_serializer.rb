@@ -21,7 +21,7 @@ module UsersResults
     def locale
       locales = object.available_locales
       {
-        selected: object.selected_locale,
+        selected: object.user_assessment.selected_locale,
         defaultLocale: I18n.default_locale,
         available: locales,
         translations: translations.slice(*locales)

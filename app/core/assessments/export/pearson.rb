@@ -51,8 +51,8 @@ module Assessments
           subject_name,
           subject_email,
           'Self',
-          res.started_at.try(:strftime, '%D %r'),
-          res.completed_at.try(:strftime, '%D %r'),
+          res.user_assessment.started_at.try(:strftime, '%D %r'),
+          res.user_assessment.completed_at.try(:strftime, '%D %r'),
           I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}")
         ]
       end

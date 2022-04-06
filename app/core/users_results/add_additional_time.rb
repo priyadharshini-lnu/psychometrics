@@ -22,16 +22,13 @@ module UsersResults
     private
 
     def add_additional_time
-      user_result.update!(
-        expiry_date: nil,
-        last_activity_at: nil,
-        additional_time: additional_time
+      user_assessment.update!(
+        status: :interrupted, expiry_date: nil, additional_time: additional_time, last_activity_at: nil
       )
-      user_assessment.update(status: :interrupted)
     end
 
     def remove_reports
-      UserReport.where(report_id: user_result.assessment.report_ids, user_id: user_result.user.id).each do |ur|
+      user_assessment.user_reports.each do |ur|
         ur.update!(remove_pdf: true, status: :generating)
       end
     end

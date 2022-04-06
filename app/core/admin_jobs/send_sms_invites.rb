@@ -3,9 +3,9 @@
 module AdminJobs
   class SendSmsInvites < AdminJobs::Base
     def call
-      ::SmsInvites::SendSmsInvites.call!(sms_record, record)
+      data = ::SmsInvites::SendSmsInvites.call!(sms_record, record)
 
-      broadcast :ok
+      broadcast :ok, { error_messages: data[:errors] }
     end
 
     def generate_title_link

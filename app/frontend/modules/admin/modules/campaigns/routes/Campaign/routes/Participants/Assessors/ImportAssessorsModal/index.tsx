@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
+
+import { RootState } from 'modules/admin/core/rootReducers'
+
 import { importAssessors, IMPORT } from 'modules/admin/modules/campaigns/core/assessors'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
@@ -10,7 +13,7 @@ import Event from 'interfaces/Event'
 import _ from 'lodash'
 
 const connecter = connect(
-  state => ({
+  (state: RootState) => ({
     loading: isRequestInProgress(state, IMPORT),
   }),
   {

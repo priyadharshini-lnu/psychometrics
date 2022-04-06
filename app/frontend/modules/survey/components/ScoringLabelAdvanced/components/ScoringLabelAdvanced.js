@@ -19,13 +19,6 @@ class ScoringLabelAdvanced extends Component {
     template: '',
   }
 
-  change = (e) => {
-    const { onSet } = this.props
-    const value = Utils.parseFloat(e.currentTarget.value)
-    onSet(value)
-    this.setState({ template: value })
-  }
-
   onClear = (e) => {
     const { onClear } = this.props
     onClear()
@@ -42,6 +35,13 @@ class ScoringLabelAdvanced extends Component {
     const { onDesc } = this.props
     onDesc()
     e.preventDefault()
+  }
+
+  change = (e) => {
+    const { onSet } = this.props
+    const value = Utils.parseFloat(e.currentTarget.value)
+    onSet(value)
+    this.setState({ template: value })
   }
 
   renderComponent () {

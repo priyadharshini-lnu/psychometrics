@@ -18,7 +18,7 @@ module Threesixty
           end
 
           def campaign
-            context[:threesixty_campaign].campaign
+            context[:campaign] || context[:threesixty_campaign].campaign
           end
         end
       end

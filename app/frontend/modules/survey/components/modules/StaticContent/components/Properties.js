@@ -16,17 +16,17 @@ export class Properties extends Component {
     this.librarySocket = Socket.library()
   }
 
+  onSelectGraphic = (item) => {
+    const { model } = this.props
+    model.changeProps({ graphicUrl: item.file })
+  }
+
   openGraphicsLibrary = () => {
     LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic, 'image')
   }
 
   openFilesLibrary = () => {
     LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic)
-  }
-
-  onSelectGraphic = (item) => {
-    const { model } = this.props
-    model.changeProps({ graphicUrl: item.file })
   }
 
   changeType = (e) => {

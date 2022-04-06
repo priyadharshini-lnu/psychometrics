@@ -33,7 +33,7 @@ module Administration
         (@user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
         )) && %w[completed timed_out].include?(record&.real_status) &&
-        record&.users_result&.expired?
+        record&.expired?
     end
 
     def rescore_response?

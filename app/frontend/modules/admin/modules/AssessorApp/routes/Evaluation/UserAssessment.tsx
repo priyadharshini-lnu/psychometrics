@@ -50,7 +50,7 @@ const UserAssessment: React.FC<Props> = ({
   }, [])
 
   const loaded = !!subjectForm
-  const bodyStyles = { padding: 0, maxHeight: '100vh', overflowY: 'scroll' as 'scroll' }
+  const bodyStyles = { padding: 0, maxHeight: '100vh', overflowY: 'scroll' as const }
 
   return (
     <Card

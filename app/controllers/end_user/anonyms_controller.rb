@@ -22,7 +22,7 @@ module EndUser
       redirect_to(action: 'error', reason: 'archived') && return if assessment.archived?
       redirect_to(action: 'error', reason: 'not_active') && return unless @campaign_assessment.enable_universal_links?
 
-      @user_result.update(selected_locale: params[:lang]) if params[:lang]
+      @user_assessment.update(selected_locale: params[:lang]) if params[:lang]
 
       campaign_user = @campaign_assessment.campaign.campaign_users.find_by(user_id: current_user.id)
       campaign_user.update(started_at: Time.now) unless campaign_user.started_at
@@ -73,7 +73,7 @@ module EndUser
     end
 
     def render_assessment_and_result
-      @selected_locale = @user_result.selected_locale || user_locale
+      @selected_locale = @user_assessment.selected_locale || user_locale
 
       serialized_assessment = AssessmentSerializer.new(assessment, selected_locale: @selected_locale).
                               to_hash(include: '**')

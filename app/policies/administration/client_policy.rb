@@ -113,17 +113,22 @@ module Administration
         return scope if @user.is?(:superadmin)
 
         # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
-        permission = @user.is?(:client_admin) ? :clients : :projects
-
-        clients_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
-
-        permitted_clients_ids = clients_ids.select do |client_id|
-          @user.has_permission?(permission, :view, project_id: client_id)
+        permitted_client_admin_clients_ids = @user.client_admin_client_ids.select do |client_id|
+          @user.has_permission?(:clients, :view, project_id: client_id)
         end
 
-        permitted_clients_ids.concat(@user.campaign_admin_client_ids) if @user.is?(:campaign_admin)
+        permitted_project_admin_client_ids = @user.project_admin_client_ids.select do |project_id|
+          @user.has_permission?(:projects, :view, project_id: project_id)
+        end
 
-        clients_scope = scope.where(id: permitted_clients_ids)
+        permitted_campaign_admin_project_ids = @user.campaign_admin_campaigns.select do |campaign|
+          @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
+        end.pluck(:project_id)
+
+        clients_scope = scope.where(
+          'id IN (?)', (permitted_client_admin_clients_ids + permitted_project_admin_client_ids +
+            permitted_campaign_admin_project_ids)
+        )
 
         clients = clients_scope.not_retails.select(:id, :ancestry)
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose

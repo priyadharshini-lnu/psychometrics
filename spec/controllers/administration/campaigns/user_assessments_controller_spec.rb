@@ -19,12 +19,14 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       evaluator: user,
       campaign: campaign,
       assessment: assessment,
-      status: :completed,
-      expiry_date: 1.year.ago
+      status: :completed
     )
   end
 
-  let!(:user_assessment) { users_result.user_assessment }
+  let!(:user_assessment) do
+    users_result.user_assessment.update(expiry_date: 1.year.ago)
+    users_result.user_assessment
+  end
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
 
   let!(:user_report) do
@@ -59,12 +61,11 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     }, as: :json
 
     parsed_response = JSON.parse(response.body)
+    user_assessment.reload
 
-    users_result.reload
-
-    expect(users_result.additional_time).to eq(600)
-    expect(users_result.status).to eq('interrupted')
-    expect(users_result.expiry_date).to be_nil
+    expect(user_assessment.additional_time).to eq(600)
+    expect(user_assessment.status).to eq('interrupted')
+    expect(user_assessment.expiry_date).to be_nil
     expect(parsed_response.dig('user_assessments', 0, 'id')).to eq(user_assessment.id)
     expect(parsed_response['id']).to eq(user.id)
     expect(parsed_response['user_reports'].class).to be(Array)

@@ -143,6 +143,22 @@
     justify-content: space-evenly;
   }
 
+  .items-start {
+    align-items: flex-start;
+  }
+  .items-end {
+    align-items: flex-end;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .items-baseline {
+    align-items: baseline;
+  }
+  .items-stretch {
+    align-items: stretch;
+  }
+
   // Cursor
   .cursor-default {
     cursor: default;
@@ -152,6 +168,9 @@
   }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .cursor-grab {
+    cursor: grab;
   }
 
   // Direction
@@ -171,7 +190,7 @@
     display: none;
   }
 
-  .font-normal{
+  .font-normal {
     font-weight: normal;
   }
 }

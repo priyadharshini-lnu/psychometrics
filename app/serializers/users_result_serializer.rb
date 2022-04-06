@@ -21,6 +21,8 @@ class UsersResultSerializer < ActiveModel::Serializer
   delegate :campaign_options, to: :campaign
   has_many :factors, serializer: ::UsersResults::FactorSerializer
 
+  delegate :reset_count, :started_at, to: :user_assessment
+
   def hash_id
     object.encoded_id
   end
@@ -36,10 +38,10 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def remaining_assessment_time
-    return unless object.expiry_date
+    return unless user_assessment.expiry_date
     return if object.not_started?
 
-    assessment_time_left = [object.expiry_date - Time.now, 0].max
+    assessment_time_left = [user_assessment.expiry_date - Time.now, 0].max
 
     return [assessment_time_left, remaining_campaign_time].min if remaining_campaign_time
 
@@ -59,7 +61,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   def timed_out
     return false if instance_options[:read_only]
 
-    object.expired?
+    user_assessment.expired?
   end
 
   def campaign_user
@@ -155,10 +157,14 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def locale
-    instance_options[:locale] || object.selected_locale || I18n.default_locale
+    instance_options[:locale] || user_assessment.selected_locale || I18n.default_locale
   end
 
   def piped_text_context
     instance_options[:piped_text_context] || {}
+  end
+
+  def user_assessment
+    object.user_assessment
   end
 end

@@ -28,9 +28,8 @@ class TrashItem extends Component {
 
   renderName = model => <span>{model.name}</span>
 
-  render = () => {
+  render () {
     const { model } = this.props
-
     return (
       <li className={`list-group-item ${styles.noBorderRad}`}>
         <div className={styles.item}>

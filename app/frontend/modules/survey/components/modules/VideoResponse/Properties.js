@@ -9,6 +9,11 @@ import { Button, InputNumber } from 'antd'
 import _ from 'lodash'
 
 export class Properties extends Component {
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+    restricted: PropTypes.bool,
+  }
+
   durations = [
     { value: 10, display: '10s' },
     { value: 30, display: '30s' },
@@ -25,11 +30,6 @@ export class Properties extends Component {
     { value: 'face', display: 'Full Face' },
     { value: 'custom', display: 'Custom' },
   ]
-
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-    restricted: PropTypes.bool,
-  }
 
   update = () => {
     const { model } = this.props

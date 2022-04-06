@@ -14,7 +14,7 @@ module Administration
         @participant = threesixty_campaign.participants.find_by!(subject_id: resource.user_id,
                                             evaluator_id: params[:id])
         @users_result = @participant.users_result
-        set_locale_for_users_result(@users_result)
+        set_locale_for_user_assessment(@participant)
         @participant.status = :in_progress
         @users_result.current_element = nil
         @users_result.current_page = 0

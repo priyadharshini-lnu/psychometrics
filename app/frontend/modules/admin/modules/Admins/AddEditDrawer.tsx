@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
@@ -59,7 +58,6 @@ interface OwnProps {
   parentResourceId: number
   isEditMode: boolean
   isAddMode: boolean
-  campaignId: number
   adminId: string
   handleClose: () => void
 }
@@ -72,7 +70,6 @@ const AddEditDrawerComponent: FC<Props> = ({
   parentResourceId,
   isEditMode,
   isAddMode,
-  campaignId,
   adminId,
   handleClose,
   fetchAdmin,
@@ -148,7 +145,7 @@ const AddEditDrawerComponent: FC<Props> = ({
             admin?.grants?.data?.results?.includes(GrantType.reset_responses),
           [`results-${GrantType.rescrore_responses}`]:
             admin?.grants?.data?.results?.includes(
-              GrantType.rescrore_responses
+              GrantType.rescrore_responses,
             ),
         }
         form.setFieldsValue(formFieldsValues)

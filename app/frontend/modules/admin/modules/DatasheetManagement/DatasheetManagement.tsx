@@ -167,6 +167,8 @@ const DatasheetManagementComponent: FC<Props> = ({
     setVisibleColumns(parentResourceType, parentResourceId, changedVisibleColumnKey)
   }
 
+  const isDataSheetUploaded = !isEmpty(columnDefinitions) && columnDefinitions.length > 1
+
   return (
     <>
       <Row justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
@@ -205,7 +207,7 @@ const DatasheetManagementComponent: FC<Props> = ({
               datasheetCount={total}
               permissions={permissions}
             />
-            {permissions.add && (isEmpty(columnDefinitions) || (
+            {permissions.add && isDataSheetUploaded && (
               <Button
                 type="primary"
                 onClick={() => toggleDrawer(DrawerModes.Add)}
@@ -214,7 +216,7 @@ const DatasheetManagementComponent: FC<Props> = ({
                 <PlusOutlined />
                 {I18n.t('administration.datasheets.list.header.add_record')}
               </Button>
-            ))}
+            )}
           </Space>
         </Col>
       </Row>

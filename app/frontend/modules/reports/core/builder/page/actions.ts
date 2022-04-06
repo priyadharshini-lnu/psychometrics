@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import ModuleInterface from '../../interfaces/Module'
 
 export const ADD_MODULE = 'report/page/ADD_MODULE'
@@ -10,7 +9,6 @@ export const REMOVE_DISPLAY_LOGIC = 'report/REMOVE_DISPLAY_LOGIC'
 interface RemovePage { type: typeof REMOVE_PAGE, id: number }
 interface RenamePage { type: typeof RENAME_PAGE, id: number, name: string}
 
-interface SaveDisplayLogic { type: typeof SAVE_DISPLAY_LOGIC, id: number, displayLogic: any}
 interface RemoveDisplayLogic { type: typeof REMOVE_DISPLAY_LOGIC, id: number}
 
 export const addModule = (currentPage: number, module: ModuleInterface) => ({

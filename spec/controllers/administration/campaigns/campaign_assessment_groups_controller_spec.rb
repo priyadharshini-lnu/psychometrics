@@ -54,6 +54,47 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentGroupsController, ty
     expect(parsed_response['position']).to eq 4
   end
 
+  it 'update_positions' do
+    group1 = create(:campaign_assessment_group, campaign: campaign, name: 'Group')
+    group2 = create(:campaign_assessment_group, campaign: campaign, name: 'Group')
+
+    post :update_positions, params: {
+      campaign_assessment_groups: [
+        {
+          id: group1.id,
+          position: 3
+        },
+        {
+          id: group2.id,
+          position: 6
+        }
+
+      ],
+      new_campaign_id: campaign.id
+    }
+    expect(response).to have_http_status(:success)
+    expect(group1.reload.position).to eq 3
+    expect(group2.reload.position).to eq 6
+  end
+
+  it 'will not update_positions for other campaign' do
+    other_campaign = create(:campaign)
+
+    group = create(:campaign_assessment_group, campaign: campaign, name: 'Group')
+
+    post :update_positions, params: {
+      campaign_assessment_groups: [
+        {
+          id: group.id,
+          position: 3
+        }
+      ],
+      new_campaign_id: other_campaign.id
+    }
+    expect(response).to have_http_status(400)
+    expect(group.reload.position).to eq 1
+  end
+
   it 'destroy' do
     campaign.campaign_assessments.create(position: 1)
     ca1 = campaign_assessment_group.campaign_assessments.create(campaign_id: campaign.id)

@@ -8,6 +8,7 @@ import { fetchManagers } from './managers'
 const RESET = 'threeSixty/RESET'
 const RESET_NOMINATIONS = 'threeSixty/RESET_NOMINATIONS'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
+const EXPORT_COMPLETION_STATUSES = 'threeSixty/EXPORT_COMPLETION_STATUSES'
 
 export const reset = (campaignId: number, removeLicenceUsage: boolean) => ({
   type: RESET,
@@ -23,6 +24,14 @@ export const resetAllNominations = (campaignId: number) => ({
   request: {
     method: 'delete',
     url: `/administration/threesixty_campaigns/${campaignId}/reset_nominations`,
+  },
+})
+
+export const exportCompletionStatuses = (campaignId: number) => ({
+  type: EXPORT_COMPLETION_STATUSES,
+  request: {
+    method: 'get',
+    url: `/administration/threesixty_campaigns/${campaignId}/export_completion_status`,
   },
 })
 
