@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 import {
-  Badge, Col, Card, Result, Row,
+  Col, Card, Result, Row,
 } from 'antd'
-import { grey, red } from '@ant-design/colors'
 import { BlockOutlined } from '@ant-design/icons'
 import { SortableContext, useSortable, horizontalListSortingStrategy } from '@dnd-kit/sortable'
 
@@ -34,15 +33,7 @@ export const UngroupedAssessmentContainer: FC<Props> = ({
           title={I18n.t('assessments_reports.sequencing.ungrouped_assessments')}
           loading={isLoading}
           size="small"
-          extra={(
-            <Badge
-              count={count}
-              showZero
-              style={{
-                backgroundColor: count > 0 ? red[5] : grey[1],
-              }}
-            />
-          )}
+          bodyStyle={{ backgroundColor: '#f0f0f0' }}
         >
           <SortableContext items={items} strategy={horizontalListSortingStrategy} id="ungrouped">
             {count !== 0 ? (
