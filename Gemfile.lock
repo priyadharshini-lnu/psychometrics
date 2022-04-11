@@ -69,7 +69,7 @@ GEM
     rails-assets-ladda (1.0.6)
       rails-assets-spin.js (~> 2.0.2)
     rails-assets-lodash (4.17.15)
-    rails-assets-moment (2.29.1)
+    rails-assets-moment (2.29.2)
     rails-assets-moment-timezone (0.5.34)
       rails-assets-moment (>= 2.9.0)
     rails-assets-multiselect (0.9.12)
