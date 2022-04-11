@@ -11,6 +11,7 @@ import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import ReactMarkdown from 'react-markdown'
 import { SafeHTML } from 'components/SafeHTML'
 import { setStore, getStore } from 'store/StoreWatchman'
+import styles from './styles.scss'
 import AssessorAssessment from './AssessorAssessment'
 import UserAssessment from './UserAssessment'
 import { fetchAssessorAssessments, changeAssessorForm, changeSubjectAssessment } from '../../core/evaluation'
@@ -113,7 +114,7 @@ const Evaluation = ({
                 {': '}
                 {userInfo.user && userInfo.user.last_name}
               </div>
-              <div>
+              <div className={styles.table}>
                 <Table
                   columns={[{
                     title: I18n.t('user.datasheet.attribute'),
