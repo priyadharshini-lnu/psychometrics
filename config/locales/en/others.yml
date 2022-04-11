@@ -1319,7 +1319,7 @@ en:
         forgot_password: Forgot password?
         instruction: Please login with your personal account information
         keep_sign_in: Yes, Keep me signed in
-        login_with_sso: Login with Single Single On
+        login_with_sso: Login with Single Sign-On
         password_placeholder: Password
         submit: Login
         tabs:
