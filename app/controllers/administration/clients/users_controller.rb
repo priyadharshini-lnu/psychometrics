@@ -44,7 +44,7 @@ module Administration
         @_resource = UserForm.
                      from_params(params[:resource]).
                      with_context(client: client)
-        audit! :create, resource, payload: resource_params, client: resource
+        audit! :create, resource, payload: create_resource_params, client: resource
         respond_to do |format|
           format.js do
             CreateUser.call(resource, [client], current_user) do
