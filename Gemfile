@@ -65,7 +65,7 @@ gem 'simple_form',                '5.1.0'
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 gem 'kaminari',                   '~> 1.2.1'
 ### Breadcrumbs
-gem 'breadcrumbs_on_rails',       '~> 4.0.0'
+gem 'breadcrumbs_on_rails',       '~> 4.1.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
 gem 'ransack', '~> 2.3.0'
