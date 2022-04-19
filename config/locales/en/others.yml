@@ -2254,6 +2254,7 @@ en:
       failed: Failed
       generating: Generating
       incomplete: Incomplete
+      not_available: Not Available
       not_prepared: Not Ready
       prepared: Done
       released: Released
@@ -2506,9 +2507,16 @@ en:
       not_started: Not Started
       timed_out: Timed Out
     statuses:
+      evaluator_nomination_status:
+        completed: Completed
+        declined: Declined
+        waiting: Waiting
+      manager_evaluation_status:
+        approved: Approved
+        denied: Denied
+        waiting: Waiting
       manager_nomination_status:
         approved: Approved
-        declined: Declined
         denied: Denied
         waiting: Waiting
   user_reports:
