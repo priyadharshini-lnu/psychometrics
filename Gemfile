@@ -73,7 +73,7 @@ gem 'ransack', '~> 2.3.0'
 gem 'active_link_to',             '~> 1.0.5'
 
 ### Translaters for javascripts
-gem 'i18n-js',                    '~> 3.6.0'
+gem 'i18n-js',                    '~> 3.9.2'
 
 ### Decorator
 gem 'annotate', '~> 2.7.0'
