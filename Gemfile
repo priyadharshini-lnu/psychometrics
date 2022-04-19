@@ -234,7 +234,7 @@ end
 gem 'rqrcode'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.2.0'
+gem 'sidekiq-cron', '~> 1.3.0'
 
 gem 'xml-simple', '~> 1.1.5'
 
