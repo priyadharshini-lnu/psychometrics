@@ -12,7 +12,7 @@ import {
 } from 'modules/user/modules/campaigns/core/project'
 import { isInsideIframe } from 'utils/isInsideIframe'
 
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogo.svg'
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoTall.svg'
 import tteLogo from 'modules/user/assets/images/tteLogo.svg'
 
 import styles from './styles.scss'
@@ -43,7 +43,7 @@ const Footer: FC<PropsFromRedux> = ({
   return (
     <Layout.Footer className={styles.footer}>
       <Row align="middle" justify="space-between">
-        <TTELogo />
+        {secondaryLogo && <TTELogo />}
         <ProductUsageLinks
           privacyText={privacyText}
           privacyPageLink={privacyPageLink}
