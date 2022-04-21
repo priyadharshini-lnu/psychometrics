@@ -110,7 +110,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
                 class="ant-col"
               >
                 <button
-                  class="ant-btn ant-btn-sm"
+                  class="ant-btn ant-btn-default ant-btn-sm"
                   type="button"
                 >
                   <span
@@ -147,7 +147,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
                 class="ant-col"
               >
                 <button
-                  class="ant-btn ant-btn-sm"
+                  class="ant-btn ant-btn-default ant-btn-sm"
                   type="button"
                 >
                   <span
