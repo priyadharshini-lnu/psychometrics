@@ -907,6 +907,7 @@ en:
       view: View
     goto_dashboard: Go to the Dashboard
     in_progress: In Progress
+    inactive_campaign_message: Currently, you have not been assigned any activities.
     ineligible: Ineligible
     instructions:
       heading: Please review the guidelines below before you get started. We wish you all the best!
