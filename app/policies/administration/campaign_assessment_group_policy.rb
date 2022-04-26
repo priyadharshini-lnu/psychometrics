@@ -2,16 +2,16 @@
 
 module Administration
   class CampaignAssessmentGroupPolicy < Administration::BasePolicy
-    def create?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+    def index?
+      has_permission?(:campaigns, :view)
     end
 
-    def index?
-      create?
+    def create?
+      has_permission?(:campaigns, :manage)
     end
 
     def update?
-      create?
+      has_permission?(:campaigns, :manage)
     end
   end
 end
