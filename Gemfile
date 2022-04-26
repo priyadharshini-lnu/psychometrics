@@ -144,7 +144,8 @@ gem 'sidekiq', '~> 6.4.1'
 gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
 
-gem 'dry-types', '~> 1.5.0'
+gem 'dry-validation', '~> 1.8.0'
+gem 'dry-swagger', '~> 0.7.2'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.14.0'
 gem 'reform-rails', '~> 0.2.3'
@@ -168,6 +169,8 @@ gem 'js-routes', '~> 1.4.4'
 gem 'rswag-api', '~> 2.5.1'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
+gem 'jsonapi-authorization', git: 'https://github.com/TheTalentEnterprise/jsonapi-authorization', branch: 'namespace'
+gem 'jsonapi-utils', '~> 0.7.3'
 
 gem 'activerecord-import', '~> 1.4.0'
 gem 'possessive', '~> 1.0.1'
@@ -218,6 +221,7 @@ group :test do
   gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 1.8.7'
+  gem 'jsonapi-rspec', '~> 0.0.11'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
   gem 'selenium-webdriver', '~> 3.142.7'

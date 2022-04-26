@@ -1,0 +1,10 @@
+en:
+  contract:
+    descriptions:
+      eql?: "Must be equal to %{value}"
+      max_size?: "Maximum size: %{value}"
+      min_size?: "Minimum size: %{value}"
+      gteq?: "Greater than or equal to %{value}"
+      gt?: "Greater than %{value}"
+      lt?: "Lower than %{value}"
+      lteq?: "Lower than or equal to %{value}"

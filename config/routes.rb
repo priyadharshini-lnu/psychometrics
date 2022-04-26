@@ -1067,6 +1067,14 @@ Rails.application.routes.draw do
           get :dimensions, on: :member
         end
       end
+
+      namespace :v2 do
+        namespace :administration do
+          jsonapi_resources :clients do
+            jsonapi_relationships
+          end
+        end
+      end
     end
   end
 end
