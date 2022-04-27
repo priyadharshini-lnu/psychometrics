@@ -2248,16 +2248,16 @@ en:
       denied: Denied
       waiting: Waiting
     report_release_status:
+      on_hold: On Hold
       released: Released
       waiting: Waiting
     report_statuses:
+      approved: Approved
       available: Available
-      failed: Failed
-      generating: Generating
+      denied: Denied
       incomplete: Incomplete
       not_available: Not Available
-      not_prepared: Not Ready
-      prepared: Done
+      on_hold: On Hold
       released: Released
     statuses:
       completed: Completed
