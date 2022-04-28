@@ -79,6 +79,16 @@ module Administration
         head :ok
       end
 
+      def export_compact_completion_status
+        audit! :export_compact_completion_status, campaign, campaign: campaign
+        AdminJob.call(
+          :compact_completion_status_export,
+          { campaign_id: campaign.id },
+          current_user
+        )
+        head :ok
+      end
+
       def import
         import_data = ::Campaigns::Users::ParseImportData.call!(params[:import_data])
         form = ::Campaigns::Users::ImportForm.new(import_data: import_data, operation: params[:operation]).

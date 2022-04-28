@@ -621,6 +621,7 @@ en:
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         export_report_data: Export report data
@@ -2489,7 +2490,8 @@ en:
         user_with_unchanged_passwords: The list of users whose passwords were not changed
     toolbar:
       export: Export Users
-      export_completion_status: Export Completion Status
+      export_compact_completion_status: Compact
+      export_detailed_completion_status: Detailed
       import: Import Users
   user_assessments:
     modals:
