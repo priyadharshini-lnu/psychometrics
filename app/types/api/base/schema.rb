@@ -110,7 +110,7 @@ module Api
       def self.resource_identifier
         resource = self.resource
         proc do
-          required(:id).filled(:integer)
+          required(:id).filled(:string)
           required(:type).filled(Types.Value(resource))
         end
       end
