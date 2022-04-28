@@ -18,7 +18,7 @@ module Agiles
 
     # Removes `answers` from questions and `scoring` from blocks of Assessment scenes
     def scrub_keys(groups)
-      iterate_blocks(groups) do |block|
+      iterate_blocks(groups, ['AssessmentScene']) do |block, _|
         block.delete('scoring')
         questions = block.dig('questions')
         questions.each { |q| q.except!('answers', 'scoring') }
@@ -27,7 +27,10 @@ module Agiles
 
     def pick_random_question_set(groups)
       random_set = nil
-      iterate_blocks(groups) do |block|
+      prev_group = nil
+      iterate_blocks(groups, %w[PracticeScene AssessmentScene]) do |block, group|
+        random_set = nil if group != prev_group
+        prev_group = group
         random_sets = Set.new
         questions = block.dig('questions')
         questions.each do |q|
@@ -40,13 +43,13 @@ module Agiles
       end
     end
 
-    def iterate_blocks(groups)
+    def iterate_blocks(groups, scene_types)
       groups.tap do |original_groups|
         original_groups.each do |group|
-          group['scenes'].select { |scene| scene['type'] == 'AssessmentScene' }.each do |scene|
+          group['scenes'].select { |scene| scene_types.include?(scene['type']) }.each do |scene|
             blocks = scene.dig('data', 'blocks')
             blocks.each do |block|
-              yield block
+              yield(block, group)
             end
           end
         end
