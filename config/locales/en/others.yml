@@ -140,7 +140,7 @@ en:
             locale:
               inclusion: Wrong locale
             password:
-              too_short: Password is too short. Minimum 6 character required
+              too_short: Password is too short. Minimum %{count} character required
         password_reset:
           attributes:
             email:
@@ -152,7 +152,7 @@ en:
             last_name:
               blank: Last name can't be blank
             password:
-              too_short: Password is too short. Minimum 6 character required
+              too_short: Password is too short. Minimum %{count} character required
               too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
         register:
           attributes:
@@ -1259,7 +1259,16 @@ en:
         someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
         subject: The Talent Enterprise – Your Link to Thriving Index
       password_change:
-        subject: Password Changed
+        body: |
+          Hello %{name}!
+
+          Your password has been changed.
+
+          If you did not make this request, please contact Support immediately at support@thetalententerprise.com
+        regards: |
+          Regards,
+          Lighthouse Team
+        subject: Your Lighthouse password has changed
       reset_password_instructions:
         body: |
           Hello %{name}!
@@ -1272,7 +1281,18 @@ en:
           Lighthouse Team
         subject: Instructions for resetting your password
       unlock_instructions:
-        subject: Unlock instructions
+        body: |
+          Hello %{name}!
+
+          Your account has been locked due to an excessive number of unsuccessful login attempts.
+
+          Click the link below to unlock your account:
+        footer: If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
+        regards: |
+          Regards,
+          Lighthouse Team
+        subject: Instructions for Unlocking your account
+        unlock_account: Unlock my account
     omniauth_callbacks:
       failure: Could not authenticate you from %{kind} because "%{reason}".
       success: Successfully authenticated from %{kind} account.

@@ -1,4 +1,4 @@
-- options = {id: @resource, invitation_token: @token, domain: Settings.domain, subdomain: @subdomain}
+- options = {id: @resource, invitation_token: @token, domain: Settings.domain, subdomain: @subdomain, protocol: Settings.protocol}
 /p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
 /p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
 
@@ -11,7 +11,7 @@ spacer[size="16"]
 row
   columns
     .radius.small
-      button href= url_for([:accept, @resource.role_scope, :invitation, options]) target="_blank" 
+      button href= url_for([:accept, @resource.role_scope, :invitation, options]) target="_blank"
         = t("devise.mailer.invitation_instructions.accept")
 
 p Please do not pass or forward this link to anyone else.

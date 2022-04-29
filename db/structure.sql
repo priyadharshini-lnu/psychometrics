@@ -52,6 +52,20 @@ COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
 
 
 --
+-- Name: tablefunc; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS tablefunc WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION tablefunc; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION tablefunc IS 'functions that manipulate whole tables, including crosstab';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -3917,12 +3931,7 @@ CREATE TABLE public.user_assessments (
     completed_at timestamp without time zone,
     completion_reason integer,
     fixed_norm boolean DEFAULT false,
-    created_by_id integer,
-    reset_count integer DEFAULT 0,
-    expiry_date timestamp without time zone,
-    additional_time integer,
-    selected_locale character varying,
-    started_at timestamp without time zone
+    created_by_id integer
 );
 
 
@@ -4031,7 +4040,10 @@ CREATE TABLE public.users (
     settings jsonb DEFAULT '{}'::jsonb,
     already_invited boolean DEFAULT false,
     locale character varying,
-    enable_2fa boolean DEFAULT true NOT NULL
+    enable_2fa boolean DEFAULT true NOT NULL,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone
 );
 
 
@@ -9302,8 +9314,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
-('20220218102808'),
 ('20220311084649'),
-('20220311105318');
+('20220311105318'),
+('20220428111329');
 
 
