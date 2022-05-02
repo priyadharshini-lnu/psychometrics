@@ -1,70 +1,10 @@
 import React, { FC, useEffect, useState } from 'react'
-import { useQuery, useMutation, useClient } from 'jsonapi-react'
 import * as t from 'io-ts'
+import { atom, AtomOptions, RecoilState, useRecoilState } from 'recoil'
+import { LoadingOutlined } from '@ant-design/icons'
+import { useResources, ResourceState } from 'hooks/useResources'
 
 type Props = {}
-
-
-function useResources<R extends {id: string, type: string }>(resourceName, config = {}) {
-  const client = useClient(config)
-  const [data, setData] = useState<R[]>([])
-  const [requests, setRequests] = useState({})
-
-  return {
-    fetch: async (args = {}) => {
-      setRequests({ ...requests, fetch: { state: 'loading'} })
-      const { data: newData, error, errors } = await client.fetch(resourceName, args)
-      const errorData = errors ? errors : (error ? [error] : null)
-      const state = errorData ? 'failed' : 'completed'
-      setRequests({ ...requests, fetch: { state: state, errors: errorData } })
-
-      if (state === 'completed') setData(newData)
-    },
-    addResource: async (details: Partial<R>) => {
-      setRequests({ ...requests, add: { state: 'loading'} })
-      const { data: response, error, errors } = await client.mutate(resourceName, details)
-      const errorData = errors ? errors : (error ? [error] : null)
-      const state = errorData ? 'failed' : 'completed'
-      setRequests({ ...requests, add: { state: state, errors: errorData } })
-
-      if (state === 'completed')  setData([response, ...data])
-    },
-    updateResource:async (details: Partial<R>) => {
-      const { id, ...attributes } = details
-      const requestKey = `update@${id}`
-      setRequests({ ...requests, [requestKey]: { state: 'loading'} })
-      const { data: response, error, errors } = await client.mutate([resourceName, id], attributes)
-      const errorData = errors ? errors : (error ? [error] : null)
-      const state = errorData ? 'failed' : 'completed'
-      setRequests({ ...requests, [requestKey]: { state: state, errors: errorData } })
-
-      if (state === 'completed') setData(data.map(r => r.id === response.id ? response : r))
-    },
-    removeResource: async (id: string) => {
-      const requestKey = `delete@${id}`
-      setRequests({ ...requests, [requestKey]: { state: 'loading'} })
-      const { error,  errors } = await client.delete([resourceName, id])
-      const errorData = errors ? errors : (error ? [error] : null)
-      const state = errorData ? 'failed' : 'completed'
-      setRequests({ ...requests, [requestKey]: { state: state, errors: errorData } })
-
-      if (state === 'completed')  setData(data.filter(r => r.id !== id))
-    },
-    isLoading(action: string, resource_id: null | string = null): boolean {
-      const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
-
-      return request ? request.state === 'loading' : false
-    },
-    getErrors(action, resource_id = null) {
-      const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
-
-      return request ? request.errors : null
-    },
-    data,
-    setData,
-    requests,
-  }
-}
 
 const ResourceIdentifierTR = t.type({
   id: t.string,
@@ -82,20 +22,53 @@ const ClientTR = t.intersection([
 ])
 type Client = t.TypeOf<typeof ClientTR>
 
+const clientAtom = atom({
+  key: 'Clients',
+  default: { data: [], requests: {} },
+});
+
+
 export const ClientList: FC<Props> = () => {
-  const { data, fetch, updateResource, isLoading, requests } = useResources<Client>('clients')
+  const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
+  const { data, fetch, updateResource, isLoading, requests } = useResources<Client>(
+    'clients', //{ stateManager: { state: clients, setState: setClients } }
+  )
 
   useEffect(() => {
-    fetch()
+    fetch({ include: ['account_manager'] })
   }, [])
 
   return (
     <div>
-      Hi
+      <h1>Parent</h1>
+      {isLoading('update', '100') && <LoadingOutlined />}
       <button onClick={() => {
         updateResource({ id: '100', name:  Math.random().toString(36).substring(2, 15) })
       }}>Update</button>
-      {data?.map((client) => (<div>{client.name}</div>))}
+      {data?.map((client) => (<div key={client.id}>{client.name}</div>))}
+      <h1>Child</h1>
+      <Client />
+    </div>
+  )
+}
+
+export const Client: FC<{}> = () => {
+  const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
+  const { data, fetch, updateResource, isLoading, requests, addResource } = useResources<Client>(
+    'clients', { stateManager: { state: clients, setState: setClients } }
+  )
+
+  useEffect(() => {
+    fetch({ include: ['account_manager', 'project_manager']})
+  }, [])
+
+  return (
+    <div>
+      {isLoading('update', '100') && <LoadingOutlined />}
+      <button onClick={() => {
+        updateResource({ id: '100', name:  Math.random().toString(36).substring(2, 15) })
+      }}>Update</button>
+      {data?.map((client) => (<div key={client.id}>{client.name}</div>))}
     </div>
   )
 }

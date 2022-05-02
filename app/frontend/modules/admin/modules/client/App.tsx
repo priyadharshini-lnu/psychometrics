@@ -6,7 +6,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import store, { history } from 'modules/admin/store'
 import { ApiClient, ApiProvider } from 'jsonapi-react'
-
+import { RecoilRoot } from 'recoil'
 import RouteList from 'components/RouteList'
 
 import { routes } from './routes'
@@ -45,9 +45,11 @@ const App: React.FC<void> = () => (
       <DndProvider backend={HTML5Backend}>
         <Router>
           <ConnectedRouter history={history}>
-            <ApiProvider client={client}>
-                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-            </ApiProvider>
+            <RecoilRoot>
+              <ApiProvider client={client}>
+                  <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+              </ApiProvider>
+            </RecoilRoot>
             {/* <Client /> */}
           </ConnectedRouter>
         </Router>
