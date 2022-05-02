@@ -8,6 +8,7 @@ import store, { history } from 'modules/admin/store'
 import { ApiClient, ApiProvider } from 'jsonapi-react'
 import { RecoilRoot } from 'recoil'
 import RouteList from 'components/RouteList'
+import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
 
 import { routes } from './routes'
 import settings from './settings'
@@ -47,7 +48,8 @@ const App: React.FC<void> = () => (
           <ConnectedRouter history={history}>
             <RecoilRoot>
               <ApiProvider client={client}>
-                  <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+                <IncorrectResponseErrorModal />
               </ApiProvider>
             </RecoilRoot>
             {/* <Client /> */}
