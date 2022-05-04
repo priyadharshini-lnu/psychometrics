@@ -123,6 +123,7 @@ module Administration
 
     def soft_delete
       resource.soft_delete!(current_user)
+      audit! :soft_delete, resource
     end
 
     def restore

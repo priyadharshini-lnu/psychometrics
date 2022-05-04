@@ -26,6 +26,7 @@ module Administration
         form = ::Threesixty::Relationships::DestroyForm.from_params(params)
         if form.valid?
           relationship.destroy!
+          audit!(:destroy, relationship, campaign: threesixty_campaign.campaign, payload: relationship_params)
           render json: params[:id]
         else
           render json: { errors: form.errors.messages }, status: :bad_request
@@ -34,6 +35,8 @@ module Administration
 
       def update
         relationship.update!(relationship_params)
+        audit!(:update, relationship, campaign: threesixty_campaign.campaign, payload: relationship_params)
+
         render json: relationship,
                serializer: RelationshipWithUsageSerializer,
                counters: calc_counters_for_relationship(relationship)
@@ -41,6 +44,8 @@ module Administration
 
       def create
         relationship = Relationship.create!(campaign_id: threesixty_campaign.campaign_id, type: :campaign)
+        audit!(:create, relationship, campaign: threesixty_campaign.campaign)
+
         render json: relationship,
                serializer: RelationshipWithUsageSerializer,
                counters: {}

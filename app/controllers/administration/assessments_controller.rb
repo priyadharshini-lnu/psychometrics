@@ -109,6 +109,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def soft_delete
     resource.soft_delete!(current_user)
+    audit! :soft_delete, resource
   end
 
   def restore
@@ -132,6 +133,8 @@ class Administration::AssessmentsController < Administration::BaseController
     respond_to do |format|
       if event[:ok]
         @cloned_resource = event[:ok][:assessment]
+        audit! :copy, @cloned_resource, payload: { source_id: resource.id }
+
         format.js
       else
         format.js do

@@ -20,6 +20,7 @@ module Threesixty
             create_membership(evaluator_user)
             participant = create_participant(evaluator, evaluator_user)
             send_evaluator_invite_email(threesixty_evaluator, evaluator[:subject])
+            AuditLogModule.audit!(:create, evaluator_user, campaign: threesixty_campaign.campaign, payload: evaluator)
             participant
           end
         end

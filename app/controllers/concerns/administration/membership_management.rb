@@ -52,6 +52,7 @@ module Administration
           resource_class.new(permitted_resource_params), project, current_user, role, campaign
         ) do
         on(:ok) do |admin|
+          audit! :create, admin, campaign: campaign, payload: permitted_resource_params
           return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
               current_user: current_user, project_id: campaign.project_id
         end
@@ -62,6 +63,7 @@ module Administration
       form = ::Memberships::CreateForm.from_params(permitted_resource_params['user_attributes'])
       ::Campaigns::Admins::Update.call(resource, form, current_user, permitted_resource_params) do
         on(:ok) do |admin|
+          audit! :update, admin, campaign: campaign, payload: permitted_resource_params
           return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
             current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
         end
@@ -74,6 +76,7 @@ module Administration
 
     def destroy
       resource.destroy!
+      audit! :delete, resource, campaign: campaign
       render json: { id: resource.id }, status: :ok
     end
 
@@ -87,6 +90,7 @@ module Administration
 
     def reset_password
       resource.user.send_reset_password_instructions
+      audit! :reset_password, resource.user, campaign: campaign
       render json: :ok
     end
 
