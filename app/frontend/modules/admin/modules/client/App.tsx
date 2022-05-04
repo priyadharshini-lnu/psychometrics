@@ -43,19 +43,18 @@ const App: React.FC<void> = () => (
   <div className="ms-2" style={{ background: 'white' }}>
     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
     <Provider store={store as any}>
-      <DndProvider backend={HTML5Backend}>
-        <Router>
-          <ConnectedRouter history={history}>
-            <RecoilRoot>
-              <ApiProvider client={client}>
+      <RecoilRoot>
+        <ApiProvider client={client}>
+          <DndProvider backend={HTML5Backend}>
+            <Router>
+              <ConnectedRouter history={history}>
                 <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
                 <IncorrectResponseErrorModal />
-              </ApiProvider>
-            </RecoilRoot>
-            {/* <Client /> */}
-          </ConnectedRouter>
-        </Router>
-      </DndProvider>
+              </ConnectedRouter>
+            </Router>
+          </DndProvider>
+        </ApiProvider>
+      </RecoilRoot>
     </Provider>
   </div>
 )

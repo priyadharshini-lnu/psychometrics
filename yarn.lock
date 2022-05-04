@@ -4540,15 +4540,6 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^16.14.25":
-  version "16.14.25"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.25.tgz#d003f712c7563fdef5a87327f1892825af375608"
-  integrity sha512-cXRVHd7vBT5v1is72mmvmsg9stZrbJO04DJqFeh3Yj2tVKO6vmxg5BI+ybI6Ls7ROXRG3aFbZj9x0WA3ZAoDQw==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
 "@types/react@^16.4.18", "@types/react@^16.7.13":
   version "16.9.34"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.34.tgz#f7d5e331c468f53affed17a8a4d488cd44ea9349"
@@ -11260,11 +11251,8 @@ json5@^2.1.2:
   dependencies:
     minimist "^1.2.5"
 
-"jsonapi-react@file:../jsonapi-react":
-  version "0.0.25"
-  dependencies:
-    "@types/react" "^16.14.25"
-    qs "^6.10.3"
+"jsonapi-react@file:../jsonapi-react/dist":
+  version "0.0.0"
 
 jsonfile@^6.0.1:
   version "6.1.0"

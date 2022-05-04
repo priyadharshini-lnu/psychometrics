@@ -30,14 +30,15 @@ type Client = t.TypeOf<typeof ClientTR>
 
 const clientAtom = atom({
   key: 'Clients',
-  default: { data: [], requests: {} },
+  default: { data: [], requests: {}, meta: {} },
 });
 
 
 export const ClientList: FC<Props> = () => {
   // const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
-  const { data, meta, fetch, updateResource, isLoading, requests } = useResources<Client>(
-    'clients', { responseType: ClientTR, apiConfig: { include: ['account_manager'], sort: ['name'] } }
+  // const stateManager = { state: clients, setState: setClients}
+  const { data, meta, fetch, updateResource, isLoading, getSortOrder, handleTableChange } = useResources<Client>(
+    'clients', { responseType: ClientTR, apiConfig: { include: ['account_manager'] } }
   )
 
   useEffect(() => {
@@ -84,24 +85,26 @@ export const ClientList: FC<Props> = () => {
             dataSource={data}
             pagination={false}
             loading={isLoading('fetch')}
+            onChange={handleTableChange}
           >
             <Column
               title={"Id"}
               dataIndex="id"
               key="id"
               sorter
+              sortOrder={getSortOrder('id')}
             />
             <Column
               title={"Name"}
               dataIndex="name"
-              key="Name"
+              key="name"
               sorter
+              sortOrder={getSortOrder('name')}
             />
             <Column
               title={"Country"}
               dataIndex="country"
               key="county"
-              sorter
             />
           </Table>
         </Col>

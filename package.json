@@ -102,7 +102,7 @@
     "js-file-download": "^0.4.12",
     "js-tree": "^2.0.2",
     "js-yaml": "^3.14.1",
-    "jsonapi-react": "file:../jsonapi-react/",
+    "jsonapi-react": "file:../jsonapi-react/dist",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.21",

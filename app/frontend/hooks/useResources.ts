@@ -1,10 +1,16 @@
 import { useClient } from 'jsonapi-react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
 import { useDispatch } from 'react-redux'
 import { setResponseDataMismatched } from 'modules/admin/core/request'
+import { useLocation, useHistory } from 'react-router-dom'
+import qs from 'qs'
+import forEach from 'lodash/forEach'
+import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
+import { boolean } from 'fp-ts'
+
 interface Requests {
   [key: string]: {
     status: 'loading' | 'failed' | 'success',
@@ -12,14 +18,13 @@ interface Requests {
   }
 }
 
-export interface ResourceState<D, M> {
+export interface ResourceState<D, M = BaseMeta> {
   data: D,
   requests: Requests,
   meta: M
 }
 
-interface ApiConfig {
-  include?: string[],
+interface UrlQuery {
   page?: {
     number?: number,
     size?: number
@@ -27,7 +32,10 @@ interface ApiConfig {
   filter?: {
     [key: string]: string
   },
-  sort?: string[]
+  sort?: string
+}
+interface ApiConfig extends UrlQuery {
+  include?: string[]
 }
 interface Options<R, M> {
   apiConfig?: ApiConfig,
@@ -47,6 +55,10 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const { apiConfig, stateManager, responseType } = options
   const client = useClient()
   const dispatch = useDispatch()
+  const location = useLocation<any>()
+  const history = useHistory()
+  const queryString = qs.parse(location.search.substring(1)) as Record<string, string>
+  const urlQuery = queryString?.['query'] as UrlQuery | undefined
 
   let state: ResourceState<R[], M>, setState
   if (stateManager) {
@@ -55,6 +67,9 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   } else {
     [state, setState] = useState<ResourceState<R[], M>>({ data: [], requests: {}, meta: {} as M })
   }
+  useEffect(() => {
+    fetch()
+  }, [location.search])
 
   const { data, requests, meta } = state
 
@@ -81,7 +96,9 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
 
   const fetch = async (args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
     setRequests({ ...requests, fetch: { status: 'loading'} })
-    const { data: response, meta, error, errors } = await client.fetch<R[]>([resourceName, apiConfig || {}])
+    let newApiConfig = apiConfig
+    if (urlQuery) { newApiConfig = { ...apiConfig, ...urlQuery } }
+    const { data: response, meta, error, errors } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
     const errorData = errors ? errors : (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, fetch: { status, errors: errorData } })
@@ -136,7 +153,40 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     }
   }
 
-  const getErrors = (action, resource_id = null) => {
+  const changeUrlQuery = (query: UrlQuery) => {
+    const newQuery = { ...queryString, query: { ...query } }
+    history.push({ search: `?${qs.stringify(newQuery)}` })
+  }
+
+  const removeSort = () => {
+    if (!urlQuery?.sort) { return }
+    const newUrlQuery = { ...urlQuery, sort: undefined }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const changeSort = (column: React.Key, order: string) => {
+    let newUrlQuery = urlQuery || {}
+    newUrlQuery = {...urlQuery, sort: `${order === 'ascend' ? '' : '-'}${column}` }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const handleTableChange = (_pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<R>) => {
+    const { columnKey, order } = sorter
+
+    if (columnKey && order === undefined) removeSort()
+
+    if (columnKey && order) changeSort(columnKey, order)
+  }
+
+  const getSortOrder = (column: string): undefined | 'ascend' | 'descend' => {
+    if(!urlQuery?.sort) { return }
+    if (urlQuery.sort === column) { return 'ascend' }
+    if (urlQuery.sort === `-${column}`) { return 'descend' }
+
+    return
+  }
+
+  const getErrors = (action: string, resource_id: null | string = null) => {
     const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
 
     return request ? request.errors : null
@@ -157,7 +207,9 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     addResource,
     updateResource,
     removeResource,
-    isLoading,
+    getSortOrder,
+    handleTableChange,
     getErrors,
+    isLoading
   }
 }
