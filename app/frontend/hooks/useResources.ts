@@ -7,14 +7,15 @@ import { useDispatch } from 'react-redux'
 import { setResponseDataMismatched } from 'modules/admin/core/request'
 interface Requests {
   [key: string]: {
-    state: 'loading' | 'failed' | 'success',
+    status: 'loading' | 'failed' | 'success',
     errors?: { [key: string]: string }[] | null
   }
 }
 
-export interface ResourceState<D> {
+export interface ResourceState<D, M> {
   data: D,
-  requests: Requests
+  requests: Requests,
+  meta: M
 }
 
 interface ApiConfig {
@@ -25,32 +26,38 @@ interface ApiConfig {
   },
   filter?: {
     [key: string]: string
-  }
+  },
+  sort?: string[]
 }
-interface Options<R> {
+interface Options<R, M> {
   apiConfig?: ApiConfig,
   stateManager?: {
-    setState: (state: ResourceState<R>) => void,
-    state: ResourceState<R>
+    setState: (state: ResourceState<R, M>) => void,
+    state: ResourceState<R, M>
   },
   responseType?: any,
 }
 
+interface BaseMeta {
+  record_count?: number,
+  page_count?: number,
+}
 
-export function useResources<R extends {id: string, type: string }>(resourceName, options: Options<R[]> = {}) {
+export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta>(resourceName, options: Options<R[], M> = {}) {
   const { apiConfig, stateManager, responseType } = options
   const client = useClient()
   const dispatch = useDispatch()
 
-  let state: ResourceState<R[]>, setState
+  let state: ResourceState<R[], M>, setState
   if (stateManager) {
     state = stateManager?.state
     setState = stateManager.setState
   } else {
-    [state, setState] = useState<ResourceState<R[]>>({ data: [], requests: {} })
+    [state, setState] = useState<ResourceState<R[], M>>({ data: [], requests: {}, meta: {} as M })
   }
 
-  const { data, requests } = state
+  const { data, requests, meta } = state
+
   const setRequests = (requests: Requests) => {
     setState({ ...state, requests })
   }
@@ -73,52 +80,60 @@ export function useResources<R extends {id: string, type: string }>(resourceName
   }
 
   const fetch = async (args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
-    setRequests({ ...requests, fetch: { state: 'loading'} })
-    const { data: response, error, errors } = await client.fetch<R[]>([resourceName, apiConfig || {}])
+    setRequests({ ...requests, fetch: { status: 'loading'} })
+    const { data: response, meta, error, errors } = await client.fetch<R[]>([resourceName, apiConfig || {}])
     const errorData = errors ? errors : (error ? [error] : null)
-    const state = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, fetch: { state: state, errors: errorData } })
-    if (args.responseType || responseType) {
-      responseTypeValidation(t.array(args.responseType || responseType), response)
-    }
+    const status = errorData ? 'failed' : 'success'
+    setRequests({ ...requests, fetch: { status, errors: errorData } })
 
-    if (state === 'success' && response) setData(response)
+    if (status === 'success' && response) {
+      setState({ ...state, data: response,  meta: meta })
+      if (args.responseType || responseType) {
+        responseTypeValidation(t.array(args.responseType || responseType), response)
+      }
+    }
   }
 
   const addResource = async (details: Partial<R>, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
-    setRequests({ ...requests, add: { state: 'loading'} })
+    setRequests({ ...requests, add: { status: 'loading'} })
     const { data: response, error, errors } = await client.mutate<R>([resourceName, apiConfig], details)
     const errorData = errors ? errors : (error ? [error] : null)
-    const state = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, add: { state: state, errors: errorData } })
-    responseTypeValidation(args?.responseType || responseType, response)
+    const status = errorData ? 'failed' : 'success'
+    setRequests({ ...requests, add: { status, errors: errorData } })
 
-    if (state === 'success' && response)  setData([response, ...data])
+    if (status === 'success' && response) {
+      setData([response, ...data])
+      responseTypeValidation(args?.responseType || responseType, response)
+    }
   }
 
   const updateResource = async (details: Partial<R>, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
     const { id, ...attributes } = details
     const requestKey = `update@${id}`
-    setRequests({ ...requests, [requestKey]: { state: 'loading'} })
+    setRequests({ ...requests, [requestKey]: { status: 'loading'} })
     const { data: response, error, errors } = await client.mutate<R>([resourceName, id, apiConfig], attributes)
     const errorData = errors ? errors : (error ? [error] : null)
-    const state = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, [requestKey]: { state: state, errors: errorData } })
-    responseTypeValidation(args?.responseType || responseType, response)
+    const status = errorData ? 'failed' : 'success'
+    setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
 
-    if (state === 'success' && data && response) setData(data.map(r => r.id === response.id ? response : r))
+    if (status === 'success' && data && response) {
+      setData(data.map(r => r.id === response.id ? response : r))
+      responseTypeValidation(args?.responseType || responseType, response)
+    }
   }
 
   const removeResource = async (id: string, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
     const requestKey = `delete@${id}`
-    setRequests({ ...requests, [requestKey]: { state: 'loading'} })
+    setRequests({ ...requests, [requestKey]: { status: 'loading'} })
     const { data: response, error,  errors } = await client.delete([resourceName, id, apiConfig])
     const errorData = errors ? errors : (error ? [error] : null)
-    const state = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, [requestKey]: { state: state, errors: errorData } })
-    responseTypeValidation(args?.responseType || responseType, response)
+    const status = errorData ? 'failed' : 'success'
+    setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
 
-    if (state === 'success')  setData(data.filter(r => r.id !== id))
+    if (status === 'success') {
+      setData(data.filter(r => r.id !== id))
+      responseTypeValidation(args?.responseType || responseType, response)
+    }
   }
 
   const getErrors = (action, resource_id = null) => {
@@ -130,11 +145,12 @@ export function useResources<R extends {id: string, type: string }>(resourceName
   const isLoading = (action: string, resource_id: null | string = null): boolean => {
     const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
 
-    return request ? request.state === 'loading' : false
+    return request ? request.status === 'loading' : false
   }
 
   return {
     data,
+    meta,
     requests,
     setData,
     fetch,
