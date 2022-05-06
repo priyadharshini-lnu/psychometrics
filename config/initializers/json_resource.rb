@@ -17,8 +17,8 @@ JSONAPI.configure do |config|
 
   config.top_level_links_include_pagination = false
 
-  config.default_page_size = 20
-  config.maximum_page_size = 20
+  config.default_page_size = 25
+  config.maximum_page_size = 100
 
   config.top_level_meta_include_record_count = true
   config.top_level_meta_record_count_key = :record_count

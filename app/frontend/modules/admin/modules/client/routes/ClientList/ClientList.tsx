@@ -4,7 +4,8 @@ import { atom, AtomOptions, RecoilState, useRecoilState } from 'recoil'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useResources, ResourceState } from 'hooks/useResources'
 import { CountDisplay } from 'components/CountDisplay'
-import { Row, Col, Table, Input, Space } from 'antd'
+import { Row, Col, Table, Input, Space, Pagination } from 'antd'
+import capitalize from 'lodash/capitalize'
 
 const { Column } = Table
 const { Search } = Input
@@ -34,22 +35,24 @@ const clientAtom = atom({
 });
 
 
-export const ClientList: FC<Props> = () => {
-  // const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
-  // const stateManager = { state: clients, setState: setClients}
-  const { data, meta, fetch, updateResource, isLoading, getSortOrder, handleTableChange } = useResources<Client>(
-    'clients', { responseType: ClientTR, apiConfig: { include: ['account_manager'] } }
-  )
+const randomName = () => capitalize(Math.random().toString(36).substring(2, 15))
 
-  useEffect(() => {
-    fetch()
-  }, [])
+export const ClientList: FC<Props> = () => {
+  const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
+  const stateManager = { state: clients, setState: setClients }
+  const {
+    data, meta, fetch, updateResource, isLoading, getSortOrder,
+    handleTableChange, changePage, currentPage, pageSize
+  } = useResources<Client>(
+    'clients', { responseType: ClientTR, stateManager, apiConfig: { include: ['account_manager', 'project_manager'] } }
+  )
 
   return (
     <div>
+      <h1>Parent</h1>
       {isLoading('update', '100') && <LoadingOutlined />}
       <button onClick={() => {
-        updateResource({ id: '100', name:  Math.random().toString(36).substring(2, 15) })
+        updateResource({ id: data?.[0]?.id, name:  randomName() })
       }}>Update</button>
 
       <Row
@@ -106,10 +109,56 @@ export const ClientList: FC<Props> = () => {
               dataIndex="country"
               key="county"
             />
+            <Column
+              title={"Account Manager"}
+              dataIndex={["account_manager", "name"]}
+              key="account_manager"
+            />
+            <Column
+              title={"Project Manager"}
+              dataIndex={["project_manager", "name"]}
+              key="project_manager"
+            />
           </Table>
         </Col>
       </Row>
+      <div className="pl">
+        <Pagination
+          hideOnSinglePage
+          current={currentPage}
+          pageSize={pageSize}
+          total={meta.record_count}
+          onChange={changePage}
+        />
+      </div>
+      <ChildCompo />
     </div>
   )
 }
 
+function ChildCompo() {
+  const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
+  const stateManager = { state: clients, setState: setClients}
+
+  const {
+    data, fetch, updateResource, isLoading
+  } = useResources<Client>(
+    'clients', { responseType: ClientTR, stateManager }
+  )
+
+  useEffect(() => {
+    fetch()
+  }, [])
+
+  return (
+    <div>
+      <h1>Child</h1>
+      {isLoading('update', '100') && <LoadingOutlined />}
+      <button onClick={() => {
+        updateResource({ id: data?.[0]?.id, name:  randomName() })
+      }}>Update</button>
+
+      {data.map((client) => <div>{client.name}</div>)}
+    </div>
+  )
+}

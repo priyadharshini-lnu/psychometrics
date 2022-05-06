@@ -7,9 +7,8 @@ import { useDispatch } from 'react-redux'
 import { setResponseDataMismatched } from 'modules/admin/core/request'
 import { useLocation, useHistory } from 'react-router-dom'
 import qs from 'qs'
-import forEach from 'lodash/forEach'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
-import { boolean } from 'fp-ts'
+import { useDeepCompareEffect } from './useDeepCompareEffect'
 
 interface Requests {
   [key: string]: {
@@ -58,7 +57,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const location = useLocation<any>()
   const history = useHistory()
   const queryString = qs.parse(location.search.substring(1)) as Record<string, string>
-  const urlQuery = queryString?.['query'] as UrlQuery | undefined
+  const urlQuery = queryString?.['q'] as UrlQuery | undefined
 
   let state: ResourceState<R[], M>, setState
   if (stateManager) {
@@ -67,9 +66,9 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   } else {
     [state, setState] = useState<ResourceState<R[], M>>({ data: [], requests: {}, meta: {} as M })
   }
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     fetch()
-  }, [location.search])
+  }, [urlQuery])
 
   const { data, requests, meta } = state
 
@@ -113,7 +112,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
 
   const addResource = async (details: Partial<R>, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
     setRequests({ ...requests, add: { status: 'loading'} })
-    const { data: response, error, errors } = await client.mutate<R>([resourceName, apiConfig], details)
+    const { data: response, error, errors } = await client.mutate<R>([resourceName, apiConfig || {}], details)
     const errorData = errors ? errors : (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, add: { status, errors: errorData } })
@@ -128,7 +127,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     const { id, ...attributes } = details
     const requestKey = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading'} })
-    const { data: response, error, errors } = await client.mutate<R>([resourceName, id, apiConfig], attributes)
+    const { data: response, error, errors } = await client.mutate<R>([resourceName, id, apiConfig || {}], attributes)
     const errorData = errors ? errors : (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
@@ -142,7 +141,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const removeResource = async (id: string, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
     const requestKey = `delete@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading'} })
-    const { data: response, error,  errors } = await client.delete([resourceName, id, apiConfig])
+    const { data: response, error,  errors } = await client.delete([resourceName, id, apiConfig || {}])
     const errorData = errors ? errors : (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
@@ -154,7 +153,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   }
 
   const changeUrlQuery = (query: UrlQuery) => {
-    const newQuery = { ...queryString, query: { ...query } }
+    const newQuery = { ...queryString, q: { ...query } }
     history.push({ search: `?${qs.stringify(newQuery)}` })
   }
 
@@ -167,6 +166,12 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const changeSort = (column: React.Key, order: string) => {
     let newUrlQuery = urlQuery || {}
     newUrlQuery = {...urlQuery, sort: `${order === 'ascend' ? '' : '-'}${column}` }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const changePage = (number: number, size: number) => {
+    let newUrlQuery = urlQuery || {}
+    newUrlQuery = {...urlQuery, page: { number, size } }
     changeUrlQuery(newUrlQuery)
   }
 
@@ -208,6 +213,9 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     updateResource,
     removeResource,
     getSortOrder,
+    pageSize: urlQuery?.page?.size || 25,
+    currentPage: urlQuery?.page?.number ? parseInt(urlQuery?.page?.number as unknown as string, 10) : 1,
+    changePage,
     handleTableChange,
     getErrors,
     isLoading
