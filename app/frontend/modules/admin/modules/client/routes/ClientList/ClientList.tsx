@@ -31,7 +31,7 @@ type Client = t.TypeOf<typeof ClientTR>
 
 const clientAtom = atom({
   key: 'Clients',
-  default: { data: [], requests: {}, meta: {} },
+  default: { data: [], requests: {}, meta: {}, query: {} },
 });
 
 
@@ -44,8 +44,12 @@ export const ClientList: FC<Props> = () => {
     data, meta, fetch, updateResource, isLoading, getSortOrder,
     handleTableChange, changePage, currentPage, pageSize
   } = useResources<Client>(
-    'clients', { responseType: ClientTR, stateManager, apiConfig: { include: ['account_manager', 'project_manager'] } }
+    'clients', { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } }
   )
+
+  useEffect(() => {
+    fetch()
+  }, [])
 
   return (
     <div>
@@ -143,7 +147,7 @@ function ChildCompo() {
   const {
     data, fetch, updateResource, isLoading
   } = useResources<Client>(
-    'clients', { responseType: ClientTR, stateManager }
+    'clients', { responseType: ClientTR }
   )
 
   useEffect(() => {
