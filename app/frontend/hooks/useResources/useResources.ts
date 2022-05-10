@@ -1,4 +1,4 @@
-import { useClient } from 'jsonapi-react'
+import { useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
