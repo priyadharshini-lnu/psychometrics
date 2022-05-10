@@ -10,53 +10,12 @@ import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
-import { useDeepCompareEffect } from './useDeepCompareEffect'
-import { useDebounce } from './useDebounce'
-import { useMountedState } from './useMountedState'
-
-interface Requests {
-  [key: string]: {
-    status: 'loading' | 'failed' | 'success',
-    errors?: { [key: string]: string }[] | null
-  }
-}
-
-export interface ResourceState<D, M = BaseMeta> {
-  data: D,
-  requests: Requests,
-  meta: M,
-  query: UrlQuery
-}
-
-interface UrlQuery {
-  page?: {
-    number?: number,
-    size?: number
-  },
-  filter?: {
-    [key: string]: string
-  },
-  sort?: string
-}
-interface ApiConfig extends UrlQuery {
-  include?: string[]
-}
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ResponseType = any
-interface Options<R, M> {
-  apiConfig?: ApiConfig,
-  stateManager?: {
-    setState: (state: ResourceState<R, M>) => void,
-    state: ResourceState<R, M>
-  },
-  responseType?: ResponseType,
-  trackUrl?: boolean,
-}
-
-interface BaseMeta {
-  record_count?: number,
-  page_count?: number,
-}
+import { useDeepCompareEffect } from '../useDeepCompareEffect'
+import { useDebounce } from '../useDebounce'
+import { useMountedState } from '../useMountedState'
+import {
+  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
+} from './interfaces'
 
 export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -215,7 +174,10 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     changeUrlQuery(newUrlQuery)
   }
 
-  const changeFilter = (name: string, value: string) => {
+  const changeFilter = (name: string, value: string | undefined | null) => {
+    if (value === '' || value === undefined || value == null) {
+      return removeFilter(name)
+    }
     let newUrlQuery = queryState || {}
     newUrlQuery = { ...queryState, filter: { [name]: value } }
     changeUrlQuery(newUrlQuery)

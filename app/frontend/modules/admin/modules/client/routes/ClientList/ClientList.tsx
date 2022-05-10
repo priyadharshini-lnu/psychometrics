@@ -1,30 +1,14 @@
 import React, { FC, useEffect } from 'react'
-import * as t from 'io-ts'
 import { useResources } from 'hooks/useResources'
 import { CountDisplay } from 'components/CountDisplay'
 import {
   Row, Col, Table, Input, Space, Pagination,
 } from 'antd'
+import { Client, ClientTR } from 'modules/admin/modules/client/core/clients'
 
 const { Column } = Table
 const { Search } = Input
 const { I18n } = window
-
-const ResourceIdentifierTR = t.type({
-  id: t.string,
-  type: t.string,
-})
-
-const ClientTR = t.intersection([
-  ResourceIdentifierTR,
-  t.type({
-    name: t.string,
-    type: t.string,
-    year: t.number,
-    country: t.string,
-  }),
-])
-type Client = t.TypeOf<typeof ClientTR>
 
 export const ClientList: FC<{}> = () => {
   const {
