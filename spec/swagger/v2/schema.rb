@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 # rubocop:disable Style/MutableConstant
-# rubocop:disable Metrics/ModuleLength
 
 Dir[__dir__ + '/definitions/**/*.rb'].sort.each { |file| require file }
 
 module Swagger
   module V2
-    Definition = {
+    DEFINITION = {
       openapi: '3.0.1',
       info: {
         title: 'TTE Lighthouse API 2.0',
@@ -81,8 +80,12 @@ module Swagger
               more_info: { type: 'string', 'x-nullable': true }
             }
           },
-          ClientCreateRequest: Api::Base::GenerateSwagger.call!(Api::V2::Client::Schema.create_request, description: 'Client'),
-          ClientCreateResponse: Api::Base::GenerateSwagger.call!(Api::V2::Client::Schema.single_resource_response, description: 'Client'),
+          ClientCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.create_request, description: 'Client'
+          ),
+          ClientCreateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.single_resource_response, description: 'Client'
+          ),
           ClientsResponse: {
             type: 'object',
             properties: {
@@ -105,4 +108,3 @@ module Swagger
 end
 
 # rubocop:enable Style/MutableConstant
-# rubocop:enable Metrics/ModuleLength

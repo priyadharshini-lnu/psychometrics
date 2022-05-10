@@ -14,9 +14,9 @@ module Api
           required(:data).hash do
             required(:type).filled(Types.Value(this.resource))
             required(:attributes).hash do
-              instance_eval &this.attributes(method(:required), :create)
+              instance_eval(&this.attributes(method(:required), :create))
             end
-            instance_eval &relationship_schema if relationship_schema
+            instance_eval(&relationship_schema) if relationship_schema
           end
         end
       end
@@ -26,11 +26,11 @@ module Api
         relationship_schema = this.relationship_schema(:update)
         define_schema do
           required(:data).hash do
-            instance_eval &this.resource_identifier
+            instance_eval(&this.resource_identifier)
             required(:attributes).hash do
-              instance_eval &this.attributes(method(:optional), :update)
+              instance_eval(&this.attributes(method(:optional), :update))
             end
-            instance_eval &relationship_schema if relationship_schema
+            instance_eval(&relationship_schema) if relationship_schema
           end
         end
       end
@@ -38,17 +38,17 @@ module Api
       def self.create_relationship_request(name)
         this = self
         relationship = relationships.find { |r| r[:name] == name.to_sym }
-        raise "No such relationship" unless relationship
+        raise 'No such relationship' unless relationship
 
         has_many = relationship[:relationship] == :many
 
         define_schema do
           if has_many
             required(:data).array(:hash) do
-              instance_eval &this.resource_identifier
+              instance_eval(&this.resource_identifier)
             end
           else
-            required(:data).hash &this.resource_identifier
+            required(:data).hash(&this.resource_identifier)
           end
         end
       end
@@ -73,16 +73,14 @@ module Api
         end
       end
 
-      private
-
       def self.define_schema(&block)
         namespace = self.namespace
         Dry::Schema.define do
           config.messages.backend = :i18n
           config.messages.top_namespace = :dry_errors
-          # config.messages.namespace = namespace
+          config.messages.namespace = namespace
 
-          instance_eval &block
+          instance_eval(&block)
         end
       end
 
@@ -94,15 +92,15 @@ module Api
         this = self
         relationship_schema = this.relationship_schema(type)
         Dry::Schema.define do
-          instance_eval &this.resource_identifier
-          instance_eval &relationship_schema if relationship_schema
+          instance_eval(&this.resource_identifier)
+          instance_eval(&relationship_schema) if relationship_schema
 
           required(:links).hash do
             required(:self).filled(:string)
           end
 
           required(:attributes).hash do
-            instance_eval &this.attributes(method(:required), type)
+            instance_eval(&this.attributes(method(:required), type))
           end
         end
       end
@@ -120,7 +118,7 @@ module Api
           processed_relationship = {
             required: type == :create && relationship[:relationship] == :one,
             allowed_blank: relationship[:relationship] != :one,
-            links: [:single_response, :multiple_response].include?(type)
+            links: %i[single_response multiple_response].include?(type)
           }.merge(relationship)
 
           acc << processed_relationship
@@ -129,7 +127,7 @@ module Api
 
       def self.relationship_schema(type)
         relationships = self.relationships(type)
-        relationships = self.preprocess_relationships(relationships, type)
+        relationships = preprocess_relationships(relationships, type)
         return if relationships.blank?
 
         required = relationships.any? { |r| r[:required] }

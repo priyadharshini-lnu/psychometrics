@@ -27,16 +27,16 @@ const client = new ApiClient({
         },
         project_manager: {
           type: 'users',
-        }
-      }
+        },
+      },
     },
     users: {
       type: 'users',
       fields: {
         name: 'string',
-      }
+      },
     },
-  }
+  },
 })
 
 const App: React.FC<void> = () => (

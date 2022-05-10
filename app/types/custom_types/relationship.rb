@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CustomTypes
   class Relationship
     def self.relationship_data_type(name, resource = nil)
@@ -35,7 +37,7 @@ module CustomTypes
 
     def self.relationships(details)
       relationships = Dry::Schema.define
-      data = details.each do |detail, acc|
+      details.each do |detail|
         relationships = relationships.merge(relationship_type(detail))
       end
       relationships

@@ -1,15 +1,13 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import * as t from 'io-ts'
-import { atom, AtomOptions, RecoilState, useRecoilState } from 'recoil'
-import { LoadingOutlined } from '@ant-design/icons'
-import { useResources, ResourceState } from 'hooks/useResources'
+import { useResources } from 'hooks/useResources'
 import { CountDisplay } from 'components/CountDisplay'
-import { Row, Col, Table, Input, Space, Pagination } from 'antd'
-import capitalize from 'lodash/capitalize'
+import {
+  Row, Col, Table, Input, Space, Pagination,
+} from 'antd'
 
 const { Column } = Table
 const { Search } = Input
-const { I18n } = window
 
 type Props = {}
 
@@ -25,26 +23,17 @@ const ClientTR = t.intersection([
     type: t.string,
     year: t.number,
     country: t.string,
-  })
+  }),
 ])
 type Client = t.TypeOf<typeof ClientTR>
 
-const clientAtom = atom({
-  key: 'Clients',
-  default: { data: [], requests: {}, meta: {}, query: {} },
-});
-
-
-const randomName = () => capitalize(Math.random().toString(36).substring(2, 15))
-
 export const ClientList: FC<Props> = () => {
-  const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
-  const stateManager = { state: clients, setState: setClients }
   const {
-    data, meta, fetch, updateResource, isLoading, getSortOrder,
-    handleTableChange, changePage, currentPage, pageSize, changeFilter, getFilteredValue,
+    data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
+    currentPage, pageSize, changeFilter, getFilteredValue,
   } = useResources<Client>(
-    'clients', { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } }
+    'clients',
+    { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
   )
 
   useEffect(() => {
@@ -70,7 +59,7 @@ export const ClientList: FC<Props> = () => {
             <Search
               placeholder="Search"
               value={getFilteredValue('name_cont')}
-              onChange={(e) => { changeFilter('name_cont', e.target.value) }}
+              onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
             />
           </Space>
         </Col>
@@ -85,42 +74,42 @@ export const ClientList: FC<Props> = () => {
             onChange={handleTableChange}
           >
             <Column
-              title={"Id"}
+              title="Id"
               dataIndex="id"
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
             />
             <Column
-              title={"Name"}
+              title="Name"
               dataIndex="name"
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
             />
             <Column
-              title={"Type"}
+              title="Type"
               dataIndex="type"
               key="type"
             />
             <Column
-              title={"Country"}
+              title="Country"
               dataIndex="country"
               key="county"
             />
             <Column
-              title={"Year"}
+              title="Year"
               dataIndex="year"
               key="year"
             />
             <Column
-              title={"Account Manager"}
-              dataIndex={["account_manager", "name"]}
+              title="Account Manager"
+              dataIndex={['account_manager', 'name']}
               key="account_manager"
             />
             <Column
-              title={"Project Manager"}
-              dataIndex={["project_manager", "name"]}
+              title="Project Manager"
+              dataIndex={['project_manager', 'name']}
               key="project_manager"
             />
           </Table>
@@ -132,7 +121,7 @@ export const ClientList: FC<Props> = () => {
         pageSize={pageSize}
         total={meta.record_count}
         onChange={changePage}
-        className='pl'
+        className="pl"
       />
     </>
   )

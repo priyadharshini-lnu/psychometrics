@@ -10,9 +10,7 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
 
   def self.ransack_filters(matchers)
     matchers.each do |matcher|
-      filter matcher, apply: ->(records, value, _options) {
-        records.ransack(matcher => value[0]).result
-      }
+      filter matcher, apply: ->(records, value, _) { records.ransack(matcher => value[0]).result }
     end
   end
 end

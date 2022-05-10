@@ -1,5 +1,5 @@
 import { useClient } from 'jsonapi-react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
@@ -8,11 +8,12 @@ import { setResponseDataMismatched } from 'modules/admin/core/request'
 import { useLocation, useHistory } from 'react-router-dom'
 import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
+import isEqual from 'lodash/isEqual'
+import debounce from 'lodash/debounce'
 import { useDeepCompareEffect } from './useDeepCompareEffect'
 import { useDebounce } from './useDebounce'
-import isEqual from 'lodash/isEqual'
 import { useMountedState } from './useMountedState'
-import debounce from 'lodash/debounce'
+
 interface Requests {
   [key: string]: {
     status: 'loading' | 'failed' | 'success',
@@ -40,13 +41,15 @@ interface UrlQuery {
 interface ApiConfig extends UrlQuery {
   include?: string[]
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ResponseType = any
 interface Options<R, M> {
   apiConfig?: ApiConfig,
   stateManager?: {
     setState: (state: ResourceState<R, M>) => void,
     state: ResourceState<R, M>
   },
-  responseType?: any,
+  responseType?: ResponseType,
   trackUrl?: boolean,
 }
 
@@ -55,23 +58,32 @@ interface BaseMeta {
   page_count?: number,
 }
 
-export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta>(resourceName, options: Options<R[], M> = {}) {
-  const { apiConfig, stateManager, responseType, trackUrl } = options
+export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
+  resourceName: string, options: Options<R[], M> = {},
+) {
+  const {
+    apiConfig, stateManager, responseType, trackUrl,
+  } = options
   const client = useClient()
   const dispatch = useDispatch()
-  const location = useLocation<any>()
+  const location = useLocation()
   const history = useHistory()
   const queryString = qs.parse(location.search.substring(1))
 
-  let state: ResourceState<R[], M>, setState
+  let state: ResourceState<R[], M>
+  let setState
   if (stateManager) {
-    state = stateManager?.state
+    // eslint-disable-next-line prefer-destructuring
+    state = stateManager.state
+    // eslint-disable-next-line prefer-destructuring
     setState = stateManager.setState
   } else {
-    [state, setState] = useState<ResourceState<R[], M>>({ data: [], requests: {}, meta: {} as M, query: {} })
+    [state, setState] = useState<ResourceState<R[], M>>({
+      data: [], requests: {}, meta: {} as M, query: {},
+    })
   }
 
-  const queryFromUrl = (trackUrl ? queryString?.['q'] || {} : {}) as UrlQuery
+  const queryFromUrl = (trackUrl ? queryString?.q || {} : {}) as UrlQuery
   const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
   const isMounted = useMountedState()
   const debounceQueryState = useDebounce(queryState, 300)
@@ -80,7 +92,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     if (trackUrl && !isEqual(queryState, queryFromUrl)) {
       setQueryState(queryFromUrl)
     }
-  },[queryFromUrl])
+  }, [queryFromUrl])
 
   useDeepCompareEffect(() => {
     if (isMounted) fetch()
@@ -89,14 +101,14 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const { data, requests, meta } = state
 
   const setRequests = (requests: Requests) => {
-    setState((previousState: ResourceState<R[], M>)=> ({ ...previousState, requests }))
+    setState((previousState: ResourceState<R[], M>) => ({ ...previousState, requests }))
   }
 
   const setData = (data: R[]) => {
-    setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data: data }))
+    setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data }))
   }
 
-  const responseTypeValidation = (responseType, data) => {
+  const responseTypeValidation = (responseType: ResponseType, data) => {
     if (window.PsyGlobalState.realEnv === 'production') { return }
 
     if (responseType) {
@@ -109,17 +121,19 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     }
   }
 
-  const fetch = async (args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
-    setRequests({ ...requests, fetch: { status: 'loading'} })
+  const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
+    setRequests({ ...requests, fetch: { status: 'loading' } })
     let newApiConfig = apiConfig
     if (queryState) { newApiConfig = { ...apiConfig, ...queryState } }
-    const { data: response, meta, error, errors } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
-    const errorData = errors ? errors : (error ? [error] : null)
+    const {
+      data: response, meta, error, errors,
+    } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
+    const errorData = errors || (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, fetch: { status, errors: errorData } })
 
     if (status === 'success' && response) {
-      setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data: response,  meta: meta }))
+      setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data: response, meta }))
 
       if (args.responseType || responseType) {
         responseTypeValidation(t.array(args.responseType || responseType), response)
@@ -127,10 +141,12 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     }
   }
 
-  const addResource = async (details: Partial<R>, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
-    setRequests({ ...requests, add: { status: 'loading'} })
+  const addResource = async (
+    details: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
+  ) => {
+    setRequests({ ...requests, add: { status: 'loading' } })
     const { data: response, error, errors } = await client.mutate<R>([resourceName, apiConfig || {}], details)
-    const errorData = errors ? errors : (error ? [error] : null)
+    const errorData = errors || (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, add: { status, errors: errorData } })
 
@@ -140,26 +156,30 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     }
   }
 
-  const updateResource = async (details: Partial<R>, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
+  const updateResource = async (
+    details: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
+  ) => {
     const { id, ...attributes } = details
     const requestKey = `update@${id}`
-    setRequests({ ...requests, [requestKey]: { status: 'loading'} })
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     const { data: response, error, errors } = await client.mutate<R>([resourceName, id, apiConfig || {}], attributes)
-    const errorData = errors ? errors : (error ? [error] : null)
+    const errorData = errors || (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
 
     if (status === 'success' && data && response) {
-      setData(data.map(r => r.id === response.id ? response : r))
+      setData(data.map(r => (r.id === response.id ? response : r)))
       responseTypeValidation(args?.responseType || responseType, response)
     }
   }
 
-  const removeResource = async (id: string, args: { responseType?: any, apiConfig?: ApiConfig } = { apiConfig: apiConfig }) => {
+  const removeResource = async (
+    id: string, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
+  ) => {
     const requestKey = `delete@${id}`
-    setRequests({ ...requests, [requestKey]: { status: 'loading'} })
-    const { data: response, error,  errors } = await client.delete([resourceName, id, apiConfig || {}])
-    const errorData = errors ? errors : (error ? [error] : null)
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
+    const { data: response, error, errors } = await client.delete([resourceName, id, apiConfig || {}])
+    const errorData = errors || (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
 
@@ -185,37 +205,38 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
 
   const changeSort = (column: React.Key, order: string) => {
     let newUrlQuery = queryState || {}
-    newUrlQuery = {...queryState, sort: `${order === 'ascend' ? '' : '-'}${column}` }
+    newUrlQuery = { ...queryState, sort: `${order === 'ascend' ? '' : '-'}${column}` }
     changeUrlQuery(newUrlQuery)
   }
 
   const changePage = (number: number, size: number) => {
     let newUrlQuery = queryState || {}
-    newUrlQuery = {...queryState, page: { number, size } }
+    newUrlQuery = { ...queryState, page: { number, size } }
     changeUrlQuery(newUrlQuery)
   }
 
   const changeFilter = (name: string, value: string) => {
     let newUrlQuery = queryState || {}
-    newUrlQuery = {...queryState, filter: { [name]: value  } }
+    newUrlQuery = { ...queryState, filter: { [name]: value } }
     changeUrlQuery(newUrlQuery)
   }
 
   const removeFilter = (name: string) => {
     let newUrlQuery = queryState || {}
-    let filter = queryState?.filter
+    const filter = queryState?.filter
     if (!filter) { return }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { [name]: _, ...remainingFilter } = filter
-    newUrlQuery = {...queryState, filter: remainingFilter }
+    newUrlQuery = { ...queryState, filter: remainingFilter }
     changeUrlQuery(newUrlQuery)
   }
 
-  const getFilteredValue = (name: string) => {
-    return queryState?.filter?.[name]
-  }
+  const getFilteredValue = (name: string) => queryState?.filter?.[name]
 
-  const handleTableChange = (_pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<R>) => {
+  const handleTableChange = (
+    _pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<R>,
+  ) => {
     const { columnKey, order } = sorter
 
     if (columnKey && order === undefined) removeSort()
@@ -224,11 +245,11 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   }
 
   const getSortOrder = (column: string): undefined | 'ascend' | 'descend' => {
-    if(!queryState?.sort) { return }
+    if (!queryState?.sort) { return }
     if (queryState.sort === column) { return 'ascend' }
     if (queryState.sort === `-${column}`) { return 'descend' }
 
-    return
+    return undefined
   }
 
   const getErrors = (action: string, resource_id: null | string = null) => {
@@ -261,6 +282,6 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     getFilteredValue,
     handleTableChange,
     getErrors,
-    isLoading
+    isLoading,
   }
 }

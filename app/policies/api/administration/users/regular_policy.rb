@@ -6,8 +6,7 @@ module Api
       class RegularPolicy < Api::Administration::UserPolicy
         class Scope < Scope
           def resolve
-            byebug
-            scope.none
+            scope.all
           end
         end
       end

@@ -5,7 +5,7 @@
 
 module Swagger
   module V1
-    Definition = {
+    DEFINITION = {
       swagger: '2.0',
       info: {
         title: 'TTE Lighthouse API',

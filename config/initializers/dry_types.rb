@@ -4,7 +4,6 @@ module Types
   include Dry.Types()
 end
 
-
 Dry::Schema::Macros::Key.class_eval do
   def relationships(details)
     value(

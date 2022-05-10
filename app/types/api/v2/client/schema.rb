@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V2
     module Client
@@ -18,7 +20,7 @@ module Api
 
         def self.relationships(_)
           [
-            { name: :account_manager, resource: :users, relationship: :one, allowed_blank: false},
+            { name: :account_manager, resource: :users, relationship: :one, allowed_blank: false },
             { name: :project_manager, resource: :users, relationship: :one }
           ]
         end
@@ -31,5 +33,3 @@ module Api
     end
   end
 end
-
-# Api::V2::Client::Schema.update_request.call({ data: { type: 'clients', attributes: { name: 'd', type: 'partner', country: 'India', number: '11', year: 2022 }, relationships: { account_manager: { data: { id: 10, type: 'users'} }}, id: 1}})

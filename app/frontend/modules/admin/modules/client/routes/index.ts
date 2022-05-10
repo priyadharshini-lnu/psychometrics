@@ -10,7 +10,7 @@ import { ClientList } from './ClientList'
 
 export const routes = [
   {
-    path: '/clients/',
+    path: '/',
     component: ClientList,
   },
   {

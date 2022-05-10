@@ -29,18 +29,18 @@ module Api
       action = params[:action].to_sym
       if _request_schemas&.dig(action)
         schema_or_contract = _request_schemas&.dig(action)
-        if schema_or_contract.is_a?(Dry::Schema::Processor)
-          schema_validation = schema_or_contract.call(params.permit!.to_h)
-        else
-          schema_validation = schema_or_contract.call(params.permit!.to_h, context_for_schema_validation)
-        end
+        schema_validation = if schema_or_contract.is_a?(Dry::Schema::Processor)
+                              schema_or_contract.call(params.permit!.to_h)
+                            else
+                              schema_or_contract.call(params.permit!.to_h, context_for_schema_validation)
+                            end
       end
 
       if schema_validation.nil? && _crud_schema_class.present?
         method_name = {
           create: :create_request, update: :update_request, create_relationship:
           :create_relationship_request, update_relationship: :update_relationship_request
-          }[action]
+        }[action]
         return unless method_name
 
         schema_validation = _crud_schema_class.public_send(method_name).call(params.permit!.to_h)
@@ -84,9 +84,6 @@ module Api
       end
     end
 
-    def self.define_schema
-    end
-
     def convert_dry_errors_to_json_api_standard(dry_errors)
       errors = dry_errors.map do |error|
         {
@@ -101,7 +98,7 @@ module Api
     end
 
     def context
-      { user: current_user, namespace: [:api, :administration] }
+      { user: current_user, namespace: %i[api administration] }
     end
 
     def user_not_authorized

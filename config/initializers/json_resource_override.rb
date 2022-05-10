@@ -2,7 +2,7 @@
 
 module JSONAPI
   class IncludeDirectives
-    alias_method :old_parse_include, :parse_include
+    alias old_parse_include parse_include
 
     def parse_include(include)
       if @resource_klass.respond_to?(:unpermitted_includes)
