@@ -42,7 +42,7 @@ export const ClientList: FC<Props> = () => {
   const stateManager = { state: clients, setState: setClients }
   const {
     data, meta, fetch, updateResource, isLoading, getSortOrder,
-    handleTableChange, changePage, currentPage, pageSize
+    handleTableChange, changePage, currentPage, pageSize, changeFilter, getFilteredValue,
   } = useResources<Client>(
     'clients', { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } }
   )
@@ -52,13 +52,7 @@ export const ClientList: FC<Props> = () => {
   }, [])
 
   return (
-    <div>
-      <h1>Parent</h1>
-      {isLoading('update', '100') && <LoadingOutlined />}
-      <button onClick={() => {
-        updateResource({ id: data?.[0]?.id, name:  randomName() })
-      }}>Update</button>
-
+    <>
       <Row
         justify="space-between"
         align="middle"
@@ -75,13 +69,9 @@ export const ClientList: FC<Props> = () => {
           <Space>
             <Search
               placeholder="Search"
-              value={""}
-              onChange={() => {}}
+              value={getFilteredValue('name_cont')}
+              onChange={(e) => { changeFilter('name_cont', e.target.value) }}
             />
-            {/* <CreateCampaignDropdown
-              openModal={openModal}
-              projectId={projectId}
-            /> */}
           </Space>
         </Col>
       </Row>
@@ -109,9 +99,19 @@ export const ClientList: FC<Props> = () => {
               sortOrder={getSortOrder('name')}
             />
             <Column
+              title={"Type"}
+              dataIndex="type"
+              key="type"
+            />
+            <Column
               title={"Country"}
               dataIndex="country"
               key="county"
+            />
+            <Column
+              title={"Year"}
+              dataIndex="year"
+              key="year"
             />
             <Column
               title={"Account Manager"}
@@ -126,43 +126,14 @@ export const ClientList: FC<Props> = () => {
           </Table>
         </Col>
       </Row>
-      <div className="pl">
-        <Pagination
-          hideOnSinglePage
-          current={currentPage}
-          pageSize={pageSize}
-          total={meta.record_count}
-          onChange={changePage}
-        />
-      </div>
-      <ChildCompo />
-    </div>
-  )
-}
-
-function ChildCompo() {
-  const [clients, setClients] = useRecoilState<ResourceState<Client[]>>(clientAtom)
-  const stateManager = { state: clients, setState: setClients}
-
-  const {
-    data, fetch, updateResource, isLoading
-  } = useResources<Client>(
-    'clients', { responseType: ClientTR }
-  )
-
-  useEffect(() => {
-    fetch()
-  }, [])
-
-  return (
-    <div>
-      <h1>Child</h1>
-      {isLoading('update', '100') && <LoadingOutlined />}
-      <button onClick={() => {
-        updateResource({ id: data?.[0]?.id, name:  randomName() })
-      }}>Update</button>
-
-      {data.map((client) => <div>{client.name}</div>)}
-    </div>
+      <Pagination
+        hideOnSinglePage
+        current={currentPage}
+        pageSize={pageSize}
+        total={meta.record_count}
+        onChange={changePage}
+        className='pl'
+      />
+    </>
   )
 }

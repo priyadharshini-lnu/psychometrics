@@ -9,8 +9,10 @@ import { useLocation, useHistory } from 'react-router-dom'
 import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import { useDeepCompareEffect } from './useDeepCompareEffect'
+import { useDebounce } from './useDebounce'
 import isEqual from 'lodash/isEqual'
 import { useMountedState } from './useMountedState'
+import debounce from 'lodash/debounce'
 interface Requests {
   [key: string]: {
     status: 'loading' | 'failed' | 'success',
@@ -72,8 +74,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const queryFromUrl = (trackUrl ? queryString?.['q'] || {} : {}) as UrlQuery
   const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
   const isMounted = useMountedState()
-
-  console.log(queryString, apiConfig)
+  const debounceQueryState = useDebounce(queryState, 300)
 
   useDeepCompareEffect(() => {
     if (trackUrl && !isEqual(queryState, queryFromUrl)) {
@@ -83,7 +84,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
 
   useDeepCompareEffect(() => {
     if (isMounted) fetch()
-  }, [queryState])
+  }, [debounceQueryState])
 
   const { data, requests, meta } = state
 
@@ -168,13 +169,13 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     }
   }
 
-  const changeUrlQuery = (query: UrlQuery) => {
+  const changeUrlQuery = debounce((query: UrlQuery) => {
     const newQuery = { ...queryString, q: { ...query } }
     setQueryState(query)
     if (trackUrl) {
       history.push({ search: `?${qs.stringify(newQuery)}` })
     }
-  }
+  })
 
   const removeSort = () => {
     if (!queryState?.sort) { return }
@@ -192,6 +193,26 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     let newUrlQuery = queryState || {}
     newUrlQuery = {...queryState, page: { number, size } }
     changeUrlQuery(newUrlQuery)
+  }
+
+  const changeFilter = (name: string, value: string) => {
+    let newUrlQuery = queryState || {}
+    newUrlQuery = {...queryState, filter: { [name]: value  } }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const removeFilter = (name: string) => {
+    let newUrlQuery = queryState || {}
+    let filter = queryState?.filter
+    if (!filter) { return }
+
+    const { [name]: _, ...remainingFilter } = filter
+    newUrlQuery = {...queryState, filter: remainingFilter }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const getFilteredValue = (name: string) => {
+    return queryState?.filter?.[name]
   }
 
   const handleTableChange = (_pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<R>) => {
@@ -235,6 +256,9 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     pageSize: queryState?.page?.size || 25,
     currentPage: queryState?.page?.number ? parseInt(queryState?.page?.number as unknown as string, 10) : 1,
     changePage,
+    changeFilter,
+    removeFilter,
+    getFilteredValue,
     handleTableChange,
     getErrors,
     isLoading
