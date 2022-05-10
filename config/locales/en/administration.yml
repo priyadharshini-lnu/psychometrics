@@ -988,6 +988,12 @@ en:
         update:
           successfully: User %{name} was successfully updated.
         user: User
+      columns:
+        account_manager: Account Manager
+        country: Country
+        project_manager: Project Manager
+        type: Type
+        year: Year
       copy:
         error: Client Tenancy %{name} was not copied.
         successfully: Client Tenancy %{name} was successfully copied.

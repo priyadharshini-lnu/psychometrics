@@ -1133,6 +1133,7 @@ en:
       import: Import
       remove: Remove
       reset: Reset
+      search: Search
       send: Send
       update: Update
     column:
@@ -1356,6 +1357,9 @@ en:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please login to continue.
+  dry_errors:
+    errors:
+      filled?: can't be blank
   ecommerce:
     carts:
       show:

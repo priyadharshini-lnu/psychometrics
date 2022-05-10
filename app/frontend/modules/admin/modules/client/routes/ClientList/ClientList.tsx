@@ -8,8 +8,7 @@ import {
 
 const { Column } = Table
 const { Search } = Input
-
-type Props = {}
+const { I18n } = window
 
 const ResourceIdentifierTR = t.type({
   id: t.string,
@@ -27,7 +26,7 @@ const ClientTR = t.intersection([
 ])
 type Client = t.TypeOf<typeof ClientTR>
 
-export const ClientList: FC<Props> = () => {
+export const ClientList: FC<{}> = () => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue,
@@ -57,7 +56,7 @@ export const ClientList: FC<Props> = () => {
         <Col>
           <Space>
             <Search
-              placeholder="Search"
+              placeholder={I18n.t('common.actions.search')}
               value={getFilteredValue('name_cont')}
               onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
             />
@@ -74,41 +73,41 @@ export const ClientList: FC<Props> = () => {
             onChange={handleTableChange}
           >
             <Column
-              title="Id"
+              title={I18n.t('common.column.id')}
               dataIndex="id"
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
             />
             <Column
-              title="Name"
+              title={I18n.t('common.column.name')}
               dataIndex="name"
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
             />
             <Column
-              title="Type"
+              title={I18n.t('administration.clients.columns.type')}
               dataIndex="type"
               key="type"
             />
             <Column
-              title="Country"
+              title={I18n.t('administration.clients.columns.country')}
               dataIndex="country"
               key="county"
             />
             <Column
-              title="Year"
+              title={I18n.t('administration.clients.columns.year')}
               dataIndex="year"
               key="year"
             />
             <Column
-              title="Account Manager"
+              title={I18n.t('administration.clients.columns.account_manager')}
               dataIndex={['account_manager', 'name']}
               key="account_manager"
             />
             <Column
-              title="Project Manager"
+              title={I18n.t('administration.clients.columns.project_manager')}
               dataIndex={['project_manager', 'name']}
               key="project_manager"
             />
