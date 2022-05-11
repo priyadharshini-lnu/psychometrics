@@ -13,7 +13,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
   end
 
   def expired
-    object.expired?
+    object.user_assessment.expired?
   end
 
   def current_block
@@ -25,7 +25,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
     Assessments::GetTranslationWithPipetextReplaced.call!(
       object.assessment,
       piped_text_context: piped_text_context,
-      locale: object.selected_locale || @instance_options[:locale]
+      locale: object.user_assessment.selected_locale || @instance_options[:locale]
     )
   end
 
@@ -34,6 +34,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
       evaluator: object.evaluator,
       subject: object.subject,
       threesixty_campaign: @instance_options[:threesixty_campaign],
+      campaign: @instance_options[:campaign],
       result: object
     }
   end

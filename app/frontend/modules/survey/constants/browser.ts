@@ -1,4 +1,4 @@
-export const UA_Browsers = {
+export const UA_BROWSERS = {
   Safari: 'safari',
   SafariMobile: 'ios_saf',
   Chrome: 'chrome',
@@ -10,7 +10,7 @@ export const UA_Browsers = {
   Opera: 'opera',
 }
 
-export const UA_OperatingSystems = {
+export const UA_OPERATING_SYSTEMS = {
   Android: 'Android',
   IOS: 'iOS',
   MacOS: 'Mac OS',
@@ -19,53 +19,53 @@ export const UA_OperatingSystems = {
 }
 
 export const BROWSERS_ON_OS_TYPES = {
-  [UA_OperatingSystems.Android]: [
-    UA_Browsers.FirefoxMobile,
-    UA_Browsers.ChromeMobile,
-    UA_Browsers.Edge,
+  [UA_OPERATING_SYSTEMS.Android]: [
+    UA_BROWSERS.FirefoxMobile,
+    UA_BROWSERS.ChromeMobile,
+    UA_BROWSERS.Edge,
   ],
-  [UA_OperatingSystems.IOS]: [
-    UA_Browsers.FirefoxMobile,
-    UA_Browsers.ChromeMobile,
-    UA_Browsers.SafariMobile,
-    UA_Browsers.Edge,
+  [UA_OPERATING_SYSTEMS.IOS]: [
+    UA_BROWSERS.FirefoxMobile,
+    UA_BROWSERS.ChromeMobile,
+    UA_BROWSERS.SafariMobile,
+    UA_BROWSERS.Edge,
   ],
-  [UA_OperatingSystems.MacOS]: [
-    UA_Browsers.Firefox,
-    UA_Browsers.Chrome,
-    UA_Browsers.Safari,
-    UA_Browsers.Edge,
+  [UA_OPERATING_SYSTEMS.MacOS]: [
+    UA_BROWSERS.Firefox,
+    UA_BROWSERS.Chrome,
+    UA_BROWSERS.Safari,
+    UA_BROWSERS.Edge,
   ],
-  [UA_OperatingSystems.Windows]: [
-    UA_Browsers.Firefox,
-    UA_Browsers.Chrome,
-    UA_Browsers.Edge,
+  [UA_OPERATING_SYSTEMS.Windows]: [
+    UA_BROWSERS.Firefox,
+    UA_BROWSERS.Chrome,
+    UA_BROWSERS.Edge,
   ],
-  [UA_OperatingSystems.Linux]: [
-    UA_Browsers.Firefox,
-    UA_Browsers.Chrome,
-    UA_Browsers.Edge,
+  [UA_OPERATING_SYSTEMS.Linux]: [
+    UA_BROWSERS.Firefox,
+    UA_BROWSERS.Chrome,
+    UA_BROWSERS.Edge,
   ],
 }
 
 export const BROWSER_DOWNLOAD_LINKS = {
-  [UA_Browsers.Safari]: 'https://www.apple.com/safari/',
-  [UA_Browsers.SafariMobile]: 'https://www.apple.com/safari/',
-  [UA_Browsers.Firefox]: 'https://www.mozilla.org/en-US/firefox/mobile/',
-  [UA_Browsers.FirefoxMobile]: 'https://www.mozilla.org/en-US/firefox/',
-  [UA_Browsers.Chrome]: 'https://www.google.com/chrome/',
-  [UA_Browsers.ChromeMobile]: 'https://www.google.com/chrome/',
-  [UA_Browsers.Edge]: 'https://www.microsoft.com/en-us/edge',
+  [UA_BROWSERS.Safari]: 'https://www.apple.com/safari/',
+  [UA_BROWSERS.SafariMobile]: 'https://www.apple.com/safari/',
+  [UA_BROWSERS.Firefox]: 'https://www.mozilla.org/en-US/firefox/mobile/',
+  [UA_BROWSERS.FirefoxMobile]: 'https://www.mozilla.org/en-US/firefox/',
+  [UA_BROWSERS.Chrome]: 'https://www.google.com/chrome/',
+  [UA_BROWSERS.ChromeMobile]: 'https://www.google.com/chrome/',
+  [UA_BROWSERS.Edge]: 'https://www.microsoft.com/en-us/edge',
 }
 
 export const NAMES_FROM_UA_BROWSERS = {
-  [UA_Browsers.Safari]: 'Apple Safari',
-  [UA_Browsers.SafariMobile]: 'Mobile Safari',
-  [UA_Browsers.Firefox]: 'Mozilla Firefox',
-  [UA_Browsers.FirefoxMobile]: 'Mobile Firefox',
-  [UA_Browsers.Chrome]: 'Google Chrome',
-  [UA_Browsers.ChromeMobile]: 'Mobile Chrome',
-  [UA_Browsers.Edge]: 'Microsoft Edge',
+  [UA_BROWSERS.Safari]: 'Apple Safari',
+  [UA_BROWSERS.SafariMobile]: 'Mobile Safari',
+  [UA_BROWSERS.Firefox]: 'Mozilla Firefox',
+  [UA_BROWSERS.FirefoxMobile]: 'Mobile Firefox',
+  [UA_BROWSERS.Chrome]: 'Google Chrome',
+  [UA_BROWSERS.ChromeMobile]: 'Mobile Chrome',
+  [UA_BROWSERS.Edge]: 'Microsoft Edge',
 }
 
 export const BROWSER_FEATURES = {
@@ -77,25 +77,25 @@ export const BROWSER_FEATURES = {
 // Based on feature summary of entire api support in browsers
 export const MIN_BROWSER_FEATURE_SUPPORT = {
   [BROWSER_FEATURES.mediaRecorderAPI]: {
-    [UA_Browsers.Edge]: 79,
-    [UA_Browsers.Firefox]: 29,
-    [UA_Browsers.FirefoxMobile]: null,
-    [UA_Browsers.Chrome]: 49,
-    [UA_Browsers.ChromeMobile]: 94,
-    [UA_Browsers.Safari]: 14.1,
-    [UA_Browsers.SafariMobile]: 14.8,
-    [UA_Browsers.Samsung]: 5,
-    [UA_Browsers.Opera]: 36,
+    [UA_BROWSERS.Edge]: 79,
+    [UA_BROWSERS.Firefox]: 29,
+    [UA_BROWSERS.FirefoxMobile]: null,
+    [UA_BROWSERS.Chrome]: 49,
+    [UA_BROWSERS.ChromeMobile]: 94,
+    [UA_BROWSERS.Safari]: 14.1,
+    [UA_BROWSERS.SafariMobile]: 14.8,
+    [UA_BROWSERS.Samsung]: 5,
+    [UA_BROWSERS.Opera]: 36,
   },
   [BROWSER_FEATURES.cssFlexibleBoxLayoutModule]: {
-    [UA_Browsers.Edge]: 84,
-    [UA_Browsers.Firefox]: 63,
-    [UA_Browsers.FirefoxMobile]: 92,
-    [UA_Browsers.Chrome]: 84,
-    [UA_Browsers.ChromeMobile]: 94,
-    [UA_Browsers.Safari]: 14.1,
-    [UA_Browsers.SafariMobile]: 14.8,
-    [UA_Browsers.Samsung]: 14,
-    [UA_Browsers.Opera]: 73,
+    [UA_BROWSERS.Edge]: 84,
+    [UA_BROWSERS.Firefox]: 63,
+    [UA_BROWSERS.FirefoxMobile]: 92,
+    [UA_BROWSERS.Chrome]: 84,
+    [UA_BROWSERS.ChromeMobile]: 94,
+    [UA_BROWSERS.Safari]: 14.1,
+    [UA_BROWSERS.SafariMobile]: 14.8,
+    [UA_BROWSERS.Samsung]: 14,
+    [UA_BROWSERS.Opera]: 73,
   },
 }

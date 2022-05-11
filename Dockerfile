@@ -6,7 +6,7 @@ ENV APP_DIR=/app
 # Sets the path to allow running bundler binstubs
 ENV PATH="${PATH}:${APP_DIR}/bin"
 ENV BUNDLE_PATH=/bundle/vendor
-ENV NODE_VERSION 14.15.4
+ENV NODE_VERSION 14.17.3
 ENV YARN_VERSION 1.22.5
 
 # Build args - shell variables assigned at build time.

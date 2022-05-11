@@ -13,5 +13,9 @@ module Administration
     def update?
       has_permission?(:campaigns, :manage)
     end
+
+    def update_positions?
+      update?
+    end
   end
 end

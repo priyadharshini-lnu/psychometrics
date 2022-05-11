@@ -141,7 +141,7 @@ export const questionChoicesToTableValues = (questionsChoices = [], allQuestions
     const { questionId, choiceIds } = questionChoices
 
     if (Object.values(allQuestions).length > 0) {
-      const question = allQuestions ?. [questionId] ?? null
+      const question = allQuestions?.[questionId] ?? null
 
       if (question) {
         choiceIds.forEach((choiceId) => {

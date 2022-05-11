@@ -62,7 +62,7 @@ export class RecorderCore {
 
   sourceNode: MediaStreamAudioSourceNode;
 
-  userMedia: Promise<MediaStream | void>;
+  userMedia?: Promise<MediaStream | void>;
 
   constructor ({ onUpdateRecordTime }) {
     this.config = {

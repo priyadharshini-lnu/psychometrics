@@ -6,8 +6,6 @@ import { SafeHTML } from 'components/SafeHTML'
 import styles from './TextEditor.scss'
 
 export class TextEditor extends Component {
-  hover = false
-
   constructor (props) {
     super(props)
     this.state = {
@@ -23,6 +21,13 @@ export class TextEditor extends Component {
     }
     return true
   }
+
+  onRichChange = (data) => {
+    const { onChange } = this.props
+    onChange && onChange(data)
+  }
+
+  hover = false
 
   edit = () => {
     const { value } = this.props
@@ -80,11 +85,6 @@ export class TextEditor extends Component {
 
   htmlMode = () => {
     this.setState({ normal: false })
-  }
-
-  onRichChange = (data) => {
-    const { onChange } = this.props
-    onChange && onChange(data)
   }
 
   openRichEditor = () => {

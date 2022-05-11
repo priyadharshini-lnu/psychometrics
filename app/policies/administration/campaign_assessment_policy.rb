@@ -48,7 +48,7 @@ module Administration
       )
     end
 
-    def attach_to_group?
+    def update_positions?
       has_permission?(:campaigns, :manage)
     end
 

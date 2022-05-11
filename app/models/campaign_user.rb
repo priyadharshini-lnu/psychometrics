@@ -24,9 +24,11 @@ class CampaignUser < ApplicationRecord
   delegate :proctoring_enabled?, to: :campaign
 
   def compute_and_set_status
-    return if campaign.timed? && completion_status != 'completed'
+    return update(status: completion_status) unless campaign.timed?
 
-    update(status: completion_status)
+    return update(status: completion_status) if campaign.fixed_timed? && completion_status != 'completed'
+
+    update(status: completion_status) if campaign.end_date? && campaign.end_date < Time.now
   end
 
   def finish_proctoring_session

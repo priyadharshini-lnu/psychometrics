@@ -134,7 +134,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   let email = ''
   if (isInEditMode) {
     datasheetFormValues = datasheetDetails.find(detail => detail.type === parentResourceType)
-    ?.record ?? {}
+      ?.record ?? {}
     email = `${datasheetFormValues?.[COLUMN_ID_EMAIL] ?? ''}`
   }
 

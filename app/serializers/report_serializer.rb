@@ -122,7 +122,7 @@ class ReportSerializer < ActiveModel::Serializer
   # Used for Piped Text
   def result_locale
     results.each_with_object({}) do |result, acc|
-      locale = result.selected_locale || I18n.default_locale
+      locale = result.user_assessment.selected_locale || I18n.default_locale
 
       acc[result.assessment_id] = I18n.t("languages.#{locale}")
     end

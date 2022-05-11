@@ -16,10 +16,6 @@ import { PropsFromRedux } from './connect'
 
 const { Content } = Layout
 
-interface Params {
-  assessmentKey: string
-}
-
 type Props = PropsFromRedux
 
 const Common: React.FC<Props> = ({
@@ -58,6 +54,9 @@ const Common: React.FC<Props> = ({
   const reset = () => {
     const { hostname } = location
     Cookies.remove('tte-anonym-payload', { domain: `.${hostname}`, path: '/' })
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // Param to be passed to force reload in firefox - https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
     location.reload(true)
   }
 

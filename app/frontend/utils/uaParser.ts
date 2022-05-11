@@ -2,7 +2,7 @@ import UAParser from 'ua-parser-js'
 
 import {
   BROWSER_FEATURES,
-  UA_Browsers,
+  UA_BROWSERS,
   MIN_BROWSER_FEATURE_SUPPORT,
 } from 'modules/survey/constants/browser'
 import { convertToUserAgentBrowserName } from 'modules/survey/utils/browser'
@@ -57,7 +57,7 @@ export const checkBrowserSupportForFeature = (
 
   if (
     browser.length === 0
-    || !Object.values(UA_Browsers).includes(browser)
+    || !Object.values(UA_BROWSERS).includes(browser)
     || version.length === 0
     || featureName.length === 0
     || !Object.values(BROWSER_FEATURES).includes(featureName)

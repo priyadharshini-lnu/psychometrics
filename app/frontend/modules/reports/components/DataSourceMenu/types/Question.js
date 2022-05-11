@@ -8,16 +8,6 @@ import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 
 class Question extends Component {
-  getOptions () {
-    const { model, questions } = this.props
-    const qstns = _.map(questions, q => ({
-      value: q.id,
-      label: `${q.name} ${(Utils.stripHTML(q.props.questionText) || '').substring(0, 24)}...`,
-      type: q.type,
-    }))
-    return model.filterQuestions(qstns)
-  }
-
   onChange = (questions) => {
     const { model, onSelect } = this.props
     if (_.isArray(questions)) {
@@ -27,6 +17,16 @@ class Question extends Component {
     }
     onSelect()
     PropertyPanelStore.update()
+  }
+
+  getOptions () {
+    const { model, questions } = this.props
+    const qstns = _.map(questions, q => ({
+      value: q.id,
+      label: `${q.name} ${(Utils.stripHTML(q.props.questionText) || '').substring(0, 24)}...`,
+      type: q.type,
+    }))
+    return model.filterQuestions(qstns)
   }
 
   render () {

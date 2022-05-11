@@ -40,6 +40,16 @@ export class HotSpot extends Component {
     this.setState({ shapeEditor })
   }
 
+  onChange = (data) => {
+    const { model } = this.props
+    model.props.regions = data
+    model.update()
+  }
+
+  onGraphicLoaded = () => {
+    // Plus 30 px because all shapes have resizer border, which eat 15px from both side
+    this.paper.setSize(this.graphic.width + 30, this.graphic.height + 30)
+  }
 
   changeText = (value) => {
     const { model } = this.props
@@ -49,12 +59,6 @@ export class HotSpot extends Component {
 
   clickPaper = () => {
     // this.state.shapeEditor.deselectAll()
-  }
-
-  onChange = (data) => {
-    const { model } = this.props
-    model.props.regions = data
-    model.update()
   }
 
   selectShape = (shapeIndex) => {
@@ -120,11 +124,6 @@ export class HotSpot extends Component {
     regionsNames.splice(shapeIndex, 1)
     model.changeProps({ regionsNames })
     shapeEditor.removeShape()
-  }
-
-  onGraphicLoaded = () => {
-    // Plus 30 px because all shapes have resizer border, which eat 15px from both side
-    this.paper.setSize(this.graphic.width + 30, this.graphic.height + 30)
   }
 
   renderGraphic () {

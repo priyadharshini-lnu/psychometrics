@@ -21,14 +21,22 @@ class Properties extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  collectFactors = () => {
+  onChangeColor = (key, value) => {
     const { model } = this.props
-    const assessmentId = model.assessment_id
-    const assessment = _.find(AppStore.assessments, { id: assessmentId })
-    const dimensionId = assessment && assessment.dimensionId
-    const factors = _.map(AppStore.factors[dimensionId], this.factor)
-    factors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
-    return factors
+    model.props[key] = value
+    model.update()
+  }
+
+  setProp = (propName, e) => {
+    const { model } = this.props
+    model.props[propName] = e.currentTarget.checked
+    model.update()
+  }
+
+  setSortedFactors = (factors) => {
+    const { model } = this.props
+    model.props.source = { factors }
+    model.update()
   }
 
   allFactors = () => {
@@ -37,6 +45,16 @@ class Properties extends Component {
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
     return _.map(model.filterFactors(AppStore.factors[dimensionId]), this.factor)
+  }
+
+  collectFactors = () => {
+    const { model } = this.props
+    const assessmentId = model.assessment_id
+    const assessment = _.find(AppStore.assessments, { id: assessmentId })
+    const dimensionId = assessment && assessment.dimensionId
+    const factors = _.map(AppStore.factors[dimensionId], this.factor)
+    factors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
+    return factors
   }
 
   factor = f => ({ id: f.id, alias: `${f.alias.substring(0, 24)}` })
@@ -49,12 +67,6 @@ class Properties extends Component {
     }
     model.props.source = { factors }
     this.update()
-  }
-
-  update = () => {
-    const { model } = this.props
-    model.props.group = null
-    model.update()
   }
 
   openConditionModal = () => {
@@ -76,12 +88,6 @@ class Properties extends Component {
     this.forceUpdate()
   }
 
-  setProp = (propName, e) => {
-    const { model } = this.props
-    model.props[propName] = e.currentTarget.checked
-    model.update()
-  }
-
   changeMode = (e) => {
     const { model } = this.props
     model.props.mode = e.currentTarget.value
@@ -94,15 +100,9 @@ class Properties extends Component {
     model.update()
   }
 
-  setSortedFactors = (factors) => {
+  update = () => {
     const { model } = this.props
-    model.props.source = { factors }
-    model.update()
-  }
-
-  onChangeColor = (key, value) => {
-    const { model } = this.props
-    model.props[key] = value
+    model.props.group = null
     model.update()
   }
 

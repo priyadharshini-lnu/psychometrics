@@ -14,7 +14,7 @@ export default function ChartOptions (
   const { type } = model.props.source
   const events = type === 'Question' ? {
     click () {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       changeLabel(this)
     },
@@ -54,7 +54,7 @@ export default function ChartOptions (
           color: color || '#000',
           fontFamily,
         },
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         events,
         enabled: !model.props.xAxisLabelHide,

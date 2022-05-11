@@ -1881,6 +1881,7 @@ en:
         update:
           successfully: Sub-Campaign %{name} was successfully updated.
       tenancies: Client Tenancies
+      threesixty_campaign: Threesixty Campaign
       threesixty_campaigns:
         create:
           successfully: Campaign %{name} was successfully created.
@@ -3360,6 +3361,7 @@ en:
       messages:
         delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
         delete_success: SMS Invite deleted successfully
+        failed_to_sent_invite: Failed to sent invite to mobile no %{mobile_no}
       send_sms:
         fields:
           link_expiry: Link Expiry
@@ -3376,9 +3378,12 @@ en:
           {{{last_name}}} - Recipient Last Name
           <br />
           {{{invite_url}}} - Registration Link
+        segment_length_msg: Estimated number of segments for this message is %{segment_length}.
+        segment_length_range_msg: Estimated number of segments for this message is between %{min_segment_length} and %{max_segment_length}.
         success_msg: You request to send SMS have been scheduled. Please check the status in the notifications.
       statuses:
         all: All
+        failed: Failed
         invited: Invited
         not_invited: Not Invited
         registered: Registered

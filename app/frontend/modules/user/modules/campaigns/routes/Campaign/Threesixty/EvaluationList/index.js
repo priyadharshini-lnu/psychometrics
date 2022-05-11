@@ -86,9 +86,9 @@ function EvaluationList ({
   }
 
   const EvaluationItem = (item) => {
-    const subjectEvaluationClosed = item?.subjectEvaluationClosed ?? false
-    const email = item?.subject?.email ?? ''
-    const subject = item?.subject ?? { firstName: '', lastName: '' }
+    const { subjectEvaluationClosed } = item || { subjectEvaluationClosed: false }
+    const { subject } = item || { subject: { firstName: '', lastName: '' } }
+    const email = subject.email || ''
 
     return (
       <List.Item>
@@ -135,20 +135,23 @@ function EvaluationList ({
     )
   }
 
-  const SubjectItem = item => (
-    <List.Item>
-      <div className="evaluation-item list-item">
-        <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
-          <a className="ant-dropdown-link actions-btn" href="#">
-            <Tooltip placement="topLeft" title={item?.user?.email ?? ''}>
-              <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
-            </Tooltip>
-            <DownOutlined className="menu-icon" />
-          </a>
-        </Dropdown>
-      </div>
-    </List.Item>
-  )
+  const SubjectItem = (item) => {
+    const { user } = item || { user: undefined }
+    return (
+      <List.Item>
+        <div className="evaluation-item list-item">
+          <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
+            <a className="ant-dropdown-link actions-btn" href="#">
+              <Tooltip placement="topLeft" title={user?.email ?? ''}>
+                <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
+              </Tooltip>
+              <DownOutlined className="menu-icon" />
+            </a>
+          </Dropdown>
+        </div>
+      </List.Item>
+    )
+  }
 
   const CollapseItem = ({ title, list }) => (
     <Collapse bordered={false} defaultActiveKey="panel">

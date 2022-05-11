@@ -31,7 +31,7 @@ source 'https://rails-assets.org/' do
   gem 'rails-assets-js-cookie', '2.1.3'
   gem 'rails-assets-ladda', '~> 1.0.5'
   gem 'rails-assets-lodash', '~> 4.17.11'
-  gem 'rails-assets-moment', '~> 2.19.3'
+  gem 'rails-assets-moment', '~> 2.29.1'
   gem 'rails-assets-moment-timezone', '~> 0.5.14'
   gem 'rails-assets-multiselect', '0.9.12'
   gem 'rails-assets-mustache.js'
@@ -57,7 +57,7 @@ gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
-gem 'slim-rails',                 '~> 3.3.0'
+gem 'slim-rails',                 '~> 3.4.0'
 ### FORM BUILDERS
 gem 'cocoon', '1.2.9'
 gem 'simple_form',                '5.1.0'
@@ -215,7 +215,7 @@ group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.35.3'
   gem 'capybara-screenshot', '~> 1.0.24'
-  gem 'coveralls_reborn', '~> 0.22.0', require: false
+  gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 1.8.7'
   gem 'rails-controller-testing', '~> 1.0.4'

@@ -12,10 +12,6 @@ import Result from 'modules/reports/models/Result'
 import store from '../store'
 
 class AppContainer extends Component {
-  undoListener = null
-
-  redoListener = null
-
   componentDidMount () {
     const parent = ReactDOM.findDOMNode(this).parentNode
     const assessmentIds = JSON.parse(parent.dataset.assessmentIds)
@@ -31,6 +27,10 @@ class AppContainer extends Component {
     this.undoListener.remove()
     this.redoListener.remove()
   }
+
+  undoListener = null
+
+  redoListener = null
 
   update = () => {
     this.forceUpdate()

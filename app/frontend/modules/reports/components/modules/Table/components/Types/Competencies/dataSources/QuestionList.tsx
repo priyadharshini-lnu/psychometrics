@@ -115,7 +115,7 @@ export const treeValuesToQuestionChoices = (
     const [selectedQuestionId, selectedChoiceId] = selectedNode.split(QUESTION_CHOICE_SEPERATOR)
 
     if (selectedQuestionId && selectedChoiceId) {
-      const existingQuestionChoices = selectedQuestionsChoicesMap.get(selectedQuestionId) ?.choiceIds ?? []
+      const existingQuestionChoices = selectedQuestionsChoicesMap.get(selectedQuestionId)?.choiceIds ?? []
 
       const questionWithNewChoices = {
         questionId: parseInt(selectedQuestionId, 10),

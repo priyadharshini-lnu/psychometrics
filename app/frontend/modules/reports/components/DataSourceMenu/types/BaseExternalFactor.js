@@ -4,15 +4,15 @@ import Select from 'react-select'
 import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 
 class BaseExternalFactor extends Component {
-  getOptions = () => {
-    const { assessment, sourceType } = this.props
-    return assessment.factors.filter(f => f.type === sourceType)
-  }
-
   onChange = (data) => {
     const { model, onSelect, singleChoice } = this.props
     model.props.source.factors = singleChoice ? data && [data.id] : data && data.map(f => f.id)
     onSelect()
+  }
+
+  getOptions = () => {
+    const { assessment, sourceType } = this.props
+    return assessment.factors.filter(f => f.type === sourceType)
   }
 
   render () {

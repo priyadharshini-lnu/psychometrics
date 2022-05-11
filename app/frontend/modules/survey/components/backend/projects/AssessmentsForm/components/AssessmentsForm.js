@@ -20,6 +20,19 @@ export class AssessmentsForm extends Component {
     }
   }
 
+  getAssessmentsForSelect = () => {
+    const { assessments, projectAssessments } = this.state
+    return _.reduce(assessments, (result, a) => {
+      if (!_.find(projectAssessments, { id: a.id })) {
+        result.push({
+          value: a.id,
+          label: a.name,
+        })
+      }
+      return result
+    }, [])
+  }
+
   addAssessment = () => {
     const { projectAssessments } = this.state
 
@@ -43,19 +56,6 @@ export class AssessmentsForm extends Component {
     const assessment = projectAssessments[index]
     assessment.reports = reports
     this.setState({ projectAssessments })
-  }
-
-  getAssessmentsForSelect = () => {
-    const { assessments, projectAssessments } = this.state
-    return _.reduce(assessments, (result, a) => {
-      if (!_.find(projectAssessments, { id: a.id })) {
-        result.push({
-          value: a.id,
-          label: a.name,
-        })
-      }
-      return result
-    }, [])
   }
 
   render () {

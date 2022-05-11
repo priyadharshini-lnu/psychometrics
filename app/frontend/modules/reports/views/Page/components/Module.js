@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 import { getModule } from 'modules/reports/core/builder/selectors'
 
 class Module extends Component {
-  storeListener = null
-
   static propTypes = {
     page: PropTypes.object.isRequired,
     module: PropTypes.object.isRequired,
   }
+
+  storeListener = null
 
   render () {
     const { page, module } = this.props

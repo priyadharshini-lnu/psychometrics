@@ -40,6 +40,9 @@ export type Props = OwnProps & PropsFromRedux
 const UpdateAssessorFormModal: React.FC<Props> = ({
   close, campaignId, loading, assessment, updateAssessorForm, fetchAvailableAssessments, availableAssessments,
 }) => {
+  const sortedAvailableAssessments = availableAssessments
+    .sort((a, b) => (a.name.toUpperCase() >= b.name.toUpperCase() ? 1 : -1))
+
   useEffect(() => {
     fetchAvailableAssessments(campaignId)
   }, [])
@@ -77,16 +80,20 @@ const UpdateAssessorFormModal: React.FC<Props> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ assessorFormId: assessment.assessorFormId || '' }}
+        initialValues={{ assessorFormId: assessment.assessorFormName || '' }}
       >
         <Form.Item name="assessorFormId">
           <Select
-            className="width100percent"
+            className="w-100"
             placeholder={I18n.t('campaign_assessment.modals.update_assessor_form.select_assessor')}
+            showSearch
+            filterOption={
+              (inputVal, optionData) => (optionData?.children.toLowerCase().includes(inputVal.toLowerCase()))
+            }
           >
             <Select.Option value="">{I18n.t('common.text.na')}</Select.Option>
-            {availableAssessments.map(a => (
-              <Select.Option key={a.id} value={a.id}>
+            {sortedAvailableAssessments.map(a => (
+              <Select.Option key={a.id} value={a.id} la>
                 {a.name}
               </Select.Option>
             ))}

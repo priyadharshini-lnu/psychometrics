@@ -9,6 +9,14 @@ export class FactorsMenu extends Component {
     selectFactor(factor.id)
   }
 
+  currentFactorName () {
+    const { selectedFactor } = this.props
+    if (selectedFactor) {
+      return selectedFactor.name
+    }
+    return 'Choose Factor'
+  }
+
   renderFactorBlock = factor => _.compact(_.flatten([
     <MenuItem key={factor.id} onSelect={() => this.selectFactor(factor)}>{factor.name}</MenuItem>,
     factor.sub_factors && factor.sub_factors.list.map(subFactor => (
@@ -20,14 +28,6 @@ export class FactorsMenu extends Component {
       </MenuItem>
     )),
   ]))
-
-  currentFactorName () {
-    const { selectedFactor } = this.props
-    if (selectedFactor) {
-      return selectedFactor.name
-    }
-    return 'Choose Factor'
-  }
 
   render () {
     const { factors } = this.props

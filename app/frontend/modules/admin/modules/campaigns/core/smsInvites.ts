@@ -7,7 +7,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
 
-export const STATUSES = ['not_invited', 'invited', 'registered']
+export const STATUSES = ['not_invited', 'invited', 'registered', 'failed']
 
 const SmsInviteTR = t.type({
   id: t.number,
@@ -23,6 +23,7 @@ const SmsInviteTR = t.type({
 const SmsInviteListResponseTR = t.type({
   list: t.array(SmsInviteTR),
   total: t.number,
+  inviteUrlLength: t.number,
   permissions: t.type({
     import: t.boolean,
     export: t.boolean,
@@ -38,6 +39,7 @@ export type State = t.TypeOf<typeof SmsInviteListResponseTR>
 const defaultState: State = {
   list: [],
   total: 0,
+  inviteUrlLength: 0,
   permissions: {
     create: false, destroy: false, import: false, export: false, sendSms: false,
   },

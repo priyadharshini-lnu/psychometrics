@@ -16,12 +16,14 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   end
 
   def export_completion_status
-    results = Threesixty::Campaigns::ExportCompletionStatus.call!(resource)
     audit! :export_completion_status, resource, campaign: resource.campaign
-    filename = "completion_status_export_campaign_#{resource.id}.xlsx"
-    respond_to do |format|
-      format.xlsx { send_data results.to_stream.read, filename: filename }
-    end
+    AdminJob.call(
+      :threesixty_campaign_export_completion_status,
+      { threesixty_campaign_id: resource.id },
+      current_user
+    )
+
+    head :ok
   end
 
   def export_results

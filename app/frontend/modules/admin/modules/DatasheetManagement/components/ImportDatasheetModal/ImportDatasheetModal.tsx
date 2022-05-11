@@ -7,13 +7,16 @@ import { Store } from 'antd/lib/form/interface'
 import Event from 'interfaces/Event'
 import each from 'lodash/each'
 import { connect, ConnectedProps } from 'react-redux'
+
+import { RootState } from 'modules/admin/core/rootReducers'
+
 import { importDatasheet, IMPORT } from 'modules/admin/modules/DatasheetManagement/core/list'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { ParentResourceType } from '../../interfaces'
 import styles from './styles.scss'
 
 const connecter = connect(
-  state => ({
+  (state: RootState) => ({
     loading: isRequestInProgress(state, IMPORT),
   }),
   {

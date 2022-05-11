@@ -40,6 +40,13 @@ export class Flow extends Component {
     this.forceUpdate()
   }
 
+  // Happens when tree was reorder
+  // Update store flow
+  handleChange = (tree) => {
+    const { updateTree } = this.props
+    updateTree(tree)
+  }
+
   renderElement = (element, i) => {
     if (element.module === null) return null
     return (
@@ -51,13 +58,6 @@ export class Flow extends Component {
         />
       </div>
     )
-  }
-
-  // Happens when tree was reorder
-  // Update store flow
-  handleChange = (tree) => {
-    const { updateTree } = this.props
-    updateTree(tree)
   }
 
   render () {

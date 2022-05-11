@@ -33,7 +33,7 @@ const MessageList: React.FC<Props> = ({
   return (
     <div className={styles.messageList}>
       {_.sortBy(messageList, 'position').map((message: MessageInterface, i: number) => (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         <Message
           key={i}

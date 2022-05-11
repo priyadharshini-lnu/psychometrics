@@ -1,9 +1,12 @@
 import { connect, ConnectedProps } from 'react-redux'
+
+import { RootState } from 'modules/admin/core/rootReducers'
+
 import { importUsers, IMPORT } from 'modules/admin/modules/campaigns/core/users'
 import { isRequestInProgress } from 'modules/admin/core/request'
 
 const connecter = connect(
-  state => ({
+  (state: RootState) => ({
     loading: isRequestInProgress(state, IMPORT),
   }),
   {

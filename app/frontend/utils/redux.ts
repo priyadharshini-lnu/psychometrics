@@ -14,7 +14,6 @@ export const createReducer = <State, Types extends string, Actions extends Actio
     return handlers.hasOwnProperty(action.type) ? handlers[action.type as Types](newState, action) : newState
   }
 
-// eslint-disable-next-line @typescript-eslint/interface-name-prefix
 interface IPayload<P, T = any> extends AnyAction { // eslint-disable-line @typescript-eslint/no-explicit-any
   payload: P
   type: T

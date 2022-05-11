@@ -106,9 +106,9 @@ const Factor: FC<Props> = ({
     factorIds: PropertiesModel['props']['factorIds'],
   ): Array<Array<Gap>> => {
     const scoreWithLeftFilter = ResultStore?.results?.[assessmentId]?.resultsByFilter?.[leftFilter.id]
-        ?.scoring ?? null
+      ?.scoring ?? null
     const scoreWithRightFilter = ResultStore?.results?.[assessmentId]?.resultsByFilter?.[rightFilter.id]
-        ?.scoring ?? null
+      ?.scoring ?? null
 
     if (!scoreWithLeftFilter || !scoreWithRightFilter) {
       return [[], []]

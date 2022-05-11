@@ -95,14 +95,14 @@ const AssessmentList: React.FC<Props> = ({
                 return I18n.t('common.text.na')
               }
               return (
-                permissions.updateAssessorForm && assessorFormName ? (
+                permissions.updateAssessorForm ? (
                   <a
                     onClick={
                         () => openModal('UpdateAssessorFormModal',
                           { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
                       }
                   >
-                    {assessorFormName}
+                    {assessorFormName || I18n.t('common.text.na')}
                   </a>
                 ) : assessorFormName || I18n.t('common.text.na')
               )

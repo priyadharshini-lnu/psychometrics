@@ -39,19 +39,17 @@ module Users
     private
 
     def add_assessment_to_user(user)
-      users_result = UsersResult.create(
-        last_activity_at: DateTime.current,
-        expiry_date: assessment.extra['timer']&.second&.from_now,
-        answers: {},
-        started_at: Time.now
-      )
+      users_result = UsersResult.create(answers: {})
       UserAssessment.create(
+        started_at: Time.now,
+        expiry_date: assessment.extra['timer']&.second&.from_now,
         assessment: assessment,
         campaign: campaign,
         subject: user,
         evaluator: user,
         status: :in_progress,
-        users_result: users_result
+        users_result: users_result,
+        last_activity_at: DateTime.current
       )
     end
   end

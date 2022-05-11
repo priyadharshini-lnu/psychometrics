@@ -26,18 +26,50 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentsController, type: :
     expect(parsed_response['position']).to eq 4
   end
 
-  it 'attach_to_group' do
-    ca1 = campaign_assessment_group.campaign_assessments.create(campaign_id: campaign.id, position: 5)
-    ca2 = campaign_assessment_group.campaign_assessments.create(campaign_id: campaign.id, position: 4)
-    post :attach_to_group, params: {
-      id: campaign_assessment.id,
-      new_campaign_id: campaign.id,
-      group_id: campaign_assessment_group.id,
-      position: 2
+  it 'update_positions' do
+    assessment1 = create(:assessment)
+    assessment2 = create(:assessment)
+    ca1 = campaign_assessment_group.campaign_assessments.create(campaign_id: campaign.id, assessment: assessment1)
+    ca2 = campaign_assessment_group.campaign_assessments.create(campaign_id: campaign.id, assessment: assessment2)
+
+    post :update_positions, params: {
+      campaign_assessments: [
+        {
+          id: ca1.id,
+          position: 3,
+          campaign_assessment_group_id: campaign_assessment_group.id
+        },
+        {
+          id: ca2.id,
+          position: 6,
+          campaign_assessment_group_id: nil
+        }
+
+      ],
+      new_campaign_id: campaign.id
     }
-    expect(ca1.reload.position).to eq 1
-    expect(ca2.reload.position).to eq 3
-    expect(campaign_assessment.reload.position).to eq 2
-    expect(campaign_assessment.reload.campaign_assessment_group_id).to eq campaign_assessment_group.id
+    expect(response).to have_http_status(:success)
+    expect(ca1.reload.position).to eq 3
+    expect(ca2.reload.position).to eq 6
+    expect(ca2.campaign_assessment_group_id).to be_nil
+  end
+
+  it 'will not update_positions for other campaign' do
+    other_campaign = create(:campaign)
+
+    ca = campaign_assessment_group.campaign_assessments.create(campaign_id: campaign.id)
+
+    post :update_positions, params: {
+      campaign_assessments: [
+        {
+          id: ca.id,
+          position: 3,
+          campaign_assessment_group_id: campaign_assessment_group.id
+        }
+      ],
+      new_campaign_id: other_campaign.id
+    }
+    expect(response).to have_http_status(400)
+    expect(ca.reload.position).to eq 1
   end
 end
