@@ -41,6 +41,6 @@ export interface Options<R, M> {
 }
 
 export interface BaseMeta {
-  record_count?: number,
-  page_count?: number,
+  recordCount?: number,
+  pageCount?: number,
 }

@@ -14,29 +14,8 @@ import { routes } from './routes'
 import settings from './settings'
 
 const client = new ApiClient({
-  url: 'https://ttedev.me:3030/api/v2/administration',
-  schema: {
-    clients: {
-      type: 'clients',
-      fields: {
-        name: 'string',
-      },
-      relationships: {
-        account_manager: {
-          type: 'users',
-        },
-        project_manager: {
-          type: 'users',
-        },
-      },
-    },
-    users: {
-      type: 'users',
-      fields: {
-        name: 'string',
-      },
-    },
-  },
+  url: `${window.location.origin}/api/v2/administration`,
+  schema: {},
 })
 
 const App: React.FC<void> = () => (

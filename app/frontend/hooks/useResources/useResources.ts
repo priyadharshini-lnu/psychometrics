@@ -6,6 +6,7 @@ import { PathReporter } from 'io-ts/PathReporter'
 import { useDispatch } from 'react-redux'
 import { setResponseDataMismatched } from 'modules/admin/core/request'
 import { useLocation, useHistory } from 'react-router-dom'
+import humps from 'humps'
 import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import isEqual from 'lodash/isEqual'
@@ -92,26 +93,31 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     setRequests({ ...requests, fetch: { status, errors: errorData } })
 
     if (status === 'success' && response) {
-      setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data: response, meta }))
+      const camelizedResponse = humps.camelizeKeys(response)
+      setState((previousState: ResourceState<R[], M>) => (
+        { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
 
       if (args.responseType || responseType) {
-        responseTypeValidation(t.array(args.responseType || responseType), response)
+        responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
       }
     }
   }
 
   const addResource = async (
-    details: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
+    attributes: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
   ) => {
     setRequests({ ...requests, add: { status: 'loading' } })
-    const { data: response, error, errors } = await client.mutate<R>([resourceName, apiConfig || {}], details)
+    const { data: response, error, errors } = await client.mutate<R>(
+      [resourceName, apiConfig || {}], humps.decamelizeKeys(attributes),
+    )
     const errorData = errors || (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, add: { status, errors: errorData } })
 
     if (status === 'success' && response) {
-      setData([response, ...data])
-      responseTypeValidation(args?.responseType || responseType, response)
+      const camelizedResponse = humps.camelizeKeys(response)
+      setData([camelizedResponse, ...data])
+      responseTypeValidation(args?.responseType || responseType, camelizedResponse)
     }
   }
 
@@ -121,14 +127,17 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     const { id, ...attributes } = details
     const requestKey = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
-    const { data: response, error, errors } = await client.mutate<R>([resourceName, id, apiConfig || {}], attributes)
+    const { data: response, error, errors } = await client.mutate<R>(
+      [resourceName, id, apiConfig || {}], humps.decamelizeKeys(attributes),
+    )
     const errorData = errors || (error ? [error] : null)
     const status = errorData ? 'failed' : 'success'
     setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
 
     if (status === 'success' && data && response) {
-      setData(data.map(r => (r.id === response.id ? response : r)))
-      responseTypeValidation(args?.responseType || responseType, response)
+      const camelizedResponse = humps.camelizeKeys(response)
+      setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
+      responseTypeValidation(args?.responseType || responseType, camelizedResponse)
     }
   }
 

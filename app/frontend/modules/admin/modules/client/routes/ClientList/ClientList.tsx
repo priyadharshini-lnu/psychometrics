@@ -33,7 +33,7 @@ export const ClientList: FC<{}> = () => {
         <Col>
           <CountDisplay
             selectedCount={0}
-            totalCount={meta.record_count || 0}
+            totalCount={meta.recordCount || 0}
             isLoading={isLoading('fetch')}
           />
         </Col>
@@ -87,12 +87,12 @@ export const ClientList: FC<{}> = () => {
             />
             <Column
               title={I18n.t('administration.clients.columns.account_manager')}
-              dataIndex={['account_manager', 'name']}
+              dataIndex={['accountManager', 'name']}
               key="account_manager"
             />
             <Column
               title={I18n.t('administration.clients.columns.project_manager')}
-              dataIndex={['project_manager', 'name']}
+              dataIndex={['projectManager', 'name']}
               key="project_manager"
             />
           </Table>
@@ -102,7 +102,7 @@ export const ClientList: FC<{}> = () => {
         hideOnSinglePage
         current={currentPage}
         pageSize={pageSize}
-        total={meta.record_count}
+        total={meta.recordCount}
         onChange={changePage}
         className="pl"
       />
