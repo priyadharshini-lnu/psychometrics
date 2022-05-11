@@ -5,6 +5,7 @@ class BaseType {
     this.condition = condition
     this.filterScope = condition.props.filterScope
     this.assessmentId = assessmentId
+    this.skipRoundingValues = condition.collection.module.props.skipRoundingValues
   }
 
   isFilled () {

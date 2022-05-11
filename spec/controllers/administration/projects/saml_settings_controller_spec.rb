@@ -82,5 +82,29 @@ RSpec.describe Administration::Projects::SamlSettingsController, type: :controll
       expect(saml_setting.entity_id).to_not eq('new_idp_entity_id')
       expect(saml_setting.test_settings['entity_id']).to eq('new_idp_entity_id')
     end
+
+    it 'allows all blank attribute if saml is not enabled' do
+      put :update, params: {
+        project_id: project.id,
+        id: saml_setting.id,
+        resource: { enabled: false, entity_id: '', sso_service_url: '' }
+      }, format: :json
+      saml_setting.reload
+
+      expect(response.status).to eq(200)
+      expect(saml_setting.entity_id).to_not eq('')
+      expect(saml_setting.sso_service_url).to_not eq('')
+    end
+
+    it "doesn't allow update if some fields are present and some are absent when saml is not enabled" do
+      put :update, params: {
+        project_id: project.id,
+        id: saml_setting.id,
+        resource: { enabled: false, entity_id: 'entity_id', sso_service_url: '' }
+      }, format: :json
+      saml_setting.reload
+
+      expect(response.status).to eq(422)
+    end
   end
 end

@@ -7,7 +7,8 @@ module Users
     attribute :password, String
 
     validates :first_name, :last_name, presence: true
-    validates :password, length: { within: Devise.password_length }, allow_blank: true
+    validates :password, length: { within: Devise.password_length },
+      allow_blank: true, unless: :enable_strong_password?
     validates :password, strong_password: true, if: :enable_strong_password?
 
     private

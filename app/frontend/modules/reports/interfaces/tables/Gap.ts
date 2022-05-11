@@ -12,6 +12,7 @@ interface Props {
   filter: Array<number>
   questionsChoices: Array<{ questionId: number; choiceIds: Array<number> }>
   factorIds: Array<number>
+  hideValues: boolean
 }
 
 export enum GapType {

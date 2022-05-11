@@ -21,7 +21,12 @@ module Lambdas
     end
 
     def send_message_to_sqs
-      Aws::SQS::Client.new.send_message({
+      Aws::SQS::Client.new(
+        credentials: Aws::Credentials.new(
+          Rails.application.secrets.access_key_id,
+          Rails.application.secrets.secret_access_key
+        )
+      ).send_message({
         queue_url: sqs_url,
         message_body: jwt_request_body
       })
