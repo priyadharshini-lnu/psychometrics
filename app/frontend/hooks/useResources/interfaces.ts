@@ -1,10 +1,17 @@
-export interface Requests {
-  [key: string]: {
-    status: 'loading' | 'failed' | 'success',
+export enum RequestStatus {
+  Loading = 'loading',
+  Success = 'success',
+  Failed = 'failed',
+}
+
+export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}`
+
+export type Requests = {
+  [key in RequestType]?: {
+    status: RequestStatus,
     errors?: { [key: string]: string }[] | null
   }
 }
-
 export interface ResourceState<D, M = BaseMeta> {
   data: D,
   requests: Requests,

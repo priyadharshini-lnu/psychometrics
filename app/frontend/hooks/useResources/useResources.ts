@@ -1,4 +1,4 @@
-import { useClient } from '@thetalententerprise/jsonapi-react'
+import { StringMap, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
@@ -15,7 +15,7 @@ import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
-  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
+  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType,
 } from './interfaces'
 
 export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
@@ -81,18 +81,22 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     }
   }
 
+  const setRequestStatus = (type: RequestType, errors: StringMap[] | StringMap | undefined) => {
+    const status = errors ? RequestStatus.Failed : RequestStatus.Success
+    setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
+    return status
+  }
+
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
-    setRequests({ ...requests, fetch: { status: 'loading' } })
+    setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = apiConfig
     if (queryState) { newApiConfig = { ...apiConfig, ...queryState } }
     const {
       data: response, meta, error, errors,
     } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
-    const errorData = errors || (error ? [error] : null)
-    const status = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, fetch: { status, errors: errorData } })
 
-    if (status === 'success' && response) {
+    const status = setRequestStatus('fetch', errors || error)
+    if (status === RequestStatus.Success && response) {
       const camelizedResponse = humps.camelizeKeys(response)
       setState((previousState: ResourceState<R[], M>) => (
         { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
@@ -106,14 +110,12 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const addResource = async (
     attributes: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
   ) => {
-    setRequests({ ...requests, add: { status: 'loading' } })
+    setRequests({ ...requests, add: { status: RequestStatus.Loading } })
     const { data: response, error, errors } = await client.mutate<R>(
       [resourceName, apiConfig || {}], humps.decamelizeKeys(attributes),
     )
-    const errorData = errors || (error ? [error] : null)
-    const status = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, add: { status, errors: errorData } })
 
+    const status = setRequestStatus('add', errors || error)
     if (status === 'success' && response) {
       const camelizedResponse = humps.camelizeKeys(response)
       setData([camelizedResponse, ...data])
@@ -125,15 +127,13 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     details: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
   ) => {
     const { id, ...attributes } = details
-    const requestKey = `update@${id}`
+    const requestKey: RequestType = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     const { data: response, error, errors } = await client.mutate<R>(
       [resourceName, id, apiConfig || {}], humps.decamelizeKeys(attributes),
     )
-    const errorData = errors || (error ? [error] : null)
-    const status = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
 
+    const status = setRequestStatus(requestKey, errors || error)
     if (status === 'success' && data && response) {
       const camelizedResponse = humps.camelizeKeys(response)
       setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
@@ -144,13 +144,11 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const removeResource = async (
     id: string, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
   ) => {
-    const requestKey = `delete@${id}`
+    const requestKey: RequestType = `delete@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     const { data: response, error, errors } = await client.delete([resourceName, id, apiConfig || {}])
-    const errorData = errors || (error ? [error] : null)
-    const status = errorData ? 'failed' : 'success'
-    setRequests({ ...requests, [requestKey]: { status, errors: errorData } })
 
+    const status = setRequestStatus(requestKey, errors || error)
     if (status === 'success') {
       setData(data.filter(r => r.id !== id))
       responseTypeValidation(args?.responseType || responseType, response)
