@@ -14,7 +14,9 @@ module Hogan
       @project = project
 
       assign_assessment_and_reports
-      Hogan::FetchResults.call!(user_result, credentials, project) if user_result.completed?
+      if user_assessment.completed?
+        Hogan::FetchResultsJob.set(wait: 30.seconds).perform_later(user_result, credentials, project)
+      end
     end
 
     private

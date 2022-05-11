@@ -4037,7 +4037,10 @@ CREATE TABLE public.users (
     settings jsonb DEFAULT '{}'::jsonb,
     already_invited boolean DEFAULT false,
     locale character varying,
-    enable_2fa boolean DEFAULT true NOT NULL
+    enable_2fa boolean DEFAULT true NOT NULL,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone
 );
 
 
@@ -9291,6 +9294,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
-('20220329105142');
+('20220329105142'),
+('20220428111329');
 
 

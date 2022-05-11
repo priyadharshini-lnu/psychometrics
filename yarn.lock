@@ -4076,10 +4076,10 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@thetalententerprise/interactive-assessments@1.5.3":
-  version "1.5.3"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.5.3/9e3cb2dea89aa78d9fb2103d01fc145536fe0a0bd6d20fb9aa5f3df3008d0e43#4f5763f38e153092d1d0cd8791d5014f209a606d"
-  integrity sha512-FON4a3xJOqNPwFxI7JvM7v/ik/hgXR+AvZ51FraRV+a30I7s4SYUh7X2zVKkDVzoRNB9qBU737o7GEWyPTVAsQ==
+"@thetalententerprise/interactive-assessments@1.5.7":
+  version "1.5.7"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.5.7/0f89af5bfc0ce079250e8dc13dcdac8443a90401db7b20ce40fe64c5a99055d8#4fd957e7854dcad2a8f4bee09ba52986c2ecb183"
+  integrity sha512-A20rTOsbOjm1YFe0805pE+lf5gnnCs+oibR0p7Ez/NLlbbC2zdibJLLA4/IyLITZAMoF7s6O6XtiXZZHzdgFQQ==
 
 "@trysound/sax@0.1.1":
   version "0.1.1"

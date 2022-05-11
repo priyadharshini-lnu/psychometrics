@@ -94,7 +94,7 @@ class User < ApplicationRecord
 
   # Authentication
   devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
+         :recoverable, :rememberable, :trackable, :lockable,
          :timeoutable, request_keys: { subdomain: false }
 
   attr_accessor :create_by_invite

@@ -37,7 +37,7 @@ describe Threesixty::Subjects::CreateAllForm do
              with_context(campaign: campaign, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
       form.validate
 
-      expect(form.errors.messages[:subjects].first).to include('Password is too short. Minimum 6 character required')
+      expect(form.errors.messages[:subjects].first).to include('Password is too short. Minimum 8 character required')
     end
   end
 end

@@ -53,7 +53,7 @@ describe Threesixty::Evaluators::CreateOneForm do
     form.validate
 
     expect(form.errors.messages[:evaluator_password]).
-      to include('Evaluator password is too short (minimum is 6 characters)')
+      to include('Evaluator password is too short (minimum is 8 characters)')
   end
 
   it 'password can be blank' do

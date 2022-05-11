@@ -11,7 +11,7 @@ module SamlSettings
     attribute :cert, String
     attribute :after_signout_url, String
 
-    validates :entity_id, :sso_service_url, :cert, presence: true
+    validates :entity_id, :sso_service_url, :cert, presence: true, unless: :clear_saml_setting?
     validates :after_signout_url, http_url: { presence: false }
     validate :certificate_invalid, if: -> { cert.present? }
 
@@ -19,6 +19,12 @@ module SamlSettings
       OpenSSL::X509::Certificate.new(cert)
     rescue OpenSSL::X509::CertificateError
       errors.add(:cert, :invalid_cert)
+    end
+
+    def clear_saml_setting?
+      return false if enabled? || context&.new_record
+
+      (SamlSettings::Form.new.attributes.keys - [:enforced]).all? { |attribute| public_send(attribute).blank? }
     end
   end
 end

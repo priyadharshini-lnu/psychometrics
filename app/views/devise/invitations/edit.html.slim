@@ -35,5 +35,12 @@ div class=([@current_project&.login_box_position || 'right', 'box', 'devise', na
             = t('.submit')
             span class="fa fa-chevron-right mlm"
 
+        div.clearfix
+          - if @current_project.saml_login_allowed?
+            .actions.mtl
+              = link_to new_saml_user_session_path, class: "btn btn-default" do
+                i class="fa fa-sign-in mrm"
+                = t('devise.sessions.new.login_with_sso')
+
     .panel-footer
       = render partial: 'devise/shared/footer'
