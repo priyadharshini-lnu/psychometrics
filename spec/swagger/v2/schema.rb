@@ -56,13 +56,13 @@ module Swagger
           After the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.
         DESCRIPTION
       },
-      servers: [{
-        url: 'http://psy.loc:3000/api/v2'
-      }],
       securityDefinitions: { basic: { type: :basic } },
       paths: {},
       security: {},
-      basePath: '/api/v2',
+      basePath: '/api/v2/administration',
+      servers: [{
+        url: "https://ttedev.me:3030"
+      }],
       schemes: %w[http https],
       consumes: [
         'application/json'
@@ -80,27 +80,9 @@ module Swagger
               more_info: { type: 'string', 'x-nullable': true }
             }
           },
-          ClientCreateRequest: Api::Base::GenerateSwagger.call!(
-            Api::V2::Client::Schema.create_request, description: 'Client'
-          ),
-          ClientCreateResponse: Api::Base::GenerateSwagger.call!(
-            Api::V2::Client::Schema.single_resource_response, description: 'Client'
-          ),
-          ClientsResponse: {
-            type: 'object',
-            properties: {
-              '$ref' => '#/components/schemas/ClientCreateRequest'
-            }
-          },
-          ClientResponse: {
-            type: 'object',
-            properties: {
-              data: {
-                type: 'object',
-                '$ref' => '#/components/schemas/ClientCreateRequest'
-              }
-            }
-          }
+          ClientsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.multiple_resource_response, description: 'Client'
+          )
         }
       }
     }

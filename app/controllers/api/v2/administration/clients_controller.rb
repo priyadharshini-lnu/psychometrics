@@ -6,14 +6,6 @@ module Api
 
     validate_crud_requests Api::V2::Client::Schema
 
-    def create_client_admin
-      Api::V2::Memberships::CreateAdminCommand.
-        call(Membership.new(membership_params), @client, current_user, Membership::CLIENT_ADMIN_ROLE) do
-          on(:invalid) { jsonapi_render_errors json: form }
-          on(:ok) { |membership| render json: serialize_user(membership.user) }
-        end
-    end
-
     private
 
     def find_client
