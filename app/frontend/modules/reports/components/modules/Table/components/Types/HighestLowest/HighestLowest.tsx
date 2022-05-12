@@ -14,7 +14,7 @@ export const HighestLowest: FC<Props> = ({ model }) => {
   const {
     props: {
       sourceType, filter, factorIds, questionsChoices, sections = TableSectionsType.ALL,
-      tableStyle = TableStyleType.UNSTYLED,
+      tableStyle = TableStyleType.UNSTYLED, hideValues = false,
     },
     assessment_id,
   } = model
@@ -36,6 +36,7 @@ export const HighestLowest: FC<Props> = ({ model }) => {
         questionsChoices={questionsChoices}
         sections={sections}
         tableStyle={tableStyle}
+        hideValues={hideValues}
       />
     )
   }
@@ -46,6 +47,7 @@ export const HighestLowest: FC<Props> = ({ model }) => {
       factorIds={factorIds}
       sections={sections}
       tableStyle={tableStyle}
+      hideValues={hideValues}
     />
   )
 }

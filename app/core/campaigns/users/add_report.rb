@@ -21,9 +21,9 @@ module Campaigns
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
         user_assessments = options[:assessments].map do |assessment|
-          add_assessment_to_user(assessment, user_report)
+          find_or_create_assessment_to_user(assessment, user_report)
         end
-        generate_report_pdf(user_report)
+        generate_report_pdf(user_report) unless user_report.report.hogan?
 
         broadcast :ok,
                   user_report: user_report,
@@ -32,9 +32,7 @@ module Campaigns
 
       private
 
-      # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-      def add_assessment_to_user(assessment, user_report)
-        norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
+      def find_or_create_assessment_to_user(assessment, user_report)
         user_assessment = UserAssessment.find_by(
           campaign: campaign,
           assessment_id: assessment.id,
@@ -42,8 +40,17 @@ module Campaigns
           evaluator: user,
           relationship: Relationship.self_relationship
         )
-        return user_assessment if user_assessment
+        user_assessment ||= create_assessment_to_user(assessment)
+        if assessment.hogan? && user.hogan_credential && !user_assessment.not_started?
+          Hogan::AddReportsJob.set(wait: 2.seconds).perform_later(
+            user_assessment, [user_report], user.hogan_credential, user.project
+          )
+        end
+        user_assessment
+      end
 
+      def create_assessment_to_user(assessment)
+        norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
         user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)
         user_assessment = UserAssessment.create(
@@ -66,14 +73,8 @@ module Campaigns
         elsif assessment.iiht?
           user_assessment.create_iiht_user_assessment
         end
-
-        if assessment.hogan? && user.hogan_credential
-          Hogan::AddReportsJob.perform_later(user_assessment, [user_report],
-                                             user.hogan_credential, user.project)
-        end
         user_assessment
       end
-      # rubocop:enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
       def existing_user_result_to_copy(assessment)
         return if options[:operation] == 'add_and_allow_new_response'

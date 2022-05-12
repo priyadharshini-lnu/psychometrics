@@ -75,6 +75,7 @@ interface OwnProps {
   gapType: PropertiesModel['props']['gapType']
   assessment_id: PropertiesModel['assessment_id']
   questionsChoices: PropertiesModel['props']['questionsChoices']
+  hideValues: boolean
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -85,6 +86,7 @@ const QuestionTypeComponent: FC<Props> = ({
   assessment_id,
   questionsChoices,
   getQuestions,
+  hideValues,
 }) => {
   const calculateGaps = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -197,12 +199,14 @@ const QuestionTypeComponent: FC<Props> = ({
                   : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideValues={hideValues}
               />
               <TBody
                 gaps={positiveGaps}
                 emptyText={I18nStore.t(
                   'reports.modules.gap_assessment.no_positive_gaps',
                 )}
+                hideValues={hideValues}
               />
             </>
           )}
@@ -215,12 +219,14 @@ const QuestionTypeComponent: FC<Props> = ({
                   : ''}
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideValues={hideValues}
               />
               <TBody
                 gaps={negativeGaps}
                 emptyText={I18nStore.t(
                   'reports.modules.gap_assessment.no_negative_gaps',
                 )}
+                hideValues={hideValues}
               />
             </>
           )}
@@ -332,13 +338,16 @@ interface THeaderProps {
   title: string
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
+  hideValues: boolean
 }
 
-const THeader: FC<THeaderProps> = ({ title, leftFilter, rightFilter }) => (
+const THeader: FC<THeaderProps> = ({
+  title, leftFilter, rightFilter, hideValues,
+}) => (
   <>
     {title.length === 0 && (
       <tr>
-        <th className={styles.label} colSpan={6}>
+        <th className={styles.label} colSpan={hideValues ? 3 : 6}>
           {title}
         </th>
       </tr>
@@ -353,11 +362,15 @@ const THeader: FC<THeaderProps> = ({ title, leftFilter, rightFilter }) => (
       <th className={styles.label}>
         {I18nStore.t('reports.modules.gap_assessment.item')}
       </th>
-      <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
-      <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.gap_assessment.gap')}
-      </th>
+      {!hideValues && (
+        <>
+          <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
+          <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
+          <th className={styles.label}>
+            {I18nStore.t('reports.modules.gap_assessment.gap')}
+          </th>
+        </>
+      )}
     </tr>
   </>
 )
@@ -365,9 +378,10 @@ const THeader: FC<THeaderProps> = ({ title, leftFilter, rightFilter }) => (
 interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
+  hideValues: boolean
 }
 
-const TBody: FC<TBodyProps> = ({ gaps, emptyText }) => {
+const TBody: FC<TBodyProps> = ({ gaps, emptyText, hideValues }) => {
   if (gaps.length === 0) {
     return (
       <tr>
@@ -383,9 +397,13 @@ const TBody: FC<TBodyProps> = ({ gaps, emptyText }) => {
           <td>{i + 1}</td>
           <td>{gap.factorName}</td>
           <td>{gap.questionName}</td>
-          <td>{Utils.round(gap.left, 2)}</td>
-          <td>{Utils.round(gap.right, 2)}</td>
-          <td>{Utils.round(gap.diff, 2)}</td>
+          {!hideValues && (
+            <>
+              <td>{Utils.round(gap.left, 2)}</td>
+              <td>{Utils.round(gap.right, 2)}</td>
+              <td>{Utils.round(gap.diff, 2)}</td>
+            </>
+          )}
         </tr>
       ))}
     </>

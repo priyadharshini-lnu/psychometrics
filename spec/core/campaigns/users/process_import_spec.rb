@@ -13,7 +13,7 @@ describe Campaigns::Users::ProcessImport do
         first_name: 'Fedor',
         last_name: 'Tar',
         email: 'fedor@gmail.com',
-        password: 'asdasd',
+        password: 'asdasd1234',
         created_at: '11 Jul 2020 / 16:39'
       },
       {
@@ -21,12 +21,12 @@ describe Campaigns::Users::ProcessImport do
         first_name: 'Vlad',
         last_name: 'Ata',
         email: 'vlad@gmail.com',
-        password: 'AAA',
+        password: 'AAA1234',
         created_at: '11 Jul 2020 / 17:25'
       },
       {
         active: nil,
-        first_name: 'Namu',
+        first_name: 'Namu1234',
         last_name: 'Uki',
         email: 'namu@gmail.com',
         password: 'CAMP',
@@ -36,8 +36,8 @@ describe Campaigns::Users::ProcessImport do
   end
 
   it '.call' do
-    campaign.users.create(email: 'vlad@gmail.com', password: 'asdasd')
-    campaign.users.create(email: 'namu@gmail.com', password: 'namkhf')
+    campaign.users.create(email: 'vlad@gmail.com', password: 'asdasd1234')
+    campaign.users.create(email: 'namu@gmail.com', password: 'namkhf1234')
 
     data, imported_users = described_class.call!(
       campaign, current_user, import_data, 'add_with_existing_response', admin_job_record

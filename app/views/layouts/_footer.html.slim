@@ -2,11 +2,11 @@
 footer.lighthouse_footer
   .fluid-container
     .footer-wrapper
-      = image_tag('lighthouseLogo.png')
+      = image_tag('lighthouseLogoWide.svg')
       .text-align-c
         a href="https://thetalententerprise.com/privacy-statement/" rel="noopener noreferrer" target="_blank"
           | #{I18n.t('shared.tte_terms_and_condition')}
         - if @current_project&.privacy_link
           br
           a href="#{@current_project.privacy_link.link}" target="_blank" class='inline-block mts' #{@current_project.privacy_link.text}
-      = image_tag('tteLogo.png')
+      = image_tag('tteLogo.svg')

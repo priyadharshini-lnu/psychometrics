@@ -25,6 +25,7 @@ module SmsInvites
         begin
           message = Sms::Send.call!(sms_invite.mobile_no, message, status_callback: status_callback(sms_history))
           sms_history.update!(twilio_sid: message.sid)
+          UpdateSmsHistoryJob.set(wait: 1.minutes).perform_later(sms_history)
         rescue Twilio::REST::RestError
           sms_invite.failed!
           errors << I18n.t('administration.sms_invites.messages.failed_to_sent_invite', mobile_no: sms_invite.mobile_no)

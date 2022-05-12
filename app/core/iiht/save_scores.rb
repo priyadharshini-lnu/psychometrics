@@ -15,7 +15,8 @@ module Iiht
       end
       last_attempt = schedule['attempts'].last
       user_assessment.users_result.update(external_results: last_attempt)
-      user_assessment.update(completed_at: last_attempt['actualEnd'].in_time_zone('UTC'))
+      completed_at = last_attempt['actualEnd']&.in_time_zone('UTC')
+      user_assessment.update(completed_at: completed_at) if completed_at
       ::UsersResults::GenerateReports.call(user_assessment.users_result, user_assessment.user)
 
       broadcast :ok

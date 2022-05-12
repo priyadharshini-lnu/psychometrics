@@ -128,6 +128,13 @@ class Properties extends Component {
     this.update()
   }
 
+  changeSkipRoundValues = (e) => {
+    const { model } = this.props
+    model.props.skipRoundingValues = e.currentTarget.checked
+    this.update()
+  }
+
+
   renderPosition () {
     const { model } = this.props
     const { verticalAlign } = model.props.style
@@ -210,13 +217,22 @@ class Properties extends Component {
           />
           {model.props.sourceType === 'ConditionalText'
             && (
-            <div
-              style={{ width: '100%' }}
-              onClick={this.openConditionModal}
-              className="btn btn-default"
-            >
-              Manage condition
-            </div>
+              <>
+                <div
+                  style={{ width: '100%' }}
+                  onClick={this.openConditionModal}
+                  className="btn btn-default"
+                >
+                  Manage condition
+                </div>
+                <input
+                  type="checkbox"
+                  onChange={this.changeSkipRoundValues}
+                  checked={model.props.skipRoundingValues || false}
+                />
+                {' '}
+                Skip rounding values
+              </>
             )}
           {model.props.sourceType === 'ConditionalFactorOccupationText'
             && (
