@@ -65,10 +65,12 @@ export const ClientList: FC<{}> = () => {
             />
             <Column
               title={I18n.t('common.column.name')}
-              dataIndex="name"
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
+              render={({ name, id }) => (
+                <a href={`/administration/clients/${id}/projects`}>{name}</a>
+              )}
             />
             <Column
               title={I18n.t('administration.clients.columns.type')}
@@ -84,6 +86,8 @@ export const ClientList: FC<{}> = () => {
               title={I18n.t('administration.clients.columns.year')}
               dataIndex="year"
               key="year"
+              sorter
+              sortOrder={getSortOrder('year')}
             />
             <Column
               title={I18n.t('administration.clients.columns.account_manager')}
@@ -99,7 +103,6 @@ export const ClientList: FC<{}> = () => {
         </Col>
       </Row>
       <Pagination
-        hideOnSinglePage
         current={currentPage}
         pageSize={pageSize}
         total={meta.recordCount}
