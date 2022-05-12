@@ -17,9 +17,9 @@ module Swagger
           altText: 'Lighthouse'
         },
         contact: {
-          name: 'TTE Support',
-          email: 'info@thetalententerprise.com',
-          url: 'https://www.thetalententerprise.com'
+          name: "TTE Support",
+          email: "support@thetalententerprise.com",
+          url: "https://thetalententerprise.com"
         },
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',
         description:
@@ -54,6 +54,11 @@ module Swagger
 
           ### Results
           After the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.
+
+          ### Data Schema
+          While designing the parsers for the API responses and webhook results, the possibility of new properties being introduced to objects at any level should be considered with the ongoing updates of the Lighthouse APIs.
+
+          New attributes could also be added to the request schema but would be optional.
         DESCRIPTION
       },
       securityDefinitions: { basic: { type: :basic } },

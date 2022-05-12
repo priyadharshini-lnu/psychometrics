@@ -16,15 +16,16 @@ module Swagger
           altText: 'Lighthouse'
         },
         contact: {
-          name: 'TTE Support',
-          email: 'info@thetalententerprise.com',
-          url: 'https://www.thetalententerprise.com'
+          name: "TTE Support",
+          email: "support@thetalententerprise.com",
+          url: "https://thetalententerprise.com"
         },
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',
         description:
         <<~DESCRIPTION
           ## Introduction
           Lighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.
+
           To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.
 
           ## Base URL
@@ -52,6 +53,11 @@ module Swagger
 
           ### Results
           After the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.
+
+          ### Data Schema
+          While designing the parsers for the API responses and webhook results, the possibility of new properties being introduced to objects at any level should be considered with the ongoing updates of the Lighthouse APIs.
+
+          New attributes could also be added to the request schema but would be optional.
         DESCRIPTION
       },
       securityDefinitions: { basic: { type: :basic } },
@@ -85,6 +91,9 @@ module Swagger
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            description: { type: 'string', 'x-nullable': true },
+            icon_url: { type: 'string', 'x-nullable': true },
+            poster_url: { type: 'string', 'x-nullable': true },
             campaign_id: { type: 'integer' },
             status: { type: 'string', enum: %w[not_started in_progress completed] },
             started_at: { type: 'string', 'x-nullable': true },
@@ -96,6 +105,17 @@ module Swagger
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            description: { type: 'string', 'x-nullable': true },
+            icon_url: { type: 'string', 'x-nullable': true },
+            poster_url: { type: 'string', 'x-nullable': true },
+            user_access: { type: 'boolean' },
+            output_type: {
+              type: 'object',
+              properties: {
+                pdf: { type: 'boolean' },
+                results: { type: 'boolean' }
+              }
+            },
             campaign_id: { type: 'integer' },
             status: { type: 'string', enum: %w[not_ready generating failed ready] },
             assessments: { type: 'array', items: { '$ref' => '#/definitions/UserAssessment' } }
@@ -171,11 +191,20 @@ module Swagger
           type: 'object',
           properties: {
             normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true },
+            raw_factors: { type: 'array', items: { '$ref' => '#/definitions/RawFactor' }, 'x-nullable': true },
             ranked_occupations: { type: 'array', items: { '$ref' => '#/definitions/RankedOccupation' },
                                   'x-nullable': true }
           }
         },
         NormedFactor: {
+          type: 'object',
+          properties: {
+            key: { type: 'string', 'x-nullable': true },
+            name: { type: 'string', 'x-nullable': true },
+            value: { type: 'string', 'x-nullable': true }
+          }
+        },
+        RawFactor: {
           type: 'object',
           properties: {
             key: { type: 'string', 'x-nullable': true },
@@ -322,25 +351,6 @@ module Swagger
             norm_id: { type: 'integer', 'x-nullable': true }
           }
         },
-        UpdateClient: {
-          type: 'object',
-          properties: {
-            name: { type: 'string' },
-            subdomain: { type: 'string' },
-            client_id: { type: 'integer' },
-            client_reference: { type: 'string', 'x-nullable': true },
-            locales: { type: 'array', items: { type: 'string', enum: Settings.enduser_locales }, 'x-nullable': true },
-            data_processing_consent: { type: 'boolean' },
-            enable_strong_password: { type: 'boolean', 'x-nullable': true },
-            enable_2factor_auth: { type: 'boolean', 'x-nullable': true },
-            project_logo: { type: 'string', 'x-nullable': true },
-            partner_logo: { type: 'string', 'x-nullable': true },
-            webhook: { type: 'string', 'x-nullable': true },
-            background_image: { type: 'string', 'x-nullable': true },
-            background_color: { type: 'string', 'x-nullable': true },
-            login_box_position: { type: 'string', 'x-nullable': true }
-          }
-        },
         NewProject: {
           type: 'object',
           properties: {
@@ -433,6 +443,9 @@ module Swagger
             id: { type: 'integer' },
             campaign_id: { type: 'integer' },
             name: { type: 'string' },
+            description: { type: 'string', 'x-nullable': true },
+            icon_url: { type: 'string', 'x-nullable': true },
+            poster_url: { type: 'string', 'x-nullable': true },
             url: { type: 'string' },
             status: { type: 'string', enum: %w[not_started in_progress completed] }
           }
