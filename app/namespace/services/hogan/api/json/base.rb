@@ -72,7 +72,9 @@ module Services
           end
 
           def token(provider)
-            @token ||= fetch_access_token(provider)
+            @token ||= Rails.cache.fetch("hogan/token/#{provider}", expires_in: 50.minutes) do
+              fetch_access_token(provider)
+            end
           end
 
           private

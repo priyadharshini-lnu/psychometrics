@@ -89,7 +89,7 @@ module UsersResults::ControllerConcern
   private
 
   def set_user_assessment
-    @user_assessment = UserAssessment.find_by(id: params[:user_assessment_id])
+    @user_assessment = @users_result.user_assessment
   end
 
   def resource_params

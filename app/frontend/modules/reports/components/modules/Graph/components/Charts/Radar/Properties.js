@@ -26,6 +26,12 @@ class Properties extends Component {
     this.update()
   }
 
+  changeHideYaxisLabels = (e) => {
+    const { model } = this.props
+    model.props.hideYaxisLabels = e.currentTarget.checked
+    this.update()
+  }
+
   render () {
     const { model } = this.props
     const {
@@ -33,6 +39,18 @@ class Properties extends Component {
     } = model.props
     return (
       <div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          <label style={{ fontWeight: 'normal' }}>
+            <input
+              type="checkbox"
+              checked={model.props.hideYaxisLabels || false}
+              onChange={this.changeHideYaxisLabels}
+            />
+            {' '}
+            Hide Y Axis Labels
+          </label>
+        </div>
         <div className={styles.block}>
           Radar Maximum
           <ChoicesInput

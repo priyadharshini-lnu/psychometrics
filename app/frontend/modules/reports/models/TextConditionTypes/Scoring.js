@@ -28,10 +28,11 @@ class Scoring extends BaseType {
   }
 
   aggregate (results) {
-    let min; let max
+    let min; let max; let mean
     switch (this.condition.props.operation) {
       case 'Mean':
-        return _.round(_.meanBy(results, e => e.getValueOrNaN()))
+        mean = _.meanBy(results, e => e.getValueOrNaN())
+        return this.skipRoundingValues ? mean : _.round(mean)
       case 'Max':
         max = _.maxBy(results, e => e.getValueOrNaN())
         return max && max.getValueOrNaN()

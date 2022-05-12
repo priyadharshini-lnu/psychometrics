@@ -56,7 +56,7 @@ class Radar extends Component {
     const format = null
     if (!series.length) { return null }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
-
+    const { hideYaxisLabels } = model.props
     this.chart = Highcharts.chart(
       this.container,
       _.merge(
@@ -107,6 +107,7 @@ class Radar extends Component {
             max: model.props.radarMax,
             showLastLabel: true,
             labels: {
+              enabled: !hideYaxisLabels,
               x: -5,
               y: 7,
               overflow: 'allow',

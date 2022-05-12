@@ -4,6 +4,12 @@ module Iiht
   class AddAssessment < Base
     include Rails.application.routes.url_helpers
 
+    DEFAULT_SCHEDULE_CONFIG = {
+      'totalAttempts' => 2,
+      'passPercentage' => 60,
+      'duration' => 60
+    }.freeze
+
     private_attr_reader :user_assessment
 
     def initialize(user_assessment)
@@ -22,6 +28,7 @@ module Iiht
       end
 
       user_assessment.iiht_user_assessment.update!(url: result['scheduleLink'], schedule_id: result['scheduleId'])
+      ::Iiht::AllowAttempts.call!(user_assessment)
 
       broadcast :ok
     end
@@ -42,8 +49,10 @@ module Iiht
     end
 
     def schedule_config
-      schedule_config = user_assessment.assessment.iiht_schedule_config || {}
-      schedule_config = schedule_config.merge(user_assessment.campaign_assessment&.external_config || {})
+      schedule_config = DEFAULT_SCHEDULE_CONFIG.merge(
+        user_assessment.assessment.iiht_schedule_config || {},
+        user_assessment.campaign_assessment&.external_config || {}
+      )
       schedule_config.merge(
         externalScheduleConfigArgs: {
           campaign_id: user_assessment.campaign_id,
