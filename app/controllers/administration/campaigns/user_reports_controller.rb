@@ -5,7 +5,7 @@ module Administration
     class UserReportsController < Administration::Projects::BaseController
       include UserReports::PdfGeneration
 
-      before_action :set_resource, only: %i[show destroy download pdf_preview toggle_user_access]
+      before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access]
 
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
@@ -28,6 +28,12 @@ module Administration
         resource.destroy!
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+      end
+
+      def approve
+        audit! :approve, resource, campaign: resource.campaign
+        resource.update!(approved: true)
+        head :ok
       end
 
       def regenerate

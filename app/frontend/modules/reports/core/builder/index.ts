@@ -99,8 +99,9 @@ export const defaultState: State = {
 
 
 const HANDLERS = {
-  [INIT]: (state: State, { data }: InitType) => {
+  [INIT]: (state: State, { data, campaignId }: InitType) => {
     const report = data.entities.report[data.result]
+
     return {
       ...state,
       ...report,
@@ -112,6 +113,7 @@ const HANDLERS = {
       questions: data.entities.questions,
       loaded: true,
       currentPage: state.currentPage || report.pages[0],
+      campaignId,
     }
   },
   [ENABLE]: (state: State) => ({ ...state, disabled: false }),

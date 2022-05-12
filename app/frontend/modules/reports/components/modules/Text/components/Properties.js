@@ -113,6 +113,12 @@ class Properties extends Component {
     this.update()
   }
 
+  changeEditAndApprove = (e) => {
+    const { model } = this.props
+    model.props.editable = e.currentTarget.checked
+    this.update()
+  }
+
   changeModelIn = (keys, value) => {
     const { model } = this.props
     // TODO (atanych): update model by link directly in the component is not good
@@ -298,6 +304,19 @@ class Properties extends Component {
               onChange={this.changeFontStyle}
             />
             Italics
+          </label>
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.block} style={{ position: 'relative' }}>
+          <div className="margin-top-10">Content overriding</div>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.editable}
+              onChange={this.changeEditAndApprove}
+            />
+            Edit and Approve
           </label>
         </div>
         <hr className={styles.divider} />
