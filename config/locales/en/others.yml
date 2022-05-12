@@ -1159,6 +1159,9 @@ en:
       reports: Reports
       sms_invite: SMS Invite
     text:
+      accepted: Accepted
+      approve: Approve
+      approved: Approved
       cancel: Cancel
       confirm: Confirm
       continue: Continue

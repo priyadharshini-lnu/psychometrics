@@ -89,8 +89,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -427,10 +425,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
@@ -586,7 +584,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -662,8 +661,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb
 );
 
@@ -2861,17 +2860,18 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
     description character varying,
-    poster character varying
+    poster character varying,
+    require_approval boolean
 );
 
 
@@ -3450,6 +3450,43 @@ ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
 
 
 --
+-- Name: text_module_overrides; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.text_module_overrides (
+    id bigint NOT NULL,
+    module_id integer,
+    user_report_id bigint,
+    editor_id bigint,
+    content text,
+    approved boolean DEFAULT false,
+    reports_modules_id bigint,
+    foreign_key_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: text_module_overrides_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.text_module_overrides_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: text_module_overrides_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.text_module_overrides_id_seq OWNED BY public.text_module_overrides.id;
+
+
+--
 -- Name: threesixty_campaigns; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3979,7 +4016,8 @@ CREATE TABLE public.user_reports (
     updated_at timestamp without time zone NOT NULL,
     user_access boolean DEFAULT false,
     report_family_id bigint,
-    pdf_path character varying
+    pdf_path character varying,
+    approved boolean DEFAULT false
 );
 
 
@@ -4846,6 +4884,13 @@ ALTER TABLE ONLY public.smtp_settings ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_id_seq'::regclass);
+
+
+--
+-- Name: text_module_overrides id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides ALTER COLUMN id SET DEFAULT nextval('public.text_module_overrides_id_seq'::regclass);
 
 
 --
@@ -5730,6 +5775,14 @@ ALTER TABLE ONLY public.smtp_settings
 
 ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: text_module_overrides text_module_overrides_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT text_module_overrides_pkey PRIMARY KEY (id);
 
 
 --
@@ -6789,13 +6842,6 @@ CREATE INDEX index_memberships_on_hris ON public.memberships USING gin (hris);
 
 
 --
--- Name: index_memberships_on_user_id_and_role_and_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_memberships_on_user_id_and_role_and_campaign_id ON public.memberships USING btree (user_id, role, campaign_id);
-
-
---
 -- Name: index_mindmill_credentials_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7192,6 +7238,34 @@ CREATE INDEX index_tasks_on_membership_id ON public.tasks USING btree (membershi
 --
 
 CREATE INDEX index_tasks_on_owner_id ON public.tasks USING btree (owner_id);
+
+
+--
+-- Name: index_text_module_overrides_on_editor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_editor_id ON public.text_module_overrides USING btree (editor_id);
+
+
+--
+-- Name: index_text_module_overrides_on_foreign_key_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_foreign_key_id ON public.text_module_overrides USING btree (foreign_key_id);
+
+
+--
+-- Name: index_text_module_overrides_on_reports_modules_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_reports_modules_id ON public.text_module_overrides USING btree (reports_modules_id);
+
+
+--
+-- Name: index_text_module_overrides_on_user_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_user_report_id ON public.text_module_overrides USING btree (user_report_id);
 
 
 --
@@ -7995,6 +8069,14 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
+-- Name: text_module_overrides fk_rails_51a790cea7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_51a790cea7 FOREIGN KEY (reports_modules_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
+
+
+--
 -- Name: sms_records fk_rails_58b8df5ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8527,7 +8609,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -8584,6 +8666,14 @@ ALTER TABLE ONLY public.hogan_assessment_settings
 
 ALTER TABLE ONLY public.question_recoding
     ADD CONSTRAINT fk_rails_d1991e6723 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: text_module_overrides fk_rails_d255d5b433; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_d255d5b433 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
 
 
 --
@@ -9283,7 +9373,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210917131407'),
 ('20210919105932'),
 ('20211011103826'),
-('20211011143418'),
 ('20211013070031'),
 ('20211017084949'),
 ('20211018074847'),
@@ -9312,6 +9401,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220311105318'),
 ('20220321102808'),
 ('20220329105142'),
+('20220412191741'),
+('20220425192928'),
+('20220425201109'),
 ('20220427143253');
-
-
