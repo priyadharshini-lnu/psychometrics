@@ -4,11 +4,7 @@ module Api
   module Administration
     class UserPolicy < Api::Administration::BasePolicy
       def show?
-        true
-      end
-
-      def update?
-        false
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
       end
     end
   end

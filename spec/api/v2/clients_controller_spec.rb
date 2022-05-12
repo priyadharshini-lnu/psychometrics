@@ -49,10 +49,10 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           client_response = clients['data'].find { |c| c['id'] == client.id.to_s }
           expect(client_response).to have_key('id')
           expect(client_response).to have_attribute(:name).with_value(client.name)
-          expect(client_response).to have_relationship(:account_manager)
-            .with_data({ 'id' => client.account_manager_id.to_s, 'type' => 'users' })
-          expect(client_response).to have_relationship(:project_manager)
-            .with_data({ 'id' => client.project_manager_id.to_s, 'type' => 'users' })
+          expect(client_response).to have_relationship(:account_manager).
+            with_data({ 'id' => client.account_manager_id.to_s, 'type' => 'users' })
+          expect(client_response).to have_relationship(:project_manager).
+            with_data({ 'id' => client.project_manager_id.to_s, 'type' => 'users' })
         end
       end
     end

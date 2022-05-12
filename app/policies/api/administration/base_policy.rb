@@ -3,12 +3,8 @@
 module Api
   module Administration
     class BasePolicy
-      def initialize(context, record, _extra = {})
-        context ||= {}
-        @current_user = context[:current_user]
-        @current_client = context[:current_client]
-        @current_project = context[:current_project]
-        @current_membership = context[:current_membership]
+      def initialize(user, record, _extra = {})
+        @user = user
         @record = [record].flatten.last
       end
 

@@ -16,9 +16,9 @@ module Swagger
           altText: 'Lighthouse'
         },
         contact: {
-          name: "TTE Support",
-          email: "support@thetalententerprise.com",
-          url: "https://thetalententerprise.com"
+          name: 'TTE Support',
+          email: 'support@thetalententerprise.com',
+          url: 'https://thetalententerprise.com'
         },
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',
         description:
