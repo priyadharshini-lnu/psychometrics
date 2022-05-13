@@ -107,7 +107,7 @@ module Api
         authorize(
           @campaign || Campaign,
           nil,
-          policy_class: Administration::CampaignPolicy,
+          policy_class: ::Administration::CampaignPolicy,
           project_id: project.id,
           campaign_id: @campaign&.id
         )

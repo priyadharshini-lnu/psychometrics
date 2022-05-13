@@ -42,7 +42,7 @@ module Api
         authorize(
           @user_assessment || UserAssessment,
           nil,
-          policy_class: Administration::UserAssessmentPolicy,
+          policy_class: ::Administration::UserAssessmentPolicy,
           project_id: project.id
         )
       end

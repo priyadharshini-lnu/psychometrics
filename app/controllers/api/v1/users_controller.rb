@@ -76,7 +76,7 @@ module Api
         authorize(
           User,
           nil,
-          policy_class: Administration::Campaigns::UserPolicy,
+          policy_class: ::Administration::Campaigns::UserPolicy,
           project_id: project.id
         )
       end
