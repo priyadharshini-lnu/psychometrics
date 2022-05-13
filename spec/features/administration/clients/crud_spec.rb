@@ -14,7 +14,7 @@ feature 'CRUD Client' do
       import_countries
     end
 
-    scenario 'I can create any client' do
+    skip 'I can create any client' do
       tenancy = create_tenancy(name: 'TTE',
                                number: 1,
                                country: ::Datas::Geo.take.country_name,
