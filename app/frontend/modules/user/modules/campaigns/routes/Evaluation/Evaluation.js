@@ -41,6 +41,7 @@ export default function Evaluation ({
     enableProgress,
     type,
     initialized,
+    started,
   },
   preview,
   markAssessmentTimedOut,
@@ -186,7 +187,7 @@ export default function Evaluation ({
           </Row>
           {!error && (
             <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-              <ResourcesTabs assessment={assessment}>
+              <ResourcesTabs AssessmentStarted={started} assessment={assessment}>
                 <div className={selectedLanguage ? selectedLanguage.direction : ''}>
                   <PassAssessment
                     ref={assessmentRef}

@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import {
-  Tabs,
-} from 'antd'
+import { Tabs } from 'antd'
 import ResourceList from '../ResourceList'
 
 const { TabPane } = Tabs
 const { I18n } = window
 
 export default function ResourcesTabs ({
-  assessment, children, ...props
+  assessment, children, AssessmentStarted, ...props
 }) {
-  if (!assessment.resources_content.length) { return children }
+  if (!assessment.resources_content.length) {
+    return children
+  }
 
   const [tab, setTab] = useState('assessment')
 
@@ -19,9 +19,13 @@ export default function ResourcesTabs ({
       <TabPane tab={I18n.t('frontend.assessment')} key="assessment">
         {tab === 'assessment' && children}
       </TabPane>
-      <TabPane tab={I18n.t('frontend.background_reading')} key="resources">
-        {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}
-      </TabPane>
+      {AssessmentStarted && (
+        <>
+          <TabPane tab={I18n.t('frontend.background_reading')} key="resources">
+            {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}
+          </TabPane>
+        </>
+      )}
     </Tabs>
   )
 }

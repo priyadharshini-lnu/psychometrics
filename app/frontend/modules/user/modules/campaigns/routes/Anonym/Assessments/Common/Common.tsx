@@ -34,7 +34,7 @@ const Common: React.FC<Props> = ({
     },
   },
   preview,
-  preview: { enableProgress, initialized },
+  preview: { enableProgress, initialized, started },
   progress,
   markAssessmentTimedOut,
 }) => {
@@ -97,7 +97,7 @@ const Common: React.FC<Props> = ({
             )}
           </Row>
           <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-            <ResourcesTabs assessment={assessment}>
+            <ResourcesTabs AssessmentStarted={started} assessment={assessment}>
               <div className={selectedLanguage ? selectedLanguage.direction : ''}>
                 <PassAssessment
                   id="pass_assessment"

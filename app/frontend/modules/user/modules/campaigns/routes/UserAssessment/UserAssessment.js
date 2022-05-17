@@ -126,7 +126,7 @@ export default function UserAssessment ({
         )}
         <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
           {loaded && !error && (
-            <ResourcesTabs assessment={assessment}>
+            <ResourcesTabs AssessmentStarted={started} assessment={assessment}>
               <PassAssessment
                 id="pass_assessment"
                 type="pass_assessment"
