@@ -187,7 +187,7 @@ export default function Evaluation ({
           </Row>
           {!error && (
             <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-              <ResourcesTabs AssessmentStarted={started} assessment={assessment}>
+              <ResourcesTabs assessmentStarted={started} assessment={assessment}>
                 <div className={selectedLanguage ? selectedLanguage.direction : ''}>
                   <PassAssessment
                     ref={assessmentRef}

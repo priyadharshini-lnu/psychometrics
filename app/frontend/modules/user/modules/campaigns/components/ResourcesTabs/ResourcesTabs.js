@@ -6,7 +6,7 @@ const { TabPane } = Tabs
 const { I18n } = window
 
 export default function ResourcesTabs ({
-  assessment, children, AssessmentStarted, ...props
+  assessment, children, assessmentStarted, ...props
 }) {
   if (!assessment.resources_content.length) {
     return children
@@ -19,7 +19,7 @@ export default function ResourcesTabs ({
       <TabPane tab={I18n.t('frontend.assessment')} key="assessment">
         {tab === 'assessment' && children}
       </TabPane>
-      {AssessmentStarted && (
+      {assessmentStarted && (
         <>
           <TabPane tab={I18n.t('frontend.background_reading')} key="resources">
             {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}

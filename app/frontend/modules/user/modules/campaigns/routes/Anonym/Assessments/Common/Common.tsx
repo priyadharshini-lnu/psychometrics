@@ -97,7 +97,7 @@ const Common: React.FC<Props> = ({
             )}
           </Row>
           <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-            <ResourcesTabs AssessmentStarted={started} assessment={assessment}>
+            <ResourcesTabs assessmentStarted={started} assessment={assessment}>
               <div className={selectedLanguage ? selectedLanguage.direction : ''}>
                 <PassAssessment
                   id="pass_assessment"
