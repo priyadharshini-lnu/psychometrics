@@ -2281,8 +2281,8 @@ en:
       denied: Denied
       incomplete: Incomplete
       not_available: Not Available
-      on_hold: On Hold
       not_prepared: Not Ready
+      on_hold: On Hold
       prepared: Done
       released: Released
     statuses:
