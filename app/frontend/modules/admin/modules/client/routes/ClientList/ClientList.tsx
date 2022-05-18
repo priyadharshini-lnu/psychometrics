@@ -5,6 +5,10 @@ import {
   Row, Col, Table, Input, Space, Pagination,
 } from 'antd'
 import { Client, ClientTR } from 'modules/admin/modules/client/core/clients'
+import _ from 'lodash'
+import { hasOne, hasMany, transformer, relationshipDefinition } from 'libs/jsonApi/schema'
+import { Resolve } from 'libs/jsonApi/interfaces'
+
 
 const { Column } = Table
 const { Search } = Input
@@ -13,7 +17,7 @@ const { I18n } = window
 export const ClientList: FC<{}> = () => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
-    currentPage, pageSize, changeFilter, getFilteredValue,
+    currentPage, pageSize, changeFilter, getFilteredValue, updateResource
   } = useResources<Client>(
     'clients',
     { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
@@ -21,7 +25,35 @@ export const ClientList: FC<{}> = () => {
 
   useEffect(() => {
     fetch()
+    console.log(relationshipDefinition('clients'))
   }, [])
+
+
+  // const ClientFormDefinition = {
+  //   account_manager_id: hasMany('account_manager', { type: 'users' }),
+  //   project_manager_id: hasOne('project_manager', { type: 'users' }),
+  // }
+
+  // const A = {
+  //   clients: {
+  //     type: 'clients',
+  //     relationships: {
+  //       account_manager: {
+  //         type: 'users',
+  //       }
+  //     }
+  //   }
+  // }
+
+  // const defineResourceSchema = (resourceName, schema: any) => {
+  //   let resource = {
+  //     type: resourceName,
+  //   }
+  // }
+
+  // const value = { account_manager_id: '10', a: 1, project_manager_id: '10' }
+  // const formData = transformer(ClientFormDefinition, value)
+  // type FormData = Resolve<typeof value, typeof ClientFormDefinition>
 
   return (
     <>
@@ -36,6 +68,7 @@ export const ClientList: FC<{}> = () => {
             totalCount={meta.recordCount || 0}
             isLoading={isLoading('fetch')}
           />
+          <button onClick={() => data?.[0]?.id && updateResource({ id: data?.[0]?.id, accountManager: { id: '86468'}})}>Update</button>
         </Col>
         <Col>
           <Space>

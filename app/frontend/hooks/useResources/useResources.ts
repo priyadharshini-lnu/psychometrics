@@ -17,6 +17,7 @@ import { useMountedState } from '../useMountedState'
 import {
   Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType,
 } from './interfaces'
+import { PartialDeep } from 'type-fest'
 
 export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -124,7 +125,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   }
 
   const updateResource = async (
-    details: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
+    details: PartialDeep<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
   ) => {
     const { id, ...attributes } = details
     const requestKey: RequestType = `update@${id}`

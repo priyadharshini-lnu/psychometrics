@@ -15,7 +15,16 @@ import settings from './settings'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
-  schema: {},
+  schema: {
+    clients: {
+      type: 'clients',
+      relationships: {
+        account_manager: {
+          type: 'users',
+        }
+      }
+    }
+  },
 })
 
 const App: React.FC<void> = () => (
