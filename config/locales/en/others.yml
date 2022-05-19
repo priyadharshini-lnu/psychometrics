@@ -2281,7 +2281,9 @@ en:
       denied: Denied
       incomplete: Incomplete
       not_available: Not Available
+      not_prepared: Not Ready
       on_hold: On Hold
+      prepared: Done
       released: Released
     statuses:
       completed: Completed
@@ -2543,6 +2545,8 @@ en:
         waiting: Waiting
       manager_nomination_status:
         approved: Approved
+        completed: Completed
+        declined: Declined
         denied: Denied
         waiting: Waiting
   user_reports:
