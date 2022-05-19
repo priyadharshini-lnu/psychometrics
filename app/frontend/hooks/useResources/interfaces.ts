@@ -1,3 +1,6 @@
+import { PartialDeep, Merge } from 'type-fest'
+import { AdditionRelationshipAttribute } from 'libs/jsonApi/schema'
+
 export enum RequestStatus {
   Loading = 'loading',
   Success = 'success',
@@ -51,3 +54,9 @@ export interface BaseMeta {
   recordCount?: number,
   pageCount?: number,
 }
+
+export type AddResource<R> =
+  (attribute:  PartialDeep<AdditionRelationshipAttribute<Omit<R, 'id'>>>, args?: { responseType?: ResponseType, apiConfig?: ApiConfig }) => Promise<R>
+
+export type UpdateResource<R> =
+  (attribute:  { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: { responseType?: ResponseType, apiConfig?: ApiConfig }) => Promise<R>

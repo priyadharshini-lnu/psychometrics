@@ -15,9 +15,11 @@ import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
-  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType,
+  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType, AddResource, UpdateResource,
 } from './interfaces'
-import { PartialDeep } from 'type-fest'
+import { formatErrors } from './utils'
+import { Schema } from 'modules/admin/modules/client/core/schema'
+
 
 export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -30,6 +32,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const location = useLocation()
   const history = useHistory()
   const queryString = qs.parse(location.search.substring(1))
+  const schema = Schema[resourceName]
 
   let state: ResourceState<R[], M>
   let setState
@@ -77,7 +80,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
       const dataIsValid = isRight(decoded)
       if (!dataIsValid) {
         const errors = PathReporter.report(responseType.decode(data))
-        dispatch(setResponseDataMismatched(resourceName, errors, data))
+        // dispatch(setResponseDataMismatched(resourceName, errors, data))
       }
     }
   }
@@ -92,54 +95,70 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = apiConfig
     if (queryState) { newApiConfig = { ...apiConfig, ...queryState } }
-    const {
-      data: response, meta, error, errors,
-    } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
+    return new Promise(async (resolve, reject) => {
+      const {
+        data: response, meta, error, errors,
+      } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
 
-    const status = setRequestStatus('fetch', errors || error)
-    if (status === RequestStatus.Success && response) {
-      const camelizedResponse = humps.camelizeKeys(response)
-      setState((previousState: ResourceState<R[], M>) => (
-        { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus('fetch', formattedErrors)
+      if (status === RequestStatus.Success && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+        setState((previousState: ResourceState<R[], M>) => (
+          { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
 
-      if (args.responseType || responseType) {
-        responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
+        if (args.responseType || responseType) {
+          responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
+        }
+      } else {
+        reject(formattedErrors)
       }
-    }
+    })
   }
 
-  const addResource = async (
-    attributes: Partial<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
+  const addResource: AddResource<R> = async (
+    attributes, args = { apiConfig },
   ) => {
     setRequests({ ...requests, add: { status: RequestStatus.Loading } })
-    const { data: response, error, errors } = await client.mutate<R>(
-      [resourceName, apiConfig || {}], humps.decamelizeKeys(attributes),
-    )
 
-    const status = setRequestStatus('add', errors || error)
-    if (status === 'success' && response) {
-      const camelizedResponse = humps.camelizeKeys(response)
-      setData([camelizedResponse, ...data])
-      responseTypeValidation(args?.responseType || responseType, camelizedResponse)
-    }
+    return new Promise(async (resolve, reject) => {
+      const { data: response, error, errors } = await client.mutate<R>(
+        [resourceName, apiConfig || {}], humps.decamelizeKeys(attributes),
+      )
+
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus('add', formattedErrors)
+      if (status === RequestStatus.Success && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+        setData([camelizedResponse, ...data])
+        resolve(camelizedResponse)
+        responseTypeValidation(args?.responseType || responseType, camelizedResponse)
+      } else {
+        reject(formattedErrors)
+      }
+    })
   }
 
-  const updateResource = async (
-    details: PartialDeep<R>, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
-  ) => {
+  const updateResource: UpdateResource<R> = async (details, args = { apiConfig },) => {
     const { id, ...attributes } = details
     const requestKey: RequestType = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
-    const { data: response, error, errors } = await client.mutate<R>(
-      [resourceName, id, apiConfig || {}], humps.decamelizeKeys(attributes),
-    )
+    return new Promise(async (resolve, reject) => {
+      const { data: response, error, errors } = await client.mutate<R>(
+        [resourceName, id, apiConfig || {}], humps.decamelizeKeys(attributes),
+      )
 
-    const status = setRequestStatus(requestKey, errors || error)
-    if (status === 'success' && data && response) {
-      const camelizedResponse = humps.camelizeKeys(response)
-      setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
-      responseTypeValidation(args?.responseType || responseType, camelizedResponse)
-    }
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus(requestKey, formattedErrors)
+      if (status === RequestStatus.Success && data && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+        resolve(camelizedResponse)
+        setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
+        responseTypeValidation(args?.responseType || responseType, camelizedResponse)
+      } else {
+        reject(formattedErrors)
+      }
+    })
   }
 
   const removeResource = async (
@@ -149,11 +168,18 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     const { data: response, error, errors } = await client.delete([resourceName, id, apiConfig || {}])
 
-    const status = setRequestStatus(requestKey, errors || error)
-    if (status === 'success') {
-      setData(data.filter(r => r.id !== id))
-      responseTypeValidation(args?.responseType || responseType, response)
-    }
+    return new Promise(async (resolve, reject) => {
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus(requestKey, formattedErrors)
+      if (status === 'success') {
+        setData(data.filter(r => r.id !== id))
+        const camelizedResponse = humps.camelizeKeys(response)
+        resolve(camelizedResponse)
+        responseTypeValidation(args?.responseType || responseType, response)
+      } else {
+        reject(formattedErrors)
+      }
+    })
   }
 
   const changeUrlQuery = debounce((query: UrlQuery) => {

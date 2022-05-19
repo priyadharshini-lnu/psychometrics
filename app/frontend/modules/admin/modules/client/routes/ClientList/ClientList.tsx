@@ -2,22 +2,37 @@ import React, { FC, useEffect } from 'react'
 import { useResources } from 'hooks/useResources'
 import { CountDisplay } from 'components/CountDisplay'
 import {
-  Row, Col, Table, Input, Space, Pagination,
+  Row, Col, Table, Input, Space, Pagination, Button,
 } from 'antd'
 import { Client, ClientTR } from 'modules/admin/modules/client/core/clients'
 import _ from 'lodash'
-import { hasOne, hasMany, transformer, relationshipDefinition } from 'libs/jsonApi/schema'
-import { Resolve } from 'libs/jsonApi/interfaces'
-
+import Modals from 'modules/admin/components/Modals'
+import { PlusOutlined } from '@ant-design/icons'
+import { openModal } from 'modules/admin/core/ui/modals'
+import { ClientFormModal } from './ClientFormModal'
+import { connect, ConnectedProps } from 'react-redux'
 
 const { Column } = Table
 const { Search } = Input
 const { I18n } = window
 
-export const ClientList: FC<{}> = () => {
+const MODALS = {
+  ClientFormModal
+}
+
+const connecter = connect(
+  null,
+  {
+    openModal,
+  },
+)
+type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux
+
+const ClientListComponent: FC<Props> = ({ openModal }) => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
-    currentPage, pageSize, changeFilter, getFilteredValue, updateResource
+    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, addResource,
   } = useResources<Client>(
     'clients',
     { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
@@ -25,35 +40,7 @@ export const ClientList: FC<{}> = () => {
 
   useEffect(() => {
     fetch()
-    console.log(relationshipDefinition('clients'))
   }, [])
-
-
-  // const ClientFormDefinition = {
-  //   account_manager_id: hasMany('account_manager', { type: 'users' }),
-  //   project_manager_id: hasOne('project_manager', { type: 'users' }),
-  // }
-
-  // const A = {
-  //   clients: {
-  //     type: 'clients',
-  //     relationships: {
-  //       account_manager: {
-  //         type: 'users',
-  //       }
-  //     }
-  //   }
-  // }
-
-  // const defineResourceSchema = (resourceName, schema: any) => {
-  //   let resource = {
-  //     type: resourceName,
-  //   }
-  // }
-
-  // const value = { account_manager_id: '10', a: 1, project_manager_id: '10' }
-  // const formData = transformer(ClientFormDefinition, value)
-  // type FormData = Resolve<typeof value, typeof ClientFormDefinition>
 
   return (
     <>
@@ -68,7 +55,7 @@ export const ClientList: FC<{}> = () => {
             totalCount={meta.recordCount || 0}
             isLoading={isLoading('fetch')}
           />
-          <button onClick={() => data?.[0]?.id && updateResource({ id: data?.[0]?.id, accountManager: { id: '86468'}})}>Update</button>
+          {/* <button onClick={() => data?.[0]?.id && updateResource({ id: data?.[0]?.id, accountManagerId: '86468', projectManagerIds: ['1'] })}>Update</button> */}
         </Col>
         <Col>
           <Space>
@@ -77,6 +64,14 @@ export const ClientList: FC<{}> = () => {
               value={getFilteredValue('name_cont')}
               onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
             />
+            <Button
+                type="primary"
+                disabled={isLoading('fetch')}
+                onClick={() => openModal('ClientFormModal', { addClient: addResource })}
+              >
+              <PlusOutlined />
+              Create Client
+            </Button>
           </Space>
         </Col>
       </Row>
@@ -99,6 +94,7 @@ export const ClientList: FC<{}> = () => {
             <Column
               title={I18n.t('common.column.name')}
               key="name"
+              width={300}
               sorter
               sortOrder={getSortOrder('name')}
               render={({ name, id }) => (
@@ -142,6 +138,9 @@ export const ClientList: FC<{}> = () => {
         onChange={changePage}
         className="pl"
       />
+       <Modals modals={MODALS} />
     </>
   )
 }
+
+export const ClientList = connecter(ClientListComponent)

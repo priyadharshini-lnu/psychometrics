@@ -4081,13 +4081,8 @@
   resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.5.3/9e3cb2dea89aa78d9fb2103d01fc145536fe0a0bd6d20fb9aa5f3df3008d0e43#4f5763f38e153092d1d0cd8791d5014f209a606d"
   integrity sha512-FON4a3xJOqNPwFxI7JvM7v/ik/hgXR+AvZ51FraRV+a30I7s4SYUh7X2zVKkDVzoRNB9qBU737o7GEWyPTVAsQ==
 
-"@thetalententerprise/jsonapi-react@^0.0.27":
-  version "0.0.27"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/jsonapi-react/0.0.27/964e45714c700e53b27681f83daa953fceea1eebd43ddce1ba78bfd753261651#045e990e56f1326172e691cd4cca64998137bc36"
-  integrity sha512-EwMX1qD/DcWyP7lh1kNT8izWnbyrLsdF7Xp2C/9zLzCplVmGeS7DzmZi/Fd8SDOAGgz5Xf2l8/yiXy6t6DP3Bg==
-  dependencies:
-    "@types/react" "^16.14.25"
-    qs "^6.10.3"
+"@thetalententerprise/jsonapi-react@file:../jsonapi-react/dist":
+  version "0.0.0"
 
 "@trysound/sax@0.1.1":
   version "0.1.1"
@@ -4543,15 +4538,6 @@
   version "17.0.3"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.3.tgz#ba6e215368501ac3826951eef2904574c262cc79"
   integrity sha512-wYOUxIgs2HZZ0ACNiIayItyluADNbONl7kt8lkLjVK8IitMH5QMyAh75Fwhmo37r1m7L2JaFj03sIfxBVDvRAg==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@^16.14.25":
-  version "16.14.26"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.26.tgz#82540a240ba7207ebe87d9579051bc19c9ef7605"
-  integrity sha512-c/5CYyciOO4XdFcNhZW1O2woVx86k4T+DO2RorHZL7EhitkNQgSD/SgpdZJAUJa/qjVgOmTM44gHkAdZSXeQuQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"

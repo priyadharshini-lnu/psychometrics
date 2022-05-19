@@ -4,3 +4,5 @@ export const ResourceIdentifierTR = t.type({
   id: t.string,
   type: t.string,
 })
+
+export type Resource = t.TypeOf<typeof ResourceIdentifierTR>

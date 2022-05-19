@@ -9,22 +9,15 @@ import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import { RecoilRoot } from 'recoil'
 import RouteList from 'components/RouteList'
 import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
+import humps from 'humps'
 
 import { routes } from './routes'
 import settings from './settings'
+import { Schema } from './core/schema'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
-  schema: {
-    clients: {
-      type: 'clients',
-      relationships: {
-        account_manager: {
-          type: 'users',
-        }
-      }
-    }
-  },
+  schema: humps.decamelizeKeys(Schema)
 })
 
 const App: React.FC<void> = () => (

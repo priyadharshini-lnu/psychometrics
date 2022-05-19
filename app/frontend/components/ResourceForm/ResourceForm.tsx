@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ReactElement } from 'react'
 import { Form, message, Alert } from 'antd'
-import _ from 'lodash'
+import _, { reduce } from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
 import { FormProps, FormInstance } from 'antd/lib/form'
