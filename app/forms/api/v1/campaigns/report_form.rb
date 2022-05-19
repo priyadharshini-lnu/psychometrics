@@ -12,6 +12,7 @@ module Api
         validates :user_access, inclusion: { in: [true, false] }
 
         validate :validate_report_id
+        validate :validate_report_bundle_id
 
         private
 
@@ -20,6 +21,10 @@ module Api
           return if report_bundle.reports.exists?(id: id)
 
           errors.add(:id, 'Invalid report id')
+        end
+
+        def validate_report_bundle_id
+          errors.add(:report_bundle_id, 'Invalid report_bundle_id') unless report_bundle
         end
 
         def report_bundle

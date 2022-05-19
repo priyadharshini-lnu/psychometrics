@@ -10,7 +10,7 @@ import {
 } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
-import { OptionData } from 'rc-select/lib/interface'
+import { FlattenOptionData } from 'rc-select/lib/interface'
 
 import { PreviewModel, TextType } from 'modules/survey/interfaces/questions/SideBySide'
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
@@ -334,7 +334,9 @@ const DropdownTypeField: FC<DropdownTypeFieldProps> = ({
     defaultAnswer = answerInRowOfGroup?.values?.[0]?.value as string
   }
 
-  const emptySelectOption = { label: '', value: '' }
+  const emptySelectOption = {
+    label: '', value: '', data: null, key: '',
+  }
   const selectOptions = Array.from(
     { length: columnData.answers },
     (_, answerOptionIndex) => ({
@@ -348,12 +350,14 @@ const DropdownTypeField: FC<DropdownTypeFieldProps> = ({
           },
         ) || moduleConfig.defaultAnswerText(answerOptionIndex + 1),
       value: answerOptionIndex,
+      data: null,
+      key: answerOptionIndex,
     }),
   )
 
   const searchFilterOptions = (
     searchValue: string,
-    option: OptionData,
+    option: FlattenOptionData<null>,
   ): boolean => {
     const optionLabel = option?.label ?? ''
     if (`${optionLabel}`.toLowerCase().search(searchValue.toLowerCase()) !== -1) {

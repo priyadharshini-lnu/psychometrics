@@ -50,7 +50,7 @@ module Api
         end
 
         def report_map
-          @report_map ||= reports.index_by { |r| r[:id] }
+          @report_map ||= reports.index_by { |r| r[:id].to_i }
         end
 
         def report_ids

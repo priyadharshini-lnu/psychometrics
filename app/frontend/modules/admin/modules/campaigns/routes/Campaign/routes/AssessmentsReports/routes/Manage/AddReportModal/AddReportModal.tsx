@@ -101,10 +101,10 @@ const AddReportModal: React.FC<Props> = ({
               showSearch
               placeholder={I18n.t('campaign_report.form.report_bundle_placeholder')}
               optionFilterProp="children"
-              filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              filterOption={(input, option) => option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             >
               {_.map(reportFamilies, (reportFamily: ReportFamily) => (
-                <Select.Option key={reportFamily.id} value={reportFamily.id}>
+                <Select.Option key={reportFamily.name} value={reportFamily.id}>
                   {reportFamily.name}
                 </Select.Option>
               ))}

@@ -49,6 +49,7 @@ interface Props {
   changePage(page: number): void
   openModal(name: string, data?: { campaignId: string, user?: User }): void
   exportCompletionStatuses(campaignId: number): Promise<void>
+  exportCompactCompletionStatuses(campaignId: number): Promise<void>
 }
 
 const statusToColor = {
@@ -82,6 +83,7 @@ const UserList: React.FC<Props> = ({
   toggleActive,
   resetPassword,
   exportCompletionStatuses,
+  exportCompactCompletionStatuses,
 }) => {
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -104,6 +106,7 @@ const UserList: React.FC<Props> = ({
           <ToolsDropdown
             campaignId={parseInt(campaignId, 10)}
             exportCompletionStatuses={exportCompletionStatuses}
+            exportCompactCompletionStatuses={exportCompactCompletionStatuses}
             openModal={openModal}
             permissions={permissions}
           />

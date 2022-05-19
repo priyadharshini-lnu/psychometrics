@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RouteComponentProps } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
+import Sidebar from './Sidebar'
 import styles from './styles.scss'
 
 const { Content } = Layout
@@ -57,6 +58,8 @@ export default function ReportPreview ({
         user={JSON.stringify(user)}
         locales={locales}
         selectedLocale={defaultLanguage}
+        userReport={userReport}
+        showOverrides={report.require_approval}
       />
     )
   }
@@ -127,12 +130,26 @@ export default function ReportPreview ({
             </Button>,
           ]}
         >
-          <Row justify="center">
-            <Col>
-              <div className="reportContainer">
-                {renderReportPreview()}
-              </div>
+          {userReport.richEditorOpened && <div key="editor" id="froala-editor-toolbar" />}
+          <Row justify="space-between" style={{ border: '1px solid #ccc' }}>
+            <Col flex={1}>
+              <Row justify="center">
+                <Col>
+                  <div className="reportContainer">
+                    {renderReportPreview()}
+                  </div>
+                </Col>
+              </Row>
             </Col>
+            {userReport.report.require_approval
+              && (
+              <Col>
+                <Affix style={{ maxHeight: '100vh', overflow: 'scroll' }}>
+                  <Sidebar />
+                </Affix>
+              </Col>
+              )
+            }
           </Row>
         </PageHeader>
       </Content>

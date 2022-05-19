@@ -185,8 +185,7 @@ const TimeZoneSelect: React.FC<Props> = ({
       showSearch
       value={selectedTimeZone}
       onChange={handleChange}
-      optionFilterProp="children"
-      filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+      filterOption={(input, option) => (option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0)}
       {...props}
     >
       {options.map(option => <Option key={option.value} value={option.value}>{option.label}</Option>)}

@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   Modal, Button, Form, Select, message,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
-import { connect, ConnectedProps } from 'react-redux'
+
 import { updateAssessorForm, UPDATE_ASSESSOR_FORM } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { getSingle } from 'modules/admin/modules/campaigns/core/assessments'
 import { fetchAvailableAssessments, getAvailableAssessments } from 'modules/admin/modules/campaigns/core/assessors'
 import { RootState } from 'modules/admin/core/rootReducers'
+
+import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 
 const { I18n } = window
 
@@ -88,12 +90,12 @@ const UpdateAssessorFormModal: React.FC<Props> = ({
             placeholder={I18n.t('campaign_assessment.modals.update_assessor_form.select_assessor')}
             showSearch
             filterOption={
-              (inputVal, optionData) => (optionData?.children.toLowerCase().includes(inputVal.toLowerCase()))
+              (inputVal, optionData) => (optionData?.key.toLowerCase().includes(inputVal.toLowerCase()))
             }
           >
             <Select.Option value="">{I18n.t('common.text.na')}</Select.Option>
             {sortedAvailableAssessments.map(a => (
-              <Select.Option key={a.id} value={a.id} la>
+              <Select.Option key={a.name} value={a.id} la>
                 {a.name}
               </Select.Option>
             ))}

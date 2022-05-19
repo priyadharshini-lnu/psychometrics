@@ -18,6 +18,7 @@ module Threesixty
             headers = default_headers
             headers << 'Nomination Approval Status' if manager_can_approve_nominations?
             headers << 'Report Approval Status' if manager_or_admin_can_approve_reports?
+            headers << 'Evaluation Approval Status' if manager_can_approve_evaluations?
             sheet.add_row(headers, style: header_style)
             # RTOD: Check this
             participants = threesixty_campaign.participants.actual_by_options(option).
@@ -32,6 +33,7 @@ module Threesixty
               row_data = default_row_data(participant)
               row_data << manager_nomination_status(participant) if manager_can_approve_nominations?
               row_data << report_approval_status(participant) if manager_or_admin_can_approve_reports?
+              row_data << evaluation_approval_status(participant) if manager_can_approve_evaluations?
               sheet.add_row row_data
             end
           end
@@ -57,7 +59,7 @@ module Threesixty
           participant.relationship.name,
           participant.result_created_at.try(:strftime, '%D %r'),
           participant.completed_at.try(:strftime, '%D %r'),
-          I18n.t("user_assessments.statuses.manager_nomination_status.#{participant.evaluator_nomination_status}"),
+          I18n.t("user_assessments.statuses.evaluator_nomination_status.#{participant.evaluator_nomination_status}"),
           I18n.t("subjects.report_statuses.#{report_status(participant.threesixty_subject)}"),
           I18n.t("subjects.report_release_status.#{participant.threesixty_subject.report_release_status}"),
           I18n.t("subjects.statuses.#{subject_status(participant.threesixty_subject)}"),
@@ -98,6 +100,12 @@ module Threesixty
         @manager_can_approve_nominations = option.participants.dig('manager', 'can_approve_nominations')
       end
 
+      def manager_can_approve_evaluations?
+        return @manager_can_approve_evaluations if defined?(@manager_can_approve_evaluations)
+
+        @manager_can_approve_evaluations = option.participants.dig('manager', 'can_approves_evaluations')
+      end
+
       def nomination_requirement_by_user_id
         @nomination_requirement_by_user_id ||= ::Threesixty::NominationRequirements::FindForUsers.call!(
           threesixty_campaign.subjects,
@@ -124,6 +132,10 @@ module Threesixty
 
       def report_approval_status(participant)
         I18n.t("subjects.report_approval_status.#{participant.threesixty_subject.report_approval_status}")
+      end
+
+      def evaluation_approval_status(participant)
+        I18n.t("user_assessments.statuses.manager_evaluation_status.#{participant.manager_evaluation_status}")
       end
     end
   end

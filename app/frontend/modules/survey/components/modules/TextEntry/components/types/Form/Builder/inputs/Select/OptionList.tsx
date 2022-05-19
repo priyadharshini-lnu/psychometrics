@@ -1,11 +1,13 @@
 import React, {
   useState, useEffect, useRef,
 } from 'react'
-import { Menu, Input } from 'antd'
+import { Menu, Input, InputRef } from 'antd'
+
 import Utils from 'modules/survey/utils/Utils'
 import { DnDElement } from 'components/DnD'
 import { useInputFocus } from 'hooks/useInputFocus'
 import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
+
 import styles from '../../../FormStyle.scss'
 import Option from './Option'
 
@@ -25,7 +27,7 @@ const OptionList: React.FC<Props> = ({
   type, type: { optionList = [] }, index, model,
 }) => {
   const [text, setText] = useState<string>('')
-  const inputRef = useRef<Input>(null)
+  const inputRef = useRef<InputRef>(null)
   const setFocus = useInputFocus(inputRef)
 
   // eslint-disable-next-line arrow-body-style

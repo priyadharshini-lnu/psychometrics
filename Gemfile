@@ -65,7 +65,7 @@ gem 'simple_form',                '5.1.0'
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 gem 'kaminari',                   '~> 1.2.1'
 ### Breadcrumbs
-gem 'breadcrumbs_on_rails',       '~> 4.0.0'
+gem 'breadcrumbs_on_rails',       '~> 4.1.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
 gem 'ransack', '~> 2.3.0'
@@ -73,7 +73,7 @@ gem 'ransack', '~> 2.3.0'
 gem 'active_link_to',             '~> 1.0.5'
 
 ### Translaters for javascripts
-gem 'i18n-js',                    '~> 3.6.0'
+gem 'i18n-js',                    '~> 3.9.2'
 
 ### Decorator
 gem 'annotate', '~> 2.7.0'
@@ -93,7 +93,7 @@ gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'ckeditor'
 gem 'jquery-fileupload-rails', '~> 0.4.6'
-gem 'redis', '~> 4.1.3'
+gem 'redis', '~> 4.6.0'
 gem 'redis-rails', '~> 5.0.2'
 gem 'redlock', '~> 1.2.2'
 
@@ -139,7 +139,7 @@ gem 'browser', '~> 5.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 5.2.9'
+gem 'sidekiq', '~> 6.4.1'
 
 gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
@@ -169,7 +169,7 @@ gem 'rswag-api', '~> 2.5.1'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
-gem 'activerecord-import', '~> 1.3.0'
+gem 'activerecord-import', '~> 1.4.0'
 gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
@@ -213,7 +213,7 @@ group :development do
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'capybara', '~> 3.35.3'
+  gem 'capybara', '~> 3.36.0'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
@@ -234,7 +234,7 @@ end
 gem 'rqrcode'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.2.0'
+gem 'sidekiq-cron', '~> 1.3.0'
 
 gem 'xml-simple', '~> 1.1.5'
 

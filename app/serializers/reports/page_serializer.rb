@@ -19,7 +19,7 @@ module Reports
     attributes :id, :name, :position, :props, :display_logic, :modules
 
     def modules
-      object.modules.map do |mod|
+      object.modules.order(:id).map do |mod|
         ModuleSerializer.new(mod, piped_text_context: @instance_options[:piped_text_context])
       end
     end

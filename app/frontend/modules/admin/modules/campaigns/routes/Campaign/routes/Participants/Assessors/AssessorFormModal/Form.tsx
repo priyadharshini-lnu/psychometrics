@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Form as AntForm, Select, Button } from 'antd'
-import userPresenter from 'presenters/user'
+import { connect, ConnectedProps } from 'react-redux'
+
+import UserAutocomplete from 'components/UserAutocomplete'
+
 import {
   AssessorFormItem,
   getAvailableAssessments,
   fetchAvailableAssessments,
 } from 'modules/admin/modules/campaigns/core/assessors'
-// eslint-disable-next-line max-len
-import UserAutocomplete from 'components/UserAutocomplete'
-import { connect, ConnectedProps } from 'react-redux'
 import { get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
 import { RootState } from 'modules/admin/core/rootReducers'
+
+import userPresenter from 'presenters/user'
 
 const formItemLayout = { labelCol: { span: 5 }, wrapperCol: { span: 12 } }
 
@@ -111,10 +113,10 @@ const Form: React.FC<Props & PropsFromRedux> = ({
           mode="multiple"
           value={assessor.assessmentIds}
           onChange={ids => setAssessor({ ...assessor, assessmentIds: ids })}
-          filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          filterOption={(input, option) => option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {assessments.map(a => (
-            <Select.Option key={a.id} value={a.id}>{a.name}</Select.Option>
+            <Select.Option key={a.name} value={a.id}>{a.name}</Select.Option>
           ))}
         </Select>
       </AntForm.Item>

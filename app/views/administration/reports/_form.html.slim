@@ -68,6 +68,9 @@
         = f.input :default_language,
                   collection: I18n.available_locales.map { |locale| [t("languages.#{locale}"), locale] },
                   include_blank: false
+        .clearfix
+          = f.input :require_approval, as: :boolean
+
         = render partial: 'administration/administrator/shared/simple_design', locals: { f: f }
     .modal-footer
       .btn-group

@@ -63,6 +63,12 @@ module Administration
         )
       end
 
+      def export_compact_completion_status?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
       def search?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id

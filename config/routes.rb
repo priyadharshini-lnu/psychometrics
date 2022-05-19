@@ -173,10 +173,16 @@ Rails.application.routes.draw do
           member do
             get :pdf_preview
             get :download
+            put :approve
             patch :toggle_user_access
           end
           collection do
             post :regenerate
+          end
+        end
+        resources :text_module_overrides do
+          collection do
+            post :approve
           end
         end
         resources :users do
@@ -189,6 +195,7 @@ Rails.application.routes.draw do
           collection do
             post :import
             get :export_completion_status
+            get :export_compact_completion_status
             post :search
           end
         end

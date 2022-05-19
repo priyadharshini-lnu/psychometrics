@@ -26,12 +26,14 @@ module Threesixty
         @subject_evaluator_counters = subject_evaluator_counters
       end
 
+      # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
       def call
         return broadcast :ok, nil unless subject
         return broadcast :ok, NOT_AVAILABLE unless subject_cannot_access_report?
         return broadcast :ok, RELEASED if subject.report_status_released?
         return broadcast :ok, ON_HOLD if subject.report_status_on_hold?
         return broadcast :ok, APPROVED if manager_can_approve_report? && subject.report_approved?
+        return broadcast :ok, DENIED if manager_can_approve_report? && subject.report_denied?
 
         if Threesixty::Reports::IsAvailable.call!(subject, option, subject_evaluator_counters) &&
            !report_approval_required?
@@ -41,6 +43,7 @@ module Threesixty
 
         broadcast :ok, INCOMPLETE
       end
+      # rubocop:enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
       private
 

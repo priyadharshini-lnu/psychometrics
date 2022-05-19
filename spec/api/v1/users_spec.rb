@@ -190,7 +190,7 @@ the campaign\'s default assessments and reports.'
         let(:email) { 'max@example.com' }
         let(:campaign_ids) { [campaign.id] }
         let(:project_id) { project.id }
-        let(:body) { { email: email, campaign_ids: campaign_ids } }
+        let(:body) { { first_name: 'John', last_name: 'Doe', email: email, campaign_ids: campaign_ids } }
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
