@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect, useState } from 'react'
 import { Form, Input, Select, } from 'antd'
 import _ from 'lodash'
 import { Client } from '../../core/clients'
-import { AddResource } from 'hooks/useResources/interfaces'
+import { CreateResource } from 'hooks/useResources/interfaces'
 import ResourceFormModal from 'components/ResourceFormModal'
 import { useResources } from 'hooks/useResources'
 
@@ -10,7 +10,7 @@ const { I18n } = window
 
 interface Props {
   client: undefined
-  addClient: AddResource<Client>
+  addClient: CreateResource<Client>
   close(): void
 }
 

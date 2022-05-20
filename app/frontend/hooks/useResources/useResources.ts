@@ -15,7 +15,7 @@ import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
-  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType, AddResource, UpdateResource,
+  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType, CreateResource, UpdateResource,
 } from './interfaces'
 import { formatErrors } from './utils'
 import { Schema } from 'modules/admin/modules/client/core/schema'
@@ -116,7 +116,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     })
   }
 
-  const addResource: AddResource<R> = async (
+  const createResource: CreateResource<R> = async (
     attributes, args = { apiConfig },
   ) => {
     setRequests({ ...requests, add: { status: RequestStatus.Loading } })
@@ -266,7 +266,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     requests,
     setData,
     fetch,
-    addResource,
+    createResource,
     updateResource,
     removeResource,
     getSortOrder,

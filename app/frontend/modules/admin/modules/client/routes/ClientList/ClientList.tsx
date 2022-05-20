@@ -32,7 +32,7 @@ type Props = PropsFromRedux
 const ClientListComponent: FC<Props> = ({ openModal }) => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
-    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, addResource,
+    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, createResource,
   } = useResources<Client>(
     'clients',
     { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
@@ -67,7 +67,7 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
             <Button
                 type="primary"
                 disabled={isLoading('fetch')}
-                onClick={() => openModal('ClientFormModal', { addClient: addResource })}
+                onClick={() => openModal('ClientFormModal', { addClient: createResource })}
               >
               <PlusOutlined />
               Create Client

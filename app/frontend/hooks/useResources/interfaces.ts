@@ -55,7 +55,7 @@ export interface BaseMeta {
   pageCount?: number,
 }
 
-export type AddResource<R> =
+export type CreateResource<R> =
   (attribute:  PartialDeep<AdditionRelationshipAttribute<Omit<R, 'id'>>>, args?: { responseType?: ResponseType, apiConfig?: ApiConfig }) => Promise<R>
 
 export type UpdateResource<R> =
