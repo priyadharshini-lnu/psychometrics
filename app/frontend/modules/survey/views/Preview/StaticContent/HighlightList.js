@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Highlighter from 'web-highlighter'
 import Palette from './Palette'
-import styles from './StaticContent.scss'
+import styles from './StaticContent.less'
 
 const DEFAULT_COLOR = '#c1c4fc'
 

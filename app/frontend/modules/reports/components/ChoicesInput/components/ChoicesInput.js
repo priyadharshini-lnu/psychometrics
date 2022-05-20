@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './ChoicesInput.scss'
+import styles from './ChoicesInput.less'
 
 const MIN_VALUE = 0
 const MAX_VALUE = 300

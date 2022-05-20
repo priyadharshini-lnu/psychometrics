@@ -7,7 +7,7 @@ import initSentry from 'libs/initSentry'
 import rstore from '../../modules/survey/store'
 
 import 'modules/user/styles/ant.less'
-import 'styles/utils.scss'
+import 'styles/utils.less'
 
 initSentry()
 

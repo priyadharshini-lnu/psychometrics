@@ -10,7 +10,7 @@ import ErrorAlertBox from 'components/ErrorAlertBox'
 import { SafeHTML } from 'components/SafeHTML'
 import TitleBar from './TitleBar'
 import settings from '../../../settings'
-import styles from './styles.scss'
+import styles from './styles.less'
 import TemplateMenu from './TemplateMenu'
 
 const { Option } = Select

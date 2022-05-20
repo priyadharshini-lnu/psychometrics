@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'modules/reports/utils/Utils'
-import styles from '../../Condition.scss'
-import localStyles from './Scoring.scss'
+import styles from '../../Condition.less'
+import localStyles from './Scoring.less'
 
 export class Scoring extends Component {
   static propTypes = {

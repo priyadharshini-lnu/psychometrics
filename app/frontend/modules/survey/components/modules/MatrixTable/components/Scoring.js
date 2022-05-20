@@ -5,7 +5,7 @@ import FillingScoring from 'components/FillingScoring'
 import ScoringCell from 'components/ScoringCell'
 import ScoringLabelAdvanced from 'components/ScoringLabelAdvanced'
 import Utils from 'utils'
-import styles from './MatrixTable.scss'
+import styles from './MatrixTable.less'
 
 export class Scoring extends Component {
   static propTypes = {

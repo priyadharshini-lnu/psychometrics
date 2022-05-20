@@ -14,7 +14,7 @@ import {
 import { RootState } from 'modules/admin/core/rootReducers'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { getFeatures } from 'core/config'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { Content } = Layout
 const { I18n } = window

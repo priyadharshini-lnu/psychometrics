@@ -1,6 +1,6 @@
 import React from 'react'
 import { DnDElement } from 'components/DnD'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const SubFactorRow = ({
   list, scoringStrategy, moveRow, subFactor, columns,

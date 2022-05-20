@@ -7,7 +7,7 @@ import store from 'modules/reports/store'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import Utils from 'modules/reports/utils'
 import Text from '../../Table/CellTypes/Text/Text'
-import styles from './HighestLowestQuestion.scss'
+import styles from './HighestLowestQuestion.less'
 
 const QUESTIONS = {
   309: { props: { questionText: 'Test text1' } },

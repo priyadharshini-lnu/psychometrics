@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select, Form } from 'antd'
 import { I18n } from 'store/StoreWatchman'
-import styles from '../commonStyles.scss'
+import styles from '../commonStyles.less'
 import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
 import { ContactType } from '../interfaces/Email'
 import { Question } from '../interfaces'

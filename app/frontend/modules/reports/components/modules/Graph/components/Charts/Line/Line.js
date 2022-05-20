@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Highcharts from 'highcharts'
 import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
-import styles from './Line.scss'
+import styles from './Line.less'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
 

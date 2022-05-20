@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import styles from '../../Condition.scss'
+import styles from '../../Condition.less'
 
 const KEY_OPTIONS = [
   { value: 'zip_code', label: 'Postal Code' },

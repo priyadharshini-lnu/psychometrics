@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import 'styles/core.scss'
+import 'styles/core.less'
 import BlockCenter from 'layouts/BlockCenter'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
 

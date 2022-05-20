@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
-import styles from '../../styles.scss'
+import styles from '../../styles.less'
 import { NOT_APPLICABLE } from '../../../MatrixTable/components/Consts'
 
 class DropdownPreview extends Component {

@@ -2,7 +2,7 @@ import React from 'react'
 import { List } from 'antd'
 import { CheckCircleFilled, LoadingOutlined, CloseCircleFilled } from '@ant-design/icons'
 import cs from 'classnames'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { CheckListItem } from '../interfaces'
 
 interface Props {

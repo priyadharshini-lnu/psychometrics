@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import styles from './Question.scss'
+import styles from './Question.less'
 
 class Question extends Component {
   static propTypes = {

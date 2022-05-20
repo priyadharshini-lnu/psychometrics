@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './ModulesMenu.scss'
+import styles from './ModulesMenu.less'
 
 export class ModulesMenu extends Component {
   static propTypes = {

@@ -4,7 +4,7 @@ import ConditionalDropdown from 'components/ConditionalDropdown'
 import { CheckOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
 import ActionsMenu from '../ActionsMenu'
-import styles from './EvaluatorTable.scss'
+import styles from './EvaluatorTable.less'
 
 const { Column } = Table
 

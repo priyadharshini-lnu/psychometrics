@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
 import { PSYCHOMETRIC, AGILE } from 'modules/reports/models/Assessment'
 import { DATA_SHEET } from 'modules/reports/models/Module'
-import localStyles from './Scoring.scss'
-import styles from '../../Condition.scss'
+import localStyles from './Scoring.less'
+import styles from '../../Condition.less'
 
 export class Scoring extends Component {
   static propTypes = {

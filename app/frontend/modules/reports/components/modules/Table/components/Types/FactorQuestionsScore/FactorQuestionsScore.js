@@ -9,7 +9,7 @@ import ResultStore from 'modules/reports/store/ResultStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import Question from 'modules/reports/models/Question'
 import Scoring from 'modules/reports/models/Scoring'
-import styles from './FactorQuestionsScore.scss'
+import styles from './FactorQuestionsScore.less'
 
 const QUESTIONS = {
   309: { type: 'MultipleChoice', id: 309, props: { questionText: 'Test text1' } },

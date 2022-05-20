@@ -15,7 +15,7 @@ import { FlattenOptionData } from 'rc-select/lib/interface'
 import { PreviewModel, TextType } from 'modules/survey/interfaces/questions/SideBySide'
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 interface Props {
   model: PreviewModel

@@ -4,9 +4,9 @@ import Modals from 'modules/reports/components/modals'
 import Prompt from 'modules/reports/components/Prompt'
 import Library from 'libs/library'
 import PageEditor from 'modules/reports/views/PageEditor'
-import styles from './Dashboard.scss'
+import styles from './Dashboard.less'
 import Header from '../Header'
-import 'modules/reports/styles/core.scss'
+import 'modules/reports/styles/core.less'
 
 export class Dashboard extends Component {
   componentDidMount () {

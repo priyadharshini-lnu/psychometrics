@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Block.scss'
+import styles from './Block.less'
 import Controls from '../../Controls'
 
 class Block extends Component {

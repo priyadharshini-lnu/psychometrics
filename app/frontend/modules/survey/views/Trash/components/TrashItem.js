@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Trash.scss'
+import styles from './Trash.less'
 
 class TrashItem extends Component {
   static propTypes = {

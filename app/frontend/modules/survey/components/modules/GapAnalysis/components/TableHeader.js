@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
-import styles from './GapAnalysis.scss'
+import styles from './GapAnalysis.less'
 import Smiles from '../assets'
 
 export class TableHeader extends Component {

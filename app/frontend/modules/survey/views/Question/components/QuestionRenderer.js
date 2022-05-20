@@ -3,7 +3,7 @@ import { Spin } from 'antd'
 import PropTypes from 'prop-types'
 import { Modules } from 'components/modules'
 import QuestionSerializer from 'models/QuestionSerializer'
-import styles from './Question.scss'
+import styles from './Question.less'
 
 const TextEntryBuilder = lazy(() => import('modules/survey/components/modules/TextEntry/TextEntry'))
 const SideBySideBuiler = lazy(() => import('modules/survey/components/modules/SideBySide/SideBySide'))

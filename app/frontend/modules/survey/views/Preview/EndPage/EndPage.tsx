@@ -9,7 +9,7 @@ import EditEvaluationModal from './components/EditEvaluationModal'
 
 import ScoringTable from './components/ScoringTable'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const connector = connect(({ preview }: RootState) => ({
   isAnonymousAssessment: preview.isAnonymousAssessment,

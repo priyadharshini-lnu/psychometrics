@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputNumber } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function ReminderRule ({
   rule, add, remove, update,

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import OptionSection from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 function Options ({
   options,

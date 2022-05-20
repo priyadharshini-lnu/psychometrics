@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import TextEditor from 'components/TextEditor'
-import styles from './Slider.scss'
+import styles from './Slider.less'
 import Templates from './Templates'
 
 class Slider extends React.Component {

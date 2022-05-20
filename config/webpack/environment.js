@@ -67,7 +67,8 @@ const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === '
 
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
 
-environment.loaders.append('less', lessLoader)
+environment.loaders.append('less', lessLoader.withModules)
+environment.loaders.append('lessGlobals', lessLoader.withoutModules)
 
 environment.loaders.append('babel', jsTsLoader)
 

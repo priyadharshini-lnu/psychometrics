@@ -5,7 +5,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import ResultStore from 'modules/reports/store/ResultStore'
 import PreviewStore from 'modules/reports/store/PreviewStore'
 import math from 'modules/reports/utils/math'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 const Factor = ({ model }) => {
   const assessment = AppStore.getAssessmentById(model.assessment_id)

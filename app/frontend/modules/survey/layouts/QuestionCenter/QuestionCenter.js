@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import 'styles/core.scss'
+import 'styles/core.less'
 import Modals from 'components/Modals'
-import homeStyles from 'views/Home/components/HomeView.scss'
-import blockStyles from 'views/BlockList/components/BlockListView.scss'
+import homeStyles from 'views/Home/components/HomeView.less'
+import blockStyles from 'views/BlockList/components/BlockListView.less'
 import Question from 'views/QuestionCenter/Question'
 import PropertyPanel from './PropertyPanel'
 import Header from './Header'
-import styles from './QuestionCenter.scss'
+import styles from './QuestionCenter.less'
 
 export class Dashboard extends Component {
   componentDidMount () {

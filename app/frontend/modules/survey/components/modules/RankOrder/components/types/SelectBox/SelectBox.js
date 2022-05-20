@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editable from 'components/modules/MultipleChoice/components/types/Editable'
-import styles from './SelectBox.scss'
+import styles from './SelectBox.less'
 
 export default class extends Component {
   static propTypes = {

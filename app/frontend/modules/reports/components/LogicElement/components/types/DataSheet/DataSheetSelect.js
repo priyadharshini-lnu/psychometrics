@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
-import css from './DataSheet.scss'
+import css from './DataSheet.less'
 
 export default class DataSheetSelect extends Component {
   static propTypes = {

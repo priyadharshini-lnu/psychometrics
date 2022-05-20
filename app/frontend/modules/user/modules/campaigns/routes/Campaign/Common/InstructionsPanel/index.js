@@ -5,7 +5,7 @@ import { CaretRightOutlined, CaretLeftOutlined } from '@ant-design/icons'
 import { SafeHTML } from 'components/SafeHTML'
 import { isRtl } from 'utils/locales'
 
-import styles from './styles'
+import styles from './styles.less'
 
 const { Panel } = Collapse
 const { I18n } = window

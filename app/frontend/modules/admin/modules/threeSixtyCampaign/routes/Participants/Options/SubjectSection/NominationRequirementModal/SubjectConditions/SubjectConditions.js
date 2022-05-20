@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import cs from 'classnames'
 import { Select } from 'antd'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 import Condition from './Condition'
 
 export default function SubjectCondtions ({

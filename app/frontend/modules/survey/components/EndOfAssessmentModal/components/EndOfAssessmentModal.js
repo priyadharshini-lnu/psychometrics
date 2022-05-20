@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Checkbox, Input, Radio } from 'antd'
 
-import styles from './EndOfAssessmentModal.scss'
+import styles from './EndOfAssessmentModal.less'
 
 const { Header } = Modal
 const { Body } = Modal

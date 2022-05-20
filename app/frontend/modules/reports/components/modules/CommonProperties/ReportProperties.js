@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { PAGE_SIZES } from 'modules/reports/models/Report'
 import connect from './connect'
 

@@ -4,7 +4,7 @@ import { DropTarget } from 'react-dnd'
 import PageModel from 'modules/reports/models/Page'
 import throttle from 'lodash/throttle'
 import PageLabel from './PageLabel'
-import styles from './PageEditor.scss'
+import styles from './PageEditor.less'
 
 const fieldTarget = {
   drop () {

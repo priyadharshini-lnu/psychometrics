@@ -3,7 +3,7 @@ import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
 import cs from 'classnames'
 import RedMicrophone from './images/red-microphone.png'
 import GreenMicrophone from './images/green-microphone.png'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface Props {
   pulse: number

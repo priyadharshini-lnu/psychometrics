@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from './FilterModal.scss'
+import styles from './FilterModal.less'
 import ConditionList from './ConditionList'
 
 export class Filter extends Component {

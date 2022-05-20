@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './RankOrder.scss'
+import styles from './RankOrder.less'
 import Previews from './Previews'
 import connect from '../connect'
 

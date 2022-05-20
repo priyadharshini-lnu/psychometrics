@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import TextConditionCollection from 'modules/reports/models/TextConditionCollection'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from './ConditionalTextModal.scss'
+import styles from './ConditionalTextModal.less'
 import ConditionCollection from './ConditionCollection'
 
 const { $ } = window

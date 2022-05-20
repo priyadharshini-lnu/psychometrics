@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react'
-import styles from './Frames.scss'
+import styles from './Frames.less'
 
 export default function BoxFrame ({ boundaries: { box } }) {
   const style = {

@@ -12,7 +12,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
 import _ from 'lodash'
 import { CheckOutlined } from '@ant-design/icons'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import styles from './SimpleTable.scss'
+import styles from './SimpleTable.less'
 import Table from '../../Table'
 
 class SimpleTable extends Component {

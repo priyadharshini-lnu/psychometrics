@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Flow.scss'
+import styles from './Flow.less'
 
 const ButtonNew = ({ onClick }) => (
   <div className={`btn btn-default ${styles.newLine}`} onClick={onClick}>

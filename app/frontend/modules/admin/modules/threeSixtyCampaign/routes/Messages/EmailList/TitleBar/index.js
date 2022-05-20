@@ -3,7 +3,7 @@ import {
   Menu, Button, Dropdown, Row, Col,
 } from 'antd'
 import { ScheduleOutlined, CaretDownOutlined } from '@ant-design/icons'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function TitleBar ({ emailTemplate, openModal }) {
   const menu = (

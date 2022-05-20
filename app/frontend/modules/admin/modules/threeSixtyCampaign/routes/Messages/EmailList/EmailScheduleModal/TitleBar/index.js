@@ -3,7 +3,7 @@ import {
   Select,
 } from 'antd'
 import _ from 'lodash'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function TitleBar ({ emailSchedules: { list, selectedId }, changeSelected }) {
   const selectedEmailSchedule = _.find(list, ({ id }) => id === selectedId)

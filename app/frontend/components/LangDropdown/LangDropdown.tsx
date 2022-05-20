@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dropdown, Menu } from 'antd'
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

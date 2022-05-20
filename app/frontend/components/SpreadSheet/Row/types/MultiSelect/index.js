@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select } from 'antd'
 import cs from 'classnames'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function MultiSelect ({
   field, entity, index, updateEntity, context,

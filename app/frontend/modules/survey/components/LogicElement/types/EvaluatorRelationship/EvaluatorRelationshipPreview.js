@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../Condition.scss'
+import styles from '../../Condition.less'
 
 const EvaluatorRelationshipPreview = ({ condition }) => (
   <div className={styles.questionDock}>

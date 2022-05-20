@@ -9,7 +9,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import store from 'modules/reports/store/PropertyPanelStore'
 import CircularProgress from './CircularProgress'
 
-import styles from './InnovationStyles.scss'
+import styles from './InnovationStyles.less'
 
 const SCORE_PROGRESS_SIZE = 130
 

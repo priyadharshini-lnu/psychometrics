@@ -11,7 +11,7 @@ import { perform } from 'modules/survey/core/temp/socket'
 import NotificationDispatcher from 'modules/survey/dispatchers/NotificationDispatcher'
 import SerializeAssessment from 'modules/survey/core/builder/assessment/SerializeAssessment'
 import { TYPES as CAMPAIGN_TYPES } from 'constants/campaign'
-import styles from './Header.scss'
+import styles from './Header.less'
 
 const { I18n } = window
 

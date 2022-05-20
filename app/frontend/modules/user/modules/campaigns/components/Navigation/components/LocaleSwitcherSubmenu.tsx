@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Menu, Space } from 'antd'
 import { LoadingOutlined, DownOutlined } from '@ant-design/icons'
 
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 const { I18n } = window
 

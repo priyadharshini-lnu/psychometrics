@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './GraphicSlider.scss'
+import styles from './GraphicSlider.less'
 import connect from '../connect'
 
 const SliderPreview = ({ model, readOnly, I18n }) => {

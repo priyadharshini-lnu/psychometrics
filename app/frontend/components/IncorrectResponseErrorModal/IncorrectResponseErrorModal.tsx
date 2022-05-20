@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, Button } from 'antd'
 import _ from 'lodash'
 import { PropsFromRedux } from './connect'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 type Props = PropsFromRedux
 

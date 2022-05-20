@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import DndElement from 'components/DnD/DnDElement'
 import utils from 'modules/survey/utils'
-import styles from './ResourceManager.scss'
+import styles from './ResourceManager.less'
 import Header from './Header'
 import Resource from './Resource'
 

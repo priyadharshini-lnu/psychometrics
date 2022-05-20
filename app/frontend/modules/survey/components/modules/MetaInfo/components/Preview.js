@@ -4,7 +4,7 @@ import {
   BROWSER_NAME, BROWSER_VERSION, OS_NAME, OS_VERSION, UA_STRING,
 } from 'utils/uaParser'
 
-import styles from './MetaInfo.scss'
+import styles from './MetaInfo.less'
 
 const { screen } = window
 

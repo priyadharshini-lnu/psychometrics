@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropertyFilter from 'modules/reports/components/PropertyFilter'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import Select from 'react-select'
 import _ from 'lodash'
 import AppStore from 'modules/reports/store/AppStore'

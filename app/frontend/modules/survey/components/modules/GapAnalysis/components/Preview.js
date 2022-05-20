@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { SafeHTML } from 'components/SafeHTML'
-import styles from './GapAnalysis.scss'
+import styles from './GapAnalysis.less'
 import TableHeader from './TableHeaderPreview'
 import TableBody from './TableBodyPreview'
 import connect from '../connect'

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
 import { SOURCE_TYPES } from 'modules/reports/models/Report'
 import { connect } from 'react-redux'
-import styles from './Condition.scss'
+import styles from './Condition.less'
 import Types from './types'
 import DefaultValues from './DefaultValues'
 

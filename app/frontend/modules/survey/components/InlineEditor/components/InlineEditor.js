@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './InlineEditor.scss'
+import styles from './InlineEditor.less'
 
 export class InlineEditor extends Component {
   static propTypes = {

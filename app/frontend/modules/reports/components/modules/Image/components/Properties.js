@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { LibraryStore } from 'libs/library'
 import LibraryTransport from 'modules/reports/cable/LibraryChannel'
 import Socket from 'modules/reports/cable'

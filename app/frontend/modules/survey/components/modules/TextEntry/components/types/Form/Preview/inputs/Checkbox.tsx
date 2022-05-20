@@ -1,6 +1,6 @@
 import React from 'react'
 import { Checkbox as BaseCheckbox } from 'antd'
-import styles from '../../FormStyle.scss'
+import styles from '../../FormStyle.less'
 import { Question } from '../../interfaces'
 
 interface Props {

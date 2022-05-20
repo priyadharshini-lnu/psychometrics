@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../Condition.scss'
-import deviceStyles from './DeviceType.scss'
+import styles from '../../Condition.less'
+import deviceStyles from './DeviceType.less'
 
 export default class DeviceType extends Component {
   static propTypes = {

@@ -15,7 +15,7 @@ import { isInsideIframe } from 'utils/isInsideIframe'
 import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoTall.svg'
 import tteLogo from 'modules/user/assets/images/tteLogo.svg'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

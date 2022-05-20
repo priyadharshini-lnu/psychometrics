@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import 'styles/core.scss'
+import 'styles/core.less'
 import Modals from 'components/Modals'
-import homeStyles from 'views/Home/components/HomeView.scss'
-import blockStyles from 'views/BlockList/components/BlockListView.scss'
+import homeStyles from 'views/Home/components/HomeView.less'
+import blockStyles from 'views/BlockList/components/BlockListView.less'
 import Trash from 'views/Trash'
 import Block from 'views/BlockCenter/Block'
 import PropertyPanel from 'views/PropertyPanel'
 import BlockSerializer from 'models/BlockSerializer'
 import Header from './Header'
-import styles from './BlockCenter.scss'
+import styles from './BlockCenter.less'
 
 export class BlockCenter extends Component {
   componentDidMount () {

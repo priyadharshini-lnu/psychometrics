@@ -9,7 +9,7 @@ import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RouteComponentProps } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
 import Sidebar from './Sidebar'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { Content } = Layout
 const { I18n } = window

@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './StarBar.scss'
+import styles from './StarBar.less'
 
 const { $ } = window
 const STAR_WIDTH = 32

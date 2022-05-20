@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './RankOrder.scss'
+import styles from './RankOrder.less'
 
 interface Props {
   description: string

@@ -2,8 +2,8 @@ import ThreeSixtyApp from 'modules/admin/modules/threeSixtyCampaign/App'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import 'modules/admin/styles/ant.less'
-import 'modules/admin/styles/common.scss'
-import 'styles/utils.scss'
+import 'modules/admin/styles/common.less'
+import 'styles/utils.less'
 
 import initSentry from 'libs/initSentry'
 

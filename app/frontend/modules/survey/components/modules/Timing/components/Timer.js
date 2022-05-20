@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Timing.scss'
+import styles from './Timing.less'
 
 const HOUR = 3600000
 const MINUTE = 60000

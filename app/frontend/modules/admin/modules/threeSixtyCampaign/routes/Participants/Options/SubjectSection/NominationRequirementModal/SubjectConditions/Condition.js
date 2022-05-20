@@ -3,7 +3,7 @@ import { Input, Select } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import NestedOperator from 'modules/admin/modules/threeSixtyCampaign/components/NestedOperator'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 export default function Condition ({
   datasheetFields,

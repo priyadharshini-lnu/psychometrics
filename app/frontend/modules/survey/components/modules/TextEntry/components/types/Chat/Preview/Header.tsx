@@ -2,8 +2,8 @@ import React from 'react'
 import { Divider } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { I18n } from 'store/StoreWatchman'
-import styles from './ChatStyle.scss'
-import commonStyles from '../ChatStyle.scss'
+import styles from './ChatStyle.less'
+import commonStyles from '../ChatStyle.less'
 import { Question } from '../interfaces'
 
 interface Props {

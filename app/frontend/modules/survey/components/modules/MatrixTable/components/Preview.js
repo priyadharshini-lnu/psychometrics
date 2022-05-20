@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { SafeHTML } from 'components/SafeHTML'
-import styles from './MatrixTable.scss'
+import styles from './MatrixTable.less'
 import Previews from './Previews'
 import connect from '../connect'
 import { ScoringTable } from '../../MultipleChoice/components/ScoringTable'

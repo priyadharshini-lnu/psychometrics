@@ -15,7 +15,7 @@ import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/comm
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 
-import './styles.scss'
+import './styles.less'
 
 export default function Threesixty ({ campaign }) {
   const totalProgress = round(getTotalProgress(campaign))

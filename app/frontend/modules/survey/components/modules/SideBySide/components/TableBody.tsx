@@ -6,7 +6,7 @@ import { BuilderModel } from 'modules/survey/interfaces/questions/SideBySide'
 
 import LabelEditor from 'components/LabelEditor'
 
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 interface Props {
   model: BuilderModel

@@ -7,7 +7,7 @@ import cs from 'classnames'
 import * as faceapi from 'face-api.js'
 import { I18n } from 'modules/survey/store/StoreWatchman'
 import { Overlay } from './Overlay'
-import styles from './Tracker.scss'
+import styles from './Tracker.less'
 
 const FACE_TO_HEAD_RATIO = 0.3 // Assume Head is 30% bigger than the face
 

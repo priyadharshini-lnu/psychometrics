@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import cs from 'classnames'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 const TableHeaderPreview = ({ model, I18n }) => {
   const { props: { columnsData, scalePoints, hideHeaders }, moduleConfig } = model

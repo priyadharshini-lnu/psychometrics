@@ -6,9 +6,9 @@ import PropertyPanel from 'views/PropertyPanel'
 import Library from 'libs/library'
 import Modals from 'components/Modals'
 import Header from '../Header'
-import styles from './Dashboard.scss'
+import styles from './Dashboard.less'
 
-import '../../styles/core.scss'
+import 'modules/survey/styles/core.less'
 
 export class Dashboard extends Component {
   static propTypes = {

@@ -20,7 +20,7 @@ import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFacto
 import { Button, Checkbox, Modal } from 'antd'
 import htmldiff from 'libs/htmldiff'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
-import styles from './Text.scss'
+import styles from './Text.less'
 import config from './froalaConfig'
 import GetText from './GetText'
 import GetStyles from './GetStyles'

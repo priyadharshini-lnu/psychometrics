@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import TextEditor from 'components/TextEditor'
 
-import styles from './GraphicSlider.scss'
+import styles from './GraphicSlider.less'
 
 export const GraphicSlider = ({ model }) => {
   const { origin } = location

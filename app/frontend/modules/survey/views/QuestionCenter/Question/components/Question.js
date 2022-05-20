@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Question.scss'
+import styles from './Question.less'
 import Footer from './QuestionFooter'
 import Header from './QuestionHeader'
 import QuestionInfoBar from './QuestionInfoBar'

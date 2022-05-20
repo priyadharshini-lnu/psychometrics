@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './ConditionalTextModal.scss'
+import styles from './ConditionalTextModal.less'
 import ConditionList from './ConditionList'
 import moduleResults from './module_results'
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Input } from 'antd'
-import styles from './MultiInlineEditorStyle.scss'
+import styles from './MultiInlineEditorStyle.less'
 
 const { TextArea } = Input
 

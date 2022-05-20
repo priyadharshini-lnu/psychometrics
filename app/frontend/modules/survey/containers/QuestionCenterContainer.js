@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import 'styles/core.scss'
+import 'styles/core.less'
 import QuestionCenter from 'layouts/QuestionCenter'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
 import { setStore } from 'store/StoreWatchman'

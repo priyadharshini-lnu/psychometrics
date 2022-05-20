@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './DataSheet.scss'
+import styles from './DataSheet.less'
 
 const PREDICATE = {
   IsSameAsSubject: 'Is Same as Subject',

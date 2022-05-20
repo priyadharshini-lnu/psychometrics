@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../Condition.scss'
-import localStyles from './CompletionStatus.scss'
+import styles from '../../Condition.less'
+import localStyles from './CompletionStatus.less'
 
 export class CompletionStatus extends Component {
   static propTypes = {

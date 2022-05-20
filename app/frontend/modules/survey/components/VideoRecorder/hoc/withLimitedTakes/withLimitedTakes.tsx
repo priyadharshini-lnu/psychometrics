@@ -13,7 +13,7 @@ import { I18n } from 'modules/survey/store/StoreWatchman'
 import useMap from 'hooks/useMap'
 import MultipleTakeButtons from './MultipleTakeButtons'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface Props {
   onSuccessUpload(mediaResponse: MediaResponse): void
