@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { useResources } from 'hooks/useResources'
 import { CountDisplay } from 'components/CountDisplay'
 import {
-  Row, Col, Table, Input, Space, Pagination, Button,
+  Row, Col, Table, Input, Space, Pagination, Button, Menu, Modal,
 } from 'antd'
 import { Client, ClientTR } from 'modules/admin/modules/client/core/clients'
 import _ from 'lodash'
@@ -11,14 +11,17 @@ import { PlusOutlined } from '@ant-design/icons'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { ClientFormModal } from './ClientFormModal'
 import { connect, ConnectedProps } from 'react-redux'
-import { BaseMeta } from 'hooks/useResources/interfaces'
+import { BaseMeta, DeleteResource, UpdateResource } from 'hooks/useResources/interfaces'
+import ConditionalDropdown from 'components/ConditionalDropdown'
+import { RemoveClientModal } from './RemoveClientModal'
 
 const { Column } = Table
 const { Search } = Input
 const { I18n } = window
 
 const MODALS = {
-  ClientFormModal
+  ClientFormModal,
+  RemoveClientModal,
 }
 
 const connecter = connect(
@@ -37,7 +40,7 @@ interface Meta extends BaseMeta{
 const ClientListComponent: FC<Props> = ({ openModal }) => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
-    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, createResource,
+    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource, createResource,
   } = useResources<Client, Meta>(
     'clients',
     { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
@@ -74,7 +77,7 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
                 onClick={() => openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })}
               >
               <PlusOutlined />
-              Create Client
+              {I18n.t('frontend.clients.actions.create.create_client')}
             </Button>
           </Space>
         </Col>
@@ -132,6 +135,24 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
               dataIndex={['projectManager', 'name']}
               key="project_manager"
             />
+
+            <Column
+              title={I18n.t('common.column.action')}
+              key="action"
+              render={client => (
+                <ConditionalDropdown
+                  menu={
+                    ActionsMenu({
+                      clientId: client.id,
+                      clientName: client.name,
+                      updateResource,
+                      removeResource,
+                      openModal,
+                      meta,
+                    }) as React.ReactElement
+                  }/>
+              )}
+            />
           </Table>
         </Col>
       </Row>
@@ -144,6 +165,35 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
       />
        <Modals modals={MODALS} />
     </>
+  )
+}
+
+interface ActionMenuProps {
+  clientId: string
+  clientName: string
+  meta: Meta,
+  updateResource: UpdateResource<Client>
+  removeResource: DeleteResource
+  openModal: (modalName: string, modalProps: unknown) => void
+}
+
+const ActionsMenu: FC<ActionMenuProps> = ({ clientId, clientName, meta, updateResource, removeResource, openModal }) => {
+  return (
+    <Menu>
+      <Menu.Item key="Edit">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => openModal('ClientFormModal', { updateClient: updateResource, types: meta.types, countries: meta.countries }) }>
+          {I18n.t('common.actions.edit')}
+        </div>
+      </Menu.Item>
+      <Menu.Item key="remove">
+        <div role="button" tabIndex={-1} onClick={() => openModal('RemoveClientModal', { clientId, clientName, removeResource })}>
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
+    </Menu>
   )
 }
 

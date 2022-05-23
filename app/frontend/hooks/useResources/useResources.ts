@@ -15,7 +15,7 @@ import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
-  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType, CreateResource, UpdateResource,
+  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource,
 } from './interfaces'
 import { formatErrors } from './utils'
 import { Schema } from 'modules/admin/modules/client/core/schema'
@@ -164,7 +164,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     })
   }
 
-  const removeResource = async (
+  const removeResource: RemoveResource = async (
     id: string, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
   ) => {
     const requestKey: RequestType = `delete@${id}`

@@ -55,8 +55,11 @@ export interface BaseMeta {
   pageCount?: number,
 }
 
+type ExtraArgs = { responseType?: ResponseType, apiConfig?: ApiConfig }
 export type CreateResource<R> =
-  (attribute:  PartialDeep<AdditionRelationshipAttribute<Omit<R, 'id'>>>, args?: { responseType?: ResponseType, apiConfig?: ApiConfig }) => Promise<R>
+  (attribute:  PartialDeep<AdditionRelationshipAttribute<Omit<R, 'id'>>>, args?: ExtraArgs) => Promise<R>
 
 export type UpdateResource<R> =
-  (attribute:  { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: { responseType?: ResponseType, apiConfig?: ApiConfig }) => Promise<R>
+  (attribute:  { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: ExtraArgs) => Promise<R>
+
+export type RemoveResource = (id: string, args?: ExtraArgs) => Promise<void>

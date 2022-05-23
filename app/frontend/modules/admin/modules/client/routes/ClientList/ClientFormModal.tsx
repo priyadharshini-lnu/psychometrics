@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useEffect, useState } from 'react'
 import { Form, Input, Select, Spin, } from 'antd'
 import _ from 'lodash'
 import { Client } from '../../core/clients'
-import { CreateResource } from 'hooks/useResources/interfaces'
+import { CreateResource, UpdateResource } from 'hooks/useResources/interfaces'
 import ResourceFormModal from 'components/ResourceFormModal'
 import { useResources } from 'hooks/useResources'
 import { User } from 'modules/admin/modules/client/core/users'
@@ -14,6 +14,7 @@ const { Option } = Select
 interface Props {
   client: undefined
   addClient: CreateResource<Client>
+  updateClient: UpdateResource<Client>
   close(): void
   types: string[]
   countries: string[]
@@ -22,6 +23,7 @@ interface Props {
 export const ClientFormModal: React.FC<Props> = ({
   client,
   addClient,
+  updateClient,
   close,
   types,
   countries,
@@ -39,7 +41,8 @@ export const ClientFormModal: React.FC<Props> = ({
       scrollToFirstError
       modalProps={{ width: 620 }}
       request={{
-        createResource: addClient
+        createResource: addClient,
+        updateResource: updateClient,
       }}
     >
       {({}) => (

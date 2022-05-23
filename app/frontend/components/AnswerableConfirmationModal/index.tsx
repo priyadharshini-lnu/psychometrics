@@ -59,7 +59,7 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
             <>
               {confirmationMessage}
               <div>
-                <b>{requiredAnswer}</b>
+                <b>"{requiredAnswer}"</b>
               </div>
             </>
           )}
