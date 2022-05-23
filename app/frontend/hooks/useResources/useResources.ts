@@ -92,9 +92,12 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   }
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
+    const { responseType, apiConfig } = args
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = apiConfig
+
     if (queryState) { newApiConfig = { ...apiConfig, ...queryState } }
+
     return new Promise(async (resolve, reject) => {
       const {
         data: response, meta, error, errors,

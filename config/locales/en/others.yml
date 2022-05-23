@@ -1360,6 +1360,7 @@ en:
   dry_errors:
     errors:
       filled?: can't be blank
+      key?: can't be blank
   ecommerce:
     carts:
       show:

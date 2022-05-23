@@ -14,7 +14,7 @@ module Api
             attribute[:type].filled(:string, included_in?: ::Client.types.keys)
             attribute[:number].filled(:string)
             attribute[:country].filled(:string)
-            attribute[:year].filled(:integer, lteq?: Time.zone.now.year)
+            attribute[:year].filled(:integer, gteq?: Time.zone.now.year - 2, lteq?: Time.zone.now.year + 10)
           end
         end
 

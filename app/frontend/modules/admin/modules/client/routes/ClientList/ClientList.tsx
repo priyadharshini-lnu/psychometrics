@@ -11,6 +11,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { ClientFormModal } from './ClientFormModal'
 import { connect, ConnectedProps } from 'react-redux'
+import { BaseMeta } from 'hooks/useResources/interfaces'
 
 const { Column } = Table
 const { Search } = Input
@@ -28,12 +29,16 @@ const connecter = connect(
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
+interface Meta extends BaseMeta{
+  countries: string[]
+  types: string[]
+}
 
 const ClientListComponent: FC<Props> = ({ openModal }) => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, createResource,
-  } = useResources<Client>(
+  } = useResources<Client, Meta>(
     'clients',
     { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
   )
@@ -55,7 +60,6 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
             totalCount={meta.recordCount || 0}
             isLoading={isLoading('fetch')}
           />
-          {/* <button onClick={() => data?.[0]?.id && updateResource({ id: data?.[0]?.id, accountManagerId: '86468', projectManagerIds: ['1'] })}>Update</button> */}
         </Col>
         <Col>
           <Space>
@@ -67,7 +71,7 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
             <Button
                 type="primary"
                 disabled={isLoading('fetch')}
-                onClick={() => openModal('ClientFormModal', { addClient: createResource })}
+                onClick={() => openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })}
               >
               <PlusOutlined />
               Create Client

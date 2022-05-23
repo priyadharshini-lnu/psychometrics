@@ -1073,6 +1073,8 @@ Rails.application.routes.draw do
           jsonapi_resources :clients do
             jsonapi_relationships
           end
+
+          jsonapi_resources :users
         end
       end
     end

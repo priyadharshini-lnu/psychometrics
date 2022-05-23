@@ -8,6 +8,13 @@ module Api
 
     private
 
+    def base_response_meta
+      {
+        countries: ::Datas::Geo.order(:country_name).select(:country_name).distinct.pluck(:country_name),
+        types: Client.types.keys,
+      }
+    end
+
     def find_client
       @client = Client.find(params[:client_id] || params[:id])
     end
