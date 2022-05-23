@@ -1,5 +1,5 @@
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-@import '~antd/lib/style/color/colors';
+@import 'antd/lib/style/color/colors';
 
 // The prefix to use on all css classes from ant.
 @ant-prefix: ant;
@@ -19,7 +19,7 @@
 @warning-color: @gold-6;
 @normal-color: #d9d9d9;
 @white: #fff;
-@black: #000;
+@black: #222;
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
@@ -66,7 +66,7 @@
 @heading-2-size: ceil(@font-size-base * 2.14);
 @heading-3-size: ceil(@font-size-base * 1.71);
 @heading-4-size: ceil(@font-size-base * 1.42);
-@line-height-base: 1.5;
+@line-height-base: 1.5715em;
 @border-radius-base: 4px;
 @border-radius-sm: 2px;
 
@@ -158,8 +158,8 @@
 @btn-default-bg: #fff;
 @btn-default-border: @border-color-base;
 
-@btn-danger-color: @error-color;
-@btn-danger-bg: @background-color-base;
+@btn-danger-color: #fff;
+@btn-danger-bg: @red-base;
 @btn-danger-border: @border-color-base;
 
 @btn-disable-color: @disabled-color;
@@ -239,10 +239,10 @@
 @grid-gutter-width: 0;
 
 // Layout
-@layout-body-background: #f0f2f5;
-@layout-header-background: #001529;
+@layout-body-background: #fff;
+@layout-header-background: #fff;
 @layout-footer-background: @layout-body-background;
-@layout-header-height: 64px;
+@layout-header-height: 80px;
 @layout-header-padding: 0 50px;
 @layout-footer-padding: 24px 50px;
 @layout-sider-background: @layout-header-background;
@@ -526,8 +526,8 @@
 // Slider
 // ---
 @slider-margin: 14px 6px 10px;
-@slider-rail-background-color: @background-color-base;
-@slider-rail-background-color-hover: #e1e1e1;
+@slider-rail-background-color: hsv(0, 0, 90%);
+@slider-rail-background-color-hover: hsv(0, 0, 86%);
 @slider-track-background-color: @primary-3;
 @slider-track-background-color-hover: @primary-4;
 @slider-handle-color: @primary-3;
@@ -606,14 +606,3 @@
 // ---
 @drawer-header-padding: 16px 24px;
 @drawer-body-padding: 24px;
-
-@primary-color: #1BAF99;
-@secondary-color: #004357;
-@text-color: #434a54;
-@text-color-secondary: #004357;
-@btn-primary-bg: #1BAF99;
-@processing-color: #168D7C;
-
-.ant-dropdown-menu-item-group-title {
-  color: grey !important;
-}

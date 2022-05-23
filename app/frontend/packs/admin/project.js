@@ -1,13 +1,15 @@
 import ProjectsApp from 'modules/admin/modules/projects/App'
 import ReactDOM from 'react-dom'
 import React from 'react'
-import 'modules/admin/styles/ant.less'
+import 'styles/ant.js'
 import 'modules/admin/styles/common.less'
 import 'styles/utils.less'
 import initSentry from 'libs/initSentry'
 
 initSentry()
+
 ReactDOM.render(<ProjectsApp />, document.getElementById('project-container'))
+
 
 if (__DEV__) {
   if (module.hot) {

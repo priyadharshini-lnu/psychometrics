@@ -4,7 +4,7 @@ import React from 'react'
 import AssessorApp from 'modules/admin/modules/AssessorApp/App'
 import initSentry from 'libs/initSentry'
 
-import 'modules/admin/styles/ant.less'
+import 'styles/ant.js'
 import 'modules/admin/styles/common.less'
 import 'styles/utils.less'
 

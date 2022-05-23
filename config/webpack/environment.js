@@ -35,6 +35,7 @@ environment.plugins.insert(
     RecordRTC: 'recordrtc',
   }),
 )
+
 if (__DEV__) {
   const forkTsCheckerArgs = {
     typescript: {
@@ -53,10 +54,12 @@ if (__DEV__) {
 }
 
 // Uncomment to activate bundle analyzer
-// environment.plugins.insert(
-//   'BundleAnalyzerPlugin',
-//   new BundleAnalyzerPlugin(),
-// )
+// if (__DEV__) {
+//   environment.plugins.insert(
+//     'BundleAnalyzerPlugin',
+//     new BundleAnalyzerPlugin(),
+//   )
+// }
 
 const myCssLoaderOptions = {
   modules: true,
@@ -175,7 +178,7 @@ environment.config.merge({
           chunks: 'initial',
           name: 'vendors2',
           test (mod) {
-            if (mod.resource && mod.resource.includes('ant.less')) {
+            if (mod.resource && mod.resource.includes('styles/ant.less')) {
               return true
             }
             if (vendors2.some(str => mod.context && mod.context.includes(str))) {

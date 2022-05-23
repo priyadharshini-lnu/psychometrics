@@ -6,7 +6,7 @@ import AssessmentContainer from 'modules/survey/containers/AssessmentContainer'
 import initSentry from 'libs/initSentry'
 import rstore from '../../modules/survey/store'
 
-import 'modules/user/styles/ant.less'
+import 'styles/ant.js'
 import 'styles/utils.less'
 
 initSentry()

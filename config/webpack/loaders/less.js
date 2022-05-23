@@ -1,14 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 const { resolve } = require('path')
 const { env } = require('process')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const __PROD__ = env.NODE_ENV === 'production'
 
 module.exports.withModules = {
   test: /\.less$/i,
-  exclude: /node_modules|ant\.less/,
+  exclude: /node_modules|ant\.less|globals\.less/,
   use: [
-    { loader: 'style-loader' },
+    __PROD__ ? MiniCssExtractPlugin.loader : { loader: 'style-loader' },
     {
       loader: 'css-loader',
       options: {
@@ -19,7 +20,7 @@ module.exports.withModules = {
     },
     {
       loader: 'postcss-loader',
-      options: { config: { path: resolve() }, sourceMap: true },
+      options: { sourceMap: true },
     },
     {
       loader: 'less-loader',
@@ -31,9 +32,9 @@ module.exports.withModules = {
 
 module.exports.withoutModules = {
   test: /\.less$/i,
-  include: /node_modules|ant\.less/,
+  include: /node_modules|ant\.less|globals\.less/,
   use: [
-    { loader: 'style-loader' },
+    __PROD__ ? MiniCssExtractPlugin.loader : { loader: 'style-loader' },
     {
       loader: 'css-loader',
       options: {
@@ -42,11 +43,17 @@ module.exports.withoutModules = {
     },
     {
       loader: 'postcss-loader',
-      options: { config: { path: resolve() }, sourceMap: true },
+      options: { sourceMap: true },
     },
     {
       loader: 'less-loader',
-      options: { javascriptEnabled: true },
+      options: {
+        paths: [
+          resolve(__dirname, '../../..', 'app/frontend'),
+        ],
+        javascriptEnabled: true,
+      },
     },
   ],
+  sideEffects: false,
 }

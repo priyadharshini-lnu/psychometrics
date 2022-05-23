@@ -6,7 +6,6 @@ import Library from 'libs/library'
 import PageEditor from 'modules/reports/views/PageEditor'
 import styles from './Dashboard.less'
 import Header from '../Header'
-import 'modules/reports/styles/core.less'
 
 export class Dashboard extends Component {
   componentDidMount () {

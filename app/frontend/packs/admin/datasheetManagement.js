@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import 'modules/admin/styles/ant.less'
+import 'styles/ant.js'
 import 'modules/admin/styles/common.less'
 import 'styles/utils.less'
 

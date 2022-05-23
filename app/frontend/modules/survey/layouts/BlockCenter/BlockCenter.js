@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import 'styles/core.less'
+import 'modules/survey/styles/globals.less'
 import Modals from 'components/Modals'
 import homeStyles from 'views/Home/components/HomeView.less'
 import blockStyles from 'views/BlockList/components/BlockListView.less'

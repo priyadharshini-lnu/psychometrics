@@ -8,7 +8,7 @@ import Modals from 'components/Modals'
 import Header from '../Header'
 import styles from './Dashboard.less'
 
-import 'modules/survey/styles/core.less'
+import 'modules/survey/styles/globals.less'
 
 export class Dashboard extends Component {
   static propTypes = {
