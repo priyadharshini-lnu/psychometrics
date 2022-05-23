@@ -32,6 +32,11 @@ module ProjectInitialState
           project.saml_setting, {
             key_transform: :camel_lower, serializer: ::Administration::Projects::SamlSettingSerializer
           }
+        ).as_json,
+        securitySetting: ActiveModelSerializers::SerializableResource.new(
+          project.security_setting, {
+            key_transform: :camel_lower, serializer: ::Administration::Projects::SecuritySettingSerializer
+          }
         ).as_json
       },
       config: {

@@ -44,6 +44,7 @@ end
 ### Authentication and authorization
 gem 'devise',                     '~> 4.7.3'
 gem 'devise-i18n',                '~> 1.9.2'
+gem 'devise-security',            '~> 0.17.0'
 gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
 gem 'pundit',                     '~> 2.1.0'

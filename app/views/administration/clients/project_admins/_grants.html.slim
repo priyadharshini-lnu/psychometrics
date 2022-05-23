@@ -17,6 +17,7 @@
 - project_settings_saml_id = dom_id(u, :project_settings_saml_id)
 - project_settings_sms_id = dom_id(u, :project_settings_sms)
 - project_settings_integrations_id = dom_id(u, :project_settings_integrations_id)
+- project_settings_security_id = dom_id(u, :project_settings_security_id)
 
 - sms_invites_view_id = dom_id(u, :sms_invites_view)
 - sms_invites_manage_id = dom_id(u, :sms_invites_manage)
@@ -66,7 +67,7 @@ table.table.grants-table
                       'manage_users', resource.has_grant?(:projects, :manage_users), id: projects_manage_users_id
               | Manage Users
 
-    - if policy(:membership).manage_grants_for_actions?('project_settings', ['design', 'smtp', 'sms', 'saml', 'integrations'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('project_settings', ['design', 'smtp', 'sms', 'saml', 'integrations', 'password'], client: client)
       tr
         td Project Settings
         td
@@ -91,6 +92,11 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][project_settings][]',
                         'integrations', resource.has_grant?(:project_settings, :integrations), id: project_settings_integrations_id, data: { turn_on: [project_settings_integrations_id] }
                 | Integrations
+            - if policy(:membership).manage_grants_for_action?('project_settings', 'password', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][project_settings][]',
+                        'security', resource.has_grant?(:project_settings, :security), id: project_settings_security_id, data: { turn_on: [project_settings_security_id] }
+                | Security settings
 
     - if policy(:membership).manage_grants_for_actions?('sms_invites', ['view', 'manage'], client: client)
       tr

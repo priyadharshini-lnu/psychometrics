@@ -152,6 +152,7 @@ en:
             last_name:
               blank: Last name can't be blank
             password:
+              contains_repeats: Password must not contain repeats
               too_short: Password is too short. Minimum %{count} character required
               too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
         register:
@@ -1503,6 +1504,8 @@ en:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds
     manage: Manage
     'no': 'No'
+    passwordSetting:
+      update_success: Password settings successfull updated
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"

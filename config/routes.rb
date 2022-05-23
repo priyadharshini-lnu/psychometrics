@@ -281,6 +281,7 @@ Rails.application.routes.draw do
             post :validate_settings
           end
         end
+        resources :security_settings, only: %i[update]
         resources :integrations, only: %i[index create update destroy]
       end
 
@@ -831,7 +832,8 @@ Rails.application.routes.draw do
              controllers: { registrations: 'users/registrations',
                             sessions: 'users/sessions',
                             invitations: 'users/invitations',
-                            passwords: 'passwords' }
+                            passwords: 'passwords',
+                            password_expired: 'users/password_expired' }
   # Manager's panel
   #
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'

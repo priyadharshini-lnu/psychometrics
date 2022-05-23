@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+module Administration
+  module Projects
+    class SecuritySettingSerializer < ActiveModel::Serializer
+      attributes :id, :project_id, :enforce_strong_password, :min_password_length,
+                 :enforce_password_policy, :disable_password_reuse, :password_expiration, :send_unlock_email,
+                 :auto_unlock_time, :attempts_to_lock, :lock_account, :restrict_sequences
+    end
+  end
+end

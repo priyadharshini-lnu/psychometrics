@@ -3337,6 +3337,27 @@ en:
       webhooks: Webhooks
     save: Save
     search: Search
+    security_setting:
+      180_days: 180 Days
+      30_days: 30 Days
+      365_days: 365 Days
+      90_days: 90 Days
+      attempts_to_lock: Attempts to lock
+      auto_unlock_time: Auto unlock time
+      disable_password_reuse: Disable password reuse
+      enforce_password_policy: Enforce password policy at next sign-in
+      enforce_strong: Enforce strong password
+      expiration: Password expiration
+      lock_account: Lock account
+      max_length: Maximum password length
+      min_length: Minimum password length
+      never: Never
+      old_passwords_count: Old passwords count
+      restrict_sequences: Restrict sequential and repetitive characters
+      security: Security Settings
+      security_setting: Security settings
+      send_unlock_email: Send unlock email
+      update_success_msg: Password settings successfull updated
     show: Show
     sms_invites:
       actions:
