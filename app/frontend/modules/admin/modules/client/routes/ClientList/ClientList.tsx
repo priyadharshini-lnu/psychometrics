@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, ReactChild, ReactElement, useCallback, useEffect } from 'react'
 import { useResources } from 'hooks/useResources'
 import { CountDisplay } from 'components/CountDisplay'
 import {
@@ -14,6 +14,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { RemoveClientModal } from './RemoveClientModal'
+import { TableLayout } from 'modules/admin/components/TableLayout'
 
 const { Column } = Table
 const { Search } = Input
@@ -45,116 +46,80 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
     'clients',
     { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
   )
-
   useEffect(() => {
     fetch()
   }, [])
+  const tableLoading = isLoading('fetch')
 
-  return (
-    <>
-      <Row
-        justify="space-between"
-        align="middle"
-        className="pt-4 pb-4 ps-4 pe-4"
-      >
-        <Col>
-          <CountDisplay
-            selectedCount={0}
-            totalCount={meta.recordCount || 0}
-            isLoading={isLoading('fetch')}
-          />
-        </Col>
-        <Col>
-          <Space>
-            <Search
-              placeholder={I18n.t('common.actions.search')}
-              value={getFilteredValue('name_cont')}
-              onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
-            />
-            <Button
-                type="primary"
-                disabled={isLoading('fetch')}
-                onClick={() => openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })}
-              >
-              <PlusOutlined />
-              {I18n.t('frontend.clients.actions.create.create_client')}
-            </Button>
-          </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            rowKey={row => row?.id ?? -1}
-            dataSource={data}
-            pagination={false}
-            loading={isLoading('fetch')}
-            onChange={handleTableChange}
-          >
-            <Column
-              title={I18n.t('common.column.id')}
-              dataIndex="id"
-              key="id"
-              sorter
-              sortOrder={getSortOrder('id')}
-            />
-            <Column
-              title={I18n.t('common.column.name')}
-              key="name"
-              width={300}
-              sorter
-              sortOrder={getSortOrder('name')}
-              render={({ name, id }) => (
-                <a href={`/administration/clients/${id}/projects`}>{name}</a>
-              )}
-            />
-            <Column
-              title={I18n.t('administration.clients.columns.type')}
-              dataIndex="type"
-              key="type"
-            />
-            <Column
-              title={I18n.t('administration.clients.columns.country')}
-              dataIndex="country"
-              key="county"
-            />
-            <Column
-              title={I18n.t('administration.clients.columns.year')}
-              dataIndex="year"
-              key="year"
-              sorter
-              sortOrder={getSortOrder('year')}
-            />
-            <Column
-              title={I18n.t('administration.clients.columns.account_manager')}
-              dataIndex={['accountManager', 'name']}
-              key="account_manager"
-            />
-            <Column
-              title={I18n.t('administration.clients.columns.project_manager')}
-              dataIndex={['projectManager', 'name']}
-              key="project_manager"
-            />
+  const ClientTable =
+    <Table
+      rowKey={row => row?.id ?? -1}
+      dataSource={data}
+      pagination={false}
+      loading={tableLoading}
+      onChange={handleTableChange}
+    >
+      <Column
+        title={I18n.t('common.column.id')}
+        dataIndex="id"
+        key="id"
+        sorter
+        sortOrder={getSortOrder('id')}
+      />
+      <Column
+        title={I18n.t('common.column.name')}
+        key="name"
+        width={300}
+        sorter
+        sortOrder={getSortOrder('name')}
+        render={({ name, id }) => (
+          <a href={`/administration/clients/${id}/projects`}>{name}</a>
+        )}
+      />
+      <Column
+        title={I18n.t('administration.clients.columns.type')}
+        dataIndex="type"
+        key="type"
+      />
+      <Column
+        title={I18n.t('administration.clients.columns.country')}
+        dataIndex="country"
+        key="county"
+      />
+      <Column
+        title={I18n.t('administration.clients.columns.year')}
+        dataIndex="year"
+        key="year"
+        sorter
+        sortOrder={getSortOrder('year')}
+      />
+      <Column
+        title={I18n.t('administration.clients.columns.account_manager')}
+        dataIndex={['accountManager', 'name']}
+        key="account_manager"
+      />
+      <Column
+        title={I18n.t('administration.clients.columns.project_manager')}
+        dataIndex={['projectManager', 'name']}
+        key="project_manager"
+      />
 
-            <Column
-              title={I18n.t('common.column.action')}
-              key="action"
-              render={client => (
-                <ConditionalDropdown
-                  menu={
-                    ActionsMenu({
-                      client,
-                      updateResource,
-                      removeResource,
-                      openModal,
-                      meta,
-                    }) as React.ReactElement
-                  }/>
-              )}
-            />
-          </Table>
-        </Col>
-      </Row>
+      <Column
+        title={I18n.t('common.column.action')}
+        key="action"
+        render={client => (
+          <ConditionalDropdown
+            menu={
+              ActionsMenu({
+                client,
+                updateResource,
+                removeResource,
+                openModal,
+                meta,
+              }) as React.ReactElement
+            }/>
+        )}
+      />
       <Pagination
         current={currentPage}
         pageSize={pageSize}
@@ -162,11 +127,37 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
         onChange={changePage}
         className="pl"
       />
-       <Modals modals={MODALS} />
+    </Table>
+
+  const Filter =
+    <Space>
+      <Search
+        placeholder={I18n.t('common.actions.search')}
+        value={getFilteredValue('name_cont')}
+        onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
+      />
+      <Button
+          type="primary"
+          disabled={tableLoading}
+          onClick={() => openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })}
+        >
+        <PlusOutlined />
+        {I18n.t('frontend.clients.actions.create.create_client')}
+      </Button>
+    </Space>
+
+  return (
+    <>
+      <TableLayout
+        table={ClientTable}
+        filters={Filter}
+        recordCount={meta.recordCount}
+        loading={tableLoading}
+      />
+      <Modals modals={MODALS} />
     </>
   )
 }
-
 interface ActionMenuProps {
   client: Client
   meta: Meta,
