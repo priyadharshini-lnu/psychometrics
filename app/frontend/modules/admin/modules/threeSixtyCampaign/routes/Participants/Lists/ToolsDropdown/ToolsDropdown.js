@@ -6,15 +6,10 @@ import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 
 const menu = ({
-  projectId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
+  campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   openModal, dimensionId, permissions, onExport,
 }) => (
   <Menu>
-    {permissions.manageDatasheets && (
-      <Menu.Item key="datasheet">
-        <a href={`/administration/clients/${projectId}/datasheet_rows`}>Manage Data Sheets...</a>
-      </Menu.Item>
-    )}
     {permissions.manageRelationships && (
       <Menu.Item key="manage_relationship">
         <a onClick={() => openModal('ManageRelationshipsModal')} role="button" tabIndex={-1}>Manage Relationships...</a>
