@@ -6,7 +6,8 @@ interface Error {
 }
 
 interface JsonApiStandardError {
-  title: string,
+  title: string
+  detail?: string
   source: {
     pointer: string,
   }
@@ -22,7 +23,7 @@ export const convertJsonApiErrors  = (errors: JsonApiStandardError[], schema: an
 
     if (pointer === undefined) {
       acc['base'] ||= []
-      acc['base'] = [...acc['base'], error.title]
+      acc['base'] = [...acc['base'], { title: error.title, detail: error.detail }]
       return acc
     }
 
@@ -40,7 +41,7 @@ export const convertJsonApiErrors  = (errors: JsonApiStandardError[], schema: an
     } else {
       attribute = pointer
     }
-    acc[attribute] = error.title
+    acc[attribute] = { title: error.title, detail: error.detail }
 
     return acc
   }, {})

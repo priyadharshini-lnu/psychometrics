@@ -35,7 +35,6 @@ interface Props {
   transformValues?(values: object): object
   scrollToFirstError?: boolean
   submitButtonName?: string
-  jsonApiStandard?: boolean
 }
 
 interface Request {

@@ -48,7 +48,6 @@ export const ClientFormModal: React.FC<Props> = ({
         createResource: addClient,
         updateResource: updateClient,
       }}
-      jsonApiStandard
     >
       {({}) => (
         <>
