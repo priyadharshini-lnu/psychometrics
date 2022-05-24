@@ -15,12 +15,20 @@ module UsersResults
     attribute :prev_pages, Array, default: []
     attribute :progress, Integer
 
+    validate :check_status
+
     def norm_id
       norm_data.dig(:id)&.to_i
     end
 
     def attributes
       super.except(:norm_data)
+    end
+
+    def check_status
+      return if status == :in_progress
+
+      errors.add(:status, 'invalid status to update')
     end
   end
 end
