@@ -18,6 +18,7 @@ export const ClientTR = t.intersection([
     projectManager: t.union([
       t.type({
         id: t.string,
+        type: t.string,
         name: t.string,
       }),
       t.undefined]),

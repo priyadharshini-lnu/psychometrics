@@ -8,6 +8,7 @@ import { Status } from './constants'
 import { PropsFromRedux } from './connect'
 import { Resource } from './interfaces'
 import FieldsUtil from './FieldsUtil'
+import { resourceToFormData } from 'libs/jsonApi/helpers'
 
 type Props = PropsFromRedux & OwnProps
 
@@ -49,6 +50,7 @@ export type OwnProps = {
   }): ReactElement
   scrollToFirstError?: boolean
   mockRequest?: boolean
+  jsonApiStandard?: boolean
 }
 
 const ResourceForm: React.FC<Props> = ({
@@ -67,6 +69,7 @@ const ResourceForm: React.FC<Props> = ({
   children,
   transformValues,
   scrollToFirstError,
+  jsonApiStandard
 }: Props) => {
   const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
@@ -82,14 +85,13 @@ const ResourceForm: React.FC<Props> = ({
 
   useEffect(() => {
     if (!isEdit()) { return }
-
     if (resource) {
-      formValuesToField(resource)
+      formValuesToField(resourceToFormData(resource, resourceName))
     } else {
       handleStatusChange(Status.Loading)
       makeRequest('fetchResource').then(({ response }) => {
         handleStatusChange(Status.Loaded)
-        formValuesToField({ ...response })
+        formValuesToField(resourceToFormData(response, resourceName))
       })
     }
   }, [])
@@ -120,6 +122,8 @@ const ResourceForm: React.FC<Props> = ({
     if (request?.submit) { return request.submit(values) }
 
     const requestName = isEdit() ? 'updateResource' : 'createResource'
+    if (isEdit()) { values = { ...values, id: resourceId || resource?.id } }
+
     return makeRequest(requestName, values)
   }
 
@@ -130,12 +134,12 @@ const ResourceForm: React.FC<Props> = ({
 
   const formValuesToField = (formValues = {}) => {
     const newFields: FieldData[] = []
-    _.each(formValues, (value, name: string) => {
-      const field = _.find(store.fields, { name })
+    _.each(formValues, (value: any, name: string) => {
+      let field = _.find(store.fields, { name })
       let newField: FieldData = { name, value }
-      if (field) {
-        newField = { ...field, value }
-      }
+
+      if (field) { newField = { ...field, value } }
+
       newFields.push(newField)
     })
     store.setFields(newFields)

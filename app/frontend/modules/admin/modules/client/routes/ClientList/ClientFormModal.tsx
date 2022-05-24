@@ -7,12 +7,13 @@ import ResourceFormModal from 'components/ResourceFormModal'
 import { useResources } from 'hooks/useResources'
 import { User } from 'modules/admin/modules/client/core/users'
 import range from 'lodash/range'
+import { AdditionRelationshipAttribute } from 'libs/jsonApi/interfaces'
 
 const { I18n } = window
 const { Option } = Select
 
 interface Props {
-  client: undefined
+  client: AdditionRelationshipAttribute<Client>
   addClient: CreateResource<Client>
   updateClient: UpdateResource<Client>
   close(): void
@@ -31,10 +32,13 @@ export const ClientFormModal: React.FC<Props> = ({
   const { data: projectManagers, fetch: fetchProjectManager, isLoading: isProjectManagerLoading } = useResources<User>('users')
   const { data: accountManagers, fetch: fetchAccountManager, isLoading: isAccountManagerLoading } = useResources<User>('users')
   const currentYear = new Date().getFullYear()
+  const accountManagersForSelect = client?.accountManager ? accountManagers.concat(client.accountManager) : accountManagers
+  const projectManagersForSelect = client?.projectManager ? projectManagers.concat(client.projectManager) : projectManagers
 
   return (
     <ResourceFormModal
       resourceName="clients"
+      resource={client}
       readableResourceName="Client"
       showSuccessMessages
       close={close}
@@ -44,6 +48,7 @@ export const ClientFormModal: React.FC<Props> = ({
         createResource: addClient,
         updateResource: updateClient,
       }}
+      jsonApiStandard
     >
       {({}) => (
         <>
@@ -105,7 +110,7 @@ export const ClientFormModal: React.FC<Props> = ({
               }
               notFoundContent={isAccountManagerLoading('fetch') ? <Spin size="small" /> : null}
             >
-              {accountManagers.map(({ id, name }) => (<Option key={id} value={id}>{name}</Option>))}
+              {accountManagersForSelect.map(({ id, name }) => (<Option key={id} value={id}>{name}</Option>))}
             </Select>
           </Form.Item>
           <Form.Item
@@ -115,13 +120,13 @@ export const ClientFormModal: React.FC<Props> = ({
           >
            <Select
               showSearch
-              filterOption={false}
               onSearch={(value) => {
                 fetchProjectManager({ apiConfig: { filter: { search_query: value }} })}
               }
               notFoundContent={isProjectManagerLoading('fetch') ? <Spin size="small" /> : null}
+              filterOption={false}
             >
-              {projectManagers.map(({ id, name }) => (<Option key={id} value={id}>{name}</Option>))}
+              {projectManagersForSelect.map(({ id, name }) => (<Option key={id} value={id}>{name}</Option>))}
             </Select>
           </Form.Item>
         </>

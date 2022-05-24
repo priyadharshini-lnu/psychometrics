@@ -11,7 +11,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { ClientFormModal } from './ClientFormModal'
 import { connect, ConnectedProps } from 'react-redux'
-import { BaseMeta, DeleteResource, UpdateResource } from 'hooks/useResources/interfaces'
+import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { RemoveClientModal } from './RemoveClientModal'
 
@@ -143,8 +143,7 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
                 <ConditionalDropdown
                   menu={
                     ActionsMenu({
-                      clientId: client.id,
-                      clientName: client.name,
+                      client,
                       updateResource,
                       removeResource,
                       openModal,
@@ -169,27 +168,28 @@ const ClientListComponent: FC<Props> = ({ openModal }) => {
 }
 
 interface ActionMenuProps {
-  clientId: string
-  clientName: string
+  client: Client
   meta: Meta,
   updateResource: UpdateResource<Client>
-  removeResource: DeleteResource
+  removeResource: RemoveResource
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
-const ActionsMenu: FC<ActionMenuProps> = ({ clientId, clientName, meta, updateResource, removeResource, openModal }) => {
+const ActionsMenu: FC<ActionMenuProps> = ({ client, meta, updateResource, removeResource, openModal }) => {
+  const { id, name } = client
+
   return (
     <Menu>
-      <Menu.Item key="Edit">
+      <Menu.Item key="edit">
         <div
           role="button"
           tabIndex={-1}
-          onClick={() => openModal('ClientFormModal', { updateClient: updateResource, types: meta.types, countries: meta.countries }) }>
+          onClick={() => openModal('ClientFormModal', { updateClient: updateResource, types: meta.types, countries: meta.countries, client }) }>
           {I18n.t('common.actions.edit')}
         </div>
       </Menu.Item>
       <Menu.Item key="remove">
-        <div role="button" tabIndex={-1} onClick={() => openModal('RemoveClientModal', { clientId, clientName, removeResource })}>
+        <div role="button" tabIndex={-1} onClick={() => openModal('RemoveClientModal', { id, name, removeResource })}>
           {I18n.t('common.actions.remove')}
         </div>
       </Menu.Item>

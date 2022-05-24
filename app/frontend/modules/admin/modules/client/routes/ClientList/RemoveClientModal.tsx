@@ -7,17 +7,17 @@ const { I18n } = window
 
 export interface Props {
   close(): void
-  clientId: string
-  clientName: string
+  id: string
+  name: string
   removeResource: RemoveResource
 }
 
 export const RemoveClientModal: React.FC<Props> = ({
-  clientId, clientName, removeResource, close,
+  id, name, removeResource, close,
 }) => {
   const handleOnConfirm = () => {
-    removeResource(clientId).then(() => {
-      message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: clientName }))
+    removeResource(id).then(() => {
+      message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: name }))
     }).catch((error) => {
       message.error(error)
     })
@@ -26,7 +26,7 @@ export const RemoveClientModal: React.FC<Props> = ({
 
   return (
     <AnswerableConfirmationModal
-      requiredAnswer={clientName}
+      requiredAnswer={name}
       confirmationMessage={I18n.t('frontend.clients.actions.remove.confirmation')}
       onConfirm={handleOnConfirm}
       onCancel={close}
