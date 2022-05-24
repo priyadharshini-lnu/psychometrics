@@ -1469,7 +1469,7 @@ en:
           create_client: Create Client
         remove:
           confirmation:  Enter current client name given below in text box to remove client
-          success: "%{clientName} remove successfully"
+          success: Client with name '%{clientName}' removed successfully
     campaign:
       actions:
         remove:

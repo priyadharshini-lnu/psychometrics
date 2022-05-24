@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import {
   Modal, Input, Button, Alert,
 } from 'antd'
-import { CheckOutlined } from '@ant-design/icons'
+import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 
 interface Props {
   confirmationTitle?: string
   confirmationMessage: string
   requiredAnswer: string
-  onConfirm(): void
+  onConfirm(): void | Promise<unknown>
   onWrongAnswer?(): void
   onCancel(): void
   children?: HTMLElement
@@ -21,6 +21,7 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
 }) => {
   const [answer, setAnswer] = useState('')
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const handleOnWrongAnswer = () => {
     setError(I18n.t('threesixty.confirmation_text_incorrect'))
@@ -29,7 +30,14 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
 
   const handleConfirmation = () => {
     if (answer === requiredAnswer) {
-      onConfirm()
+      const confirm = onConfirm()
+      if (confirm instanceof Promise) {
+        setLoading(true)
+        confirm.finally(() => {
+          setLoading(false)
+          close()
+        })
+      }
     } else {
       handleOnWrongAnswer()
     }
@@ -46,8 +54,8 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
         <Button key="back" onClick={onCancel}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary" onClick={handleConfirmation}>
-          <CheckOutlined />
+        <Button key="submit" type="primary" onClick={handleConfirmation} disabled={loading}>
+          {loading ? <LoadingOutlined /> : <CheckOutlined />}
           Confirm
         </Button>,
       ]}
