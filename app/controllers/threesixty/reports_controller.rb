@@ -38,6 +38,7 @@ module Threesixty
             locale: user_locale,
             current_user: current_user
           )
+          audit! :download_report_pdf, @user_report, campaign: @campaign
 
           render :export, formats: 'html', layout: 'pdf', content_type: 'text/html'
         end

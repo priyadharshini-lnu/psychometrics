@@ -40,6 +40,7 @@ module Administration
 
       respond_to do |format|
         if resource.save
+          audit! :create, resource, payload: resource_params
           format.js
         else
           format.js { render :new }
@@ -56,6 +57,7 @@ module Administration
     def update
       respond_to do |format|
         if resource.update(resource_params)
+          audit! :update, resource, payload: resource_params
           format.js
         else
           format.js { render :edit }
@@ -66,6 +68,7 @@ module Administration
     # DELETE /administration/resources/1
     def destroy
       resource.destroy
+      audit! :delete, resource, payload: resource.log_attribute_for_delete
       respond_to do |format|
         format.html do
           redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))

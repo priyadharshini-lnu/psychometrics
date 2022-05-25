@@ -40,6 +40,7 @@ class Administration::UsersController < Administration::BaseController
     resource.created_by_id = current_user.id
     resource.modified_by_id = current_user.id
     resource.create_by_invite = true
+    audit! :create_superadmin, resource
     if resource.save
       resource.invite!(current_user)
       render :create
@@ -51,6 +52,7 @@ class Administration::UsersController < Administration::BaseController
   # DELETE /administration/resources/1
   def destroy
     resource.destroy
+    audit! :delete_user, resource
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -65,6 +67,7 @@ class Administration::UsersController < Administration::BaseController
     resource.toggle!(:disabled)
     resource.update!(modified_by_id: current_user.id)
     resource.memberships.update_all(disabled: resource.disabled)
+    audit! (resource.disabled? ? :disabled : :enabled), resource, project: resource.project
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -90,11 +93,13 @@ class Administration::UsersController < Administration::BaseController
   #
   def reset_password
     resource.send_reset_password_instructions
+    audit! :reset_password_email, resource
     redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
   end
 
   def export
     @_resources = policy_scope(resource_class).includes(:clients).all
+    audit! :export_users, resource
     respond_to do |format|
       filename = "#{resource_class.model_name.plural}-#{Date.today}"
       format.csv do

@@ -22,8 +22,11 @@ module Administration
         )
 
         respond_to do |format|
-          format.html {}
-          format.pdf { render :export, formats: 'html', layout: 'pdf', content_type: 'text/html' }
+          format.html { audit! :view_report, @user_report, campaign: threesixty_campaign.campaign }
+          format.pdf do
+            audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign
+            render :export, formats: 'html', layout: 'pdf', content_type: 'text/html'
+          end
         end
       end
 
@@ -46,6 +49,7 @@ module Administration
             render json: { success: true }
           end
           format.pdf do
+            audit! :download_report_pdf, user_report, campaign: threesixty_campaign.campaign
             add_cookie_for_file_download
             data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
             send_file data[:file_path], type: 'application/pdf'

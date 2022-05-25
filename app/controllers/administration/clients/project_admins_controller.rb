@@ -57,6 +57,7 @@ module Administration
           call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
+            audit! :create_project_admin, res, project: client
             self.resource = res
           end
         end
@@ -94,6 +95,7 @@ module Administration
         resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if resource.update(update_resource_params)
+            audit! :update_project_admin, res, project: client, payload: params.permit!
             format.html do
               redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully',
                                                                       name: resource.user.decorate.display_name))
@@ -111,6 +113,7 @@ module Administration
           project_id: client.id
         )
         resource.destroy
+        audit! :delete_project_admin, res, project: client
         respond_to do |format|
           format.html do
             redirect_back(
