@@ -11,7 +11,7 @@ module Api
     def base_response_meta
       {
         countries: ::Datas::Geo.order(:country_name).select(:country_name).distinct.pluck(:country_name),
-        types: Client.types.keys,
+        types: Client.types.keys
       }
     end
 

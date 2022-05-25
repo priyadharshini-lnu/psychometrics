@@ -1,16 +1,18 @@
-import { Schema } from 'modules/admin/modules/client/core/schema'
+import { Schema } from 'libs/jsonApi/schema'
 import reduce from 'lodash/reduce'
+import { RelationshipSchema } from './interfaces'
 
 type Resource = {
   id: string | number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
 }
 
 export const resourceToFormData = (resource: Resource, resourceName: string) => {
-  const relationships = Schema[resourceName]?.relationships
+  const relationships = Schema[resourceName]?.relationships as RelationshipSchema
   if (!relationships) return resource
 
-  return reduce(resource, (acc, value: any, name: string) => {
+  return reduce(resource, (acc, value, name: string) => {
     const relationship = relationships[name]
     if (relationship) {
       const association = relationship.association || 'hasOne'
@@ -23,11 +25,11 @@ export const resourceToFormData = (resource: Resource, resourceName: string) => 
   }, {})
 }
 
-export const formDataToResource = (formData: { [key: string]: any }, resourceName: string) => {
-  const relationships = Schema[resourceName]?.relationships
+export const formDataToResource = (formData: { [key: string]: unknown }, resourceName: string) => {
+  const relationships = Schema[resourceName]?.relationships as RelationshipSchema
   if (!relationships) { return formData }
 
-  return reduce(relationships, (acc, relationship: any, relationshipName: string) => {
+  return reduce(relationships, (acc, relationship, relationshipName: string) => {
     const association = relationship.association || 'hasOne'
     const field = relationship.field || (association === 'hasOne' ? `${relationshipName}Id` : `${relationshipName}Ids`)
 

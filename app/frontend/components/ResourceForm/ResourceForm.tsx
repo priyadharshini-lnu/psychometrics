@@ -4,11 +4,11 @@ import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
 import { FormProps, FormInstance } from 'antd/lib/form'
+import { formDataToResource, resourceToFormData } from 'libs/jsonApi/helpers'
 import { Status } from './constants'
 import { PropsFromRedux } from './connect'
 import { Resource } from './interfaces'
 import FieldsUtil from './FieldsUtil'
-import { formDataToResource, resourceToFormData } from 'libs/jsonApi/helpers'
 
 type Props = PropsFromRedux & OwnProps
 
@@ -43,7 +43,7 @@ export type OwnProps = {
   formProps?: FormProps
   onStatusChange?(value: string): void
   onSuccessfulSubmission?(response: object): void
-  transformValues?(values: object): object
+  transformValues?(values: Record<string, unknown>): Record<string, unknown>
   storeManager?: {
     form?: FormInstance,
     fields?: FieldData[],
@@ -71,7 +71,7 @@ const ResourceForm: React.FC<Props> = ({
   storeManager,
   children,
   transformValues,
-  scrollToFirstError
+  scrollToFirstError,
 }: Props) => {
   const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
@@ -120,13 +120,12 @@ const ResourceForm: React.FC<Props> = ({
     return requestFunction(...args)
   }
 
-  const saveRequest = (values: object) => {
+  const saveRequest = (values: Record<string, unknown>) => {
     if (request?.submit) { return request.submit(values) }
 
     const requestName = isEdit() ? 'updateResource' : 'createResource'
     if (isEdit()) { values = { ...values, id: resourceId || resource?.id } }
 
-    console.log(values, formDataToResource(values, resourceName))
     return makeRequest(requestName, formDataToResource(values, resourceName))
   }
 
@@ -137,8 +136,8 @@ const ResourceForm: React.FC<Props> = ({
 
   const formValuesToField = (formValues = {}) => {
     const newFields: FieldData[] = []
-    _.each(formValues, (value: any, name: string) => {
-      let field = _.find(store.fields, { name })
+    _.each(formValues, (value: string, name: string) => {
+      const field = _.find(store.fields, { name })
       let newField: FieldData = { name, value }
 
       if (field) { newField = { ...field, value } }
@@ -148,7 +147,7 @@ const ResourceForm: React.FC<Props> = ({
     store.setFields(newFields)
   }
 
-  const handleSave = async (values: object) => {
+  const handleSave = async (values: Record<string, unknown>) => {
     if (transformValues) {
       values = transformValues(values)
     }
@@ -182,13 +181,13 @@ const ResourceForm: React.FC<Props> = ({
     store.setFields(newFields)
   }
 
-  const displayableError = (error: string | string[] | JSONApiError | JSONApiError[]) => {
-    return [error].flat().map((e: string | JSONApiError) => {
+  const displayableError = (error: string | string[] | JSONApiError | JSONApiError[]) => (
+    [error].flat().map((e: string | JSONApiError) => {
       if (_.isString(e)) return e
-      if (e.detail !== undefined && e.title  !== undefined) return `${e.title} (${e.detail})`
+      if (e.detail !== undefined && e.title !== undefined) return `${e.title} (${e.detail})`
       return e.title || e.detail
     }) as string[]
-  }
+  )
 
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
@@ -222,17 +221,15 @@ const ResourceForm: React.FC<Props> = ({
       {!_.isEmpty(baseErrors) && baseErrors !== undefined
         && (
           <div ref={baseErrorRef}>
-            {displayableError(baseErrors).map((error) => {
-              return (
-                <Alert
-                  message={false}
-                  description={error}
-                  type="error"
-                  className="mbm"
-                  showIcon
-                />
-              )
-            })}
+            {displayableError(baseErrors).map(error => (
+              <Alert
+                message={false}
+                description={error}
+                type="error"
+                className="mbm"
+                showIcon
+              />
+            ))}
           </div>
         )}
       {children({

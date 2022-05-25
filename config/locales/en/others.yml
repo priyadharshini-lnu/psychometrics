@@ -1463,13 +1463,6 @@ en:
       create_success: The group is successfully created
       update_success: The group is successfully updated
     background_reading: Background Reading
-    clients:
-      actions:
-        create:
-          create_client: Create Client
-        remove:
-          confirmation:  Enter current client name given below in text box to remove client
-          success: Client with name '%{clientName}' removed successfully
     campaign:
       actions:
         remove:
@@ -1481,6 +1474,13 @@ en:
           in_progress: In Progress
           not_started: Not Started
     change_password: Change password
+    clients:
+      actions:
+        create:
+          create_client: Create Client
+        remove:
+          confirmation: Enter current client name given below in text box to remove client
+          success: Client with name '%{clientName}' removed successfully
     delete: Delete
     edit: Edit
     hogan:

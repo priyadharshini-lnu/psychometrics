@@ -1,25 +1,25 @@
-import { StringMap, useClient } from '@thetalententerprise/jsonapi-react'
+import { useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
 import { useDispatch } from 'react-redux'
-import { setResponseDataMismatched } from 'modules/admin/core/request'
 import { useLocation, useHistory } from 'react-router-dom'
 import humps from 'humps'
 import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
+import { Schema } from 'libs/jsonApi/schema'
+import { setResponseDataMismatched } from 'modules/admin/core/request'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
-  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig, RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource,
+  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
+  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource,
 } from './interfaces'
 import { formatErrors } from './utils'
-import { Schema } from 'modules/admin/modules/client/core/schema'
-
 
 export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -76,23 +76,23 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     if (window.PsyGlobalState.realEnv === 'production') { return }
 
     if (responseType) {
-      const decoded = responseType.decode(data)
+      const decoded = t.array(responseType).decode([data])
       const dataIsValid = isRight(decoded)
       if (!dataIsValid) {
         const errors = PathReporter.report(responseType.decode(data))
-        // dispatch(setResponseDataMismatched(resourceName, errors, data))
+        dispatch(setResponseDataMismatched(resourceName, errors, data))
       }
     }
   }
 
-  const setRequestStatus = (type: RequestType, errors: StringMap[] | StringMap | undefined) => {
+  const setRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => {
     const status = errors ? RequestStatus.Failed : RequestStatus.Success
     setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
     return status
   }
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
-    const { responseType, apiConfig } = args
+    const { apiConfig } = args
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = apiConfig
 
@@ -110,7 +110,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
         setState((previousState: ResourceState<R[], M>) => (
           { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
 
-        if (args.responseType || responseType) {
+        if (responseType || args.responseType) {
           responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
         }
       } else {
@@ -142,7 +142,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     })
   }
 
-  const updateResource: UpdateResource<R> = async (details, args = { apiConfig },) => {
+  const updateResource: UpdateResource<R> = async (details, args = { apiConfig }) => {
     const { id, ...attributes } = details
     const requestKey: RequestType = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
@@ -164,21 +164,17 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     })
   }
 
-  const removeResource: RemoveResource = async (
-    id: string, args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig },
-  ) => {
+  const removeResource: RemoveResource = async (id: string) => {
     const requestKey: RequestType = `delete@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
-    const { data: response, error, errors } = await client.delete([resourceName, id, apiConfig || {}])
+    const { error, errors } = await client.delete([resourceName, id, apiConfig || {}])
 
     return new Promise(async (resolve, reject) => {
       const formattedErrors = formatErrors(errors || error, schema)
       const status = setRequestStatus(requestKey, formattedErrors)
       if (status === 'success') {
         setData(data.filter(r => r.id !== id))
-        const camelizedResponse = humps.camelizeKeys(response)
-        resolve(camelizedResponse)
-        responseTypeValidation(args?.responseType || responseType, response)
+        resolve()
       } else {
         reject(formattedErrors)
       }

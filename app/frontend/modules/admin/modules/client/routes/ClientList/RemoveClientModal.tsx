@@ -15,14 +15,12 @@ export interface Props {
 export const RemoveClientModal: React.FC<Props> = ({
   id, name, removeResource, close,
 }) => {
-  const handleOnConfirm = () => {
-    return removeResource(id).then(() => {
-      message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: name }))
-      close()
-    }).catch((error) => {
-      message.error(error)
-    })
-  }
+  const handleOnConfirm = () => removeResource(id).then(() => {
+    message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: name }))
+    close()
+  }).catch((error) => {
+    message.error(error)
+  })
 
   return (
     <AnswerableConfirmationModal

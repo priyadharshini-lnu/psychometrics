@@ -1,8 +1,8 @@
 import humps from 'humps'
-
+import { StringMap } from '@thetalententerprise/jsonapi-react'
 
 interface Error {
-  [key: string]: string[]
+  [key: string]: string[] | string
 }
 
 interface JsonApiStandardError {
@@ -13,17 +13,23 @@ interface JsonApiStandardError {
   }
 }
 
-export const convertJsonApiErrors  = (errors: JsonApiStandardError[], schema: any = null): Error => {
+interface Schema {
+  relationships?: {
+    association?: 'hasOne' | 'hasMany'
+  }
+}
+
+export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = null): Error => {
   const attributePrefix = 'data/attributes/'
   const relationshipPrefix = 'data/relationships/'
 
-  return errors.reduce((acc, error) => {
+  return errors.reduce((acc, error: JsonApiStandardError) => {
     const pointer = error.source?.pointer
     let attribute: string
 
     if (pointer === undefined) {
-      acc['base'] ||= []
-      acc['base'] = [...acc['base'], { title: error.title, detail: error.detail }]
+      acc.base ||= []
+      acc.base = [...acc.base, { title: error.title, detail: error.detail }]
       return acc
     }
 
@@ -33,7 +39,7 @@ export const convertJsonApiErrors  = (errors: JsonApiStandardError[], schema: an
       const [relationshipName] = pointer.replace(relationshipPrefix, '').split('/')
 
       if (schema) {
-        const association = schema?.relationships?.[relationshipName]?.['association'] || 'hasOne'
+        const association = schema?.relationships?.[relationshipName]?.association || 'hasOne'
         attribute = association === 'hasOne' ? `${relationshipName}Id` : `${relationshipName}Ids`
       } else {
         attribute = relationshipName
@@ -47,11 +53,11 @@ export const convertJsonApiErrors  = (errors: JsonApiStandardError[], schema: an
   }, {})
 }
 
-export const formatErrors = (errors: JsonApiStandardError[] | undefined, schema: any) => {
+export const formatErrors = (errors: StringMap | undefined, schema: Schema) => {
   if (errors === undefined) return null
 
-  errors = [errors].flat().map(error => {
-    const pointer =  error.source?.pointer ? humps.camelize(error.source.pointer) : null
+  errors = [errors].flat().map((error) => {
+    const pointer = error.source?.pointer ? humps.camelize(error.source.pointer) : null
     const modifiedError = { ...error }
     if (pointer) { modifiedError.source = { pointer } }
 
