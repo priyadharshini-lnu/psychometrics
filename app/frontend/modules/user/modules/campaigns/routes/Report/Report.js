@@ -75,6 +75,7 @@ export default function Report ({
               user={JSON.stringify(user)}
               locales={locales}
               selectedLocale={defaultLanguage}
+              userReport={{}}
             />
           </div>
         </PageHeader>
