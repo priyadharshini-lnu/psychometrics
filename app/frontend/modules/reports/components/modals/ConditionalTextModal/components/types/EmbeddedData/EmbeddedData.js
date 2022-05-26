@@ -64,12 +64,6 @@ export class EmbeddedData extends Component {
         </select>
         <input
           className={`form-control ${embeddedStyles.valueInput}`}
-          value={condition.props.value || ''}
-          onChange={this.changeValue}
-        />
-        <span className="margin-left-10">Count Greater Than</span>
-        <input
-          className={`form-control ${embeddedStyles.valueInput}`}
           value={condition.props.count || ''}
           onChange={this.changeCount}
         />

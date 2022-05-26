@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'modules/reports/store/AppStore'
 import { SOURCE_TYPES } from 'modules/reports/models/Report'
 import { connect } from 'react-redux'
 import styles from './Condition.less'
@@ -30,6 +29,12 @@ class Condition extends Component {
     this.forceUpdate()
   }
 
+  changeAssessment = ({ currentTarget }) => {
+    const { condition } = this.props
+    condition.props.assessmentId = currentTarget.value
+    this.forceUpdate()
+  }
+
   changePrefix = ({ currentTarget }) => {
     const { condition } = this.props
     const { value } = currentTarget
@@ -48,7 +53,11 @@ class Condition extends Component {
   }
 
   renderFilterScope () {
-    const { condition } = this.props
+    const { condition, filters, model } = this.props
+    if (condition.type !== 'Factor') { return null }
+    const assessmentFilters = filters.filter(
+      f => f.assessment_id === (+condition.props.assessmentId || model.module.assessment_id),
+    )
     return (
       <select
         value={condition.props.filterScope || ''}
@@ -56,7 +65,7 @@ class Condition extends Component {
         className={`form-control ${styles.condType}`}
       >
         <option>All Responses</option>
-        {_.map(AppStore.report.filters, filter => (
+        {_.map(assessmentFilters, filter => (
           <option key={filter.id} value={filter.id}>
             {filter.name}
           </option>
@@ -90,9 +99,8 @@ class Condition extends Component {
   }
 
   renderConditionTypeSelect () {
-    const { condition, model } = this.props
-    const assessmentId = model.module.assessment_id
-    const { category } = AppStore.getAssessmentById(assessmentId)
+    const { condition, model, assessments } = this.props
+    const { category } = _.find(assessments, { id: model.module.assessment_id })
     if (!SOURCE_TYPES[category]) { return null }
 
     const options = SOURCE_TYPES[category].filter(o => o.condition)
@@ -115,6 +123,28 @@ class Condition extends Component {
     )
   }
 
+  renderAssessmentSelect () {
+    const { condition, assessments } = this.props
+    if (condition.type !== 'Factor' && condition.type !== 'EmbeddedData') { return null }
+
+    return (
+      <select
+        value={condition.props.assessmentId || ''}
+        onChange={this.changeAssessment}
+        className={`form-control ${styles.condType}`}
+      >
+        <option value="" disabled>
+          Select Assessment...
+        </option>
+        {_.map(assessments, assessment => (
+          <option key={assessment.id} value={assessment.id}>
+            {assessment.name}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
   renderRemoveButton () {
     const { disableRemove } = this.props
     if (disableRemove) {
@@ -127,8 +157,9 @@ class Condition extends Component {
     return (
       <div className={styles.condition}>
         {this.renderLogicType()}
-        {this.renderFilterScope()}
         {this.renderConditionTypeSelect()}
+        {this.renderAssessmentSelect()}
+        {this.renderFilterScope()}
         {this.renderConditionType()}
         <div className={styles.btns}>
           {this.renderRemoveButton()}
@@ -142,6 +173,9 @@ class Condition extends Component {
 const conenctor = connect(
   state => ({
     factors: state.report.builder.factors,
+    assessments: state.report.builder.assessments,
+    filters: state.report.builder.filters,
+    dataSheetColumns: state.report.builder.data_sheet_columns,
   }),
 )
 
