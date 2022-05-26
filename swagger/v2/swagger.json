@@ -71,6 +71,178 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Create a client",
+        "operationId": "CreateClient",
+        "description": "Create new Client",
+        "tags": [
+          "Clients"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Client Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "clients",
+                    "attributes": {
+                      "name": "Client Name",
+                      "year": "2020",
+                      "type": "partner",
+                      "country": "India",
+                      "number": "123"
+                    },
+                    "relationships": {
+                      "account_manager": {
+                        "data": {
+                          "type": "users",
+                          "id": "102"
+                        }
+                      },
+                      "project_manager": {
+                        "data": {
+                          "type": "users",
+                          "id": "100"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ClientResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/{client_id}": {
+      "patch": {
+        "summary": "Update a client",
+        "operationId": "UpdateClient",
+        "description": "Update a Client",
+        "tags": [
+          "Clients"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "clients",
+                    "id": "20",
+                    "attributes": {
+                      "name": "Client Name",
+                      "year": "2020",
+                      "type": "partner",
+                      "country": "India",
+                      "number": "123"
+                    },
+                    "relationships": {
+                      "account_manager": {
+                        "data": {
+                          "type": "users",
+                          "id": "102"
+                        }
+                      },
+                      "project_manager": {
+                        "data": {
+                          "type": "users",
+                          "id": "100"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ClientResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete a client",
+        "operationId": "DeleteClient",
+        "description": "Delete a Client",
+        "tags": [
+          "Clients"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client Deleted"
+          }
+        }
       }
     }
   },
@@ -268,7 +440,7 @@
                     },
                     "year": {
                       "type": "integer",
-                      "description": "Lower than or equal to 2022",
+                      "description": "Greater than or equal to 2020, Lower than or equal to 2032",
                       "nullable": false
                     }
                   },
@@ -290,6 +462,455 @@
               ],
               "nullable": false
             },
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ClientResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to clients",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "account_manager": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "project_manager": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partner",
+                      "corporate",
+                      "distributer",
+                      "associate",
+                      "tte",
+                      "retail",
+                      "other"
+                    ],
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "country": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "year": {
+                    "type": "integer",
+                    "description": "Greater than or equal to 2020, Lower than or equal to 2032",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "type",
+                  "number",
+                  "country",
+                  "year"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ClientCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to clients",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partner",
+                      "corporate",
+                      "distributer",
+                      "associate",
+                      "tte",
+                      "retail",
+                      "other"
+                    ],
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "country": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "year": {
+                    "type": "integer",
+                    "description": "Greater than or equal to 2020, Lower than or equal to 2032",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "type",
+                  "number",
+                  "country",
+                  "year"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "account_manager": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "project_manager": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "account_manager",
+                  "project_manager"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ClientUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to clients",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "partner",
+                      "corporate",
+                      "distributer",
+                      "associate",
+                      "tte",
+                      "retail",
+                      "other"
+                    ],
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "country": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "year": {
+                    "type": "integer",
+                    "description": "Greater than or equal to 2020, Lower than or equal to 2032",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "account_manager": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "project_manager": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
             "nullable": false
           }
         },

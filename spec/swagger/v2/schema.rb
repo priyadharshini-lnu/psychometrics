@@ -86,7 +86,16 @@ module Swagger
             }
           },
           ClientsListResponse: Api::Base::GenerateSwagger.call!(
-            Api::V2::Client::Schema.multiple_resource_response, description: 'Client'
+            Api::V2::Client::Schema.multiple_resource_response
+          ),
+          ClientResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.single_resource_response
+          ),
+          ClientCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.create_request
+          ),
+          ClientUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.update_request
           )
         }
       }

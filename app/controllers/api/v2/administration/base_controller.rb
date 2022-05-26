@@ -11,7 +11,6 @@ module Api
     prepend_before_action :validate_requests_schema
     prepend_before_action :authenticate, unless: -> { try(:skip_authentication?) }
 
-    rescue_from ActiveRecord::RecordNotFound, with: :jsonapi_render_not_found
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
 
