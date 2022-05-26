@@ -39,7 +39,8 @@ module Administration
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
           update_record: false,
-          async: true
+          async: true,
+          skip_logic: params[:skip_logic]
         }
         respond_to do |format|
           format.json do

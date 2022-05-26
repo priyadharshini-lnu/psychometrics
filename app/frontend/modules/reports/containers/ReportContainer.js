@@ -9,7 +9,7 @@ import 'modules/reports/styles/globals.less'
 import { normalize } from 'normalizr'
 import globalStore from 'modules/admin/store'
 import rstore from '../store'
-import { init } from '../core/builder/actions'
+import { init, changeSkipLogic } from '../core/builder/actions'
 import schema from '../store/schema'
 
 class ReportContainer extends Component {
@@ -19,16 +19,24 @@ class ReportContainer extends Component {
 
   componentDidMount () {
     const {
-      data, results, locales, user, campaign, selectedLocale, userReport,
+      data, results, locales, user, campaign, selectedLocale, userReport, skipLogic,
     } = this.props
     if (locales) {
       I18nStore.setLocale(_.get(selectedLocale, 'code', document.body.dataset.locale))
       I18nStore.locales = locales
     }
+    data.skipLogic = skipLogic
     const normalizedData = normalize(data, schema)
     store.init(data, results, user, campaign)
     rstore.dispatch(init(normalizedData, userReport))
     this.setState({ selectedLocale })
+  }
+
+  componentDidUpdate (prevProps) {
+    const { skipLogic } = this.props
+    if (prevProps.skipLogic !== skipLogic) {
+      rstore.dispatch(changeSkipLogic(skipLogic))
+    }
   }
 
   render () {

@@ -25,6 +25,7 @@ export const COPY_MODULE = 'report/COPY_MODULE'
 export const PASTE_MODULE = 'report/PASTE_MODULE'
 export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
+export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
 
 enum SelectedTypes {
   'Module',
@@ -73,6 +74,7 @@ export const selectModule = (moduleType: SelectedTypes, id: number) => ({
 })
 export const unselectModules = () => ({ type: UNSELECT_MODULES })
 export const changeSize = (size: {width: number, height: number}) => ({ type: CHANGE_SIZE, size })
+export const changeSkipLogic = value => ({ type: CHANGE_SKIP_LOGIC, value })
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
 export const save = (report: any) => {
   const builder = {
@@ -105,6 +107,7 @@ export type AddPageType = ReturnType<typeof addPage>
 export type SelectModuleType = ReturnType<typeof selectModule>
 export type UnselectModulesType = ReturnType<typeof unselectModules>
 export type ChangeSizeType = ReturnType<typeof changeSize>
+export type ChangeSkipLogic = ReturnType<typeof changeSkipLogic>
 export type UpdatePagePositionType = ReturnType<typeof updatePagePositions>
 export type SetPagePositionType = ReturnType<typeof setPagePositions>
 export type SaveDataSheetType = ApiActionResponse<{data: {}}>

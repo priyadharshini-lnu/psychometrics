@@ -17,10 +17,12 @@ export class Preview extends Component {
 
   render () {
     const {
-      localeDirection, loaded, showOverrides, rstore, moduleOverrides,
+      localeDirection, loaded, showOverrides, rstore, moduleOverrides, skipLogic,
     } = this.props
     if (!loaded) { return null }
-    const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
+    const visiblePages = skipLogic
+      ? PageList.list
+      : _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
     return (
       <div style={{ position: 'relative' }} className={localeDirection}>
         {visiblePages.map((page, i) => (

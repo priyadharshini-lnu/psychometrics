@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import { RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
 import Sidebar from './Sidebar'
 import styles from './styles.less'
@@ -27,8 +27,14 @@ export default function ReportPreview ({
   match: { params: { campaignId, id } }, fetchReport, download, downloadInProgress,
   features, asyncDownload, clearUseReportDetails,
 }: Props) {
+  const location = useLocation()
+  const history = useHistory()
+
+  const params = new URLSearchParams(location.search)
+
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
+  const skipLogic = params.get('skip_logic') === 'true'
 
   useEffect(() => {
     fetchReport(parsedCampaignId, parsedId)
@@ -60,8 +66,14 @@ export default function ReportPreview ({
         selectedLocale={defaultLanguage}
         userReport={userReport}
         showOverrides={report.require_approval}
+        skipLogic={skipLogic}
       />
     )
+  }
+
+  const onChangeView = ({ key }) => {
+    params.set('skip_logic', `${key === 'all'}`)
+    history.replace(`${location.pathname}?${params.toString()}`)
   }
 
   const onReportDownloadClick = () => {
@@ -69,7 +81,7 @@ export default function ReportPreview ({
       asyncDownload(parsedCampaignId, parsedId)
       message.success(I18n.t('user_reports.messages.async_generation'))
     } else {
-      download(parsedCampaignId, parsedId)
+      download(parsedCampaignId, parsedId, { skipLogic })
     }
   }
 
@@ -120,6 +132,21 @@ export default function ReportPreview ({
             </div>
           )}
           extra={[
+            <Dropdown overlay={(
+              <Menu onClick={onChangeView}>
+                <Menu.Item key="subject">{I18n.t('common.text.subject')}</Menu.Item>
+                <Menu.Item key="all">{I18n.t('common.text.all_pages')}</Menu.Item>
+              </Menu>
+              )}
+            >
+              <Button>
+                <Space>
+                  {I18n.t('common.text.view_as')}
+                  {skipLogic ? I18n.t('common.text.all_pages') : I18n.t('common.text.subject') }
+                  <DownOutlined />
+                </Space>
+              </Button>
+            </Dropdown>,
             <Button
               onClick={onReportDownloadClick}
               loading={downloadInProgress}

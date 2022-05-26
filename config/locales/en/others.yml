@@ -1161,6 +1161,7 @@ en:
       sms_invite: SMS Invite
     text:
       accepted: Accepted
+      all_pages: All Pages
       approve: Approve
       approved: Approved
       cancel: Cancel
@@ -1173,6 +1174,8 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      subject: Subject
+      view_as: View as
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation

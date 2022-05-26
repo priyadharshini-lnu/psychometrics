@@ -137,7 +137,8 @@ module UserReports
         lang: options[:lang] || report.default_language || I18n.locale,
         port: Settings.port,
         protocol: Settings.protocol,
-        id: user_report.id
+        id: user_report.id,
+        skip_logic: options[:skip_logic]
       }
     end
   end

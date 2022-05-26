@@ -1,13 +1,13 @@
 import React, { FC, useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Dropdown, Menu,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, useHistory } from 'react-router-dom'
 import {
   fetchSingle as fetchReport, getCurrent, download, DOWNLOAD, asyncDownload,
 } from 'modules/admin/modules/AssessorApp/core/userReports'
@@ -35,9 +35,13 @@ type Props = PropsFromRedux
 const ReportPreview: FC<Props> = ({
   userReport, fetchReport, download, downloadInProgress, features, asyncDownload,
 }) => {
+  const location = useLocation()
+  const history = useHistory()
   const { campaignId, id } = useParams<{ id: string, campaignId: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
+  const params = new URLSearchParams(location.search)
+  const skipLogic = params.get('skip_logic') === 'true'
 
   useEffect(() => {
     fetchReport(parsedCampaignId, parsedId)
@@ -63,8 +67,15 @@ const ReportPreview: FC<Props> = ({
         user={JSON.stringify(user)}
         locales={locales}
         selectedLocale={defaultLanguage}
+        userReport={userReport}
+        skipLogic={skipLogic}
       />
     )
+  }
+
+  const onChangeView = ({ key }) => {
+    params.set('skip_logic', `${key === 'all'}`)
+    history.replace(`${location.pathname}?${params.toString()}`)
   }
 
   const { user } = userReport
@@ -74,7 +85,7 @@ const ReportPreview: FC<Props> = ({
       asyncDownload(parsedCampaignId, parsedId)
       message.success(I18n.t('user_reports.messages.async_generation'))
     } else {
-      download(parsedCampaignId, parsedId)
+      download(parsedCampaignId, parsedId, { skipLogic })
     }
   }
 
@@ -116,6 +127,21 @@ const ReportPreview: FC<Props> = ({
             </div>
           )}
           extra={[
+            <Dropdown overlay={(
+              <Menu onClick={onChangeView}>
+                <Menu.Item key="subject">{I18n.t('common.text.subject')}</Menu.Item>
+                <Menu.Item key="all">{I18n.t('common.text.all_pages')}</Menu.Item>
+              </Menu>
+              )}
+            >
+              <Button>
+                <Space>
+                  {I18n.t('common.text.view_as')}
+                  {skipLogic ? I18n.t('common.text.all_pages') : I18n.t('common.text.subject') }
+                  <DownOutlined />
+                </Space>
+              </Button>
+            </Dropdown>,
             <Button
               key="download"
               onClick={onReportDownloadClick}
