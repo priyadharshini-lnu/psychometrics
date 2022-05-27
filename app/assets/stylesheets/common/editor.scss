@@ -30,6 +30,22 @@ table.table-compact {
 table.table-full-width {
     width: 100%;
 }
+#psychometrics_survey_root, .fr-wrapper {
+    table.table-no-border {
+        border-collapse: collapse;
+        td, th {
+            border: 1px dashed #d6d6d6 !important;
+        }
+    }
+}
+#three-sixty-container, #psychometrics_preview {
+    table.table-no-border {
+        border-collapse: collapse;
+        td, th {
+            border: 0 !important;
+        }
+    }
+}
 .fr-popup {
     z-index: 999999 !important;
 }
