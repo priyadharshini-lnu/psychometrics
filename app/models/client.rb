@@ -19,7 +19,6 @@
 #  country            :string
 #  year               :integer
 #  applicable_level   :integer          default("project")
-#  account_manager_id :integer
 #  project_manager_id :integer
 #  archived           :boolean          default(FALSE)
 #  tte_id             :integer
@@ -58,7 +57,6 @@ class Client < ApplicationRecord
   attr_accessor :operator
 
   belongs_to :tte, class_name: 'Client'
-  belongs_to :account_manager, class_name: 'User'
   belongs_to :project_manager, class_name: 'User'
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
@@ -137,7 +135,7 @@ class Client < ApplicationRecord
   validates :name, :type, presence: true, length: { maximum: 50 }
   with_options if: :root? do |root|
     root.validates :number, :country, :year, presence: true
-    root.validates :account_manager, :project_manager, presence: true, on: :create
+    root.validates :project_manager, presence: true, on: :create
   end
   with_options if: :project? do |project|
     project.validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true

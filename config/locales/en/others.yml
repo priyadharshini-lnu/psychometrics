@@ -281,8 +281,6 @@ en:
         name: Name
         updated_at: Modified Date
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign
@@ -1608,7 +1606,6 @@ en:
         subject: License overuse
       weekly_stats:
         column_headers:
-          account_manager: Account Manager
           client_name: Client Name
           expiry_date: Expiry date
           overuse_limit: Overuse Limit
@@ -1922,8 +1919,6 @@ en:
       default_message: 'Please review the problems below:'
     labels:
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign
@@ -2050,8 +2045,6 @@ en:
         name: Name
         updated_at: Modified Date
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign

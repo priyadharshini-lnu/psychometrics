@@ -52,10 +52,6 @@
                         "type": "Partner",
                         "year": 2021,
                         "location": "UAE",
-                        "account_manager": {
-                          "id": "1",
-                          "name": "John Doe"
-                        },
                         "project_manager": {
                           "id": "1",
                           "name": "John Doe"
@@ -105,12 +101,6 @@
                       "number": "123"
                     },
                     "relationships": {
-                      "account_manager": {
-                        "data": {
-                          "type": "users",
-                          "id": "102"
-                        }
-                      },
                       "project_manager": {
                         "data": {
                           "type": "users",
@@ -181,12 +171,6 @@
                       "number": "123"
                     },
                     "relationships": {
-                      "account_manager": {
-                        "data": {
-                          "type": "users",
-                          "id": "102"
-                        }
-                      },
                       "project_manager": {
                         "data": {
                           "type": "users",
@@ -301,51 +285,6 @@
                 "relationships": {
                   "type": "object",
                   "properties": {
-                    "account_manager": {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string",
-                              "nullable": false
-                            },
-                            "type": {
-                              "type": "string",
-                              "description": "Must be equal to users",
-                              "nullable": false
-                            }
-                          },
-                          "required": [
-                            "id",
-                            "type"
-                          ],
-                          "nullable": false
-                        },
-                        "links": {
-                          "type": "object",
-                          "properties": {
-                          },
-                          "required": [
-
-                          ],
-                          "nullable": false
-                        },
-                        "self": {
-                          "type": "string",
-                          "nullable": false
-                        },
-                        "related": {
-                          "type": "string",
-                          "nullable": false
-                        }
-                      },
-                      "required": [
-                        "data"
-                      ],
-                      "nullable": false
-                    },
                     "project_manager": {
                       "type": "object",
                       "properties": {
@@ -487,51 +426,6 @@
               "relationships": {
                 "type": "object",
                 "properties": {
-                  "account_manager": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": "Must be equal to users",
-                            "nullable": false
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "type"
-                        ],
-                        "nullable": false
-                      },
-                      "links": {
-                        "type": "object",
-                        "properties": {
-                        },
-                        "required": [
-
-                        ],
-                        "nullable": false
-                      },
-                      "self": {
-                        "type": "string",
-                        "nullable": false
-                      },
-                      "related": {
-                        "type": "string",
-                        "nullable": false
-                      }
-                    },
-                    "required": [
-                      "data"
-                    ],
-                    "nullable": false
-                  },
                   "project_manager": {
                     "type": "object",
                     "properties": {
@@ -710,34 +604,6 @@
               "relationships": {
                 "type": "object",
                 "properties": {
-                  "account_manager": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": "Must be equal to users",
-                            "nullable": false
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "type"
-                        ],
-                        "nullable": false
-                      }
-                    },
-                    "required": [
-                      "data"
-                    ],
-                    "nullable": false
-                  },
                   "project_manager": {
                     "type": "object",
                     "properties": {
@@ -768,7 +634,6 @@
                   }
                 },
                 "required": [
-                  "account_manager",
                   "project_manager"
                 ],
                 "nullable": false
@@ -843,34 +708,6 @@
               "relationships": {
                 "type": "object",
                 "properties": {
-                  "account_manager": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": "Must be equal to users",
-                            "nullable": false
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "type"
-                        ],
-                        "nullable": false
-                      }
-                    },
-                    "required": [
-                      "data"
-                    ],
-                    "nullable": false
-                  },
                   "project_manager": {
                     "type": "object",
                     "properties": {

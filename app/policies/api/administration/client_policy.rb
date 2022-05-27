@@ -7,15 +7,7 @@ module Api
         update?
       end
 
-      def replace_account_manager?(_)
-        update?
-      end
-
       def create_with_project_manager?(_)
-        create?
-      end
-
-      def create_with_account_manager?(_)
         create?
       end
 

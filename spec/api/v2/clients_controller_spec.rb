@@ -32,10 +32,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
               type: 'Partner',
               year: 2021,
               location: 'UAE',
-              account_manager: {
-                id: '1',
-                name: 'John Doe'
-              },
               project_manager: {
                 id: '1',
                 name: 'John Doe'
@@ -49,8 +45,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           client_response = clients['data'].find { |c| c['id'] == client.id.to_s }
           expect(client_response).to have_key('id')
           expect(client_response).to have_attribute(:name).with_value(client.name)
-          expect(client_response).to have_relationship(:account_manager).
-            with_data({ 'id' => client.account_manager_id.to_s, 'type' => 'users' })
           expect(client_response).to have_relationship(:project_manager).
             with_data({ 'id' => client.project_manager_id.to_s, 'type' => 'users' })
         end
@@ -80,12 +74,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
               number: '123'
             },
             relationships: {
-              account_manager: {
-                data: {
-                  type: 'users',
-                  id: '102'
-                }
-              },
               project_manager: {
                 data: {
                   type: 'users',
@@ -96,7 +84,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           }
         }
 
-        let(:account_manager) { create(:client_admin) }
         let(:project_manager) { create(:client_admin) }
         let(:body) do
           {
@@ -110,12 +97,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
                 number: '123'
               },
               relationships: {
-                account_manager: {
-                  data: {
-                    type: 'users',
-                    id: account_manager.id.to_s
-                  }
-                },
                 project_manager: {
                   data: {
                     type: 'users',
@@ -134,8 +115,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           expect(client_response).to have_attribute(:year).with_value(Time.now.year)
           expect(client_response).to have_attribute(:type).with_value('partner')
           expect(client_response).to have_attribute(:number).with_value('123')
-          expect(client_response).to have_relationship(:account_manager).
-            with_data({ 'id' => account_manager.id.to_s, 'type' => 'users' })
           expect(client_response).to have_relationship(:project_manager).
             with_data({ 'id' => project_manager.id.to_s, 'type' => 'users' })
         end
@@ -167,12 +146,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
               number: '123'
             },
             relationships: {
-              account_manager: {
-                data: {
-                  type: 'users',
-                  id: '102'
-                }
-              },
               project_manager: {
                 data: {
                   type: 'users',
@@ -185,7 +158,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
 
         let(:client) { create(:tenancy, name: 'Old Name', type: 'partner') }
         let(:client_id) { client.id }
-        let(:account_manager) { create(:client_admin) }
+        let(:project_manager) { create(:client_admin) }
 
         let(:body) do
           {
@@ -197,10 +170,10 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
                 type: 'retail'
               },
               relationships: {
-                account_manager: {
+                project_manager: {
                   data: {
                     type: 'users',
-                    id: account_manager.id.to_s
+                    id: project_manager.id.to_s
                   }
                 }
               }
@@ -214,8 +187,6 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           expect(client_response).to have_attribute(:name).with_value('New Name')
           expect(client_response).to have_attribute(:type).with_value('retail')
           expect(client_response).to have_attribute(:number).with_value(client.number)
-          expect(client_response).to have_relationship(:account_manager).
-            with_data({ 'id' => account_manager.id.to_s, 'type' => 'users' })
           expect(client_response).to have_relationship(:project_manager).
             with_data({ 'id' => client.project_manager.id.to_s, 'type' => 'users' })
         end

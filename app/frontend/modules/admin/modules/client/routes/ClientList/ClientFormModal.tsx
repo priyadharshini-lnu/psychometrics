@@ -33,11 +33,7 @@ export const ClientFormModal: React.FC<Props> = ({
   const {
     data: projectManagers, fetch: fetchProjectManager, isLoading: isProjectManagerLoading,
   } = useResources<User>('users')
-  const {
-    data: accountManagers, fetch: fetchAccountManager, isLoading: isAccountManagerLoading,
-  } = useResources<User>('users')
   const currentYear = new Date().getFullYear()
-  const accountManagersOpts = client?.accountManager ? accountManagers.concat(client.accountManager) : accountManagers
   const projectManagersOpts = client?.projectManager ? projectManagers.concat(client.projectManager) : projectManagers
 
   return (
@@ -68,7 +64,7 @@ export const ClientFormModal: React.FC<Props> = ({
             label="Type"
             rules={[{ required: true }]}
           >
-            <Select>
+            <Select showSearch>
               {types.map(type => (
                 <Option key={type} value={type}>{I18n.t(`activerecord.attributes.client.types.${type}`)}</Option>))}
             </Select>
@@ -85,7 +81,7 @@ export const ClientFormModal: React.FC<Props> = ({
             label="Country"
             rules={[{ required: true }]}
           >
-            <Select>
+            <Select showSearch>
               {countries.map(country => (
                 <Option key={country} value={country}>{country}</Option>))}
             </Select>
@@ -100,23 +96,6 @@ export const ClientFormModal: React.FC<Props> = ({
             </Select>
           </Form.Item>
           <Form.Item
-            name="accountManagerId"
-            label="Account Manager"
-            rules={[{ required: true }]}
-          >
-            <Select
-              showSearch
-              filterOption={false}
-              onSearch={(value) => {
-                fetchAccountManager({ apiConfig: { filter: { search_query: value } } })
-              }
-              }
-              notFoundContent={isAccountManagerLoading('fetch') ? <Spin size="small" /> : null}
-            >
-              {accountManagersOpts.map(({ id, name }) => (<Option key={id} value={id}>{name}</Option>))}
-            </Select>
-          </Form.Item>
-          <Form.Item
             name="projectManagerId"
             label="Project Manager"
             rules={[{ required: true }]}
@@ -124,13 +103,22 @@ export const ClientFormModal: React.FC<Props> = ({
             <Select
               showSearch
               onSearch={(value) => {
-                fetchProjectManager({ apiConfig: { filter: { search_query: value } } })
-              }
-              }
+                fetchProjectManager({
+                  apiConfig: { filter: { search_query: value, admins: 'true' }, fields: { users: ['name', 'email'] } },
+                })
+              }}
               notFoundContent={isProjectManagerLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {projectManagersOpts.map(({ id, name }) => (<Option key={id} value={id}>{name}</Option>))}
+              {projectManagersOpts.map(({ id, name, email }) => (
+                <Option key={id} value={id}>
+                  {name}
+                  {' '}
+                  (
+                  {email}
+                  )
+                </Option>
+              ))}
             </Select>
           </Form.Item>
         </>

@@ -23,6 +23,7 @@ export interface ResourceState<D, M = BaseMeta> {
 }
 
 export interface UrlQuery {
+  fields?: { [key: string]: string |string[] }
   page?: {
     number?: number,
     size?: number

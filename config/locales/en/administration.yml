@@ -989,7 +989,6 @@ en:
           successfully: User %{name} was successfully updated.
         user: User
       columns:
-        account_manager: Account Manager
         country: Country
         project_manager: Project Manager
         type: Type
@@ -1029,7 +1028,6 @@ en:
         enable_2fa: Enable Two Factor Authentication
         header: Edit Client
       export:
-        account_manager_id: Account manager
         admin: Client Admin
         client_admins: Client admins
         end_date: End date
@@ -1137,7 +1135,6 @@ en:
           duplicate_licenses: You have duplicate licenses
           successfully: Licenses successfully updated
       list:
-        account_manager_id: Account manager
         admin: Client Admin
         client_admins: Client admins
         end_date: End date

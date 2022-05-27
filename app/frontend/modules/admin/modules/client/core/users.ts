@@ -5,6 +5,7 @@ export const UserTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
     name: t.string,
+    email: t.string,
   }),
 ])
 

@@ -52,6 +52,20 @@ COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
 
 
 --
+-- Name: tablefunc; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS tablefunc WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION tablefunc; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION tablefunc IS 'functions that manipulate whole tables, including crosstab';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -910,7 +924,6 @@ CREATE TABLE public.clients (
     country character varying,
     year integer,
     applicable_level integer DEFAULT 0,
-    account_manager_id integer,
     project_manager_id integer,
     archived boolean DEFAULT false,
     tte_id integer,
@@ -2857,7 +2870,8 @@ CREATE TABLE public.reports (
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
     description character varying,
-    poster character varying
+    poster character varying,
+    require_approval boolean DEFAULT false
 );
 
 
@@ -3436,6 +3450,43 @@ ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
 
 
 --
+-- Name: text_module_overrides; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.text_module_overrides (
+    id bigint NOT NULL,
+    module_id integer,
+    user_report_id bigint,
+    editor_id bigint,
+    content text,
+    approved boolean DEFAULT false,
+    reports_modules_id bigint,
+    foreign_key_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: text_module_overrides_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.text_module_overrides_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: text_module_overrides_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.text_module_overrides_id_seq OWNED BY public.text_module_overrides.id;
+
+
+--
 -- Name: threesixty_campaigns; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3966,7 +4017,8 @@ CREATE TABLE public.user_reports (
     updated_at timestamp without time zone NOT NULL,
     user_access boolean DEFAULT false,
     report_family_id bigint,
-    pdf_path character varying
+    pdf_path character varying,
+    approved boolean DEFAULT false
 );
 
 
@@ -4037,7 +4089,10 @@ CREATE TABLE public.users (
     settings jsonb DEFAULT '{}'::jsonb,
     already_invited boolean DEFAULT false,
     locale character varying,
-    enable_2fa boolean DEFAULT true NOT NULL
+    enable_2fa boolean DEFAULT true NOT NULL,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone
 );
 
 
@@ -4833,6 +4888,13 @@ ALTER TABLE ONLY public.smtp_settings ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_id_seq'::regclass);
+
+
+--
+-- Name: text_module_overrides id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides ALTER COLUMN id SET DEFAULT nextval('public.text_module_overrides_id_seq'::regclass);
 
 
 --
@@ -5720,6 +5782,14 @@ ALTER TABLE ONLY public.tasks
 
 
 --
+-- Name: text_module_overrides text_module_overrides_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT text_module_overrides_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: threesixty_campaigns threesixty_campaigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6241,13 +6311,6 @@ CREATE INDEX index_campaign_users_on_user_id ON public.campaign_users USING btre
 --
 
 CREATE INDEX index_campaigns_on_project_id ON public.campaigns USING btree (project_id);
-
-
---
--- Name: index_clients_on_account_manager_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_clients_on_account_manager_id ON public.clients USING btree (account_manager_id);
 
 
 --
@@ -7175,6 +7238,34 @@ CREATE INDEX index_tasks_on_owner_id ON public.tasks USING btree (owner_id);
 
 
 --
+-- Name: index_text_module_overrides_on_editor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_editor_id ON public.text_module_overrides USING btree (editor_id);
+
+
+--
+-- Name: index_text_module_overrides_on_foreign_key_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_foreign_key_id ON public.text_module_overrides USING btree (foreign_key_id);
+
+
+--
+-- Name: index_text_module_overrides_on_reports_modules_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_reports_modules_id ON public.text_module_overrides USING btree (reports_modules_id);
+
+
+--
+-- Name: index_text_module_overrides_on_user_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_user_report_id ON public.text_module_overrides USING btree (user_report_id);
+
+
+--
 -- Name: index_threesixty_campaigns_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7975,19 +8066,19 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
+-- Name: text_module_overrides fk_rails_51a790cea7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_51a790cea7 FOREIGN KEY (reports_modules_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
+
+
+--
 -- Name: sms_records fk_rails_58b8df5ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sms_records
     ADD CONSTRAINT fk_rails_58b8df5ee3 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
-
-
---
--- Name: clients fk_rails_5b49237ec1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.clients
-    ADD CONSTRAINT fk_rails_5b49237ec1 FOREIGN KEY (account_manager_id) REFERENCES public.users(id) ON DELETE SET NULL;
 
 
 --
@@ -8564,6 +8655,14 @@ ALTER TABLE ONLY public.hogan_assessment_settings
 
 ALTER TABLE ONLY public.question_recoding
     ADD CONSTRAINT fk_rails_d1991e6723 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: text_module_overrides fk_rails_d255d5b433; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_d255d5b433 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
 
 
 --
@@ -9291,6 +9390,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
-('20220329105142');
+('20220329105142'),
+('20220412191741'),
+('20220425192928'),
+('20220425201109'),
+('20220427143253'),
+('20220428111329'),
+('20220527063033');
 
 

@@ -20,7 +20,6 @@ module Api
 
         def self.relationships(_)
           [
-            { name: :account_manager, resource: :users, relationship: :one, allowed_blank: false },
             { name: :project_manager, resource: :users, relationship: :one }
           ]
         end

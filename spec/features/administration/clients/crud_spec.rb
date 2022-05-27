@@ -19,7 +19,6 @@ feature 'CRUD Client' do
                                number: 1,
                                country: ::Datas::Geo.take.country_name,
                                year: Date.today.year,
-                               account_manager: 'super admin',
                                project_manager: 'super admin')
 
       create_project(tenancy,

@@ -42,7 +42,9 @@ const ClientListComponent: React.FC<Props> = ({ openModal }) => {
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource, createResource,
   } = useResources<Client, Meta>(
     'clients',
-    { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['account_manager', 'project_manager'] } },
+    { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['project_manager'],
+      fields: { users: ['name', 'email']} }
+    },
   )
   useEffect(() => {
     fetch()
@@ -91,11 +93,6 @@ const ClientListComponent: React.FC<Props> = ({ openModal }) => {
           key="year"
           sorter
           sortOrder={getSortOrder('year')}
-        />
-        <Column
-          title={I18n.t('administration.clients.columns.account_manager')}
-          dataIndex={['accountManager', 'name']}
-          key="account_manager"
         />
         <Column
           title={I18n.t('administration.clients.columns.project_manager')}
