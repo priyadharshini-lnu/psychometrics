@@ -42,8 +42,13 @@ const ClientListComponent: React.FC<Props> = ({ openModal }) => {
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource, createResource,
   } = useResources<Client, Meta>(
     'clients',
-    { trackUrl: true, responseType: ClientTR, apiConfig: { include: ['project_manager'],
-      fields: { users: ['name', 'email']} }
+    {
+      trackUrl: true,
+      responseType: ClientTR,
+      apiConfig: {
+        include: ['project_manager'],
+        fields: { users: ['name', 'email'] },
+      },
     },
   )
   useEffect(() => {
