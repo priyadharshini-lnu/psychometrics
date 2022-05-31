@@ -79,7 +79,7 @@ module Administration
         resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if resource.update(update_resource_params)
-            audit! :update_client_admin, res, client: client, payload: params.permit!
+            audit! :update_client_admin, resource, client: client, payload: params.permit!
             format.html do
               redirect_to({ action: :edit, id: resource },
                           success: t('administration.memberships.update.successfully',
@@ -94,7 +94,7 @@ module Administration
       def destroy
         authorize resource_class, :can_manage_client_admins?
         resource.destroy
-        audit! :delete_client_admin, res, client: client
+        audit! :delete_client_admin, resource, client: client
         respond_to do |format|
           format.html do
             redirect_back(
