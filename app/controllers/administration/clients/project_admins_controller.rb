@@ -95,7 +95,7 @@ module Administration
         resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if resource.update(update_resource_params)
-            audit! :update_project_admin, res, project: client, payload: params.permit!
+            audit! :update_project_admin, resource, project: client, payload: params.permit!
             format.html do
               redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully',
                                                                       name: resource.user.decorate.display_name))
@@ -113,7 +113,7 @@ module Administration
           project_id: client.id
         )
         resource.destroy
-        audit! :delete_project_admin, res, project: client
+        audit! :delete_project_admin, resource, project: client
         respond_to do |format|
           format.html do
             redirect_back(
