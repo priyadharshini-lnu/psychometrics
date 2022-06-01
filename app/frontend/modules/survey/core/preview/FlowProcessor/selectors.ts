@@ -99,7 +99,7 @@ export const pageQuestionsWithoutHidden = createSelector(pageQuestions, question
 export const getQuestionErrors = createSelector(
   getQuestion,
   getErrors,
-  (question, errors) => (errors && errors[question.id]) || [],
+  (question, errors) => (question && errors && errors[question.id]) || [],
 )
 
 export const pageErrors = (state): {[qId: number]: []} => state.errors
@@ -113,7 +113,7 @@ export const getDisplayLogicSelector = createSelector(
 export const getQuestionResults = createSelector(
   getQuestion,
   getResults,
-  (question, results) => results[question.id] || {},
+  (question, results) => (question && results[question.id]) || {},
 )
 
 export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} | undefined => (
