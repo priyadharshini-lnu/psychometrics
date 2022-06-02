@@ -22,7 +22,7 @@ module Administration
       can_view_report = @user.has_permission?(:results, :view_report, project_id: project_id, campaign_id: campaign_id)
       return can_view_report unless @record.report.require_approval?
 
-      @record.status_approval && can_view_report
+      @record.approved? && can_view_report
     end
 
     def approve?
