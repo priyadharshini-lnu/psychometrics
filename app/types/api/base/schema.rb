@@ -76,8 +76,7 @@ module Api
       def self.define_schema(&block)
         namespace = self.namespace
         Dry::Schema.define do
-          config.messages.backend = :i18n
-          config.messages.top_namespace = :dry_errors
+          config.messages.load_paths += I18n.load_path
           config.messages.namespace = namespace
 
           instance_eval(&block)

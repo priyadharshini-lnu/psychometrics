@@ -4,10 +4,10 @@ module CustomTypes
   class Relationship
     def self.relationship_data_type(name, resource = nil)
       type = (resource || name).to_s
-      Types::Hash.schema(
-        id: Types::String,
-        type: Types.Value(type)
-      )
+      Dry::Schema.define do
+        required(:type).filled(:string).value(eql?: type)
+        required(:id).filled(:string)
+      end
     end
 
     def self.relationship_type(detail)

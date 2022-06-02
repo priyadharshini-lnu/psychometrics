@@ -291,19 +291,19 @@
                         "data": {
                           "type": "object",
                           "properties": {
-                            "id": {
-                              "type": "string",
-                              "nullable": false
-                            },
                             "type": {
                               "type": "string",
                               "description": "Must be equal to users",
                               "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
                             }
                           },
                           "required": [
-                            "id",
-                            "type"
+                            "type",
+                            "id"
                           ],
                           "nullable": false
                         },
@@ -432,19 +432,19 @@
                       "data": {
                         "type": "object",
                         "properties": {
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          },
                           "type": {
                             "type": "string",
                             "description": "Must be equal to users",
                             "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
                           }
                         },
                         "required": [
-                          "id",
-                          "type"
+                          "type",
+                          "id"
                         ],
                         "nullable": false
                       },
@@ -610,19 +610,19 @@
                       "data": {
                         "type": "object",
                         "properties": {
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          },
                           "type": {
                             "type": "string",
                             "description": "Must be equal to users",
                             "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
                           }
                         },
                         "required": [
-                          "id",
-                          "type"
+                          "type",
+                          "id"
                         ],
                         "nullable": false
                       }
@@ -714,19 +714,19 @@
                       "data": {
                         "type": "object",
                         "properties": {
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          },
                           "type": {
                             "type": "string",
                             "description": "Must be equal to users",
                             "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
                           }
                         },
                         "required": [
-                          "id",
-                          "type"
+                          "type",
+                          "id"
                         ],
                         "nullable": false
                       }
