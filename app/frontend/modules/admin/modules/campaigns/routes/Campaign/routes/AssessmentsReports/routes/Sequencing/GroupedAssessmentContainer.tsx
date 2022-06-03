@@ -106,7 +106,6 @@ export const GroupedAssessmentContainer = React.forwardRef(
                 {...attributes}
                 {...listeners}
               />
-              <Typography.Text type="secondary">{group.position}</Typography.Text>
               <Typography.Text
                 title={group.name}
                 className={cs(styles.maxWidth30Chars)}

@@ -44,7 +44,9 @@ module Administration
         participant = ::Threesixty::Participant.find_by!(campaign_id: threesixty_campaign.campaign_id,
                                              subject_id: resource.user_id,
                                              evaluator_id: params[:id])
-        participant.update!(evaluator_nomination_status: :waiting, status: :not_started)
+        participant.update!(
+          evaluator_nomination_status: :waiting, status: :not_started, completed_at: nil
+        )
         participant.users_result.destroy!
 
         render json: { id: participant.users_result_id }

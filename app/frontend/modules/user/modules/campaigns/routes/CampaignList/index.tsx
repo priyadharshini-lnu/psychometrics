@@ -77,7 +77,8 @@ const CampaignList: FC<PropsFromRedux> = ({
       />
       <Row gutter={[32, 32]}>
         <Col span={24}>
-          {I18n.t('campaign.dashboard_instructions')}
+          {campaigns.length
+            ? I18n.t('campaign.dashboard_instructions') : I18n.t('campaign.inactive_campaign_message')}
         </Col>
         {campaigns.map((campaign) => {
           const Component = Campaigns[campaign.type]

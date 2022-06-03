@@ -12,6 +12,7 @@ module UserReports::PdfGeneration
   def show
     @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
     @selected_locale = params[:lang] || resource.report.default_language
+    audit! :view_report, resource, campaign: resource.campaign, payload: params.permit!
 
     respond_to do |format|
       format.json do
@@ -34,6 +35,7 @@ module UserReports::PdfGeneration
       update_record: false
     }
     data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
+    audit! :download_report, resource, campaign: resource.campaign, payload: params.permit!
     respond_to do |format|
       format.pdf do
         send_file data[:file_path], type: 'application/pdf'

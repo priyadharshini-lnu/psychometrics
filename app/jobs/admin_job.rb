@@ -30,6 +30,7 @@ class AdminJob < ApplicationJob
     import_sms_invites: AdminJobs::ImportSmsInvites,
     send_sms_invites: AdminJobs::SendSmsInvites,
     completion_status_export: AdminJobs::CompletionStatusExport,
+    compact_completion_status_export: AdminJobs::CompactCompletionStatusExport,
     threesixty_campaign_export_completion_status: AdminJobs::ThreesixtyCampaignExportCompletionStatus
   }.freeze
 

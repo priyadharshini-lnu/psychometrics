@@ -6,6 +6,7 @@ import {
   resetPassword,
   get as getUsers,
   exportCompletionStatuses,
+  exportCompactCompletionStatuses,
 } from 'modules/admin/modules/campaigns/core/users'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -21,6 +22,7 @@ const connecter = connect(
     openModal,
     toggleActive,
     exportCompletionStatuses,
+    exportCompactCompletionStatuses,
   },
 )
 export default connecter

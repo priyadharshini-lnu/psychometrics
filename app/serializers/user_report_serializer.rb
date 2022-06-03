@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 class UserReportSerializer < ActiveModel::Serializer
-  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject
+  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
+             :approved
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
   has_one :user, serializer: UserSerializer
   has_one :report, serializer: ReportSerializer
   has_one :options, serializer: Threesixty::CampaignOptionsSerializer
+  has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
 
   def campaign_id
-    object.campaign.threesixty_campaign&.id
+    object.campaign.threesixty_campaign&.id || object.campaign_id
   end
 
   def is_self # rubocop:disable Naming/PredicateName
@@ -37,6 +39,10 @@ class UserReportSerializer < ActiveModel::Serializer
 
   def evalaution_completed_for_subject
     object.threesixty_subject&.evaluation_status_completed?
+  end
+
+  def module_overrides
+    TextModuleOverride.where(user_report_id: object.id)
   end
 
   private

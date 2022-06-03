@@ -12,8 +12,18 @@ import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/addon/fold/foldcode'
 import 'codemirror/addon/fold/foldgutter'
-import 'codemirror/addon/fold/brace-fold'
 import 'codemirror/addon/fold/foldgutter.css'
+import 'codemirror/addon/fold/brace-fold'
+import 'codemirror/addon/dialog/dialog'
+import 'codemirror/addon/dialog/dialog.css'
+import 'codemirror/addon/search/searchcursor'
+import 'codemirror/addon/search/search'
+import 'codemirror/addon/scroll/annotatescrollbar'
+import 'codemirror/addon/search/matchesonscrollbar'
+import 'codemirror/addon/search/matchesonscrollbar.css'
+import 'codemirror/addon/search/jump-to-line'
+
+
 import 'styles/utils.scss'
 
 import { useTimeout } from 'hooks/useTimeout'
@@ -97,6 +107,7 @@ function JSONEditor ({ value, onSave, buttonLabel }) {
           lineWrapping: true,
           extraKeys: {
             'Ctrl-Q': cm => cm.foldCode(cm.getCursor()),
+            'Alt-F': 'findPersistent',
           },
           gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
         }}

@@ -9,6 +9,7 @@ class UserReport < ApplicationRecord
   has_one :saville_report_setting, through: :report
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
+  has_many :text_module_overrides, dependent: :destroy
 
   delegate :client, to: :campaign
   delegate :saville_report_id, to: :report

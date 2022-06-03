@@ -16,7 +16,9 @@ export class Preview extends Component {
   storeListener = null
 
   render () {
-    const { localeDirection, loaded } = this.props
+    const {
+      localeDirection, loaded, showOverrides, rstore, moduleOverrides,
+    } = this.props
     if (!loaded) { return null }
     const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
     return (
@@ -27,6 +29,9 @@ export class Preview extends Component {
             key={i}
             pageNumber={i + 1}
             totalPages={visiblePages.length}
+            rstore={rstore}
+            showOverrides={showOverrides}
+            moduleOverrides={moduleOverrides}
           />
         ))}
       </div>

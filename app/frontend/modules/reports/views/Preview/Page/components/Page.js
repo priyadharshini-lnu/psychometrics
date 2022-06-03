@@ -13,7 +13,9 @@ class Page extends Component {
   }
 
   renderModuleType = (module, i) => {
-    const { model, pageNumber, totalPages } = this.props
+    const {
+      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides,
+    } = this.props
     if (!module.type) { return }
     const View = Modules[module.type]
     return (
@@ -24,6 +26,9 @@ class Page extends Component {
         preview
         pageNumber={pageNumber}
         totalPages={totalPages}
+        rstore={rstore}
+        showOverrides={showOverrides}
+        moduleOverrides={moduleOverrides}
       />
     )
   }
@@ -51,7 +56,7 @@ class Page extends Component {
     }
 
     return (
-      <div className={styles.page} name={model.name}>
+      <div className={styles.page} name={`Page#${model.id}`}>
         <div className={`${styles.pageContainer} fe-page-container`} style={style}>
           <div className={styles.pageContent}>
             {model.modules.list.map(this.renderModuleType)}

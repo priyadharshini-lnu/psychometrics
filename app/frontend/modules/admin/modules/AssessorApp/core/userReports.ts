@@ -89,6 +89,7 @@ const HANDLERS = {
       results: action.response.results,
       report: action.response.report,
       user: action.response.user,
+      moduleOverrides: action.response.module_overrides,
       loaded: true,
     },
   }),

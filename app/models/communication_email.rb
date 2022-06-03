@@ -30,7 +30,8 @@ class CommunicationEmail < ApplicationRecord
   end
 
   def params_for_set_job
-    need_to_pass_wait_until? ? { wait_until: communication.delivery_at } : {}
+    params = need_to_pass_wait_until? ? { wait_until: communication.delivery_at } : {}
+    params.merge!({ queue: 'mailers_low_priority' })
   end
 
   def delivery_email

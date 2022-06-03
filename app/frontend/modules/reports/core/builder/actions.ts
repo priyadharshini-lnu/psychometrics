@@ -32,7 +32,9 @@ enum SelectedTypes {
   'Report'
 }
 
-export const init = data => ({ type: INIT, data })
+export const init = (data, userReport = null, campaignId = null) => ({
+  type: INIT, data, userReport, campaignId,
+})
 export const openRichEditor = () => ({ type: OPEN_RICH_EDITOR })
 export const closeRichEditor = () => ({ type: CLOSE_RICH_EDITOR })
 
