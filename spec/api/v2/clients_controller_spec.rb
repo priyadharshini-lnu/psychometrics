@@ -188,7 +188,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           expect(client_response).to have_attribute(:type).with_value('retail')
           expect(client_response).to have_attribute(:number).with_value(client.number)
           expect(client_response).to have_relationship(:project_manager).
-            with_data({ 'id' => client.project_manager.id.to_s, 'type' => 'users' })
+            with_data({ 'id' => project_manager.id.to_s, 'type' => 'users' })
         end
       end
     end
@@ -204,7 +204,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
       let(:client) { create(:tenancy) }
       let(:client_id) { client.id }
 
-      response '200', 'Client Deleted' do
+      response '204', 'Client Deleted' do
         run_test! do |response|
           expect(response.body).to be_empty
           expect(UserAssessment.find_by(id: client_id)).to eq(nil)
