@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UserAssessments
-  class AllowEdit < BaseCommand
+  class ResetProgress < BaseCommand
     private_attr_reader :user_assessment, :user_result
 
     def initialize(user_assessment)
@@ -11,12 +11,13 @@ module UserAssessments
 
     def call
       transaction do
-        remove_reports
+        remove_reports if user_assessment.completed?
         user_assessment.update!(
           status: UserAssessment.statuses[:in_progress],
           completed_at: nil,
           completion_reason: nil,
-          norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil
+          norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil,
+          progress_reseted: true
         )
         user_result.update!(
           answers: set_answers_as_dirty,

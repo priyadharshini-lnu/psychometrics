@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UserAssessments::AllowEdit do
+describe UserAssessments::ResetProgress do
   let(:user_result) do
     create(
       :users_result,
@@ -57,6 +57,7 @@ describe UserAssessments::AllowEdit do
     user_report = create(:user_report, :with_pdf, report: assessment.reports.first,
       user_id: user_assessment.subject_id, campaign_id: user_assessment.campaign_id, status: :prepared)
 
+    user_assessment.completed!
     described_class.call!(user_assessment)
 
     expect(user_report.reload.pdf_identifier).to eq(nil)

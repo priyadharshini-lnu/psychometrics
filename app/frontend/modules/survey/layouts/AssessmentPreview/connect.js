@@ -9,6 +9,7 @@ export default connect(
     agileAssetsUrl: preview.agileAssetsUrl,
     showSubmitPage: preview.showSubmitPage,
     started: preview.started,
+    showErrorWarning: preview.showErrorWarning,
     fixedTimed: preview.fixedTimed,
     instructions: preview.instructions,
     isAnonymousAssessment: preview.isAnonymousAssessment,

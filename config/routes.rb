@@ -247,7 +247,7 @@ Rails.application.routes.draw do
             post :update_norm
             post :rescore_response
             post :reset
-            post :allow_edit
+            post :reset_progress
             post :update_additional_time
           end
         end

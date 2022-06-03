@@ -273,8 +273,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint
@@ -431,12 +431,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -662,8 +662,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb
 );
 
@@ -3260,14 +3260,13 @@ CREATE TABLE public.security_settings (
     project_id integer,
     enforce_strong_password boolean DEFAULT false,
     min_password_length integer DEFAULT 8,
-    max_password_length integer DEFAULT 128,
     enforce_password_policy boolean DEFAULT false,
     disable_password_reuse boolean DEFAULT false,
-    password_expiration integer DEFAULT 0,
+    password_expiration integer,
     restrict_sequences boolean DEFAULT false,
     lock_account boolean DEFAULT false,
     attempts_to_lock integer DEFAULT 3,
-    auto_unlock_time integer DEFAULT 0,
+    auto_unlock_time integer DEFAULT 10,
     send_unlock_email boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -3537,7 +3536,7 @@ CREATE TABLE public.text_module_overrides (
     editor_id bigint,
     content text,
     approved boolean DEFAULT false,
-    modules_id bigint,
+    reports_modules_id bigint,
     foreign_key_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -3764,8 +3763,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -4056,7 +4054,8 @@ CREATE TABLE public.user_assessments (
     additional_time integer,
     selected_locale character varying,
     started_at timestamp without time zone,
-    last_activity_at timestamp without time zone
+    last_activity_at timestamp without time zone,
+    progress_reseted boolean DEFAULT false
 );
 
 
@@ -4206,10 +4205,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -7374,10 +7373,10 @@ CREATE INDEX index_text_module_overrides_on_foreign_key_id ON public.text_module
 
 
 --
--- Name: index_text_module_overrides_on_modules_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_text_module_overrides_on_reports_modules_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_text_module_overrides_on_modules_id ON public.text_module_overrides USING btree (modules_id);
+CREATE INDEX index_text_module_overrides_on_reports_modules_id ON public.text_module_overrides USING btree (reports_modules_id);
 
 
 --
@@ -8188,11 +8187,11 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
--- Name: text_module_overrides fk_rails_57a512b67b; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: text_module_overrides fk_rails_51a790cea7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.text_module_overrides
-    ADD CONSTRAINT fk_rails_57a512b67b FOREIGN KEY (modules_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_51a790cea7 FOREIGN KEY (reports_modules_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
 
 
 --
@@ -8728,7 +8727,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -9516,7 +9515,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
-('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9528,4 +9526,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220428111329'),
 ('20220512111341'),
 ('20220512120041'),
-('20220513062033');
+('20220513062033'),
+('20220527125017');
