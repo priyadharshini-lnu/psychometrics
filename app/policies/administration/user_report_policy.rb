@@ -17,18 +17,11 @@ module Administration
     end
 
     def download?
-      return true if @user.is?(:superadmin)
-
-      can_view_report = @user.has_permission?(:results, :view_report, project_id: project_id, campaign_id: campaign_id)
-      return can_view_report unless @record.report.require_approval?
-
-      @record.approved? && can_view_report
+      show?
     end
 
     def approve?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :results, :view_report, project_id: project_id, campaign_id: campaign_id
-      )
+      show?
     end
 
     def regenerate?

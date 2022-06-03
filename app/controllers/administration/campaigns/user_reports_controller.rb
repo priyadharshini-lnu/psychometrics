@@ -6,6 +6,7 @@ module Administration
       include UserReports::PdfGeneration
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access]
+      before_action :pundit_authorize
 
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
@@ -33,6 +34,7 @@ module Administration
       def approve
         audit! :approve, resource, campaign: resource.campaign
         resource.update!(approved: true)
+        generate_report(resource) if resource.generatable?
         head :ok
       end
 
@@ -51,6 +53,10 @@ module Administration
       end
 
       private
+
+      def generate_report(user_report)
+        UserReports::GenerateAndSavePdfJob.perform_later(user_report, current_user)
+      end
 
       def pundit_authorize
         authorize(
