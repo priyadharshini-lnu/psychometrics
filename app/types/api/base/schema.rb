@@ -80,9 +80,10 @@ module Api
       def self.multiple_resource_response
         this = self
         Dry::Schema.define do
-          required(:data).value(:array) do
+          required(:data).array do
             this.single_resource(:multiple_response)
           end
+          required(:meta).value(this.index_meta_schema)
         end
       end
 
@@ -149,6 +150,15 @@ module Api
           send(method, :relationships).value(
             CustomTypes::Relationship.relationships(relationships)
           )
+        end
+      end
+
+      def self.index_meta_schema
+        this = self
+        Dry::Schema.define do
+          required(:record_count).filled(:integer)
+          required(:page_count).filled(:integer)
+          instance_eval(&this.extra_index_meta_schema) if this.respond_to?(:extra_index_meta_schema)
         end
       end
     end

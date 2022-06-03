@@ -222,4 +222,66 @@ describe Api::Base::Schema do
   describe 'update_relationship_request' do
     include_examples 'create/update_relationship_request', 'update_relationship_request'
   end
+
+  describe 'Response Types' do
+    class TestResponseSchema < TestSchema
+      def self.relationships(_)
+        [
+          { name: :has_one, resource: :users, relationship: :one, required: false, allowed_blank: false },
+          { name: :has_many, resource: :users, relationship: :many, required: false, allowed_blank: false }
+        ]
+      end
+
+      def self.extra_index_meta_schema
+        proc do
+          required(:types).array(:str?)
+        end
+      end
+    end
+
+    describe 'single_response' do
+      it 'verify correct schema' do
+        schema = TestResponseSchema.single_resource_response.call(
+          jsonapi_resource_request(
+            'clients',
+            { id: '12', name: 'Client Name' },
+            has_one: { type: 'users', id: '1' },
+            has_many: [{ type: 'users', id: '2' }]
+          ).deep_merge(
+            data: { links: { self: 'http://example.com/clients/12' } }
+          )
+        )
+
+        expect(schema.failure?).to eq(false)
+      end
+    end
+
+    describe 'multiple_response' do
+      it 'verify correct schema' do
+        resource1 = jsonapi_resource_request(
+          'clients',
+          { id: '11', name: 'Client Name' },
+          has_one: { type: 'users', id: '1' },
+          has_many: [{ type: 'users', id: '2' }]
+        ).deep_merge(
+          data: { links: { self: 'http://example.com/clients/12' } }
+        )
+
+        resource2 = jsonapi_resource_request(
+          'clients',
+          { id: '12', name: 'Client Name2' },
+          has_one: { type: 'users', id: '4' },
+          has_many: [type: 'users', id: '5']
+        ).deep_merge(
+          data: { links: { self: 'http://example.com/clients/12' } }
+        )
+        schema = TestResponseSchema.multiple_resource_response.call({
+          data: [resource1[:data], resource2[:data]],
+          meta: { record_count: 10, page_count: 2, types: %w[clients users] }
+        })
+
+        expect(schema.failure?).to eq(false)
+      end
+    end
+  end
 end

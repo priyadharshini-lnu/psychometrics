@@ -24,8 +24,10 @@ module Api
           ]
         end
 
-        def self.create_client_admin_request
-          Dry::Schema.define do
+        def self.extra_index_meta_schema
+          proc do
+            required(:countries).array(:str?)
+            required(:types).array(:str?)
           end
         end
       end

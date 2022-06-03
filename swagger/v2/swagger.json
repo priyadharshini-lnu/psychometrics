@@ -402,10 +402,47 @@
               "nullable": false
             },
             "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "countries": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "nullable": false
+              },
+              "types": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count",
+              "countries",
+              "types"
+            ],
+            "nullable": false
           }
         },
         "required": [
-          "data"
+          "data",
+          "meta"
         ]
       },
       "ClientResponse": {
