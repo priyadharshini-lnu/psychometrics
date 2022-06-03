@@ -2544,8 +2544,12 @@ en:
           sub_factors_mismatch: "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         result:
           error: "[Row %{row}] %{error}"
-          invalid_assign: "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
+          invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_format: Invalid File format
+          user:
+            record_not_found: Can't find existing user with email %{email}.
+          user_assessment:
+            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user .
         translation:
           error: "[Translation %{id}] %{error}"
           invalid_format: Invalid File format
