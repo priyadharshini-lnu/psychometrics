@@ -28,7 +28,8 @@ RSpec::Matchers.define :have_jsonapi_relationship_error do
     errors = actual.errors.to_h
 
     @relationship_with_errors ||= expected.each_with_object({}) do |(relationship, expected_error), acc|
-      actual_error = errors.dig(:data, :relationships, relationship, :data)
+      actual_error = errors.dig(:data, :relationships, relationship)
+      actual_error = actual_error.is_a?(Hash) || actual_error.nil? ? actual_error[:data] : actual_error
 
       if actual_error != expected_error
         acc[relationship] = { expected_error: expected_error, actual_error: actual_error }

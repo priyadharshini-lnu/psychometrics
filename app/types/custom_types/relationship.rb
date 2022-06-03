@@ -20,9 +20,15 @@ module CustomTypes
 
           data_method = detail[:allowed_blank] ? :maybe : :value
           if detail[:relationship] == :many
-            required(:data).public_send(data_method, array[data_type])
+            required(:data).public_send(data_method) do
+              array do
+                hash data_type
+              end
+            end
           else
-            required(:data).public_send(data_method, data_type)
+            required(:data).public_send(data_method) do
+              hash data_type
+            end
           end
 
           if detail[:links]

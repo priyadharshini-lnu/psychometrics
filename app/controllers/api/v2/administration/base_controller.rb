@@ -42,7 +42,13 @@ module Api
         }[action]
         return unless method_name
 
-        schema_validation = _crud_schema_class.public_send(method_name).call(params.permit!.to_h)
+        schema_validation = if %i[create_relationship_request update_relationship_request].include?(method_name)
+                              _crud_schema_class.
+                                public_send(method_name, params[:relationship]).
+                                call(params.permit!.to_h)
+                            else
+                              _crud_schema_class.public_send(method_name).call(params.permit!.to_h)
+                            end
       end
 
       if schema_validation&.failure?

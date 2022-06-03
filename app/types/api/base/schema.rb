@@ -35,26 +35,39 @@ module Api
         end
       end
 
-      def self.create_relationship_request(name)
-        this = self
+      def self.relationship_request(name, type)
+        relationships = relationships(type)
+        relationships = preprocess_relationships(relationships, type)
         relationship = relationships.find { |r| r[:name] == name.to_sym }
         raise 'No such relationship' unless relationship
 
+        resource_type = Dry::Schema.define do
+          required(:type).filled(:string).value(eql?: relationship[:resource].to_s)
+          required(:id).filled(:string)
+        end
         has_many = relationship[:relationship] == :many
-
+        data_method = relationship[:allowed_blank] ? :maybe : :value
         define_schema do
           if has_many
-            required(:data).array(:hash) do
-              instance_eval(&this.resource_identifier)
+            required(:data).public_send(data_method) do
+              array do
+                hash resource_type
+              end
             end
           else
-            required(:data).hash(&this.resource_identifier)
+            required(:data).public_send(data_method) do
+              hash resource_type
+            end
           end
         end
       end
 
+      def self.create_relationship_request(name)
+        relationship_request(name, :create_relationship)
+      end
+
       def self.update_relationship_request(name)
-        create_relationship_request(name)
+        relationship_request(name, :update_relationship)
       end
 
       def self.single_resource_response

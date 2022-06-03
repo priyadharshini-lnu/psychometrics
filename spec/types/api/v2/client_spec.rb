@@ -76,16 +76,16 @@ RSpec.describe Api::V2::Client::Schema do
     include_examples 'create/update', 'update_request'
 
     it 'is valid even if some attributes are missing' do
-      valid_params_without_name = jsonapi_remove_attributes(valid_params, :name)
-      schema = Api::V2::Client::Schema.update_request.call(valid_params_without_name)
+      params_without_name = jsonapi_remove_attributes(valid_params, :name)
+      schema = Api::V2::Client::Schema.update_request.call(params_without_name)
 
       expect(schema.failure?).to eq(false)
     end
 
     it 'is valid even if some relationship are missing' do
-      valid_params_without_project_manager = jsonapi_remove_relationships(valid_params, :project_manager)
+      params_without_project_manager = jsonapi_remove_relationships(valid_params, :project_manager)
       schema = Api::V2::Client::Schema.update_request.call(
-        valid_params_without_project_manager
+        params_without_project_manager
       )
 
       expect(schema.failure?).to eq(false)
