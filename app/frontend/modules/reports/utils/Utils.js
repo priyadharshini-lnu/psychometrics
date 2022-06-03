@@ -77,7 +77,14 @@ export default {
   filterItemsWithEmptyValues (records, key) {
     return records.filter((record) => {
       const value = record[key]
-      return !(isNaN(value) || value === 0 || value === null || value === '')
+      return !(isNaN(value) || value === null || value === '')
+    })
+  },
+
+  filterItemsWithZeroValues (records, key) {
+    return records.filter((record) => {
+      const value = record[key]
+      return value !== 0
     })
   },
 }
