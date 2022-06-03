@@ -1049,12 +1049,16 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :projects, only: %i[show create update] do
           resources :campaigns, only: %i[show create update] do
+            get :assessments_reports, on: :member, action_name: 'get_assessments_reports'
             put :assessments_reports, on: :member
             resources :users, only: %i[indexs] do
               put :assessments_reports, on: :member
             end
-            resources :assessments, only: %i[destroy]
-            resources :reports, only: %i[update destroy]
+
+            scope module: :campaigns do
+              resources :assessments, only: %i[update destroy]
+              resources :reports, only: %i[update destroy]
+            end
           end
 
           resources :users, only: %i[index create update] do
@@ -1062,7 +1066,7 @@ Rails.application.routes.draw do
 
             post 'campaigns' => 'campaigns#assign_user'
             resources :campaigns, only: %i[index]
-            resources :assessments, only: %i[index]
+            resources :assessments, only: %i[index update destroy]
             resources :reports, only: %i[index update destroy] do
               get :results, on: :member
               get :pdf, on: :member
