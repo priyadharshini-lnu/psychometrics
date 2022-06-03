@@ -70,28 +70,12 @@ module Imports
             user_result = UsersResult.find_by_encoded_id(data['result_id']) if data['result_id'].present?
           rescue ActiveRecord::RecordNotFound
             errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + SKIP_ROWS))
-            return [nil]
+            next
           end
 
-          # If UserResult not found, going to create user
-          unless user_result
-            user = Users::Regular.
-                   find_by(users: { email: data['subject_email'].to_s.downcase }, project_id: campaign.project_id)
-            user ||= find_or_create_user(data, index)
-            next unless user
+          user_result ||= find_user_result(email: data['subject_email'])
 
-            user.campaign_users.find_or_create_by(campaign_id: campaign.id)
-            user_assessment = UserAssessment.find_or_create_by(
-              subject_id: user.id,
-              evaluator_id: user.id,
-              campaign_id: campaign.id,
-              assessment_id: assessment.id,
-              project_id: campaign.project_id
-            ) do |ua|
-              ua.users_result = UsersResult.create
-            end
-            user_result = user_assessment.users_result
-          end
+          next unless user_result
 
           status = I18n.t('activerecord.attributes.users_result.statuses').key(data['status'])
           completion_reason = I18n.t('activerecord.attributes.users_result.completion_reasons').
@@ -165,25 +149,38 @@ module Imports
 
       private
 
-      def find_or_create_user(data, index)
-        first_name, last_name = data['subject_name']&.split(', ')
-        # TODO: Remove password and uncommit Invite
-        user = Users::Regular.
-               create_with(
-                 first_name: first_name,
-                 last_name: last_name,
-                 password: 'password',
-                 password_confirmation: 'password',
-                 project_id: campaign.project_id
-               ).
-               find_or_create_by(email: data['subject_email'])
-        if user.errors.any?
-          errors.add(:base, I18n.t('administration.imports.errors.result.error',
-                                   row: index + SKIP_ROWS, error: user.errors.full_messages.first))
-          nil
-        else
-          user
+      def find_user_result(email)
+        user = Users::Regular.find_by(email: email.to_s.downcase, project_id: campaign.project_id)
+        unless user
+          errors.add(
+            :base,
+            I18n.t('administration.imports.errors.result.user.record_not_found', email: email)
+          )
+          return
         end
+        user_assessment = find_user_assessments(user)
+
+        unless user_assessment
+          errors.add(
+            :base,
+            I18n.t(
+              'administration.imports.errors.result.user_assessment.record_not_found',
+              assessment_id: assessment.id
+            )
+          )
+          return
+        end
+
+        user_assessment.users_result || user_assessment.users_result.new
+      end
+
+      def find_user_assessments(user)
+        UserAssessment.find_by(
+          subject_id: user.id,
+          evaluator_id: user.id,
+          campaign_id: campaign.id,
+          assessment_id: assessment.id
+        )
       end
 
       def parse_norm_data(norm_name, assessment_id)
