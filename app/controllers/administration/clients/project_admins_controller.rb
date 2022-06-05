@@ -57,7 +57,7 @@ module Administration
           call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
-            audit! :create_project_admin, res, project: client
+            audit! :create_project_admin, res, project: client, payload: create_resource_params
             self.resource = res
           end
         end
@@ -113,7 +113,7 @@ module Administration
           project_id: client.id
         )
         resource.destroy
-        audit! :delete_project_admin, resource, project: client
+        audit! :delete_project_admin, resource, project: client, payload: resource.log_attribute_for_delete
         respond_to do |format|
           format.html do
             redirect_back(

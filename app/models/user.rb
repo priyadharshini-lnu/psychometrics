@@ -300,6 +300,10 @@ class User < ApplicationRecord
     end
   end
 
+  def log_attribute_for_delete
+    slice(:id, :email)
+  end
+
   private
 
   def email_validation

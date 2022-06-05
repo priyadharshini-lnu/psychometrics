@@ -40,8 +40,8 @@ class Administration::UsersController < Administration::BaseController
     resource.created_by_id = current_user.id
     resource.modified_by_id = current_user.id
     resource.create_by_invite = true
-    audit! :create_superadmin, resource
     if resource.save
+      audit! :create_superadmin, resource, payload: create_resource_params
       resource.invite!(current_user)
       render :create
     else
@@ -52,7 +52,7 @@ class Administration::UsersController < Administration::BaseController
   # DELETE /administration/resources/1
   def destroy
     resource.destroy
-    audit! :delete_user, resource
+    audit! :delete_user, resource, payload: resource.log_attribute_for_delete
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -67,7 +67,8 @@ class Administration::UsersController < Administration::BaseController
     resource.toggle!(:disabled)
     resource.update!(modified_by_id: current_user.id)
     resource.memberships.update_all(disabled: resource.disabled)
-    audit! (resource.disabled? ? :disabled : :enabled), resource, project: resource.project
+    audit! (resource.disabled? ? :disabled : :enabled), resource, project: resource.project,
+      payload: { email: resource.email }
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -79,7 +80,8 @@ class Administration::UsersController < Administration::BaseController
   def toggle_enable_2fa
     resource.toggle!(:enable_2fa)
     resource.update!(modified_by_id: current_user.id)
-    audit! (resource.enable_2fa? ? :enable_2fa : :disable_2fa), resource, project: resource.project
+    audit! (resource.enable_2fa? ? :enable_2fa : :disable_2fa), resource, project: resource.project,
+      payload: { email: resource.email }
 
     respond_to do |format|
       format.html do
@@ -93,7 +95,7 @@ class Administration::UsersController < Administration::BaseController
   #
   def reset_password
     resource.send_reset_password_instructions
-    audit! :reset_password_email, resource
+    audit! :reset_password_email, resource, payload: { email: resource.email }
     redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
   end
 
