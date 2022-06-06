@@ -16,7 +16,7 @@ import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/comm
 import PrivacyModal from './PrivacyModal'
 import ContinueIcon from './ContinueIcon'
 
-import './styles.scss'
+import './styles.less'
 
 const IN_PROGRESS = 'in_progress'
 const INTERRUPTED = 'interrupted'

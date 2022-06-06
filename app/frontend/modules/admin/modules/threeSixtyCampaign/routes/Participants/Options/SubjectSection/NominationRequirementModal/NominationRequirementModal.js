@@ -5,7 +5,7 @@ import {
 import { PlusOutlined, CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import List from './Tabs'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function NominationRequirementModal ({
   closeModal,

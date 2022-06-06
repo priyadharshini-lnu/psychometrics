@@ -152,6 +152,7 @@ en:
             last_name:
               blank: Last name can't be blank
             password:
+              contains_repeats: Password must not contain repeats
               too_short: Password is too short. Minimum %{count} character required
               too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
         register:
@@ -1160,6 +1161,7 @@ en:
       sms_invite: SMS Invite
     text:
       accepted: Accepted
+      all_pages: All Pages
       approve: Approve
       approved: Approved
       cancel: Cancel
@@ -1172,6 +1174,8 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      subject: Subject
+      view_as: View as
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
@@ -1496,6 +1500,7 @@ en:
     change_password: Change password
     delete: Delete
     edit: Edit
+    error_warning: Oops, something went wrong with your assessment. Please contact the support.
     hogan:
       cannot_start: You can't start the hogan assessment right now. Please try after few minutes.
     login: Login
@@ -1503,9 +1508,13 @@ en:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds
     manage: Manage
     'no': 'No'
+    passwordSetting:
+      update_success: Password settings successfull updated
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
+    restart: Restart
+    restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
     smsInvites:
       create_success: SMS Invite added successfully
       update_success: SMS Invite updated successfully
@@ -2522,12 +2531,14 @@ en:
   user_assessments:
     modals:
       actions:
-        allow_edit:
-          name: Allow Edit
+        reset_progress:
+          name: Reset Progress
           success_message: Assessment %{name} is ready for edit
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
         successfully: "%{name} assessment removed successfully."
+      reset:
+        content: Are you sure you want to reset progress '%{name}'?
     status:
       completed: Completed
       in_progress: In Progress

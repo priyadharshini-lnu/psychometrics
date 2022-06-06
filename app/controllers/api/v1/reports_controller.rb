@@ -4,6 +4,7 @@ module Api
   module V1
     class ReportsController < Api::V1::BaseController
       before_action :set_user_report, only: %i[update destroy results pdf]
+      before_action :pundit_authorize
       skip_before_action :ensure_project, :pundit_authorize, only: [:dimensions]
 
       def index
@@ -70,14 +71,20 @@ module Api
       def update
         @user_report.update!(user_report_params)
         audit! :api_update, @user_report, payload: params.permit!, campaign: @user_report.campaign
-        render json: @user_report, serializer: Api::V1::UserReportSerializer
+        user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
+                           joins(:users_result, :assessment).
+                           index_by(&:assessment_id)
+        render json: @user_report, user_assessments: user_assessments, serializer: Api::V1::UserReportSerializer
       end
 
       def destroy
         audit! :api_delete, @user_report, payload: @user_report.log_attribute_for_delete,
           campaign: @user_report.campaign
+        user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
+                           joins(:users_result, :assessment).
+                           index_by(&:assessment_id)
         @user_report.destroy!
-        render json: @user_report, serializer: Api::V1::UserReportSerializer
+        render json: @user_report, user_assessments: user_assessments, serializer: Api::V1::UserReportSerializer
       end
 
       private
@@ -104,7 +111,7 @@ module Api
       end
 
       def user_report_params
-        params.permit(:user_access, :asessor_access)
+        params.permit(:user_access)
       end
 
       def no_config_message(report_id)

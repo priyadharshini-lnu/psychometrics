@@ -4,6 +4,7 @@ import { Integrations } from './Integrations'
 import { General } from './General'
 import { Webhooks } from './Webhooks'
 import { Design } from './Design'
+import { SecuritySettings } from './Security'
 
 export const routes = [
   {
@@ -17,6 +18,10 @@ export const routes = [
   {
     path: '/integrations',
     component: Integrations,
+  },
+  {
+    path: '/security',
+    component: SecuritySettings,
   },
   {
     path: '/general',

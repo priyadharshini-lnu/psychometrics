@@ -12,7 +12,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const connecter = connect(
   (state: RootState) => ({

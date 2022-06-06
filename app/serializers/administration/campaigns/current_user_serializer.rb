@@ -29,6 +29,10 @@ module Administration
         permissions['manage_project_integrations'] = Administration::IntegrationPolicy.new(
           object, Integration, project_id: instance_options[:project_id], campaign_id: instance_options[:campaign_id]
         ).update?
+        permissions['manage_project_security_settings'] = Administration::SecuritySettingPolicy.new(
+          object, SecuritySetting, project_id: instance_options[:project_id],
+          campaign_id: instance_options[:campaign_id]
+        ).update?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
     end

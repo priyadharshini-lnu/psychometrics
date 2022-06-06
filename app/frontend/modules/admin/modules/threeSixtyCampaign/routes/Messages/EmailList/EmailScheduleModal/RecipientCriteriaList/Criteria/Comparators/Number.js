@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select, Input } from 'antd'
 import { NUMBER_COMPARATOR } from 'modules/admin/constants/emailCriteria'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 export default function Number ({
   comparator, value, update,

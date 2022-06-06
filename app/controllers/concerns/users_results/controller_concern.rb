@@ -16,7 +16,12 @@ module UsersResults::ControllerConcern
       @user_assessment
     )
 
-    form = ::UsersResults::UpdatingForm.from_params(result_params)
+    form = ::UsersResults::UpdatingForm.from_params(result_params).
+           with_context(user_result: @users_result)
+    progress_was_reseted = @user_assessment.progress_reseted
+
+    return render json: {}, status: 409 unless form.valid?
+
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
     render json: @users_result,
@@ -25,7 +30,8 @@ module UsersResults::ControllerConcern
             current_user: current_user,
             threesixty_campaign: @users_result.campaign.threesixty_campaign,
             campaign: @users_result.campaign,
-            locale: current_user.locale
+            locale: current_user.locale,
+            progress_was_reseted: progress_was_reseted
   end
 
   def update_meta_data

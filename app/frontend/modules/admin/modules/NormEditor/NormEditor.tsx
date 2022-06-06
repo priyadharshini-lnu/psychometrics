@@ -1,7 +1,7 @@
 import React from 'react'
 import connect, { PropsFromRedux } from './connect'
 import EditableTable from './NormFactors/EditableTable'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { OwnProps, Factor } from './interfaces'
 
 const NormEditor: React.FC<OwnProps & PropsFromRedux> = ({

@@ -4,7 +4,7 @@ import ResultStore from 'modules/reports/store/ResultStore'
 import AppStore from 'modules/reports/store/AppStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import store from 'modules/reports/store/PropertyPanelStore'
-import styles from './CPIOccupations.scss'
+import styles from './CPIOccupations.less'
 
 class CPIOccupations extends Component {
   componentDidMount () {

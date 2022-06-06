@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { STATUSES } from 'modules/admin/constants/mailHistory'
-import styles from './styles.scss'
+import styles from './styles.less'
 import Pagination from '../../../components/Pagination'
 import EmailScheduleModal from '../EmailList/EmailScheduleModal'
 

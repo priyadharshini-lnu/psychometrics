@@ -3,7 +3,7 @@ import {
   Card, Empty,
 } from 'antd'
 import { DnDProvider } from 'components/DnD'
-import styles from './styles.scss'
+import styles from './styles.less'
 import Title from './Title'
 import SubFactorRow from './SubFactorRow'
 import GetColumnsByStrategy, { PREDICATES } from './GetColumnsByStrategy'

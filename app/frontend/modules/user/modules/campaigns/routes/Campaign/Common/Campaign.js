@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { STATUSES } from 'constants/campaign'
-import './styles.scss'
+import './styles.less'
 import cs from 'classnames'
 import { useMedia } from 'modules/user/rootHooks'
 import { isInsideIframe } from 'utils/isInsideIframe'

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import css from './Factor.scss'
+import css from './Factor.less'
 
 export default class FactorSelect extends Component {
   static propTypes = {

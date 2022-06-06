@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { CaretDownOutlined } from '@ant-design/icons'
 import cs from 'classnames'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function Tab ({
   nominationRequirements: { selectedIndex, list },

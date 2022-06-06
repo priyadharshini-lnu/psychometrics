@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import CPIConditionCollection from 'modules/reports/models/CPIConditionCollection'
-import styles from './CPIFactorConditionModal.scss'
+import styles from './CPIFactorConditionModal.less'
 import ConditionCollection from './ConditionCollection'
 
 const { $ } = window

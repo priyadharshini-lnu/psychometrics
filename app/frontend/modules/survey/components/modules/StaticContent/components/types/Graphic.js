@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../StaticContent.scss'
+import styles from '../StaticContent.less'
 
 const Graphic = ({ model: { props: { graphicUrl } } }) => {
   if (graphicUrl) {

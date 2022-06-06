@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import InnovationStyleConditionCollection from 'modules/reports/models/InnovationStyleConditionCollection'
-import styles from './InnovationStyleConditionModal.scss'
+import styles from './InnovationStyleConditionModal.less'
 import ConditionCollection from './ConditionCollection'
 
 const { Header } = Modal

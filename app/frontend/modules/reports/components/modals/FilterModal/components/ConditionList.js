@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FilterCondition from 'modules/reports/models/FilterCondition'
-import styles from './FilterModal.scss'
+import styles from './FilterModal.less'
 import Condition from './Condition'
 
 class ConditionList extends Component {

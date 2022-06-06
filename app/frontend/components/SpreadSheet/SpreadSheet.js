@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'
 import Row from './Row'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const MIN_ROW_SIZE = 3
 const SpreadSheet = ({

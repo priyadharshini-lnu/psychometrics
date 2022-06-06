@@ -10,7 +10,7 @@ import store from 'modules/reports/store'
 import schema from 'modules/reports/store/schema'
 import { INIT } from 'modules/reports/core/builder/actions'
 import { normalize } from 'normalizr'
-import styles from './FixedHeader.scss'
+import styles from './FixedHeader.less'
 
 const { $ } = window
 

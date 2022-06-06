@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './DataSheet.scss'
+import styles from './DataSheet.less'
 
 const PREDICATE = {
   IsSameAsSubject: 'Is Same as Subject',

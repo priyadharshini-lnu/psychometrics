@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
-import css from '../Condition.scss'
+import css from '../Condition.less'
 
 export default class Question extends Component {
   static propTypes = {

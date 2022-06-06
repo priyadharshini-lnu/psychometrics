@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 import AppStore from 'modules/reports/store/AppStore'
 import { connect } from 'react-redux'
 import { closeModal, getData } from 'modules/admin/core/ui/modals'
-import styles from './AliasModal.scss'
+import styles from './AliasModal.less'
 
 const {
   Header, Body, Footer, Title,

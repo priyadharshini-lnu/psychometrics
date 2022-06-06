@@ -1,0 +1,124 @@
+@import 'modules/user/styles/variables.less';
+
+.text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+
+  :global {
+    .cke_top {
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .cke_contents,
+    .cke,
+    .cke_inner {
+      box-sizing: border-box;
+      height: 100% !important;
+    }
+
+    .fr-view {
+      padding: 0 !important;
+      line-height: normal !important;
+    }
+  }
+
+  div {
+    >*:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .editable {
+    position: absolute;
+    bottom: -31px;
+    right: 0;
+    z-index: 5000;
+    display: flex;
+
+    .btn {
+      border-radius: 0 0 3px 3px;
+    }
+
+    .edit {
+      background-color: #589DA5;
+    }
+
+    .approve {
+      margin-left: 5px;
+      background-color: #589DA5;
+    }
+
+    .approved {
+      margin-left: 5px;
+    }
+
+    .discard {
+      margin-left: 5px;
+    }
+  }
+
+  .checkbox {
+    padding-top: 6px;
+  }
+
+}
+
+.editor {
+  width: 100%;
+
+  &.diff {
+    ins {
+      text-decoration: none;
+      background-color: #d4fcbc;
+    }
+
+    del {
+      text-decoration: line-through;
+      background-color: #fbb6c2;
+      color: #555;
+    }
+  }
+}
+
+:global {
+  .fr-box {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.listItemNumber {
+  display: none;
+}
+
+.styledList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: #0202021c 0 0 5px;
+  margin: 5px;
+  border: 1px solid #0202021c;
+
+  ol,
+  li {
+    display: flex;
+    flex: 1;
+    padding: 0px;
+    border-bottom: 1px solid #0202021c;
+
+    &:first-child,
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}

@@ -9,4 +9,5 @@ module ImportExportConst
   DURATION = 'duration'
   SUPPORT_ROWS = 3
   SKIP_ROWS = SUPPORT_ROWS + 2 # for calculate right index of row in Excel (import)
+  AGILE_DATE_FIELDS = %w[start_time end_time].freeze
 end

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Editor from 'components/Editor'
-import styles from './StaticContent.scss'
+import styles from './StaticContent.less'
 import PropertyPanel from './PropertyPanel'
 import GetBackgroundStyles from './getBackgroundStyles'
 

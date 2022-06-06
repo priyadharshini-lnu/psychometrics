@@ -2,7 +2,7 @@ import React from 'react'
 import Question from 'views/Preview/Question'
 import QuestionSerializer from 'models/QuestionSerializer'
 import { useTransition, animated as a } from 'react-spring'
-import styles from './QuestionList.scss'
+import styles from './QuestionList.less'
 
 
 const QuestionList = ({

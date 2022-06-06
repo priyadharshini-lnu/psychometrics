@@ -19,7 +19,7 @@ const defaultState = {
 export const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
-export const ALLOW_EDIT_OF_ASSESSMENT = 'campaigns/userAssessments/ALLOW_EDIT_OF_ASSESSMENT'
+export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PROGRESS_OF_ASSESSMENT'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -79,11 +79,11 @@ export const setUserAssessments = (userAssessments: UserAssessment[]) => ({
   userAssessments,
 })
 
-export const allowEdit = (campaignId: number, userAssessmentId: number) => ({
-  type: ALLOW_EDIT_OF_ASSESSMENT,
+export const resetProgress = (campaignId: number, userAssessmentId: number) => ({
+  type: RESET_PROGRESS_OF_ASSESSMENT,
   request: {
     method: 'post',
-    url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/allow_edit`,
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/reset_progress`,
   },
 })
 
@@ -120,7 +120,7 @@ export const watchers = [
       EXTEND_ASSESSMENT_TIME,
       REMOVE_ASSESSMENT,
       RESET_ASSESSMENT,
-      ALLOW_EDIT_OF_ASSESSMENT,
+      RESET_PROGRESS_OF_ASSESSMENT,
     ],
     genSetUserAssessments,
   ),

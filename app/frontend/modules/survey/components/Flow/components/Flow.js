@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import Tree from 'libs/ReactTree'
-import styles from './Flow.scss'
+import styles from './Flow.less'
 import ButtonNew from './ButtonNew'
 import FlowElement from './FlowElement'
-import 'libs/ReactTree/ReactUiTree.scss'
+import 'libs/ReactTree/ReactUiTree.less'
 
 const {
   Header, Body, Footer, Title,

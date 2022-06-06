@@ -14,7 +14,7 @@ import {
   BROWSER_DOWNLOAD_LINKS,
   NAMES_FROM_UA_BROWSERS,
 } from 'modules/survey/constants/browser'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
 import { FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE } from 'modules/reports/components/PropertyFonts/components/PropertyFonts'
 import ColorPicker from 'modules/reports/components/ColorPicker'
-import localStyles from './types/Scoring/Scoring.scss'
+import localStyles from './types/Scoring/Scoring.less'
 import ConditionList from './ConditionList'
-import styles from './CPIFactorConditionModal.scss'
+import styles from './CPIFactorConditionModal.less'
 
 export class ConditionCollection extends Component {
   static propTypes = {

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { KEY_OPTIONS } from './Constants'
-import styles from '../../Condition.scss'
+import styles from '../../Condition.less'
 
 const GeoIPPreview = ({ condition }) => {
   const type = _.find(KEY_OPTIONS, { value: condition.key }) || {}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ColorSet from 'modules/reports/components/ColorSet'
-import styles from '../ConditionalTextModal.scss'
+import styles from '../ConditionalTextModal.less'
 
 export default class ConditionCollection extends Component {
   constructor (props) {

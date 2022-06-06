@@ -21,7 +21,7 @@ import { isInsideIframe } from 'utils/isInsideIframe'
 import EditProfileModal from '../EditProfileModal'
 import { LocaleSwitcherSubmenu } from './components/LocaleSwitcherSubmenu'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const mapStateToProps = (state: RootState) => ({
   logo: getLogo(state),

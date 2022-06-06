@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from './InnovationStyleConditionModal.scss'
+import styles from './InnovationStyleConditionModal.less'
 import ConditionList from './ConditionList'
-import localStyles from './types/Scoring/Scoring.scss'
+import localStyles from './types/Scoring/Scoring.less'
 
 export class ConditionCollection extends Component {
   static propTypes = {

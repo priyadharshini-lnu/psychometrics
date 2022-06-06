@@ -1,6 +1,6 @@
 import React from 'react'
 import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
-import styles from '../commonStyles.scss'
+import styles from '../commonStyles.less'
 import Header from './Header'
 import Form from './Form'
 import { ContactType } from '../interfaces/Email'

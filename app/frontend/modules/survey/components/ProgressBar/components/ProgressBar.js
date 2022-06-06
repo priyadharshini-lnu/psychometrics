@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './ProgressBar.scss'
+import styles from './ProgressBar.less'
 
 class ProgressBar extends Component {
   static propTypes = {

@@ -17,7 +17,7 @@ import AppStore from 'modules/reports/store/AppStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import Utils from 'modules/reports/utils'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const MOCK_POSITIVE_GAPS: Array<Gap> = [
   {

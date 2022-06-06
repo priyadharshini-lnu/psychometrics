@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import styles from 'views/Block/components/Block.scss'
+import styles from 'views/Block/components/Block.less'
 import Confirmation from 'components/Confirmation'
 import FlipMove from 'react-flip-move'
-import trashStyles from './Trash.scss'
+import trashStyles from './Trash.less'
 import TrashItem from './TrashItem'
 
 class Trash extends Component {

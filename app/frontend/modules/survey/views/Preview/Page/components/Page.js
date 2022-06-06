@@ -7,7 +7,7 @@ import cs from 'classnames'
 import StaticContent from 'views/Preview/StaticContent'
 import { LEFT, RIGHT } from 'views/Block/components/StaticContent/settings'
 import Footer from './PageFooter'
-import styles from './Page.scss'
+import styles from './Page.less'
 
 class Page extends Component {
   static propTypes = {

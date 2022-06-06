@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './ConstantSum.scss'
+import styles from './ConstantSum.less'
 
 export default class extends Component {
   static propTypes = {

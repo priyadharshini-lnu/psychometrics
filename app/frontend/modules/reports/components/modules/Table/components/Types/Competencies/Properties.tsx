@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import Module from 'modules/reports/core/interfaces/Module'
 
 import ColorSet from 'modules/reports/components/ColorSet'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFilter from 'modules/reports/components/PropertyFilter'
 import ColorPicker from 'modules/reports/components/ColorPicker'
 import PropertyFonts from 'modules/reports/components/PropertyFonts'

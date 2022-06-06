@@ -50,6 +50,19 @@ describe ::UsersResults::UpdateUsersResult do
     described_class.call(form, users_result, evaluator_user)
   end
 
+  describe 'progress_reseted assessment' do
+    let(:form) { double('form', 'invalid?': false, attributes_with_values: { answers: { '1' => {} } }) }
+    let(:user_assessment) { create(:user_assessment, progress_reseted: true) }
+
+    it 'should save dirty results and change progress_reseted to false' do
+      users_result = user_assessment.users_result
+      described_class.call(form, users_result, evaluator_user)
+
+      expect(user_assessment.progress_reseted).to be_falsey
+      expect(users_result.answers).to eq({ '1' => { 'dirty' => true } })
+    end
+  end
+
   context '360 campaign' do
     let(:threesixty_campaign) { create(:threesixty_campaign) }
     let!(:option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }

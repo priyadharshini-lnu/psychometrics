@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import textEntryStyles from 'components/modules/TextEntry/components/styles.scss'
+import textEntryStyles from 'components/modules/TextEntry/components/styles.less'
 import TextEditor from 'components/TextEditor'
 import FileUploadBlock from 'components/FileUpload'
 

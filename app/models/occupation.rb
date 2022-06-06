@@ -36,4 +36,8 @@ class Occupation < ApplicationRecord
   mount_uploader :icon, ImageUploader
   mount_uploader :indicative_roles_image, ImageUploader
   mount_uploader :key_career_tracks_image, ImageUploader
+
+  def log_attribute_for_delete
+    slice(:name, :dimension_id)
+  end
 end

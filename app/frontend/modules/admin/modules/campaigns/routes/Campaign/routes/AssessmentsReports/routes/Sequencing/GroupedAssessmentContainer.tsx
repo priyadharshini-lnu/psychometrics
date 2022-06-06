@@ -8,7 +8,7 @@ import { DraggableSyntheticListeners } from '@dnd-kit/core'
 
 import { CampaignAssessmentGroup } from 'modules/admin/modules/campaigns/core/assessmentGroups'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

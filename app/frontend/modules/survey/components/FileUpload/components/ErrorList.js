@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Alert } from 'antd'
 import { connect } from 'react-redux'
 import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
-import styles from './FileUpload.scss'
+import styles from './FileUpload.less'
 
 function ErrorList ({
   errorCodes, errorMessages, errorProps, I18n,

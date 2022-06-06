@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import DndElement from 'components/DnD/DnDElement'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export interface FactorType {
   id: number

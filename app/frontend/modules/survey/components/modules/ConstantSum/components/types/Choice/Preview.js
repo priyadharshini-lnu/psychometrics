@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils/Utils'
-import styles from './Choice.scss'
+import styles from './Choice.less'
 import connect from '../../../connect'
 
 class ChoicePreview extends Component {

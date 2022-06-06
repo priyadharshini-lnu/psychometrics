@@ -7,7 +7,7 @@ import {
   CheckOutlined,
 } from '@ant-design/icons'
 import InfiniteScroll from 'react-infinite-scroller'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 import AdminJob from './AdminJob'
 

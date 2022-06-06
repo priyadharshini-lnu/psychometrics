@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { Tabs } from 'antd'
-import styles from './styles.scss'
+import styles from './styles.less'
 import Tab from './Tab'
 import ConditionsContainer from '../ConditionsContainer'
 

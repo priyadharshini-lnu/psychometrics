@@ -9,7 +9,7 @@ import ResultStore from 'modules/reports/store/ResultStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { TopFactorType } from 'modules/reports/models/Results/interfaces'
 
-import styles from './StrengthClusters.scss'
+import styles from './StrengthClusters.less'
 
 const MockSubfactors = [
   {

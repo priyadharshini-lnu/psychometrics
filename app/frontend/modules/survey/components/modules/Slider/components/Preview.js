@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './Slider.scss'
+import styles from './Slider.less'
 import Previews from './Previews'
 import connect from '../connect'
 

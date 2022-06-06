@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './UniqueGenerator.scss'
+import styles from './UniqueGenerator.less'
 import Controls from '../../Controls'
 
 const UniqueGenerator = ({

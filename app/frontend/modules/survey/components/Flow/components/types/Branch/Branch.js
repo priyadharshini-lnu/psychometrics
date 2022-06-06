@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FlowCondition from 'models/FlowCondition'
-import styles from './Branch.scss'
+import styles from './Branch.less'
 import ConditionList from './ConditionList'
 import Controls from '../../Controls'
 

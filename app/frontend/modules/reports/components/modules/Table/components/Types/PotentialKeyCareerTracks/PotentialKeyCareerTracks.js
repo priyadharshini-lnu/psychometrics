@@ -7,7 +7,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import invoiceIcon from 'modules/reports/static/icons/invoice.png'
 import cs from 'classnames'
 import yaml from 'js-yaml'
-import styles from './PotentialKeyCareerTracks.scss'
+import styles from './PotentialKeyCareerTracks.less'
 
 const MockOccupation = {
   id: 1,

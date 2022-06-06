@@ -2,7 +2,7 @@ import React from 'react'
 import ColorPicker from 'components/ColorPicker'
 import { Input, Checkbox } from 'antd'
 
-import styles from './StaticContent.scss'
+import styles from './StaticContent.less'
 import settings from './settings'
 
 const { I18n } = window

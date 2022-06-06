@@ -7,7 +7,7 @@ import BaseForm from 'modules/admin/components/Form'
 import HiddenInputList from './HiddenInputList'
 import SubFactorList from './SubFactorList'
 import FIELDS from './fields'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function Form (props) {
   const { factor, errors, factors } = props

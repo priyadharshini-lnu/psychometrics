@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
 import store from 'store/UndoRedoStore'
-import styles from './ActionsHistory.scss'
+import styles from './ActionsHistory.less'
 
 class ActionsHistory extends Component {
   componentDidMount () {

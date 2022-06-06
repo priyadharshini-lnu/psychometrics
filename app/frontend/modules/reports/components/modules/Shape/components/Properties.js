@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import panelStyles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import panelStyles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ColorPicker from 'modules/reports/components/ColorPicker'
 import ChoicesInput from 'modules/reports/components/ChoicesInput'
 import AssessmentProperties from 'modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from 'modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
-import styles from './PropStyles.scss'
+import styles from './PropStyles.less'
 import connect from '../connect'
 
 class Properties extends Component {

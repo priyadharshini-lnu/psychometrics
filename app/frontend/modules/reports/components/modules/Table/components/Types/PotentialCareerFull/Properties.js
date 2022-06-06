@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from 'modules/reports/components/PropertyFonts'
 import _ from 'lodash'
 import Select from 'react-select'

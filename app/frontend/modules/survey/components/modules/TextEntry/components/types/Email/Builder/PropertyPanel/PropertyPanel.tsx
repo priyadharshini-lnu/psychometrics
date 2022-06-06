@@ -5,7 +5,7 @@ import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 
 import { PropertiesModel } from 'modules/survey/interfaces/questions/TextEntry'
 
-import styles from './PropertyPanelStyle.scss'
+import styles from './PropertyPanelStyle.less'
 
 interface Props {
   model: PropertiesModel

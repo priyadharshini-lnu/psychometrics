@@ -4,7 +4,7 @@ import {
   Typography, Form, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
 } from 'antd'
 import { TeamOutlined, PlusOutlined, CloseOutlined } from '@ant-design/icons'
-import './styles.scss'
+import './styles.less'
 import userPresenter from 'presenters/user'
 import { relationshipWithoutSelf } from 'core/relationship'
 

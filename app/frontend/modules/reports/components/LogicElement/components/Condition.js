@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import css from './Condition.scss'
+import css from './Condition.less'
 import Types from './types'
 import { CONDITION_TYPE_LABELS, MOVE_TO_NEW_ROW } from '../Constants'
 

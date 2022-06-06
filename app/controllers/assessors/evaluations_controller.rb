@@ -41,7 +41,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
     @assessor_assessment.update!(attributes)
     set_locale_for_user_assessment(@assessor_assessment)
 
-    ::UserAssessments::AllowEdit.call!(@assessor_assessment) if params[:edit] == 'true'
+    ::UserAssessments::ResetProgress.call!(@assessor_assessment) if params[:edit] == 'true'
 
     if params[:read] == 'true'
       @assessor_assessment.status = :in_progress

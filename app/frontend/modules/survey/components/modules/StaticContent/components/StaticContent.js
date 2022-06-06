@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextEditor from 'components/TextEditor'
-import styles from './StaticContent.scss'
+import styles from './StaticContent.less'
 import Templates from './Templates'
 
 export class Preview extends Component {

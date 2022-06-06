@@ -18,6 +18,7 @@ import {
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING,
   ACTIVE_DICTATION_ON_QUESTION, NEXT_BUTTON_PRESSED, BACK_BUTTON_PRESSED,
+  SHOW_ERROR_WARNING,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -85,6 +86,7 @@ const defaultState: State = {
   started: false,
   instructions: { enabled: false, content: '' },
   fixedTimed: false,
+  showErrorWarning: false,
 }
 
 const HANDLERS = {
@@ -252,6 +254,7 @@ const HANDLERS = {
       questions: newQuestions,
     }
   },
+  [`${SAVE_RESULTS}_FAILURE`]: (state: State) => ({ ...state, showErrorWarning: true }),
   [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {
     if (_.get(state, ['highlights', payload.id])) return setIn(state, ['highlights', payload.id], payload)
 
@@ -304,6 +307,7 @@ const HANDLERS = {
   [ACTIVE_DICTATION_ON_QUESTION]: (state: State, { payload: { questionId } }: SetDictationActiveOnQuestion) => ({
     ...state, activeDictationOnQuestion: questionId,
   }),
+  [SHOW_ERROR_WARNING]: (state: State) => ({ ...state, showErrorWarning: true }),
 }
 
 export default createReducer(HANDLERS, defaultState)

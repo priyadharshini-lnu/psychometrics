@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import { Form } from 'antd'
 import Fields from './Fields'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function Item ({
   field: {

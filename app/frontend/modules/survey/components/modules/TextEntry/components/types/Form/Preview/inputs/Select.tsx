@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select as BaseSelect } from 'antd'
 import { I18n } from 'store/StoreWatchman'
-import styles from '../../FormStyle.scss'
+import styles from '../../FormStyle.less'
 import { Question } from '../../interfaces'
 
 const { Option } = BaseSelect

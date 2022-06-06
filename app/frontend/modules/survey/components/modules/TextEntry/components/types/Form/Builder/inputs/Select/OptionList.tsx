@@ -8,7 +8,7 @@ import { DnDElement } from 'components/DnD'
 import { useInputFocus } from 'hooks/useInputFocus'
 import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 
-import styles from '../../../FormStyle.scss'
+import styles from '../../../FormStyle.less'
 import Option from './Option'
 
 interface Props {

@@ -6,7 +6,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { isRtl } from 'utils/locales'
 import { isInsideIframe } from 'utils/isInsideIframe'
-import './styles.scss'
+import './styles.less'
 
 const { Content } = Layout
 const { I18n } = window

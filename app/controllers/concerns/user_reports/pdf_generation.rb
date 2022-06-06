@@ -32,7 +32,8 @@ module UserReports::PdfGeneration
       file_path: Settings.aws.s3.one_day_expiry_folder,
       async: true,
       notify_user: true,
-      update_record: false
+      update_record: false,
+      skip_logic: params[:skip_logic]
     }
     data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
     audit! :download_report, resource, campaign: resource.campaign, payload: params.permit!

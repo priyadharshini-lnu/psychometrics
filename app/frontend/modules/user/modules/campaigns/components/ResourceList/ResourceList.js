@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles.scss'
+import './styles.less'
 import Resource from './Resource'
 
 export default function ResourceList ({

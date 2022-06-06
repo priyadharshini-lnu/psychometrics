@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import styles from './Scoring.scss'
+import styles from './Scoring.less'
 
 export class FactorsMenu extends Component {
   selectFactor = (factor) => {

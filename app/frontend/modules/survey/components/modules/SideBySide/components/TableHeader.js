@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
 import Action from 'undo'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 import Menu from './Menu'
 
 export class TableHeader extends Component {
