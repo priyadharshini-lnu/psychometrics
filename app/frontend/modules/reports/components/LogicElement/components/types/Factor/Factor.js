@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'modules/reports/store/AppStore'
-import css from './Factor.scss'
+import css from './Factor.less'
 import ConditionSelect from '../Question/ConditionSelect'
 import FactorSelect from './FactorSelect'
 

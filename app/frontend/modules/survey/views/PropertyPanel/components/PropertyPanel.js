@@ -9,7 +9,7 @@ import Action from 'undo'
 import LogicElement from 'models/logic/LogicElement'
 import Question from 'models/Question'
 import QuestionSerializer from 'models/QuestionSerializer'
-import styles from './PropertyPanel.scss'
+import styles from './PropertyPanel.less'
 
 class PropertyPanel extends Component {
   static propTypes = {

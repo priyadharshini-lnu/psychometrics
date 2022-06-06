@@ -1,17 +1,33 @@
 
 - uses_lambda = Settings.features.url_to_pdf_lambda
 - download_url = download_administration_threesixty_campaign_subject_reports_path(@user_report.threesixty_campaign,
-    @user_report.threesixty_subject, format: Settings.features.url_to_pdf_lambda ? nil : :pdf, lang: lang_param, export: true)
+    @user_report.threesixty_subject, format: Settings.features.url_to_pdf_lambda ? nil : :pdf, lang: lang_param, export: true,
+    skip_logic: params[:skip_logic])
 .row
   .col-md-12
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
         = render partial: 'application/lang', locals: { with_confirm: false, locales: @available_translations }
+
         = link_to(download_url, class: 'mrl pull-right', data: { behavior:  'export-pdf', uses_lambda:  uses_lambda })
           button class="btn btn-default #{uses_lambda ? nil : 'ladda-button'}" type="button" data-style="zoom-out" data-spinner-color="#000000"
             span.fa.fa-file-pdf-o
             = t('threesixty.export_pdf')
 
+        .dropdown.pull-right.mrl
+          button#dropdownMenuLang.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+            ' View as
+            = params[:skip_logic] == 'true' ? t('common.text.all_pages') : t('common.text.subject')
+            span.caret
+          ul.dropdown-menu.language-dropdown aria-labelledby=""
+            = active_link_to t('common.text.subject'),
+                            params.permit.to_h.merge(skip_logic: false),
+                            wrap_tag: :li,
+                            active: params[:skip_logic] == 'false'
+            = active_link_to t('common.text.all_pages'),
+                            params.permit.to_h.merge(skip_logic: true),
+                            wrap_tag: :li,
+                            active: params[:skip_logic] == 'true'
       .panel-body
         = render partial: 'shared/preview_report'

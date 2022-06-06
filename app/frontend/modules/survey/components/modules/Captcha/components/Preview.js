@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Recaptcha from 'react-google-recaptcha'
 import { SafeHTML } from 'components/SafeHTML'
-import styles from './Captcha.scss'
+import styles from './Captcha.less'
 import connect from '../connect'
 
 // TODO move to settings.yml

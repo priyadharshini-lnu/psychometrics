@@ -5,6 +5,7 @@ export default connect(
     loaded: report.builder.loaded,
     richEditorOpened: report.builder.richEditorOpened,
     moduleOverrides: moduleOverrides || report.builder.moduleOverrides,
+    skipLogic: report.builder.skipLogic,
   }),
   {},
 )

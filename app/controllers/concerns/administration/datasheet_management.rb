@@ -93,7 +93,7 @@ module Administration
           parent_resource_class: parent_resource.class.name,
           operation: params[:operation]
         }, current_user, params[:file])
-        audit! :import, nil, **audit_resources, payload: params.permit!
+        audit! :import, parent_resource.datasheet, **audit_resources, payload: params.permit!
       else
         render json: { errors: form.errors.messages.values.flatten }, status: 422
       end
@@ -101,7 +101,7 @@ module Administration
 
     def export
       results = ::Datasheets::Export.call!(parent_resource.datasheet)
-      audit! :export, nil, **audit_resources
+      audit! :export, parent_resource.datasheet, **audit_resources
       respond_to do |format|
         format.xlsx { send_data results.to_stream.read, filename: "datasheet-for-#{parent_resource.name}.xlsx" }
       end

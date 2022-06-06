@@ -10,7 +10,7 @@ import NominationForm from './NominationForm/NominationForm'
 import NominationTable from './NominationTable/NominationTable'
 import NameModal from './NominationForm/NameModal'
 
-import './styles.scss'
+import './styles.less'
 
 const { Content } = Layout
 

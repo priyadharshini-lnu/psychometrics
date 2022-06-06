@@ -60,7 +60,7 @@ class CampaignAssessment < ApplicationRecord
   end
 
   def log_attribute_for_delete
-    slice(:name)
+    slice(:assessment_id, :campaign_id, :norm_id)
   end
 
   private

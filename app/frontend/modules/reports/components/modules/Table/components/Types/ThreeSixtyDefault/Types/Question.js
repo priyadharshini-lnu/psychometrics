@@ -7,7 +7,7 @@ import Utils from 'modules/reports/utils'
 import ResultStore from 'modules/reports/store/ResultStore'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 const Question = ({ model, questions }) => {
   if (!model.props.filter) return null

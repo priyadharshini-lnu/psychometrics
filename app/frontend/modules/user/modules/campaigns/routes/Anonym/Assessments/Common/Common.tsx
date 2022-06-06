@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { ProgressProps } from 'antd/lib/progress'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import './styles.scss'
+import './styles.less'
 import Cookies from 'js-cookie'
 import Language from 'modules/user/modules/campaigns/components/Language'
 import store from 'modules/user/store'

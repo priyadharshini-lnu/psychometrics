@@ -14,7 +14,7 @@ import Modals from 'modules/admin/components/Modals/'
 
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { Link } from 'react-router-dom'
-import styles from './styles.scss'
+import styles from './styles.less'
 import UserFormModal from './UserFormModal'
 import ImportUsersModal from './ImportUsersModal'
 import ToolsDropdown from './ToolsDropdown'

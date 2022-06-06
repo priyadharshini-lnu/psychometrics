@@ -1,10 +1,59 @@
-const getStyleRule = require('@rails/webpacker/package/utils/get_style_rule')
+/* eslint-disable no-underscore-dangle */
+const { resolve } = require('path')
+const { env } = require('process')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-module.exports = getStyleRule(/\.less$/i, false, [
-  {
-    loader: 'less-loader',
-    options: {
-      javascriptEnabled: true,
+const __PROD__ = env.NODE_ENV === 'production'
+
+module.exports.withModules = {
+  test: /\.less$/i,
+  exclude: /node_modules|ant\.less|globals\.less/,
+  use: [
+    __PROD__ ? MiniCssExtractPlugin.loader : { loader: 'style-loader' },
+    {
+      loader: 'css-loader',
+      options: {
+        sourceMap: true,
+        modules: true,
+        localIdentName: __PROD__ ? '[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
+      },
     },
-  },
-])
+    {
+      loader: 'postcss-loader',
+      options: { sourceMap: true },
+    },
+    {
+      loader: 'less-loader',
+      options: { javascriptEnabled: true, paths: [resolve(__dirname, '../../..', 'app/frontend')] },
+    },
+  ],
+  sideEffects: true,
+}
+
+module.exports.withoutModules = {
+  test: /\.less$/i,
+  include: /node_modules|ant\.less|globals\.less/,
+  use: [
+    __PROD__ ? MiniCssExtractPlugin.loader : { loader: 'style-loader' },
+    {
+      loader: 'css-loader',
+      options: {
+        sourceMap: true,
+      },
+    },
+    {
+      loader: 'postcss-loader',
+      options: { sourceMap: true },
+    },
+    {
+      loader: 'less-loader',
+      options: {
+        paths: [
+          resolve(__dirname, '../../..', 'app/frontend'),
+        ],
+        javascriptEnabled: true,
+      },
+    },
+  ],
+  sideEffects: false,
+}

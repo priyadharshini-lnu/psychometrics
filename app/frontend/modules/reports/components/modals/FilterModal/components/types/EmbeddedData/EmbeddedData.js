@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../Condition.scss'
-import embeddedStyles from './EmbeddedData.scss'
+import styles from '../../Condition.less'
+import embeddedStyles from './EmbeddedData.less'
 
 export class EmbeddedData extends Component {
   static propTypes = {

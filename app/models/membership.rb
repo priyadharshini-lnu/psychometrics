@@ -189,6 +189,10 @@ class Membership < ApplicationRecord
     grants.has_grant?(scope, grant)
   end
 
+  def log_attribute_for_delete
+    slice(:user_id).merge({ email: user.email })
+  end
+
   private
 
   def set_project_membership

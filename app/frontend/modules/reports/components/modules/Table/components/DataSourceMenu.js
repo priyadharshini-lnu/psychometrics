@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import PropertyPanelStore from 'modules/reports/store/PropertyPanelStore'
 import Select from 'react-select'
 import AssessmentProperties from 'modules/reports/components/modules/CommonProperties/AssessmentProperties'
-import panelStyles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import panelStyles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 
 export default class DataSourceMenu extends Component {

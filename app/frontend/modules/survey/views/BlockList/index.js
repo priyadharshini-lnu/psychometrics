@@ -1,5 +1,5 @@
 import BlockListView from './components/BlockListView'
-import styles from './components/BlockListView.scss'
+import styles from './components/BlockListView.less'
 import connect from './connect'
 
 export { styles }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextEditor from 'components/TextEditor'
-import styles from './RankOrder.scss'
+import styles from './RankOrder.less'
 import Templates from './Templates'
 
 export class RankOrder extends Component {

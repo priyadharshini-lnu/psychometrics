@@ -1,8 +1,8 @@
 import React from 'react'
 import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 import MultiInlineEditor from '../../../../../../MultiInlineEditor'
-import styles from './EmailStyle.scss'
-import commonStyles from '../commonStyles.scss'
+import styles from './EmailStyle.less'
+import commonStyles from '../commonStyles.less'
 
 interface Props {
   title: BuilderModel['props']['title']

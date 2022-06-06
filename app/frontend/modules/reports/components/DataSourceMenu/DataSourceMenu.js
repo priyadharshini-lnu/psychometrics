@@ -8,10 +8,10 @@ import BaseTypeProperties from 'modules/reports/components/modules/CommonPropert
 import clearAfterAssessmentChange from 'modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import AppStore from 'modules/reports/store/AppStore'
 import { SOURCE_TYPES } from 'modules/reports/models/Report'
-import panelStyles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import panelStyles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import types from './types'
-import styles from './DataSourceMenu.scss'
+import styles from './DataSourceMenu.less'
 
 class ChartsMenu extends Component {
   static propTypes = {

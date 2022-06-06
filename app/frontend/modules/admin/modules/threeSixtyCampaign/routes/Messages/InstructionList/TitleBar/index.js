@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Switch, Row, Col,
 } from 'antd'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function TitleBar ({ instructionTemplate, toggleEnabled }) {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input } from 'antd'
 import _ from 'lodash'
-import styles from '../commonStyles.scss'
+import styles from '../commonStyles.less'
 import ContactSelect from './ContactSelect'
 import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
 import { ContactType } from '../interfaces/Email'

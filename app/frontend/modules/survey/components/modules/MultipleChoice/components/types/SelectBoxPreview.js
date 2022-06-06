@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../styles.scss'
+import styles from '../../styles.less'
 import { NOT_APPLICABLE } from '../../../MatrixTable/components/Consts'
 
 class SelectBoxPreview extends Component {

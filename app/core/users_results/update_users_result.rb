@@ -35,8 +35,14 @@ module UsersResults
     # Sets new data to the users_result
     #   and increases the step of users_result
     #
+    # rubocop:disable Metrics/AbcSize
     def update_users_result
       attributes = form.attributes_with_values
+      if user_assessment.progress_reseted?
+        attributes = attributes.merge(current_element: nil, current_page: nil,
+                                      answers: attributes[:answers]&.each { |_, r| r['dirty'] = true },
+                                      progress_reseted: false)
+      end
       users_result.update!(attributes.except(*user_assessment_attribute_names))
       user_assessment_form_attributes = attributes.slice(*user_assessment_attribute_names)
       user_assessment.update!(user_assessment_form_attributes.except(:norm_id))
@@ -61,6 +67,7 @@ module UsersResults
 
       users_result.save!
     end
+    # rubocop:enable Metrics/AbcSize
 
     def generate_report
       ::UsersResults::GenerateReports.call!(users_result, current_user)
@@ -84,7 +91,7 @@ module UsersResults
     end
 
     def user_assessment_attribute_names
-      %i[norm_id status completion_reason last_activity_at]
+      %i[norm_id status completion_reason last_activity_at progress_reseted]
     end
   end
 end

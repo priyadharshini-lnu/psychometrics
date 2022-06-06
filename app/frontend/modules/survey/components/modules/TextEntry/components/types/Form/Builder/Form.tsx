@@ -11,8 +11,8 @@ import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry
 
 import inputs from './inputs'
 
-import styles from '../FormStyle.scss'
-import commonStyles from '../../../styles.scss'
+import styles from '../FormStyle.less'
+import commonStyles from '../../../styles.less'
 
 interface Props {
   model: BuilderModel

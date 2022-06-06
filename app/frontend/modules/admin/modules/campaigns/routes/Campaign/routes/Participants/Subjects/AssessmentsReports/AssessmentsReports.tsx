@@ -15,7 +15,7 @@ import UpdateNormModal from './UpdateNormModal'
 import UpdateTimeModal from './UpdateTimeModal'
 import UpdateCampaignTimeModal from './UpdateCampaignTimeModal'
 import { Strategies } from '../../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window

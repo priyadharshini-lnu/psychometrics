@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Button, Modal, Select,
 } from 'antd'
-import './styles.scss'
+import './styles.less'
 import _ from 'lodash'
 
 const { I18n } = window

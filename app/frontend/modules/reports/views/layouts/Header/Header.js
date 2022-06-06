@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Header.scss'
+import styles from './Header.less'
 
 const Header = ({ name }) => (
   <div className={`panel-heading ${styles.menu}`}>

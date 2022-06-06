@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import store from 'modules/reports/store/PropertyPanelStore'
-import styles from './Label.scss'
+import styles from './Label.less'
 
 class LabelCell extends Component {
   static propTypes = {

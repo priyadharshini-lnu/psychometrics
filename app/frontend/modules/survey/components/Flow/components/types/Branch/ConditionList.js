@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FlowCondition from 'models/FlowCondition'
-import styles from './Branch.scss'
+import styles from './Branch.less'
 import Condition from './Condition'
 
 class ConditionList extends Component {

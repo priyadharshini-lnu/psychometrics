@@ -14,7 +14,7 @@ import potentialAreaIcon from 'modules/reports/static/icons/potential-areas-of-s
 import workEnvironmentIcon from 'modules/reports/static/icons/typical-work-environment.svg'
 import careerStrengthsIcon from 'modules/reports/static/icons/career-strengths.svg'
 
-import styles from './PotentialCareerFull.scss'
+import styles from './PotentialCareerFull.less'
 
 const MockOccupation = {
   id: 1,

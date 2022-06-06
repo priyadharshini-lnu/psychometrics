@@ -34,7 +34,8 @@ module Administration
                                             evaluator_id: params[:id])
         @users_result = @participant.users_result
 
-        form = ::UsersResults::UpdatingForm.from_params(params.require(:resource))
+        form = ::UsersResults::UpdatingForm.from_params(params.require(:resource)).
+               with_context(user_result: @users_result)
         ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
         head :no_content

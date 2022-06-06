@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
-import styles from './TextBox.scss'
+import styles from './TextBox.less'
 import Description from '../../Description'
 
 export default class extends Component {

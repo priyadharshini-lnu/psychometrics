@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
-import styles from './ScoringLabelAdvanced.scss'
+import styles from './ScoringLabelAdvanced.less'
 
 class ScoringLabelAdvanced extends Component {
   static propTypes = {

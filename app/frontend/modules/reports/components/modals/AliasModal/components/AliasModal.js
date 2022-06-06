@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { setIn } from 'utils/immutable'
-import styles from './AliasModal.scss'
+import styles from './AliasModal.less'
 import Alias from './Alias'
 
 const {

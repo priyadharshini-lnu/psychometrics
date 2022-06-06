@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import { ColorResult, SketchPicker, RGBColor } from 'react-color'
 import { rgba2hex } from 'utils/color'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { Close, ChangeColor } from '../../../../core/temp/colorPicker'
 
 interface Props {

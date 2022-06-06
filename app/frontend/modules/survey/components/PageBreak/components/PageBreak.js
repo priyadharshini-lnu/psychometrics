@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Buttons from 'views/Question/components/Buttons'
-import buttons from 'views/Question/components/Buttons.scss'
-import styles from './PageBreak.scss'
+import buttons from 'views/Question/components/Buttons.less'
+import styles from './PageBreak.less'
 
 class PageBreak extends Component {
   static propTypes = {

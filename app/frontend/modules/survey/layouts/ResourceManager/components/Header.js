@@ -1,7 +1,7 @@
 import React from 'react'
 import cs from 'classnames'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
-import styles from './ResourceManager.scss'
+import styles from './ResourceManager.less'
 
 export default function Header ({
   history, match, saveResources, assessmentId, resources, addResource,

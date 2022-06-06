@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import flow from 'lodash/flow'
-import styles from '../DragAndDrop.scss'
+import styles from '../DragAndDrop.less'
 
 class Card extends Component {
   static propTypes = {

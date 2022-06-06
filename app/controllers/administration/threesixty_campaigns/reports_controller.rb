@@ -22,8 +22,15 @@ module Administration
         )
 
         respond_to do |format|
-          format.html {}
-          format.pdf { render :export, formats: 'html', layout: 'pdf', content_type: 'text/html' }
+          format.html do
+            audit! :view_report, @user_report, campaign: threesixty_campaign.campaign,
+              payload: { user_email: @user_report.user.email }
+          end
+          format.pdf do
+            audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign,
+              payload: { user_email: @user_report.user.email }
+            render :export, formats: 'html', layout: 'pdf', content_type: 'text/html'
+          end
         end
       end
 
@@ -36,7 +43,8 @@ module Administration
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
           update_record: false,
-          async: true
+          async: true,
+          skip_logic: params[:skip_logic]
         }
         respond_to do |format|
           format.json do
@@ -46,6 +54,8 @@ module Administration
             render json: { success: true }
           end
           format.pdf do
+            audit! :download_report_pdf, user_report, campaign: threesixty_campaign.campaign,
+              payload: { user_email: user_report.user.email }
             add_cookie_for_file_download
             data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
             send_file data[:file_path], type: 'application/pdf'

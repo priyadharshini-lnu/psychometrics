@@ -8,4 +8,8 @@ class CampaignReport < ApplicationRecord
   def user_reports
     UserReport.where(campaign_id: campaign_id, report_id: report_id)
   end
+
+  def log_attribute_for_delete
+    slice(:campaign_id, :report_id, :report_family_id)
+  end
 end

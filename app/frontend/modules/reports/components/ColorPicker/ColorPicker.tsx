@@ -1,6 +1,6 @@
 import React from 'react'
 import { ColorResult, RGBColor } from 'react-color'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { Open } from '../../core/temp/colorPicker'
 
 interface Props {

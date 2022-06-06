@@ -5,7 +5,7 @@ import {
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import qs from 'qs'
-import './styles.scss'
+import './styles.less'
 import { PropsFromRedux } from './connect'
 
 const { Content } = Layout

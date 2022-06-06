@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'modules/reports/store/PropertyPanelStore'
 import ChoicesInput from 'modules/reports/components/ChoicesInput'
-import styles from '../../../views/PropertyPanel/components/PropertyPanel.scss'
+import styles from '../../../views/PropertyPanel/components/PropertyPanel.less'
 
 class PropertyPagination extends Component {
   static propTypes = {}

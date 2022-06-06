@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Raphael from 'raphael'
 import TextEditor from 'components/TextEditor'
 import ShapeEditor from './ShapeEditor/ShapeEditor'
-import styles from './HotSpot.scss'
+import styles from './HotSpot.less'
 
 export class HotSpot extends Component {
   static propTypes = {

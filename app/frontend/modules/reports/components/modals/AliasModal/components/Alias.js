@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './AliasModal.scss'
+import styles from './AliasModal.less'
 
 export class Alias extends Component {
   static propTypes = {

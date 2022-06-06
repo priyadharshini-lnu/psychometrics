@@ -12,7 +12,7 @@ import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 Highcharts3D(Highcharts)
 CustomEvents(Highcharts)

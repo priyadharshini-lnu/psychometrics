@@ -91,11 +91,12 @@ export const APPROVE_REPORT = 'campaigns/userReports/APPROVE_REPORT'
 export const OPEN_RICH_EDITOR = 'report/OPEN_RICH_EDITOR'
 export const CLOSE_RICH_EDITOR = 'report/CLOSE_RICH_EDITOR'
 
-export const fetchSingle = (campaignId: number, id: number) => ({
+export const fetchSingle = (campaignId: number, id: number, params = {}) => ({
   type: FETCH_SINGLE,
   request: {
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}`,
     camelize: false,
+    body: params,
   },
 })
 
@@ -157,12 +158,13 @@ export const asyncDownload = (campaignId: number, id: number) => ({
   },
 })
 
-export const download = (campaignId: number, id: number) => ({
+export const download = (campaignId: number, id: number, params = {}) => ({
   type: DOWNLOAD,
   request: {
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/download.pdf`,
     responseType: 'blob',
     loader: true,
+    body: params,
   },
 })
 

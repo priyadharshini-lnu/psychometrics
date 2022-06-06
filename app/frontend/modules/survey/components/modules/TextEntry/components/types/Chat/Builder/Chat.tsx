@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
-import styles from '../ChatStyle.scss'
+import styles from '../ChatStyle.less'
 import Header from './Header'
 import Footer from './Footer'
 import MessageList from './MessageList'

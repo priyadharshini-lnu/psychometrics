@@ -3,7 +3,7 @@ import _ from 'lodash'
 import I18nStore from 'modules/reports/store/I18nStore'
 import ResultStore from 'modules/reports/store/ResultStore'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 const VALUES = [[28.69, 55.51, 62.7], [49.3, 46.24, 66.52], [36.03, 47.8, 47.19]]
 

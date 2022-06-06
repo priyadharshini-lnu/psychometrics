@@ -11,7 +11,7 @@ import { TopFactorType } from 'modules/reports/models/Results/interfaces'
 import BulletGraph from 'modules/reports/components/BulletGraph'
 import PieGraph from '../../../../../PieGraph'
 
-import styles from './FactorsTable.scss'
+import styles from './FactorsTable.less'
 
 // Images
 import Accountability from './Icons/accountability.svg'

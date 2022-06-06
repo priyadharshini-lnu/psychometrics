@@ -107,7 +107,8 @@ RSpec.configure do |config|
             campaign_id: { type: 'integer' },
             status: { type: 'string', enum: %w[not_started in_progress completed] },
             started_at: { type: 'string', 'x-nullable': true },
-            completed_at: { type: 'string', 'x-nullable': true }
+            completed_at: { type: 'string', 'x-nullable': true },
+            norm_id: { type: 'integer', 'x-nullable': true }
           }
         },
         UserReport: {

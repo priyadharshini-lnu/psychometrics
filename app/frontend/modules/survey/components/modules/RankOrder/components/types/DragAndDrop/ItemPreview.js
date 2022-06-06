@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { DragLayer } from 'react-dnd'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
-import styles from './DragAndDrop.scss'
+import styles from './DragAndDrop.less'
 import DescriptionPreview from '../../DescriptionPreview'
 
 function collect (monitor) {

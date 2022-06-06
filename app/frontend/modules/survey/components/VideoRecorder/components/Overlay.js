@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './Overlay.scss'
+import styles from './Overlay.less'
 import frames from './frames'
 
 export class Overlay extends React.Component {

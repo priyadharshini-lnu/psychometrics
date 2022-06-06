@@ -14,7 +14,7 @@ import {
 
 import Campaigns from './Campaigns'
 
-import './styles.scss'
+import './styles.less'
 
 const { I18n } = window
 

@@ -36,4 +36,8 @@ class OccupationsFactor < ApplicationRecord
   validates :predicate, inclusion: { in: CONDITION_MAP.keys.map(&:to_s) }
   validates :value, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }, allow_nil: true
   validates :position, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+
+  def log_attribute_for_delete
+    slice(:factor_id, :occupation_id)
+  end
 end

@@ -8,7 +8,7 @@ import {
 import LabelEditor from 'components/LabelEditor'
 import Utils from 'utils'
 
-import styles from './Slider.scss'
+import styles from './Slider.less'
 
 export const SliderQuestion = ({
   model, I18n, preview, changeLabel, changeValue,

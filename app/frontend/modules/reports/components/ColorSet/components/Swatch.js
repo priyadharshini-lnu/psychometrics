@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DragSource, DropTarget } from 'react-dnd'
 import ColorPicker from 'modules/reports/components/ColorPicker'
-import styles from './ColorSet.scss'
+import styles from './ColorSet.less'
 
 const swatchSource = {
   beginDrag (props) {

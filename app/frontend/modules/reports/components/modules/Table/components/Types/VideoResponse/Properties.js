@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 import _ from 'lodash'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFilter from 'modules/reports/components/PropertyFilter'
 import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
 import { connect } from 'react-redux'

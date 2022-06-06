@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import styles from './PipedTextModal.scss'
+import styles from './PipedTextModal.less'
 import types from './types'
 import FIELDS from './fields'
 

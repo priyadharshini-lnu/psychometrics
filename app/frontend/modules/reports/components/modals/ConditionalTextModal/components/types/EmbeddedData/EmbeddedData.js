@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getEmbeddedData } from 'modules/reports/core/builder/selectors'
-import styles from '../../Condition.scss'
-import embeddedStyles from './EmbeddedData.scss'
+import styles from '../../Condition.less'
+import embeddedStyles from './EmbeddedData.less'
 
 export class EmbeddedData extends Component {
   static propTypes = {
@@ -62,12 +62,6 @@ export class EmbeddedData extends Component {
           <option value="LessThen">Less Than</option>
           <option value="LessThenOrEqual">Less Than Or Equal To</option>
         </select>
-        <input
-          className={`form-control ${embeddedStyles.valueInput}`}
-          value={condition.props.value || ''}
-          onChange={this.changeValue}
-        />
-        <span className="margin-left-10">Count Greater Than</span>
         <input
           className={`form-control ${embeddedStyles.valueInput}`}
           value={condition.props.count || ''}

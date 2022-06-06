@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'modules/reports/components/LabelEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import styles from './Page.scss'
+import styles from './Page.less'
 
 export default class PageHeader extends Component {
   static propTypes = {

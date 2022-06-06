@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-select/async'
 import Socket from 'cable'
-import styles from '../../Condition.scss'
-import GeoIPStyles from './GeoIP.scss'
+import styles from '../../Condition.less'
+import GeoIPStyles from './GeoIP.less'
 import { KEY_OPTIONS, PREDICATE_OPTIONS } from './Constants'
 
 export default class GeoIP extends Component {

@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
-import styles from './Randomization.scss'
+import styles from './Randomization.less'
 
 const {
   Header, Body, Footer, Title,

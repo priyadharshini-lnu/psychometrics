@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextEditor from 'components/TextEditor'
-import styles from './GapAnalysis.scss'
+import styles from './GapAnalysis.less'
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 

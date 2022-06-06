@@ -134,6 +134,161 @@
         }
       }
     },
+    "/projects/{project_id}/users/{user_id}/assessments/{assessment_id}": {
+      "put": {
+        "summary": "Update user assessments",
+        "operationId": "UpdateUserAssessments",
+        "description": "Update user assessments",
+        "tags": [
+          "Assessments"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "if is not filled, the system takes the last campaign id"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdatedAssessment"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessments updating",
+            "schema": {
+              "$ref": "#/definitions/UserAssessment"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "norm_id": null
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user assessments",
+        "operationId": "DeleteUserAssessments",
+        "description": "Delete user assessments",
+        "tags": [
+          "Assessments"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "if is not filled, the system takes the last campaign id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessments deleting",
+            "schema": {
+              "$ref": "#/definitions/UserAssessment"
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/campaigns/{campaign_id}": {
       "get": {
         "summary": "Get a campaign",
@@ -540,6 +695,65 @@
       }
     },
     "/projects/{project_id}/campaigns/{campaign_id}/assessments_reports": {
+      "get": {
+        "summary": "Get a campaign assessments and reports",
+        "operationId": "UpdateCampaignAssessmentsAndReports",
+        "description": "Update campaign assessments and reports",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessments and reports",
+            "schema": {
+              "$ref": "#/definitions/AssessmentsAndReports"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "reports": [
+                    {
+                      "id": 1,
+                      "user_access": true,
+                      "report_bundle_id": 1
+                    }
+                  ],
+                  "assessments": [
+                    {
+                      "id": 1,
+                      "norm_id": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "summary": "Update a campaign assessments and reports",
         "operationId": "UpdateCampaignAssessmentsAndReports",
@@ -601,6 +815,289 @@
                       "norm_id": 2
                     }
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/campaigns/{campaign_id}/assessments/{assessment_id}": {
+      "put": {
+        "summary": "Update campaign assessments",
+        "operationId": "Update Campaign Assessments",
+        "description": "Update Campaign assessments",
+        "tags": [
+          "Assessments"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdatedAssessment"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignAssessments updating",
+            "schema": {
+              "$ref": "#/definitions/UpdatedAssessment"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "norm_id": null
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete campaign assessments",
+        "operationId": "DeleteCampaignAssessments",
+        "description": "Delete campaign assessments",
+        "tags": [
+          "Assessments"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignAssessments deleting",
+            "schema": {
+              "$ref": "#/definitions/UserAssessment"
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/campaigns/{campaign_id}/reports/{report_id}": {
+      "put": {
+        "summary": "Update campaign report",
+        "operationId": "Update Campaign Report",
+        "description": "Update Campaign Report",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdatedReport"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignReport updating",
+            "schema": {
+              "$ref": "#/definitions/UpdatedReport"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "user_access": true,
+                  "assessor_access": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete campaign report",
+        "operationId": "DeleteCampaignReport",
+        "description": "Delete campaign report",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignReport deleting",
+            "schema": {
+              "$ref": "#/definitions/UserAssessment"
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
                 }
               }
             }
@@ -1390,6 +1887,161 @@
         }
       }
     },
+    "/projects/{project_id}/users/{user_id}/reports/{report_id}": {
+      "put": {
+        "summary": "Update user report",
+        "operationId": "UpdateUserReport",
+        "description": "Update user report",
+        "tags": [
+          "Report"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "if is not filled, the system takes the last campaign id"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdatedAssessment"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Report updating",
+            "schema": {
+              "$ref": "#/definitions/UserReport"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "user_access": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user report",
+        "operationId": "DeleteUserReport",
+        "description": "Delete user report",
+        "tags": [
+          "Report"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "if is not filled, the system takes the last campaign id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UserReport deleting",
+            "schema": {
+              "$ref": "#/definitions/UserReport"
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "content": {
+              "application/json": {
+                "example": {
+                  "code": 1000,
+                  "message": "Invalid authentication",
+                  "more_info": "API User is disabled",
+                  "meta": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/users/{user_id}/sso": {
       "post": {
         "summary": "Create authenticated SSO URL",
@@ -1662,6 +2314,10 @@
         },
         "completed_at": {
           "type": "string",
+          "x-nullable": true
+        },
+        "norm_id": {
+          "type": "integer",
           "x-nullable": true
         }
       }

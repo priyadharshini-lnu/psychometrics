@@ -48,8 +48,8 @@ module Administration
         (assessment.common? || assessment.saville? || (assessment.iiht? && record.completed?))
     end
 
-    def allow_edit?
-      !record.assessment.external? && !record.assessment.agile? && !record.timed? && record.completed? &&
+    def reset_progress?
+      !record.assessment.external? && !record.assessment.agile? && !record.not_started? &&
         (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users))
     end
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Modules } from 'modules/reports/components/modules'
 import store from 'modules/reports/store/PageList'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from './Page.scss'
+import styles from './Page.less'
 
 class Page extends Component {
   static propTypes = {

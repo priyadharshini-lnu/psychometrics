@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextCondition from 'modules/reports/models/TextCondition'
-import styles from './CPIFactorConditionModal.scss'
+import styles from './CPIFactorConditionModal.less'
 import Condition from './Condition'
 
 class ConditionList extends Component {

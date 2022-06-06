@@ -1,4 +1,4 @@
-import 'styles/core.scss'
+import 'styles/core.less'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import * as backendComponents from './components/backend'
