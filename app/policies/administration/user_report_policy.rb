@@ -21,7 +21,9 @@ module Administration
     end
 
     def approve?
-      show?
+      @user.has_permission?(
+        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def regenerate?
