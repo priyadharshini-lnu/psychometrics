@@ -53,6 +53,15 @@ export const getElementIdByBlockId = (state, blockId) => _.findKey(
   state.normalizedTree, el => el.props && el.props.current === `${blockId}`,
 )
 
+export const isValidCurrentElementAndPage = (state): boolean => {
+  try {
+    getCurrentPage(state)
+  } catch (e) {
+    return false
+  }
+  return true
+}
+
 export const getCurrentPage = (state): PageInterface => {
   const block = getCurrentElement(state).props.current
   const pages = state.allPages[block]

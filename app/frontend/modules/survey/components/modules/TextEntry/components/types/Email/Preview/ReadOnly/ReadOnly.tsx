@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tag } from 'antd'
 import { I18n } from 'store/StoreWatchman'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { Question } from '../../interfaces'
 
 interface Props {

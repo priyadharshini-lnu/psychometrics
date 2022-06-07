@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Previews } from 'components/modules'
 import { Modal } from 'react-bootstrap'
-import styles from './DefaultValue.scss'
+import styles from './DefaultValue.less'
 
 const { Header } = Modal
 const { Body } = Modal

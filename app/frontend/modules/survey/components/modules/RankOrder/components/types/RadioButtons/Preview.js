@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './RadioButtons.scss'
+import styles from './RadioButtons.less'
 import DescriptionPreview from '../../DescriptionPreview'
 
 export default class extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { perform } from 'modules/survey/core/temp/socket'
-import styles from './Question.scss'
+import styles from './Question.less'
 
 class CommentsList extends Component {
   static propTypes = {

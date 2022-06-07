@@ -13,7 +13,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import { importDatasheet, IMPORT } from 'modules/admin/modules/DatasheetManagement/core/list'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { ParentResourceType } from '../../interfaces'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const connecter = connect(
   (state: RootState) => ({

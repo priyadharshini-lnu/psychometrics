@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from 'modules/reports/store/PageList'
 import Page from 'modules/reports/views/Page'
 import LabelEditor from 'modules/reports/components/LabelEditor'
-import styles from './PageListView.scss'
+import styles from './PageListView.less'
 
 export class PageListView extends Component {
   componentDidMount () {

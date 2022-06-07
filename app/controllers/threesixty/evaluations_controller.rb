@@ -20,7 +20,7 @@ module Threesixty
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
 
-            ::UserAssessments::AllowEdit.call!(@participant)
+            ::UserAssessments::ResetProgress.call!(@participant)
           end
 
           set_read_results if params[:is_read] == 'true'

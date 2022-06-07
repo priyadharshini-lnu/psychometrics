@@ -41,7 +41,7 @@ module Administration
           'update_norm',
           'rescore_response',
           %w[remove destroy],
-          'allow_edit',
+          'reset_progress',
           %w[reset_results reset]
         ],
         {

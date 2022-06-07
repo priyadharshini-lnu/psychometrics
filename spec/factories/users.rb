@@ -36,7 +36,7 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "user+#{n}.#{rand(1..100)}@example.com" }
-    password { 'Pass123$' }
+    password { 'Pass123$1234' }
     role { User::REGULAR_ROLE }
     first_name { 'test' }
     last_name { 'test' }

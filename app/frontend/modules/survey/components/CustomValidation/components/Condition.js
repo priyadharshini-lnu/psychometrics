@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import QuestionCondition from 'libs/conditions'
-import styles from './CustomValidation.scss'
+import styles from './CustomValidation.less'
 
 export class Condition extends Component {
   static propTypes = {

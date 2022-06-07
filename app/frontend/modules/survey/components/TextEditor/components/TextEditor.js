@@ -3,7 +3,7 @@ import ContentEditable from 'react-contenteditable'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './TextEditor.scss'
+import styles from './TextEditor.less'
 
 export class TextEditor extends Component {
   constructor (props) {

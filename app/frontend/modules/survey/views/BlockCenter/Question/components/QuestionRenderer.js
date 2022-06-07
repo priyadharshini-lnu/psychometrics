@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Modules } from 'components/modules'
 import QuestionSerializer from 'models/QuestionSerializer'
-import styles from './Question.scss'
+import styles from './Question.less'
 
 class QuestionRenderer extends Component {
   static propTypes = {

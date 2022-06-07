@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import store from 'modules/reports/store/PageList'
 import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
 import { DragSource, DropTarget } from 'react-dnd'
-import styles from './PageEditor.scss'
+import styles from './PageEditor.less'
 
 const pageSource = {
   beginDrag (props) {

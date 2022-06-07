@@ -59,7 +59,7 @@ module Administration
         form = ::Threesixty::Subjects::CreateAllForm.from_params(params).
                with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
+          ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign, current_user)
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request

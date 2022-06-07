@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import Container from './Container'
-import styles from '../DragAndDrop.scss'
+import styles from '../DragAndDrop.less'
 
 const PickGroupPreview = ({ model, readOnly, I18n }) => {
   const columns = model.props.columns ? styles.columns : ''

@@ -5,7 +5,7 @@ import {
 import { InfoCircleOutlined } from '@ant-design/icons'
 import ReactMarkdown from 'react-markdown'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

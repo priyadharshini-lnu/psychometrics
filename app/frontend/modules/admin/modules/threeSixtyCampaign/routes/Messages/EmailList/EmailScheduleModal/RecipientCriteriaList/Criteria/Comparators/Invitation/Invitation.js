@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Select, DatePicker } from 'antd'
 import { INVITATION_VALUES } from 'modules/admin/constants/emailCriteria'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function Invitation ({
   value, update, merge, subField,

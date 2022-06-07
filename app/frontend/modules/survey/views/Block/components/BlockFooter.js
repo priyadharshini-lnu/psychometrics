@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Menu from 'components/ModulesMenu'
 import Block from 'models/Block'
-import styles from './Block.scss'
+import styles from './Block.less'
 
 class BlockFooter extends Component {
   static propTypes = {

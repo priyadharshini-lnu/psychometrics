@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextEditor from 'components/TextEditor'
-import styles from './MatrixTable.scss'
+import styles from './MatrixTable.less'
 import Templates from './Templates'
 
 export class MatrixTable extends Component {

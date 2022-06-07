@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 import uuid from 'uuid/v4'
 import ConditionList from './ConditionList'
 import Condition from '../../../models/QuestionCondition'
-import styles from './CustomValidation.scss'
+import styles from './CustomValidation.less'
 
 const { Header } = Modal
 const { Body } = Modal

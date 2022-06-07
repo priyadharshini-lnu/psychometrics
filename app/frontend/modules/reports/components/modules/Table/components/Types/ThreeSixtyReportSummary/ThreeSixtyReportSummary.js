@@ -5,7 +5,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import AppStore from 'modules/reports/store/AppStore'
 import ResultStore from 'modules/reports/store/ResultStore'
 import _ from 'lodash'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function ThreeSixtyReportSummary ({ model }) {
   const { fontFamily } = model.props.style

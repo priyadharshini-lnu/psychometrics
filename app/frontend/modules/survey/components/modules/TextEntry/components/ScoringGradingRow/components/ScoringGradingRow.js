@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ScoringCell from 'components/ScoringCell'
-import styles from './ScoringGradingRow.scss'
+import styles from './ScoringGradingRow.less'
 
 class ScoringGradingRow extends Component {
   static propTypes = {

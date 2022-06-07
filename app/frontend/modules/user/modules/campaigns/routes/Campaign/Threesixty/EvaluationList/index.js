@@ -12,7 +12,7 @@ import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import { STATUSES } from 'constants/userResult'
 import EditEvaluationModal from '../EditEvaluationModal'
 import connect from './connect'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { Panel } = Collapse
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import useUpdate from 'hooks/useUpdate'
-import styles from './styles.scss'
-import conditionStyles from '../../Condition.scss'
+import styles from './styles.less'
+import conditionStyles from '../../Condition.less'
 
 const PREDICATE_OPTIONS = [
   { value: 'EqualTo', label: 'Equal To' },

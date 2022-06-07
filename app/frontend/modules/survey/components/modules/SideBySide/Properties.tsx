@@ -11,7 +11,7 @@ import Action from 'undo'
 import ValidationTypes from 'components/ValidationTypes'
 import RequiredValidations from 'components/RequiredValidations'
 
-import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'views/PropertyPanel/components/PropertyPanel.less'
 
 interface Props {
   model: PropertiesModel

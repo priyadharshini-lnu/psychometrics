@@ -10,7 +10,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import ResultStore from 'modules/reports/store/ResultStore'
 import Utils from 'modules/reports/utils'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 type Gap = {
   name: string

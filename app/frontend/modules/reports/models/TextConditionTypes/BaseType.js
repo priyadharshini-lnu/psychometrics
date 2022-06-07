@@ -4,7 +4,7 @@ class BaseType {
   constructor (condition, assessmentId) {
     this.condition = condition
     this.filterScope = condition.props.filterScope
-    this.assessmentId = assessmentId
+    this.assessmentId = condition.assessmentId || assessmentId
     this.skipRoundingValues = condition.collection.module.props.skipRoundingValues
   }
 

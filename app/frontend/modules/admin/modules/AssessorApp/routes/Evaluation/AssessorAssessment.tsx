@@ -10,7 +10,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import { useLocation } from 'react-router-dom'
 import Language from 'modules/user/modules/campaigns/components/Language'
 import cs from 'classnames'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { fetchAssessorAssessment, getAssessorForm, getCurrentAssessorForm } from '../../core/evaluation'
 
 const { I18n } = window

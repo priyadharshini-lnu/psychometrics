@@ -1,0 +1,79 @@
+@import 'modules/user/styles/variables.less';
+
+:global(.ant-statistic) {
+  &.timer {
+    display: inline-block;
+
+    * {
+      font-size: 18px !important;
+    }
+  }
+  &.plain {
+    background: none;
+    * {
+      color: @dark-gray;
+    }
+
+    &.green * {
+      color: @main-color;
+    }
+
+    &.warning * {
+      color: @warning-color;
+    }
+
+    &.danger * {
+      color: @red;
+    }
+  }
+
+  &.withBg {
+    background-color: @white;
+    border-radius: 4px;
+    padding: 8px 12px !important;
+
+    * {
+      color: @black;
+    }
+
+    &.green {
+      background-color: @main-color;
+      * {
+        color: @white;
+      }
+    }
+
+    &.warning {
+      background-color: @warning-color;
+      * {
+        color: @white;
+      }
+    }
+
+    &.danger {
+      background-color: @red;
+      * {
+        color: @white;
+      }
+    }
+  }
+}
+:global(.ant-notification-notice) {
+  &.notification75,
+  &.notification90 {
+    :global {
+      .ant-notification-notice-message,
+      .ant-notification-close-x,
+      .anticon.ant-notification-notice-icon-warning {
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+  &.notification75 {
+    background-color: @warning-color;
+  }
+  &.notification90 {
+    background-color: @red;
+  }
+}

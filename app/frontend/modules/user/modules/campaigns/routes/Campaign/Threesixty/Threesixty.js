@@ -9,7 +9,7 @@ import { STATUSES } from 'constants/campaign'
 import Nominations from './NominationList'
 import Evaluations from './EvaluationList'
 import Reports from './ReportList'
-import './styles.scss'
+import './styles.less'
 
 const { Content } = Layout
 

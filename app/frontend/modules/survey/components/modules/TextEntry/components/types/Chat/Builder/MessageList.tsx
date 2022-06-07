@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import Message from './Message'
-import styles from '../ChatStyle.scss'
+import styles from '../ChatStyle.less'
 import { Message as MessageInterface } from '../interfaces'
 
 interface Props {

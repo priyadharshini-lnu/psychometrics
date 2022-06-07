@@ -3,7 +3,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import routeUtils from 'utils/route'
-import styles from './styles.scss'
+import styles from './styles.less'
 import settings from '../../../../settings'
 
 export default function Search ({

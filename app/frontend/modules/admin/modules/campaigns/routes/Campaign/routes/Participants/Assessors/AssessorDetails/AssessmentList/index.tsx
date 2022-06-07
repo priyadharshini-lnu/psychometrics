@@ -20,7 +20,7 @@ import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import { useParams } from 'react-router-dom'
 import Modals from 'modules/admin/components/Modals/'
 import { openModal } from 'modules/admin/core/ui/modals'
-import styles from './styles.scss'
+import styles from './styles.less'
 import AddAssessmentModal from './AddAssessmentModal'
 
 const { Column } = Table

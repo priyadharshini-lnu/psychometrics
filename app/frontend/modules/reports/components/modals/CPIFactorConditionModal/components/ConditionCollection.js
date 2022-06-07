@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import cs from 'classnames'
 
 import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
-import styles from './CPIFactorConditionModal.scss'
+import styles from './CPIFactorConditionModal.less'
 import ConditionList from './ConditionList'
-import localStyles from './types/Scoring/Scoring.scss'
+import localStyles from './types/Scoring/Scoring.less'
 import ColorPicker from '../../../ColorPicker'
 
 export class ConditionCollection extends Component {

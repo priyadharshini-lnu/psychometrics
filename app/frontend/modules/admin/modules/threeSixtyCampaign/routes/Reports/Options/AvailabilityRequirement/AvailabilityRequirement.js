@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { Select } from 'antd'
 import cs from 'classnames'
 import Criteria from './Criteria'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function AvailabilityRequirement ({
   conditions,

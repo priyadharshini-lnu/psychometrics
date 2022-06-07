@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import css from './DataSheet.scss'
+import css from './DataSheet.less'
 import ConditionSelect from './ConditionSelect'
 import DataSheetSelect from './DataSheetSelect'
 

@@ -3,7 +3,7 @@ import {
   Button, Input, Menu, Dropdown, DatePicker,
 } from 'antd'
 import { CaretDownOutlined } from '@ant-design/icons'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function ScheduledDateField ({ scheduledDate, updateScheduleDate }) {
   const handleScheduleDateChange = ({ key }) => {

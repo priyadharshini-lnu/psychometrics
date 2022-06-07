@@ -1,0 +1,87 @@
+:global {
+  .reportContainer {
+    .fe-page-container {
+      margin: 25px auto;
+      border: 1px solid #CCC;
+      background-color: #fff;
+    }
+  }
+}
+
+.affix {
+  :global {
+    .ant-affix {
+      z-index: 9999;
+    }
+  }
+}
+
+.container {
+  background-color: white;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100%;
+  min-height: 100vh;
+  border-left: 1px solid #ccc;
+  background-color: #fff;
+
+  .header {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      color: #00B4AA;
+    }
+  }
+
+  .override {
+    padding: 8px 0;
+    display: flex;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+
+    .number {
+      min-width: 40px;
+      max-width: 40px;
+      text-align: center;
+    }
+
+    .tag {
+      color: #aaa;
+      font-size: 0.9em;
+    }
+
+    .content {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .text {
+      margin-top: 5px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+
+    }
+
+    &:hover {
+      border-left: 3px solid #477c82;
+      background-color: #ecf7f6;
+    }
+  }
+
+  .pageTitle {
+    padding: 16px 20px;
+    font-weight: bold;
+  }
+}
+
+.divider {
+  margin: 3px auto;
+  width: 80%;
+}

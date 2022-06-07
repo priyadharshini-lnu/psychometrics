@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Question.scss'
+import styles from './Question.less'
 import CommentsList from './CommentsList'
 
 const QuestionFooter = (props) => {

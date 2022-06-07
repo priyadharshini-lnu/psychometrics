@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from './ConditionalImageModal.scss'
+import styles from './ConditionalImageModal.less'
 
 const {
   Header, Body, Footer, Title,

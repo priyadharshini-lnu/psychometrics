@@ -3,7 +3,8 @@
 module Api
   module V1
     class UserAssessmentSerializer < ActiveModel::Serializer
-      attributes :id, :name, :description, :icon_url, :poster_url, :status, :started_at, :completed_at, :campaign_id
+      attributes :id, :name, :description, :icon_url, :poster_url, :status, :started_at, :completed_at, :campaign_id,
+                 :norm_id
 
       delegate :id, :name, :description, to: :assessment
 

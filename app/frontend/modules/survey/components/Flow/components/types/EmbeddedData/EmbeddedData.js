@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
-import styles from './EmbeddedData.scss'
+import styles from './EmbeddedData.less'
 import Controls from '../../Controls'
 
 const DEFAULT_KEY = 'Enter Embedded Data Field Name Here...'

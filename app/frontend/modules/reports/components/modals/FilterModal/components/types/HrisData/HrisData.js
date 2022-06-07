@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../Condition.scss'
-import localStyles from './HrisData.scss'
+import styles from '../../Condition.less'
+import localStyles from './HrisData.less'
 
 export class HrisData extends Component {
   static propTypes = {

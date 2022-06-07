@@ -147,4 +147,185 @@ describe 'Assessments' do
       end
     end
   end
+
+  path '/projects/{project_id}/users/{user_id}/assessments/{assessment_id}' do
+    put 'Update user assessments' do
+      operationId 'UpdateUserAssessments'
+      description 'Update user assessments'
+      tags 'Assessments'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, type: :string
+      parameter name: :assessment_id, in: :path, type: :string, required: false
+      parameter name: :campaign_id, in: :query, type: :string, required: false,
+                description: 'if is not filled, the system takes the last campaign id'
+      parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedAssessment' }, required: true
+
+      before do
+        campaign_user = create(:campaign_user, campaign: campaign, user: user)
+        @assessment = create(:assessment, :with_report, name: 'Super Assessment')
+        @norm = create(:norm)
+        campaign_user.campaign.reports = @assessment.reports
+        campaign_user.campaign.assessments = [@assessment]
+        @user_assessment = create(
+          :user_assessment, subject: user, evaluator: user, assessment: @assessment, campaign: campaign
+        )
+        allow_any_instance_of(Assessment).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
+        allow_any_instance_of(Assessment).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
+      end
+      response '200', 'Assessments updating' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:assessment_id) { @assessment.id }
+
+        let(:body) do
+          {
+            norm_id: @norm.id
+          }
+        end
+        schema '$ref' => '#/definitions/UserAssessment'
+
+        examples 'application/json' => {
+          "norm_id": nil
+        }
+
+        run_test! do |response|
+          user_assessment = JSON.parse(response.body)
+          expect(user_assessment['norm_id']).to eq(@norm.id)
+        end
+      end
+
+      response '401', 'Auth error' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:assessment_id) { @assessment.id }
+        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' =>
+        {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': nil,
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
+        end
+      end
+
+      response '401', 'Authentication error' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:assessment_id) { @assessment.id }
+        before { membership.user.update(disabled: true) }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': 'API User is disabled',
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => 'API User is disabled',
+            'meta' => nil
+          )
+        end
+      end
+    end
+
+    delete 'Delete user assessments' do
+      operationId 'DeleteUserAssessments'
+      description 'Delete user assessments'
+      tags 'Assessments'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, type: :string
+      parameter name: :assessment_id, in: :path, type: :string, required: false
+      parameter name: :campaign_id, in: :query, type: :string, required: false,
+                description: 'if is not filled, the system takes the last campaign id'
+      before do
+        campaign_user = create(:campaign_user, campaign: campaign, user: user)
+        @assessment = create(:assessment, :with_report, name: 'Super Assessment')
+        campaign_user.campaign.reports = @assessment.reports
+        campaign_user.campaign.assessments = [@assessment]
+        @user_assessment = create(
+          :user_assessment, subject: user, evaluator: user, assessment: @assessment, campaign: campaign
+        )
+        allow_any_instance_of(Assessment).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
+        allow_any_instance_of(Assessment).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
+      end
+      response '200', 'Assessments deleting' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:assessment_id) { @assessment.id }
+
+        schema '$ref' => '#/definitions/UserAssessment'
+
+        run_test! do |_|
+          expect(UserAssessment.find_by(id: @user_assessment.id)).to eq(nil)
+        end
+      end
+
+      response '401', 'Auth error' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:assessment_id) { @assessment.id }
+        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' =>
+        {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': nil,
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
+        end
+      end
+
+      response '401', 'Authentication error' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:assessment_id) { @assessment.id }
+        before { membership.user.update(disabled: true) }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': 'API User is disabled',
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => 'API User is disabled',
+            'meta' => nil
+          )
+        end
+      end
+    end
+  end
 end

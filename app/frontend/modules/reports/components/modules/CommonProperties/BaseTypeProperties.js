@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import cs from 'classnames'
 import { DATA_SHEET } from 'modules/reports/models/Module'
-import styles from './BaseTypeProperties.scss'
+import styles from './BaseTypeProperties.less'
 
 class BaseTypeProperties extends Component {
   onChange = (value) => {

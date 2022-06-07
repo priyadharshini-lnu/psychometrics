@@ -14,7 +14,7 @@ import PrivacyModal from '../PrivacyModal'
 import AssessmentCard from '../AssessmentCard'
 import AssessmentActionBtn from './AssessmentActionBtn'
 
-import '../styles.scss'
+import '../styles.less'
 
 const { I18n } = window
 

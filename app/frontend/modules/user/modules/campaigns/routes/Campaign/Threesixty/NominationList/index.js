@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { SafeHTML } from 'components/SafeHTML'
 import _ from 'lodash'
 import userPresenter from 'presenters/user'
-import './styles.scss'
+import './styles.less'
 import connect from './connect'
 
 const { Panel } = Collapse

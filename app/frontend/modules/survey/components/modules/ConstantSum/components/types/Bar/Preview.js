@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ProgressBar from 'components/ProgressBar'
-import styles from './Bar.scss'
+import styles from './Bar.less'
 import connect from '../../../connect'
 
 const TABLE_WIDTH = 700

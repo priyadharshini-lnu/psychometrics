@@ -24,7 +24,7 @@ describe Assessors::CreateAll do
     [
       {
         assessor_email: 'existing.atanov@gmail.com',
-        assessor_password: 'Password@21',
+        assessor_password: 'Password@214321',
         assessor_first_name: 'Vlad',
         assessor_last_name: 'Ata',
         subject_email: 'fedor@gmail.com',
@@ -33,7 +33,7 @@ describe Assessors::CreateAll do
       {
         assessor_email: 'unexising.atanov@gmail.com',
         assessor_first_name: 'Vlad',
-        assessor_password: 'Password@21',
+        assessor_password: 'Password@214321',
         assessor_last_name: 'Ata',
         subject_email: 'ivan@gmail.com',
         assessment_ids: [assessment1.id, assessment2.id]

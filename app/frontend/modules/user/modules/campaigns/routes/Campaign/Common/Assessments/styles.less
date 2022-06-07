@@ -1,0 +1,208 @@
+@import 'modules/user/styles/variables.less';
+
+@colors: #246479, #9DD8D7, #00B1A8;
+@text-colors: #FFFFFF, #246479, #FFFFFF;
+
+:global {
+  .card {
+    >a {
+      text-decoration: none;
+    }
+    .ant-card {
+      border-radius: 6px;
+      overflow: hidden;
+      border-color: rgba(34, 34, 34, 0.09);
+      box-shadow: 0 0px 2px rgba(0, 0, 0, 0.09);
+    }
+    .ant-card-hoverable:hover {
+      border-color: rgba(34, 34, 34, 0.09);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    }
+    .internal-cover {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .internal-caption {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 12px;
+
+        .internal-title {
+          margin-left: 5px;
+          font-weight: bold;
+          color: #646464;
+        }
+
+        .internal-icon {
+          background: #646464;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          fill: #fff;
+          font-size: 1.8rem;
+          svg {
+            margin-left: -2px;
+          }
+          .icon-360 {
+            font-size: 2.6rem;
+          }
+
+          &.hogan {
+            background: #646464;
+            color: #FFF;
+          }
+          &.internal-icon-image {
+            background: none;
+            img {
+              max-width: 28px;
+            }
+          }
+        }
+
+      }
+
+      img {
+        max-height: 100%;
+      }
+
+      .card-progress {
+        position: absolute;
+        bottom: -20px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 6px 8px;
+        background: #fff;
+
+      }
+    }
+
+    each(range(1, 3), {
+      &:nth-child(3n + @{value}) {
+        .internal-cover {
+          .internal-caption .internal-title {
+            color: extract(@text-colors, @value);
+          }
+
+          .internal-icon {
+            background: extract(@text-colors, @value);
+            color: extract(@colors, @value);
+            svg {
+              fill: extract(@colors, @value);
+            }
+          }
+        }
+      }
+    })
+
+    .service {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+
+      .card-detail-txt {
+        color: #246479;
+      }
+
+      .card-title {
+        color: #555;
+        font-weight: 600;
+        font-size: 16px;
+        height: 60px;
+      }
+
+      .info-line {
+        font-size: 12px;
+        padding: 16px 0;
+        font-weight: bold;
+        display: flex;
+
+        .info-block {
+          margin-right: 12px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex: 1;
+          color: #999;
+
+          i {
+            font-size: 13px;
+            margin-right: 5px;
+          }
+        }
+      }
+
+      .card-progress {
+        .ant-progress-text {
+          color:#4eada7;
+        }
+      }
+
+
+      .divider {
+        align-self: center;
+        width: 100%;
+        height: 1px;
+        background: @light-gray;
+      }
+
+      .button {
+        padding-top: 8px;
+        display: flex;
+        justify-content: flex-end;
+        .icon {
+          font-size: 20px;
+        }
+
+        a[disabled] {
+          color: #646464;
+        }
+
+        a {
+          color: @main-dark;
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-left: 8px;
+          }
+        }
+        a.disabled {
+          color: #aaa !important;
+          pointer-events: none;
+        }
+
+      }
+    }
+  }
+
+  .rtl {
+    .button {
+      svg {
+        margin-left: 8px;
+        margin-right: 0;
+      }
+    }
+  }
+
+  .ant-dropdown {
+    a[disabled] {
+      background-color: @normal-color;
+    }
+  }
+
+  .dropdown {
+    color: @main-dark;
+  }
+}

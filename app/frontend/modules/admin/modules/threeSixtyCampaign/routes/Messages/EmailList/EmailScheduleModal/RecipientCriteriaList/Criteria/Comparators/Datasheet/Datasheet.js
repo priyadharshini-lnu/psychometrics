@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select, Input } from 'antd'
-import styles from '../../styles.scss'
+import styles from '../../styles.less'
 
 export default function DatasheetComparator ({
   datasheetFields, subField, value, update, merge,

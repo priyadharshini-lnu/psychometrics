@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { SketchPicker } from 'react-color'
 import _ from 'lodash'
-import styles from './ColorPicker.scss'
+import styles from './ColorPicker.less'
 
 export default function ColorPicker ({ onChange, onComplete, color }) {
   const [displayColorPicker, setDisplayColorPicker] = useState(false)

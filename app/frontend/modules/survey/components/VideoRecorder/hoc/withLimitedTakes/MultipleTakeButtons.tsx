@@ -3,7 +3,7 @@ import _ from 'lodash'
 import cs from 'classnames'
 import { Radio } from 'antd'
 import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface Props {
   maxTakes: number

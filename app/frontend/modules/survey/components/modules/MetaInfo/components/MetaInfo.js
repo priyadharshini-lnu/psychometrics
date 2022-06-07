@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './MetaInfo.scss'
+import styles from './MetaInfo.less'
 
 const MetaInfo = () => (
   <div style={{ position: 'relative' }}>

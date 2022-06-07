@@ -114,4 +114,19 @@ describe UserAssessments::Pass do
       expect(user_assessment.expiry_date).to be_nil
     end
   end
+
+  describe 'progress_reseted' do
+    let(:user_assessment) do
+      create(
+        :user_assessment,
+        progress_reseted: true
+      )
+    end
+
+    it 'should reset status to false' do
+      described_class.call!(user_assessment, 'ru')
+
+      expect(user_assessment.progress_reseted).to be_falsey
+    end
+  end
 end

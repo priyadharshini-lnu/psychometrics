@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { SafeHTML } from 'components/SafeHTML'
 
-import './styles.scss'
+import './styles.less'
 
 export default function PrivacyModal ({
   accept, show, close,

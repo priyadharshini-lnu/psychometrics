@@ -21,7 +21,7 @@ import {
 } from 'libs/amazon-transcribe-websocket-static'
 import { convertSecondsToMMSS } from 'utils/time'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const AUTO_SILENCE_CUTOFF_TIME_IN_SECONDS = 20
 const MAXIMUM_DICTATION_ALLOWED_IN_SECONDS = 10 * 60

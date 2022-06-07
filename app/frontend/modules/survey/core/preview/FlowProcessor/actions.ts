@@ -28,6 +28,7 @@ import {
   FETCH_QUESTION_SCORING,
   ACTIVE_DICTATION_ON_QUESTION,
   BACK_BUTTON_PRESSED, NEXT_BUTTON_PRESSED,
+  SHOW_ERROR_WARNING,
 } from './consts'
 import {
   Highlight, QuestionError, MediaResponse, EndOfAssessmentElementProps,
@@ -108,6 +109,8 @@ export const removeQuestionInProgress = (questionId, progressState) => (
 export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION })
 
 export const markAssessmentTimedOut = (questionId: number) => ({ type: MARK_ASSESSMENT_TIMED_OUT, questionId })
+
+export const showErrorWarning = () => ({ type: SHOW_ERROR_WARNING })
 
 export const saveResults = (preview, questionIds, currentBlockId?) => {
   const answerKey = !preview.resultsUrl || preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers'

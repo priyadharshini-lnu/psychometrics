@@ -19,7 +19,7 @@ import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { RootState } from 'modules/reports/core/rootReducers'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface DataPoint {
   label: string

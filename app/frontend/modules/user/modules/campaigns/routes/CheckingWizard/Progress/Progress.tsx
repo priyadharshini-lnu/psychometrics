@@ -1,6 +1,6 @@
 import React from 'react'
 import { Progress as AntProgress } from 'antd'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface Props {
   percent: number

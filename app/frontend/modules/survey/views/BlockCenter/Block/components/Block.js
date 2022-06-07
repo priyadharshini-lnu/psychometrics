@@ -5,7 +5,7 @@ import { DropdownButton, MenuItem } from 'react-bootstrap'
 import Question from 'views/BlockCenter/Question'
 import FlipMove from 'react-flip-move'
 import Footer from './BlockFooter'
-import styles from './Block.scss'
+import styles from './Block.less'
 
 class Block extends Component {
   static propTypes = {

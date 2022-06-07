@@ -24,7 +24,7 @@ import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { ImportModal as ImportSmsInvites } from './ImportModal'
 import { ToolsDropdown } from './ToolsDropdown'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { SendSmsModal } from './SendSmsModal'
 import { FormModal as SmsInviteFormModal } from './FormModal'
 

@@ -17,7 +17,7 @@ import reducer, {
 } from './reducer'
 import { CheckListStatus } from '../interfaces'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

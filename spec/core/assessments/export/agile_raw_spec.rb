@@ -44,9 +44,15 @@ describe Assessments::Export::AgileRaw do
         'Assessment ID',
         'completed_at',
         'Assessment Name',
+        'Completed Groups',
         nil,
+        'cmp-1.id',
         'cmp-1.answers',
-        'cmp-1.duration'
+        'cmp-1.duration',
+        'cmp-1.group_id',
+        'cmp-1.session_id',
+        'cmp-1.start_time',
+        'cmp-1.end_time'
       ]
 
       expect(actual_first_row).to eq(expected_first_row)
@@ -72,8 +78,14 @@ describe Assessments::Export::AgileRaw do
         users_result.completed_at.try(:strftime, '%D %r'),
         assessment.name,
         nil,
+        nil,
+        'cmp-1',
         'equal',
-        1.502
+        1.502,
+        'nf-1-group',
+        '39c19fb5-08e9-4030-adc8-c282f4b1eb1a',
+        'Mon, 09 May 2022 07:48:50 +0000',
+        'Mon, 09 May 2022 07:48:51 +0000'
       ]
 
       expect(actual_second_row).to eq(expected_second_row.flatten)

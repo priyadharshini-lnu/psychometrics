@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import routeUtils from 'utils/route'
 import { Pagination as AntPagination } from 'antd'
-import styles from './styles.scss'
+import styles from './styles.less'
 import settings from '../../settings'
 
 function Pagination ({

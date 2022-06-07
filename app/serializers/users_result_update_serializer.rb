@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersResultUpdateSerializer < ActiveModel::Serializer
-  attributes :expired, :current_block, :translations
+  attributes :expired, :current_block, :translations, :progress_was_reseted
   attribute :scoring, if: -> { @instance_options[:current_user]&.assessor? && object.completed? }
 
   has_many :factors, serializer: UsersResults::FactorSerializer, if: lambda {
@@ -27,6 +27,10 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
       piped_text_context: piped_text_context,
       locale: object.user_assessment.selected_locale || @instance_options[:locale]
     )
+  end
+
+  def progress_was_reseted
+    @instance_options[:progress_was_reseted]
   end
 
   def piped_text_context

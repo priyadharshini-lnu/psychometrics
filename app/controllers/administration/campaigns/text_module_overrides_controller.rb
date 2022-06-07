@@ -5,6 +5,7 @@ module Administration
     class TextModuleOverridesController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[show destroy download pdf_preview toggle_user_access]
       before_action :find_user_report, only: %i[create update destroy]
+      before_action :pundit_authorize
 
       def create
         form = ::Campaigns::TextModuleOverrides::CreateForm.from_params(params.merge(editor_id: current_user.id))

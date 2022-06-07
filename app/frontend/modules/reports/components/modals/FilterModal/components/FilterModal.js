@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap'
 import AppStore from 'modules/reports/store/AppStore'
 import FilterModel from 'modules/reports/models/Filter'
 import { setIn } from 'utils/immutable'
-import styles from './FilterModal.scss'
+import styles from './FilterModal.less'
 import Filter from './Filter'
 
 const {

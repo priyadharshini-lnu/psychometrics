@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FileOutlined, DeleteOutlined } from '@ant-design/icons'
-import styles from './FileUpload.scss'
+import styles from './FileUpload.less'
 
 export default function FileDetails ({
   localFile, savedFile, removeFile, readOnly,

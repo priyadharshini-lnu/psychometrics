@@ -48,7 +48,9 @@ class UserReport < ApplicationRecord
   end
 
   def generatable?
-    all_assessments_are_completed? && (external_report? || !report_modules_empty?)
+    generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
+    generate &&= approved? if report.require_approval?
+    generate
   end
 
   def log_attribute_for_delete

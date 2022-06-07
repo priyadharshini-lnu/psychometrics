@@ -12,7 +12,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
 import _ from 'lodash'
 import { CheckOutlined } from '@ant-design/icons'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 
@@ -26,7 +26,7 @@ const lookUpModules = report => _.reduce(report.pages, (res, page) => {
 }, [])
 
 function ReportPreview ({
-  userReport, approveReport,
+  userReport, approveReport, permissions,
 }: Props) {
   const scrollTo = (id) => {
     ScrollDispatcher.scroll(id)
@@ -63,13 +63,15 @@ function ReportPreview ({
           /
           {modulesCount}
         </div>
-        <Button
-          disabled={userReport.approved || approved !== modulesCount}
-          onClick={() => approveReport(userReport.campaignId, userReport.id)}
-          key="download"
-        >
-          {userReport.approved ? I18n.t('common.text.approved') : I18n.t('common.text.approve')}
-        </Button>
+        {permissions.approveReport && (
+          <Button
+            disabled={userReport.approved || approved !== modulesCount}
+            onClick={() => approveReport(userReport.campaignId, userReport.id)}
+            key="download"
+          >
+            {userReport.approved ? I18n.t('common.text.approved') : I18n.t('common.text.approve')}
+          </Button>
+        )}
       </div>
       {pgaeModules.map(({ page, modules }, i) => (
         <div key={i}>
@@ -124,6 +126,7 @@ function ReportPreview ({
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
+  permissions: state.currentUser.permissions,
 }), {
   approveReport,
 })

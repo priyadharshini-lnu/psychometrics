@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PageModel from 'modules/reports/models/Page'
 import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
-import styles from './Page.scss'
+import styles from './Page.less'
 
 class PageFooter extends Component {
   static propTypes = {

@@ -273,8 +273,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint
@@ -431,12 +431,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -662,8 +662,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb
 );
 
@@ -2357,6 +2357,40 @@ ALTER SEQUENCE public.occupations_id_seq OWNED BY public.occupations.id;
 
 
 --
+-- Name: old_passwords; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.old_passwords (
+    id bigint NOT NULL,
+    encrypted_password character varying,
+    password_archivable_type character varying,
+    password_archivable_id integer,
+    password_salt character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: old_passwords_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.old_passwords_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: old_passwords_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
+
+
+--
 -- Name: pearson_assessment_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3218,6 +3252,47 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: security_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.security_settings (
+    id bigint NOT NULL,
+    project_id integer,
+    enforce_strong_password boolean DEFAULT false,
+    min_password_length integer DEFAULT 8,
+    enforce_password_policy boolean DEFAULT false,
+    disable_password_reuse boolean DEFAULT false,
+    password_expiration integer,
+    restrict_sequences boolean DEFAULT false,
+    lock_account boolean DEFAULT false,
+    attempts_to_lock integer DEFAULT 3,
+    auto_unlock_time integer DEFAULT 10,
+    send_unlock_email boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: security_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.security_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: security_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
 -- Name: shortened_urls; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3688,8 +3763,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -3980,7 +4054,8 @@ CREATE TABLE public.user_assessments (
     additional_time integer,
     selected_locale character varying,
     started_at timestamp without time zone,
-    last_activity_at timestamp without time zone
+    last_activity_at timestamp without time zone,
+    progress_reseted boolean DEFAULT false
 );
 
 
@@ -4093,7 +4168,8 @@ CREATE TABLE public.users (
     enable_2fa boolean DEFAULT true NOT NULL,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
-    locked_at timestamp without time zone
+    locked_at timestamp without time zone,
+    password_changed_at timestamp without time zone
 );
 
 
@@ -4129,10 +4205,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -4682,6 +4758,13 @@ ALTER TABLE ONLY public.occupations_factors ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: old_passwords id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.old_passwords ALTER COLUMN id SET DEFAULT nextval('public.old_passwords_id_seq'::regclass);
+
+
+--
 -- Name: pearson_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4847,6 +4930,13 @@ ALTER TABLE ONLY public.saville_report_settings ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.saville_user_assessments_id_seq'::regclass);
+
+
+--
+-- Name: security_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.security_settings ALTER COLUMN id SET DEFAULT nextval('public.security_settings_id_seq'::regclass);
 
 
 --
@@ -5535,6 +5625,14 @@ ALTER TABLE ONLY public.occupations
 
 
 --
+-- Name: old_passwords old_passwords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.old_passwords
+    ADD CONSTRAINT old_passwords_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pearson_assessment_settings pearson_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5732,6 +5830,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: security_settings security_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.security_settings
+    ADD CONSTRAINT security_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6893,6 +6999,13 @@ CREATE INDEX index_occupations_factors_on_occupation_id ON public.occupations_fa
 --
 
 CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree (dimension_id);
+
+
+--
+-- Name: index_password_archivable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_password_archivable ON public.old_passwords USING btree (password_archivable_type, password_archivable_id);
 
 
 --
@@ -8614,7 +8727,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -9402,7 +9515,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
-('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9411,6 +9523,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220425192928'),
 ('20220425201109'),
 ('20220427143253'),
-('20220428111329');
-
-
+('20220428111329'),
+('20220512111341'),
+('20220512120041'),
+('20220513062033'),
+('20220527125017');

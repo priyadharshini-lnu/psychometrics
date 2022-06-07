@@ -2,7 +2,7 @@ import React from 'react'
 import Question from 'views/Question'
 import PageBreak from 'components/PageBreak'
 import FlipMove from 'react-flip-move'
-import styles from './QuestionList.scss'
+import styles from './QuestionList.less'
 
 export default function QuestionList ({ block, questions }) {
   return (

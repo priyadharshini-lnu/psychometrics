@@ -10,7 +10,7 @@ import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfa
 
 import { EMPTY_IMAGE_SRC } from 'constants/image'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface Props {
   id: PreviewModel['id']

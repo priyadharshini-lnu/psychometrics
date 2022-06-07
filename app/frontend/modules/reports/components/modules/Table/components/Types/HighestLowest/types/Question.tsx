@@ -17,7 +17,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import AppStore from 'modules/reports/store/AppStore'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const MOCK_HIGHEST_LOWEST_DATA = [
   {

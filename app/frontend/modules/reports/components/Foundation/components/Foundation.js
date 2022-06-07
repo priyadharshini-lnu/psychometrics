@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import interact from 'interact.js'
 import panelStore from 'modules/reports/store/PropertyPanelStore'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from './Foundation.scss'
+import styles from './Foundation.less'
 
 const { $ } = window
 

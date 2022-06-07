@@ -1,5 +1,5 @@
 import PageListView from './components/PageListView'
-import styles from './components/PageListView.scss'
+import styles from './components/PageListView.less'
 import connect from './connect'
 
 export { styles }

@@ -70,12 +70,13 @@ export const asyncDownload = (campaignId: number, id: number) => ({
   },
 })
 
-export const download = (campaignId: number, id: number) => ({
+export const download = (campaignId: number, id: number, params) => ({
   type: DOWNLOAD,
   request: {
     url: `/assessors/campaigns/${campaignId}/user_reports/${id}/download.pdf`,
     responseType: 'blob',
     loader: true,
+    body: params,
   },
 })
 

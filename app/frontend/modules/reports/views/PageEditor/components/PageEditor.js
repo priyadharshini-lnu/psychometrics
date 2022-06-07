@@ -1,7 +1,7 @@
 import React from 'react'
 import FixedHeader from 'modules/reports/views/FixedHeader'
 import PropertyPanel from 'modules/reports/views/PropertyPanel'
-import styles from './PageEditor.scss'
+import styles from './PageEditor.less'
 import LeftSide from './LeftSide'
 import RightSide from './RightSide'
 
