@@ -16,12 +16,8 @@ module UsersResults::ControllerConcern
       @user_assessment
     )
 
-    form = ::UsersResults::UpdatingForm.from_params(result_params).
-           with_context(user_result: @users_result)
+    form = ::UsersResults::UpdatingForm.from_params(result_params)
     progress_was_reseted = @user_assessment.progress_reseted
-
-    return render json: {}, status: 409 unless form.valid?
-
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
     render json: @users_result,
