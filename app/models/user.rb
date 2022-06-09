@@ -93,6 +93,16 @@ class User < ApplicationRecord
     datasheet: %w[view manage]
   }.with_indifferent_access.freeze
 
+  # overrides required for devise_security
+  # DO NOT MOVE THESE METHODS BELLOW devise
+  def self.has_uniqueness_validation_of_login?
+    true
+  end
+
+  def self.devise_validation_enabled?
+    true
+  end
+
   # Authentication
   devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :secure_validatable, :password_archivable, :password_expirable,
