@@ -94,6 +94,7 @@ class User < ApplicationRecord
   }.with_indifferent_access.freeze
 
   # overrides required for devise_security
+  # DO NOT MOVE THESE METHODS BELLOW devise
   def self.has_uniqueness_validation_of_login?
     true
   end
