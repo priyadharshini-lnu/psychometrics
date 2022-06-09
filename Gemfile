@@ -146,6 +146,7 @@ gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
 
 gem 'dry-types', '~> 1.5.0'
+gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.14.0'
 gem 'reform-rails', '~> 0.2.3'
