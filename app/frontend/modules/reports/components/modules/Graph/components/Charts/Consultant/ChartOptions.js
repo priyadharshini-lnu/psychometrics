@@ -2,6 +2,7 @@ export default function ChartOptions (model) {
   return {
     chart: {
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
+      height: model.props.position.height,
       polar: true,
     },
     title: false,
