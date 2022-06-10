@@ -223,6 +223,7 @@ export const getPossibleQuestionsCount = (state): number => {
 
 export const getProgress = (state): number | undefined => {
   if (!state.initialized) { return }
+  if (state.end) { return 100 }
   const prevQuestions = getPrevQuestionsCount(state)
   const possibleQuestionsCount = getPossibleQuestionsCount(state)
   return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0
