@@ -73,7 +73,7 @@ module Imports
             next
           end
 
-          user_result ||= find_user_result(email: data['subject_email'])
+          user_result ||= find_user_result(data['subject_email'])
 
           next unless user_result
 
