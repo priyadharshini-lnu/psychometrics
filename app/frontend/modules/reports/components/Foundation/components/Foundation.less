@@ -8,15 +8,39 @@
     display: none;
   }
 
+
+  .sizeBox {
+    position: absolute;
+    display: none;
+    font-size: 10px;
+    background: #639cd3;
+    color: #fff;
+    left: -1px;
+    top: -26px;
+    align-items: center;
+    user-select: none;
+    .label {
+      padding: 4px;
+    }
+  }
+
   &.selected {
     :global .overflows {
       display: initial;
     }
+    .sizeBox {
+      display: flex;
+    }
   }
+
 }
 
 .base:hover {
-  box-shadow: #C7D4ED 0 0 0.2em;
+  box-shadow: #C7D4ED 0 0 0.2em 1px;
+}
+
+.base.selected:hover {
+  box-shadow: #639CD3 0 0 0 1px;
 }
 
 .base .frame {
@@ -28,8 +52,7 @@
 .base.selected {
   overflow: visible;
   cursor: auto;
-  box-shadow: #639CD3 0 0 0.2em;
-
+  box-shadow: #639CD3 0 0 0 1px;
 
   &.shadow {
     box-shadow: yellow 0 0 0.2em;
@@ -37,7 +60,7 @@
 }
 
 .base.selected:hover {
-  box-shadow: #639CD3 0 0 0.2em;
+  box-shadow: #639CD3 0 0 0 1px;
   &.shadow {
     box-shadow: yellow 0 0 0.2em;
   }
@@ -48,9 +71,8 @@
 }
 
 .base .mover {
-  position: absolute;
-  left: -35px;
-  top: -35px;
+  margin-right: 5px;
+  padding: 4px;
   font-size: 18px;
   cursor: move;
 }
