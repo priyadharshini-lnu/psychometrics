@@ -3536,8 +3536,6 @@ CREATE TABLE public.text_module_overrides (
     editor_id bigint,
     content text,
     approved boolean DEFAULT false,
-    modules_id bigint,
-    foreign_key_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -7367,20 +7365,6 @@ CREATE INDEX index_text_module_overrides_on_editor_id ON public.text_module_over
 
 
 --
--- Name: index_text_module_overrides_on_foreign_key_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_text_module_overrides_on_foreign_key_id ON public.text_module_overrides USING btree (foreign_key_id);
-
-
---
--- Name: index_text_module_overrides_on_modules_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_text_module_overrides_on_modules_id ON public.text_module_overrides USING btree (modules_id);
-
-
---
 -- Name: index_text_module_overrides_on_user_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8188,14 +8172,6 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
--- Name: text_module_overrides fk_rails_57a512b67b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.text_module_overrides
-    ADD CONSTRAINT fk_rails_57a512b67b FOREIGN KEY (modules_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
-
-
---
 -- Name: sms_records fk_rails_58b8df5ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8313,6 +8289,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.reports_accesses
     ADD CONSTRAINT fk_rails_74cd2e276f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: text_module_overrides fk_rails_7558551b5d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_7558551b5d FOREIGN KEY (module_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
 
 
 --
@@ -8577,6 +8561,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.threesixty_reminder_histories
     ADD CONSTRAINT fk_rails_a2f976ebf2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: text_module_overrides fk_rails_a5943c7cee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_a5943c7cee FOREIGN KEY (editor_id) REFERENCES public.users(id);
 
 
 --
@@ -9530,6 +9522,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220512120041'),
 ('20220513062033'),
 ('20220527125017'),
+('20220608104948'),
 ('20220606151635');
-
-
