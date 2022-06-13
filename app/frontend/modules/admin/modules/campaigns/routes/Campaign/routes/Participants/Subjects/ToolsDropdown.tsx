@@ -13,6 +13,7 @@ const menu = ({
   openModal,
   permissions,
   onExport,
+  onUserExport,
   onCompactExport,
 }) => (
   <Menu>
@@ -28,8 +29,8 @@ const menu = ({
     )}
     <Menu.Divider />
     {permissions.exportUsers && (
-      <Menu.Item key="export">
-        <a href={`/administration/new_campaigns/${campaignId}/users.csv`}>{I18n.t('user.toolbar.export')}</a>
+      <Menu.Item key="export" onClick={() => onUserExport()}>
+        {I18n.t('user.toolbar.export')}
       </Menu.Item>
     )}
     {permissions.import && (
@@ -44,6 +45,7 @@ interface Props {
   campaignId: number
   openModal(name: string, data?: { campaignId: string, user?: User }): void
   exportCompletionStatuses(campaignId: number): Promise<void>
+  exportUsers(campaignId: number): Promise<void>
   exportCompactCompletionStatuses(campaignId: number): Promise<void>
   permissions: {
     exportUsers: boolean,
@@ -53,11 +55,17 @@ interface Props {
 }
 
 const ToolsDropdown: React.FC<Props> = ({
-  campaignId, openModal, permissions, exportCompletionStatuses, exportCompactCompletionStatuses,
+  campaignId, openModal, permissions, exportCompletionStatuses, exportCompactCompletionStatuses, exportUsers,
 }) => {
   const onExport = () => {
     exportCompletionStatuses(campaignId).then(() => {
       message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled'))
+    })
+  }
+
+  const onUserExport = () => {
+    exportUsers(campaignId).then(() => {
+      message.success(I18n.t('frontend.campaign.users.actions.export.scheduled'))
     })
   }
 
@@ -74,6 +82,7 @@ const ToolsDropdown: React.FC<Props> = ({
         openModal,
         permissions,
         onExport,
+        onUserExport,
         onCompactExport,
       })}
       innerElement={(

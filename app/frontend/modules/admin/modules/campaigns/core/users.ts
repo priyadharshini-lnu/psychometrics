@@ -49,6 +49,7 @@ export const CREATE_REPORT = 'resource/userReport/report/CREATE'
 export const REMOVE_REPORT = 'resource/campaigns/report/REMOVE'
 export const EXPORT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPORT_COMPLETION_STATUSES'
 export const EXPORT_COMPACT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPORT_COMPACT_COMPLETION_STATUSES'
+export const EXPORT_USERS = 'resource/campaigns/users/EXPORT_USERS'
 
 export interface ShortUser {
   firstName: string
@@ -99,6 +100,14 @@ export const exportCompactCompletionStatuses = (campaignId: number): ApiAction<{
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/users/export_compact_completion_status`,
+  },
+})
+
+export const exportUsers = (campaignId: number): ApiAction<{}> => ({
+  type: EXPORT_USERS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/users.csv`,
   },
 })
 

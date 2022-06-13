@@ -16,6 +16,7 @@ interface Props {
   }
   showLegend: boolean
   hideEmptyColumns: boolean
+  hideZeroValueColumns: boolean
   showValues: boolean
   xAxisLinesHide: boolean
   yAxisLinesHide: boolean

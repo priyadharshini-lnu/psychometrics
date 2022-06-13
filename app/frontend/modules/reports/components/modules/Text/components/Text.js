@@ -17,7 +17,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import Factors from 'modules/reports/commands/Factors'
 import 'modules/reports/commands/froalaCommands'
 import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
-import { Button, Checkbox, Modal } from 'antd'
+import { Button, Checkbox, Popconfirm } from 'antd'
 import htmldiff from 'libs/htmldiff'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
 import styles from './Text.less'
@@ -457,16 +457,17 @@ class Text extends Component {
                         </Button>
                       )}
                     {override && (
-                    <Button
-                      type="danger"
-                      className={cs(styles.btn, styles.discard)}
-                      onClick={() => Modal.confirm({
-                        title: 'Are you sure?',
-                        onOk: () => removeTextOverride(campaignId, override.id, userReport.id),
-                      })}
-                    >
-                      Discard
-                    </Button>
+                      <Popconfirm
+                        overlayStyle={{ zIndex: 9999 }}
+                        title="Are you sure to discard this text?"
+                        onConfirm={() => removeTextOverride(campaignId, override.id, userReport.id)}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Button type="danger" className={cs(styles.btn, styles.discard)}>
+                          Discard
+                        </Button>
+                      </Popconfirm>
                     )}
                   </>
                 )}

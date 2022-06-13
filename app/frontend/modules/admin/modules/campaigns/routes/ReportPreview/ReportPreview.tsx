@@ -157,7 +157,11 @@ export default function ReportPreview ({
             </Button>,
           ]}
         >
-          {userReport.richEditorOpened && <div key="editor" id="froala-editor-toolbar" />}
+          {userReport.richEditorOpened && (
+            <Affix className={styles.affix}>
+              <div style={{ zIndex: 9999 }} key="editor" id="froala-editor-toolbar" />
+            </Affix>
+          )}
           <Row justify="space-between" style={{ border: '1px solid #ccc' }}>
             <Col flex={1}>
               <Row justify="center">

@@ -7,6 +7,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import store from 'modules/reports/store/PreviewStore'
 import 'modules/reports/styles/globals.less'
 import { normalize } from 'normalizr'
+import humps from 'humps'
 import rstore from '../store'
 import { init } from '../core/builder/actions'
 import schema from '../store/schema'
@@ -27,6 +28,7 @@ class PreviewContainer extends Component {
     if (_.isEmpty(I18nStore.locales) && parsedData.locales) {
       I18nStore.locales = parsedData.locales
     }
+    parsedData.moduleOverrides = humps.camelizeKeys(parsedData.module_overrides)
     if (skipLogic === 'true') {
       parsedData.skipLogic = true
     }

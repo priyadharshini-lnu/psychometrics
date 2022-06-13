@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { PSYCHOMETRIC, AGILE } from 'modules/reports/models/Assessment'
 import { DATA_SHEET } from 'modules/reports/models/Module'
 import localStyles from './Scoring.less'
 import styles from '../../Condition.less'
@@ -15,9 +14,6 @@ export class Scoring extends Component {
     const { condition, factors, dataSheetColumns } = this.props
     if (condition.type === DATA_SHEET) {
       return dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
-    }
-    if (assessment.category === PSYCHOMETRIC || assessment.category === AGILE) {
-      return factors[assessment.dimension_id]
     }
 
     return factors[assessment.dimension_id]
@@ -54,7 +50,7 @@ export class Scoring extends Component {
     const assessment = _.find(assessments, { id: +assessmentId })
 
     if (condition.type === 'Factor' && !assessment) { return null }
-
+    const subjects = this.getSubjects(assessment)
     return (
       <div className={styles.questionDock}>
         <select
@@ -63,7 +59,7 @@ export class Scoring extends Component {
           className={`form-control ${localStyles.subjectSelect}`}
         >
           {!condition.props.subject && <option />}
-          {this.getSubjects(assessment).map(factor => (
+          {subjects?.map(factor => (
             <option key={factor.id} value={factor.id}>{factor.alias || factor.name}</option>
           ))}
         </select>

@@ -254,7 +254,6 @@ const HANDLERS = {
       questions: newQuestions,
     }
   },
-  [`${SAVE_RESULTS}_FAILURE`]: (state: State) => ({ ...state, showErrorWarning: true }),
   [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {
     if (_.get(state, ['highlights', payload.id])) return setIn(state, ['highlights', payload.id], payload)
 

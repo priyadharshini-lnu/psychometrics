@@ -15,12 +15,10 @@ class HandleUserResultExpiryJob < ApplicationJob
       status: :completed,
       completion_reason: :time_out_offline
     )
-
     UsersResult.joins(:user_assessment).
       merge(UserAssessment.in_progress).
       where('user_assessments.expiry_date <= :current', current: 10.second.from_now).find_each do |result|
-        ::UsersResults::UpdateUsersResult.call(users_results_form.with_context(user_result: result),
-                                               result, result.user)
+        ::UsersResults::UpdateUsersResult.call(users_results_form, result, result.user)
       end
   end
 end

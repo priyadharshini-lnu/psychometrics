@@ -28,6 +28,7 @@
 - results_scores_id = dom_id(u, :results_scores)
 - results_reset_responses_id = dom_id(u, :reset_responses)
 - results_edit_report_id = dom_id(u, :edit_report)
+- results_approve_report_id = dom_id(u, :approve_report)
 
 - registration_codes_view_id = dom_id(u, :registration_codes_view)
 - registration_codes_manage_id = dom_id(u, :registration_codes_manage)
@@ -148,6 +149,11 @@ table.table.grants-table
               = check_box_tag 'resource[grants_attributes][data][results][]',
                       'edit_report', resource.has_grant?(:results, :edit_report), id: results_edit_report_id
               | Edit Report
+          - if policy(:membership).manage_grants_for_action?('results', 'approve_report', client: client)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'approve_report', resource.has_grant?(:results, :approve_report), id: results_approve_report_id
+              | Approve Report
     - if policy(:membership).manage_grants_for_actions?('registration_codes', ['view', 'manage'], project: project)
       tr
         td Registration Codes

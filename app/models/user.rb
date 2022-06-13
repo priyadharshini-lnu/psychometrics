@@ -93,6 +93,16 @@ class User < ApplicationRecord
     datasheet: %w[view manage]
   }.with_indifferent_access.freeze
 
+  # overrides required for devise_security
+  # DO NOT MOVE THESE METHODS BELLOW devise
+  def self.has_uniqueness_validation_of_login?
+    true
+  end
+
+  def self.devise_validation_enabled?
+    true
+  end
+
   # Authentication
   devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :secure_validatable, :password_archivable, :password_expirable,
@@ -176,7 +186,8 @@ class User < ApplicationRecord
 
   def password_length
     config = super # 8..128
-    Range.new(security_setting&.min_password_length || config.min, config.max)
+
+    Range.new(security_setting ? security_setting.min_password_length || config.min : 12, config.max)
   end
 
   def expire_password_after
@@ -185,19 +196,25 @@ class User < ApplicationRecord
   end
 
   def deny_old_passwords
-    security_setting&.disable_password_reuse
+    security_setting ? security_setting.disable_password_reuse : super
   end
 
   def enforce_password_policy_at_sign_in?
-    security_setting&.enforce_password_policy
+    security_setting ? security_setting.enforce_password_policy : true
   end
 
   def restrict_sequences?
-    security_setting&.restrict_sequences
+    security_setting ? security_setting.restrict_sequences : true
+  end
+
+  def enforce_strong_password?
+    security_setting ? security_setting.enforce_strong_password : true
   end
 
   def password_complexity
-    return {} unless security_setting&.enforce_strong_password
+    if security_setting
+      return {} unless enforce_strong_password?
+    end
 
     super # { digit: 1, lower: 1, symbol: 1, upper: 1 }
   end
@@ -229,7 +246,7 @@ class User < ApplicationRecord
   end
 
   def lock_account_enabled?
-    security_setting&.lock_account
+    security_setting ? security_setting&.lock_account : true
   end
 
   def ensure_authentication_token

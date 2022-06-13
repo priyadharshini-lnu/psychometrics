@@ -36,8 +36,8 @@ describe Campaigns::Users::ProcessImport do
   end
 
   it '.call' do
-    campaign.users.create(email: 'vlad@gmail.com', password: 'asdasd1234')
-    campaign.users.create(email: 'namu@gmail.com', password: 'namkhf1234')
+    campaign.users.create!(email: 'vlad@gmail.com', password: 'A!sdasd1234321')
+    campaign.users.create!(email: 'namu@gmail.com', password: 'A!namkhf123456')
 
     data, imported_users = described_class.call!(
       campaign, current_user, import_data, 'add_with_existing_response', admin_job_record

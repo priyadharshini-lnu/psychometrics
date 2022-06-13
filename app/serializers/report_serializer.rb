@@ -21,6 +21,7 @@ class ReportSerializer < ActiveModel::Serializer
 
   has_many :filters, serializer: Reports::FilterSerializer
   has_many :assessments, serializer: Reports::AssessmentSerializer
+  has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
 
   def pages
     object.pages.map do |page|
@@ -186,6 +187,10 @@ class ReportSerializer < ActiveModel::Serializer
       { id: 'Peer', name: 'Peer' },
       { id: 'DirectReport', name: 'Direct Report' }
     ]
+  end
+
+  def module_overrides
+    @instance_options[:module_overrides]
   end
 
   private

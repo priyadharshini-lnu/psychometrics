@@ -251,28 +251,39 @@ export default function Campaign ({
                         bordered
                         className="reports-list"
                         dataSource={userReports}
-                        renderItem={item => (
-                          <List.Item>
-                            <div className="report-row">
-                              <div className="report-item">
-                                <Avatar className="report-icon me-4">{item.reportName[0]}</Avatar>
-                                <div className="report-title">
-                                  <div>{item.reportName}</div>
+                        renderItem={(item) => {
+                          const prepared = item.status === 'prepared'
+                          const href = item.requireApproval
+                            ? item.approved && prepared && item.pdfUrl
+                            : prepared && item.pdfUrl
+                          const tooltip = item.requireApproval
+                            ? item.approved && item.status
+                            : item.status
+                          return (
+                            <List.Item>
+                              <div className="report-row">
+                                <div className="report-item">
+                                  <Avatar className="report-icon me-4">{item.reportName[0]}</Avatar>
+                                  <div className="report-title">
+                                    <div>{item.reportName}</div>
+                                  </div>
+                                  <Tooltip
+                                    title={I18n.t(`user_reports.readable_statuses.${tooltip || 'not_prepared'}`)}
+                                  >
+                                    <Button
+                                      type="link"
+                                      href={href || ''}
+                                      rel="noopener noreferrer"
+                                      target="_blank"
+                                      disabled={item.requireApproval ? !prepared || !item.approved : !prepared}
+                                      icon={<DownloadOutlined />}
+                                    />
+                                  </Tooltip>
                                 </div>
-                                <Tooltip title={I18n.t(`user_reports.readable_statuses.${item.status}`)}>
-                                  <Button
-                                    type="link"
-                                    href={item.status === 'prepared' ? item.pdfUrl : ''}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                    disabled={item.status !== 'prepared'}
-                                    icon={<DownloadOutlined />}
-                                  />
-                                </Tooltip>
                               </div>
-                            </div>
-                          </List.Item>
-                        )}
+                            </List.Item>
+                          )
+                        }}
                       />
                     </Col>
                   )}

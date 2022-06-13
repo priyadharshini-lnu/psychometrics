@@ -13,6 +13,8 @@ class RepeatsInPasswordValidator < ActiveModel::EachValidator
   private
 
   def containcs_sequences?(password)
+    return unless password
+
     check(password) || check(password.reverse)
   end
 

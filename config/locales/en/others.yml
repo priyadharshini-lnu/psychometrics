@@ -154,7 +154,7 @@ en:
             password:
               contains_repeats: Password must not contain repeats
               too_short: Password is too short. Minimum %{count} character required
-              too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+              too_weak: 'Password must contain: Minimum 1 lowercase, 1 uppercase, 1 number and 1 special character.'
         register:
           attributes:
             email:
@@ -626,6 +626,7 @@ en:
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         export_report_data: Export report data
+        export_users: Campaign Users Export
         external_assessment_export: External Results Export
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
@@ -731,7 +732,7 @@ en:
       managers_dashboard_button: Managers Dashboard
       user_dashboard_button: User Dashboard
     instructions:
-      begin_assessment: Begin Assessment
+      begin_assessment: Begin
       cancel: Cancel
       default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
       title: Instructions
@@ -1493,6 +1494,10 @@ en:
           confirmation: Enter current campaign name given below in text box to remove campaign
           success: "%{campaignName} removed successfully."
       users:
+        actions:
+          export:
+            details: Campaign Users
+            scheduled: User export scheduled successfully.
         completion_statuses:
           completed: Completed
           in_progress: In Progress
@@ -1802,6 +1807,7 @@ en:
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines
+          hideZeroValueColumns: Hide Zero Value Columns
           legendPosition: Legend Position
           maxValueLabel: Max Value (number)
           maxValueLabelPlaceholder: Max Value
