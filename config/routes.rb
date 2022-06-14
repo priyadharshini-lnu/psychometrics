@@ -872,6 +872,7 @@ Rails.application.routes.draw do
     resources :highlights, only: %i[update]
 
     scope module: :end_user do
+      get '/switch_end_user_view', to: 'users#switch_end_user_view', as: :switch_view
       resources :campaigns, only: %i[show]
       get :dashboard, to: 'users#dashboard'
       post :accept_privacy, to: 'users#accept_privacy'

@@ -14,6 +14,9 @@ declare global {
       currentUser: {
         id: string
         email: string
+      },
+      features: {
+        [key: string]: boolean
       }
     },
     Utils: {
