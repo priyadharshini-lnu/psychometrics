@@ -11,9 +11,6 @@ const EXTERNAL_SCORING = 'external_scoring'
 const TYPES = [
   'score',
   'norm_score',
-  'percentile',
-  'percentage',
-  'zscore',
 ]
 export default function ExternalList ({
   factor, factors, onChange,
