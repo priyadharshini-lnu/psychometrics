@@ -2875,8 +2875,31 @@ ALTER SEQUENCE public.report_families_id_seq OWNED BY public.report_families.id;
 
 CREATE TABLE public.report_families_reports (
     report_id integer,
-    report_family_id integer
+    report_family_id integer,
+    external_package_id character varying,
+    id bigint NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
+
+
+--
+-- Name: report_families_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.report_families_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: report_families_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.report_families_reports_id_seq OWNED BY public.report_families_reports.id;
 
 
 --
@@ -4862,6 +4885,13 @@ ALTER TABLE ONLY public.report_families ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: report_families_reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_families_reports ALTER COLUMN id SET DEFAULT nextval('public.report_families_reports_id_seq'::regclass);
+
+
+--
 -- Name: reports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5741,6 +5771,14 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.report_families
     ADD CONSTRAINT report_families_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: report_families_reports report_families_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_families_reports
+    ADD CONSTRAINT report_families_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -9522,5 +9560,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220512120041'),
 ('20220513062033'),
 ('20220527125017'),
+('20220606151635'),
 ('20220608104948'),
-('20220606151635');
+('20220616103155');
+
+

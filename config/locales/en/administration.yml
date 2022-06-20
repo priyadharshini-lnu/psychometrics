@@ -3203,6 +3203,7 @@ en:
             create: Create
         list:
           created_at: Created date
+          external_package_id: External Package Id
           id: ID
           name: Name
           updated_at: Updated date

@@ -386,6 +386,23 @@ providers:
         id: 469
         factors: [*ed, *or, *nf, *oe, *cpi]
   hogan:
+    report_packages:
+      - id: RPtFlashPkgLead
+        name: LEAD Series + Coaching + Flash
+        report_ids:
+          - EcHPILFPML
+          - EcHDSLFCML
+          - EcMVPILFVML
+          - EcHPIHDSMVPIFR
+          - EcHPIHDSMVPILFCRML
+      - id: LeaershipRPtFlashLeadSummary
+        name: LEAD Series + Summary + Flash
+        report_ids:
+          - EcHPILFPML
+          - EcHDSLFCML
+          - EcMVPILFVML
+          - EcHPIHDSMVPIFR
+          - EcHPIHDSMVPIPESML
     reports:
       - id: EcHPIDML
         name: HPI Data Report
