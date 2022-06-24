@@ -61,6 +61,7 @@ class User < ApplicationRecord
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     clients: %w[view],
+    projects: %w[view],
     campaigns: %w[view manage manage_users manage_options manage_messages manage_admins],
     communications: %w[view manage],
     assessors: %w[view manage],
