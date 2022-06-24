@@ -71,4 +71,12 @@ class UserReport < ApplicationRecord
     }
     WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
   end
+
+  def report_families_report
+    @report_families_report ||= report.report_families_reports.find_by(report_family_id: report_family_id)
+  end
+
+  def hogan_report_id
+    report.hogan_report_setting.hogan_report_id
+  end
 end

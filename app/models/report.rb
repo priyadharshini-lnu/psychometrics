@@ -37,7 +37,8 @@ class Report < ApplicationRecord
   #
   belongs_to :assessment
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
-  has_and_belongs_to_many :report_families
+  has_many :report_families_reports
+  has_many :report_families, through: :report_families_reports, source: :report_family
 
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :modules, through: :pages, dependent: :destroy
