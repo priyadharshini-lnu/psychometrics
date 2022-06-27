@@ -18,9 +18,10 @@
 class Norm < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  include OwnerValidations
 
-  belongs_to :creator, class_name: 'User', foreign_key: :created_by
-  belongs_to :updater, class_name: 'User', foreign_key: :updated_by
+  belongs_to :created_by, class_name: 'User', foreign_key: :created_by_id
+  belongs_to :updated_by, class_name: 'User', foreign_key: :updated_by_id
   has_many :factors_norms, dependent: :destroy
   has_many :factors, through: :factors_norms
   belongs_to :dimension

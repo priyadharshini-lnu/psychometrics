@@ -16,6 +16,7 @@
 FactoryBot.define do
   factory :dimension do
     sequence(:name) { |i| "dimension #{i}" }
+    skip_owner_validation { true }
 
     trait :with_factor do
       after(:create) do |dimension, _|

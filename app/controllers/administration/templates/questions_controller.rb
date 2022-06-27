@@ -27,6 +27,8 @@ module Administration
 
       def create
         resource = resource_class.new(resource_params)
+        resource.created_by = current_user
+        resource.updated_by = current_user
         resource.assign_attributes(view: :templates, type: 'MultipleChoice')
 
         respond_to do |format|
@@ -44,6 +46,7 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
+        resource.updated_by = current_user
         question = ::Builders::Templates::QuestionBuilder.new(resource, params.require(:question))
         if question.save
           render json: { data: QuestionSerializer.new(resource).to_hash(include: '**') }

@@ -68,7 +68,7 @@ module Administration
         def create
           @form = ::Threesixty::Campaigns::CreateForm.from_params(params[:resource])
           if @form.valid?
-            @_resource = ::Threesixty::Campaigns::Create.call!(project, @form)
+            @_resource = ::Threesixty::Campaigns::Create.call!(project, @form, current_user)
           else
             @campaign_template_and_assessment_ids = CampaignTemplate.pluck(:id, :assessment_id).to_h
             render 'new'

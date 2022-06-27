@@ -15,10 +15,12 @@
 #  archived      :boolean          default(false)
 #
 
+# rubocop:disable Metrics/ClassLength
 class Report < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include SoftDelete
+  include OwnerValidations
 
   PROVIDERS = {
     internal: 0,
@@ -36,6 +38,8 @@ class Report < ApplicationRecord
   # ASSOCIATIONS
   #
   belongs_to :assessment
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :updated_by, class_name: 'User'
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :report_families_reports
   has_many :report_families, through: :report_families_reports, source: :report_family
@@ -283,3 +287,4 @@ class Report < ApplicationRecord
                     end
   end
 end
+# rubocop:enable Metrics/ClassLength

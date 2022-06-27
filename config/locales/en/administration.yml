@@ -148,6 +148,8 @@ en:
         successfully: Assessment %{name} was Deleted Successfully.
       edit:
         header: Assessment Settings
+      errors:
+        owner_validation: You don't have %{resource_name} %{permission} permission for %{client_name}
       form:
         categories:
           '360': 360 Feedback

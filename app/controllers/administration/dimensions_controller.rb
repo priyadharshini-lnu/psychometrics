@@ -26,6 +26,9 @@ class Administration::DimensionsController < Administration::BaseController
   def create
     @_resource = resource_class.new(resource_params)
 
+    resource.created_by = current_user
+    resource.updated_by = current_user
+
     if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
       resource.owner_id = current_user.client_admin_client_ids.first
     end
@@ -49,6 +52,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def update
+    resource.updated_by = current_user
     respond_to do |format|
       if resource.update(resource_params)
         audit! :update, resource, payload: resource_params.permit!
