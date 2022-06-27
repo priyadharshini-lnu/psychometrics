@@ -16,6 +16,7 @@
 class Dimension < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  include OwnerValidations
 
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :factors, -> { roots.order(id: :asc) }
@@ -24,6 +25,9 @@ class Dimension < ApplicationRecord
   has_many :assessments
   has_many :norms
   has_many :innovation_styles
+
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :updated_by, class_name: 'User'
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true

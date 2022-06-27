@@ -1,8 +1,7 @@
 #assessments_form
   = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
     .modal-body
-      = f.error_notification
-
+      = render_error_notification(resource)
       .form-inputs.clearfix
         - root_clients = policy_scope(Client).roots
         = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },

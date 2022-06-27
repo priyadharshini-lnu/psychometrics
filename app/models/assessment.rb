@@ -25,6 +25,7 @@ class Assessment < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include SoftDelete
+  include OwnerValidations
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [
@@ -72,6 +73,8 @@ class Assessment < ApplicationRecord
   belongs_to :dimension
   belongs_to :owner, class_name: 'Client'
   belongs_to :project, class_name: 'Client'
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :updated_by, class_name: 'User'
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign

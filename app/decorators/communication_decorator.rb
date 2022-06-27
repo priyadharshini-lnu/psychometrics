@@ -6,7 +6,7 @@ class CommunicationDecorator < BaseDecorator
   end
 
   def author
-    object.creator&.decorate&.display_name
+    object.created_by&.decorate&.display_name
   end
 
   def client_name

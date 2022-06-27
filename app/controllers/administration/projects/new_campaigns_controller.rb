@@ -166,7 +166,7 @@ module Administration
       def create_threesixty_campaign
         form = ::Threesixty::Campaigns::CreateForm.from_params(resource_params)
         if form.valid?
-          threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form)
+          threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form, current_user)
           audit! :create, threesixty_campaign, payload: resource_params, campaign: campaign
           render json: threesixty_campaign.campaign, serializer: Administration::Campaigns::CampaignSerializer
         else

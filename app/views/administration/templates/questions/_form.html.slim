@@ -1,6 +1,6 @@
 = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
   .modal-body
-    = f.error_notification
+    = render_error_notification(resource)
     .form-inputs.clearfix
       = f.input :name
       = f.association :owner, collection: policy_scope(Client).roots.order(:name),

@@ -9,6 +9,7 @@ describe Assessments::CopyAssessment do
     let(:factor) { create(:factor) }
 
     let(:copied_assessment) { double(:assessment) }
+    let(:user) { create(:user) }
 
     before do
       questions = create_list(:question, 3, block: block)
@@ -59,7 +60,7 @@ describe Assessments::CopyAssessment do
       questions.last.update_attributes(skip_logic: destination_skip_logic)
     end
 
-    let(:copy) { described_class.call(assessment.id)[:ok][:assessment] }
+    let(:copy) { described_class.call(assessment.id, user)[:ok][:assessment] }
 
     it 'succeeds' do
       expect(copy).to be_an_instance_of(Assessments::Common)
