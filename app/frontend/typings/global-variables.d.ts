@@ -1,3 +1,5 @@
-declare var __DEV__: boolean
-declare var __TEST__: boolean
-declare var __PROD__: boolean
+/* eslint no-underscore-dangle: 0 */
+
+declare let __DEV__: boolean
+declare let __TEST__: boolean
+declare let __PROD__: boolean
