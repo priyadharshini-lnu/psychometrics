@@ -114,6 +114,10 @@
     .pb#{$scale} {
       padding-block-end: $value;
     }
+
+    .p#{$scale} {
+      padding: $value;
+    }
   }
 
   .block {

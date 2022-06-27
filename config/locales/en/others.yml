@@ -1489,6 +1489,9 @@ en:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds
     manage: Manage
     'no': 'No'
+    request_failed_message_box:
+      message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
+      refresh: Refresh
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"

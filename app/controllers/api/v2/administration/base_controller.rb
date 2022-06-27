@@ -4,6 +4,11 @@ module Api
   class V2::Administration::BaseController < ActionController::Base
     include JSONAPI::Utils
 
+    ACTION_TO_SCHEMA_NAME = {
+      create: :create_request, update: :update_request, create_relationship:
+      :create_relationship_request, update_relationship: :update_relationship_request
+    }.freeze
+
     protect_from_forgery with: :null_session
     class_attribute :_crud_schema_class, :_request_schemas
 
@@ -36,10 +41,7 @@ module Api
       end
 
       if schema_validation.nil? && _crud_schema_class.present?
-        method_name = {
-          create: :create_request, update: :update_request, create_relationship:
-          :create_relationship_request, update_relationship: :update_relationship_request
-        }[action]
+        method_name = ACTION_TO_SCHEMA_NAME[action]
         return unless method_name
 
         schema_validation = if %i[create_relationship_request update_relationship_request].include?(method_name)

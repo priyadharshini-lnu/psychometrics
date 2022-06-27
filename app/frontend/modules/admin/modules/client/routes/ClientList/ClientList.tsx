@@ -40,6 +40,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal }) => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource, createResource,
+    requests,
   } = useResources<Client, Meta>(
     'clients',
     {
@@ -160,6 +161,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal }) => {
         filters={Filter}
         recordCount={meta.recordCount}
         loading={tableLoading}
+        requestStatus={requests.fetch?.status}
       />
       <Modals modals={MODALS} />
     </>
