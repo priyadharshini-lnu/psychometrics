@@ -3,7 +3,11 @@
 module AdminJobs
   class ImportData < AdminJobs::Base
     def call
-      import = ::Imports::Assessments::ResultImportUserResult.new(record.data.merge('file' => record.file))
+      import = if assessment.agile?
+                 ::Imports::Assessments::ImportAgileUserResult.new(record.data.merge('file' => record.file))
+               else
+                 ::Imports::Assessments::ResultImportUserResult.new(record.data.merge('file' => record.file))
+               end
       import.importer = owner
       import.campaign = campaign
       import.assessment = assessment

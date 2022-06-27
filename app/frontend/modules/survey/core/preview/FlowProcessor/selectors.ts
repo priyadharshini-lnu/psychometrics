@@ -53,6 +53,15 @@ export const getElementIdByBlockId = (state, blockId) => _.findKey(
   state.normalizedTree, el => el.props && el.props.current === `${blockId}`,
 )
 
+export const isValidCurrentElementAndPage = (state): boolean => {
+  try {
+    getCurrentPage(state)
+  } catch (e) {
+    return false
+  }
+  return true
+}
+
 export const getCurrentPage = (state): PageInterface => {
   const block = getCurrentElement(state).props.current
   const pages = state.allPages[block]
@@ -99,7 +108,7 @@ export const pageQuestionsWithoutHidden = createSelector(pageQuestions, question
 export const getQuestionErrors = createSelector(
   getQuestion,
   getErrors,
-  (question, errors) => (errors && errors[question.id]) || [],
+  (question, errors) => (question && errors && errors[question.id]) || [],
 )
 
 export const pageErrors = (state): {[qId: number]: []} => state.errors
@@ -113,7 +122,7 @@ export const getDisplayLogicSelector = createSelector(
 export const getQuestionResults = createSelector(
   getQuestion,
   getResults,
-  (question, results) => results[question.id] || {},
+  (question, results) => (question && results[question.id]) || {},
 )
 
 export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} | undefined => (
@@ -214,6 +223,7 @@ export const getPossibleQuestionsCount = (state): number => {
 
 export const getProgress = (state): number | undefined => {
   if (!state.initialized) { return }
+  if (state.end) { return 100 }
   const prevQuestions = getPrevQuestionsCount(state)
   const possibleQuestionsCount = getPossibleQuestionsCount(state)
   return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0

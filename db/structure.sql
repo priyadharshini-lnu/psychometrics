@@ -1498,7 +1498,8 @@ CREATE TABLE public.factors (
     scoring_strategy smallint DEFAULT 0 NOT NULL,
     code character varying,
     use_percentage boolean DEFAULT false,
-    use_sub_factor_norm_score boolean
+    use_sub_factor_norm_score boolean,
+    external_scoring jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -2356,6 +2357,40 @@ ALTER SEQUENCE public.occupations_id_seq OWNED BY public.occupations.id;
 
 
 --
+-- Name: old_passwords; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.old_passwords (
+    id bigint NOT NULL,
+    encrypted_password character varying,
+    password_archivable_type character varying,
+    password_archivable_id integer,
+    password_salt character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: old_passwords_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.old_passwords_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: old_passwords_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
+
+
+--
 -- Name: pearson_assessment_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2841,8 +2876,31 @@ ALTER SEQUENCE public.report_families_id_seq OWNED BY public.report_families.id;
 
 CREATE TABLE public.report_families_reports (
     report_id integer,
-    report_family_id integer
+    report_family_id integer,
+    external_package_id character varying,
+    id bigint NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
+
+
+--
+-- Name: report_families_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.report_families_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: report_families_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.report_families_reports_id_seq OWNED BY public.report_families_reports.id;
 
 
 --
@@ -3217,6 +3275,47 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: security_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.security_settings (
+    id bigint NOT NULL,
+    project_id integer,
+    enforce_strong_password boolean DEFAULT false,
+    min_password_length integer DEFAULT 8,
+    enforce_password_policy boolean DEFAULT false,
+    disable_password_reuse boolean DEFAULT false,
+    password_expiration integer,
+    restrict_sequences boolean DEFAULT false,
+    lock_account boolean DEFAULT false,
+    attempts_to_lock integer DEFAULT 3,
+    auto_unlock_time integer DEFAULT 10,
+    send_unlock_email boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: security_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.security_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: security_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
 -- Name: shortened_urls; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3460,8 +3559,6 @@ CREATE TABLE public.text_module_overrides (
     editor_id bigint,
     content text,
     approved boolean DEFAULT false,
-    reports_modules_id bigint,
-    foreign_key_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -3979,7 +4076,8 @@ CREATE TABLE public.user_assessments (
     additional_time integer,
     selected_locale character varying,
     started_at timestamp without time zone,
-    last_activity_at timestamp without time zone
+    last_activity_at timestamp without time zone,
+    progress_reseted boolean DEFAULT false
 );
 
 
@@ -4092,7 +4190,8 @@ CREATE TABLE public.users (
     enable_2fa boolean DEFAULT true NOT NULL,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
-    locked_at timestamp without time zone
+    locked_at timestamp without time zone,
+    password_changed_at timestamp without time zone
 );
 
 
@@ -4681,6 +4780,13 @@ ALTER TABLE ONLY public.occupations_factors ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: old_passwords id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.old_passwords ALTER COLUMN id SET DEFAULT nextval('public.old_passwords_id_seq'::regclass);
+
+
+--
 -- Name: pearson_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4779,6 +4885,13 @@ ALTER TABLE ONLY public.report_families ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: report_families_reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_families_reports ALTER COLUMN id SET DEFAULT nextval('public.report_families_reports_id_seq'::regclass);
+
+
+--
 -- Name: reports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4846,6 +4959,13 @@ ALTER TABLE ONLY public.saville_report_settings ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.saville_user_assessments_id_seq'::regclass);
+
+
+--
+-- Name: security_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.security_settings ALTER COLUMN id SET DEFAULT nextval('public.security_settings_id_seq'::regclass);
 
 
 --
@@ -5534,6 +5654,14 @@ ALTER TABLE ONLY public.occupations
 
 
 --
+-- Name: old_passwords old_passwords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.old_passwords
+    ADD CONSTRAINT old_passwords_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pearson_assessment_settings pearson_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5646,6 +5774,14 @@ ALTER TABLE ONLY public.report_families
 
 
 --
+-- Name: report_families_reports report_families_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_families_reports
+    ADD CONSTRAINT report_families_reports_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reports_accesses reports_accesses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5731,6 +5867,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: security_settings security_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.security_settings
+    ADD CONSTRAINT security_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6888,6 +7032,13 @@ CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree
 
 
 --
+-- Name: index_password_archivable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_password_archivable ON public.old_passwords USING btree (password_archivable_type, password_archivable_id);
+
+
+--
 -- Name: index_pearson_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7242,20 +7393,6 @@ CREATE INDEX index_tasks_on_owner_id ON public.tasks USING btree (owner_id);
 --
 
 CREATE INDEX index_text_module_overrides_on_editor_id ON public.text_module_overrides USING btree (editor_id);
-
-
---
--- Name: index_text_module_overrides_on_foreign_key_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_text_module_overrides_on_foreign_key_id ON public.text_module_overrides USING btree (foreign_key_id);
-
-
---
--- Name: index_text_module_overrides_on_reports_modules_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_text_module_overrides_on_reports_modules_id ON public.text_module_overrides USING btree (reports_modules_id);
 
 
 --
@@ -8066,14 +8203,6 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
--- Name: text_module_overrides fk_rails_51a790cea7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.text_module_overrides
-    ADD CONSTRAINT fk_rails_51a790cea7 FOREIGN KEY (reports_modules_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
-
-
---
 -- Name: sms_records fk_rails_58b8df5ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8183,6 +8312,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.reports_accesses
     ADD CONSTRAINT fk_rails_74cd2e276f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: text_module_overrides fk_rails_7558551b5d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_7558551b5d FOREIGN KEY (module_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
 
 
 --
@@ -8447,6 +8584,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.threesixty_reminder_histories
     ADD CONSTRAINT fk_rails_a2f976ebf2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: text_module_overrides fk_rails_a5943c7cee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_a5943c7cee FOREIGN KEY (editor_id) REFERENCES public.users(id);
 
 
 --
@@ -9396,6 +9541,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220425201109'),
 ('20220427143253'),
 ('20220428111329'),
-('20220527063033');
+('20220512111341'),
+('20220512120041'),
+('20220513062033'),
+('20220527063033'),
+('20220527125017'),
+('20220606151635'),
+('20220608104948'),
+('20220616103155');
 
 

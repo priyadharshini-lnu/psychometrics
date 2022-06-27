@@ -22,7 +22,8 @@ module Reports
       broadcast :ok,
                 user: Reports::UserSerializer.new(user_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
-                data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership).
+                data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership,
+                                           module_overrides: user_report&.text_module_overrides).
                   to_json(include: '**'),
                 locales: translations(piped_text_context).to_json,
                 available_translations: available_translations,

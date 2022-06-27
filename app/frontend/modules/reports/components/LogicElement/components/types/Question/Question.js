@@ -6,7 +6,7 @@ import { getQuestions } from 'modules/reports/core/builder/selectors'
 import QuestionSelect from './QuestionSelect'
 import AnswerSelect from './AnswerSelect'
 import ConditionSelect from './ConditionSelect'
-import css from './Question.scss'
+import css from './Question.less'
 
 export class Question extends Component {
   static propTypes = {

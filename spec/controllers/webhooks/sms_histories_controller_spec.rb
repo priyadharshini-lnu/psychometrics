@@ -24,21 +24,5 @@ describe Webhooks::SmsHistoriesController, type: :controller do
 
       expect(sms_history.reload.status).to eq('delivered')
     end
-
-    it "doesn't fetches message from Twilio if price is already updated" do
-      sms_history.update!(price: 0.12)
-      expect(Sms::TwilioClient).to_not receive(:get)
-      post :status, params: { token: sms_history_token }, body: URI.encode_www_form('MessageStatus' => 'delivered')
-
-      expect(sms_history.reload.price).to eq(0.12)
-    end
-
-    it 'saves price and segment_length received from twilio' do
-      post :status, params: { token: sms_history_token }, body: URI.encode_www_form('MessageStatus' => 'delivered')
-      sms_history.reload
-
-      expect(sms_history.price).to eq(price.to_f.abs)
-      expect(sms_history.segment_length).to eq(num_segments.to_i)
-    end
   end
 end

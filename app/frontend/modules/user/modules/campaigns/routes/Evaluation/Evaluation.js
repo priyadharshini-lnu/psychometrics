@@ -8,7 +8,7 @@ import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
-import './styles.scss'
+import './styles.less'
 import { secondsLeftFromNow } from 'utils/time'
 import Language from '../../components/Language'
 import store from '../../../../store'
@@ -41,6 +41,7 @@ export default function Evaluation ({
     enableProgress,
     type,
     initialized,
+    started,
   },
   preview,
   markAssessmentTimedOut,
@@ -186,7 +187,7 @@ export default function Evaluation ({
           </Row>
           {!error && (
             <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-              <ResourcesTabs assessment={assessment}>
+              <ResourcesTabs assessmentStarted={started} assessment={assessment}>
                 <div className={selectedLanguage ? selectedLanguage.direction : ''}>
                   <PassAssessment
                     ref={assessmentRef}

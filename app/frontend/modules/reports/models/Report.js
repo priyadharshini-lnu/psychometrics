@@ -4,6 +4,7 @@ import { perform } from 'modules/reports/core/temp/socket'
 import I18nStore from 'modules/reports/store/I18nStore'
 import {
   PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE, SAVILLE,
+  ORG_SURVEYS, CASE_STUDIES,
 } from 'modules/reports/models/Assessment'
 import Filter from './Filter'
 
@@ -17,6 +18,16 @@ const BASE_FONT_SIZE = 14
 
 export const SOURCE_TYPES = {
   [PSYCHOMETRIC]: [
+    { value: 'Question', label: 'Question', condition: false },
+    { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
+  ],
+  [ORG_SURVEYS]: [
+    { value: 'Question', label: 'Question', condition: false },
+    { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
+  ],
+  [CASE_STUDIES]: [
     { value: 'Question', label: 'Question', condition: false },
     { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
     { value: 'Factor', label: 'Factors', condition: true },

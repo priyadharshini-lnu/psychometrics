@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Modules } from 'modules/reports/components/modules'
 import store from 'modules/reports/store/PageList'
 import AppStore from 'modules/reports/store/AppStore'
-import styles from './Page.scss'
+import styles from './Page.less'
 
 class Page extends Component {
   static propTypes = {
@@ -13,7 +13,9 @@ class Page extends Component {
   }
 
   renderModuleType = (module, i) => {
-    const { model, pageNumber, totalPages } = this.props
+    const {
+      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides,
+    } = this.props
     if (!module.type) { return }
     const View = Modules[module.type]
     return (
@@ -24,6 +26,9 @@ class Page extends Component {
         preview
         pageNumber={pageNumber}
         totalPages={totalPages}
+        rstore={rstore}
+        showOverrides={showOverrides}
+        moduleOverrides={moduleOverrides}
       />
     )
   }
@@ -51,7 +56,7 @@ class Page extends Component {
     }
 
     return (
-      <div className={styles.page} name={model.name}>
+      <div className={styles.page} name={`Page#${model.id}`}>
         <div className={`${styles.pageContainer} fe-page-container`} style={style}>
           <div className={styles.pageContent}>
             {model.modules.list.map(this.renderModuleType)}

@@ -25,7 +25,7 @@ module Threesixty
                            select(
                              'user_assessments.*',
                              'users_results.id as result_id',
-                             'users_results.created_at as result_created_at'
+                             'users_results.created_at as created_at'
                            ).
                            left_joins(:users_result).
                            includes(:subject, :evaluator, :relationship)
@@ -57,7 +57,7 @@ module Threesixty
           participant.evaluator.decorate.full_name,
           participant.evaluator.email,
           participant.relationship.name,
-          participant.result_created_at.try(:strftime, '%D %r'),
+          participant.created_at.try(:strftime, '%D %r'),
           participant.completed_at.try(:strftime, '%D %r'),
           I18n.t("user_assessments.statuses.evaluator_nomination_status.#{participant.evaluator_nomination_status}"),
           I18n.t("subjects.report_statuses.#{report_status(participant.threesixty_subject)}"),

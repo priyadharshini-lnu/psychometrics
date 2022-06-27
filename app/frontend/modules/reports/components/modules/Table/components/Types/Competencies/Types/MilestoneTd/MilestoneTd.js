@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import cs from 'classnames'
 import I18nStore from 'modules/reports/store/I18nStore'
-import styles from './styles.scss'
+import styles from './styles.less'
 import FilterAvatar from '../../FilterAvatar'
 
 export default function MilestoneTd ({

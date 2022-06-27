@@ -3,7 +3,7 @@ import cs from 'classnames'
 import { I18n } from 'store/StoreWatchman'
 import { Input } from 'antd'
 import _ from 'lodash'
-import styles from '../ChatStyle.scss'
+import styles from '../ChatStyle.less'
 import { Question } from '../interfaces'
 import { ENTER_CODE } from '../constants'
 

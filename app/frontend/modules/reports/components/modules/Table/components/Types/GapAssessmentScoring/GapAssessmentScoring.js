@@ -7,7 +7,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import Utils from 'modules/reports/utils'
 import Scoring from 'modules/reports/models/Scoring'
 import Text from '../../Table/CellTypes/Text/Text'
-import styles from './GapAssessmentScoring.scss'
+import styles from './GapAssessmentScoring.less'
 
 const MockData = {
   1: {

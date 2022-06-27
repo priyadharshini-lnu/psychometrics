@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import _ from 'lodash'
 import Message from './Message'
-import styles from '../ChatStyle.scss'
+import styles from '../ChatStyle.less'
 import { Question, Message as MessageInterface } from '../interfaces'
 import { MINE_TYPE } from '../constants'
 

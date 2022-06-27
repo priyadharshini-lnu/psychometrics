@@ -11,6 +11,8 @@ class EndUser::UsersController < ApplicationController
 
   # rubocop:disable Metrics/AbcSize
   def dashboard
+    return render 'end_user/users/dashboard' if show_new_end_user_view?
+
     subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
     evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
     user_campaigns = current_user.campaign_users.where(active: true).pluck(:campaign_id) |
@@ -47,6 +49,12 @@ class EndUser::UsersController < ApplicationController
     end
   end
   # rubocop:enable Metrics/AbcSize
+
+  def switch_end_user_view
+    cookies[:end_user_view] = params[:view] == 'new' ? 'new' : 'old'
+
+    redirect_to root_path
+  end
 
   def accept_privacy
     current_user.create_privacy_consent!

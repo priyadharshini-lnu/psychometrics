@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import Criteria from './Criteria'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function CriteriaList ({
   criteria, datasheetFields, addCriteria, removeCriteria, updateCriteria,

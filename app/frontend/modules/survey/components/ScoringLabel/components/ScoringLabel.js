@@ -1,6 +1,6 @@
 import React from 'react'
 import Utils from 'utils'
-import styles from './ScoringLabel.scss'
+import styles from './ScoringLabel.less'
 
 const ScoringLabel = ({ value, label, onToggle }) => (
   <div

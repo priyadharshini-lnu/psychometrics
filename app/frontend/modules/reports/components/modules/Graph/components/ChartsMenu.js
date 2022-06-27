@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './ChartsMenu.scss'
+import styles from './ChartsMenu.less'
 
 export class ChartsMenu extends Component {
   static propTypes = {

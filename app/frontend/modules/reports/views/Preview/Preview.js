@@ -16,9 +16,13 @@ export class Preview extends Component {
   storeListener = null
 
   render () {
-    const { localeDirection, loaded } = this.props
+    const {
+      localeDirection, loaded, showOverrides, rstore, moduleOverrides, skipLogic,
+    } = this.props
     if (!loaded) { return null }
-    const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
+    const visiblePages = skipLogic
+      ? PageList.list
+      : _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
     return (
       <div style={{ position: 'relative' }} className={localeDirection}>
         {visiblePages.map((page, i) => (
@@ -27,6 +31,9 @@ export class Preview extends Component {
             key={i}
             pageNumber={i + 1}
             totalPages={visiblePages.length}
+            rstore={rstore}
+            showOverrides={showOverrides}
+            moduleOverrides={moduleOverrides}
           />
         ))}
       </div>

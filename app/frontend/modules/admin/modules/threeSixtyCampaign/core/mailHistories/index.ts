@@ -34,6 +34,7 @@ export const fetch = (campaignId, page) => ({
     method: 'get',
     url: `/administration/threesixty_campaigns/${campaignId}/email_schedules`,
     body: { page },
+    loader: true,
   },
 })
 

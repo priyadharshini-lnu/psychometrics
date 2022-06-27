@@ -4,7 +4,7 @@ import { DropdownButton, MenuItem } from 'react-bootstrap'
 import LogicElementPreview from 'components/LogicElement/Preview'
 import LogicElement from 'models/logic/LogicElement'
 import QuestionSerializer from 'models/QuestionSerializer'
-import styles from './Question.scss'
+import styles from './Question.less'
 
 class QuestionHeader extends Component {
   static propTypes = {

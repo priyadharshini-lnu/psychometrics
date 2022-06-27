@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import styles from './DisplayLogic.scss'
+import styles from './DisplayLogic.less'
 import LogicPreview from './LogicPreview'
 
 export default class DisplayLogic extends Component {

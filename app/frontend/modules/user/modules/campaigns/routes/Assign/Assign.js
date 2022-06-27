@@ -5,7 +5,7 @@ import {
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import cs from 'classnames'
-import './styles.scss'
+import './styles.less'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { isInsideIframe } from 'utils/isInsideIframe'

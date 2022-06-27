@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import AccessSection from './AccessSection'
 import ApprovalSection from './ApprovalSection'
 import ReportAvailabilitySection from './ReportAvailabilitySection'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function Options ({
   fetchReportOptions,

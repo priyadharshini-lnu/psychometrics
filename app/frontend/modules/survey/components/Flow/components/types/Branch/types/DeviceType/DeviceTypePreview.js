@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../Condition.scss'
+import styles from '../../Condition.less'
 
 const mapPredicates = {
   is: 'is',

@@ -24,11 +24,11 @@ import 'codemirror/addon/search/matchesonscrollbar.css'
 import 'codemirror/addon/search/jump-to-line'
 
 
-import 'styles/utils.scss'
+import 'styles/utils.less'
 
 import { useTimeout } from 'hooks/useTimeout'
 import connect from './connect'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { TabPane } = Tabs
 

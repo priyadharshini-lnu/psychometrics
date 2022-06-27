@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
-import styles from './Choice.scss'
+import styles from './Choice.less'
 
 export default class extends Component {
   static propTypes = {

@@ -3,11 +3,12 @@
 module Threesixty
   module Subjects
     class CreateAll < BaseCommand
-      def initialize(subjects, threesixty_campaign)
+      def initialize(subjects, threesixty_campaign, current_user = nil)
         @subjects = subjects
         @threesixty_campaign = threesixty_campaign
         @project = threesixty_campaign.campaign.project
         @existing_subjects_whose_password_not_changed = []
+        @current_user = current_user
       end
 
       def call
@@ -34,7 +35,11 @@ module Threesixty
           @existing_subjects_whose_password_not_changed << user if subject[:password].present?
           user
         else
-          ::Users::Regular.create!(subject.merge(project: project, create_by_invite: subject[:password].blank?))
+          new_user = ::Users::Regular.create!(subject.merge(project: project,
+                                              create_by_invite: subject[:password].blank?))
+          AuditLogModule.audit!(:create, new_user, campaign: threesixty_campaign.campaign,
+                                payload: subject, user: @current_user)
+          new_user
         end
       end
 

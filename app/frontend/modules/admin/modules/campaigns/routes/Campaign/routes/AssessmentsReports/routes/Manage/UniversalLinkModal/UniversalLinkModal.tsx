@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { CopyOutlined, DownloadOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

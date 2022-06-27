@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ConditionModel from 'models/logic/Condition'
-import css from './ConditionList.scss'
+import css from './ConditionList.less'
 import Condition from './Condition'
 
 export default class ConditionList extends Component {

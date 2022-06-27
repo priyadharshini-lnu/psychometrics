@@ -3,7 +3,7 @@ import _ from 'lodash'
 import React from 'react'
 import { Scorings } from 'components/modules'
 import { RECODING, SCORING } from 'constants/scoring'
-import styles from './Scoring.scss'
+import styles from './Scoring.less'
 
 export default function Scoring ({ model, type, ...props }) {
   const module = model.moduleConfig

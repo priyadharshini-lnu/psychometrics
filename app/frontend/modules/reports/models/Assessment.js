@@ -1,4 +1,6 @@
 export const PSYCHOMETRIC = 'psychometric'
+export const ORG_SURVEYS = 'organisational'
+export const CASE_STUDIES = 'case_study'
 export const HOGAN = 'hogan'
 export const MINDMILL = 'mindmill'
 export const THREESIXTY = 'threesixty'

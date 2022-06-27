@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Buttons.scss'
+import styles from './Buttons.less'
 
 class Question extends Component {
   static propTypes = {

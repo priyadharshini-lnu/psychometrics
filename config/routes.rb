@@ -173,10 +173,16 @@ Rails.application.routes.draw do
           member do
             get :pdf_preview
             get :download
+            put :approve
             patch :toggle_user_access
           end
           collection do
             post :regenerate
+          end
+        end
+        resources :text_module_overrides do
+          collection do
+            post :approve
           end
         end
         resources :users do
@@ -189,6 +195,7 @@ Rails.application.routes.draw do
           collection do
             post :import
             get :export_completion_status
+            get :export_compact_completion_status
             post :search
           end
         end
@@ -240,7 +247,7 @@ Rails.application.routes.draw do
             post :update_norm
             post :rescore_response
             post :reset
-            post :allow_edit
+            post :reset_progress
             post :update_additional_time
           end
         end
@@ -274,6 +281,7 @@ Rails.application.routes.draw do
             post :validate_settings
           end
         end
+        resources :security_settings, only: %i[update]
         resources :integrations, only: %i[index create update destroy]
       end
 
@@ -824,7 +832,8 @@ Rails.application.routes.draw do
              controllers: { registrations: 'users/registrations',
                             sessions: 'users/sessions',
                             invitations: 'users/invitations',
-                            passwords: 'passwords' }
+                            passwords: 'passwords',
+                            password_expired: 'users/password_expired' }
   # Manager's panel
   #
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
@@ -863,6 +872,7 @@ Rails.application.routes.draw do
     resources :highlights, only: %i[update]
 
     scope module: :end_user do
+      get '/switch_end_user_view', to: 'users#switch_end_user_view', as: :switch_view
       resources :campaigns, only: %i[show]
       get :dashboard, to: 'users#dashboard'
       post :accept_privacy, to: 'users#accept_privacy'
@@ -1040,12 +1050,16 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :projects, only: %i[show create update] do
           resources :campaigns, only: %i[show create update] do
+            get :assessments_reports, on: :member, action_name: 'get_assessments_reports'
             put :assessments_reports, on: :member
             resources :users, only: %i[indexs] do
               put :assessments_reports, on: :member
             end
-            resources :assessments, only: %i[destroy]
-            resources :reports, only: %i[update destroy]
+
+            scope module: :campaigns do
+              resources :assessments, only: %i[update destroy]
+              resources :reports, only: %i[update destroy]
+            end
           end
 
           resources :users, only: %i[index create update] do
@@ -1053,7 +1067,7 @@ Rails.application.routes.draw do
 
             post 'campaigns' => 'campaigns#assign_user'
             resources :campaigns, only: %i[index]
-            resources :assessments, only: %i[index]
+            resources :assessments, only: %i[index update destroy]
             resources :reports, only: %i[index update destroy] do
               get :results, on: :member
               get :pdf, on: :member

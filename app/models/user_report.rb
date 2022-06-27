@@ -9,6 +9,7 @@ class UserReport < ApplicationRecord
   has_one :saville_report_setting, through: :report
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
+  has_many :text_module_overrides, dependent: :destroy
 
   delegate :client, to: :campaign
   delegate :saville_report_id, to: :report
@@ -47,7 +48,9 @@ class UserReport < ApplicationRecord
   end
 
   def generatable?
-    all_assessments_are_completed? && (external_report? || !report_modules_empty?)
+    generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
+    generate &&= approved? if report.require_approval?
+    generate
   end
 
   def log_attribute_for_delete
@@ -67,5 +70,13 @@ class UserReport < ApplicationRecord
       user_report: self
     }
     WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
+  end
+
+  def report_families_report
+    @report_families_report ||= report.report_families_reports.find_by(report_family_id: report_family_id)
+  end
+
+  def hogan_report_id
+    report.hogan_report_setting.hogan_report_id
   end
 end

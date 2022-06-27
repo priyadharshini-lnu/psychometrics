@@ -2,6 +2,10 @@
 
 module Administration
   class SamlSettingPolicy < Administration::BasePolicy
+    def create?
+      can_manage_saml_setting?
+    end
+
     def update?
       can_manage_saml_setting?
     end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
+  # rubocop:disable Metrics/ModuleLength
   module DatasheetManagement
     extend ActiveSupport::Concern
 
@@ -53,6 +54,7 @@ module Administration
         data: params.permit!.slice(*datasheet.column_names))
       if form.valid?
         datasheet_row = datasheet.rows.create(form.attributes)
+        audit! :create, datasheet_row, **audit_resources, payload: form.attributes
         render json: DatasheetRows::GetData.call!(datasheet_row)
       else
         render json: { errors: form.errors.full_messages }, status: 422
@@ -61,13 +63,15 @@ module Administration
 
     def update
       resource.update!(data: params.permit(*datasheet.column_names))
+      audit! :update, resource, **audit_resources, payload: params.permit!
 
       render json: DatasheetRows::GetData.call!(resource)
     end
 
     def bulk_delete
-      datasheet.rows.where(id: params[:ids]).map(&:destroy!)
-
+      rows = datasheet.rows.where(id: params[:ids])
+      audit! :bulk_delete, datasheet, **audit_resources, payload: { resources: rows.map(&:log_attribute_for_delete) }
+      rows.map(&:destroy!)
       head :ok
     end
 
@@ -78,7 +82,6 @@ module Administration
       else
         parent_resource.create_datasheet_column_preference(visible_columns: params[:visible_columns])
       end
-
       head :ok
     end
 
@@ -90,6 +93,7 @@ module Administration
           parent_resource_class: parent_resource.class.name,
           operation: params[:operation]
         }, current_user, params[:file])
+        audit! :import, parent_resource.datasheet, **audit_resources, payload: params.permit!
       else
         render json: { errors: form.errors.messages.values.flatten }, status: 422
       end
@@ -97,13 +101,20 @@ module Administration
 
     def export
       results = ::Datasheets::Export.call!(parent_resource.datasheet)
-
+      audit! :export, parent_resource.datasheet, **audit_resources
       respond_to do |format|
         format.xlsx { send_data results.to_stream.read, filename: "datasheet-for-#{parent_resource.name}.xlsx" }
       end
     end
 
     private
+
+    def audit_resources
+      {
+        campaign: parent_resource.is_a?(Campaign) ? parent_resource : nil,
+        project: parent_resource.is_a?(Client) ? parent_resource : nil
+      }
+    end
 
     def pundit_authorize
       authorize(resource || resource_class, nil, project_id: project.id, campaign_id: campaign&.id)
@@ -122,4 +133,5 @@ module Administration
       @_resource_class ||= DatasheetRow # rubocop:disable Naming/MemoizedInstanceVariableName
     end
   end
+  # rubocop:enable Metrics/ModuleLength
 end

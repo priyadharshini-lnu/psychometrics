@@ -8,7 +8,7 @@ export default function HiddenInputList ({ resource, resourceName }) {
         <HiddenInputList
           key={i}
           resource={v}
-          resourceName={`${resourceName}[${name}][${i}]`}
+          resourceName={`${resourceName}[${name}][]`}
         />
       ))
     }

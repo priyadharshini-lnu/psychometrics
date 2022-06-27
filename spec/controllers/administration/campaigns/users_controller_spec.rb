@@ -138,7 +138,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'update_norm' => policy.update_norm?,
         'rescore_response' => policy.rescore_response?,
         'remove' => policy.destroy?,
-        'allow_edit' => policy.allow_edit?
+        'reset_progress' => policy.reset_progress?
       },
       'norm_id' => nil,
       'additional_time' => nil,

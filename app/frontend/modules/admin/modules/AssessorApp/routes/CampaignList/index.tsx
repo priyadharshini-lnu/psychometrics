@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const connecter = connect(
   (state: RootState) => ({

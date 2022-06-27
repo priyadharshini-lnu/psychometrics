@@ -1,5 +1,7 @@
 #psychometrics_survey_root
 
+script src="https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js"
+
 = javascript_include_tag Ckeditor.cdn_url
 = javascript_pack_tag 'vendors2'
 = stylesheet_pack_tag 'vendors2'
@@ -12,3 +14,8 @@
 
 javascript:
   x_navigation_minimize('close');
+  window.WEBSPELLCHECKER_CONFIG = {
+      autoSearch: true,
+      autoDestroy: true,
+      serviceId: '7VTqCWMdsxJbLgr',
+    }

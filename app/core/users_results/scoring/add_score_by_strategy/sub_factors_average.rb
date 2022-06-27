@@ -10,7 +10,13 @@ module UsersResults
 
           sub_extended_scoring =
             ::UsersResults::Scoring::AddScore.call!(
-              factor_hash, sub_factor_ids, extended_scoring, norm, factor_norm_hash, factors_question_count
+              factor_hash,
+              sub_factor_ids,
+              extended_scoring,
+              norm,
+              factor_norm_hash,
+              external_results,
+              factors_question_count
             )
 
           score =

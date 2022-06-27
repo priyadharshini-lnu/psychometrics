@@ -27,7 +27,7 @@ describe UsersResults::Scoring::AddScore do
       },
       factor2.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {})
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -64,7 +64,7 @@ describe UsersResults::Scoring::AddScore do
       },
       factor2.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {})
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -127,7 +127,7 @@ describe UsersResults::Scoring::AddScore do
       factor5.id.to_s => { 'results' => [] },
       factor6.id.to_s => { 'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {})
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -209,7 +209,7 @@ describe UsersResults::Scoring::AddScore do
       factor5.id.to_s => { 'results' => [] },
       factor6.id.to_s => { 'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {})
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -275,7 +275,7 @@ describe UsersResults::Scoring::AddScore do
       factor4.id.to_s => { 'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }] },
       factor5.id.to_s => { 'results' => [] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {})
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -334,7 +334,7 @@ describe UsersResults::Scoring::AddScore do
       factor2.id => create(:factors_norm, factor: factor2, props: norm_props),
       factor3.id => create(:factors_norm, factor: factor2, props: norm_props)
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, factor_norm_hash)
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, factor_norm_hash, {})
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -385,7 +385,7 @@ describe UsersResults::Scoring::AddScore do
       factor3.id.to_s => { 'results' => [{ 'value' => [1, 5], 'question_id' => 5 }] },
       factor4.id.to_s => { 'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }] }
     }
-    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {})
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
 
     expect(result).to eq(
       factor1.id.to_s => {
@@ -432,7 +432,9 @@ describe UsersResults::Scoring::AddScore do
         ]
       }
     }
-    result = described_class.call!(factor_hash, [factor.id], scoring, five_scale_norm, { factor.id => factors_norm })
+    result = described_class.call!(
+      factor_hash, [factor.id], scoring, five_scale_norm, { factor.id => factors_norm }, {}
+    )
 
     expect(result).to eq(
       factor.id.to_s => {
@@ -460,7 +462,9 @@ describe UsersResults::Scoring::AddScore do
         ]
       }
     }
-    result = described_class.call!(factor_hash, [factor.id], scoring, percentile_norm, { factor.id => factors_norm })
+    result = described_class.call!(
+      factor_hash, [factor.id], scoring, percentile_norm, { factor.id => factors_norm }, {}
+    )
 
     expect(result).to eq(
       factor.id.to_s => {
@@ -472,6 +476,47 @@ describe UsersResults::Scoring::AddScore do
         'zscore' => 0.16667,
         'norm_score' => Ztable.percentile(0.16667)
       }
+    )
+  end
+
+  it 'scoring_strategy: :external_score' do
+    external_results = JSON.parse(File.read('spec/core/users_results/scoring/external_results/hogan.json'))
+    external_scoring1 = [
+      {
+        'type' => 'percentage',
+        'jsonpath' => "scores.percentileScores.scaleScores[?(@.scaleName =='Quantitative_Scale')].scaleScore"
+      },
+      {
+        'type' => 'zscore',
+        'jsonpath' => "scores.percentileScores.scaleScores[?(@.scaleName =='Overall_Test_Score')].scaleScore"
+      }
+    ]
+
+    external_scoring2 = [
+      {
+        'type' => 'score',
+        'jsonpath' => "scores.rawScores.scaleScores[?(@.scaleName =='Overall_Test_Score')].scaleScore"
+      },
+      {
+        'type' => 'norm_score',
+        'jsonpath' => "scores.rawScores.fakeScaleScores[?(@.scaleName =='Overall_Test_Score')].scaleScore"
+      }
+    ]
+    factor1 = create(:factor, scoring_strategy: :external_score, external_scoring: external_scoring1)
+    factor2 = create(:factor, scoring_strategy: :external_score, external_scoring: external_scoring2)
+
+    factor_hash = {
+      factor1.id => { factor: factor1, sub_factor_hash: {} },
+      factor2.id => { factor: factor2, sub_factor_hash: {} }
+    }
+
+    factor_ids = factor_hash.keys
+
+    result = described_class.call!(factor_hash, factor_ids, {}, five_scale_norm, {}, external_results)
+
+    expect(result).to eq(
+      factor1.id.to_s => { 'percentage' => '1', 'zscore' => '4' },
+      factor2.id.to_s => { 'score' => '5', 'norm_score' => nil }
     )
   end
 end

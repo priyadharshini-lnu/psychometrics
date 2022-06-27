@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFilter from 'modules/reports/components/PropertyFilter'
 
 class Properties extends Component {

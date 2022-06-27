@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, message } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import { GLOBAL } from 'constants/relationship'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function RelationshipRow ({
   relationship, create, campaignId, remove, update,

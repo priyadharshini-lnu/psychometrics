@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextEditor from 'components/TextEditor'
-import styles from './Captcha.scss'
+import styles from './Captcha.less'
 import Assets from '../assets'
 
 export class Captcha extends Component {

@@ -44,6 +44,7 @@ end
 ### Authentication and authorization
 gem 'devise',                     '~> 4.7.3'
 gem 'devise-i18n',                '~> 1.9.2'
+gem 'devise-security',            '~> 0.17.0'
 gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
 gem 'pundit',                     '~> 2.1.0'
@@ -146,6 +147,7 @@ gem 'hashids', '~> 1.0.5'
 
 gem 'dry-swagger', '~> 0.7.2'
 gem 'dry-validation', '~> 1.8.0'
+gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.14.0'
 gem 'reform-rails', '~> 0.2.3'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'views/PropertyPanel/components/PropertyPanel.less'
 import ValidationTypes from 'components/ValidationTypes'
 
 import { LibraryStore } from 'libs/library'

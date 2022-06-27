@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LogicElement from 'components/LogicElement'
-import styles from './RuleElement.scss'
+import styles from './RuleElement.less'
 
 class RuleElement extends Component {
   static propTypes = {

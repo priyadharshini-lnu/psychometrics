@@ -5,8 +5,9 @@ import ReactDOM from 'react-dom'
 import Preview from 'modules/reports/views/Preview'
 import I18nStore from 'modules/reports/store/I18nStore'
 import store from 'modules/reports/store/PreviewStore'
-import 'modules/reports/styles/core.scss'
+import 'modules/reports/styles/globals.less'
 import { normalize } from 'normalizr'
+import humps from 'humps'
 import rstore from '../store'
 import { init } from '../core/builder/actions'
 import schema from '../store/schema'
@@ -15,7 +16,7 @@ class PreviewContainer extends Component {
   componentDidMount () {
     const parent = ReactDOM.findDOMNode(this).parentNode
     const {
-      data, results, locales, selectedLocale,
+      data, results, locales, selectedLocale, skipLogic,
     } = parent.dataset
 
     if (locales) {
@@ -27,6 +28,11 @@ class PreviewContainer extends Component {
     if (_.isEmpty(I18nStore.locales) && parsedData.locales) {
       I18nStore.locales = parsedData.locales
     }
+    parsedData.moduleOverrides = humps.camelizeKeys(parsedData.module_overrides)
+    if (skipLogic === 'true') {
+      parsedData.skipLogic = true
+    }
+
     const normalizedData = normalize(parsedData, schema)
     store.init(parsedData, results ? JSON.parse(results) : null, user, campaign)
     rstore.dispatch(init(normalizedData))

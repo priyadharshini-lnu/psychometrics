@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Foundation from 'modules/reports/components/Foundation'
 import ResultStore from 'modules/reports/store/ResultStore'
 import GetImageURL from './GetImageURL'
-import styles from './Image.scss'
+import styles from './Image.less'
 
 export class Image extends Component {
   static propTypes = {

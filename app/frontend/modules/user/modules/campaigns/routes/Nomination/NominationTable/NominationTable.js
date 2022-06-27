@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles.scss'
+import './styles.less'
 import RequirementTable from './RequirementTable/RequirementTable'
 
 export default function NominationTable ({ requirements, ...props }) {

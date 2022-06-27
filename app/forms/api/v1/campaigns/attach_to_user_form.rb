@@ -13,7 +13,7 @@ module Api
         def verify_campaign_ids
           return if campaign_ids.empty?
 
-          return if existing_campaign_ids & campaign_ids == campaign_ids
+          return if (existing_campaign_ids & campaign_ids).sort == campaign_ids.sort
 
           errors.add(:campaign_ids, 'Not all campaign ids are existing')
         end

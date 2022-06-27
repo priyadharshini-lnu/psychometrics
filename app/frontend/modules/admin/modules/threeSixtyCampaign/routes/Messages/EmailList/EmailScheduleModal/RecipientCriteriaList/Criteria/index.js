@@ -5,7 +5,7 @@ import _ from 'lodash'
 import cs from 'classnames'
 import { NAME } from 'modules/admin/constants/emailTemplate'
 import { TYPES } from 'modules/admin/constants/emailCriteria'
-import styles from './styles.scss'
+import styles from './styles.less'
 import Comparators from './Comparators'
 
 const isEvaluatorEmail = name => _.includes([NAME.EVALUATOR_INVITE, NAME.EVALUATOR_REMINDER], name)

@@ -1,8 +1,8 @@
 import React from 'react'
 import cs from 'classnames'
 import { Header, UnstyledLi } from '../shared'
-import styles from './styles.scss'
-import commonStyles from '../../../Text.scss'
+import styles from './styles.less'
+import commonStyles from '../../../Text.less'
 
 export default function BulletedList ({
   values,

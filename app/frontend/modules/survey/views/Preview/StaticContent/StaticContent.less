@@ -1,0 +1,178 @@
+@import 'modules/user/styles/variables.less';
+@import 'styles/variables.less';
+
+.container {
+  min-height: 50vh;
+  padding: 10px;
+  margin: 12px 0;
+  margin-left: 12px;
+  position: relative;
+}
+
+:global {
+  .rtl {
+    :local(.container) {
+      margin-left: 0;
+      margin-right: 12px;
+    }
+  }
+}
+
+.box {
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
+  border: 1px solid #d9d9d9;
+  background-color: @white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.fixed {
+  height: 50vh;
+  overflow: auto;
+  .box {
+    margin: 0 12px;
+  }
+}
+.side {
+  position: relative;
+  // height: calc(100% - 20px);
+  overflow: auto;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+.content {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  overflow: auto;
+  padding: 26px;
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-button {
+    background: rgba(0, 0, 0, 0.3);
+    height: 15px;
+    border-radius: 50%;
+  }
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  img {
+    max-width: 100%;
+  }
+  table {
+    max-width: 100%;
+  }
+}
+
+:global(.rtl) {
+  .left {
+    right: 0;
+    left: unset;
+  }
+
+  .right {
+    left: 0;
+    right: unset;
+  }
+}
+.highlightWrap {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  color: #333333;
+}
+.paletteTip {
+  -webkit-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  position: absolute;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  height: 40px;
+  padding: 7px;
+  color: #fff;
+  background: #434a54;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+.paletteColor {
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.currentColor {
+  height: 8px;
+  width: 8px;
+  background-color: #383838;
+  border-radius: 4px;
+}
+.paletteRemove {
+  margin-left: 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.normal {
+  &.container {
+    min-height: initial;
+    margin: 0;
+  }
+  .content {
+    position: relative;
+    top: initial;
+    right: initial;
+    left: initial;
+    bottom: initial;
+  }
+  .box {
+    position: relative;
+  }
+}
+@media (max-width: @screen-lg) {
+  .container {
+    min-height: initial;
+    margin: 0;
+  }
+  .content {
+    position: relative;
+    top: initial;
+    right: initial;
+    left: initial;
+    bottom: initial;
+  }
+  .box {
+    position: relative;
+  }
+  .fixed {
+    height: initial;
+    .box {
+      margin: 0;
+    }
+  }
+}

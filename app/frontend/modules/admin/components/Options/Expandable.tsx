@@ -3,7 +3,7 @@ import {
   Row, Col, Switch, Checkbox,
 } from 'antd'
 import cs from 'classnames'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface Props {
   label: string

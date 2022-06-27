@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Block from 'views/Block'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
-import styles from './BlockListView.scss'
+import styles from './BlockListView.less'
 
 export class BlockListView extends Component {
   componentDidMount () {

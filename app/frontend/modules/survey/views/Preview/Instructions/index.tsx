@@ -10,7 +10,7 @@ import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
 import { RootState } from 'modules/survey/core/rootReducers'
 import { SafeHTML } from 'components/SafeHTML'
 import { isConnected } from 'core/connection'
-import styles from './Instructions.scss'
+import styles from './Instructions.less'
 
 const { I18n: { uiLocale } } = window
 interface Params {

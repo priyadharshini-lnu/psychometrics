@@ -10,8 +10,11 @@ import { PathReporter } from 'io-ts/PathReporter'
 
 const debounceTimers = {}
 const buildUrl = ({
-  method = 'get', url, body, tableConfig, mocked,
+  method = 'get', url, body, tableConfig, mocked, responseType,
 }) => {
+  if (method === 'get' && responseType !== 'blob' && !/\.json$/.test(url)) {
+    url += '.json'
+  }
   if (mocked) {
     const mockedURL = new URL(window.location.origin)
     const WEBPACK_SERVER_PORT = '3035'

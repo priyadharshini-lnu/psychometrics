@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
-import { Space, Typography, Select } from 'antd'
+import {
+  Space, Typography, Select, Checkbox,
+} from 'antd'
 
 import { PropertiesModel, GapType } from 'modules/reports/interfaces/tables/Gap'
 
@@ -30,7 +32,7 @@ interface Props {
 export const Properties: FC<Props> = ({ model }) => {
   const {
     props: {
-      gapType, sourceType, questionsChoices, factorIds,
+      gapType, sourceType, questionsChoices, factorIds, hideValues = false,
     },
     assessment_id,
   } = model
@@ -62,6 +64,10 @@ export const Properties: FC<Props> = ({ model }) => {
         value={gapType}
         onChange={value => onChange('gapType', value)}
       />
+      <TablePreferences
+        hideValues={hideValues}
+        onChange={onChange}
+      />
     </Space>
   )
 }
@@ -83,5 +89,22 @@ const GapTypeSelect: FC<GapTypeSelectProps> = ({ value, onChange }) => (
     />
   </div>
 )
+
+interface TablePreferencesProps {
+  hideValues: boolean
+  onChange(key: string, value: unknown): void
+}
+
+const TablePreferences: FC<TablePreferencesProps> = ({ hideValues, onChange }) => (
+  <div>
+    <Checkbox
+      checked={hideValues === true}
+      onChange={e => onChange('hideValues', e.target.checked)}
+    >
+      Hide Values
+    </Checkbox>
+  </div>
+)
+
 
 export default Properties

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Condition.scss'
+import styles from './Condition.less'
 import Types from './types'
 
 export class ConditionPreview extends Component {

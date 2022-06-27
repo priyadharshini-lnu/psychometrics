@@ -1,7 +1,17 @@
-div#three-sixty-container
+- if show_new_end_user_view?
+  div#endUserContainer
 
-javascript:
-  window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+  javascript:
+    window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
 
-= javascript_pack_tag 'user/endUser'
-= stylesheet_pack_tag 'user/endUser'
+  = javascript_pack_tag 'user/endUserV2'
+  = stylesheet_pack_tag 'user/endUserV2'
+
+- else
+  div#three-sixty-container
+
+  javascript:
+    window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+
+  = javascript_pack_tag 'user/endUser'
+  = stylesheet_pack_tag 'user/endUser'

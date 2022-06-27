@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import styles from './Table.scss'
+import styles from './Table.less'
 import CellTypes from './CellTypes'
 
 class Table extends Component {

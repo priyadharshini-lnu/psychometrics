@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'modules/reports/store/AppStore'
-import { PSYCHOMETRIC, AGILE } from 'modules/reports/models/Assessment'
 import { DATA_SHEET } from 'modules/reports/models/Module'
-import localStyles from './Scoring.scss'
-import styles from '../../Condition.scss'
+import localStyles from './Scoring.less'
+import styles from '../../Condition.less'
 
 export class Scoring extends Component {
   static propTypes = {
@@ -13,15 +11,12 @@ export class Scoring extends Component {
   }
 
   getSubjects (assessment) {
-    const { condition, factors } = this.props
+    const { condition, factors, dataSheetColumns } = this.props
     if (condition.type === DATA_SHEET) {
-      return AppStore.report.dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
-    }
-    if (assessment.category === PSYCHOMETRIC || assessment.category === AGILE) {
-      return factors[assessment.dimensionId]
+      return dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
     }
 
-    return factors[assessment.dimensionId]
+    return factors[assessment.dimension_id]
   }
 
   changeSubject = (e) => {
@@ -49,11 +44,13 @@ export class Scoring extends Component {
   }
 
   render () {
-    const { condition, model } = this.props
+    const { condition, assessments } = this.props
     const { value } = condition.props
-    const assessmentId = model.module.assessment_id
-    const assessment = _.find(AppStore.assessments, { id: assessmentId })
+    const { assessmentId } = condition.props
+    const assessment = _.find(assessments, { id: +assessmentId })
 
+    if (condition.type === 'Factor' && !assessment) { return null }
+    const subjects = this.getSubjects(assessment)
     return (
       <div className={styles.questionDock}>
         <select
@@ -62,7 +59,7 @@ export class Scoring extends Component {
           className={`form-control ${localStyles.subjectSelect}`}
         >
           {!condition.props.subject && <option />}
-          {this.getSubjects(assessment).map(factor => (
+          {subjects?.map(factor => (
             <option key={factor.id} value={factor.id}>{factor.alias || factor.name}</option>
           ))}
         </select>

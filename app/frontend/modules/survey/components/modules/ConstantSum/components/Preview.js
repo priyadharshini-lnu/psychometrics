@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './ConstantSum.scss'
+import styles from './ConstantSum.less'
 import Previews from './Previews'
 import connect from '../connect'
 

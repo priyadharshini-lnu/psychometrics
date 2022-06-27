@@ -42,6 +42,8 @@
 - results_scores_id = dom_id(u, :results_scores)
 - results_reset_responses_id = dom_id(u, :reset_responses)
 - results_rescore_responses_id = dom_id(u, :rescore_responses)
+- results_edit_report_id = dom_id(u, :edit_report)
+- results_approve_report_id = dom_id(u, :approve_report)
 
 - campaigns_view_id = dom_id(u, :campaigns_view)
 - campaigns_manage_id = dom_id(u, :campaigns_manage)
@@ -336,6 +338,16 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][results][]',
                         'rescore_responses', resource.has_grant?(:results, :rescore_responses), id: results_rescore_responses_id
                 | Rescore Responses
+            - if policy(:membership).manage_grants_for_action?('results', 'edit_report', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][results][]',
+                        'edit_report', resource.has_grant?(:results, :edit_report), id: results_edit_report_id
+                | Edit Report
+            - if policy(:membership).manage_grants_for_action?('results', 'approve_report', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][results][]',
+                        'approve_report', resource.has_grant?(:results, :approve_report), id: results_approve_report_id
+                | Approve Report
 
     - if policy(:membership).manage_grants_for_actions?('assessors', ['view', 'manage', 'manage_users'], client: client)
       tr

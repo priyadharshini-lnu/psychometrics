@@ -4,7 +4,7 @@ import ResultStore from 'modules/reports/store/ResultStore'
 import userPresenter from 'modules/reports/presenters/userPresenter'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { PlayCircleOutlined } from '@ant-design/icons'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const MOCK_RESULTS = [
   {

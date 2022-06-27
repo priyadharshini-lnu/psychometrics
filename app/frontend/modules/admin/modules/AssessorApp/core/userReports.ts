@@ -70,12 +70,13 @@ export const asyncDownload = (campaignId: number, id: number) => ({
   },
 })
 
-export const download = (campaignId: number, id: number) => ({
+export const download = (campaignId: number, id: number, params) => ({
   type: DOWNLOAD,
   request: {
     url: `/assessors/campaigns/${campaignId}/user_reports/${id}/download.pdf`,
     responseType: 'blob',
     loader: true,
+    body: params,
   },
 })
 
@@ -89,6 +90,7 @@ const HANDLERS = {
       results: action.response.results,
       report: action.response.report,
       user: action.response.user,
+      moduleOverrides: action.response.module_overrides,
       loaded: true,
     },
   }),

@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 import LogicElement from 'modules/reports/components/LogicElement'
 import LogicElementModel from 'modules/reports/models/logic/LogicElement'
 import FillingValidator from 'modules/reports/components/LogicElement/FillingValidator'
-import styles from './DisplayLogic.scss'
+import styles from './DisplayLogic.less'
 
 const {
   Header, Body, Footer, Title,

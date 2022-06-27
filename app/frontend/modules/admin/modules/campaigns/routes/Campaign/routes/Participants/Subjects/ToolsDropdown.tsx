@@ -13,16 +13,24 @@ const menu = ({
   openModal,
   permissions,
   onExport,
+  onUserExport,
+  onCompactExport,
 }) => (
   <Menu>
-    {permissions.exportUsers && (
-      <Menu.Item key="export">
-        <a href={`/administration/new_campaigns/${campaignId}/users.csv`}>{I18n.t('user.toolbar.export')}</a>
-      </Menu.Item>
-    )}
     {permissions.exportCompletionStatus && (
-      <Menu.Item key="export_completion" onClick={() => onExport()}>
-        {I18n.t('user.toolbar.export_completion_status')}
+      <Menu.ItemGroup title="Export Completion Status">
+        <Menu.Item key="export_completion" onClick={() => onExport()}>
+          {I18n.t('user.toolbar.export_detailed_completion_status')}
+        </Menu.Item>
+        <Menu.Item key="export_completion" onClick={() => onCompactExport()}>
+          {I18n.t('user.toolbar.export_compact_completion_status')}
+        </Menu.Item>
+      </Menu.ItemGroup>
+    )}
+    <Menu.Divider />
+    {permissions.exportUsers && (
+      <Menu.Item key="export" onClick={() => onUserExport()}>
+        {I18n.t('user.toolbar.export')}
       </Menu.Item>
     )}
     {permissions.import && (
@@ -37,6 +45,8 @@ interface Props {
   campaignId: number
   openModal(name: string, data?: { campaignId: string, user?: User }): void
   exportCompletionStatuses(campaignId: number): Promise<void>
+  exportUsers(campaignId: number): Promise<void>
+  exportCompactCompletionStatuses(campaignId: number): Promise<void>
   permissions: {
     exportUsers: boolean,
     exportCompletionStatus: boolean,
@@ -45,10 +55,22 @@ interface Props {
 }
 
 const ToolsDropdown: React.FC<Props> = ({
-  campaignId, openModal, permissions, exportCompletionStatuses,
+  campaignId, openModal, permissions, exportCompletionStatuses, exportCompactCompletionStatuses, exportUsers,
 }) => {
   const onExport = () => {
     exportCompletionStatuses(campaignId).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled'))
+    })
+  }
+
+  const onUserExport = () => {
+    exportUsers(campaignId).then(() => {
+      message.success(I18n.t('frontend.campaign.users.actions.export.scheduled'))
+    })
+  }
+
+  const onCompactExport = () => {
+    exportCompactCompletionStatuses(campaignId).then(() => {
       message.success(I18n.t('campaign_assessment.messages.export_completion_statuses_scheduled'))
     })
   }
@@ -60,6 +82,8 @@ const ToolsDropdown: React.FC<Props> = ({
         openModal,
         permissions,
         onExport,
+        onUserExport,
+        onCompactExport,
       })}
       innerElement={(
         <Button>

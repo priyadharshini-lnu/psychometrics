@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import css from './Condition.scss'
+import css from './Condition.less'
 import ConditionListPreview from './ConditionListPreview'
 
 export default class LogicElement extends Component {

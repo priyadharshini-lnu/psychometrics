@@ -10,12 +10,11 @@ import {
 } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
-import { FlattenOptionData } from 'rc-select/lib/interface'
 
 import { PreviewModel, TextType } from 'modules/survey/interfaces/questions/SideBySide'
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 interface Props {
   model: PreviewModel
@@ -357,7 +356,7 @@ const DropdownTypeField: FC<DropdownTypeFieldProps> = ({
 
   const searchFilterOptions = (
     searchValue: string,
-    option: FlattenOptionData<null>,
+    option: { label: string; value: string; data: null; key: string; },
   ): boolean => {
     const optionLabel = option?.label ?? ''
     if (`${optionLabel}`.toLowerCase().search(searchValue.toLowerCase()) !== -1) {

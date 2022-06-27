@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
 import StarBar from 'components/StarBar'
 import Utils from 'utils'
-import styles from './Star.scss'
+import styles from './Star.less'
 
 export default class extends Component {
   static propTypes = {

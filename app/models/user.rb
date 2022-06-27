@@ -44,6 +44,7 @@
 #  totp_timestamp                 :timestamp
 
 # rubocop:disable Metrics/ClassLength
+
 class User < ApplicationRecord
   include UserScopes
   include UserRoles
@@ -60,6 +61,7 @@ class User < ApplicationRecord
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     clients: %w[view],
+    projects: %w[view],
     campaigns: %w[view manage manage_users manage_options manage_messages manage_admins],
     communications: %w[view manage],
     assessors: %w[view manage],
@@ -92,10 +94,20 @@ class User < ApplicationRecord
     datasheet: %w[view manage]
   }.with_indifferent_access.freeze
 
+  # overrides required for devise_security
+  # DO NOT MOVE THESE METHODS BELLOW devise
+  def self.has_uniqueness_validation_of_login?
+    true
+  end
+
+  def self.devise_validation_enabled?
+    true
+  end
+
   # Authentication
   devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
-         :timeoutable, request_keys: { subdomain: false }
+         :recoverable, :rememberable, :trackable, :secure_validatable, :password_archivable, :password_expirable,
+         :lockable, :timeoutable, request_keys: { subdomain: false }
 
   attr_accessor :create_by_invite
   attr_accessor :terms
@@ -145,6 +157,7 @@ class User < ApplicationRecord
   has_many :assessors, dependent: :destroy
   has_many :assessors_campaings, through: :assessors, source: :campaign
 
+  has_one :security_setting, through: :project
   has_one :privacy_consent
 
   accepts_nested_attributes_for :memberships
@@ -157,6 +170,7 @@ class User < ApplicationRecord
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
+  validates :password, repeats_in_password: true, if: :restrict_sequences?
   # validate :validate_grants
 
   before_save :ensure_authentication_token
@@ -167,9 +181,43 @@ class User < ApplicationRecord
 
   has_one_time_password(encrypted: true)
 
-  # Overridden Devise class method
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
+  end
+
+  def password_length
+    config = super # 8..128
+
+    Range.new(security_setting ? security_setting.min_password_length || config.min : 12, config.max)
+  end
+
+  def expire_password_after
+    expire_in = security_setting&.password_expiration
+    expire_in ? expire_in.days : super
+  end
+
+  def deny_old_passwords
+    security_setting ? security_setting.disable_password_reuse : super
+  end
+
+  def enforce_password_policy_at_sign_in?
+    security_setting ? security_setting.enforce_password_policy : true
+  end
+
+  def restrict_sequences?
+    security_setting ? security_setting.restrict_sequences : true
+  end
+
+  def enforce_strong_password?
+    security_setting ? security_setting.enforce_strong_password : true
+  end
+
+  def password_complexity
+    if security_setting
+      return {} unless enforce_strong_password?
+    end
+
+    super # { digit: 1, lower: 1, symbol: 1, upper: 1 }
   end
 
   # We won't set password, we will send inviting
@@ -184,6 +232,22 @@ class User < ApplicationRecord
     return 1.year if is?(:superadmin) || is_anonym?
 
     super
+  end
+
+  def maximum_attempts_to_lock
+    security_setting&.attempts_to_lock || self.class.maximum_attempts
+  end
+
+  def send_unlock_email?
+    security_setting ? security_setting&.send_unlock_email : unlock_strategy_enabled?(:email)
+  end
+
+  def unlock_time
+    security_setting&.auto_unlock_time&.minutes || 15.minutes
+  end
+
+  def lock_account_enabled?
+    security_setting ? security_setting&.lock_account : true
   end
 
   def ensure_authentication_token
@@ -220,7 +284,49 @@ class User < ApplicationRecord
     decorate.full_name
   end
 
+  # Overridden Devise class method
+
+  def lock_strategy_enabled?(type)
+    security_setting ? security_setting&.lock_account : super(type)
+  end
+
+  protected
+
+  def attempts_exceeded?
+    failed_attempts >= maximum_attempts_to_lock
+  end
+
+  def last_attempt?
+    failed_attempts == maximum_attempts_to_lock - 1
+  end
+
+  def lock_expired?
+    if unlock_strategy_enabled?(:time)
+      locked_at && locked_at < unlock_time.ago
+    else
+      false
+    end
+  end
+
+  def lock_access!(opts = {})
+    self.locked_at = Time.now.utc
+
+    if send_unlock_email? && opts.fetch(:send_instructions, true)
+      send_unlock_instructions
+    else
+      save(validate: false)
+    end
+  end
+
+  def log_attribute_for_delete
+    slice(:id, :email)
+  end
+
   private
+
+  def email_validation
+    URI::MailTo::EMAIL_REGEXP
+  end
 
   def generate_invitation_token
     super

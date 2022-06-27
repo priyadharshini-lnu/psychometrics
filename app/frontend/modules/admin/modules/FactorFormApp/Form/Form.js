@@ -6,8 +6,9 @@ import {
 import BaseForm from 'modules/admin/components/Form'
 import HiddenInputList from './HiddenInputList'
 import SubFactorList from './SubFactorList'
+import ExternalList from './ExternalList'
 import FIELDS from './fields'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function Form (props) {
   const { factor, errors, factors } = props
@@ -85,8 +86,10 @@ export default function Form (props) {
         </div>
         )
       }
-      {resource.scoring_strategy !== 'questions' && resource.scoring_strategy !== 'questions_sum'
-      && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
+      {!['questions', 'questions_sum', 'external_score'].includes(resource.scoring_strategy)
+        && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
+      {resource.scoring_strategy === 'external_score'
+        && <ExternalList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
     </>
   )
 }

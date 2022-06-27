@@ -64,6 +64,7 @@ class Client < ApplicationRecord
   has_one :retail_user, class_name: 'User'
   has_one :smtp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :security_setting, dependent: :destroy, foreign_key: :project_id
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
@@ -152,6 +153,7 @@ class Client < ApplicationRecord
   after_create :set_hogan_group_name, if: :project?
   before_create -> { self.migrated = true }, if: :project?
   after_create :create_smtp_setting, if: :project?
+  after_create :create_security_setting, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 

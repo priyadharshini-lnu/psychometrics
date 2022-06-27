@@ -140,7 +140,7 @@ en:
             locale:
               inclusion: Wrong locale
             password:
-              too_short: Password is too short. Minimum 6 character required
+              too_short: Password is too short. Minimum %{count} character required
         password_reset:
           attributes:
             email:
@@ -152,8 +152,9 @@ en:
             last_name:
               blank: Last name can't be blank
             password:
-              too_short: Password is too short. Minimum 6 character required
-              too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+              contains_repeats: Password must not contain repeats
+              too_short: Password is too short. Minimum %{count} character required
+              too_weak: 'Password must contain: Minimum 1 lowercase, 1 uppercase, 1 number and 1 special character.'
         register:
           attributes:
             email:
@@ -619,9 +620,11 @@ en:
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
         export_report_data: Export report data
+        export_users: Campaign Users Export
         external_assessment_export: External Results Export
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
@@ -727,7 +730,7 @@ en:
       managers_dashboard_button: Managers Dashboard
       user_dashboard_button: User Dashboard
     instructions:
-      begin_assessment: Begin Assessment
+      begin_assessment: Begin
       cancel: Cancel
       default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
       title: Instructions
@@ -905,6 +908,7 @@ en:
       view: View
     goto_dashboard: Go to the Dashboard
     in_progress: In Progress
+    inactive_campaign_message: Currently, you have not been assigned any activities.
     ineligible: Ineligible
     instructions:
       heading: Please review the guidelines below before you get started. We wish you all the best!
@@ -1156,6 +1160,10 @@ en:
       reports: Reports
       sms_invite: SMS Invite
     text:
+      accepted: Accepted
+      all_pages: All Pages
+      approve: Approve
+      approved: Approved
       cancel: Cancel
       confirm: Confirm
       continue: Continue
@@ -1166,6 +1174,8 @@ en:
       ok: Ok
       reference_language: Reference Language
       response: Response
+      subject: Subject
+      view_as: View as
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
@@ -1269,7 +1279,16 @@ en:
         someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
         subject: The Talent Enterprise – Your Link to Thriving Index
       password_change:
-        subject: Password Changed
+        body: |
+          Hello %{name}!
+
+          Your password has been changed.
+
+          If you did not make this request, please contact Support immediately at support@thetalententerprise.com
+        regards: |
+          Regards,
+          Lighthouse Team
+        subject: Your Lighthouse password has changed
       reset_password_instructions:
         body: |
           Hello %{name}!
@@ -1282,7 +1301,18 @@ en:
           Lighthouse Team
         subject: Instructions for resetting your password
       unlock_instructions:
-        subject: Unlock instructions
+        body: |
+          Hello %{name}!
+
+          Your account has been locked due to an excessive number of unsuccessful login attempts.
+
+          Click the link below to unlock your account:
+        footer: If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
+        regards: |
+          Regards,
+          Lighthouse Team
+        subject: Instructions for Unlocking your account
+        unlock_account: Unlock my account
     omniauth_callbacks:
       failure: Could not authenticate you from %{kind} because "%{reason}".
       success: Successfully authenticated from %{kind} account.
@@ -1329,7 +1359,7 @@ en:
         forgot_password: Forgot password?
         instruction: Please login with your personal account information
         keep_sign_in: Yes, Keep me signed in
-        login_with_sso: Login with Single Single On
+        login_with_sso: Login with Single Sign-On
         password_placeholder: Password
         submit: Login
         tabs:
@@ -1468,6 +1498,10 @@ en:
           confirmation: Enter current campaign name given below in text box to remove campaign
           success: "%{campaignName} removed successfully."
       users:
+        actions:
+          export:
+            details: Campaign Users
+            scheduled: User export scheduled successfully.
         completion_statuses:
           completed: Completed
           in_progress: In Progress
@@ -1482,6 +1516,7 @@ en:
           success: Client with name '%{clientName}' removed successfully
     delete: Delete
     edit: Edit
+    error_warning: Oops, something went wrong with your assessment. Please contact the support.
     hogan:
       cannot_start: You can't start the hogan assessment right now. Please try after few minutes.
     login: Login
@@ -1489,12 +1524,16 @@ en:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds
     manage: Manage
     'no': 'No'
+    passwordSetting:
+      update_success: Password settings successfull updated
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
       refresh: Refresh
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
+    restart: Restart
+    restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
     smsInvites:
       create_success: SMS Invite added successfully
       update_success: SMS Invite updated successfully
@@ -1781,6 +1820,7 @@ en:
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines
+          hideZeroValueColumns: Hide Zero Value Columns
           legendPosition: Legend Position
           maxValueLabel: Max Value (number)
           maxValueLabelPlaceholder: Max Value
@@ -2256,15 +2296,17 @@ en:
       denied: Denied
       waiting: Waiting
     report_release_status:
+      on_hold: On Hold
       released: Released
       waiting: Waiting
     report_statuses:
+      approved: Approved
       available: Available
-      failed: Failed
-      generating: Generating
+      denied: Denied
       incomplete: Incomplete
       not_available: Not Available
       not_prepared: Not Ready
+      on_hold: On Hold
       prepared: Done
       released: Released
     statuses:
@@ -2497,17 +2539,20 @@ en:
         user_with_unchanged_passwords: The list of users whose passwords were not changed
     toolbar:
       export: Export Users
-      export_completion_status: Export Completion Status
+      export_compact_completion_status: Compact
+      export_detailed_completion_status: Detailed
       import: Import Users
   user_assessments:
     modals:
       actions:
-        allow_edit:
-          name: Allow Edit
+        reset_progress:
+          name: Reset Progress
           success_message: Assessment %{name} is ready for edit
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
         successfully: "%{name} assessment removed successfully."
+      reset:
+        content: Are you sure you want to reset progress '%{name}'?
     status:
       completed: Completed
       in_progress: In Progress
@@ -2526,6 +2571,8 @@ en:
         waiting: Waiting
       manager_nomination_status:
         approved: Approved
+        completed: Completed
+        declined: Declined
         denied: Denied
         waiting: Waiting
   user_reports:

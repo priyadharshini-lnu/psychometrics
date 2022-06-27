@@ -16,14 +16,17 @@ class UserReportPolicy < BasePolicy
   private
 
   def check_user_report
-    ::Threesixty::UsersReportsQuery.
-      new(
-        @record.campaign.threesixty_campaign,
-        [OpenStruct.new(user_id: @record.user_id)],
-        @current_user
-      ).
-      query.
-      include?(@record)
+    can_view_report = ::Threesixty::UsersReportsQuery.
+                      new(
+                        @record.campaign.threesixty_campaign,
+                        [OpenStruct.new(user_id: @record.user_id)],
+                        @current_user
+                      ).
+                      query.
+                      include?(@record)
+    return can_view_report unless @record.report.require_approval?
+
+    @record.approved? && can_view_report
   end
 
   def manager_approves_reports?

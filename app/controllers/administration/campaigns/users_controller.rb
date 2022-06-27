@@ -15,14 +15,12 @@ module Administration
         respond_to do |format|
           format.csv do
             audit! :export_users, campaign, campaign: campaign
-            headers['Content-Disposition'] = 'attachment; filename="users.csv"'
-            headers['Content-Type'] ||= 'text/csv'
-            render :index, locals: {
-              users: users,
-              campaign: campaign,
-              resource_class: resource_class,
-              headers: UserDecorator.export_headers
-            }
+            AdminJob.call(
+              :export_users,
+              { campaign_id: campaign.id, filters: params[:filters] },
+              current_user
+            )
+            head :ok
           end
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
@@ -73,6 +71,16 @@ module Administration
         audit! :export_completion_status, campaign, campaign: campaign
         AdminJob.call(
           :completion_status_export,
+          { campaign_id: campaign.id },
+          current_user
+        )
+        head :ok
+      end
+
+      def export_compact_completion_status
+        audit! :export_compact_completion_status, campaign, campaign: campaign
+        AdminJob.call(
+          :compact_completion_status_export,
           { campaign_id: campaign.id },
           current_user
         )

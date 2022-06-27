@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useEffect } from 'react'
 import _ from 'lodash'
 import { MenuOutlined } from '@ant-design/icons'
 import { useDrop, useDrag, DragSourceMonitor } from 'react-dnd'
-import styles from './DnDStyle.scss'
+import styles from './DnDStyle.less'
 import ItemTypes from './ItemTypes'
 
 interface Props {

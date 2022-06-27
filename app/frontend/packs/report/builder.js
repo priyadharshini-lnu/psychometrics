@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import ReportBuilder from 'modules/reports'
 import initSentry from 'libs/initSentry'
 
-import 'modules/reports/styles/ant.less'
-import 'styles/utils.scss'
+import 'styles/ant.less'
+
+import 'styles/utils.less'
 
 initSentry()
 

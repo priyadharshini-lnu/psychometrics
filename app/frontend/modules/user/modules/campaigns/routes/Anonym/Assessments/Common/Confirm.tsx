@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Modal,
 } from 'antd'
-import './styles.scss'
+import './styles.less'
 
 const { I18n } = window
 

@@ -13,7 +13,7 @@ describe Factors::SaveForm do
     form = described_class.
            new(
              id: factor_two.id,
-             factors_sub_factors_attributes: { any: { 'id' => '', 'sub_factor_id' => factor_one.id } }
+             factors_sub_factors_attributes: [{ 'id' => '', 'sub_factor_id' => factor_one.id }]
            )
 
     form.validate

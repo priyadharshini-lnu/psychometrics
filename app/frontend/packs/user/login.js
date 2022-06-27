@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import api from 'middleware/api'
-import 'modules/user/styles/ant.less'
+import 'styles/ant.less'
 
 let composeEnhancers = compose
 

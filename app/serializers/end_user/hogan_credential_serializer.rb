@@ -47,7 +47,7 @@ module EndUser
                             participant_id: 'HASUserID', status: 'AssessmentStatus',
                             assessment_id: 'AssessmentID', domain: Settings.domain,
                             host: Settings.domain, subdomain: object.campaign.project.subdomain,
-                            port: Settings.port)
+                            port: Settings.port, protocol: Settings.protocol)
     end
 
     private

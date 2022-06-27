@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import QuestionSerializer from 'models/QuestionSerializer'
 import Scoring from 'views/Scoring'
-import styles from './ScoringList.scss'
+import styles from './ScoringList.less'
 
 export class ScoringList extends Component {
   renderScoring () {

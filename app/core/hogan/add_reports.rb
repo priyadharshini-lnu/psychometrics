@@ -59,20 +59,32 @@ module Hogan
     end
 
     def add_participant_reports
-      reports.each do |user_report|
-        report = user_report.report
-        next unless report.hogan?
+      report_by_package_id_map = reports.filter { |r| r.report.hogan? }.
+                                 group_by { |r| r.report_families_report&.external_package_id }
 
-        Services::Hogan::API::JSON::AddParticipantReport.call!(
-          group: group,
-          norm_id: report.hogan_report_setting.hogan_norm_id,
-          language_id: report.hogan_report_setting.hogan_language_id,
-          assessment_id: assessment.hogan_assessment_setting.hogan_assessment_id,
-          report_id: report.hogan_report_setting.hogan_report_id,
-          participant_id: credentials.participant_id,
-          provider: credentials&.provider
-        )
+      report_by_package_id_map.each do |package_id, user_reports|
+        if package_id
+          call_hogan_api(user_reports.first, package_id)
+        else
+          user_reports.each do |user_report|
+            call_hogan_api(user_report)
+          end
+        end
       end
+    end
+
+    def call_hogan_api(user_report, package_id = nil)
+      report = user_report.report
+
+      Services::Hogan::API::JSON::AddParticipantReport.call!(
+        group: group,
+        norm_id: report.hogan_report_setting.hogan_norm_id,
+        language_id: report.hogan_report_setting.hogan_language_id,
+        assessment_id: assessment.hogan_assessment_setting.hogan_assessment_id,
+        participant_id: credentials.participant_id,
+        provider: credentials&.provider,
+        report_id: package_id || user_report.hogan_report_id
+      )
     end
 
     def lock_manager

@@ -12,7 +12,7 @@ import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 Highcharts3D(Highcharts)
 CustomEvents(Highcharts)
@@ -62,12 +62,16 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
     changeLabel(model, labelObj.value, collectionName)
   }
 
-  const checkAndFilterEmptyValues = (results) => {
-    if (model.props.hideEmptyColumns === true) {
-      results.forEach((result) => {
+  const checkAndFilterValues = (results) => {
+    results.forEach((result) => {
+      if (!result.data) { return }
+      if (model.props.hideEmptyColumns === true) {
         result.data = Utils.filterItemsWithEmptyValues(result.data, 'y')
-      })
-    }
+      }
+      if (model.props.hideZeroValueColumns === true) {
+        result.data = Utils.filterItemsWithZeroValues(result.data, 'y')
+      }
+    })
     return results
   }
 
@@ -89,7 +93,7 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
     if (!data) {
       return null
     }
-    const series = checkAndFilterEmptyValues(
+    const series = checkAndFilterValues(
       data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat),
     )
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]

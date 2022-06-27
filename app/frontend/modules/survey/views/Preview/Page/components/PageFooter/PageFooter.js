@@ -3,7 +3,7 @@ import cs from 'classnames'
 import { Button, Popconfirm } from 'antd'
 import { isRtl } from 'utils/locales'
 import { getQuestion } from 'modules/survey/core/preview/FlowProcessor/selectors'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const BACK = 'BACK'
 const NEXT = 'NEXT'

@@ -24,12 +24,13 @@ hashids_length:
 features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
   new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>
-  proctoring: true #<%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
+  proctoring: <%= ENV.fetch('PROCTORING_ENABLED', 'false') == 'true' %>
   url_to_pdf_lambda: <%= ENV.fetch('URL_TO_PDF_LAMBDA_ENABLED', 'false') == 'true' %>
   zip_s3_files_lambda: <%= ENV.fetch('ZIP_S3_FILES_LAMBDA_ENABLED', 'false') == 'true' %>
   smtp_enabled: <%= ENV.fetch('SMTP_ENABLED', 'false') == 'true' %>
   webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
   react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
+  new_end_user_view: <%= ENV.fetch('NEW_END_USER_VIEW', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -385,6 +386,23 @@ providers:
         id: 469
         factors: [*ed, *or, *nf, *oe, *cpi]
   hogan:
+    report_packages:
+      - id: RPtFlashPkgLead
+        name: LEAD Series + Coaching + Flash
+        report_ids:
+          - EcHPILFPML
+          - EcHDSLFCML
+          - EcMVPILFVML
+          - EcHPIHDSMVPIFR
+          - EcHPIHDSMVPILFCRML
+      - id: LeaershipRPtFlashLeadSummary
+        name: LEAD Series + Summary + Flash
+        report_ids:
+          - EcHPILFPML
+          - EcHDSLFCML
+          - EcMVPILFVML
+          - EcHPIHDSMVPIFR
+          - EcHPIHDSMVPIPESML
     reports:
       - id: EcHPIDML
         name: HPI Data Report

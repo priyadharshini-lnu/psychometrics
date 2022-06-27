@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { DATA_SHEET_COLUMN_TYPES } from '../constants'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default class Column extends Component {
   remove = () => {

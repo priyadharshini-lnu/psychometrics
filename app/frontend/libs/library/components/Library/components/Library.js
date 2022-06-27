@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React from 'react'
 import { Modal } from 'react-bootstrap'
 import store from '../../../store/LibraryStore'
-import styles from './Library.scss'
+import styles from './Library.less'
 
 const { Header } = Modal
 const { Body } = Modal

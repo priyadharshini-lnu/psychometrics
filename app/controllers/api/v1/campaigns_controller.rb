@@ -3,7 +3,7 @@
 module Api
   module V1
     class CampaignsController < Api::V1::BaseController
-      before_action :set_campaign, only: %i[show update duplicate assessments_reports]
+      before_action :set_campaign, only: %i[show update duplicate assessments_reports get_assessments_reports]
 
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
@@ -70,6 +70,10 @@ module Api
         else
           render_validation_errors(form)
         end
+      end
+
+      def get_assessments_reports
+        render json: @campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
       end
 
       def assessments_reports

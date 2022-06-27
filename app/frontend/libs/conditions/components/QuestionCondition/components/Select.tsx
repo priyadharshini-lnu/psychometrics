@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { FC, ChangeEvent } from 'react'
-import styles from './QuestionCondition.scss'
+import styles from './QuestionCondition.less'
 import { Condition, Field } from './interfaces'
 
 const PREDICATE = {

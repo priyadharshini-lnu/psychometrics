@@ -3,7 +3,7 @@ import {
   Layout, Button, PageHeader, message,
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
-import './styles.scss'
+import './styles.less'
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import ReportPreview from 'modules/reports/report'
@@ -75,6 +75,7 @@ export default function Report ({
               user={JSON.stringify(user)}
               locales={locales}
               selectedLocale={defaultLanguage}
+              userReport={{}}
             />
           </div>
         </PageHeader>

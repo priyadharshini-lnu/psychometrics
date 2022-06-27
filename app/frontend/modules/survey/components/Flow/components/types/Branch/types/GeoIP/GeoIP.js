@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 import Socket from 'cable'
-import styles from '../../Condition.scss'
-import GeoIPStyles from './GeoIP.scss'
+import styles from '../../Condition.less'
+import GeoIPStyles from './GeoIP.less'
 
 const { Async } = Select
 // Value restricted by list from server routes

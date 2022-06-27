@@ -4,7 +4,7 @@ import ResultStore from 'modules/reports/store/ResultStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 const VALUES = [[2.69, 3.51, 2.7], [2.3, 3.24, 2.52], [2.03, 3.8, 2.19]]
 

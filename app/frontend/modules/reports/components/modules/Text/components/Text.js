@@ -1,3 +1,4 @@
+import { CheckOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import React, { Component } from 'react'
 import cs from 'classnames'
@@ -6,7 +7,6 @@ import ReactMarkdown from 'react-markdown'
 import FroalaEditor from 'react-froala-wysiwyg'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
-
 import { SafeHTML } from 'components/SafeHTML'
 import Foundation from 'modules/reports/components/Foundation'
 import store from 'modules/reports/store/PageList'
@@ -17,8 +17,10 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import Factors from 'modules/reports/commands/Factors'
 import 'modules/reports/commands/froalaCommands'
 import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
+import { Button, Checkbox, Popconfirm } from 'antd'
+import htmldiff from 'libs/htmldiff'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
-import styles from './Text.scss'
+import styles from './Text.less'
 import config from './froalaConfig'
 import GetText from './GetText'
 import GetStyles from './GetStyles'
@@ -29,6 +31,11 @@ class Text extends Component {
     page: PropTypes.object.isRequired,
     children: PropTypes.node,
     preview: PropTypes.bool,
+  }
+
+  state = {
+    content: null,
+    showDiff: false,
   }
 
   componentDidMount () {
@@ -65,6 +72,10 @@ class Text extends Component {
     module.update()
   }
 
+  onChangeReview = (content) => {
+    this.setState({ content })
+  }
+
   getSavilleScore = () => {
     const {
       module: {
@@ -97,8 +108,9 @@ class Text extends Component {
 
   openEditor = () => {
     const {
-      openConditionalText, openConditionalFactorOccupationText, module, openRichEditor,
+      openConditionalText, openConditionalFactorOccupationText, module, openRichEditor, preview,
     } = this.props
+    if (preview) { return }
     if (module.props.sourceType === 'ConditionalText') {
       openConditionalText({ module })
     } else if (module.props.sourceType === 'ConditionalFactorOccupationText') {
@@ -108,6 +120,7 @@ class Text extends Component {
       openRichEditor()
     }
   }
+
 
   click = (e) => {
     if (this.edit) {
@@ -121,6 +134,36 @@ class Text extends Component {
       const { module } = this.props
       module.update()
       closeRichEditor()
+    }
+  }
+
+  openReviewEditor = (override) => {
+    const { openReviewEditor, module } = this.props
+    this.setState({ content: override?.content || module.props.text })
+    openReviewEditor()
+    this.edit = true
+  }
+
+  saveReview = (override) => {
+    const {
+      module, updateTextOverride, createTextOverride, userReport: { id, campaignId },
+    } = this.props
+    const { content } = this.state
+    const data = {
+      userReportId: id,
+      moduleId: module.id,
+      content,
+    }
+    override ? updateTextOverride(campaignId, override.id, data) : createTextOverride(campaignId, data)
+    this.closeReviewEditor()
+  }
+
+  closeReviewEditor = () => {
+    const { closeReviewEditor } = this.props
+    if (this.edit) {
+      this.edit = false
+      closeReviewEditor()
+      this.forceUpdate()
     }
   }
 
@@ -175,7 +218,9 @@ class Text extends Component {
       preview,
       pageNumber,
       totalPages,
+      moduleOverrides,
     } = this.props
+    const { content, showDiff } = this.state
 
     if (sourceType === 'ResponseText') {
       const question = _.find(questions, { id: modelQuestion })
@@ -201,6 +246,8 @@ class Text extends Component {
     }
 
     if (preview) {
+      const override = _.find(moduleOverrides, { moduleId: model.id })
+
       if (sourceType === 'ConditionalText') {
         return (
           <div
@@ -252,13 +299,25 @@ class Text extends Component {
           </div>
         )
       }
-      return (
-        <SafeHTML
-          html={I18nStore.tModule(model, 'text')}
-          ref={(ref) => { this.editor = ref }}
-          className={styles.editor}
-        />
-      )
+
+      return this.edit
+        ? (
+          <FroalaEditor
+            key="editor"
+            ref={(ref) => { this.editor = ref }}
+            config={config}
+            model={content}
+            onModelChange={content => this.setState({ content })}
+          />
+        ) : (
+          <SafeHTML
+            html={override && showDiff
+              ? htmldiff(model.props.text, override.content)
+              : override?.content || I18nStore.tModule(model, 'text')}
+            ref={(ref) => { this.editor = ref }}
+            className={cs(styles.editor, { [styles.diff]: showDiff })}
+          />
+        )
     }
     if (sourceType === 'ResultText') {
       return (
@@ -282,13 +341,18 @@ class Text extends Component {
   }
 
   render () {
-    const { module: model, preview } = this.props
+    const {
+      module: model, preview, approveTextOverride, userReport = {},
+      showOverrides, removeTextOverride, moduleOverrides,
+    } = this.props
+    const { campaignId } = userReport
+    const override = _.find(moduleOverrides, { moduleId: model.id })
+    const { showDiff } = this.state
     const {
       backgroundColor, fontColor, fontFamily, borderColor, borderRadius,
       fontSize, fontWeight, fontStyle, verticalAlign,
     } = model.props.style
     let { horizontalAlign } = model.props.style
-
 
     if (window.I18n.locale === 'ar' && horizontalAlign === 'left' && I18nStore.isExistTModule(model, 'text')) {
       horizontalAlign = 'right'
@@ -333,11 +397,88 @@ class Text extends Component {
     return (
       <Foundation {...this.props} preview={preview || this.edit}>
         <div style={style} onClick={this.click} className={styles.text} onDoubleClick={this.openEditor}>
+          {preview && showOverrides && model.props.editable && (
+            <div className={styles.editable}>
+              {this.edit
+                ? (
+                  <>
+                    <Button
+                      type="primary"
+                      onClick={() => this.saveReview(override)}
+                      className={cs(styles.btn, styles.edit)}
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      type="danger"
+                      className={cs(styles.btn, styles.discard)}
+                      onClick={() => this.closeReviewEditor()}
+                    >
+                      Cancel
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    {override?.content && (
+                      <Checkbox
+                        className={cs(styles.checkbox)}
+                        checked={showDiff}
+                        onChange={() => this.setState({ showDiff: !showDiff })}
+                      >
+                        Show diff
+                      </Checkbox>
+                    )}
+                    <Button
+                      type="primary"
+                      onClick={() => this.openReviewEditor(override)}
+                      className={cs(styles.btn, styles.edit)}
+                    >
+                      Edit
+                    </Button>
+                    {override?.approved
+                      ? (
+                        <Button type="primary" className={cs(styles.btn, styles.approved)}>
+                          <CheckOutlined />
+                          {' '}
+                          Accepted
+                        </Button>
+                      )
+                      : (
+                        <Button
+                          type="primary"
+                          className={cs(styles.btn, styles.approve)}
+                          onClick={() => approveTextOverride(campaignId, {
+                            id: override?.id,
+                            moduleId: model.id,
+                            userReportId: userReport.id,
+                          })}
+                        >
+                          Accept
+                        </Button>
+                      )}
+                    {override && (
+                      <Popconfirm
+                        overlayStyle={{ zIndex: 9999 }}
+                        title="Are you sure to discard this text?"
+                        onConfirm={() => removeTextOverride(campaignId, override.id, userReport.id)}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Button type="danger" className={cs(styles.btn, styles.discard)}>
+                          Discard
+                        </Button>
+                      </Popconfirm>
+                    )}
+                  </>
+                )}
+            </div>
+          )}
           {this.renderText()}
         </div>
       </Foundation>
     )
   }
 }
+
 
 export default Text

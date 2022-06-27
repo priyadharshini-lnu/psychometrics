@@ -12,7 +12,7 @@ import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightL
 import { SafeHTML } from 'components/SafeHTML'
 
 import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
-import styles from './StaticContent.scss'
+import styles from './StaticContent.less'
 
 const StaticContent = ({
   block, block: { props: { staticContent } }, preview, highlight, updateHighlight, I18n,

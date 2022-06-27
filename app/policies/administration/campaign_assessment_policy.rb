@@ -49,9 +49,7 @@ module Administration
     end
 
     def update_positions?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      has_permission?(:campaigns, :manage)
     end
 
     def update_external_config?

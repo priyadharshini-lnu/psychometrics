@@ -1,6 +1,6 @@
 import React from 'react'
 import { CloseOutlined } from '@ant-design/icons'
-import styles from '../../../FormStyle.scss'
+import styles from '../../../FormStyle.less'
 
 interface Props {
   option: string

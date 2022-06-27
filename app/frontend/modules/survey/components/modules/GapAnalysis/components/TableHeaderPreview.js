@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import styles from './GapAnalysis.scss'
+import styles from './GapAnalysis.less'
 import Smiles from '../assets'
 
 const TableHeaderPreview = ({ model, model: { props }, I18n }) => (

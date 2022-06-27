@@ -1,0 +1,29 @@
+:root {
+  --success-color: #52c41a;
+  --grey-color: #e8e8e8;
+}
+
+.text-success {
+  color: var(--success-color) !important;
+}
+
+.align-middle {
+  display: flex;
+  align-items: center;
+}
+
+:global {
+  .ant-form-item-label {
+    line-height: 25px;
+  }
+}
+
+:global {
+  .horizontalLabels {
+    .ant-form-item {
+      flex-direction: row-reverse !important;
+      align-items: flex-end;
+      margin-bottom: 0px;
+    }
+  }
+}

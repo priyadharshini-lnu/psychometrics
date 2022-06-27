@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Reference.scss'
+import styles from './Reference.less'
 
 const Reference = () => (
   <div className={styles.block}>

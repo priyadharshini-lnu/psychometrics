@@ -50,6 +50,7 @@ module Administration
           call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
+            audit! :create_client_admin, res, client: client, payload: create_resource_params
             self.resource = res
           end
         end
@@ -78,6 +79,7 @@ module Administration
         resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if resource.update(update_resource_params)
+            audit! :update_client_admin, resource, client: client, payload: params.permit!
             format.html do
               redirect_to({ action: :edit, id: resource },
                           success: t('administration.memberships.update.successfully',
@@ -92,6 +94,7 @@ module Administration
       def destroy
         authorize resource_class, :can_manage_client_admins?
         resource.destroy
+        audit! :delete_client_admin, resource, client: client, payload: resource.log_attribute_for_delete
         respond_to do |format|
           format.html do
             redirect_back(

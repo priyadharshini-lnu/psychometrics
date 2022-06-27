@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import Action from 'modules/reports/undo'
 import ColorPicker from 'modules/reports/components/ColorPicker'
 import PropertyFonts from 'modules/reports/components/PropertyFonts'
@@ -9,7 +9,7 @@ import Select from 'react-select'
 import AssessmentProperties from 'modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from 'modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
-import localStyles from './Properties.scss'
+import localStyles from './Properties.less'
 import ResponseText from './SourceTypeForms/ResponseText'
 import ResultText from './SourceTypeForms/ResultText'
 import connect from '../connect'
@@ -113,6 +113,12 @@ class Properties extends Component {
     this.update()
   }
 
+  changeEditAndApprove = (e) => {
+    const { model } = this.props
+    model.props.editable = e.currentTarget.checked
+    this.update()
+  }
+
   changeModelIn = (keys, value) => {
     const { model } = this.props
     // TODO (atanych): update model by link directly in the component is not good
@@ -121,6 +127,13 @@ class Properties extends Component {
     _.set(model, keys, value)
     this.update()
   }
+
+  changeSkipRoundValues = (e) => {
+    const { model } = this.props
+    model.props.skipRoundingValues = e.currentTarget.checked
+    this.update()
+  }
+
 
   renderPosition () {
     const { model } = this.props
@@ -204,13 +217,22 @@ class Properties extends Component {
           />
           {model.props.sourceType === 'ConditionalText'
             && (
-            <div
-              style={{ width: '100%' }}
-              onClick={this.openConditionModal}
-              className="btn btn-default"
-            >
-              Manage condition
-            </div>
+              <>
+                <div
+                  style={{ width: '100%' }}
+                  onClick={this.openConditionModal}
+                  className="btn btn-default"
+                >
+                  Manage condition
+                </div>
+                <input
+                  type="checkbox"
+                  onChange={this.changeSkipRoundValues}
+                  checked={model.props.skipRoundingValues || false}
+                />
+                {' '}
+                Skip rounding values
+              </>
             )}
           {model.props.sourceType === 'ConditionalFactorOccupationText'
             && (
@@ -282,6 +304,19 @@ class Properties extends Component {
               onChange={this.changeFontStyle}
             />
             Italics
+          </label>
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.block} style={{ position: 'relative' }}>
+          <div className="margin-top-10">Content overriding</div>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.editable}
+              onChange={this.changeEditAndApprove}
+            />
+            Edit and Approve
           </label>
         </div>
         <hr className={styles.divider} />

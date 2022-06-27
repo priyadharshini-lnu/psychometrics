@@ -7,7 +7,7 @@ import {
   message,
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
-import './styles.scss'
+import './styles.less'
 import ErrorAlertBox from 'components/ErrorAlertBox'
 
 export default function EditProfileModal ({

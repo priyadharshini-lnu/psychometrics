@@ -30,7 +30,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
-import styles from './LabelEditor.scss'
+import styles from './LabelEditor.less'
 
 export class LabelEditor extends Component {
   static propTypes = {

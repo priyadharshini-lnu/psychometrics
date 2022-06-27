@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../Condition.scss'
-import embeddedStyles from './EvaluatorRelationship.scss'
+import styles from '../../Condition.less'
+import embeddedStyles from './EvaluatorRelationship.less'
 
 export default class EvaluatorRelationship extends Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ColorPicker from 'modules/reports/components/ColorPicker'
-import styles from '../ConditionalTextModal.scss'
+import styles from '../ConditionalTextModal.less'
 
 export class ConditionCollection extends Component {
   static propTypes = {

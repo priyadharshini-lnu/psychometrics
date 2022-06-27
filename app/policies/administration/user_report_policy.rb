@@ -17,8 +17,12 @@ module Administration
     end
 
     def download?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :results, :view_report, project_id: project_id, campaign_id: campaign_id
+      show?
+    end
+
+    def approve?
+      @user.has_permission?(
+        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
       )
     end
 

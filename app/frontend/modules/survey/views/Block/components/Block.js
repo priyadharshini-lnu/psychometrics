@@ -7,7 +7,7 @@ import QuestionList from 'views/QuestionList'
 import Confirmation from 'components/Confirmation'
 import BlockModel from 'models/Block'
 import Footer from './BlockFooter'
-import styles from './Block.scss'
+import styles from './Block.less'
 import StaticContent from './StaticContent'
 import { NORMAL_TOP, STRETCH } from './StaticContent/settings'
 
