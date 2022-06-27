@@ -7,7 +7,7 @@ import { DropTarget } from 'react-dnd'
 
 import { updateIn } from 'utils/immutable'
 import Card from './Card'
-import styles from '../DragAndDrop.scss'
+import styles from '../DragAndDrop.less'
 
 class Container extends Component {
   static propTypes = {

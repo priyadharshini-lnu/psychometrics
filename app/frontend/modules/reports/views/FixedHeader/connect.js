@@ -4,8 +4,8 @@ import {
   save, updateCurrentPage, unselectModules, copyModule, pasteModule, selectModule,
 } from 'modules/reports/core/builder/actions'
 import { addModule } from 'modules/reports/core/builder/page/actions'
-import { removeModule } from 'modules/reports/core/builder/module/actions'
-import { getCurrentPage, getBufferedModule } from 'modules/reports/core/builder/selectors'
+import { removeModule, updateModule } from 'modules/reports/core/builder/module/actions'
+import { getCurrentPage, getBufferedModule, getModule } from 'modules/reports/core/builder/selectors'
 
 export default connect(
   state => ({
@@ -15,6 +15,7 @@ export default connect(
     richEditorOpened: state.report.builder.richEditorOpened,
     selected: state.report.builder.selected,
     bufferedModule: getBufferedModule(state.report),
+    module: getModule(state.report, state.report.builder.selected?.moduleId),
   }),
   {
     save,
@@ -23,6 +24,7 @@ export default connect(
     updateCurrentPage,
     addModule,
     removeModule,
+    updateModule,
     unselectModules,
     selectModule,
     openFilter: data => openModal('filter', data),

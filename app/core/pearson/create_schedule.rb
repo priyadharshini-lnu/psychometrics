@@ -35,11 +35,15 @@ module Pearson
         ],
         candidates: [
           {
-            candidateId: user_assessment.subject.id,
+            candidateId: user_assessment.subject.id.to_s,
             tags: [
               {
                 key: 'GivenName',
-                value: user_assessment.subject.decorate.full_name
+                value: user_assessment.subject.first_name
+              },
+              {
+                key: 'FamilyName',
+                value: user_assessment.subject.last_name
               }
             ]
           }

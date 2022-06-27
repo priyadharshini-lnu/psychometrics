@@ -8,7 +8,7 @@ import {
   setDirtyResults, setNotDirtyResults, toggleHiddenQuestions,
   toggleIgnoreValidation, reset, markQuestionInProgress, removeQuestionInProgress,
   clearInProgressQuestion, markAssessmentTimedOut, updateHighlight,
-  addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation,
+  addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation, showErrorWarning,
 } from './actions'
 
 export interface Question {
@@ -163,6 +163,7 @@ export interface DefaultState {
   started: boolean
   instructions: { enabled: boolean, content: string }
   fixedTimed: boolean
+  showErrorWarning: boolean
 }
 
 export interface MediaResponse {
@@ -309,3 +310,4 @@ export interface AppStore {
 export type SetLocalResults = ReturnType<typeof setLocalResults>
 export type SetIsSimulation = ReturnType<typeof setIsSimulation>
 export type FetchQuestionScoring = ApiActionResponse<FetchQuestionScoringResponse>
+export type showErrorWarning = ReturnType<typeof showErrorWarning>

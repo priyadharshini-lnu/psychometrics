@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './MaxDiff.scss'
+import styles from './MaxDiff.less'
 
 export default class extends Component {
   static propTypes = {

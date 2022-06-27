@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import css from './Condition.scss'
+import css from './Condition.less'
 import Types from './types'
 import { DEFAULTS, TYPE_LABELS } from './Constants'
 

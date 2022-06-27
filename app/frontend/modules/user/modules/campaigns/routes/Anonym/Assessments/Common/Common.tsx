@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { ProgressProps } from 'antd/lib/progress'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import './styles.scss'
+import './styles.less'
 import Cookies from 'js-cookie'
 import Language from 'modules/user/modules/campaigns/components/Language'
 import store from 'modules/user/store'
@@ -34,7 +34,7 @@ const Common: React.FC<Props> = ({
     },
   },
   preview,
-  preview: { enableProgress, initialized },
+  preview: { enableProgress, initialized, started },
   progress,
   markAssessmentTimedOut,
 }) => {
@@ -97,7 +97,7 @@ const Common: React.FC<Props> = ({
             )}
           </Row>
           <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-            <ResourcesTabs assessment={assessment}>
+            <ResourcesTabs assessmentStarted={started} assessment={assessment}>
               <div className={selectedLanguage ? selectedLanguage.direction : ''}>
                 <PassAssessment
                   id="pass_assessment"

@@ -17,6 +17,7 @@ module UsersResults::ControllerConcern
     )
 
     form = ::UsersResults::UpdatingForm.from_params(result_params)
+    progress_was_reseted = @user_assessment.progress_reseted
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
     render json: @users_result,
@@ -25,7 +26,8 @@ module UsersResults::ControllerConcern
             current_user: current_user,
             threesixty_campaign: @users_result.campaign.threesixty_campaign,
             campaign: @users_result.campaign,
-            locale: current_user.locale
+            locale: current_user.locale,
+            progress_was_reseted: progress_was_reseted
   end
 
   def update_meta_data
@@ -89,7 +91,7 @@ module UsersResults::ControllerConcern
   private
 
   def set_user_assessment
-    @user_assessment = UserAssessment.find_by(id: params[:user_assessment_id])
+    @user_assessment = @users_result.user_assessment
   end
 
   def resource_params

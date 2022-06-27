@@ -3,7 +3,7 @@ import {
   Select, Row, Col, Button, Form,
 } from 'antd'
 import QuestionPresenter from 'modules/survey/presenters/question'
-import styles from './ResourceManager.scss'
+import styles from './ResourceManager.less'
 
 export default function Resource ({
   resource, index, assessments, changeResource, assessmentQuestions,

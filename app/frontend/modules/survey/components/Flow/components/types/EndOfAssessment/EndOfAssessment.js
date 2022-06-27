@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './EndOfAssessment.scss'
+import styles from './EndOfAssessment.less'
 import Controls from '../../Controls'
 
 class EndOfAssessment extends Component {

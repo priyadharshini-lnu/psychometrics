@@ -63,6 +63,12 @@ module Administration
       Pundit.policy_scope!(user, record.class)
     end
 
+    def has_permission?(resource_type, permission)
+      @user.has_permission?(
+        resource_type, permission, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     class Scope
       attr_reader :user, :scope
 

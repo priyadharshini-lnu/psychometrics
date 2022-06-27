@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
-import { Select, Space, Typography } from 'antd'
+import {
+  Select, Space, Typography, Checkbox,
+} from 'antd'
 
 import { PropertiesModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
 
@@ -42,7 +44,7 @@ export const Properties: FC<Props> = ({ model }) => {
   const {
     props: {
       sourceType, factorIds, questionsChoices, sections = TableSectionsType.ALL,
-      tableStyle = TableStyleType.UNSTYLED,
+      tableStyle = TableStyleType.UNSTYLED, hideValues = false,
     },
     assessment_id,
   } = model
@@ -77,6 +79,10 @@ export const Properties: FC<Props> = ({ model }) => {
       <TableStyleSelect
         value={tableStyle}
         onChange={value => onChange('tableStyle', value)}
+      />
+      <TablePreferences
+        hideValues={hideValues}
+        onChange={onChange}
       />
     </Space>
   )
@@ -116,6 +122,22 @@ const TableStyleSelect: FC<TableStyleSelectProps> = ({ value, onChange }) => (
       options={TABLE_STYLE_OPTIONS}
       onChange={onChange}
     />
+  </div>
+)
+
+interface TablePreferencesProps {
+  hideValues: boolean
+  onChange(key: string, value: unknown): void
+}
+
+const TablePreferences: FC<TablePreferencesProps> = ({ hideValues, onChange }) => (
+  <div>
+    <Checkbox
+      checked={hideValues === true}
+      onChange={e => onChange('hideValues', e.target.checked)}
+    >
+      Hide Values
+    </Checkbox>
   </div>
 )
 

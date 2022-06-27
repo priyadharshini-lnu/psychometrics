@@ -5,7 +5,7 @@ import {
 import { UserOutlined } from '@ant-design/icons'
 
 import userPresenter from 'presenters/user'
-import styles from './styles.scss'
+import styles from './styles.less'
 import EvaluatorList from './EvaluatorList'
 import EvaluationList from './EvaluationList'
 import ResultList from './ResultList'

@@ -6,7 +6,7 @@ import {
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import cs from 'classnames'
-import './styles.scss'
+import './styles.less'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { useMedia } from 'modules/user/rootHooks'
@@ -126,7 +126,7 @@ export default function UserAssessment ({
         )}
         <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
           {loaded && !error && (
-            <ResourcesTabs assessment={assessment}>
+            <ResourcesTabs assessmentStarted={started} assessment={assessment}>
               <PassAssessment
                 id="pass_assessment"
                 type="pass_assessment"

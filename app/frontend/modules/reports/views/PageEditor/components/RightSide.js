@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PageList from 'modules/reports/views/PageList'
 import store from 'modules/reports/store/PageList'
-import styles from './PageEditor.scss'
+import styles from './PageEditor.less'
 
 export class PageEditor extends Component {
   componentDidMount () {

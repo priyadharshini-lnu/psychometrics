@@ -74,6 +74,7 @@ function Editor ({
     key: '7MD3aC3A2C4B4D4A2xROKLJKYHROLDXDRE1b1YYGRi1Bd1C4F4B3H3G3A15A13A12C4C4==',
     attribution: false,
     tableStyles: {
+      'table-no-border': 'No Border',
       'table-minimal-hr': 'Minimal',
       'table-compact': 'Compact',
       'table-full-width': 'Full Width',

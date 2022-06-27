@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import AppStore from 'modules/reports/store/AppStore'
 import Select from 'react-select'
 import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
-import styles from './PropertyFilter.scss'
+import styles from './PropertyFilter.less'
 
 const SKIPPED_QUESTION_TYPES_FOR_MULTIFILTERING = ['PickGroupRank', 'MatrixTable', 'HotSpot']
 class PropertyFilter extends Component {

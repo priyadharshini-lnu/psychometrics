@@ -4,7 +4,7 @@ import NotificationDispatcher from 'modules/survey/dispatchers/NotificationDispa
 import { save } from 'modules/survey/core/builder/blockCenter'
 import { connect } from 'react-redux'
 import { selectBlock } from 'modules/survey/core/builder/assessment/selectors'
-import styles from './Header.scss'
+import styles from './Header.less'
 
 const urldata = location.pathname.match(/blocks\/(\d+)/)
 const id = urldata && urldata[1]

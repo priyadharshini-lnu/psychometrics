@@ -10,7 +10,7 @@ import I18nStore from 'modules/reports/store/I18nStore'
 import ResultStore from 'modules/reports/store/ResultStore'
 import Utils from 'modules/reports/utils'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 type Gap = {
   name: string
@@ -89,6 +89,7 @@ interface Props {
   filters: typeof AppStore.report.filters
   gapType: PropertiesModel['props']['gapType']
   assessment_id: PropertiesModel['assessment_id']
+  hideValues: boolean
 }
 
 const Factor: FC<Props> = ({
@@ -96,6 +97,7 @@ const Factor: FC<Props> = ({
   factorIds,
   assessment_id,
   gapType,
+  hideValues,
 }) => {
   const calculateGaps = (
     assessmentId: PropertiesModel['assessment_id'],
@@ -184,12 +186,14 @@ const Factor: FC<Props> = ({
               }
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideValues={hideValues}
               />
               <TBody
                 gaps={positiveGaps}
                 emptyText={I18nStore.t(
                   'reports.modules.gap_assessment.no_positive_gaps',
                 )}
+                hideValues={hideValues}
               />
             </>
           )}
@@ -197,18 +201,20 @@ const Factor: FC<Props> = ({
             <>
               <THeader
                 title={
-                showTitle
-                  ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
-                  : ''
-              }
+                  showTitle
+                    ? I18nStore.t('reports.modules.gap_assessment.negative_gap')
+                    : ''
+                }
                 leftFilter={leftFilter}
                 rightFilter={rightFilter}
+                hideValues={hideValues}
               />
               <TBody
                 gaps={negativeGaps}
                 emptyText={I18nStore.t(
                   'reports.modules.gap_assessment.no_negative_gaps',
                 )}
+                hideValues={hideValues}
               />
             </>
           )}
@@ -222,13 +228,16 @@ interface THeaderProps {
   title: string
   leftFilter: typeof AppStore.report.filters[0]
   rightFilter: typeof AppStore.report.filters[0]
+  hideValues: boolean
 }
 
-const THeader: FC<THeaderProps> = ({ leftFilter, rightFilter, title }) => (
+const THeader: FC<THeaderProps> = ({
+  leftFilter, rightFilter, title, hideValues,
+}) => (
   <>
     {title.length !== 0 && (
     <tr>
-      <th className={styles.label} colSpan={6}>
+      <th className={styles.label} colSpan={hideValues ? 3 : 6}>
         {title}
       </th>
     </tr>
@@ -240,11 +249,15 @@ const THeader: FC<THeaderProps> = ({ leftFilter, rightFilter, title }) => (
       <th className={styles.label}>
         {I18nStore.t('reports.modules.gap_assessment.item')}
       </th>
-      <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
-      <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
-      <th className={styles.label}>
-        {I18nStore.t('reports.modules.gap_assessment.gap')}
-      </th>
+      {!hideValues && (
+        <>
+          <th className={styles.label}>{I18nStore.tFilterName(leftFilter)}</th>
+          <th className={styles.label}>{I18nStore.tFilterName(rightFilter)}</th>
+          <th className={styles.label}>
+            {I18nStore.t('reports.modules.gap_assessment.gap')}
+          </th>
+        </>
+      )}
     </tr>
   </>
 )
@@ -252,11 +265,13 @@ const THeader: FC<THeaderProps> = ({ leftFilter, rightFilter, title }) => (
 interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
+  hideValues: boolean
 }
 
 const TBody: FC<TBodyProps> = ({
   gaps,
   emptyText,
+  hideValues,
 }) => {
   if (gaps.length === 0) {
     return (
@@ -272,9 +287,13 @@ const TBody: FC<TBodyProps> = ({
         <tr key={i}>
           <td>{i + 1}</td>
           <td>{I18nStore.tFactorName(gap)}</td>
-          <td>{Utils.round(gap.left, 2)}</td>
-          <td>{Utils.round(gap.right, 2)}</td>
-          <td>{Utils.round(gap.diff, 2)}</td>
+          {!hideValues && (
+            <>
+              <td>{Utils.round(gap.left, 2)}</td>
+              <td>{Utils.round(gap.right, 2)}</td>
+              <td>{Utils.round(gap.diff, 2)}</td>
+            </>
+          )}
         </tr>
       ))}
     </>

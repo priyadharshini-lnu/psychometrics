@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './QuestionCondition.scss'
+import styles from './QuestionCondition.less'
 
 const PREDICATE = {
   EqualTo: 'Equal To',

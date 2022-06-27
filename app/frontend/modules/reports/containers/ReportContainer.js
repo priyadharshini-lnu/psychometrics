@@ -5,10 +5,11 @@ import _ from 'lodash'
 import Preview from 'modules/reports/views/Preview'
 import I18nStore from 'modules/reports/store/I18nStore'
 import store from 'modules/reports/store/PreviewStore'
-import 'modules/reports/styles/core.scss'
+import 'modules/reports/styles/globals.less'
 import { normalize } from 'normalizr'
+import globalStore from 'modules/admin/store'
 import rstore from '../store'
-import { init } from '../core/builder/actions'
+import { init, changeSkipLogic } from '../core/builder/actions'
 import schema from '../store/schema'
 
 class ReportContainer extends Component {
@@ -18,24 +19,37 @@ class ReportContainer extends Component {
 
   componentDidMount () {
     const {
-      data, results, locales, user, campaign, selectedLocale,
+      data, results, locales, user, campaign, selectedLocale, userReport, skipLogic,
     } = this.props
     if (locales) {
       I18nStore.setLocale(_.get(selectedLocale, 'code', document.body.dataset.locale))
       I18nStore.locales = locales
     }
-
+    data.skipLogic = skipLogic
     const normalizedData = normalize(data, schema)
     store.init(data, results, user, campaign)
-    rstore.dispatch(init(normalizedData))
+    rstore.dispatch(init(normalizedData, userReport))
     this.setState({ selectedLocale })
   }
 
+  componentDidUpdate (prevProps) {
+    const { skipLogic } = this.props
+    if (prevProps.skipLogic !== skipLogic) {
+      rstore.dispatch(changeSkipLogic(skipLogic))
+    }
+  }
+
   render () {
+    const { showOverrides = false, userReport: { moduleOverrides } } = this.props
     return (
       <Provider store={rstore}>
         <div className="row">
-          <Preview localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')} />
+          <Preview
+            rstore={globalStore}
+            localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
+            showOverrides={showOverrides}
+            moduleOverrides={moduleOverrides}
+          />
         </div>
       </Provider>
     )

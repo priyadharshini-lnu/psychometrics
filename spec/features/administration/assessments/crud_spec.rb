@@ -34,7 +34,7 @@ feature 'CRUD Assessment' do
 
         expect(page).not_to have_select('resource_category', visible: false)
         expect(page).not_to have_select('resource_owner_id', visible: false)
-        expect(page).not_to have_select('resource_dimension_id', visible: false)
+        expect(page).to have_select('resource_dimension_id', visible: false)
         expect(page).to have_select('resource_mindmill_id', visible: false)
       end
     end

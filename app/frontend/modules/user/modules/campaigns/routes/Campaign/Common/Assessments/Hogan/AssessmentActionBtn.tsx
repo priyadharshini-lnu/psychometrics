@@ -4,7 +4,7 @@ import {
   LoadingOutlined, CheckOutlined, PlayCircleOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
-import '../styles.scss'
+import '../styles.less'
 import ConditionalWrap from 'conditional-wrap'
 import { UserAssessment, Statuses } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 import ContinueIcon from '../ContinueIcon'

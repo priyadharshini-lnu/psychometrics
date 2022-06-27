@@ -13,7 +13,7 @@ import { stopTranscription, transcribe } from 'libs/amazon-transcribe-websocket-
 import useAudioMetrics from 'hooks/useAudioMetrics'
 import { RecorderCore } from 'modules/survey/utils/RecorderCore'
 import DynamicAudioIcon from 'components/DynamicAudioIcon'
-import styles from './styles.scss'
+import styles from './styles.less'
 import Progress from '../Progress'
 import CheckList from '../CheckList'
 import { CheckListStatus } from '../interfaces'

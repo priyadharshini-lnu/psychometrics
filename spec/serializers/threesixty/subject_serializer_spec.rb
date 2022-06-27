@@ -75,7 +75,7 @@ describe Threesixty::SubjectSerializer do
         current_user: current_user
       ).to_hash
       expect(result[:evaluators]).to eq '5 / 5'
-      expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
+      expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::DENIED
       expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
       expect(result[:evaluations]).to eq '3 / 5'
       expect(result[:user][:email]).to eq 'dustin@poirier.com'

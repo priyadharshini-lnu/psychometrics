@@ -25,7 +25,9 @@ module UsersResults
       # { factor_id => {"blocks" => [] }, ... }
       scoring, factors_question_count = get_factors_scoring
 
-      broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm, dimension, factors_question_count)
+      broadcast :ok, ::UsersResults::Scoring::Extend.call!(
+        scoring, norm, dimension, user_result.external_results, factors_question_count
+      )
     end
 
     private

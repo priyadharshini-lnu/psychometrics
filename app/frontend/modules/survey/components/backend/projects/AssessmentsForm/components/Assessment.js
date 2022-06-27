@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Select from 'react-select'
-import styles from './AssessmentsForm.scss'
+import styles from './AssessmentsForm.less'
 
 export class Assessment extends Component {
   static propTypes = {

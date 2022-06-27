@@ -9,6 +9,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import ResultStore from 'modules/reports/store/ResultStore'
 import Result from 'modules/reports/models/Result'
+import 'modules/reports/styles/globals.less'
 import store from '../store'
 
 class AppContainer extends Component {

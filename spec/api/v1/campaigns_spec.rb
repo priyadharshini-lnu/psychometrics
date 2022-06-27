@@ -341,6 +341,60 @@ assessments and reports.'
   end
 
   path '/projects/{project_id}/campaigns/{campaign_id}/assessments_reports' do
+    get 'Get a campaign assessments and reports' do
+      operationId 'UpdateCampaignAssessmentsAndReports'
+      description 'Update campaign assessments and reports'
+      tags 'Campaigns'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+
+      response '200', 'Assessments and reports' do
+        schema '$ref' => '#/definitions/AssessmentsAndReports'
+        examples 'application/json' => {
+          "reports": [
+            {
+              "id": 1,
+              "user_access": true,
+              "report_bundle_id": 1
+            }
+          ],
+          "assessments": [
+            {
+              "id": 1,
+              "norm_id": 2
+            }
+          ]
+        }
+
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:assessment) { create(:assessment) }
+        let!(:norm) { create(:norm, dimension: assessment.dimension) }
+        let(:report) { create(:report, assessments: [assessment]) }
+        let(:report_family) { create(:report_family, reports: [report]) }
+
+        before do
+          create(:campaign_report, report: report, campaign: campaign, report_family: report_family)
+          create(:campaign_assessment, assessment: assessment, campaign: campaign)
+        end
+
+        run_test! do |response|
+          body = JSON.parse(response.body)
+          expect(body['reports'].first).to eq({
+            'id' => report.id,
+            'user_access' => false,
+            'report_bundle_id' => report_family.id
+          })
+          expect(body['assessments'].first).to eq({
+            'id' => assessment.id,
+            'norm_id' => nil
+          })
+        end
+      end
+    end
+
     put 'Update a campaign assessments and reports' do
       operationId 'UpdateCampaignAssessmentsAndReports'
       description 'Update campaign assessments and reports'
@@ -398,6 +452,344 @@ assessments and reports.'
             'id' => assessment.id,
             'norm_id' => norm.id
           })
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/campaigns/{campaign_id}/assessments/{assessment_id}' do
+    let(:assessment) { create(:assessment) }
+    let!(:norm) { create(:norm, dimension: assessment.dimension) }
+    let(:report) { create(:report, assessments: [assessment]) }
+    let(:report_family) { create(:report_family, reports: [report]) }
+
+    put 'Update campaign assessments' do
+      operationId 'Update Campaign Assessments'
+      description 'Update Campaign assessments'
+      tags 'Assessments'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :assessment_id, in: :path, type: :string, required: false
+      parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedAssessment' }, required: true
+
+      response '200', 'CampaignAssessments updating' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:assessment_id) { assessment.id }
+
+        let(:body) do
+          {
+            norm_id: norm.id
+          }
+        end
+
+        before do
+          @campaign_assessment = create(:campaign_assessment, campaign: campaign, assessment: assessment)
+        end
+
+        schema '$ref' => '#/definitions/UpdatedAssessment'
+
+        examples 'application/json' => {
+          "norm_id": nil
+        }
+
+        run_test! do |response|
+          campaign_assessment = JSON.parse(response.body)
+          expect(campaign_assessment['norm_id']).to eq(norm.id)
+        end
+      end
+
+      response '401', 'Auth error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:assessment_id) { assessment.id }
+        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' =>
+        {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': nil,
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
+        end
+      end
+
+      response '401', 'Authentication error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:assessment_id) { assessment.id }
+        before { membership.user.update(disabled: true) }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': 'API User is disabled',
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => 'API User is disabled',
+            'meta' => nil
+          )
+        end
+      end
+    end
+
+    delete 'Delete campaign assessments' do
+      operationId 'DeleteCampaignAssessments'
+      description 'Delete campaign assessments'
+      tags 'Assessments'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :assessment_id, in: :path, type: :string, required: false
+
+      response '200', 'CampaignAssessments deleting' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:assessment_id) { assessment.id }
+        before do
+          @campaign_assessment = create(:campaign_assessment, campaign: campaign, assessment: assessment)
+        end
+
+        schema '$ref' => '#/definitions/UserAssessment'
+
+        run_test! do |_|
+          expect(CampaignAssessment.find_by(id: @campaign_assessment.id)).to eq(nil)
+        end
+      end
+
+      response '401', 'Auth error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:assessment_id) { assessment.id }
+        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' =>
+        {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': nil,
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
+        end
+      end
+
+      response '401', 'Authentication error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:assessment_id) { assessment.id }
+        before { membership.user.update(disabled: true) }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': 'API User is disabled',
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => 'API User is disabled',
+            'meta' => nil
+          )
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/campaigns/{campaign_id}/reports/{report_id}' do
+    let!(:assessment) { create(:assessment) }
+    let(:report) { create(:report, assessments: [assessment]) }
+    let(:report_family) { create(:report_family, reports: [report]) }
+
+    put 'Update campaign report' do
+      operationId 'Update Campaign Report'
+      description 'Update Campaign Report'
+      tags 'Reports'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :report_id, in: :path, type: :string, required: false
+      parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedReport' }, required: true
+
+      response '200', 'CampaignReport updating' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:report_id) { report.id }
+
+        let(:body) do
+          {
+            user_access: true,
+            assessor_access: true
+          }
+        end
+
+        before do
+          @campaign_report = create(:campaign_report, campaign: campaign, report: report)
+        end
+
+        schema '$ref' => '#/definitions/UpdatedReport'
+
+        examples 'application/json' => {
+          "user_access": true,
+          "assessor_access": true
+        }
+
+        run_test! do |response|
+          campaign_report = JSON.parse(response.body)
+          expect(campaign_report['user_access']).to eq(true)
+          expect(campaign_report['assessor_access']).to eq(true)
+        end
+      end
+
+      response '401', 'Auth error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:report_id) { report.id }
+        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' =>
+        {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': nil,
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
+        end
+      end
+
+      response '401', 'Authentication error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:report_id) { report.id }
+        before { membership.user.update(disabled: true) }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': 'API User is disabled',
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => 'API User is disabled',
+            'meta' => nil
+          )
+        end
+      end
+    end
+
+    delete 'Delete campaign report' do
+      operationId 'DeleteCampaignReport'
+      description 'Delete campaign report'
+      tags 'Reports'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :report_id, in: :path, type: :string, required: false
+
+      response '200', 'CampaignReport deleting' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:report_id) { report.id }
+        before do
+          @campaign_report = create(:campaign_report, campaign: campaign, report: report)
+        end
+
+        schema '$ref' => '#/definitions/UserAssessment'
+
+        run_test! do |_|
+          expect(CampaignReport.find_by(id: @campaign_report.id)).to eq(nil)
+        end
+      end
+
+      response '401', 'Auth error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:report_id) { report.id }
+        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' =>
+        {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': nil,
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
+        end
+      end
+
+      response '401', 'Authentication error' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { campaign.id }
+        let(:report_id) { report.id }
+        before { membership.user.update(disabled: true) }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': 'API User is disabled',
+          'meta': nil
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => 'API User is disabled',
+            'meta' => nil
+          )
         end
       end
     end

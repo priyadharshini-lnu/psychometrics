@@ -11,7 +11,8 @@
 #
 
 class ReportFamily < ApplicationRecord
-  has_and_belongs_to_many :reports
+  has_many :report_families_reports
+  has_many :reports, through: :report_families_reports, source: :report
   has_many :assessments, through: :reports, source: :assessment
   has_many :licenses
   has_many :license_usages, through: :licenses

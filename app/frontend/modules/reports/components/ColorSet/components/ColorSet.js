@@ -4,7 +4,7 @@ import { DropTarget } from 'react-dnd'
 
 import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
-import styles from './ColorSet.scss'
+import styles from './ColorSet.less'
 import Swatch from './Swatch'
 import Trash from './Trash'
 

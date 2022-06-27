@@ -5,9 +5,10 @@ import { setIn } from 'utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR, SELECT_MODULE, UNSELECT_MODULES,
   CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, CHANGE_SIZE,
-  UPDATE_PAGE_POSITIONS, COPY_PAGE, COPY_MODULE, SAVE_DATA_SHEET,
+  UPDATE_PAGE_POSITIONS, COPY_PAGE, COPY_MODULE, SAVE_DATA_SHEET, CHANGE_SKIP_LOGIC,
   InitType, RenameReportType, UpdateCurrentPageType, AddPageType, SelectModuleType,
   ChangeSizeType, UpdatePagePositionType, SaveDataSheetType, CopyModuleType, CopyPageType,
+  ChangeSkipLogic,
 } from './actions'
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 
@@ -99,8 +100,9 @@ export const defaultState: State = {
 
 
 const HANDLERS = {
-  [INIT]: (state: State, { data }: InitType) => {
+  [INIT]: (state: State, { data, campaignId }: InitType) => {
     const report = data.entities.report[data.result]
+
     return {
       ...state,
       ...report,
@@ -112,6 +114,7 @@ const HANDLERS = {
       questions: data.entities.questions,
       loaded: true,
       currentPage: state.currentPage || report.pages[0],
+      campaignId,
     }
   },
   [ENABLE]: (state: State) => ({ ...state, disabled: false }),
@@ -142,6 +145,7 @@ const HANDLERS = {
   [COPY_PAGE]: (state: State, { pageId }: CopyPageType) => setIn(state, ['buffer', 'sourceId'], pageId),
   [COPY_MODULE]: (state: State, { moduleId }: CopyModuleType) => setIn(state, ['buffer', 'moduleId'], moduleId),
   [SAVE_DATA_SHEET]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['data_sheet_columns'], data),
+  [CHANGE_SKIP_LOGIC]: (state: State, { value }: ChangeSkipLogic) => setIn(state, ['skipLogic'], value),
 }
 
 

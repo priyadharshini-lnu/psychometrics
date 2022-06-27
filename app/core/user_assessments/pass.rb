@@ -24,6 +24,7 @@ module UserAssessments
     def build_user_assessment_params
       params = {}
       params[:selected_locale] = lang if lang
+      params[:progress_reseted] = false
 
       return params if instructions_enabled?
 

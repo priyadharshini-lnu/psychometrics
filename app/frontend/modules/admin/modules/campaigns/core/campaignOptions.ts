@@ -28,6 +28,7 @@ export const fetch = (projectId: number, campaignId: number) => ({
   request: {
     method: 'get',
     url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/fetch_campaign_options`,
+    loader: true,
   },
 })
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeHTML } from 'components/SafeHTML'
-import styles from './Header.scss'
+import styles from './Header.less'
 
 const Header = ({
   langs,

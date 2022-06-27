@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { HIGHLIGHT_COLORS } from 'views/Block/components/StaticContent/settings'
-import styles from './StaticContent.scss'
+import styles from './StaticContent.less'
 
 const LEFT_SHIFT = 20
 const TOP_SHIFT = 45

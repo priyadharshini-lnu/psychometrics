@@ -2,7 +2,9 @@
     cmp-1:
       id: cmp-1
       duration: 1.502
-      end_time: 1608191030698
+      start_time: 1652082530536
+      end_time: 1652082531830
+      session_id: 39c19fb5-08e9-4030-adc8-c282f4b1eb1a
       group_id: nf-1-group
       answers:
         - equal

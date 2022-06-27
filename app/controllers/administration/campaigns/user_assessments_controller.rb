@@ -48,8 +48,8 @@ module Administration
         end
       end
 
-      def allow_edit
-        ::UserAssessments::AllowEdit.call!(resource)
+      def reset_progress
+        ::UserAssessments::ResetProgress.call!(resource)
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end

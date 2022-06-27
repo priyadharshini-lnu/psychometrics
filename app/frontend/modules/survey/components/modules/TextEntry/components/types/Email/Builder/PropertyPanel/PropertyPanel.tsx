@@ -5,7 +5,7 @@ import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 
 import { PropertiesModel } from 'modules/survey/interfaces/questions/TextEntry'
 
-import styles from './PropertyPanelStyle.scss'
+import styles from './PropertyPanelStyle.less'
 
 interface Props {
   model: PropertiesModel
@@ -37,7 +37,7 @@ const PropertyPanel: React.FC<Props> = ({
   return (
     <div className={styles.container}>
       Max Length
-      <ChoicesInput minValue={0} maxValue={1000} value={maxLength || 0} onChange={changeMaxLength} />
+      <ChoicesInput minValue={0} maxValue={10000} value={maxLength || 0} onChange={changeMaxLength} />
       <div className={styles.label}>Contacts</div>
       {contactList.map((contact: string, i: number) => (
         <div key={i} className={styles.inputContainer}>

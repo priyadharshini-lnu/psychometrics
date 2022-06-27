@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ScoringList from 'views/ScoringList'
 import { SCORING } from 'constants/scoring'
-import styles from './Scoring.scss'
+import styles from './Scoring.less'
 import Header from './Header'
 
 export default class Scoring extends Component {

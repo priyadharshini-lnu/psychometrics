@@ -4,7 +4,7 @@ import { rgba2hex } from 'utils/color'
 import { RGBColor } from 'react-color'
 import _ from 'lodash'
 import Utils from 'modules/reports/utils'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 interface ScoreRange {
   color: RGBColor

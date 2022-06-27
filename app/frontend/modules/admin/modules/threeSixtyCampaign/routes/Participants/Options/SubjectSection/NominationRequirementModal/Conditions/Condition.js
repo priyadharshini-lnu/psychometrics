@@ -2,7 +2,7 @@ import React from 'react'
 import { Select, Input } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 export default function Condition ({
   relationships,

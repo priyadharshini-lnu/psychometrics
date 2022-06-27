@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import LogicElement from 'components/LogicElement'
-import styles from './DisplayLogic.scss'
+import styles from './DisplayLogic.less'
 
 const {
   Header, Body, Footer, Title,

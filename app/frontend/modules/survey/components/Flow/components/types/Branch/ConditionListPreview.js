@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import styles from './Branch.scss'
+import styles from './Branch.less'
 import ConditionPreview from './ConditionPreview'
 
 const ConditionListPreview = ({ model, model: { props: { conditions } } }) => (

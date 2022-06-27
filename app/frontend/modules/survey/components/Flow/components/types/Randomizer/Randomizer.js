@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ChoicesInput from 'components/ChoicesInput'
-import styles from './Randomizer.scss'
+import styles from './Randomizer.less'
 import Controls from '../../Controls'
 
 class Randomizer extends Component {

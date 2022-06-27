@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
 import ProgressBar from 'components/ProgressBar'
 import Utils from 'utils'
-import styles from './Bar.scss'
+import styles from './Bar.less'
 
 const TABLE_WIDTH = 700
 

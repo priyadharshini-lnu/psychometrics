@@ -2451,8 +2451,23 @@ en:
       edit:
         header: Edit Factor Name
       form:
+        components:
+          ExternalList:
+            add: Add
+            table:
+              actions: Actions
+              jsonpath: JSON Path
+              type: Type
+              types:
+                norm_score: Normed Score
+                percentage: Percentage
+                percentile: Percentile Score
+                score: Raw
+                zscore: Z Score
+            title: JSON Paths for Scores
         no_icon: No Logo yet
         scoring_strategies:
+          external_score: External Score
           questions: Questions (Average)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
@@ -2466,6 +2481,7 @@ en:
         icon: Icon
         new: Add
         scoring_strategies:
+          external_score: External Score
           questions: Questions (Average)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
@@ -2497,6 +2513,7 @@ en:
           copying: Copying
           deleting: Deleting
         scoring_strategies:
+          external_score: External Score
           questions: Questions (Average)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
@@ -2550,8 +2567,12 @@ en:
           sub_factors_mismatch: "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         result:
           error: "[Row %{row}] %{error}"
-          invalid_assign: "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
+          invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_format: Invalid File format
+          user:
+            record_not_found: Can't find existing user with email %{email}.
+          user_assessment:
+            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user .
         translation:
           error: "[Translation %{id}] %{error}"
           invalid_format: Invalid File format
@@ -3188,6 +3209,7 @@ en:
             create: Create
         list:
           created_at: Created date
+          external_package_id: External Package Id
           id: ID
           name: Name
           updated_at: Updated date
@@ -3343,6 +3365,27 @@ en:
       webhooks: Webhooks
     save: Save
     search: Search
+    security_setting:
+      180_days: 180 Days
+      30_days: 30 Days
+      365_days: 365 Days
+      90_days: 90 Days
+      attempts_to_lock: Attempts to lock
+      auto_unlock_time: Auto unlock time
+      disable_password_reuse: Disable password reuse
+      enforce_password_policy: Enforce password policy at next sign-in
+      enforce_strong: Enforce strong password
+      expiration: Password expiration
+      lock_account: Lock account
+      max_length: Maximum password length
+      min_length: Minimum password length
+      never: Never
+      old_passwords_count: Old passwords count
+      restrict_sequences: Restrict sequential and repetitive characters
+      security: Security Settings
+      security_setting: Security settings
+      send_unlock_email: Send unlock email
+      update_success_msg: Password settings successfull updated
     show: Show
     sms_invites:
       actions:

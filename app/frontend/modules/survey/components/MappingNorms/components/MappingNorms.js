@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import RuleElement from 'components/RuleElement'
 import { Modal } from 'react-bootstrap'
 import Rule from 'models/Rule'
-import styles from './MappingNorms.scss'
+import styles from './MappingNorms.less'
 
 const {
   Header, Body, Footer, Title,

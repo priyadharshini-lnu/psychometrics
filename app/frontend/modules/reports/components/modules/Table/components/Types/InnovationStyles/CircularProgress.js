@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import styles from './CircularProgress.scss'
+import styles from './CircularProgress.less'
 
 export default function CircularProgress ({
   size, value, text, strokeSize = size * 0.09, circleStyle = {}, barStyle = {},

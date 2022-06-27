@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils'
-import styles from './ScoringCell.scss'
+import styles from './ScoringCell.less'
 
 const defaultValue = '1'
 class ScoringCell extends Component {

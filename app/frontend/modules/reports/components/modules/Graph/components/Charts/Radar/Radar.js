@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Highcharts from 'highcharts'
 import AppStore from 'modules/reports/store/AppStore'
 import LookupSourceName from 'modules/reports/commands/LookupSourceName'
-import styles from './Radar.scss'
+import styles from './Radar.less'
 import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
@@ -56,7 +56,7 @@ class Radar extends Component {
     const format = null
     if (!series.length) { return null }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
-
+    const { hideYaxisLabels } = model.props
     this.chart = Highcharts.chart(
       this.container,
       _.merge(
@@ -107,6 +107,7 @@ class Radar extends Component {
             max: model.props.radarMax,
             showLastLabel: true,
             labels: {
+              enabled: !hideYaxisLabels,
               x: -5,
               y: 7,
               overflow: 'allow',

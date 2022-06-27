@@ -5,6 +5,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     clear_enqueued_jobs
+    clear_performed_jobs
   end
 end
 

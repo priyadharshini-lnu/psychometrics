@@ -1,6 +1,6 @@
 import React from 'react'
 import FilterAvatar from './FilterAvatar'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function Legend ({ filters, model }) {
   const { showLabels } = model.props

@@ -269,23 +269,23 @@
     }
 
     // Locale code format 1:
-    // According to RFC4646 (http://www.ietf.org/rfc/rfc4646.txt)
+    // According to RFC4646 (https://www.ietf.org/rfc/rfc4646.txt)
     // language codes for Traditional Chinese should be `zh-Hant`
     //
     // But due to backward compatibility
     // We use older version of IETF language tag
-    // @see http://www.w3.org/TR/html401/struct/dirlang.html
-    // @see http://en.wikipedia.org/wiki/IETF_language_tag
+    // @see https://www.w3.org/TR/html401/struct/dirlang.html
+    // @see https://en.wikipedia.org/wiki/IETF_language_tag
     //
     // Format: `language-code = primary-code ( "-" subcode )*`
     //
     // primary-code uses ISO639-1
-    // @see http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-    // @see http://www.iso.org/iso/home/standards/language_codes.htm
+    // @see https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+    // @see https://www.iso.org/iso/home/standards/language_codes.htm
     //
     // subcode uses ISO 3166-1 alpha-2
-    // @see http://en.wikipedia.org/wiki/ISO_3166
-    // @see http://www.iso.org/iso/country_codes.htm
+    // @see https://en.wikipedia.org/wiki/ISO_3166
+    // @see https://www.iso.org/iso/country_codes.htm
     //
     // @note
     //   subcode can be in upper case or lower case
@@ -402,7 +402,7 @@
 
     while (locales.length) {
       locale = locales.shift();
-      scopes = fullScope.split(this.defaultSeparator);
+      scopes = fullScope.split(options.separator || this.defaultSeparator);
       translations = this.translations[locale];
 
       if (!translations) {
@@ -433,7 +433,7 @@
       , pluralizerKey
       , message;
 
-    if (isObject(translations)) {
+    if (translations && isObject(translations)) {
       while (pluralizerKeys.length) {
         pluralizerKey = pluralizerKeys.shift();
         if (isSet(translations[pluralizerKey])) {
@@ -459,7 +459,7 @@
 
     while (locales.length) {
       locale = locales.shift();
-      scopes = scope.split(this.defaultSeparator);
+      scopes = scope.split(options.separator || this.defaultSeparator);
       translations = this.translations[locale];
 
       if (!translations) {
@@ -679,13 +679,13 @@
       var s = scope.split('.').slice(-1)[0];
       //replace underscore with space && camelcase with space and lowercase letter
       return (this.missingTranslationPrefix.length > 0 ? this.missingTranslationPrefix : '') +
-          s.replace('_',' ').replace(/([a-z])([A-Z])/g,
+          s.replace(/_/g,' ').replace(/([a-z])([A-Z])/g,
           function(match, p1, p2) {return p1 + ' ' + p2.toLowerCase()} );
     }
 
     var localeForTranslation = (options != null && options.locale != null) ? options.locale : this.currentLocale();
     var fullScope           = this.getFullScope(scope, options);
-    var fullScopeWithLocale = [localeForTranslation, fullScope].join(this.defaultSeparator);
+    var fullScopeWithLocale = [localeForTranslation, fullScope].join(options.separator || this.defaultSeparator);
 
     return '[missing "' + fullScopeWithLocale + '" translation]';
   };
@@ -779,8 +779,8 @@
   I18n.toCurrency = function(number, options) {
     options = this.prepareOptions(
         options
-      , this.lookup("number.currency.format")
-      , this.lookup("number.format")
+      , this.lookup("number.currency.format", options)
+      , this.lookup("number.format", options)
       , CURRENCY_FORMAT
     );
 
@@ -799,17 +799,17 @@
 
     switch (scope) {
       case "currency":
-        return this.toCurrency(value);
+        return this.toCurrency(value, options);
       case "number":
-        scope = this.lookup("number.format");
+        scope = this.lookup("number.format", options);
         return this.toNumber(value, scope);
       case "percentage":
-        return this.toPercentage(value);
+        return this.toPercentage(value, options);
       default:
         var localizedValue;
 
         if (scope.match(/^(date|time)/)) {
-          localizedValue = this.toTime(scope, value);
+          localizedValue = this.toTime(scope, value, options);
         } else {
           localizedValue = value.toString();
         }
@@ -914,8 +914,8 @@
   //     %Y     - Year with century
   //     %z/%Z  - Timezone offset (+0545)
   //
-  I18n.strftime = function(date, format) {
-    var options = this.lookup("date")
+  I18n.strftime = function(date, format, options) {
+    var options = this.lookup("date", options)
       , meridianOptions = I18n.meridian()
     ;
 
@@ -984,9 +984,9 @@
   };
 
   // Convert the given dateString into a formatted date.
-  I18n.toTime = function(scope, dateString) {
+  I18n.toTime = function(scope, dateString, options) {
     var date = this.parseDate(dateString)
-      , format = this.lookup(scope)
+      , format = this.lookup(scope, options)
     ;
 
     // A date input of `null` or `undefined` will be returned as-is
@@ -1003,15 +1003,15 @@
       return date_string;
     }
 
-    return this.strftime(date, format);
+    return this.strftime(date, format, options);
   };
 
   // Convert a number into a formatted percentage value.
   I18n.toPercentage = function(number, options) {
     options = this.prepareOptions(
         options
-      , this.lookup("number.percentage.format")
-      , this.lookup("number.format")
+      , this.lookup("number.percentage.format", options)
+      , this.lookup("number.format", options)
       , PERCENTAGE_FORMAT
     );
 
@@ -1025,6 +1025,7 @@
       , iterations = 0
       , unit
       , precision
+      , fullScope
     ;
 
     while (size >= kb && iterations < 4) {
@@ -1033,10 +1034,12 @@
     }
 
     if (iterations === 0) {
-      unit = this.t("number.human.storage_units.units.byte", {count: size});
+      fullScope = this.getFullScope("number.human.storage_units.units.byte", options);
+      unit = this.t(fullScope, {count: size});
       precision = 0;
     } else {
-      unit = this.t("number.human.storage_units.units." + SIZE_UNITS[iterations]);
+      fullScope = this.getFullScope("number.human.storage_units.units." + SIZE_UNITS[iterations], options);
+      unit = this.t(fullScope);
       precision = (size - Math.floor(size) === 0) ? 0 : 1;
     }
 
@@ -1053,7 +1056,7 @@
 
     // Deal with the scope as an array.
     if (isArray(scope)) {
-      scope = scope.join(this.defaultSeparator);
+      scope = scope.join(options.separator || this.defaultSeparator);
     }
 
     // Deal with the scope option provided through the second argument.
@@ -1061,7 +1064,7 @@
     //    I18n.t('hello', {scope: 'greetings'});
     //
     if (options.scope) {
-      scope = [options.scope, scope].join(this.defaultSeparator);
+      scope = [options.scope, scope].join(options.separator || this.defaultSeparator);
     }
 
     return scope;

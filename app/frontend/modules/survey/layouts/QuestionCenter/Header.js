@@ -3,7 +3,7 @@ import ActionsHistory from 'components/ActionsHistory'
 import NotificationDispatcher from 'modules/survey/dispatchers/NotificationDispatcher'
 import { save } from 'modules/survey/core/builder/questionCenter'
 import { connect } from 'react-redux'
-import styles from './Header.scss'
+import styles from './Header.less'
 
 
 const Header = ({ save, question }) => {

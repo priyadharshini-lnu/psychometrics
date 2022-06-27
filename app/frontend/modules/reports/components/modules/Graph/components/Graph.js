@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Foundation from 'modules/reports/components/Foundation'
-import styles from './Graph.scss'
+import styles from './Graph.less'
 import Charts from './Charts'
 
 class Graph extends Component {

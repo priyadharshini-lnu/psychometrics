@@ -32,8 +32,8 @@ class Administration::FactorsController < Administration::BaseController
     @_resource = @dimension.factors.new(resource_params)
     @form = Factors::SaveForm.new(resource_params)
     if @form.valid?
-      audit! :create, resource, payload: params.permit!
       resource.save!
+      audit! :create, resource, payload: params.permit!
     else
       set_init_state
       render :new
@@ -132,7 +132,9 @@ class Administration::FactorsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(:id, :name, :description, :icon, :remove_icon, :dimension_id, :scoring_strategy,
-                                     :code, :use_percentage, :use_sub_factor_norm_score, factors_sub_factors_attributes:
-                                       %i[id weight _destroy sub_factor_id position predicate value])
+                                     :code, :use_percentage, :use_sub_factor_norm_score,
+                                     external_scoring: %i[type jsonpath],
+                                     factors_sub_factors_attributes:
+                                      %i[id weight _destroy sub_factor_id position predicate value])
   end
 end

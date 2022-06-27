@@ -125,7 +125,6 @@ class Assessment < ApplicationRecord
   ### END ASSOCIATIONS
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
-  validates :dimension, absence: true, if: :external?
   validates :dimension, presence: true, if: :common?
 
   enum category: CATEGORIES
@@ -143,6 +142,7 @@ class Assessment < ApplicationRecord
   delegate :pearson_norm_id, :pearson_assessment_id, :pearson_norms, :pearson_assessment_language,
            to: :pearson_assessment_setting, allow_nil: true
   delegate :iiht_assessment_id_number, :iiht_schedule_config, to: :iiht_assessment_setting, allow_nil: true
+  delegate :hogan_assessment_id, to: :hogan_assessment_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.

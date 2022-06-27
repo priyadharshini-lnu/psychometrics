@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Alert } from 'antd'
-import styles from './SkipLogic.scss'
+import styles from './SkipLogic.less'
 import Condition from './Condition'
 
 class SkipLogicList extends Component {

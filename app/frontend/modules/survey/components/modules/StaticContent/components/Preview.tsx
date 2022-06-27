@@ -11,7 +11,7 @@ import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
 import Previews from './Previews'
 import Text from './Text'
 
-import styles from './StaticContent.scss'
+import styles from './StaticContent.less'
 
 const mapStateToProps = (state: RootState) => ({
   I18n: getI18n(state.preview),

@@ -1,6 +1,6 @@
 import React from 'react'
 import Foundation from 'modules/reports/components/Foundation'
-import styles from './Shape.scss'
+import styles from './Shape.less'
 
 const Text = (props) => {
   const { module } = props

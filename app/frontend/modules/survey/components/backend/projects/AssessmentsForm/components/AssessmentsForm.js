@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import styles from './AssessmentsForm.scss'
+import styles from './AssessmentsForm.less'
 import Assessment from './Assessment'
 
 export class AssessmentsForm extends Component {

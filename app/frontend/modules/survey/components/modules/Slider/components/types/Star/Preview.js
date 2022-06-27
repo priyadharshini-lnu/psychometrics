@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import StarBar from 'components/StarBar'
-import styles from './Star.scss'
+import styles from './Star.less'
 
 export default class extends Component {
   static propTypes = {

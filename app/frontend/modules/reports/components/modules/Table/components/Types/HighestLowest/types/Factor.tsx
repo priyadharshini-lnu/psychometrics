@@ -7,7 +7,7 @@ import AppStore from 'modules/reports/store/AppStore'
 import ResultStore from 'modules/reports/store/ResultStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const MOCK_HIGHEST_DATA = [
   { avg: 5.0, name: 'Customer First' },
@@ -30,10 +30,11 @@ interface Props {
   factorIds: PreviewModel['props']['factorIds']
   sections: TableSectionsType
   tableStyle: TableStyleType
+  hideValues: boolean
 }
 
 const FactorType: FC<Props> = ({
-  assessment_id, filterId, factorIds, sections, tableStyle,
+  assessment_id, filterId, factorIds, sections, tableStyle, hideValues,
 }) => {
   const calculateHighestLowest = (
     assessment_id: PreviewModel['assessment_id'],
@@ -83,8 +84,9 @@ const FactorType: FC<Props> = ({
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.highest_scores')}
                 filterName={filterName}
+                hideValues={hideValues}
               />
-              <TBody data={highestFactors} />
+              <TBody data={highestFactors} hideValues={hideValues} />
             </>
           )}
           {sections !== TableSectionsType.HIGHEST && (
@@ -92,8 +94,9 @@ const FactorType: FC<Props> = ({
               <THeaders
                 title={I18nStore.t('reports.modules.highest_lowest.lowest_scores')}
                 filterName={filterName}
+                hideValues={hideValues}
               />
-              <TBody data={lowestFactors} />
+              <TBody data={lowestFactors} hideValues={hideValues} />
             </>
           )}
         </tbody>
@@ -105,12 +108,13 @@ const FactorType: FC<Props> = ({
 interface THeadersProps {
   title: string
   filterName: string
+  hideValues: boolean
 }
 
-const THeaders: FC<THeadersProps> = ({ title, filterName }) => (
+const THeaders: FC<THeadersProps> = ({ title, filterName, hideValues }) => (
   <>
     <tr className={styles.title}>
-      <th colSpan={3}>
+      <th colSpan={hideValues ? 2 : 3}>
         {title}
       </th>
     </tr>
@@ -121,9 +125,11 @@ const THeaders: FC<THeadersProps> = ({ title, filterName }) => (
       <th className={styles.label} scope="col">
         {I18nStore.t('reports.modules.highest_lowest.category')}
       </th>
-      <th className={cs(styles.label, styles.number)} scope="col">
-        {filterName}
-      </th>
+      {!hideValues && (
+        <th className={cs(styles.label, styles.number)} scope="col">
+          {filterName}
+        </th>
+      )}
     </tr>
   </>
 )
@@ -133,15 +139,18 @@ interface TBodyProps {
     avg: number
     name: string
   }>
+  hideValues: boolean
 }
 
-const TBody: FC<TBodyProps> = ({ data }) => (
+const TBody: FC<TBodyProps> = ({ data, hideValues }) => (
   <>
     {data.map(({ avg, name }, index) => (
       <tr key={index} className={styles.row}>
         <td>{index + 1}</td>
         <td>{name}</td>
-        <td className={styles.number}>{avg}</td>
+        {!hideValues && (
+          <td className={styles.number}>{avg}</td>
+        )}
       </tr>
     ))}
   </>

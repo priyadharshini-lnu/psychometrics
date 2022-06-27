@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ConditionModel from 'modules/reports/models/logic/Condition'
-import css from './ConditionList.scss'
+import css from './ConditionList.less'
 import Condition from './Condition'
 import { MOVE_TO_NEW_ROW } from '../Constants'
 

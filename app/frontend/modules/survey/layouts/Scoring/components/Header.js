@@ -3,7 +3,7 @@ import cs from 'classnames'
 import { RECODING, SCORING } from 'constants/scoring'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import FactorsMenu from './FactorsMenu'
-import styles from './Scoring.scss'
+import styles from './Scoring.less'
 
 export default class Header extends Component {
   closeScoring = () => {

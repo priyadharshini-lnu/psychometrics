@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from '../../Condition.scss'
-import localStyles from './Date.scss'
+import styles from '../../Condition.less'
+import localStyles from './Date.less'
 
 export class Date extends Component {
   static propTypes = {

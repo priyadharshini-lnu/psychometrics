@@ -17,6 +17,7 @@
 - project_settings_saml_id = dom_id(u, :project_settings_saml_id)
 - project_settings_sms_id = dom_id(u, :project_settings_sms)
 - project_settings_integrations_id = dom_id(u, :project_settings_integrations_id)
+- project_settings_security_id = dom_id(u, :project_settings_security_id)
 
 - sms_invites_view_id = dom_id(u, :sms_invites_view)
 - sms_invites_manage_id = dom_id(u, :sms_invites_manage)
@@ -26,6 +27,8 @@
 - results_raw_responses_id = dom_id(u, :results_raw_responses)
 - results_scores_id = dom_id(u, :results_scores)
 - results_reset_responses_id = dom_id(u, :reset_responses)
+- results_edit_report_id = dom_id(u, :edit_report)
+- results_approve_report_id = dom_id(u, :approve_report)
 
 - registration_codes_view_id = dom_id(u, :registration_codes_view)
 - registration_codes_manage_id = dom_id(u, :registration_codes_manage)
@@ -40,11 +43,11 @@ table.table.grants-table
       th Entity
       th.actions Privileges
   tbody
-    - if policy(:membership).manage_grants_for_actions?('clients', ['view'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('clients', ['view'], project: client)
         tr
           td Clients
           td.text-nowrap
-            - if policy(:membership).manage_grants_for_action?('clients', 'view', client: client)
+            - if policy(:membership).manage_grants_for_action?('clients', 'view', project: client)
               label
                 = check_box_tag 'resource[grants_attributes][data][clients][]',
                         'view', resource.has_grant?(:clients, :view), id: clients_view_id
@@ -65,7 +68,7 @@ table.table.grants-table
                       'manage_users', resource.has_grant?(:projects, :manage_users), id: projects_manage_users_id
               | Manage Users
 
-    - if policy(:membership).manage_grants_for_actions?('project_settings', ['design', 'smtp', 'sms', 'saml', 'integrations'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('project_settings', ['design', 'smtp', 'sms', 'saml', 'integrations', 'password'], client: client)
       tr
         td Project Settings
         td
@@ -90,6 +93,11 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][project_settings][]',
                         'integrations', resource.has_grant?(:project_settings, :integrations), id: project_settings_integrations_id, data: { turn_on: [project_settings_integrations_id] }
                 | Integrations
+            - if policy(:membership).manage_grants_for_action?('project_settings', 'password', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][project_settings][]',
+                        'security', resource.has_grant?(:project_settings, :security), id: project_settings_security_id, data: { turn_on: [project_settings_security_id] }
+                | Security settings
 
     - if policy(:membership).manage_grants_for_actions?('sms_invites', ['view', 'manage'], client: client)
       tr
@@ -136,7 +144,16 @@ table.table.grants-table
               = check_box_tag 'resource[grants_attributes][data][results][]',
                       'reset_responses', resource.has_grant?(:results, :reset_responses), id: results_reset_responses_id
               | Reset Responses
-
+          - if policy(:membership).manage_grants_for_action?('results', 'edit_report', client: client)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'edit_report', resource.has_grant?(:results, :edit_report), id: results_edit_report_id
+              | Edit Report
+          - if policy(:membership).manage_grants_for_action?('results', 'approve_report', client: client)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'approve_report', resource.has_grant?(:results, :approve_report), id: results_approve_report_id
+              | Approve Report
     - if policy(:membership).manage_grants_for_actions?('registration_codes', ['view', 'manage'], project: project)
       tr
         td Registration Codes

@@ -8,7 +8,7 @@ import ConfirmationModal from 'components/ConfirmationModal'
 import { SafeHTML } from 'components/SafeHTML'
 import userPresenter from 'presenters/user'
 import connect from './connect'
-import './styles.scss'
+import './styles.less'
 
 const { Panel } = Collapse
 

@@ -8,7 +8,7 @@ import _ from 'lodash'
 import createAssessmentStore from 'modules/admin/store/assessmentStore'
 import moment from 'moment'
 import { RootState } from 'modules/admin/core/rootReducers'
-import styles from './styles.scss'
+import styles from './styles.less'
 import { fetchSubjectAssessment, getSubjectForm } from '../../core/evaluation'
 
 const { I18n } = window

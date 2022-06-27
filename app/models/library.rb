@@ -80,4 +80,8 @@ class Library < ApplicationRecord
   def set_name
     self.name = file.filename if name.blank?
   end
+
+  def log_attribute_for_delete
+    slice(:name, :owner_id)
+  end
 end

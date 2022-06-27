@@ -3,6 +3,7 @@ import _ from 'lodash'
 import {
   select, takeEvery, takeLatest, put, debounce,
 } from 'redux-saga/effects'
+import { Modal } from 'antd'
 import { getItem, setItem } from 'utils/storage'
 import { AnyAction } from 'redux'
 import {
@@ -20,6 +21,7 @@ import {
   setIsSimulation,
   fetchQuestionScoring,
   backButtonPressed,
+  showErrorWarning,
 } from './actions'
 import {
   getPrevPage,
@@ -27,9 +29,11 @@ import {
   pageQuestionsWithoutHidden,
   getCurrentBlock,
   getQuestion,
+  isValidCurrentElementAndPage,
+  getI18n,
 } from './selectors'
 import {
-  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT,
+  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, SAVE_RESULTS,
   ANSWER, MARK_ASSESSMENT_TIMED_OUT, REMOVE_QUESTION_IN_PROGRESS,
 } from './consts'
 import { InProgressQuestion } from './interfaces'
@@ -46,8 +50,10 @@ function* genInitPageProcessing () {
   }
   if (!state.preview.currentElement) {
     yield put(nextPage())
-  } else {
+  } else if (isValidCurrentElementAndPage(state.preview)) {
     yield put(nextPage({ testDisplayLogic: true }))
+  } else {
+    yield put(showErrorWarning())
   }
 }
 
@@ -162,6 +168,20 @@ function* genFetchQuestionScoring ({ result: { question_id } }: AnyAction) {
   }
 }
 
+function* genRestart ({ response }: AnyAction) {
+  const state = yield select()
+  const I18n = getI18n(state.preview)
+  if (response.progress_was_reseted) {
+    Modal.info({
+      content: I18n.t('frontend.restart_progress'),
+      okText: I18n.t('frontend.restart'),
+      onOk () {
+        window.location.reload()
+      },
+    })
+  }
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(INIT, genFetchLocalResults),
@@ -169,6 +189,7 @@ export const watchers = [
   debounce(200, ANSWER, genFetchQuestionScoring),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
+  takeEvery(SAVE_RESULTS, genRestart),
   takeLatest(SHOW_END, getShowSubmitPage),
   takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),

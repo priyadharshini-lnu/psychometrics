@@ -6,8 +6,8 @@ import {
 import cs from 'classnames'
 import { CloseOutlined } from '@ant-design/icons'
 import MultiInlineEditor from '../../../../../../MultiInlineEditor'
-import styles from './ChatStyle.scss'
-import commonStyles from '../ChatStyle.scss'
+import styles from './ChatStyle.less'
+import commonStyles from '../ChatStyle.less'
 import { Message as MessageInterface } from '../interfaces'
 import { MINE_TYPE } from '../constants'
 

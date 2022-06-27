@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionCondition from 'libs/conditions'
 import QuestionSerializer from 'models/QuestionSerializer'
-import styles from './SkipLogic.scss'
+import styles from './SkipLogic.less'
 
 const DESTINATIONS = {
   EndOfBlock: 'End of Block',

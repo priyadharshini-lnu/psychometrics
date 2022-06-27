@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Likert.scss'
+import styles from './Likert.less'
 import { NOT_APPLICABLE } from '../../Consts'
 
 export default class extends Component {

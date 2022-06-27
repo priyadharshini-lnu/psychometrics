@@ -3,7 +3,7 @@ import { Tooltip } from 'antd'
 import {
   CheckOutlined, LoadingOutlined, PlayCircleOutlined, FieldTimeOutlined,
 } from '@ant-design/icons'
-import '../styles.scss'
+import '../styles.less'
 import cs from 'classnames'
 import ConditionalWrap from 'conditional-wrap'
 import { UserAssessment, Statuses } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'

@@ -22,7 +22,7 @@ import { UpdateExternalConfigModal } from './AssessmentList/UpdateExternalConfig
 import ToggleUserAccessModal from './ToggleUserAccessModal'
 import UpdateLocalesModal from './UpdateLocalesModal'
 import { PropsFromRedux } from './connect'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const MODALS = {
   AddReportModal,

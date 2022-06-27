@@ -20,6 +20,7 @@ export const fetch = (campaignId: number) => ({
   request: {
     method: 'get',
     url: `/administration/threesixty_campaigns/${campaignId}/options/message_options`,
+    loader: true,
   },
 })
 

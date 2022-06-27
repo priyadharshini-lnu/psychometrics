@@ -1,7 +1,7 @@
 import React from 'react'
 import cs from 'classnames'
 import ReactMarkdown from 'react-markdown'
-import styles from './styles.scss'
+import styles from './styles.less'
 import Footer from '../Page/components/PageFooter'
 import { PropsFromRedux } from './connect'
 

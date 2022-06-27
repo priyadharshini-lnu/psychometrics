@@ -9,7 +9,7 @@ import { DragSource, DropTarget } from 'react-dnd'
 import { updateIn } from 'utils/immutable'
 import DescriptionPreview from '../../DescriptionPreview'
 
-import styles from './DragAndDrop.scss'
+import styles from './DragAndDrop.less'
 
 
 const itemSource = {

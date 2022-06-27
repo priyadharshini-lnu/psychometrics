@@ -7,7 +7,7 @@ import { DropdownButton, MenuItem } from 'react-bootstrap'
 
 import { updateIn } from 'utils/immutable'
 
-import styles from '../styles.scss'
+import styles from '../styles.less'
 
 const LIKERT_TYPES = ['Drop Down', 'Single Answer', 'Multiple Answer']
 const INPUTS_TYPES = ['Short', 'Medium', 'Long', 'Essay']

@@ -36,7 +36,7 @@ de:
             last_name:
               blank: Nachname darf nicht leer sein
             password:
-              too_short: Das Passwort ist zu kurz. Mindestens 6 Zeichen erforderlich
+              too_short: Das Passwort ist zu kurz. Mindestens %{count} Zeichen erforderlich
               too_weak: 'Das Passwort muss enthalten: Mindestens 8 Zeichen, 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Zahl und 1 Sonderzeichen.'
         register:
           attributes:

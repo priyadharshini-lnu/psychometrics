@@ -1,0 +1,53 @@
+{
+  "text": "",
+  "empId": "coffee@03.emails",
+  "normId": "GlobalTimed",
+  "scores": {
+    "rawScores": {
+      "scaleScores": [
+        {
+          "id": 8,
+          "scaleName": "Overall_Test_Score",
+          "scaleScore": "5"
+        }
+      ],
+      "subscaleScores": []
+    },
+    "percentileScores": {
+      "scaleScores": [
+        {
+          "id": 1,
+          "scaleName": "Qualitative_Scale",
+          "scaleScore": "1"
+        },
+        {
+          "id": 2,
+          "scaleName": "Quantitative_Scale",
+          "scaleScore": "1"
+        },
+        {
+          "id": 3,
+          "scaleName": "Overall_Test_Score",
+          "scaleScore": "4"
+        }
+      ],
+      "subscaleScores": []
+    }
+  },
+  "clientId": "MENTTLNTENT001",
+  "groupName": "",
+  "messageType": "",
+  "assessmentId": "HBRIV1",
+  "clientUserId": "TalEntUser01",
+  "hasSignature": {
+    "createdBy": null,
+    "requestId": null,
+    "producedBy": null,
+    "createdDate": null,
+    "requestedBy": "TalEntUser01",
+    "requestedIpAddress": null
+  },
+  "participantId": "UJ889369",
+  "assessmentDate": "11/23/2020 6:07:39 AM",
+  "assessmentFormId": null
+}

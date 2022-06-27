@@ -9,7 +9,7 @@ import useForceUpdate from 'hooks/useUpdate'
 import { PreviewModel } from 'modules/survey/interfaces/questions/MultipleChoice'
 import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
-import styles from '../../styles.scss'
+import styles from '../../styles.less'
 
 const ImageChoices = lazy(() => import('../ImageChoicePreview'))
 

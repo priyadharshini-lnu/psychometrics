@@ -7,7 +7,7 @@ import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
 
 import connect from './connect'
 
-import './styles.scss'
+import './styles.less'
 
 const Resource = ({
   resource, highlight, updateHighlight, translations,

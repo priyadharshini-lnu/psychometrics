@@ -11,7 +11,7 @@ module UsersResults
 
     def call
       transaction do
-        reset_iiht_assessment if user_assessment.iiht?
+        Iiht::AllowAttempts.call!(user_assessment) if user_assessment.iiht?
         remove_reports if user_assessment.completed?
         reset_user_result
         remove_media_responses
@@ -22,16 +22,6 @@ module UsersResults
     end
 
     private
-
-    def reset_iiht_assessment
-      response = Iiht::GetScores.call!(user_assessment)
-      schedule = response.dig('schedules')&.find do |s|
-        s['scheduleId'] == user_assessment.iiht_user_assessment.schedule_id
-      end
-      return if schedule.blank?
-
-      Iiht::UpdateAttempts.call!(user_assessment) if schedule['availedAttempts'] >= schedule['maxAttempts']
-    end
 
     def reset_user_result
       user_assessment.update!(

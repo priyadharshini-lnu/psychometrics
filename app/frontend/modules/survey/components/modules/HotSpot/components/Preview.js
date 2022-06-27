@@ -5,7 +5,7 @@ import Raphael from 'raphael'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './HotSpot.scss'
+import styles from './HotSpot.less'
 import connect from '../connect'
 
 function ShapeView (raphaelPaper, model, readOnly) {

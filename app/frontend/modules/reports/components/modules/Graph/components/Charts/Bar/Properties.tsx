@@ -156,6 +156,13 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
       >
         {I18n.t('reports.builder.graph.properties.hideEmptyColumns')}
       </Checkbox>
+      <Checkbox
+        checked={model.props.hideZeroValueColumns || false}
+        onChange={e => checkboxHandler('hideZeroValueColumns', e)}
+        className="font-normal"
+      >
+        {I18n.t('reports.builder.graph.properties.hideZeroValueColumns')}
+      </Checkbox>
     </Space>
   )
 }

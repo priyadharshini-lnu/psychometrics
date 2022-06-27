@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from './Flow.scss'
+import styles from './Flow.less'
 import Views from './types'
 import ButtonNew from './ButtonNew'
 import Settings from './Settings'

@@ -5,8 +5,8 @@ import filter from 'lodash/filter'
 import useUpdate from 'hooks/useUpdate'
 import { Assessment } from 'modules/reports/core/interfaces/Assessment'
 import { Factor } from 'modules/reports/core/interfaces/Factor'
-import styles from '../../Condition.scss'
-import localStyles from './Scoring.scss'
+import styles from '../../Condition.less'
+import localStyles from './Scoring.less'
 
 interface Props {
   model: {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import cs from 'classnames'
 import Utils from 'modules/reports/utils/Utils'
 import ScoreRange from './ScoreRange'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default class ScoreRangeList extends Component {
   addScoreRange = () => {

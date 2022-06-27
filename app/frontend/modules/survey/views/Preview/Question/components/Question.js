@@ -7,7 +7,7 @@ import QuestionSerializer from 'models/QuestionSerializer'
 import { initAudioPlayer } from 'modules/survey/hooks/useAudioPlayer'
 import { isEmailTextEntryQuestion } from 'modules/survey/utils/question'
 import { SafeHTML } from 'components/SafeHTML'
-import styles from './Question.scss'
+import styles from './Question.less'
 
 class Question extends Component {
   static propTypes = {

@@ -35,6 +35,7 @@ RSpec.describe EndUser::IihtUserAssessmentsController, type: :controller do
       schedule_id = 123
       config = { 'tenant_id' => '123' }
       allow_any_instance_of(Iiht::AddAssessment).to receive(:config).and_return(config)
+      allow(Iiht::AllowAttempts).to receive(:call!)
       allow(Iiht::GetAuthToken).to receive(:call!)
       stub_request(:post, "#{Settings.iiht.base_api_url}/GetAssessmentURLAsync").
         to_return({

@@ -15,10 +15,11 @@ module UserReports
 
       broadcast :ok,
                 user: Reports::UserSerializer.new(user_report.user).to_json,
-                results:  UserReports::GroupedResultsByAssessment.call!(user_report).to_json,
+                results: UserReports::GroupedResultsByAssessment.call!(user_report).to_json,
                 data: ReportSerializer.new(
                   report,
-                  user_results: user_report.user_results
+                  user_results: user_report.user_results,
+                  module_overrides: user_report.text_module_overrides
                 ).to_json(include: '**'),
                 locales: translations.to_json
     end

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import styles from './QuestionCondition.scss'
+import styles from './QuestionCondition.less'
 import AnswersSelector from './AnswersSelector'
 
 class QuestionCondition extends Component {

@@ -21,7 +21,7 @@ module AdminJobs
     end
 
     def file_name
-      'completion-statuses.csv'
+      'detailed-completion-statuses.csv'
     end
   end
 end

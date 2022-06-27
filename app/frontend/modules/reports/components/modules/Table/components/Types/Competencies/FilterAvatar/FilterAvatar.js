@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './styles.scss'
+import styles from './styles.less'
 
 export default function FilterAvatar ({ filter, fontSize, showLabel }) {
   const fontSizeStr = `${fontSize}em`

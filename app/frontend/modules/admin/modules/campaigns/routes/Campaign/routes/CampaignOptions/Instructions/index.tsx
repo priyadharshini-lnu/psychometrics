@@ -17,7 +17,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 
 import { SafeHTML } from 'components/SafeHTML'
 
-import styles from './styles.scss'
+import styles from './styles.less'
 
 const { I18n } = window
 

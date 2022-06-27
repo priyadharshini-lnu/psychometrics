@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.scss'
+import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import _ from 'lodash'
 import ChoicesInput from 'modules/reports/components/ChoicesInput'
 import { connect } from 'react-redux'
