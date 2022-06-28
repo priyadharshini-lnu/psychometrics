@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
 import { FormProps, FormInstance } from 'antd/lib/form'
+import { formDataToResource, resourceToFormData } from 'libs/jsonApi/helpers'
 import { Status } from './constants'
 import { PropsFromRedux } from './connect'
 import { Resource } from './interfaces'
@@ -24,6 +25,10 @@ interface Request {
   submit(values: object): void
 }
 
+interface JSONApiError {
+  title: string
+  detail?: string
+}
 
 export type OwnProps = {
   resourceName: string
@@ -38,7 +43,7 @@ export type OwnProps = {
   formProps?: FormProps
   onStatusChange?(value: string): void
   onSuccessfulSubmission?(response: object): void
-  transformValues?(values: object): object
+  transformValues?(values: Record<string, unknown>): Record<string, unknown>
   storeManager?: {
     form?: FormInstance,
     fields?: FieldData[],
@@ -72,7 +77,7 @@ const ResourceForm: React.FC<Props> = ({
   const [form] = Form.useForm()
   const [status, setStatus] = useState<string | null>(null)
   const [fields, setFields] = useState<FieldData[] | []>([])
-  const [baseErrors, setBaseErrors] = useState<string[]>()
+  const [baseErrors, setBaseErrors] = useState<string[] | JSONApiError[]>()
 
   const store = {
     fields: (storeManager && storeManager.fields) || fields,
@@ -82,14 +87,13 @@ const ResourceForm: React.FC<Props> = ({
 
   useEffect(() => {
     if (!isEdit()) { return }
-
     if (resource) {
-      formValuesToField(resource)
+      formValuesToField(resourceToFormData(resource, resourceName))
     } else {
       handleStatusChange(Status.Loading)
       makeRequest('fetchResource').then(({ response }) => {
         handleStatusChange(Status.Loaded)
-        formValuesToField({ ...response })
+        formValuesToField(resourceToFormData(response, resourceName))
       })
     }
   }, [])
@@ -116,11 +120,13 @@ const ResourceForm: React.FC<Props> = ({
     return requestFunction(...args)
   }
 
-  const saveRequest = (values: object) => {
+  const saveRequest = (values: Record<string, unknown>) => {
     if (request?.submit) { return request.submit(values) }
 
     const requestName = isEdit() ? 'updateResource' : 'createResource'
-    return makeRequest(requestName, values)
+    if (isEdit()) { values = { ...values, id: resourceId || resource?.id } }
+
+    return makeRequest(requestName, formDataToResource(values, resourceName))
   }
 
   const handleStatusChange = (value: string) => {
@@ -130,18 +136,18 @@ const ResourceForm: React.FC<Props> = ({
 
   const formValuesToField = (formValues = {}) => {
     const newFields: FieldData[] = []
-    _.each(formValues, (value, name: string) => {
+    _.each(formValues, (value: string, name: string) => {
       const field = _.find(store.fields, { name })
       let newField: FieldData = { name, value }
-      if (field) {
-        newField = { ...field, value }
-      }
+
+      if (field) { newField = { ...field, value } }
+
       newFields.push(newField)
     })
     store.setFields(newFields)
   }
 
-  const handleSave = async (values: object) => {
+  const handleSave = async (values: Record<string, unknown>) => {
     if (transformValues) {
       values = transformValues(values)
     }
@@ -175,12 +181,20 @@ const ResourceForm: React.FC<Props> = ({
     store.setFields(newFields)
   }
 
+  const displayableError = (error: string | string[] | JSONApiError | JSONApiError[]) => (
+    [error].flat().map((e: string | JSONApiError) => {
+      if (_.isString(e)) return e
+      if (e.detail !== undefined && e.title !== undefined) return `${e.title} (${e.detail})`
+      return e.title || e.detail
+    }) as string[]
+  )
+
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
     removeErrors()
-    _.each(errors, (error: string | string[], name: string) => {
+    _.each(errors, (error: string | string[] | JSONApiError, name: string) => {
       const field = _.find(store.fields, field => _.includes(field.name as string[], name))
-      const errors: string[] = _.castArray(error)
+      const errors = displayableError(error)
       let newField: FieldData = { name, errors }
       if (field) {
         newField = { ...field, errors }
@@ -204,16 +218,18 @@ const ResourceForm: React.FC<Props> = ({
       {...formProps || {}}
       className="resourceForm"
     >
-      {!_.isEmpty(baseErrors)
+      {!_.isEmpty(baseErrors) && baseErrors !== undefined
         && (
           <div ref={baseErrorRef}>
-            <Alert
-              message={false}
-              description={_.join(_.castArray(baseErrors), ',')}
-              type="error"
-              className="mbm"
-              showIcon
-            />
+            {displayableError(baseErrors).map(error => (
+              <Alert
+                message={false}
+                description={error}
+                type="error"
+                className="mbm"
+                showIcon
+              />
+            ))}
           </div>
         )}
       {children({

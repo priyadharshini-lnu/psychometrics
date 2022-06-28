@@ -1,4 +1,4 @@
 export interface Resource {
-  id: number
+  id: number | string,
   [name: string]: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }

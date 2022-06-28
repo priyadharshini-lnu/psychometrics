@@ -48,7 +48,6 @@ FactoryBot.define do
       year { Time.now.year }
       country { 'Barbados' }
       association :project_manager, factory: :superadmin
-      association :account_manager, factory: :superadmin
       after(:create) do |tenancy, evaluator|
         create :license, client: tenancy if evaluator.with_license
       end

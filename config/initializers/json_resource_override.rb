@@ -14,3 +14,13 @@ module JSONAPI
     end
   end
 end
+
+module JSONAPI
+  class ResponseDocument
+    alias old_top_level_meta top_level_meta
+
+    def top_level_meta
+      @operation_results.has_errors? ? {} : old_top_level_meta
+    end
+  end
+end

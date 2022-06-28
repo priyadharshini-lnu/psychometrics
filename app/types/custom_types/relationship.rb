@@ -4,10 +4,10 @@ module CustomTypes
   class Relationship
     def self.relationship_data_type(name, resource = nil)
       type = (resource || name).to_s
-      Types::Hash.schema(
-        id: Types::String,
-        type: Types.Value(type)
-      )
+      Dry::Schema.define do
+        required(:type).filled(:string).value(eql?: type)
+        required(:id).filled(:string)
+      end
     end
 
     def self.relationship_type(detail)
@@ -20,9 +20,15 @@ module CustomTypes
 
           data_method = detail[:allowed_blank] ? :maybe : :value
           if detail[:relationship] == :many
-            required(:data).public_send(data_method, array[data_type])
+            required(:data).public_send(data_method) do
+              array do
+                hash data_type
+              end
+            end
           else
-            required(:data).public_send(data_method, data_type)
+            required(:data).public_send(data_method) do
+              hash data_type
+            end
           end
 
           if detail[:links]

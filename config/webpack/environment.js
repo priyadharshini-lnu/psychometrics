@@ -231,7 +231,7 @@ environment.config.merge({
       poll: 1000,
       aggregateTimeout: 600,
       ignored: [
-        /node_modules([\\]+|\/)+(?!jsonapi-react)/,
+        /node_modules([\\]+|\/)+(?!@thetalententerprise\/jsonapi-react)/,
         /\jsonapi-react([\\]+|\/)node_modules/
       ]
     },

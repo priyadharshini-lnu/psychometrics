@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+Dry::Schema.config.messages.backend = :i18n
+Dry::Schema.config.messages.top_namespace = :dry_errors
+
 module Types
   include Dry.Types()
 end

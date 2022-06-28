@@ -8,19 +8,26 @@ export const ClientTR = t.intersection([
     type: t.string,
     year: t.number,
     country: t.string,
-    accountManager: t.union([
-      t.type({
-        id: t.string,
-        name: t.string,
-      }),
-      t.undefined]),
     projectManager: t.union([
       t.type({
         id: t.string,
         name: t.string,
+        email: t.string,
       }),
       t.undefined]),
   }),
 ])
 
 export type Client = t.TypeOf<typeof ClientTR>
+
+export const Schema = {
+  type: 'clients',
+  fields: {
+    year: { type: 'number' },
+  },
+  relationships: {
+    projectManager: {
+      type: 'users',
+    },
+  },
+}

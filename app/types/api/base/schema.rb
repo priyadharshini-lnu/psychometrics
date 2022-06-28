@@ -35,26 +35,39 @@ module Api
         end
       end
 
-      def self.create_relationship_request(name)
-        this = self
+      def self.relationship_request(name, type)
+        relationships = relationships(type)
+        relationships = preprocess_relationships(relationships, type)
         relationship = relationships.find { |r| r[:name] == name.to_sym }
         raise 'No such relationship' unless relationship
 
+        resource_type = Dry::Schema.define do
+          required(:type).filled(:string).value(eql?: relationship[:resource].to_s)
+          required(:id).filled(:string)
+        end
         has_many = relationship[:relationship] == :many
-
+        data_method = relationship[:allowed_blank] ? :maybe : :value
         define_schema do
           if has_many
-            required(:data).array(:hash) do
-              instance_eval(&this.resource_identifier)
+            required(:data).public_send(data_method) do
+              array do
+                hash resource_type
+              end
             end
           else
-            required(:data).hash(&this.resource_identifier)
+            required(:data).public_send(data_method) do
+              hash resource_type
+            end
           end
         end
       end
 
+      def self.create_relationship_request(name)
+        relationship_request(name, :create_relationship)
+      end
+
       def self.update_relationship_request(name)
-        create_relationship_request(name)
+        relationship_request(name, :update_relationship)
       end
 
       def self.single_resource_response
@@ -67,17 +80,17 @@ module Api
       def self.multiple_resource_response
         this = self
         Dry::Schema.define do
-          required(:data).value(:array) do
+          required(:data).array do
             this.single_resource(:multiple_response)
           end
+          required(:meta).value(this.index_meta_schema)
         end
       end
 
       def self.define_schema(&block)
         namespace = self.namespace
         Dry::Schema.define do
-          config.messages.backend = :i18n
-          config.messages.top_namespace = :dry_errors
+          config.messages.load_paths += I18n.load_path
           config.messages.namespace = namespace
 
           instance_eval(&block)
@@ -137,6 +150,15 @@ module Api
           send(method, :relationships).value(
             CustomTypes::Relationship.relationships(relationships)
           )
+        end
+      end
+
+      def self.index_meta_schema
+        this = self
+        Dry::Schema.define do
+          required(:record_count).filled(:integer)
+          required(:page_count).filled(:integer)
+          instance_eval(&this.extra_index_meta_schema) if this.respond_to?(:extra_index_meta_schema)
         end
       end
     end

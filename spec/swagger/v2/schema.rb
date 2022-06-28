@@ -9,7 +9,7 @@ module Swagger
     DEFINITION = {
       openapi: '3.0.1',
       info: {
-        title: 'TTE Lighthouse API 2.0',
+        title: 'TTE Lighthouse API 2.0 Beta (Internal use only)',
         version: '2.0.0',
         'x-logo': {
           url: 'https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
@@ -24,6 +24,8 @@ module Swagger
         termsOfService: 'https://thetalententerprise.com/privacy-statement/',
         description:
         <<~DESCRIPTION
+          **Warning:** Version 2.0 API is unstable and subject to change without notice. Do not use this for integration.
+
           ## Introduction
           Lighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.
 
@@ -86,7 +88,16 @@ module Swagger
             }
           },
           ClientsListResponse: Api::Base::GenerateSwagger.call!(
-            Api::V2::Client::Schema.multiple_resource_response, description: 'Client'
+            Api::V2::Client::Schema.multiple_resource_response
+          ),
+          ClientResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.single_resource_response
+          ),
+          ClientCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.create_request
+          ),
+          ClientUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Client::Schema.update_request
           )
         }
       }

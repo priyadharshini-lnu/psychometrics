@@ -42,7 +42,6 @@ describe Licenses::GetStats do
         {
           client_name: 'ClientTwo',
           license_end_date: 15.days.since.to_date,
-          account_manager: 'super admin',
           project_manager: 'super admin'
         }
       ]

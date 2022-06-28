@@ -4,6 +4,11 @@ module Api
   class V2::Administration::BaseController < ActionController::Base
     include JSONAPI::Utils
 
+    ACTION_TO_SCHEMA_NAME = {
+      create: :create_request, update: :update_request, create_relationship:
+      :create_relationship_request, update_relationship: :update_relationship_request
+    }.freeze
+
     protect_from_forgery with: :null_session
     class_attribute :_crud_schema_class, :_request_schemas
 
@@ -11,7 +16,6 @@ module Api
     prepend_before_action :validate_requests_schema
     prepend_before_action :authenticate, unless: -> { try(:skip_authentication?) }
 
-    rescue_from ActiveRecord::RecordNotFound, with: :jsonapi_render_not_found
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
 
@@ -37,13 +41,16 @@ module Api
       end
 
       if schema_validation.nil? && _crud_schema_class.present?
-        method_name = {
-          create: :create_request, update: :update_request, create_relationship:
-          :create_relationship_request, update_relationship: :update_relationship_request
-        }[action]
+        method_name = ACTION_TO_SCHEMA_NAME[action]
         return unless method_name
 
-        schema_validation = _crud_schema_class.public_send(method_name).call(params.permit!.to_h)
+        schema_validation = if %i[create_relationship_request update_relationship_request].include?(method_name)
+                              _crud_schema_class.
+                                public_send(method_name, params[:relationship]).
+                                call(params.permit!.to_h)
+                            else
+                              _crud_schema_class.public_send(method_name).call(params.permit!.to_h)
+                            end
       end
 
       if schema_validation&.failure?

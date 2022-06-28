@@ -26,19 +26,15 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
         examples 'application/json' => [{
           type: 'clients',
           data: {
-            'id': '770',
+            id: '770',
             attributes: {
-              'name': 'Client Name',
-              'type': 'Partner',
-              'year': 2021,
-              'location': 'UAE',
-              'account_manager': {
-                'id': '1',
-                'name': 'John Doe'
-              },
-              'project_manager': {
-                'id': '1',
-                'name': 'John Doe'
+              name: 'Client Name',
+              type: 'Partner',
+              year: 2021,
+              location: 'UAE',
+              project_manager: {
+                id: '1',
+                name: 'John Doe'
               }
             }
           }
@@ -49,10 +45,169 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           client_response = clients['data'].find { |c| c['id'] == client.id.to_s }
           expect(client_response).to have_key('id')
           expect(client_response).to have_attribute(:name).with_value(client.name)
-          expect(client_response).to have_relationship(:account_manager).
-            with_data({ 'id' => client.account_manager_id.to_s, 'type' => 'users' })
           expect(client_response).to have_relationship(:project_manager).
             with_data({ 'id' => client.project_manager_id.to_s, 'type' => 'users' })
+        end
+      end
+    end
+  end
+
+  path '/clients/' do
+    post 'Create a client' do
+      operationId 'CreateClient'
+      description 'Create new Client'
+      tags 'Clients'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ClientCreateRequest' }, required: true
+
+      response '201', 'Client Created' do
+        schema '$ref' => '#/components/schemas/ClientResponse'
+        examples 'application/json' => {
+          data: {
+            type: 'clients',
+            attributes: {
+              name: 'Client Name',
+              year: '2020',
+              type: 'partner',
+              country: 'India',
+              number: '123'
+            },
+            relationships: {
+              project_manager: {
+                data: {
+                  type: 'users',
+                  id: '100'
+                }
+              }
+            }
+          }
+        }
+
+        let(:project_manager) { create(:client_admin) }
+        let(:body) do
+          {
+            data: {
+              type: 'clients',
+              attributes: {
+                name: 'Client 1',
+                year: Time.now.year,
+                type: 'partner',
+                country: 'India',
+                number: '123'
+              },
+              relationships: {
+                project_manager: {
+                  data: {
+                    type: 'users',
+                    id: project_manager.id.to_s
+                  }
+                }
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          client_response = JSON.parse(response.body)['data']
+          expect(client_response).to have_key('id')
+          expect(client_response).to have_attribute(:name).with_value('Client 1')
+          expect(client_response).to have_attribute(:year).with_value(Time.now.year)
+          expect(client_response).to have_attribute(:type).with_value('partner')
+          expect(client_response).to have_attribute(:number).with_value('123')
+          expect(client_response).to have_relationship(:project_manager).
+            with_data({ 'id' => project_manager.id.to_s, 'type' => 'users' })
+        end
+      end
+    end
+  end
+
+  path '/clients/{client_id}' do
+    patch 'Update a client' do
+      operationId 'UpdateClient'
+      description 'Update a Client'
+      tags 'Clients'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :client_id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ClientUpdateRequest' }, required: true
+
+      response '200', 'Client Updated' do
+        schema '$ref' => '#/components/schemas/ClientResponse'
+        examples 'application/json' => {
+          data: {
+            type: 'clients',
+            id: '20',
+            attributes: {
+              name: 'Client Name',
+              year: '2020',
+              type: 'partner',
+              country: 'India',
+              number: '123'
+            },
+            relationships: {
+              project_manager: {
+                data: {
+                  type: 'users',
+                  id: '100'
+                }
+              }
+            }
+          }
+        }
+
+        let(:client) { create(:tenancy, name: 'Old Name', type: 'partner') }
+        let(:client_id) { client.id }
+        let(:project_manager) { create(:client_admin) }
+
+        let(:body) do
+          {
+            data: {
+              type: 'clients',
+              id: client.id.to_s,
+              attributes: {
+                name: 'New Name',
+                type: 'retail'
+              },
+              relationships: {
+                project_manager: {
+                  data: {
+                    type: 'users',
+                    id: project_manager.id.to_s
+                  }
+                }
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          client_response = JSON.parse(response.body)['data']
+          expect(client_response).to have_key('id')
+          expect(client_response).to have_attribute(:name).with_value('New Name')
+          expect(client_response).to have_attribute(:type).with_value('retail')
+          expect(client_response).to have_attribute(:number).with_value(client.number)
+          expect(client_response).to have_relationship(:project_manager).
+            with_data({ 'id' => project_manager.id.to_s, 'type' => 'users' })
+        end
+      end
+    end
+
+    delete 'Delete a client' do
+      operationId 'DeleteClient'
+      description 'Delete a Client'
+      tags 'Clients'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :client_id, in: :path, type: :string
+
+      let(:client) { create(:tenancy) }
+      let(:client_id) { client.id }
+
+      response '204', 'Client Deleted' do
+        run_test! do |response|
+          expect(response.body).to be_empty
+          expect(UserAssessment.find_by(id: client_id)).to eq(nil)
         end
       end
     end

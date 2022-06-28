@@ -282,8 +282,6 @@ en:
         name: Name
         updated_at: Modified Date
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign
@@ -1390,6 +1388,8 @@ en:
   dry_errors:
     errors:
       filled?: can't be blank
+      key?: can't be blank
+      missed?: can't be blank
   ecommerce:
     carts:
       show:
@@ -1507,6 +1507,13 @@ en:
           in_progress: In Progress
           not_started: Not Started
     change_password: Change password
+    clients:
+      actions:
+        create:
+          create_client: Create Client
+        remove:
+          confirmation: Enter current client name given below in text box to remove client
+          success: Client with name '%{clientName}' removed successfully
     delete: Delete
     edit: Edit
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
@@ -1519,6 +1526,9 @@ en:
     'no': 'No'
     passwordSetting:
       update_success: Password settings successfull updated
+    request_failed_message_box:
+      message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
+      refresh: Refresh
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
@@ -1638,7 +1648,6 @@ en:
         subject: License overuse
       weekly_stats:
         column_headers:
-          account_manager: Account Manager
           client_name: Client Name
           expiry_date: Expiry date
           overuse_limit: Overuse Limit
@@ -1953,8 +1962,6 @@ en:
       default_message: 'Please review the problems below:'
     labels:
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign
@@ -2081,8 +2088,6 @@ en:
         name: Name
         updated_at: Modified Date
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign

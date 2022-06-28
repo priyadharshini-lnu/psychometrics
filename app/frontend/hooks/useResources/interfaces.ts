@@ -1,3 +1,6 @@
+import { PartialDeep } from 'type-fest'
+import { AdditionRelationshipAttribute } from 'libs/jsonApi/interfaces'
+
 export enum RequestStatus {
   Loading = 'loading',
   Success = 'success',
@@ -20,6 +23,7 @@ export interface ResourceState<D, M = BaseMeta> {
 }
 
 export interface UrlQuery {
+  fields?: { [key: string]: string |string[] }
   page?: {
     number?: number,
     size?: number
@@ -51,3 +55,12 @@ export interface BaseMeta {
   recordCount?: number,
   pageCount?: number,
 }
+
+type ExtraArgs = { responseType?: ResponseType, apiConfig?: ApiConfig }
+export type CreateResource<R> =
+  (attribute: PartialDeep<AdditionRelationshipAttribute<Omit<R, 'id'>>>, args?: ExtraArgs) => Promise<R>
+
+export type UpdateResource<R> =
+  (attribute: { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: ExtraArgs) => Promise<R>
+
+export type RemoveResource = (id: string, args?: ExtraArgs) => Promise<void>

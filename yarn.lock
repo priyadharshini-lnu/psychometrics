@@ -4086,7 +4086,7 @@
   resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.5.7/0f89af5bfc0ce079250e8dc13dcdac8443a90401db7b20ce40fe64c5a99055d8#4fd957e7854dcad2a8f4bee09ba52986c2ecb183"
   integrity sha512-A20rTOsbOjm1YFe0805pE+lf5gnnCs+oibR0p7Ez/NLlbbC2zdibJLLA4/IyLITZAMoF7s6O6XtiXZZHzdgFQQ==
 
-"@thetalententerprise/jsonapi-react@^0.0.27":
+"@thetalententerprise/jsonapi-react@0.0.27":
   version "0.0.27"
   resolved "https://npm.pkg.github.com/download/@thetalententerprise/jsonapi-react/0.0.27/964e45714c700e53b27681f83daa953fceea1eebd43ddce1ba78bfd753261651#045e990e56f1326172e691cd4cca64998137bc36"
   integrity sha512-EwMX1qD/DcWyP7lh1kNT8izWnbyrLsdF7Xp2C/9zLzCplVmGeS7DzmZi/Fd8SDOAGgz5Xf2l8/yiXy6t6DP3Bg==
@@ -17495,6 +17495,11 @@ type-fest@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
+
+type-fest@^2.12.2:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.12.2.tgz#80a53614e6b9b475eb9077472fb7498dc7aa51d0"
+  integrity sha512-qt6ylCGpLjZ7AaODxbpyBZSs9fCI9SkL3Z9q2oxMBQhs/uyY+VD8jHA8ULCGmWQJlBgqvO3EJeAngOHD8zQCrQ==
 
 type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"
