@@ -45,7 +45,7 @@ module Api
           authorize(
             @campaign_report || CampaignReport,
             nil,
-            policy_class: Administration::CampaignReportPolicy,
+            policy_class: ::Administration::CampaignReportPolicy,
             project_id: project.id
           )
         end
