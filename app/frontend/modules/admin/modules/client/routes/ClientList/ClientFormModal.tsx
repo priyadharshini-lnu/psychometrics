@@ -6,7 +6,7 @@ import { CreateResource, UpdateResource } from 'hooks/useResources/interfaces'
 import ResourceFormModal from 'components/ResourceFormModal'
 import { useResources } from 'hooks/useResources'
 import { User } from 'modules/admin/modules/client/core/users'
-import range from 'lodash/range'
+import _ from 'lodash'
 import { AdditionRelationshipAttribute } from 'libs/jsonApi/interfaces'
 import { Client } from '../../core/clients'
 
@@ -92,7 +92,7 @@ export const ClientFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select>
-              {range(currentYear - 2, currentYear + 10).map(year => (<Option key={year} value={year}>{year}</Option>))}
+              {_.range(currentYear - 2, currentYear + 10).map(year => (<Option key={year} value={year}>{year}</Option>))}
             </Select>
           </Form.Item>
           <Form.Item

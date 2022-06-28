@@ -1,5 +1,5 @@
 import { Schema } from 'libs/jsonApi/schema'
-import reduce from 'lodash/reduce'
+import _ from 'lodash'
 import { RelationshipSchema } from './interfaces'
 
 type Resource = {
@@ -12,7 +12,7 @@ export const resourceToFormData = (resource: Resource, resourceName: string) => 
   const relationships = Schema[resourceName]?.relationships as RelationshipSchema
   if (!relationships) return resource
 
-  return reduce(resource, (acc, value, name: string) => {
+  return _.reduce(resource, (acc, value, name: string) => {
     const relationship = relationships[name]
     if (relationship) {
       const association = relationship.association || 'hasOne'
@@ -29,7 +29,7 @@ export const formDataToResource = (formData: { [key: string]: unknown }, resourc
   const relationships = Schema[resourceName]?.relationships as RelationshipSchema
   if (!relationships) { return formData }
 
-  return reduce(relationships, (acc, relationship, relationshipName: string) => {
+  return _.reduce(relationships, (acc, relationship, relationshipName: string) => {
     const association = relationship.association || 'hasOne'
     const field = relationship.field || (association === 'hasOne' ? `${relationshipName}Id` : `${relationshipName}Ids`)
 
