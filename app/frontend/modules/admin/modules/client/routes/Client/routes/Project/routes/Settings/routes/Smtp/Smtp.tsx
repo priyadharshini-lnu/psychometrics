@@ -13,7 +13,7 @@ import {
   saveSettings,
   validateSettings,
   State as SmtpSetting,
-} from 'modules/admin/modules/client/routes/Client/core/smtpSetting'
+} from 'modules/admin/modules/client/core/smtpSetting'
 import { useParams } from 'react-router-dom'
 import { useUpdateEffect } from 'hooks/useUpdateEffect'
 import ResourceForm from 'components/ResourceForm'

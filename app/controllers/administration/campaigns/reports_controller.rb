@@ -128,7 +128,7 @@ module Administration
 
       def report_permissions
         GetPermissionsHash.call!(
-          Administration::CampaignReportPolicy,
+          ::Administration::CampaignReportPolicy,
           current_user,
           nil,
           [

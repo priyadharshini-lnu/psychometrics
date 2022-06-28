@@ -15,7 +15,6 @@ module Administration
       @_filter_form = policy_scope(resource_class).
                       tenancies.
                       includes(
-                        :account_manager,
                         :project_manager,
                         client_admin_memberships: [:user],
                         licenses: [:report_family]
@@ -149,7 +148,7 @@ module Administration
 
     def resource_params
       params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :type,
-                                       :account_manager_id, :project_manager_id)
+                                       :project_manager_id)
     end
 
     def init_collections

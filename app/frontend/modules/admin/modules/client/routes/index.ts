@@ -6,8 +6,13 @@ import AssessorsDetails
   from 'modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
 import ReportPreview from 'modules/admin/modules/campaigns/routes/ReportPreview'
 import { Client } from './Client'
+import { ClientList } from './ClientList'
 
 export const routes = [
+  {
+    path: '/',
+    component: ClientList,
+  },
   {
     path: '/clients/:clientId',
     component: Client,

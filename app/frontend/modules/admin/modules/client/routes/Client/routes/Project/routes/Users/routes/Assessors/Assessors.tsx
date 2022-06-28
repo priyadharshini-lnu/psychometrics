@@ -17,7 +17,7 @@ import {
   resetPassword as resetAssessorPassword,
   remove as removeAssessor,
   clearSingle as clearCurrentAssessor,
-} from 'modules/admin/modules/client/routes/Client/core/assessors'
+} from 'modules/admin/modules/client/core/assessors'
 import { isRequestInProgress } from 'modules/admin/core/request'
 
 import { useDocumentTitle } from 'hooks/useDocumentTitle'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input } from 'antd'
-import { Integration } from 'modules/admin/modules/client/routes/Client/core/integrations'
+import { Integration } from 'modules/admin/modules/client/core/integrations'
 
 const { I18n } = window
 

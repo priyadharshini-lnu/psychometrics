@@ -89,6 +89,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -6481,13 +6483,6 @@ CREATE INDEX index_campaigns_on_project_id ON public.campaigns USING btree (proj
 
 
 --
--- Name: index_clients_on_account_manager_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_clients_on_account_manager_id ON public.clients USING btree (account_manager_id);
-
-
---
 -- Name: index_clients_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9732,6 +9727,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220512111341'),
 ('20220512120041'),
 ('20220513062033'),
+('20220527063033'),
 ('20220527125017'),
 ('20220606151635'),
 ('20220608104948'),

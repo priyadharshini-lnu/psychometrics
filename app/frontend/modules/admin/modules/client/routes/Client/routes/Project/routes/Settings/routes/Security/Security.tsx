@@ -8,7 +8,7 @@ import {
   get as getPasswordSetting,
   saveSettings,
   SAVE_SETTINGS,
-} from 'modules/admin/modules/client/routes/Client/core/securitySetting'
+} from 'modules/admin/modules/client/core/securitySetting'
 import { useParams } from 'react-router-dom'
 import ResourceForm from 'components/ResourceForm'
 import { isRequestInProgress } from 'modules/admin/core/request'

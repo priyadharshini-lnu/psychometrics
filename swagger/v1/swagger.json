@@ -2315,10 +2315,6 @@
         "completed_at": {
           "type": "string",
           "x-nullable": true
-        },
-        "norm_id": {
-          "type": "integer",
-          "x-nullable": true
         }
       }
     },

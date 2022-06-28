@@ -10,7 +10,7 @@ import {
   FETCH_SINGLE as FETCH_PROJECT_SINGLE_PARTICIPANT,
   getCurrent as getCurrentParticipant,
   UPDATE as UPDATE_PROJECT_PARTICIPANT,
-} from 'modules/admin/modules/client/routes/Client/core/participants'
+} from 'modules/admin/modules/client/core/participants'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 

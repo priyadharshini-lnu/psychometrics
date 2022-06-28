@@ -93,7 +93,7 @@ module Api
         authorize(
           @user_report || UserReport,
           nil,
-          policy_class: Administration::UserReportPolicy,
+          policy_class: ::Administration::UserReportPolicy,
           project_id: project.id
         )
       end
