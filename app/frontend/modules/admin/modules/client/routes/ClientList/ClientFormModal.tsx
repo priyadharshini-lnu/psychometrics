@@ -92,7 +92,9 @@ export const ClientFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select>
-              {_.range(currentYear - 2, currentYear + 10).map(year => (<Option key={year} value={year}>{year}</Option>))}
+              {_.range(currentYear - 2, currentYear + 10).map(
+                year => (<Option key={year} value={year}>{year}</Option>),
+              )}
             </Select>
           </Form.Item>
           <Form.Item

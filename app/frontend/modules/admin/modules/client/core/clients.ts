@@ -26,9 +26,6 @@ export const Schema = {
     year: { type: 'number' },
   },
   relationships: {
-    accountManager: {
-      type: 'users',
-    },
     projectManager: {
       type: 'users',
     },

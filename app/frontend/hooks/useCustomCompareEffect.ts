@@ -12,7 +12,7 @@ export const useCustomCompareEffect = <TDeps extends DependencyList>(
   deps: TDeps,
   depsEqual: DepsEqualFnType<TDeps>,
 ) => {
-  if (__PROD__) {
+  if (!__PROD__) {
     if (!(deps instanceof Array) || !deps.length) {
       console.warn(
         '`useCustomCompareEffect` should not be used with no dependencies. Use React.useEffect instead.',
