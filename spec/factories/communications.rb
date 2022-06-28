@@ -23,7 +23,7 @@ FactoryBot.define do
   factory :communication do
     sequence(:subject) { 'Test subject' }
     sequence(:body) { '<p> Test body </p>' }
-    creator { create(:user) }
+    created_by { create(:user) }
     client do
       create(:tenancy, :campaign_level, name: 'Project',
                     subdomain: 'project',
@@ -37,5 +37,6 @@ FactoryBot.define do
     owner_id { create(:tenancy, :campaign_level) }
     end_level_id { Client.last }
     memberships { create_list(:membership, 5) }
+    skip_owner_validation { true }
   end
 end

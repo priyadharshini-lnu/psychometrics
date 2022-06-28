@@ -154,7 +154,7 @@ describe 'Reports' do
             ]
           }]
         }
-        report.update(owner: project, data_configuration: config)
+        report.update(owner: project, data_configuration: config, skip_owner_validation: true)
       end
 
       response '200', 'Success' do
@@ -271,7 +271,7 @@ describe 'Reports' do
 
   path '/reports/{report_id}/dimensions' do
     before do
-      report.update(owner: membership.client)
+      report.update(owner: membership.client, skip_owner_validation: true)
     end
     let!(:license) { create(:license, client: membership.client, report_family: report.report_families.first) }
 
