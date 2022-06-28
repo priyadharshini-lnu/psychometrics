@@ -39,21 +39,6 @@ export type ResolveAttribute<D, E = ResolveRelationships<D>> = {
 }
 export type AdditionRelationshipAttribute<D> = Merge<D, ResolveRelationships<D>>
 
-export const Schema = {
-  type: 'clients',
-  fields: {
-    year: { type: 'number' },
-  },
-  relationships: {
-    accountManager: {
-      type: 'users',
-    },
-    projectManager: {
-      type: 'users',
-    },
-  },
-}
-
 export interface ResourceSchema {
   type: string
   fields: {
