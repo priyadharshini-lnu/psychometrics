@@ -213,7 +213,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
-  gem 'guard', '~> 2.14.0'
+  gem 'guard', '~> 2.18.0'
   gem 'meta_request', '~> 0.6.0'
 end
 group :test do
