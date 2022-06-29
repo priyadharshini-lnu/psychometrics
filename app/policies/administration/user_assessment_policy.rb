@@ -17,9 +17,7 @@ module Administration
     end
 
     def destroy?
-      @user.is?(:superadmin) || !record.completed? && @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      @user.is?(:superadmin)
     end
 
     def update_norm?

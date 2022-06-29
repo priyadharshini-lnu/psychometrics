@@ -1067,8 +1067,8 @@ Rails.application.routes.draw do
 
             post 'campaigns' => 'campaigns#assign_user'
             resources :campaigns, only: %i[index]
-            resources :assessments, only: %i[index update destroy]
-            resources :reports, only: %i[index update destroy] do
+            resources :assessments, only: %i[index update]
+            resources :reports, only: %i[index update] do
               get :results, on: :member
               get :pdf, on: :member
             end
