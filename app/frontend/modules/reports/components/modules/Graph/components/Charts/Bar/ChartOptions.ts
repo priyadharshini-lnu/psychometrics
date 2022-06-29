@@ -85,7 +85,9 @@ export default function ChartOptions (
       },
     },
     tooltip: {
-      enabled: false,
+      enabled: animation,
+      headerFormat: '<hr/><b>{series.name}</b><br/>',
+      pointFormat: '{point.y}<br/>{point.custom.description}',
     },
   }
 }

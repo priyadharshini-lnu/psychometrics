@@ -3,6 +3,7 @@ import AppStore from 'modules/reports/store/AppStore'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
 import Result from 'modules/reports/models/Result'
+import _ from 'lodash'
 
 type FactorResults = {
   desc: string,
@@ -21,14 +22,17 @@ export const Functions = {
 }
 
 export default {
-  series (results: FactorResults[], factors, model: PropertiesModel, func: 'Count' | 'Mean' = 'Count') {
+  series (results: FactorResults[], factors, model: PropertiesModel, func: 'Count' | 'Mean' = 'Count', factorsData) {
     const colors = model.props.colors.map(colorObj => colorObj.color)
 
     if (results) {
       return results.map((res, i) => {
         const data = factors && factors.map(factor => ({
-          name: I18nStore.tFactorName(factor),
+          name: I18nStore.tFactor(factor, 'name'),
           y: (Functions[func] || Functions.Count)(result(res.results.scoring[factor.id], 'results', [])),
+          custom: {
+            description: I18nStore.tFactor(_.find(factorsData, { id: factor.id }), 'description'),
+          },
         }))
         return {
           name: res.desc || AppStore.report.getFilterNameById(res.filterId),

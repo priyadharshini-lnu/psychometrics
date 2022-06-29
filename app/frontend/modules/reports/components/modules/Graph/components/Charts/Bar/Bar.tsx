@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from 'react'
 import Highcharts, { Chart, AxisLabelsFormatterContextObject } from 'highcharts-v9'
 import Highcharts3D from 'highcharts-v9/highcharts-3d'
 import CustomEvents from 'highcharts-custom-events'
-
 import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
+import { Factor } from 'modules/reports/interfaces/Base'
 import { SourceModel } from 'modules/reports/interfaces/graphs/Base'
 import Utils from 'modules/reports/utils/Utils'
 import { changeLabel } from '../LabelChanger'
@@ -26,9 +26,10 @@ const Formats = {
 interface Props {
   model: PropertiesModel
   animation?: boolean
+  factors: Factor[]
 }
 
-export const Bar: React.FC<Props> = ({ model, animation = false }) => {
+export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
 
@@ -94,7 +95,7 @@ export const Bar: React.FC<Props> = ({ model, animation = false }) => {
       return null
     }
     const series = checkAndFilterValues(
-      data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat),
+      data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors),
     )
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
     if (!series.length) {
