@@ -94,7 +94,7 @@ gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'ckeditor'
 gem 'jquery-fileupload-rails', '~> 0.4.6'
-gem 'redis', '~> 4.6.0'
+gem 'redis', '~> 4.7.0'
 gem 'redis-rails', '~> 5.0.2'
 gem 'redlock', '~> 1.2.2'
 
