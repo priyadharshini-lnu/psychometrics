@@ -1,0 +1,59 @@
+import React, { FC } from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
+
+import '../../../app/frontend/styles/ant.less'
+import { DetailsCard } from '../../../app/frontend/glint/components/DetailsCard'
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import styles from './styles.less'
+
+import '../../../app/frontend/styles/utils.less'
+
+const STATUS = {
+  not_started: 'Not Started',
+  in_progress: 'In Progress',
+  completed: 'Completed',
+}
+
+type StatusElementProps = {
+  status: 'not_started' | 'in_progress' | 'completed'
+}
+
+const StatusElement: FC<StatusElementProps> = ({ status }) => <p className={styles[status]}>{STATUS[status]}</p>
+
+export default {
+  title: 'Components/DetailsCard',
+  component: DetailsCard,
+  args: {
+    title: 'Card Title',
+  },
+  argTypes: {
+    status: {
+      control: false,
+    },
+  },
+} as ComponentMeta<typeof DetailsCard>
+
+const Template: ComponentStory<typeof DetailsCard> = args => <DetailsCard {...args}>Content Here</DetailsCard>
+
+export const Simple = Template.bind({})
+Simple.args = {
+  hanndleButtonClick: () => null,
+  buttonText: 'Begin',
+  progressPercentage: 20,
+  description: 'Description here',
+  status: <StatusElement status="in_progress" />,
+  subtitle: '15 minutes left',
+}
+
+export const StatusAtTopRow = Template.bind({})
+StatusAtTopRow.args = {
+  hanndleButtonClick: () => null,
+  buttonText: 'Begin',
+  progressPercentage: 20,
+  description: 'Description here',
+  status: <StatusElement status="not_started" />,
+  subtitle: '15 minutes left',
+  showStatusAtTop: true,
+}
