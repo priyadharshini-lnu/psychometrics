@@ -13,7 +13,6 @@ module UsersResults
     end
 
     def call
-      return broadcast :ok, set_pearson_norm if user_assessment.pearson?
       return broadcast :ok, recompute_saville_assessment if user_assessment.saville?
       return broadcast :ok, recompute_pearson_assessment if user_assessment.pearson?
 
@@ -40,6 +39,7 @@ module UsersResults
     end
 
     def recompute_pearson_assessment
+      set_pearson_norm
       Pearson::SaveScoresAndReports.call!(user_assessment)
     end
 
