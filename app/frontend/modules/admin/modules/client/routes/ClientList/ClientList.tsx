@@ -11,6 +11,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { TableLayout } from 'modules/admin/components/TableLayout'
+import { get as getCurrentUser } from 'core/currentUser'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { RemoveClientModal } from './RemoveClientModal'
 import { ClientFormModal } from './ClientFormModal'
 
@@ -24,7 +26,9 @@ const MODALS = {
 }
 
 const connecter = connect(
-  null,
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
   {
     openModal,
   },
@@ -36,7 +40,7 @@ interface Meta extends BaseMeta{
   types: string[]
 }
 
-const ClientListComponent: React.FC<Props> = ({ openModal }) => {
+const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource, createResource,
@@ -106,23 +110,26 @@ const ClientListComponent: React.FC<Props> = ({ openModal }) => {
           key="project_manager"
         />
 
-        <Column
-          title={I18n.t('common.column.action')}
-          key="action"
-          render={client => (
-            <ConditionalDropdown
-              menu={
-                ActionsMenu({
-                  client,
-                  updateResource,
-                  removeResource,
-                  openModal,
-                  meta,
-                }) as React.ReactElement
-              }
-            />
+        {currentUser.role === 'Users::SuperAdmin'
+          && (
+          <Column
+            title={I18n.t('common.column.action')}
+            key="action"
+            render={client => (
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    client,
+                    updateResource,
+                    removeResource,
+                    openModal,
+                    meta,
+                  }) as React.ReactElement
+                }
+              />
+            )}
+          />
           )}
-        />
       </Table>
       <Pagination
         current={currentPage}
@@ -197,6 +204,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <div role="button" tabIndex={-1} onClick={() => openModal('RemoveClientModal', { id, name, removeResource })}>
           {I18n.t('common.actions.remove')}
         </div>
+      </Menu.Item>
+      <Menu.Item key="licenses">
+        <a href={`/administration/clients/${id}/licenses`}>
+          {I18n.t('frontend.clients.actions.menus.view_licenses')}
+        </a>
       </Menu.Item>
     </Menu>
   )

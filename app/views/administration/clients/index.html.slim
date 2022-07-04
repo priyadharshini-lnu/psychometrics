@@ -1,5 +1,8 @@
 div id='client-container'
 
+javascript:
+  window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+
 = javascript_pack_tag 'vendors2'
 = stylesheet_pack_tag 'vendors2'
 = javascript_pack_tag 'vendors'

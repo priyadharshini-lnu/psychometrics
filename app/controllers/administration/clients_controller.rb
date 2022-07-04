@@ -9,26 +9,12 @@ module Administration
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
     append_before_action :init_collections, only: %i[new create edit update]
+    before_action :skip_policy_scope, only: [:index]
 
     def index
-      @filter_term = params.dig(:q, :filterable_fields)
-      @_filter_form = policy_scope(resource_class).
-                      tenancies.
-                      includes(
-                        :project_manager,
-                        client_admin_memberships: [:user],
-                        licenses: [:report_family]
-                      ).
-                      order(:name).
-                      ransack(params[:q])
-
-      filter_form.archived_true ||= false
-      @_resources = filter_form.result.page(params[:page])
-
-      respond_to do |format|
-        format.html
-        format.js { render :index, formats: [:js] }
-      end
+      @init_state = {
+        currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
+      }
     end
 
     def new

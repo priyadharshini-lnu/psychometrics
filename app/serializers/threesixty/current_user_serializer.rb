@@ -18,6 +18,8 @@ module Threesixty
     end
 
     def permissions
+      return unless current_project_id
+
       permissions = GetPermissionsHash.call!(
         Administration::CampaignPolicy,
         object,

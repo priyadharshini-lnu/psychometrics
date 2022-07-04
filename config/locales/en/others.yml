@@ -1128,6 +1128,7 @@ en:
   clear_filter: Clear Filter
   common:
     actions:
+      add: Add
       cancel: Cancel
       close: Close
       delete: Delete
@@ -1511,6 +1512,8 @@ en:
       actions:
         create:
           create_client: Create Client
+        menus:
+          view_licenses: View Licenses
         remove:
           confirmation: Enter current client name given below in text box to remove client
           success: Client with name '%{clientName}' removed successfully
