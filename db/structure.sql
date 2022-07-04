@@ -273,8 +273,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -433,12 +433,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -664,8 +664,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb
 );
 
@@ -926,7 +926,6 @@ CREATE TABLE public.clients (
     country character varying,
     year integer,
     applicable_level integer DEFAULT 0,
-    account_manager_id integer,
     project_manager_id integer,
     archived boolean DEFAULT false,
     tte_id integer,
@@ -1290,7 +1289,8 @@ CREATE TABLE public.datasheets (
     columns jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying
 );
 
 
@@ -3796,7 +3796,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4238,10 +4239,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -6686,6 +6687,13 @@ CREATE INDEX index_datasheets_on_project_id ON public.datasheets USING btree (pr
 
 
 --
+-- Name: index_datasheets_on_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_datasheets_on_type ON public.datasheets USING btree (type);
+
+
+--
 -- Name: index_dd1550fac3e20f3c72e929b92570e38fc03f70a8; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8355,14 +8363,6 @@ ALTER TABLE ONLY public.sms_records
 
 
 --
--- Name: clients fk_rails_5b49237ec1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.clients
-    ADD CONSTRAINT fk_rails_5b49237ec1 FOREIGN KEY (account_manager_id) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
 -- Name: questions fk_rails_5b54a08d0b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8919,7 +8919,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -9715,6 +9715,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
+('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9739,6 +9740,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220609124428'),
 ('20220609125511'),
 ('20220613192348'),
-('20220616103155');
+('20220616103155'),
+('20220630112848');
 
 

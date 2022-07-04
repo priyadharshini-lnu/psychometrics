@@ -24,7 +24,7 @@ module Projects
         SELECT datasheet_rows.id, datasheet_rows.email, null as first_name, null as last_name, null as locale, 'datasheets' as source
         FROM datasheet_rows
         JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and datasheets.project_id = :project_id
-        WHERE datasheet_rows.email LIKE :query
+        WHERE datasheets.type = 'Datasheet' AND datasheet_rows.email LIKE :query
         LIMIT :limit
       SQL
     end
