@@ -87,3 +87,6 @@ app/assets/javascripts/i18n/translations.js
 
 # Ignore Dev Procfile
 Procfile.dev
+
+# Ignore storybook build files
+storybook-static
