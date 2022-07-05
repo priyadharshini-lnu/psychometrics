@@ -13,10 +13,11 @@ module Administration
     def update
       authorize user, nil, policy_class: UserProfilePolicy
       @form = ::Users::AdminProfileEditForm.from_params(profile_params)
-      if @form.valid?
-        audit! :update_profile, user, payload: params.require(:user).permit(:first_name, :last_name, :email)
-        user = ::Users::AdminProfileUpdate.call!(@form, current_user)
-        bypass_sign_in(user)
+      @user = ::Users::AdminProfileUpdate.call!(@form, current_user)
+      @form.errors.merge!(@user.errors)
+      if @user.valid?
+        audit! :update_profile, @user, payload: params.require(:user).permit(:first_name, :last_name, :email)
+        bypass_sign_in(@user)
         redirect_to edit_administration_profiles_path, notice: t('.edit.success')
       else
         render :edit

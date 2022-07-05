@@ -37,7 +37,7 @@ export default function EditProfileModal ({
   }
 
   const handleInputChange = ({ target: { name, value } }) => {
-    setProfileDetails({ ...profileDetails, [name]: value })
+    setProfileDetails({ ...profileDetails, [name]: value || undefined })
   }
 
   return (

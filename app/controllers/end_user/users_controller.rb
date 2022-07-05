@@ -61,12 +61,14 @@ class EndUser::UsersController < ApplicationController
 
   def update_details
     form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user)
-    if form.valid?
-      current_user.update!(form.attributes)
+
+    return render json: { errors: form.errors.messages }, status: :bad_request unless form.valid?
+
+    if current_user.update(form.attributes)
       bypass_sign_in(current_user, scope: :user)
       render json: current_user, serializer: Threesixty::CurrentUserSerializer, project_id: @current_project.id
     else
-      render json: { errors: form.errors.messages }, status: :bad_request
+      render json: { errors: current_user.errors.messages }, status: :bad_request
     end
   end
 
