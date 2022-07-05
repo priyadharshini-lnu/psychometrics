@@ -34,6 +34,7 @@ interface State {
     manageRelationships: boolean
     resetAllNominations: boolean
     resetAllParticipants: boolean
+    rescoreAssessment: boolean
   },
   total: number,
   form: {
@@ -61,6 +62,7 @@ export const defaultState: State = {
     manageRelationships: false,
     resetAllNominations: false,
     resetAllParticipants: false,
+    rescoreAssessment: false,
   },
   total: 0,
   form: {
@@ -133,6 +135,7 @@ type FetchSubjectsType = ApiActionResponse<{
     manageRelationships: boolean
     resetAllNominations: boolean
     resetAllParticipants: boolean
+    rescoreAssessment: boolean
   },
   total: number
 }>

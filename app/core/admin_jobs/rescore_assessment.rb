@@ -17,6 +17,7 @@ module AdminJobs
       results.find_each do |res|
         ::UsersResults::Recompute.call!(res, owner, norm_data || {})
       end
+      remove_report_pdf if campaign.threesixty?
       broadcast :ok
     end
 
@@ -38,6 +39,12 @@ module AdminJobs
     end
 
     private
+
+    def remove_report_pdf
+      campaign.user_reports.each do |ur|
+        ur.update!(remove_pdf: true, status: :not_prepared)
+      end
+    end
 
     def campaign_assessment
       @campaign_assessment ||= CampaignAssessment.find_by(

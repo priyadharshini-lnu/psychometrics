@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-  Button, Menu, message,
+  Button, Menu, message, Modal,
 } from 'antd'
-import { ToolOutlined, DownOutlined } from '@ant-design/icons'
+import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 
 const menu = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
-  openModal, dimensionId, permissions, onExport,
+  openModal, dimensionId, permissions, onExport, handleRescoreAssessment,
 }) => (
   <Menu>
     {permissions.manageRelationships && (
@@ -59,11 +59,22 @@ const menu = ({
         </div>
       </Menu.Item>
     )}
+    {permissions.rescoreAssessment && (
+      <Menu.Item key="rescore_assessment">
+        <div
+          onClick={() => handleRescoreAssessment(campaignId)}
+          role="button"
+          tabIndex={-1}
+        >
+          {I18n.t('campaign_assessment.actions.rescore')}
+        </div>
+      </Menu.Item>
+    )}
   </Menu>
 )
 
 export default function ToolsDropdown ({
-  resetCampaign, resetAllNominations, openModal, dimensionId,
+  resetCampaign, resetAllNominations, openModal, dimensionId, rescoreAssessment,
   match: { params: { campaignId, projectId } }, permissions,
   exportCompletionStatuses,
 }) {
@@ -72,6 +83,27 @@ export default function ToolsDropdown ({
       onConfirm: removeLicenceUsage => resetCampaign(campaignId, removeLicenceUsage),
     })
   }
+
+  const handleRescoreAssessment = (campaignId) => {
+    Modal.confirm({
+      title: I18n.t('campaign_assessment.modals.rescore.title'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('campaign_assessment.modals.rescore.content'),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: async () => {
+        try {
+          await rescoreAssessment(campaignId)
+          message.success(I18n.t('campaign_assessment.modals.rescore.successfully'))
+        } catch (error) {
+          message.error(error, 5)
+        }
+      },
+    })
+  }
+
 
   const resetAllNominationsWithConfirmation = (campaignId) => {
     openModal('CampaignNameConfirmationModal', {
@@ -93,6 +125,7 @@ export default function ToolsDropdown ({
         campaignId,
         resetCampaignWithConfirmation,
         resetAllNominationsWithConfirmation,
+        handleRescoreAssessment,
         openModal,
         dimensionId,
         permissions,

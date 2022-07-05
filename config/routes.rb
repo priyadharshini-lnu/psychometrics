@@ -548,6 +548,7 @@ Rails.application.routes.draw do
         delete :reset
         delete :reset_nominations
         delete :remove_user
+        post :rescore_assessment
       end
     end
 

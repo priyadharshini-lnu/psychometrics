@@ -938,6 +938,8 @@ en:
     ungrouped: Ungrouped tasks
     welcome: Welcome
   campaign_assessment:
+    actions:
+      rescore: Rescore Assessment
     column:
       assessment_name: Assessment name
       assessor_form: Assessor Form
@@ -968,6 +970,10 @@ en:
         msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
         successfully: "%{name} assessment removed successfully."
         title: Remove assessment?
+      rescore:
+        content: Are you sure you want to rescore assessment?
+        successfully: Assessment was successfully rescored.
+        title: Rescore Assessment?
       rescore_response:
         message: Rescoring scheduled for assessment %{name}
         title: Rescore Responses
