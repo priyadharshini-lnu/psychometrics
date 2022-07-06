@@ -2329,6 +2329,10 @@ en:
     created: Successfully created
     created_by: Created By
     datasheets:
+      column:
+        add_column: Add Column
+        reorder: Reorder
+        save_order: Save order
       drawers:
         add_edit:
           cancelText: Cancel
@@ -2363,11 +2367,26 @@ en:
             other: Are you sure you want to delete {{count}} records?
           okText: Yes, delete
           successMessage:
-            one: Record deleted
-            other: "{{count}} records deleted"
+            one: Column and related data deleted
+            other: "{{columns}} and related data deleted"
           title:
             one: Delete record
             other: Delete records
+        remove_columns:
+          cancelText: Cancel
+          content:
+            one: Deleting a column ({{columns}}) will remove the data in this column for all rows
+            other: Deleting a columns ({{columns}}) will remove the data in this column for all rows
+          okText: Yes, delete
+          successMessage:
+            one: Columns deleted
+            other: "{{count}} records deleted"
+          title:
+            one: Delete column
+            other: Delete columns
+      tabs:
+        rows: Rows
+        settings: Settings
     dates:
       completed: Completed At
       created: Created At

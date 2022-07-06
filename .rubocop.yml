@@ -105,6 +105,12 @@ Style/RedundantReturn:
 Style/NilComparison:
   Enabled: false
 
+Style/IfUnlessModifier:
+  Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  Enabled: false
+
 Style/SingleLineBlockParams:
   Enabled: false
 
@@ -128,5 +134,3 @@ Style/HashEachMethods:
 
 Style/HashTransformKeys:
   Enabled: true
-
-

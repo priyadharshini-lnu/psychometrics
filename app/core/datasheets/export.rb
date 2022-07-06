@@ -9,11 +9,10 @@ module Datasheets
     end
 
     def call
-      column_definition = { Datasheet::EMAIL_COLUMN => datasheet.columns['Email'] }
-      column_definition = column_definition.merge(datasheet.columns)
+      column_definition = datasheet.columns
 
-      column_names = column_definition.keys
-      coulmn_types = column_definition.values
+      column_names = column_definition.map { |c| c['name'] }
+      coulmn_types = column_definition.map { |c| c['type'] }
 
       result = Axlsx::Package.new do |package|
         package.workbook.add_worksheet(name: 'Datasheet') do |sheet|

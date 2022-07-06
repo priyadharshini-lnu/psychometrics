@@ -5,8 +5,12 @@ RSpec.describe Administration::Projects::DatasheetRowsController, type: :control
   let(:current_user) { create(:superadmin) }
   let(:project) { create(:project) }
   let(:datasheet) do
-    create(:datasheet, project: project, columns:
-      { 'Email' => 'String', 'Name' => 'String', 'Profile' => 'Markdown', 'Description' => 'HTML' })
+    create(:datasheet, project: project, columns: [
+      { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
+      { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
+      { name: 'Profile', type: 'Markdown', accessor_access: true, dashboard_use: true, visible_in_list: true },
+      { name: 'Description', type: 'HTML', accessor_access: true, dashboard_use: true, visible_in_list: true }
+    ])
   end
   let!(:datasheet_row) do
     create(:datasheet_row, datasheet: datasheet, email: 'james@cc.com',
@@ -26,10 +30,14 @@ RSpec.describe Administration::Projects::DatasheetRowsController, type: :control
 
       expect(parsed_response['columns']).to match_array(
         [
-          { 'id' => 'Email', 'type' => 'String', 'visible' => true },
-          { 'id' => 'Name', 'type' => 'String', 'visible' => false },
-          { 'id' => 'Profile', 'type' => 'Markdown', 'visible' => false },
-          { 'id' => 'Description', 'type' => 'HTML', 'visible' => false }
+          { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true },
+          { 'name' => 'Name', 'type' => 'String', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true },
+          { 'name' => 'Profile', 'type' => 'Markdown', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true },
+          { 'name' => 'Description', 'type' => 'HTML', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true }
         ]
       )
       expect(parsed_response['total']).to eq(2)
@@ -56,10 +64,14 @@ RSpec.describe Administration::Projects::DatasheetRowsController, type: :control
       expect(parsed_response[0]['type']).to eq('project')
       expect(parsed_response[0]['columns']).to match_array(
         [
-          { 'id' => 'Email', 'type' => 'String', 'visible' => true },
-          { 'id' => 'Name', 'type' => 'String', 'visible' => false },
-          { 'id' => 'Profile', 'type' => 'Markdown', 'visible' => false },
-          { 'id' => 'Description', 'type' => 'HTML', 'visible' => false }
+          { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true },
+          { 'name' => 'Name', 'type' => 'String', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true },
+          { 'name' => 'Profile', 'type' => 'Markdown', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true },
+          { 'name' => 'Description', 'type' => 'HTML', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true }
         ]
       )
       expect(parsed_response[0]['record']).to eq({

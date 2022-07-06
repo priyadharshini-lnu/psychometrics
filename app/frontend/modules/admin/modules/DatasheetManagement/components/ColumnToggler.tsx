@@ -10,14 +10,14 @@ import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { COLUMN_ID_EMAIL } from 'modules/admin/modules/DatasheetManagement/constants'
 
 import { RootState } from 'modules/admin/core/rootReducers'
-import { get as getColumnDefinitions } from 'modules/admin/modules/DatasheetManagement/core/columnDefinitions'
+import { get as getColumns } from 'modules/admin/modules/DatasheetManagement/core/columnDefinitions'
 
 import { toReadableString } from 'modules/admin/modules/DatasheetManagement/utils'
 
 const { I18n } = window
 
 const connector = connect((state: RootState) => ({
-  columnDefinitions: getColumnDefinitions(state),
+  columnDefinitions: getColumns(state),
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -38,11 +38,11 @@ const ColumnTogglerComponent: FC<Props> = ({
 
   const columnsForCheckboxes = useMemo(
     () => columnDefinitions
-      .filter(column => column.id !== COLUMN_ID_EMAIL && ['String', 'Text', 'Number'].includes(column.type))
+      .filter(column => column.name !== COLUMN_ID_EMAIL && ['String', 'Text', 'Number'].includes(column.type))
       .map(filteredColumn => ({
-        title: toReadableString(filteredColumn.id),
-        name: filteredColumn.id,
-        isChecked: visibleColumnsKeys.includes(filteredColumn.id),
+        title: toReadableString(filteredColumn.name),
+        name: filteredColumn.name,
+        isChecked: visibleColumnsKeys.includes(filteredColumn.name),
       })),
     [visibleColumnsKeys, columnDefinitions],
   )

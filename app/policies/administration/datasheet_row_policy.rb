@@ -61,5 +61,13 @@ module Administration
         :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
       )
     end
+
+    private
+
+    def manage?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
+      )
+    end
   end
 end

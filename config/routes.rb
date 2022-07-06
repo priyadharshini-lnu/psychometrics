@@ -27,8 +27,16 @@ Rails.application.routes.draw do
 
   concern :datasheet_management do
     collection do
+      post :add_column
+      put :update_column
+      put :update_columns_order
+      delete :remove_columns
+    end
+  end
+
+  concern :datasheet_row_management do
+    collection do
       delete :bulk_delete
-      put :save_column_preference
       put :import
       get :export
     end
@@ -138,7 +146,8 @@ Rails.application.routes.draw do
         end
         resources :sms_records, only: %i[create]
 
-        resources :datasheet_rows, concerns: :datasheet_management
+        resources :datasheets, concerns: :datasheet_management
+        resources :datasheet_rows, concerns: :datasheet_row_management
 
         resources :registration_codes do
           member do
@@ -269,7 +278,8 @@ Rails.application.routes.draw do
 
     resources :projects, :new_projects do
       scope module: :projects do
-        resources :datasheet_rows, concerns: :datasheet_management
+        resources :datasheets, concerns: :datasheet_management
+        resources :datasheet_rows, concerns: :datasheet_row_management
         resources :saml_settings, only: %i[create update] do
           collection do
             post :test_saml

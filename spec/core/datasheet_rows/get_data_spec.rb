@@ -4,7 +4,9 @@ require 'rails_helper'
 
 describe ::DatasheetRows::GetData do
   let(:datasheet) do
-    create(:datasheet, columns: { 'Email' => 'String', 'Name' => 'String', 'Profile' => 'Text' })
+    create(:datasheet, columns: [{ name: 'Email', type: 'String' },
+                                 { name: 'Name', type: 'String' },
+                                 { name: 'Profile', type: 'Text' }])
   end
   let(:datasheet_row) do
     create(:datasheet_row, datasheet: datasheet, email: 'james@cc.com',
@@ -25,7 +27,8 @@ describe ::DatasheetRows::GetData do
   end
 
   it 'uses the datasheet passed to get columns for which data needs to be extracted' do
-    new_datasheet = create(:datasheet, columns: { 'Email' => 'String', 'Profile' => 'Text' })
+    new_datasheet = create(:datasheet, columns: [{ name: 'Email', type: 'String' },
+                                                 { name: 'Profile', type: 'Text' }])
     result = described_class.call!(datasheet_row, datasheet: new_datasheet)
 
     expect(result).to eq({ id: datasheet_row.id, 'Email' => 'james@cc.com', 'Profile' => 'Software Engineer' })

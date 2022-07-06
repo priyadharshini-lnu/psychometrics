@@ -1,0 +1,216 @@
+import React, { FC, useState, useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from 'modules/admin/core/rootReducers'
+import {
+  Row, Col, Table, Switch, Space, Button, Divider, Empty,
+} from 'antd'
+import { ColumnsType } from 'antd/lib/table'
+import { PlusOutlined, MenuOutlined } from '@ant-design/icons'
+import {
+  SortableContainerProps, SortEnd, SortableContainer, SortableElement, SortableHandle,
+} from 'react-sortable-hoc'
+import { arrayMove } from '@dnd-kit/sortable'
+import { RemoveColumns } from './components/RemoveColumns'
+import {
+  get as getColumns, updateColumn, updateSorting,
+} from './core/columnDefinitions'
+import { AddFieldDrawer } from './components/AddFieldDrawer'
+import { ParentResourceType } from './interfaces'
+import { EMAIL, Column } from './core/list'
+import { get as getPermissions } from './core/permissions'
+
+const { I18n } = window
+
+const connector = connect(
+  (state: RootState) => ({
+    permissions: getPermissions(state),
+    columns: getColumns(state),
+  }),
+  {
+    updateColumn,
+    updateSorting,
+  },
+)
+interface OwnProps {
+  parentResourceType: ParentResourceType
+  parentResourceId: number
+}
+
+type PropsFromRedux = OwnProps & ConnectedProps<typeof connector>
+
+const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />)
+
+const SortableItem = SortableElement((props: React.HTMLAttributes<HTMLTableRowElement>) => (
+  <tr {...props} />
+))
+const SortableBody = SortableContainer((props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+  <tbody {...props} />
+))
+
+export const DatasheetSettingsComponent: FC<PropsFromRedux> = ({
+  columns: data, parentResourceType, parentResourceId, permissions, updateColumn, updateSorting,
+}) => {
+  if (!data.length) {
+    return (
+      <Empty description={I18n.t('datasheets.no_datasheet')} />
+    )
+  }
+
+
+  const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([])
+
+  const changeColumn = (column, field, value) => {
+    updateColumn(parentResourceType, parentResourceId, { ...column, [field]: value })
+  }
+
+  const [drawer, setDrawer] = useState(false)
+  const [sort, setSort] = useState(false)
+  const [dataSource, setDataSource] = useState(data)
+
+  useEffect(() => {
+    setDataSource(data)
+  }, [data])
+
+  const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
+    if (oldIndex !== newIndex) {
+      const newData = arrayMove(dataSource, oldIndex, newIndex).filter(
+        (el: Column) => !!el,
+      )
+      setDataSource(newData)
+    }
+  }
+
+  const updateOrder = () => {
+    if (!sort) { return setSort(true) }
+
+    updateSorting(parentResourceType, parentResourceId, dataSource)
+    setSort(false)
+  }
+
+  const columns:ColumnsType<Column> = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+    }, {
+      title: 'Type',
+      dataIndex: 'type',
+    },
+    {
+      title: 'Action',
+      render: (title, data) => (
+        <Space>
+          <Switch
+            disabled={sort}
+            checked={data.accessorAccess}
+            onChange={value => changeColumn(data, 'accessorAccess', value)}
+          />
+          {I18n.t('activemodel.attributes.datasheet_column.accessor_access')}
+          <Switch
+            disabled={sort || data.name === EMAIL}
+            checked={data.dashboardUse}
+            onChange={value => changeColumn(data, 'dashboardUse', value)}
+          />
+          {I18n.t('activemodel.attributes.datasheet_column.dashboard_use')}
+          <Switch
+            disabled={sort || data.name === EMAIL}
+            checked={data.visibleInList}
+            onChange={value => changeColumn(data, 'visibleInList', value)}
+          />
+          {I18n.t('activemodel.attributes.datasheet_column.visible_in_list')}
+        </Space>
+      ),
+    },
+  ]
+  if (sort) {
+    columns.unshift({
+      title: 'Sort',
+      dataIndex: 'sort',
+      width: 30,
+      render: (title, data) => (data.name === EMAIL ? null : <DragHandle />),
+    })
+  }
+
+  const DraggableContainer = (props: SortableContainerProps) => (
+    <SortableBody
+      useDragHandle
+      lockAxis="y"
+      disableAutoscroll
+      helperClass="row-dragging"
+      onSortEnd={onSortEnd}
+      {...props}
+    />
+  )
+
+  const DraggableRow: React.FC<{}> = ({ ...restProps }) => {
+    const index = dataSource.findIndex(x => x.name === restProps['data-row-key'])
+    return restProps['data-row-key'] === EMAIL
+      ? <tr {...restProps} />
+      : <SortableItem index={index} {...restProps} />
+  }
+
+  return (
+    <div>
+      <Row justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
+        <Col>
+          <Button type="primary" danger={sort} onClick={() => updateOrder()}>
+            {sort
+              ? I18n.t('administration.datasheets.column.save_order')
+              : I18n.t('administration.datasheets.column.reorder')}
+          </Button>
+        </Col>
+        <Col>
+          <Space>
+            <RemoveColumns
+              selectedRowKeys={sort ? [] : selectedRowKeys}
+              setSelectedRowKeys={setSelectedRowKeys}
+              permissions={permissions}
+              parentResourceType={parentResourceType}
+              parentResourceId={parentResourceId}
+            />
+            <Divider type="vertical" />
+            <Button
+              type="primary"
+              onClick={() => setDrawer(true)}
+            >
+              <PlusOutlined />
+              {I18n.t('administration.datasheets.column.add_column')}
+            </Button>
+          </Space>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table
+            columns={columns}
+            dataSource={dataSource}
+            rowKey={row => row.name}
+            pagination={false}
+            rowSelection={sort ? undefined : {
+              selectedRowKeys,
+              onChange: (rowKey: string[]) => setSelectedRowKeys(rowKey),
+              getCheckboxProps: (record: Column) => ({
+                disabled: record.name === EMAIL,
+                style: record.name === EMAIL ? { visibility: 'hidden' } : {},
+                name: record.name,
+              }),
+            }}
+            components={!sort ? undefined : {
+              body: {
+                wrapper: DraggableContainer,
+                row: DraggableRow,
+              },
+            }}
+          />
+        </Col>
+      </Row>
+      <AddFieldDrawer
+        isOpen={drawer}
+        toggleDrawer={() => setDrawer(!drawer)}
+        parentResourceType={parentResourceType}
+        parentResourceId={parentResourceId}
+      />
+    </div>
+  )
+}
+
+export const DatasheetSettings = connector(DatasheetSettingsComponent)

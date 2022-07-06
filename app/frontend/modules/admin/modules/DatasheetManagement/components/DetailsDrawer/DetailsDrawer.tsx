@@ -73,8 +73,8 @@ const DetailsDrawerComponent: FC<Props> = ({
   ): DrawerDataRecord[] => {
     if (dataRecord) {
       const drawerDataRecord = dataRecord.columns.map((column) => {
-        const value = dataRecord.record[column.id]
-        return { value, type: column.type, name: column.id }
+        const value = dataRecord.record[column.name]
+        return { value, type: column.type, name: column.name }
       })
 
       return drawerDataRecord

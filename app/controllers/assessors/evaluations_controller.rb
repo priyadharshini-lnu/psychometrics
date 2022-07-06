@@ -22,12 +22,14 @@ class Assessors::EvaluationsController < Assessors::BaseController
                                                         subject_id: user.id,
                                                         evaluator_id: user.id,
                                                         assessment_id: assessment_ids)
+    datasheet_columns = Datasheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
     datasheet = campaign.datasheet_data(user.email)
+
     render json: {
       user_info: {
         user: UserSerializer.new(user).to_hash,
-        datasheet: datasheet,
-        datasheet_columns: campaign.datasheet_columns
+        datasheet_columns: datasheet_columns,
+        datasheet: datasheet.slice(*datasheet_columns.map { |col| col['name'] })
       },
       assessor_assessments: @assessor_assessments.map { |a| { id: a.id, name: a.assessment.name } },
       subject_assessments: @subject_user_assessment.map { |a| { id: a.id, name: a.assessment.name } }

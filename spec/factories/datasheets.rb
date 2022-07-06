@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :datasheet do
     project { nil }
-    columns { '' }
+    columns { [{ name: 'Email', type: 'String' }] }
   end
 end

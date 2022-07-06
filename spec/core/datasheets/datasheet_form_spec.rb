@@ -9,7 +9,68 @@ describe ::Datasheets::DatasheetForm do
     let(:form) { described_class.new(file: file, parsed_file: parsed_file) }
     subject { form }
 
+    context 'validate columns' do
+      before do
+        allow(form).to receive(:parsed_file).and_return([{
+          'AaZaQZz1vpRFU2oURobncb_hsdz8hS1xbssPJws_w1eqE6_yWtVWgm4AwGLJoZyjC' => nil
+        }])
+      end
+
+      it '#check_columns_names_length' do
+        allow(form).to receive(:column_types).and_return([])
+        is_expected.to be_invalid
+        expect(form.errors.details[:file]).to include({
+          error: :invalid_column_name_size,
+          column: 'AaZaQZz1vpRFU2oURobncb_hsdz8hS1xbssPJws_w1eqE6_yWtVWgm4AwGLJoZyjC'
+        })
+      end
+
+      it 'validates column type' do
+        parsed_file = [{ 'Email' => nil }, { 'Email' => 'String1' }, { 'Email' => 'test@email.com' }]
+        allow(form).to receive(:parsed_file).and_return(parsed_file)
+
+        is_expected.to be_invalid
+        expect(form.errors.details[:file]).to include(error: :invalid_column_type)
+      end
+    end
+
+    context 'validate column content' do
+      before do
+        allow(form).to receive(:parsed_file).and_return(
+          [
+            { 'Email' => nil, 'Str' => nil, 'Num' => nil },
+            { 'Email' => 'Text', 'Str' => 'String', 'Num' => 'Number' },
+            { 'Email' => 'test3@aa.aa', 'Str' => Devise.friendly_token(258) },
+            { 'Email' => 'test4@aa.aa', 'Str' => 'valid' },
+            { 'Email' => 'test5@aa.aa', 'Str' => Devise.friendly_token(258) },
+            { 'Email' => 'test6@aa.aa', 'Num' => '1' },
+            { 'Email' => 'test7@aa.aa', 'Num' => 1.5 },
+            { 'Email' => 'test8@aa.aa', 'Num' => 5 },
+            { 'Email' => 'test9@aa.aa', 'Num' => nil },
+            { 'Email' => 'test10@aa.aa', 'Num' => 'string' }
+          ]
+        )
+      end
+
+      it 'validates string values' do
+        is_expected.to be_invalid
+        expect(form.errors.details[:file]).to include(error: :invalid_string_value_size, column: 'Str', index: 3)
+        expect(form.errors.details[:file]).to include(error: :invalid_string_value_size, column: 'Str', index: 5)
+      end
+
+      it 'validates number values' do
+        is_expected.to be_invalid
+        expect(form.errors.details[:file]).to include(error: :invalid_number_value, column: 'Num', index: 6)
+        expect(form.errors.details[:file]).to include(error: :invalid_number_value, column: 'Num', index: 10)
+      end
+    end
+
     context 'failure flow' do
+      let(:datasheet) do
+        create(:datasheet, columns: [{ type: 'String', name: 'Email' },
+                                     { type: 'String', name: 'test' }])
+      end
+
       it '#validate_presence_of' do
         allow(form).to receive(:file).and_return(nil)
         is_expected.to be_invalid
@@ -17,9 +78,24 @@ describe ::Datasheets::DatasheetForm do
       end
 
       it '#has_email_column' do
-        allow(form).to receive(:parsed_file).and_return([{ 'No Email Column' => true }])
+        allow(form).to receive(:parsed_file).and_return([{ 'No Email Column' => nil }])
+        allow(form).to receive(:column_types).and_return([])
+        allow(form).to receive(:data_rows).and_return([])
         is_expected.to be_invalid
         expect(form.errors.details[:file]).to include(error: :no_email_column)
+      end
+
+      it '#validate_column_types_matching' do
+        parsed_file = [
+          { 'Email' => nil, 'test' => nil }, { 'Email' => 'String', 'test' => 'Number' }
+        ]
+        allow(form).to receive(:parsed_file).and_return(parsed_file)
+        form.with_context(datasheet: datasheet)
+        is_expected.to be_invalid
+
+        expect(form.errors.details[:file]).to include({
+          col: 'test', error: :column_type_mismatch, got: 'Number', type: 'String'
+        })
       end
 
       it '#no_duplicates' do
@@ -28,17 +104,8 @@ describe ::Datasheets::DatasheetForm do
         ]
         allow(form).to receive(:parsed_file).and_return(parsed_file)
         is_expected.to be_invalid
-
         expect(form.errors.details[:file]).to include(error: :email_duplicate)
       end
-    end
-
-    it 'validates column type' do
-      parsed_file = [{ 'Email' => nil }, { 'Email' => 'String1' }, { 'Email' => 'test@email.com' }]
-      allow(form).to receive(:parsed_file).and_return(parsed_file)
-
-      is_expected.to be_invalid
-      expect(form.errors.details[:file]).to include(error: :invalid_column_type)
     end
 
     it 'validates presence of Email value' do

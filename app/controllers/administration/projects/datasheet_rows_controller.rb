@@ -3,7 +3,7 @@
 module Administration
   module Projects
     class DatasheetRowsController < Administration::Projects::BaseController
-      include Administration::DatasheetManagement
+      include Administration::DatasheetRowManagement
       before_action :set_init_state, only: [:index]
 
       private

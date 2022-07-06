@@ -2,16 +2,17 @@
 
 module Administration
   module Campaigns
-    class DatasheetRowsController < Administration::Campaigns::BaseController
-      include Administration::DatasheetRowManagement
-
-      prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show update]
+    class DatasheetsController < Administration::Campaigns::BaseController
+      include Administration::DatasheetManagement
 
       private
 
       def datasheet
         @datasheet ||= campaign.campaign_datasheet
+      end
+
+      def set_resource
+        datasheet
       end
 
       def parent_resource

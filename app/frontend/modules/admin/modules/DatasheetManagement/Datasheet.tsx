@@ -2,7 +2,6 @@ import React, {
   FC, useEffect, useMemo, useState,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import isEmpty from 'lodash/isEmpty'
 import {
   Table,
@@ -26,10 +25,8 @@ import {
 } from 'modules/admin/modules/DatasheetManagement/core/list'
 import { get as getTotal } from 'modules/admin/modules/DatasheetManagement/core/total'
 import { get as getPermissions } from 'modules/admin/modules/DatasheetManagement/core/permissions'
-import { get as getParentResource } from 'modules/admin/modules/DatasheetManagement/core/parentResource'
 import {
-  get as getColumnDefinitions,
-  setVisibleColumns,
+  get as getColumns,
   getVisibleColumnNames,
 } from 'modules/admin/modules/DatasheetManagement/core/columnDefinitions'
 import { isRequestInProgress } from 'modules/admin/core/request'
@@ -47,7 +44,6 @@ import settings from 'modules/admin/settings'
 import Modals from 'modules/admin/components/Modals/'
 
 import { CountDisplay } from 'components/CountDisplay'
-import { ColumnToggler } from 'modules/admin/modules/DatasheetManagement/components/ColumnToggler'
 import { SelectionActions } from 'modules/admin/modules/DatasheetManagement/components/SelectionActions'
 import ToolsDropdown from 'modules/admin/modules/DatasheetManagement/components/ToolsDropdown'
 import { DetailsDrawer } from 'modules/admin/modules/DatasheetManagement/components/DetailsDrawer'
@@ -62,13 +58,11 @@ const connector = connect(
     isListLoading: isRequestInProgress(state, FETCH_DATASHEET),
     total: getTotal(state),
     permissions: getPermissions(state),
-    columnDefinitions: getColumnDefinitions(state),
+    columnDefinitions: getColumns(state),
     visibleColumns: getVisibleColumnNames(state),
-    temp__parentResourceId: getParentResource(state).id, // wont be needing this when projects comes under router
   }),
   {
     fetch,
-    setVisibleColumns,
   },
 )
 
@@ -76,6 +70,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
   parentResourceType: ParentResourceType
+  parentResourceId: number
+  reload: boolean
 }
 
 type Props = OwnProps & PropsFromRedux & TableProps
@@ -84,36 +80,22 @@ const MODALS = {
   ImportDatasheetModal,
 }
 
-const DatasheetManagementComponent: FC<Props> = ({
+const DatasheetComponent: FC<Props> = ({
   list,
   isListLoading,
   total,
   permissions,
-  temp__parentResourceId,
   columnDefinitions,
   parentResourceType,
+  parentResourceId,
   tableConfig: { filters, page },
   tableConfig,
   changeFilter,
   changePage,
   fetch,
   visibleColumns,
-  setVisibleColumns,
+  reload,
 }) => {
-  const { campaignId, projectId } = useParams<{
-    projectId?: string
-    campaignId?: string
-  }>()
-
-  let parentResourceId: number | undefined = temp__parentResourceId
-  if (!parentResourceId && parentResourceType === ParentResourceType.Project && projectId) {
-    parentResourceId = parseInt(projectId, 10)
-  } else if (!parentResourceId && parentResourceType === ParentResourceType.Campaign && campaignId) {
-    parentResourceId = parseInt(campaignId, 10)
-  }
-
-  if (parentResourceId === undefined) { return null }
-
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([])
 
   const [activeDrawerIs, setDrawerTo] = useState<DrawerModes>(DrawerModes.None)
@@ -122,10 +104,10 @@ const DatasheetManagementComponent: FC<Props> = ({
   const allColumns = useMemo(
     () => columnDefinitions
       .map((filteredColumn) => {
-        if (filteredColumn.id === COLUMN_ID_EMAIL) {
+        if (filteredColumn.name === COLUMN_ID_EMAIL) {
           return {
             title: 'Email',
-            dataIndex: filteredColumn.id,
+            dataIndex: filteredColumn.name,
             render: (text: string, { id }) => (
               <Button
                 type="link"
@@ -138,8 +120,8 @@ const DatasheetManagementComponent: FC<Props> = ({
           }
         }
         return {
-          title: toReadableString(filteredColumn.id),
-          dataIndex: filteredColumn.id,
+          title: toReadableString(filteredColumn.name),
+          dataIndex: filteredColumn.name,
         }
       }),
     [columnDefinitions],
@@ -147,24 +129,19 @@ const DatasheetManagementComponent: FC<Props> = ({
 
   const visibleColumnsDefinition = useMemo(
     () => allColumns.filter(originalColumn => visibleColumns.includes(originalColumn.dataIndex)),
-    [columnDefinitions, visibleColumns],
+    [columnDefinitions],
   )
 
   useEffect(() => {
     if (parentResourceId === undefined) { return }
-
-    fetch(parentResourceType, parentResourceId, tableConfig)
-  }, [tableConfig])
+    if (reload) {
+      fetch(parentResourceType, parentResourceId, tableConfig)
+    }
+  }, [tableConfig, reload])
 
   const toggleDrawer = (mode: DrawerModes, id = '') => {
     setDrawerTo(mode)
     setCurrentDatasheetId(id)
-  }
-
-  const onVisibleColumnsChange = (changedVisibleColumnKey: string[]): void => {
-    if (parentResourceId === undefined) { return }
-
-    setVisibleColumns(parentResourceType, parentResourceId, changedVisibleColumnKey)
   }
 
   const isDataSheetUploaded = !isEmpty(columnDefinitions) && columnDefinitions.length > 1
@@ -196,10 +173,6 @@ const DatasheetManagementComponent: FC<Props> = ({
               )}
               value={filters.emailCont}
               onChange={e => changeFilter('emailCont', e.target.value)}
-            />
-            <ColumnToggler
-              visibleColumnsKeys={visibleColumns}
-              onVisibleColumnsChange={onVisibleColumnsChange}
             />
             <ToolsDropdown
               parentId={parentResourceId}
@@ -272,8 +245,8 @@ const DatasheetManagementComponent: FC<Props> = ({
   )
 }
 
-export const DatasheetManagement = withEnhancedTable<OwnProps>(
-  connector(DatasheetManagementComponent),
+export const Datasheet = withEnhancedTable<OwnProps>(
+  connector(DatasheetComponent),
   'datasheet',
   {
     maintainHistory: true,

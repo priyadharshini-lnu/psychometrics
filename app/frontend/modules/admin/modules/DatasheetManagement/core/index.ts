@@ -5,7 +5,6 @@ import total from './total'
 import columnDefinitions from './columnDefinitions'
 import permissions from './permissions'
 import current from './current'
-import parentResource from './parentResource'
 
 export default combineReducers({
   list,
@@ -13,5 +12,4 @@ export default combineReducers({
   permissions,
   columnDefinitions,
   current,
-  parentResource,
 })

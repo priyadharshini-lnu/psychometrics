@@ -1,7 +1,8 @@
+/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
-  Button, Modal, message, Alert, Form, Radio, Input,
+  Button, Modal, message, Alert, Form, Input,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import Event from 'interfaces/Event'
@@ -13,7 +14,6 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import { importDatasheet, IMPORT } from 'modules/admin/modules/DatasheetManagement/core/list'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { ParentResourceType } from '../../interfaces'
-import styles from './styles.less'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -28,8 +28,6 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 
 const { I18n } = window
-
-const OPERATIONS_OPTIONS = ['replace_existing', 'merge_with_existing']
 
 interface OwnProps {
   parentType: ParentResourceType
@@ -97,7 +95,7 @@ const ImportDatasheetModal: React.FC<Props> = ({
       {errors.length ? (
         <Alert
           message={false}
-          description={errors.map((e, i) => <div key={i}>{e}</div>)}
+          description={errors.map((e, i) => <div dangerouslySetInnerHTML={{ __html: e }} key={i} />)}
           type="error"
           className="mbm"
         />
@@ -106,7 +104,6 @@ const ImportDatasheetModal: React.FC<Props> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ operation: OPERATIONS_OPTIONS[0] }}
         onFieldsChange={(a, allFields) => {
           setFields(allFields)
         }}
@@ -117,15 +114,6 @@ const ImportDatasheetModal: React.FC<Props> = ({
             accept=".xlsx"
             onChange={({ target: { files } }: Event<HTMLInputElement>) => setFile(files && files[0])}
           />
-        </Form.Item>
-        <Form.Item name="operation">
-          <Radio.Group>
-            {OPERATIONS_OPTIONS.map(option => (
-              <Radio className={styles.radioBtn} value={option} key={option}>
-                {I18n.t(`datasheet.import_modal.operations.${option}`)}
-              </Radio>
-            ))}
-          </Radio.Group>
         </Form.Item>
       </Form>
     </Modal>

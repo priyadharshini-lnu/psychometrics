@@ -13,8 +13,12 @@ module DatasheetRows
       default_column_attr = { id: datasheet_row.id, 'Email' => datasheet_row.email }
 
       valid_columns = (opts[:datasheet] || datasheet_row.datasheet).columns
-      valid_columns = valid_columns.select { |_, v| opts[:without_types].exclude?(v) } if opts[:without_types]
-      data = datasheet_row.data.slice(*valid_columns.keys)
+      if opts[:without_types]
+        valid_columns = valid_columns.select do |column|
+          opts[:without_types].exclude?(column['type'])
+        end
+      end
+      data = datasheet_row.data.slice(*valid_columns.map { |c| c['name'] })
 
       broadcast :ok, default_column_attr.merge(data)
     end

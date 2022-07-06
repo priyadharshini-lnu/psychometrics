@@ -24,7 +24,7 @@ import {
   ADD,
   UPDATE,
 } from 'modules/admin/modules/DatasheetManagement/core/list'
-import { get as getColumnDefinitions } from 'modules/admin/modules/DatasheetManagement/core/columnDefinitions'
+import { get as getColumns } from 'modules/admin/modules/DatasheetManagement/core/columnDefinitions'
 import {
   getCurrent,
   fetchSingle,
@@ -41,7 +41,7 @@ const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
-    columnDefinitions: getColumnDefinitions(state),
+    columnDefinitions: getColumns(state),
     datasheetDetails: getCurrent(state),
     isFetching: isRequestInProgress(state, FETCH_SINGLE),
     isAdding: isRequestInProgress(state, ADD),
@@ -190,12 +190,12 @@ const AddEditDrawerComponent: FC<Props> = ({
         >
           <EmailField isInAddMode={isInAddMode} email={email} />
           {columnDefinitions
-            .filter(column => column.id !== COLUMN_ID_EMAIL)
+            .filter(column => column.name !== COLUMN_ID_EMAIL)
             .map(field => (
               <Form.Item
-                label={toReadableString(field.id)}
-                name={field.id}
-                key={field.id}
+                label={toReadableString(field.name)}
+                name={field.name}
+                key={field.name}
               >
                 <InputField type={field.type} />
               </Form.Item>

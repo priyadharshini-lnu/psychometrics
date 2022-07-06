@@ -4,9 +4,9 @@ import { BrowserRouter } from 'react-router-dom'
 
 import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
 import store from 'modules/admin/store'
-import { DatasheetManagement } from './DatasheetManagement'
-
+import { DatasheetTabs } from './DatasheetTabs'
 import { ParentResourceType } from './interfaces/index'
+
 
 // We need this app as projects datasheet is not under new campaign app
 const App: React.FC = () => (
@@ -14,7 +14,7 @@ const App: React.FC = () => (
     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
     <Provider store={store as any}>
       <BrowserRouter>
-        <DatasheetManagement parentResourceType={ParentResourceType.Project} />
+        <DatasheetTabs parentResourceType={ParentResourceType.Project} />
       </BrowserRouter>
       <IncorrectResponseErrorModal />
     </Provider>

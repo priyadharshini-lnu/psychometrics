@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 describe Datasheets::Export do
-  let(:datasheet) { create(:datasheet, columns: { 'Email' => 'String', 'Profile' => 'Text' }) }
+  let(:datasheet) do
+    create(:datasheet, columns: [{ name: 'Email', type: 'String' },
+                                 { name: 'Profile', type: 'Text' },
+                                 { name: 'Empty', type: 'Number' }])
+  end
   let!(:datasheet_row) do
     create(:datasheet_row, datasheet: datasheet, email: 'james@cc.com', data: { 'Profile' => 'carpenter' })
   end
@@ -22,18 +26,18 @@ describe Datasheets::Export do
   it 'returns datasheet column name as a first row' do
     first_row = @xlsx.sheet(0).row(1)
 
-    expect(first_row).to eq(%w[Email Profile])
+    expect(first_row).to eq(%w[Email Profile Empty])
   end
 
   it 'returns datasheet column type as second row' do
     first_row = @xlsx.sheet(0).row(2)
 
-    expect(first_row).to eq(%w[String Text])
+    expect(first_row).to eq(%w[String Text Number])
   end
 
   it 'returns datasheet row value' do
     first_row = @xlsx.sheet(0).row(3)
 
-    expect(first_row).to eq(%w[james@cc.com carpenter])
+    expect(first_row).to eq(%w[james@cc.com carpenter] + [nil])
   end
 end

@@ -12,10 +12,6 @@ module Administration
       datasheet.campaign_id? ? 'new_campaign' : 'project'
     end
 
-    def columns
-      Datasheets::GetColumnDefinition.call!(datasheet)
-    end
-
     private
 
     def datasheet

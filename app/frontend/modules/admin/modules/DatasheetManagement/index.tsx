@@ -1,3 +1,3 @@
-import { DatasheetManagement } from './DatasheetManagement'
+import { DatasheetTabs } from './DatasheetTabs'
 
-export { DatasheetManagement }
+export { DatasheetTabs }

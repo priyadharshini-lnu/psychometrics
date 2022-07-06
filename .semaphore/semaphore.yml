@@ -105,7 +105,7 @@ blocks:
     task:
       prologue:
         commands:
-          - sem-service start postgres --username=postgres --password=postgres
+          - sem-service start postgres 11 --username=postgres --password=postgres
           - sem-service start redis
           - cp config/database.yml.sample config/database.yml
           - cp config/application.yml.sample  config/application.yml
@@ -138,7 +138,7 @@ blocks:
             minutes: 10
         - name: RSpec
           commands:
-            - sem-service start postgres --username=postgres --password=postgres
+            - sem-service start postgres 11 --username=postgres --password=postgres
             - sem-service start redis
             - cp config/database.yml.sample config/database.yml
             - cp config/application.yml.sample  config/application.yml

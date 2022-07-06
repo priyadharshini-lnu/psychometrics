@@ -9,6 +9,8 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import { ParentResourceType } from 'modules/admin/modules/DatasheetManagement/core/current'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 
+export const EMAIL = 'Email'
+
 export const DataSheetTR = t.intersection([
   t.record(t.string, t.union([t.string, t.number, t.null])),
   t.type({
@@ -18,7 +20,7 @@ export const DataSheetTR = t.intersection([
 ])
 export type DataSheet = t.TypeOf<typeof DataSheetTR>
 
-const ColumnTypeTR = t.keyof({
+export const ColumnTypeTR = t.keyof({
   String: null,
   Number: null,
   Text: null,
@@ -28,11 +30,20 @@ const ColumnTypeTR = t.keyof({
 export type ColumnType = t.TypeOf<typeof ColumnTypeTR>
 
 export const ColumnTR = t.type({
-  id: t.string,
+  name: t.string,
   type: ColumnTypeTR,
-  visible: t.boolean,
+  dashboard_use: t.boolean,
+  accessor_access: t.boolean,
+  visible_in_list: t.boolean,
 })
-export type Column = t.TypeOf<typeof ColumnTR>
+
+export interface Column {
+  name: string
+  type: ColumnType
+  dashboardUse: boolean
+  accessorAccess: boolean
+  visibleInList: boolean
+}
 
 const FetchResponseTR = t.type({
   total: t.number,
