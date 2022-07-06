@@ -115,7 +115,6 @@ module Administration
             'edit_dimension',
             'reset_all_participants',
             'reset_all_nominations',
-            'rescore_assessment',
             'edit_user'
           ],
           {
