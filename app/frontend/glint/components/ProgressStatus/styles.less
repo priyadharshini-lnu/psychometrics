@@ -1,0 +1,29 @@
+@import 'styles/ant.variable.less';
+
+.statusCount:global(.ant-typography) {
+  margin-bottom: 0px;
+}
+
+.light, .light:global(.ant-typography) {
+  color: @white;
+}
+
+.dark, .dark:global(.ant-typography) {
+  color: @black;
+}
+
+.statusIcon {
+  font-size: 30px;
+}
+
+.iconColumn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (max-width: @screen-md) {
+  .iconColumn {
+    justify-content: start;
+  }
+}

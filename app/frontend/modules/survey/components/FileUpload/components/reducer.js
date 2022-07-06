@@ -28,7 +28,7 @@ export const deleteFile = (url, mediaId) => ({
 const HANDLERS = {
   [SET_UPLOAD_STATE]: (state, { payload: { uploadState } }) => ({ ...state, uploadState }),
   [SET_FILE]: (state, { payload: { file } }) => ({ ...state, file }),
-  [REMOVE_FILE]: () => defaultStatus,
+  [REMOVE_FILE]: () => initialState,
   [SET_ERRORS]: (state, { payload: { errorCodes, errorMessages } }) => (
     {
       ...state, errorCodes: errorCodes || [], errorMessages: errorMessages || [], uploadState: UPLOAD_STATES.ERROR,

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function ChartOptions (model) {
+export default function ChartOptions (model, animation) {
   return {
     colors: _.map(model.props.colors, 'color'),
     chart: {
@@ -19,7 +19,10 @@ export default function ChartOptions (model) {
     pane: {
       size: '80%',
     },
-    tooltip: false,
-
+    tooltip: {
+      enabled: animation,
+      headerFormat: '<hr/><b>{series.name}</b><br/>',
+      pointFormat: '{point.y}<br/>{point.custom.description}',
+    },
   }
 }

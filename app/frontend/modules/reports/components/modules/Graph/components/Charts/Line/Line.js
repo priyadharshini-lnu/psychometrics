@@ -39,7 +39,7 @@ class Line extends Component {
   }
 
   renderChart () {
-    const { model, animation } = this.props
+    const { model, animation, factors } = this.props
 
     if (this.chart) {
       this.chart.destroy()
@@ -53,7 +53,7 @@ class Line extends Component {
 
     if (!data) { return null }
     if (sourceType === 'Question' && sourceModel.type === 'TextEntry') { return null }
-    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat)
+    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors)
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
     const labels = data.labels ? data.labels(sourceModel, model) : []
     let xAxis = _.invoke(data, 'xAxis', sourceModel, model, model.props.dataFormat, getCorrectResults(model)) || {}
@@ -72,7 +72,7 @@ class Line extends Component {
     const { fontSize, fontColor: color, fontFamily } = model.props.style
 
     this.chart = Highcharts.chart(this.container,
-      _.merge(ChartOptions(model, (...args) => changeLabel(model, ...args), this.props, format), {
+      _.merge(ChartOptions(model, animation), {
         legend: {
           enabled: !!data.hasLegend,
         },
@@ -90,7 +90,6 @@ class Line extends Component {
             marker: {
               enabled: true,
             },
-            enableMouseTracking: false,
           },
         },
         xAxis: _.merge(xAxis, {

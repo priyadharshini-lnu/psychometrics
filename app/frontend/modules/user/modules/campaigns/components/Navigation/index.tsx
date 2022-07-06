@@ -18,6 +18,7 @@ import {
 } from 'modules/user/modules/campaigns/core/project'
 import { get as getCurrentUser, changeLocale } from 'core/currentUser'
 import { isInsideIframe } from 'utils/isInsideIframe'
+import { ToggleEndUserViewLink } from 'components/ToggleEndUserViewLink'
 import EditProfileModal from '../EditProfileModal'
 import { LocaleSwitcherSubmenu } from './components/LocaleSwitcherSubmenu'
 
@@ -155,6 +156,12 @@ const Navigation: FC<PropsFromRedux> = ({
             onClick={({ key }) => changeActiveMenuKey([`${key}`])}
             className="justify-end"
           >
+            {window.PsyGlobalState.features.new_end_user_view
+              && (
+              <Menu.Item key="toggleEndUserLink">
+                <ToggleEndUserViewLink />
+              </Menu.Item>
+              )}
             {(isLocaleSwitcherHidden || localesWithoutCurrentLocale.length === 0) ? null : (
               <LocaleSwitcherSubmenu
                 isLocaleLoading={isLocaleLoading}

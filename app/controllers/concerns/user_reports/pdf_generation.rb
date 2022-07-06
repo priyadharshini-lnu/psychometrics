@@ -51,6 +51,7 @@ module UserReports::PdfGeneration
     selected_locale = params[:lang] || resource.report.default_language
 
     @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
+    @pdf_export = true
 
     render 'shared/preview_report', layout: 'pdf'
   end

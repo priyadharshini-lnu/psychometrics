@@ -20,7 +20,7 @@ import {
   FETCH_SINGLE as FETCH_PROJECT_SINGLE_ASSESSOR,
   getCurrent as getCurrentAssessor,
   UPDATE as UPDATE_PROJECT_ASSESSOR,
-} from 'modules/admin/modules/client/routes/Client/core/assessors'
+} from 'modules/admin/modules/client/core/assessors'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 

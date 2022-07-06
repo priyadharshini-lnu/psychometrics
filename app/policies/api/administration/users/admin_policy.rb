@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+module Api
+  module Administration
+    module Users
+      class AdminPolicy < Api::Administration::UserPolicy
+        def show?
+          @user.admin?
+        end
+      end
+    end
+  end
+end

@@ -282,8 +282,6 @@ en:
         name: Name
         updated_at: Modified Date
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign
@@ -732,7 +730,7 @@ en:
       managers_dashboard_button: Managers Dashboard
       user_dashboard_button: User Dashboard
     instructions:
-      begin_assessment: Begin Assessment
+      begin_assessment: Begin
       cancel: Cancel
       default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
       title: Instructions
@@ -940,6 +938,8 @@ en:
     ungrouped: Ungrouped tasks
     welcome: Welcome
   campaign_assessment:
+    actions:
+      rescore: Rescore Assessment
     column:
       assessment_name: Assessment name
       assessor_form: Assessor Form
@@ -970,6 +970,10 @@ en:
         msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
         successfully: "%{name} assessment removed successfully."
         title: Remove assessment?
+      rescore:
+        content: Are you sure you want to rescore assessment?
+        successfully: Assessment was successfully rescored.
+        title: Rescore Assessment?
       rescore_response:
         message: Rescoring scheduled for assessment %{name}
         title: Rescore Responses
@@ -1130,6 +1134,7 @@ en:
   clear_filter: Clear Filter
   common:
     actions:
+      add: Add
       cancel: Cancel
       close: Close
       delete: Delete
@@ -1137,6 +1142,7 @@ en:
       import: Import
       remove: Remove
       reset: Reset
+      search: Search
       send: Send
       update: Update
     column:
@@ -1386,6 +1392,11 @@ en:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please login to continue.
+  dry_errors:
+    errors:
+      filled?: can't be blank
+      key?: can't be blank
+      missed?: can't be blank
   ecommerce:
     carts:
       show:
@@ -1503,6 +1514,15 @@ en:
           in_progress: In Progress
           not_started: Not Started
     change_password: Change password
+    clients:
+      actions:
+        create:
+          create_client: Create Client
+        menus:
+          view_licenses: View Licenses
+        remove:
+          confirmation: Enter current client name given below in text box to remove client
+          success: Client with name '%{clientName}' removed successfully
     delete: Delete
     edit: Edit
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
@@ -1515,6 +1535,9 @@ en:
     'no': 'No'
     passwordSetting:
       update_success: Password settings successfull updated
+    request_failed_message_box:
+      message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
+      refresh: Refresh
     resource:
       create_success: "%{readableResourceName} added successfully"
       update_success: "%{readableResourceName} updated successfully"
@@ -1634,7 +1657,6 @@ en:
         subject: License overuse
       weekly_stats:
         column_headers:
-          account_manager: Account Manager
           client_name: Client Name
           expiry_date: Expiry date
           overuse_limit: Overuse Limit
@@ -1949,8 +1971,6 @@ en:
       default_message: 'Please review the problems below:'
     labels:
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign
@@ -2077,8 +2097,6 @@ en:
         name: Name
         updated_at: Modified Date
       client:
-        account_manager: TTE Account Manager
-        account_manager_id: TTE Account Manager
         applicable_level: Applicable Level
         applicable_levels:
           campaign: Campaign

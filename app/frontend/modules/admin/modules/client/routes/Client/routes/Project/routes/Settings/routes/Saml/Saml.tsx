@@ -7,7 +7,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import {
   get as getSamlSetting,
   UPDATE_SETTINGS,
-} from 'modules/admin/modules/client/routes/Client/core/samlSetting'
+} from 'modules/admin/modules/client/core/samlSetting'
 import { useParams } from 'react-router-dom'
 import ResourceForm from 'components/ResourceForm'
 import { isRequestInProgress } from 'modules/admin/core/request'

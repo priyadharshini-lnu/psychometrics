@@ -3,20 +3,21 @@
 module Threesixty
   module Campaigns
     class Create < BaseCommand
-      private_attr_reader :project, :form
+      private_attr_reader :project, :form, :user
 
-      def initialize(project, form)
+      def initialize(project, form, user)
         @project = project
         @form = form
+        @user = user
       end
 
       def call
         threesixty_campaign = if assessment
                                 ::Threesixty::Campaigns::CreateFromAssessmentAndReport.call!(
-                                  assessment, report, form, project
+                                  assessment, report, form, project, user
                                 )
                               else
-                                ::Threesixty::Campaigns::CreateEmptyCampaign.call!(form, project)
+                                ::Threesixty::Campaigns::CreateEmptyCampaign.call!(form, project, user)
                               end
 
         load_templates(threesixty_campaign)

@@ -27,9 +27,9 @@ class Foundation extends Component {
         inertia: true,
         autoScroll: true,
         restrict: {
-          restriction: 'parent',
+          restriction: this.base.parentNode,
           elementRect: {
-            left: true, right: true, bottom: true, top: true,
+            top: 0, left: 0, bottom: 1, right: 1,
           },
         },
         onmove: this.dragHandler,
@@ -82,8 +82,8 @@ class Foundation extends Component {
 
     $target.css({ transform: `translate(${x}px, ${y}px)` })
 
-    module.props.position.left = x
-    module.props.position.top = y
+    module.props.position.left = Math.round(x)
+    module.props.position.top = Math.round(y)
   }
 
   dragEnd = () => {
@@ -151,10 +151,12 @@ class Foundation extends Component {
     } = mprops.position
     const { preview } = this.props
 
+    const isSelected = selected.moduleId === module.id
+
     const style = {
       width,
       height,
-      zIndex: mprops.zIndex,
+      zIndex: isSelected ? 9999 : mprops.zIndex,
     }
 
     if (preview) {
@@ -163,7 +165,6 @@ class Foundation extends Component {
     } else {
       style.transform = `translate(${left}px,${top}px)`
     }
-    const isSelected = selected.moduleId === module.id
     const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${isSelected ? styles.selected : ''}`
     return (
       <div
@@ -173,15 +174,20 @@ class Foundation extends Component {
         style={style}
         onClick={this.select}
       >
+        <div className={styles.sizeBox}>
+          <i
+            className={`fa fa-arrows ${styles.mover}`}
+            data-right="true"
+            data-bottom="true"
+            ref={(ref) => { this.mover = ref }}
+          />
+          <div className={styles.label}>
+            {` x:${left} y:${top} size:${width}x${height}`}
+          </div>
+        </div>
         <div className={`${styles.frame} fe-module-frame-container`} style={frameStyle}>
           {children}
         </div>
-        <i
-          className={`fa fa-arrows ${styles.mover} ${!isSelected ? 'hidden' : ''}`}
-          data-right="true"
-          data-bottom="true"
-          ref={(ref) => { this.mover = ref }}
-        />
       </div>
     )
   }

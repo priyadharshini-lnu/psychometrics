@@ -2,7 +2,7 @@
   = f.input :type, as: :hidden
   = f.input :parent_id, as: :hidden
   .modal-body
-    = f.error_notification
+    = render_error_notification(resource)
     .form-inputs.clearfix
       = f.input :name
       - root_clients = policy_scope(Client).roots

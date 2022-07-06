@@ -35,7 +35,7 @@ class Engagometer extends Component {
   }
 
   renderChart () {
-    const { model } = this.props
+    const { model, animation, factors } = this.props
     const colors = _.map(model.props.colors, 'color')
     if (this.chart) {
       this.chart.destroy()
@@ -47,14 +47,13 @@ class Engagometer extends Component {
     const sourceModel = model.getSourceModel()
     const data = Series[sourceType]
     if (!data) { return null }
-    const series = data.series(getCorrectResults(model), sourceModel, model)
-
+    const series = data.series(getCorrectResults(model), sourceModel, model, null, factors)
     if (!series.length) { return null }
     const { fontSize, fontColor: color, fontFamily } = model.props.style
     const assessment = AppStore.getAssessmentById(model.assessment_id)
 
     this.chart = Highcharts.chart(this.container,
-      _.merge(ChartOptions(model, e => this.changeBarLabel(data.collection, e), this.props),
+      _.merge(ChartOptions(model, animation),
         {
           // the value axis
           yAxis: {

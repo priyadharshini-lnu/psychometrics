@@ -61,6 +61,7 @@ class User < ApplicationRecord
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     clients: %w[view],
+    projects: %w[view],
     campaigns: %w[view manage manage_users manage_options manage_messages manage_admins],
     communications: %w[view manage],
     assessors: %w[view manage],
@@ -92,6 +93,16 @@ class User < ApplicationRecord
     sms_invites: %w[view manage],
     datasheet: %w[view manage]
   }.with_indifferent_access.freeze
+
+  # overrides required for devise_security
+  # DO NOT MOVE THESE METHODS BELLOW devise
+  def self.has_uniqueness_validation_of_login?
+    true
+  end
+
+  def self.devise_validation_enabled?
+    true
+  end
 
   # Authentication
   devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
@@ -356,7 +367,7 @@ class User < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      %i[hris_data_cont role_scope_in filterable_fields]
+      %i[hris_data_cont role_scope_in filterable_fields admins search_query]
     end
 
     # Available role for the filter form

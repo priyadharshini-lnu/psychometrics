@@ -11,7 +11,7 @@ import ConnectionCheck from 'components/ConnectionCheck'
 import { connected, disconnected } from 'core/connection'
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
-import 'styles/ant.js'
+import 'styles/ant.less'
 import 'modules/survey/styles/globals.less'
 import 'utils/i18n'
 

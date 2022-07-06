@@ -12,6 +12,7 @@ module Factors
     attribute :remove_icon, Boolean
     attribute :use_percentage, Boolean
     attribute :use_sub_factor_norm_score, Boolean
+    attribute :external_scoring, Array
 
     validates :name, presence: true
     validates :name, length: { maximum: 100 }, allow_blank: true
@@ -22,7 +23,7 @@ module Factors
       return true unless id
       return true unless factors_sub_factors_attributes
 
-      new_sub_factor_ids = factors_sub_factors_attributes.values.
+      new_sub_factor_ids = factors_sub_factors_attributes.
                            select { |f| f['id'].blank? }.map { |f| f['sub_factor_id'].to_i }
       Factor.where(id: new_sub_factor_ids).map do |sf|
         if sf.descendant_ids.include?(id)

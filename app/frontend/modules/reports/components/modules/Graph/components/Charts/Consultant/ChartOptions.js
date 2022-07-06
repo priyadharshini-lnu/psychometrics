@@ -1,16 +1,14 @@
-export default function ChartOptions (model) {
+export default function ChartOptions (model, animation) {
   return {
     chart: {
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
+      height: model.props.position.height,
       polar: true,
     },
     title: false,
     pane: {
       startAngle: 0,
       endAngle: 360,
-    },
-    tooltip: {
-      enabled: false,
     },
     yAxis: {
       tickInterval: 1,
@@ -22,6 +20,11 @@ export default function ChartOptions (model) {
     },
     credits: {
       enabled: false,
+    },
+    tooltip: {
+      enabled: animation,
+      headerFormat: '<hr/><b>{series.name}</b><br/>',
+      pointFormat: '{point.y}<br/>{point.custom.description}',
     },
   }
 }

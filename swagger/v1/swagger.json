@@ -218,75 +218,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "summary": "Delete user assessments",
-        "operationId": "DeleteUserAssessments",
-        "description": "Delete user assessments",
-        "tags": [
-          "Assessments"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "basic": [
-
-            ]
-          }
-        ],
-        "parameters": [
-          {
-            "name": "project_id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "user_id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "assessment_id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "campaign_id",
-            "in": "query",
-            "type": "string",
-            "required": false,
-            "description": "if is not filled, the system takes the last campaign id"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Assessments deleting",
-            "schema": {
-              "$ref": "#/definitions/UserAssessment"
-            }
-          },
-          "401": {
-            "description": "Authentication error",
-            "schema": {
-              "$ref": "#/definitions/ApiError"
-            },
-            "content": {
-              "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/projects/{project_id}/campaigns/{campaign_id}": {
@@ -1971,75 +1902,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "summary": "Delete user report",
-        "operationId": "DeleteUserReport",
-        "description": "Delete user report",
-        "tags": [
-          "Report"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "basic": [
-
-            ]
-          }
-        ],
-        "parameters": [
-          {
-            "name": "project_id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "user_id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "report_id",
-            "in": "path",
-            "type": "string",
-            "required": true
-          },
-          {
-            "name": "campaign_id",
-            "in": "query",
-            "type": "string",
-            "required": false,
-            "description": "if is not filled, the system takes the last campaign id"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "UserReport deleting",
-            "schema": {
-              "$ref": "#/definitions/UserReport"
-            }
-          },
-          "401": {
-            "description": "Authentication error",
-            "schema": {
-              "$ref": "#/definitions/ApiError"
-            },
-            "content": {
-              "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/projects/{project_id}/users/{user_id}/sso": {
@@ -2314,10 +2176,6 @@
         },
         "completed_at": {
           "type": "string",
-          "x-nullable": true
-        },
-        "norm_id": {
-          "type": "integer",
           "x-nullable": true
         }
       }

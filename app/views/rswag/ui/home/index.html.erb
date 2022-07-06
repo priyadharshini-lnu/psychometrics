@@ -18,6 +18,19 @@
     rapi-doc::part(label-selected-server) { /* <<< targets selected server label */
       color: #000;
     }
+    .change-spec {
+      width:50%;
+      padding-right:20px;
+      color:var(--nav-hover-text-color);
+      padding: 6px 5px;
+      border-color:var(--nav-accent-color);background-color:var(--nav-hover-bg-color);
+      margin-left: 5px;
+    }
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
@@ -25,6 +38,7 @@
     theme="light"
     render-style = "read"
     show-header="false"
+    show-info="true"
     spec-url = "<%= config_object.dig(:urls, 0, :url) %>"
     nav-bg-color="#d6e8e8"
     nav-hover-bg-color="#eef9f9"
@@ -36,11 +50,35 @@
     schema-style="table"
     schema-description-expanded="true"
   >
+    <div class="header"> <!-- HTML Elements without slot attribute goes into default location-->
+
+      API Version:
+      <select class="change-spec">
+        <% config_object[:urls].map do |obj| %>
+          <option value=<%= obj[:url] %>><%= obj[:name] %></option>
+        <% end %>
+      </select>
+    </div>
     <img
       slot="nav-logo"
       src="https://static.tte-lighthouse.com/brand/lighthouse/TTE_Lighthouse_Logo.svg"
       style="width: 284px; max-width: 100%;"
     />
   </rapi-doc>
+
+  <script>
+    const doc = document.querySelector('rapi-doc');
+    let currentApi = location.search.slice(9)
+    if (currentApi && doc.getAttribute('spec-url') !== currentApi) {
+      doc.setAttribute('spec-url', currentApi)
+      document.querySelector('.change-spec option[value="'+currentApi+'"]').setAttribute('selected', 'selected')
+    }
+
+    document.querySelector('.change-spec').addEventListener('change', (e) => {
+      doc.setAttribute('spec-url', e.currentTarget.value)
+
+      history.replaceState({}, '', location.pathname + '?version=' + e.currentTarget.value)
+    })
+  </script>
 </body>
 </html>

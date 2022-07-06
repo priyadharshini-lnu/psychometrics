@@ -26,13 +26,11 @@
     tr
       th = t('.column_headers.client_name')
       th = t('.column_headers.expiry_date')
-      th = t('.column_headers.account_manager')
       th = t('.column_headers.project_manager')
     - @stats[:expiring_licenses].each do |expiring_license|
       tr
         td = expiring_license[:client_name]
         td = expiring_license[:license_end_date]
-        td = expiring_license[:account_manager]
         td = expiring_license[:project_manager]
   spacer[size="16"]
 - else

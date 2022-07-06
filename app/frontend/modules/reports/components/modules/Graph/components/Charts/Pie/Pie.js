@@ -54,7 +54,9 @@ class Pie extends Component {
   }
 
   renderChart () {
-    const { model, animation, preview } = this.props
+    const {
+      model, animation, preview, factors,
+    } = this.props
     if (this.chart) {
       this.chart.destroy()
       this.chart = null
@@ -65,7 +67,7 @@ class Pie extends Component {
     const sourceModel = model.getSourceModel()
     const data = Series[sourceType]
     if (!data) { return null }
-    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat)
+    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors)
     const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
     const labels = data.labels ? data.labels(sourceModel, model) : []
     if (!series.length) { return null }
@@ -75,7 +77,7 @@ class Pie extends Component {
     }
     const self = this
     this.chart = Highcharts.chart(this.container,
-      _.merge(ChartOptions(model, (...args) => changeLabel(model, ...args), this.props, format), {
+      _.merge(ChartOptions(model, animation), {
         chart: {
           plotBackgroundColor: null,
           plotBorderWidth: null,

@@ -1,0 +1,282 @@
+import { useClient } from '@thetalententerprise/jsonapi-react'
+import React, { useState } from 'react'
+import * as t from 'io-ts'
+import { isRight } from 'fp-ts/Either'
+import { PathReporter } from 'io-ts/PathReporter'
+import { useDispatch } from 'react-redux'
+import { useLocation, useHistory } from 'react-router-dom'
+import humps from 'humps'
+import qs from 'qs'
+import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
+import isEqual from 'lodash/isEqual'
+import debounce from 'lodash/debounce'
+import { Schema } from 'libs/jsonApi/schema'
+import { setResponseDataMismatched } from 'modules/admin/core/request'
+import { useDeepCompareEffect } from '../useDeepCompareEffect'
+import { useDebounce } from '../useDebounce'
+import { useMountedState } from '../useMountedState'
+import {
+  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
+  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource,
+} from './interfaces'
+import { formatErrors } from './utils'
+
+export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
+  resourceName: string, options: Options<R[], M> = {},
+) {
+  const {
+    apiConfig, stateManager, responseType, trackUrl,
+  } = options
+  const client = useClient()
+  const dispatch = useDispatch()
+  const location = useLocation()
+  const history = useHistory()
+  const queryString = qs.parse(location.search.substring(1))
+  const schema = Schema[resourceName]
+
+  let state: ResourceState<R[], M>
+  let setState
+  if (stateManager) {
+    // eslint-disable-next-line prefer-destructuring
+    state = stateManager.state
+    // eslint-disable-next-line prefer-destructuring
+    setState = stateManager.setState
+  } else {
+    [state, setState] = useState<ResourceState<R[], M>>({
+      data: [], requests: {}, meta: {} as M, query: {},
+    })
+  }
+
+  const queryFromUrl = (trackUrl ? queryString?.q || {} : {}) as UrlQuery
+  const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
+  const isMounted = useMountedState()
+  const debounceQueryState = useDebounce(queryState, 300)
+
+  useDeepCompareEffect(() => {
+    if (trackUrl && !isEqual(queryState, queryFromUrl)) {
+      setQueryState(queryFromUrl)
+    }
+  }, [queryFromUrl])
+
+  useDeepCompareEffect(() => {
+    if (isMounted) fetch()
+  }, [debounceQueryState])
+
+  const { data, requests, meta } = state
+
+  const setRequests = (requests: Requests) => {
+    setState((previousState: ResourceState<R[], M>) => ({ ...previousState, requests }))
+  }
+
+  const setData = (data: R[]) => {
+    setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data }))
+  }
+
+  const responseTypeValidation = (responseType: ResponseType, data) => {
+    if (window.PsyGlobalState.realEnv === 'production') { return }
+
+    if (responseType) {
+      const decoded = t.array(responseType).decode([data])
+      const dataIsValid = isRight(decoded)
+      if (!dataIsValid) {
+        const errors = PathReporter.report(responseType.decode(data))
+        dispatch(setResponseDataMismatched(resourceName, errors, data))
+      }
+    }
+  }
+
+  const setRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => {
+    const status = errors ? RequestStatus.Failed : RequestStatus.Success
+    setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
+    return status
+  }
+
+  const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
+    const { apiConfig } = args
+    setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
+    let newApiConfig = apiConfig
+
+    if (queryState) { newApiConfig = { ...apiConfig, ...queryState } }
+
+    return new Promise(async (resolve, reject) => {
+      const {
+        data: response, meta, error, errors,
+      } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
+
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus('fetch', formattedErrors)
+      if (status === RequestStatus.Success && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+        setState((previousState: ResourceState<R[], M>) => (
+          { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
+
+        if (responseType || args.responseType) {
+          responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
+        }
+      } else {
+        reject(formattedErrors)
+      }
+    })
+  }
+
+  const createResource: CreateResource<R> = async (
+    attributes, args = { apiConfig },
+  ) => {
+    setRequests({ ...requests, add: { status: RequestStatus.Loading } })
+
+    return new Promise(async (resolve, reject) => {
+      const { data: response, error, errors } = await client.mutate<R>(
+        [resourceName, apiConfig || {}], humps.decamelizeKeys(attributes),
+      )
+
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus('add', formattedErrors)
+      if (status === RequestStatus.Success && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+        setData([camelizedResponse, ...data])
+        resolve(camelizedResponse)
+        responseTypeValidation(args?.responseType || responseType, camelizedResponse)
+      } else {
+        reject(formattedErrors)
+      }
+    })
+  }
+
+  const updateResource: UpdateResource<R> = async (details, args = { apiConfig }) => {
+    const { id, ...attributes } = details
+    const requestKey: RequestType = `update@${id}`
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
+    return new Promise(async (resolve, reject) => {
+      const { data: response, error, errors } = await client.mutate<R>(
+        [resourceName, id, apiConfig || {}], humps.decamelizeKeys(attributes),
+      )
+
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus(requestKey, formattedErrors)
+      if (status === RequestStatus.Success && data && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+        resolve(camelizedResponse)
+        setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
+        responseTypeValidation(args?.responseType || responseType, camelizedResponse)
+      } else {
+        reject(formattedErrors)
+      }
+    })
+  }
+
+  const removeResource: RemoveResource = async (id: string) => {
+    const requestKey: RequestType = `delete@${id}`
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
+    const { error, errors } = await client.delete([resourceName, id, apiConfig || {}])
+
+    return new Promise(async (resolve, reject) => {
+      const formattedErrors = formatErrors(errors || error, schema)
+      const status = setRequestStatus(requestKey, formattedErrors)
+      if (status === 'success') {
+        setData(data.filter(r => r.id !== id))
+        resolve()
+      } else {
+        reject(formattedErrors)
+      }
+    })
+  }
+
+  const changeUrlQuery = debounce((query: UrlQuery) => {
+    const newQuery = { ...queryString, q: { ...query } }
+    setQueryState(query)
+    if (trackUrl) {
+      history.push({ search: `?${qs.stringify(newQuery)}` })
+    }
+  })
+
+  const removeSort = () => {
+    if (!queryState?.sort) { return }
+    const newUrlQuery = { ...queryState, sort: undefined }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const changeSort = (column: React.Key, order: string) => {
+    let newUrlQuery = queryState || {}
+    newUrlQuery = { ...queryState, sort: `${order === 'ascend' ? '' : '-'}${column}` }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const changePage = (number: number, size: number) => {
+    let newUrlQuery = queryState || {}
+    newUrlQuery = { ...queryState, page: { number, size } }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const changeFilter = (name: string, value: string | undefined | null) => {
+    if (value === '' || value === undefined || value == null) {
+      return removeFilter(name)
+    }
+    let newUrlQuery = queryState || {}
+    newUrlQuery = { ...queryState, filter: { [name]: value } }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const removeFilter = (name: string) => {
+    let newUrlQuery = queryState || {}
+    const filter = queryState?.filter
+    if (!filter) { return }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { [name]: _, ...remainingFilter } = filter
+    newUrlQuery = { ...queryState, filter: remainingFilter }
+    changeUrlQuery(newUrlQuery)
+  }
+
+  const getFilteredValue = (name: string) => queryState?.filter?.[name]
+
+  const handleTableChange = (
+    _pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<R>,
+  ) => {
+    const { columnKey, order } = sorter
+
+    if (columnKey && order === undefined) removeSort()
+
+    if (columnKey && order) changeSort(columnKey, order)
+  }
+
+  const getSortOrder = (column: string): undefined | 'ascend' | 'descend' => {
+    if (!queryState?.sort) { return }
+    if (queryState.sort === column) { return 'ascend' }
+    if (queryState.sort === `-${column}`) { return 'descend' }
+
+    return undefined
+  }
+
+  const getErrors = (action: string, resource_id: null | string = null) => {
+    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+
+    return request ? request.errors : null
+  }
+
+  const isLoading = (action: string, resource_id: null | string = null): boolean => {
+    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+
+    return request ? request.status === 'loading' : false
+  }
+
+  return {
+    data,
+    meta,
+    requests,
+    setData,
+    fetch,
+    createResource,
+    updateResource,
+    removeResource,
+    getSortOrder,
+    pageSize: queryState?.page?.size || 25,
+    currentPage: queryState?.page?.number ? parseInt(queryState?.page?.number as unknown as string, 10) : 1,
+    changePage,
+    changeFilter,
+    removeFilter,
+    getFilteredValue,
+    handleTableChange,
+    getErrors,
+    isLoading,
+  }
+}

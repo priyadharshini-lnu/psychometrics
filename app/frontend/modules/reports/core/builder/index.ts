@@ -54,6 +54,7 @@ interface State {
     sourceId: number | null,
     moduleId: number | null,
   },
+  pdfExport: boolean
 }
 
 export const defaultState: State = {
@@ -96,6 +97,7 @@ export const defaultState: State = {
     sourceId: null,
     moduleId: null,
   },
+  pdfExport: false,
 }
 
 

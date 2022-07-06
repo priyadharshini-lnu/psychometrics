@@ -2,7 +2,7 @@
 
 class NormDecorator < BaseDecorator
   def updater
-    object.updater.try(:decorate).try(:display_name)
+    object.updated_by.try(:decorate).try(:display_name)
   end
 
   def xls_levels_row

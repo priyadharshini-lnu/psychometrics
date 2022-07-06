@@ -58,6 +58,7 @@ export default {
   videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
   pasteDeniedAttrs: ['style'],
   tableStyles: {
+    'table-no-border': 'No Border',
     'table-minimal-hr': 'Minimal',
     'table-compact': 'Compact',
     'table-full-width': 'Full Width',

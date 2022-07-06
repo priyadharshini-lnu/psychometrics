@@ -148,6 +148,8 @@ en:
         successfully: Assessment %{name} was Deleted Successfully.
       edit:
         header: Assessment Settings
+      errors:
+        owner_validation: You don't have %{resource_name} %{permission} permission for %{client_name}
       form:
         categories:
           '360': 360 Feedback
@@ -988,6 +990,11 @@ en:
         update:
           successfully: User %{name} was successfully updated.
         user: User
+      columns:
+        country: Country
+        project_manager: Project Manager
+        type: Type
+        year: Year
       copy:
         error: Client Tenancy %{name} was not copied.
         successfully: Client Tenancy %{name} was successfully copied.
@@ -1023,7 +1030,6 @@ en:
         enable_2fa: Enable Two Factor Authentication
         header: Edit Client
       export:
-        account_manager_id: Account manager
         admin: Client Admin
         client_admins: Client admins
         end_date: End date
@@ -1131,7 +1137,6 @@ en:
           duplicate_licenses: You have duplicate licenses
           successfully: Licenses successfully updated
       list:
-        account_manager_id: Account manager
         admin: Client Admin
         client_admins: Client admins
         end_date: End date
@@ -2445,8 +2450,23 @@ en:
       edit:
         header: Edit Factor Name
       form:
+        components:
+          ExternalList:
+            add: Add
+            table:
+              actions: Actions
+              jsonpath: JSON Path
+              type: Type
+              types:
+                norm_score: Normed Score
+                percentage: Percentage
+                percentile: Percentile Score
+                score: Raw
+                zscore: Z Score
+            title: JSON Paths for Scores
         no_icon: No Logo yet
         scoring_strategies:
+          external_score: External Score
           questions: Questions (Average)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
@@ -2460,6 +2480,7 @@ en:
         icon: Icon
         new: Add
         scoring_strategies:
+          external_score: External Score
           questions: Questions (Average)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
@@ -2491,6 +2512,7 @@ en:
           copying: Copying
           deleting: Deleting
         scoring_strategies:
+          external_score: External Score
           questions: Questions (Average)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
@@ -3186,6 +3208,7 @@ en:
             create: Create
         list:
           created_at: Created date
+          external_package_id: External Package Id
           id: ID
           name: Name
           updated_at: Updated date

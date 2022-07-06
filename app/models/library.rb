@@ -16,7 +16,11 @@
 #
 
 class Library < ApplicationRecord
+  include OwnerValidations
+
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :updated_by, class_name: 'User'
   has_ancestry
 
   enum type: %i[folder image audio video other]

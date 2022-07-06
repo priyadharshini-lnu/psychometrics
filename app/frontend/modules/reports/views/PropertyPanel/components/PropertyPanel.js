@@ -3,10 +3,14 @@ import React, { Component } from 'react'
 import { Properties } from 'modules/reports/components/modules'
 import ModuleModel from 'modules/reports/models/Module'
 import LayoutManager from 'modules/reports/models/LayoutManager'
+import {
+  Slider, InputNumber, Row, Col, Collapse,
+} from 'antd'
 import styles from './PropertyPanel.less'
 import ColorPickerModal from './ColorPickerModal'
 
 const { $ } = window
+const { Panel } = Collapse
 
 class PropertyPanel extends Component {
   state = {
@@ -24,6 +28,18 @@ class PropertyPanel extends Component {
     })
   }
 
+  onChangePosition = (value) => {
+    const { module } = this.props
+    const position = { ...module.props.position, ...value }
+    module.props.position = position
+    this.forceUpdate()
+  }
+
+  updateModule = () => {
+    const { module, updateModule } = this.props
+    updateModule({ ...module })
+  }
+
   layoutHandler = (method) => {
     const { module } = this.props
     const model = new ModuleModel(module, { id: module.page_id })
@@ -32,6 +48,7 @@ class PropertyPanel extends Component {
     layout[method](model)
     model.update()
   }
+
 
   showOnAllPages = () => {
     const { module } = this.props
@@ -56,61 +73,129 @@ class PropertyPanel extends Component {
     return (<View model={model || page} />)
   }
 
-  renderLayout () {
-    const { module } = this.props
-    if (!module) { return null }
+  renderSlider (props, label) {
     return (
-      <div className={styles.layout}>
-        Layout
-        <ul className={styles.variants}>
-          {_.map(['alignLeft', 'alignRight', 'alignTop', 'alignBottom', 'alignMiddleVertical',
-            'alignMiddleHorizontal'], type => (
-              <li key={type}>
-                <a
-                  className={`${styles.alignedBlock} ${styles[type]}`}
-                  onClick={e => this.layoutHandler(type, e)}
-                />
-              </li>
-          ))}
-        </ul>
-        <ul>
-          <li><a onClick={e => this.layoutHandler('moveInFront', e)}>Bring Forward</a></li>
-          <li><a onClick={e => this.layoutHandler('moveInBack', e)}>Send Backward</a></li>
+      <Row align="middle">
+        <Col span={2}>{label}</Col>
+        <Col span={16}>
+          <Slider {...props} onAfterChange={() => this.updateModule()} />
+        </Col>
+        <Col span={6}>
+          <InputNumber
+            controls={false}
+            className={styles.antInput}
+            onPressEnter={() => this.updateModule()}
+            {...props}
+          />
+        </Col>
+      </Row>
+    )
+  }
 
-          <li>
-            <label>
-              <input
-                type="checkbox"
-                checked={module.props.onTop || false}
-                onChange={e => this.layoutHandler('alwaysOnTop', e)}
-              />
-              Always On Top
-            </label>
-          </li>
-          <li>
-            <label>
-              <input
-                type="checkbox"
-                checked={module.props.onBottom || false}
-                onChange={e => this.layoutHandler('alwaysOnBottom', e)}
-              />
-              Always On Bottom
-            </label>
-          </li>
-          <li>
-            <label>
-              <input
-                type="checkbox"
-                checked={module.props.showOnAllPages || false}
-                onChange={() => this.showOnAllPages()}
-              />
-              Show On All Pages
-            </label>
-
-          </li>
-        </ul>
+  renderLayout () {
+    const { module, report: { builder: { props } } } = this.props
+    if (!module) { return null }
+    const { width, height } = props.sizes
+    const { position } = module.props
+    return (
+      <>
         <hr className={styles.divider} />
-      </div>
+        <div>
+          <div className={styles.title}>Dimension</div>
+          <div className={styles.pagePreview} style={{ width: width / 10, height: height / 10 }}>
+            <div
+              className={styles.modulePreview}
+              style={{
+                width: position.width / 10,
+                height: position.height / 10,
+                left: position.left / 10 - 1,
+                top: position.top / 10 - 1,
+              }}
+            />
+          </div>
+        </div>
+        <Collapse accordion className={styles.propertiesPanel}>
+          <Panel header="Dimensions" key="Dimensions">
+            {this.renderSlider({
+              value: position.width,
+              min: 0,
+              max: width - position.left,
+              onChange: value => this.onChangePosition({ width: value }),
+            }, 'W:')}
+            {this.renderSlider({
+              value: position.height,
+              min: 0,
+              max: height - position.top,
+              onChange: value => this.onChangePosition({ height: value }),
+            }, 'H:')}
+          </Panel>
+          <Panel header="Co-ordinates" key="Co-ordinates">
+            {this.renderSlider({
+              value: position.left,
+              min: 0,
+              max: width - position.width,
+              onChange: value => this.onChangePosition({ left: value }),
+            }, 'X:')}
+            {this.renderSlider({
+              value: position.top,
+              min: 0,
+              max: height - position.height,
+              onChange: value => this.onChangePosition({ top: value }),
+            }, 'Y:')}
+          </Panel>
+        </Collapse>
+        <hr className={styles.divider} />
+        <div className={styles.layout}>
+          Layout
+          <ul className={styles.variants}>
+            {_.map(['alignLeft', 'alignRight', 'alignTop', 'alignBottom', 'alignMiddleVertical',
+              'alignMiddleHorizontal'], type => (
+                <li key={type}>
+                  <a
+                    className={`${styles.alignedBlock} ${styles[type]}`}
+                    onClick={e => this.layoutHandler(type, e)}
+                  />
+                </li>
+            ))}
+          </ul>
+          <ul>
+            <li><a onClick={e => this.layoutHandler('moveInFront', e)}>Bring Forward</a></li>
+            <li><a onClick={e => this.layoutHandler('moveInBack', e)}>Send Backward</a></li>
+
+            <li>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={module.props.onTop || false}
+                  onChange={e => this.layoutHandler('alwaysOnTop', e)}
+                />
+                Always On Top
+              </label>
+            </li>
+            <li>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={module.props.onBottom || false}
+                  onChange={e => this.layoutHandler('alwaysOnBottom', e)}
+                />
+                Always On Bottom
+              </label>
+            </li>
+            <li>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={module.props.showOnAllPages || false}
+                  onChange={() => this.showOnAllPages()}
+                />
+                Show On All Pages
+              </label>
+
+            </li>
+          </ul>
+        </div>
+      </>
     )
   }
 

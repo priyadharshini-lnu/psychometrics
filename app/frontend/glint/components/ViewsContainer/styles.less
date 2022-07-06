@@ -1,0 +1,27 @@
+@import 'glint/styles/mixins.less';
+@bg-color: var(--ant-primary-color-outline);
+
+.title {
+  position: relative;
+  padding-left: 14px;
+  .highlighter();
+}
+
+.viewControls {
+  text-align: end;
+}
+
+.activeButton,
+.inActiveButton {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.activeButton,
+.activeButton:active,
+.inActiveButton:active,
+.activeButton:focus {
+  &:global(.ant-btn) {
+    background: @bg-color;
+  }
+}

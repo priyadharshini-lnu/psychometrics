@@ -10,7 +10,7 @@ class Administration::NormsController < Administration::BaseController
   def index
     @filter_term = params.dig(:q, :filterable_fields)
     @_filter_form = policy_scope(resource_class).
-                    includes(:updater, :dimension).
+                    includes(:updated_by, :dimension).
                     ransack(params[:q])
     @_resources = filter_form.result.page(params[:page])
 
@@ -26,8 +26,8 @@ class Administration::NormsController < Administration::BaseController
 
   def create
     @_resource = resource_class.new(resource_params)
-    resource.creator = current_user
-    resource.updater = current_user
+    resource.created_by = current_user
+    resource.updated_by = current_user
 
     if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
       resource.owner_id = current_user.client_admin_clients.not_archived&.first&.id
@@ -44,7 +44,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def update
-    resource.updater = current_user
+    resource.updated_by = current_user
     respond_to do |format|
       if resource.update(resource_params)
         audit! :update, resource, payload: params.permit!
@@ -68,9 +68,9 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource         = resource.clone
-    @cloned_resource.updater = current_user
-    @cloned_resource.creator = current_user
+    @cloned_resource = resource.clone
+    @cloned_resource.updated_by = current_user
+    @cloned_resource.created_by = current_user
     respond_to do |format|
       if @cloned_resource.save
         audit! :copy, resource, payload: { source_id: resource.id }

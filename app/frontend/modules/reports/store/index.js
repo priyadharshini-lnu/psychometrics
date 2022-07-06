@@ -22,7 +22,7 @@ if (__TEST__) {
 
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ name: 'Reports' })
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ name: `Report#${location.pathname}` })
   }
   if (!__DISABLE_LOGGER_) {
     middleware.push(logger)

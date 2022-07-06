@@ -12,10 +12,13 @@ export const Functions = {
 }
 
 export default {
-  series (results, factors, model, func = 'Count') {
+  series (results, factors, model, func = 'Count', factorsData) {
     const data = _.map(factors, factor => ({
-      name: I18nStore.tFactorName(factor),
+      name: I18nStore.tFactor(factor, 'name'),
       y: Functions[func](_.result(results.scoring[factor.id], 'results', [])),
+      custom: {
+        description: I18nStore.tFactor(_.find(factorsData, { id: factor.id }), 'description'),
+      },
     }))
     return [{
       colorByPoint: true,

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import ChoicesInput from 'modules/reports/components/ChoicesInput'
+import { Slider } from 'antd'
 
 class Properties extends Component {
   static propTypes = {
@@ -26,9 +27,19 @@ class Properties extends Component {
     this.update()
   }
 
+  changeValuePadding = (value) => {
+    const { model } = this.props
+    model.props.valuePadding = value
+    this.forceUpdate()
+  }
+
+  updateValuePadding = () => {
+    this.update()
+  }
+
   render () {
     const { model } = this.props
-    const { radarMax, numberOfDecimals } = model.props
+    const { radarMax, numberOfDecimals, valuePadding } = model.props
     return (
       <div>
         <div className={styles.block}>
@@ -49,6 +60,21 @@ class Properties extends Component {
             onChange={this.changeNumberOfDecimals}
           />
         </div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          Values Padding
+          {' '}
+          {valuePadding || 0}
+          <Slider
+            defaultValue={0}
+            min={-50}
+            max={50}
+            value={valuePadding}
+            onChange={this.changeValuePadding}
+            onAfterChange={this.updateValuePadding}
+          />
+        </div>
+        <hr className={styles.divider} />
       </div>
     )
   }

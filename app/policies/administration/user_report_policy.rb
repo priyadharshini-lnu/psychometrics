@@ -31,9 +31,7 @@ module Administration
     end
 
     def destroy?
-      (@user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )) && record&.not_prepared?
+      @user.is?(:superadmin)
     end
 
     def toggle_user_access?

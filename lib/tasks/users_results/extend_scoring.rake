@@ -11,7 +11,7 @@ namespace :users_results do
     Assign.completed.includes(assessment: :dimension).where.not(scoring: [nil, {}]).find_each do |assign|
       assign_processed += 1
       assign.scoring = ::UsersResults::Scoring::Extend.call!(
-        assign.scoring, assign.norm_data, assign.assessment.dimension
+        assign.scoring, assign.norm_data, assign.assessment.dimension, assign.external_results
       )
       assign.save!(validate: false)
       puts "Processed #{assign_processed} assigns out of #{assign_count}" if (assign_processed % 100).zero?
@@ -25,7 +25,9 @@ namespace :users_results do
       not(scoring: [nil, {}]).
       find_each do |result|
       results_processed += 1
-      result.scoring = ::UsersResults::Scoring::Extend.call!(result.scoring, {}, result.assessment.dimension)
+      result.scoring = ::UsersResults::Scoring::Extend.call!(
+        result.scoring, {}, result.assessment.dimension, assign.external_results
+      )
       result.save!(validate: false)
       puts "Processed #{results_processed} users_results out of #{result_count}" if (results_processed % 100).zero?
     end

@@ -19,6 +19,10 @@ export interface BaseProps<Type = ''> {
   }
   colors: Array<{ id: number; color: string }>
 }
+export interface Factor {
+  id: number
+  name: string
+}
 
 type TypeTables = 'GapAssessment' | 'Competencies'
 

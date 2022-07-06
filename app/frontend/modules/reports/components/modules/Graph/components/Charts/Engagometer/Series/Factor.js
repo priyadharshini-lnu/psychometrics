@@ -1,24 +1,31 @@
 import _ from 'lodash'
+import I18nStore from 'modules/reports/store/I18nStore'
 
 export const Functions = {
 }
 
 export default {
-  series (results, factors) {
+  series (results, factors, _model, _format, factorsData) {
     const data = _.map(factors, (factor) => {
       const factorResults = results.scoring[factor.id]
       if (factorResults && factorResults.results) {
         const sum = _.reduce(factorResults.results, (n, result) => result.getValue() + n, 0)
-        return sum / factorResults.results.length
+        return {
+          y: sum / factorResults.results.length,
+          custom: {
+            description: I18nStore.tFactor(_.find(factorsData, { id: factor.id }), 'description'),
+          },
+        }
       }
-      return 0
+      return { y: 0 }
     })
-    const total = _.sum(data)
+    const total = _.sumBy(data, 'y')
     let currentValue = 0
     return _.map(data, (obj) => {
       const res = {
+        ...obj,
         from: currentValue,
-        to: currentValue + _.round(obj * 100 / total, 1),
+        to: currentValue + _.round(obj.y * 100 / total, 1),
       }
       currentValue = res.to
       return res

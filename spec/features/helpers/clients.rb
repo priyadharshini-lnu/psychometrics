@@ -17,7 +17,6 @@ module Features
           fill_in 'resource_number', with: opts[:number]
           select opts[:country], from: 'resource_country', visible: false
           select opts[:year], from: 'resource_year', visible: false
-          select opts[:account_manager], from: 'resource_account_manager_id', visible: false
           select opts[:project_manager], from: 'resource_project_manager_id', visible: false
           click_on t('administration.create')
         end

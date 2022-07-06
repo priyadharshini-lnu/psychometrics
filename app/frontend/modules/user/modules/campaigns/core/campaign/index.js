@@ -11,7 +11,7 @@ const RESET = 'campaign/RESET_DATA'
 export const fetchCampaign = url => ({
   type: FETCH,
   request: {
-    url: `${url}.json`,
+    url,
   },
 })
 export const fetchCampaignOptions = campaignId => ({

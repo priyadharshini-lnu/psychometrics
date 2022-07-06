@@ -44,7 +44,7 @@ export const getResponseDataMismatchRequest = (state: RootState) => lodashGet(
   get(state), ['responseDataMismatchRequest'],
 )
 
-export const setResponseDataMismatched = (requestName: string, errors: string, data: unknown) => ({
+export const setResponseDataMismatched = (requestName: string, errors: string[], data: unknown) => ({
   type: RESPONSE_DATA_MISMATCHED,
   payload: { requestName, errors, data },
 })

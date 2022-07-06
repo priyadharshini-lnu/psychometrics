@@ -7,10 +7,11 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
   let(:form) { Threesixty::Campaigns::CreateForm.new(name: 'New campaign') }
   let(:assessment) { create(:assessment) }
   let(:report) { create(:report) }
+  let!(:user) { create(:user) }
 
   describe '.call' do
     it 'creates a Threesixty::Campaign record' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
 
       expect(threesixty_campaign).to be_an_instance_of(Threesixty::Campaign)
       expect(threesixty_campaign).to be_persisted
@@ -18,31 +19,31 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
     end
 
     it 'creates a Campaign record' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
 
       expect(threesixty_campaign.campaign).to be_persisted
     end
 
     it 'creates a Threesixty::Option record for a Threesixty::Campaign' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
 
       expect(threesixty_campaign.option).to be_persisted
     end
 
     it 'creates assessment' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
 
       expect(threesixty_campaign.assessment).to be_persisted
     end
 
     it 'creates report' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
 
       expect(threesixty_campaign.report).to be_persisted
     end
 
     it 'creates dimension' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
 
       expect(threesixty_campaign.assessment.dimension).to be_persisted
     end
@@ -54,7 +55,7 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
     end
 
     it 'sets correct assessment_id for assessments_reports' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
 
       expect(threesixty_campaign.report.assessments_reports.first.assessment_id).
         to eq(threesixty_campaign.assessment_id)
@@ -64,7 +65,7 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
       page = create(:page, report: report)
       create(:module, page: page)
 
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
       report_module = threesixty_campaign.report.modules.first
 
       expect(report_module.assessment_id).to eq(threesixty_campaign.assessment_id)
@@ -75,7 +76,7 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
       factor = create(:factor, dimension: assessment.dimension)
       create(:module, page: page, props: { factorId: factor.id })
 
-      threesixty_campaign = described_class.call!(assessment, report, form, project)
+      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
       report_module = threesixty_campaign.report.modules.first
       expected_factor_id = threesixty_campaign.assessment.dimension.all_factors.find_by(name: factor.name)
 

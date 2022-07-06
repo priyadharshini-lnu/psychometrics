@@ -98,6 +98,10 @@ module Administration
       private
 
       def permissions
+        subject_permissions.merge(campaign_permissions)
+      end
+
+      def subject_permissions
         GetPermissionsHash.call!(
           Administration::Threesixty::SubjectPolicy,
           current_user,
@@ -111,7 +115,22 @@ module Administration
             'edit_dimension',
             'reset_all_participants',
             'reset_all_nominations',
+            'rescore_assessment',
             'edit_user'
+          ],
+          {
+            project_id: threesixty_campaign.campaign.project_id
+          }
+        )
+      end
+
+      def campaign_permissions
+        GetPermissionsHash.call!(
+          Administration::Threesixty::CampaignPolicy,
+          current_user,
+          nil,
+          [
+            'rescore_assessment'
           ],
           {
             project_id: threesixty_campaign.campaign.project_id

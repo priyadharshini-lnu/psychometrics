@@ -1,11 +1,10 @@
-export default function ChartOptions (model) {
+export default function ChartOptions (model, animation) {
   return {
     chart: {
       type: 'solidgauge',
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
     title: false,
-    tooltip: false,
     yAxis: {
       min: 0,
       max: 100,
@@ -23,6 +22,11 @@ export default function ChartOptions (model) {
         linecap: 'round',
         stickyTracking: false,
       },
+    },
+    tooltip: {
+      enabled: animation,
+      headerFormat: '<hr/><b>{series.name}</b><br/>',
+      pointFormat: '{point.y}<br/>{point.custom.description}',
     },
   }
 }

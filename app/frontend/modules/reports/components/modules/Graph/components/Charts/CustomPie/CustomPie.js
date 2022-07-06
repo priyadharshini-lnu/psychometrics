@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Highcharts from 'highcharts'
 import AppStore from 'modules/reports/store/AppStore'
 import LookupSourceName from 'modules/reports/commands/LookupSourceName'
+import I18nStore from 'modules/reports/store/I18nStore'
 import styles from './CustomPie.less'
 import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
@@ -71,7 +72,7 @@ class CustomPie extends Component {
     changeLabel(model, label.value, collectionName)
   }
 
-  prepareSerie (name, color, y, index) {
+  prepareSerie (name, color, y, index, description) {
     return {
       name,
       marker: { enabled: false },
@@ -83,6 +84,9 @@ class CustomPie extends Component {
           radius: `${100 - 25 * index}%`,
           innerRadius: `${100 - 25 * index}%`,
           y,
+          custom: {
+            description,
+          },
         },
       ],
       showInLegend: true,
@@ -90,7 +94,7 @@ class CustomPie extends Component {
   }
 
   prepareSeries (data, colors) {
-    const { model } = this.props
+    const { model, factors } = this.props
     const sourceType = model.getSourceType()
     const sourceModel = this.getSourceModel()
     const strategy = defineStrategy(model, sourceModel)
@@ -100,6 +104,7 @@ class CustomPie extends Component {
     if (strategy === STRATEGIES.SOURCES) {
       return sourceModel.map((factor, i) => this.prepareSerie(
         LookupSourceName.call(assessment, factor, sourceType), colors[i], series[i], i,
+        I18nStore.tFactor(_.find(factors, { id: factor.id }), 'description'),
       ))
     }
     if (strategy === STRATEGIES.FILTERS) {
@@ -134,7 +139,7 @@ class CustomPie extends Component {
 
     this.chart = Highcharts.chart(
       this.container,
-      _.merge(ChartOptions(model, e => this.changeBarLabel(data.collection, e), this.props), {
+      _.merge(ChartOptions(model, animation), {
         plotOptions: {
           solidgauge: {
             borderWidth: model.props.chartBorderWidth,

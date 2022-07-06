@@ -50,6 +50,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Savon::SpecHelper
   config.include SamlHelper
+  config.include JsonApiHelper
   config.render_views
 
   config.infer_spec_type_from_file_location!

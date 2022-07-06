@@ -154,7 +154,7 @@ describe 'Reports' do
             ]
           }]
         }
-        report.update(owner: project, data_configuration: config)
+        report.update(owner: project, data_configuration: config, skip_owner_validation: true)
       end
 
       response '200', 'Success' do
@@ -271,7 +271,7 @@ describe 'Reports' do
 
   path '/reports/{report_id}/dimensions' do
     before do
-      report.update(owner: membership.client)
+      report.update(owner: membership.client, skip_owner_validation: true)
     end
     let!(:license) { create(:license, client: membership.client, report_family: report.report_families.first) }
 
@@ -586,79 +586,6 @@ describe 'Reports' do
         run_test! do |response|
           user_report = JSON.parse(response.body)
           expect(user_report['user_access']).to eq(true)
-        end
-      end
-
-      response '401', 'Auth error' do
-        let(:project_id) { project.id }
-        let(:user_id) { user.id }
-        let(:report_id) { report.id }
-        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
-
-        schema '$ref' => '#/definitions/ApiError'
-
-        examples 'application/json' =>
-        {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
-        }
-
-        run_test! do |response|
-          error = JSON.parse(response.body)
-          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
-        end
-      end
-
-      response '401', 'Authentication error' do
-        let(:project_id) { project.id }
-        let(:user_id) { user.id }
-        let(:report_id) { report.id }
-        before { membership.user.update(disabled: true) }
-
-        schema '$ref' => '#/definitions/ApiError'
-
-        examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
-        }
-
-        run_test! do |response|
-          error = JSON.parse(response.body)
-          expect(error).to eq(
-            'code' => 1000,
-            'message' => 'Invalid authentication',
-            'more_info' => 'API User is disabled',
-            'meta' => nil
-          )
-        end
-      end
-    end
-
-    delete 'Delete user report' do
-      operationId 'DeleteUserReport'
-      description 'Delete user report'
-      tags 'Report'
-      consumes 'application/json'
-      security [basic: []]
-      parameter name: :project_id, in: :path, type: :string
-      parameter name: :user_id, in: :path, type: :string
-      parameter name: :report_id, in: :path, type: :string, required: false
-      parameter name: :campaign_id, in: :query, type: :string, required: false,
-                description: 'if is not filled, the system takes the last campaign id'
-
-      response '200', 'UserReport deleting' do
-        let(:project_id) { project.id }
-        let(:user_id) { user.id }
-        let(:report_id) { report.id }
-
-        schema '$ref' => '#/definitions/UserReport'
-
-        run_test! do |_|
-          expect(UserReport.find_by(id: user_report.id)).to eq(nil)
         end
       end
 

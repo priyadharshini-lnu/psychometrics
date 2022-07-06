@@ -16,7 +16,7 @@ export interface OwnProps {
 export type Props = OwnProps & PropsFromRedux
 
 const RemoveReportModal: React.FC<Props> = ({
-  close, campaignId, remove, campaignReportId, reportName,
+  close, campaignId, remove, campaignReportId, reportName, currentUser,
 }) => {
   const [removeUserReports, setRemoveUserReports] = useState(false)
 
@@ -38,9 +38,11 @@ const RemoveReportModal: React.FC<Props> = ({
       <Paragraph>
         <SafeHTML html={I18n.t('campaign_report.modals.remove.msg_text', { reportName })} />
       </Paragraph>
-      <Checkbox checked={removeUserReports} onChange={() => setRemoveUserReports(!removeUserReports)}>
-        {I18n.t('campaign_report.modals.remove.apply')}
-      </Checkbox>
+      {currentUser.role === 'Users::SuperAdmin' && (
+        <Checkbox checked={removeUserReports} onChange={() => setRemoveUserReports(!removeUserReports)}>
+          {I18n.t('campaign_report.modals.remove.apply')}
+        </Checkbox>
+      )}
     </Modal>
   )
 }

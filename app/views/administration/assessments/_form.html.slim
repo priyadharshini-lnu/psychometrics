@@ -1,8 +1,7 @@
 #assessments_form
   = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
     .modal-body
-      = f.error_notification
-
+      = render_error_notification(resource)
       .form-inputs.clearfix
         - root_clients = policy_scope(Client).roots
         = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
@@ -80,7 +79,7 @@
         = f.association :dimension, collection: policy_scope(Dimension).all.sorted_by('name_asc'),
                                     include_blank: true,
                                     input_html: { data: { live_search: true } },
-                                    wrapper_html: { class: 'common' }
+                                    wrapper_html: { class: 'common mindmill hogan saville pearson iiht' }
         = f.input :timing, as: :text,
                            hint: t('.timing.hint'),
                            wrapper_html: { class: 'common mindmill hogan saville pearson' }

@@ -111,8 +111,8 @@ module Forms
 
       def prepopulate!(options)
         user = options[:current_user]
-        self.owner_id = client_id if user.is?(:client_admin) || user.is?(:project_admin)
         self.client_id = owner_id if user.is?(:superadmin) && owner_id.present?
+        self.owner_id = client_id if user.is?(:client_admin) || user.is?(:project_admin)
         self.end_level_id = sub_campaign_id || campaign_id || project_id || client_id
       end
 

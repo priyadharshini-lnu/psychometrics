@@ -34,6 +34,8 @@ class Question < ApplicationRecord
   belongs_to :assessment, touch: true
   belongs_to :template, class_name: 'Question', dependent: :destroy
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :updated_by, class_name: 'User'
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
   has_many :question_recodings, dependent: :destroy

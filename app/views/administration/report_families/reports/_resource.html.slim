@@ -1,15 +1,16 @@
 tr
-  td = resource.id
-  td = resource.name
-  td = resource.decorate.created_at
-  td = resource.decorate.updated_at
+  td = resource.report.id
+  td = resource.report.name
+  td = resource.external_package_id
+  td = resource.report.decorate.created_at
+  td = resource.report.decorate.updated_at
   - if policy(resource).actions?
     td.actions-cell
-      = link_to({ action: :destroy, id: resource },
+      = link_to({ action: :destroy, id: resource.report.id },
                 remote: true,
                 class: 'btn btn-default btn-rounded btn-sm delete',
                   method: :delete,
-                  data: { confirm: resource.decorate.remove_from_bundle_confirmation,
+                  data: { confirm: resource.report.decorate.remove_from_bundle_confirmation,
                           toggle: 'tooltip',
                           title: t('.tooltips.delete')})
         span.fa.fa-times

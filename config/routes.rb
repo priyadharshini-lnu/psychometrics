@@ -548,6 +548,7 @@ Rails.application.routes.draw do
         delete :reset
         delete :reset_nominations
         delete :remove_user
+        post :rescore_assessment
       end
     end
 
@@ -872,6 +873,7 @@ Rails.application.routes.draw do
     resources :highlights, only: %i[update]
 
     scope module: :end_user do
+      get '/switch_end_user_view', to: 'users#switch_end_user_view', as: :switch_view
       resources :campaigns, only: %i[show]
       get :dashboard, to: 'users#dashboard'
       post :accept_privacy, to: 'users#accept_privacy'
@@ -1066,8 +1068,8 @@ Rails.application.routes.draw do
 
             post 'campaigns' => 'campaigns#assign_user'
             resources :campaigns, only: %i[index]
-            resources :assessments, only: %i[index update destroy]
-            resources :reports, only: %i[index update destroy] do
+            resources :assessments, only: %i[index update]
+            resources :reports, only: %i[index update] do
               get :results, on: :member
               get :pdf, on: :member
             end
@@ -1078,6 +1080,16 @@ Rails.application.routes.draw do
         end
         resources :reports, only: [] do
           get :dimensions, on: :member
+        end
+      end
+
+      namespace :v2 do
+        namespace :administration do
+          jsonapi_resources :clients do
+            jsonapi_relationships
+          end
+
+          jsonapi_resources :users
         end
       end
     end

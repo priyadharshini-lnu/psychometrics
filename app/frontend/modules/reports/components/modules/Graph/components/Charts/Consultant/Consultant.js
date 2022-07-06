@@ -40,7 +40,7 @@ class Consultant extends Component {
   }
 
   renderChart () {
-    const { model, animation } = this.props
+    const { model, animation, factors } = this.props
     const colors = _.map(model.props.colors, 'color')
     if (this.chart) {
       this.chart.destroy()
@@ -57,27 +57,18 @@ class Consultant extends Component {
     if (!data) { return null }
     const { fontSize, fontColor: color, fontFamily } = model.props.style
     const assessment = AppStore.getAssessmentById(model.assessment_id)
-    const seriesData = _.map(sourceModel, (factor, i) => {
-      const innerData = []
-      _.times(i, () => {
-        innerData.push({})
-      })
-      innerData.push({
-        y: data.series(getCorrectResults(model), factor, model),
+    const seriesData = {
+      type: 'column',
+      data: _.map(sourceModel, (factor, i) => ({
+        y: data.series(getCorrectResults(model), factor, model, factors),
         color: colors[i],
-      })
-      const result = {
-        type: 'column',
-        name: LookupSourceName.call(assessment, factor, sourceType),
-        color: colors[i],
-        data: innerData,
-      }
-      return result
-    })
+      })),
+    }
+
     this.chart = Highcharts.chart(
       this.container,
       _.merge(
-        ChartOptions(model, e => this.changeBarLabel(data.collection, e), this.props),
+        ChartOptions(model, animation),
         {
           xAxis: {
             categories: _.map(sourceModel, factor => LookupSourceName.call(assessment, factor, sourceType)),
@@ -99,13 +90,12 @@ class Consultant extends Component {
           plotOptions: {
             series: {
               animation,
-              stacking: 'normal',
               pointStart: 0,
               pointInterval: 1,
               dataLabels: {
                 enabled: !!model.props.showValues,
                 format: `{point.y:.${model.props.numberOfDecimals}f}`,
-                padding: -20,
+                padding: model.props.valuePadding || -20,
                 style: {
                   fontSize: fontSize || '11px',
                   color: color || '#000',
@@ -119,7 +109,7 @@ class Consultant extends Component {
             },
           },
           legend: false,
-          series: seriesData,
+          series: [seriesData],
         },
       ),
     )

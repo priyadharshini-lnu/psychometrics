@@ -3,21 +3,28 @@
 module Threesixty
   module Campaigns
     class CreateEmptyCampaign < BaseCommand
-      private_attr_reader :threesixty_campaign, :project, :client
+      private_attr_reader :threesixty_campaign, :project, :client, :user
 
-      def initialize(form, project)
+      def initialize(form, project, user)
         @threesixty_campaign = ::Threesixty::Campaigns::Build.call!(form, project)
         @project = project
         @client = project.client
+        @user = user
       end
 
       def call
         dimension = Dimension.create!(
           name: "#{threesixty_campaign.name} Dimension",
+          created_by: user,
+          updated_by: user,
+          skip_owner_validation: true,
           owner_id: client.id
         )
         assessment = Assessment.new(name: "#{threesixty_campaign.name} Assessment",
                                     owner_id: client.id,
+                                    created_by: user,
+                                    updated_by: user,
+                                    skip_owner_validation: true,
                                     dimension_id: dimension.id,
                                     type: Assessment::TYPES[:common],
                                     category: Assessment::CATEGORIES[:threesixty])
@@ -25,6 +32,9 @@ module Threesixty
         assessment.save!
         report = Report.new(name: "#{threesixty_campaign.name} Report",
                             owner_id: client.id,
+                            created_by: user,
+                            updated_by: user,
+                            skip_owner_validation: true,
                             assessment_id: assessment.id,
                             category: Assessment::CATEGORIES[:threesixty])
         report.set_default_color

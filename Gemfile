@@ -60,7 +60,7 @@ gem 'webpacker',                  '~> 4.0.2'
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.4.0'
 ### FORM BUILDERS
-gem 'cocoon', '1.2.9'
+gem 'cocoon', '1.2.15'
 gem 'simple_form',                '5.1.0'
 ### Pagination helpers
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
@@ -94,7 +94,7 @@ gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'ckeditor'
 gem 'jquery-fileupload-rails', '~> 0.4.6'
-gem 'redis', '~> 4.6.0'
+gem 'redis', '~> 4.7.0'
 gem 'redis-rails', '~> 5.0.2'
 gem 'redlock', '~> 1.2.2'
 
@@ -145,7 +145,9 @@ gem 'sidekiq', '~> 6.4.1'
 gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
 
-gem 'dry-types', '~> 1.5.0'
+gem 'dry-swagger', '~> 0.7.2'
+gem 'dry-validation', '~> 1.8.0'
+gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.14.0'
 gem 'reform-rails', '~> 0.2.3'
@@ -166,6 +168,8 @@ gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'js-routes', '~> 1.4.4'
+gem 'jsonapi-authorization', git: 'https://github.com/TheTalentEnterprise/jsonapi-authorization', branch: 'namespace'
+gem 'jsonapi-utils', '~> 0.7.3'
 gem 'rswag-api', '~> 2.5.1'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
@@ -191,8 +195,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0'
   # A fake data generator
   ### Generate schema in each model
-  gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'i18n-tasks', '~> 0.9.31'
+  gem 'derailed_benchmarks', '~> 2.1.1'
+  gem 'i18n-tasks', '~> 1.0.11'
   gem 'rswag-specs', '~> 2.4.0'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
@@ -209,16 +213,17 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
-  gem 'guard', '~> 2.14.0'
+  gem 'guard', '~> 2.18.0'
   gem 'meta_request', '~> 0.6.0'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'capybara', '~> 3.36.0'
+  gem 'capybara', '~> 3.37.1'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 1.8.7'
+  gem 'jsonapi-rspec', '~> 0.0.11'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
   gem 'selenium-webdriver', '~> 3.142.7'

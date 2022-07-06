@@ -11,8 +11,7 @@ module Administration
       def call
         return broadcast(:invalid) if form.invalid?
 
-        report_family.report_ids += [form.report_id]
-        report_family.save!
+        report_family.report_families_reports.create!(form.attributes)
 
         broadcast(:ok)
       end
