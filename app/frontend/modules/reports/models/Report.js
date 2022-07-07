@@ -51,12 +51,14 @@ export const SOURCE_TYPES = {
     { value: 'PercentileScale', label: 'Percentile Scale', condition: true },
     { value: 'PercentileSubscale', label: 'Percentile Subscale', condition: true },
     { value: 'RawScale', label: 'RAW Scale', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
   ],
   [SAVILLE]: [
     { value: 'Saville#Ipsative', label: 'Ipsative', condition: true },
     { value: 'Saville#Nipsative', label: 'Nipsative', condition: true },
     { value: 'Saville#Normative', label: 'Normative', condition: true },
     { value: 'Saville#Raw', label: 'Raw', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
   ],
 }
 
