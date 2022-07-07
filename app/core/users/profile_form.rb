@@ -21,7 +21,7 @@ module Users
     private
 
     def enable_strong_password?
-      context.user.project.strong_password_enabled || context.user.enforce_strong_password?
+      context.user.enforce_strong_password?
     end
   end
 end

@@ -57,7 +57,7 @@ module Threesixty
       end
 
       def enable_strong_password?
-        context.campaign.project.try(:strong_password_enabled)
+        context.campaign.project&.security_setting&.enforce_strong_password
       end
     end
   end

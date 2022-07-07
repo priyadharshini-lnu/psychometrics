@@ -17,8 +17,8 @@ module Projects
           operator: current_user,
           migrated: true,
           applicable_level: :campaign
-        ))
-
+        ).except(:strong_password_enabled))
+      project.security_setting.update(enforce_strong_password: attrs[:strong_password_enabled])
       broadcast :ok, project
     end
   end

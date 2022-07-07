@@ -11,7 +11,7 @@ module Api
       end
 
       def enable_strong_password
-        object.strong_password_enabled
+        object.security_setting.enforce_strong_password
       end
 
       def project_logo_url
