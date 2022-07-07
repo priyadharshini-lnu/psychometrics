@@ -5,8 +5,8 @@ require 'rails_helper'
 describe Campaigns::GetDatasheetData do
   let(:campaign) { create(:campaign) }
   let(:project) { campaign.project }
-  let(:campaign_datasheet) { create(:datasheet, campaign: campaign, columns: { 'Name' => 'String' }) }
-  let(:project_datasheet) { create(:datasheet, project: project, columns: { 'Name' => 'String' }) }
+  let(:campaign_datasheet) { create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'String' }]) }
+  let(:project_datasheet) { create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }]) }
 
   it 'returns campaign datasheet data if there is not project datasheet' do
     create(:datasheet_row, email: 'james@cc.com', datasheet: campaign_datasheet, data: { 'Name' => 'James' })

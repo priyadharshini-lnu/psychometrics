@@ -159,7 +159,7 @@ class ReportSerializer < ActiveModel::Serializer
     return object.data_sheet_columns unless object.category_threesixty?
     return {} unless connected_campaign
 
-    connected_campaign.nomalized_datasheet_columns
+    connected_campaign.datasheet_columns
   end
 
   # Returns YAML rules for exporting data.

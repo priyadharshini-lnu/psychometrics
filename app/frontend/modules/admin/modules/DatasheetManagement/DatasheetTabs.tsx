@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
 import { Tabs } from 'antd'
 import { ParentResourceType } from 'modules/admin/modules/DatasheetManagement/interfaces'
-import { SettingOutlined, DatabaseOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { Datasheet } from './Datasheet'
 import { DatasheetSettings } from './DatasheetSettings'
@@ -11,9 +10,10 @@ const { I18n } = window
 
 interface Props {
   parentResourceType: ParentResourceType
+  parentResourceId?: number
 }
 
-const DatasheetTabsComponent: FC<Props> = ({ parentResourceType }) => {
+const DatasheetTabsComponent: FC<Props> = ({ parentResourceType, parentResourceId }) => {
   const [tab, setTab] = useState('rows')
   const changeTab = (key) => {
     setTab(key)
@@ -23,21 +23,20 @@ const DatasheetTabsComponent: FC<Props> = ({ parentResourceType }) => {
     campaignId?: string
   }>()
 
-  let parentResourceId = 0
+  let resourceId = parentResourceId
   if (parentResourceType === ParentResourceType.Project && projectId) {
-    parentResourceId = parseInt(projectId, 10)
-  } else if (parentResourceType === ParentResourceType.Campaign && campaignId) {
-    parentResourceId = parseInt(campaignId, 10)
+    resourceId = parseInt(projectId, 10)
+  } else if (!parentResourceId && parentResourceType === ParentResourceType.Campaign && campaignId) {
+    resourceId = parseInt(campaignId, 10)
   }
 
-  if (!parentResourceId) { return null }
+  if (!resourceId) { return null }
 
   return (
     <Tabs defaultActiveKey="rows" tabBarStyle={{ padding: '0 20px' }} onChange={changeTab}>
       <TabPane
         tab={(
           <span>
-            <DatabaseOutlined />
             {I18n.t('administration.datasheets.tabs.rows')}
           </span>
         )}
@@ -45,14 +44,13 @@ const DatasheetTabsComponent: FC<Props> = ({ parentResourceType }) => {
       >
         <Datasheet
           parentResourceType={parentResourceType}
-          parentResourceId={parentResourceId}
+          parentResourceId={resourceId}
           reload={tab === 'rows'}
         />
       </TabPane>
       <TabPane
         tab={(
           <span>
-            <SettingOutlined />
             {I18n.t('administration.datasheets.tabs.settings')}
           </span>
           )}
@@ -60,7 +58,7 @@ const DatasheetTabsComponent: FC<Props> = ({ parentResourceType }) => {
       >
         <DatasheetSettings
           parentResourceType={parentResourceType}
-          parentResourceId={parentResourceId}
+          parentResourceId={resourceId}
         />
       </TabPane>
     </Tabs>

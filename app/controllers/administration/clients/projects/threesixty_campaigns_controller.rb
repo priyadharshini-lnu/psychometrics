@@ -22,6 +22,7 @@ module Administration
               campaignDetails: {
                 id: resource.id,
                 name: resource.name,
+                campaignId: resource.campaign_id,
                 reportId: resource.report_id,
                 assessmentId: resource.assessment_id,
                 dimensionId: resource.assessment.dimension_id,

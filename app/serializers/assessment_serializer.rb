@@ -64,7 +64,7 @@ class AssessmentSerializer < ActiveModel::Serializer
     return object.data_sheet_columns if object.data_sheet_columns.present?
     return [] if !object.threesixty? || connected_campaign.nil?
 
-    connected_campaign.nomalized_datasheet_columns
+    connected_campaign.datasheet_columns
   end
 
   def fixed_timed

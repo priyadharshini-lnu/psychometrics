@@ -20,6 +20,7 @@ type CampaignAssessmentPermissions = {
 }
 interface State {
   id?: number
+  campaignId?: number
   reportId?: number
   campaignReportPermissions?: CampaignReportPermissions,
   campaignAssessmentPermissions?: CampaignAssessmentPermissions

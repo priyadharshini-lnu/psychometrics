@@ -41,13 +41,14 @@ describe ReportSerializer do
     describe 'threesixty report' do
       before do
         allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-        create(:datasheet, columns: { 'field1' => 'Text', 'field2' => 'Number' }, project: campaign.project)
+        create(:datasheet, columns: [{ name: 'field1', type: 'Text' }, { name: 'field2', type: 'Number' }],
+          project: campaign.project)
       end
 
       it {
         expect(described_class.new(report).data_sheet_columns).to eq [
-          { name: 'field1', type: 'Text' },
-          { name: 'field2', type: 'Number' }
+          { 'name' => 'field1', 'type' => 'Text' },
+          { 'name' => 'field2', 'type' => 'Number' }
         ]
       }
     end
@@ -55,7 +56,8 @@ describe ReportSerializer do
 
   describe '#to_hash' do
     before do
-      create(:datasheet, columns: { 'field1' => 'Text', 'field2' => 'Number' }, project: campaign.project)
+      create(:datasheet, columns: [{ name: 'field1', type: 'Text' }, { name: 'field2', type: 'Number' }],
+        project: campaign.project)
     end
 
     it do

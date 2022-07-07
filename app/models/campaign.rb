@@ -90,17 +90,17 @@ class Campaign < ApplicationRecord
   end
 
   def datasheet_column_names
-    datasheet_columns.keys
+    datasheet_columns.map { |c| c['name'] }
   end
 
   def datasheet_columns
-    project_datasheet_columns = project.datasheet&.columns || {}
-    campaign_datasheet_columns = datasheet&.columns || {}
-    project_datasheet_columns.merge(campaign_datasheet_columns)
-  end
-
-  def nomalized_datasheet_columns
-    datasheet_columns.map { |k, v| { name: k, type: v } }
+    project_datasheet_columns = project.datasheet&.columns || []
+    campaign_datasheet_columns = datasheet&.columns || []
+    column_names = (project_datasheet_columns + campaign_datasheet_columns).map { |c| c['name'] }.uniq
+    column_names.map do |column_name|
+      campaign_column = campaign_datasheet_columns.find { |col| col['name'] == column_name }
+      campaign_column || project_datasheet_columns.find { |col| col['name'] == column_name }
+    end
   end
 
   def assessor_assessments
