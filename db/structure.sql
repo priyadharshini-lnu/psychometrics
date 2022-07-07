@@ -429,10 +429,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
@@ -588,8 +588,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -938,12 +937,12 @@ CREATE TABLE public.clients (
     hogan_group_name character varying,
     privacy_consent boolean,
     two_factor_enabled boolean DEFAULT false,
+    strong_password_enabled boolean DEFAULT false,
     secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
     locales json DEFAULT '[]'::json,
-    live_chat_token character varying,
-    strong_password_enabled boolean DEFAULT false
+    live_chat_token character varying
 );
 
 
@@ -1177,6 +1176,39 @@ CREATE SEQUENCE public.communications_users_id_seq
 --
 
 ALTER SEQUENCE public.communications_users_id_seq OWNED BY public.communications_users.id;
+
+
+--
+-- Name: dashboards; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.dashboards (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    name character varying,
+    dataset_id character varying,
+    report_id character varying,
+    enabled boolean DEFAULT false
+);
+
+
+--
+-- Name: dashboards_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.dashboards_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dashboards_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.dashboards_id_seq OWNED BY public.dashboards.id;
 
 
 --
@@ -2929,12 +2961,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4562,6 +4594,13 @@ ALTER TABLE ONLY public.communications_users ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: dashboards id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dashboards ALTER COLUMN id SET DEFAULT nextval('public.dashboards_id_seq'::regclass);
+
+
+--
 -- Name: data_geos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5392,6 +5431,14 @@ ALTER TABLE ONLY public.communications
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT communications_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dashboards dashboards_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dashboards
+    ADD CONSTRAINT dashboards_pkey PRIMARY KEY (id);
 
 
 --
@@ -6657,6 +6704,13 @@ CREATE INDEX index_communications_users_on_communication_id ON public.communicat
 --
 
 CREATE INDEX index_communications_users_on_user_id ON public.communications_users USING btree (user_id);
+
+
+--
+-- Name: index_dashboards_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_dashboards_on_campaign_id ON public.dashboards USING btree (campaign_id);
 
 
 --
@@ -8340,6 +8394,14 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 
 
 --
+-- Name: dashboards fk_rails_4d4d1beb84; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dashboards
+    ADD CONSTRAINT fk_rails_4d4d1beb84 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: ecommerce_orders fk_rails_4e7fc0242c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9734,8 +9796,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220606151635'),
 ('20220608104948'),
 ('20220609042528'),
-('20220609110619'),
-('20220609111758'),
 ('20220609112219'),
 ('20220609114435'),
 ('20220609120021'),
@@ -9745,4 +9805,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220610114559'),
 ('20220613192348'),
 ('20220616103155'),
-('20220630112848');
+('20220630112848'),
+('20220704083505');
+
+

@@ -2328,6 +2328,13 @@ en:
     create: Create
     created: Successfully created
     created_by: Created By
+    dashboard:
+      get_started: Get Started
+      initialize_msg: Initialize a Dashboard for this Campaign
+      tabs:
+        access_sheet: Access Sheet
+        dashboard: Dashboard
+        settings: Settings
     datasheets:
       column:
         add_column: Add Column

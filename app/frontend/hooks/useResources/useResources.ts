@@ -21,7 +21,7 @@ import {
 } from './interfaces'
 import { formatErrors } from './utils'
 
-export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
+export function useResources<R extends {id: string }, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {

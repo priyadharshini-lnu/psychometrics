@@ -3,6 +3,8 @@
 module Api
   module Administration
     class BasePolicy
+      private_attr_accessor :user, :record
+
       def initialize(user, record, _extra = {})
         @user = user
         @record = [record].flatten.last

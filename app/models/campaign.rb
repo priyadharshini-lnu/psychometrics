@@ -16,6 +16,7 @@ class Campaign < ApplicationRecord
   has_one :project_datasheet, through: :project, source: :datasheet
   has_one :campaign_datasheet, class_name: 'Datasheet', foreign_key: :campaign_id, dependent: :destroy
   has_one :datasheet_column_preference, as: :resource
+  has_one :dashboard
 
   delegate :fixed_time?,
            :fixed_time_duration,

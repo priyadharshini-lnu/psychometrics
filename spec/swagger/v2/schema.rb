@@ -98,6 +98,15 @@ module Swagger
           ),
           ClientUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Client::Schema.update_request
+          ),
+          DashboardsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.multiple_resource_response
+          ),
+          DashboardResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.single_resource_response
+          ),
+          DashboardCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.create_request
           )
         }
       }

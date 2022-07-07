@@ -8,18 +8,21 @@ import {
   QrcodeOutlined,
   DatabaseOutlined,
   SolutionOutlined,
+  DashboardOutlined,
 } from '@ant-design/icons'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from 'utils/route'
+import User from '../../interfaces/User'
 
 const { I18n } = window
 
 interface Props {
   prefix?: string
   campaignPermissions: Campaign['permissions']
+  currentUser: User
 }
 
-const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
+const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions, currentUser }) => {
   const { pathname } = useLocation()
 
   const history = useHistory()
@@ -35,6 +38,9 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
     }
     if (pathname.includes('/assessments_reports')) {
       return ['assessments_reports']
+    }
+    if (pathname.includes('/dashboard')) {
+      return ['dashboard']
     }
     if (pathname.includes('/registration_codes')) {
       return ['registration_codes']
@@ -69,6 +75,11 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
       {campaignPermissions.viewRegistrationCodes && (
         <Menu.Item key="registration_codes" icon={<QrcodeOutlined />}>
           Registration codes
+        </Menu.Item>
+      )}
+      {currentUser.role === 'Users::SuperAdmin' && (
+        <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
+          {I18n.t('administration.dashboard.tabs.dashboard')}
         </Menu.Item>
       )}
       {campaignPermissions.viewDatasheets && (
