@@ -2335,6 +2335,11 @@ en:
         access_sheet: Access Sheet
         dashboard: Dashboard
         settings: Settings
+    dashboard_form:
+      fields:
+        dataset_id: Dataset Id
+        enabled: Enabled
+        report_id: Report Id
     datasheets:
       column:
         add_column: Add Column

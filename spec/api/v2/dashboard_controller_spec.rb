@@ -70,7 +70,6 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
         examples 'application/json' => [{
           type: 'dashboards',
           data: {
-            id: '770',
             attributes: {
               name: 'New Dashboard',
               enabled: true,
@@ -89,25 +88,11 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
         }]
         let(:campaign) { create(:campaign) }
         let(:body) do
-          {
-            data: {
-              type: 'dashboards',
-              attributes: {
-                name: 'New Dashboard',
-                enabled: true,
-                dataset_id: 'd_100',
-                report_id: 'r_100'
-              },
-              relationships: {
-                campaign: {
-                  data: {
-                    type: 'campaigns',
-                    id: campaign.id.to_s
-                  }
-                }
-              }
-            }
-          }
+          jsonapi_resource_request(
+            'dashboards',
+            { name: 'New Dashboard', enabled: true, dataset_id: 'd_100', report_id: 'r_100' },
+            { campaign: { id: campaign.id.to_s, type: 'campaigns' } }
+          )
         end
 
         run_test! do |response|
@@ -117,6 +102,65 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
           expect(dashboard_response).to have_attribute(:enabled).with_value(true)
           expect(dashboard_response).to have_attribute(:dataset_id).with_value('d_100')
           expect(dashboard_response).to have_attribute(:report_id).with_value('r_100')
+          expect(dashboard_response).to have_relationship(:campaign).
+            with_data({ 'id' => campaign.id.to_s, 'type' => 'campaigns' })
+        end
+      end
+    end
+  end
+
+  path '/dashboards/{dashboard_id}' do
+    patch 'Update a dashboard' do
+      operationId 'UpdateDashboard'
+      description 'Update Dashboard'
+      tags 'Dashboards'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :dashboard_id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/DashboardUpdateRequest' },
+        required: true
+
+      response '200', 'Dashboard Created' do
+        schema '$ref' => '#/components/schemas/DashboardResponse'
+
+        examples 'application/json' => [{
+          type: 'dashboards',
+          data: {
+            id: '770',
+            attributes: {
+              name: 'New Dashboard',
+              enabled: true,
+              dataset_id: 'd_100',
+              report_id: 'r_100'
+            },
+            relationships: {
+              campaign: {
+                data: {
+                  id: '1',
+                  type: 'campaigns'
+                }
+              }
+            }
+          }
+        }]
+
+        let(:dashboard_id) { dashboard.id }
+        let(:campaign) { dashboard.campaign }
+        let(:body) do
+          jsonapi_resource_request(
+            'dashboards',
+            { id: dashboard.id.to_s, name: 'New Dashboard1', enabled: true, dataset_id: 'd_200', report_id: 'r_200' },
+            { campaign: { id: campaign.id.to_s, type: 'campaigns' } }
+          )
+        end
+
+        run_test! do |response|
+          dashboard_response = JSON.parse(response.body)['data']
+          expect(dashboard_response).to have_key('id')
+          expect(dashboard_response).to have_attribute(:name).with_value('New Dashboard1')
+          expect(dashboard_response).to have_attribute(:enabled).with_value(true)
+          expect(dashboard_response).to have_attribute(:dataset_id).with_value('d_200')
+          expect(dashboard_response).to have_attribute(:report_id).with_value('r_200')
           expect(dashboard_response).to have_relationship(:campaign).
             with_data({ 'id' => campaign.id.to_s, 'type' => 'campaigns' })
         end

@@ -4,6 +4,7 @@ module Api
   module Base
     class Contract < Dry::Validation::Contract
       config.messages.backend = :i18n
+      config.messages.load_paths += I18n.load_path.filter { |c| c.match(/\.yml$/) }
       config.messages.top_namespace = :dry_errors
     end
   end

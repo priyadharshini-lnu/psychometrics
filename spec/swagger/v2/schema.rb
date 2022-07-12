@@ -107,6 +107,9 @@ module Swagger
           ),
           DashboardCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Dashboard::Schema.create_request
+          ),
+          DashboardUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.update_request
           )
         }
       }

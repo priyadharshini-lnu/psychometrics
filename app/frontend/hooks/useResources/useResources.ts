@@ -85,10 +85,13 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
     }
   }
 
+  const getRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => (
+    errors ? RequestStatus.Failed : RequestStatus.Success
+  )
+
   const setRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => {
-    const status = errors ? RequestStatus.Failed : RequestStatus.Success
+    const status = getRequestStatus(type, errors)
     setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
-    return status
   }
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
@@ -104,18 +107,18 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
       } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus('fetch', formattedErrors)
-      if (status === RequestStatus.Success && response) {
+      if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
+        resolve(camelizedResponse)
         setState((previousState: ResourceState<R[], M>) => (
           { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
-
         if (responseType || args.responseType) {
           responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
         }
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus('fetch', formattedErrors)
     })
   }
 
@@ -130,8 +133,7 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus('add', formattedErrors)
-      if (status === RequestStatus.Success && response) {
+      if (getRequestStatus('add', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
         setData([camelizedResponse, ...data])
         resolve(camelizedResponse)
@@ -139,6 +141,7 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus('add', formattedErrors)
     })
   }
 
@@ -152,8 +155,7 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus(requestKey, formattedErrors)
-      if (status === RequestStatus.Success && data && response) {
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data && response) {
         const camelizedResponse = humps.camelizeKeys(response)
         resolve(camelizedResponse)
         setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
@@ -161,6 +163,7 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus(requestKey, formattedErrors)
     })
   }
 
@@ -171,13 +174,13 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
 
     return new Promise(async (resolve, reject) => {
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus(requestKey, formattedErrors)
-      if (status === 'success') {
-        setData(data.filter(r => r.id !== id))
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
         resolve()
+        setData(data.filter(r => r.id !== id))
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus(requestKey, formattedErrors)
     })
   }
 
