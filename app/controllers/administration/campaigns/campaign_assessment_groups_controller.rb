@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class CampaignAssessmentGroupsController < Administration::Projects::BaseController
+    class CampaignAssessmentGroupsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[update destroy]
       before_action :pundit_authorize
 
@@ -61,6 +61,12 @@ module Administration
         (params[:resource] || params[:campaign_assessment_group]).
           permit(:name, :previous_assessments_required, :previous_group_required, :position)
       end
+
+      # rubocop:disable Naming/MemoizedInstanceVariableName
+      def set_resource
+        @_resource ||= campaign.campaign_assessment_groups.find(params[:id])
+      end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
 
       def resource_class
         CampaignAssessmentGroup

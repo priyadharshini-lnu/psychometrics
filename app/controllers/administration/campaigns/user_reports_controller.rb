@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class UserReportsController < Administration::Projects::BaseController
+    class UserReportsController < Administration::Campaigns::BaseController
       include UserReports::PdfGeneration
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access]
@@ -62,7 +62,8 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
       end
 
@@ -73,6 +74,12 @@ module Administration
       def resource_class
         UserReport
       end
+
+      # rubocop:disable Naming/MemoizedInstanceVariableName
+      def set_resource
+        @_resource ||= campaign.user_reports.find(params[:id])
+      end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
   end
 end

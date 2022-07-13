@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class ReportsController < Administration::Projects::BaseController
+    class ReportsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[destroy toggle_user_access toggle_assessor_access]
 
       def create
@@ -113,6 +113,12 @@ module Administration
           campaign_id: campaign.id
         )
       end
+
+      # rubocop:disable Naming/MemoizedInstanceVariableName
+      def set_resource
+        @_resource ||= campaign.campaign_reports.find(params[:id])
+      end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
 
       def aseessment_permissions
         GetPermissionsHash.call!(

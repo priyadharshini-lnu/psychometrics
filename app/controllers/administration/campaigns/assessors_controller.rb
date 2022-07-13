@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class AssessorsController < Administration::Projects::BaseController
+    class AssessorsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[update show destroy spoof]
 
       def index
@@ -131,8 +131,7 @@ module Administration
 
       # rubocop:disable Naming/MemoizedInstanceVariableName
       def set_resource
-        @_resource ||= policy_scope(Assessor, policy_scope_class: Administration::Campaigns::AssessorPolicy::Scope).
-                       find(params[:id])
+        @_resource ||= campaign.assessors.find(params[:id])
       end
       # rubocop:enable Naming/MemoizedInstanceVariableName
     end
