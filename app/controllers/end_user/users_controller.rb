@@ -9,6 +9,10 @@ class EndUser::UsersController < ApplicationController
   initial_state_for %i[dashboard]
   skip_before_action :authenticate_user!, only: %i[change_locale]
 
+  def show
+    redirect_to new_user_session_path
+  end
+
   # rubocop:disable Metrics/AbcSize
   def dashboard
     return render 'end_user/users/dashboard' if show_new_end_user_view?

@@ -1,3 +1,7 @@
+javascript:
+  #{@form ? ("__INITIAL_STATE__['user'] = " + @form.attributes.to_json).html_safe : ''}
+  #{@form ? ("__INITIAL_STATE__['errors'] = " + @form.errors.messages.to_json).html_safe : ''}
+
 div class=([@current_project&.login_box_position || 'right', 'box', 'devise', namespace_name].compact.join(' '))
   .panel.panel-default
     .panel-heading

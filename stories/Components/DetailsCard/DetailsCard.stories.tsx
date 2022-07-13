@@ -39,7 +39,6 @@ const Template: ComponentStory<typeof DetailsCard> = args => <DetailsCard {...ar
 
 export const Simple = Template.bind({})
 Simple.args = {
-  hanndleButtonClick: () => null,
   buttonText: 'Begin',
   progressPercentage: 20,
   description: 'Description here',
@@ -49,7 +48,6 @@ Simple.args = {
 
 export const StatusAtTopRow = Template.bind({})
 StatusAtTopRow.args = {
-  hanndleButtonClick: () => null,
   buttonText: 'Begin',
   progressPercentage: 20,
   description: 'Description here',

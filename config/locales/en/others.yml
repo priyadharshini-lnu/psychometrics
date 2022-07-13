@@ -890,6 +890,61 @@ en:
       load_results: 'Load Results: %{report}'
       processing: Processing...
       results: Results
+  auth:
+    current_password: Current Password
+    current_password_placeholder: Enter Current Password
+    email: Email
+    email_placeholder: Enter Email Address
+    expired_password:
+      description: Please fill all fields to crete a new password
+      submit: Submit
+      title: Renew your password
+    login:
+      description: Please login with your personal account information
+      forgot_password: Forgot Password?
+      login_btn: Login
+      not_member: Not a member?
+      or: OR
+      sso_btn: Login with Single Sign-On
+      title: Welcome Back!
+    new_password: New Password
+    otp:
+      code: Code
+      code_placeholder: One Time Password
+      description: Please enter the OTP, you have received at your registered email address
+      resend: Resend OTP
+      submit: Verify
+      title: One-Time Password
+    password: Password
+    password_confirmation: Confirm Password
+    password_confirmation_placeholder: Enter Password Confirmation
+    password_placeholder: Enter Password
+    registration:
+      description: Fill in the details below to register and create a new account
+      email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
+      first_name: First Name
+      first_name_placeholder: Enter First Name
+      have_account: Already have an account?
+      last_name: Last Name
+      last_name_placeholder: Enter Last Name
+      login_now: Login Now!
+      registration_code: Registration Code
+      registration_code_placeholder: Enter Registration Code
+      terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service and Privacy Policy</a>
+      title: Sign Up
+    reset_password:
+      back_to: Back to
+      description: Enter the email associated with your account
+      submit: Reset Password
+      title: Forgot Password?
+    set_password:
+      description: To create a new password, please enter your new password in the boxes below
+      submit: Submit
+      title: Create Password
+    sign_in: Sign In
+    sign_out: Sign Out
+    sign_up: Sign Up
+    terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
   browsers:
     chrome: Google Chrome
     download:

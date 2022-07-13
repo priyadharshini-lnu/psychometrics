@@ -1,3 +1,6 @@
+javascript:
+  #{resource.persisted? && resource.invalid? ? ("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe : ''}
+
 div class=([@current_project&.login_box_position || 'right', 'box', 'devise'].compact.join(' '))
   .panel.panel-default.session
     .panel-heading

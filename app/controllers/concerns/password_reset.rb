@@ -4,7 +4,7 @@ module PasswordReset
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_project, only: %i[new create]
+    before_action :set_project, only: %i[new create edit update]
   end
 
   def new

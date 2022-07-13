@@ -45,7 +45,7 @@ class Client < ApplicationRecord
     sub_campaign: 3
   }.freeze
 
-  LOGIN_BOX_POSITIONS = %i[right center left].freeze
+  LOGIN_BOX_POSITIONS = %i[right auto left].freeze
 
   has_ancestry cache_depth: true
   store :design, accessors: %i[background_color login_box_position]

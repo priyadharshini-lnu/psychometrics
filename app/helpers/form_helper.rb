@@ -13,6 +13,12 @@ module FormHelper
     out.join('').html_safe
   end
 
+  def flash_json_messages
+    flash.map do |key, value|
+      { type: key, value: value }
+    end
+  end
+
   def errors_for(form, field)
     content_tag(:div, form.object.errors[field].try(:first), class: 'help-block')
   end
