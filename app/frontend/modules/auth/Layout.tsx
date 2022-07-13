@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { Route } from 'react-router-dom'
 import {
   Layout, Row, Col, Space,
@@ -31,12 +31,19 @@ export const LayoutComponent = ({ config }) => {
     return false
   }
 
+  const bgStyles: CSSProperties = {
+    backgroundColor: config.background_color,
+  }
+  if (config.background) {
+    bgStyles.backgroundImage = `url(${config.background})`
+  }
+
   return (
     <Row className={cs(styles.height, { [styles.reverse]: isNeedReverse() })}>
       <Col xs={{ span: 24 }} md={{ span: 24 }} lg={{ span: 8 }}>
         <Layout className={styles.main}>
           <Layout.Header className={styles.header}>
-            <img src={logo} className={styles.logo} />
+            <img src={config.project_logo_url || logo} className={styles.logo} />
             <Space>
               <LangDropdown locales={locales} current={current} />
             </Space>
@@ -53,7 +60,7 @@ export const LayoutComponent = ({ config }) => {
           </Layout.Content>
           <Layout.Footer className={styles.footer}>
             <Space>
-              <img src={footerLogo} className={styles.footerLogo} />
+              <img src={config.secondary_logo || footerLogo} className={styles.footerLogo} />
               <div dangerouslySetInnerHTML={{
                 __html: I18n.t('auth.terms_link',
                   { terms_url: 'https://thetalententerprise.com/privacy-statement/' }),
@@ -67,7 +74,7 @@ export const LayoutComponent = ({ config }) => {
         xs={{ span: 0 }}
         sm={{ span: 0 }}
         lg={{ span: 16 }}
-        style={{ backgroundColor: config.background_color }}
+        style={bgStyles}
         className={styles.background}
       />
     </Row>

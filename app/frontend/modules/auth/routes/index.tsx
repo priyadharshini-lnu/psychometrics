@@ -1,4 +1,5 @@
 import { Login } from './Login'
+import { LoginAdmin } from './LoginAdmin'
 import { PasswordExpired } from './PasswordExpired'
 import { Registration } from './Registration'
 import { ResetPassword } from './ResetPassword'
@@ -6,6 +7,11 @@ import { SetPassword } from './SetPassword'
 import { TwoFactorAuth } from './TwoFactorAuth'
 
 const routes = [
+  {
+    path: '/',
+    main: LoginAdmin,
+    exact: true,
+  },
   {
     path: '/users/sign_in',
     main: Login,

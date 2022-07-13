@@ -22,7 +22,7 @@ module Auth
     end
 
     def background
-      object.background&.url
+      object.background&.url || fallback_background
     end
 
     def saml_login_allowed
@@ -31,6 +31,12 @@ module Auth
 
     def saml_enforced
       object.saml_enforced?
+    end
+
+    private
+
+    def fallback_background
+      instance_options[:background] unless object.background_color
     end
   end
 end

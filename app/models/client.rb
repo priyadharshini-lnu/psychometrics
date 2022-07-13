@@ -355,7 +355,7 @@ class Client < ApplicationRecord
   end
 
   def initialize_login_box_position
-    self.login_box_position = LOGIN_BOX_POSITIONS[0]
+    self.login_box_position = LOGIN_BOX_POSITIONS[1]
   end
 end
 # rubocop:enable Metrics/ClassLength

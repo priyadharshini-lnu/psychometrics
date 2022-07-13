@@ -24,9 +24,10 @@ html.body-full-height
       __INITIAL_STATE__ = {
         csrfToken: '#{form_authenticity_token}',
         user: #{::Auth::CurrentUserSerializer.new(current_user || resource || User.new).to_json.html_safe},
-        projectConfig: #{::Auth::ProjectConfigSerializer.new(@current_project).to_json.html_safe},
+        projectConfig: #{::Auth::ProjectConfigSerializer.new(@current_project || Client.new, background: image_url(randomized_background_image)).to_json.html_safe},
         flash: #{flash_json_messages.to_json.html_safe}
       }
+
     .main#devise
       = yield
 
