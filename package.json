@@ -13,6 +13,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage --detectOpenHandles && coveralls < coverage/lcov.info",
     "test:watch": "jest --watch",
+    "coveralls": "coveralls < coverage/lcov.info",
     "types": "tsc",
     "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi"
   },
