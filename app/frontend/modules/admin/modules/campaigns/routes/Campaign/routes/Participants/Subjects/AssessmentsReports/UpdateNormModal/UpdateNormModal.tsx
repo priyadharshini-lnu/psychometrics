@@ -46,7 +46,7 @@ const UpdateNormModal: React.FC<Props> = ({
         <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,
         <Button
           key="submit"
-          disabled={!form.getFieldValue('normId')}
+          disabled={form.getFieldValue('normId') === undefined}
           onClick={() => {
             form.submit()
           }}
@@ -67,6 +67,12 @@ const UpdateNormModal: React.FC<Props> = ({
       >
         <Form.Item name="normId">
           <Select style={{ width: '100%' }} placeholder={I18n.t('campaign_assessment.modals.update_norm.select_norm')}>
+            <Option
+              key="default"
+              value=""
+            >
+              {I18n.t('common.text.default')}
+            </Option>
             {_.map(assessment.norms || [], (norm: Norm) => (
               <Option
                 key={norm.id}

@@ -1,6 +1,6 @@
 # Psychometrics
 
-<a href='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe'> <img src='https://tte.semaphoreci.com/badges/psychometrics/branches/develop.svg?style=shields&key=90a67bc4-d4d7-43f5-a946-e7fc990908fe' alt='Build Status'></a> [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/status.svg)](https://depfu.com)
+[![develop](https://img.shields.io/circleci/build/github/TheTalentEnterprise/psychometrics/develop?label=develop&token=8d0e27d51c439c765b77949f753b79b5eb230b27)](https://dl.circleci.com/status-badge/redirect/gh/TheTalentEnterprise/psychometrics/tree/develop) [![master](https://img.shields.io/circleci/build/github/TheTalentEnterprise/psychometrics/master?label=master&token=8d0e27d51c439c765b77949f753b79b5eb230b27)](https://dl.circleci.com/status-badge/redirect/gh/TheTalentEnterprise/psychometrics/tree/master) [![review](https://img.shields.io/circleci/build/github/TheTalentEnterprise/psychometrics/review?label=review&token=8d0e27d51c439c765b77949f753b79b5eb230b27)](https://dl.circleci.com/status-badge/redirect/gh/TheTalentEnterprise/psychometrics/tree/review) [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/status.svg)](https://depfu.com) [![Coverage Status](https://coveralls.io/repos/github/TheTalentEnterprise/psychometrics/badge.svg?branch=develop&t=RfKCiF)](https://coveralls.io/github/TheTalentEnterprise/psychometrics?branch=develop)
 
 Javscript [![Depfu](https://badges.depfu.com/badges/135f3c3926127522be587c86206d855b/count.svg)](https://depfu.com/repos/github/TheTalentEnterprise/psychometrics?project_id=11658)
 
@@ -8,15 +8,15 @@ Ruby [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/
 
 ## Requisites
 
-Ruby version: 2.5.1
+Ruby version: 2.7.4
 
-Rails version: 5.1.6
+Rails version: 5.2.0
 
-Bundler version: 1.15.2
+Bundler version: 2.2.31
 
-Node version: 10.0.0
+Node version: 14.17.3
 
-Database: PostgresSql
+Database: PostgresSql@11
 
 prevent bundle secure warnings with
 
