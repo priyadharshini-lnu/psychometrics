@@ -98,10 +98,11 @@ const HANDLERS = {
   [SET_USER_ASSESSMENTS]: (state, { userAssessments }: CustomAction<{ userAssessments: UserAssessment[] }>) => (
     { ...state, list: userAssessments }),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
+    const { campaignAssessmentId, normId } = request.body
     const list = state.list.map((assessment: UserAssessment) => {
-      if (assessment.id !== request.body.campaignAssessmentId) return assessment
+      if (assessment.id !== campaignAssessmentId) return assessment
 
-      return { ...assessment, ...response }
+      return { ...assessment, normId, ...response }
     })
     return { ...state, list }
   },

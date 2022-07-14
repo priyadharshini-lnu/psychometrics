@@ -6,7 +6,7 @@ require 'zip'
 describe Compressor do
   before(:all) do
     @report = build_stubbed(:bulk_report)
-    path = Rails.root.join('tmp', 'bulk_reports').to_s
+    path = Rails.root.join('tmp', "bulk_reports#{ENV['TEST_ENV_NUMBER']}").to_s
     @input_dir = File.join(path, @report.id.to_s)
     @output_dir = File.join(path, "compressed_#{@report.id}")
     @max_file_size = 200_000 # 200 Kb

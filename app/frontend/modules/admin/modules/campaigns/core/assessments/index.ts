@@ -79,10 +79,11 @@ const HANDLERS = {
     return setIn(state, ['list'], assessments)
   },
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
+    const { id: requestId, normId } = request.body
     const assessments = state.list.map((assessment: Assessment) => {
-      if (assessment.id !== request.body.id) return assessment
+      if (assessment.id !== requestId) return assessment
 
-      return { ...assessment, ...response }
+      return { ...assessment, normId, ...response }
     })
     return setIn(state, ['list'], assessments)
   },
