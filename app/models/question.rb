@@ -26,6 +26,7 @@
 
 class Question < ApplicationRecord
   include Copyable
+  include OwnerValidations
 
   # For assessment builder
   attr_accessor :save_as_template, :permanent_remove
