@@ -1,8 +1,9 @@
 @import 'styles/ant.variable.less';
 @import 'styles/spacing.less';
+@import '../../mixins.less';
 
 .container {
-  flex: 1;
+  .responsiveContainer(400px, 280px, 300px);
 }
 
 .description {

@@ -43,6 +43,7 @@ const LoginComponent: React.FC<Props> = ({
         <ButtonWithArrow
           label={I18n.t('auth.login.login_btn')}
           type="primary"
+          size="large"
           htmlType="submit"
           className={styles.submit}
           block

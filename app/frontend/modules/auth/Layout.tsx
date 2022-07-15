@@ -43,10 +43,10 @@ export const LayoutComponent = ({ config }) => {
       <Col xs={{ span: 24 }} md={{ span: 24 }} lg={{ span: 8 }}>
         <Layout className={styles.main}>
           <Layout.Header className={styles.header}>
-            <img src={config.project_logo_url || logo} className={styles.logo} />
-            <Space>
-              <LangDropdown locales={locales} current={current} />
-            </Space>
+            <div className={styles.logoWrapper}>
+              <img src={config.project_logo_url || logo} className={styles.logo} />
+            </div>
+            <LangDropdown locales={locales} current={current} />
           </Layout.Header>
           <Layout.Content className={styles.content}>
             {routes.map((route, i) => (

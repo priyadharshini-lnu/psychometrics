@@ -54,6 +54,7 @@ const PasswordExpiredComponent: React.FC<Props> = ({
         <ButtonWithArrow
           label={I18n.t('auth.expired_password.submit')}
           type="primary"
+          size="large"
           htmlType="submit"
           className={styles.submit}
           block

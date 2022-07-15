@@ -90,6 +90,7 @@ const RegistrationComponent: React.FC<Props> = ({ csrfToken, user, errors }) => 
       <ButtonWithArrow
         label={I18n.t('auth.sign_up')}
         type="primary"
+        size="large"
         htmlType="submit"
         className={styles.submit}
         block

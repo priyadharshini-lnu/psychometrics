@@ -43,6 +43,7 @@ const ResetPasswordComponent: React.FC<Props> = ({ csrfToken, user, errors }) =>
         <ButtonWithArrow
           label={I18n.t('auth.reset_password.submit')}
           type="primary"
+          size="large"
           htmlType="submit"
           className={styles.submit}
           block

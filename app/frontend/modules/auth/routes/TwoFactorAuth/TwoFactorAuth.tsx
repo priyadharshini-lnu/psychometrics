@@ -40,6 +40,7 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
       <ButtonWithArrow
         label={I18n.t('auth.otp.submit')}
         type="primary"
+        size="large"
         htmlType="submit"
         className={styles.submit}
         block

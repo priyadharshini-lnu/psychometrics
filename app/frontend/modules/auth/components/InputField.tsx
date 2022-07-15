@@ -24,6 +24,7 @@ export const InputField: React.FC<Props> = ({
       help={errors.map((error, i) => <div key={i} role="alert" className="ant-form-item-explain-error">{error}</div>)}
     >
       <Input
+        size="large"
         name={name}
         defaultValue={defaultValue}
         placeholder={placeholder}
