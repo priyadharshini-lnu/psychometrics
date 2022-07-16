@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function ChartOptions ({ ...model }) {
+export default function ChartOptions ({ ...model }, animation) {
   return {
     chart: {
       plotBackgroundColor: null,
@@ -15,7 +15,9 @@ export default function ChartOptions ({ ...model }) {
     colors: _.map(model.props.colors, 'color'),
     credits: { enabled: false },
     tooltip: {
-      enabled: false,
+      enabled: animation,
+      headerFormat: '',
+      pointFormat: '<hr/><b>{point.name}</b><br/>{point.y}<br/>{point.custom.description}',
     },
   }
 }

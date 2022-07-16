@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class FactorSerializer < ActiveModel::Serializer
-  attributes :id, :name, :code, :description, :icon, :scoring_strategy, :use_percentage, :use_sub_factor_norm_score
+  attributes :id, :name, :code, :description, :icon, :scoring_strategy, :use_percentage, :use_sub_factor_norm_score,
+             :external_scoring
   has_many :factors_sub_factors, serializer: FactorsSubFactorSerializer, key: :factors_sub_factors
 
   def icon

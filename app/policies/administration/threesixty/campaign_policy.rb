@@ -30,6 +30,10 @@ module Administration::Threesixty
       super_admins_or_admins?
     end
 
+    def rescore_assessment?
+      @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: project_id)
+    end
+
     def export_completion_status?
       @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end

@@ -35,7 +35,8 @@ module Threesixty
             JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and (
               datasheets.project_id = :project_id OR datasheets.campaign_id = :campaign_id
             )
-            WHERE datasheet_rows.email ILIKE :query OR "data"->>'First Name' ILIKE :query OR "data"->>'Last Name' ILIKE :query
+            WHERE datasheets.type = 'Datasheet'
+            AND datasheet_rows.email ILIKE :query OR "data"->>'First Name' ILIKE :query OR "data"->>'Last Name' ILIKE :query
           LIMIT :limit
         SQL
       end

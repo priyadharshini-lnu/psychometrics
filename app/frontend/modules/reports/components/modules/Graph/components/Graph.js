@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Foundation from 'modules/reports/components/Foundation'
+import { connect } from 'react-redux'
+import { getFlatFactors } from 'modules/reports/core/builder/selectors'
 import styles from './Graph.less'
 import Charts from './Charts'
 
@@ -13,7 +15,9 @@ class Graph extends Component {
   }
 
   renderGraph () {
-    const { module: model, preview, animation } = this.props
+    const {
+      factors, module: model, preview, animation,
+    } = this.props
     if (model.textConditions.length > 0) {
       const {
         colors,
@@ -24,6 +28,7 @@ class Graph extends Component {
       const View = Charts[model.props.type] || Charts.Bar
       return (
         <View
+          factors={factors}
           model={model}
           preview={preview}
           animation={animation}
@@ -44,4 +49,9 @@ class Graph extends Component {
   }
 }
 
-export default Graph
+export default connect(
+  state => ({
+    factors: getFlatFactors(state),
+  }),
+  {},
+)(Graph)

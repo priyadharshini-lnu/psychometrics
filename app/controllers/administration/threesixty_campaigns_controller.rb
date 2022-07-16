@@ -41,6 +41,13 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     render json: :ok
   end
 
+  def rescore_assessment
+    AdminJob.call(
+      :rescore_assessment, { campaign_id: resource.campaign_id, assessment_id: resource.assessment_id }, current_user
+    )
+    render json: :ok
+  end
+
   def destroy
     audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
     resource.destroy!

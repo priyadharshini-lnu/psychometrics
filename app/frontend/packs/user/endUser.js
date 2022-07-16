@@ -1,7 +1,7 @@
 import Campaigns from 'modules/user/modules/campaigns/App'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'styles/ant.js'
+import 'styles/ant.less'
 import 'modules/user/styles/global.less'
 import 'styles/utils.less'
 

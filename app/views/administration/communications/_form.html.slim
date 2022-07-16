@@ -3,7 +3,7 @@
   remote: true,
   data: { behavior: 'communications-form', form_url: @communication_facade.communication.decorate.form_url }) do |f|
   .modal-body
-    = f.error_notification
+    = render_error_notification(resource)
     .form-inputs.clearfix
       h3 Settings
       - if current_user.is?(:superadmin)

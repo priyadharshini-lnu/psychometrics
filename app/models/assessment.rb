@@ -25,6 +25,7 @@ class Assessment < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include SoftDelete
+  include OwnerValidations
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [
@@ -72,6 +73,8 @@ class Assessment < ApplicationRecord
   belongs_to :dimension
   belongs_to :owner, class_name: 'Client'
   belongs_to :project, class_name: 'Client'
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :updated_by, class_name: 'User'
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign
@@ -125,7 +128,6 @@ class Assessment < ApplicationRecord
   ### END ASSOCIATIONS
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
-  validates :dimension, absence: true, if: :external?
   validates :dimension, presence: true, if: :common?
 
   enum category: CATEGORIES
@@ -143,6 +145,7 @@ class Assessment < ApplicationRecord
   delegate :pearson_norm_id, :pearson_assessment_id, :pearson_norms, :pearson_assessment_language,
            to: :pearson_assessment_setting, allow_nil: true
   delegate :iiht_assessment_id_number, :iiht_schedule_config, to: :iiht_assessment_setting, allow_nil: true
+  delegate :hogan_assessment_id, to: :hogan_assessment_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.

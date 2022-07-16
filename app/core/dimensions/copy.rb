@@ -2,7 +2,8 @@
 
 module Dimensions
   class Copy < BaseCommand
-    private_attr_accessor :source_dimension, :factors_to_copy, :client, :new_dimension, :old_to_new_factor_mapping
+    private_attr_accessor :source_dimension, :factors_to_copy, :client, :new_dimension,
+                          :old_to_new_factor_mapping
 
     def initialize(source_dimension, factors_to_copy, client)
       @source_dimension = source_dimension
@@ -30,6 +31,7 @@ module Dimensions
       dimension = source_dimension.deep_clone(include: [:occupations])
       dimension.owner_id = client.id
       dimension.gen_uniq_name
+      dimension.skip_owner_validation = true
       dimension.save!
       dimension
     end

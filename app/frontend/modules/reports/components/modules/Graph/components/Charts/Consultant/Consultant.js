@@ -40,7 +40,7 @@ class Consultant extends Component {
   }
 
   renderChart () {
-    const { model, animation } = this.props
+    const { model, animation, factors } = this.props
     const colors = _.map(model.props.colors, 'color')
     if (this.chart) {
       this.chart.destroy()
@@ -60,7 +60,7 @@ class Consultant extends Component {
     const seriesData = {
       type: 'column',
       data: _.map(sourceModel, (factor, i) => ({
-        y: data.series(getCorrectResults(model), factor, model),
+        y: data.series(getCorrectResults(model), factor, model, factors),
         color: colors[i],
       })),
     }
@@ -68,7 +68,7 @@ class Consultant extends Component {
     this.chart = Highcharts.chart(
       this.container,
       _.merge(
-        ChartOptions(model, e => this.changeBarLabel(data.collection, e), this.props),
+        ChartOptions(model, animation),
         {
           xAxis: {
             categories: _.map(sourceModel, factor => LookupSourceName.call(assessment, factor, sourceType)),

@@ -8,4 +8,5 @@ Rswag::Ui.configure do |c|
   # then the list below should correspond to the relative paths for those endpoints
 
   c.swagger_endpoint '/api-docs/v1/swagger.json', 'Lighthouse REST API v1'
+  c.swagger_endpoint '/api-docs/v2/swagger.json', 'Lighthouse JSON API V2 Docs'
 end

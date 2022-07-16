@@ -40,7 +40,7 @@ class Radar extends Component {
   }
 
   renderChart () {
-    const { model, animation } = this.props
+    const { model, animation, factors } = this.props
     if (this.chart) {
       this.chart.destroy()
       this.chart = null
@@ -51,16 +51,15 @@ class Radar extends Component {
     const sourceModel = model.getSourceModel()
     const data = Series[sourceType]
     if (!data) { return null }
-    const series = data.series(getCorrectResults(model), sourceModel, model)
+    const series = data.series(getCorrectResults(model), sourceModel, model, factors)
     const { fontSize, fontColor: color, fontFamily } = model.props.style
-    const format = null
     if (!series.length) { return null }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const { hideYaxisLabels } = model.props
     this.chart = Highcharts.chart(
       this.container,
       _.merge(
-        ChartOptions(model, e => this.changeBarLabel(data.collection, e), this.props, format),
+        ChartOptions(model, animation),
         {
           plotOptions: {
             series: {

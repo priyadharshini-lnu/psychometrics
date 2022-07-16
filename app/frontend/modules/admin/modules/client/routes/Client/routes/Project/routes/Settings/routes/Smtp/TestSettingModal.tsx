@@ -8,7 +8,7 @@ import {
   TEST_SETTINGS,
   sendTestEmail,
   State as SmtpSetting,
-} from 'modules/admin/modules/client/routes/Client/core/smtpSetting'
+} from 'modules/admin/modules/client/core/smtpSetting'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import isEmpty from 'lodash/isEmpty'

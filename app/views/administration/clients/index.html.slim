@@ -1,28 +1,11 @@
-.row
-  .col-md-12
-    .panel.panel-default
-      .panel-heading
-        h3.panel-title = current_user.is?(:superadmin) ? t('.title') : t('administration.navigation.home')
-        - if policy(:client).manage_first_level?
-          #manage_first_level.pull-right
-            .btn-group
-              - if policy(resource_class).export?
-                = link_to({action: :export, format: :csv}, target: :_blank, class: 'btn btn-default')
-                  span.fa.fa-upload
-                  = t('.export')
-              = link_to [:new, :administration, resource_class.model_name.singular.to_sym], remote: true, class: 'btn btn-default'
-                span.fa.fa-plus
-                = t('.new')
-        = search_form_for(filter_form,
-                          url: { action: :index },
-                          html: { id: 'filter', class: 'list-filter' },
-                          builder: SimpleForm::FormBuilder) do |f|
-          = f.input :filterable_fields,
-                    as: :string,
-                    required: false,
-                    placeholder: t('administration.search'),
-                    label: false,
-                    input_html: { class: 'has_clear periodically-observed', value: @filter_term }
-      .panel-body
-        #filterrific_results
-          = render partial: 'list'
+div id='client-container'
+
+javascript:
+  window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+
+= javascript_pack_tag 'vendors2'
+= stylesheet_pack_tag 'vendors2'
+= javascript_pack_tag 'vendors'
+= stylesheet_pack_tag 'vendors'
+= stylesheet_packs_with_chunks_tag 'admin/client'
+= javascript_packs_with_chunks_tag 'admin/client'

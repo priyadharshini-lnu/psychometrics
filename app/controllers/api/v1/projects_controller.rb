@@ -45,7 +45,7 @@ module Api
         authorize(
           @project || Client,
           nil,
-          policy_class: Administration::ProjectPolicy,
+          policy_class: ::Administration::ProjectPolicy,
           project_id: @project&.id || project_params[:client_id]
         )
       end

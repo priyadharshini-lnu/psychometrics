@@ -22,6 +22,7 @@ module Administration
 
       def destroy
         resource.destroy!
+        audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
@@ -39,6 +40,7 @@ module Administration
       def reset
         ::UsersResults::Reset.call(resource) do
           on(:ok) do
+            audit! :reset, resource, campaign: resource.campaign
             return render json: resource.user, serializer: Administration::UserDetailSerializer,
               campaign: resource.campaign
           end
@@ -50,6 +52,7 @@ module Administration
 
       def reset_progress
         ::UserAssessments::ResetProgress.call!(resource)
+        audit! :reset_progress, resource, campaign: resource.campaign
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end

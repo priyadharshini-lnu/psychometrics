@@ -14,7 +14,7 @@ class Page extends Component {
 
   renderModuleType = (module, i) => {
     const {
-      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides,
+      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides, pdfExport,
     } = this.props
     if (!module.type) { return }
     const View = Modules[module.type]
@@ -29,12 +29,15 @@ class Page extends Component {
         rstore={rstore}
         showOverrides={showOverrides}
         moduleOverrides={moduleOverrides}
+        animation={!pdfExport}
       />
     )
   }
 
   renderShadowModule = (module, i) => {
-    const { model, pageNumber, totalPages } = this.props
+    const {
+      model, pageNumber, totalPages, pdfExport,
+    } = this.props
     if (module.onPage(model)) { return }
     const View = Modules[module.type]
     return (
@@ -45,6 +48,7 @@ class Page extends Component {
         preview
         pageNumber={pageNumber}
         totalPages={totalPages}
+        animation={!pdfExport}
       />
     )
   }

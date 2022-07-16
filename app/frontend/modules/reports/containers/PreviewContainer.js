@@ -16,7 +16,7 @@ class PreviewContainer extends Component {
   componentDidMount () {
     const parent = ReactDOM.findDOMNode(this).parentNode
     const {
-      data, results, locales, selectedLocale, skipLogic,
+      data, results, locales, selectedLocale, pdfExport, skipLogic,
     } = parent.dataset
 
     if (locales) {
@@ -25,6 +25,7 @@ class PreviewContainer extends Component {
     }
     const { user, campaign } = parent.dataset
     const parsedData = JSON.parse(data)
+    parsedData.pdfExport = pdfExport === 'true'
     if (_.isEmpty(I18nStore.locales) && parsedData.locales) {
       I18nStore.locales = parsedData.locales
     }

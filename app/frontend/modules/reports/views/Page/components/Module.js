@@ -21,7 +21,7 @@ class Module extends Component {
     const View = Modules[module.type]
 
     // NOTE: @fedor temporary kept update for connects
-    return !model.removed && <View module={model} page={page} update={{}} />
+    return !model.removed && <View module={model} page={page} update={{}} animation />
   }
 }
 

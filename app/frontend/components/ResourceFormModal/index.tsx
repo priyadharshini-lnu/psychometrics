@@ -32,7 +32,7 @@ interface Props {
   }
   modalProps: ModalProps
   formProps?: FormProps
-  transformValues?(values: object): object
+  transformValues?(values: Record<string, unknown>): Record<string, unknown>
   scrollToFirstError?: boolean
   submitButtonName?: string
 }

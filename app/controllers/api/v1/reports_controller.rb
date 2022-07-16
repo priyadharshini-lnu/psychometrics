@@ -3,7 +3,7 @@
 module Api
   module V1
     class ReportsController < Api::V1::BaseController
-      before_action :set_user_report, only: %i[update destroy results pdf]
+      before_action :set_user_report, only: %i[update results pdf]
       before_action :pundit_authorize
       skip_before_action :ensure_project, :pundit_authorize, only: [:dimensions]
 
@@ -77,23 +77,13 @@ module Api
         render json: @user_report, user_assessments: user_assessments, serializer: Api::V1::UserReportSerializer
       end
 
-      def destroy
-        audit! :api_delete, @user_report, payload: @user_report.log_attribute_for_delete,
-          campaign: @user_report.campaign
-        user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
-                           joins(:users_result, :assessment).
-                           index_by(&:assessment_id)
-        @user_report.destroy!
-        render json: @user_report, user_assessments: user_assessments, serializer: Api::V1::UserReportSerializer
-      end
-
       private
 
       def pundit_authorize
         authorize(
           @user_report || UserReport,
           nil,
-          policy_class: Administration::UserReportPolicy,
+          policy_class: ::Administration::UserReportPolicy,
           project_id: project.id
         )
       end

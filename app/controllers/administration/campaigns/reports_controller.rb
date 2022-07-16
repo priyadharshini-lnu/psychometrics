@@ -21,9 +21,11 @@ module Administration
       end
 
       def destroy
+        remove_user_reports = current_user.is?(:super_admin) && params[:remove_user_reports]
         ::CampaignReports::Remove.call!(
-          campaign_report: resource, remove_user_reports: params[:remove_user_reports]
+          campaign_report: resource, remove_user_reports: remove_user_reports
         )
+        audit! :delete, resource, campaign: campaign
         render json: resource.id
       end
 
@@ -31,11 +33,13 @@ module Administration
         ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
         render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
           project_id: campaign.project_id
+        audit! :toggle_user_access, resource, campaign: campaign
       end
 
       def toggle_assessor_access
         resource.toggle!(:assessor_access)
-
+        audit! :toggle_assessor_access, resource, payload: { assessor_access: resource.assessor_access },
+          campaign: campaign
         head :ok
       end
 
@@ -87,12 +91,14 @@ module Administration
 
       def regenerate
         AdminJob.call(:bulk_regenerate_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
+        audit! :regenerate, nil, payload: { ids: params[:ids] }, campaign: campaign
 
         head :ok
       end
 
       def bulk_download
         AdminJob.call(:bulk_download_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
+        audit! :bulk_download, nil, payload: { ids: params[:ids] }, campaign: campaign
 
         head :ok
       end
@@ -128,7 +134,7 @@ module Administration
 
       def report_permissions
         GetPermissionsHash.call!(
-          Administration::CampaignReportPolicy,
+          ::Administration::CampaignReportPolicy,
           current_user,
           nil,
           [

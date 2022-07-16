@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
   get, fetch, remove, REMOVE,
-} from 'modules/admin/modules/client/routes/Client/core/integrations'
+} from 'modules/admin/modules/client/core/integrations'
 import { openModal } from 'modules/admin/core/ui/modals'
 import Modals from 'modules/admin/components/Modals'
 import { isRequestInProgress } from 'modules/admin/core/request'

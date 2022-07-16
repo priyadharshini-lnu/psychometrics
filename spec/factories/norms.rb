@@ -5,6 +5,8 @@ FactoryBot.define do
     sequence(:name) { |n| "Norm #{n}" }
     dimension
     association :owner, factory: :tenancy
+    created_by { create(:user) }
+    skip_owner_validation { true }
 
     trait :percentile do
       norm_type { :percentile }

@@ -2,7 +2,7 @@ import merge from 'lodash/merge'
 
 import { PropertiesModel } from 'modules/reports/interfaces/graphs/StackedBar'
 
-export default function ChartOptions (model: PropertiesModel) {
+export default function ChartOptions (model: PropertiesModel, animation: boolean) {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
   const [...colorsObjectList] = model.props.colors
   let xAxisOptions = {}
@@ -25,7 +25,6 @@ export default function ChartOptions (model: PropertiesModel) {
       enabled: false,
     },
     title: false,
-    tooltip: false,
     xAxis: merge(xAxisOptions, {
       labels: {
         style: {
@@ -56,6 +55,11 @@ export default function ChartOptions (model: PropertiesModel) {
         color: color || '#000',
         fontFamily,
       },
+    },
+    tooltip: {
+      enabled: animation,
+      headerFormat: '<hr/><b>{series.name}</b><br/>',
+      pointFormat: '{point.y}<br/>{point.custom.description}',
     },
   }
 }

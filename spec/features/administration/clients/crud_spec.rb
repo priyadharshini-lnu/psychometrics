@@ -7,29 +7,6 @@ feature 'CRUD Client' do
   given(:report_family) { create(:report_family) }
   given(:report) { create(:report, report_families: [report_family]) }
 
-  context 'As Superadmin' do
-    given(:superadmin) { create(:superadmin) }
-    before do
-      login_as superadmin
-      import_countries
-    end
-
-    scenario 'I can create any client' do
-      tenancy = create_tenancy(name: 'TTE',
-                               number: 1,
-                               country: ::Datas::Geo.take.country_name,
-                               year: Date.today.year,
-                               account_manager: 'super admin',
-                               project_manager: 'super admin')
-
-      create_project(tenancy,
-                     name: 'Project',
-                     subdomain: 'projectabc',
-                     number: 2,
-                     privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
-    end
-  end
-
   context 'As Client Admin' do
     given!(:tenancy) { create(:tenancy) }
     given!(:project) { create(:project, :sub_campaign_level, parent: tenancy) }

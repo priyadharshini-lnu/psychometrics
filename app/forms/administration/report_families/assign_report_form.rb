@@ -5,6 +5,7 @@ module Administration
     class AssignReportForm < Rectify::Form
       # Fields
       attribute :report_id, String
+      attribute :external_package_id, String
 
       #   VALIDATIONS
       #

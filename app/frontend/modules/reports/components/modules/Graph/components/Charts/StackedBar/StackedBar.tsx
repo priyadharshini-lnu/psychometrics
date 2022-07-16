@@ -5,6 +5,7 @@ import { Chart } from 'highcharts-v9'
 
 import AppStore from 'modules/reports/store/AppStore'
 import LookupSourceName from 'modules/reports/commands/LookupSourceName'
+import { Factor } from 'modules/reports/interfaces/Base'
 import { PropertiesModel } from 'modules/reports/interfaces/graphs/StackedBar'
 import { SourceModel } from 'modules/reports/interfaces/graphs/Base'
 import styles from './styles.less'
@@ -15,9 +16,10 @@ import Series from './Series'
 interface Props {
   model: PropertiesModel
   animation?: boolean
+  factors: Factor[]
 }
 
-export const StackedBar: React.FC<Props> = ({ model, animation = false }: Props) => {
+export const StackedBar: React.FC<Props> = ({ model, animation = false, factors }: Props) => {
   const containerRef: React.MutableRefObject<null> = useRef(null)
   const chartRef = useRef<Chart>()
 
@@ -47,7 +49,7 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false }: Props)
     if (!data) {
       return null
     }
-    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat)
+    const series = data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors)
     if (!series.length) {
       return null
     }
@@ -55,7 +57,7 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false }: Props)
 
     chartRef.current = Highcharts.chart(
       containerRef.current,
-      merge(ChartOptions(model), {
+      merge(ChartOptions(model, animation), {
         chart: {
           type: model.props.graphicalPosition === 'Vertical' ? 'column' : 'bar',
         },
@@ -71,7 +73,10 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false }: Props)
         },
         series: series.map((ser, i) => ({
           name: LookupSourceName.call(assessment, sourceModel[i], model.getSourceType()),
-          data: [ser.to - ser.from],
+          data: [{
+            ...ser,
+            y: ser.to - ser.from,
+          }],
           pointWidth: model.props.pointWidth,
         })),
       }),

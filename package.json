@@ -15,7 +15,9 @@
     "test:watch": "jest --watch",
     "coveralls": "coveralls < coverage/lcov.info",
     "types": "tsc",
-    "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi"
+    "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "engines": {
     "node": ">=14.15.1 <15.0.0"
@@ -52,6 +54,7 @@
     "@sentry/react": "^6.3.5",
     "@sentry/rrweb": "^0.3.1",
     "@svgr/webpack": "^5.5.0",
+    "@thetalententerprise/jsonapi-react": "0.0.27",
     "@thetalententerprise/interactive-assessments": "1.5.8",
     "@types/actioncable": "^5.2.7",
     "@types/lodash": "^4.14.179",
@@ -152,6 +155,7 @@
     "react-spring": "^9.3.0",
     "react-tagcloud": "^1.4.1",
     "react-use-media": "^0.3.0",
+    "recoil": "^0.7.2",
     "recordrtc": "^5.6.2",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
@@ -166,6 +170,7 @@
     "sms-segments-calculator": "^1.1.1",
     "style-loader": "^0.23.1",
     "thread-loader": "^3.0.4",
+    "type-fest": "^2.12.2",
     "ua-parser-js": "^1.0.1",
     "use-debounce": "^3.0.0",
     "videojs-record": "^3.6.0",
@@ -179,6 +184,14 @@
   },
   "devDependencies": {
     "@babel/eslint-plugin": "^7.14.5",
+    "@storybook/addon-actions": "^6.5.6",
+    "@storybook/addon-essentials": "^6.5.6",
+    "@storybook/addon-interactions": "^6.5.6",
+    "@storybook/addon-links": "^6.5.6",
+    "@storybook/builder-webpack4": "^6.5.6",
+    "@storybook/manager-webpack4": "^6.5.6",
+    "@storybook/react": "^6.5.6",
+    "@storybook/testing-library": "^0.0.11",
     "@testing-library/dom": "^8.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",

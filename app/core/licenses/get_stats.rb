@@ -33,7 +33,6 @@ module Licenses
         hash[:expiring_licenses].push(
           client_name: client.name,
           license_end_date: expiring_license.end_date,
-          account_manager: client.account_manager&.decorate&.display_name,
           project_manager: client.project_manager&.decorate&.display_name
         )
       end

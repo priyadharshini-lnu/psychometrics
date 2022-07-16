@@ -36,7 +36,7 @@ module Api
 
       def project
         @project ||= policy_scope(
-          Client, policy_scope_class: Administration::ClientPolicy::Scope
+          Client, policy_scope_class: ::Administration::ClientPolicy::Scope
         ).find_by(id: project_id)
       end
 

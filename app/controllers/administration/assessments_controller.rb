@@ -34,6 +34,8 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def create
     @_resource = resource_class.new(resource_params)
+    resource.created_by = current_user
+    resource.updated_by = current_user
     @_resource.build_iiht_assessment_setting if @_resource.iiht? && @_resource.iiht_assessment_setting.blank?
 
     if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
@@ -83,6 +85,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def update
+    resource.updated_by = current_user
     respond_to do |format|
       if resource.update(resource_params)
         audit! :update, resource, payload: params.permit!
@@ -128,7 +131,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def copy
-    event = ::Assessments::CopyAssessment.call(resource.id)
+    event = ::Assessments::CopyAssessment.call(resource.id, current_user)
 
     respond_to do |format|
       if event[:ok]

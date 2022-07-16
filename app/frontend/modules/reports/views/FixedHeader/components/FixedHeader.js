@@ -37,11 +37,11 @@ export class FixedHeader extends Component {
     const {
       richEditorOpened, removeModule, selected, unselectModules,
       copyModule, pasteModule, currentPage, bufferedModule, selectModule,
+      module, updateModule, report,
     } = this.props
     if (e.target.nodeName === 'INPUT') { return }
     if (e.target.nodeName === 'TEXTAREA') { return }
     if (richEditorOpened) { return }
-
     if (e.keyCode === 8 || e.keyCode === 46) {
       unselectModules()
       selected.moduleId && removeModule(selected.moduleId)
@@ -60,6 +60,22 @@ export class FixedHeader extends Component {
         pasteModule(currentPage.id, module)
         selectModule('Module', module.id)
       }
+    }
+
+    if (module && [37, 38, 39, 40].includes(e.keyCode)) {
+      e.preventDefault()
+      const { width, height } = report.builder.props.sizes
+      const multiplier = e.shiftKey ? 10 : 1
+      const position = { ...module.props.position }
+      if (e.keyCode === 40) { position.top += 1 * multiplier } // down
+      if (e.keyCode === 38) { position.top -= 1 * multiplier } // up
+      if (e.keyCode === 37) { position.left -= 1 * multiplier } // left
+      if (e.keyCode === 39) { position.left += 1 * multiplier } // right
+      position.top = Math.round(position.top < 0 ? 0 : position.top)
+      position.top = Math.round(position.top + position.height > height ? height - position.height : position.top)
+      position.left = Math.round(position.left < 0 ? 0 : position.left)
+      position.left = Math.round(position.left + position.width > width ? width - position.width : position.left)
+      updateModule({ ...module, props: { ...module.props, position: { ...position } } })
     }
   }
 

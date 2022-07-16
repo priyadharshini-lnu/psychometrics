@@ -43,11 +43,11 @@ table.table.grants-table
       th Entity
       th.actions Privileges
   tbody
-    - if policy(:membership).manage_grants_for_actions?('clients', ['view'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('clients', ['view'], project: client)
         tr
           td Clients
           td.text-nowrap
-            - if policy(:membership).manage_grants_for_action?('clients', 'view', client: client)
+            - if policy(:membership).manage_grants_for_action?('clients', 'view', project: client)
               label
                 = check_box_tag 'resource[grants_attributes][data][clients][]',
                         'view', resource.has_grant?(:clients, :view), id: clients_view_id
