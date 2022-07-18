@@ -1,10 +1,20 @@
+@import 'styles/spacing.less';
+
 .sidebarLogo,
 .sidebarFooter {
-  padding: 20px;
+  padding: @space-5;
+}
+.sider-menu:global(.ant-menu) {
+  border-inline-end: none;
+  & :global(.ant-menu-item) {
+    padding-block: @space-10;
+  }
 }
 .sidebarLogo {
   width: 100%;
   height: auto;
+  padding-block: @space-12;
+
 }
 .sidebarFooter {
   display: flex;
@@ -13,4 +23,9 @@
 }
 .profileName {
   margin: '0px';
+}
+.sider-drawer {
+  & :global(.ant-drawer-body) {
+    padding-inline: 0px;
+  }
 }

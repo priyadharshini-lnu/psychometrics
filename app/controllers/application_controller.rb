@@ -39,6 +39,8 @@ class ApplicationController < ::BaseController
   end
 
   def show_new_end_user_view?
+    return false unless request.format == 'html'
+
     Settings.features.new_end_user_view && cookies[:end_user_view] == 'new'
   end
 

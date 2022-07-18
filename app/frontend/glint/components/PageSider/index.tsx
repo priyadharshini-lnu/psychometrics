@@ -1,1 +1,1 @@
-export { PageSider, SiderMenuItem, UserDetail } from './PageSider'
+export { PageSider, SiderMenuItem } from './PageSider'

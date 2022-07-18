@@ -2,15 +2,18 @@ import React, { FC } from 'react'
 import {
   Card, Col, Button, Typography, Progress, Row,
 } from 'antd'
-import { RightOutlined } from '@ant-design/icons'
+import { RightOutlined, LeftOutlined } from '@ant-design/icons'
+
+import { isRtl } from 'utils/locales'
 
 import styles from './styles.less'
 
 const { Title } = Typography
+const { I18n: { uiLocale } } = window
 
 type DetailsCardProps = {
   title: string | React.ReactElement
-  description: string | React.ReactElement
+  description?: string | React.ReactElement
   buttonText?: string
   handleButtonClick?: () => void
   progressPercentage?: number
@@ -29,6 +32,8 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   subtitle,
   showStatusAtTop,
 }) => {
+  const rtl = isRtl(uiLocale)
+
   const handleClick = () => {
     handleButtonClick && handleButtonClick()
   }
@@ -70,7 +75,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           <Col lg={24 - progressBarSpan} md={16} xs={12} className={styles.buttonCol}>
             <Button type="primary" onClick={handleClick}>
               {buttonText}
-              <RightOutlined />
+              {rtl ? <LeftOutlined /> : <RightOutlined />}
             </Button>
           </Col>
         )}

@@ -1,6 +1,6 @@
-import React, { useContext, FC } from 'react'
+import React, { useContext, FC, useState } from 'react'
 import { Layout, Menu, Drawer } from 'antd'
-import { SelectEventHandler, SelectInfo } from 'rc-menu/lib/interface'
+import { SelectInfo } from 'rc-menu/lib/interface'
 
 import { MediaQueryContext } from 'glint/components/GlintProvider'
 
@@ -10,14 +10,9 @@ const { Sider } = Layout
 const { Item, SubMenu } = Menu
 
 type MenuItem = {
-  key: string | number
+  key: string
   label: string
   icon?: React.ReactElement
-}
-
-export type UserDetail = {
-  userName: string
-  profileImgSrc?: string
 }
 
 export type SiderMenuItem = MenuItem & {
@@ -28,32 +23,41 @@ type PageSiderProps = {
   items: SiderMenuItem[]
   collapsed: boolean
   drawerVisible: boolean
-  handleDrawer: (visible: boolean) => void
-  handleSiderMenuSelect: SelectEventHandler
+  onDrawerVisiblityChange: (visible: boolean) => void
   logo: string
-  siderFooter?: string | React.ReactElement
+  onMenuClick?: (info: SelectInfo) => void
+  siderFooter?: (collapsed: boolean) => React.ReactElement
+
 }
 
 export const PageSider: FC<PageSiderProps> = ({
   items,
   collapsed,
   drawerVisible,
-  handleDrawer,
-  handleSiderMenuSelect,
+  onDrawerVisiblityChange,
   logo,
   siderFooter,
+  onMenuClick,
 }) => {
+  const [activeKey, setActiveKey] = useState('')
   const { isMobile, isTablet } = useContext(MediaQueryContext)
 
-  const handleDrawerClose = () => {
-    handleDrawer(false)
-  }
-  const handleOnSelect = (info: SelectInfo) => {
-    handleSiderMenuSelect(info)
+  const handleClick = (info: SelectInfo) => {
+    onMenuClick && onMenuClick(info)
+    setActiveKey(info.key)
+    if (isMobile || isTablet) {
+      onDrawerVisiblityChange(false)
+    }
   }
 
   const menu = (
-    <Menu mode="inline" onSelect={handleOnSelect} defaultSelectedKeys={['1']}>
+    <Menu
+      activeKey={activeKey}
+      className={styles['sider-menu']}
+      mode="inline"
+      onClick={handleClick}
+      defaultSelectedKeys={[items[0].key]}
+    >
       {items.map((eachItem) => {
         if (eachItem.children) {
           return (
@@ -84,11 +88,16 @@ export const PageSider: FC<PageSiderProps> = ({
   return (
     <>
       {(isMobile || isTablet) ? (
-        <Drawer visible={drawerVisible} placement="left" onClose={handleDrawerClose}>
+        <Drawer
+          visible={drawerVisible}
+          placement="left"
+          onClose={() => onDrawerVisiblityChange(false)}
+          className={styles['sider-drawer']}
+        >
           {logoEle}
           {menu}
           <div className={styles.sidebarFooter}>
-            {siderFooter}
+            {siderFooter && siderFooter(collapsed)}
           </div>
         </Drawer>
       ) : (
@@ -96,7 +105,7 @@ export const PageSider: FC<PageSiderProps> = ({
           {!collapsed && logoEle}
           {menu}
           <div className={styles.sidebarFooter}>
-            {siderFooter}
+            {siderFooter && siderFooter(collapsed)}
           </div>
         </Sider>
       )}

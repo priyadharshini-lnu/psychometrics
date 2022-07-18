@@ -1,12 +1,21 @@
-.pageHeader {
-  background: '#fff';
-  padding: 0;
-}
+@import 'styles/ant.variable.less';
+@import 'styles/spacing.less';
 
+.pageHeader:global(.ant-layout-header) {
+  background: @white;
+  border: 1px solid @border-color-base;
+  padding-inline: @space-5;
+}
 .drawerTrigger {
   text-align: center;
 }
-
 .siderTrigger {
-  text-align: left;
+  text-align: start;
+}
+
+@media (max-width: @screen-lg) {
+  .pageHeader:global(.ant-layout-header) {
+    border-inline: none;
+    padding: 0 1rem;
+  }
 }

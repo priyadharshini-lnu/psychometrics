@@ -1,14 +1,22 @@
 @import 'glint/styles/mixins.less';
+@import 'styles/ant.variable.less';
 
 .detailsCard {
   height: 100%;
-  border-radius: 4px;
+  border-radius: calc(2 * @border-radius-sm);
 }
 .title {
   position: relative;
-  .highlighter(80%, -24px);
+  .highlighter(80%, -@card-padding-base);
 }
 
 .buttonCol {
-  text-align: right;
+  text-align: end;
+}
+
+:global(.rtl) {
+  & .title:before {
+    right: -@card-padding-base;
+    left: unset;
+  }
 }

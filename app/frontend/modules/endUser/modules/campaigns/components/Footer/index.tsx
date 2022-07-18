@@ -1,0 +1,105 @@
+import React, { FC } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+
+import { PageFooter } from 'glint'
+
+import { RootState } from 'modules/user/core/rootReducers'
+
+import {
+  getPrivacyText,
+  privacyPageLink,
+  getSecondaryLogo,
+  getName,
+} from 'modules/user/modules/campaigns/core/project'
+import { isInsideIframe } from 'utils/isInsideIframe'
+
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoTall.svg'
+import tteLogo from 'modules/user/assets/images/tteLogo.svg'
+import styles from './styles.less'
+
+const { I18n } = window
+
+const mapStateToProps = (state: RootState) => ({
+  privacyText: getPrivacyText(state),
+  privacyPageLink: privacyPageLink(state),
+  secondaryLogo: getSecondaryLogo(state),
+  projectName: getName(state),
+})
+
+const connector = connect(mapStateToProps)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+const FooterComponent: FC<PropsFromRedux> = ({
+  privacyText,
+  privacyPageLink,
+  secondaryLogo,
+  projectName,
+}) => {
+  if (isInsideIframe()) {
+    return null
+  }
+
+  return (
+    <PageFooter
+      footerLeft={secondaryLogo && <TTELogo />}
+      footerMiddle={(
+        <ProductUsageLinks
+          privacyText={privacyText}
+          privacyPageLink={privacyPageLink}
+        />
+      )}
+      footerRight={<PartnerLogo secondaryLogo={secondaryLogo} projectName={projectName} />}
+    />
+  )
+}
+
+const TTELogo: FC = () => (
+  <img src={tteLogo} alt="The Talent Enterprise" className={styles['footer-logo']} />
+)
+
+type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
+
+const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
+  privacyText,
+  privacyPageLink,
+}) => {
+  let privacyLink: JSX.Element | null = null
+  if (privacyText && privacyPageLink) {
+    privacyLink = (
+      <a href={privacyPageLink} target="_blank" rel="noopener noreferrer">
+        {privacyText}
+      </a>
+    )
+  }
+
+  return (
+    <>
+      <a
+        href="https://thetalententerprise.com/privacy-statement/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {I18n.t('shared.tte_terms_and_condition')}
+      </a>
+      {privacyLink}
+    </>
+  )
+}
+
+type PartnerLogsProps = Pick<PropsFromRedux, 'secondaryLogo' | 'projectName' >
+
+const PartnerLogo: FC<PartnerLogsProps> = ({
+  secondaryLogo,
+  projectName,
+}) => {
+  if (secondaryLogo) {
+    return (
+      <img src={secondaryLogo} alt={projectName} className={styles['footer-logo']} />
+    )
+  }
+
+  return <img src={lighthouseLogo} alt="Lighthouse" className={styles['footer-logo']} />
+}
+
+export const Footer = connector(FooterComponent)

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Layout, Row, Col } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined, MenuOutlined } from '@ant-design/icons'
 import { MediaQueryContext } from 'glint/components/GlintProvider'
-import { styles } from 'modules/reports/views/PageList'
+import styles from './styles.less'
 
 const { Header } = Layout
 
@@ -33,7 +33,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
       {drawerTrigger}
     </Col>
   ) : (
-    <Col span={2} className={styles.siderTrigger} style={{ textAlign: 'left' }}>
+    <Col span={2} className={styles.siderTrigger}>
       {siderTrigger}
     </Col>
   )
