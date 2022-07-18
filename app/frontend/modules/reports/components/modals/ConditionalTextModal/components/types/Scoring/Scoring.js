@@ -12,6 +12,7 @@ export class Scoring extends Component {
 
   getSubjects (assessment) {
     const { condition, factors, dataSheetColumns } = this.props
+
     if (condition.type === DATA_SHEET) {
       return dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
     }
@@ -44,9 +45,9 @@ export class Scoring extends Component {
   }
 
   render () {
-    const { condition, assessments } = this.props
+    const { model, condition, assessments } = this.props
     const { value } = condition.props
-    const { assessmentId } = condition.props
+    const assessmentId = condition.props.assessmentId || model.module.assessment_id
     const assessment = _.find(assessments, { id: +assessmentId })
 
     if (condition.type === 'Factor' && !assessment) { return null }
