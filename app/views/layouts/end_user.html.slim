@@ -17,7 +17,7 @@ html dir=dir
     = javascript_include_tag :threesixty
     = javascript_include_tag '//speedof.me/api/api.js'
 
-    = stylesheet_link_tag 'threesixty_dependencies', media: 'all'
+    = stylesheet_link_tag 'threesixty_dependencies', media: 'all' unless show_new_end_user_view?
     = stylesheet_pack_tag 'vendors2'
     = stylesheet_pack_tag 'vendors'
     = stylesheet_pack_tag 'survey'
