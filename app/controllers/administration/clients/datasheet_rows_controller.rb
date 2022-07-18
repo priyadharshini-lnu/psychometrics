@@ -15,7 +15,7 @@ module Administration
         @_resources = filter_form.
                       result.
                       joins(:datasheet).
-                      where(datasheets: { project_id: project.id }).
+                      where(sheets: { project_id: project.id }).
                       page(params[:page])
 
         respond_to do |format|

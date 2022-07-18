@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Sheet < ApplicationRecord
-  self.table_name = 'datasheets'
-
   EMAIL_COLUMN = 'Email'
   ADVANCE_TYPES = %w[HTML Markdown].freeze
   ALL_COLUMN_TYPES = %w[String Text Number HTML Markdown].freeze
@@ -10,7 +8,7 @@ class Sheet < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
   belongs_to :campaign
-  has_many :rows, class_name: 'DatasheetRow', foreign_key: :datasheet_id, inverse_of: :datasheet, dependent: :destroy
+  has_many :rows, class_name: 'SheetRow', foreign_key: :sheet_id, inverse_of: :sheet, dependent: :destroy
 
   def column_names
     columns.map { |col| col['name'] }

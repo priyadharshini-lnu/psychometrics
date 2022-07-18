@@ -137,6 +137,7 @@ table.table.grants-table
                         'integration', resource.has_grant?(:project_settings, :integrations), id: project_settings_integrations_id, data: { turn_on: [project_settings_integrations_id] }
                 | Integrations
 
+    = render 'shared/administration/grants/dashboards'
 
     - if policy(:membership).manage_grants_for_actions?('sms_invites', ['view', 'manage'], client: client)
       tr

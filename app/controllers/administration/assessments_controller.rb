@@ -163,7 +163,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def upload_data_sheet
-    @form = ::Datasheets::DatasheetForm.from_params(params)
+    @form = ::Sheets::DatasheetForm.from_params(params)
     render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
   end
 

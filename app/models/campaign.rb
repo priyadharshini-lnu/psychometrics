@@ -13,9 +13,10 @@ class Campaign < ApplicationRecord
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :campaign_options, dependent: :destroy
+  has_many :sheets, dependent: :destroy
+  has_one :accesssheet, dependent: :destroy
   has_one :project_datasheet, through: :project, source: :datasheet
   has_one :campaign_datasheet, class_name: 'Datasheet', foreign_key: :campaign_id, dependent: :destroy
-  has_one :datasheet_column_preference, as: :resource
   has_one :dashboard
 
   delegate :fixed_time?,

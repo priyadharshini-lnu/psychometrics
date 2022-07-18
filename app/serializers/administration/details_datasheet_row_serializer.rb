@@ -5,7 +5,7 @@ module Administration
     attributes :record, :type, :columns
 
     def record
-      DatasheetRows::GetData.call!(object, datasheet: datasheet)
+      SheetRows::GetData.call!(object, datasheet: datasheet)
     end
 
     def type

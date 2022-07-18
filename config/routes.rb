@@ -25,8 +25,9 @@ Rails.application.routes.draw do
     end
   end
 
-  concern :datasheet_management do
+  concern :sheet_management do
     collection do
+      get :get_columns
       post :add_column
       put :update_column
       put :update_columns_order
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
-  concern :datasheet_row_management do
+  concern :sheet_row_management do
     collection do
       delete :bulk_delete
       put :import
@@ -146,8 +147,8 @@ Rails.application.routes.draw do
         end
         resources :sms_records, only: %i[create]
 
-        resources :datasheets, concerns: :datasheet_management
-        resources :datasheet_rows, concerns: :datasheet_row_management
+        resources :sheets, concerns: :sheet_management
+        resources :sheet_rows, concerns: :sheet_row_management
 
         resources :registration_codes do
           member do
@@ -278,8 +279,8 @@ Rails.application.routes.draw do
 
     resources :projects, :new_projects do
       scope module: :projects do
-        resources :datasheets, concerns: :datasheet_management
-        resources :datasheet_rows, concerns: :datasheet_row_management
+        resources :sheets, concerns: :sheet_management
+        resources :sheet_rows, concerns: :sheet_row_management
         resources :saml_settings, only: %i[create update] do
           collection do
             post :test_saml
@@ -471,7 +472,7 @@ Rails.application.routes.draw do
           get :download_qrcode
           post :generate_universal_link
         end
-        resources :datasheet_rows, except: %i[show edit update]
+        resources :sheet_rows, except: %i[show edit update]
         get '*all', to: 'projects#index', constraints: { all: /.*/ }
       end
     end

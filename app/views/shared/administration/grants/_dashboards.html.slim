@@ -1,0 +1,37 @@
+- u = resource.user
+- dashboard_view_id = dom_id(u, :dashboard_view_id)
+- dashboard_settings_id = dom_id(u, :dashboard_settings_id)
+- dashboard_accesssheet_view_id = dom_id(u, :dashboard_accesssheet_view_id)
+- dashboard_accesssheet_manage_id = dom_id(u, :dashboard_accesssheet_manage_id)
+- dashboard_accesssheet_settings_id = dom_id(u, :dashboard_accesssheet_settings_id)
+
+- if policy(:membership).manage_grants_for_actions?('dashboards', ['view', 'settings', 'accesssheet_view', 'accesssheet_manage', 'accesssheet_settings'], client: client)
+  tr
+    td= t('administration.grants.dashboard.name')
+    td
+      div.grants-grid
+        - if policy(:membership).manage_grants_for_action?('dashboards', 'view', client: client)
+          label
+            = check_box_tag 'resource[grants_attributes][data][dashboards][]',
+                    'view', resource.has_grant?(:dashboards, :view), id: dashboard_view_id, data: { turn_off: [dashboard_view_id] }
+            = t('administration.grants.common.view')
+        - if policy(:membership).manage_grants_for_action?('dashboards', 'settings', client: client)
+          label
+            = check_box_tag 'resource[grants_attributes][data][dashboards][]',
+                    'settings', resource.has_grant?(:dashboards, :settings), id: dashboard_settings_id, data: { turn_on: [dashboard_settings_id] }
+            = t('administration.grants.dashboard.permissions.settings')
+        - if policy(:membership).manage_grants_for_action?('dashboards', 'accesssheet_view', client: client)
+          label
+            = check_box_tag 'resource[grants_attributes][data][dashboards][]',
+                    'accesssheet_view', resource.has_grant?(:dashboards, :accesssheet_view), id: dashboard_accesssheet_view_id, data: { turn_off: [dashboard_accesssheet_view_id] }
+            = t('administration.grants.dashboard.permissions.accesssheet_view')
+        - if policy(:membership).manage_grants_for_action?('dashboards', 'accesssheet_manage', client: client)
+          label
+            = check_box_tag 'resource[grants_attributes][data][dashboards][]',
+                    'accesssheet_manage', resource.has_grant?(:dashboards, :accesssheet_manage), id: dashboard_accesssheet_manage_id, data: { turn_off: [dashboard_accesssheet_manage_id] }
+            = t('administration.grants.dashboard.permissions.accesssheet_manage')
+        - if policy(:membership).manage_grants_for_action?('dashboards', 'accesssheet_settings', client: client)
+          label
+            = check_box_tag 'resource[grants_attributes][data][dashboards][]',
+                    'accesssheet_settings', resource.has_grant?(:dashboards, :accesssheet_settings), id: dashboard_accesssheet_settings_id, data: { turn_on: [dashboard_accesssheet_settings_id] }
+            = t('administration.grants.dashboard.permissions.accesssheet_settings')

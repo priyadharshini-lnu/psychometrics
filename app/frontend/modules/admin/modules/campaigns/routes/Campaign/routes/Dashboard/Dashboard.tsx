@@ -32,6 +32,7 @@ const DashboardComponent: React.FC<PropsFromRedux> = ({ openModal }) => {
   const {
     createResource, fetch, isLoading, meta: { recordCount },
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })
+  const basePath = `/administration/projects/${projectId}/new_campaigns/${campaignId}/dashboard`
 
   useEffect(() => {
     fetch({
@@ -42,10 +43,16 @@ const DashboardComponent: React.FC<PropsFromRedux> = ({ openModal }) => {
   }, [])
 
   useEffect(() => {
-    if (recordCount && recordCount !== 0) {
-      history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/dashboard/settings`)
+    if (recordCount && recordCount !== 0 && history.location.pathname === basePath) {
+      return history.push(`${basePath}/settings`)
     }
   }, [recordCount])
+
+  useEffect(() => {
+    if (!isLoading('fetch') && recordCount === 0) {
+      return history.push(basePath)
+    }
+  }, [recordCount, isLoading('fetch')])
 
   if (isLoading('fetch')) return <Skeleton active />
 

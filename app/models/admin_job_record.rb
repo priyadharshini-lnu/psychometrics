@@ -30,7 +30,8 @@ class AdminJobRecord < ApplicationRecord
     completion_status_export: 19,
     threesixty_campaign_export_completion_status: 20,
     compact_completion_status_export: 21,
-    export_users: 22
+    export_users: 22,
+    import_accesssheet: 23
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }

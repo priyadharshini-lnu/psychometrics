@@ -10,7 +10,8 @@ module Dashboards
 
     def call
       ActiveRecord::Base.connection.execute("DROP VIEW IF EXISTS #{flat_row_view_name}")
-      ActiveRecord::Base.connection.execute("CREATE VIEW #{flat_row_view_name} AS #{flat_rows_query}")
+      view_query = flat_rows_query
+      ActiveRecord::Base.connection.execute("CREATE VIEW #{flat_row_view_name} AS #{view_query}") if view_query
 
       broadcast :ok
     end
@@ -22,17 +23,22 @@ module Dashboards
     end
 
     def flat_rows_query
-      valid_columns = sheet.columns.except('Email').select { |column, _| column.length < 64 }.map do |column, type|
-        type = type == 'Number' ? 'float' : 'text'
-        next unless /\A[\w\s]+\z/.match?(column)
+      valid_columns = sheet.columns.select do |column|
+        column['dashboard_use'] && column['name'] != 'Email' && column.length < Sheet::MAX_COLUMN_NAME_SIZE &&
+          /\A[\w\s]+\z/.match?(column['name'])
+      end
+      return if valid_columns.empty?
 
-        "(data->>'#{column}')::#{type} as \"#{column}\""
+      columns_query = valid_columns.map do |column|
+        type = column['type'] == 'Number' ? 'float' : 'text'
+        column_name = column['name']
+        "(data->>'#{column_name}')::#{type} as \"#{column_name}\""
       end.compact.join(", \n")
 
       <<-SQL.squish
-        SELECT id, email as "Email", #{valid_columns}
-        FROM datasheet_rows
-        WHERE datasheet_id = #{sheet.id}
+        SELECT id, email as "Email", #{columns_query}
+        FROM sheet_rows
+        WHERE sheet_id = #{sheet.id}
         ORDER BY id
       SQL
     end

@@ -99,6 +99,8 @@ table.table.grants-table
                         'security', resource.has_grant?(:project_settings, :security), id: project_settings_security_id, data: { turn_on: [project_settings_security_id] }
                 | Security settings
 
+    = render 'shared/administration/grants/dashboards'
+
     - if policy(:membership).manage_grants_for_actions?('sms_invites', ['view', 'manage'], client: client)
       tr
         td SMS Invites

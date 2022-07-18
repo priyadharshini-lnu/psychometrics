@@ -89,6 +89,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -427,16 +429,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -586,8 +588,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -1275,73 +1276,6 @@ CREATE SEQUENCE public.datasheet_column_preferences_id_seq
 --
 
 ALTER SEQUENCE public.datasheet_column_preferences_id_seq OWNED BY public.datasheet_column_preferences.id;
-
-
---
--- Name: datasheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.datasheet_rows (
-    id bigint NOT NULL,
-    datasheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: datasheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.datasheet_rows_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: datasheet_rows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.datasheet_rows_id_seq OWNED BY public.datasheet_rows.id;
-
-
---
--- Name: datasheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.datasheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying
-);
-
-
---
--- Name: datasheets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.datasheets_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: datasheets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.datasheets_id_seq OWNED BY public.datasheets.id;
 
 
 --
@@ -2959,12 +2893,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -3356,6 +3290,73 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sheet_rows_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sheet_rows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying
+);
+
+
+--
+-- Name: sheets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sheets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sheets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sheets_id_seq OWNED BY public.sheets.id;
 
 
 --
@@ -3827,7 +3828,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4269,10 +4271,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -4609,20 +4611,6 @@ ALTER TABLE ONLY public.data_geos ALTER COLUMN id SET DEFAULT nextval('public.da
 --
 
 ALTER TABLE ONLY public.datasheet_column_preferences ALTER COLUMN id SET DEFAULT nextval('public.datasheet_column_preferences_id_seq'::regclass);
-
-
---
--- Name: datasheet_rows id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.datasheet_rows ALTER COLUMN id SET DEFAULT nextval('public.datasheet_rows_id_seq'::regclass);
-
-
---
--- Name: datasheets id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.datasheets ALTER COLUMN id SET DEFAULT nextval('public.datasheets_id_seq'::regclass);
 
 
 --
@@ -5015,6 +5003,20 @@ ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.security_settings ALTER COLUMN id SET DEFAULT nextval('public.security_settings_id_seq'::regclass);
+
+
+--
+-- Name: sheet_rows id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_rows ALTER COLUMN id SET DEFAULT nextval('public.sheet_rows_id_seq'::regclass);
+
+
+--
+-- Name: sheets id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheets ALTER COLUMN id SET DEFAULT nextval('public.sheets_id_seq'::regclass);
 
 
 --
@@ -5452,22 +5454,6 @@ ALTER TABLE ONLY public.data_geos
 
 ALTER TABLE ONLY public.datasheet_column_preferences
     ADD CONSTRAINT datasheet_column_preferences_pkey PRIMARY KEY (id);
-
-
---
--- Name: datasheet_rows datasheet_rows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.datasheet_rows
-    ADD CONSTRAINT datasheet_rows_pkey PRIMARY KEY (id);
-
-
---
--- Name: datasheets datasheets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.datasheets
-    ADD CONSTRAINT datasheets_pkey PRIMARY KEY (id);
 
 
 --
@@ -5932,6 +5918,22 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.security_settings
     ADD CONSTRAINT security_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sheet_rows sheet_rows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_rows
+    ADD CONSTRAINT sheet_rows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sheets sheets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheets
+    ADD CONSTRAINT sheets_pkey PRIMARY KEY (id);
 
 
 --
@@ -6711,41 +6713,6 @@ CREATE INDEX index_dashboards_on_campaign_id ON public.dashboards USING btree (c
 
 
 --
--- Name: index_datasheet_rows_on_datasheet_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_datasheet_rows_on_datasheet_id ON public.datasheet_rows USING btree (datasheet_id);
-
-
---
--- Name: index_datasheet_rows_on_email_and_datasheet_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_datasheet_rows_on_email_and_datasheet_id ON public.datasheet_rows USING btree (email, datasheet_id);
-
-
---
--- Name: index_datasheets_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_datasheets_on_campaign_id ON public.datasheets USING btree (campaign_id);
-
-
---
--- Name: index_datasheets_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_datasheets_on_project_id ON public.datasheets USING btree (project_id);
-
-
---
--- Name: index_datasheets_on_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_datasheets_on_type ON public.datasheets USING btree (type);
-
-
---
 -- Name: index_dd1550fac3e20f3c72e929b92570e38fc03f70a8; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7425,6 +7392,41 @@ CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.savi
 
 
 --
+-- Name: index_sheet_rows_on_email_and_sheet_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sheet_rows_on_email_and_sheet_id ON public.sheet_rows USING btree (email, sheet_id);
+
+
+--
+-- Name: index_sheet_rows_on_sheet_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheet_rows_on_sheet_id ON public.sheet_rows USING btree (sheet_id);
+
+
+--
+-- Name: index_sheets_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheets_on_campaign_id ON public.sheets USING btree (campaign_id);
+
+
+--
+-- Name: index_sheets_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheets_on_project_id ON public.sheets USING btree (project_id);
+
+
+--
+-- Name: index_sheets_on_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheets_on_type ON public.sheets USING btree (type);
+
+
+--
 -- Name: index_shortened_urls_on_category; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7967,10 +7969,10 @@ ALTER TABLE ONLY public.threesixty_options
 
 
 --
--- Name: datasheets fk_rails_048d5b6779; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sheets fk_rails_048d5b6779; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheets
+ALTER TABLE ONLY public.sheets
     ADD CONSTRAINT fk_rails_048d5b6779 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
@@ -8375,10 +8377,10 @@ ALTER TABLE ONLY public.clients
 
 
 --
--- Name: datasheets fk_rails_481da9714d; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sheets fk_rails_481da9714d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheets
+ALTER TABLE ONLY public.sheets
     ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
@@ -8551,11 +8553,11 @@ ALTER TABLE ONLY public.text_module_overrides
 
 
 --
--- Name: datasheet_rows fk_rails_782a23bcc9; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sheet_rows fk_rails_782a23bcc9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheet_rows
-    ADD CONSTRAINT fk_rails_782a23bcc9 FOREIGN KEY (datasheet_id) REFERENCES public.datasheets(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.sheet_rows
+    ADD CONSTRAINT fk_rails_782a23bcc9 FOREIGN KEY (sheet_id) REFERENCES public.sheets(id) ON DELETE CASCADE;
 
 
 --
@@ -9775,6 +9777,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
+('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9804,6 +9807,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220613192348'),
 ('20220616103155'),
 ('20220630112848'),
-('20220704083505');
+('20220704083505'),
+('20220713095522');
 
 

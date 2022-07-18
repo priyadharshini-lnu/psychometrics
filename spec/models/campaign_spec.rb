@@ -49,22 +49,22 @@ describe Campaign, type: :model do
     let(:project_datasheet) { create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }]) }
 
     it 'returns campaign datasheet columns if there is not project datasheet' do
-      create(:datasheet_row, email: 'james@cc.com', datasheet: campaign_datasheet, data: { 'Name' => 'James' })
-      create(:datasheet_row, email: 'smith@cc.com', datasheet: campaign_datasheet, data: { 'Name' => 'Smith' })
+      create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet, data: { 'Name' => 'James' })
+      create(:sheet_row, email: 'smith@cc.com', sheet: campaign_datasheet, data: { 'Name' => 'Smith' })
 
       expect(campaign.datasheet_data('james@cc.com')).to eq({ 'Name' => 'James' })
     end
 
     it 'return project datsheet columns if there is no campaign datasheet' do
-      create(:datasheet_row, email: 'james@cc.com', datasheet: project_datasheet, data: { 'Name' => 'James' })
+      create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet, data: { 'Name' => 'James' })
 
       expect(campaign.datasheet_data('james@cc.com')).to eq({ 'Name' => 'James' })
     end
 
     it 'returns combined datasheet columns' do
-      create(:datasheet_row, email: 'james@cc.com', datasheet: project_datasheet,
+      create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet,
         data: { 'Name' => 'James', 'Id' => 1 })
-      create(:datasheet_row, email: 'james@cc.com', datasheet: campaign_datasheet,
+      create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet,
         data: { 'Name' => 'Smith', 'Title' => 'Developer' })
 
       expect(campaign.datasheet_data('james@cc.com')).to eq({ 'Name' => 'Smith', 'Id' => 1, 'Title' => 'Developer' })

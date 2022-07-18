@@ -26,7 +26,10 @@ export const Menu: React.FC = () => {
           {I18n.t('administration.dashboard.tabs.settings')}
         </AntMenu.Item>
         <AntMenu.Item key="/accesssheets">
-          {I18n.t('administration.dashboard.tabs.access_sheet')}
+          {I18n.t('administration.dashboard.tabs.accesssheet')}
+        </AntMenu.Item>
+        <AntMenu.Item key="/accesssheet_settings">
+          {I18n.t('administration.dashboard.tabs.accesssheet_setting')}
         </AntMenu.Item>
       </AntMenu>
     </div>

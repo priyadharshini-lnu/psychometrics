@@ -2332,7 +2332,8 @@ en:
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
       tabs:
-        access_sheet: Access Sheet
+        accesssheet: Accesssheet
+        accesssheet_setting: Accesssheet Settings
         dashboard: Dashboard
         settings: Settings
     dashboard_form:
@@ -2340,65 +2341,6 @@ en:
         dataset_id: Dataset Id
         enabled: Enabled
         report_id: Report Id
-    datasheets:
-      column:
-        add_column: Add Column
-        reorder: Reorder
-        save_order: Save order
-      drawers:
-        add_edit:
-          cancelText: Cancel
-          markdown:
-            preview: Preview
-            title: Markdown
-          save: Save
-          saving: Saving
-          success_message_add: New record added
-          success_message_edit: Record updated
-          title_add: Add datasheet record
-          title_edit: Edit datasheet record
-          validations:
-            required_email: Please enter email
-        view:
-          campaign_title: Campaign level record
-          edit_button: Edit
-          project_title: Project level record
-          title: Datasheet record details
-      list:
-        column_toggler:
-          title: Show/Hide columns
-          tool_tip: Show/Hide table columns
-        header:
-          add_record: Add record
-          search_record: Search records
-      modals:
-        delete_records:
-          cancelText: Cancel
-          content:
-            one: Are you sure you want to delete the record?
-            other: Are you sure you want to delete {{count}} records?
-          okText: Yes, delete
-          successMessage:
-            one: Column and related data deleted
-            other: "{{columns}} and related data deleted"
-          title:
-            one: Delete record
-            other: Delete records
-        remove_columns:
-          cancelText: Cancel
-          content:
-            one: Deleting a column ({{columns}}) will remove the data in this column for all rows
-            other: Deleting a columns ({{columns}}) will remove the data in this column for all rows
-          okText: Yes, delete
-          successMessage:
-            one: Columns deleted
-            other: "{{count}} records deleted"
-          title:
-            one: Delete column
-            other: Delete columns
-      tabs:
-        rows: Rows
-        settings: Settings
     dates:
       completed: Completed At
       created: Created At
@@ -2569,6 +2511,16 @@ en:
       female: Female
       male: Male
       not_set: Not set
+    grants:
+      common:
+        view: View
+      dashboard:
+        name: Dashboard
+        permissions:
+          accesssheet_manage: Accesssheet Manage
+          accesssheet_settings: Accesssheet Settings
+          accesssheet_view: Accesssheet View
+          settings: Settings
     hide: Hide
     home:
       index:
@@ -3416,6 +3368,65 @@ en:
       security_setting: Security settings
       send_unlock_email: Send unlock email
       update_success_msg: Password settings successfull updated
+    sheets:
+      column:
+        add_column: Add Column
+        reorder: Reorder
+        save_order: Save order
+      drawers:
+        add_edit:
+          cancelText: Cancel
+          markdown:
+            preview: Preview
+            title: Markdown
+          save: Save
+          saving: Saving
+          success_message_add: New record added
+          success_message_edit: Record updated
+          title_add: Add datasheet record
+          title_edit: Edit Sheet Row record
+          validations:
+            required_email: Please enter email
+        view:
+          campaign_title: Campaign level record
+          edit_button: Edit
+          project_title: Project level record
+          title: Sheet Row record details
+      list:
+        column_toggler:
+          title: Show/Hide columns
+          tool_tip: Show/Hide table columns
+        header:
+          add_record: Add record
+          search_record: Search records
+      modals:
+        delete_records:
+          cancelText: Cancel
+          content:
+            one: Are you sure you want to delete the record?
+            other: Are you sure you want to delete {{count}} records?
+          okText: Yes, delete
+          successMessage:
+            one: Column and related data deleted
+            other: "{{columns}} and related data deleted"
+          title:
+            one: Delete record
+            other: Delete records
+        remove_columns:
+          cancelText: Cancel
+          content:
+            one: Deleting a column ({{columns}}) will remove the data in this column for all rows
+            other: Deleting a columns ({{columns}}) will remove the data in this column for all rows
+          okText: Yes, delete
+          successMessage:
+            one: Columns deleted
+            other: "{{count}} records deleted"
+          title:
+            one: Delete column
+            other: Delete columns
+      tabs:
+        rows: Rows
+        settings: Settings
     show: Show
     sms_invites:
       actions:

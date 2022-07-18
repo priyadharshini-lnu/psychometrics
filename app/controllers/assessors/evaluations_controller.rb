@@ -22,7 +22,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
                                                         subject_id: user.id,
                                                         evaluator_id: user.id,
                                                         assessment_id: assessment_ids)
-    datasheet_columns = Datasheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
+    datasheet_columns = Sheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
     datasheet = campaign.datasheet_data(user.email)
 
     render json: {

@@ -10,7 +10,7 @@ describe Threesixty::PipedText::Branches::RecipientFields::Meta do
     let(:datasheet) { create(:datasheet, project: project) }
 
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'custom_field' => 'Oops' })
+      create(:sheet_row, sheet: datasheet, email: user.email, data: { 'custom_field' => 'Oops' })
     end
 
     it do

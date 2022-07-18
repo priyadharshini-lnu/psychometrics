@@ -36,7 +36,7 @@ import campaignDetails from '../modules/threeSixtyCampaign/core/campaignDetails'
 import mailHistories from '../modules/threeSixtyCampaign/core/mailHistories'
 import users from '../modules/threeSixtyCampaign/core/users'
 import assessorsReducers from '../modules/AssessorApp/core'
-import datasheetReducers from '../modules/DatasheetManagement/core'
+import sheetReducers from '../modules/SheetManagement/core'
 import { reducer as integrationsReducer } from '../modules/client/core/integrations'
 import auditLogs from '../modules/AuditLog/core'
 
@@ -82,7 +82,7 @@ const createRootReducer = history => combineReducers({
   tables,
   campaigns: campaignReducers,
   assessors: assessorsReducers,
-  datasheet: datasheetReducers,
+  sheet: sheetReducers,
   preview,
   connection,
   auditLogs,
