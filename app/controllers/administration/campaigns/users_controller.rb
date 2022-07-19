@@ -13,15 +13,6 @@ module Administration
                 ransack(params[:filters]).result
 
         respond_to do |format|
-          format.csv do
-            audit! :export_users, campaign, campaign: campaign
-            AdminJob.call(
-              :export_users,
-              { campaign_id: campaign.id, filters: params[:filters] },
-              current_user
-            )
-            head :ok
-          end
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
               users.page(params[:page]),
@@ -100,6 +91,16 @@ module Administration
         else
           render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: 422
         end
+      end
+
+      def export
+        audit! :export_users, campaign, campaign: campaign
+        AdminJob.call(
+          :export_users,
+          { campaign_id: campaign.id, filters: params[:filters] },
+          current_user
+        )
+        head :ok
       end
 
       def show

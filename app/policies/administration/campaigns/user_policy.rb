@@ -79,6 +79,12 @@ module Administration
         can_mange_campaign_users?
       end
 
+      def export?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
       def sso?
         can_mange_campaign_users?
       end
