@@ -3018,8 +3018,8 @@ en:
         session_id: Session Id
         started_at: Started at
       links:
-        archive: Archive
         report: Report
+        review: Review
       resource_name: Proctoring Sessions
     products:
       copy:

@@ -32,7 +32,7 @@ module Examus
             proctoring_session_id: proctoring_session.id,
             proctoring_credits_debited: credits
           )
-          license.update(used_number: license.used_number + credits)
+          license.increment!(:used_number, credits)
         end
       end
 

@@ -13,14 +13,17 @@ module Examus
     end
 
     def call
-      broadcast :ok unless proctoring_session
+      return broadcast :ok unless proctoring_session
 
       license_usage = proctoring_session.license_usage
+
+      return broadcast :ok if license_usage.proctoring_credits_credited
+
       seconds = (proctoring_session.completed_at - proctoring_session.started_at).to_i
       credits = MIN_CREDIT + mins_to_credits(seconds / SECS_IN_MIN)
       license_usage.update(proctoring_credits_credited: credits, proctoring_session_duration: seconds)
-      diffrence = license_usage.proctoring_credits_debited - license_usage.proctoring_credits_credited
-      license_usage.license.update!(used_number: license_usage.license.used_number - diffrence) if diffrence.positive?
+      difference = license_usage.proctoring_credits_debited - license_usage.proctoring_credits_credited
+      license_usage.license.decrement!(:used_number, difference) if difference.positive?
 
       broadcast :ok
     end
