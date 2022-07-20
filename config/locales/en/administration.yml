@@ -3008,6 +3008,19 @@ en:
         assessors: Assessors
         sms_invites: SMS Invites
         subjects: Subjects
+    proctoring_sessions:
+      columns:
+        comment: Comment
+        completed_at: Completed at
+        conclusion: Conclusion
+        links: Links
+        score: Score
+        session_id: Session Id
+        started_at: Started at
+      links:
+        archive: Archive
+        report: Report
+      resource_name: Proctoring Sessions
     products:
       copy:
         error: Product

@@ -7,6 +7,7 @@ module Administration
 
     has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
     has_many :user_reports, serializer: Administration::UserReportSerializer
+    has_many :proctoring_sessions, serializer: Administration::ProctoringSessionSerializer
 
     delegate :active, :completion_status, :additional_time, to: :campaign_user
 
@@ -56,6 +57,10 @@ module Administration
 
     def user_reports
       object.user_reports.where(campaign: campaign).includes(:report, :report_family)
+    end
+
+    def proctoring_sessions
+      campaign_user.proctoring_sessions.order(started_at: :desc)
     end
 
     def permissions
