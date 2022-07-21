@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import interact from 'interact.js'
 import panelStore from 'modules/reports/store/PropertyPanelStore'
 import AppStore from 'modules/reports/store/AppStore'
+import cs from 'classnames'
 import styles from './Foundation.less'
 
 const { $ } = window
@@ -165,12 +166,17 @@ class Foundation extends Component {
     } else {
       style.transform = `translate(${left}px,${top}px)`
     }
-    const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${isSelected ? styles.selected : ''}`
+    const className = cs(styles.base,
+      {
+        [styles.editor]: !preview,
+        [styles.shadow]: shadow && !preview,
+        [styles.selected]: isSelected,
+      }, 'fe-module-container')
     return (
       <div
         ref={(ref) => { this.base = ref }}
         name={shadow ? '' : `Module_${module.id}`}
-        className={`${className} fe-module-container`}
+        className={className}
         style={style}
         onClick={this.select}
       >
@@ -182,7 +188,7 @@ class Foundation extends Component {
             ref={(ref) => { this.mover = ref }}
           />
           <div className={styles.label}>
-            {` x:${left} y:${top} size:${width}x${height}`}
+            {` x:${Math.round(left)} y:${Math.round(top)} size:${Math.round(width)}x${Math.round(height)}`}
           </div>
         </div>
         <div className={`${styles.frame} fe-module-frame-container`} style={frameStyle}>
