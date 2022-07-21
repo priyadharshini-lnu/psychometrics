@@ -204,6 +204,7 @@ Rails.application.routes.draw do
           end
           collection do
             post :import
+            get :export
             get :export_completion_status
             get :export_compact_completion_status
             post :search

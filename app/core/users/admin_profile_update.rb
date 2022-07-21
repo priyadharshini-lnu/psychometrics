@@ -10,10 +10,8 @@ module Users
     end
 
     def call
-      return broadcast :invalid, form if form.invalid?
-
       params = add_weekly_license_stats(form.attributes)
-      user.update!(params)
+      user.update(params)
       broadcast :ok, user
     end
 

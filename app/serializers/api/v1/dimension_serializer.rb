@@ -39,10 +39,10 @@ module Api
 
       def factors
         factor_list = if @instance_options[:since]
-                        object.factors.where(id: report.data_configuration_factor_ids).
+                        object.all_factors.where(id: report.data_configuration_factor_ids).
                           where('factors.updated_at > ?', since)
                       else
-                        object.factors.where(id: report.data_configuration_factor_ids)
+                        object.all_factors.where(id: report.data_configuration_factor_ids)
                       end
 
         factor_list.map do |factor|

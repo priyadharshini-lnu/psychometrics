@@ -208,7 +208,7 @@ class Report < ApplicationRecord
   def data_configuration_factor_ids
     data_configuration['sections'].map do |section|
       section['data'].map do |d|
-        d['factorId'] if d.dig('type') == 'normed_factor'
+        d['factorId'] if %w[normed_factor raw_factor].include? d.dig('type')
       end
     end.flatten.compact
   end

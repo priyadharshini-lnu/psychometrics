@@ -1,0 +1,441 @@
+version: 2.1 # Use 2.1 to enable using orbs and other features.
+
+executors:
+  tte-executor-full:
+    docker:
+      - &docker_image
+        image: talententerprise/tte:ruby-2.7.4-node-14.17.3
+        auth:
+          username: talententerprise
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      - image: cimg/postgres:11.14
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ci_test
+      - image: cimg/redis:6.2.6
+    environment: &environment
+      RAILS_ENV: test
+      NODE_ENV: test
+      REDIS_HOST: localhost
+      REDIS_URL: 'redis://localhost:6379/1'
+      NODE_OPTIONS: '--max_old_space_size=7168'
+      BUNDLER_VERSION: 2.2.31
+      PARALLEL_TEST_PROCESSORS: '7'
+      WEB_CONCURRENCY: '1'
+      RAILS_MAX_THREADS: '5'
+      PARALLEL_TEST_FIRST_IS_1: '1'
+      COVERALLS_PARALLEL: 'true'
+      THREAD_LOADER_WORKERS: '3'
+      TZ: Asia/Dubai
+
+  tte-executor:
+    docker:
+      - *docker_image
+    environment:
+      <<: *environment
+  tte-executor-deploy:
+    docker:
+      - *docker_image
+    environment:
+      RAILS_ENV: production
+      NODE_ENV: production
+      # NODE_OPTIONS: '--max_old_space_size=8192'
+      BUNDLER_VERSION: 2.2.31
+      DATABASE_URL: "postgres://postgres:postgres@localhost:5432/ci"
+      AWS_ACCESS_KEY_ID: 'dummy'
+      AWS_REGION: 'dummy'
+      AWS_S3_BUCKET: 'dummy'
+      AWS_SECRET_ACCESS_KEY: 'dummy'
+      REDIS_HOST: localhost
+      REDIS_URL: 'redis://localhost:6379/1'
+      DISABLE_COVERAGE: '1'
+      # THREAD_LOADER_WORKERS: '3'
+
+
+commands:
+  bundle_restore:
+    steps:
+      - restore_cache:
+          keys:
+            - gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}
+      - run:
+          name: Bundle Install
+          command: MAKE="make --jobs 2" bundle install -j 2 --retry 3  --without development --frozen --path ~/.bundle
+  yarn_restore:
+    parameters:
+      node-env:
+        type: string
+        default: test
+    steps:
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Yarn
+          command: yarn install --pure-lockfile
+      - save_cache:
+          key: yarn-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+  setup_db:
+    parameters:
+      processes:
+        type: integer
+        default: 1
+    steps:
+      - run:
+          name: Copy config
+          command: |
+            cp config/database.yml.sample config/database.yml
+            cp config/application.yml.sample  config/application.yml
+      - run:
+          name: Setup DB
+          command: 'PARALLEL_TEST_PROCESSORS=<<parameters.processes>> DISABLE_COVERAGE=1 bundle exec rake parallel:create parallel:load_structure'
+  webpack_files:
+    parameters:
+      node-env:
+        type: string
+        default: test
+    steps:
+      - run:
+          name: Create webpack-files.txt
+          command: |
+            find ./app/frontend ./config/webpack ./.circleci -type f -exec md5sum {} + > webpack-files.txt
+            md5sum *.js *.json yarn.lock .eslintrc >> webpack-files.txt
+      - restore_cache:
+          keys:
+            - webpack-packs-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum "webpack-files.txt" }}
+
+  abort_on_webpack_files:
+    steps:
+      - run:
+          name: Check if compiled files exist
+          command: |
+            if [[ ! -d public/packs-test ]]; then
+              echo "Compiled files do not exist"
+            else
+              circleci-agent step halt
+            fi
+  restore_webpack_compile_cache:
+    parameters:
+      node-env:
+        type: string
+        default: test
+    steps:
+      - restore_cache:
+          keys:
+            - webpack-compile-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
+            - webpack-compile-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ .Branch }}
+            - webpack-compile-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}
+  save_webpack_cache:
+    parameters:
+      node-env:
+        type: string
+        default: test
+
+    steps:
+      - save_cache:
+          key: webpack-packs-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum "webpack-files.txt" }}
+          paths:
+            - public/packs-test
+            - public/packs
+            - public/assets
+      - save_cache:
+          key: webpack-compile-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
+          paths:
+            - tmp/cache/webpacker
+            - tmp/cache/assets/sprockets
+
+jobs:
+  bundle:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - bundle_restore
+      - save_cache:
+          key: gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/.bundle
+  yarn:
+    executor: tte-executor
+    resource_class: medium
+    parameters:
+      node-env:
+        type: string
+        default: test
+
+    steps:
+      - checkout
+      - yarn_restore
+
+  eslint:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - webpack_files
+      - abort_on_webpack_files
+      - yarn_restore
+      - run:
+          name: ESLint
+          command: yarn run lint
+
+  typescript:
+    executor: tte-executor
+    steps:
+      - checkout
+      - webpack_files
+      - abort_on_webpack_files
+      - yarn_restore
+      - run:
+          name: TypeScript
+          command: yarn types
+
+  rubocop:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rubocop-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".rubocop.yml" }}-{{ .Branch }}
+            - rubocop-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".rubocop.yml" }}
+      - bundle_restore
+      - run:
+          name: Rubocop
+          command: |
+            (find tmp/rubocop_cache -type f -mtime +30 -delete) || echo "No old cache files to prune"
+            bundle exec rubocop --parallel
+      - save_cache:
+          key: rubocop-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".rubocop.yml" }}-{{ .Branch }}
+          paths:
+            - tmp/rubocop_cache
+
+  webpack:
+    executor: tte-executor
+    resource_class: xlarge
+    steps:
+      - checkout
+      - webpack_files
+      - abort_on_webpack_files
+      - bundle_restore
+      - yarn_restore
+      - restore_webpack_compile_cache
+      - run:
+          name: Webpack
+          command: |
+            cp config/database.yml.sample config/database.yml
+            cp config/application.yml.sample  config/application.yml
+            (find tmp/cache/webpacker tmp/cache/assets/sprockets -type f -mtime +30 -delete) || echo "No old cache files to prune"
+            (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile)
+      - save_webpack_cache
+
+  jest:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - webpack_files
+      - restore_cache:
+          keys:
+            - jest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
+      - run:
+          name: Check if compiled files exist
+          command: |
+            FILE=~/cachedflags/job.jest.flag
+            if test -f "$FILE"; then
+              circleci-agent step halt
+            else
+              echo "Compiled files do not exist"
+            fi
+      - bundle_restore
+      - yarn_restore
+      - restore_cache:
+          keys:
+            - jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
+            - jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}
+            - jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}
+      - run:
+          name: Jest
+          command: |
+            cp config/database.yml.sample config/database.yml
+            bundle exec rake i18n:js:export
+            (find tmp/cache/jest -type f -mtime +30 -delete) || echo "No old cache files to prune"
+            yarn test --coverage --detectOpenHandles -w 2 && yarn run coveralls < coverage/lcov.info
+            mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
+      - save_cache:
+          key: jest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
+          paths:
+            - ~/cachedflags/job.jest.flag
+      - save_cache:
+          key: jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
+          paths:
+            - tmp/cache/jest
+
+  rspec:
+    executor: tte-executor-full
+    resource_class: xlarge
+    steps:
+      - checkout
+      - bundle_restore
+      - yarn_restore
+      - webpack_files
+      - setup_db:
+          processes: 7
+      - run:
+          name: RSpec
+          command: |
+            EAGER_LOAD=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--failure-exit-code=0'
+      - run:
+          name: RSpec re-run failed tests
+          command: |
+            EAGER_LOAD=1 DISABLE_COVERAGE=1 PARALLEL_TEST_PROCESSORS=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--only-failures'
+  coveralls:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Coveralls Final
+          command: curl -k https://coveralls.io/webhook?repo_token=$COVERALLS_REPO_TOKEN -d "payload[build_num]=$CIRCLE_WORKFLOW_ID&payload[status]=done"
+
+  heroku_deploy:
+    executor: tte-executor-deploy
+    resource_class: xlarge
+    parameters:
+      app-name:
+        type: string
+      asset-host:
+        type: string
+        default: ""
+    steps:
+      - checkout
+      - bundle_restore
+      - yarn_restore:
+          node-env: production
+      - webpack_files:
+          node-env: production
+      - restore_webpack_compile_cache:
+          node-env: production
+      - run:
+          name: Webpack
+          command: |
+            if [[ ! -d public/packs ]]; then
+              cp config/database.yml.sample config/database.yml
+              cp config/application.yml.sample  config/application.yml
+              (find tmp/cache/webpacker -type f -mtime +30 -delete) || echo "No old cache files to prune"
+              (bundle exec rails webpacker:compile || bundle exec rails webpacker:compile)
+            else
+              echo "Compiled files exist"
+            fi
+      - run:
+          name: Assets precompile
+          command: |
+            if [ -n "<< parameters.asset-host >>" ]; then
+              WEBPACKER_PRECOMPILE=false ASSET_HOST=<< parameters.asset-host >> bundle exec rails assets:precompile
+            else
+              WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile
+            fi
+      - save_webpack_cache:
+          node-env: production
+      - run:
+          name: Commit assets
+          command: |
+            git config --global user.email "shuja@shabandri.com"
+            git config --global user.name "Shuja Shabandri"
+            git add -f public/packs
+            git add -f public/assets
+            git commit -m "ci compiled assets"
+      - heroku/install
+      - heroku/deploy-via-git:
+          force: true
+          app-name: << parameters.app-name >>
+orbs:
+  heroku: circleci/heroku@1.2.6
+  jira: circleci/jira@1.0.5
+
+# We use workflows to orchestrate the jobs that we declared above.
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - bundle
+      - yarn
+      - eslint:
+          requires:
+            - yarn
+      - rubocop:
+          requires:
+            - bundle
+      - webpack:
+          requires:
+            - rubocop
+            - eslint
+      - jest:
+          requires:
+            - webpack
+      - rspec:
+          requires:
+            - webpack
+      - coveralls:
+          requires:
+            - jest
+            - rspec
+          post-steps:
+            - jira/notify:
+                job_type: build
+
+      - heroku_deploy:
+          name: heroku_staging
+          app-name: tte-lighthouse-staging
+          asset-host: staging-cdn.tte-lighthouse.com
+          requires:
+            - jest
+            - rspec
+          filters:
+            branches:
+              only: master
+          post-steps:
+            - jira/notify:
+                environment: lh-staging
+                environment_type: staging
+                job_type: deployment
+
+      - heroku_deploy:
+          name: heroku_review
+          app-name: tte-lighthouse
+          requires:
+            - jest
+            - rspec
+          filters:
+            branches:
+              only: review
+          post-steps:
+            - jira/notify:
+                environment: lh-review
+                environment_type: testing
+                job_type: deployment
+      - heroku_deploy:
+          name: heroku_develop
+          app-name: tte-lighthouse-develop
+          requires:
+            - jest
+            - rspec
+          filters:
+            branches:
+              only: develop
+          post-steps:
+            - jira/notify:
+                environment: lh-develop
+                environment_type: development
+                job_type: deployment
+
+
+

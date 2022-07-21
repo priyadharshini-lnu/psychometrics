@@ -14,7 +14,7 @@ module Licenses
       license = campaign_user.campaign.proctoring_license
       credits = Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)
 
-      broadcast :ok, license.enough_license_credits?(credits)
+      broadcast :ok, license&.enough_license_credits?(credits)
     end
   end
 end

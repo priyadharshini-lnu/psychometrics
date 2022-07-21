@@ -37,8 +37,7 @@ module Administration
       @_resource.created_by = current_user
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       respond_to do |format|
-        if @communication_facade.form.validate(resource_params)
-          @communication_facade.form.save
+        if validated_and_saved_resource?
           audit! :create, resource, payload: resource_params
           format.js
         else
@@ -92,6 +91,10 @@ module Administration
     end
 
     private
+
+    def validated_and_saved_resource?
+      @communication_facade.form.validate(resource_params) && @communication_facade.form.save && resource.valid?
+    end
 
     def pundit_authorize
       authorize(
