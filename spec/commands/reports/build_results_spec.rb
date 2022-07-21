@@ -90,29 +90,29 @@ describe Reports::BuildResults do
       end
     end
 
-    context 'Datasheet' do
+    context 'sheet' do
       let(:data) do
         {
           'id' => 'Performance_Rating',
-          'type' => 'datasheet',
+          'type' => 'sheet',
           'key' => 'Performance Rating',
           'category' => 'computed_scores'
         }
       end
-      let(:datasheet) do
-        create(:datasheet, campaign: user_result.campaign)
+      let(:sheet) do
+        create(:sheet, campaign: user_result.campaign)
       end
-      let!(:datasheet_row) do
-        create(:datasheet_row, datasheet: datasheet, email: user_result.subject.email,
+      let!(:sheet_row) do
+        create(:sheet_row, sheet: sheet, email: user_result.subject.email,
                 data: { 'Performance Rating' => 2.5 })
       end
 
-      it 'should return datasheet column value' do
+      it 'should return sheet column value' do
         result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
         expect(result).to eq(key: 'Performance_Rating', name: 'Performance Rating',
                              value: 2.5, config_data: data)
       end
-      it 'should return nil for datasheet column' do
+      it 'should return nil for sheet column' do
         user_result = create(:users_result)
         build_results_command = described_class.new(report, [user_result])
         result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
