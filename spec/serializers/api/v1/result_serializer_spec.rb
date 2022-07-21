@@ -21,7 +21,23 @@ describe Api::V1::ResultSerializer do
        config_data: {
          'type' => 'ranked_occupations',
          'label' => 'OccupationRank 2', 'order' => 'desc', 'position' => 2, 'assessmentId' => 18
-       }, value: 5 }]
+       }, value: 5 },
+     { key: 'id_number', name: 'ID Number',
+       config_data: {
+         'id' => 'id_number',
+         'type' => 'datasheet',
+         'key' => 'id_number',
+         'label' => 'ID Number',
+         'category' => 'user_data'
+       }, value: '123456' },
+     { key: 'rating', name: 'Rating',
+       config_data: {
+         'id' => 'rating',
+         'type' => 'datasheet',
+         'key' => 'rating',
+         'label' => 'Rating',
+         'category' => 'computed_scores'
+       }, value: 4.5 }]
   end
 
   let(:user_report) { create(:user_report) }
@@ -35,8 +51,10 @@ describe Api::V1::ResultSerializer do
   it do
     is_expected.to eq(
       campaign_id: user_report.campaign_id,
-      user_data: { 'first_name' => 'Shuja', 'last_name' => 'GPTS' },
-      computed_scores: [],
+      user_data: { 'first_name' => 'Shuja', 'last_name' => 'GPTS', 'id_number' => '123456' },
+      computed_scores: [
+        { id: 'rating', name: 'Rating', value: 4.5 }
+      ],
       assessments: [
         {
           id: 17,

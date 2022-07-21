@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :proctoring_session do
-    session_id { '' }
+    session_id { SecureRandom.uuid }
     campaign_user { nil }
     started_at { '2020-10-15 15:56:40' }
     completed_at { '2020-10-15 15:56:40' }

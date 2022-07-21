@@ -2,7 +2,7 @@
 
 module Reports
   class BuildResults < BaseCommand
-    attr_reader :report, :users_results, :resources, :refs
+    attr_reader :report, :users_results, :resources, :refs, :datasheet_data
 
     CLASS_MAP = {
       user_data: 'Reports::ResultTypes::User',
@@ -15,7 +15,8 @@ module Reports
       survey_response: 'Reports::ResultTypes::Survey',
       assign: 'Reports::ResultTypes::Assign',
       mapped_value: 'Reports::ResultTypes::MappedValue',
-      ref: 'Reports::ResultTypes::Ref'
+      ref: 'Reports::ResultTypes::Ref',
+      datasheet: 'Reports::ResultTypes::Datasheet'
     }.freeze
 
     def initialize(report, users_results, data = nil)
@@ -40,6 +41,11 @@ module Reports
         key = data['ref_id']
         @refs[key] = CLASS_MAP[data['type'].to_sym].constantize.call(self, data)
       end
+    end
+
+    def datasheet_value(column_name)
+      @datasheet_data ||= users_results.first.campaign.datasheet_data(users_results.first.subject.email)
+      @datasheet_data[column_name]
     end
 
     def find_user_result_by(assessment_id)

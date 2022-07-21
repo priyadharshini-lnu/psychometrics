@@ -23,9 +23,9 @@ describe Ztable do
     end
 
     it 'returns percentile for a zscore within range' do
-      percentile = described_class.percentile(0.1388)
+      percentile = described_class.percentile(-0.18263)
 
-      expect(percentile).to eq(55.567)
+      expect(percentile).to eq(42.858)
     end
 
     # TODO: spec other edge cases

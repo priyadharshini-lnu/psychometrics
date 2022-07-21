@@ -7,6 +7,7 @@ module.exports = {
   testMatch: [
     '<rootDir>/app/frontend/__tests__/**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
+  cacheDirectory: '<rootDir>/tmp/cache/jest',
   moduleNameMapper: {
     '\\.svg$': '<rootDir>/app/frontend/__mocks__/svg.js',
     '\\.(scss|less)$': 'identity-obj-proxy',

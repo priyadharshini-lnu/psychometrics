@@ -79,8 +79,9 @@ ARG AWS_S3_BUCKET="dummy_bucket"
 
 COPY config/database.yml.sample config/database.yml
 
-RUN (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile)
-RUN WEBPACKER_PRECOMPILE=false DISABLE_COVERAGE=1 bundle exec rails assets:precompile
+RUN (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile) \
+    && WEBPACKER_PRECOMPILE=false DISABLE_COVERAGE=1 bundle exec rails assets:precompile \
+    && rm -rf tmp/
 
 # Declares that we intend to listen on port 3000. This is a declarative documentation instruction
 # that doesn't actually publish or open a port.

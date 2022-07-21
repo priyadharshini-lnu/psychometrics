@@ -387,20 +387,12 @@ providers:
         factors: [*ed, *or, *nf, *oe, *cpi]
   hogan:
     report_packages:
-      - id: RPtFlashPkgLead
-        name: LEAD Series + Coaching + Flash
-        report_ids:
-          - EcHPILFPML
-          - EcHDSLFCML
-          - EcMVPILFVML
-          - EcHPIHDSMVPIFR
-          - EcHPIHDSMVPILFCRML
-      - id: LeaershipRPtFlashLeadSummary
+      - id: RPtFlashLeadSummary
         name: LEAD Series + Summary + Flash
         report_ids:
-          - EcHPILFPML
           - EcHDSLFCML
           - EcMVPILFVML
+          - EcHPILFPML
           - EcHPIHDSMVPIFR
           - EcHPIHDSMVPIPESML
     reports:
@@ -478,6 +470,28 @@ providers:
         language_id: en
         assessment_ids:
           - HBRIV1
+      - id:  EcHPIHDSMVPIBSML
+        name: Basis
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HPI
+          - HDS
+          - MVPI
+      - id:  EcMVPILFVML
+        name: Values
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - MVPI
+      - id:  EcHPIHDSMVPIPESML
+        name: Summary
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HPI
+          - HDS
+          - MVPI
     assessments:
       - id: HPI
         name: HPI

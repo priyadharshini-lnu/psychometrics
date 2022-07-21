@@ -102,7 +102,6 @@ const Common: React.FC<Props> = ({
                 <PassAssessment
                   id="pass_assessment"
                   type="pass_assessment"
-                  isThreesixty="true"
                   initialized={initialized}
                   resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
                   data={assessment}
