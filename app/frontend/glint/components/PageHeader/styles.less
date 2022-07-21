@@ -2,6 +2,9 @@
 @import 'styles/spacing.less';
 
 .pageHeader:global(.ant-layout-header) {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background: @white;
   border: 1px solid @border-color-base;
   padding-inline: @space-5;
@@ -16,6 +19,6 @@
 @media (max-width: @screen-lg) {
   .pageHeader:global(.ant-layout-header) {
     border-inline: none;
-    padding: 0 1rem;
+    padding: 0 @space-4;
   }
 }

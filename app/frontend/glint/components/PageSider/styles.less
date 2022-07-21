@@ -4,17 +4,50 @@
 .sidebarFooter {
   padding: @space-5;
 }
+.page-sider--expanded, .page-sider--collapsed {
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  width: 200px;
+}
+
+.sider-trigger {
+  position: fixed;
+  left: 210px;
+  top: 20px;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sider-trigger--collapsed {
+  left: 90px;
+}
+
+.drawer-trigger{
+  position: fixed;
+  left: 30px;
+  top: 16px;
+  z-index: 2;
+  cursor: pointer;
+}
+
 .sider-menu:global(.ant-menu) {
   border-inline-end: none;
   & :global(.ant-menu-item) {
     padding-block: @space-6;
   }
 }
+.page-sider--collapsed {
+  width: 80px;
+  & .sider-menu :global(.ant-menu-item) {
+    padding-block: 0px;
+  }
+}
 .sidebarLogo {
   width: 100%;
   height: auto;
   padding-block: @space-10;
-
 }
 .sidebarFooter {
   display: flex;
@@ -25,7 +58,13 @@
   margin: '0px';
 }
 .sider-drawer {
+  & :global(.ant-drawer-content-wrapper) {
+    max-width: 320px;
+  }
   & :global(.ant-drawer-body) {
     padding-inline: 0px;
+  }
+  & .sidebarLogo {
+    padding-block: @space-4;
   }
 }

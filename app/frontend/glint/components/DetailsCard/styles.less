@@ -1,8 +1,10 @@
 @import 'glint/styles/mixins.less';
 @import 'styles/ant.variable.less';
 
-.detailsCard {
+.detailsCard:global(.ant-card) {
   height: 100%;
+  width: 100%;
+  border: 1px solid @border-color-base;
   border-radius: calc(2 * @border-radius-sm);
 }
 .title {

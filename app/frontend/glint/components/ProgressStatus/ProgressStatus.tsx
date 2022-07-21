@@ -8,7 +8,7 @@ const { Title, Text } = Typography
 
 type ProgressStatusProps = {
   statusText: string
-  StatusIcon: (props: HTMLAttributes<HTMLAnchorElement>) => React.ReactElement
+  StatusIcon: (props: HTMLAttributes<HTMLAnchorElement>) => React.ReactElement | null
   count: string
   theme?: 'light' | 'dark'
 }

@@ -73,7 +73,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
         </Col>
         {buttonText && (
           <Col lg={24 - progressBarSpan} md={16} xs={12} className={styles.buttonCol}>
-            <Button type="primary" onClick={handleClick}>
+            <Button type="primary" size="small" onClick={handleClick}>
               {buttonText}
               {rtl ? <LeftOutlined /> : <RightOutlined />}
             </Button>

@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { FC } from 'react'
 import { Layout } from 'antd'
 import { SelectEventHandler } from 'rc-menu/lib/interface'
 
@@ -22,32 +22,23 @@ type PageLayoutProps = {
 
 export const PageLayout: FC<PageLayoutProps> = ({
   siderItems,
-  footer, headerContent,
+  footer,
+  headerContent,
   children,
   onSiderMenuClick,
   siderFooter,
-}) => {
-  const [collapsed, setCollapsed] = useState(false)
-  const [visible, handleVisible] = useState(false)
-
-  return (
-    <Layout>
-      <PageSider
-        logo={lighthouseLogo}
-        items={siderItems}
-        collapsed={collapsed}
-        drawerVisible={visible}
-        onDrawerVisiblityChange={handleVisible}
-        onMenuClick={onSiderMenuClick}
-        siderFooter={siderFooter}
-      />
-      <Layout>
-        <PageHeader collapsed={collapsed} setCollapsed={setCollapsed} handleDrawer={handleVisible} visible={visible}>
-          {headerContent}
-        </PageHeader>
-        <Content className={styles['page-content']}>{children}</Content>
-        {footer}
-      </Layout>
+}) => (
+  <Layout>
+    <PageSider
+      logo={lighthouseLogo}
+      items={siderItems}
+      onMenuClick={onSiderMenuClick}
+      siderFooter={siderFooter}
+    />
+    <Layout className={styles['page-layout']}>
+      <PageHeader>{headerContent}</PageHeader>
+      <Content className={styles['page-content']}>{children}</Content>
+      {footer}
     </Layout>
-  )
-}
+  </Layout>
+)
