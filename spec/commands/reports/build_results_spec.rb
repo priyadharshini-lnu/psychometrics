@@ -90,6 +90,37 @@ describe Reports::BuildResults do
       end
     end
 
+    context 'Datasheet' do
+      let(:data) do
+        {
+          'id' => 'Performance_Rating',
+          'type' => 'datasheet',
+          'key' => 'Performance Rating',
+          'category' => 'computed_scores'
+        }
+      end
+      let(:datasheet) do
+        create(:datasheet, campaign: user_result.campaign)
+      end
+      let!(:datasheet_row) do
+        create(:datasheet_row, datasheet: datasheet, email: user_result.subject.email,
+                data: { 'Performance Rating' => 2.5 })
+      end
+
+      it 'should return datasheet column value' do
+        result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
+        expect(result).to eq(key: 'Performance_Rating', name: 'Performance Rating',
+                             value: 2.5, config_data: data)
+      end
+      it 'should return nil for datasheet column' do
+        user_result = create(:users_result)
+        build_results_command = described_class.new(report, [user_result])
+        result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
+        expect(result).to eq(key: 'Performance_Rating', name: 'Performance Rating',
+                             value: nil, config_data: data)
+      end
+    end
+
     context 'ExternalResults' do
       let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => user_result.assessment_id, 'label' => 'Attempted' } }
       subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }

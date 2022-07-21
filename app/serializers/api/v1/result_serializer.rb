@@ -12,7 +12,8 @@ module Api
 
       def user_data
         user_data = object.select do |row|
-          row.dig(:config_data, 'type') == 'user_data'
+          row.dig(:config_data, 'type') == 'user_data' ||
+            (row.dig(:config_data, 'type') == 'datasheet' && row.dig(:config_data, 'category') == 'user_data')
         end
         user_data.each_with_object({}) { |row, result| result[row[:key]] = row[:value] }
       end
@@ -31,7 +32,9 @@ module Api
 
       def computed_scores
         scores = object.reject do |row|
-          row.dig(:config_data, 'assessmentId').present? || row.dig(:config_data, 'type') == 'user_data'
+          row.dig(:config_data, 'assessmentId').present? ||
+            row.dig(:config_data, 'type') == 'user_data' ||
+            (row.dig(:config_data, 'type') == 'datasheet' && row.dig(:config_data, 'category') != 'computed_scores')
         end
         scores.map do |score|
           Api::V1::Results::ComputedScoreSerializer.new(score).to_h
