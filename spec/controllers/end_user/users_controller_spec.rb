@@ -29,7 +29,8 @@ describe EndUser::UsersController, type: :controller do
       parsed_result = JSON.parse(response.body)
       expect(response).to have_http_status(:success)
 
-      expected_array = %w[id is_manager email first_name last_name full_name is_anonym is_super_admin permissions]
+      expected_array = %w[id is_manager email first_name last_name full_name
+                          is_anonym is_super_admin permissions photo timezone]
       expect(parsed_result.keys).to match_array(expected_array)
       expect(parsed_result['id']).to eq(user.id)
       expect(parsed_result['first_name']).to eq('Elliot')

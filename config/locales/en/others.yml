@@ -976,6 +976,7 @@ en:
     dashboard_menu:
       home: Home
       livechat: Live Support
+      profile: Profile
     details: Details
     edit_evaluation:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
@@ -1859,6 +1860,19 @@ en:
       values:
         empty: Empty
         required: "%{title} is required"
+  profile:
+    add_photo: Add Photo
+    change_password: Change Password
+    change_photo: Change Photo
+    email: Email
+    first_name: First Name
+    last_name: Last Name
+    password: Password
+    password_confirmation: Password Confirmation
+    success_update: Profile updated successfully
+    timezone: Timezone
+    title: My Profile
+    update: Update
   profiles:
     edit:
       header: Profile Settings

@@ -5,6 +5,7 @@ import { ConfigProvider, notification, Col } from 'antd'
 import {
   HomeOutlined,
   MessageOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
@@ -43,6 +44,11 @@ const items = [
   //   label: 'Help',
   //   icon: <QuestionCircleOutlined />,
       }, */
+  {
+    key: 'profile',
+    label: I18n.t('campaign.dashboard_menu.profile'),
+    icon: <UserOutlined />,
+  },
   {
     key: 'livechat',
     label: I18n.t('campaign.dashboard_menu.livechat'),

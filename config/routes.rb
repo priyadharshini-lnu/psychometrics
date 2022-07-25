@@ -961,6 +961,7 @@ Rails.application.routes.draw do
         collection do
           post :change_locale
           patch :update_details
+          patch :upload_photo
         end
       end
     end
@@ -1039,6 +1040,7 @@ Rails.application.routes.draw do
     get 'identify', to: 'home#identify', as: :identify
     get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed', as: :assessment_completed
     get 'upgrade', to: 'home#upgrade'
+    get 'profile', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 

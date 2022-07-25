@@ -4295,7 +4295,9 @@ CREATE TABLE public.users (
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
     locked_at timestamp without time zone,
-    password_changed_at timestamp without time zone
+    password_changed_at timestamp without time zone,
+    photo character varying,
+    timezone character varying
 );
 
 
@@ -9897,9 +9899,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220616103155'),
 ('20220630112848'),
 ('20220704083505'),
+('20220720075400'),
 ('20220712103553'),
 ('20220713095522'),
 ('20220714145940'),
 ('20220721114549');
-
-

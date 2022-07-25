@@ -27,8 +27,12 @@ type ProfileProps = PropsFromRedux & {
 
 const ProfileComponent: FC<ProfileProps> = ({ currentUser, collapsed }) => {
   const userImg = collapsed
-    ? <Popover content={currentUser.fullName} trigger="hover"><Avatar size="large" icon={<UserOutlined />} /></Popover>
-    : <Avatar size="large" icon={<UserOutlined />} />
+    ? (
+      <Popover content={currentUser.fullName} trigger="hover">
+        <Avatar src={currentUser.photo} size="large" icon={<UserOutlined />} />
+      </Popover>
+    )
+    : <Avatar src={currentUser.photo} size="large" icon={<UserOutlined />} />
 
   const handleLogout = () => {
     window.location.href = '/users/sign_out'

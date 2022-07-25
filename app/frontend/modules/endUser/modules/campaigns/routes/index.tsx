@@ -1,5 +1,6 @@
 import { CampaignList } from './CampaignList'
 import Campaign from './Campaign'
+import { Profile } from './Profile'
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
   {
     path: '/threesixty_campaigns/:campaignId',
     main: Campaign,
+    exact: true,
+  },
+  {
+    path: '/profile',
+    main: Profile,
     exact: true,
   },
 ]

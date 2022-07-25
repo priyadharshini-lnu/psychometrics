@@ -179,6 +179,8 @@ class User < ApplicationRecord
     self.locale = locale.presence
   end
 
+  mount_uploader :photo, ImageUploader
+
   has_one_time_password(encrypted: true)
 
   def self.send_reset_password_instructions(recoverable)

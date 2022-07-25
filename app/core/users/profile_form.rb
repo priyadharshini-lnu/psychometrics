@@ -5,10 +5,14 @@ module Users
     attribute :first_name, String
     attribute :last_name, String
     attribute :password, String
+    attribute :password_confirmation, String
+    attribute :timezone, String
 
     validates :first_name, :last_name, presence: true
     validates :password, strong_password: true, if: :enable_strong_password?
-    validate :password_length
+    validate :password_length, unless: -> { password.blank? }
+    validates :password_confirmation, presence: true, unless: -> { password.blank? }
+    validates_confirmation_of :password, unless: -> { password.blank? }
 
     def password_length
       return unless password
