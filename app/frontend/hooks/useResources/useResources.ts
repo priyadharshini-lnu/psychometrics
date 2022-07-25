@@ -21,7 +21,7 @@ import {
 } from './interfaces'
 import { formatErrors } from './utils'
 
-export function useResources<R extends {id: string }, M extends BaseMeta = BaseMeta> (
+export function useResources<R extends {id: string}, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
@@ -147,6 +147,7 @@ export function useResources<R extends {id: string }, M extends BaseMeta = BaseM
 
   const updateResource: UpdateResource<R> = async (details, args = { apiConfig }) => {
     const { id, ...attributes } = details
+
     const requestKey: RequestType = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     return new Promise(async (resolve, reject) => {

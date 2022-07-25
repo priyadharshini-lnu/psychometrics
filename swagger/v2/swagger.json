@@ -411,6 +411,111 @@
           "required": true
         }
       }
+    },
+    "/design_settings": {
+      "get": {
+        "summary": "Get a design settings",
+        "operationId": "GetDesignSettings",
+        "description": "Get Design Settings",
+        "tags": [
+          "DesignSettngs"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "filter[project_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DesignSetting Update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesignSettingListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/design_settings/{setting_id}": {
+      "patch": {
+        "summary": "Update a design settings",
+        "operationId": "UpdateDesignSettings",
+        "description": "Update Design Settings",
+        "tags": [
+          "DesignSettngs"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DesignSetting Update",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "design_settings",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "background_color": "#f00",
+                        "login_box_position": "left"
+                      },
+                      "relationships": {
+                        "project": {
+                          "data": {
+                            "id": "1",
+                            "type": "projects"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/DesignSettingUpdateResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DesignSettingRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
     }
   },
   "security": {
@@ -1407,6 +1512,295 @@
             "required": [
               "id",
               "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "DesignSettingListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to design_settings",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "project": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to projects",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "background_color": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "error_color": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "info_color": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "login_box_position": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "primary_color": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "success_color": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "warning_color": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "DesignSettingUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to design_settings",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to projects",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "background_color": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "error_color": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "info_color": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "login_box_position": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "primary_color": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "success_color": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "warning_color": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
               "attributes"
             ],
             "nullable": false

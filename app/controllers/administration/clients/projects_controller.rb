@@ -125,10 +125,8 @@ module Administration
       def resource_params
         params.
           require(:resource).
-          permit(:name, :subdomain, :logo, :background, :background_color,
-                 :remove_background, :remove_logo, :applicable_level, :number,
+          permit(:name, :subdomain, :applicable_level, :number,
                  :privacy_consent, :two_factor_enabled,
-                 :login_box_position, :secondary_logo, :remove_secondary_logo,
                  :enable_live_chat, :live_chat_token,
                  :webhook, :webhook_auth_enabled, :webhook_username, :webhook_password,
                  locales: [], privacy_link_attributes: %i[id text link _destroy]).

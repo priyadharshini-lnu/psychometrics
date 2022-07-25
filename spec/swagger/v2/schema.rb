@@ -110,6 +110,12 @@ module Swagger
           ),
           DashboardUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Dashboard::Schema.update_request
+          ),
+          DesignSettingListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DesignSetting::Schema.multiple_resource_response
+          ),
+          DesignSettingUpdateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DesignSetting::Schema.single_resource_response
           )
         }
       }

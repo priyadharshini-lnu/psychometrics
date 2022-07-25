@@ -49,8 +49,8 @@ describe 'Projects' do
             locales: ['en'],
             background_color: '#cccccc',
             webhook: 'https://my.site.com',
-            login_box_position: 'right',
             name: 'project1',
+            login_box_position: 'right',
             data_processing_consent: true
           }
         end
@@ -103,7 +103,9 @@ describe 'Projects' do
           {
             subdomain: 'new',
             name: 'newname',
-            webhook: 'https://my.site.com'
+            webhook: 'https://my.site.com',
+            background_color: '#000000',
+            login_box_position: 'center'
           }
         end
 
@@ -113,6 +115,8 @@ describe 'Projects' do
           project = JSON.parse(response.body)
           expect(project['name']).to eq 'newname'
           expect(project['subdomain']).to eq 'new'
+          expect(project['background_color']).to eq '#000000'
+          expect(project['login_box_position']).to eq 'auto'
           expect(project['webhook']).to eq 'https://my.site.com'
         end
       end

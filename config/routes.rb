@@ -1100,9 +1100,11 @@ Rails.application.routes.draw do
           jsonapi_resources :clients do
             jsonapi_relationships
           end
-
           jsonapi_resources :users
           jsonapi_resources :dashboards, only: %i[index create update]
+          jsonapi_resources :design_settings, only: %i[index update] do
+            resource :uploads, only: %i[update]
+          end
         end
       end
     end

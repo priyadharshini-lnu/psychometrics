@@ -6,17 +6,21 @@ interface State {
   client_logo: null | string,
   secondary_logo: null | string,
   background: null | string,
-  background_color: string,
+  background_color?: string,
   login_box_position: LoginBoxPosition,
   saml_login_allowed: boolean
   saml_enforced: boolean
+  primary_color?: string
+  error_color?: string,
+  warning_color?: string,
+  success_color?: string,
+  info_color?: string,
 }
 
 export const defaultState: State = {
   client_logo: null,
   secondary_logo: null,
   background: null,
-  background_color: '#0fa5ad',
   login_box_position: 'auto',
   saml_login_allowed: false,
   saml_enforced: false,

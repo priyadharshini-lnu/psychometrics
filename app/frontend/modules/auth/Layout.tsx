@@ -2,7 +2,7 @@
 import React, { CSSProperties } from 'react'
 import { Route } from 'react-router-dom'
 import {
-  Layout, Row, Col, Space,
+  Layout, Row, Col, Space, ConfigProvider,
 } from 'antd'
 import { connect } from 'react-redux'
 import LangDropdown from 'components/LangDropdown'
@@ -19,6 +19,16 @@ const { I18n } = window
 export const LayoutComponent = ({ config }) => {
   const locales = I18n.availableLocales
   const current = I18n.locale
+
+  ConfigProvider.config({
+    theme: {
+      primaryColor: config.primary_color,
+      errorColor: config.error_color,
+      warningColor: config.warning_color,
+      successColor: config.success_color,
+      infoColor: config.info_color,
+    },
+  })
 
   const isNeedReverse = () => {
     if (isRtl(I18n.currentLocale())) {
@@ -44,7 +54,7 @@ export const LayoutComponent = ({ config }) => {
         <Layout className={styles.main}>
           <Layout.Header className={styles.header}>
             <div className={styles.logoWrapper}>
-              <img src={config.project_logo_url || logo} className={styles.logo} />
+              <img src={config.client_logo || logo} className={styles.logo} />
             </div>
             <LangDropdown locales={locales} current={current} />
           </Layout.Header>
@@ -60,13 +70,14 @@ export const LayoutComponent = ({ config }) => {
           </Layout.Content>
           <Layout.Footer className={styles.footer}>
             <Space>
-              <img src={config.secondary_logo || footerLogo} className={styles.footerLogo} />
+              <img src={footerLogo} className={styles.footerLogo} />
               <div dangerouslySetInnerHTML={{
                 __html: I18n.t('auth.terms_link',
                   { terms_url: 'https://thetalententerprise.com/privacy-statement/' }),
               }}
               />
             </Space>
+            {config.secondary_logo && <img src={config.secondary_logo} className={styles.footerLogo} />}
           </Layout.Footer>
         </Layout>
       </Col>

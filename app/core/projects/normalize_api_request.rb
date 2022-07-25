@@ -8,6 +8,8 @@ module Projects
       @params = params.to_h
     end
 
+    # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+
     def call
       res = params.clone
       res['number'] = (res.delete 'client_reference') if res.key?('client_reference')
@@ -18,8 +20,11 @@ module Projects
       res['secondary_logo'] = res.delete 'partner_logo' if res.key?('partner_logo')
       res['background'] = res.delete 'background_image' if res.key?('background_image')
       res['parent_id'] = res.delete 'client_id' if res.key?('client_id')
+      res['login_box_position'] = 'auto' if res.key?('login_box_position') && res['login_box_position'] == 'center'
 
       broadcast :ok, res
     end
+
+    # rubocop:enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
   end
 end

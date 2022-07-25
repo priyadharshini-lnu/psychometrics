@@ -4,6 +4,7 @@ module Api
   module V1
     class ProjectsController < Api::V1::BaseController
       skip_before_action :ensure_project, only: [:create]
+      DESIGN_ATTRIBUTES = %i[logo background secondary_logo login_box_position background_color].freeze
 
       def show
         render json: project, serializer: Api::V1::ProjectSerializer
@@ -26,7 +27,9 @@ module Api
         form = Api::V1::Projects::UpdateForm.from_params(params)
         if form.valid?
           normalized_params = ::Projects::NormalizeAPIRequest.call!(project_params)
-          project.update!(normalized_params)
+          design_attributes = project.design_migrated ? DESIGN_ATTRIBUTES : []
+          project.update!(normalized_params.except(*design_attributes))
+          project.design_setting.update!(normalized_params.slice(*design_attributes)) if project.design_migrated
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
           audit! :api_update, project, payload: params.permit!, project: project
           render json: project, serializer: Api::V1::ProjectSerializer

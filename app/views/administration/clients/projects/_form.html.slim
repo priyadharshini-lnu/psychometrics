@@ -44,28 +44,6 @@
           = f.input :webhook_username, label: t('.webhook_username'), input_html: { autocomplete: 'off' }
           = f.input :webhook_password, label: t('.webhook_password'), placeholder: (resource.webhook_subscription&.password.blank? ? '' : '*****'), input_html: { autocomplete: 'new-password' }
       .clearfix
-      -if policy(:client, { project_id: client.id}).design?
-        .well
-          h3 Design
-          // File input
-          = f.input :logo, hint: (f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb), :class => 'thumb') if f.object.logo.present?)
-          .row.mhn
-            .col-sm-5.pln
-              = f.input :background, hint: (f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb), :class => 'thumb') if f.object.background.present?)
-            .col-sm-2 OR
-            .col-sm-5.prn
-              .form-group
-                = f.label :background_color, class: 'control-label'
-                .input-group.colorfield
-                  = f.input_field :background_color, class: 'form-control'
-                  span.input-group-addon
-                    i
-          = f.input :login_box_position,
-            as: :radio_buttons,
-            collection: Client::LOGIN_BOX_POSITIONS.map { |position| [position.to_s.capitalize, position] },
-            checked: resource.login_box_position,
-            item_wrapper_class: 'radio-inline'
-          = f.input :secondary_logo, hint: (f.input(:remove_secondary_logo, as: :boolean) + image_tag(f.object.secondary_logo.url(:thumb), :class => 'thumb') if f.object.secondary_logo.present?)
 
   .modal-footer
     .btn-group

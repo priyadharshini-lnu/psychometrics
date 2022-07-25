@@ -2,27 +2,36 @@
 
 module Auth
   class ProjectConfigSerializer < ActiveModel::Serializer
-    attributes :background_color, :login_box_position, :project_logo_url, :partner_logo_url,
-               :background, :saml_login_allowed, :saml_enforced, :client_logo, :secondary_logo
+    attributes :background_color, :login_box_position, :background, :saml_login_allowed,
+               :saml_enforced, :client_logo, :secondary_logo, :primary_color,
+               :error_color, :warning_color, :success_color, :info_color
 
-    def project_logo_url
-      object.logo&.url
+    DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
+
+    DELEGATE_METHODS.each do |name|
+      define_method name do
+        design_setting.send(name) if object.respond_to?(name)
+      end
     end
 
-    def partner_logo_url
-      object.secondary_logo&.url
+    def background_color
+      object.design_migrated? ? design_setting.background_color : object.design['background_color']
+    end
+
+    def login_box_position
+      object.design_migrated? ? design_setting.login_box_position : object.design['login_box_position']
     end
 
     def client_logo
-      object.logo&.url
+      design_setting.logo&.url
     end
 
     def secondary_logo
-      object.secondary_logo&.url
+      design_setting.secondary_logo&.url
     end
 
     def background
-      object.background&.url || fallback_background
+      design_setting.background&.url || fallback_background
     end
 
     def saml_login_allowed
@@ -34,6 +43,10 @@ module Auth
     end
 
     private
+
+    def design_setting
+      object.design_migrated ? object.design_setting : object
+    end
 
     def fallback_background
       instance_options[:background] unless object.background_color

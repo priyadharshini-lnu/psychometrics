@@ -45,12 +45,8 @@ class Client < ApplicationRecord
     sub_campaign: 3
   }.freeze
 
-  LOGIN_BOX_POSITIONS = %i[right auto left].freeze
-
   has_ancestry cache_depth: true
   store :design, accessors: %i[background_color login_box_position]
-
-  after_initialize :initialize_login_box_position, if: :new_record?
 
   # Disables single column inheritance
   self.inheritance_column = :_type_disabled
@@ -65,6 +61,7 @@ class Client < ApplicationRecord
   has_one :smtp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
   has_one :security_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :design_setting, dependent: :destroy, foreign_key: :project_id
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
@@ -154,6 +151,7 @@ class Client < ApplicationRecord
   before_create -> { self.migrated = true }, if: :project?
   after_create :create_smtp_setting, if: :project?
   after_create :create_security_setting, if: :project?
+  after_create :create_design_setting, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -352,10 +350,6 @@ class Client < ApplicationRecord
     if operator.is?(:project_admin)
       errors.add(:base) if root?
     end
-  end
-
-  def initialize_login_box_position
-    self.login_box_position = LOGIN_BOX_POSITIONS[1]
   end
 end
 # rubocop:enable Metrics/ClassLength

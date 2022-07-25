@@ -3,6 +3,7 @@
 module Api
   class V2::Administration::BaseController < ActionController::Base
     include JSONAPI::Utils
+    include V2::Administration::Concerns::ApiController
 
     ACTION_TO_SCHEMA_NAME = {
       create: :create_request, update: :update_request, create_relationship:
@@ -14,9 +15,7 @@ module Api
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
-    prepend_before_action :authenticate, unless: -> { try(:skip_authentication?) }
 
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
 
     def self.validate_crud_requests(schema_class)
@@ -66,29 +65,9 @@ module Api
       jsonapi_render_errors error
     end
 
-    def authenticate
-      if ::ActionController::HttpAuthentication::Basic.has_basic_credentials?(request)
-        @api_key      = fetch_api_key
-        @current_user = @api_key&.user
-        raise Errors::Api::AuthError unless @api_key
-        raise Errors::Api::AuthError, 'API User is disabled' if @current_user&.disabled
-      else
-        authenticate_user!
-      end
-    end
-
     def serialize_user(user)
       JSONAPI::ResourceSerializer.new(Api::V2::UserResource).
         serialize_to_hash(Api::V2::UserResource.new(user, nil))
-    end
-
-    def fetch_api_key
-      authenticate_with_http_basic do |key, token|
-        possible_api_key = ApiKey.active.find_by(key: key)
-        return nil if possible_api_key.nil? || possible_api_key.token != token
-
-        possible_api_key
-      end
     end
 
     def convert_dry_errors_to_json_api_standard(dry_errors)
@@ -106,10 +85,6 @@ module Api
 
     def context
       { user: current_user, namespace: %i[api administration] }
-    end
-
-    def user_not_authorized
-      head :forbidden
     end
   end
 end
