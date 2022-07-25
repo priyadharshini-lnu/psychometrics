@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'boot'
 require 'rails/all'
 require_relative '../lib/middlewares/set_locale_middleware'
@@ -39,7 +37,7 @@ module Psychometrics
     ).to_s
 
     config.to_prepare do
-      Devise::Mailer.layout '/mailer/layouts/end_user_email'
+      Devise::Mailer.layout 'mailer/layouts/end_user_email'
     end
 
     config.middleware.use SetLocaleMiddleware

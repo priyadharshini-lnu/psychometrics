@@ -21,7 +21,7 @@ module Saville
     private
 
     def xml
-      ActionController::Base.render(file: file_path, locals: all_attributes).squish
+      ApplicationController.render(inline: File.read(file_path), layout: false, locals: all_attributes).squish
     end
 
     def file_path

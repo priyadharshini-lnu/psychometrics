@@ -14,7 +14,11 @@ class BaseCommand < Rectify::Command
     }
   end
 
-  def self.call!(*args)
-    call(*args)[:ok]
+  def self.call!(...)
+    call(...)[:ok]
+  end
+
+  def self.call(...)
+    super(...)
   end
 end

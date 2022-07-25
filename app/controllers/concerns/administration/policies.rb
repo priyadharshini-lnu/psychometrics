@@ -12,7 +12,7 @@ module Administration
 
     def policy_scope(scope, extra = {})
       scope = define_scope(scope)
-      super
+      super(scope)
     end
 
     def pundit_policy_scope(scope)

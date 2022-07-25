@@ -4,7 +4,7 @@ executors:
   tte-executor-full:
     docker:
       - &docker_image
-        image: talententerprise/tte:ruby-2.7.4-node-14.17.3
+        image: talententerprise/tte:ruby-3.1.2-node-14.17.3
         auth:
           username: talententerprise
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -20,7 +20,7 @@ executors:
       REDIS_HOST: localhost
       REDIS_URL: 'redis://localhost:6379/1'
       NODE_OPTIONS: '--max_old_space_size=7168'
-      BUNDLER_VERSION: 2.2.31
+      BUNDLER_VERSION: 2.3.17
       PARALLEL_TEST_PROCESSORS: '7'
       WEB_CONCURRENCY: '1'
       RAILS_MAX_THREADS: '5'
@@ -290,6 +290,9 @@ jobs:
       - setup_db:
           processes: 7
       - run:
+          name: sprocket
+          command: WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile
+      - run:
           name: RSpec
           command: |
             EAGER_LOAD=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--failure-exit-code=0'
@@ -436,6 +439,3 @@ workflows:
                 environment: lh-develop
                 environment_type: development
                 job_type: deployment
-
-
-

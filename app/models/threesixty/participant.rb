@@ -21,7 +21,9 @@ module Threesixty
       Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
     end
 
-    scope :active, -> { where.not(manager_nomination_status: :denied, evaluator_nomination_status: :declined) }
+    scope :active, lambda {
+      where.not(manager_nomination_status: :denied).where.not(evaluator_nomination_status: :declined)
+    }
     scope :managers, -> { joins(:relationship).where(relationships: { name: 'Manager', type: :global }) }
   end
 end

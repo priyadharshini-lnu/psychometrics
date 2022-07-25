@@ -32,7 +32,7 @@ module Sheets
       sheet.columns.each do |column|
         type = columns[column['name']]
         if type != column['type']
-          errors.add(:file, :column_type_mismatch, { col: column['name'], type: column['type'], got: type })
+          errors.add(:file, :column_type_mismatch, col: column['name'], type: column['type'], got: type)
         end
       end
     end
@@ -50,7 +50,7 @@ module Sheets
           end
 
           if data[column].size > 256
-            errors.add(:file, :invalid_string_value_size, { column: column, index: 3 + index })
+            errors.add(:file, :invalid_string_value_size, column: column, index: 3 + index)
           end
         end
       end
@@ -62,7 +62,7 @@ module Sheets
       data_rows.each.with_index do |data, index|
         numeric_columns.each do |column|
           if data[column].present? && !data[column].is_a?(Numeric)
-            errors.add(:file, :invalid_number_value, { column: column, index: 3 + index })
+            errors.add(:file, :invalid_number_value, column: column, index: 3 + index)
           end
         end
       end
@@ -84,7 +84,7 @@ module Sheets
     def check_columns_names_and_length
       column_names.each do |name|
         if name && name.size > Sheet::MAX_COLUMN_NAME_SIZE
-          errors.add(:file, :invalid_column_name_size, { column: name })
+          errors.add(:file, :invalid_column_name_size, column: name)
         end
 
         errors.add(:file, :invalid_column_name, { column: name }) unless /\A[\w\s]+\z/.match?(name)

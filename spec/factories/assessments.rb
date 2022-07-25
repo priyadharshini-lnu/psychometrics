@@ -23,7 +23,7 @@
 FactoryBot.define do
   factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
-    description { Faker::Lorem.characters(5) }
+    description { Faker::Lorem.characters(number: 5) }
     dimension
     extra { { icon_color: '#845EC2' } }
 

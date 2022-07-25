@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assessments
-  class CopyAssessment < Rectify::Command
+  class CopyAssessment < BaseCommand
     private_attr_reader :assessment, :owner_id, :current_user, :skip_owner_validation
 
     def initialize(assessment_id, current_user, owner_id = nil, skip_owner_validation: false)

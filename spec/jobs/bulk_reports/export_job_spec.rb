@@ -22,7 +22,7 @@ describe BulkReports::ExportJob do
   end
 
   describe '#perform' do
-    subject { described_class.perform_now(params) }
+    subject { described_class.perform_now(**params) }
 
     before do
       allow(report).to receive(:external_report?).with(no_args).and_return(is_external_report)
@@ -51,7 +51,8 @@ describe BulkReports::ExportJob do
 
       it "calls 'ReportExport.export'" do
         expect(assigns_report).to receive_message_chain(:pdf, :file)
-        described_class.perform_now(params)
+
+        subject
       end
     end
   end

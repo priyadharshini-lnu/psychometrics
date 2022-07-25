@@ -10,7 +10,7 @@ describe Pearson::CreateSchedule do
     allow(Pearson::GetAuthToken).to receive(:call!)
     allow(user_assessment).to receive(:pearson_assessment_language).and_return('en-Gb')
     url = Faker::Internet.url
-    schedule_id = Faker::Lorem.characters(5)
+    schedule_id = Faker::Lorem.characters(number: 5)
     stub_request(:post, "#{config[:base_api_url]}/v1/schedules").
       to_return({ body: { 'data' => { 'scheduleId' => schedule_id, 'urls' => [{ 'url' => url }] } }.to_json })
     described_class.call!(user_assessment)

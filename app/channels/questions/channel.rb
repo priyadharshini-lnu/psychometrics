@@ -11,8 +11,10 @@ module Questions
       question = Question.find(params['question_id'])
       if Administration::QuestionPolicy.new(current_user, question).edit?
         transmit(
-          action: 'question_data',
-          data: QuestionSerializer.new(question).to_hash(include: '**')
+          {
+            action: 'question_data',
+            data: QuestionSerializer.new(question).to_hash(include: '**')
+          }
         )
       else
         reject

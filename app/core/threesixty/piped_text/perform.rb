@@ -74,18 +74,20 @@ module Threesixty
         @transformer = transformer
       end
 
-      # rubocop:disable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
+      # rubocop:disable Lint/AmbiguousRegexpLiteral, Style/CharacterLiteral
       def call
         return unless body.present?
 
         result =
-          body.to_s.gsub /{{(.*?)}}/ do
+          body.to_s.gsub(/{{(.*?)}}/) do
             match = Regexp.last_match(1)
             branch = lookup_branch(match)
             if valid_branch?(branch)
               path, params = match.scan(%r{//(.*)}).first&.first&.split('?')
               value = branch[:class_name].constantize.call!(
-                path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context
+                path&.split('/'),
+                Rack::Utils.parse_nested_query(params ? CGI.escape(params).gsub('%3D', ?=).gsub('%26', ?&) : ''),
+                context
               )
               next transformer.call(value) if transformer
 
@@ -96,7 +98,7 @@ module Threesixty
           end
         broadcast :ok, result
       end
-      # rubocop:enable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
+      # rubocop:enable Lint/AmbiguousRegexpLiteral, Style/CharacterLiteral
 
       def lookup_branch(path)
         branch_key = path.scan(/^(\w+):/).first&.first

@@ -17,7 +17,7 @@ describe Compressor do
       FileUtils.mkdir_p(File.join(@input_dir, user))
       (2 - index).times do |i|
         File.open(File.join(@input_dir, user, "report_#{i}.txt"), 'w') do |f|
-          Faker::Lorem.paragraphs(2046).each { |p| f.puts p }
+          Faker::Lorem.paragraphs(number: 2046).each { |p| f.puts p }
         end
       end
     end

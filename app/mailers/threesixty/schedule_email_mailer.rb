@@ -2,7 +2,7 @@
 
 module Threesixty
   class ScheduleEmailMailer < ApplicationMailer
-    layout '/mailer/layouts/end_user_email_without_footer'
+    layout 'mailer/layouts/end_user_email_without_footer'
 
     def send_email(schedule_email, context)
       @body = get_body(schedule_email, context)

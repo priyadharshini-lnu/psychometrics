@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class BaseController < ActionController::Base
   include Pundit
   include SetLocale

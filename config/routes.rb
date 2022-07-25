@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
@@ -1058,7 +1056,7 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web, at: '/sidekiq'
 
-  root to: 'administration/administrator/sessions#new'
+  root to: 'administration/administrator/sessions#new', as: :admin_root
 
   constraints format: :json do
     namespace :api do

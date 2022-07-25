@@ -2,7 +2,7 @@
 
 # rubocop:disable Style/MutableConstant
 
-Dir[__dir__ + '/definitions/**/*.rb'].sort.each { |file| require file }
+Dir["#{__dir__}/definitions/**/*.rb"].sort.each { |file| require file }
 
 module Swagger
   module V2

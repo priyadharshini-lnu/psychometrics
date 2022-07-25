@@ -1,0 +1,1 @@
+require 'deprecations_active_record_update_attributes'

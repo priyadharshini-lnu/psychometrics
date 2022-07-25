@@ -29,7 +29,7 @@ module Blocks
             rescue StandardError => e
               Rails.logger.error("#{e.message}\n")
               Rails.logger.error(e.backtrace.join("\n"))
-              transmit(notification: { level: 'error', message: e.message }, 'action': action_name, type: 'error')
+              transmit({ notification: { level: 'error', message: e.message }, 'action': action_name, type: 'error' })
             end
           end
         end

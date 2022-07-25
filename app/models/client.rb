@@ -67,16 +67,15 @@ class Client < ApplicationRecord
   has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
   has_many :end_users, class_name: 'User', foreign_key: :project_id
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
-           source: :membership,
            class_name: 'Membership'
   has_many :project_admins, through: :project_admin_memberships, source: :user, class_name: 'User'
   has_many :client_admin_memberships, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) },
-           source: :membership, class_name: 'Membership'
+           class_name: 'Membership'
   has_many :client_admins, through: :client_admin_memberships, source: :user, class_name: 'User'
-  has_many :assigned_memberships, -> { assigned.distinct }, source: :membership, class_name: 'Membership'
-  has_many :completed_memberships, -> { completed.distinct }, source: :membership, class_name: 'Membership'
+  has_many :assigned_memberships, -> { assigned.distinct }, class_name: 'Membership'
+  has_many :completed_memberships, -> { completed.distinct }, class_name: 'Membership'
   has_many :end_memberships, -> { where.not(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
-           source: :membership, class_name: 'Membership'
+           class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) },
            through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) },

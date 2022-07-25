@@ -187,7 +187,7 @@ assessments and reports.'
           user = JSON.parse(response.body)
           expect(user).to have_key('first_name')
           expect(user).to have_key('last_name')
-          expect(user['campaigns'].map { |c| c['id'] }).to eq [campaign.id, campaign_2.id]
+          expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_2.id)
         end
       end
     end
