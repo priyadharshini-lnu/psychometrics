@@ -182,7 +182,7 @@ class Foundation extends Component {
             ref={(ref) => { this.mover = ref }}
           />
           <div className={styles.label}>
-            {` x:${left} y:${top} size:${width}x${height}`}
+            {` x:${Math.round(left)} y:${Math.round(top)} size:${Math.round(width)}x${Math.round(height)}`}
           </div>
         </div>
         <div className={`${styles.frame} fe-module-frame-container`} style={frameStyle}>
