@@ -19,6 +19,11 @@ export default interface Campaign {
     viewDatasheets: boolean
     manageCampaignAdmins: boolean
     manageOptions: boolean
+    viewDashboard: boolean
+    initializeDashboard: boolean
+    viewAccesssheet: boolean
+    viewAccesssheetSettings: boolean
+    viewSmsInvites: boolean
   }
 }
 

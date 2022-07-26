@@ -36,6 +36,9 @@ export interface UrlQuery {
 
 export interface ApiConfig extends UrlQuery {
   include?: string[]
+  query?: {
+    [key:string]: unknown
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

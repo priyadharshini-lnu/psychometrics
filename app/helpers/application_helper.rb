@@ -9,6 +9,10 @@ module ApplicationHelper
     @current_project ? project_background : random_background
   end
 
+  def show_new_end_user_view?
+    Settings.features.new_end_user_view && cookies[:end_user_view] == 'new'
+  end
+
   def project_background
     if @current_project&.background&.image?
       "background-image: url('#{@current_project.background.url}');"

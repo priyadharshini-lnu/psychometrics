@@ -19,7 +19,7 @@ import {
   Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
   RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource,
 } from './interfaces'
-import { formatErrors } from './utils'
+import { formatErrors, defaultState } from './utils'
 
 export function useResources<R extends {id: string}, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -42,9 +42,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     // eslint-disable-next-line prefer-destructuring
     setState = stateManager.setState
   } else {
-    [state, setState] = useState<ResourceState<R[], M>>({
-      data: [], requests: {}, meta: {} as M, query: {},
-    })
+    [state, setState] = useState<ResourceState<R[], M>>(defaultState<R[], M>())
   }
 
   const queryFromUrl = (trackUrl ? queryString?.q || {} : {}) as UrlQuery
@@ -109,9 +107,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
-        resolve(camelizedResponse)
         setState((previousState: ResourceState<R[], M>) => (
           { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
+        resolve(camelizedResponse)
         if (responseType || args.responseType) {
           responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
         }
@@ -158,8 +156,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data && response) {
         const camelizedResponse = humps.camelizeKeys(response)
-        resolve(camelizedResponse)
         setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
+        resolve(camelizedResponse)
         responseTypeValidation(args?.responseType || responseType, camelizedResponse)
       } else {
         reject(formattedErrors)
@@ -176,8 +174,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === 'success') {
-        resolve()
         setData(data.filter(r => r.id !== id))
+        resolve()
       } else {
         reject(formattedErrors)
       }
@@ -260,7 +258,13 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const isLoading = (action: string, resource_id: null | string = null): boolean => {
     const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
 
-    return request ? request.status === 'loading' : false
+    return request ? request.status === RequestStatus.Loading : false
+  }
+
+  const isRequestSuccessful = (action: string, resource_id: null | string = null): boolean => {
+    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+
+    return request ? request.status === RequestStatus.Success : false
   }
 
   return {
@@ -282,5 +286,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     handleTableChange,
     getErrors,
     isLoading,
+    isRequestSuccessful,
   }
 }

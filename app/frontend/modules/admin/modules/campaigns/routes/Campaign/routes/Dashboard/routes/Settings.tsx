@@ -1,27 +1,24 @@
 import { useResources } from 'hooks/useResources'
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { Dashboard as DashboardType, DashboardTR } from 'modules/admin/modules/campaigns/core/dashboard'
+import React from 'react'
+import { Dashboard as DashboardType, dashboardAtom, DashboardTR } from 'modules/admin/modules/campaigns/core/dashboard'
 import {
-  Button, Col, Form, Input, Row, Skeleton, Switch,
+  Alert,
+  Button, Col, Form, Input, message, Row, Skeleton, Switch,
 } from 'antd'
+import { CopyOutlined } from '@ant-design/icons'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ResourceForm from 'components/ResourceForm'
+import { useRecoilStateStateManager } from 'hooks/useRecoilStateStateManager'
+import { useParams } from 'react-router-dom'
 
 const { I18n } = window
 
 export const Settings: React.FC = () => {
-  const { campaignId } = useParams<{ campaignId: string, projectId: string }>()
+  const { campaignId } = useParams<{ campaignId: string }>()
+  const stateManager = useRecoilStateStateManager(dashboardAtom)
   const {
-    updateResource, fetch, data, isLoading,
-  } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })
-
-  useEffect(() => {
-    fetch({
-      apiConfig: {
-        filter: { campaign_id_eq: campaignId },
-      },
-    })
-  }, [])
+    updateResource, data, isLoading,
+  } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })
 
   if (isLoading('fetch')) return <Skeleton />
 
@@ -78,6 +75,63 @@ export const Settings: React.FC = () => {
           )}
         </ResourceForm>
       </Col>
+      <Col sm={24} md={16} xl={10}>
+        <ViewNameInfo campaignId={campaignId} />
+      </Col>
     </Row>
   )
 }
+interface ViewNameInfoProps {
+  campaignId: string
+}
+
+const ViewNameInfo: React.FC<ViewNameInfoProps> = ({ campaignId }) => (
+  <Alert
+    message={I18n.t('administration.dashboard.settings.view_names')}
+    description={(
+      <Form layout="vertical">
+        <Form.Item
+          label={I18n.t('administration.dashboard.settings.datasheet_view_name')}
+          initialValue={`c_${campaignId}_datasheet`}
+          name="datasheetView"
+        >
+          <Input
+            readOnly
+            suffix={(
+              <CopyToClipboard
+                text={`c_${campaignId}_datasheet`}
+                onCopy={() => {
+                  message.info(I18n.t('common.text.copied'))
+                }}
+              >
+                <CopyOutlined />
+              </CopyToClipboard>
+            )}
+          />
+        </Form.Item>
+
+        <Form.Item
+          label={I18n.t('administration.dashboard.settings.accesssheet_view_name')}
+          initialValue={`c_${campaignId}_accesssheet`}
+          name="datasheetView"
+        >
+          <Input
+            readOnly
+            suffix={(
+              <CopyToClipboard
+                text={`c_${campaignId}_accesssheet`}
+                onCopy={() => {
+                  message.info(I18n.t('common.text.copied'))
+                }}
+              >
+                <CopyOutlined />
+              </CopyToClipboard>
+            )}
+          />
+        </Form.Item>
+      </Form>
+)}
+    type="info"
+    showIcon
+  />
+)

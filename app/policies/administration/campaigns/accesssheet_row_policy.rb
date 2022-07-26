@@ -3,72 +3,50 @@
 module Administration
   module Campaigns
     class AccesssheetRowPolicy < Administration::BasePolicy
-      def bulk_delete?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
-      end
-
       def create?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
+        manage?
       end
 
       def edit?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
+        manage?
       end
 
       def index?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :view, project_id: project_id, campaign_id: campaign_id
-        )
+        view?
       end
 
       def show?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :view, project_id: project_id, campaign_id: campaign_id
-        )
+        view?
       end
 
       def update?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
+        manage?
       end
 
       def destroy?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
-      end
-
-      def save_column_preference?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
+        manage?
       end
 
       def import?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
+        manage?
       end
 
       def export?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
+        view?
+      end
+
+      def bulk_delete?
+        manage?
       end
 
       private
 
       def manage?
-        @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
-        )
+        has_permission?(:dashboards, :accesssheet_manage)
+      end
+
+      def view?
+        has_permission?(:dashboards, :accesssheet_view)
       end
     end
   end

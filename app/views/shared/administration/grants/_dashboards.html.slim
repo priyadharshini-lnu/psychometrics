@@ -15,11 +15,6 @@
             = check_box_tag 'resource[grants_attributes][data][dashboards][]',
                     'view', resource.has_grant?(:dashboards, :view), id: dashboard_view_id, data: { turn_off: [dashboard_view_id] }
             = t('administration.grants.common.view')
-        - if policy(:membership).manage_grants_for_action?('dashboards', 'settings', client: client)
-          label
-            = check_box_tag 'resource[grants_attributes][data][dashboards][]',
-                    'settings', resource.has_grant?(:dashboards, :settings), id: dashboard_settings_id, data: { turn_on: [dashboard_settings_id] }
-            = t('administration.grants.dashboard.permissions.settings')
         - if policy(:membership).manage_grants_for_action?('dashboards', 'accesssheet_view', client: client)
           label
             = check_box_tag 'resource[grants_attributes][data][dashboards][]',

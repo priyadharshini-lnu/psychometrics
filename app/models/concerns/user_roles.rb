@@ -70,9 +70,10 @@ module UserRoles
 
   def has_permission?(scope, grant, project_id: nil, campaign_id: nil)
     return true if is?(:superadmin)
-    return false unless project_id
+    return false if project_id.nil? && campaign_id.nil?
 
-    project = Client.find(project_id)
+    project = Client.find(project_id) if project_id
+    project ||= Campaign.find(campaign_id).project
 
     project_based_client_ids = [].tap do |arr|
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.parent_id])

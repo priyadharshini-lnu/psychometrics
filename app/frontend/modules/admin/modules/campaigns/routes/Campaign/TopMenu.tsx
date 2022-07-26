@@ -12,17 +12,15 @@ import {
 } from '@ant-design/icons'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from 'utils/route'
-import User from '../../interfaces/User'
 
 const { I18n } = window
 
 interface Props {
   prefix?: string
   campaignPermissions: Campaign['permissions']
-  currentUser: User
 }
 
-const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions, currentUser }) => {
+const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
   const { pathname } = useLocation()
 
   const history = useHistory()
@@ -77,7 +75,8 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions, currentUser }) 
           Registration codes
         </Menu.Item>
       )}
-      {currentUser.role === 'Users::SuperAdmin' && (
+      {(campaignPermissions.viewDashboard || campaignPermissions.viewAccesssheet
+        || campaignPermissions.viewAccesssheetSettings) && (
         <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
           {I18n.t('administration.dashboard.tabs.dashboard')}
         </Menu.Item>

@@ -118,7 +118,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             isFetching={isFetching}
             toggleDrawer={toggleDrawer}
             currentSheetRowId={currentSheetRowId}
-            allowEdit
+            allowEdit={editPermission}
           />
           <DetailsSection
             isFetching={isFetching}

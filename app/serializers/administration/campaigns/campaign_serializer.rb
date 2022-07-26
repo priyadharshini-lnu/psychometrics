@@ -45,7 +45,10 @@ module Administration
             'manage_campaigns',
             'view_registration_codes',
             'view_datasheets',
-            'view_sms_invites'
+            'view_sms_invites',
+            'view_dashboard',
+            'view_accesssheet',
+            'view_accesssheet_settings'
           ],
           {
             project_id: project.id,

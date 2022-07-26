@@ -61,7 +61,7 @@ const ImportSheetModalComponent: React.FC<Props> = ({
     data.append('file', file)
     importSheet(parentType, parentId, sheetType, data)
       .then(() => {
-        message.info(I18n.t('datasheet.import_modal.success_message'))
+        message.info(I18n.t('sheet.import_modal.success_message'))
         close()
       })
       .catch(setErrors)
@@ -70,7 +70,7 @@ const ImportSheetModalComponent: React.FC<Props> = ({
   return (
     <Modal
       width={700}
-      title={I18n.t('datasheet.import_modal.title')}
+      title={I18n.t('sheet.import_modal.title')}
       visible
       onCancel={close}
       footer={[

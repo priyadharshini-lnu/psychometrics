@@ -22,7 +22,8 @@ module Administration
       results: [],
       assessors: [],
       registration_codes: [],
-      datasheets: []
+      datasheets: [],
+      dashboards: []
     ]].freeze
 
     def create?

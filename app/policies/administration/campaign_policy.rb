@@ -149,6 +149,18 @@ module Administration
       )
     end
 
+    def view_dashboard?
+      has_permission?(:dashboards, :view)
+    end
+
+    def view_accesssheet?
+      has_permission?(:dashboards, :accesssheet_view)
+    end
+
+    def view_accesssheet_settings?
+      has_permission?(:dashboards, :accesssheet_settings)
+    end
+
     def view_datasheets?
       @user.is?(:superadmin) || @user.has_permission?(
         :datasheets, :view, project_id: project_id, campaign_id: campaign_id

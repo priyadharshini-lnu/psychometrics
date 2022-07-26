@@ -2331,10 +2331,18 @@ en:
     dashboard:
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
+      preview:
+        embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
+        embed_token_error_title: Unable to generate Embed token.
+      settings:
+        accesssheet_view_name: Accesssheet View Name
+        datasheet_view_name: Datasheet View Name
+        view_names: View Names
       tabs:
         accesssheet: Accesssheet
         accesssheet_setting: Accesssheet Settings
         dashboard: Dashboard
+        preview: Preview
         settings: Settings
     dashboard_form:
       fields:

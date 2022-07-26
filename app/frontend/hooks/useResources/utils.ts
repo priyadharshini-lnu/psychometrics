@@ -1,5 +1,7 @@
 import humps from 'humps'
 import { StringMap } from '@thetalententerprise/jsonapi-react'
+import { atom } from 'recoil'
+import { BaseMeta } from './interfaces'
 
 interface Error {
   [key: string]: string[] | string
@@ -65,3 +67,14 @@ export const formatErrors = (errors: StringMap | undefined, schema: Schema) => {
   })
   return convertJsonApiErrors(errors, schema)
 }
+
+export const defaultState = <D, M extends BaseMeta = BaseMeta>() => ({
+  data: [] as unknown as D, requests: {}, meta: {} as M, query: {},
+})
+
+export const createBaseAtom = <D, M extends BaseMeta = BaseMeta>(name: string) => (
+  atom({
+    key: name,
+    default: defaultState<D, M>(),
+  })
+)

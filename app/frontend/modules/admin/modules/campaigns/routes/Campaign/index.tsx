@@ -4,7 +4,6 @@ import { connect, ConnectedProps } from 'react-redux'
 import { get as getCurrentCampaign, fetch } from 'modules/admin/modules/campaigns/core/current'
 import { RootState } from 'modules/admin/core/rootReducers'
 import RouteList from 'components/RouteList'
-import { get as getCurrentUser } from 'core/currentUser'
 import TopMenu from './TopMenu'
 import Breadcrumb from '../../components/Breadcrumb'
 import settings from '../../settings'
@@ -15,7 +14,6 @@ const { I18n } = window
 const connector = connect(
   (state: RootState) => ({
     campaignPermissions: getCurrentCampaign(state).permissions,
-    currentUser: getCurrentUser(state),
   }),
   {
     fetch,
@@ -30,7 +28,7 @@ interface OwnProps {
 
 type Props = PropsFromRedux & OwnProps
 
-const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions, currentUser }) => {
+const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const { projectId } = useParams<{ projectId: string }>()
 
@@ -68,7 +66,6 @@ const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions, curren
       <TopMenu
         prefix={`${settings.urlPrefix}/${campaignId}`}
         campaignPermissions={campaignPermissions}
-        currentUser={currentUser}
       />
       <section data-testid="admin_campaign_section">
         <RouteList

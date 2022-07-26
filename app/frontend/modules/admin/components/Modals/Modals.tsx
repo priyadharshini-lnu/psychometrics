@@ -20,6 +20,9 @@ const Modals: React.FC<Props> = ({
       {_.map(current, (modalName: string) => {
         const ModalComponent = modals[modalName]
         const modalProps = data[modalName] || {}
+        if (ModalComponent === undefined) {
+          throw new Error(`Modal ${modalName} not present in modals props. Modals are ${Object.keys(modals)}`)
+        }
         return <ModalComponent key={modalName} close={() => closeModal(modalName)} {...modalProps} />
       })}
     </>

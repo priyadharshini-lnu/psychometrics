@@ -58,10 +58,8 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
   const [dataSource, setDataSource] = useState(data)
 
   useEffect(() => {
-    if (!data.length) {
-      fetch(parentResourceType, parentResourceId, sheetType)
-    }
-  }, [data])
+    fetch(parentResourceType, parentResourceId, sheetType)
+  }, [])
 
   useEffect(() => {
     setDataSource(data)

@@ -1,4 +1,5 @@
 import * as t from 'io-ts'
+import { createBaseAtom } from 'hooks/useResources/utils'
 
 export const DashboardTR = t.type({
   id: t.string,
@@ -6,6 +7,7 @@ export const DashboardTR = t.type({
   datasetId: t.union([t.string, t.null]),
   reportId: t.union([t.string, t.null]),
   enabled: t.boolean,
+  embedToken: t.union([t.string, t.undefined, t.null]),
   campaign: t.union([
     t.type({
       id: t.string,
@@ -23,3 +25,5 @@ export const Schema = {
     },
   },
 }
+
+export const dashboardAtom = createBaseAtom<Dashboard[]>('Dashboard')

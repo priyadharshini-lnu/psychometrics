@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     class AccesssheetPolicy < Administration::BasePolicy
       def index?
-        @user.is?(:superadmin) || @user.has_permission?(:datasheets, :view, project_id: project_id)
+        manage?
       end
 
       def get_columns?
@@ -27,9 +27,11 @@ module Administration
         manage?
       end
 
+      private
+
       def manage?
         @user.is?(:superadmin) || @user.has_permission?(
-          :datasheets, :manage, project_id: project_id, campaign_id: campaign_id
+          :dashboards, :accesssheet_settings, project_id: project_id, campaign_id: campaign_id
         )
       end
     end

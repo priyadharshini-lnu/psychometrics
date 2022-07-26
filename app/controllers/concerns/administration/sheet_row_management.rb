@@ -125,7 +125,7 @@ module Administration
 
     def permissions
       GetPermissionsHash.call!(
-        Administration::SheetRowPolicy,
+        policy_class,
         current_user, nil,
         ['export', 'import', 'update', 'edit', %w[add create], %w[delete destroy], %w[view show]],
         { project_id: project.id, campaign_id: campaign&.id }
