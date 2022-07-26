@@ -235,6 +235,7 @@ jobs:
             cp config/application.yml.sample  config/application.yml
             (find tmp/cache/webpacker tmp/cache/assets/sprockets -type f -mtime +30 -delete) || echo "No old cache files to prune"
             (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile)
+            DISABLE_COVERAGE=1 WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile
       - save_webpack_cache
 
   jest:
@@ -246,17 +247,18 @@ jobs:
       - restore_cache:
           keys:
             - jest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
+      - yarn_restore
       - run:
           name: Check if compiled files exist
           command: |
             FILE=~/cachedflags/job.jest.flag
             if test -f "$FILE"; then
+              yarn run coveralls < coverage/lcov.info
               circleci-agent step halt
             else
               echo "Compiled files do not exist"
             fi
       - bundle_restore
-      - yarn_restore
       - restore_cache:
           keys:
             - jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
@@ -274,6 +276,7 @@ jobs:
           key: jest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
           paths:
             - ~/cachedflags/job.jest.flag
+            - coverage/lcov.info
       - save_cache:
           key: jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
           paths:
@@ -359,7 +362,7 @@ jobs:
           app-name: << parameters.app-name >>
 orbs:
   heroku: circleci/heroku@1.2.6
-  jira: circleci/jira@1.0.5
+  jira: circleci/jira@1.3.1
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
@@ -391,6 +394,7 @@ workflows:
           post-steps:
             - jira/notify:
                 job_type: build
+                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
 
       - heroku_deploy:
           name: heroku_staging
@@ -407,6 +411,7 @@ workflows:
                 environment: lh-staging
                 environment_type: staging
                 job_type: deployment
+                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
 
       - heroku_deploy:
           name: heroku_review
@@ -422,6 +427,7 @@ workflows:
                 environment: lh-review
                 environment_type: testing
                 job_type: deployment
+                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
       - heroku_deploy:
           name: heroku_develop
           app-name: tte-lighthouse-develop
@@ -436,6 +442,7 @@ workflows:
                 environment: lh-develop
                 environment_type: development
                 job_type: deployment
+                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
 
 
 
