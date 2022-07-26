@@ -17,8 +17,10 @@ module Campaigns
                 END
                 "Status" from user_assessments ua INNER JOIN assessments a ON a.id = ua.assessment_id INNER JOIN users u ON ua.subject_id = u.id
                 WHERE campaign_id = #{campaign_id} AND ua.subject_id = ua.evaluator_id',
-                'SELECT DISTINCT a."name" FROM user_assessments ua INNER JOIN assessments a ON ua.assessment_id = a.id
-                WHERE campaign_id = #{campaign_id} AND ua.subject_id = ua.evaluator_id ORDER BY a.name'
+                'SELECT * FROM (
+                  SELECT DISTINCT a."name" FROM user_assessments ua INNER JOIN assessments a ON ua.assessment_id = a.id
+                  WHERE campaign_id = #{campaign_id} AND ua.subject_id = ua.evaluator_id
+                ) AS assessment_names ORDER BY LOWER(name)'
             ) As (
               #{column_names}
             )
@@ -48,7 +50,7 @@ module Campaigns
       @assessment_names ||= Assessment.joins(:user_assessments).where(
         'user_assessments.campaign_id = :campaign_id AND user_assessments.subject_id = user_assessments.evaluator_id',
         campaign_id: campaign_id
-      ).pluck(:name).sort.uniq
+      ).pluck(:name).uniq.sort_by(&:downcase) # Postgresql sorts case-insensitively
     end
   end
 end
