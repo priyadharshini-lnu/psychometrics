@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Radio, Button, Upload,
+  Row, Col, Form, Radio, Button, Upload, ConfigProvider,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
@@ -13,6 +13,8 @@ import {
   uploadFiles,
 } from 'modules/admin/modules/client/core/designSettings'
 import { UploadFile } from 'antd/lib/upload/interface'
+import type { Theme } from 'antd/lib/config-provider/context'
+import { DesignPreview } from './DesignPreview'
 import styles from './styles.less'
 
 const { I18n } = window
@@ -29,7 +31,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   } = useResources<DesignSettingsType>('design_settings')
   const [form] = Form.useForm()
   const [designSettings] = data
-
+  const [values, setValues] = useState({})
   useEffect(() => {
     if (designSettings) {
       form.setFieldsValue(designSettings)
@@ -42,6 +44,9 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
       apiConfig: {
         filter: { project_id_eq: projectId },
       },
+    })
+    return () => ConfigProvider.config({
+      theme: {},
     })
   }, [])
 
@@ -92,11 +97,15 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   const background = Form.useWatch('background', form)
   const secondaryLogo = Form.useWatch('secondaryLogo', form)
 
+  const colors = _.pick(designSettings,
+    ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
+
   return (
     <Row justify="space-between" className="pl">
       <Col sm={24} md={16} xl={12} xxl={10}>
         <Form
           name="design"
+          onValuesChange={value => setValues({ ...values, ...value })}
           layout="horizontal"
           labelAlign="left"
           form={form}
@@ -224,6 +233,9 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
             {I18n.t('administration.save')}
           </Button>
         </Form>
+      </Col>
+      <Col sm={24} md={16} xl={12} xxl={14}>
+        <DesignPreview config={{ ...colors, ...values }} />
       </Col>
     </Row>
   )
