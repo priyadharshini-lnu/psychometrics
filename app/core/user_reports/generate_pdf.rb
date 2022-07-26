@@ -52,6 +52,13 @@ module UserReports
         async: options[:async],
         low_priority: options[:low_priority]
       )
+      Rails.logger.info(
+        log_type: 'UserReports::GeneratePdf',
+        campaign_id: campaign.id,
+        report_id: report.id,
+        user_id: user.id,
+        options: options
+      )
 
       file_url = Lambdas::UrlToPdf.call!(lambda_option)
       { file_url: file_url, file_name: report_file_name }
