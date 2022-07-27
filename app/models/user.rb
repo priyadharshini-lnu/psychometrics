@@ -292,6 +292,10 @@ class User < ApplicationRecord
     security_setting ? security_setting&.lock_account : super(type)
   end
 
+  def log_attribute_for_delete
+    slice(:id, :email)
+  end
+
   protected
 
   def attempts_exceeded?
@@ -318,10 +322,6 @@ class User < ApplicationRecord
     else
       save(validate: false)
     end
-  end
-
-  def log_attribute_for_delete
-    slice(:id, :email)
   end
 
   private

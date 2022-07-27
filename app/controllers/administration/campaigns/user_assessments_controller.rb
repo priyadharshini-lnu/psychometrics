@@ -33,7 +33,7 @@ module Administration
           user_result_id: user_result.id,
           campaign_id: campaign.id
         }, current_user)
-
+        audit! :rescore_results, resource, campaign: resource.campaign
         render json: :ok
       end
 

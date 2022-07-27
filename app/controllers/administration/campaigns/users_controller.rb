@@ -147,6 +147,8 @@ module Administration
         ::CampaignUsers::Remove.call!(
           campaign_user: campaign_user
         )
+        audit! :delete_campaign_user, campaign_user, campaign: campaign_user.campaign,
+          payload: { email: resource.email }
         render json: resource.id
       end
 

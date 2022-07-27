@@ -12,9 +12,12 @@ module UserReports::PdfGeneration
   def show
     @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
     @selected_locale = params[:lang] || resource.report.default_language
-    audit! :view_report, resource, campaign: resource.campaign, payload: params.permit!
 
     respond_to do |format|
+      format.html do
+        audit! :view_report, resource, campaign: resource.campaign,
+          payload: { user_email: resource.user.email }
+      end
       format.json do
         render json: resource, report: resource.report,
               results: UserReports::GroupedResultsByAssessment.call!(resource),
