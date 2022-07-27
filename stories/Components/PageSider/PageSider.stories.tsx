@@ -38,14 +38,6 @@ const menuItems = [
 export default {
   title: 'Components/PageSider',
   component: PageSider,
-  args: {
-    title: 'Card Title',
-  },
-  argTypes: {
-    status: {
-      control: false,
-    },
-  },
 } as ComponentMeta<typeof PageSider>
 
 const Template: ComponentStory<typeof PageSider> = () => {

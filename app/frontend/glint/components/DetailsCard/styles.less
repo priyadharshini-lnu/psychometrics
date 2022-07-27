@@ -1,19 +1,26 @@
 @import 'glint/styles/mixins.less';
 @import 'styles/ant.variable.less';
+@import 'styles/spacing.less';
 
-.detailsCard:global(.ant-card) {
+.detailsCard {
   height: 100%;
   width: 100%;
   border: 1px solid @border-color-base;
   border-radius: calc(2 * @border-radius-sm);
+  padding-bottom: @card-padding-base;
 }
 .title {
   position: relative;
-  .highlighter(80%, -@card-padding-base);
+  .highlighter(20px, -@card-padding-base - 1px, @card-padding-base-sm);
 }
 
 .buttonCol {
   text-align: end;
+}
+.cardFooter {
+  position: absolute;
+  width: calc(100% - 48px);
+  bottom: @card-padding-base-sm;
 }
 
 :global(.rtl) {

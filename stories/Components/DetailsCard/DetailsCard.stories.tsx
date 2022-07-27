@@ -1,14 +1,12 @@
 import React, { FC } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import '../../../app/frontend/styles/ant.less'
-import { DetailsCard } from '../../../app/frontend/glint/components/DetailsCard'
+import 'styles/ant.less'
+import { DetailsCard } from 'glint'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import styles from './styles.less'
-
-import '../../../app/frontend/styles/utils.less'
 
 const STATUS = {
   not_started: 'Not Started',
@@ -54,4 +52,16 @@ StatusAtTopRow.args = {
   status: <StatusElement status="not_started" />,
   subtitle: '15 minutes left',
   showStatusAtTop: true,
+}
+
+export const DisabledAction = Template.bind({})
+DisabledAction.args = {
+  buttonText: 'Begin',
+  progressPercentage: 20,
+  description: 'Description here',
+  status: <StatusElement status="not_started" />,
+  subtitle: '15 minutes left',
+  showStatusAtTop: true,
+  actionDisabled: true,
+  actionDisabledText: 'wait before you proceed further',
 }

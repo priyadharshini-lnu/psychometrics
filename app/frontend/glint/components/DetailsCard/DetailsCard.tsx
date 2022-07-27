@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { FC, Fragment } from 'react'
 import {
-  Card, Col, Button, Typography, Progress, Row,
+  Card, Col, Button, Typography, Progress, Row, Tooltip,
 } from 'antd'
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
@@ -9,7 +9,8 @@ import { isRtl } from 'utils/locales'
 import styles from './styles.less'
 
 const { Title } = Typography
-const { I18n: { uiLocale } } = window
+const { I18n } = window
+const uiLocale = I18n && I18n.uiLocale
 
 type DetailsCardProps = {
   title: string | React.ReactElement
@@ -20,6 +21,9 @@ type DetailsCardProps = {
   status?: string | React.ReactElement
   subtitle?: string | React.ReactElement
   showStatusAtTop?: boolean
+  actionLoading?: boolean
+  actionDisabled?: boolean
+  actionDisabledText?: string
 }
 
 export const DetailsCard: FC<DetailsCardProps> = ({
@@ -31,8 +35,11 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   status,
   subtitle,
   showStatusAtTop,
+  actionLoading,
+  actionDisabled,
+  actionDisabledText,
 }) => {
-  const rtl = isRtl(uiLocale)
+  const rtl = uiLocale && isRtl(uiLocale)
 
   const handleClick = () => {
     handleButtonClick && handleButtonClick()
@@ -67,19 +74,37 @@ export const DetailsCard: FC<DetailsCardProps> = ({
       {titleRow}
       {subtitle}
       <p>{description}</p>
-      <Row>
+      <Row className={styles.cardFooter}>
         <Col lg={progressBarSpan} md={8} xs={12}>
           <Progress percent={progressPercentage} />
         </Col>
         {buttonText && (
           <Col lg={24 - progressBarSpan} md={16} xs={12} className={styles.buttonCol}>
-            <Button type="primary" size="small" onClick={handleClick}>
-              {buttonText}
-              {rtl ? <LeftOutlined /> : <RightOutlined />}
-            </Button>
+            <ButtonWrapper wrapText={actionDisabledText}>
+              <Button
+                loading={actionLoading}
+                type="primary"
+                disabled={actionDisabled}
+                size="small"
+                onClick={handleClick}
+              >
+                {buttonText}
+                {rtl ? <LeftOutlined /> : <RightOutlined />}
+              </Button>
+            </ButtonWrapper>
+
           </Col>
         )}
       </Row>
     </Card>
   )
 }
+
+type ButtonWrapperProps = {
+  wrapText: string | undefined,
+children: React.ReactElement,
+}
+
+const ButtonWrapper: FC<ButtonWrapperProps> = ({ wrapText, children }) => (wrapText
+  ? <Tooltip title={wrapText} placement="topLeft">{children}</Tooltip>
+  : children)
