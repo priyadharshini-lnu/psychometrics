@@ -2,6 +2,7 @@
 
 class MigrateDatasheetSettingsToColumns < ActiveRecord::Migration[5.2]
   def up
+    Datasheet.table_name = 'datasheets'
     Datasheet.all.each do |datasheet|
       columns = datasheet.columns.map do |field, type|
         {
