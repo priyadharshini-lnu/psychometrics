@@ -193,6 +193,8 @@ gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_syste
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print', '~> 1.9.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'hirb'
