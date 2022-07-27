@@ -8,7 +8,7 @@ describe ReportSerializer do
   let(:campaign) { threesixty_campaign.campaign }
   let(:report) do
     report = threesixty_campaign.report
-    report.update_attributes(data_sheet_columns: [{ 'name' => 'field1', 'type' => 'HTML' }])
+    report.update(data_sheet_columns: [{ 'name' => 'field1', 'type' => 'HTML' }])
     report
   end
 

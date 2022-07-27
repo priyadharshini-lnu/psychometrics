@@ -123,7 +123,7 @@ module Administration
         if form.valid?
           audit! :update_campaign_options, campaign, payload: campaign_options_params, campaign: @campaign
           Mobility.with_locale(params[:locale]) do
-            campaign_options.update_attributes(campaign_options_params)
+            campaign_options.update(campaign_options_params)
           end
           render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
         else

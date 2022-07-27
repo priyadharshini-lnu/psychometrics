@@ -65,7 +65,7 @@ module Assessments
           flow = update_id_in_json_config(flow, question.id, @questions_mapping)
           norm_rules = update_id_in_json_config(norm_rules, question.id, @questions_mapping)
         end
-        new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
+        new_assessment.update(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
 
         new_assessment
       end

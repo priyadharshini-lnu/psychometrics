@@ -87,32 +87,32 @@ RSpec.describe License, type: :model do
 
     it 'returns zero
         if used number license less then given license' do
-      license.update_attributes(number: 10, used_number: 5)
+      license.update(number: 10, used_number: 5)
       expect(license.used_overuse_number).to be_zero
     end
 
     it 'returns greater than zero
         if used number license have been over use' do
-      license.update_attributes(number: 10, used_number: 15)
+      license.update(number: 10, used_number: 15)
       expect(license.used_overuse_number).to eq(5)
     end
   end
 
   context '#enough_licenses?' do
     it 'returns false' do
-      license.update_attributes(number: 0)
+      license.update(number: 0)
       expect(license.enough_licenses?).to be_falsey
     end
 
     it 'returns false
         if Client has no enough licenses' do
-      license.update_attributes(number: 10, overuse_number: 5, used_number: 15)
+      license.update(number: 10, overuse_number: 5, used_number: 15)
       expect(license.enough_licenses?).to be_falsey
     end
 
     it 'returns true
         if Client has enough licenses' do
-      license.update_attributes(number: 10, used_number: 5)
+      license.update(number: 10, used_number: 5)
       expect(license.enough_licenses?).to be_truthy
     end
   end

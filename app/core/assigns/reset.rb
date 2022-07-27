@@ -26,7 +26,7 @@ module Assigns
     end
 
     def reset_assign
-      assign_with_result.update_attributes(
+      assign_with_result.update(
         results: {},
         scoring: {},
         embedded_data: {},

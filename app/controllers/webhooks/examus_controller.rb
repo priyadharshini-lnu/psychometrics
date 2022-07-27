@@ -12,7 +12,7 @@ module Webhooks
       ::Examus::AuthorizeExamusRequest.call!(request.headers)
       data = JSON.parse(request.raw_post)
       proctoring_session = ProctoringSession.find_by!(session_id: data['sessionId'])
-      proctoring_session&.update_attributes(
+      proctoring_session&.update(
         results: data.slice('archive', 'conclusion', 'comment', 'score', 'reportUrl'),
         completed_at: data['sessionEnd'],
         started_at: data['sessionStart']

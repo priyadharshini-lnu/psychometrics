@@ -56,8 +56,8 @@ describe Assessments::CopyAssessment do
         }
       ]
 
-      questions.first.update_attributes(display_logic: display_logic, skip_logic: end_of_block_skip_logic)
-      questions.last.update_attributes(skip_logic: destination_skip_logic)
+      questions.first.update(display_logic: display_logic, skip_logic: end_of_block_skip_logic)
+      questions.last.update(skip_logic: destination_skip_logic)
     end
 
     let(:copy) { described_class.call(assessment.id, user)[:ok][:assessment] }

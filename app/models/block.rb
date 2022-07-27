@@ -96,6 +96,6 @@ class Block < ApplicationRecord
   end
 
   def sync_with_template
-    template.update_attributes(general_attributes)
+    template.update(general_attributes)
   end
 end

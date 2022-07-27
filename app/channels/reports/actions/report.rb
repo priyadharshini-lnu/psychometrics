@@ -27,7 +27,7 @@ module Reports
           }
           if filter['id']
             db_filter = map_filters[filter['id']].first
-            db_filter.update_attributes(filter_attrs)
+            db_filter.update(filter_attrs)
           else
             report.filters.create(filter_attrs)
           end
