@@ -5,6 +5,13 @@ module ApplicationHelper
   # instead of in an initializer.
   RANDOM_BACKGROUND_IMAGES_COUNT = 7
 
+  def show_dashboard?
+    return false if current_user.is?(:superadmin)
+    return false unless current_user.has_grant?(:dashboard, :view)
+
+    Api::Administration::DashboardPolicy::Scope.new(current_user, Dashboard).resolve.preview_available.exists?
+  end
+
   def device_html_style
     @current_project ? project_background : random_background
   end

@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: heroku_ext; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA heroku_ext;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -95,6 +88,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 
 SET default_tablespace = '';
+
+SET default_with_oids = false;
 
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
@@ -278,8 +273,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -438,12 +433,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -617,34 +612,6 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: c__datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c__datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Name'::text) AS "Name",
-    ((sheet_rows.data ->> 'hope'::text))::double precision AS hope
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 60)
-  ORDER BY sheet_rows.id;
-
-
---
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -697,8 +664,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb
 );
 
@@ -1221,7 +1188,10 @@ CREATE TABLE public.dashboards (
     name character varying,
     dataset_id character varying,
     report_id character varying,
-    enabled boolean DEFAULT false
+    enabled boolean DEFAULT false,
+    refresh_interval integer DEFAULT 15,
+    image character varying,
+    last_refreshed_at timestamp without time zone
 );
 
 
@@ -3368,6 +3338,20 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -3889,7 +3873,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4333,10 +4318,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -7476,13 +7461,6 @@ CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.savi
 
 
 --
--- Name: index_sheet_rows_on_email_and_sheet_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_sheet_rows_on_email_and_sheet_id ON public.sheet_rows USING btree (email, sheet_id);
-
-
---
 -- Name: index_sheet_rows_on_sheet_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9073,7 +9051,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -9869,6 +9847,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
+('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9903,6 +9882,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220713095522'),
 ('20220714145940'),
 ('20220720075400'),
-('20220721114549');
+('20220721114549'),
+('20220725113027'),
+('20220727115619');
 
 

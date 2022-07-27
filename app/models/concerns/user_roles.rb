@@ -65,6 +65,8 @@ module UserRoles
   end
 
   def has_grant?(scope, grant)
+    return true if is?(:superadmin)
+
     memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 

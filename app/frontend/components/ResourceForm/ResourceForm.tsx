@@ -42,7 +42,7 @@ export type OwnProps = {
   onFailedSubmission?(values: object, errors: object): void
   formProps?: FormProps
   onStatusChange?(value: string): void
-  onSuccessfulSubmission?(response: object): void
+  onSuccessfulSubmission?(response: object, values?: object): void
   transformValues?(values: Record<string, unknown>): Record<string, unknown>
   storeManager?: {
     form?: FormInstance,
@@ -148,12 +148,13 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const handleSave = async (values: Record<string, unknown>) => {
+    let transformedValues = values
     if (transformValues) {
-      values = transformValues(values)
+      transformedValues = transformValues(values)
     }
     setBaseErrors([])
     handleStatusChange(Status.Saving)
-    saveRequest(values)
+    saveRequest(transformedValues)
       .then((response: object) => {
         handleStatusChange(Status.SaveSuccessful)
         if (showSuccessMessages) {
@@ -164,7 +165,7 @@ const ResourceForm: React.FC<Props> = ({
           message.success(messageText)
         }
         removeErrors()
-        onSuccessfulSubmission && onSuccessfulSubmission(response)
+        onSuccessfulSubmission && onSuccessfulSubmission(response, values)
       })
       .catch((errors: Error) => {
         onFailedSubmission && onFailedSubmission(values, errors)

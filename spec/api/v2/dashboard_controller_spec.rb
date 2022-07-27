@@ -54,6 +54,53 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
     end
   end
 
+  path '/dashboards/{dashboard_id}' do
+    get 'Dashboard' do
+      operationId 'Dashboard'
+      description 'Fetch Dashboard'
+      tags 'Dashboards'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :dashboard_id, in: :path, type: :string
+
+      response '200', 'Dashboard' do
+        schema '$ref' => '#/components/schemas/DashboardResponse'
+
+        examples 'application/json' => [{
+          type: 'dashboards',
+          data: {
+            id: '770',
+            attributes: {
+              name: 'New Dashboard',
+              enabled: true,
+              dataset_id: 'd_100',
+              report_id: 'r_100'
+            },
+            relationships: {
+              campaign: {
+                data: {
+                  id: '1',
+                  type: 'campaigns'
+                }
+              }
+            }
+          }
+        }]
+
+        let(:dashboard) { create(:dashboard) }
+        let(:dashboard_id) { dashboard.id }
+
+        run_test! do |response|
+          dashboard_response = JSON.parse(response.body)['data']
+          expect(dashboard_response).to have_key('id')
+          expect(dashboard_response).to have_attribute(:name).with_value(dashboard.name)
+          expect(dashboard_response).to have_relationship(:campaign).
+            with_data({ 'id' => dashboard.campaign_id.to_s, 'type' => 'campaigns' })
+        end
+      end
+    end
+  end
+
   path '/dashboards/' do
     post 'Create a dashboard' do
       operationId 'CreateDashboard'

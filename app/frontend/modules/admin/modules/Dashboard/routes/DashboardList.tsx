@@ -1,0 +1,60 @@
+import React, { useEffect } from 'react'
+import { useResources } from 'hooks/useResources'
+import {
+  Card, Col, Row, Skeleton,
+} from 'antd'
+import Meta from 'antd/lib/card/Meta'
+import { useHistory } from 'react-router-dom'
+import styles from './Dashboard.less'
+import { DashboardTR, Dashboard as DashboardType } from '../../campaigns/core/dashboard'
+import { settings } from '../settings'
+
+const { I18n } = window
+
+export const DashboardList = () => {
+  const history = useHistory()
+  const {
+    data, fetch, isLoading,
+  } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })
+
+  useEffect(() => {
+    fetch({
+      apiConfig: {
+        include: ['campaign'],
+        fields: { campaigns: ['name'] },
+        filter: { preview_available: 'true' },
+      },
+    })
+  }, [])
+
+  if (isLoading('fetch')) return <Skeleton />
+
+  return (
+    <div className="p-6">
+      <h3>{I18n.t('administration.dashboard.dashboards')}</h3>
+      <Row>
+        {data.map(dashboard => (
+          <Col xl={6} md={8} sm={12} xs={24} key={dashboard.id} className={styles.cardContainer}>
+            <Card
+              hoverable
+              cover={<CardCover imageUrl={dashboard.imageUrl} />}
+              onClick={() => history.push(`${settings.urlPrefix}/${dashboard.id}`)}
+            >
+              <Meta title={dashboard.name} description={dashboard.campaign?.name} />
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
+  )
+}
+
+interface CardCoverProps {
+  imageUrl: DashboardType['imageUrl']
+}
+
+const CardCover: React.FC<CardCoverProps> = ({ imageUrl }) => (
+  <div className={styles.imageContainer} style={imageUrl ? { backgroundImage: `url(${imageUrl})` } : {}}>
+    {!imageUrl && <Skeleton.Image className={styles.imageSkeleton} />}
+  </div>
+)

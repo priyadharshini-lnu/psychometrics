@@ -2329,6 +2329,7 @@ en:
     created: Successfully created
     created_by: Created By
     dashboard:
+      dashboards: Dashboards
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
       preview:
@@ -2348,7 +2349,9 @@ en:
       fields:
         dataset_id: Dataset Id
         enabled: Enabled
+        image: Image
         report_id: Report Id
+      image_upload_failed: Image upload failed.
     dates:
       completed: Completed At
       created: Created At
@@ -2807,12 +2810,12 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       create: Create
+      dashboard: Dashboard
       datasheets: Datasheets
       design: Design
       dimension: Dimension
       dimensions: Dimensions
       factors: Factors
-      home: Dashboard
       innovation_styles: Innovation Styles
       innovation_styles_factors: Factors
       libraries: Media Library

@@ -4,12 +4,11 @@ module Api
   module Administration
     class DashboardPolicy < ::Api::Administration::BasePolicy
       def index?
-        # Everyone would be allowed to access this api, but would be restricted by Scope class
-        true
+        user.has_grant?(:dashboard, :view)
       end
 
       def show?
-        has_permission?(:dashboards, :view)
+        has_permission?(:dashboards, :view, campaign_id: record.campaign_id)
       end
 
       def create?

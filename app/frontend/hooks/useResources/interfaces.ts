@@ -7,7 +7,7 @@ export enum RequestStatus {
   Failed = 'failed',
 }
 
-export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}`
+export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}` | `fetch@${string}`
 
 export type Requests = {
   [key in RequestType]?: {

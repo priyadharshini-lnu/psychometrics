@@ -183,7 +183,11 @@ const CampaignOptions: React.FC<Props> = ({
                           </label>
                         </Col>
                         <Col span={22}>
-                          <Radio.Group defaultValue="passport" onChange={saveIdentificationType}>
+                          <Radio.Group
+                            defaultValue="passport"
+                            onChange={saveIdentificationType}
+                            value={options.identification}
+                          >
                             {Object.entries(identifications).map(
                               ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
                             )}

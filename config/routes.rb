@@ -89,7 +89,8 @@ Rails.application.routes.draw do
   # Administration panel
   #
   namespace :administration do
-    get 'dashboard', to: 'home#index'
+    get 'dashboards', to: 'dashboards#index', as: :dashboard
+    get 'dashboards/*all', to: 'dashboards#dashboards', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'
 
     resource :profiles, only: %i[update edit]
@@ -1104,6 +1105,9 @@ Rails.application.routes.draw do
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
             resource :uploads, only: %i[update]
+          end
+          jsonapi_resources :dashboards, only: %i[index show create update] do
+            patch :upload_image
           end
         end
       end

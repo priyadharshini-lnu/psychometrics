@@ -120,6 +120,48 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     })
   }
 
+  const fetchSingle = async (
+    args: { id: string, responseType?: ResponseType, apiConfig?: ApiConfig },
+  ) => {
+    const { apiConfig, id } = { apiConfig: options.apiConfig, ...args }
+    const requestKey: RequestType = `fetch@${id}`
+    setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
+
+    return new Promise(async (resolve, reject) => {
+      const {
+        data: response, error, errors,
+      } = await client.fetch<R>([resourceName, id, apiConfig || {}])
+
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+
+        setState((previousState: ResourceState<R[], M>) => {
+          let { data } = previousState
+          if (data.length === 0) {
+            data = [camelizedResponse]
+          } else {
+            data = previousState.data.map((resource) => {
+              if (resource.id === camelizedResponse.id) return camelizedResponse
+              return resource
+            })
+            if (previousState.data.length === data.length) data = [camelizedResponse, ...previousState.data]
+          }
+          return { ...previousState, data }
+        })
+        resolve(camelizedResponse)
+        if (responseType || args.responseType) {
+          responseTypeValidation(args.responseType || responseType, camelizedResponse)
+        }
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const getResource = (id: string) => state.data.find(d => d.id === id)
+
   const createResource: CreateResource<R> = async (
     attributes, args = { apiConfig },
   ) => {
@@ -273,6 +315,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     requests,
     setData,
     fetch,
+    fetchSingle,
+    getResource,
     createResource,
     updateResource,
     removeResource,

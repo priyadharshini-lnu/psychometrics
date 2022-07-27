@@ -14,6 +14,7 @@ module Api
             optional(:dataset_id).maybe(:string)
             optional(:report_id).maybe(:string)
             optional(:enabled).filled(:bool)
+            optional(:refresh_interval).filled(:integer, included_in?: [15, 30, 60, 90])
           end
         end
 
