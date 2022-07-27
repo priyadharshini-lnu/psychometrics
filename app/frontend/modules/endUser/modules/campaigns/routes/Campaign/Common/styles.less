@@ -1,0 +1,22 @@
+@import "glint/styles/mixins.less";
+@import "styles/spacing.less";
+
+.tasksContainer {
+  & > :global(.ant-row) {
+    margin-top: @space-7;
+  }
+  & > :global(.ant-row:last-child) {
+    margin-bottom: @space-7;
+  }
+}
+.cardsContainer {
+  max-width: 1200px;
+  margin: auto;
+}
+.beginText {
+  position: relative;
+  .highlighter(100%, -14px);
+}
+.resultContainer {
+  background-color: var(--ant-primary-1);
+}

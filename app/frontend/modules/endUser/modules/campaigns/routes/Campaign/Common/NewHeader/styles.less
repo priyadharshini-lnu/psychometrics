@@ -1,0 +1,22 @@
+@import 'styles/ant.variable.less';
+@import 'styles/spacing.less';
+
+.campaignHeader:global(.ant-page-header) {
+  background-color: var(--ant-primary-color);
+  padding-block: @space-2;
+}
+.backIcon {
+  color: @white;
+}
+.campaignDropdown {
+  display: inline-block;
+  color: @white;
+  min-width: 320px;
+  &:hover{
+    color: @white;
+  }
+}
+.campaignsCount {
+  font-size: @font-size-base;
+  font-weight: 400;
+}

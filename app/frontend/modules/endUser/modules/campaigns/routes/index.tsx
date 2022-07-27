@@ -1,5 +1,5 @@
 import { CampaignList } from './CampaignList'
-import Campaign from './Campaign'
+import { Campaign } from './Campaign'
 import { Profile } from './Profile'
 
 const routes = [

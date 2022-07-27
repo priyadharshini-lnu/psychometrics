@@ -1,0 +1,26 @@
+@import 'styles/spacing.less';
+
+.container {
+  background-color: var(--ant-primary-1);
+  position: relative;
+  padding-inline: @space-7;
+  padding-top: @space-7;
+}
+.container-button {
+  display: flex;
+  height: 4rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+.container--collapsed {
+  padding-bottom: @space-4;
+  & .container-button {
+    position: absolute;
+    background: var(--ant-primary-1);
+    opacity: 0.8;
+    bottom: 0px;
+    left: 0px;
+  }
+}
