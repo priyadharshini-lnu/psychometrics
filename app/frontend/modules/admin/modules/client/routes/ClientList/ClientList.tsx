@@ -148,16 +148,19 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         value={getFilteredValue('name_cont')}
         onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
       />
-      <Button
-        type="primary"
-        disabled={tableLoading}
-        onClick={() => {
-          openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })
-        }}
-      >
-        <PlusOutlined />
-        {I18n.t('frontend.clients.actions.create.create_client')}
-      </Button>
+      {currentUser.role === 'Users::SuperAdmin'
+          && (
+          <Button
+            type="primary"
+            disabled={tableLoading}
+            onClick={() => {
+              openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })
+            }}
+          >
+            <PlusOutlined />
+            {I18n.t('frontend.clients.actions.create.create_client')}
+          </Button>
+          )}
     </Space>
   )
 

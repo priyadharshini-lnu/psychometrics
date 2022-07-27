@@ -93,7 +93,7 @@ module UserRoles
   end
 
   def admin?
-    is?(:superadmin, :client_admin, :project_admin)
+    is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
   end
 
   def assessor?

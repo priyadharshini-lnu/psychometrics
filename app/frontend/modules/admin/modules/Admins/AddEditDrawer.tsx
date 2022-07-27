@@ -105,8 +105,6 @@ const AddEditDrawerComponent: FC<Props> = ({
           email: admin.email,
           firstName: admin?.firstName ?? '',
           lastName: admin?.lastName ?? '',
-          [`assessors-${GrantType.view}`]:
-            admin?.grants?.data?.assessors?.includes(GrantType.view),
           [`assessors-${GrantType.manage}`]:
             admin?.grants?.data?.assessors?.includes(GrantType.manage),
           [`campaigns-${GrantType.view}`]:
