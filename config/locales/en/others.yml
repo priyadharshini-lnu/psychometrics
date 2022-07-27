@@ -2622,7 +2622,8 @@ en:
       email: Email Address
       first_name: First Name
       last_name: Last Name
-      password: Password
+      password: New Password
+      password_confirmation: Password Confirmation
     form:
       email: Email
       first_name: First name
