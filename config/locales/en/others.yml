@@ -1103,6 +1103,7 @@ en:
       report_bundle: Report Bundle
       report_name: Report name
       user_access: User Access
+      user_dashboard: User Dashboard
     form:
       operation: Operation
       operation_options:

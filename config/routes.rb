@@ -178,6 +178,7 @@ Rails.application.routes.draw do
             post :export
             patch :toggle_user_access
             patch :toggle_assessor_access
+            patch :toggle_user_dashboard
           end
         end
         resources :user_reports do

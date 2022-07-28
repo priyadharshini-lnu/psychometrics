@@ -773,7 +773,8 @@ CREATE TABLE public.campaign_reports (
     user_access boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessor_access boolean DEFAULT false
+    assessor_access boolean DEFAULT false,
+    user_dashboard boolean DEFAULT false
 );
 
 
@@ -9883,7 +9884,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220714145940'),
 ('20220720075400'),
 ('20220721114549'),
+('20220727081709'),
 ('20220725113027'),
 ('20220727115619');
-
-

@@ -5,5 +5,6 @@ export default interface Report {
   reportId: number
   userAccess: boolean
   assessorAccess: boolean
+  userDashboard: boolean
   reportFamilyName: string
 }
