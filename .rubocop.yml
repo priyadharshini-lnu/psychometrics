@@ -174,8 +174,6 @@ Lint/RedundantSafeNavigation:
   Enabled: false
 Style/ExplicitBlockArgument:
   Enabled: false
-Layout/EmptyLineAfterMagicComment:
-  Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
 Metrics/CyclomaticComplexity:
@@ -195,8 +193,6 @@ Metrics/AbcSize:
 Style/CaseLikeIf:
   Enabled: false
 Style/AccessorGrouping:
-  Enabled: false
-Style/FrozenStringLiteralComment:
   Enabled: false
 Style/RedundantFetchBlock:
   Enabled: false

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # TODO: remove after rails upgrade??
 require_relative '../deployment_task'
 

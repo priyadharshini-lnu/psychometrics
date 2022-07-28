@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 unless ENV['DISABLE_COVERAGE']
   require 'coveralls'
   Coveralls.wear!('rails')
