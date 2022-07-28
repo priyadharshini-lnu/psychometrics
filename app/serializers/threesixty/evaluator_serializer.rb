@@ -50,7 +50,8 @@ module Threesixty
         [
           %w[login spoof],
           'edit',
-          'remove_from_campaign'
+          'remove_from_campaign',
+          'allow_results_delete'
         ],
         {
           project_id: instance_options[:project_id]

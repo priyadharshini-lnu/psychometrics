@@ -4,7 +4,7 @@ module Administration
   module Threesixty
     class EmailTemplatePolicy < BasePolicy
       def send_test_email?
-        index?
+        has_permission?(:messages, :email)
       end
     end
   end

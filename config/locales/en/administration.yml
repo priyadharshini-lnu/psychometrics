@@ -3801,6 +3801,16 @@ en:
             subject_report:
               title: Subject Report
           title: Report
+      menu_dropdown:
+        assessment: Assessment
+        dimension: Dimensions
+        manage_relationships: Manage Relationships...
+        report: Report
+      messages:
+        email_messages: Email Messages
+        instruction_messages: Instruction Messages
+        mail_history: Mail History
+        options: Options
       reports:
         show:
           title: Subject Report

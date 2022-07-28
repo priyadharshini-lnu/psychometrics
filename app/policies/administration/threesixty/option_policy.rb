@@ -4,15 +4,15 @@ module Administration
   module Threesixty
     class OptionPolicy < BasePolicy
       def participant_options?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
+        has_permission?(:campaigns, :participant_options)
       end
 
       def report_options?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
+        has_permission?(:campaigns, :report_options)
       end
 
       def message_options?
-        @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
+        has_permission?(:messages, :options)
       end
     end
   end

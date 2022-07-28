@@ -54,6 +54,7 @@ module Administration
             edit_dimension
             reset_all_participants
             reset_all_nominations
+            allow_results_delete
           ],
           {
             project_id: threesixty_campaign.campaign.project_id

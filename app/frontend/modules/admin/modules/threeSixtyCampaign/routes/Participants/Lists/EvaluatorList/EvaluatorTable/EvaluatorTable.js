@@ -16,8 +16,8 @@ export default function EvaluatorTable ({
   removeUser,
   editUser,
 }) {
-  const openParticipantModal = (user) => {
-    openModal('ParticipantModal', { user, onClose: onCloseParticipantModal })
+  const openParticipantModal = (user, permissions) => {
+    openModal('ParticipantModal', { user, permissions, onClose: onCloseParticipantModal })
   }
 
   return (
@@ -25,11 +25,11 @@ export default function EvaluatorTable ({
       <Column
         title="Name"
         key="fullName"
-        render={({ user }) => (
+        render={({ user, permissions }) => (
           <a
             role="button"
             tabIndex="0"
-            onClick={() => openParticipantModal(user)}
+            onClick={() => openParticipantModal(user, permissions)}
           >
             {userPresenter.getFullName(user)}
           </a>

@@ -167,7 +167,6 @@ module Administration
             current_user,
             nil,
             %w[
-              edit_subject_report
               manage_reports_options
             ],
             project_id: project.id

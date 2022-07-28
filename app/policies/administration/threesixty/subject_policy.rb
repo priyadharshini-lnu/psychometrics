@@ -15,6 +15,10 @@ module Administration
         user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
       end
 
+      def allow_results_delete?
+        has_permission?(:results, :reset_responses)
+      end
+
       def manage_datasheets?
         user.is?(:superadmin) || user.has_permission?(:datasheets, :manage, project_id: project_id)
       end

@@ -25,12 +25,19 @@ module Threesixty
       return unless current_project_id
 
       permissions = GetPermissionsHash.call!(
-        Administration::CampaignPolicy,
+        Administration::Threesixty::CampaignPolicy,
         object,
         nil,
-        [
-          %w[manage_options update_campaign_options],
-          'manage_messages'
+        %w[
+          edit_participant_options
+          edit_report_options
+          access_email_messages
+          access_instruction_messages
+          access_messages_options
+          edit_assessment
+          edit_report
+          edit_dimension
+          manage_relationships
         ],
         {
           project_id: current_project_id

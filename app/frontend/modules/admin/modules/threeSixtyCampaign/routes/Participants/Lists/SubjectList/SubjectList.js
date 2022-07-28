@@ -11,6 +11,7 @@ import ConditionalDropdown from 'components/ConditionalDropdown'
 import styles from './SubjectList.less'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
+import { Manage } from '../Manage'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
@@ -45,6 +46,7 @@ export default function SubjectList ({
   const openParticipantModal = (user) => {
     openModal('ParticipantModal', {
       user,
+      permissions,
       onClose: () => fetchSubjects(campaignId, page, searchTerm),
     })
   }
@@ -64,6 +66,7 @@ export default function SubjectList ({
             path="/participants/subjects"
             searchTerm={searchTerm}
           />
+          <Manage />
           <ToolsDropdown permissions={permissions} />
           {permissions.addSubject && (
             <CreateSubjectsDropdown />
@@ -81,11 +84,11 @@ export default function SubjectList ({
             <Column
               title="Name"
               key="fullName"
-              render={({ user }) => (
+              render={({ user, permissions }) => (
                 <a
                   role="button"
                   tabIndex="0"
-                  onClick={() => openParticipantModal(user)}
+                  onClick={() => openParticipantModal(user, permissions)}
                 >
                   {userPresenter.getFullName(user)}
                 </a>

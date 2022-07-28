@@ -7,20 +7,12 @@ module Administration
         user.is?(:superadmin) || user.has_permission?(:datasheets, :manage, project_id: project_id)
       end
 
-      def manage_relationships?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
-      end
-
       def export_results?
         user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
       end
 
       def export_completion_status?
         user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
-      end
-
-      def edit_dimension?
-        user.is?(:superadmin) || user.has_permission?(:dimensions, :manage, project_id: project_id)
       end
 
       def reset_all_participants?
@@ -41,6 +33,10 @@ module Administration
 
       def spoof?
         user.is?(:superadmin)
+      end
+
+      def allow_results_delete?
+        has_permission?(:results, :reset_responses)
       end
 
       def edit?
