@@ -22,7 +22,7 @@ module Administration
       end
 
       def after_sign_out_path_for(_resource)
-        new_administration_session_path
+        root_path
       end
     end
   end

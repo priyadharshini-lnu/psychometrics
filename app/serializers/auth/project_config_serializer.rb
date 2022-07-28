@@ -10,7 +10,7 @@ module Auth
 
     DELEGATE_METHODS.each do |name|
       define_method name do
-        design_setting.send(name) if object.respond_to?(name)
+        design_setting.send(name) if design_setting.respond_to?(name)
       end
     end
 
