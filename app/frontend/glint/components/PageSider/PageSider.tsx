@@ -24,24 +24,30 @@ export type SiderMenuItem = MenuItem & {
 type PageSiderProps = {
   items: SiderMenuItem[]
   logo: string
-  onMenuClick?: (info: SelectInfo) => void
+  onMenuSelect?: (info: SelectInfo) => void
   siderFooter?: (collapsed: boolean) => React.ReactElement
+  activeKey?: string
+  onSiderCollapse?: (collapsed: boolean) => void
 }
 
 export const PageSider: FC<PageSiderProps> = ({
   items,
   logo,
   siderFooter,
-  onMenuClick,
+  onMenuSelect,
+  activeKey = '',
+  onSiderCollapse,
 }) => {
-  const [activeKey, setActiveKey] = useState('')
   const [menuCollapsed, setMenuCollapsed] = useState(false)
   const [drawerVisible, setDrawerVisible] = useState(false)
   const { isMobile, isTablet } = useContext(MediaQueryContext)
 
+  const handleTrigger = () => {
+    setMenuCollapsed(!menuCollapsed)
+    onSiderCollapse && onSiderCollapse(menuCollapsed)
+  }
   const handleClick = (info: SelectInfo) => {
-    onMenuClick && onMenuClick(info)
-    setActiveKey(info.key)
+    onMenuSelect && onMenuSelect(info)
     if (isMobile || isTablet) {
       setDrawerVisible(false)
     }
@@ -50,19 +56,17 @@ export const PageSider: FC<PageSiderProps> = ({
   const handleDrawerVisibility = () => {
     setDrawerVisible(!drawerVisible)
   }
-
   const menu = (
     <Menu
-      activeKey={activeKey}
+      selectedKeys={[activeKey]}
       className={styles['sider-menu']}
       mode="inline"
       onClick={handleClick}
-      defaultSelectedKeys={[items[0].key]}
     >
       {items.map((eachItem) => {
         if (eachItem.children) {
           return (
-            <SubMenu icon={eachItem.icon} title={eachItem.label}>
+            <SubMenu key={eachItem.key} icon={eachItem.icon} title={eachItem.label}>
               {eachItem.children.map(menuItem => (
                 <Item key={menuItem.key} icon={menuItem.icon}>
                   {menuItem.label}
@@ -88,7 +92,7 @@ export const PageSider: FC<PageSiderProps> = ({
   const siderTrigger = (
     <div
       className={cs({ [styles['sider-trigger']]: true, [styles['sider-trigger--collapsed']]: menuCollapsed })}
-      onClick={() => setMenuCollapsed(!menuCollapsed)}
+      onClick={handleTrigger}
     >
       {menuCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
     </div>

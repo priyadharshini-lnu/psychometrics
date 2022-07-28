@@ -1,0 +1,13 @@
+@import 'styles/ant.variable.less';
+@import 'styles/variables.less';
+
+.pageContent {
+  background-color: @white;
+  border-inline-start: 1px solid @border-color-base;
+  overflow-x: hidden;
+}
+@media (max-width: @screen-lg) {
+  .pageContent {
+    border-inline-start: none;
+  }
+}

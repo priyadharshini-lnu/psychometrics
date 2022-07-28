@@ -56,7 +56,7 @@ const Template: ComponentStory<typeof PageSider> = () => {
             Locale Switch
           </Col>
         )}
-        onSiderMenuClick={handleMenuClick}
+        onSiderMenuSelect={handleMenuClick}
       >
         This is the page content
       </PageLayout>

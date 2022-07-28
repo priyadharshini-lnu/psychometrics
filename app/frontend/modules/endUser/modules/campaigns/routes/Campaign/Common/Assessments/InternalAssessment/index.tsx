@@ -15,10 +15,11 @@ import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessme
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
-import { styles } from 'modules/reports/views/PageList'
 import { PrivacyModal } from '../PrivacyModal'
 import { TimingModal } from '../TimingModal'
 import { LanguageModal } from '../LanguageModal'
+
+import styles from './styles.less'
 
 const { I18n } = window
 const { Text } = Typography
@@ -107,7 +108,7 @@ const InternalAssessment: React.FC<Props> = ({
   const titleElement = (
     <Row gutter={[4, 0]} wrap={false}>
       <Col>{assessmentIcon}</Col>
-      <Col className={styles.assessmentTitle}>{assessmentTitle}</Col>
+      <Col className={styles.assessmentLabel}>{assessmentTitle}</Col>
     </Row>
   )
 

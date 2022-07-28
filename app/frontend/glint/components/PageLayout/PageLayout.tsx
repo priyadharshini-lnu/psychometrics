@@ -16,7 +16,7 @@ type PageLayoutProps = {
   footer: React.ReactNode
   headerContent: React.ReactNode
   children: React.ReactNode
-  onSiderMenuClick: SelectEventHandler
+  onSiderMenuSelect: SelectEventHandler
   siderFooter?: (collapsed: boolean) => React.ReactElement
 }
 
@@ -25,14 +25,14 @@ export const PageLayout: FC<PageLayoutProps> = ({
   footer,
   headerContent,
   children,
-  onSiderMenuClick,
+  onSiderMenuSelect,
   siderFooter,
 }) => (
   <Layout>
     <PageSider
       logo={lighthouseLogo}
       items={siderItems}
-      onMenuClick={onSiderMenuClick}
+      onMenuSelect={onSiderMenuSelect}
       siderFooter={siderFooter}
     />
     <Layout className={styles['page-layout']}>
