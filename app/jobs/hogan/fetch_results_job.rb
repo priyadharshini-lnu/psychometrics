@@ -6,6 +6,8 @@ module Hogan
     retry_on StandardError, wait: ->(executions) { executions * 2.minutes }, attempts: 3
 
     def perform(user_result, credentials, project)
+      return if user_result.external_results.present?
+
       Hogan::FetchResults.call(user_result, credentials, project) do
         on(:not_completed) { raise StandardError, 'Unable to fetch hogan report' }
       end

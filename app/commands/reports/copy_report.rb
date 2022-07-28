@@ -2,13 +2,17 @@
 
 module Reports
   class CopyReport < BaseCommand
-    def initialize(report_id)
+    private_attr_reader :report, :user
+
+    def initialize(report_id, user)
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
+      @user = user
     end
 
     def call
       new_report = ActiveRecord::Base.transaction do
         new_report = report.clone
+        new_report.created_by = user
         new_report.save!
 
         copy_pages(report, new_report)
@@ -25,8 +29,6 @@ module Reports
     end
 
     private
-
-    attr_reader :report
 
     def copy_translations(type, of_resource, into_resource)
       translations = Translation.for_report(of_resource.id).where(translateable_type: type)

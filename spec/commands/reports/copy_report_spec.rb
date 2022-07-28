@@ -30,6 +30,8 @@ describe Reports::CopyReport do
       report
     end
 
+    let(:user) { create(:user) }
+
     before do
       occupation = create(:occupation)
       create(:translation, translateable: occupation, resource: report)
@@ -39,7 +41,7 @@ describe Reports::CopyReport do
     end
 
     context 'Success' do
-      subject { described_class.call(report.id) }
+      subject { described_class.call(report.id, user) }
 
       it 'broadcasts :ok' do
         expect { subject }.to broadcast(:ok)

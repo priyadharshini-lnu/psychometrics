@@ -136,7 +136,7 @@ module Administration
     end
 
     def copy
-      event = ::Reports::CopyReport.call(resource.id)
+      event = ::Reports::CopyReport.call(resource.id, current_user)
       audit! :copy, resource, payload: { source_id: resource.id }
 
       respond_to do |format|

@@ -104,7 +104,7 @@ class CustomPie extends Component {
     if (strategy === STRATEGIES.SOURCES) {
       return sourceModel.map((factor, i) => this.prepareSerie(
         LookupSourceName.call(assessment, factor, sourceType), colors[i], series[i], i,
-        I18nStore.tFactor(_.find(factors, { id: factor.id }), 'description'),
+        sourceType === 'Factor' && I18nStore.tFactor(_.find(factors, { id: factor.id }), 'description'),
       ))
     }
     if (strategy === STRATEGIES.FILTERS) {

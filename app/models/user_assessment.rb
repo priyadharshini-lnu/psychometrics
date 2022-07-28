@@ -146,7 +146,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def user_reports
-    UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
+    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: campaign_id)
   end
 
   def norm_name
