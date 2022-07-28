@@ -6,8 +6,19 @@ describe ::Sheets::SheetForm do
   context 'Validation' do
     let(:file) { double('file', content_type: 'application/xlsx') }
     let(:parsed_file) { [{ 'Email' => nil }, { 'Email' => 'String' }, { 'Email' => 'test@email.com' }] }
-    let(:form) { described_class.new(file: file, parsed_file: parsed_file) }
+    let(:form) { described_class.new(file: file, parsed_file: parsed_file).with_context(sheet_type: 'Datasheet') }
     subject { form }
+
+    context 'sheet is Accesssheet' do
+      it 'allows duplicate email id' do
+        parsed_file = [
+          { 'Email' => nil }, { 'Email' => 'String' }, { 'Email' => 'test@email.com' }, { 'Email' => 'test@email.com' }
+        ]
+        form = described_class.new(file: file, parsed_file: parsed_file).with_context(sheet_type: 'Accesssheet')
+        allow(form).to receive(:parsed_file).and_return(parsed_file)
+        expect(form.valid?).to eq(true)
+      end
+    end
 
     context 'validate columns' do
       before do

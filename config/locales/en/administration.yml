@@ -3414,7 +3414,7 @@ en:
           saving: Saving
           success_message_add: New record added
           success_message_edit: Record updated
-          title_add: Add datasheet record
+          title_add: Add Sheet record
           title_edit: Edit Sheet Row record
           validations:
             required_email: Please enter email

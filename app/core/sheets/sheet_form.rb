@@ -11,7 +11,7 @@ module Sheets
     validate :check_column_types, if: :file
     validate :check_columns_names_and_length, if: :file
     validate :check_emails_are_present, if: :file
-    validate :no_duplicates, if: :file
+    validate :no_duplicates, if: -> { file && sheet_type == 'Datasheet' }
     validate :validate_string_values, if: :file
     validate :validate_numeric_values, if: :file
     validate :validate_column_types_matching, if: -> { file && sheet }
@@ -27,6 +27,10 @@ module Sheets
     end
 
     private
+
+    def sheet_type
+      context.sheet_type
+    end
 
     def validate_column_types_matching
       sheet.columns.each do |column|

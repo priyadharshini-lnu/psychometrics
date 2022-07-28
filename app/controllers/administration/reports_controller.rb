@@ -37,7 +37,7 @@ module Administration
     end
 
     def upload_data_sheet
-      @form = ::Sheets::SheetForm.from_params(params)
+      @form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: 'Datasheet')
       render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
     end
 

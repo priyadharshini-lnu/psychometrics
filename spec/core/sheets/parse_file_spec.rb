@@ -41,6 +41,14 @@ describe Sheets::ParseFile do
   end
   subject { described_class.call(form, project, 'Datasheet') }
 
+  context 'sheet is Accesssheet' do
+    it 'deletes existing record' do
+      sheet = project.sheets.create!(columns: columns, type: 'Accesssheet')
+      described_class.call(form, project, 'Accesssheet')
+      expect(Sheet.find_by(id: sheet.id)).to eq(nil)
+    end
+  end
+
   it 'creates valid sheet' do
     expect { subject }.to change { Sheet.count }.from(0).to(1)
     sheet = project.sheets.first

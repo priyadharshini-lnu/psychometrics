@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import {
   Button,
   Col,
@@ -9,6 +9,7 @@ import {
   Typography,
   Form,
   message,
+  Alert,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
@@ -86,6 +87,8 @@ const AddEditDrawerComponent: FC<Props> = ({
   update,
   sheetType,
 }) => {
+  const [errors, setErrors] = useState<string[] | undefined>()
+
   const isInEditMode = mode === DrawerModes.Edit
   const isInAddMode = mode === DrawerModes.Add
 
@@ -113,19 +116,16 @@ const AddEditDrawerComponent: FC<Props> = ({
     values: Record<string, string | number>,
   ): Promise<void> => {
     if (isInEditMode) {
-      await update(currentSheetRowId, parentResourceType, parentResourceId, sheetType, values)
-      message.success(
-        I18n.t(
-          'administration.sheets.drawers.add_edit.success_message_edit',
-        ),
-      )
+      await update(currentSheetRowId, parentResourceType, parentResourceId, sheetType, values).then(() => {
+        message.success(I18n.t('administration.sheets.drawers.add_edit.success_message_edit'))
+        closeDrawer
+      }).catch(setErrors)
     } else {
-      await add(parentResourceType, parentResourceId, sheetType, values)
-      message.success(
-        I18n.t('administration.sheets.drawers.add_edit.success_message_add'),
-      )
+      add(parentResourceType, parentResourceId, sheetType, values).then(() => {
+        message.success(I18n.t('administration.sheets.drawers.add_edit.success_message_add'))
+        closeDrawer()
+      }).catch(setErrors)
     }
-    closeDrawer()
   }
 
   const closeDrawer = (): void => {
@@ -183,6 +183,7 @@ const AddEditDrawerComponent: FC<Props> = ({
         </Col>
       </Row>
       <Skeleton loading={isFetching} active title>
+        {errors && <Alert type="error" description={Object.values(errors).join(',')} className="mb-2" />}
         <Form
           name="add_edit_record_form"
           form={form}

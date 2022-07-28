@@ -6,7 +6,7 @@ module AdminJobs
 
     def call
       file = Roo::Excelx.new(record.file.url)
-      form = ::Sheets::SheetForm.new(file: file, operation: record.data['operation'])
+      form = ::Sheets::SheetForm.new(file: file).with_context(sheet_type: 'Datasheet')
 
       ::Sheets::ParseFile.call(form, parent_resource, 'Datasheet')
 

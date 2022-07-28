@@ -17,4 +17,12 @@ class Sheet < ApplicationRecord
   def parent_resource
     @parent_resource ||= project || campaign
   end
+
+  def accesssheet?
+    type == 'Accesssheet'
+  end
+
+  def datasheet?
+    type == 'Datasheet'
+  end
 end

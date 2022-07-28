@@ -121,7 +121,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       }, format: :json
 
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response).to eq({ 'errors' => ["Email can't be blank"] })
+      expect(parsed_response).to eq({ 'errors' => { 'email' => ["Email can't be blank"] } })
     end
   end
 

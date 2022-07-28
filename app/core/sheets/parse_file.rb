@@ -12,6 +12,7 @@ module Sheets
 
     def call
       transaction do
+        parent_resource.sheets.find_by(type: sheet_type)&.destroy if sheet_type == 'Accesssheet'
         create_and_update_sheet
         parse_file
       end
@@ -49,11 +50,15 @@ module Sheets
         email = ActionView::Base.full_sanitizer.sanitize(data[Sheet::EMAIL_COLUMN].strip)
         next if email.blank?
 
-        row = sheet.rows.find_or_initialize_by(email: email)
+        row = accesssheet? ? sheet.rows.new(email: email) : sheet.rows.find_or_initialize_by(email: email)
         data = data.reject { |k, _v| k == Sheet::EMAIL_COLUMN }
         row.data = (row.data || {}).merge(data)
         row.save!
       end
+    end
+
+    def accesssheet?
+      sheet_type == 'Accesssheet'
     end
   end
 end

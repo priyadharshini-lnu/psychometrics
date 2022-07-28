@@ -193,6 +193,11 @@ en:
               invalid_string_value: <b>Row#%{index}</b> column <b>"%{column}"</b> is not a String
               invalid_string_value_size: <b>Row#%{index}</b> column <b>"%{column}"</b>  too long (max 256)
               no_email_column: File does not contain Email column
+        sheet_row_form:
+          attributes:
+            email:
+              blank: Email can't be blank
+              not_uniq_email: Row with email is already present
         sms_invites_create:
           attributes:
             first_name:
@@ -2051,15 +2056,13 @@ en:
     tte_terms_and_condition: TTE - Terms, Conditions and Privacy Statement
   sheet:
     import_modal:
-      operations:
-        merge_with_existing: Merge with existing data
-        replace_existing: Replace the existing record’s data
+      alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.
       success_message: File successfully upload. Import of datasheet record in progress
-      title: Import Datasheet Records
+      title: Import Sheet Records
     menu:
-      export: Export Datasheet
+      export: Export Sheet
       export_info: No data to export.
-      import: Import Datasheet
+      import: Import Sheet
     no_sheet: You have to import sheet first
   simple_form:
     error_notification:

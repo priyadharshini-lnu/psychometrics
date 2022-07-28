@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
 import React, { useState } from 'react'
-import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { LoadingOutlined, CheckOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import {
-  Button, Modal, message, Alert, Form, Input,
+  Button, Modal, message, Alert, Form, Input, Typography,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import Event from 'interfaces/Event'
@@ -14,6 +14,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import { importSheet, IMPORT, SheetType } from 'modules/admin/modules/SheetManagement/core/list'
 import { isRequestInProgress } from 'modules/admin/core/request'
 import { ParentResourceType } from '../../interfaces'
+import styles from './styles.less'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -117,6 +118,15 @@ const ImportSheetModalComponent: React.FC<Props> = ({
             onChange={({ target: { files } }: Event<HTMLInputElement>) => setFile(files && files[0])}
           />
         </Form.Item>
+        {sheetType === 'Accesssheet'
+          && (
+            <>
+              <Typography.Text type="danger">
+                <InfoCircleOutlined className={styles.infoIcon} />
+                {I18n.t('sheet.import_modal.alert_access_sheet_removal')}
+              </Typography.Text>
+            </>
+          )}
       </Form>
     </Modal>
   )

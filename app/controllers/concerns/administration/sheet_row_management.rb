@@ -48,13 +48,13 @@ module Administration
 
     def create
       form = SheetRows::Form.from_params(email: params['Email'],
-        data: params.permit!.slice(*sheet.column_names))
+        data: params.permit!.slice(*sheet.column_names)).with_context(sheet: sheet)
       if form.valid?
         datasheet_row = sheet.rows.create(form.attributes)
         audit! :create, datasheet_row, **audit_resources, payload: form.attributes
         render json: SheetRows::GetData.call!(datasheet_row)
       else
-        render json: { errors: form.errors.full_messages }, status: 422
+        render json: { errors: form.errors.messages }, status: 422
       end
     end
 
@@ -73,7 +73,7 @@ module Administration
     end
 
     def import
-      form = ::Sheets::SheetForm.from_params(params)
+      form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: params[:type])
       if form.valid?
         if params[:type] == 'Accesssheet'
           AdminJob.call(:import_accesssheet, { campaign_id: parent_resource.id }, current_user, params[:file])
