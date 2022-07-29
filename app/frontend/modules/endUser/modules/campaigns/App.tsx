@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {
   Spin,
-  ConfigProvider, notification,
+  ConfigProvider, notification, Affix,
 } from 'antd'
 import { Route } from 'react-router-dom'
 import store, { history } from 'modules/user/store'
@@ -15,7 +15,7 @@ import { GlintProvider } from 'glint'
 import { connected, disconnected } from 'core/connection'
 
 import { useWindowInnerSize } from 'modules/user/rootHooks'
-
+import { ToggleEndUserViewLink } from 'components/ToggleEndUserViewLink'
 import routes from './routes'
 import styles from './styles.less'
 
@@ -66,6 +66,7 @@ export default function App () {
         <GlintProvider>
           <ConnectedRouter history={history}>
             <UserPageLayout>
+              <Affix className={styles.toggleLink}><ToggleEndUserViewLink /></Affix>
               <ConnectionCheck
                 onConnected={() => store.dispatch(connected())}
                 onDisconnected={() => store.dispatch(disconnected())}
