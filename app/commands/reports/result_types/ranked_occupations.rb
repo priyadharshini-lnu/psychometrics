@@ -4,14 +4,15 @@ module Reports
   module ResultTypes
     class RankedOccupations < BaseType
       def call
-        get_occupation
-        get_occupation_from_db
+        user_result = context.find_user_result_by(data['assessmentId'])
+        ranked_occupation = get_occupation(user_result) if user_result
+        occupation = Occupation.find_by(id: ranked_occupation['id']) if ranked_occupation
 
         {
-          key: ranked_occupation['id'],
+          key: ranked_occupation&.dig('id'),
           name: occupation&.decorate&.display_name,
           config_data: data,
-          value: ranked_occupation['value']
+          value: ranked_occupation&.dig('value')
         }
       end
 
@@ -21,21 +22,17 @@ module Reports
 
       # Fetchs and sorts occupations
       #
-      def get_occupation
-        # Finds assign
-        user_result = context.find_user_result_by(data['assessmentId'])
-        # Sorts occupations
+      def get_occupation(user_result)
         sorted_occupations = (user_result.occupations || []).sort_by { |occupation| occupation['value'] }
         sorted_occupations.reverse! if data['order'] == 'desc'
 
-        # Gets occupation
-        @ranked_occupation = sorted_occupations.at(data['position'] - 1) || {}
+        sorted_occupations.at(data['position'] - 1) || {}
       end
 
       # Gets occupations from DB and groups it by ID
       #
-      def get_occupation_from_db
-        @occupation = Occupation.find_by(id: ranked_occupation['id'])
+      def get_occupation_from_db(ranked_occupation)
+        Occupation.find_by(id: ranked_occupation['id'])
       end
     end
   end
