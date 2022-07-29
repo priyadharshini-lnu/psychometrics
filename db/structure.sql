@@ -2541,7 +2541,9 @@ CREATE TABLE public.proctoring_sessions (
     status integer,
     results jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    invalid_session boolean DEFAULT false,
+    last_status_checked_at timestamp without time zone
 );
 
 
@@ -9715,7 +9717,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
-('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9741,6 +9742,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220609125511'),
 ('20220613192348'),
 ('20220616103155'),
-('20220630112848');
+('20220630112848'),
+('20220728134015');
 
 
