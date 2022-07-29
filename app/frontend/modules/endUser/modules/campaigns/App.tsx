@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
-import { Route } from 'react-router-dom'
-import store, { history } from 'modules/user/store'
+import React, { useEffect, useState } from 'react'
 import {
+  Spin,
   ConfigProvider, notification,
 } from 'antd'
+import { Route } from 'react-router-dom'
+import store, { history } from 'modules/user/store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 
@@ -16,11 +17,26 @@ import { connected, disconnected } from 'core/connection'
 import { useWindowInnerSize } from 'modules/user/rootHooks'
 
 import routes from './routes'
+import styles from './styles.less'
 
 const { antdLocale, I18n } = window
 
 export default function App () {
+  const [pageLoading, setPageLoading] = useState(true)
+
+  const pageLoadHandler = () => {
+    setPageLoading(false)
+  }
+
   useWindowInnerSize(document.documentElement)
+
+  useEffect(() => {
+    window.addEventListener('load', pageLoadHandler)
+    return () => {
+      window.removeEventListener('load', pageLoadHandler)
+    }
+  }, [])
+
   useEffect(() => {
     const { remainingTime } = store.getState().config.maintenance
     if (remainingTime && remainingTime > 0) {
@@ -35,6 +51,14 @@ export default function App () {
       }, (remainingTime - 40) * 1000)
     }
   }, [])
+
+  if (pageLoading) {
+    return (
+      <div className={styles.spinLoader}>
+        <Spin size="large" />
+      </div>
+    )
+  }
 
   return (
     <Provider store={store}>

@@ -105,39 +105,39 @@ const CommonComponent: FC<CommonComponentProps> = ({
           </div>
         )}
         <NewHeader counters={counters} activeCampaignId={campaign.id} />
-        <Row className={styles.cardsContainer}>
-          <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
-            <Row>
-              <Col span={24}>
-                {!campaignClosed && allAssessmentsComplete ? (
-                  <Result
-                    status="success"
-                    title={I18n.t('campaign.thank_you_for_time')}
-                    subTitle={
+        <Row>
+          <Col span={24}>
+            {!campaignClosed && allAssessmentsComplete ? (
+              <Result
+                status="success"
+                title={I18n.t('campaign.thank_you_for_time')}
+                subTitle={
                       campaignsCount > 1
                         ? I18n.t('campaign.all_activities_are_completed_multiple')
                         : I18n.t('campaign.all_activities_are_completed')
                     }
-                    extra={
+                extra={
                       campaignsCount > 1 && (
                         <Button href="/" type="link">
                           {I18n.t('campaign.goto_dashboard')}
                         </Button>
                       )
                     }
-                    className={styles.resultContainer}
-                  />
-                ) : (
-                  instructionsEnabled && (
-                    <InstructionsPanel
-                      description={<SafeHTML html={instructions} />}
-                      title={I18n.t('campaign.instructions.heading')}
-                      heightLimit={100}
-                    />
-                  )
-                )}
-              </Col>
-            </Row>
+                className={styles.resultContainer}
+              />
+            ) : (
+              instructionsEnabled && (
+              <InstructionsPanel
+                description={<SafeHTML html={instructions} />}
+                title={I18n.t('campaign.instructions.heading')}
+                heightLimit={100}
+              />
+              )
+            )}
+          </Col>
+        </Row>
+        <Row className={styles.cardsContainer}>
+          <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
             <div className={styles.tasksContainer}>
               {canBeginCampaign && (
                 <Row>

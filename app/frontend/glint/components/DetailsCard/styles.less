@@ -1,17 +1,22 @@
 @import 'glint/styles/mixins.less';
 @import 'styles/ant.variable.less';
 @import 'styles/spacing.less';
-
+@card-body-padding: @space-4;
 .detailsCard {
   height: 100%;
   width: 100%;
   border: 1px solid @border-color-base;
   border-radius: calc(2 * @border-radius-sm);
   padding-bottom: @card-padding-base;
+  & :global(.ant-card-body) {
+    padding: @card-body-padding;
+  }
 }
 .title:global(.ant-typography) {
   position: relative;
-  .highlighter(20px, -@card-padding-base - 1px, @card-padding-base-sm);
+  font-size: 14px;
+  font-weight: 400;
+  .highlighter(24px, calc(-@card-body-padding - 1px));
 }
 
 .buttonCol {
@@ -19,13 +24,13 @@
 }
 .cardFooter {
   position: absolute;
-  width: calc(100% - 48px);
+  width: calc(100% - 2 * @card-body-padding);
   bottom: @card-padding-base-sm;
 }
 
 :global(.rtl) {
   & .title:before {
-    right: -@card-padding-base;
+    right: -@card-body-padding;
     left: unset;
   }
 }

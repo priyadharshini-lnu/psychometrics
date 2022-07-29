@@ -106,7 +106,7 @@ const InternalAssessment: React.FC<Props> = ({
   }
   const statusElement = <StatusText taskStatus={taskStatus} />
   const titleElement = (
-    <Row gutter={[4, 0]} wrap={false}>
+    <Row wrap={false}>
       <Col>{assessmentIcon}</Col>
       <Col className={styles.assessmentLabel}>{assessmentTitle}</Col>
     </Row>
@@ -123,13 +123,13 @@ const InternalAssessment: React.FC<Props> = ({
         subtitle={(
           <>
             {userAssessment.timing && (
-              <>
+              <div>
                 <ClockCircleOutlined />
                 <Text type="secondary">
                   {' '}
                   {userAssessment.timing}
                 </Text>
-              </>
+              </div>
             )}
           </>
       )}

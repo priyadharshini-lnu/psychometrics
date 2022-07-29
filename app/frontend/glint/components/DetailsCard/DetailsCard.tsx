@@ -70,7 +70,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   const progressBarSpan = showStatusAtTop ? 6 : 12
 
   return (
-    <Card bodyStyle={{ paddingBlock: '10px' }} className={styles.detailsCard}>
+    <Card className={styles.detailsCard}>
       {titleRow}
       {subtitle}
       <p>{description}</p>

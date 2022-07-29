@@ -43,25 +43,28 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
       style={{ height: collapsed && showExpandLink && !firstRender ? heightLimit : '100%' }}
       className={cs({ [styles.container]: true, [styles['container--collapsed']]: collapsed })}
     >
-      <Title level={5}>{title}</Title>
-      {description}
-      {showExpandLink && (
+      <div className={styles.instructionsContent}>
+        <Title level={5}>{title}</Title>
+        {description}
+        {showExpandLink && (
         <div className={styles['container-button']}>
           <Button type="link" onClick={handleClick}>
             {collapsed ? (
               <>
                 <DownOutlined />
-                {I18n.t('campaign.expand_link_text')}
+                {I18n.t('campaign.instructions.expand_link_text')}
               </>
             ) : (
               <>
                 <UpOutlined />
-                {I18n.t('campaign.collapse_link_text')}
+                {I18n.t('campaign.instructions.collapse_link_text')}
               </>
             )}
           </Button>
         </div>
-      )}
+        )}
+      </div>
+
     </div>
   )
 }

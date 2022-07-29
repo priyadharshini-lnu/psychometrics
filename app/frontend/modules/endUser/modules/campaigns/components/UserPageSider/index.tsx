@@ -6,28 +6,30 @@ import {
   UserOutlined,
   RightSquareOutlined,
 } from '@ant-design/icons'
+
 import { history } from 'modules/user/store'
 
 import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
+import styles from './styles.less'
 
 const { I18n } = window
 const initialMenuItems = [
   {
     key: 'dashboard',
     label: I18n.t('campaign.dashboard_menu.home'),
-    icon: <HomeOutlined />,
+    icon: <HomeOutlined className={styles.siderIcon} />,
   },
   {
     key: 'profile',
     label: I18n.t('campaign.dashboard_menu.profile'),
-    icon: <UserOutlined />,
+    icon: <UserOutlined className={styles.siderIcon} />,
   },
 ]
 
 const campaignMenuItem = {
   key: 'campaign',
   label: 'Campaign',
-  icon: <RightSquareOutlined />,
+  icon: <RightSquareOutlined className={styles.siderIcon} />,
   children: [{ label: 'Tasks', key: 'tasks' }, { label: 'Insights', key: 'insights' }],
 }
 

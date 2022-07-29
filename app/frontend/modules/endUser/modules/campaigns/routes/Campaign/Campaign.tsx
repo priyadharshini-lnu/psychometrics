@@ -8,6 +8,7 @@ import { RootState } from 'modules/user/core/rootReducers'
 
 import { PageHeader } from 'glint'
 import LangDropdown from 'components/LangDropdown'
+import { PageContentSkeleton } from 'modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { Common } from './Common'
 import { Threesixty } from './Threesixty'
 
@@ -56,10 +57,6 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
     }
   }, [match.url])
 
-  if (!loaded) {
-    return null
-  }
-
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
       <LangDropdown locales={locales} current={current} />
@@ -71,7 +68,10 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
     <>
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
-        <Campaign history={history} match={match} />
+        { loaded ? <Campaign history={history} match={match} />
+          : (
+            <PageContentSkeleton />
+          )}
       </Content>
     </>
   )
