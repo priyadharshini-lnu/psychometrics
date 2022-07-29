@@ -15,9 +15,11 @@
           = f.association :owner,
                           collection: policy_scope(Client).enabled.roots.order(:name),
                           input_html: { data: { live_search: true } }
+        = f.input :data_only, as: :boolean, input_html: { id: 'report_data_only_checkbox' }
         = f.association :assessments,
                         collection: assessments_options_for_select(policy_scope(Assessment).unarchived.not_deleted, resource),
                         include_hidden: false,
+                        wrapper_html: { class: f.object.data_only? ? 'hidden' : '' },
                         input_html: { multiple: true,
                                       data: { live_search: true,
                                               max_options: Report::MAX_ASSESSMENT_COUNT,

@@ -2941,7 +2941,8 @@ CREATE TABLE public.reports (
     poster character varying,
     require_approval boolean DEFAULT false,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    data_only boolean DEFAULT false
 );
 
 
@@ -9715,7 +9716,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
-('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9741,6 +9741,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220609125511'),
 ('20220613192348'),
 ('20220616103155'),
-('20220630112848');
+('20220630112848'),
+('20220729103746');
 
 
