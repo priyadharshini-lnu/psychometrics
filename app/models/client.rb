@@ -68,7 +68,7 @@ class Client < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
-  has_many :end_users, class_name: 'User', foreign_key: :project_id
+  has_many :end_users, class_name: 'Users::Regular', foreign_key: :project_id
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
            source: :membership,
            class_name: 'Membership'
