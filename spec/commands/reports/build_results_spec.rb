@@ -142,6 +142,26 @@ describe Reports::BuildResults do
       end
     end
 
+    context 'RankedOccupations' do
+      it 'returns nil as key, value and name if user_result for the assessment is missing' do
+        data = { 'assessmentId' => user_result.assessment_id + 1, 'position' => 1 }
+        result = Reports::ResultTypes::RankedOccupations.call(build_results_command, data)
+
+        expect(result).to eq(key: nil, name: nil, config_data: data, value: nil)
+      end
+
+      it 'returns nil as key and value if user_result for the assessment is missing' do
+        occupation = create(:occupation)
+        user_result.update(occupations: [{ value: 'first', id: 2 }, { value: 'second', id: occupation.id }])
+        data = { 'assessmentId' => user_result.assessment_id, 'position' => 2 }
+        result = Reports::ResultTypes::RankedOccupations.call(build_results_command, data)
+
+        expect(result).to eq(
+          key: occupation.id, name: occupation.decorate.display_name, config_data: data, value: 'second'
+        )
+      end
+    end
+
     context 'NormedFactor' do
       before(:each) do
         allow(::Reports::GetDataConfigurationResources).to receive(:call!).

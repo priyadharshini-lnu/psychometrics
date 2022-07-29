@@ -19,6 +19,7 @@ module Campaigns
           user_access: options[:user_access],
           report_family_id: options[:report_family_id]
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
+        return broadcast :ok, user_report: user_report if report.data_only?
 
         user_assessments = options[:assessments].map do |assessment|
           find_or_create_assessment_to_user(assessment, user_report)

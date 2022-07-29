@@ -29,6 +29,7 @@ class UserAssessment < ApplicationRecord
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
+  scope :self_assessment, -> { where('subject_id = evaluator_id') }
 
   scope :filter_by_subject_or_assessment, lambda { |query|
     joins(:subject, :assessment).where(
