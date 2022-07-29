@@ -218,6 +218,10 @@ class Report < ApplicationRecord
     end.flatten.compact
   end
 
+  def data_configuration_assessment_ids
+    JsonPath.new('$..assessmentId').on(data_configuration).uniq
+  end
+
   def pdf_dimension
     pdf_height_margin = 6
     {
