@@ -66,3 +66,8 @@ fetch_pearson_assessments:
   cron: "0 6 */1 * *" # At 06:00 on every day-of-month
   class: Pearson::FetchAssessmentsJob
   queue_as: cron_tasks
+
+recalculate_proctoring_credits:
+  cron: "*/10 * * * *" # Every 10 minutes
+  class: Licenses::RecalculateProctoringCredits
+  queue_as: cron_tasks
