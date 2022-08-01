@@ -14,7 +14,9 @@ const { I18n } = window
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
-const ResetPasswordComponent: React.FC<Props> = ({ csrfToken, user, errors }) => {
+const ResetPasswordComponent: React.FC<Props> = ({
+  projectConfig, csrfToken, user, errors,
+}) => {
   if (user.reset_password_token) { return null }
   return (
     <div className={styles.container}>
@@ -29,7 +31,7 @@ const ResetPasswordComponent: React.FC<Props> = ({ csrfToken, user, errors }) =>
       )}
       <form
         className="ant-form ant-form-vertical"
-        action="/users/password"
+        action={projectConfig.id ? '/users/password' : '/administration/passwords'}
         method="post"
       >
         <Input type="hidden" name="authenticity_token" value={csrfToken} />

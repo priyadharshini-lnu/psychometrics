@@ -56,7 +56,7 @@ export const LayoutComponent = ({ config }) => {
             <div className={styles.logoWrapper}>
               <img src={config.client_logo || logo} className={styles.logo} />
             </div>
-            {location.pathname !== '/' && <LangDropdown locales={locales} current={current} />}
+            {config.id && <LangDropdown locales={locales} current={current} />}
           </Layout.Header>
           <Layout.Content className={styles.content}>
             {routes.map((route, i) => (

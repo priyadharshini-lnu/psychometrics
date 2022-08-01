@@ -3,6 +3,7 @@ import { createReducer } from 'utils/redux'
 type LoginBoxPosition = 'left' | 'right' | 'auto'
 
 interface State {
+  id?: number
   client_logo: null | string,
   secondary_logo: null | string,
   background: null | string,

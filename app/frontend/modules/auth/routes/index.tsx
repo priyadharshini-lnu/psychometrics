@@ -38,6 +38,11 @@ const routes = [
     exact: true,
   },
   {
+    path: '/administration/passwords/new',
+    main: ResetPassword,
+    exact: true,
+  },
+  {
     path: '/users/password',
     main: ResetPassword,
     exact: true,

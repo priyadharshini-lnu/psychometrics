@@ -2,6 +2,7 @@ import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Typography, Input } from 'antd'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
+import { Link } from 'react-router-dom'
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
@@ -40,6 +41,9 @@ const LoginComponent: React.FC<Props> = ({
           placeholder={I18n.t('auth.password_placeholder')}
           password
         />
+        <Link to="/administration/passwords/new">
+          {I18n.t('auth.login.forgot_password')}
+        </Link>
         <ButtonWithArrow
           label={I18n.t('auth.login.login_btn')}
           type="primary"

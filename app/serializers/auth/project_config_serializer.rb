@@ -2,7 +2,7 @@
 
 module Auth
   class ProjectConfigSerializer < ActiveModel::Serializer
-    attributes :background_color, :login_box_position, :background, :saml_login_allowed,
+    attributes :id, :background_color, :login_box_position, :background, :saml_login_allowed,
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color
 
