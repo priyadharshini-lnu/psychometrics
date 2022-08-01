@@ -10,7 +10,11 @@ module Examus
 
     def call
       proctoring_session = ProctoringSession.order(id: :desc).find_by(campaign_user_id: campaign_user.id)
-      if proctoring_session.nil? || !Examus::IsSessionAlive.call!(proctoring_session.session_id)
+      status_response = Examus::GetSession.call!(proctoring_session.session_id) if proctoring_session
+      ProctoringSessions::MarkInvalid.call!(proctoring_session) if proctoring_session.present? && status_response.nil?
+      existing_session_can_be_used = %w[started ready_to_start].include?(status_response&.dig('status'))
+
+      if proctoring_session.nil? || !existing_session_can_be_used
         unless Licenses::IsEnoughLicenseCredits.call!(@campaign_user)
           return broadcast :error, I18n.t('licenses.not_enough_proctoring_credits')
         end

@@ -15,16 +15,16 @@ describe Examus::FindOrCreateSession do
       expect(proctoring_session.session_id).to_not eq(nil)
     end
 
-    it 'creates proctoring_session if current_proctoring session is not alive' do
+    it 'creates proctoring_session if current_proctoring session is finished' do
       expect(Licenses::IsEnoughLicenseCredits).to receive(:call!).and_return(true)
       campaign_user.proctoring_sessions.create
-      expect(Examus::IsSessionAlive).to receive(:call!).and_return(false)
+      expect(Examus::GetSession).to receive(:call!).and_return({ 'status' => 'finished' })
       expect { described_class.call!(campaign_user) }.to change { ProctoringSession.count }.by(1)
     end
 
     it 'returns existing proctoring session if it is alive' do
       campaign_user.proctoring_sessions.create
-      expect(Examus::IsSessionAlive).to receive(:call!).and_return(true)
+      expect(Examus::GetSession).to receive(:call!).and_return({ 'status' => 'started' })
       expect { described_class.call!(campaign_user) }.to_not change(ProctoringSession, :count)
     end
   end
