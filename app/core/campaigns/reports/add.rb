@@ -30,11 +30,13 @@ module Campaigns
           report: report, user_access: user_access_for(report), report_family_id: report_family_id_for(report)
         )
 
-        get_assessments_for(report).each do |assessment|
-          assessment_params = form.assessment_map[assessment.id] || {}
-          attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
-          attrs[:external_norm_id] = assessment.external_norm_id if assessment.has_external_norm?
-          campaign.campaign_assessments.create_with(attrs).find_or_create_by!(assessment: assessment)
+        unless report.data_only?
+          get_assessments_for(report).each do |assessment|
+            assessment_params = form.assessment_map[assessment.id] || {}
+            attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
+            attrs[:external_norm_id] = assessment.external_norm_id if assessment.has_external_norm?
+            campaign.campaign_assessments.create_with(attrs).find_or_create_by!(assessment: assessment)
+          end
         end
 
         return if form.operation == 'skip_existing'

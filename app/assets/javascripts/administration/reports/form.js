@@ -8,6 +8,15 @@ function ReportsForm () {
     this.startListening()
     $(document).on('change', '#reports_form #resource_assessment_ids', this.onResourceAssessmentChange);
     $(document).on('change', '#reports_form #resource_hogan_report_setting_attributes_hogan_report_id', this.onResourceHoganReportSettingChange);
+    $(document).on('change', '#report_data_only_checkbox', function() {
+      var checked = $(this).is(':checked')
+      $(".resource_assessments").prop("disabled", checked);
+      if (checked) {
+        $(".resource_assessments").addClass('hidden');
+      } else {
+        $(".resource_assessments").removeClass('hidden');
+      }
+    })
   }
 
   this.startListening = function() {
