@@ -19,6 +19,18 @@ GIT
       pundit (>= 1.0.0, < 3.0.0)
 
 GIT
+  remote: https://github.com/TheTalentEnterprise/two_factor_authentication
+  revision: 850e0a19acb298a7d483d94dbe887b95b513bbf7
+  branch: fix_deprecated_methods
+  specs:
+    two_factor_authentication (2.2.0)
+      devise
+      encryptor
+      rails (>= 3.1.1)
+      randexp
+      rotp (>= 4.0.0)
+
+GIT
   remote: https://github.com/TheTalentEnterprise/webhook_system.git
   revision: b57d68db73cdb0cf71adae42d78b73328170f115
   branch: master
@@ -904,12 +916,6 @@ GEM
       faraday (>= 0.9, < 2.0)
       jwt (>= 1.5, <= 2.5)
       nokogiri (>= 1.6, < 2.0)
-    two_factor_authentication (2.2.0)
-      devise
-      encryptor
-      rails (>= 3.1.1)
-      randexp
-      rotp (>= 4.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
@@ -1130,7 +1136,7 @@ DEPENDENCIES
   timecop (~> 0.9.1)
   tty-progressbar (~> 0.16.0)
   twilio-ruby (~> 5.58.1)
-  two_factor_authentication (~> 2.2.0)
+  two_factor_authentication!
   validates_timeliness (~> 5.0.0)
   virtus (~> 1.0.5)
   webdrivers (~> 4.6.0)

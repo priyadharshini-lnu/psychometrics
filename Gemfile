@@ -50,7 +50,8 @@ gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
 gem 'devise-security',            '~> 0.17.0'
 gem 'pundit',                     '~> 2.1.1'
-gem 'two_factor_authentication',  '~> 2.2.0'
+gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
+  branch: 'fix_deprecated_methods'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
