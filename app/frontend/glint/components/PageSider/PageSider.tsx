@@ -24,6 +24,7 @@ export type SiderMenuItem = MenuItem & {
 type PageSiderProps = {
   items: SiderMenuItem[]
   logo: string
+  logoAltText?: string
   onMenuSelect?: (info: SelectInfo) => void
   siderFooter?: (collapsed: boolean) => React.ReactElement
   activeKey?: string
@@ -33,6 +34,7 @@ type PageSiderProps = {
 export const PageSider: FC<PageSiderProps> = ({
   items,
   logo,
+  logoAltText,
   siderFooter,
   onMenuSelect,
   activeKey = '',
@@ -86,7 +88,7 @@ export const PageSider: FC<PageSiderProps> = ({
 
   const logoEle = (
     <div className={styles.logoContainer}>
-      <img src={logo} className={styles.sidebarLogo} alt="Lighthouse" />
+      <img src={logo} className={styles.sidebarLogo} alt={logoAltText} />
     </div>
   )
   const siderTrigger = (

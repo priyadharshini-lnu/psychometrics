@@ -21,7 +21,7 @@ import { acceptPolicy } from 'modules/user/modules/campaigns/core/project'
 
 import { isInsideIframe } from 'utils/isInsideIframe'
 import { SafeHTML } from 'components/SafeHTML'
-import { NewHeader } from './NewHeader'
+import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
 import { InstructionsPanel } from './InstructionsPanel'
 import styles from './styles.less'
@@ -104,7 +104,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
             <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
           </div>
         )}
-        <NewHeader counters={counters} activeCampaignId={campaign.id} />
+        <CampaignPageHeader counters={counters} activeCampaignId={campaign.id} />
         <Row>
           <Col span={24}>
             {!campaignClosed && allAssessmentsComplete ? (

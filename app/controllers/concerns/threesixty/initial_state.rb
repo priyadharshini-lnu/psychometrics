@@ -23,6 +23,10 @@ module Threesixty::InitialState
         }
       }.merge(campaign_intial_state),
       config: {
+        design: {
+          logo: @current_project.design_setting.logo.url,
+          secondary_logo: @current_project.design_setting.secondary_logo.url
+        },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,
         maintenance: {

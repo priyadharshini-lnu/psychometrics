@@ -1,4 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, {
+  useEffect, useState, useRef, FC,
+} from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+
 import { PageSider } from 'glint'
 import { useLocation } from 'react-router-dom'
 import {
@@ -8,9 +12,22 @@ import {
 } from '@ant-design/icons'
 
 import { history } from 'modules/user/store'
-
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
+import { RootState } from 'modules/user/core/rootReducers'
+import {
+  getProjectLogo,
+  getName as getProjectName,
+} from 'modules/user/modules/campaigns/core/project'
 import styles from './styles.less'
+
+const connector = connect((state: RootState) => ({
+  logo: getProjectLogo(state),
+  projectName: getProjectName(state),
+}))
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+type UserPageSiderProps = {
+  siderFooter: (collapsed: boolean) => React.ReactElement
+} & PropsFromRedux
 
 const { I18n } = window
 const initialMenuItems = [
@@ -33,7 +50,7 @@ const campaignMenuItem = {
   children: [{ label: 'Tasks', key: 'tasks' }, { label: 'Insights', key: 'insights' }],
 }
 
-export const UserPageSider = ({ siderFooter }) => {
+const UserPageSiderComponent: FC<UserPageSiderProps> = ({ siderFooter, logo, projectName }) => {
   const [activeItem, setActiveItem] = useState('')
   const [menuItems, setMenuItems] = useState(initialMenuItems)
   const campaignIdRef = useRef<string>('')
@@ -64,7 +81,8 @@ export const UserPageSider = ({ siderFooter }) => {
 
   return (
     <PageSider
-      logo={lighthouseLogo}
+      logo={logo}
+      logoAltText={projectName}
       activeKey={activeItem}
       onMenuSelect={handleMenuSelect}
       items={menuItems}
@@ -72,3 +90,5 @@ export const UserPageSider = ({ siderFooter }) => {
     />
   )
 }
+
+export const UserPageSider = connector(UserPageSiderComponent)

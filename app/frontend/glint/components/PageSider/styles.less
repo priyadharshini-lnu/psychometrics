@@ -1,10 +1,11 @@
-@import 'styles/spacing.less';
+@import "styles/spacing.less";
 
 .sidebarLogo,
 .sidebarFooter {
-  padding: @space-5;
+  padding-inline: @space-4;
 }
-.page-sider--expanded, .page-sider--collapsed {
+.page-sider--expanded,
+.page-sider--collapsed {
   height: 100vh;
   position: fixed;
   z-index: 1;
@@ -24,7 +25,7 @@
   left: 90px;
 }
 
-.drawer-trigger{
+.drawer-trigger {
   position: fixed;
   left: 30px;
   top: 16px;
@@ -38,6 +39,14 @@
     padding-block: @space-6;
   }
 }
+.page-sider--expanded {
+  & :global(.ant-menu-item), & :global(.ant-menu-submenu-title) {
+    padding-left: @space-4 !important;
+  }
+  & :global(.ant-menu-item-only-child){
+    padding-left: @space-11 !important;
+  }
+}
 .page-sider--collapsed {
   width: 80px;
   & .sider-menu :global(.ant-menu-item) {
@@ -47,7 +56,8 @@
 .sidebarLogo {
   width: 100%;
   height: auto;
-  padding-block: @space-10;
+  padding-block: @space-4;
+  max-height: 140px;
 }
 .sidebarFooter {
   display: flex;
@@ -55,7 +65,7 @@
   bottom: 0px;
 }
 .profileName {
-  margin: '0px';
+  margin: 0px;
 }
 .sider-drawer {
   & :global(.ant-drawer-content-wrapper) {

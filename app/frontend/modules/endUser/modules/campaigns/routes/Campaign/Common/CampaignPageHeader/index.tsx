@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import _ from 'lodash'
+import React, { useEffect, FC } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {
   ClockCircleOutlined, PlayCircleOutlined, CheckCircleOutlined, ArrowLeftOutlined, DownOutlined,
 } from '@ant-design/icons'
 import {
-  Row, Col, PageHeader, Dropdown, Menu,
+  Row, Col, PageHeader, Dropdown, Menu, Tag,
 } from 'antd'
 
 import {
@@ -24,7 +25,13 @@ const connector = connect((state: RootState) => ({
   fetchCampaigns,
 })
 
-export const NewHeaderComponent = ({
+type PropsFromRedux = ConnectedProps<typeof connector>
+type NewHeaderComponentProps = PropsFromRedux & {
+  counters: _.Dictionary<number>
+  activeCampaignId: string
+}
+
+export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   counters, campaigns, fetchCampaigns, activeCampaignId,
 }) => {
   const history = useHistory()
@@ -45,9 +52,20 @@ export const NewHeaderComponent = ({
   }
 
   const menu = (
-    <Menu theme="light" onClick={handleCampaignSelect}>
+    <Menu
+      theme="light"
+      selectedKeys={activeCampaign && [`${activeCampaign.id}`]}
+      onClick={handleCampaignSelect}
+      className={styles.dropdownMenu}
+    >
       {campaigns.map(campaign => (
-        <Item key={campaign.id}>{campaign.name}</Item>
+        <Item key={campaign.id} className={styles.campaignItem}>
+          <Row wrap={false}>
+            <Col>{campaign.name}</Col>
+            {/* {Needs change once campaign progress status is available from backend} */}
+            <Col flex="auto" className="ta-e"><Tag color="green">Completed</Tag></Col>
+          </Row>
+        </Item>
       ))}
     </Menu>
   )
@@ -80,7 +98,7 @@ export const NewHeaderComponent = ({
       </Col>
     </Row>
   )
-  const titleElement = (
+  const titleElement = campaigns.length > 1 ? (
     <Dropdown overlay={menu} trigger={['click']} className={styles.campaignDropdown}>
       <a onClick={e => e.preventDefault()}>
         <Row>
@@ -97,7 +115,7 @@ export const NewHeaderComponent = ({
         </Row>
       </a>
     </Dropdown>
-  )
+  ) : <Col className={styles.campaignDropdown}>{activeCampaign && activeCampaign.name}</Col>
   return (
     <PageHeader
       className={styles.campaignHeader}
@@ -110,4 +128,4 @@ export const NewHeaderComponent = ({
   )
 }
 
-export const NewHeader = connector(NewHeaderComponent)
+export const CampaignPageHeader = connector(CampaignPageHeaderComponent)
