@@ -2,6 +2,6 @@
 
 module Auth
   class CurrentUserSerializer < ActiveModel::Serializer
-    attributes :email, :reset_password_token
+    attributes :email, :reset_password_token, :invitation_token
   end
 end

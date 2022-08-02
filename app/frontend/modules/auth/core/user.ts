@@ -7,6 +7,7 @@ interface UserAttributes {
   email: string
   reset_password_token?: string
   sms_invite_code?: string
+  invitation_token?: string
 }
 
 type State = UserAttributes

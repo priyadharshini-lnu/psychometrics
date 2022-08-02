@@ -5,6 +5,7 @@ import { Registration } from './Registration'
 import { ResetPassword } from './ResetPassword'
 import { SetPassword } from './SetPassword'
 import { TwoFactorAuth } from './TwoFactorAuth'
+import { Invitation } from './Invitation'
 
 const routes = [
   {
@@ -58,6 +59,16 @@ const routes = [
     exact: true,
   },
   {
+    path: '/administration/passwords/edit',
+    main: SetPassword,
+    exact: true,
+  },
+  {
+    path: '/administration/passwords',
+    main: SetPassword,
+    exact: true,
+  },
+  {
     path: '/users/two_factor_authentication',
     main: TwoFactorAuth,
     exact: true,
@@ -66,6 +77,14 @@ const routes = [
     path: '/users/password_expired',
     main: PasswordExpired,
     exact: true,
+  },
+  {
+    path: '/administration/invitations*',
+    main: Invitation,
+  },
+  {
+    path: '/users/invitation*',
+    main: Invitation,
   },
 ]
 

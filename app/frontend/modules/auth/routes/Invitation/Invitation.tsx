@@ -13,10 +13,10 @@ const { I18n } = window
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
-const SetPasswordComponent: React.FC<Props> = ({
+const InvitationComponent: React.FC<Props> = ({
   projectConfig, csrfToken, user, errors,
 }) => {
-  if (!user.reset_password_token) { return null }
+  if (!user.invitation_token) { return null }
 
   return (
     <div className={styles.container}>
@@ -26,12 +26,12 @@ const SetPasswordComponent: React.FC<Props> = ({
       </Typography.Paragraph>
       <form
         className="ant-form ant-form-vertical"
-        action={projectConfig.id ? '/users/password' : '/administration/passwords'}
+        action={projectConfig.id ? '/users/invitation' : '/administration/invitations'}
         method="post"
       >
         <Input type="hidden" name="_method" value="patch" />
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
-        <Input type="hidden" name="user[reset_password_token]" value={user.reset_password_token} />
+        <Input type="hidden" name="user[invitation_token]" value={user.invitation_token} />
         <InputField
           label={I18n.t('auth.password')}
           name="user[password]"
@@ -61,4 +61,4 @@ const SetPasswordComponent: React.FC<Props> = ({
 
 const connector = connect((state: RootState) => (state), {})
 
-export const SetPassword = connector(SetPasswordComponent)
+export const Invitation = connector(InvitationComponent)
