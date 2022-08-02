@@ -126,6 +126,9 @@ describe UserReports::GeneratePdf do
             file_path: "uploads/user_report/pdf/#{user_report.id}/#{report_file_name}",
             update_record: true
           },
+          meta: {
+            campaign_id: user_report.campaign_id, report_id: user_report.report_id, user_id: user_report.user_id
+          },
           async: nil
         )
       )
