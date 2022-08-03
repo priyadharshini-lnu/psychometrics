@@ -7,6 +7,8 @@ import { Route } from 'react-router-dom'
 import store, { history } from 'modules/user/store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
+import _ from 'lodash'
+import humps from 'humps'
 
 import ConnectionCheck from 'components/ConnectionCheck'
 import { UserPageLayout } from 'modules/endUser/modules/campaigns/components/UserPageLayout'
@@ -38,7 +40,7 @@ export default function App () {
   }, [])
 
   useEffect(() => {
-    const { remainingTime } = store.getState().config.maintenance
+    const { config: { maintenance: { remainingTime }, design } } = store.getState()
     if (remainingTime && remainingTime > 0) {
       setTimeout(() => {
         notification.warning({
@@ -50,6 +52,12 @@ export default function App () {
         }, 60000)
       }, (remainingTime - 40) * 1000)
     }
+
+    ConfigProvider.config({
+      theme: humps.camelizeKeys(
+        _.pick(design, ['primary_color', 'error_color', 'warning_color', 'success_color', 'info_color']),
+      ),
+    })
   }, [])
 
   if (pageLoading) {
