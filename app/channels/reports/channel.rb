@@ -23,7 +23,7 @@ module Reports
       if Administration::ReportPolicy.new(current_user, report).edit?
         transmit({
           action: 'report_data',
-          data: ReportSerializer.new(report).to_hash(include: '**')
+          data: ReportSerializer.new(report, builder: true).to_hash(include: '**')
         })
       else
         reject

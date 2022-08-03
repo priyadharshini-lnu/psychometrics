@@ -3,8 +3,10 @@ import store from 'modules/reports/store/PageList'
 import { DropTarget } from 'react-dnd'
 import PageModel from 'modules/reports/models/Page'
 import throttle from 'lodash/throttle'
+import { Divider } from 'antd'
 import PageLabel from './PageLabel'
 import styles from './PageEditor.less'
+import { ModuleList } from './ModuleList'
 
 const fieldTarget = {
   drop () {
@@ -12,6 +14,11 @@ const fieldTarget = {
 }
 
 class PageEditor extends Component {
+  state = {
+    modulesOpen: false,
+    page: null,
+  }
+
   componentDidMount () {
     this.storeListener = store.addListener('change', this.update)
   }
@@ -56,25 +63,43 @@ class PageEditor extends Component {
 
   render () {
     const { report: { currentPage }, pages, connectDropTarget } = this.props
+    const { modulesOpen, page: pageData } = this.state
+
     return connectDropTarget(
-      <div className={styles.leftSide}>
-        {_.map(pages, (data, i) => {
-          const page = new PageModel(data, [])
-          if (page.removed) { return false }
-          page.renderModules = _.includes([(currentPage - 1), currentPage, (currentPage + 1)], i)
-          return (
-            <PageLabel
-              key={page.id}
-              movePage={this.movePage}
-              findPage={this.findPage}
-              page={page}
-              number={i + 1}
-              active={currentPage === page.id ? styles.active : ''}
-              onChange={this.change}
-              onClick={() => this.click(page)}
-            />
-          )
-        })}
+      <div className={styles.leftMain}>
+        <div className={styles.leftSide}>
+          {_.map(pages, (data, i) => {
+            const page = new PageModel(data, [])
+            if (page.removed) { return false }
+            page.renderModules = _.includes([(currentPage - 1), currentPage, (currentPage + 1)], i)
+            return (
+              <PageLabel
+                key={page.id}
+                movePage={this.movePage}
+                findPage={this.findPage}
+                page={page}
+                number={i + 1}
+                active={currentPage === page.id ? styles.active : ''}
+                onChange={this.change}
+                onClick={() => this.click(page)}
+                onOpenModules={() => this.setState({ modulesOpen: true, page: data })}
+              />
+            )
+          })}
+        </div>
+        {modulesOpen && (
+          <div className={styles.cover} onClick={() => this.setState({ modulesOpen: false })}>
+            <div className={styles.modules}>
+              <div className={styles.caption}>
+                {pageData.name}
+                {` #${pageData.position} `}
+                Modules
+              </div>
+              <Divider style={{ margin: 0 }} />
+              <ModuleList page={pageData} />
+            </div>
+          </div>
+        )}
       </div>,
     )
   }

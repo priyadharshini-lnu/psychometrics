@@ -4,6 +4,7 @@ import { RGBColor } from 'react-color'
 export default interface Module {
   id: number
   type: string
+  removed: boolean
   toJSON: () => {}
   getScoreType(): string
   getValueType(): string
@@ -24,6 +25,15 @@ export default interface Module {
     showLabels: boolean
     showValues: boolean
     showLines: boolean
+    text?: string
+    type?: string
+    url?: string
+    position: {width: number, height: number}
+    style: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  }
+  meta: {
+    hidden?: boolean
+    locked?: boolean
   }
   update: () => void
 }

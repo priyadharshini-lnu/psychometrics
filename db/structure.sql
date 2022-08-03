@@ -3058,7 +3058,8 @@ CREATE TABLE public.reports_modules (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     type character varying,
-    assessment_id bigint
+    assessment_id bigint,
+    meta json DEFAULT '{"hidden":false,"locked":false}'::json
 );
 
 
@@ -9885,5 +9886,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220720075400'),
 ('20220721114549'),
 ('20220727081709'),
+('20220728085459'),
 ('20220725113027'),
 ('20220727115619');

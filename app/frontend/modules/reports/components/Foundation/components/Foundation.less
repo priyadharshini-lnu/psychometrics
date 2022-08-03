@@ -20,6 +20,7 @@
     top: -26px;
     align-items: center;
     user-select: none;
+    cursor: move;
     .label {
       padding: 4px;
     }
@@ -33,7 +34,9 @@
       display: flex;
     }
   }
-
+  &.locked {
+    pointer-events: none
+  }
 }
 
 .base.editor:hover {
@@ -75,5 +78,4 @@
   margin-right: 5px;
   padding: 4px;
   font-size: 18px;
-  cursor: move;
 }

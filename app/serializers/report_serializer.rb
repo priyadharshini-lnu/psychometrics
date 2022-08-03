@@ -25,7 +25,8 @@ class ReportSerializer < ActiveModel::Serializer
 
   def pages
     object.pages.map do |page|
-      Reports::PageSerializer.new(page, piped_text_context: @instance_options[:piped_text_context])
+      Reports::PageSerializer.new(page, piped_text_context: @instance_options[:piped_text_context],
+                                        builder: @instance_options[:builder])
     end
   end
 

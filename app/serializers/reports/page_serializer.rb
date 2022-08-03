@@ -20,7 +20,8 @@ module Reports
 
     def modules
       object.modules.order(:id).map do |mod|
-        ModuleSerializer.new(mod, piped_text_context: @instance_options[:piped_text_context])
+        ModuleSerializer.new(mod, piped_text_context: @instance_options[:piped_text_context],
+                                  builder: @instance_options[:builder])
       end
     end
   end
