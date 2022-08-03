@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe API::NormalizeCampaignParams do
+describe Api::NormalizeCampaignParams do
   it 'contains "campaigns" array' do
     response = described_class.call!({ campaigns: [
                                        { id: 1, active: true, existing_record: 'new_evaluation' },

@@ -49,7 +49,7 @@ module Hogan
 
     def get_participant_report(user_report)
       hogan_report_id = user_report.report.hogan_report_setting.hogan_report_id
-      Services::Hogan::API::JSON::ParticipantReport.call!(
+      Services::Hogan::Api::Json::ParticipantReport.call!(
         group: hogan_group_name,
         assessment_id: hogan_assessment_id,
         report_id: hogan_report_id,
@@ -59,7 +59,7 @@ module Hogan
     end
 
     def get_participant_score
-      Services::Hogan::API::JSON::ParticipantScore.call!(
+      Services::Hogan::Api::Json::ParticipantScore.call!(
         group: hogan_group_name,
         participant_id: hogan_participant_id,
         assessment_id: hogan_assessment_id,
@@ -69,7 +69,7 @@ module Hogan
     end
 
     def has_hogan_report?
-      Services::Hogan::API::JSON::GetParticipantProfile.call!(
+      Services::Hogan::Api::Json::GetParticipantProfile.call!(
         group: hogan_group_name,
         participant_id: hogan_participant_id,
         provider: credentials.provider

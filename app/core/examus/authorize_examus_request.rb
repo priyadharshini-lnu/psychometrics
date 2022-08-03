@@ -24,7 +24,7 @@ module Examus
     end
 
     def decoded_auth_token
-      @decoded_auth_token ||= Examus::JWTTokenizer.decode(http_auth_header)
+      @decoded_auth_token ||= Examus::JwtTokenizer.decode(http_auth_header)
     end
 
     def http_auth_header

@@ -13,7 +13,7 @@ module Api
       end
 
       def create
-        normalized_params = API::NormalizeCampaignParams.call!(params)
+        normalized_params = Api::NormalizeCampaignParams.call!(params)
         form = Api::V1::Users::CreateForm.from_params(normalized_params).with_context(project: project)
 
         if form.valid?

@@ -4,7 +4,7 @@ module Webhooks
   class ExamusController < ActionController::Base
     skip_before_action :verify_authenticity_token
 
-    rescue_from Errors::JWTAuthError do |e|
+    rescue_from Errors::JwtAuthError do |e|
       raise "Examus webhook error: #{e.message}. Params: #{params}"
     end
 

@@ -10,10 +10,10 @@ Bundler.require(*Rails.groups)
 
 module Psychometrics
   class Application < Rails::Application
-    config.time_zone = Settings.timezone
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.1
+    config.action_dispatch.cookies_same_site_protection = :none
     config.active_record.belongs_to_required_by_default = false
+    config.time_zone = Settings.timezone
 
     # Load all translates inside folders
     #
@@ -29,7 +29,7 @@ module Psychometrics
     config.active_record.schema_format = :sql
     config.autoload_paths << Rails.root.join('app/forms')
     config.autoload_paths << Rails.root.join('lib')
-    config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths.push(Rails.root.join('lib'), Rails.root.join('app/forms'))
     # Setup Active Job to use Sidekiq
     config.active_job.queue_adapter = :sidekiq
 
@@ -42,7 +42,7 @@ module Psychometrics
       Devise::Mailer.layout 'mailer/layouts/end_user_email'
     end
 
-    config.middleware.use SetLocaleMiddleware
+    config.middleware.use(Middlewares::SetLocaleMiddleware)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

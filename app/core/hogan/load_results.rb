@@ -47,7 +47,7 @@ module Hogan
     # Loads report from Hogan
     #
     def get_participant_report
-      Services::Hogan::API::JSON::ParticipantReport.call!(
+      Services::Hogan::Api::Json::ParticipantReport.call!(
         group: hogan_group_name,
         assessment_id: hogan_assessment_id,
         report_id: hogan_report_id,
@@ -59,7 +59,7 @@ module Hogan
     # Loads scores from Hogan
     #
     def get_participant_score
-      Services::Hogan::API::JSON::ParticipantScore.call!(
+      Services::Hogan::Api::Json::ParticipantScore.call!(
         group: hogan_group_name,
         participant_id: hogan_participant_id,
         assessment_id: hogan_assessment_id,

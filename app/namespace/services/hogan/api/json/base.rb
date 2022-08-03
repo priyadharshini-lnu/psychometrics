@@ -2,8 +2,8 @@
 
 module Services
   module Hogan
-    module API
-      module JSON
+    module Api
+      module Json
         class Base < BaseCommand
           private_attr_reader :context
 

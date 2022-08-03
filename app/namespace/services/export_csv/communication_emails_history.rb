@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Services
-  module ExportCSV
+  module ExportCsv
     class CommunicationEmailsHistory
       include Interactor
 

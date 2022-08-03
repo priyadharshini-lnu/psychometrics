@@ -26,7 +26,7 @@ module Api
       end
 
       def assign_user
-        normalized_params = API::NormalizeCampaignParams.call!(params)
+        normalized_params = Api::NormalizeCampaignParams.call!(params)
         form = Api::V1::Campaigns::AttachToUserForm.from_params(normalized_params).
                with_context(project: project, user: user)
         if form.valid?
@@ -51,7 +51,7 @@ module Api
       def create
         form = Api::V1::Campaigns::CreateForm.from_params(params)
         if form.valid?
-          normalized_params = ::Campaigns::NormalizeAPIRequest.call!(campaign_params)
+          normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           campaign = Campaign.create!(normalized_params.merge(project_id: project.id))
           audit! :api_create, campaign, payload: params.permit!, campaign: campaign
           render json: campaign, serializer: Api::V1::CampaignSerializer
@@ -63,7 +63,7 @@ module Api
       def update
         form = Api::V1::Campaigns::UpdateForm.from_params(params)
         if form.valid?
-          normalized_params = ::Campaigns::NormalizeAPIRequest.call!(campaign_params)
+          normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           @campaign.update!(normalized_params)
           audit! :api_update, @campaign, payload: params.permit!, campaign: @campaign
           render json: @campaign, serializer: Api::V1::CampaignSerializer

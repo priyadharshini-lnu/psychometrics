@@ -2,7 +2,7 @@
 
 # rubocop:disable Style/NonNilCheck
 module Campaigns
-  class NormalizeAPIRequest < BaseCommand
+  class NormalizeApiRequest < BaseCommand
     private_attr_accessor :params
 
     def initialize(params)

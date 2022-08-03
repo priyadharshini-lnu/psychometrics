@@ -73,7 +73,7 @@ module Administration
     end
 
     def download_history
-      csv = ::Services::ExportCSV::CommunicationEmailsHistory.call(communication: resource).result
+      csv = ::Services::ExportCsv::CommunicationEmailsHistory.call(communication: resource).result
       audit! :download_history, resource
       send_data csv, filename: "#{resource.subject}-#{Time.current}.csv"
     end

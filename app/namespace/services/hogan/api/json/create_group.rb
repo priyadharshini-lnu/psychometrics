@@ -2,8 +2,8 @@
 
 module Services
   module Hogan
-    module API
-      module JSON
+    module Api
+      module Json
         class CreateGroup < Base
           def call
             response = post(

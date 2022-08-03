@@ -4,7 +4,7 @@ module Examus
   module Util
     def api_client
       Faraday.new(base_api_url) do |connection|
-        jwt = Examus::JWTTokenizer.encode(exp: 30.seconds.from_now.to_i)
+        jwt = Examus::JwtTokenizer.encode(exp: 30.seconds.from_now.to_i)
         connection.headers['Content-Type'] = 'application/json'
         connection.headers['Authorization'] = "JWT #{jwt}"
       end

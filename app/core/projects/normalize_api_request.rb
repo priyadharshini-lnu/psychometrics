@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Projects
-  class NormalizeAPIRequest < BaseCommand
+  class NormalizeApiRequest < BaseCommand
     private_attr_accessor :params
 
     def initialize(params)
