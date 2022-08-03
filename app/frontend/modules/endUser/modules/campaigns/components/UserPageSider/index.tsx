@@ -26,6 +26,7 @@ const connector = connect((state: RootState) => ({
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type UserPageSiderProps = {
+  showInsights: boolean
   siderFooter: (collapsed: boolean) => React.ReactElement
 } & PropsFromRedux
 
@@ -43,14 +44,19 @@ const initialMenuItems = [
   },
 ]
 
-const campaignMenuItem = {
+const campaignMenuItem = showInsights => ({
   key: 'campaign',
   label: 'Campaign',
   icon: <RightSquareOutlined className={styles.siderIcon} />,
-  children: [{ label: 'Tasks', key: 'tasks' }, { label: 'Insights', key: 'insights' }],
-}
+  children: showInsights !== false ? [
+    { label: 'Tasks', key: 'tasks' },
+    { label: 'Insights', key: 'insights' },
+  ] : [{ label: 'Tasks', key: 'tasks' }],
+})
 
-const UserPageSiderComponent: FC<UserPageSiderProps> = ({ siderFooter, logo, projectName }) => {
+const UserPageSiderComponent: FC<UserPageSiderProps> = ({
+  showInsights, siderFooter, logo, projectName,
+}) => {
   const [activeItem, setActiveItem] = useState('')
   const [menuItems, setMenuItems] = useState(initialMenuItems)
   const campaignIdRef = useRef<string>('')
@@ -70,7 +76,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({ siderFooter, logo, pro
     if (location.pathname.includes('/campaigns/')) {
       const [,, campaignId] = location.pathname.split('/')
       campaignIdRef.current = campaignId
-      newMenuItems = [...newMenuItems.slice(0, 1), campaignMenuItem, ...newMenuItems.slice(1)]
+      newMenuItems = [...newMenuItems.slice(0, 1), campaignMenuItem(showInsights), ...newMenuItems.slice(1)]
       setMenuItems(newMenuItems)
       location.pathname.includes('insights') ? setActiveItem('insights') : setActiveItem('tasks')
     } else {

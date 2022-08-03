@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Modules } from 'modules/reports/components/modules'
 import store from 'modules/reports/store/PageList'
 import AppStore from 'modules/reports/store/AppStore'
+import cs from 'classnames'
 import styles from './Page.less'
 
 class Page extends Component {
@@ -54,13 +55,13 @@ class Page extends Component {
   }
 
   render () {
-    const { model = {} } = this.props
+    const { model = {}, pdfExport } = this.props
     const style = {
       ...AppStore.report.props.sizes,
     }
 
     return (
-      <div className={styles.page} name={`Page#${model.id}`}>
+      <div className={cs(styles.page, { [styles.dashboard]: !pdfExport })} name={`Page#${model.id}`}>
         <div className={`${styles.pageContainer} fe-page-container`} style={style}>
           <div className={styles.pageContent}>
             {model.modules.list.map(this.renderModuleType)}

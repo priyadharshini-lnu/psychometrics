@@ -20,6 +20,7 @@ _.extend(ResultStore.prototype, {
 
     this.user = JSON.parse(user)
     this.campaignDetails = JSON.parse(campaign)
+
     _.each(resultGroups, (results, assessmentId) => {
       this.results[assessmentId].init(results, this.user, AppStore.report.filters)
     })
