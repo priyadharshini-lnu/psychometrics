@@ -3790,6 +3790,7 @@ en:
         dimension: Dimensions
         manage_relationships: Manage Relationships...
         report: Report
+        title: Manage
       menu:
         assessment:
           title: Assessment

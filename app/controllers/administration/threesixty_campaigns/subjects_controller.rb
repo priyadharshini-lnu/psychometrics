@@ -109,7 +109,6 @@ module Administration
           [
             %w[add_subject create_all],
             'manage_datasheets',
-            'manage_relationships',
             'export_results',
             'export_completion_status',
             'reset_all_participants',

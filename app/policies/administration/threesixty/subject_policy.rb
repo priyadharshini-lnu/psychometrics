@@ -23,10 +23,6 @@ module Administration
         user.is?(:superadmin) || user.has_permission?(:datasheets, :manage, project_id: project_id)
       end
 
-      def manage_relationships?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
-      end
-
       def approve_report?
         user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
       end

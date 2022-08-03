@@ -48,10 +48,8 @@ module Administration
           nil,
           %w[
             manage_datasheets
-            manage_relationships
             export_results
             export_completion_status
-            edit_dimension
             reset_all_participants
             reset_all_nominations
             allow_results_delete

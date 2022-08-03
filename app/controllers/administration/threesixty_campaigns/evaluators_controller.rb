@@ -77,10 +77,8 @@ module Administration
             %w[add_evaluator create_all],
             %w[import_evaluator import],
             'manage_datasheets',
-            'manage_relationships',
             'export_results',
             'export_completion_status',
-            'edit_dimension',
             'reset_all_participants',
             'reset_all_nominations'
           ],
