@@ -24,13 +24,16 @@ module Lambdas
                                                         key: data['file_path'],
                                                         expires_in: 10.minutes.to_i,
                                                         response_content_disposition: content_disposition).to_s
-        ActionCable.server.broadcast "notification_channel_for_#{data['notify_user_id']}",
-                                     type: 'success',
-                                     message: I18n.t('jobs.threesixty.reports.download.message'),
-                                     description: I18n.t(
-                                       'jobs.threesixty.reports.download.description',
-                                       url: file_url
-                                     )
+        ActionCable.server.broadcast \
+          "notification_channel_for_#{data['notify_user_id']}",
+          {
+            type: 'success',
+            message: I18n.t('jobs.threesixty.reports.download.message'),
+            description: I18n.t(
+              'jobs.threesixty.reports.download.description',
+              url: file_url
+            )
+          }
       end
 
       def update_admin_job_progress(data)
