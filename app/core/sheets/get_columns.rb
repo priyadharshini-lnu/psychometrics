@@ -20,8 +20,8 @@ module Sheets
       broadcast :ok, columns
     end
 
-    def access_include?
-      @by_access.include?
+    def access_include?(attribute)
+      @by_access.include?(attribute)
     end
   end
 end
