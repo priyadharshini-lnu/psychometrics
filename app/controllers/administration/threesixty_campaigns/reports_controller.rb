@@ -29,7 +29,7 @@ module Administration
           format.pdf do
             audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign,
               payload: { user_email: @user_report.user.email }
-            render :export, formats: 'html', layout: 'pdf', content_type: 'text/html'
+            render :export, formats: :html, layout: 'pdf', content_type: 'text/html'
           end
         end
       end
