@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+class OldDatasheet < ApplicationRecord
+  self.table_name = 'datasheets'
+  self.inheritance_column = :_type_disabled
+end
+
 class MigrateDatasheetSettingsToColumns < ActiveRecord::Migration[5.2]
   def up
-    Datasheet.table_name = 'datasheets'
-    Datasheet.all.each do |datasheet|
+    OldDatasheet.all.each do |datasheet|
       columns = datasheet.columns.map do |field, type|
         {
           name: field,

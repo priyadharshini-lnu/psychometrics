@@ -239,6 +239,7 @@ group :test do
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.3.0'
   gem 'simplecov', '~> 0.21.2'
+  gem 'solargraph', '~>0.45.0'
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.6.0'
   gem 'webmock', '~> 3.14.0'
