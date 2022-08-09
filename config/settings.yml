@@ -474,6 +474,7 @@ providers:
         name: Basis
         norm_id: Global
         language_id: en
+        suitability_id: Hogan - Leader
         assessment_ids:
           - HPI
           - HDS

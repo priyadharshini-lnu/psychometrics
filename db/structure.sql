@@ -1756,7 +1756,8 @@ CREATE TABLE public.hogan_report_settings (
     hogan_language_id character varying NOT NULL,
     load_report boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    hogan_suitability_id character varying
 );
 
 
@@ -9745,6 +9746,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220616103155'),
 ('20220630112848'),
 ('20220728134015'),
-('20220729103746');
+('20220729103746'),
+('20220809130239');
 
 

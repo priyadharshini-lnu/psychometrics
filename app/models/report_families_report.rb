@@ -3,4 +3,6 @@
 class ReportFamiliesReport < ApplicationRecord
   belongs_to :report
   belongs_to :report_family
+
+  before_save -> { self.external_package_id = external_package_id.presence }
 end
