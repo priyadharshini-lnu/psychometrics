@@ -19,9 +19,8 @@ module UserReports
           next
         end
 
-        user_report.update(status: :generating)
-
         report = user_report.report
+        user_report.update!(status: :generating) unless report.hogan?
 
         generate_mindminl_report(user_report) if report.mindmill?
         generate_hogan_report(user_report) if report.hogan?
