@@ -21,7 +21,7 @@ module Administration
       end
 
       def destroy
-        remove_user_reports = current_user.is?(:super_admin) && params[:remove_user_reports]
+        remove_user_reports = current_user.is?(:superadmin) && params[:remove_user_reports]
         ::CampaignReports::Remove.call!(
           campaign_report: resource, remove_user_reports: remove_user_reports
         )
