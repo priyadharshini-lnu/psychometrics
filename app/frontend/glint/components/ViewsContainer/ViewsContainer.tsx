@@ -1,8 +1,12 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, {
+  FC, useEffect, useState, useContext,
+} from 'react'
 import {
   Row, Col, Button, Typography, Space,
 } from 'antd'
 import { UnorderedListOutlined, TableOutlined } from '@ant-design/icons'
+
+import { MediaQueryContext } from 'glint'
 
 import styles from './styles.less'
 
@@ -24,6 +28,7 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
   onViewChange, title, children, defaultView = 'list',
 }) => {
   const [view, setView] = useState<string>(defaultView)
+  const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
 
   useEffect(() => {
     onViewChange && onViewChange(view)
@@ -37,6 +42,7 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
             {title}
           </Title>
         </Col>
+        { !isMobile && (
         <Col span={12} className={styles.viewControls}>
           <Space>
             <Button
@@ -57,6 +63,7 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
             />
           </Space>
         </Col>
+        )}
       </Row>
       {children(view)}
     </>

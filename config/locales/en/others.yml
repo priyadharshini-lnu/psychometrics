@@ -2684,6 +2684,9 @@ en:
         declined: Declined
         denied: Denied
         waiting: Waiting
+    timer_title:
+      assessment: Assessment
+      campaign: Campaign
   user_reports:
     actions:
       regenerate: Regenerate

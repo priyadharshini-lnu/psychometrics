@@ -1,5 +1,6 @@
 @import "glint/styles/mixins.less";
 @import "styles/spacing.less";
+@import "styles/ant.variable.less";
 
 .tasksContainer {
   & > :global(.ant-row) {
@@ -11,6 +12,7 @@
 }
 .cardsContainer {
   max-width: 1200px;
+  padding-inline: @space-2;
   margin: auto;
 }
 .beginText {

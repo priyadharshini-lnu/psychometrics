@@ -5,14 +5,15 @@ import {
 import { ClockCircleOutlined } from '@ant-design/icons'
 import truncate from 'lodash/truncate'
 import { DetailsCard } from 'glint'
+import { useHistory } from 'react-router-dom'
 
 import routeUtils from 'utils/route'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 
-import { History } from 'history'
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+import { secondsLeftFromNow } from 'utils/time'
 
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
 import { PrivacyModal } from '../PrivacyModal'
@@ -27,28 +28,60 @@ const { Text } = Typography
 interface Props {
   userAssessment: UserAssessment
   acceptPolicy(): Promise<unknown>
-  history: History
   isPartOfTimedCampaign: boolean
   campaignExpiryDate: string
   view: string
+  disabled: boolean
+
+}
+const buttonTextData = {
+  in_progress: 'Continue',
+  completed: '',
+  not_started: 'Begin',
+  timed_out: '',
+  interrupted: 'Continue',
 }
 
-const InternalAssessment: React.FC<Props> = ({
+export const InternalAssessment: React.FC<Props> = ({
   userAssessment,
   acceptPolicy,
-  history,
   view,
   isPartOfTimedCampaign,
   campaignExpiryDate,
+  disabled,
 }) => {
-  let taskStatus = userAssessment.status
+  const history = useHistory()
+  const {
+    status, needConfirm, assessmentIconUrl, assessmentName, completionPercent, timing, assessmentExtra,
+  } = userAssessment
+  let taskStatus = status
+  const [loading, setLoading] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLang, setShowLang] = useState(false)
   const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
 
-  const loadAssessment = ({ url, mindmill, mindmillUrl }, lang) => {
-    const href = mindmill ? mindmillUrl : url
+  const handleBeginAssessment = () => {
+    if (isPartOfTimedCampaign && campaignExpiryDate && assessmentExtra.timer) {
+      const remainingCampaignTime = secondsLeftFromNow(campaignExpiryDate)
+      if (remainingCampaignTime && remainingCampaignTime < assessmentExtra.timer) {
+        return setShowTimingConfirmation(true)
+      }
+    }
 
+    if (needConfirm) return setShowConfirm(true)
+
+    loadAssessmentOrCheckingWizard()
+  }
+
+  const handleContinueAssessment = () => {
+    loadAssessmentOrCheckingWizard()
+  }
+
+  const loadAssessment = ({
+    url, mindmill, mindmillUrl,
+  }, lang) => {
+    const href = mindmill ? mindmillUrl : url
+    setLoading(true)
     const params = new URLSearchParams(`lang=${lang}`)
     location.href = `${href}?${params.toString()}`
   }
@@ -66,6 +99,7 @@ const InternalAssessment: React.FC<Props> = ({
 
   const accept = () => {
     setShowConfirm(false)
+    setLoading(true)
 
     acceptPolicy().then(() => {
       loadAssessmentOrCheckingWizard()
@@ -87,54 +121,58 @@ const InternalAssessment: React.FC<Props> = ({
     }
   }
 
-  const { assessmentIconUrl: iconUrl } = userAssessment
+  const iconUrl = assessmentIconUrl
   const assessmentIcon = iconUrl ? (
     <Avatar src={iconUrl} />
   ) : (
     <Avatar
       className={styles.titleAvatar}
     >
-      {userAssessment.assessmentName.substring(0, 2)}
+      {assessmentName.substring(0, 2)}
     </Avatar>
   )
   const assessmentTitle = view === 'list'
-    ? userAssessment.assessmentName
-    : truncate(userAssessment.assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })
+    ? assessmentName
+    : truncate(assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })
 
-  if (userAssessment.completionPercent === 100) {
+  if (completionPercent === 100) {
     taskStatus = 'completed'
   }
   const statusElement = <StatusText taskStatus={taskStatus} />
   const titleElement = (
     <Row wrap={false}>
       <Col>{assessmentIcon}</Col>
-      <Col className={styles.assessmentLabel}>{assessmentTitle}</Col>
+      <Col className={styles.assessmentLabel}><span>{assessmentTitle}</span></Col>
     </Row>
   )
 
   return (
     <>
       <DetailsCard
-        buttonText={I18n.t('assessments.instructions.begin_assessment')}
         status={statusElement}
         showStatusAtTop={view === 'list'}
         title={titleElement}
-        progressPercentage={userAssessment.completionPercent || 0}
+        progressPercentage={completionPercent || 0}
+        buttonText={buttonTextData[status]}
+        actionDisabled={disabled}
+        actionLoading={loading}
+        actionDisabledText={I18n.t('campaign.complete_prev')}
+        handleButtonClick={status === 'not_started' ? handleBeginAssessment : handleContinueAssessment}
         subtitle={(
           <>
-            {userAssessment.timing && (
+            {timing && (
               <div>
                 <ClockCircleOutlined />
                 <Text type="secondary">
                   {' '}
-                  {userAssessment.timing}
+                  {timing}
                 </Text>
               </div>
             )}
           </>
       )}
       />
-      {userAssessment.needConfirm
+      {needConfirm
       && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
       <LanguageModal
         locales={userAssessment.availableLocales}
@@ -155,5 +193,3 @@ const InternalAssessment: React.FC<Props> = ({
     </>
   )
 }
-
-export default InternalAssessment

@@ -101,6 +101,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
 
   return (
     <Statistic.Countdown
+      className={styles.timer}
       value={countDownValue}
       onFinish={() => onFinish && onFinish()}
       format={timerFormat}

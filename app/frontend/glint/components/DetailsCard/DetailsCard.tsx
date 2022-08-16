@@ -1,6 +1,6 @@
-import React, { FC, Fragment } from 'react'
+import React, { FC } from 'react'
 import {
-  Card, Col, Button, Typography, Progress, Row, Tooltip,
+  Card, Col, Button, Typography, Progress, Row, Tooltip, Space,
 } from 'antd'
 import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
@@ -51,42 +51,44 @@ export const DetailsCard: FC<DetailsCardProps> = ({
     </Title>
   )
 
-  const titleRow = showStatusAtTop ? (
-    <Row>
-      <Col span={12}>{titleElement}</Col>
-      <Col span={12} className="ta-e">
-        {status}
-      </Col>
-    </Row>
-  ) : (
-    <>
-      <Row>
-        <Col span={24}>{titleElement}</Col>
-        <Col span={24}>{status}</Col>
-      </Row>
-    </>
-  )
-
   const progressBarSpan = showStatusAtTop ? 6 : 12
 
   return (
     <Card className={styles.detailsCard}>
-      {titleRow}
-      {subtitle}
-      <p>{description}</p>
+      {showStatusAtTop && (
+      <Row>
+        <Col xs={18} sm={12}>{titleElement}</Col>
+        <Col xs={6} sm={12} className="ta-e">
+          {status}
+        </Col>
+      </Row>
+      )}
+      <Space direction="vertical">
+        {!showStatusAtTop && (
+        <Row>
+          <Col span={24}>{titleElement}</Col>
+          <Col span={24}>{status}</Col>
+        </Row>
+        )}
+        <Row>
+          {subtitle}
+        </Row>
+        <p>{description}</p>
+      </Space>
       <Row className={styles.cardFooter}>
         <Col lg={progressBarSpan} md={8} xs={12}>
           <Progress percent={progressPercentage} />
         </Col>
         {buttonText && (
           <Col lg={24 - progressBarSpan} md={16} xs={12} className={styles.buttonCol}>
-            <ButtonWrapper wrapText={actionDisabledText}>
+            <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
               <Button
                 loading={actionLoading}
                 type="primary"
                 disabled={actionDisabled}
                 size="small"
                 onClick={handleClick}
+                className={styles.actionButton}
               >
                 {buttonText}
                 {rtl ? <LeftOutlined /> : <RightOutlined />}

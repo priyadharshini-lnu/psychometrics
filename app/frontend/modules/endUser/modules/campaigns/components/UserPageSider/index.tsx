@@ -1,15 +1,13 @@
-import React, {
-  useEffect, useState, useRef, FC,
-} from 'react'
+import React, { useRef, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-
-import { PageSider } from 'glint'
 import { useLocation } from 'react-router-dom'
 import {
   HomeOutlined,
   UserOutlined,
   RightSquareOutlined,
 } from '@ant-design/icons'
+
+import { PageSider } from 'glint'
 
 import { history } from 'modules/user/store'
 import { RootState } from 'modules/user/core/rootReducers'
@@ -31,20 +29,12 @@ type UserPageSiderProps = {
 } & PropsFromRedux
 
 const { I18n } = window
-const initialMenuItems = [
-  {
-    key: 'dashboard',
-    label: I18n.t('campaign.dashboard_menu.home'),
-    icon: <HomeOutlined className={styles.siderIcon} />,
-  },
-  {
-    key: 'profile',
-    label: I18n.t('campaign.dashboard_menu.profile'),
-    icon: <UserOutlined className={styles.siderIcon} />,
-  },
-]
 
-const campaignMenuItem = showInsights => ({
+const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
+  key: 'dashboard',
+  label: I18n.t('campaign.dashboard_menu.home'),
+  icon: <HomeOutlined className={styles.siderIcon} />,
+}, ...showCampaign ? [{
   key: 'campaign',
   label: 'Campaign',
   icon: <RightSquareOutlined className={styles.siderIcon} />,
@@ -52,14 +42,22 @@ const campaignMenuItem = showInsights => ({
     { label: 'Tasks', key: 'tasks' },
     { label: 'Insights', key: 'insights' },
   ] : [{ label: 'Tasks', key: 'tasks' }],
-})
+}] : [], {
+  key: 'profile',
+  label: I18n.t('campaign.dashboard_menu.profile'),
+  icon: <UserOutlined className={styles.siderIcon} />,
+}])
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   showInsights, siderFooter, logo, projectName,
 }) => {
-  const [activeItem, setActiveItem] = useState('')
-  const [menuItems, setMenuItems] = useState(initialMenuItems)
+  const location = useLocation()
+  const { pathname } = location
+  let menuItems = getMenuItems()
+  let activeItem:string
   const campaignIdRef = useRef<string>('')
+  const isAnonym = pathname.includes('/anonym/')
+
   const handleMenuSelect = (menu) => {
     if (menu.key === 'tasks') {
       return history.push(`/campaigns/${campaignIdRef.current}`)
@@ -69,31 +67,27 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     }
     history.push(`/${menu.key}`)
   }
-  const location = useLocation()
 
-  useEffect(() => {
-    let newMenuItems = initialMenuItems
-    if (location.pathname.includes('/campaigns/')) {
-      const [,, campaignId] = location.pathname.split('/')
-      campaignIdRef.current = campaignId
-      newMenuItems = [...newMenuItems.slice(0, 1), campaignMenuItem(showInsights), ...newMenuItems.slice(1)]
-      setMenuItems(newMenuItems)
-      location.pathname.includes('insights') ? setActiveItem('insights') : setActiveItem('tasks')
-    } else {
-      setMenuItems(newMenuItems)
-      setActiveItem(location.pathname.slice(1))
-    }
-  }, [location])
+  if (pathname.includes('/campaigns/') || pathname.includes('user_assessments/')) {
+    const [,, campaignId] = location.pathname.split('/')
+    campaignIdRef.current = campaignId
+    menuItems = getMenuItems(true, showInsights)
+    activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
+  } else {
+    activeItem = pathname.slice(1)
+  }
 
   return (
-    <PageSider
-      logo={logo}
-      logoAltText={projectName}
-      activeKey={activeItem}
-      onMenuSelect={handleMenuSelect}
-      items={menuItems}
-      siderFooter={siderFooter}
-    />
+    !isAnonym ? (
+      <PageSider
+        logo={logo}
+        logoAltText={projectName}
+        activeKey={activeItem}
+        onMenuSelect={handleMenuSelect}
+        items={menuItems}
+        siderFooter={siderFooter}
+      />
+    ) : null
   )
 }
 

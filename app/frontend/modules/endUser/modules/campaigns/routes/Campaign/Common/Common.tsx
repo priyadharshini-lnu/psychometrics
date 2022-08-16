@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
@@ -56,7 +56,10 @@ const CommonComponent: FC<CommonComponentProps> = ({
   campaign: { campaignUser, groups },
   loginHogan,
   acceptPolicy,
+  beginCampaign,
+  continueCampaign,
 }) => {
+  const [showError, setShowError] = useState(false)
   const {
     isTimedCampaign,
     campaignsCount,
@@ -82,6 +85,8 @@ const CommonComponent: FC<CommonComponentProps> = ({
     || isCampaignInterrupted
     || campaignUserTimedOut
   const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
+  const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted)
+    && !campaignClosed && !allAssessmentsComplete && !campaignUserTimedOut
   const showCampaignClosedMessage = campaignClosed
   || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
 
@@ -96,8 +101,26 @@ const CommonComponent: FC<CommonComponentProps> = ({
   )
   ungrouped = [...ungrouped, ...ungroupedAssessments]
 
+  const handleBeginCampign = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    beginCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }: any) => {
+      if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
+    }).catch((error) => {
+      setShowError(error)
+    })
+  }
+
+  const handleContinueCampaign = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    continueCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }: any) => {
+      if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
+    }).catch((error) => {
+      setShowError(error)
+    })
+  }
+
   return (
-    <Content className="fluid-container common-campaign">
+    <Content>
       <>
         {showCampaignClosedMessage && (
           <div className="mvm font-bold">
@@ -139,21 +162,50 @@ const CommonComponent: FC<CommonComponentProps> = ({
         <Row className={styles.cardsContainer}>
           <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
             <div className={styles.tasksContainer}>
-              {canBeginCampaign && (
-                <Row>
-                  <Col span={24} style={{ paddingLeft: '14px' }}>
-                    <Title className={styles.beginText} level={4}>
-                      {I18n.t('campaign.begin')}
-                    </Title>
-                    {/* {<p>This is text will come from backend</p>} */}
-                    <Button size="small" type="primary">
-                      {I18n.t('campaign.begin')}
-                      {' '}
-                      <RightOutlined />
-                    </Button>
-                  </Col>
-                </Row>
-              )}
+              <Row>
+                <Col span={24} style={{ paddingLeft: '14px' }}>
+                  {canBeginCampaign && (
+                    <>
+                      <Title className={styles.beginText} level={4}>
+                        {I18n.t('campaign.begin')}
+                      </Title>
+                        {/* {<p>This is text will come from backend</p>} */}
+                      <Button
+                        size="small"
+                        type="primary"
+                        onClick={handleBeginCampign}
+                        disabled={proctoringEnabled && !showError}
+                      >
+                        {I18n.t('campaign.begin')}
+                        {' '}
+                        <RightOutlined />
+                      </Button>
+                    </>
+                  )}
+                  {proctoringEnabled
+                      && !showError
+                      && <Alert message={I18n.t('licenses.not_enough_proctoring_credits')} type="error" />
+                  }
+                  {canContinueCampaign && (
+                    <>
+                      <Title className={styles.beginText} level={4}>
+                        {I18n.t('campaign.continue')}
+                      </Title>
+                        {/* {<p>This is text will come from backend</p>} */}
+                      <Button
+                        size="small"
+                        type="primary"
+                        onClick={handleContinueCampaign}
+                        disabled={proctoringEnabled && !showError}
+                      >
+                        {I18n.t('campaign.continue')}
+                        {' '}
+                        <RightOutlined />
+                      </Button>
+                    </>
+                  )}
+                </Col>
+              </Row>
               <AssessmentsContainer
                 groups={groups}
                 ungrouped={ungrouped}
