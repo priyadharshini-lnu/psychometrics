@@ -2568,6 +2568,7 @@ en:
           error: "[Row %{row}] %{error}"
           invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_format: Invalid File format
+          question_mismatch: Question is not present in the assessment you are importing.
           user:
             record_not_found: Can't find existing user with email %{email}.
           user_assessment:

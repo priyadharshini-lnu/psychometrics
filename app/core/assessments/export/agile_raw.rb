@@ -7,14 +7,16 @@ module Assessments
 
       FIXED_HEADERS = [
         'ID',
-        'Project',
         'First Name',
         'Last Name',
         'Email',
         'Assessment ID',
-        'completed_at',
         'Assessment Name',
+        'Status',
+        'Started At',
+        'Completed At',
         'Completed Groups',
+        'Norm',
         ''
       ].freeze
 
@@ -55,10 +57,10 @@ module Assessments
       def question_headers(questions)
         questions.map do |q|
           [
+            "#{q}.group_id",
             "#{q}.id",
             "#{q}.answers",
             "#{q}.duration",
-            "#{q}.group_id",
             "#{q}.session_id",
             "#{q}.start_time",
             "#{q}.end_time"
@@ -69,14 +71,16 @@ module Assessments
       def result_details_row_values(res)
         [
           res.encoded_id,
-          campaign.name,
           res.subject.first_name,
           res.subject.last_name,
           res.subject.email,
           @assessment.id,
-          res.completed_at.try(:strftime, '%D %r'),
           @assessment.name,
+          I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}", locale: :en),
+          res.started_at.try(:strftime, '%D %r'),
+          res.completed_at.try(:strftime, '%D %r'),
           res.meta_data['completed_groups']&.join(','),
+          res.norm ? res.norm.name : '',
           ''
         ]
       end
@@ -98,10 +102,10 @@ module Assessments
 
         result_values = questions.map do |question|
           [
+            answers_by_id.dig(question, 'group_id'),
             answers_by_id.dig(question, 'id'),
             answers_by_id.dig(question, 'answers')&.join(','),
             answers_by_id.dig(question, 'duration'),
-            answers_by_id.dig(question, 'group_id'),
             answers_by_id.dig(question, 'session_id'),
             readable_date(answers_by_id.dig(question, 'start_time')),
             readable_date(answers_by_id.dig(question, 'end_time'))

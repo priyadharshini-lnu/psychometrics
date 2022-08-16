@@ -18,10 +18,21 @@ module Imports
       def process!
         return false unless valid?
 
-        user_results = load_imported_items.compact
+        user_results = load_imported_items&.compact
+
+        return false unless user_results
 
         if user_results.map(&:valid?).all?
           user_results.each(&:save!)
+          user_results.each do |user_result|
+            next unless user_result.completed?
+
+            ::UsersResults::Recompute.call!(
+              user_result,
+              user_result.user,
+              norm_id: user_result.norm_id
+            )
+          end
         else
           user_results.each_with_index do |user_result, index|
             user_result.errors.full_messages.each do |message|
@@ -36,34 +47,50 @@ module Imports
 
       def load_imported_items
         rows = open_spreadsheet.to_a
-        header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
+        header = rows.shift
+
+        fixed_headers, question_headers = header.partition.with_index do |_, index|
+          index < fixed_headers_size
+        end
+
+        fixed_headers = fixed_headers.map { |h| h.to_s.tr(' ', '').underscore }
+
+        header = fixed_headers + question_headers
+
+        question_header_question_ids = question_headers.map { |h| h.split('.').reject(&:blank?)[0] }.uniq
+
+        unless question_header_question_ids.all? { |question_id| assessment_question_ids.include?(question_id) }
+          errors.add(
+            :base,
+            I18n.t('administration.imports.errors.result.question_mismatch')
+          )
+          return
+        end
 
         rows.each_with_index.map do |row, index|
           data = Hash[header.zip(row)]
-
-          begin
-            user_result = UsersResult.find_by_encoded_id(data['id']) if data['id'].present?
-          rescue ActiveRecord::RecordNotFound
-            errors.add(
-              :base,
-              I18n.t('administration.imports.errors.result.invalid_assign', row: index + SKIP_ROWS)
-            )
-            next
-          end
 
           user_result ||= find_user_result(data['email'])
 
           next unless user_result
 
+          status = I18n.t('activerecord.attributes.users_result.statuses', locale: :en).key(data['status'])
+
+          norm_id = parsed_norm_id(data['norm'], user_result.assessment_id)
+
+          user_result.user_assessment.update!(
+            completed_at: parse_date(data['completed_at'], index),
+            norm_id: norm_id,
+            status: status,
+            started_at: parse_date(data['started_at'], index)
+          )
+
           user_result.meta_data['completed_groups'] = data['completed_groups'].split(',')
 
           fixed_headers_size.times { data.shift }
 
-          parsed_question_answers = {}
+          user_result.answers = form_answers(data)
 
-          form_answers(data, parsed_question_answers)
-          user_result.answers = [{}] unless user_result.answers.present?
-          user_result.answers[0]['answers'] = parsed_question_answers
           user_result
         end
       end
@@ -78,6 +105,18 @@ module Imports
 
       private
 
+      def assessment_question_ids
+        config = Agile.find_by_assessment_id(assessment.id).try(:config)
+        scene_type = 'AssessmentScene'
+
+        config['groups'].collect { |group| group['scenes'].select { |scene| scene['type'] == scene_type } }.
+          select { |scene| scene.size.positive? }.
+          flatten(1).
+          flat_map { |scene| scene.dig('data', 'blocks') }.
+          flat_map { |blocks| blocks['questions'] }.
+          collect { |question| question['id'] }
+      end
+
       def find_user_result(email)
         user = Users::Regular.find_by(email: email.to_s.downcase, project_id: campaign.project_id)
         unless user
@@ -87,6 +126,7 @@ module Imports
           )
           return
         end
+
         user_assessment = find_user_assessments(user)
 
         unless user_assessment
@@ -105,25 +145,57 @@ module Imports
 
       def find_user_assessments(user)
         UserAssessment.find_by(
-          subject_id: user.id,
-          evaluator_id: user.id,
           campaign_id: campaign.id,
-          assessment_id: assessment.id
+          assessment_id: assessment.id,
+          subject_id: user.id
         )
       end
 
-      def form_answers(data, parsed_question_answers)
+      def parsed_norm_id(norm_name, assessment_id)
+        return {} unless norm_name.present?
+
+        @parsed_norm_id ||= {}
+
+        unless @parsed_norm_id[norm_name].present?
+          norm_ids = Norm.joining { dimension }.joining do
+            dimension.assessments.alias('assessments').
+              on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
+          end.where(name: norm_name).pluck(:id)
+          @parsed_norm_id[norm_name] = norm_ids.try(:first)
+        end
+        @parsed_norm_id[norm_name]
+      end
+
+      def form_answers(data)
+        row = {}
         data.each do |key, value|
-          qid, prop = key.split(/\.+/).reject(&:blank?)
+          qid, prop = key.split('.').reject(&:blank?)
           next unless qid.present?
 
-          parsed_question_answers[qid] = {} unless parsed_question_answers.key?(qid&.underscore)
-          parsed_question_answers[qid][prop] = if AGILE_DATE_FIELDS.include?(prop)
-                                                 date_to_timestamp(value)
-                                               else
-                                                 value
-                                               end
+          row[qid] = {} if row[qid].blank?
+          row[qid][prop] = if AGILE_DATE_FIELDS.include?(prop)
+                             date_to_timestamp(value)
+                           elsif prop == 'answers'
+                             value.to_s.split(',')
+                           else
+                             value
+                           end
         end
+
+        row.reject { |_k, v| v['id'].blank? }.
+          group_by { |_k, v| v['group_id'] }.
+          transform_values { |answers| { 'answers' => answers.to_h, 'group_id' => answers[0][1]['group_id'] } }.
+          values
+      end
+
+      def parse_date(date, index)
+        return nil unless date.present?
+        return date if date.is_a?(Date) || date.is_a?(Time)
+
+        Time.zone.strptime(date.to_s, '%D %r')
+      rescue StandardError
+        errors.add(:base, I18n.t('administration.imports.errors.result.error',
+                                 row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
       end
 
       def date_to_timestamp(value)
