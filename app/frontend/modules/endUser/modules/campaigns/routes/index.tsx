@@ -4,6 +4,7 @@ import { Profile } from './Profile'
 import { Insights } from './Insights'
 import { UserAssessment } from './UserAssessment'
 import { AgileUserAssessment } from './AgileUserAssessment'
+import { CheckingWizard } from './CheckingWizard'
 
 const routes = [
   {
@@ -43,6 +44,10 @@ const routes = [
   {
     path: '/agile_user_assessments/:userAssessmentId',
     main: AgileUserAssessment,
+    exact: true,
+  }, {
+    path: '/system_checks/:assessmentId/:id',
+    main: CheckingWizard,
     exact: true,
   },
 ]
