@@ -27,6 +27,15 @@ Metrics/ClassLength:
 Style/DoubleNegation:
   Enabled: false
 
+# supressing Redis-related global var
+Style/GlobalVars:
+  Exclude:
+    - app/commands/users/build_sso_url.rb
+    - app/core/hogan/add_reports.rb
+    - app/core/users/authenticate_user.rb
+    - config/initializers/redis.rb
+    - spec/commands/users/build_sso_url_spec.rb
+
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"

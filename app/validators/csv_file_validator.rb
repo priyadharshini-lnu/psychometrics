@@ -21,6 +21,9 @@ class CsvFileValidator < ActiveModel::EachValidator
   end
 
   def add_errors(record, attribute)
-    record.errors[attribute] << 'File should be of type csv'
+    record.errors.add(
+      attribute,
+      'File should be of type csv'
+    )
   end
 end

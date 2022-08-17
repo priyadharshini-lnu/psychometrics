@@ -9,7 +9,7 @@ describe Users::BuildSsoUrl do
 
   describe 'gen url' do
     it do
-      expect(Redis.current).to receive(:setex)
+      expect($redis).to receive(:setex)
       events = described_class.call(project, user)
       expect(events[:ok].size).to eq 2
       expect(events[:ok].first).to be_url

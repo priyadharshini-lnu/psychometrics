@@ -49,7 +49,7 @@ module Users
     #
     def authenticate_by_sso
       possible_user = Users::Regular.find_by(id: params[:user_id])
-      possible_sso_token = Redis.current.get(possible_user&.sso_key)
+      possible_sso_token = $redis.get(possible_user&.sso_key)
 
       @user = possible_user if possible_sso_token == params[SSO_KEY]
     end

@@ -27,9 +27,7 @@ module Psychometrics
     config.i18n.locale = :en
     config.i18n.fallbacks = [:en]
     config.active_record.schema_format = :sql
-    config.autoload_paths << Rails.root.join('app/forms')
     config.autoload_paths << Rails.root.join('lib')
-    config.eager_load_paths.push(Rails.root.join('lib'), Rails.root.join('app/forms'))
     # Setup Active Job to use Sidekiq
     config.active_job.queue_adapter = :sidekiq
 
@@ -40,6 +38,12 @@ module Psychometrics
 
     config.to_prepare do
       Devise::Mailer.layout 'mailer/layouts/end_user_email'
+
+      # lib/cron_jobs_loader
+      CronJobsLoader.load_jobs unless Rails.env.development? || Rails.env.test?
+
+      # lib/handlers/csv_handler
+      ActionView::Template.register_template_handler :am, Handlers::CsvHandler::Handler
     end
 
     config.middleware.use(Middlewares::SetLocaleMiddleware)

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'cron_jobs_loader'
+
 redis_connection = if Rails.env.development?
                      { url: 'redis://localhost:6379/0' }
                    elsif ENV.key?('REDISTOGO_URL')
@@ -33,9 +35,10 @@ Sidekiq.configure_client do |config|
   config.redis = redis_connection
 end
 
-schedule_file = 'config/schedule.yml'
-
 if Sidekiq.server?
   Rails.logger = Sidekiq.logger if Rails.env.development?
-  Sidekiq::Cron::Job.load_from_hash(YAML.load_file(schedule_file))
+  # calling Sidekiq::Cron::Job is moved to application.rb in Rails.application.config.to_prepare
+  # due to new :zeitwerk loader
+  # https://guides.rubyonrails.org/v6.0/autoloading_and_reloading_constants.html
+  # CronJobsLoader.load_jobs
 end

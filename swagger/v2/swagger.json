@@ -342,6 +342,65 @@
       }
     },
     "/dashboards/{dashboard_id}": {
+      "get": {
+        "summary": "Dashboard",
+        "operationId": "Dashboard",
+        "description": "Fetch Dashboard",
+        "tags": [
+          "Dashboards"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "dashboard_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dashboard",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "dashboards",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "name": "New Dashboard",
+                        "enabled": true,
+                        "dataset_id": "d_100",
+                        "report_id": "r_100"
+                      },
+                      "relationships": {
+                        "campaign": {
+                          "data": {
+                            "id": "1",
+                            "type": "campaigns"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "patch": {
         "summary": "Update a dashboard",
         "operationId": "UpdateDashboard",
@@ -1182,6 +1241,16 @@
                     "enabled": {
                       "type": "boolean",
                       "nullable": false
+                    },
+                    "refresh_interval": {
+                      "type": "integer",
+                      "enum": [
+                        15,
+                        30,
+                        60,
+                        90
+                      ],
+                      "nullable": false
                     }
                   },
                   "required": [
@@ -1324,6 +1393,16 @@
                   "enabled": {
                     "type": "boolean",
                     "nullable": false
+                  },
+                  "refresh_interval": {
+                    "type": "integer",
+                    "enum": [
+                      15,
+                      30,
+                      60,
+                      90
+                    ],
+                    "nullable": false
                   }
                 },
                 "required": [
@@ -1373,6 +1452,16 @@
                   },
                   "enabled": {
                     "type": "boolean",
+                    "nullable": false
+                  },
+                  "refresh_interval": {
+                    "type": "integer",
+                    "enum": [
+                      15,
+                      30,
+                      60,
+                      90
+                    ],
                     "nullable": false
                   }
                 },
@@ -1463,6 +1552,16 @@
                   },
                   "enabled": {
                     "type": "boolean",
+                    "nullable": false
+                  },
+                  "refresh_interval": {
+                    "type": "integer",
+                    "enum": [
+                      15,
+                      30,
+                      60,
+                      90
+                    ],
                     "nullable": false
                   }
                 },

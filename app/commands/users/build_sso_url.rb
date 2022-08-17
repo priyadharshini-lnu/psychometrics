@@ -12,7 +12,7 @@ module Users
 
     def call
       url = gen_url
-      Redis.current.setex(user.sso_key, TTL, token)
+      $redis.setex(user.sso_key, TTL, token)
       broadcast :ok, [url, Time.now + TTL]
     end
 
