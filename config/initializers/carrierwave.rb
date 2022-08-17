@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
+silence_warnings do
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
+end
 
 fog_credentials = if ENV['MINIO_ENDPOINT'].present?
                     Aws.config.update(

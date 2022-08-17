@@ -7,7 +7,7 @@ gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'bootsnap', '>= 1.12.0', require: false
-gem 'faraday',                    '~> 1.3.0'
+gem 'faraday',                    '~> 1.10.0'
 gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
@@ -101,7 +101,7 @@ gem 'rubyXL',                     '~> 3.4.6'
 gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails', '~> 0.4.6'
-gem 'redis', '~> 4.7.0'
+gem 'redis', '~> 4.7.1'
 gem 'redlock', '~> 1.2.2'
 
 # A workaround for `roo` since it requires an old version of rubyzip
@@ -147,7 +147,7 @@ gem 'browser', '~> 5.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 6.4.1'
+gem 'sidekiq', '~> 6.5.1'
 
 gem 'hashids', '~> 1.0.5'
 
@@ -218,8 +218,8 @@ group :development do
   gem 'bullet', '~> 7.0.1'
   gem 'listen', '~> 3.7.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 1.7.2'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '~> 2.1.1'
+  gem 'spring-watcher-listen', '~> 2.0.1'
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.18.0'
@@ -251,7 +251,7 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.3.0'
+gem 'sidekiq-cron', '~> 1.7.0'
 
 gem 'xml-simple', '~> 1.1.5'
 

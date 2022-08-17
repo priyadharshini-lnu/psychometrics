@@ -88,7 +88,7 @@ module Hogan
     end
 
     def lock_manager
-      @lock_manager ||= Redlock::Client.new([Redis.current])
+      @lock_manager ||= Redlock::Client.new([$redis])
     end
   end
 end

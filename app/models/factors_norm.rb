@@ -109,24 +109,33 @@ class FactorsNorm < ApplicationRecord
 
   def score_from_less_than_score_to
     props.each do |item|
-      if item['score_from'].present? && item['score_to'].present? && item['score_from'].to_f >= item['score_to'].to_f
-        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_less_than_score_from')
-      end
+      next unless item['score_from'].present? &&
+                  item['score_to'].present? &&
+                  item['score_from'].to_f >= item['score_to'].to_f
+
+      errors.add(
+        :props,
+        I18n.t('activerecord.errors.models.factors_norm.score_to_less_than_score_from')
+      )
     end
   end
 
   def scoring_valid
     props.each do |item|
-      if item['score_to'].present?
-        unless item['score_to'].to_s.valid_float?
-          errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number')
-        end
+      if item['score_to'].present? && !item['score_to'].to_s.valid_float?
+        errors.add(
+          :props,
+          I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number')
+        )
       end
-      next unless item['score_from'].present?
 
-      unless item['score_from'].to_s.valid_float?
-        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
-      end
+      next unless item['score_from'].present?
+      next if item['score_from'].to_s.valid_float?
+
+      errors.add(
+        :props,
+        I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
+      )
     end
   end
 

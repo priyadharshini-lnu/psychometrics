@@ -62,7 +62,11 @@ commands:
             - gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}
       - run:
           name: Bundle Install
-          command: MAKE="make --jobs 2" bundle install -j 2 --retry 3  --without development --frozen --path ~/.bundle
+          command: |
+            bundle config set --local frozen 'true'
+            bundle config set --local path '~/.bundle'
+            bundle config set --local without 'development'
+            MAKE="make --jobs 2" bundle install -j 2 --retry 3
   yarn_restore:
     parameters:
       node-env:
