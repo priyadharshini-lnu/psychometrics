@@ -70,6 +70,10 @@ module Api
         end
       end
 
+      def search
+        render json: API::UserSearchQuery.new(project, search_params).query
+      end
+
       private
 
       def pundit_authorize
@@ -83,6 +87,10 @@ module Api
 
       def user_params
         params.require(:user).permit(:email, :first_name, :last_name, :password)
+      end
+
+      def search_params
+        params.permit(:id, :email, :first_name, :last_name, datasheet: {}).to_h
       end
 
       def campaign

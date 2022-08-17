@@ -83,7 +83,7 @@ module Administration
       reports = hogan_reports(assessment_ids)
       reports = saville_reports(assessment_ids) if reports.empty?
       reports_array = reports.map do |r|
-        { id: r.id.downcase, name: "#{r.name} - #{r.id}", selected: params[:external_report_id] == r.id.downcase }
+        { id: r.id, name: "#{r.name} - #{r.id}", selected: params[:external_report_id] == r.id }
       end
 
       render json: reports_array
@@ -195,7 +195,7 @@ module Administration
       report_params = params.require(:resource).permit(
         :name, :description, :provider, :owner_id, :mindmill, :icon, :icon_color, :props,
         :remove_icon, :default_language,
-        :poster, :remove_poster, :require_approval,
+        :poster, :remove_poster, :require_approval, :data_only,
         report_family_ids: [], assessment_ids: [],
         hogan_report_setting_attributes: %i[id hogan_report_id _destroy],
         saville_report_setting_attributes: %i[id saville_report_id _destroy]
@@ -235,7 +235,11 @@ module Administration
 
       return [] unless assessment
 
-      Settings.providers.saville.reports.select { |r| assessment[:report_ids].include?(r[:id]) }
+      Settings.providers.saville.reports.select { |r| assessment[:report_ids].include?(r[:id]) }.map do |report|
+        cloned_report = report.dup
+        cloned_report.id.downcase!
+        cloned_report
+      end
     end
   end
 end

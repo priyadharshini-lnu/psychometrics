@@ -92,17 +92,18 @@ class Report < ApplicationRecord
 
   #   VALIDATIONS
   #
-  validates :assessment, presence: true
+  validates :assessment, presence: true, unless: :data_only
   validates :owner, presence: true, allow_nil: true
   validate :max_assessments_count
-  validate :min_assessments_count
+  validate :min_assessments_count, unless: :data_only?
   validate :all_assessments_hogan, if: :hogan_report_setting
   validate :all_assessments_saville, if: :saville_report_setting
 
   #   CALLBACKS
   #
-  before_validation :set_assessment
+  before_validation :set_assessment, unless: :data_only?
   before_save :delete_hogan_report_setting, :delete_saville_report_setting, :set_provider
+  after_save :delete_assessments_reports, if: :data_only?
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum category: { common: 0, threesixty: 1 }, _prefix: :category
@@ -111,6 +112,10 @@ class Report < ApplicationRecord
 
   mount_uploader :icon, ImageUploader
   mount_uploader :poster, ImageUploader
+
+  def delete_assessments_reports
+    assessments_reports.destroy_all
+  end
 
   def set_default_color
     self.icon_color = Settings.default_colors.sample
@@ -211,6 +216,10 @@ class Report < ApplicationRecord
         d['factorId'] if %w[normed_factor raw_factor].include? d.dig('type')
       end
     end.flatten.compact
+  end
+
+  def data_configuration_assessment_ids
+    JsonPath.new('$..assessmentId').on(data_configuration).uniq
   end
 
   def pdf_dimension

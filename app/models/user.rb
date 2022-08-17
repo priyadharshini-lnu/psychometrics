@@ -140,6 +140,9 @@ class User < ApplicationRecord
   has_many :license_usages, inverse_of: :user
   has_many :api_keys, inverse_of: :user
   has_many :user_assessments, inverse_of: :subject, foreign_key: :subject_id, dependent: :destroy
+  has_many :self_user_assessments, lambda {
+    UserAssessment.self_assessment
+  }, inverse_of: :subject, foreign_key: :subject_id, class_name: 'UserAssessment'
   has_many :assessments, through: :user_assessments
   has_many :user_reports, inverse_of: :user, dependent: :destroy
   has_many :evaluated_assessments, foreign_key: :subject_id, class_name: 'UserAssessment'

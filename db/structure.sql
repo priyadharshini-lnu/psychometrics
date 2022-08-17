@@ -1767,7 +1767,8 @@ CREATE TABLE public.hogan_report_settings (
     hogan_language_id character varying NOT NULL,
     load_report boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    hogan_suitability_id character varying
 );
 
 
@@ -2552,7 +2553,9 @@ CREATE TABLE public.proctoring_sessions (
     status integer,
     results jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    invalid_session boolean DEFAULT false,
+    last_status_checked_at timestamp without time zone
 );
 
 
@@ -2952,7 +2955,8 @@ CREATE TABLE public.reports (
     poster character varying,
     require_approval boolean DEFAULT false,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    data_only boolean DEFAULT false
 );
 
 
@@ -3383,7 +3387,8 @@ CREATE TABLE public.sheets (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
 );
 
 
@@ -9849,6 +9854,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220131062936'),
 ('20220201110758'),
 ('20220215140722'),
+('20220218102808'),
 ('20220311084649'),
 ('20220311105318'),
 ('20220321102808'),
@@ -9887,6 +9893,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220725113027'),
 ('20220727081709'),
 ('20220727115619'),
-('20220728085459');
+('20220728085459'),
+('20220728121608'),
+('20220728134015'),
+('20220729103746'),
+('20220809130239'),
+('20220817094010');
 
 

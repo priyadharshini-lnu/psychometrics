@@ -63,7 +63,7 @@ module Hogan
                                  group_by { |r| r.report_families_report&.external_package_id }
 
       report_by_package_id_map.each do |package_id, user_reports|
-        if package_id
+        if package_id.present?
           call_hogan_api(user_reports.first, package_id)
         else
           user_reports.each do |user_report|
@@ -83,7 +83,8 @@ module Hogan
         assessment_id: assessment.hogan_assessment_setting.hogan_assessment_id,
         participant_id: credentials.participant_id,
         provider: credentials&.provider,
-        report_id: package_id || user_report.hogan_report_id
+        report_id: package_id || user_report.hogan_report_id,
+        suitability_id: report.hogan_report_setting.hogan_suitability_id.presence || ''
       )
     end
 
