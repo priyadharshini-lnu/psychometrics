@@ -9,8 +9,8 @@ module Callbacks
 
           previous_dimension_id, current_dimension_id = assessment.changes['dimension_id']
           assessment.reports.find_each do |report|
-            if report.single_dimension?(previous_dimension_id)
-              report.destroy_dimension_aliases(Dimension.find(previous_dimension_id)) if previous_dimension_id
+            if previous_dimension_id && report.single_dimension?(previous_dimension_id)
+              report.destroy_dimension_aliases(Dimension.find(previous_dimension_id))
             end
             if report.dimension_ids.exclude?(current_dimension_id)
               report.factors_through_factors_aliases << Factor.where(dimension_id: current_dimension_id)
