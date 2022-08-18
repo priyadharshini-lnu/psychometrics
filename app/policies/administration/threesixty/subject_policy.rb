@@ -68,7 +68,7 @@ module Administration
       end
 
       def reset_all_nominations?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :reset_nominations)
       end
 
       def edit_user?

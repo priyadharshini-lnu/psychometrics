@@ -14,8 +14,10 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          threesixty_campaign: threesixty_campaign,
-          project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+          {
+            threesixty_campaign: threesixty_campaign,
+            project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+          }
         )
       end
 

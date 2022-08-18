@@ -91,7 +91,8 @@ class User < ApplicationRecord
     assessors: %w[view manage],
     registration_codes: %w[view manage],
     sms_invites: %w[view manage],
-    datasheet: %w[view manage]
+    datasheet: %w[view manage],
+    messages: %w[email instructions options]
   }.with_indifferent_access.freeze
 
   # overrides required for devise_security
