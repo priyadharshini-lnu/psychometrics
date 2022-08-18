@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module API
+module Api
   class UserSearchQuery < Rectify::Query
     private_attr_reader :project, :search_params
 

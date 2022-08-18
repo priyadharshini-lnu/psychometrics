@@ -40,7 +40,7 @@ module Psychometrics
       Devise::Mailer.layout 'mailer/layouts/end_user_email'
 
       # lib/cron_jobs_loader
-      CronJobsLoader.load_jobs unless Rails.env.development? || Rails.env.test?
+      CronJobsLoader.load_jobs if Sidekiq.server? && Rails.env.production?
 
       # lib/handlers/csv_handler
       ActionView::Template.register_template_handler :am, Handlers::CsvHandler::Handler

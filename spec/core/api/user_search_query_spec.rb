@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe API::UserSearchQuery do
+describe Api::UserSearchQuery do
   let!(:project) { create(:project) }
   let!(:user1) { create(:user, first_name: 'John', project: project) }
   let!(:user2) { create(:user, first_name: 'Jane', project: project) }
