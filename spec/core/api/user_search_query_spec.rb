@@ -6,21 +6,21 @@ describe Api::UserSearchQuery do
   let!(:project) { create(:project) }
   let!(:user1) { create(:user, first_name: 'John', project: project) }
   let!(:user2) { create(:user, first_name: 'Jane', project: project) }
-  let!(:datasheet) { create(:datasheet, project: project) }
-  let!(:datasheet_row1) do
-    create(:datasheet_row, datasheet: datasheet, email: user1.email, data: {
+  let!(:sheet) { create(:sheet, project: project) }
+  let!(:sheet_row1) do
+    create(:sheet_row, sheet: sheet, email: user1.email, data: {
       'Department' => 'IT',
       'Sector' => 'Aerospace'
     })
   end
-  let!(:datasheet_row2) do
-    create(:datasheet_row, datasheet: datasheet, email: user2.email, data: {
+  let!(:sheet_row2) do
+    create(:sheet_row, sheet: sheet, email: user2.email, data: {
       'Department' => 'IT',
       'Sector' => 'Consulting'
     })
   end
 
-  it 'searches by datasheet' do
+  it 'searches by sheet' do
     expect(described_class.new(project, {
       datasheet: {
         'Department' => 'IT',
@@ -40,7 +40,7 @@ describe Api::UserSearchQuery do
     }).query.to_a).to eq([user1])
   end
 
-  it 'searches by user field and datasheet' do
+  it 'searches by user field and sheet' do
     expect(described_class.new(project, {
       first_name: user1.first_name,
       datasheet: {
