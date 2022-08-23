@@ -248,6 +248,30 @@ class Text extends Component {
     if (preview) {
       const override = _.find(moduleOverrides, { moduleId: model.id })
 
+      if (this.edit) {
+        return (
+          <FroalaEditor
+            key="editor"
+            ref={(ref) => { this.editor = ref }}
+            config={config}
+            model={content}
+            onModelChange={content => this.setState({ content })}
+          />
+        )
+      }
+
+      if (override) {
+        return (
+          <SafeHTML
+            html={override && showDiff
+              ? htmldiff(model.props.text, override.content)
+              : override.content || I18nStore.tModule(model, 'text')}
+            ref={(ref) => { this.editor = ref }}
+            className={cs(styles.editor, { [styles.diff]: showDiff })}
+          />
+        )
+      }
+
       if (sourceType === 'ConditionalText') {
         return (
           <div
@@ -300,24 +324,15 @@ class Text extends Component {
         )
       }
 
-      return this.edit
-        ? (
-          <FroalaEditor
-            key="editor"
-            ref={(ref) => { this.editor = ref }}
-            config={config}
-            model={content}
-            onModelChange={content => this.setState({ content })}
-          />
-        ) : (
-          <SafeHTML
-            html={override && showDiff
-              ? htmldiff(model.props.text, override.content)
-              : override?.content || I18nStore.tModule(model, 'text')}
-            ref={(ref) => { this.editor = ref }}
-            className={cs(styles.editor, { [styles.diff]: showDiff })}
-          />
-        )
+      return (
+        <SafeHTML
+          html={override && showDiff
+            ? htmldiff(model.props.text, override.content)
+            : override?.content || I18nStore.tModule(model, 'text')}
+          ref={(ref) => { this.editor = ref }}
+          className={cs(styles.editor, { [styles.diff]: showDiff })}
+        />
+      )
     }
     if (sourceType === 'ResultText') {
       return (
