@@ -92,6 +92,73 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    email public.citext DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    disabled boolean DEFAULT false,
+    role character varying DEFAULT 'Users::Regular'::character varying,
+    invitation_token character varying,
+    invitation_created_at timestamp without time zone,
+    invitation_sent_at timestamp without time zone,
+    invitation_accepted_at timestamp without time zone,
+    invitation_limit integer,
+    invited_by_type character varying,
+    invited_by_id integer,
+    invitations_count integer DEFAULT 0,
+    authentication_token character varying(30),
+    is_anonym boolean DEFAULT false,
+    grants jsonb,
+    created_by_id integer,
+    modified_by_id integer,
+    spoof_token character varying,
+    encrypted_invitation_raw character varying,
+    project_id integer,
+    second_factor_attempts_count integer DEFAULT 0,
+    encrypted_otp_secret_key character varying,
+    encrypted_otp_secret_key_iv character varying,
+    encrypted_otp_secret_key_salt character varying,
+    direct_otp character varying,
+    direct_otp_sent_at timestamp without time zone,
+    totp_timestamp timestamp without time zone,
+    settings jsonb DEFAULT '{}'::jsonb,
+    already_invited boolean DEFAULT false,
+    locale character varying,
+    enable_2fa boolean DEFAULT true NOT NULL,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    password_changed_at timestamp without time zone,
+    photo character varying,
+    timezone character varying
+);
+
+
+--
+-- Name: abc; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.abc AS
+ SELECT users.email AS "^^.._1111.Email"
+   FROM public.users;
+
+
+--
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1192,7 +1259,8 @@ CREATE TABLE public.dashboards (
     enabled boolean DEFAULT false,
     refresh_interval integer DEFAULT 15,
     image character varying,
-    last_refreshed_at timestamp without time zone
+    last_refreshed_at timestamp without time zone,
+    refresh_tried_at timestamp without time zone
 );
 
 
@@ -4233,64 +4301,6 @@ CREATE SEQUENCE public.user_reports_id_seq
 --
 
 ALTER SEQUENCE public.user_reports_id_seq OWNED BY public.user_reports.id;
-
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users (
-    id integer NOT NULL,
-    email public.citext DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip inet,
-    last_sign_in_ip inet,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    first_name character varying,
-    last_name character varying,
-    disabled boolean DEFAULT false,
-    role character varying DEFAULT 'Users::Regular'::character varying,
-    invitation_token character varying,
-    invitation_created_at timestamp without time zone,
-    invitation_sent_at timestamp without time zone,
-    invitation_accepted_at timestamp without time zone,
-    invitation_limit integer,
-    invited_by_type character varying,
-    invited_by_id integer,
-    invitations_count integer DEFAULT 0,
-    authentication_token character varying(30),
-    is_anonym boolean DEFAULT false,
-    grants jsonb,
-    created_by_id integer,
-    modified_by_id integer,
-    spoof_token character varying,
-    encrypted_invitation_raw character varying,
-    project_id integer,
-    second_factor_attempts_count integer DEFAULT 0,
-    encrypted_otp_secret_key character varying,
-    encrypted_otp_secret_key_iv character varying,
-    encrypted_otp_secret_key_salt character varying,
-    direct_otp character varying,
-    direct_otp_sent_at timestamp without time zone,
-    totp_timestamp timestamp without time zone,
-    settings jsonb DEFAULT '{}'::jsonb,
-    already_invited boolean DEFAULT false,
-    locale character varying,
-    enable_2fa boolean DEFAULT true NOT NULL,
-    failed_attempts integer DEFAULT 0 NOT NULL,
-    unlock_token character varying,
-    locked_at timestamp without time zone,
-    password_changed_at timestamp without time zone,
-    photo character varying,
-    timezone character varying
-);
 
 
 --
@@ -9898,6 +9908,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220728134015'),
 ('20220729103746'),
 ('20220809130239'),
-('20220817094010');
+('20220817094010'),
+('20220818101822');
 
 

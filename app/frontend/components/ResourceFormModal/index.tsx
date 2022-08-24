@@ -35,6 +35,7 @@ interface Props {
   transformValues?(values: Record<string, unknown>): Record<string, unknown>
   scrollToFirstError?: boolean
   submitButtonName?: string
+  nullifyEmptyString?: boolean
 }
 
 interface Request {

@@ -1115,6 +1115,7 @@ Rails.application.routes.draw do
           end
           jsonapi_resources :dashboards, only: %i[index show create update] do
             patch :upload_image
+            post :refresh
           end
         end
       end

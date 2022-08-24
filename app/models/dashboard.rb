@@ -5,11 +5,15 @@ class Dashboard < ApplicationRecord
 
   belongs_to :campaign
 
-  after_commit on: [:create] do
-    Dashboards::CreateFlatSheetView.call!(campaign.datasheet) if campaign.datasheet
-  end
+  after_commit :create_flat_datasheet_view, on: [:create]
 
-  scope :preview_available, ->(*) { where(enabled: true).where('dataset_id IS NOT NULL AND report_id IS NOT NULL') }
+  scope :power_bi_report_present, -> { where('dataset_id IS NOT NULL AND report_id IS NOT NULL') }
+  scope :preview_available, ->(*) { where(enabled: true).power_bi_report_present }
+  scope :auto_refressable, -> { power_bi_report_present.where.not(refresh_interval: nil) }
+
+  def create_flat_datasheet_view
+    Sheets::CreateFlatSheetView.call!(campaign.campaign_datasheet) if campaign.campaign_datasheet
+  end
 
   def self.ransackable_scopes(_)
     %i[preview_available]

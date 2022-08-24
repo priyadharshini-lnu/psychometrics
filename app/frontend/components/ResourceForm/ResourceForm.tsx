@@ -54,6 +54,7 @@ export type OwnProps = {
   }): ReactElement
   scrollToFirstError?: boolean
   mockRequest?: boolean
+  nullifyEmptyString?: boolean
 }
 
 const ResourceForm: React.FC<Props> = ({
@@ -72,6 +73,7 @@ const ResourceForm: React.FC<Props> = ({
   children,
   transformValues,
   scrollToFirstError,
+  nullifyEmptyString,
 }: Props) => {
   const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
@@ -149,8 +151,13 @@ const ResourceForm: React.FC<Props> = ({
 
   const handleSave = async (values: Record<string, unknown>) => {
     let transformedValues = values
+    if (nullifyEmptyString) {
+      transformedValues = _.transform(transformedValues, (result, value, key) => {
+        result[key] = value === '' ? null : value
+      }, {})
+    }
     if (transformValues) {
-      transformedValues = transformValues(values)
+      transformedValues = transformValues(transformedValues)
     }
     setBaseErrors([])
     handleStatusChange(Status.Saving)

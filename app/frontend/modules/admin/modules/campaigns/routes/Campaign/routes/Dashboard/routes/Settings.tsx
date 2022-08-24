@@ -5,12 +5,14 @@ import {
   dashboardAtom, DashboardTR,
   uploadImage,
   UPLOAD_IMAGE,
+  refresh,
+  REFRESH,
 } from 'modules/admin/modules/campaigns/core/dashboard'
 import {
   Alert,
-  Button, Col, Form, Input, message, Row, Skeleton, Switch, Upload,
+  Button, Col, Form, Input, message, Row, Skeleton, Switch, Upload, Select,
 } from 'antd'
-import { UploadOutlined, CopyOutlined } from '@ant-design/icons'
+import { UploadOutlined, CopyOutlined, RedoOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ResourceForm from 'components/ResourceForm'
 import { useRecoilStateStateManager } from 'hooks/useRecoilStateStateManager'
@@ -25,21 +27,27 @@ const { I18n } = window
 const connecter = connect(
   (state: RootState) => ({
     uploadInProgress: isRequestInProgress(state, UPLOAD_IMAGE),
+    refreshRequestInProgress: isRequestInProgress(state, REFRESH),
   }),
   {
     uploadImage,
+    refresh,
   },
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-export const SettingsComponent: React.FC<Props> = ({ uploadImage, uploadInProgress }) => {
+export const SettingsComponent: React.FC<Props> = ({
+  uploadImage, uploadInProgress, refresh, refreshRequestInProgress,
+}) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const [form] = Form.useForm()
   const stateManager = useRecoilStateStateManager(dashboardAtom)
   const {
     updateResource, data, isLoading,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })
+  const dashboard = data[0]
+  const canBeRefreshed = !_.isEmpty(dashboard?.datasetId) && !_.isEmpty(dashboard?.reportId)
 
   const showSuccessMessage = () => {
     message.success(
@@ -70,9 +78,17 @@ export const SettingsComponent: React.FC<Props> = ({ uploadImage, uploadInProgre
     })
   }
 
+  const handleRefresh = () => {
+    refresh(dashboard.id).then(() => {
+      message.success(I18n.t('administration.dashboard_form.refresh_success'))
+    }).catch((error) => {
+      message.error(error)
+    })
+  }
+
   const image = Form.useWatch('imageUrl', form)
 
-  if (isLoading('fetch') && !data[0]) return <Skeleton />
+  if (isLoading('fetch') && !dashboard) return <Skeleton />
 
   return (
     <Row justify="space-between" className="pl">
@@ -80,7 +96,7 @@ export const SettingsComponent: React.FC<Props> = ({ uploadImage, uploadInProgre
         <ResourceForm
           resourceName="dashboards"
           readableResourceName={I18n.t('administration.dashboard.tabs.dashboard')}
-          resource={data[0]}
+          resource={dashboard}
           scrollToFirstError
           request={{
             updateResource,
@@ -88,6 +104,7 @@ export const SettingsComponent: React.FC<Props> = ({ uploadImage, uploadInProgre
           transformValues={values => _.omit(values, ['imageUrl'])}
           storeManager={{ form }}
           onSuccessfulSubmission={uploadFile}
+          nullifyEmptyString
         >
           {({ form }) => (
             <>
@@ -117,6 +134,18 @@ export const SettingsComponent: React.FC<Props> = ({ uploadImage, uploadInProgre
               >
                 <Input />
               </Form.Item>
+              <Form.Item
+                name="refreshInterval"
+                label={I18n.t('administration.dashboard_form.fields.refresh_interval')}
+              >
+                <Select>
+                  {[null, 15, 30, 60, 90].map(n => (
+                    <Select.Option key={n || 'None'} value={n}>
+                      {n || I18n.t('administration.dashboard_form.none')}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
               <Form.Item name="imageUrl" label={I18n.t('administration.dashboard_form.fields.image')}>
                 <Upload
                   listType="picture"
@@ -144,7 +173,12 @@ export const SettingsComponent: React.FC<Props> = ({ uploadImage, uploadInProgre
         </ResourceForm>
       </Col>
       <Col sm={24} md={16} xl={10}>
-        <ViewNameInfo campaignId={campaignId} />
+        <ViewNameInfo
+          campaignId={campaignId}
+          canBeRefreshed={canBeRefreshed}
+          handleRefresh={handleRefresh}
+          refreshRequestInProgress={refreshRequestInProgress}
+        />
       </Col>
     </Row>
   )
@@ -154,13 +188,34 @@ export const Settings = connecter(SettingsComponent)
 
 interface ViewNameInfoProps {
   campaignId: string
+  canBeRefreshed: boolean
+  refreshRequestInProgress: boolean
+  handleRefresh: () => void
 }
 
-const ViewNameInfo: React.FC<ViewNameInfoProps> = ({ campaignId }) => (
+const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
+  campaignId, canBeRefreshed, handleRefresh, refreshRequestInProgress,
+}) => (
   <Alert
-    message={I18n.t('administration.dashboard.settings.view_names')}
+    message={(
+      <>
+        {I18n.t('administration.dashboard.settings.view_names')}
+        {canBeRefreshed
+          && (
+          <Button
+            type="primary"
+            icon={<RedoOutlined />}
+            onClick={handleRefresh}
+            loading={refreshRequestInProgress}
+            className="float-r"
+          >
+            {I18n.t('administration.dashboard.settings.refresh')}
+          </Button>
+          )}
+      </>
+    )}
     description={(
-      <Form layout="vertical">
+      <Form layout="vertical" className="clear-float">
         <Form.Item
           label={I18n.t('administration.dashboard.settings.datasheet_view_name')}
           initialValue={`c_${campaignId}_datasheet`}

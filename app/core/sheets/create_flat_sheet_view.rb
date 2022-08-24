@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Dashboards
+module Sheets
   class CreateFlatSheetView < BaseCommand
     private_attr_reader :sheet
 
@@ -9,9 +9,16 @@ module Dashboards
     end
 
     def call
+      select_query = flat_rows_query
+      return broadcast :ok unless select_query
+
+      create_view_query = "CREATE VIEW #{flat_row_view_name} AS #{select_query}"
+      sha = Digest::SHA2.hexdigest(create_view_query)
+      return broadcast :ok if sha == sheet.flat_view_sha
+
       ActiveRecord::Base.connection.execute("DROP VIEW IF EXISTS #{flat_row_view_name}")
-      view_query = flat_rows_query
-      ActiveRecord::Base.connection.execute("CREATE VIEW #{flat_row_view_name} AS #{view_query}") if view_query
+      ActiveRecord::Base.connection.execute(create_view_query)
+      sheet.update!(flat_view_sha: sha)
 
       broadcast :ok
     end
@@ -25,7 +32,7 @@ module Dashboards
     def flat_rows_query
       valid_columns = sheet.columns.select do |column|
         column['dashboard_use'] && column['name'] != 'Email' && column.length < Sheet::MAX_COLUMN_NAME_SIZE &&
-          /\A[\w\s]+\z/.match?(column['name'])
+          RegexConstants::SHEET_COLUMN_REGEX.match?(column['name'])
       end
       return if valid_columns.empty?
 

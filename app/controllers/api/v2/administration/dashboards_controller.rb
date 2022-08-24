@@ -6,13 +6,19 @@ module Api
     validate_crud_requests Api::V2::Dashboard::Schema
 
     def upload_image
-      dashboard = Api::Administration::DashboardPolicy::Scope.new(
-        current_user, Dashboard
-      ).resolve.find(params[:dashboard_id])
       if dashboard.update(image_upload_params)
         render json: { image: dashboard.image&.url }
       else
         render json: { errors: dashboard.errors.messages }, status: :bad_request
+      end
+    end
+
+    def refresh
+      Dashboards::RefreshData.call(dashboard) do
+        on(:ok) { head :ok }
+        on(:error) do |message|
+          render json: { errors: message }, status: :unprocessable_entity
+        end
       end
     end
 
@@ -23,6 +29,12 @@ module Api
     end
 
     private
+
+    def dashboard
+      @dashboard ||= Api::Administration::DashboardPolicy::Scope.new(
+        current_user, Dashboard
+      ).resolve.find(params[:dashboard_id])
+    end
 
     def image_upload_params
       params.permit(:image, :remove_image)

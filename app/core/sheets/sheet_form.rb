@@ -91,7 +91,9 @@ module Sheets
           errors.add(:file, :invalid_column_name_size, column: name)
         end
 
-        errors.add(:file, :invalid_column_name, { column: name }) unless /\A[\w\s]+\z/.match?(name)
+        unless RegexConstants::SHEET_COLUMN_REGEX.match?(name)
+          errors.add(:file, :invalid_column_name, { column: name })
+        end
       end
     end
 

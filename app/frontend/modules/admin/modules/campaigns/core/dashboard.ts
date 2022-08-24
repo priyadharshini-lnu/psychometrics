@@ -33,13 +33,22 @@ export const Schema = {
 export const dashboardAtom = createBaseAtom<Dashboard[]>('Dashboard')
 
 export const UPLOAD_IMAGE = 'dashboards/UPLOAD_IMAGE'
-
 export const uploadImage = (dashboardId: string, formData: FormData) => ({
   type: UPLOAD_IMAGE,
   request: {
     method: 'patch',
     url: `/api/v2/administration/dashboards/${dashboardId}/upload_image`,
     body: formData,
+    loader: true,
+  },
+})
+
+export const REFRESH = 'dashboards/REFRESH'
+export const refresh = (dashboardId: string) => ({
+  type: REFRESH,
+  request: {
+    method: 'post',
+    url: `/api/v2/administration/dashboards/${dashboardId}/refresh`,
     loader: true,
   },
 })

@@ -2338,6 +2338,7 @@ en:
       settings:
         accesssheet_view_name: Accesssheet View Name
         datasheet_view_name: Datasheet View Name
+        refresh: Refresh
         view_names: View Names
       tabs:
         accesssheet: Accesssheet
@@ -2350,8 +2351,11 @@ en:
         dataset_id: Dataset Id
         enabled: Enabled
         image: Image
+        refresh_interval: Refresh Interval (minutes)
         report_id: Report Id
       image_upload_failed: Image upload failed.
+      none: None
+      refresh_success: Refresh of dataset scheduled successfully.
     dates:
       completed: Completed At
       created: Created At

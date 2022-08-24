@@ -51,6 +51,7 @@ RSpec.configure do |config|
   config.include Savon::SpecHelper
   config.include SamlHelper
   config.include JsonApiHelper
+  config.include CommandHelper
   config.render_views
 
   config.infer_spec_type_from_file_location!
