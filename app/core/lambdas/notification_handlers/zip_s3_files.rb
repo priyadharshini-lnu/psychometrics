@@ -10,13 +10,21 @@ module Lambdas
         bulk_report = BulkReport.find_by(id: data['bulk_report_id'])
         return broadcast :ok unless bulk_report
 
-        bulk_report.update_columns(files: [data['file_name']])
-        BulkReportMailer.notify(bulk_report).deliver_later
         admin_job = AdminJobRecord.find_by(id: data['admin_job_record_id'])
-        if admin_job
-          content = content_tag(:a, data['file_name'], href: bulk_report.files[0].url)
-          admin_job.update!(content: content)
-          admin_job.complete!
+        if admin_job && data['status'] == 'failed'
+          admin_job.update!(status: :failed, error_messages: [data['error']])
+          return broadcast :ok
+        end
+        admin_job.update!(completed_tasks: data['completed_tasks']) if admin_job && data['completed_tasks']
+
+        if data['status'] == 'completed'
+          bulk_report.update_columns(files: [data['file_name']])
+          BulkReportMailer.notify(bulk_report).deliver_later
+          if admin_job
+            content = content_tag(:a, data['file_name'], href: bulk_report.files[0].url)
+            admin_job.update!(content: content)
+            admin_job.complete!
+          end
         end
 
         broadcast :ok

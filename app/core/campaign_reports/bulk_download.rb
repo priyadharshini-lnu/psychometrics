@@ -33,7 +33,7 @@ module CampaignReports
       file_name = "bulk-report-#{Date.today.strftime('%F')}"
       zip_file_key = "#{bulk_report.store_dir}/#{file_name}"
       webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
-
+      job_record.update!(total_tasks: file_details.length)
       Lambdas::ZipS3Files.call!(
         file_details: file_details,
         zip_file_key: zip_file_key,

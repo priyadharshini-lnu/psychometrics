@@ -175,7 +175,8 @@ CREATE TABLE public.admin_jobs (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     total_tasks integer DEFAULT 1,
-    completed_tasks integer DEFAULT 0
+    completed_tasks integer DEFAULT 0,
+    progress integer
 );
 
 

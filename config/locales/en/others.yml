@@ -664,6 +664,7 @@ en:
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
+        failed: Failed
         in_progress: In Progress
         scheduled: Scheduled
       updated_at: Modified Date
