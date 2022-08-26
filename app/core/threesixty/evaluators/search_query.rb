@@ -21,9 +21,7 @@ module Threesixty
             Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(campaign, user, criteria, subject.user)
           end
         end
-        if can_nominate_anyone_from_datasheet?
-          users = users.concat(SearchInDatasheetQuery.new(@campaign, @subject, @q).query)
-        end
+        users.concat(SearchInDatasheetQuery.new(@campaign, @subject, @q).query) if can_nominate_anyone_from_datasheet?
         users
       end
 

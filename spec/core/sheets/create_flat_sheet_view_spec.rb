@@ -25,6 +25,7 @@ describe Sheets::CreateFlatSheetView do
   it 'creates flat view for datasheet' do
     described_class.call!(datasheet)
     campaign_id = campaign.id
+    # rubocop:disable Lint/ConstantDefinitionInBlock
     DatasheetFlat = Class.new(ApplicationRecord) do
       self.table_name = "c_#{campaign_id}_datasheet"
     end
@@ -44,6 +45,7 @@ describe Sheets::CreateFlatSheetView do
     AccesssheetFlat = Class.new(ApplicationRecord) do
       self.table_name = "c_#{campaign_id}_accesssheet"
     end
+    # rubocop:enable all
     expect(DatasheetFlat.column_names).to match_array(%w[id Email 1st.Name EmployeeId Profile])
 
     [sheet_row1, sheet_row2].each do |row|

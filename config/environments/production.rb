@@ -76,7 +76,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] } if ENV['REDIS_URL']
@@ -91,10 +91,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Settings.domain }
 
   config.action_mailer.smtp_settings = {
-    user_name: ENV['MAIL_USERNAME'],
-    password: ENV['MAIL_PASSWORD'],
-    domain: ENV['MAIL_DOMAIN'],
-    address: ENV['MAIL_ADDRESS'],
+    user_name: ENV.fetch('MAIL_USERNAME', nil),
+    password: ENV.fetch('MAIL_PASSWORD', nil),
+    domain: ENV.fetch('MAIL_DOMAIN', nil),
+    address: ENV.fetch('MAIL_ADDRESS', nil),
     port: ENV.fetch('MAIL_PORT', 587),
     authentication: :plain,
     enable_starttls_auto: true
@@ -129,7 +129,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end

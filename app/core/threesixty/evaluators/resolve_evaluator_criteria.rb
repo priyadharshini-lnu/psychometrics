@@ -20,7 +20,7 @@ module Threesixty
 
         return false unless data_sheet
 
-        result = criteria.all? do |condition|
+        criteria.all? do |condition|
           value = data_sheet[condition['field']].to_s.downcase
           next value == condition['value'] if condition['comparator'] == 'equal'
           next false unless subject_data_sheet
@@ -28,8 +28,6 @@ module Threesixty
           subject_value = subject_data_sheet[condition['field']].to_s.downcase
           next value == subject_value if condition['comparator'] == 'is_same_as_subject'
         end
-
-        result
       end
 
       private

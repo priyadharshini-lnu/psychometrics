@@ -4,11 +4,11 @@ module Threesixty
   module Emails
     class MergeMultipleEvaluatorEmailSchedules < BaseCommand
       def call
-        email_schedules = Threesixty::EmailSchedule.where(delivered_at: nil,
+        email_schedules = Threesixty::EmailSchedule.where(
+          delivered_at: nil,
           name: Threesixty::Emails::Name::CONSOLIDATED_EMAILS,
-          consolidated: true, auto_triggered: true).
-                          where('scheduled_date <= ?', Time.now).
-                          select(:id, :name, :recipient_ids, :meta)
+          consolidated: true, auto_triggered: true
+        ).where('scheduled_date <= ?', Time.now).select(:id, :name, :recipient_ids, :meta)
 
         email_schedule_grouped_by_recipients = email_schedules.group_by { |e| [e.name, e.recipient_ids] }.values
 

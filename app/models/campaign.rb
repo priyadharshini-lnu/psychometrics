@@ -137,7 +137,7 @@ class Campaign < ApplicationRecord
 
   def set_uniq_code
     self.uniq_code = [
-      ENV['SERVER_NAME'],
+      ENV.fetch('SERVER_NAME', nil),
       project.id,
       id
     ].compact.join('-')

@@ -26,7 +26,8 @@ module EndUser
           dashboard = @campaign.campaign_reports.find_by(user_dashboard: true)
           user_report = @campaign.user_reports.find_by(user_id: current_user, report_id: dashboard.report_id)
 
-          selected_locale = params[:lang] || user_report.report.default_language
+          selected_locale = params[:lang] || user_report.report.default_language # rubocop:disable Lint/UselessAssignment
+
           piped_text_context = { subject: user_report.user }
 
           results = user_report.user_results.map do |result|

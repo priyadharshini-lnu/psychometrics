@@ -297,7 +297,7 @@ module DataMigration
             campaign_id: campaign_user.campaign_id
           ).includes(:users_result)
 
-          started_at = user_assessments.map(&:started_at).compact.min
+          started_at = user_assessments.filter_map(&:started_at).min
           all_assessments_completed = user_assessments.all?(&:completed?)
           no_assessments_started = user_assessments.all?(&:not_started?)
 

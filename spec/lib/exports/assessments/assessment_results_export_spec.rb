@@ -11,7 +11,7 @@ describe Exports::Assessments::AssessmentResultsExport do
   let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
 
   after do
-    FileUtils.rm(file_name) if File.exist?(file_name)
+    FileUtils.rm_rf(file_name)
   end
 
   context 'external assessment' do
@@ -51,7 +51,7 @@ describe Exports::Assessments::AssessmentResultsExport do
         xlsx = Roo::Spreadsheet.open(file_name)
         actual_second_row = xlsx.sheet(0).row(2)
         expected_second_row = [nil] * 7
-        questions.each { |q| expected_second_row << [q.name] * 2 }
+        questions.each { |q| expected_second_row << ([q.name] * 2) }
 
         expect(actual_second_row).to eq(expected_second_row.flatten)
       end
@@ -63,7 +63,7 @@ describe Exports::Assessments::AssessmentResultsExport do
         xlsx = Roo::Spreadsheet.open(file_name)
         actual_third_row = xlsx.sheet(0).row(3)
         expected_third_row = [nil] * 7
-        questions.each { |q| expected_third_row << [q.props['questionText']] * 2 }
+        questions.each { |q| expected_third_row << ([q.props['questionText']] * 2) }
 
         expect(actual_third_row).to eq(expected_third_row.flatten)
       end
@@ -228,7 +228,7 @@ describe Exports::Assessments::AssessmentResultsExport do
         xlsx = Roo::Spreadsheet.open(file_name)
         actual_second_row = xlsx.sheet(0).row(2)
         expected_second_row = [nil] * 7
-        expected_second_row << [question.name] * 2
+        expected_second_row << ([question.name] * 2)
 
         expect(actual_second_row).to eq(expected_second_row.flatten)
       end
@@ -241,7 +241,7 @@ describe Exports::Assessments::AssessmentResultsExport do
         actual_third_row = xlsx.sheet(0).row(3)
         expected_third_row = [nil] * 7
 
-        expected_third_row << [question.props['questionText']] * 2
+        expected_third_row << ([question.props['questionText']] * 2)
 
         expect(actual_third_row).to eq(expected_third_row.flatten)
       end

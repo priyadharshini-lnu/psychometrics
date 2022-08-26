@@ -55,8 +55,8 @@ module Api
         raise Api::Errors::ResourceNotConfigured, no_config_message(params[:id]) if report.data_configuration.blank?
 
         render json: report,
-          include: '**',
-          serializer: Api::V1::ReportDimensionsSerializer,
+               include: '**',
+               serializer: Api::V1::ReportDimensionsSerializer,
           **serialization_params.merge(report: report)
       end
 

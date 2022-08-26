@@ -15,7 +15,7 @@ module Assessments
       @skip_owner_validation = skip_owner_validation
     end
 
-    def call
+    def call # rubocop:disable Metrics/AbcSize
       # Get original flow and norm_rules
       flow = (assessment.flow || {}).to_json
       norm_rules = (assessment.norm_rules || {}).to_json
@@ -106,11 +106,11 @@ module Assessments
 
           next if json.blank? || json.starts_with?('null')
 
-          question_ids = json.scan(/\"subject\":\"?(\d+)\"?/).flatten
+          question_ids = json.scan(/"subject":"?(\d+)"?/).flatten
           question_ids.each { |question_id| json = update_id_in_json_config(json, question_id, @questions_mapping) }
 
           if column == 'skip_logic'
-            block_ids = json.scan(/\"destinationBlock\":\"?(\d+)\"?/).flatten
+            block_ids = json.scan(/"destinationBlock":"?(\d+)"?/).flatten
             block_ids.each do |id|
               json = update_id_in_json_config(json, id, @blocks_mapping, 'destinationBlock')
             end
@@ -121,7 +121,7 @@ module Assessments
     end
 
     def update_id_in_json_config(json, value, mapping, key = 'subject')
-      json.gsub(/\"#{key}\":\"?#{value}\"?/, "\"#{key}\":#{mapping[value.to_i]}")
+      json.gsub(/"#{key}":"?#{value}"?/, "\"#{key}\":#{mapping[value.to_i]}")
     end
   end
 end

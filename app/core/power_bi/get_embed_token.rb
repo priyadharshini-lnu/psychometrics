@@ -11,6 +11,7 @@ module PowerBi
     end
 
     def call
+      # rubocop:disable Lint/SymbolConversion
       response = Faraday.post("#{BASE_API_URL}/GenerateToken", {
         reports: [{ id: report_id }],
         datasets: [{ id: dataset_id }],
@@ -24,6 +25,7 @@ module PowerBi
         'Authorization': "Bearer #{get_access_token}",
         'Content-Type': 'application/json'
       })
+      # rubocop:enable all
 
       broadcast :ok, JSON.parse(response.body)['token']
     end

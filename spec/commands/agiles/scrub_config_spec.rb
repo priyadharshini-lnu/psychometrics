@@ -6,29 +6,29 @@ describe Agiles::ScrubConfig do
   context '.call' do
     let(:config) do
       {
-        'completedGroups': [],
-        'groups': [
+        completedGroups: [],
+        groups: [
           {
-            'id': 'intro-group',
-            'scenes': [
+            id: 'intro-group',
+            scenes: [
               {
-                'id': 'intro-1',
-                'type': 'ContentScene',
-                'data': {
-                  'theme': 'white',
-                  'items': [
+                id: 'intro-1',
+                type: 'ContentScene',
+                data: {
+                  theme: 'white',
+                  items: [
                     {
-                      'type': 'text',
-                      'style': 'h2',
-                      'align': 'center',
-                      'text': 'instructions:intro-1.title'
+                      type: 'text',
+                      style: 'h2',
+                      align: 'center',
+                      text: 'instructions:intro-1.title'
                     }
                   ],
-                  'buttons': [
+                  buttons: [
                     {
-                      'type': 'primary',
-                      'label': 'instructions:intro-1.next',
-                      'target': 'next'
+                      type: 'primary',
+                      label: 'instructions:intro-1.next',
+                      target: 'next'
                     }
                   ]
                 }
@@ -36,126 +36,126 @@ describe Agiles::ScrubConfig do
             ]
           },
           {
-            'id': 'nf-1-group',
-            'scenes': [
+            id: 'nf-1-group',
+            scenes: [
               {
-                'id': 'nf-1-ass',
-                'type': 'AssessmentScene',
-                'data': {
-                  'theme': 'blue',
-                  'maxDuration': 240,
-                  'blocks': [
+                id: 'nf-1-ass',
+                type: 'AssessmentScene',
+                data: {
+                  theme: 'blue',
+                  maxDuration: 240,
+                  blocks: [
                     {
-                      'id': 'nf-1-ass-block-1',
-                      'type': 'Comparator',
-                      'randomise': true,
-                      'questions': [
+                      id: 'nf-1-ass-block-1',
+                      type: 'Comparator',
+                      randomise: true,
+                      questions: [
                         {
-                          'id': 'cmp-1',
-                          'randomSet': 1,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '7',
-                          'right': '12',
-                          'answers': ['hello-world']
+                          id: 'cmp-1',
+                          randomSet: 1,
+                          text: 'questions:nf.which_is_greater',
+                          left: '7',
+                          right: '12',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-2',
-                          'randomSet': 1,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '5',
-                          'right': '7',
-                          'answers': ['hello-world']
+                          id: 'cmp-2',
+                          randomSet: 1,
+                          text: 'questions:nf.which_is_greater',
+                          left: '5',
+                          right: '7',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-3',
-                          'randomSet': 2,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '7',
-                          'right': '12',
-                          'answers': ['hello-world']
+                          id: 'cmp-3',
+                          randomSet: 2,
+                          text: 'questions:nf.which_is_greater',
+                          left: '7',
+                          right: '12',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-4',
-                          'randomSet': 2,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '5',
-                          'right': '7',
-                          'answers': ['hello-world']
+                          id: 'cmp-4',
+                          randomSet: 2,
+                          text: 'questions:nf.which_is_greater',
+                          left: '5',
+                          right: '7',
+                          answers: ['hello-world']
                         }
                       ],
-                      'scoring': [
-                        { 'first': 1 },
-                        { 'second': 2 }
+                      scoring: [
+                        { first: 1 },
+                        { second: 2 }
                       ]
                     },
                     {
-                      'id': 'nf-1-ass-block-2',
-                      'type': 'Comparator',
-                      'randomise': true,
-                      'questions': [
+                      id: 'nf-1-ass-block-2',
+                      type: 'Comparator',
+                      randomise: true,
+                      questions: [
                         {
-                          'id': 'cmp-5',
-                          'randomSet': 1,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '7',
-                          'right': '12',
-                          'answers': ['hello-world']
+                          id: 'cmp-5',
+                          randomSet: 1,
+                          text: 'questions:nf.which_is_greater',
+                          left: '7',
+                          right: '12',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-6',
-                          'randomSet': 1,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '5',
-                          'right': '7',
-                          'answers': ['hello-world']
+                          id: 'cmp-6',
+                          randomSet: 1,
+                          text: 'questions:nf.which_is_greater',
+                          left: '5',
+                          right: '7',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-7',
-                          'randomSet': 2,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '7',
-                          'right': '12',
-                          'answers': ['hello-world']
+                          id: 'cmp-7',
+                          randomSet: 2,
+                          text: 'questions:nf.which_is_greater',
+                          left: '7',
+                          right: '12',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-8',
-                          'randomSet': 2,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '5',
-                          'right': '7',
-                          'answers': ['hello-world']
+                          id: 'cmp-8',
+                          randomSet: 2,
+                          text: 'questions:nf.which_is_greater',
+                          left: '5',
+                          right: '7',
+                          answers: ['hello-world']
                         }
                       ],
-                      'scoring': [
-                        { 'first': 1 },
-                        { 'second': 2 }
+                      scoring: [
+                        { first: 1 },
+                        { second: 2 }
                       ]
                     },
                     {
-                      'id': 'nf-1-ass-block-3',
-                      'type': 'Comparator',
-                      'randomise': true,
-                      'questions': [
+                      id: 'nf-1-ass-block-3',
+                      type: 'Comparator',
+                      randomise: true,
+                      questions: [
                         {
-                          'id': 'cmp-9',
-                          'randomSet': 3,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '7',
-                          'right': '12',
-                          'answers': ['hello-world']
+                          id: 'cmp-9',
+                          randomSet: 3,
+                          text: 'questions:nf.which_is_greater',
+                          left: '7',
+                          right: '12',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-10',
-                          'randomSet': 3,
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '5',
-                          'right': '7',
-                          'answers': ['hello-world']
+                          id: 'cmp-10',
+                          randomSet: 3,
+                          text: 'questions:nf.which_is_greater',
+                          left: '5',
+                          right: '7',
+                          answers: ['hello-world']
                         }
                       ],
-                      'scoring': [
-                        { 'first': 1 },
-                        { 'second': 2 }
+                      scoring: [
+                        { first: 1 },
+                        { second: 2 }
                       ]
                     }
                   ]
@@ -164,8 +164,8 @@ describe Agiles::ScrubConfig do
             ]
           }
         ],
-        'locale': {},
-        'assets': {}
+        locale: {},
+        assets: {}
       }.with_indifferent_access
     end
 
@@ -200,7 +200,7 @@ describe Agiles::ScrubConfig do
         questions = block['questions']
 
         expect(questions.length).to be(2)
-        expect(questions).to all(include('randomSet': 2))
+        expect(questions).to all(include(randomSet: 2))
       end
 
       it 'retains the random set for subsequent blocks if exists' do
@@ -212,9 +212,9 @@ describe Agiles::ScrubConfig do
         second_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 1, 'questions')
         third_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 2, 'questions')
 
-        expect(first_block_questions).to all(include('randomSet': 2))
-        expect(second_block_questions).to all(include('randomSet': 2))
-        expect(third_block_questions).to all(include('randomSet': 3))
+        expect(first_block_questions).to all(include(randomSet: 2))
+        expect(second_block_questions).to all(include(randomSet: 2))
+        expect(third_block_questions).to all(include(randomSet: 3))
       end
     end
   end

@@ -24,7 +24,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.log_level = ENV['LOG_LEVEL'] || :debug
+  config.log_level = ENV.fetch('LOG_LEVEL', :debug)
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -92,9 +92,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
   config.action_cable.allow_same_origin_as_host = true
   Rails.application.config.action_controller.forgery_protection_origin_check = false
-  config.action_dispatch.default_headers.merge!(
-    'Access-Control-Allow-Origin' => '*'
-  )
+  config.action_dispatch.default_headers['Access-Control-Allow-Origin'] = '*'
 
   # Setting nil to allow any hosts on develop
   config.hosts = nil

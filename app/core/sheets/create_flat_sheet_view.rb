@@ -36,11 +36,11 @@ module Sheets
       end
       return if valid_columns.empty?
 
-      columns_query = valid_columns.map do |column|
+      columns_query = valid_columns.filter_map do |column|
         type = column['type'] == 'Number' ? 'float' : 'text'
         column_name = column['name']
         "(data->>'#{column_name}')::#{type} as \"#{column_name}\""
-      end.compact.join(", \n")
+      end.join(", \n")
 
       <<-SQL.squish
         SELECT id, email as "Email", #{columns_query}

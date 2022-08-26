@@ -9,7 +9,7 @@ module PowerBi
     end
 
     def call
-      url = "#{BASE_API_URL}/groups/#{config[:tenant_id]}/datasets/#{dataset_id}/refreshes"
+      # rubocop:disable Lint/SymbolConversion
       response = Faraday.post(
         "#{BASE_API_URL}/groups/#{config[:tenant_id]}/datasets/#{dataset_id}/refreshes",
         {}.to_json,
@@ -18,6 +18,8 @@ module PowerBi
           'Content-Type': 'application/json'
         }
       )
+      # rubocop:enable all
+
       unless (200...300).cover?(response.status)
         raise PowerBi::RefreshFailedError, JSON.parse(response.body).dig('error', 'message')
       end

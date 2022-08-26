@@ -26,7 +26,7 @@ describe PowerBi::RefreshDataset do
     ).
       with(
         headers: {
-          'Authorization': "Bearer #{access_token}",
+          Authorization: "Bearer #{access_token}",
           'Content-Type': 'application/json'
         }
       )

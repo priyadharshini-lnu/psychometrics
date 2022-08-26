@@ -8,8 +8,8 @@ module Administration
 
       def index
         render json: campaign,
-          serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer,
-          current_user: current_user
+               serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer,
+               current_user: current_user
       end
 
       def create
@@ -36,7 +36,7 @@ module Administration
         ::CampaignAssessmentGroups::UpdatePositions.call(campaign, groups) do
           on(:ok) do
             render json: campaign,
-            serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+                   serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
           end
           on(:error) { |errors| return render json: { errors: errors }, status: 400 }
         end

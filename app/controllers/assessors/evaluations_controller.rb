@@ -19,9 +19,9 @@ class Assessors::EvaluationsController < Assessors::BaseController
     ).map(&:assessment_id)
 
     @subject_user_assessment ||= UserAssessment.where(campaign_id: campaign.id,
-                                                        subject_id: user.id,
-                                                        evaluator_id: user.id,
-                                                        assessment_id: assessment_ids)
+                                                      subject_id: user.id,
+                                                      evaluator_id: user.id,
+                                                      assessment_id: assessment_ids)
     datasheet_columns = Sheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
     datasheet = campaign.datasheet_data(user.email)
 

@@ -33,7 +33,9 @@
 class Client < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+
   attr_writer :license_msg
+
   attribute :webhook, :string
   attribute :webhook_auth_enabled, :boolean
   attribute :webhook_username, :string
@@ -306,7 +308,7 @@ class Client < ApplicationRecord
 
   def generate_hogan_group_name
     [
-      ENV['SERVER_NAME'],
+      ENV.fetch('SERVER_NAME', nil),
       client.name.gsub(/[^0-9A-Za-z\s]/, ''),
       project.id
     ].compact.join('-')
@@ -346,8 +348,8 @@ class Client < ApplicationRecord
   end
 
   def allowed_data
-    if operator.is?(:project_admin)
-      errors.add(:base) if root?
+    if operator.is?(:project_admin) && root?
+      errors.add(:base)
     end
   end
 end

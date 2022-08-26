@@ -114,7 +114,7 @@ module Administration
             on(:ok) do |user|
               audit! :create_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
               return render json: user, serializer: Administration::Campaigns::UserSerializer,
-                campaign_id: campaign.id, project_id: campaign.project_id
+                            campaign_id: campaign.id, project_id: campaign.project_id
             end
             on(:error) do |errors|
               return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
@@ -131,7 +131,7 @@ module Administration
           audit! :update_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
           resource.update(form.attributes)
           render json: resource, serializer: Administration::Campaigns::UserSerializer,
-            campaign_id: campaign.id, project_id: campaign.project_id
+                 campaign_id: campaign.id, project_id: campaign.project_id
         else
           render json: { errors: form.errors.messages }, status: 422
         end

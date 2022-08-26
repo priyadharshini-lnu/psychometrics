@@ -10,8 +10,8 @@ describe Reports::CopyReport do
       report = build(:report)
       pages = build_list(:page, 2)
       module1 = build(:module)
-      module2 = build(:module, props: { "filters": [filters.first.id, filters.last.id] })
-      module3 = build(:module, props: { "filters": filters.first.id })
+      module2 = build(:module, props: { filters: [filters.first.id, filters.last.id] })
+      module3 = build(:module, props: { filters: filters.first.id })
       module4 = build(:module)
 
       modules = [module1, module2, module3, module4]

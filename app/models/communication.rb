@@ -31,6 +31,7 @@ class Communication < ApplicationRecord
   }.freeze
 
   attr_accessor :delivery_interval_number, :delivery_interval_period, :reminder_type
+
   has_and_belongs_to_many :memberships, join_table: :communications_memberships
   has_and_belongs_to_many :copy_memberships, join_table: :communications_copy_memberships, class_name: 'Membership'
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'
@@ -99,8 +100,8 @@ class Communication < ApplicationRecord
   def parse_delivery_interval
     return if delivery_interval.blank?
 
-    self.delivery_interval_number = delivery_interval.split(' ').first.to_i
-    self.delivery_interval_period = delivery_interval.split(' ').last
+    self.delivery_interval_number = delivery_interval.split.first.to_i
+    self.delivery_interval_period = delivery_interval.split.last
   end
 
   # Copy Communication

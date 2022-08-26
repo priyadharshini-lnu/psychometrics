@@ -15,7 +15,7 @@ module Imports
                                                     'application/octet-stream',
                                                     'text/plain'] }
 
-      def process!
+      def process! # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         return false unless valid?
 
         user_results = load_imported_items&.compact
@@ -45,7 +45,7 @@ module Imports
         errors.blank?
       end
 
-      def load_imported_items
+      def load_imported_items # rubocop:disable Metrics/AbcSize
         rows = open_spreadsheet.to_a
         header = rows.shift
 
@@ -68,7 +68,7 @@ module Imports
         end
 
         rows.each_with_index.map do |row, index|
-          data = Hash[header.zip(row)]
+          data = header.zip(row).to_h
 
           user_result ||= find_user_result(data['email'])
 
@@ -166,7 +166,7 @@ module Imports
         @parsed_norm_id[norm_name]
       end
 
-      def form_answers(data)
+      def form_answers(data) # rubocop:disable Metrics/PerceivedComplexity
         row = {}
         data.each do |key, value|
           qid, prop = key.split('.').reject(&:blank?)
@@ -195,7 +195,7 @@ module Imports
         Time.zone.strptime(date.to_s, '%D %r')
       rescue StandardError
         errors.add(:base, I18n.t('administration.imports.errors.result.error',
-                                 row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
+                                 row: index + SKIP_ROWS, error: "Invalid Date :#{date}"))
       end
 
       def date_to_timestamp(value)

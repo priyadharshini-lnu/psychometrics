@@ -32,7 +32,7 @@ RSpec.describe Imports::UserImport do
     headers + body
   end
   let(:open_spreadsheet) do
-    OpenStruct.new(to_a: parsed_array)
+    OpenStruct.new(to_a: parsed_array) # rubocop:disable Style/OpenStructUse
   end
   let(:existing_users) do
     [

@@ -35,8 +35,7 @@ module Administration
           @_resource = resource_class.new
         end
 
-        # rubocop:disable Metrics/AbcSize
-        def create
+        def create # rubocop:disable Metrics/AbcSize
           # TODO: extract to ActiveModel Form Objects
           return unless resource_params[:assessment_id]
 
@@ -59,7 +58,6 @@ module Administration
           end
           render :new if resource.errors.any?
         end
-        # rubocop:enable Metrics/AbcSize
 
         def destroy
           Assigns::Destroy.call!(resource)

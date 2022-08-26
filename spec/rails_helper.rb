@@ -20,7 +20,7 @@ require 'redlock/testing'
 
 Redlock::Client.testing_mode = :bypass
 
-Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -87,7 +87,7 @@ RSpec.configure do |config|
   Capybara::Screenshot.autosave_on_failure = ENV['CIRCLECI'].nil? # skip for circleci artifacts
 
   config.after(:each) do |example|
-    if ENV['CIRCLECI'] &&
+    if ENV.fetch('CIRCLECI', nil) &&
        example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
       save_timestamped_screenshot(Capybara.page, example.metadata)
     end

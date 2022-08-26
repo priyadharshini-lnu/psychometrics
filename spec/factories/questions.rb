@@ -47,10 +47,10 @@ FactoryBot.define do
       type { 'TextEntry' }
       props do
         {
-          'choices': 0,
-          'choicesTexts': ['', ''],
-          'questionText': 'Click to write the question text',
-          'type': 'Email'
+          choices: 0,
+          choicesTexts: ['', ''],
+          questionText: 'Click to write the question text',
+          type: 'Email'
         }
       end
       block
@@ -60,10 +60,10 @@ FactoryBot.define do
       type { 'TextEntry' }
       props do
         {
-          'choices': 3,
-          'choicesTexts': ['', '', ''],
-          'questionText': 'Click to write the question text',
-          'type': 'Chat'
+          choices: 3,
+          choicesTexts: ['', '', ''],
+          questionText: 'Click to write the question text',
+          type: 'Chat'
         }
       end
       block

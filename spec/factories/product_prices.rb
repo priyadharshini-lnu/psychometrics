@@ -13,6 +13,6 @@
 #
 
 FactoryBot.define do
-  factory :product_price do
+  factory :product_price do # rubocop:disable Lint/EmptyBlock
   end
 end

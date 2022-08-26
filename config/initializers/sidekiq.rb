@@ -13,7 +13,7 @@ redis_connection = if Rails.env.development?
                    end
 
 Sidekiq.configure_server do |config|
-  pool_size = ENV['SIDEKIQ_DB_POOL'] || (Sidekiq.options[:concurrency] + 2)
+  pool_size = ENV.fetch('SIDEKIQ_DB_POOL', Sidekiq.options[:concurrency] + 2)
   config.redis = redis_connection.merge(size: pool_size)
   # Rails.application.config.after_initialize do
   #   Rails.logger.info("DB Connection Pool size for Sidekiq Server before disconnect
@@ -35,10 +35,9 @@ Sidekiq.configure_client do |config|
   config.redis = redis_connection
 end
 
-if Sidekiq.server?
-  Rails.logger = Sidekiq.logger if Rails.env.development?
-  # calling Sidekiq::Cron::Job is moved to application.rb in Rails.application.config.to_prepare
-  # due to new :zeitwerk loader
-  # https://guides.rubyonrails.org/v6.0/autoloading_and_reloading_constants.html
-  # CronJobsLoader.load_jobs
-end
+# calling Sidekiq::Cron::Job is moved to application.rb in Rails.application.config.to_prepare
+# due to new :zeitwerk loader
+# https://guides.rubyonrails.org/v6.0/autoloading_and_reloading_constants.html
+# CronJobsLoader.load_jobs is fired to load existing sidekiq jobs
+
+Rails.logger = Sidekiq.logger if Sidekiq.server? && Rails.env.development?

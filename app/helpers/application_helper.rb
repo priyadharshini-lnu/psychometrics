@@ -78,7 +78,7 @@ module ApplicationHelper
   end
 
   def maintenance_subdomains
-    @maintenance_subdomains ||= (ENV['UAE_DATA_MIGRATION_SUBDOMAINS'] || '').split(',')
+    @maintenance_subdomains ||= ENV.fetch('UAE_DATA_MIGRATION_SUBDOMAINS', '').split(',')
   end
 
   def maintenance_start_date
@@ -86,11 +86,11 @@ module ApplicationHelper
   end
 
   def maintenance_end_date
-    maintenance_start_date + (ENV['MAINTENANCE_DURATION'] || 0).to_i.minutes
+    maintenance_start_date + ENV.fetch('MAINTENANCE_DURATION', 0).to_i.minutes
   end
 
   def duration
-    ((ENV['MAINTENANCE_DURATION'] || 0).to_i / 60.0).round(1)
+    (ENV.fetch('MAINTENANCE_DURATION', 0).to_i / 60.0).round(1)
   end
 
   def maintenance_time_frame

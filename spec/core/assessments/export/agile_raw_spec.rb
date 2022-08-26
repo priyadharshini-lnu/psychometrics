@@ -22,7 +22,7 @@ describe Assessments::Export::AgileRaw do
   let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
 
   after do
-    FileUtils.rm(file_name) if File.exist?(file_name)
+    FileUtils.rm_rf(file_name)
   end
 
   context 'Agile raw export' do

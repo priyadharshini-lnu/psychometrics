@@ -14,12 +14,12 @@ module Threesixty
     def managed_subjects
       return [] unless instance_options[:managed_subjects]
 
-      instance_options[:managed_subjects].map do |subject|
+      instance_options[:managed_subjects].filter_map do |subject|
         data = ::Threesixty::EndUser::ManagedSubjectSerializer.
                new(subject, scope: current_user, scope_name: :current_user).
                to_hash(include: '**')
         data[:evaluators].present? ? data : nil
-      end.compact
+      end
     end
 
     def nominations_counters

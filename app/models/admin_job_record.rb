@@ -36,8 +36,7 @@ class AdminJobRecord < ApplicationRecord
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
 
-  after_commit -> { broadcast(:update) },
-    if: proc { status_previously_changed? || completed_tasks_previously_changed? }
+  after_commit -> { broadcast(:update) }, if: proc { status_previously_changed? || completed_tasks_previously_changed? }
 
   def progress
     return 100 if completed? || total_tasks.zero?

@@ -31,12 +31,12 @@ module Administration
         add_breadcrumb t('.breadcrumb')
       end
 
-      def new_step_1
+      def new_step_one
         @form = ::Memberships::PrepareUserForm.new
         render 'new', locals: { form: 'fetch_user_form' }
       end
 
-      def new_step_2
+      def new_step_two
         @form = ::Memberships::PrepareUserForm.from_params(params)
         ::Memberships::PrepareUserToCreateCommand.call(@form, User::DEFAULT_PROJECT_ADMIN_GRANTS) do
           on(:invalid) { render 'new', locals: { form: 'fetch_user_form' } }

@@ -71,7 +71,8 @@ module CampaignReports
 
     def download_report(user_report)
       url = URI(user_report.pdf.url)
-      IO.copy_stream(URI.open(url.to_s), download_path(user_report))
+      # TODO: get rid of URI.open
+      IO.copy_stream(URI.open(url.to_s), download_path(user_report)) # rubocop:disable Security/Open
     rescue OpenURI::HTTPError
       Rails.logger.error "Download failed for UserReport with id #{user_report.id}"
     end

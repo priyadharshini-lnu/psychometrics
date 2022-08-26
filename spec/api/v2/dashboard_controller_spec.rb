@@ -109,7 +109,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/DashboardCreateRequest' },
-        required: true
+                required: true
 
       response '201', 'Dashboard Created' do
         schema '$ref' => '#/components/schemas/DashboardResponse'
@@ -165,7 +165,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
       security [basic: []]
       parameter name: :dashboard_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/DashboardUpdateRequest' },
-        required: true
+                required: true
 
       response '200', 'Dashboard Created' do
         schema '$ref' => '#/components/schemas/DashboardResponse'

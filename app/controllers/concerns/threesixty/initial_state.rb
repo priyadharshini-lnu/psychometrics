@@ -9,7 +9,7 @@ module Threesixty::InitialState
     end
   end
 
-  def set_init_state
+  def set_init_state # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     @current_project ||= GetProjectBySubdomain.call!(request.subdomain)
 
     @init_state = {

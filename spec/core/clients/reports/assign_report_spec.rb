@@ -20,11 +20,11 @@ describe ::Clients::Reports::AssignReport do
   let(:removing_report_ids) { [] }
   let(:form) do
     ::Clients::Reports::AssignReportForm.new(report_family_id: report_family.id,
-                                            adding_report_ids: adding_report_ids,
-                                            removing_report_ids: removing_report_ids,
-                                            adding_user_access_report_ids: [],
-                                            removing_user_access_report_ids: [],
-                                            is_applying_to_existing_users: false)
+                                             adding_report_ids: adding_report_ids,
+                                             removing_report_ids: removing_report_ids,
+                                             adding_user_access_report_ids: [],
+                                             removing_user_access_report_ids: [],
+                                             is_applying_to_existing_users: false)
   end
   before(:each) { allow(form).to receive(:invalid?).and_return(false) }
   subject { described_class.call(form, campaign) }

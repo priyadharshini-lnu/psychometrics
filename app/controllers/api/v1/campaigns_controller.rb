@@ -32,11 +32,13 @@ module Api
         if form.valid?
           normalized_params[:campaigns].map do |campaign_attrs|
             campaign = Campaign.find(campaign_attrs[:id])
+            # rubocop:disable Style/OpenStructUse
             struct = OpenStruct.new(
               email: form.email,
               operation: campaign_attrs[:existing_record],
               active: campaign_attrs[:active]
             )
+            # rubocop:enable all
             audit! :assign_user, campaign, payload: campaign_attrs.permit!, campaign: campaign
             ::Campaigns::Users::Create.call(struct, campaign, current_user) do
               on(:error) { raise Api::Errors::NotEnoughLicences, 'Not Enough Licenses' }

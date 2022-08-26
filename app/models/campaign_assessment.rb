@@ -66,7 +66,7 @@ class CampaignAssessment < ApplicationRecord
   private
 
   def pearson_norm_name
-    assessment.pearson_norms.find { |norm| norm[:id] == external_norm_id }.dig(:name)
+    assessment.pearson_norms.find { |norm| norm[:id] == external_norm_id }[:name]
   end
 
   def saville_norm_name

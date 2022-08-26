@@ -18,7 +18,7 @@ class BaseCommand < Rectify::Command
     call(...)[:ok]
   end
 
-  def self.call(...)
+  def self.call(...) # rubocop:disable Lint/UselessMethodDefinition
     super(...)
   end
 end

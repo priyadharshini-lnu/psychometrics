@@ -28,7 +28,7 @@ describe Assigns::Reset do
   subject { described_class.call(assign) }
 
   it '.call!' do
-    expect(described_class).to respond_to(:'call!').with_unlimited_arguments
+    expect(described_class).to respond_to(:call!).with_unlimited_arguments
   end
 
   it 'reset result data for assign with results' do

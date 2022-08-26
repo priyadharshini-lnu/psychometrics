@@ -10,7 +10,7 @@ module Administration
       super
     end
 
-    def policy_scope(scope, extra = {})
+    def policy_scope(scope, _extra = {})
       scope = define_scope(scope)
       super(scope)
     end

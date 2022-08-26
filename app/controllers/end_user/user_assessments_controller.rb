@@ -21,10 +21,10 @@ class EndUser::UserAssessmentsController < ApplicationController
 
     @selected_locale = @user_assessment.selected_locale || user_locale
     render json: @user_assessment.users_result, serializer: UsersResultSerializer,
-                 campaign: @user_assessment.campaign, participant: @user_assessment,
-                 current_user: current_user, locale: @selected_locale,
-                 piped_text_context: build_piped_context,
-                 include: '**'
+           campaign: @user_assessment.campaign, participant: @user_assessment,
+           current_user: current_user, locale: @selected_locale,
+           piped_text_context: build_piped_context,
+           include: '**'
   end
 
   def pass

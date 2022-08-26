@@ -18,11 +18,9 @@ namespace :assign do
     end
   end
 
-  def update_records(records)
+  def update_records(records, &)
     todo_size = records.size
-    records.find_each do |record|
-      yield record
-    end
+    records.find_each(&)
     puts "updated #{todo_size} records"
   end
 

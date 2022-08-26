@@ -47,11 +47,11 @@ class Task < ApplicationRecord
   after_save :status_changed_callback, if: proc { saved_change_to_status? && !root? }
 
   def overdue?
-    if completed_at && completed?
-      planned_completed_at < completed_at
-    else
-      planned_completed_at < Date.today
-    end
+    planned_completed_at < if completed_at && completed?
+                             completed_at
+                           else
+                             Date.today
+                           end
   end
 
   def children

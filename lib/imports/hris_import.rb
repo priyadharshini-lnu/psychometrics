@@ -3,6 +3,7 @@
 module Imports
   class HrisImport < Imports::BaseImport
     attr_accessor :client_id, :importer
+
     validates :client_id, :importer, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
@@ -36,7 +37,7 @@ module Imports
       raise Roo::HeaderRowNotFoundError unless header.include?('Email')
 
       datas.map.with_index do |data, index|
-        hris = Hash[header.zip(data)]
+        hris = header.zip(data).to_h
         membership = ::Membership.joins(:user).find_by(users: { email: hris.delete('Email') })
         if membership.nil?
           errors.add(:base, I18n.t('administration.imports.errors.user.not_found', row: index + 2, email: hris[:email]))

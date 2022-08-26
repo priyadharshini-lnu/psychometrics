@@ -10,8 +10,8 @@ module Ecommerce
       @order = @current_membership.orders.build
       @products.each do |product|
         @order.purchases.build(product: product,
-                                 quantity: @cart.quantity_for(product.id),
-                                 price_currency: current_currency.iso_code)
+                               quantity: @cart.quantity_for(product.id),
+                               price_currency: current_currency.iso_code)
       end
     end
 

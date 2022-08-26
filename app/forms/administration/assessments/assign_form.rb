@@ -3,8 +3,7 @@
 module Administration
   module Assessments
     class AssignForm < BaseForm
-      attr_accessor :client_ids, :report_ids
-      attr_accessor :manager_ids, :user_ids
+      attr_accessor :client_ids, :report_ids, :manager_ids, :user_ids
 
       def access_reports
         @access_reports || (access_reports_at.nil? ? 'immediately' : 'specific_datetime')

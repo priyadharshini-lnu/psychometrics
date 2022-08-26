@@ -14,7 +14,7 @@ describe Sheets::Export do
   let(:file_name) { "sheet-#{Time.now}.xlsx" }
 
   after do
-    FileUtils.rm(file_name) if File.exist?(file_name)
+    FileUtils.rm_rf(file_name)
   end
 
   before do

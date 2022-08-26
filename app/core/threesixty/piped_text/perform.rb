@@ -74,7 +74,7 @@ module Threesixty
         @transformer = transformer
       end
 
-      # rubocop:disable Lint/AmbiguousRegexpLiteral, Style/CharacterLiteral
+      # rubocop:disable Style/CharacterLiteral
       def call
         return unless body.present?
 
@@ -98,7 +98,7 @@ module Threesixty
           end
         broadcast :ok, result
       end
-      # rubocop:enable Lint/AmbiguousRegexpLiteral, Style/CharacterLiteral
+      # rubocop:enable Style/CharacterLiteral
 
       def lookup_branch(path)
         branch_key = path.scan(/^(\w+):/).first&.first

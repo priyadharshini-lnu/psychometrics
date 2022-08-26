@@ -22,7 +22,7 @@ describe 'Assessments' do
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :campaign_id, in: :query, type: :string, required: false,
-      description: 'if is not filled, the system takes the last campaign id'
+                description: 'if is not filled, the system takes the last campaign id'
 
       response '200', 'Assessments presented' do
         let(:project_id) { project.id }
@@ -42,26 +42,26 @@ describe 'Assessments' do
 
         examples 'application/json' => [
           {
-            "id": '11234',
-            "name": 'Assessment 1',
-            "description": 'Assessment 1 Description',
-            "icon_url": 'https://some.aws.s3.com/icon1.jpg',
-            "poster_url": 'https://some.aws.s3.com/poster1.jpg',
-            "campaign_id": 1,
-            "status": 'completed',
-            "started_at": '2019-03-04T15:47:33.570+04:00',
-            "completed_at": '2019-03-04T15:47:33.570+04:00'
+            id: '11234',
+            name: 'Assessment 1',
+            description: 'Assessment 1 Description',
+            icon_url: 'https://some.aws.s3.com/icon1.jpg',
+            poster_url: 'https://some.aws.s3.com/poster1.jpg',
+            campaign_id: 1,
+            status: 'completed',
+            started_at: '2019-03-04T15:47:33.570+04:00',
+            completed_at: '2019-03-04T15:47:33.570+04:00'
           },
           {
-            "id": '11235',
-            "name": 'Assessment 2',
-            "description": 'Assessment 2 Description',
-            "icon_url": 'https://some.aws.s3.com/icon2.jpg',
-            "poster_url": 'https://some.aws.s3.com/poster1.jpg',
-            "campaign_id": 1,
-            "status": 'completed',
-            "started_at": '2019-03-04T15:47:33.570+04:00',
-            "completed_at": '2019-03-04T15:47:33.570+04:00'
+            id: '11235',
+            name: 'Assessment 2',
+            description: 'Assessment 2 Description',
+            icon_url: 'https://some.aws.s3.com/icon2.jpg',
+            poster_url: 'https://some.aws.s3.com/poster1.jpg',
+            campaign_id: 1,
+            status: 'completed',
+            started_at: '2019-03-04T15:47:33.570+04:00',
+            completed_at: '2019-03-04T15:47:33.570+04:00'
           }
         ]
 
@@ -85,10 +85,10 @@ describe 'Assessments' do
 
         examples 'application/json' =>
         {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
         }
 
         run_test! do |response|
@@ -105,10 +105,10 @@ describe 'Assessments' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: 'API User is disabled',
+          meta: nil
         }
 
         run_test! do |response|
@@ -129,10 +129,10 @@ describe 'Assessments' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1005,
-          'message': 'Resource not found',
-          'more_info': 'User with id=111 was not found',
-          'meta': nil
+          code: 1005,
+          message: 'Resource not found',
+          more_info: 'User with id=111 was not found',
+          meta: nil
         }
 
         run_test! do |response|
@@ -187,7 +187,7 @@ describe 'Assessments' do
         schema '$ref' => '#/definitions/UserAssessment'
 
         examples 'application/json' => {
-          "norm_id": nil
+          norm_id: nil
         }
 
         run_test! do |response|
@@ -206,10 +206,10 @@ describe 'Assessments' do
 
         examples 'application/json' =>
         {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
         }
 
         run_test! do |response|
@@ -227,10 +227,10 @@ describe 'Assessments' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: 'API User is disabled',
+          meta: nil
         }
 
         run_test! do |response|

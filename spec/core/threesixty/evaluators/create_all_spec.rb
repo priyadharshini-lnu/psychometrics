@@ -7,13 +7,13 @@ describe Threesixty::Evaluators::CreateAll do
   let(:campaign) { create(:campaign, project: project) }
   let(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
   let!(:option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
-  let!(:subject_1) do
+  let!(:first_subject) do
     user = create(:user, project: project, email: 'fedor@gmail.com')
     create(:campaign_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
   end
   let!(:relationship) { create(:relationship, name: 'peer', campaign: campaign) }
-  let!(:subject_2) do
+  let!(:second_subject) do
     user = create(:user, project: project, email: 'ivan@gmail.com')
     create(:campaign_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
@@ -22,13 +22,13 @@ describe Threesixty::Evaluators::CreateAll do
     [
       {
         evaluator_email: 'dev.atanov@gmail.com',
-        relationship_name: 'peer', subject: subject_1,
-        relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+        relationship_name: 'peer', subject: first_subject,
+        relationship: relationship, subject_user: first_subject.user, subject_email: 'fedor@gmail.com'
       },
       {
         evaluator_email: 'dev.atanov@gmail.com',
-        relationship_name: 'peer', subject: subject_2,
-        relationship: relationship, subject_user: subject_2.user, subject_email: 'ivan@gmail.com'
+        relationship_name: 'peer', subject: second_subject,
+        relationship: relationship, subject_user: second_subject.user, subject_email: 'ivan@gmail.com'
       }
     ]
   end
@@ -59,7 +59,7 @@ describe Threesixty::Evaluators::CreateAll do
       described_class.call!([{
         evaluator_email: 'daniel@cc.com',
         relationship_name: 'peer',
-        subject: subject_1,
+        subject: first_subject,
         subject_email: 'smith@cc.com'
       }], threesixty_campaign)
     end.to_not change(::Threesixty::Evaluator, :count)
@@ -70,7 +70,7 @@ describe Threesixty::Evaluators::CreateAll do
     evaluator = create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
     create(
       :threesixty_participant,
-      subject_id: subject_1.user_id,
+      subject_id: first_subject.user_id,
       campaign_id:  threesixty_campaign.campaign_id,
       evaluator_id: evaluator.user_id
     )
@@ -79,8 +79,8 @@ describe Threesixty::Evaluators::CreateAll do
       described_class.call!([{
         evaluator_email: 'daniel@cc.com',
         relationship_name: 'peer',
-        subject: subject_1,
-        subject_user: subject_1.user,
+        subject: first_subject,
+        subject_user: first_subject.user,
         subject_email: 'smith@cc.com'
       }], threesixty_campaign)
     end.to_not change(::Threesixty::Participant, :count)
@@ -96,7 +96,7 @@ describe Threesixty::Evaluators::CreateAll do
       evaluator_first_name: 'John',
       evaluator_last_name: 'Smith',
       relationship_name: 'peer',
-      subject: subject_1,
+      subject: first_subject,
       subject_email: 'caleb@cc.com'
     }], threesixty_campaign)
 
@@ -109,9 +109,9 @@ describe Threesixty::Evaluators::CreateAll do
   it 'creates evaluator with password' do
     params = [{
       evaluator_email: 'dev.atanov@gmail.com',
-      relationship_name: 'peer', subject: subject_1,
+      relationship_name: 'peer', subject: first_subject,
       evaluator_password: 'password@123',
-      relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+      relationship: relationship, subject_user: first_subject.user, subject_email: 'fedor@gmail.com'
     }]
 
     participants = described_class.call!(params, threesixty_campaign)[:participants]
@@ -122,8 +122,8 @@ describe Threesixty::Evaluators::CreateAll do
   it 'creates evaluator without password' do
     params = [{
       evaluator_email: 'dev.atanov@gmail.com',
-      relationship_name: 'peer', subject: subject_1,
-      relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+      relationship_name: 'peer', subject: first_subject,
+      relationship: relationship, subject_user: first_subject.user, subject_email: 'fedor@gmail.com'
     }]
 
     participants = described_class.call!(params, threesixty_campaign)[:participants]
@@ -138,9 +138,9 @@ describe Threesixty::Evaluators::CreateAll do
     create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
     params = [{
       evaluator_email: 'daniel@cc.com',
-      relationship_name: 'peer', subject: subject_1,
+      relationship_name: 'peer', subject: first_subject,
       evaluator_password: 'new_password',
-      relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+      relationship: relationship, subject_user: first_subject.user, subject_email: 'fedor@gmail.com'
     }]
 
     result = described_class.call!(params, threesixty_campaign)

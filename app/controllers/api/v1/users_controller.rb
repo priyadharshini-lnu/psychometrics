@@ -19,6 +19,7 @@ module Api
         if form.valid?
           user = normalized_params[:campaigns].map do |campaign_attrs|
             campaign = Campaign.find(campaign_attrs[:id])
+            # rubocop:disable Style/OpenStructUse
             struct = OpenStruct.new(
               email: form.email,
               first_name: form.first_name,
@@ -26,6 +27,7 @@ module Api
               operation: campaign_attrs[:existing_record],
               active: campaign_attrs[:active]
             )
+            # rubocop:enable all
             response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
               on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
             end

@@ -15,7 +15,7 @@ class ApplicationController < ::BaseController
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :redirect_to_ae_domain, if: :redirect_to_ae_enabled?
 
-  DOMAIN_REGEXP = %r{^((?:http|https):\/\/.+\.)com}.freeze
+  DOMAIN_REGEXP = %r{^(https?://.+\.)com}
 
   helper_method :show_new_end_user_view?
 
@@ -86,15 +86,13 @@ class ApplicationController < ::BaseController
 
   private
 
-  def set_mobility_locale
-    Mobility.with_locale(ui_locale) do
-      yield
-    end
+  def set_mobility_locale(&)
+    Mobility.with_locale(ui_locale, &)
   end
 
   # Detect Client by subdomain
 
-  def set_client_by_subdomain
+  def set_client_by_subdomain # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Assessors')
     return if request.controller_class.to_s.start_with?('Ecommerce')
@@ -102,7 +100,7 @@ class ApplicationController < ::BaseController
     return if request.controller_class.to_s.start_with?('Webhooks')
 
     @current_project = GetProjectBySubdomain.call!(request.subdomain)
-    return render_423 if @current_project&.disabled?
+    return render_http_locked if @current_project&.disabled?
 
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
 
@@ -112,7 +110,7 @@ class ApplicationController < ::BaseController
   end
 
   # Fetch membership
-  def set_membership
+  def set_membership # rubocop:disable Metrics/PerceivedComplexity
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
@@ -146,7 +144,7 @@ class ApplicationController < ::BaseController
     I18n.locale = ui_locale
   end
 
-  def render_423
+  def render_http_locked
     render file: "#{Rails.root}/public/423.html", layout: false, status: :locked
   end
 
@@ -154,7 +152,7 @@ class ApplicationController < ::BaseController
     return false unless Rails.env.production?
     return false unless ENV['UAE_DATA_MIGRATION_REDIRECT_ENABLED'] == 'true'
 
-    domains = (ENV['UAE_DATA_MIGRATION_SUBDOMAINS'] || '').split(',')
+    domains = ENV.fetch('UAE_DATA_MIGRATION_SUBDOMAINS', '')&.split(',')
     domains.include?(@current_project&.subdomain)
   end
 end

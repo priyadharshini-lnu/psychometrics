@@ -7,7 +7,7 @@ describe CampaignReports::Remove do
   let(:report) { create(:report) }
   let(:campaign_report) { create(:campaign_report, campaign: campaign, report: report) }
   let!(:user_report) { create(:user_report, campaign: campaign, report: report) }
-  let!(:user_report_1) { create(:user_report, campaign: campaign) }
+  let!(:another_user_report) { create(:user_report, campaign: campaign) }
   let(:options) { { campaign_report: campaign_report, remove_user_reports: false } }
   let(:options_with_remove_user_report) { { campaign_report: campaign_report, remove_user_reports: true } }
 
@@ -28,6 +28,6 @@ describe CampaignReports::Remove do
   it 'do not removes user_report associated with different report if remove_user_reports flag is true' do
     described_class.call!(options_with_remove_user_report)
 
-    expect(UserReport.find_by(id: user_report_1.id)).to eq(user_report_1)
+    expect(UserReport.find_by(id: another_user_report.id)).to eq(another_user_report)
   end
 end

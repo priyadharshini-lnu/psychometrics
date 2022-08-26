@@ -8,9 +8,7 @@ module Projects
       @params = params.to_h
     end
 
-    # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-
-    def call
+    def call # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       res = params.clone
       res['number'] = (res.delete 'client_reference') if res.key?('client_reference')
       res['privacy_consent'] = res.delete 'data_processing_consent' if res.key?('data_processing_consent')
@@ -24,7 +22,5 @@ module Projects
 
       broadcast :ok, res
     end
-
-    # rubocop:enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
   end
 end

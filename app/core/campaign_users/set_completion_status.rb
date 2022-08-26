@@ -28,9 +28,9 @@ module CampaignUsers
 
       return 'not_started' if statuses.empty?
 
-      return 'completed' if statuses.all? { |status| status == 'completed' }
+      return 'completed' if statuses.all?('completed')
 
-      return 'not_started' if statuses.all? { |status| status == 'not_started' }
+      return 'not_started' if statuses.all?('not_started')
 
       'in_progress'
     end

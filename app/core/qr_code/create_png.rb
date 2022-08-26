@@ -26,7 +26,7 @@ module QrCode
       )
 
       file_path = Rails.root.join('tmp', "#{SecureRandom.hex(32)}.png").to_s
-      IO.binwrite(file_path, qrcode_as_png.to_s)
+      File.binwrite(file_path, qrcode_as_png.to_s)
 
       broadcast :ok, file_path
     end

@@ -83,8 +83,8 @@ module Imports
       end
 
       def import_factor_norms(factor, row, ceil)
-        raw_range = (ceil...ceil + FactorsNorm::LEVELS.size * 2)
-        return if @current_sheet[row][raw_range].compact.map(&:value).compact.empty?
+        raw_range = (ceil...ceil + (FactorsNorm::LEVELS.size * 2))
+        return if @current_sheet[row][raw_range].compact.filter_map(&:value).empty?
 
         factors_norm       = FactorsNorm.new(norm_id: @norm.id, factor_id: factor.id)
         factors_norm.props = []
@@ -100,7 +100,7 @@ module Imports
       end
 
       def human_coordinates
-        "#{(@cursor_y + 1)}-#{(@cursor_x + 1).alph.upcase}"
+        "#{@cursor_y + 1}-#{(@cursor_x + 1).alph.upcase}"
       end
     end
   end

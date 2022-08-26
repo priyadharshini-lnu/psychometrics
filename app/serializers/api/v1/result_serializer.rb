@@ -23,7 +23,7 @@ module Api
       end
 
       def assessments
-        assessment_ids = object.map { |row| row.dig(:config_data, 'assessmentId') }.compact.uniq
+        assessment_ids = object.filter_map { |row| row.dig(:config_data, 'assessmentId') }.uniq
         assessments = Assessment.where(id: assessment_ids).all
         assessments.map do |assessment|
           Api::V1::Results::AssessmentSerializer.new(assessment, rows: object).to_h

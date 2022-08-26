@@ -3,12 +3,12 @@
 module Api
   class Mindmill
     COMPANY_ID = 70
-    KEY = ENV['MINDMILL_KEY']
+    KEY = ENV.fetch('MINDMILL_KEY', nil)
     WSDL_URL = 'https://evo-api.mindmill.co.uk/ICAS/ICAS1.asmx?WSDL'
     AVAILABLE_LANGUAGES = %w[en ar fr].freeze
 
-    attr_accessor :api, :appid, :assessment, :current_membership, :locale, :assign
-    attr_accessor :report, :ssourl, :has_in_progress_assign, :scores
+    attr_accessor :api, :appid, :assessment, :current_membership, :locale, :assign, :report, :ssourl,
+                  :has_in_progress_assign, :scores
 
     def initialize(assign, current_membership, user_locale = 'en')
       @api = Savon.client(wsdl: WSDL_URL, soap_version: 2, log_level: :debug, logger: Rails.logger)

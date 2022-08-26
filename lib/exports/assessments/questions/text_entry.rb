@@ -26,14 +26,14 @@ module Exports
           formatted_answers(user_result, question, all_answers)
         end
 
-        def self.retrieve_answers(answers, question, scoring)
+        def self.retrieve_answers(answers, question, scoring) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
           if question.of_sub_type?('Email') && answers.present?
             email_type_answers(answers)
           else
             remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
             factors_scoring = question.detect_specified_scoring.
                               each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-            (answers || []).map { |a| scoring && factors_scoring[a['value']] || a['value'] }
+            (answers || []).map { |a| (scoring && factors_scoring[a['value']]) || a['value'] }
           end
         end
 

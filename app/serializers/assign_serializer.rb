@@ -105,7 +105,7 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   # TODO: (atanych): refactor within https://gitlab.com/tte-lighthouse/psychometrics/issues/59
-  def external_scoring
+  def external_scoring # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return {} if object.assessment.psychometric?
     return object.external_results if object.assessment.mindmill?
 

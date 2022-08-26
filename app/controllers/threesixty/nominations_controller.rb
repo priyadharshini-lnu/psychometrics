@@ -37,9 +37,9 @@ module Threesixty
         last_sent_at = last_email_sent_date.strftime(I18n.t('time.formats.datetimepicker_server'))
         wait_time = ActionController::Base.helpers.time_ago_in_words(last_email_sent_date.advance(hours: 1))
         render json: {
-          errors: I18n.t('nominations.approval_email_error', last_sent_at: last_sent_at, wait_time: wait_time)
-        },
-          status: :bad_request
+                 errors: I18n.t('nominations.approval_email_error', last_sent_at: last_sent_at, wait_time: wait_time)
+               },
+               status: :bad_request
       end
     end
 

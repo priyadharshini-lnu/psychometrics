@@ -67,9 +67,9 @@ module Assessments
         factor_name_headers = [nil] * factor_id_headers.length
         factor_value_type_headers = [''] * default_headers.length
         factors_hash.each do |factor_id, factors|
-          factor_id_headers = factor_id_headers.concat([factor_id] * factors.length)
-          factor_name_headers = factor_name_headers.concat([factor_id_and_name[factor_id]] * factors.length)
-          factor_value_type_headers = factor_value_type_headers.concat(factors.map(&:value_type))
+          factor_id_headers.concat([factor_id] * factors.length)
+          factor_name_headers.concat([factor_id_and_name[factor_id]] * factors.length)
+          factor_value_type_headers.concat(factors.map(&:value_type))
         end.flatten
 
         sheet.add_row(factor_id_headers, style: header_style)

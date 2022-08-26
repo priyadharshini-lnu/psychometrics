@@ -24,7 +24,7 @@ module Services
           end
 
           def report
-            context.response.dig('reportFile')
+            context.response['reportFile']
           end
         end
       end

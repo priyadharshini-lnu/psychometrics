@@ -39,7 +39,7 @@ class AssignDecorator < BaseDecorator
 
   def delete_confirmation
     name = original_assign.assessment&.decorate&.html_escaped_display_name
-    items = original_assign.reports.map { |report| "<li>#{report.decorate.html_escaped_display_name}</li>" }.join('')
+    items = original_assign.reports.map { |report| "<li>#{report.decorate.html_escaped_display_name}</li>" }.join
     message_body = unless items.blank?
                      I18n.t(
                        "administration.clients.users.#{i18n}.resource.confirms.assessment.detach.body", items: items

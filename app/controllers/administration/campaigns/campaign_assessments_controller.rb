@@ -10,8 +10,8 @@ module Administration
         resource.update(resource_params)
         audit! :update, resource, payload: resource_params, campaign: resource.campaign
         render json: resource,
-         serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
-         current_user: current_user
+               serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
+               current_user: current_user
       end
 
       def update_positions
@@ -19,7 +19,7 @@ module Administration
         ::CampaignAssessments::UpdatePositions.call(campaign, campaign_assessments) do
           on(:ok) do
             render json: campaign,
-            serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+                   serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
           end
           on(:error) { |errors| return render json: { errors: errors }, status: 400 }
         end

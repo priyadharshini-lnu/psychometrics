@@ -37,11 +37,11 @@ describe Threesixty::Evaluators::NominateEvaluator do
         expect(::Users::Regular.exists?(email: user.email)).to eq true
         participant1 = described_class.
                        call!(threesixty_campaign: campaign, subject: subject,
-                       params: { evaluator_email: 'unexists@a.com', relationship_id: peer.id }, nominator: user)
+                             params: { evaluator_email: 'unexists@a.com', relationship_id: peer.id }, nominator: user)
         participant2 = described_class.
                        call!(threesixty_campaign: campaign, subject: subject,
-                              params: { evaluator_email: user.email, relationship_id: peer.id },
-                       nominator: user, evaluator: user)
+                             params: { evaluator_email: user.email, relationship_id: peer.id },
+                             nominator: user, evaluator: user)
 
         expect(subject.participants.count).to eq(2)
         expect(::Users::Regular.exists?(email: 'unexists@a.com')).to eq true

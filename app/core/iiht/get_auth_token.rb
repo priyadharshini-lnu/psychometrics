@@ -42,7 +42,7 @@ module Iiht
           }.to_json
         )
 
-        ::JSON.parse(response.body).dig('accessToken')
+        ::JSON.parse(response.body)['accessToken']
       end
     end
   end

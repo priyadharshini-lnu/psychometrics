@@ -53,7 +53,7 @@ describe Threesixty::Participants::CreateForm do
 
   describe 'check with enabled anyone option' do
     before do
-      campaign.option.participants = { 'subject': { 'can_nominate_anyone_not_in_assessment': true } }
+      campaign.option.participants = { subject: { can_nominate_anyone_not_in_assessment: true } }
       @params = {
         evaluator_email: 'unexists@a.com',
         relationship_id: peer.id,
@@ -90,10 +90,10 @@ describe Threesixty::Participants::CreateForm do
 
   describe 'with validating from datasheet' do
     before do
-      campaign.option.participants = { 'subject': {
-        'can_nominate_anyone_from_datasheet': true,
-        'limit_nomination_by_subject_from_datasheet': true,
-        'limit_nomination_by_subject_from_datasheet_criteria': [
+      campaign.option.participants = { subject: {
+        can_nominate_anyone_from_datasheet: true,
+        limit_nomination_by_subject_from_datasheet: true,
+        limit_nomination_by_subject_from_datasheet_criteria: [
           { 'field' => 'Age', 'value' => '55', 'comparator' => 'equal' }
         ]
       } }
@@ -118,9 +118,9 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be valid without conditions' do
-      campaign.option.participants = { 'subject': {
-        'can_nominate_anyone_from_datasheet': true,
-        'limit_nomination_by_subject_from_datasheet': false
+      campaign.option.participants = { subject: {
+        can_nominate_anyone_from_datasheet: true,
+        limit_nomination_by_subject_from_datasheet: false
       } }
       create(:sheet_row, sheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
       form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id,
@@ -160,7 +160,7 @@ describe Threesixty::Participants::CreateForm do
 
   describe 'check with disabled anyone option' do
     before do
-      campaign.option.participants = { 'subject': { 'can_nominate_anyone_not_in_assessment': false } }
+      campaign.option.participants = { subject: { can_nominate_anyone_not_in_assessment: false } }
     end
 
     it 'should be invalid for unexisted user' do

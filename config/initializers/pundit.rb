@@ -2,7 +2,7 @@
 
 module Pundit
   def authorize(record, query = nil, extra_params = {})
-    query ||= action_name.to_s + '?'
+    query ||= "#{action_name}?"
 
     @_pundit_policy_authorized = true
 

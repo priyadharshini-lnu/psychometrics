@@ -64,7 +64,7 @@ module Imports
                     group_by(&:id)
         # rubocop:disable Metrics/BlockLength
         rows.each_with_index.map do |row, index|
-          data = Hash[header.zip(row)]
+          data = header.zip(row).to_h
           # Try to find user_result by encoded id
           begin
             user_result = UsersResult.find_by_encoded_id(data['result_id']) if data['result_id'].present?
@@ -204,7 +204,7 @@ module Imports
         DateTime.strptime(date.to_s, '%D %r')
       rescue StandardError
         errors.add(:base, I18n.t('administration.imports.errors.result.error',
-                                 row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
+                                 row: index + SKIP_ROWS, error: "Invalid Date :#{date}"))
       end
     end
   end

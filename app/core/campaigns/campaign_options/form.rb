@@ -5,12 +5,12 @@ module Campaigns
     class Form < Rectify::Form
       attribute :campaign_id, Integer
       attribute :time_zone, String
-      attribute :fixed_time, Hash[String => Boolean]
+      attribute :fixed_time, { String => Boolean }
       attribute :fixed_time_duration, Integer
-      attribute :instructions_enabled, Hash[String => Boolean]
+      attribute :instructions_enabled, { String => Boolean }
       attribute :instructions, String
       attribute :identification, Integer
-      attribute :proctoring_enabled, Hash[String => Boolean]
+      attribute :proctoring_enabled, { String => Boolean }
       attribute :rules, Hash
 
       validates :campaign_id, presence: true

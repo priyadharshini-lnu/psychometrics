@@ -64,7 +64,7 @@ module Swagger
       paths: {},
       security: [
         {
-          "basic": []
+          basic: []
         }
       ],
       basePath: '/api/v1',

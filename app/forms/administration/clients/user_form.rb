@@ -8,7 +8,7 @@ module Administration
       # Membership Fields
       attribute :parent_id, Integer
       attribute :role, String
-      attribute :hris_data, Hash[Symbol => String]
+      attribute :hris_data, { Symbol => String }
 
       # User fields
       attribute :user_id, Integer

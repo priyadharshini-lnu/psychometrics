@@ -68,8 +68,8 @@ class AssignsController < ApplicationController
     UpdateAssign.call(@form, @assign, current_user)
 
     render json: @assign,
-    serializer: AssignUpdateSerializer,
-    current_block_id: params[:current_block_id], piped_text_context: build_piped_context
+           serializer: AssignUpdateSerializer,
+           current_block_id: params[:current_block_id], piped_text_context: build_piped_context
   end
 
   def update_meta_data
@@ -173,7 +173,7 @@ class AssignsController < ApplicationController
   def resource_params
     params[:resource].permit(
       :current_element, :current_page, :status, :step, norm_data: {}, embedded_data: {}, results: {},
-      prev_pages: [:element, :page, questionIds: []]
+      prev_pages: [:element, :page, { questionIds: [] }]
     )
   end
 

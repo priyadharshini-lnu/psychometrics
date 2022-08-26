@@ -5,7 +5,7 @@ unless ENV['DISABLE_COVERAGE']
   Coveralls.wear!('rails')
 
   SimpleCov.start 'rails' do
-    formatter = SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::MultiFormatter.new([
       SimpleCov::Formatter::HTMLFormatter,
       Coveralls::SimpleCov::Formatter
     ])

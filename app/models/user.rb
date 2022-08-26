@@ -110,11 +110,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :secure_validatable, :password_archivable, :password_expirable,
          :lockable, :timeoutable, request_keys: { subdomain: false }
 
-  attr_accessor :create_by_invite
-  attr_accessor :terms
+  attr_accessor :create_by_invite, :terms, :current_membership
   # HRIS data
   attr_accessor :hris_data
-  attr_accessor :current_membership
 
   self.inheritance_column = :role
 
@@ -175,7 +173,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
   validates :password, repeats_in_password: true, if: :restrict_sequences?
-  # validate :validate_grants
+  validates :role, inclusion: { in: UserRoles::USER_ROLES.values }, presence: true, allow_nil: true
 
   before_save :ensure_authentication_token
   before_save do
@@ -219,9 +217,7 @@ class User < ApplicationRecord
   end
 
   def password_complexity
-    if security_setting
-      return {} unless enforce_strong_password?
-    end
+    return {} if security_setting && !enforce_strong_password?
 
     super # { digit: 1, lower: 1, symbol: 1, upper: 1 }
   end
@@ -406,8 +402,9 @@ class User < ApplicationRecord
       subdomain = warden_conditions[:subdomain]&.gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
-        membership = Membership.join_user.find_by(users: { email: warden_conditions[:email]&.downcase },
-          client_id: project.id)
+        membership = Membership.join_user.find_by(
+          users: { email: warden_conditions[:email]&.downcase }, client_id: project.id
+        )
         if membership
           find_user_with_membership(project, subdomain, warden_conditions)
         else

@@ -50,7 +50,7 @@ class FactorsNorm < ApplicationRecord
     #
     #
     def structured_hash(scope)
-      factors = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
+      factors = scope.select('factors.*, factors_norms.props as factors_norms_props').order(id: :asc).all
       factors.map do |factor|
         data                       = { id: factor.id, name: factor.name }
         data[:factors_norms_props] = factor['factors_norms_props'] || []

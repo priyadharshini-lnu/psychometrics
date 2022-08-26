@@ -2,7 +2,7 @@
 
 module PowerBi
   class Base < BaseCommand
-    BASE_API_URL = "https://api.powerbi.com/v1.0/myorg"
+    BASE_API_URL = 'https://api.powerbi.com/v1.0/myorg'
 
     def config
       @config ||= Rails.application.secrets.power_bi

@@ -21,7 +21,7 @@ module Iiht
       )
       data = ::JSON.parse(response.body)['result']
       new_assessments = data['assessments'].map { |a| a.slice('name', 'assessmentIdNumber', 'description') }
-      assessments = assessments.concat(new_assessments)
+      assessments.concat(new_assessments)
 
       return assessments.sort_by { |a| a['name'] } if new_assessments.empty? || assessments.count == data['totalCount']
 

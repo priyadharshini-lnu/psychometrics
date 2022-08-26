@@ -38,8 +38,10 @@ describe ::Sheets::DatasheetColumnForm do
       end
 
       it 'should be uniq name' do
-        form = described_class.new(name: 'Uniq', type: 'String',
-          accessor_access: true, dashboard_use: true, visible_in_list: true).with_context(sheet: sheet)
+        form = described_class.new(
+          name: 'Uniq', type: 'String',
+          accessor_access: true, dashboard_use: true, visible_in_list: true
+        ).with_context(sheet: sheet)
 
         expect(form).to be_invalid
         expect(form.errors[:name]).to include('This field is already present')

@@ -12,8 +12,7 @@ module Reports
       @resources = ::Reports::GetDataConfigurationResources.call!(report)
     end
 
-    # rubocop:disable Metrics/AbcSize
-    def call
+    def call # rubocop:disable Metrics/AbcSize
       xlsx = Axlsx::Package.new do |package|
         workbook = package.workbook
         add_workbook_styles(workbook)
@@ -55,7 +54,6 @@ module Reports
       end
       broadcast :ok, xlsx
     end
-    # rubocop:enable Metrics/AbcSize
 
     private
 

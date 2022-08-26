@@ -39,7 +39,7 @@ module UserReports
       { file_path: file_path }
     end
 
-    def export_pdf_using_lambda
+    def export_pdf_using_lambda # rubocop:disable Metrics/AbcSize
       file_path =  "#{options[:file_path] || user_report.pdf.store_dir}/#{report_file_name}"
       webhook_message = { user_report_id: user_report.id, file_name: report_file_name, file_path: file_path }
       webhook_message[:notify_user_id] = current_user.id if options[:notify_user]

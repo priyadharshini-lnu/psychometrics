@@ -18,8 +18,7 @@ module Licenses
 
     # licenseable - it's AssignReport
     def self.use(licenseable)
-      license_usage = new(licenseable)
-      license_usage
+      new(licenseable)
     end
 
     private

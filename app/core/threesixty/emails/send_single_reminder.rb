@@ -60,19 +60,17 @@ module Threesixty
       end
 
       def send_email(user)
-        if email_name == ::Threesixty::Emails::Name::SUBJECT_REMINDER
-          Threesixty::Emails::Send.call!(
-            email_name,
-            threesixty_campaign: threesixty_campaign,
-            recipient_ids: [user.id]
-          )
-        elsif email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
+        if send_email_applicable?
           Threesixty::Emails::Send.call!(
             email_name,
             threesixty_campaign: threesixty_campaign,
             recipient_ids: [user.id]
           )
         end
+      end
+
+      def send_email_applicable?
+        [::Threesixty::Emails::Name::SUBJECT_REMINDER, ::Threesixty::Emails::Name::EVALUATOR_REMINDER].any?(email_name)
       end
     end
   end

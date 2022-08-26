@@ -15,7 +15,7 @@ module Administration
             on(:ok) do
               audit! :create, campaign_user, payload: params.permit!, campaign: campaign
               render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
-                campaign: campaign_user.campaign
+                     campaign: campaign_user.campaign
             end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
           end

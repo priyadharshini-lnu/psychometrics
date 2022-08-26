@@ -66,7 +66,7 @@ module Administration
           format.html { render :index }
           format.json do
             render json: @campaign, serializer: Administration::Campaigns::CampaignSerializer,
-              current_user: current_user
+                   current_user: current_user
           end
         end
       end

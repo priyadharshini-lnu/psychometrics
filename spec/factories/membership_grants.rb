@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :membership_grants, class: MembershipGrant do
+  factory :membership_grants, class: MembershipGrant do # rubocop:disable Lint/EmptyBlock
   end
 end

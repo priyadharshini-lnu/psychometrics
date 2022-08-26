@@ -74,7 +74,7 @@ module Hogan
         group: hogan_group_name,
         participant_id: hogan_participant_id,
         provider: credentials.provider
-      ).dig('reportDetails').present?
+      )['reportDetails'].present?
     end
 
     def hogan_norm_id

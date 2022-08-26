@@ -14,7 +14,7 @@ class EndUser::UsersController < ApplicationController
   end
 
   # rubocop:disable Metrics/AbcSize
-  def dashboard
+  def dashboard # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return render 'end_user/users/dashboard' if show_new_end_user_view?
 
     subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
@@ -30,7 +30,7 @@ class EndUser::UsersController < ApplicationController
         redirect_to select_campaign_url(campaigns.values.flatten.first) if campaigns.values.flatten.size == 1
       end
       format.json do
-        json = @single_assigns.uniq.map do |assign|
+        json = @single_assigns.uniq.filter_map do |assign|
           next if assign.membership.client.migrated?
 
           applicable_level_project = assign.membership.client.applicable_level == 'project'
@@ -39,7 +39,7 @@ class EndUser::UsersController < ApplicationController
           next if !applicable_level_project && assign.original_assigns.all? { |a| a.membership&.disabled? }
 
           ::EndUser::AssignSerializer.new(assign).to_h
-        end.compact
+        end
 
         json.concat(serializer_campaign(campaigns['common'], ::EndUser::ShortCampaignSerializer)) if campaigns['common']
 

@@ -22,7 +22,7 @@ class Compressor
 
   def get_zip_file(part = nil)
     parts = [@options[:base_file_name], *(Date.today.strftime('%F') if @options[:timestamp_file]), part]
-    path = File.join(@output_dir, parts.reject(&:blank?).join('_') + '.zip')
+    path = File.join(@output_dir, "#{parts.reject(&:blank?).join('_')}.zip")
     file = ::Zip::File.new(path, ::Zip::File::CREATE)
     file.commit
 

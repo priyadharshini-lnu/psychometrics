@@ -29,7 +29,7 @@ module Administration
           code = ::Campaigns::RegistrationCodes::Create.call!(form, campaign)
           audit! :create, code, payload: params.permit!, campaign: campaign
           render json: code, serializer: RegistrationCodeSerializer,
-          project_id: campaign.project_id, campaign_id: campaign.id
+                 project_id: campaign.project_id, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -46,7 +46,7 @@ module Administration
           code = ::Campaigns::RegistrationCodes::Update.call!(form, resource)
           audit! :update, code, payload: params.permit!, campaign: campaign
           render json: code, serializer: RegistrationCodeSerializer,
-            project_id: campaign.project_id, campaign_id: campaign.id
+                 project_id: campaign.project_id, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end

@@ -7,7 +7,7 @@ Licenses::AssignReportBase.class_eval do
 end
 
 License.class_eval do
-  define_method :"enough_licenses?" do
+  define_method :enough_licenses? do
     number + overuse_number > used_number
   end
 end

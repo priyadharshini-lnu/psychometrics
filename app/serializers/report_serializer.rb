@@ -95,9 +95,9 @@ class ReportSerializer < ActiveModel::Serializer
   def result_completed_at
     return if results.blank?
 
-    dates = results.map do |result|
+    dates = results.filter_map do |result|
       result&.completed_at&.to_date
-    end.compact.sort
+    end.sort
 
     return '' if dates.empty?
 
@@ -112,7 +112,7 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def norm_used
-    norms = Norm.where(id: results.map(&:norm_id).compact).index_by(&:id)
+    norms = Norm.where(id: results.filter_map(&:norm_id)).index_by(&:id)
 
     results.each_with_object({}) do |result, acc|
       next unless result.norm_id
@@ -135,10 +135,10 @@ class ReportSerializer < ActiveModel::Serializer
 
     @assigns ||= Assign.includes(:membership).joins(:membership).
                  where(assessment_id: object.assessment_ids,
-                        memberships: {
-                          client_id: @instance_options[:membership].client_id,
-                          user_id: @instance_options[:membership].user_id
-                        })
+                       memberships: {
+                         client_id: @instance_options[:membership].client_id,
+                         user_id: @instance_options[:membership].user_id
+                       })
   end
 
   def factor_norms

@@ -10,7 +10,7 @@ module Iiht
     end
 
     def call
-      schedule = scores.dig('schedules').find do |s|
+      schedule = scores['schedules'].find do |s|
         s['scheduleId'] == user_assessment.iiht_user_assessment.schedule_id
       end
       last_attempt = schedule['attempts'].last

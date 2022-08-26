@@ -87,8 +87,8 @@ module Administration
 
       def show
         render json: resource.user,
-          serializer: Administration::Assessors::UserSerializer,
-          project_id: campaign.project_id, campaign_id: campaign.id
+               serializer: Administration::Assessors::UserSerializer,
+               project_id: campaign.project_id, campaign_id: campaign.id
       end
 
       def create

@@ -42,7 +42,7 @@ module Administration
           on(:ok) do
             audit! :reset, resource, campaign: resource.campaign
             return render json: resource.user, serializer: Administration::UserDetailSerializer,
-              campaign: resource.campaign
+                          campaign: resource.campaign
           end
           on(:error) do |error|
             return render json: { errors: error }, status: 422

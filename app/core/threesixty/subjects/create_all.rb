@@ -36,7 +36,7 @@ module Threesixty
           user
         else
           new_user = ::Users::Regular.create!(subject.merge(project: project,
-                                              create_by_invite: subject[:password].blank?))
+                                                            create_by_invite: subject[:password].blank?))
           AuditLogModule.audit!(:create, new_user, campaign: threesixty_campaign.campaign,
                                 payload: subject, user: @current_user)
           new_user
@@ -74,8 +74,8 @@ module Threesixty
 
       def create_users_report(user)
         ::UserReport.find_or_create_by(user: user,
-                                        report: threesixty_campaign.report,
-                                        campaign: threesixty_campaign.campaign)
+                                       report: threesixty_campaign.report,
+                                       campaign: threesixty_campaign.campaign)
       end
 
       def create_membership(user)

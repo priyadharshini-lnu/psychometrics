@@ -2,7 +2,7 @@
 
 module Scoring
   class SideBySide
-    def calculate(_question, result, scoring_template)
+    def calculate(_question, result, scoring_template) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       values = []
       options = []
       result['answers'].each do |answer|

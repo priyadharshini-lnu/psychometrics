@@ -5,10 +5,8 @@ require 'csv'
 module Handlers
   module CsvHandler
     class CsvGenerator
-      def self.generate
-        file = CSV.generate do |csv|
-          yield csv
-        end
+      def self.generate(&)
+        file = CSV.generate(&)
         file.html_safe
       end
     end

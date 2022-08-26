@@ -47,8 +47,10 @@ module Administration
     end
 
     def create
-      form = SheetRows::Form.from_params(email: params['Email'],
-        data: params.permit!.slice(*sheet.column_names)).with_context(sheet: sheet)
+      form = SheetRows::Form.from_params(
+        email: params['Email'],
+        data: params.permit!.slice(*sheet.column_names)
+      ).with_context(sheet: sheet)
       if form.valid?
         datasheet_row = sheet.rows.create(form.attributes)
         audit! :create, datasheet_row, **audit_resources, payload: form.attributes

@@ -6,7 +6,7 @@ module Api
       class AssessmentSerializer < ActiveModel::Serializer
         attributes :id, :name, :results
 
-        def results
+        def results # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
           normed_factors = instance_options[:rows].select do |row|
             row.dig(:config_data, 'type') == 'normed_factor' && row.dig(:config_data, 'assessmentId') == object.id
           end

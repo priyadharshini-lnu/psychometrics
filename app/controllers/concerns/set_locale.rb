@@ -51,7 +51,7 @@ module SetLocale
   end
 
   # Adapted from https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb
-  def user_preferred_locale
+  def user_preferred_locale # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     header = request.env['HTTP_ACCEPT_LANGUAGE']
     return if header.nil?
 

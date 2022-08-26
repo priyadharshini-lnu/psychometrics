@@ -7,7 +7,7 @@ describe Administration::RegenerateReports do
   let(:current_user) { build_stubbed(:user) }
 
   context 'form is invalid' do
-    let(:form) { double('form', 'invalid?': true, report_ids: []) }
+    let(:form) { double('form', invalid?: true, report_ids: []) }
     subject { described_class.call(form, current_user, client) }
 
     it 'broadcast :invalid' do
@@ -25,7 +25,7 @@ describe Administration::RegenerateReports do
   end
 
   context 'form is valid' do
-    let(:form) { double('form', 'invalid?': false, report_ids: []) }
+    let(:form) { double('form', invalid?: false, report_ids: []) }
     subject { described_class.call(form, current_user, client) }
 
     it 'broadcast :ok' do

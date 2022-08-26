@@ -23,19 +23,19 @@ describe PowerBi::GetEmbedToken do
       })
     stub_request(:post, 'https://api.powerbi.com/v1.0/myorg/GenerateToken').
       with(body: {
-        reports: [{ id: report_id }],
-        datasets: [{ id: dataset_id }],
-        identities: [
+             reports: [{ id: report_id }],
+             datasets: [{ id: dataset_id }],
+             identities: [
           {
             roles: ['Self'],
             datasets: [dataset_id]
           }.merge(identities)
         ]
-      },
-      headers: {
-        'Authorization': "Bearer #{access_token}",
-        'Content-Type': 'application/json'
-      }).
+           },
+           headers: {
+             Authorization: "Bearer #{access_token}",
+             'Content-Type': 'application/json'
+           }).
       to_return({
         body: { 'token' => embed_token }.to_json
       })

@@ -20,11 +20,11 @@ module UserReports::PdfGeneration
       end
       format.json do
         render json: resource, report: resource.report,
-              results: UserReports::GroupedResultsByAssessment.call!(resource),
-              piped_text_context: {},
-              user_results: resource.user_results,
-              serializer: ::UserReportSerializer,
-              include: '**'
+               results: UserReports::GroupedResultsByAssessment.call!(resource),
+               piped_text_context: {},
+               user_results: resource.user_results,
+               serializer: ::UserReportSerializer,
+               include: '**'
       end
     end
   end

@@ -28,10 +28,10 @@ module Api
       end
 
       def assessments
-        object.report.assessment_ids.map do |id|
+        object.report.assessment_ids.filter_map do |id|
           user_assessment = instance_options[:user_assessments][id]
           user_assessment ? Api::V1::UserAssessmentSerializer.new(user_assessment).to_h : nil
-        end.compact
+        end
       end
 
       private

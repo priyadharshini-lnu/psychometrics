@@ -7,7 +7,7 @@ describe 'Campaigns' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, project: project) }
-  let(:campaign_2) { create(:campaign, project: project) }
+  let(:campaign_two) { create(:campaign, project: project) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
@@ -25,10 +25,10 @@ describe 'Campaigns' do
       response '200', 'Campaign duplicated' do
         schema '$ref' => '#/definitions/Campaign'
         examples 'application/json' => {
-          'id': 770,
-          'name': 'Sales Executive Recruitment May 2020',
-          'created_at': '2019-03-05T10:56:53.349+04:00',
-          'updated_at': '2019-03-05T10:56:53.349+04:00'
+          id: 770,
+          name: 'Sales Executive Recruitment May 2020',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:campaign_id) { campaign.id }
@@ -47,10 +47,10 @@ describe 'Campaigns' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1005,
-          'message': 'Resource not found',
-          'more_info': 'Campaign with id=111 is not found',
-          'meta': nil
+          code: 1005,
+          message: 'Resource not found',
+          more_info: 'Campaign with id=111 is not found',
+          meta: nil
         }
 
         run_test! do |response|
@@ -80,10 +80,10 @@ describe 'Campaigns' do
       response '200', 'Campaign duplicated' do
         schema '$ref' => '#/definitions/Campaign'
         examples 'application/json' => {
-          'id': 770,
-          'name': 'Sales Executive Recruitment May 2020',
-          'created_at': '2019-03-05T10:56:53.349+04:00',
-          'updated_at': '2019-03-05T10:56:53.349+04:00'
+          id: 770,
+          name: 'Sales Executive Recruitment May 2020',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:campaign_id) { campaign.id }
@@ -128,10 +128,10 @@ describe 'Campaigns' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1005,
-          'message': 'Resource not found',
-          'more_info': 'Campaign with id=111 is not found',
-          'meta': nil
+          code: 1005,
+          message: 'Resource not found',
+          more_info: 'Campaign with id=111 is not found',
+          meta: nil
         }
 
         run_test! do |response|
@@ -161,13 +161,13 @@ assessments and reports.'
       response '200', 'New user created' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
-          'id': 14_602,
-          'first_name': 'John',
-          'last_name': 'Doe',
-          'email': 'john.doe@example.com',
-          'created_at': '2019-03-04T15:47:33.570+04:00',
-          'updated_at': '2019-03-04T15:47:33.950+04:00',
-          'campaign_ids': [
+          id: 14_602,
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          created_at: '2019-03-04T15:47:33.570+04:00',
+          updated_at: '2019-03-04T15:47:33.950+04:00',
+          campaign_ids: [
             510
           ]
         }
@@ -176,7 +176,7 @@ assessments and reports.'
         let(:campaigns) do
           [
             { 'id' => campaign.id, 'active' => true, 'existing_record' => 'new_evaluation' },
-            { 'id' => campaign_2.id, 'active' => false, 'existing_record' => 'copy_evaluation' }
+            { 'id' => campaign_two.id, 'active' => false, 'existing_record' => 'copy_evaluation' }
           ]
         end
         let(:project_id) { project.id }
@@ -187,7 +187,7 @@ assessments and reports.'
           user = JSON.parse(response.body)
           expect(user).to have_key('first_name')
           expect(user).to have_key('last_name')
-          expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_2.id)
+          expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_two.id)
         end
       end
     end
@@ -208,10 +208,10 @@ assessments and reports.'
 
         examples 'application/json' => [
           {
-            'id': 367,
-            'name': 'Employee Engagement',
-            'created_at': '2018-02-11T10:55:25.569+04:00',
-            'updated_at': '2018-02-11T10:55:25.569+04:00'
+            id: 367,
+            name: 'Employee Engagement',
+            created_at: '2018-02-11T10:55:25.569+04:00',
+            updated_at: '2018-02-11T10:55:25.569+04:00'
           }
         ]
 
@@ -245,17 +245,17 @@ assessments and reports.'
       response '200', 'Campaign created' do
         schema '$ref' => '#/definitions/Campaign'
         examples 'application/json' => {
-          'id': 770,
-          'name': 'Campaign 1',
-          'status': 'active',
-          'instructions': 'Instr',
-          'enable_instructions': true,
-          'duration': 111,
-          'fixed_time': true,
-          'start_date': '2019-03-05T10:56:53.349+04:00',
-          'end_date': '2020-03-05T10:56:53.349+04:00',
-          'created_at': '2019-03-05T10:56:53.349+04:00',
-          'updated_at': '2019-03-05T10:56:53.349+04:00'
+          id: 770,
+          name: 'Campaign 1',
+          status: 'active',
+          instructions: 'Instr',
+          enable_instructions: true,
+          duration: 111,
+          fixed_time: true,
+          start_date: '2019-03-05T10:56:53.349+04:00',
+          end_date: '2020-03-05T10:56:53.349+04:00',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:project_id) { project.id }
@@ -302,16 +302,16 @@ assessments and reports.'
       response '200', 'Campaign updated' do
         schema '$ref' => '#/definitions/Campaign'
         examples 'application/json' => {
-          'name': 'Campaign 1',
-          'status': 'active',
-          'instructions': 'Instr',
-          'enable_instructions': true,
-          'duration': 111,
-          'fixed_time': true,
-          'start_date': '2019-03-05T10:56:53.349+04:00',
-          'end_date': '2020-03-05T10:56:53.349+04:00',
-          'created_at': '2019-03-05T10:56:53.349+04:00',
-          'updated_at': '2019-03-05T10:56:53.349+04:00'
+          name: 'Campaign 1',
+          status: 'active',
+          instructions: 'Instr',
+          enable_instructions: true,
+          duration: 111,
+          fixed_time: true,
+          start_date: '2019-03-05T10:56:53.349+04:00',
+          end_date: '2020-03-05T10:56:53.349+04:00',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:project_id) { project.id }
@@ -353,17 +353,17 @@ assessments and reports.'
       response '200', 'Assessments and reports' do
         schema '$ref' => '#/definitions/AssessmentsAndReports'
         examples 'application/json' => {
-          "reports": [
+          reports: [
             {
-              "id": 1,
-              "user_access": true,
-              "report_bundle_id": 1
+              id: 1,
+              user_access: true,
+              report_bundle_id: 1
             }
           ],
-          "assessments": [
+          assessments: [
             {
-              "id": 1,
-              "norm_id": 2
+              id: 1,
+              norm_id: 2
             }
           ]
         }
@@ -404,22 +404,22 @@ assessments and reports.'
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body,
-       schema: { '$ref' => '#/definitions/UpdatedCampaignAssessmentsAndReports' }, required: true
+                schema: { '$ref' => '#/definitions/UpdatedCampaignAssessmentsAndReports' }, required: true
 
       response '200', 'Assessments and reports updated' do
         schema '$ref' => '#/definitions/AssessmentsAndReports'
         examples 'application/json' => {
-          "reports": [
+          reports: [
             {
-              "id": 1,
-              "user_access": true,
-              "report_bundle_id": 1
+              id: 1,
+              user_access: true,
+              report_bundle_id: 1
             }
           ],
-          "assessments": [
+          assessments: [
             {
-              "id": 1,
-              "norm_id": 2
+              id: 1,
+              norm_id: 2
             }
           ]
         }
@@ -492,7 +492,7 @@ assessments and reports.'
         schema '$ref' => '#/definitions/UpdatedAssessment'
 
         examples 'application/json' => {
-          "norm_id": nil
+          norm_id: nil
         }
 
         run_test! do |response|
@@ -511,10 +511,10 @@ assessments and reports.'
 
         examples 'application/json' =>
         {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
         }
 
         run_test! do |response|
@@ -532,10 +532,10 @@ assessments and reports.'
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: 'API User is disabled',
+          meta: nil
         }
 
         run_test! do |response|
@@ -585,10 +585,10 @@ assessments and reports.'
 
         examples 'application/json' =>
         {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
         }
 
         run_test! do |response|
@@ -606,10 +606,10 @@ assessments and reports.'
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: 'API User is disabled',
+          meta: nil
         }
 
         run_test! do |response|
@@ -660,8 +660,8 @@ assessments and reports.'
         schema '$ref' => '#/definitions/UpdatedReport'
 
         examples 'application/json' => {
-          "user_access": true,
-          "assessor_access": true
+          user_access: true,
+          assessor_access: true
         }
 
         run_test! do |response|
@@ -681,10 +681,10 @@ assessments and reports.'
 
         examples 'application/json' =>
         {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
         }
 
         run_test! do |response|
@@ -702,10 +702,10 @@ assessments and reports.'
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: 'API User is disabled',
+          meta: nil
         }
 
         run_test! do |response|
@@ -755,10 +755,10 @@ assessments and reports.'
 
         examples 'application/json' =>
         {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
         }
 
         run_test! do |response|
@@ -776,10 +776,10 @@ assessments and reports.'
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: 'API User is disabled',
+          meta: nil
         }
 
         run_test! do |response|

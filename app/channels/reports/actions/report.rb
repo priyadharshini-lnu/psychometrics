@@ -35,7 +35,7 @@ module Reports
         # clear unused filter from all modules
         Reports::Module.joins(:page).where(reports_pages: { report_id: report.id }).
           where("reports_modules.props ->> 'filter' is not null").each do |r|
-          if r.props['filter']&.is_a?(Array)
+          if r.props['filter'].is_a?(Array)
             r.props['filter'] = r.props['filter'] - removed_ids
             r.save
           end

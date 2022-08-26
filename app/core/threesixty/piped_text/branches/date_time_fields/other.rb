@@ -15,7 +15,7 @@ module Threesixty
             'y' => :year
           }.freeze
 
-          PREFIX_MATCHER = /([+-])(\d)(\w)/.freeze
+          PREFIX_MATCHER = /([+-])(\d)(\w)/
 
           def call
             prefix = path.last

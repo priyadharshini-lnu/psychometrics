@@ -18,7 +18,7 @@ namespace :geo do
         city: /city_name/
       )
 
-      datas[1..-1].each do |data|
+      datas[1..].each do |data|
         ::Datas::Geo.create(data)
       end
     end

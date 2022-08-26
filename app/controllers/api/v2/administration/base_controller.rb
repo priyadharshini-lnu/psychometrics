@@ -27,7 +27,7 @@ module Api
       self._request_schemas[action] = schema
     end
 
-    def validate_requests_schema
+    def validate_requests_schema # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       schema_validation = nil
       action = params[:action].to_sym
       if _request_schemas&.dig(action)

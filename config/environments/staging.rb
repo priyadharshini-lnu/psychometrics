@@ -68,10 +68,10 @@ Rails.application.configure do
   config.action_mailer.default charset: 'utf-8'
 
   config.action_mailer.smtp_settings = {
-    user_name: ENV['MAIL_USERNAME'],
-    password: ENV['MAIL_PASSWORD'],
-    domain: ENV['MAIL_DOMAIN'],
-    address: ENV['MAIL_ADDRESS'],
+    user_name: ENV.fetch('MAIL_USERNAME', nil),
+    password: ENV.fetch('MAIL_PASSWORD', nil),
+    domain: ENV.fetch('MAIL_DOMAIN', nil),
+    address: ENV.fetch('MAIL_ADDRESS', nil),
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
@@ -92,7 +92,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end

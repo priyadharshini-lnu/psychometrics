@@ -1,9 +1,7 @@
-require: rubocop-performance
+require:
+  - rubocop-performance
 AllCops:
-  # TODO: uncomment to launch new cops? (WARN: pollutes with tons of offenses)
-  # NewCops: enable
-  # ^^^^^^^^^^^^^^^^
-  # TODO: uncomment?
+  NewCops: enable
   Exclude:
     - "vendor/**/*"
     - "node_modules/**/*"
@@ -80,6 +78,9 @@ Style/GuardClause:
 Style/AsciiComments:
   Enabled: false
 
+Style/OptionalBooleanParameter:
+  Enabled: false
+
 Naming/MethodParameterName:
   AllowedNames:
     - q
@@ -139,6 +140,9 @@ Lint/RaiseException:
 Lint/StructNewOverride:
   Enabled: true
 
+Lint/MissingSuper:
+  Enabled: false
+
 Style/ExponentialNotation:
   Enabled: true
 
@@ -152,90 +156,5 @@ Style/HashTransformKeys:
 Style/HashSyntax:
   Enabled: false
 
-### TODO: remove these cops after ruby upgrade
-Style/StringConcatenation:
+Performance/CollectionLiteralInLoop:
   Enabled: false
-Lint/ConstantDefinitionInBlock:
-  Enabled: false
-Style/StringConcatenation:
-  Enabled: false
-Naming/VariableNumber:
-  Enabled: false
-Style/RedundantRegexpEscape:
-  Enabled: false
-Style/OptionalBooleanParameter:
-  Enabled: false
-Layout/ArgumentAlignment:
-  Enabled: false
-Lint/MissingSuper:
-  Enabled: false
-Lint/RedundantCopDisableDirective:
-  Enabled: false
-Style/SlicingWithRange:
-  Enabled: false
-Lint/EmptyFile:
-  Enabled: false
-Style/GlobalStdStream:
-  Enabled: false
-Style/SlicingWithRange:
-  Enabled: false
-Lint/RedundantSafeNavigation:
-  Enabled: false
-Style/ExplicitBlockArgument:
-  Enabled: false
-Metrics/PerceivedComplexity:
-  Enabled: false
-Metrics/CyclomaticComplexity:
-  Enabled: false
-Style/RedundantFreeze:
-  Enabled: false
-Style/RedundantAssignment:
-  Enabled: false
-Style/RedundantParentheses:
-  Enabled: false
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: false
-Style/SoleNestedConditional:
-  Enabled: false
-Metrics/AbcSize:
-  Enabled: false
-Style/CaseLikeIf:
-  Enabled: false
-Style/AccessorGrouping:
-  Enabled: false
-Style/RedundantFetchBlock:
-  Enabled: false
-Style/StringLiterals:
-  Enabled: false
-Layout/SpaceInsideArrayLiteralBrackets:
-  Enabled: false
-Performance/RedundantMerge:
-  Enabled: false
-Lint/AmbiguousRegexpLiteral:
-  Enabled: false
-Style/HashAsLastArrayItem:
-  Enabled: false
-Lint/UselessMethodDefinition:
-  Enabled: false
-Layout/SpaceInsideBlockBraces:
-  Enabled: false
-Layout/SpaceBeforeBlockBraces:
-  Enabled: false
-Style/SingleArgumentDig:
-  Enabled: false
-Style/KeywordParametersOrder:
-  Enabled: false
-Style/ConditionalAssignment:
-  Enabled: false
-Style/RedundantSelfAssignment:
-  Enabled: false
-Security/Open:
-  Enabled: false
-Layout/FirstHashElementIndentation:
-  Enabled: false
-Lint/UnusedMethodArgument:
-  Enabled: false
-Lint/UselessAssignment:
-  Enabled: false
-### ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-### TODO: remove these cops after ruby upgrade

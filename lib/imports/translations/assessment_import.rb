@@ -6,6 +6,7 @@ module Imports
       TRANSLATABLE_BRANCHES = %w[block question instructions].freeze
 
       attr_accessor :assessment_id
+
       validates :assessment_id, presence: true
 
       # Authorisation flow
@@ -47,13 +48,16 @@ module Imports
       # Parse file
       # Return array of new Users
       #
+      # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/PerceivedComplexity
+      # rubocop:disable Metrics/AbcSize
       def load_imported_items
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
         header = rows.shift
         collect_translations = {}
         rows.each do |row|
-          data = Hash[header.zip(row)]
+          data = header.zip(row).to_h
           branch_type, id, key = data.delete('Key').split(':')
           collect_translations[branch_type] ||= {}
           collect_translations[branch_type][id] ||= {}
@@ -71,11 +75,9 @@ module Imports
         TRANSLATABLE_BRANCHES.each do |branch|
           collect_translations[branch]&.each do |id, locales|
             # If can't find question/block for specified assessment, then add error
-            unless branch == 'instructions'
-              unless assessment.public_send(branch.pluralize).where(id: id).exists?
-                errors.add(:base, I18n.t('administration.imports.errors.translation.error',
-                                         id: id, error: "Can't find #{branch}")) && next
-              end
+            if branch != 'instructions' && !assessment.public_send(branch.pluralize).where(id: id).exists?
+              errors.add(:base, I18n.t('administration.imports.errors.translation.error',
+                                       id: id, error: "Can't find #{branch}")) && next
             end
 
             locales.each do |locale, props|
@@ -98,6 +100,7 @@ module Imports
         errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
         [nil]
       end
+      # rubocop:enable all
 
       def open_spreadsheet
         case File.extname(file.original_filename)

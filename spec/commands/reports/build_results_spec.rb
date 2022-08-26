@@ -127,7 +127,7 @@ describe Reports::BuildResults do
 
       it {
         is_expected.to eq(key: 'ed.attempted', name: 'Attempted',
-                             value: external_results['ed.attempted'], config_data: data)
+                          value: external_results['ed.attempted'], config_data: data)
       }
 
       context 'when data is not valid' do
@@ -321,20 +321,20 @@ describe Reports::BuildResults do
     context 'Ref' do
       let(:data_configuration) do
         {
-          "refs": [
+          refs: [
             {
-              "ref_id": 'factor_x',
-              "type": 'normed_factor',
-              "assessmentId": user_result.assessment.id,
-              "factorId": 1
+              ref_id: 'factor_x',
+              type: 'normed_factor',
+              assessmentId: user_result.assessment.id,
+              factorId: 1
             }
           ],
-          "sections": [
+          sections: [
             {
-              "data": [
+              data: [
                 {
-                  "type": 'ref',
-                  "ref": 'factor_x'
+                  type: 'ref',
+                  ref: 'factor_x'
                 }
               ]
             }

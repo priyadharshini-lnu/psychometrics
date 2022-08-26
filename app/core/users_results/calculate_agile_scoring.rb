@@ -32,6 +32,9 @@ module UsersResults
 
     private
 
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
+    # rubocop:disable Metrics/AbcSize
     def get_factors_scoring
       factor_ids = dimension.factors.map(&:id)
       scoring = {}
@@ -43,7 +46,7 @@ module UsersResults
       questions = blocks.map do |block|
         block['questions'].map do |question|
           question['question_type'] = block['type']
-          question['scoring'] ||= block.dig('scoring') || []
+          question['scoring'] ||= block['scoring'] || []
           question
         end
       end.flatten
@@ -69,5 +72,6 @@ module UsersResults
       end
       return scoring, factors_question_count
     end
+    # rubocop:enable all
   end
 end

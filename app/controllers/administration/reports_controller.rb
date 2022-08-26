@@ -52,6 +52,8 @@ module Administration
       @_resource.set_default_color
     end
 
+    # rubocop:disable Metrics/PerceivedComplexity
+    # rubocop:disable Metrics/AbcSize
     def create
       @_resource = resource_class.new(resource_params)
 
@@ -77,6 +79,7 @@ module Administration
         end
       end
     end
+    # rubocop:enable all
 
     def external_reports
       assessment_ids = params[:assessment_ids].to_s.split(',').compact

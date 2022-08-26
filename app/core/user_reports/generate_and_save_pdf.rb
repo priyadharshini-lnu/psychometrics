@@ -11,7 +11,7 @@ module UserReports
       @options = options
     end
 
-    def call
+    def call # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       job_record&.update(total_tasks: user_reports.length)
       user_reports.each do |user_report|
         unless user_report.generatable?

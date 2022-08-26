@@ -32,7 +32,7 @@ module Administration
       def toggle_user_access
         ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
         render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
-          project_id: campaign.project_id
+               project_id: campaign.project_id
         audit! :toggle_user_access, resource, campaign: campaign
       end
 
@@ -51,7 +51,7 @@ module Administration
             campaign: campaign
         end
         render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
-          project_id: campaign.project_id
+               project_id: campaign.project_id
       end
 
       def export
@@ -97,7 +97,7 @@ module Administration
                           references(:reports).
                           distinct
         render json: report_families,
-          each_serializer: Administration::ReportFamilySerializer
+               each_serializer: Administration::ReportFamilySerializer
       end
 
       def regenerate

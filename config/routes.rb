@@ -391,8 +391,8 @@ Rails.application.routes.draw do
             get :spoof
           end
           collection do
-            get :new_step_1
-            post :new_step_2
+            get :new_step_one
+            post :new_step_two
             post :assign_multiple
           end
         end
@@ -404,8 +404,8 @@ Rails.application.routes.draw do
             get :spoof
           end
           collection do
-            get :new_step_1
-            post :new_step_2
+            get :new_step_one
+            post :new_step_two
             post :assign_multiple
           end
         end

@@ -203,8 +203,8 @@ class Report < ApplicationRecord
   def has_data_configuration_occupations?
     return false if data_configuration.blank?
 
-    data_configuration.dig('sections').each do |section|
-      return true if section['data'].find { |d| d.dig('type') == 'ranked_occupations' }
+    data_configuration['sections'].each do |section|
+      return true if section['data'].find { |d| d['type'] == 'ranked_occupations' }
     end
 
     false
@@ -213,7 +213,7 @@ class Report < ApplicationRecord
   def data_configuration_factor_ids
     data_configuration['sections'].map do |section|
       section['data'].map do |d|
-        d['factorId'] if %w[normed_factor raw_factor].include? d.dig('type')
+        d['factorId'] if %w[normed_factor raw_factor].include? d['type']
       end
     end.flatten.compact
   end

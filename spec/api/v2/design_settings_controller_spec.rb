@@ -45,7 +45,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
       security [basic: []]
       parameter name: :setting_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/DesignSettingRequest' },
-        required: true
+                required: true
 
       response '200', 'DesignSetting Update' do
         schema '$ref' => '#/components/schemas/DesignSettingUpdateResponse'

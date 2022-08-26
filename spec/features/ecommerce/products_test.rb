@@ -10,6 +10,6 @@ feature 'Products Page Test', type: :feature do
   scenario 'Able add a product to the cart' do
     visit '/ecommerce'
   end
-  scenario 'Able change currency' do
+  scenario 'Able change currency' do # rubocop:disable Lint/EmptyBlock
   end
 end

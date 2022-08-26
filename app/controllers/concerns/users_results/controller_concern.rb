@@ -21,13 +21,13 @@ module UsersResults::ControllerConcern
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
     render json: @users_result,
-            serializer: UsersResultUpdateSerializer,
-            current_block_id: params[:current_block_id],
-            current_user: current_user,
-            threesixty_campaign: @users_result.campaign.threesixty_campaign,
-            campaign: @users_result.campaign,
-            locale: current_user.locale,
-            progress_was_reseted: progress_was_reseted
+           serializer: UsersResultUpdateSerializer,
+           current_block_id: params[:current_block_id],
+           current_user: current_user,
+           threesixty_campaign: @users_result.campaign.threesixty_campaign,
+           campaign: @users_result.campaign,
+           locale: current_user.locale,
+           progress_was_reseted: progress_was_reseted
   end
 
   def update_meta_data
@@ -97,7 +97,7 @@ module UsersResults::ControllerConcern
   def resource_params
     params[:resource].permit(
       :current_element, :current_page, :status, :step, :progress, norm_data: {},
-      prev_pages: [:element, :page, questionIds: []], embedded_data: {}, answers: {}
+      prev_pages: [:element, :page, { questionIds: [] }], embedded_data: {}, answers: {}
     )
   end
 

@@ -37,7 +37,7 @@ describe UsersResults::Reset do
   subject { described_class.call(user_assessment) }
 
   it '.call!' do
-    expect(described_class).to respond_to(:'call!').with_unlimited_arguments
+    expect(described_class).to respond_to(:call!).with_unlimited_arguments
   end
 
   it "doesn't call Iiht::UpdateAttempts for iiht assessment if number of allowed attempts is not surpassed" do

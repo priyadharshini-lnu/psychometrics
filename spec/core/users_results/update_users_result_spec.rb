@@ -13,7 +13,7 @@ describe ::UsersResults::UpdateUsersResult do
   subject { described_class.call(form, users_result, evaluator_user) }
 
   context 'form is invalid' do
-    let(:form) { double('form', 'invalid?': true) }
+    let(:form) { double('form', invalid?: true) }
 
     it 'broadcast :invalid' do
       expect { subject }.to broadcast(:invalid)
@@ -30,7 +30,7 @@ describe ::UsersResults::UpdateUsersResult do
   end
 
   it 'calls method for sending required mails' do
-    form = double('form', 'invalid?': false)
+    form = double('form', invalid?: false)
     threesixty_subject = double
     allow_any_instance_of(described_class).to receive(:update_users_result)
     allow(users_result).to receive(:user_assessment).and_return(
@@ -51,7 +51,7 @@ describe ::UsersResults::UpdateUsersResult do
   end
 
   describe 'progress_reseted assessment' do
-    let(:form) { double('form', 'invalid?': false, attributes_with_values: { answers: { '1' => {} } }) }
+    let(:form) { double('form', invalid?: false, attributes_with_values: { answers: { '1' => {} } }) }
     let(:user_assessment) { create(:user_assessment, progress_reseted: true) }
 
     it 'should save dirty results and change progress_reseted to false' do
@@ -89,7 +89,7 @@ describe ::UsersResults::UpdateUsersResult do
                                                   campaign: campaign,
                                                   report: report)
     end
-    let(:form) { double('form', 'invalid?': false, attributes_with_values: {}) }
+    let(:form) { double('form', invalid?: false, attributes_with_values: {}) }
     let!(:participant) { users_result.participant }
     let!(:manager) { create(:relationship, name: 'Manager', type: :global) }
 
@@ -105,7 +105,7 @@ describe ::UsersResults::UpdateUsersResult do
 
       context 'users_result is completed' do
         before do
-          allow(users_result.user_assessment).to receive(:'completed?').and_return(true)
+          allow(users_result.user_assessment).to receive(:completed?).and_return(true)
         end
 
         it { expect(::UsersResults::RemoveDirtyResults).to receive(:call!).with(subject.answers).and_return({}) }

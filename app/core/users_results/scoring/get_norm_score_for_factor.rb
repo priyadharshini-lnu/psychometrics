@@ -15,7 +15,7 @@ module UsersResults
       end
 
       def call
-        score = scoring.dig(factor.id.to_s)
+        score = scoring[factor.id.to_s]
 
         norm_score =
           if norm.percentile?

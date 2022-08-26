@@ -4,6 +4,7 @@ module Imports
   module Translations
     class ReportImport < Imports::BaseImport
       attr_accessor :report_id
+
       validates :report_id, presence: true
 
       # Authorisation flow
@@ -51,7 +52,7 @@ module Imports
       # Parse file
       # Return array of new Users
       #
-      def load_imported_items
+      def load_imported_items # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
         header = rows.shift
@@ -59,7 +60,7 @@ module Imports
         collect_translations = {}
 
         rows.each do |row|
-          data = Hash[header.zip(row)]
+          data = header.zip(row).to_h
           translateable_type, translateable_id, key = data.delete('Key').split(':')
           # Are there expected translateable_type
           unless AVAILABLE_TRANSLATEABLE_TYPES.include?(translateable_type)

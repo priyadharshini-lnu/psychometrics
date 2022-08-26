@@ -23,7 +23,7 @@ module Sheets
     end
 
     def data_rows
-      @data_rows ||= parsed_file[2..-1] || []
+      @data_rows ||= parsed_file[2..] || []
     end
 
     private

@@ -5,6 +5,7 @@ module Imports
     extend ActiveSupport::Concern
     included do
       attr_accessor :file, :owner_id
+
       validates :file, presence: true,
                        file_size: { less_than_or_equal_to: 4.megabytes },
                        file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',

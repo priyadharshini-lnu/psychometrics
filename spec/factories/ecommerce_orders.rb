@@ -12,6 +12,6 @@
 #
 
 FactoryBot.define do
-  factory :ecommerce_order, class: 'Ecommerce::Order' do
+  factory :ecommerce_order, class: 'Ecommerce::Order' do # rubocop:disable Lint/EmptyBlock
   end
 end
