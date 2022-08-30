@@ -1,5 +1,5 @@
 import * as t from 'io-ts'
-import { createBaseAtom } from 'hooks/useResources/utils'
+import { createZutandStoreForJsonApi } from 'hooks/useResources/utils'
 
 export const DashboardTR = t.type({
   id: t.string,
@@ -30,7 +30,7 @@ export const Schema = {
   },
 }
 
-export const dashboardAtom = createBaseAtom<Dashboard[]>('Dashboard')
+export const useDashboardStore = createZutandStoreForJsonApi<Dashboard[]>('dashboard')
 
 export const UPLOAD_IMAGE = 'dashboards/UPLOAD_IMAGE'
 export const uploadImage = (dashboardId: string, formData: FormData) => ({

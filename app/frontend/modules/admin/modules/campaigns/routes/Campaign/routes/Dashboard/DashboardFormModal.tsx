@@ -4,8 +4,9 @@ import ResourceFormModal from 'components/ResourceFormModal'
 import { useHistory, useParams } from 'react-router-dom'
 import { formDataToResource } from 'libs/jsonApi/helpers'
 import { useResources } from 'hooks/useResources'
-import { Dashboard as DashboardType, dashboardAtom, DashboardTR } from 'modules/admin/modules/campaigns/core/dashboard'
-import { useRecoilStateStateManager } from 'hooks/useRecoilStateStateManager'
+import {
+  Dashboard as DashboardType, DashboardTR, useDashboardStore,
+} from 'modules/admin/modules/campaigns/core/dashboard'
 
 const { I18n } = window
 
@@ -18,7 +19,7 @@ export const DashboardFormModal: React.FC<Props> = ({
 }) => {
   const history = useHistory()
   const { campaignId, projectId } = useParams<{ campaignId: string, projectId: string }>()
-  const stateManager = useRecoilStateStateManager(dashboardAtom)
+  const stateManager = useDashboardStore()
   const { createResource } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })
 
   const handleDashboardCreation = (values) => {

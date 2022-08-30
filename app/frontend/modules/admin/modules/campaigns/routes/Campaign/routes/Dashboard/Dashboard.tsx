@@ -1,8 +1,9 @@
 import { Skeleton } from 'antd'
 import React, { useEffect } from 'react'
 import { useResources } from 'hooks/useResources'
-import { useRecoilStateStateManager } from 'hooks/useRecoilStateStateManager'
-import { Dashboard as DashboardType, DashboardTR, dashboardAtom } from 'modules/admin/modules/campaigns/core/dashboard'
+import {
+  Dashboard as DashboardType, DashboardTR, useDashboardStore,
+} from 'modules/admin/modules/campaigns/core/dashboard'
 import { useHistory, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import settings from 'modules/admin/modules/campaigns/settings'
@@ -28,7 +29,7 @@ type Props =PropsFromRedux
 const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser }) => {
   const history = useHistory()
   const { campaignId, projectId } = useParams<{ campaignId: string, projectId: string }>()
-  const stateManager = useRecoilStateStateManager(dashboardAtom)
+  const stateManager = useDashboardStore()
   const {
     fetch, isRequestSuccessful, data,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })

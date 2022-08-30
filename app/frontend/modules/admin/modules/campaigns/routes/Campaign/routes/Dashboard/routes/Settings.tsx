@@ -2,11 +2,12 @@ import { useResources } from 'hooks/useResources'
 import React from 'react'
 import {
   Dashboard as DashboardType,
-  dashboardAtom, DashboardTR,
+  DashboardTR,
   uploadImage,
   UPLOAD_IMAGE,
   refresh,
   REFRESH,
+  useDashboardStore,
 } from 'modules/admin/modules/campaigns/core/dashboard'
 import {
   Alert,
@@ -15,7 +16,6 @@ import {
 import { UploadOutlined, CopyOutlined, RedoOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ResourceForm from 'components/ResourceForm'
-import { useRecoilStateStateManager } from 'hooks/useRecoilStateStateManager'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -42,7 +42,7 @@ export const SettingsComponent: React.FC<Props> = ({
 }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const [form] = Form.useForm()
-  const stateManager = useRecoilStateStateManager(dashboardAtom)
+  const stateManager = useDashboardStore()
   const {
     updateResource, data, isLoading,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })

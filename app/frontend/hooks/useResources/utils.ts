@@ -1,7 +1,8 @@
 import humps from 'humps'
 import { StringMap } from '@thetalententerprise/jsonapi-react'
-import { atom } from 'recoil'
-import { BaseMeta } from './interfaces'
+import { devtools } from 'zustand/middleware'
+import create from 'zustand'
+import { BaseMeta, ResourceState, StateManager } from './interfaces'
 
 interface Error {
   [key: string]: string[] | string
@@ -70,11 +71,18 @@ export const formatErrors = (errors: StringMap | undefined, schema: Schema) => {
 
 export const defaultState = <D, M extends BaseMeta = BaseMeta>() => ({
   data: [] as unknown as D, requests: {}, meta: {} as M, query: {},
-})
+} as ResourceState<D, M>)
 
-export const createBaseAtom = <D, M extends BaseMeta = BaseMeta>(name: string) => (
-  atom({
-    key: name,
-    default: defaultState<D, M>(),
-  })
+export const createZutandStoreForJsonApi = <D, M extends BaseMeta = BaseMeta>(name: string) => (
+  create<StateManager<D, M>>()(
+    devtools(
+      set => ({
+        state: defaultState<D, M>(),
+        setState: (arg: ResourceState<D, M> | ((state: ResourceState<D, M>) => ResourceState<D, M>)) => {
+          set(store => (typeof arg === 'function' ? { ...store, state: arg(store.state) } : { ...store, state: arg }))
+        },
+      }),
+      { name },
+    ),
+  )
 )
