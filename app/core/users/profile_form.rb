@@ -14,6 +14,13 @@ module Users
     validates :password_confirmation, presence: true, unless: -> { password.blank? }
     validates_confirmation_of :password, unless: -> { password.blank? }
 
+    validate :validate_project_fields, if: :project?
+
+    def initialize(params = {})
+      @params = params
+      super
+    end
+
     def password_length
       return unless password
 
@@ -22,10 +29,27 @@ module Users
       end
     end
 
+    def validate_project_fields
+      field_params = @params[:fields]
+      project.profile_setting.profile_fields.includes(:question).each do |field|
+        if field.required || field.question.required_validation['enabled']
+          errors.add(field.question.name, 'required') unless field_params[field.question_id.to_s.to_sym].present?
+        end
+      end
+    end
+
     private
 
     def enable_strong_password?
       context.user.enforce_strong_password?
+    end
+
+    def project?
+      project
+    end
+
+    def project
+      context.project
     end
   end
 end

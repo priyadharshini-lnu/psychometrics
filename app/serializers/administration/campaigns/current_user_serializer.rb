@@ -36,6 +36,9 @@ module Administration
         permissions['manage_design_settings'] = Administration::ClientPolicy.new(
           object, DesignSetting, project_id: instance_options[:project_id]
         ).design?
+        permissions['manage_profile_settings'] = Administration::ClientPolicy.new(
+          object, ProfileSetting, project_id: instance_options[:project_id]
+        ).profile?
         permissions['approve_report'] = Administration::UserReportPolicy.new(
           object, nil, project_id: instance_options[:project_id],
         campaign_id: instance_options[:campaign_id]

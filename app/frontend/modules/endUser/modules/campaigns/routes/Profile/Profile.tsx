@@ -6,16 +6,18 @@ import {
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
-
+import { RootState } from 'modules/user/core/rootReducers'
 import { PageHeader } from 'glint'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import LangDropdown from 'components/LangDropdown'
+import _ from 'lodash'
 
 import {
   sync,
   get as getUser,
   uploadPhoto,
 } from 'core/currentUser'
+import { CustomField } from './fields/CustomField'
 import { CropperModal } from './CropperModal'
 
 import styles from './styles.less'
@@ -37,7 +39,17 @@ interface Errors {
   passwordConfirmation?: []
 }
 
-function ProfileComponent ({ user, uploadPhoto, sync }) {
+const AVAILABLE_QUESTIONS = {
+  MultipleChoice: ['SingleAnswer', 'MultipleAnswer', 'Dropdown'],
+  TextEntry: ['SingleLine', 'Multiline'],
+}
+
+const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
+  && AVAILABLE_QUESTIONS[question.type].includes(question.props.type)
+
+function ProfileComponent ({
+  user, uploadPhoto, sync, fields,
+}) {
   const [changePassword, setChangePassword] = useState(false)
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
@@ -58,7 +70,15 @@ function ProfileComponent ({ user, uploadPhoto, sync }) {
   }
 
   const submitForm = (values) => {
-    sync(values)
+    const data = _.reduce(values, (res, val, key) => {
+      const data = key.match(/field_(\d+)/)
+      if (data) {
+        return { ...res, fields: { ...res.fields, [data[1]]: val } }
+      }
+      return { ...res, [key]: val }
+    }, { fields: {} })
+
+    sync(data)
       .then(() => {
         message.success(I18n.t('profile.success_update'), 5)
         setChangePassword(false)
@@ -180,6 +200,21 @@ function ProfileComponent ({ user, uploadPhoto, sync }) {
                         </Form.Item>
                       </>
                     )}
+                    <Row gutter={24}>
+                      {fields.map(field => isAvailable(field) && (
+                        <Col key={field.id} span={field.half_size ? 12 : 24}>
+                          <Form.Item
+                            hasFeedback
+                            help={errors[field.name]}
+                            validateStatus={errors[field.name] ? 'error' : ''}
+                            name={`field_${field.question_id}`}
+                            label={field.name}
+                          >
+                            <CustomField field={field} />
+                          </Form.Item>
+                        </Col>
+                      ))}
+                    </Row>
                     <ButtonWithArrow
                       label={I18n.t('profile.update')}
                       type="primary"
@@ -204,8 +239,9 @@ function ProfileComponent ({ user, uploadPhoto, sync }) {
   )
 }
 
-const connector = connect(state => ({
+const connector = connect((state: RootState) => ({
   user: getUser(state),
+  fields: state.config.profile.fields,
 }), {
   sync,
   uploadPhoto,

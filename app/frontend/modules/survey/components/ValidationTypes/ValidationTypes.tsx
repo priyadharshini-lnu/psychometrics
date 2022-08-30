@@ -22,6 +22,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 interface OwnProps {
   model: BasePropertiesModel
   update: () => void
+  restricted?: boolean
 }
 
 type Props = OwnProps & PropsFromRedux
@@ -31,6 +32,7 @@ const ValidationType: FC<Props> = ({
   update,
   changeValidation,
   openCustomValidation,
+  restricted,
 }) => {
   const {
     moduleConfig: { validations },
@@ -66,6 +68,7 @@ const ValidationType: FC<Props> = ({
   return (
     <section className="ms-4 me-4 mb-4">
       <Typography.Text strong>Validation type</Typography.Text>
+
       <Radio.Group className="mt-2" value={type} onChange={handleOnChange}>
         <Radio value="None">None</Radio>
         {availableValidations.map((availableValidation, index) => (
@@ -75,15 +78,18 @@ const ValidationType: FC<Props> = ({
             </Radio>
           </div>
         ))}
-        <Radio value="Custom">
-          <Space>
-            Custom
-            {type === 'Custom' && (
-              <a onClick={() => openCustomValidation({ questionId: model.id })}>Edit</a>
-            )}
-          </Space>
-        </Radio>
+        {!restricted && (
+          <Radio value="Custom">
+            <Space>
+              Custom
+              {type === 'Custom' && (
+                <a onClick={() => openCustomValidation({ questionId: model.id })}>Edit</a>
+              )}
+            </Space>
+          </Radio>
+        )}
       </Radio.Group>
+
 
       <ValidationTypeFields model={model} update={update} />
     </section>

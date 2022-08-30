@@ -1113,6 +1113,7 @@ Rails.application.routes.draw do
           jsonapi_resources :design_settings, only: %i[index update] do
             resource :uploads, only: %i[update]
           end
+          jsonapi_resources :profile_settings, only: %i[index update]
           jsonapi_resources :dashboards, only: %i[index show create update] do
             patch :upload_image
             post :refresh

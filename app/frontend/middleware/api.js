@@ -69,6 +69,7 @@ const apiMiddleware = () => next => (action) => {
     request,
     request: {
       method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
+      camelizeErrors = true,
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`
@@ -105,7 +106,7 @@ const apiMiddleware = () => next => (action) => {
     })
     .catch((error) => {
       if (error.response) {
-        const errors = humps.camelizeKeys(error.response.data.errors)
+        const errors = camelizeErrors ? humps.camelizeKeys(error.response.data.errors) : error.response.data.errors
         next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
         throw errors
       } else {

@@ -161,6 +161,7 @@ class User < ApplicationRecord
 
   has_one :security_setting, through: :project
   has_one :privacy_consent
+  has_one :user_profile
 
   accepts_nested_attributes_for :memberships
 

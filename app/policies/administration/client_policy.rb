@@ -96,6 +96,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:project_settings, :design, project_id: project_id)
     end
 
+    def profile?
+      has_permission?(:project_settings, :profile)
+    end
+
     def export?
       @user.is?(:superadmin)
     end

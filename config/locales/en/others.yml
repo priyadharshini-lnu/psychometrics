@@ -1872,6 +1872,7 @@ en:
         empty: Empty
         required: "%{title} is required"
   profile:
+    add_field: Add Field
     add_photo: Add Photo
     change_password: Change Password
     change_photo: Change Photo

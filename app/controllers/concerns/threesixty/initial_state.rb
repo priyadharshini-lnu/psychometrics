@@ -32,6 +32,11 @@ module Threesixty::InitialState
           success_color: @current_project.design_setting&.success_color,
           info_color: @current_project.design_setting&.info_color
         },
+        profile: {
+          fields: @current_project.profile_setting&.profile_fields&.map do |q|
+            ProfileFieldSerializer.new(q).to_h
+          end
+        },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,
         maintenance: {

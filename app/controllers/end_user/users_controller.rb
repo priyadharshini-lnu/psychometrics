@@ -72,7 +72,7 @@ class EndUser::UsersController < ApplicationController
   end
 
   def update_details
-    form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user)
+    form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user, project: @current_project)
     return render json: { errors: form.errors.messages }, status: :bad_request unless form.valid?
 
     if current_user.update(form.attributes)

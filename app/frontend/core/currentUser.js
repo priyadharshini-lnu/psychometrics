@@ -36,6 +36,7 @@ export const sync = data => ({
     method: 'patch',
     url: '/users/update_details',
     body: { user: data },
+    camelizeErrors: false,
   },
 })
 
