@@ -8,7 +8,7 @@ class Api::V2::Administration::ProfileSettingResource < Api::V2::Administration:
   ransack_filters %i[project_id_eq]
 
   def profile_fields
-    @model.profile_fields.map.map{ |q| ProfileFieldSerializer.new(q).to_h }
+    @model.profile_fields.map { |q| ProfileFieldSerializer.new(q).to_h }
   end
 
   def profile_fields=(new_fields)
