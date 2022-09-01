@@ -4,7 +4,9 @@ class OwnerPermissionValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     resource_name = record.class.table_name.to_sym
     user = record.new_record? ? record.created_by : record.updated_by
-    unless user.has_permission?(resource_name, :manage, project_id: value)
+    project_id = resource_name == :communications ? record.project_id : value
+
+    unless user.has_permission?(resource_name, :manage, project_id: project_id)
       record.errors.add(
         attribute,
         I18n.t(
