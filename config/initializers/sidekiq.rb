@@ -2,12 +2,13 @@
 
 require 'cron_jobs_loader'
 
+ssl_params = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
 redis_connection = if Rails.env.development?
-                     { url: 'redis://localhost:6379/0' }
+                     { url: 'redis://localhost:6379/0', ssl_params: ssl_params }
                    elsif ENV.key?('REDISTOGO_URL')
-                     { url: ENV['REDISTOGO_URL'] }
+                     { url: ENV['REDISTOGO_URL'], ssl_params: ssl_params }
                    elsif ENV.key?('REDIS_URL')
-                     { url: ENV['REDIS_URL'], db: 0 }
+                     { url: ENV['REDIS_URL'], db: 0, ssl_params: ssl_params }
                    else
                      { path: '/var/run/redis/redis.sock', db: 0 }
                    end
