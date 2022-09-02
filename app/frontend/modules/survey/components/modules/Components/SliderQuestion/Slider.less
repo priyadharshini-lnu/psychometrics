@@ -12,11 +12,6 @@
   border-top: 1px solid #f0f0f0;
 }
 
-.responseRowContainer {
-  border: 1px solid #f0f0f0;
-  border-radius: 4px;
-}
-
 .controlsContainer {
   width: 100%;
   display: flex;
@@ -36,8 +31,30 @@
 }
 
 .inputContainer {
-  & :global(.ant-input-number-input) {
-    padding-inline: 3px;
+  align-items: center;
+  display: inline-flex !important;
+  flex-direction: column;
+
+  & :global {
+    .ant-input-number-input {
+      padding-inline: 3px;
+      text-align: center;
+      background-color: #eaeaea;
+    }
+    .ant-input-number {
+      width: 4rem;
+      border: none;
+    }
+  }
+}
+
+.responseLabelRow, .responseLabelRowMobile {
+  text-align: center;
+  .label:first-child {
+    text-align: start;
+  }
+  .label:last-child {
+    text-align: end;
   }
 }
 
