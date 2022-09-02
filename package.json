@@ -111,7 +111,7 @@
     "lodash": "^4.17.21",
     "medium-zoom": "^1.0.6",
     "microphone-stream": "^5.3.1",
-    "mime-types": "^2.1.34",
+    "mime-types": "^2.1.35",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.37",
     "normalize.css": "^4.1.1",
