@@ -1,0 +1,242 @@
+import _ from 'lodash'
+import React, { useState } from 'react'
+import {
+  Menu, Dropdown, List, Collapse, Progress, Modal, Tooltip, Typography, Row, Checkbox,
+} from 'antd'
+import {
+  InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
+} from '@ant-design/icons'
+import { connect } from 'react-redux'
+
+import { CollapseItem } from 'glint'
+import { SafeHTML } from 'components/SafeHTML'
+import userPresenter from 'presenters/user'
+import WizardIsRequired from 'modules/user/core/WizardIsRequired'
+import { STATUSES } from 'constants/userResult'
+import { getUserEvaluations, getManagedSubjects } from 'modules/user/modules/campaigns/core/campaign/selectors'
+import { declineEvaluation } from 'modules/user/modules/campaigns/core/campaign'
+import { EditEvaluationModal } from '../EditEvaluationModal'
+import { ThreesixtyCard } from '../ThreesixtyCard'
+import styles from '../ListStyles.less'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const connector = connect((state: any) => ({
+  evaluations: getUserEvaluations(state),
+  evaluationsCounters: state.campaigns.campaign.evaluationsCounters,
+  managedSubjects: getManagedSubjects(state.campaigns),
+  options: state.campaigns.campaign.options.participants,
+  instructions: state.campaigns.campaign.instructions,
+}),
+{
+  declineEvaluation,
+})
+
+const { Panel } = Collapse
+const { I18n } = window
+const { Title } = Typography
+
+const EvaluationListComponent = ({
+  evaluations, managedSubjects, declineEvaluation, options, history, percent, evaluationsCounters,
+  instructions,
+}) => {
+  const [showHelp, setShowHelp] = useState(false)
+  const [editModal, setEditModal] = useState(null)
+  const isEvaluationCompleted = item => item.status === STATUSES.COMPLETED
+  const evaluationHelp = _.find(instructions, { name: 'evaluation_help' })
+  const canNotEvaluate = (item) => {
+    if (item.subjectEvaluationClosed) { return true }
+    if (options.global.disableAllEvaluations) { return true }
+
+    return options.global.canNotEditEvaluation && isEvaluationCompleted(item)
+  }
+
+  const menu = item => (
+    <Menu>
+      {!isEvaluationCompleted(item)
+        && (
+        <Menu.Item
+          key="0"
+          onClick={({ domEvent }) => {
+            domEvent.stopPropagation()
+            declineEvaluation(item.campaignId, item.id)
+          }}
+        >
+          {I18n.t('threesixty.decline_invite')}
+        </Menu.Item>
+        )
+      }
+    </Menu>
+  )
+
+  const evaluatorsList = subject => (
+    <Menu>
+      {subject.evaluators.map(evaluator => (
+        <Menu.Item
+          key={evaluator.id}
+          onClick={() => {
+            history.push(`
+            /threesixty_campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approve_evaluation=true&read=true
+            `)
+          }}
+        >
+          {userPresenter.getFullNameWithEmail(evaluator.user)}
+        </Menu.Item>
+      ))}
+    </Menu>
+  )
+
+  const showDeclineEvaluationDropdown = item => (
+    options.evaluator.canDeclineNomination && !item.subjectEvaluationClosed && !item.isSelf
+      && !isEvaluationCompleted(item)
+  )
+
+  const getPath = (item) => {
+    if (!isEvaluationCompleted(item) && WizardIsRequired.run(item.assessmentExtra)) {
+      return `/system_checks/${item.assessmentId}/${item.id}`
+    }
+    return `/threesixty_campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`
+  }
+
+  const handleAssessmentLinkClick = (e, item, href) => {
+    location.href = href
+    if (isEvaluationCompleted(item)) {
+      setEditModal(item)
+      e.preventDefault()
+    }
+  }
+
+  const EvaluationItem = ({ item }) => {
+    const { subjectEvaluationClosed } = item || { subjectEvaluationClosed: false }
+    const { subject } = item || { subject: { firstName: '', lastName: '' } }
+    const email = subject.email || ''
+
+    return (
+      <>
+        <Tooltip placement="topLeft" title={email}>
+          <Checkbox
+            disabled={canNotEvaluate(item)}
+            checked={isEvaluationCompleted(item)}
+            onClick={e => handleAssessmentLinkClick(e, item, getPath(item))}
+          >
+            <span className={styles.subjectLabel}>{userPresenter.selfUserName(item, subject)}</span>
+          </Checkbox>
+        </Tooltip>
+
+        {options.global.disableAllEvaluations && (
+        <Tooltip placement="top" title={I18n.t('threesixty.evaluation_all_closed_message')}>
+          <InfoCircleOutlined />
+        </Tooltip>
+        )}
+
+        {!options.global.disableAllEvaluations && subjectEvaluationClosed && (
+        <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
+          <InfoCircleOutlined />
+        </Tooltip>
+        )}
+
+        {showDeclineEvaluationDropdown(item)
+          && (
+            <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
+              <a href="#" style={{ flex: 'none' }}>
+                <EllipsisOutlined />
+              </a>
+            </Dropdown>
+          )
+        }
+        <br />
+      </>
+    )
+  }
+
+  const SubjectItem = (item) => {
+    const { user } = item || { user: undefined }
+    return (
+      <List.Item>
+        <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
+          <a href="#">
+            <Tooltip placement="topLeft" title={user?.email ?? ''}>
+              <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
+            </Tooltip>
+            <DownOutlined />
+          </a>
+        </Dropdown>
+      </List.Item>
+    )
+  }
+
+  const ManagedList = ({ title, list }) => (
+    <Collapse className={styles.collapse} bordered={false} defaultActiveKey="panel">
+      <Panel header={title} key="panel">
+        <List
+          size="large"
+          dataSource={list}
+          renderItem={SubjectItem}
+        />
+      </Panel>
+    </Collapse>
+  )
+
+  return (
+    <ThreesixtyCard
+      title={<Title level={5}>{I18n.t('threesixty.evaluations')}</Title>}
+      helpIcon={evaluationHelp && (
+        <div>
+          <QuestionCircleOutlined onClick={() => setShowHelp(true)} />
+        </div>
+      )}
+    >
+      <Row wrap={false}>
+        <Progress
+          className={styles.progressBar}
+          percent={percent}
+          showInfo={false}
+        />
+        <span className={styles.count}>
+          {I18n.t('threesixty.progress_text', {
+            completed: evaluationsCounters.completedEvaluations,
+            total: evaluationsCounters.totalEvaluations,
+          })}
+        </span>
+      </Row>
+      {!evaluations.length || (
+        <CollapseItem
+          title={I18n.t('threesixty.evaluations')}
+          list={evaluations}
+        >
+          {item => <EvaluationItem item={item} />}
+        </CollapseItem>
+      )}
+      {options.manager.canApprovesEvaluations && managedSubjects.length > 0
+        && (
+        <ManagedList
+          key="evaluations_approve"
+          title={I18n.t('threesixty.approve_evaluations')}
+          list={managedSubjects}
+        />
+        )}
+      <EditEvaluationModal
+        show={!!editModal}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        evaluation={editModal}
+        close={() => setEditModal(null)}
+      />
+      {evaluationHelp && (
+        <Modal
+          title={(
+            <>
+              {I18n.t('threesixty.evaluation_help_modal.title')}
+            </>
+        )}
+          visible={showHelp}
+          onCancel={() => setShowHelp(false)}
+          footer={null}
+        >
+          <SafeHTML html={evaluationHelp.content} />
+        </Modal>
+      )}
+    </ThreesixtyCard>
+  )
+}
+
+export const EvaluationList = connector(EvaluationListComponent)

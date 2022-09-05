@@ -1,0 +1,157 @@
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import {
+  Layout, Alert, Row, Col, Card,
+} from 'antd'
+import _ from 'lodash'
+
+import { SubHeader } from 'modules/endUser/modules/campaigns/components/SubHeader'
+import { PageHeader as GlintHeader } from 'glint'
+import LangDropdown from 'components/LangDropdown'
+import { SafeHTML } from 'components/SafeHTML'
+import {
+  fetchNomination,
+  removeNomination,
+  addNomination,
+  updateForm,
+  updateStatus,
+  showForm,
+  hideForm,
+  requestApproval,
+  sendEvaluatorReminder,
+  updateAllNominationStatus,
+} from 'modules/user/modules/campaigns/core/nomination'
+import { get as getAutocomplete, searchEvaluators } from 'modules/user/core/ui/autocomplete'
+import {
+  requirementsSelector,
+  allowedRelationshipsForNewNominations,
+} from 'modules/user/modules/campaigns/core/nomination/selectors'
+import { NominationForm } from './NominationForm/NominationForm'
+import { NominationTable } from './NominationTable/NominationTable'
+import { NameModal } from './NominationForm/NameModal'
+
+import styles from './Nomination.less'
+
+const { I18n } = window
+const locales = I18n.availableLocales
+const current = I18n.locale
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const connector = connect((state: any) => ({
+  nomination: state.campaigns.nomination,
+  instructions: state.campaigns.nomination.instructions,
+  requirements: requirementsSelector(state.campaigns),
+  autocomplete: getAutocomplete(state),
+  allowedRelationshipsForNewNominations: allowedRelationshipsForNewNominations(state.campaigns),
+}),
+{
+  fetchNomination,
+  removeNomination,
+  addNomination,
+  searchEvaluators,
+  updateForm,
+  updateStatus,
+  showForm,
+  hideForm,
+  requestApproval,
+  sendEvaluatorReminder,
+  updateAllNominationStatus,
+})
+const { Content } = Layout
+
+const NominationComponent = (props) => {
+  useEffect(() => {
+    props.fetchNomination(props.match.params)
+  }, [])
+
+  const [showPrompt, setShowPrompt] = useState(false)
+  const [participant, setParticipant] = useState<Record<string, unknown> | null>(null)
+
+  const {
+    addNomination, instructions, nomination:
+    { isSelf, options: { participants: options }, evalautionCompletedForSubject },
+  } = props
+  const instruction = _.find(instructions, { name: 'invite_evaluators' })
+  const hasNominationPermission = isSelf
+    ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
+  const canNominate = hasNominationPermission && !evalautionCompletedForSubject
+
+  const handleAddNomination = values => addNomination({
+    ...values,
+  }).catch((errors) => {
+    if (!errors) { return }
+    const { firstName, lastName, ...rest } = errors
+    if (_.isEmpty(rest) && (firstName || lastName)) {
+      setParticipant({ ...values })
+      setShowPrompt(true)
+    }
+  })
+
+  const handleAdd = (values) => {
+    addNomination({
+      ...participant, ...values,
+    }).then(() => {
+      setShowPrompt(false)
+    }).catch(() => {
+      setShowPrompt(false)
+    })
+  }
+
+  const { nomination: { loaded } } = props
+  if (!loaded) { return null }
+
+  return (
+    <>
+      <GlintHeader>
+        <Col flex="auto" span={24} className="ta-e">
+          <LangDropdown locales={locales} current={current} />
+        </Col>
+      </GlintHeader>
+      <Content className={styles.pageContent}>
+        <SubHeader
+          title={I18n.t('threesixty.nomination')}
+          onBack={() => props.history.push(`/threesixty_campaigns/${props.match.params.campaignId}`)}
+        />
+        <Row justify="center">
+          <Col xs={24} lg={22} xl={18} xxl={16}>
+            {hasNominationPermission && evalautionCompletedForSubject && (
+            <Alert
+              message={I18n.t('threesixty.evaluation_closed_nomination_message')}
+              className="mbm"
+              type="info"
+              showIcon
+            />
+            )}
+            {instruction && (
+            <Card>
+              <SafeHTML html={instruction.content} />
+            </Card>
+            )}
+            {canNominate && (
+            <NominationForm
+              {...props}
+              handleAddNomination={handleAddNomination}
+              setShowPrompt={setShowPrompt}
+            />
+            )}
+            <NominationTable
+              {...props}
+              handleAddNomination={handleAddNomination}
+              canNominate={canNominate}
+              setShowPrompt={setShowPrompt}
+              setParticipant={setParticipant}
+            />
+            <NameModal
+              participant={participant}
+              showPrompt={showPrompt}
+              setShowPrompt={setShowPrompt}
+              handleAdd={handleAdd}
+            />
+          </Col>
+        </Row>
+      </Content>
+    </>
+  )
+}
+
+export const Nomination = connector(NominationComponent)

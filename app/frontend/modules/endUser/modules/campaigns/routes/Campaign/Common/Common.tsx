@@ -5,10 +5,13 @@ import _ from 'lodash'
 import {
   Layout, Row, Col, Alert, Button, Result, Typography,
 } from 'antd'
-import { RightOutlined } from '@ant-design/icons'
+import {
+  RightOutlined, PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined,
+} from '@ant-design/icons'
 import { STATUSES } from 'constants/campaign'
 import cs from 'classnames'
 
+import { ProgressStatus } from 'glint'
 import { RootState } from 'modules/user/core/rootReducers'
 import {
   fetchCampaign,
@@ -119,6 +122,35 @@ const CommonComponent: FC<CommonComponentProps> = ({
     })
   }
 
+  const statusElement = (
+    <Row gutter={[64, 0]}>
+      <Col span={8}>
+        <ProgressStatus
+          theme="light"
+          statusText={I18n.t('campaign_assessment.statuses.not_started')}
+          StatusIcon={PlayCircleOutlined}
+          count={counters.not_started || 0}
+        />
+      </Col>
+      <Col span={8}>
+        <ProgressStatus
+          theme="light"
+          statusText={I18n.t('campaign_assessment.statuses.in_progress')}
+          StatusIcon={ClockCircleOutlined}
+          count={counters.in_progress || 0}
+        />
+      </Col>
+      <Col span={8}>
+        <ProgressStatus
+          theme="light"
+          statusText={I18n.t('campaign_assessment.statuses.completed')}
+          StatusIcon={CheckCircleOutlined}
+          count={counters.completed || 0}
+        />
+      </Col>
+    </Row>
+  )
+
   return (
     <Content>
       <>
@@ -127,7 +159,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
             <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
           </div>
         )}
-        <CampaignPageHeader counters={counters} activeCampaignId={campaign.id} />
+        <CampaignPageHeader extra={statusElement} activeCampaignId={campaign.id} />
         <Row>
           <Col span={24}>
             {!campaignClosed && allAssessmentsComplete ? (

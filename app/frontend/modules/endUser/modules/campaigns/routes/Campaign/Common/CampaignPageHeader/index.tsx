@@ -1,9 +1,8 @@
-import _ from 'lodash'
 import React, { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {
-  ClockCircleOutlined, PlayCircleOutlined, CheckCircleOutlined, ArrowLeftOutlined, DownOutlined,
+  ArrowLeftOutlined, DownOutlined,
 } from '@ant-design/icons'
 import {
   Row, Col, PageHeader, Dropdown, Menu, Tag,
@@ -13,10 +12,8 @@ import {
   fetchCampaigns,
 } from 'modules/user/modules/campaigns/core/campaigns'
 import { RootState } from 'modules/user/core/rootReducers'
-import { ProgressStatus } from 'glint'
 import styles from './styles.less'
 
-const { I18n } = window
 const { Item } = Menu
 
 const connector = connect((state: RootState) => ({
@@ -27,17 +24,21 @@ const connector = connect((state: RootState) => ({
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type NewHeaderComponentProps = PropsFromRedux & {
-  counters: _.Dictionary<number>
-  activeCampaignId: string
+  activeCampaignId: string,
+  extra: React.ReactNode,
 }
 
 export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
-  counters, campaigns, fetchCampaigns, activeCampaignId,
+  campaigns, fetchCampaigns, activeCampaignId, extra,
 }) => {
   const history = useHistory()
   const activeCampaign = campaigns.find(campaign => campaign.id === activeCampaignId)
   const completedCampaignsCount = campaigns.filter(campaign => campaign.status === 'completed').length
   const totalCampaigns = campaigns.length
+  let activeCampaignName = ''
+  if (activeCampaign) {
+    activeCampaignName = activeCampaign.type === 'threesixty' ? activeCampaign.assessmentName : activeCampaign.name
+  }
 
   const handleNavigation = () => {
     history.push('/dashboard')
@@ -48,7 +49,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   }, [])
 
   const handleCampaignSelect = (menu) => {
-    history.push(`/campaigns/${menu.key}`)
+    history.push(menu.key)
   }
 
   const menu = (
@@ -58,51 +59,28 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       onClick={handleCampaignSelect}
       className={styles.dropdownMenu}
     >
-      {campaigns.map(campaign => (
-        <Item key={campaign.id} className={styles.campaignItem}>
-          <Row wrap={false}>
-            <Col>{campaign.name}</Col>
-            {/* {Needs change once campaign progress status is available from backend} */}
-            <Col flex="auto" className="ta-e"><Tag color="green">Completed</Tag></Col>
-          </Row>
-        </Item>
-      ))}
+      {campaigns.map((campaign) => {
+        const campaignName = campaign.type === 'threesixty' ? campaign.assessmentName : campaign.name
+        const routePath = campaign.type === 'threesixty'
+          ? `/threesixty_campaigns/${campaign.id}` : `/campaigns/${campaign.id}`
+        return (
+          <Item key={routePath} className={styles.campaignItem}>
+            <Row wrap={false}>
+              <Col>{campaignName}</Col>
+              {/* {Needs change once campaign progress status is available from backend} */}
+              <Col flex="auto" className="ta-e"><Tag color="green">Completed</Tag></Col>
+            </Row>
+          </Item>
+        )
+      })}
     </Menu>
   )
 
-  const status = (
-    <Row gutter={[64, 0]}>
-      <Col span={8}>
-        <ProgressStatus
-          theme="light"
-          statusText={I18n.t('campaign_assessment.statuses.not_started')}
-          StatusIcon={PlayCircleOutlined}
-          count={counters.not_started || 0}
-        />
-      </Col>
-      <Col span={8}>
-        <ProgressStatus
-          theme="light"
-          statusText={I18n.t('campaign_assessment.statuses.in_progress')}
-          StatusIcon={ClockCircleOutlined}
-          count={counters.in_progress || 0}
-        />
-      </Col>
-      <Col span={8}>
-        <ProgressStatus
-          theme="light"
-          statusText={I18n.t('campaign_assessment.statuses.completed')}
-          StatusIcon={CheckCircleOutlined}
-          count={counters.completed || 0}
-        />
-      </Col>
-    </Row>
-  )
   const titleElement = campaigns.length > 1 ? (
     <Dropdown overlay={menu} trigger={['click']} className={styles.campaignDropdown}>
       <a onClick={e => e.preventDefault()}>
         <Row>
-          <Col>{activeCampaign && activeCampaign.name}</Col>
+          <Col>{activeCampaign && activeCampaignName}</Col>
           <Col
             className={styles.campaignsCount}
             offset={1}
@@ -115,7 +93,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
         </Row>
       </a>
     </Dropdown>
-  ) : <Col className={styles.campaignDropdown}>{activeCampaign && activeCampaign.name}</Col>
+  ) : <Col className={styles.campaignDropdown}>{activeCampaign && activeCampaignName}</Col>
   return (
     <PageHeader
       className={styles.campaignHeader}
@@ -123,7 +101,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       backIcon={<ArrowLeftOutlined className={styles.backIcon} />}
       ghost={false}
       title={titleElement}
-      extra={status}
+      extra={extra}
     />
   )
 }

@@ -5,6 +5,9 @@ import { Insights } from './Insights'
 import { UserAssessment } from './UserAssessment'
 import { AgileUserAssessment } from './AgileUserAssessment'
 import { CheckingWizard } from './CheckingWizard'
+import { Nomination } from './Nomination'
+import { Evaluation } from './Evaluation'
+import { Report } from './Report'
 
 const routes = [
   {
@@ -45,9 +48,25 @@ const routes = [
     path: '/agile_user_assessments/:userAssessmentId',
     main: AgileUserAssessment,
     exact: true,
-  }, {
+  },
+  {
     path: '/system_checks/:assessmentId/:id',
     main: CheckingWizard,
+    exact: true,
+  },
+  {
+    path: '/threesixty_campaigns/:campaignId/nominations/:id',
+    main: Nomination,
+    exact: true,
+  },
+  {
+    path: '/threesixty_campaigns/:campaignId/evaluations/:id',
+    main: Evaluation,
+    exact: true,
+  },
+  {
+    path: '/threesixty_campaigns/:campaignId/reports/:id',
+    main: Report,
     exact: true,
   },
 ]

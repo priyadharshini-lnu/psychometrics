@@ -70,7 +70,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           <Col span={24}>{status}</Col>
         </Row>
         )}
-        <Row>
+        <Row align="middle">
           {subtitle}
         </Row>
         <p>{description}</p>
