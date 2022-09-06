@@ -150,7 +150,10 @@ class Client < ApplicationRecord
 
   before_validation :ensure_subdomain, if: :retail?
   after_create :set_hogan_group_name, if: :project?
-  before_create -> { self.migrated = true }, if: :project?
+  before_create lambda {
+    self.migrated = true
+    self.design_migrated = true
+  }, if: :project?
   after_create :create_smtp_setting, if: :project?
   after_create :create_security_setting, if: :project?
   after_create :create_design_setting, if: :project?
