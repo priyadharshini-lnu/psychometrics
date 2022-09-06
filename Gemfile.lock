@@ -10,6 +10,15 @@ GIT
       rubyzip (>= 1.2.1)
 
 GIT
+  remote: https://github.com/TheTalentEnterprise/baby_squeel
+  revision: 12d742143254f12d0dbe3d0369254e375c154766
+  branch: master
+  specs:
+    baby_squeel (2.0.0)
+      activerecord (>= 6.0, < 7.1)
+      ransack (~> 2.3)
+
+GIT
   remote: https://github.com/TheTalentEnterprise/jsonapi-authorization
   revision: 12e1c19ded1e4cc0094c42c05e0dcc3f6000c69e
   branch: namespace
@@ -44,15 +53,6 @@ GIT
       faraday-encoding (>= 0.0.2, < 1.0)
       ph_model
       validate_url (~> 1.0)
-
-GIT
-  remote: https://github.com/graywolf1138/baby_squeel
-  revision: df0105a284eb31a5f244b0675873e03a29ecbf9b
-  branch: fix_for_rails_6
-  specs:
-    baby_squeel (1.4.4)
-      activerecord (>= 6.0, < 7.1)
-      ransack (~> 2.3)
 
 GIT
   remote: https://github.com/livestorm/jsonapi-utils

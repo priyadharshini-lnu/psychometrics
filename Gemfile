@@ -124,8 +124,7 @@ gem 'sentry-ruby', '~> 4.1.4'
 gem 'sentry-sidekiq', '~> 4.1.2'
 
 # DSL for activerecord
-# TODO: resolve version
-gem 'baby_squeel', git: 'https://github.com/graywolf1138/baby_squeel', branch: 'fix_for_rails_6'
+gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
 
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.0.0'
