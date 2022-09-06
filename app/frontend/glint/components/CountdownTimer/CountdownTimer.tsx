@@ -11,7 +11,7 @@ type Notification = {
 }
 
 type CountdownTimerProps = StatisticProps & {
-  seconds: number
+  seconds: number | null
   onFinish?: () => void
   notificationPoints?: Notification[]
   notificationDuration?: number
@@ -50,7 +50,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   ...rest
 }) => {
   const [countDownValue, setCountDownValue] = useState<number | undefined>(undefined)
-  const [timerFormat, setTimerFormat] = useState(getFormat(seconds))
+  const [timerFormat, setTimerFormat] = useState(seconds ? getFormat(seconds) : undefined)
 
   useEffect(() => {
     if (!seconds) return

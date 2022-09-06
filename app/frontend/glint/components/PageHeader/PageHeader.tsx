@@ -5,7 +5,7 @@ import styles from './styles.less'
 const { Header } = Layout
 
 type PageHeaderProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const PageHeader: React.FC<PageHeaderProps> = ({ children }) => (
