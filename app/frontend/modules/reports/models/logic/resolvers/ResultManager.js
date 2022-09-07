@@ -13,6 +13,10 @@ export default {
     return ResultStore.results[assessment.id].dataSheet
   },
 
+  getAssessments () {
+    return AppStore.assessments
+  },
+
   getResultsByFilter (filterId) {
     const assessment = this.getAssessmentByFilter(filterId)
     return ResultStore.results[assessment.id].getByFilter(filterId)

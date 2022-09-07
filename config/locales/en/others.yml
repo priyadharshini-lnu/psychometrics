@@ -1008,6 +1008,7 @@ en:
     not_started: New
     panels:
       assessments: Tasks
+      dashboard: Dashboard
       reports: Reports
     thank_you_for_time: Thank you for your time
     time_left:

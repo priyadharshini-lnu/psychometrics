@@ -15,8 +15,9 @@ class Page extends Component {
 
   renderModuleType = (module, i) => {
     const {
-      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides, pdfExport,
+      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides, pdfExport, dashboard,
     } = this.props
+    if (dashboard && module.props.hideOnDashboard) { return null }
     if (!module.type) { return }
     const View = Modules[module.type]
     return (
@@ -37,8 +38,9 @@ class Page extends Component {
 
   renderShadowModule = (module, i) => {
     const {
-      model, pageNumber, totalPages, pdfExport,
+      model, pageNumber, totalPages, pdfExport, dashboard,
     } = this.props
+    if (dashboard && module.props.hideOnDashboard) { return null }
     if (module.onPage(model)) { return }
     const View = Modules[module.type]
     return (
@@ -55,9 +57,19 @@ class Page extends Component {
   }
 
   render () {
-    const { model = {}, pdfExport } = this.props
+    const { model = {}, pdfExport, dashboard } = this.props
     const style = {
       ...AppStore.report.props.sizes,
+    }
+
+    if (!pdfExport && dashboard) {
+      const max = _.reduce([...model.modules.list, ...store.showOnAllPages.list], (max, m) => {
+        if (m.props.hideOnDashboard) { return max }
+        const point = m.props.position.top + m.props.position.height
+        return (point > max) ? point : max
+      }, 0)
+
+      style.height = max
     }
 
     return (

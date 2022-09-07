@@ -10,9 +10,3 @@ import initSentry from 'libs/initSentry'
 initSentry()
 
 ReactDOM.render(<Campaigns />, document.getElementById('endUserContainer'))
-
-if (__DEV__) {
-  if (module.hot) {
-    module.hot.accept()
-  }
-}

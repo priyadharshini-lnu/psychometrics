@@ -17,7 +17,7 @@ export class Preview extends Component {
 
   render () {
     const {
-      localeDirection, loaded, showOverrides, rstore, moduleOverrides, pdfExport, skipLogic,
+      localeDirection, loaded, showOverrides, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
     } = this.props
     if (!loaded) { return null }
     const visiblePages = skipLogic
@@ -35,6 +35,7 @@ export class Preview extends Component {
             showOverrides={showOverrides}
             moduleOverrides={moduleOverrides}
             pdfExport={pdfExport}
+            dashboard={dashboard}
           />
         ))}
       </div>

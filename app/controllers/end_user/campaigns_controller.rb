@@ -24,19 +24,24 @@ module EndUser
         format.html { render 'campaigns/show' }
         format.json do
           dashboard = @campaign.campaign_reports.find_by(user_dashboard: true)
-          user_report = @campaign.user_reports.find_by(user_id: current_user, report_id: dashboard.report_id)
+          if dashboard
+            dashboard_report = @campaign.user_reports.find_by(user_id: current_user, report_id: dashboard.report_id)
+            piped_text_context = { subject: dashboard_report.user }
 
-          selected_locale = params[:lang] || user_report.report.default_language # rubocop:disable Lint/UselessAssignment
+            results = dashboard_report.user_results.map do |result|
+              ::Reports::ResultSerializer.new(result, campaign: @campaign).to_h
+            end.group_by { |result| result[:assessment_id] }
 
-          piped_text_context = { subject: user_report.user }
+            user_dashboard = ::UserDashboardSerializer.new(dashboard_report, scope: current_user,
+              report: dashboard_report.report, results: results,
+              piped_text_context: piped_text_context).to_hash(include: '**')
+          end
+          user_reports = @campaign.user_reports.where(user_id: current_user)
 
-          results = user_report.user_results.map do |result|
-            ::Reports::ResultSerializer.new(result, campaign: @campaign).to_h
-          end.group_by { |result| result[:assessment_id] }
-
-          render json: user_report, report: user_report.report, serializer: ::UserReportSerializer,
-                 results: results, piped_text_context: piped_text_context,
-                 include: '**'
+          render json: {
+            user_dashboard: user_dashboard,
+            user_reports: user_reports.map { |user_repot| EndUser::UserReportSerializer.new(user_repot) }
+          }
         end
       end
     end

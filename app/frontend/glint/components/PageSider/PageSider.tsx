@@ -28,6 +28,7 @@ type PageSiderProps = {
   onMenuSelect?: (info: SelectInfo) => void
   siderFooter?: (collapsed: boolean) => React.ReactElement
   activeKey?: string
+  openKey?: string
   onSiderCollapse?: (collapsed: boolean) => void
 }
 
@@ -38,6 +39,7 @@ export const PageSider: FC<PageSiderProps> = ({
   siderFooter,
   onMenuSelect,
   activeKey = '',
+  openKey = '',
   onSiderCollapse,
 }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false)
@@ -63,6 +65,7 @@ export const PageSider: FC<PageSiderProps> = ({
       selectedKeys={[activeKey]}
       className={styles['sider-menu']}
       mode="inline"
+      defaultOpenKeys={[openKey]}
       onClick={handleClick}
     >
       {items.map((eachItem) => {

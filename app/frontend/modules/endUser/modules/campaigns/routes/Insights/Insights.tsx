@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Row, Col, Layout } from 'antd'
+import {
+  Row, Col, Layout, Typography, Tabs,
+} from 'antd'
 import { RouteComponentProps } from 'react-router-dom'
 
 import LangDropdown from 'components/LangDropdown'
@@ -11,6 +13,7 @@ import {
 } from 'modules/user/modules/campaigns/core/campaign'
 import Report from 'modules/reports/report'
 import { InsightsHeader } from './InsightsHeader'
+import { ReportList } from './ReportList'
 
 import styles from './styles.less'
 
@@ -35,12 +38,46 @@ type Params = {
 
 type ComponentProps = RouteComponentProps<Params> & PropsFromRedux
 
-const InsightsComponent: FC<ComponentProps> = ({ match, userReport, fetchInsights }) => {
+const InsightsMobileView = ({ report }) => (
+  <Content className={styles.pageContent}>
+    <div className={styles.content}>
+      <Tabs defaultActiveKey="Dashboard">
+        <Tabs.TabPane key="Dashboard" tab={I18n.t('campaign.panels.dashboard')} style={{ margin: '0 -24px' }}>
+          {report}
+        </Tabs.TabPane>
+        <Tabs.TabPane tab={I18n.t('campaign.panels.reports')}>
+          <ReportList />
+        </Tabs.TabPane>
+      </Tabs>
+    </div>
+  </Content>
+)
+
+const InsightsDesktopView = ({ userReport, report }) => (
+  <Content className={styles.pageContent}>
+    <div className={styles.content}>
+      <Typography.Title level={4} className={styles.title}>
+        {I18n.t('campaign.panels.reports')}
+      </Typography.Title>
+      <ReportList />
+      {userReport && (
+      <Typography.Title level={4} className={styles.title}>
+        {I18n.t('campaign.panels.dashboard')}
+      </Typography.Title>
+      )}
+    </div>
+    {report}
+  </Content>
+)
+
+const InsightsComponent: FC<ComponentProps> = ({
+  match, userReport, fetchInsights,
+}) => {
   useEffect(() => {
     fetchInsights(match.url)
   }, [match.url])
-  const { isMobile } = useContext(MediaQueryContext)
 
+  const { isMobile } = useContext(MediaQueryContext)
   const width = isMobile ? window.innerWidth : window.innerWidth - 200
   const MAX = 1000
   const scale = width / MAX
@@ -50,6 +87,24 @@ const InsightsComponent: FC<ComponentProps> = ({ match, userReport, fetchInsight
     ? `translate(-${offsetLeft}%, -${offsetTop}%) scale(${scale})`
     : `translate(0, ${Math.abs(offsetTop)}%) scale(${scale})`
 
+
+  const report = userReport && (
+    <Row gutter={[0, 16]} justify="center">
+      <Col className={styles.report} style={{ transform }}>
+        <Report
+          data={userReport.report}
+          results={userReport.results}
+          campaign={JSON.stringify({})}
+          user={JSON.stringify(userReport.user)}
+          locales={userReport.report.locales}
+          selectedLocale={userReport.report.defaultLanguage}
+          userReport={userReport}
+          dashboard
+        />
+      </Col>
+    </Row>
+  )
+
   return (
     <>
       <PageHeader>
@@ -57,24 +112,12 @@ const InsightsComponent: FC<ComponentProps> = ({ match, userReport, fetchInsight
           <LangDropdown locales={locales} current={current} />
         </Col>
       </PageHeader>
-      <Content className={styles.pageContent}>
-        <InsightsHeader />
-        <Row gutter={[0, 16]} justify="center">
-          <Col style={{ transform }}>
-            {userReport && (
-            <Report
-              data={userReport.report}
-              results={userReport.results}
-              campaign={JSON.stringify({})}
-              user={JSON.stringify(userReport.user)}
-              locales={userReport.report.locales}
-              selectedLocale={userReport.report.defaultLanguage}
-              userReport={userReport}
-            />
-            )}
-          </Col>
-        </Row>
-      </Content>
+      <InsightsHeader />
+      {isMobile
+        ? <InsightsMobileView report={report} />
+        : (
+          <InsightsDesktopView report={report} userReport={userReport} />
+        )}
     </>
   )
 }

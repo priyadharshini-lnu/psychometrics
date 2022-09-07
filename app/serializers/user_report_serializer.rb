@@ -50,4 +50,8 @@ class UserReportSerializer < ActiveModel::Serializer
   def report
     @report ||= instance_options[:report]
   end
+
+  def current_user
+    scope
+  end
 end

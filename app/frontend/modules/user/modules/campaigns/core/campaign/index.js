@@ -1,5 +1,6 @@
 import { setIn } from 'utils/immutable'
 import _ from 'lodash'
+import humps from 'humps'
 
 const BEGIN = 'campaign/BEGIN'
 const FETCH = 'campaign/FETCH'
@@ -81,7 +82,9 @@ export const defaultState = {
 
 const HANDLERS = {
   [FETCH]: (state, action) => ({ ...state, ...action.response, loaded: true }),
-  [FETCH_INSIGHTS]: (state, action) => ({ ...state, userReport: action.response }),
+  [FETCH_INSIGHTS]: (state, action) => ({
+    ...state, userReport: action.response.user_dashboard, userReports: humps.camelizeKeys(action.response.user_reports),
+  }),
   [FETCH_OPTIONS]: (state, { response }) => setIn(state, 'options', response),
   [BEGIN]: (state, { response }) => {
     if (response.examusSessionUrl) return state
