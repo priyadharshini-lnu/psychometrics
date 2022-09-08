@@ -6,6 +6,7 @@ import {
 import { PropertiesModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
 
 import PropertyFilter from 'modules/reports/components/PropertyFilter'
+import PropertyNumber from 'modules/reports/components/PropertyNumber'
 import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
@@ -44,7 +45,7 @@ export const Properties: FC<Props> = ({ model }) => {
   const {
     props: {
       sourceType, factorIds, questionsChoices, sections = TableSectionsType.ALL,
-      tableStyle = TableStyleType.UNSTYLED, hideValues = false,
+      tableStyle = TableStyleType.UNSTYLED, hideValues = false, noOfItems, scoreCutoff,
     },
     assessment_id,
   } = model
@@ -82,6 +83,8 @@ export const Properties: FC<Props> = ({ model }) => {
       />
       <TablePreferences
         hideValues={hideValues}
+        noOfItems={noOfItems}
+        scoreCutoff={scoreCutoff}
         onChange={onChange}
       />
     </Space>
@@ -127,18 +130,38 @@ const TableStyleSelect: FC<TableStyleSelectProps> = ({ value, onChange }) => (
 
 interface TablePreferencesProps {
   hideValues: boolean
+  noOfItems: number | null
+  scoreCutoff: number | null
   onChange(key: string, value: unknown): void
 }
 
-const TablePreferences: FC<TablePreferencesProps> = ({ hideValues, onChange }) => (
-  <div>
+const TablePreferences: FC<TablePreferencesProps> = ({
+  hideValues, noOfItems, scoreCutoff, onChange,
+}) => (
+  <Space direction="vertical">
     <Checkbox
       checked={hideValues === true}
       onChange={e => onChange('hideValues', e.target.checked)}
     >
       Hide Values
     </Checkbox>
-  </div>
+    <PropertyNumber
+      label="No. of Items"
+      defaultValue={noOfItems ?? undefined}
+      size="small"
+      min={1}
+      step={1}
+      onChange={value => onChange('noOfItems', value)}
+    />
+    <PropertyNumber
+      label="Cutoff"
+      defaultValue={scoreCutoff ?? undefined}
+      size="small"
+      min={1}
+      step={1}
+      onChange={value => onChange('scoreCutoff', value)}
+    />
+  </Space>
 )
 
 

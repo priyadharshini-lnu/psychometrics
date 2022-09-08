@@ -12,6 +12,8 @@ interface Props {
   sections: TableSectionsType
   tableStyle: TableStyleType
   hideValues: boolean
+  noOfItems: number | null
+  scoreCutoff: number | null
 }
 
 export enum TableSectionsType {

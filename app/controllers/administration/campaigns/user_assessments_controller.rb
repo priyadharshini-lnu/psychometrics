@@ -51,7 +51,7 @@ module Administration
       end
 
       def reset_progress
-        ::UserAssessments::ResetProgress.call!(resource)
+        ::UserAssessments::ResetProgress.call!(resource, reset_flag: true)
         audit! :reset_progress, resource, campaign: resource.campaign
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
