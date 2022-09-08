@@ -12,7 +12,7 @@ export const getPrivacyText = state => _.get(get(state), ['privacyText'])
 export const privacyPageLink = state => _.get(get(state), ['privacyPageLink'])
 export const getLogo = state => _.get(get(state), ['logo'])
 export const getProjectLogo = state => _.get(state, ['config', 'design', 'logo'])
-export const getSecondaryLogo = state => _.get(get(state), ['secondaryLogo'])
+export const getSecondaryLogo = state => _.get(state, ['config', 'design', 'secondary_logo'])
 export const getName = state => _.get(get(state), ['name'])
 
 export const acceptPolicy = () => ({
