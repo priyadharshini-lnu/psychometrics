@@ -6,14 +6,15 @@ module Api::V2::Administration::Concerns::ApiController
   included do
     prepend_before_action :authenticate, unless: -> { try(:skip_authentication?) }
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    rescue_from Api::Errors::ApiError, with: :render_error
   end
 
   def authenticate
     if ::ActionController::HttpAuthentication::Basic.has_basic_credentials?(request)
-      @api_key      = fetch_api_key
-      @current_user = @api_key&.user
-      raise Errors::Api::AuthError unless @api_key
-      raise Errors::Api::AuthError, 'API User is disabled' if @current_user&.disabled
+      api_key = fetch_api_key
+      @current_user = api_key&.user
+      raise  Api::Errors::InvalidAuthentication  if api_key.nil? || @current_user.nil?
+      raise  Api::Errors::InvalidAuthentication, 'API User is disabled' if @current_user.disabled?
     else
       authenticate_user!
     end
@@ -30,5 +31,17 @@ module Api::V2::Administration::Concerns::ApiController
 
   def user_not_authorized
     head :forbidden
+  end
+
+  def render_error(e)
+    error = {
+      code: e.code,
+      title: e.message,
+      status: e.status
+    }
+    error = error.merge(detail: e.more_info) if e.more_info
+    error = error.merge(meta: e.meta) if e.meta
+
+    render json: [error], status: e.status
   end
 end

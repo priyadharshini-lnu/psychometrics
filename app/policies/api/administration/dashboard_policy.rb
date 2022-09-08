@@ -4,7 +4,7 @@ module Api
   module Administration
     class DashboardPolicy < ::Api::Administration::BasePolicy
       def index?
-        user.has_grant?(:dashboard, :view)
+        user.has_grant?(:dashboards, :view)
       end
 
       def show?

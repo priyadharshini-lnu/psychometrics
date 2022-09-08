@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def show_dashboard?
     return false if current_user.is?(:superadmin)
-    return false unless current_user.has_grant?(:dashboard, :view)
+    return false unless current_user.has_grant?(:dashboards, :view)
 
     Api::Administration::DashboardPolicy::Scope.new(current_user, Dashboard).resolve.preview_available.exists?
   end
