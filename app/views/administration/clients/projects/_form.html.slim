@@ -34,7 +34,6 @@
           #privacy_link_details.mbm class="#{@privacy_link_enabled ? '' : 'hidden'}"
             = p.input :text, label: t('.privacy_text')
             = p.input :link, as: :string, label: t('.privacy_link')
-        = f.input :two_factor_enabled, label: t('.2fa_enable')
         = f.input :enable_live_chat, label: t('.enable_live_chat')
         #live_chat_token.mbm.pl class="#{resource.enable_live_chat ? '' : 'hidden'}"
           = f.input :live_chat_token, label: t('.live_chat_token'), placeholder: t('.optional')

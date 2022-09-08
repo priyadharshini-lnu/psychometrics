@@ -110,6 +110,13 @@ const securityComponent: React.FC<Props> = ({
                   <Switch />
                 </Form.Item>
                 <Form.Item
+                  name="enabledTfa"
+                  label={I18n.t('administration.security_setting.tfa_enabled')}
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
                   name="lockAccount"
                   label={I18n.t('administration.security_setting.lock_account')}
                   valuePropName="checked"

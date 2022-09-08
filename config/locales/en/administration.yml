@@ -3412,6 +3412,7 @@ en:
       security: Security Settings
       security_setting: Security settings
       send_unlock_email: Send unlock email
+      tfa_enabled: Enable Two Factor Authentication
       update_success_msg: Password settings successfull updated
     sheets:
       column:

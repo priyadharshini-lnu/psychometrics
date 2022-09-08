@@ -172,6 +172,7 @@ class Client < ApplicationRecord
 
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
+  delegate :tfa_enabled?, to: :security_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }

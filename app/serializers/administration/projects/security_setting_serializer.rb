@@ -5,7 +5,7 @@ module Administration
     class SecuritySettingSerializer < ActiveModel::Serializer
       attributes :id, :project_id, :enforce_strong_password, :min_password_length,
                  :enforce_password_policy, :disable_password_reuse, :password_expiration, :send_unlock_email,
-                 :auto_unlock_time, :attempts_to_lock, :lock_account, :restrict_sequences
+                 :auto_unlock_time, :attempts_to_lock, :lock_account, :restrict_sequences, :tfa_enabled
     end
   end
 end

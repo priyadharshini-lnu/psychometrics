@@ -36,7 +36,7 @@ module Api
       end
 
       def enable_2factor_auth
-        object.two_factor_enabled
+        object.security_setting.tfa_enabled
       end
 
       def data_processing_consent

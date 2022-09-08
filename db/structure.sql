@@ -629,21 +629,6 @@ CREATE TABLE public.sheet_rows (
     updated_at timestamp without time zone NOT NULL
 );
 
-
---
--- Name: c__datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c__datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Name'::text) AS "Name",
-    ((sheet_rows.data ->> 'hope'::text))::double precision AS hope
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 60)
-  ORDER BY sheet_rows.id;
-
-
 --
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --

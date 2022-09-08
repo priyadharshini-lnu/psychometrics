@@ -5,7 +5,7 @@ module Api
     class ProjectsController < Api::V1::BaseController
       skip_before_action :ensure_project, only: [:create]
       DESIGN_ATTRIBUTES = %i[logo background secondary_logo login_box_position background_color].freeze
-
+      SECURITY_SETTINGS = %i[enforce_strong_password tfa_enabled].freeze
       def show
         render json: project, serializer: Api::V1::ProjectSerializer
       end
@@ -28,8 +28,9 @@ module Api
         if form.valid?
           normalized_params = ::Projects::NormalizeApiRequest.call!(project_params)
           design_attributes = project.design_migrated ? DESIGN_ATTRIBUTES : []
-          project.update!(normalized_params.except(*design_attributes))
+          project.update!(normalized_params.except(*design_attributes, *SECURITY_SETTINGS))
           project.design_setting.update!(normalized_params.slice(*design_attributes)) if project.design_migrated
+          project.security_setting.update!(normalized_params.slice(SECURITY_SETTINGS))
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
           audit! :api_update, project, payload: params.permit!, project: project
           render json: project, serializer: Api::V1::ProjectSerializer

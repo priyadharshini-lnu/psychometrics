@@ -16,7 +16,7 @@ module TwoFactorAuthenticatable
       return false unless Settings.features.two_factor_enabled
       return false unless enable_2fa?
 
-      is?(:regular) ? project.two_factor_enabled? : true
+      is?(:regular) ? project.tfa_enabled? : true
     end
 
     # To set TOTP to disabled
