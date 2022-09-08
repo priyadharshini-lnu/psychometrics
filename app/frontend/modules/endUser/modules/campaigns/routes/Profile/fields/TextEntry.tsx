@@ -12,10 +12,13 @@ interface Props {
     }
   }
   value: string
+  defaultValue: string
   onChange: (value:string) => void
 }
 
-export const TextEntry: FC<Props> = ({ field, value, onChange }) => {
+export const TextEntry: FC<Props> = ({
+  field, value, onChange, defaultValue,
+}) => {
   const change = (e) => {
     onChange(e.currentTarget.value)
   }
@@ -23,7 +26,7 @@ export const TextEntry: FC<Props> = ({ field, value, onChange }) => {
   if (field.props.type === 'SingleLine') {
     return (
       <div>
-        <Input value={value} onChange={change} />
+        <Input value={value ?? defaultValue} onChange={change} />
       </div>
     )
   }
@@ -31,7 +34,7 @@ export const TextEntry: FC<Props> = ({ field, value, onChange }) => {
   if (field.props.type === 'MultiLine') {
     return (
       <div>
-        <Input.TextArea rows={4} value={value} onChange={change} />
+        <Input.TextArea rows={4} value={value ?? defaultValue} onChange={change} />
       </div>
     )
   }

@@ -20,13 +20,16 @@ interface Props {
     }
   }
   value?: string
+  defaultValue?: string
   onChange?: (value) => void
 }
 
-const CustomField: FC<Props> = ({ field, value, onChange }) => {
+const CustomField: FC<Props> = ({
+  field, value, onChange, defaultValue,
+}) => {
   const Field = FIELDS[field.question.type]
   return (
-    <Field field={field.question} value={value} onChange={onChange} />
+    <Field field={field.question} value={value} defaultValue={defaultValue} onChange={onChange} />
   )
 }
 

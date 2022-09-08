@@ -15,10 +15,13 @@ interface Props {
     }
   }
   value: string
+  defaultValue?: string
   onChange: (value:string) => void
 }
 
-export const MultipleChoice: FC<Props> = ({ field, value, onChange }) => {
+export const MultipleChoice: FC<Props> = ({
+  field, value, onChange, defaultValue,
+}) => {
   const {
     id,
     props: { choices },
@@ -31,7 +34,7 @@ export const MultipleChoice: FC<Props> = ({ field, value, onChange }) => {
     return (
       <>
         {_.times(choices, (choiceId) => {
-          const choice = +value === choiceId
+          const choice = +(value ?? defaultValue) === choiceId
           return (
             <label className={`${styles.label}`}>
               <span className={cs('fa fa-check', styles.checkIcon)} />
@@ -56,7 +59,7 @@ export const MultipleChoice: FC<Props> = ({ field, value, onChange }) => {
     return (
       <>
         {_.times(choices, (choiceId) => {
-          const choice = +value === choiceId
+          const choice = +(value ?? defaultValue) === choiceId
           return (
             <label className={`${styles.label}`}>
               <span className={cs('fa fa-check', styles.checkIcon)} />
@@ -82,7 +85,7 @@ export const MultipleChoice: FC<Props> = ({ field, value, onChange }) => {
       <Select
         size="large"
         onChange={value => onChange(value)}
-        value={`${value ?? ''}`}
+        value={`${value ?? defaultValue ?? ''}`}
       >
         <Select.Option value="">Select...</Select.Option>
         {_.times(choices, choiceId => (

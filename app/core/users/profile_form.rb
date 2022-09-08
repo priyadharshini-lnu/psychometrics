@@ -7,6 +7,7 @@ module Users
     attribute :password, String
     attribute :password_confirmation, String
     attribute :timezone, String
+    attribute :custom_fields, Hash
 
     validates :first_name, :last_name, presence: true
     validates :password, strong_password: true, if: :enable_strong_password?
@@ -15,11 +16,6 @@ module Users
     validates_confirmation_of :password, unless: -> { password.blank? }
 
     validate :validate_project_fields, if: :project?
-
-    def initialize(params = {})
-      @params = params
-      super
-    end
 
     def password_length
       return unless password
@@ -30,10 +26,9 @@ module Users
     end
 
     def validate_project_fields
-      field_params = @params[:fields]
       project.profile_setting.profile_fields.includes(:question).each do |field|
         if (field.required || field.question.required_validation['enabled']) &&
-           !field_params[field.question_id.to_s.to_sym].present?
+           !custom_fields[field.question_id.to_s.to_sym].present?
           errors.add(field.question.name, 'required')
         end
       end

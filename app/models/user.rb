@@ -182,6 +182,8 @@ class User < ApplicationRecord
     self.locale = locale.presence
   end
 
+  after_create :create_user_profile
+
   mount_uploader :photo, ImageUploader
 
   has_one_time_password(encrypted: true)

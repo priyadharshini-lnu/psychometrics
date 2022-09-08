@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Button, Select,
+  Row, Col, Form, Button, Select, message,
 } from 'antd'
 import { useResources } from 'hooks/useResources/useResources'
 import { BaseMeta } from 'hooks/useResources/interfaces'
@@ -48,7 +48,9 @@ export const Profile: React.FC<{}> = () => {
   }
 
   const onFinish = (values) => {
-    updateResource({ id: profileSettings.id, ...values, profileFields: profileSettings.profileFields })
+    updateResource({ id: profileSettings.id, ...values, profileFields: profileSettings.profileFields }).then(() => {
+      message.success(I18n.t('profile.success_update'))
+    })
   }
 
   const addField = (q) => {

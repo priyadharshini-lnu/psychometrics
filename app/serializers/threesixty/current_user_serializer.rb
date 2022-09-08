@@ -3,14 +3,16 @@
 module Threesixty
   class CurrentUserSerializer < ActiveModel::Serializer
     attributes :id, :is_manager, :email, :first_name, :last_name, :full_name,
-               :is_super_admin, :is_anonym, :permissions, :photo, :timezone
+               :is_super_admin, :is_anonym, :permissions, :photo, :timezone, :custom_fields
 
     def is_manager # rubocop:disable Naming/PredicateName
       true
     end
 
+    delegate(*UserProfile::PROFILE_FIELDS, :custom_fields, to: :user_profile)
+
     def photo
-      object.photo&.url
+      object.user_profile.photo&.url
     end
 
     def is_super_admin # rubocop:disable Naming/PredicateName
@@ -47,6 +49,10 @@ module Threesixty
     end
 
     private
+
+    def user_profile
+      object.user_profile
+    end
 
     def current_project_id
       instance_options[:project_id]

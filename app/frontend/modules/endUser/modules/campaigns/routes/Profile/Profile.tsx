@@ -69,14 +69,16 @@ function ProfileComponent ({
     }
   }
 
+  const customFields = _.reduce(user.customFields, (res, field, id) => ({ ...res, [`field_${id}`]: field }), {})
+
   const submitForm = (values) => {
-    const data = _.reduce(values, (res, val, key) => {
+    const data = _.reduce({ ...values }, (res, val, key) => {
       const data = key.match(/field_(\d+)/)
       if (data) {
-        return { ...res, fields: { ...res.fields, [data[1]]: val } }
+        return { ...res, customFields: { ...res.customFields, [data[1]]: val ?? customFields[key] } }
       }
       return { ...res, [key]: val }
-    }, { fields: {} })
+    }, { customFields: {} })
 
     sync(data)
       .then(() => {
@@ -200,7 +202,7 @@ function ProfileComponent ({
                         </Form.Item>
                       </>
                     )}
-                    <Row gutter={24}>
+                    <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
                         <Col key={field.id} span={field.half_size ? 12 : 24}>
                           <Form.Item
@@ -210,7 +212,7 @@ function ProfileComponent ({
                             name={`field_${field.question_id}`}
                             label={field.name}
                           >
-                            <CustomField field={field} />
+                            <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />
                           </Form.Item>
                         </Col>
                       ))}
