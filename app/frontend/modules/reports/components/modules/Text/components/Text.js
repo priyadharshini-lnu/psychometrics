@@ -1,6 +1,7 @@
 import { CheckOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import cs from 'classnames'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
@@ -102,6 +103,38 @@ class Text extends Component {
     }
   }
 
+  getTypeContent () {
+    const { content } = this.state
+    const {
+      module: model,
+      module: {
+        props: {
+          sourceType,
+        },
+      },
+    } = this.props
+
+    if (this.edit) { return content }
+    const compileMarkdown = markdown => (
+      <ReactMarkdown>
+        {markdown}
+      </ReactMarkdown>
+    )
+    if (sourceType === 'ConditionalText') {
+      return renderToStaticMarkup(compileMarkdown(model.getTextByCondition()))
+    }
+    if (sourceType === 'ConditionalFactorOccupationText') {
+      return renderToStaticMarkup(compileMarkdown(GetText.run(model)))
+    }
+    if (sourceType === 'PipedText') {
+      return this.pipedText()
+    }
+    if (sourceType === 'ResultText') {
+      return renderToStaticMarkup(this.lookupResultTextValue(model))
+    }
+    return I18nStore.tModule(model, 'text')
+  }
+
   editor = null
 
   edit = false
@@ -138,8 +171,8 @@ class Text extends Component {
   }
 
   openReviewEditor = (override) => {
-    const { openReviewEditor, module } = this.props
-    this.setState({ content: override?.content || module.props.text })
+    const { openReviewEditor } = this.props
+    this.setState({ content: override?.content || this.getTypeContent() })
     openReviewEditor()
     this.edit = true
   }
@@ -205,6 +238,29 @@ class Text extends Component {
     return ''
   }
 
+  pipedText () {
+    const {
+      module: model,
+      module: {
+        assessment_id: assessmentId,
+      },
+      pageNumber,
+      totalPages,
+    } = this.props
+
+    const interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name|page_number|total_pages)}}/g
+    const compiled = _.template(I18nStore.tModule(model, 'text'), { interpolate })
+    return compiled({
+      first_name: _.get(ResultStore, 'user.first_name', '{{first_name}}'),
+      last_name: _.get(ResultStore, 'user.last_name', '{{last_name}}'),
+      completed_at: _.get(AppStore, 'report.result_completed_at', '{{completed_at}}'),
+      norm_used: _.get(AppStore, ['report', 'norm_used', assessmentId], '{{norm_used}}'),
+      locale_name: _.get(AppStore, ['report', 'result_locale', assessmentId], '{{locale_name}}'),
+      page_number: pageNumber,
+      total_pages: totalPages,
+    })
+  }
+
   renderText () {
     const {
       module: model,
@@ -216,11 +272,9 @@ class Text extends Component {
       },
       questions,
       preview,
-      pageNumber,
-      totalPages,
       moduleOverrides,
     } = this.props
-    const { content, showDiff } = this.state
+    const { showDiff } = this.state
 
     if (sourceType === 'ResponseText') {
       const question = _.find(questions, { id: modelQuestion })
@@ -254,7 +308,7 @@ class Text extends Component {
             key="editor"
             ref={(ref) => { this.editor = ref }}
             config={config}
-            model={content}
+            model={this.getTypeContent()}
             onModelChange={content => this.setState({ content })}
           />
         )
@@ -264,10 +318,11 @@ class Text extends Component {
         return (
           <SafeHTML
             html={override && showDiff
-              ? htmldiff(model.props.text, override.content)
-              : override.content || I18nStore.tModule(model, 'text')}
+              ? htmldiff(this.getTypeContent(), override.content)
+              : override.content || this.getTypeContent()}
             ref={(ref) => { this.editor = ref }}
             className={cs(styles.editor, { [styles.diff]: showDiff })}
+            config="adminRichText"
           />
         )
       }
@@ -276,7 +331,7 @@ class Text extends Component {
         return (
           <div
             ref={(ref) => { this.editor = ref }}
-            className={styles.editor}
+            className={cs(styles.editor, 'fr-view')}
           >
             <ReactMarkdown>
               {model.getTextByCondition()}
@@ -287,7 +342,7 @@ class Text extends Component {
         return (
           <div
             ref={(ref) => { this.editor = ref }}
-            className={styles.editor}
+            className={cs(styles.editor, 'fr-view')}
           >
             <ReactMarkdown>
               {GetText.run(model)}
@@ -295,30 +350,17 @@ class Text extends Component {
           </div>
         )
       } if (sourceType === 'PipedText') {
-        const interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name|page_number|total_pages)}}/g
-        const compiled = _.template(I18nStore.tModule(model, 'text'), { interpolate })
-
-        const html = compiled({
-          first_name: _.get(ResultStore, 'user.first_name', '{{first_name}}'),
-          last_name: _.get(ResultStore, 'user.last_name', '{{last_name}}'),
-          completed_at: _.get(AppStore, 'report.result_completed_at', '{{completed_at}}'),
-          norm_used: _.get(AppStore, ['report', 'norm_used', assessmentId], '{{norm_used}}'),
-          locale_name: _.get(AppStore, ['report', 'result_locale', assessmentId], '{{locale_name}}'),
-          page_number: pageNumber,
-          total_pages: totalPages,
-        })
-
         return (
           <SafeHTML
             ref={(ref) => { this.editor = ref }}
             className={cs(styles.editor, 'ltr')}
-            html={html}
+            html={this.pipedText()}
           />
         )
       } if (sourceType === 'ResultText') {
         const textValue = this.lookupResultTextValue(model)
         return (
-          <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
+          <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
             <div>{textValue}</div>
           </div>
         )
@@ -331,12 +373,13 @@ class Text extends Component {
             : override?.content || I18nStore.tModule(model, 'text')}
           ref={(ref) => { this.editor = ref }}
           className={cs(styles.editor, { [styles.diff]: showDiff })}
+          config="adminRichText"
         />
       )
     }
     if (sourceType === 'ResultText') {
       return (
-        <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
+        <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
           {/* TODO: Render as markdown only for Datasheet where the column is markdown */}
           <div>{`${JSON.stringify(source)}`}</div>
         </div>
