@@ -90,6 +90,8 @@ interface Props {
   gapType: PropertiesModel['props']['gapType']
   assessment_id: PropertiesModel['assessment_id']
   hideValues: boolean
+  noOfItems: number | null
+  gapCutoff: number | null
 }
 
 const Factor: FC<Props> = ({
@@ -98,6 +100,8 @@ const Factor: FC<Props> = ({
   assessment_id,
   gapType,
   hideValues,
+  noOfItems,
+  gapCutoff,
 }) => {
   const calculateGaps = (
     assessmentId: PropertiesModel['assessment_id'],
@@ -142,12 +146,15 @@ const Factor: FC<Props> = ({
       (firstFactor, secondFactor) => secondFactor.diff - firstFactor.diff,
     )
 
+    const minGap = gapCutoff ?? 0
+    const itemLimit = noOfItems ?? 5
+
     const positiveGaps = sortedFactors
-      .filter(factor => factor.diff > 0)
-      .slice(0, 5)
+      .filter(factor => factor.diff > 0 && factor.diff >= minGap)
+      .slice(0, itemLimit)
     const negativeGaps = sortedFactors
-      .filter(factor => factor.diff < 0)
-      .slice(-5)
+      .filter(factor => factor.diff < 0 && factor.diff <= -minGap)
+      .slice(-itemLimit)
       .reverse()
 
     return [positiveGaps, negativeGaps]
