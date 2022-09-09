@@ -1,6 +1,13 @@
-@import 'glint/styles/mixins.less';
-@import 'styles/ant.variable.less';
-@import 'styles/spacing.less';
+@import "glint/styles/mixins.less";
+@import "styles/ant.variable.less";
+@import "styles/spacing.less";
+
+.btnStyles() {
+  min-width: 120px;
+  position: relative;
+  text-align: left;
+}
+
 @card-body-padding: @space-4;
 .detailsCard {
   height: 100%;
@@ -9,21 +16,29 @@
   border-radius: calc(2 * @border-radius-sm);
   padding-bottom: @card-padding-base;
   & :global(.ant-card-body) {
-    padding: @card-body-padding;
+    padding: @space-3 @space-4;
   }
 }
 .title:global(.ant-typography) {
   position: relative;
   font-size: 16px;
-  font-weight: 400;
-  .highlighter(24px, calc(-@card-body-padding - 1px), 1.5rem);
+  font-weight: 500;
+  .highlighter(20px, calc(-@card-body-padding - 1px), 1.75rem, @translateY: -24px);
 }
 
 .buttonCol {
   text-align: end;
 }
-.actionButton{
-  min-width: 100px;
+.actionButton {
+  .btnStyles();
+  & :global(.ant-btn) {
+    .btnStyles();
+  }
+  & .buttonIcon, &:focus .buttonIcon {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  }
 }
 .cardFooter {
   position: absolute;
@@ -32,6 +47,13 @@
 }
 
 :global(.rtl) {
+  .actionButton {
+    text-align: right;
+    & .buttonIcon, &:focus .buttonIcon {
+      right: unset;
+      left: 4px;
+    }
+  }
   & .title:before {
     right: -@card-body-padding;
     left: unset;

@@ -68,13 +68,18 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     history.push(`/${menu.key}`)
   }
 
-  if (pathname.includes('/campaigns/') || pathname.includes('user_assessments/')) {
+  if (pathname.includes('/campaigns/') || pathname.includes('/threesixty_campaigns/')) {
     const [,, campaignId] = location.pathname.split('/')
     campaignIdRef.current = campaignId
     menuItems = getMenuItems(true, showInsights)
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)
+    activeItem = activeItem || 'dashboard'
+  }
+
+  if (pathname.includes('user_assessments/') || pathname.includes('evaluations/')) {
+    return null
   }
 
   return (

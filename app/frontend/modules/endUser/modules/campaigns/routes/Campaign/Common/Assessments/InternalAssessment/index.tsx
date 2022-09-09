@@ -3,7 +3,6 @@ import {
   Typography, Avatar, Row, Col,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
-import truncate from 'lodash/truncate'
 import { DetailsCard } from 'glint'
 import { useHistory } from 'react-router-dom'
 
@@ -133,7 +132,7 @@ export const InternalAssessment: React.FC<Props> = ({
   )
   const assessmentTitle = view === 'list'
     ? assessmentName
-    : truncate(assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })
+    : assessmentName.slice(0, ASSESSMENT_TITLE_MAX_LENGTH)
 
   if (completionPercent === 100) {
     taskStatus = 'completed'
@@ -162,9 +161,8 @@ export const InternalAssessment: React.FC<Props> = ({
           <>
             {timing && (
               <div>
-                <ClockCircleOutlined />
+                <ClockCircleOutlined className={styles.timeIcon} />
                 <Text type="secondary">
-                  {' '}
                   {timing}
                 </Text>
               </div>

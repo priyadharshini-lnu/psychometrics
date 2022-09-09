@@ -2,16 +2,12 @@ import React, { FC } from 'react'
 import {
   Card, Col, Button, Typography, Progress, Row, Tooltip, Space,
 } from 'antd'
-import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 
-import { isRtl } from 'utils/locales'
+import { DirectionalArrowIcon } from 'glint'
 
 import styles from './styles.less'
 
 const { Title } = Typography
-const { I18n } = window
-const uiLocale = I18n && I18n.uiLocale
-
 type DetailsCardProps = {
   title: string | React.ReactElement
   description?: string | React.ReactElement
@@ -39,8 +35,6 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   actionDisabled,
   actionDisabledText,
 }) => {
-  const rtl = uiLocale && isRtl(uiLocale)
-
   const handleClick = () => {
     handleButtonClick && handleButtonClick()
   }
@@ -91,10 +85,9 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                 className={styles.actionButton}
               >
                 {buttonText}
-                {rtl ? <LeftOutlined /> : <RightOutlined />}
+                <DirectionalArrowIcon className={styles.buttonIcon} />
               </Button>
             </ButtonWrapper>
-
           </Col>
         )}
       </Row>

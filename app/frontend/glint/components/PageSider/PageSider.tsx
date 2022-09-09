@@ -99,7 +99,8 @@ export const PageSider: FC<PageSiderProps> = ({
       className={cs({ [styles['sider-trigger']]: true, [styles['sider-trigger--collapsed']]: menuCollapsed })}
       onClick={handleTrigger}
     >
-      {menuCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+      {menuCollapsed ? <MenuUnfoldOutlined className={styles.triggerIcon} />
+        : <MenuFoldOutlined className={styles.triggerIcon} />}
     </div>
   )
 

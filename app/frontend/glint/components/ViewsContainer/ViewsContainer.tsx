@@ -4,7 +4,7 @@ import React, {
 import {
   Row, Col, Button, Typography, Space,
 } from 'antd'
-import { UnorderedListOutlined, TableOutlined } from '@ant-design/icons'
+import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons'
 
 import { MediaQueryContext } from 'glint'
 
@@ -46,19 +46,19 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
         <Col span={12} className={styles.viewControls}>
           <Space>
             <Button
+              className={view === VIEW_TYPE.grid ? styles.activeButton : styles.inActiveButton}
+              id={VIEW_TYPE.grid}
+              onClick={() => setView(VIEW_TYPE.grid)}
+              shape="circle"
+              icon={<AppstoreOutlined />}
+              size="middle"
+            />
+            <Button
               className={view === VIEW_TYPE.list ? styles.activeButton : styles.inActiveButton}
               id={VIEW_TYPE.list}
               shape="circle"
               onClick={() => setView(VIEW_TYPE.list)}
               icon={<UnorderedListOutlined />}
-              size="middle"
-            />
-            <Button
-              className={view === VIEW_TYPE.grid ? styles.activeButton : styles.inActiveButton}
-              id={VIEW_TYPE.grid}
-              onClick={() => setView(VIEW_TYPE.grid)}
-              shape="circle"
-              icon={<TableOutlined />}
               size="middle"
             />
           </Space>

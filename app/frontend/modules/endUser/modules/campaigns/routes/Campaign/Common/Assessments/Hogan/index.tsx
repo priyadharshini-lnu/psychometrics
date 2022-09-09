@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react'
 import {
   Row, Col, Avatar, Input, message,
 } from 'antd'
-import truncate from 'lodash/truncate'
 
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 
@@ -94,7 +93,7 @@ export const Hogan: React.FC<Props> = ({
   )
   const assessmentTitle = view === 'list'
     ? userAssessment.assessmentName
-    : truncate(userAssessment.assessmentName, { length: ASSESSMENT_TITLE_MAX_LENGTH })
+    : userAssessment.assessmentName.slice(0, ASSESSMENT_TITLE_MAX_LENGTH)
 
   if (userAssessment.completionPercent === 100) {
     taskStatus = 'completed'

@@ -20,7 +20,7 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 const UserPageLayoutComponent: FC<PropsFromRedux> = ({ campaign, children }) => (
-  <Layout>
+  <Layout className={styles.container}>
     <UserPageSider
       showInsights={campaign.userReportsAvailable}
       siderFooter={collapsed => <Profile collapsed={collapsed} />}

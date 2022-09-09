@@ -6,7 +6,7 @@ import { ViewsContainer } from 'glint'
 import Assessments from 'modules/endUser/modules/campaigns/routes/Campaign/Common/Assessments'
 
 import { Statuses, UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
-
+import styles from './AssessmentsContainer.less'
 
 const { Title } = Typography
 
@@ -47,32 +47,30 @@ export const AssessmentsContainer = ({
       }
       return (
         <>
-          <Row gutter={[16, 16]} key="grouped-tasks">
-            {groups.map((group) => {
-              let prevGroup
-              const size = group.campaignAssessmentIds.length
-              let prevCompleted = false
-              let previousAssessmentIsIneligible = false
-              if (group.previousGroupRequired) {
-                prevCompleted = !prevGroupIsCompleted(campaign, prevGroup)
-                if (isAnyAssessmentInPreviousGroupInEligible(campaign, prevGroup)) {
-                  return null
-                }
-              }
-              prevGroup = group
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              const userAssessments: any = _.compact(
-                group.campaignAssessmentIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
-              )
-
-              if (!userAssessments.length) {
+          {groups.map((group) => {
+            let prevGroup
+            const size = group.campaignAssessmentIds.length
+            let prevCompleted = false
+            let previousAssessmentIsIneligible = false
+            if (group.previousGroupRequired) {
+              prevCompleted = !prevGroupIsCompleted(campaign, prevGroup)
+              if (isAnyAssessmentInPreviousGroupInEligible(campaign, prevGroup)) {
                 return null
               }
-              return (
-                <React.Fragment key={group.id}>
-                  <Col span={24}>
-                    <Title level={5}>{group.name}</Title>
-                  </Col>
+            }
+            prevGroup = group
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const userAssessments: any = _.compact(
+              group.campaignAssessmentIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
+            )
+
+            if (!userAssessments.length) {
+              return null
+            }
+            return (
+              <div className={styles.group} key={group.id}>
+                <Title level={5}>{group.name}</Title>
+                <Row gutter={[16, 16]}>
                   {userAssessments.map((userAssessment) => {
                     const Assessment = Assessments[userAssessment.type]
                     let isDisabled = canNotStartAssessment || prevCompleted
@@ -84,7 +82,7 @@ export const AssessmentsContainer = ({
                     }
                     previousAssessmentIsIneligible = userAssessment.status === Statuses.INELIGIBLE
                     return (
-                      <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
+                      <Col xs={24} sm={tabCol} md={tabCol} lg={tabCol} xl={deskCol} key={userAssessment.id}>
                         <Assessment
                           view={view}
                           history={history}
@@ -99,36 +97,35 @@ export const AssessmentsContainer = ({
                       </Col>
                     )
                   })}
-                </React.Fragment>
-              )
-            })}
-          </Row>
-          <Row gutter={[16, 16]} key="ungrouped-tasks">
-            {!!ungrouped.length && (
-              <>
-                <Col span={24}>
-                  <Title level={5}>Ungrouped</Title>
-                </Col>
-                  {ungrouped.map((userAssessment) => {
-                    const Assessment = Assessments[userAssessment.type]
-                    return (
-                      <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
-                        <Assessment
-                          history={history}
-                          view={view}
-                          userAssessment={userAssessment}
-                          loginHogan={loginHogan}
-                          acceptPolicy={acceptPolicy}
-                          disabled={canNotStartAssessment}
-                          isPartOfTimedCampaign={isTimedCampaign}
-                          campaignExpiryDate={expiryDate}
-                        />
-                      </Col>
-                    )
-                  })}
-              </>
-            )}
-          </Row>
+                </Row>
+              </div>
+            )
+          })}
+          {!!ungrouped.length && (
+            <div className={styles.group}>
+              <Title level={5}>Ungrouped</Title>
+              <Row gutter={[16, 16]}>
+                {ungrouped.map((userAssessment) => {
+                  const Assessment = Assessments[userAssessment.type]
+                  return (
+                    <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
+                      <Assessment
+                        history={history}
+                        view={view}
+                        userAssessment={userAssessment}
+                        loginHogan={loginHogan}
+                        acceptPolicy={acceptPolicy}
+                        disabled={canNotStartAssessment}
+                        isPartOfTimedCampaign={isTimedCampaign}
+                        campaignExpiryDate={expiryDate}
+                      />
+                    </Col>
+                  )
+                })}
+              </Row>
+
+            </div>
+          )}
         </>
       )
     }}

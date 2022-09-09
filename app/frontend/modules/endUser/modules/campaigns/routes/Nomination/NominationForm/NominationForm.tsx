@@ -70,9 +70,11 @@ export const NominationForm = (props) => {
           {' '}
           {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullNameWithEmail(subject)}
         </Title>
+        {!show
+        && <Button className={styles.addBtn} type="primary" icon={<PlusOutlined />} size="middle" onClick={showForm} />}
       </Row>
       {show
-        ? (
+        && (
           <Form layout="inline">
             <Form.Item>
               <Button
@@ -130,11 +132,6 @@ export const NominationForm = (props) => {
               </Button>
             </Form.Item>
           </Form>
-        )
-        : (
-          <>
-            <Button className={styles.addBtn} type="primary" icon={<PlusOutlined />} size="middle" onClick={showForm} />
-          </>
         )}
       <div>
         {hasEvaluations && (

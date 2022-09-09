@@ -48,18 +48,10 @@ export const InstructionsPanel: FC<InstructionsPanelProps> = ({
         {description}
         {showExpandLink && (
         <div className={styles['container-button']}>
-          <Button type="link" onClick={handleClick}>
-            {collapsed ? (
-              <>
-                <DownOutlined />
-                {I18n.t('campaign.instructions.expand_link_text')}
-              </>
-            ) : (
-              <>
-                <UpOutlined />
-                {I18n.t('campaign.instructions.collapse_link_text')}
-              </>
-            )}
+          <Button icon={collapsed ? <DownOutlined /> : <UpOutlined />} type="link" onClick={handleClick}>
+            {collapsed ? I18n.t('campaign.instructions.expand_link_text')
+              : I18n.t('campaign.instructions.collapse_link_text')
+            }
           </Button>
         </div>
         )}
