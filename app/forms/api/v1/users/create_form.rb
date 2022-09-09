@@ -33,7 +33,7 @@ module Api
         end
 
         def validate_campaigns
-          return errors.add(:campaigns, 'Should be at least one campaign') unless campaigns.present?
+          return errors.add(:campaigns, 'Should be at least one campaign') if campaigns.blank?
 
           campaigns.each.with_index do |campaign, index|
             form = Api::V1::Campaigns::ValidateForm.new(campaign)
@@ -46,7 +46,7 @@ module Api
         end
 
         def campaign_ids
-          campaigns.map { |c| c[:id] }
+          campaigns.pluck(:id)
         end
 
         private

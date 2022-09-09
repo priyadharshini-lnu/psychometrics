@@ -35,13 +35,12 @@ module Threesixty
       attribute :cannot_remove_nomination_set_by_manager_and_admin, Boolean, deafult: false
       attribute :limit_relationship_that_subject_can_select, Boolean, deafult: false
       attribute :can_select_relationships, Hash, deafult: {}
-
       attribute :self_evaluation_criteria, Array[Hash], default: []
       attribute :limit_nomination_by_subject_to_anyone_criteria, Array[Hash], default: []
       attribute :limit_nomination_by_subject_from_datasheet_criteria, Boolean, default: []
 
       validates(*ALL_BOOLEAN_FIELDS,
-                inclusion: { in: [true, false], message: "doesn't have a valid value" },
+                inclusion: { in: [true, false], message: I18n.t('threesixty.options.form.value_not_valid') },
                 allow_nil: true)
 
       validate :validate_data_stream_fields

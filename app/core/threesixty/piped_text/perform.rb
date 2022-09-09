@@ -76,7 +76,7 @@ module Threesixty
 
       # rubocop:disable Style/CharacterLiteral
       def call
-        return unless body.present?
+        return if body.blank?
 
         result =
           body.to_s.gsub(/{{(.*?)}}/) do

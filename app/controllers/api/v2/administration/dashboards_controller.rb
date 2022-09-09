@@ -9,7 +9,7 @@ module Api
       if dashboard.update(image_upload_params)
         render json: { image: dashboard.image&.url }
       else
-        render json: { errors: dashboard.errors.messages }, status: :bad_request
+        render json: { errors: dashboard.errors.messages }, status: 400
       end
     end
 
@@ -17,7 +17,7 @@ module Api
       Dashboards::RefreshData.call(dashboard) do
         on(:ok) { head :ok }
         on(:error) do |message|
-          render json: { errors: message }, status: :unprocessable_entity
+          render json: { errors: message }, status: 422
         end
       end
     end

@@ -20,7 +20,7 @@ class LambdaNotificationsController < ActionController::Base
 
   def log_subscription_confirmation_details
     if %w[SubscriptionConfirmation UnsubscribeConfirmation].include?(request.headers['x-amz-sns-message-type'])
-      puts('SNS subscription/unsubcription details', JSON.parse(request.raw_post))
+      Rails.logger.info('SNS subscription/unsubcription details', JSON.parse(request.raw_post))
       head :ok
     end
   end

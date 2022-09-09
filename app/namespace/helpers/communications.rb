@@ -8,7 +8,7 @@ module Helpers
 
     def reminder_timeframes
       array = DAYS.map { |i| "#{i} #{'day'.pluralize(i)}" }
-      array = DAYS.map { |i| "#{i} #{'minute'.pluralize(i)}" } + array unless Rails.env.producation?
+      array = DAYS.map { |i| "#{i} #{'minute'.pluralize(i)}" } + array unless Rails.env.production?
       array
     end
   end

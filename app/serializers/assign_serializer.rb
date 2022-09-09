@@ -35,7 +35,7 @@ class AssignSerializer < ActiveModel::Serializer
   def remaining_assessment_time
     return unless object.expiry_date
 
-    [object.expiry_date - Time.now, 0].max
+    [object.expiry_date - Time.zone.now, 0].max
   end
 
   def status

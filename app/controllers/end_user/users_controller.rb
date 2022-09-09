@@ -73,14 +73,14 @@ class EndUser::UsersController < ApplicationController
 
   def update_details
     form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user, project: @current_project)
-    return render json: { errors: form.errors.messages }, status: :bad_request unless form.valid?
+    return render json: { errors: form.errors.messages }, status: 400 unless form.valid?
 
     if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
       current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
       bypass_sign_in(current_user, scope: :user)
       render json: current_user, serializer: Threesixty::CurrentUserSerializer, project_id: @current_project.id
     else
-      render json: { errors: current_user.errors.messages }, status: :bad_request
+      render json: { errors: current_user.errors.messages }, status: 400
     end
   end
 
@@ -88,7 +88,7 @@ class EndUser::UsersController < ApplicationController
     if current_user.user_profile.update(photo: params[:photo])
       render json: { photo: current_user.user_profile.photo&.url }
     else
-      render json: { errors: current_user.user_profile.errors.messages }, status: :bad_request
+      render json: { errors: current_user.user_profile.errors.messages }, status: 400
     end
   end
 

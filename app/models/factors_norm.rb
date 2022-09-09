@@ -129,7 +129,7 @@ class FactorsNorm < ApplicationRecord
         )
       end
 
-      next unless item['score_from'].present?
+      next if item['score_from'].blank?
       next if item['score_from'].to_s.valid_float?
 
       errors.add(

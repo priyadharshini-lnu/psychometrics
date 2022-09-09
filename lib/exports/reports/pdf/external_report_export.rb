@@ -18,13 +18,13 @@ module Exports
           private
 
           def output_dir(user, opts)
-            output_dir = opts[:output_dir] || Rails.root.join('tmp', 'reports')
+            output_dir = opts[:output_dir] || Rails.root.join('tmp/reports')
             File.join(output_dir, user.email)
           end
 
           def output_path(user, report, output_dir)
-            filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
-            File.join(output_dir, filename)
+            f_name = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
+            File.join(output_dir, f_name)
           end
 
           def external_report(assign, assigns_report)

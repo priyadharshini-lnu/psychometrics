@@ -21,6 +21,7 @@ module Reports
 
     belongs_to :page, class_name: 'Reports::Page', touch: true
     belongs_to :assessment
+
     has_many :translations, as: :translateable, dependent: :destroy
     has_one :text_module_override, dependent: :destroy
 

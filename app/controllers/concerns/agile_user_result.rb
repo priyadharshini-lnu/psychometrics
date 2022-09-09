@@ -5,7 +5,7 @@ module AgileUserResult
 
   def show
     if user_assessment.not_started?
-      user_assessment.update!(started_at: Time.now, status: :in_progress)
+      user_assessment.update!(started_at: Time.zone.now, status: :in_progress)
       UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment
     end
 
@@ -22,7 +22,7 @@ module AgileUserResult
     if form.valid?
       UsersResults::SaveAgileData.call!(user_result, form)
     else
-      render json: { errors: form.errors.full_messages }, status: :bad_request
+      render json: { errors: form.errors.full_messages }, status: 400
     end
   end
 

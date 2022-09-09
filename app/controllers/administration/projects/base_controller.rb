@@ -11,9 +11,7 @@ module Administration
         @project ||= policy_scope(Client).find(params[:project_id] || campaign.project_id)
       end
 
-      def client
-        project.client
-      end
+      delegate :client, to: :project
 
       def campaign
         return nil unless params[:new_campaign_id]

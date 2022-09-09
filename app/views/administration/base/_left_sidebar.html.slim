@@ -18,12 +18,10 @@
       = active_link_to(administration_dashboard_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.dashboard'), placement: 'right' })
         .fa.fa-dashboard
         span.xn-text = t('administration.navigation.dashboard')
-
     - if policy([:assessors, :campaign]).index?
       = active_link_to(assessors_dashboard_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessor_dashboard'), placement: 'right' })
         .fa.fa-dashboard
         span.xn-text = t('administration.navigation.assessor_dashboard')
-
     - if policy(:client).index?
       = active_link_to(administration_root_path, wrap_tag: :li, active: /\/administration(\/|)(\/clients|\z)/, data: { toggle: 'tooltip', title: t('administration.navigation.clients'), placement: 'right' })
         .fa.fa-briefcase

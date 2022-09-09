@@ -144,7 +144,7 @@ describe UsersResults::CalculateAgileScoring do
       :with_result,
       answers: results,
       status: :completed,
-      completed_at: Time.now,
+      completed_at: Time.zone.now,
       norm_id: @norm.id,
       assessment: create(:assessment, dimension_id: @norm.dimension_id)
     )
@@ -178,7 +178,7 @@ describe UsersResults::CalculateAgileScoring do
       :with_result,
       answers: results,
       assessment: create(:assessment, dimension: @norm.dimension),
-      completed_at: Time.now,
+      completed_at: Time.zone.now,
       norm_id: @norm.id
     )
     @users_result = user_assessment.users_result

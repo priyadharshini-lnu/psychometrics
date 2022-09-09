@@ -5,7 +5,7 @@ module Threesixty
     attributes :id, :is_manager, :email, :first_name, :last_name, :full_name,
                :is_super_admin, :is_anonym, :permissions, :photo, :timezone, :custom_fields
 
-    def is_manager # rubocop:disable Naming/PredicateName
+    def is_manager
       true
     end
 
@@ -15,7 +15,7 @@ module Threesixty
       object.user_profile.photo&.url
     end
 
-    def is_super_admin # rubocop:disable Naming/PredicateName
+    def is_super_admin
       object.superadmin?
     end
 

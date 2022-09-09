@@ -14,10 +14,8 @@ module Api
       {
         field_questions: Question.where(view: 'templates').
           where(owner_id: [nil, Client.find(params['filter']['project_id_eq']).parent.id]).
-          where('type in (?)', AWAILABLE_TYPES).
-          map do |q|
-            QuestionFieldSerializer.new(q).to_h
-          end
+          where(type: AWAILABLE_TYPES).
+          map { |q| QuestionFieldSerializer.new(q).to_h }
       }
     end
   end

@@ -6,7 +6,7 @@ module Scoring
       values = []
       options = []
       result['answers'].each do |answer|
-        next unless answer['values'] && !answer['values'].empty?
+        next if answer['values'].blank?
 
         object = scoring_template.find do |template|
           template['scale'] == answer['scale'] && template['choice'] == answer['choice']

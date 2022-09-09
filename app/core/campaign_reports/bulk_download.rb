@@ -30,7 +30,7 @@ module CampaignReports
           zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize}-#{ur.campaign_id}.pdf"
         }
       end
-      file_name = "bulk-report-#{Date.today.strftime('%F')}"
+      file_name = "bulk-report-#{Time.zone.today.strftime('%F')}"
       zip_file_key = "#{bulk_report.store_dir}/#{file_name}"
       webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
       job_record.update!(total_tasks: file_details.length)
@@ -82,7 +82,7 @@ module CampaignReports
       report = user_report.report
       dir = bulk_report.input_dir
       dir = File.join(dir, user.email)
-      filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+      filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
 
       FileUtils.mkdir_p(dir)
       File.join(dir, filename)

@@ -23,7 +23,8 @@ class License < ApplicationRecord
   belongs_to :report_family
   has_many :license_usages # on delete cascade
 
-  validates :client, :start_date, :end_date, presence: true, allow_nil: false
+  validates :start_date, :end_date, presence: true, allow_nil: false
+  validates :client, presence: true, allow_nil: false
   validates :overuse_number, :used_number,
             numericality: { greater_than_or_equal_to: 0 }
   validates :number, numericality: { greater_than_or_equal_to: 1 }
@@ -38,7 +39,7 @@ class License < ApplicationRecord
   scope :available, lambda {
                       active.
                         where('end_date >= :date and start_date <= :date and number + overuse_number > used_number',
-                              date: Date.today)
+                              date: Time.zone.today)
                     }
 
   enum type: { common: 0, threesixty: 1, proctoring: 2 }, _prefix: :type
@@ -52,7 +53,7 @@ class License < ApplicationRecord
   end
 
   def enough_licenses?
-    return false if end_date < Date.today || start_date > Date.today
+    return false if end_date < Time.zone.today || start_date > Time.zone.today
 
     number + overuse_number > used_number
   end

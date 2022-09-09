@@ -19,7 +19,7 @@ class LicenseUsage < ApplicationRecord
   belongs_to :campaign,          inverse_of: :license_usages
   belongs_to :user,              inverse_of: :license_usages
   belongs_to :registration_code, inverse_of: :license_usages
-  belongs_to :status_updated_by, class_name: 'User', foreign_key: :status_updated_by_id
+  belongs_to :status_updated_by, class_name: 'User'
 
   enum status: { active: 0, inactive: 1 }
 

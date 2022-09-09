@@ -39,7 +39,7 @@ else
     config.fog_provider = 'fog/aws'
     config.fog_credentials = fog_credentials
     config.fog_directory = Rails.application.secrets.directory
-    config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
+    config.fog_attributes = { 'Cache-Control' => "max-age=#{365.days.to_i}" } # optional, defaults to {}
     config.storage = :fog
     config.use_action_status = true
     config.validate_unique_filename = false

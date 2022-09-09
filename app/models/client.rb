@@ -133,15 +133,15 @@ class Client < ApplicationRecord
   before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
 
   validates :name, :type, presence: true, length: { maximum: 50 }
-  with_options if: :root? do |root|
-    root.validates :number, :country, :year, presence: true
-    root.validates :project_manager, presence: true, on: :create
+  with_options if: :root? do
+    validates :number, :country, :year, presence: true
+    validates :project_manager, presence: true, on: :create
   end
-  with_options if: :project? do |project|
-    project.validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
-    project.validates :webhook, http_url: { presence: false }
-    project.validate :subdomain_format_validation
-    project.validate :reserved_subdomain_validation
+  with_options if: :project? do
+    validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
+    validates :webhook, http_url: { presence: false }
+    validate :subdomain_format_validation
+    validate :reserved_subdomain_validation
   end
   # disabled this validation as it was causing error while saving sub-campaign
   # TODO: Needs to be investigated
@@ -149,11 +149,11 @@ class Client < ApplicationRecord
   validate :allowed_data, if: -> { operator }
 
   before_validation :ensure_subdomain, if: :retail?
-  after_create :set_hogan_group_name, if: :project?
   before_create lambda {
     self.migrated = true
     self.design_migrated = true
   }, if: :project?
+  after_create :set_hogan_group_name, if: :project?
   after_create :create_smtp_setting, if: :project?
   after_create :create_security_setting, if: :project?
   after_create :create_design_setting, if: :project?
@@ -163,7 +163,7 @@ class Client < ApplicationRecord
 
   # Type of client.
   # Retail - is client who bought some product
-  enum type: %i[partner corporate distributer associate tte retail other]
+  enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
   mount_base64_uploader :logo, ImageUploader
@@ -184,16 +184,13 @@ class Client < ApplicationRecord
                                       }
   scope :end_level, -> { where(end_level: true) }
   scope :projects_of, lambda { |client_id|
-                        where(id: client_id).
-                          take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project])
+                        find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:project])
                       }
   scope :campaigns_of, lambda { |client_id|
-                         where(id: client_id).
-                           take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign])
+                         find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign])
                        }
   scope :sub_campaigns_of, lambda { |client_id|
-                             where(id: client_id).
-                               take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign])
+                             find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign])
                            }
   scope :campaigns_and_sub_campaigns_of, lambda { |client_id|
                                            Client.campaigns_of(client_id).

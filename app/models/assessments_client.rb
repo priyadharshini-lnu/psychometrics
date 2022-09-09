@@ -13,16 +13,16 @@ class AssessmentsClient < ApplicationRecord
   def generate_universal_link!(options = {})
     update!(
       assessment_key: generate_random_key(*options.values),
-      key_generated_at: Time.now
+      key_generated_at: Time.zone.now
     )
   end
 
   def expired?
-    Time.now > key_expires_at.to_i
+    Time.zone.now > key_expires_at.to_i
   end
 
   def has_valid_universal_link?
-    !assessment_key.blank? && !expired?
+    assessment_key.present? && !expired?
   end
 
   private

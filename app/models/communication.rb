@@ -34,18 +34,20 @@ class Communication < ApplicationRecord
 
   has_and_belongs_to_many :memberships, join_table: :communications_memberships
   has_and_belongs_to_many :copy_memberships, join_table: :communications_copy_memberships, class_name: 'Membership'
+
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'
   has_many :communications_users
   has_many :users, through: :communications_users
+
   belongs_to :assessment
   belongs_to :client
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
-  belongs_to :project, class_name: 'Client', foreign_key: :project_id
-  belongs_to :campaign, class_name: 'Client', foreign_key: :campaign_id, optional: true
+  belongs_to :owner, class_name: 'Client'
+  belongs_to :project, class_name: 'Client'
+  belongs_to :campaign, class_name: 'Client', optional: true
   # rename project_campaign relation when we will ditch all old structures
   belongs_to :project_campaign, class_name: 'Campaign', foreign_key: :campaign_id, optional: true
-  belongs_to :sub_campaign, class_name: 'Client', foreign_key: :sub_campaign_id
-  belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id, optional: true
+  belongs_to :sub_campaign, class_name: 'Client'
+  belongs_to :end_level, class_name: 'Client', optional: true
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
 
@@ -53,9 +55,9 @@ class Communication < ApplicationRecord
   enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }
   enum delivery_rule: { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
 
-  before_create -> { self.last_ran_at ||= Time.now }, if: :new_assignment_recipients?
-  after_validation :set_delivery_interval, if: :reminder?
   after_initialize :parse_delivery_interval, if: -> { reminder? }
+  after_validation :set_delivery_interval, if: :reminder?
+  before_create -> { self.last_ran_at ||= Time.zone.now }, if: :new_assignment_recipients?
   after_commit :send_email_now, on: :create
   after_create_commit ::Callbacks::Models::Communications::CreateSendEmailJob.new
 

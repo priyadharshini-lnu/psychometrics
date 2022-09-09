@@ -22,20 +22,20 @@ module Builders
     # rubocop:disable Metrics/BlockLength
     def save
       ActiveRecord::Base.transaction do
-        @assessment.update(@assessment_params.slice(
-                             :flow, :norm_rules, :enable_back, :enable_progress, :extra,
-                             :data_sheet_columns, :instructions, :options, :default_norm_id
-                           ))
+        @assessment.update!(@assessment_params.slice(
+                              :flow, :norm_rules, :enable_back, :enable_progress, :extra,
+                              :data_sheet_columns, :instructions, :options, :default_norm_id
+                            ))
         @assessment_params[:blocks].each do |block_params|
           id = block_params.delete(:id)
           questions = block_params.delete(:questions)
           block = @assessment.blocks.find_or_initialize_by(id: id)
-          block.update(block_params.merge(deleted_at: block_params[:deleted_at]))
+          block.update!(block_params.merge(deleted_at: block_params[:deleted_at]))
 
           questions.each do |question_params|
             id = question_params.delete(:id)
             question = id ? @assessment.questions.find(id) : block.questions.build
-            question.update(question_params.merge(block_id: block.id))
+            question.update!(question_params.merge(block_id: block.id))
           end
         end
 
@@ -53,15 +53,16 @@ module Builders
             resource.destroy
           else
             resource.assign_attributes(item[:model])
-            resource.deleted_at ||= Time.now
+            resource.deleted_at ||= Time.zone.now
             resource.save
           end
         end
-      rescue StandardError => e
+      # TODO: remove StandardError??
+      rescue ActiveRecord::RecordInvalid, StandardError => e
         Rails.logger.info(e)
-        return false
+
+        false
       end
-      true
     end
     # rubocop:enable Metrics/BlockLength
   end

@@ -8,10 +8,9 @@ module Threesixty
           delivered_at: nil,
           name: Threesixty::Emails::Name::CONSOLIDATED_EMAILS,
           consolidated: true, auto_triggered: true
-        ).where('scheduled_date <= ?', Time.now).select(:id, :name, :recipient_ids, :meta)
+        ).where('scheduled_date <= ?', Time.zone.now).select(:id, :name, :recipient_ids, :meta)
 
         email_schedule_grouped_by_recipients = email_schedules.group_by { |e| [e.name, e.recipient_ids] }.values
-
         email_schedule_grouped_by_recipients.each do |grouped_email_schedules|
           merge_email_schedules(grouped_email_schedules)
         end

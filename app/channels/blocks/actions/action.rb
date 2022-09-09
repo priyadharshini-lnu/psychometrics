@@ -7,7 +7,7 @@ module Blocks
         controller  = name.downcase.split('::').last
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
-          block = ::Block.find_by_id(params['block_id'])
+          block = ::Block.find_by(id: params['block_id'])
           if policy(block).open_channel?
             begin
               data            = yield(request['data'], current_user, block)

@@ -92,7 +92,9 @@ class ApplicationController < ::BaseController
 
   # Detect Client by subdomain
 
-  def set_client_by_subdomain # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
+  def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Assessors')
     return if request.controller_class.to_s.start_with?('Ecommerce')
@@ -108,6 +110,7 @@ class ApplicationController < ::BaseController
 
     @current_client = @current_project.client
   end
+  # rubocop:enable all
 
   # Fetch membership
   def set_membership # rubocop:disable Metrics/PerceivedComplexity
@@ -145,7 +148,7 @@ class ApplicationController < ::BaseController
   end
 
   def render_http_locked
-    render file: "#{Rails.root}/public/423.html", layout: false, status: :locked
+    render file: Rails.public_path.join('423.html'), layout: false, status: :locked
   end
 
   def redirect_to_ae_enabled?

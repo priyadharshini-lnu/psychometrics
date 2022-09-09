@@ -19,16 +19,16 @@ describe Users::Registration::WithRegistrationCode do
     subject { described_class.call(@form, project) }
 
     it 'broadcasts :ok' do
-      allow(Time).to receive(:now).and_return(Time.local(2019, 10, 8, 0, 0, 0))
+      allow(Time).to receive(:now).and_return(Time.zone.local(2019, 10, 8, 0, 0, 0))
       expect { subject }.to broadcast(:ok)
       user = User.find_by(email: 'email-1@tte-test.com')
       expect(user.persisted?).to be_truthy
       expect(registration_code.reload.use_count).to eql(547) # incremented by one
-      expect(user.license_usages.where(registration_code_id: registration_code.id).exists?).to be_truthy
+      expect(user.license_usages.exists?(registration_code_id: registration_code.id)).to be_truthy
     end
 
     it 'broadcasts :error' do
-      allow(Time).to receive(:now).and_return(Time.local(2019, 10, 8, 0, 0, 0))
+      allow(Time).to receive(:now).and_return(Time.zone.local(2019, 10, 8, 0, 0, 0))
       allow(Administration::Clients::CreateUser).to receive(:call).and_raise(ActiveRecord::RecordInvalid)
       expect { subject }.to broadcast(:error)
     end

@@ -35,7 +35,7 @@ module SetLocale
     ].find { |l| valid_ui_locale?(l) }
 
     # Fallback to default locale if params[:lang] is set but not valid
-    unless params[:lang].blank?
+    if params[:lang].present?
       locale = valid_ui_locale?(params[:lang]) ? params[:lang] : I18n.default_locale.to_s
     end
 

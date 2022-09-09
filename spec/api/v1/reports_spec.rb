@@ -400,12 +400,12 @@ describe 'Reports' do
 
         before do
           occupation = dimension.occupations.first
-          occupation.update(updated_at: Time.now + 10.minutes)
+          occupation.update(updated_at: 10.minutes.from_now)
         end
 
         let(:report_id) { report.id }
         let(:include_occupations) { true }
-        let(:since) { (Time.now + 10.minutes).utc.iso8601 }
+        let(:since) { 10.minutes.from_now.utc.iso8601 }
 
         run_test! do |response|
           result = JSON.parse(response.body)
@@ -500,12 +500,12 @@ describe 'Reports' do
 
         before do
           factor = dimension.factors.first
-          factor.update(updated_at: Time.now + 10.minutes)
+          factor.update(updated_at: 10.minutes.from_now)
         end
 
         let(:report_id) { report.id }
         let(:include_factors) { true }
-        let(:since) { (Time.now + 10.minutes).utc.iso8601 }
+        let(:since) { 10.minutes.from_now.utc.iso8601 }
 
         run_test! do |response|
           result = JSON.parse(response.body)

@@ -45,7 +45,7 @@ FactoryBot.define do
       parent { nil }
       sequence(:name) { |i| "Client Tenancy #{i}" }
       sequence(:number) { |i| "Number #{i}" }
-      year { Time.now.year }
+      year { Time.zone.now.year }
       country { 'Barbados' }
       association :project_manager, factory: :superadmin
       after(:create) do |tenancy, evaluator|

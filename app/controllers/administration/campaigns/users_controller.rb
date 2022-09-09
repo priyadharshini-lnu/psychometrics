@@ -117,7 +117,8 @@ module Administration
                             campaign_id: campaign.id, project_id: campaign.project_id
             end
             on(:error) do |errors|
-              return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
+              return render json: { errors: errors.is_a?(String) ? { base: errors } : errors },
+                            status: 422
             end
           end
         else

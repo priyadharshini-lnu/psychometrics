@@ -31,7 +31,7 @@ module Administration
       private
 
       def format(name, type)
-        file_name = name.downcase.split(/\s|-|_/).reject(&:blank?).join('_')
+        file_name = name.downcase.split(/\s|-|_/).compact_blank.join('_')
         "qr_code_#{file_name}.#{type}"
       end
 

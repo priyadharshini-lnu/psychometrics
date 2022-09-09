@@ -13,7 +13,7 @@ module ApplicationCable
 
     def find_verified_administrator
       user_id = request.session['user.id']
-      verified_user = User.find_by_id(user_id) if user_id
+      verified_user = User.find_by(id: user_id) if user_id
       verified_user ||= Users::AuthenticateAnonymousUser.call!(cookies)
       verified_user || reject_unauthorized_connection
     end

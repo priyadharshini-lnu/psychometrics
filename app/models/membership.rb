@@ -41,20 +41,23 @@ class Membership < ApplicationRecord
   include ::Facades::Administration::EmailDelivery
 
   enum role: MEMBERSHIP_ROLES
+
   delegate :is_anonym?, to: :user
 
   belongs_to :client
   belongs_to :campaign
   belongs_to :user, inverse_of: :memberships, touch: true
-  belongs_to :project_membership, foreign_key: :project_membership_id, class_name: 'Membership'
+  belongs_to :project_membership, class_name: 'Membership'
+
   accepts_nested_attributes_for :user
 
   has_and_belongs_to_many :communications, join_table: :communications_memberships
+
   has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns
   has_many :communication_emails,
-           inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail' # on delete cascade
+           inverse_of: :membership, class_name: 'CommunicationEmail' # on delete cascade
   has_many :orders, inverse_of: :membership, class_name: 'Ecommerce::Order' # on delete cascade
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
@@ -62,12 +65,12 @@ class Membership < ApplicationRecord
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   has_one :hogan_credential
   has_one :grants, class_name: 'MembershipGrant'
+
   accepts_nested_attributes_for :grants
 
   has_many :privacy_consents
-
   has_many :reports_accesses
-  has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) },
+  has_many :accessible_reports, -> { where(reports_accesses: { user_access: true }) },
            through: :reports_accesses, source: :report
 
   validates :client, :user, presence: true
@@ -100,7 +103,6 @@ class Membership < ApplicationRecord
                          "%#{query}%", "%#{query}%", "%#{query}%")
     end
   }
-
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
     joining do
       assigns.on(assigns.membership_id.eq(id) &
@@ -198,7 +200,7 @@ class Membership < ApplicationRecord
   def set_project_membership
     return if client.project? || project_membership.present?
 
-    project_membership = client.project.memberships.where(user_id: user_id).take
+    project_membership = client.project.memberships.find_by(user_id: user_id)
     project_membership ||= Membership.create!(user_id: user_id, client_id: client.project.id)
     self.project_membership_id = project_membership.id
   rescue StandardError => e

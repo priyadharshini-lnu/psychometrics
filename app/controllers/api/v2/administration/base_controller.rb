@@ -53,7 +53,7 @@ module Api
       end
 
       if schema_validation&.failure?
-        render json: convert_dry_errors_to_json_api_standard(schema_validation.errors), status: :unprocessable_entity
+        render json: convert_dry_errors_to_json_api_standard(schema_validation.errors), status: 422
       end
     end
 

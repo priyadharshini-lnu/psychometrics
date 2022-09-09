@@ -16,7 +16,7 @@ module Projects
     end
 
     def sql
-      <<-SQL.strip_heredoc
+      <<-SQL.squish
         SELECT users.id, users.email, users.first_name, users.last_name, users.locale, 'users' as source
         FROM users
         WHERE project_id = :project_id AND (email LIKE :query OR first_name LIKE :query OR last_name LIKE :query)

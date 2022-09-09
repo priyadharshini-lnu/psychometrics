@@ -13,12 +13,13 @@ module Builders
       def save
         ActiveRecord::Base.transaction do
           _id = params.delete(:id)
-          @question.update(params)
-        rescue StandardError => e
+          @question.update!(params)
+        # TODO: remove StandardError??
+        rescue ActiveRecord::RecordInvalid, StandardError => e
           Rails.logger.info(e)
-          return false
+
+          false
         end
-        true
       end
     end
   end

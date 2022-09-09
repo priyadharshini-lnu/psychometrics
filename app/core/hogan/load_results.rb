@@ -80,7 +80,7 @@ module Hogan
           joins(assign: :project_assign).
           where(report_id: report.id).
           where(assigns: { assessment_id: assign.assessment.id }).
-          where('project_assigns_assigns.id = ?', assign.assign_with_result.id)
+          where(project_assigns_assigns: { id: assign.assign_with_result.id })
       end
     end
   end

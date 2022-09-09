@@ -30,7 +30,7 @@ module Administration
           end
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 
@@ -40,7 +40,7 @@ module Administration
           ::Threesixty::EmailTemplateMailer.test_email(resource, form.to_email).deliver_later
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 

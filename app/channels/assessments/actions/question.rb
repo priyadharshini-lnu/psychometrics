@@ -29,7 +29,7 @@ module Assessments
 
       action :destroy do |data|
         question = ::Question.find(data['id'])
-        question.update(deleted_at: Time.now)
+        question.update(deleted_at: Time.zone.now)
         question.remove_from_list
         nil
       end

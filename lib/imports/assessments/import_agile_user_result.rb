@@ -57,7 +57,7 @@ module Imports
 
         header = fixed_headers + question_headers
 
-        question_header_question_ids = question_headers.map { |h| h.split('.').reject(&:blank?)[0] }.uniq
+        question_header_question_ids = question_headers.map { |h| h.split('.').compact_blank[0] }.uniq
 
         unless question_header_question_ids.all? { |question_id| assessment_question_ids.include?(question_id) }
           errors.add(
@@ -106,7 +106,7 @@ module Imports
       private
 
       def assessment_question_ids
-        config = Agile.find_by_assessment_id(assessment.id).try(:config)
+        config = Agile.find_by(assessment_id: assessment.id).try(:config)
         scene_type = 'AssessmentScene'
 
         config['groups'].collect { |group| group['scenes'].select { |scene| scene['type'] == scene_type } }.
@@ -152,11 +152,11 @@ module Imports
       end
 
       def parsed_norm_id(norm_name, assessment_id)
-        return {} unless norm_name.present?
+        return {} if norm_name.blank?
 
         @parsed_norm_id ||= {}
 
-        unless @parsed_norm_id[norm_name].present?
+        if @parsed_norm_id[norm_name].blank?
           norm_ids = Norm.joining { dimension }.joining do
             dimension.assessments.alias('assessments').
               on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
@@ -166,11 +166,11 @@ module Imports
         @parsed_norm_id[norm_name]
       end
 
-      def form_answers(data) # rubocop:disable Metrics/PerceivedComplexity
+      def form_answers(data)
         row = {}
         data.each do |key, value|
-          qid, prop = key.split('.').reject(&:blank?)
-          next unless qid.present?
+          qid, prop = key.split('.').compact_blank
+          next if qid.blank?
 
           row[qid] = {} if row[qid].blank?
           row[qid][prop] = if AGILE_DATE_FIELDS.include?(prop)
@@ -189,7 +189,7 @@ module Imports
       end
 
       def parse_date(date, index)
-        return nil unless date.present?
+        return nil if date.blank?
         return date if date.is_a?(Date) || date.is_a?(Time)
 
         Time.zone.strptime(date.to_s, '%D %r')

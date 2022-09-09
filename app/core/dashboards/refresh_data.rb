@@ -21,7 +21,7 @@ module Dashboards
       rescue PowerBi::RefreshFailedError => e
         return broadcast(:error, e.message)
       end
-      dashboard.update!(last_refreshed_at: Time.now)
+      dashboard.update!(last_refreshed_at: Time.zone.now)
 
       broadcast :ok
     end

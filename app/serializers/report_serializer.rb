@@ -148,9 +148,7 @@ class ReportSerializer < ActiveModel::Serializer
     end
   end
 
-  def dimension_ids
-    object.dimension_ids
-  end
+  delegate :dimension_ids, to: :object
 
   def completed_assessments
     object.assessment_ids

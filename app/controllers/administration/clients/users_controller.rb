@@ -116,7 +116,7 @@ module Administration
 
         audit! :export, client, client: client
         respond_to do |format|
-          filename = "#{resource_class.model_name.plural}-#{Date.today}"
+          filename = "#{resource_class.model_name.plural}-#{Time.zone.today}"
           format.csv do
             headers['Content-Disposition'] = "attachment; filename=\"#{filename}.csv\""
             headers['Content-Type'] ||= 'text/csv'

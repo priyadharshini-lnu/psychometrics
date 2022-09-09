@@ -352,18 +352,18 @@ describe Reports::BuildResults do
 
       it 'resolves to the ref' do
         is_expected.to eq([
-                            {
-                              config_data: {
-                                'assessmentId' => user_result.assessment.id,
-                                'factorId' => 1,
-                                'ref_id' => 'factor_x',
-                                'type' => 'normed_factor'
-                              },
-                              key: 1,
-                              name: 'Test factor1',
-                              value: 3
-                            }
-                          ])
+          {
+            config_data: {
+              'assessmentId' => user_result.assessment.id,
+              'factorId' => 1,
+              'ref_id' => 'factor_x',
+              'type' => 'normed_factor'
+            },
+            key: 1,
+            name: 'Test factor1',
+            value: 3
+          }
+        ])
       end
     end
   end

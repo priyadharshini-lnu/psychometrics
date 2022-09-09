@@ -72,7 +72,7 @@ describe Threesixty::PipedText::Perform do
 
     it do
       response = described_class.call!('{{d://Current?f=%-d/%-m/%Y}}', threesixty_campaign: double, subject: user)
-      expect(response).to eq(Time.now.strftime('%-d/%-m/%Y'))
+      expect(response).to eq(Time.zone.now.strftime('%-d/%-m/%Y'))
     end
 
     it do
@@ -92,12 +92,12 @@ describe Threesixty::PipedText::Perform do
     it 'empty if error occurs' do
       response = described_class.call!('{{d://Current?f=%--}}')
       expect { response.call }.to raise_error(Exception)
-      expect(response).to eq(Time.now.strftime(''))
+      expect(response).to eq(Time.zone.now.strftime(''))
     end
 
     it do
       response = described_class.call!('{{d://Other/+1d?f=%-d/%-m/%Y}}', threesixty_campaign: double, subject: user)
-      time = Time.now + 1.day
+      time = 1.day.from_now
       expect(response).to eq(time.strftime('%-d/%-m/%Y'))
     end
   end

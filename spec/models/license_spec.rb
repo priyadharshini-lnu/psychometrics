@@ -35,7 +35,7 @@ RSpec.describe License, type: :model do
 
     it { should validate_presence_of(:report_family_id) }
     context '#license_expire_validation' do
-      let(:license) { described_class.new(start_date: Date.today) }
+      let(:license) { described_class.new(start_date: Time.zone.today) }
       subject { license.send(:license_expire_validation) }
       it do
         license.end_date = 1.day.ago
@@ -44,7 +44,7 @@ RSpec.describe License, type: :model do
       end
 
       it do
-        license.end_date = Date.today
+        license.end_date = Time.zone.today
         expect(license.errors).to receive(:add).with(:end_date, :invalid)
         subject
       end

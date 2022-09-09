@@ -32,7 +32,7 @@ module SoftDelete
       errors.add(:base, :'restrict_dependent_destroy.has_many', record: record_name)
       break
     end
-    update!(deleted_at: Time.now, deleted_by: deleted_by) if errors.empty?
+    update!(deleted_at: Time.zone.now, deleted_by: deleted_by) if errors.empty?
   end
 
   def deleted?

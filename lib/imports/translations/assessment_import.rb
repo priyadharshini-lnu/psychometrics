@@ -75,7 +75,7 @@ module Imports
         TRANSLATABLE_BRANCHES.each do |branch|
           collect_translations[branch]&.each do |id, locales|
             # If can't find question/block for specified assessment, then add error
-            if branch != 'instructions' && !assessment.public_send(branch.pluralize).where(id: id).exists?
+            if branch != 'instructions' && !assessment.public_send(branch.pluralize).exists?(id: id)
               errors.add(:base, I18n.t('administration.imports.errors.translation.error',
                                        id: id, error: "Can't find #{branch}")) && next
             end

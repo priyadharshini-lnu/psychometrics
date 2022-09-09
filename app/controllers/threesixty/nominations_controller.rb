@@ -27,10 +27,10 @@ module Threesixty
       last_email_sent_date = ::Threesixty::Emails::GetLastEmailSentAtForUser.
                              call!(@campaign, Threesixty::Emails::Name::REQUEST_APPROVAL, @subject.user_id)
 
-      if !last_email_sent_date || last_email_sent_date.advance(hours: 1) < Time.now
+      if !last_email_sent_date || last_email_sent_date.advance(hours: 1) < Time.zone.now
         email_schedule = Threesixty::Emails::Send.call!(Threesixty::Emails::Name::REQUEST_APPROVAL,
                                                         threesixty_campaign: @campaign, subject: @subject,
-                                                        scheduled_date: 20.second.ago)
+                                                        scheduled_date: 20.seconds.ago)
         ::Threesixty::Emails::SendSingleScheduledEmail.call!(email_schedule)
         render json: :ok
       else
@@ -39,7 +39,7 @@ module Threesixty
         render json: {
                  errors: I18n.t('nominations.approval_email_error', last_sent_at: last_sent_at, wait_time: wait_time)
                },
-               status: :bad_request
+               status: 400
       end
     end
 

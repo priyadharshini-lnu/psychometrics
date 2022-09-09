@@ -21,7 +21,7 @@ module Hogan
 
       participant_score = get_participant_score
 
-      return broadcast(:not_completed) unless participant_score.present?
+      return broadcast(:not_completed) if participant_score.blank?
 
       user_result.update(external_results: participant_score)
       generate_internal_reports

@@ -29,7 +29,7 @@ module Threesixty
       end
 
       def sql
-        <<-SQL.strip_heredoc
+        <<-SQL.squish
           SELECT sheet_rows.id, sheet_rows.email, "data"->>'First Name' as first_name, "data"->>'Last Name' as last_name
             FROM sheet_rows
             JOIN sheets on sheets.id = sheet_rows.sheet_id and (

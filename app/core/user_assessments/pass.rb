@@ -28,7 +28,7 @@ module UserAssessments
 
       return params if instructions_enabled?
 
-      params[:started_at] = Time.now unless user_assessment.started_at
+      params[:started_at] = Time.zone.now unless user_assessment.started_at
       params[:expiry_date] = time.second.from_now if time
 
       params

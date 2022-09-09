@@ -134,12 +134,11 @@ module UserReports
 
     def report_file_name
       @report_file_name ||=
-        "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+        "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
     end
 
     def report_directory
-      dir = Rails.root.join('tmp', 'reports')
-      File.join(dir, user.email)
+      Rails.root.join('tmp/reports', user.email)
     end
 
     def default_report_preview_url_params

@@ -30,7 +30,7 @@ module Threesixty
       end
 
       def sql
-        <<-SQL.strip_heredoc
+        <<-SQL.squish
         SELECT users.id, users.email, users.first_name, users.last_name
           FROM threesixty_evaluators
           JOIN users on users.id = threesixty_evaluators.user_id

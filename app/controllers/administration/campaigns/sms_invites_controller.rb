@@ -94,7 +94,7 @@ module Administration
 
       def download_example_import_file
         send_file(
-          "#{Rails.root}/public/example_csv/sms_invite_import.csv",
+          Rails.public_path.join('example_csv/sms_invite_import.csv'),
           type: 'text/csv'
         )
       end

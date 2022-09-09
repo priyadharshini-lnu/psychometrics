@@ -22,13 +22,9 @@ module EndUser
       current_user.email
     end
 
-    def first_name
-      current_user.first_name
-    end
+    delegate :first_name, to: :current_user
 
-    def last_name
-      current_user.last_name
-    end
+    delegate :last_name, to: :current_user
 
     def language_id
       'en'

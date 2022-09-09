@@ -24,9 +24,7 @@ module Administration
         end
       end
 
-      def destroy
-        resource.destroy
-      end
+      delegate :destroy, to: :resource
 
       def i18n
         'clients.datasheet_rows'

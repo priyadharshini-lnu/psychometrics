@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Examus::GetSessionUrl do
   let(:campaign) { create(:campaign) }
   let(:campaign_user) do
-    create(:campaign_user, started_at: Time.now, campaign: campaign, expiry_date: 10.minutes.from_now)
+    create(:campaign_user, started_at: Time.zone.now, campaign: campaign, expiry_date: 10.minutes.from_now)
   end
 
   it 'returns examus session url' do

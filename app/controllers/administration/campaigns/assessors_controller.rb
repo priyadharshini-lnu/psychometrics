@@ -62,7 +62,7 @@ module Administration
           ::Assessors::CreateAll.call!(form.assessors, campaign, current_user)
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 

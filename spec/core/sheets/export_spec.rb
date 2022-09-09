@@ -11,7 +11,7 @@ describe Sheets::Export do
   let!(:sheet_row) do
     create(:sheet_row, sheet: sheet, email: 'james@cc.com', data: { 'Profile' => 'carpenter' })
   end
-  let(:file_name) { "sheet-#{Time.now}.xlsx" }
+  let(:file_name) { "sheet-#{Time.zone.now}.xlsx" }
 
   after do
     FileUtils.rm_rf(file_name)

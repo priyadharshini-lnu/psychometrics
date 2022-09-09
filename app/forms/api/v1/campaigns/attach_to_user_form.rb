@@ -45,7 +45,7 @@ module Api
         end
 
         def campaign_ids
-          campaigns.map { |c| c[:id] }
+          campaigns.pluck(:id)
         end
       end
     end

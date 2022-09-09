@@ -19,7 +19,7 @@ module Threesixty
       object.evaluation_status_completed?
     end
 
-    def is_self # rubocop:disable Naming/PredicateName
+    def is_self
       object.user_id == current_user.id
     end
 

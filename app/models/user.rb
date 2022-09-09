@@ -119,6 +119,7 @@ class User < ApplicationRecord
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
   belongs_to :project, class_name: 'Client'
+
   has_many :memberships, inverse_of: :user # on delete cascade
   has_many :clients, through: :memberships
   has_many :ttes, through: :clients
@@ -167,12 +168,11 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: { scope: %i[project_id] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
-  validates_format_of     :email,
-                          with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
-  validates_presence_of   :email
-  validates_presence_of     :password, if: :password_required?
-  validates_confirmation_of :password, if: :password_required?
-  validates_length_of       :password, within: Devise.password_length, allow_blank: true
+  validates :email, format: { with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email? }
+  validates :email, presence: true
+  validates :password, presence: { if: :password_required? }
+  validates :password, confirmation: { if: :password_required? }
+  validates :password, length: { within: Devise.password_length, allow_blank: true }
   validates :password, repeats_in_password: true, if: :restrict_sequences?
   validates :role, inclusion: { in: UserRoles::USER_ROLES.values }, presence: true, allow_nil: true
 
@@ -348,7 +348,7 @@ class User < ApplicationRecord
   end
 
   def user_member_role_exists?(client_id)
-    memberships.where.not(role: :member).where(client_id: client_id).exists?
+    memberships.where.not(role: :member).exists?(client_id: client_id)
   end
 
   # @deprecated

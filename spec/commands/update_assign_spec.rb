@@ -53,7 +53,7 @@ describe UpdateAssign do
         end
 
         it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(assign, assign.norm_data) }
-        it { is_expected.to receive(:'completed_at=').with(Time.now) }
+        it { is_expected.to receive(:'completed_at=').with(Time.zone.now) }
       end
     end
 

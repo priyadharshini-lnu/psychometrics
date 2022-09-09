@@ -152,7 +152,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def export
     respond_to do |format|
       format.xlsx do
-        headers['Content-Disposition'] = "attachment; filename=\"#{resource.name}-#{Date.today}.xlsx\""
+        headers['Content-Disposition'] = "attachment; filename=\"#{resource.name}-#{Time.zone.today}.xlsx\""
         headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
       end
     end

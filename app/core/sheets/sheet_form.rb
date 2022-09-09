@@ -122,7 +122,7 @@ module Sheets
     def no_duplicates
       errors.add(:file, :email_duplicate) if parsed_file.
                                              map { |item| item[Sheet::EMAIL_COLUMN]&.strip&.downcase }.
-                                             reject(&:blank?).
+                                             compact_blank.
                                              uniq!
     end
 

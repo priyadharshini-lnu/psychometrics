@@ -2520,6 +2520,8 @@ en:
       exactly: Exactly %{count}
     nominations: Nominations
     options:
+      form:
+        value_not_valid: doesn't have a valid value
       global:
         cannot_re_edit: Participants cannot edit evaluations
         disable_all_evaluations: Disable all evaluations

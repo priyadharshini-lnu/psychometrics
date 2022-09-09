@@ -96,6 +96,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --

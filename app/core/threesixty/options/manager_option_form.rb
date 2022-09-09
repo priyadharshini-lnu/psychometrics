@@ -22,7 +22,7 @@ module Threesixty
       attribute :can_approves_evaluations, Boolean, deafult: false
 
       validates(*ALL_BOOLEAN_FIELDS,
-                inclusion: { in: [true, false], message: "doesn't have a valid value" },
+                inclusion: { in: [true, false], message: I18n.t('threesixty.options.form.value_not_valid') },
                 allow_nil: true)
     end
   end

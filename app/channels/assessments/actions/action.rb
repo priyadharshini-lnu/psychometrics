@@ -7,7 +7,7 @@ module Assessments
         controller  = name.downcase.split('::').last
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
-          assessment = ::Assessment.find_by_id(params['assessment_id'])
+          assessment = ::Assessment.find_by(id: params['assessment_id'])
           if policy(assessment).open_channel?
             begin
               data            = yield(request['data'], current_user, assessment)

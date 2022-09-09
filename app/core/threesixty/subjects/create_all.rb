@@ -68,7 +68,7 @@ module Threesixty
 
       def project_users_indexed
         @project_users_indexed ||= User.
-                                   where(project_id: project.id, email: subjects.map { |s| s[:email] }).
+                                   where(project_id: project.id, email: subjects.pluck(:email)).
                                    index_by { |user| user.email.downcase }
       end
 

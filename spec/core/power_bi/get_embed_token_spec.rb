@@ -26,11 +26,11 @@ describe PowerBi::GetEmbedToken do
              reports: [{ id: report_id }],
              datasets: [{ id: dataset_id }],
              identities: [
-          {
-            roles: ['Self'],
-            datasets: [dataset_id]
-          }.merge(identities)
-        ]
+               {
+                 roles: ['Self'],
+                 datasets: [dataset_id]
+               }.merge(identities)
+             ]
            },
            headers: {
              Authorization: "Bearer #{access_token}",

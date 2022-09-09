@@ -26,7 +26,7 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
                                                             hogan_credential: hogan_credential, include: '**').to_h
       end
       on(:invalid) do
-        render(json: { error: '412' }, status: 412)
+        render(json: { error: '412' }, status: :precondition_failed)
       end
     end
   end

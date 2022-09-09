@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SheetRow < ApplicationRecord
-  belongs_to :sheet, foreign_key: :sheet_id, inverse_of: :rows
+  belongs_to :sheet, inverse_of: :rows
 
   before_save { self.email = email&.downcase }
 

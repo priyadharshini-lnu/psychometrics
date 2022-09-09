@@ -58,7 +58,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # config.filter_gems_from_backtrace("gem name")
 
-  config.before(:each) { Timecop.freeze(Time.local(2018, 9, 15, 9, 31, 42)) }
+  config.before(:each) { Timecop.freeze(Time.zone.local(2018, 9, 15, 9, 31, 42)) }
   config.after(:each) { Timecop.return }
 
   config.before(:suite) do
@@ -102,7 +102,7 @@ RSpec.configure do |config|
   def save_timestamped_screenshot(page, meta)
     filename = File.basename(meta[:file_path])
     line_number = meta[:line_number]
-    screenshot_name = "#{filename}-#{line_number}.#{Time.now.usec / 1_000}.png"
+    screenshot_name = "#{filename}-#{line_number}.#{Time.zone.now.usec / 1_000}.png"
     screenshot_path = "#{ENV.fetch('CIRCLE_ARTIFACTS', Rails.root.join('tmp/capybara'))}/#{screenshot_name}"
 
     page.save_screenshot(screenshot_path)

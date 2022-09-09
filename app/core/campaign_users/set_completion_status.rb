@@ -14,7 +14,7 @@ module CampaignUsers
       return broadcast :ok if campaign_user.completion_status == completion_status
 
       campaign_user.update({
-        completed_at: completion_status == 'completed' ? Time.now : nil,
+        completed_at: completion_status == 'completed' ? Time.zone.now : nil,
         completion_status: completion_status
       })
 

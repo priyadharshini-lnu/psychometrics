@@ -5,12 +5,11 @@ class AuditLog < ApplicationRecord
   serialize :payload, JSON
   serialize :request, JSON
 
-  belongs_to :user, required: false
-  belongs_to :record, polymorphic: true, required: false
+  belongs_to :user, optional: true
+  belongs_to :record, polymorphic: true, optional: true
   belongs_to :client
   belongs_to :project, class_name: 'Client'
   belongs_to :campaign
-  belongs_to :user
 
   validates :action, presence: true
 

@@ -30,7 +30,7 @@ module Campaigns
 
       def validate_duplicated_emails
         emails = []
-        import_data[1..].map { |a| a[:email] }.group_by { |a| a }.each do |email, group|
+        import_data[1..].pluck(:email).group_by { |a| a }.each do |email, group|
           emails << email if group.size > 1
         end
         errors.add(:import_data, :duplicated_emails, emails: emails.join(', ')) if emails.present?

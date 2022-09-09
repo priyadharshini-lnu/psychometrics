@@ -15,7 +15,7 @@ module Integrations
     def unique_tenant_id
       scope = Integration.iiht
       scope = scope.where.not(id: context.integration.id) if context.integration
-      if scope.where("config ->> 'tenant_id' = ?", tenant_id).exists?
+      if scope.exists?(["config ->> 'tenant_id' = ?", tenant_id])
         errors.add(:base, I18n.t('administration.integrations.validations.iiht.tenant_id_present'))
       end
     end
@@ -23,7 +23,7 @@ module Integrations
     def unique_tenancy_name
       scope = Integration.iiht
       scope = scope.where.not(id: context.integration.id) if context.integration
-      if scope.where("config ->> 'tenancy_name' = ?", tenancy_name).exists?
+      if scope.exists?(["config ->> 'tenancy_name' = ?", tenancy_name])
         errors.add(:base, I18n.t('administration.integrations.validations.iiht.tenancy_name_present'))
       end
     end

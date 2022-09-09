@@ -130,7 +130,7 @@ module Administration
         end.pluck(:project_id)
 
         clients_scope = scope.where(
-          'id IN (?)', (permitted_client_admin_clients_ids + permitted_project_admin_client_ids +
+          id: (permitted_client_admin_clients_ids + permitted_project_admin_client_ids +
             permitted_campaign_admin_project_ids)
         )
 

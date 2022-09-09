@@ -4,7 +4,7 @@ module Threesixty
   class Evaluator < ApplicationRecord
     include Threesixty::Participator
 
-    has_many :participants, foreign_key: :evaluator_id, primary_key: :user_id
+    has_many :participants, primary_key: :user_id
     has_one :self_subject,
             -> { where('threesixty_evaluators.campaign_id = threesixty_subjects.campaign_id') },
             foreign_key: :user_id, primary_key: :user_id,

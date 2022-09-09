@@ -89,14 +89,14 @@ module Exports
             sheet.add_row(header)
             assigns.find_each(batch_size: 100) do |assign|
               sheet.add_row([
-                              assign.encode_id,
-                              user_name(assign),
-                              assign.user_email,
-                              assign.started_at.try(:strftime, '%D %r'),
-                              assign.completed_at.try(:strftime, '%D %r'),
-                              I18n.t("activerecord.attributes.assign.statuses.#{assign.status}"),
-                              *external_results(assign, keys)
-                            ])
+                assign.encode_id,
+                user_name(assign),
+                assign.user_email,
+                assign.started_at.try(:strftime, '%D %r'),
+                assign.completed_at.try(:strftime, '%D %r'),
+                I18n.t("activerecord.attributes.assign.statuses.#{assign.status}"),
+                *external_results(assign, keys)
+              ])
             end
           end
         end
@@ -109,7 +109,7 @@ module Exports
       end
 
       def user_name(assign)
-        [assign.user_first_name, assign.user_last_name].reject(&:blank?).join(', ')
+        [assign.user_first_name, assign.user_last_name].compact_blank.join(', ')
       end
     end
   end

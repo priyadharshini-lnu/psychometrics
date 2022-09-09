@@ -53,7 +53,7 @@ module Threesixty::InitialState
   end
 
   def live_chat_token
-    @current_project.live_chat_token.blank? ? Settings.live_chat.token : @current_project.live_chat_token
+    @current_project.live_chat_token.presence || Settings.live_chat.token
   end
 
   def serialized_current_user
@@ -67,6 +67,6 @@ module Threesixty::InitialState
   end
 
   def remaining_maintenance_time
-    (ENV['MAINTENANCE_START_DATETIME'].to_time - Time.now).to_i if ENV['MAINTENANCE_START_DATETIME']
+    (ENV['MAINTENANCE_START_DATETIME'].to_time - Time.zone.now).to_i if ENV['MAINTENANCE_START_DATETIME']
   end
 end

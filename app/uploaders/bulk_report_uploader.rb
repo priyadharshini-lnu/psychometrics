@@ -7,9 +7,10 @@ class BulkReportUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def store_dir
-    model.store_dir
-  end
+  # def store_dir
+  #   model.store_dir
+  # end
+  delegate :store_dir, to: :model
 
   # Add a white list of extensions which are allowed to be uploaded.
   def extension_whitelist

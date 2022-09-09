@@ -13,8 +13,8 @@ describe Communications::NewAssignmentJob, type: :job do
       project_id: campaign.project_id, last_ran_at: 5.minutes.ago)
     user_without_new_assignment = create(:campaign_user, campaign: campaign).user
     create(:user_assessment, subject: user_without_new_assignment, evaluator: user_without_new_assignment,
-      campaign: campaign, created_at: 20.minute.ago)
-    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minutes.ago)
+      campaign: campaign, created_at: 20.minutes.ago)
+    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minute.ago)
 
     expect do
       described_class.perform_now
@@ -26,17 +26,17 @@ describe Communications::NewAssignmentJob, type: :job do
   it 'updates last_ran_at for communication' do
     communication = create(:communication, recipients: :new_assignment, project_campaign: campaign,
       project_id: campaign.project_id, last_ran_at: 5.minutes.ago)
-    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minutes.ago)
+    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minute.ago)
     described_class.perform_now
 
-    expect(communication.reload.last_ran_at).to be_within(2.second).of Time.now
+    expect(communication.reload.last_ran_at).to be_within(2.seconds).of Time.zone.now
   end
 
   it 'creates only one communication_email even if multiple assessment is added to a user' do
     create(:communication, recipients: :new_assignment, project_campaign: campaign,
       project_id: campaign.project_id, last_ran_at: 5.minutes.ago)
-    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minutes.ago)
-    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minutes.ago)
+    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minute.ago)
+    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minute.ago)
 
     expect do
       described_class.perform_now
@@ -48,7 +48,7 @@ describe Communications::NewAssignmentJob, type: :job do
     new_campaign = create(:campaign)
     create(:communication, recipients: :new_assignment, project_campaign: new_campaign,
         project_id: new_campaign.project_id, last_ran_at: 5.minutes.ago)
-    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minutes.ago)
+    create(:user_assessment, subject: user, evaluator: user, campaign: campaign, created_at: 1.minute.ago)
     expect do
       described_class.perform_now
     end.to_not change(CommunicationEmail, :count)

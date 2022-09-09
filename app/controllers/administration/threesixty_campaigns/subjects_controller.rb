@@ -62,7 +62,7 @@ module Administration
           ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign, current_user)
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 
@@ -80,7 +80,7 @@ module Administration
 
       def download_example_import_file
         send_file(
-          "#{Rails.root}/public/example_csv/subject_import.csv",
+          Rails.public_path.join('example_csv/subject_import.csv'),
           type: 'text/csv'
         )
       end
@@ -91,7 +91,7 @@ module Administration
         if form.valid?
           validate_and_add_subjects_from_csv(form.file.path)
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 
@@ -156,7 +156,7 @@ module Administration
           result = ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
           render json: result.slice(:existing_subjects_whose_password_not_changed)
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 

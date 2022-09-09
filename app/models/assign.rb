@@ -34,7 +34,7 @@ class Assign < ApplicationRecord
   has_one :agile, through: :assessment
   has_many :agile_events, dependent: :destroy
   has_one :user, through: :membership
-  belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
+  belongs_to :project_assign, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_many :original_assigns, foreign_key: :project_assign_id, class_name: 'Assign'
   has_many :assigns_reports, inverse_of: :assign # on delete cascade
@@ -53,14 +53,13 @@ class Assign < ApplicationRecord
   has_many :single_reports, -> { single }, through: :assigns_reports, source: :report
   has_many :media_responses, dependent: :destroy
 
-  validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
+  validates :assessment_id, uniqueness: { scope: [:membership_id], message: :not_uniqueness }
   validates :membership, :assessment, presence: true
-
   validate :relevant_membership, if: -> { membership.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }
-  enum role: %i[member manager admin]
+  enum role: { member: 0, manager: 1, admin: 2 }
 
   scope :mindmill, lambda {
     joins(:assessment).
@@ -85,9 +84,9 @@ class Assign < ApplicationRecord
   attribute :user_access, :boolean, default: false
 
   after_initialize :init
-  after_create :set_project_assign
   before_save :notification_handler
   before_create :set_mindmill_prefix
+  after_create :set_project_assign
   before_update :set_started_at, if: proc { will_save_change_to_status? && in_progress? }
   before_update :set_expiry_date, if: proc { will_save_change_to_status? && in_progress? && !expiry_date }
   before_update :set_last_activity_at, if: proc { will_save_change_to_status? && in_progress? }
@@ -217,7 +216,7 @@ class Assign < ApplicationRecord
   def set_project_assign
     return if project_membership.nil?
 
-    project_assign = project_membership.assigns.where(assessment_id: assessment_id).take
+    project_assign = project_membership.assigns.find_by(assessment_id: assessment_id)
     unless project_assign
       project_assign = dup
       project_assign.membership_id = project_membership.id

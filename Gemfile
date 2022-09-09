@@ -209,6 +209,7 @@ group :development, :test do
   gem 'rswag-specs', '~> 2.4.0'
   gem 'rubocop', '~>  1.31.2', require: false
   gem 'rubocop-performance'
+  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'stackprof', '~> 0.2.12'
 end

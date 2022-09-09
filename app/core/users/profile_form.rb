@@ -28,7 +28,7 @@ module Users
     def validate_project_fields
       project.profile_setting.profile_fields.includes(:question).each do |field|
         if (field.required || field.question.required_validation['enabled']) &&
-           !custom_fields[field.question_id.to_s.to_sym].present?
+           custom_fields[field.question_id.to_s.to_sym].blank?
           errors.add(field.question.name, 'required')
         end
       end

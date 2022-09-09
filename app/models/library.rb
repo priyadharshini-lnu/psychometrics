@@ -18,18 +18,18 @@
 class Library < ApplicationRecord
   include OwnerValidations
 
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Client'
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
   has_ancestry
 
-  enum type: %i[folder image audio video other]
+  enum type: { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
 
   mount_uploader :file, FileUploader
 
   validates :name, presence: true, if: proc { folder? }
   validates :file, presence: true, unless: proc { folder? }
-  validates_inclusion_of :type, in: Library.types.keys
+  validates :type, inclusion: { in: Library.types.keys }
   validates :owner, presence: true, allow_nil: true
 
   # Detect which type of library we saving

@@ -18,7 +18,7 @@ class Dimension < ApplicationRecord
   include RansackSearchableFields
   include OwnerValidations
 
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Client'
   has_many :factors, -> { roots.order(id: :asc) }
   has_many :occupations
   has_many :all_factors, class_name: 'Factor'

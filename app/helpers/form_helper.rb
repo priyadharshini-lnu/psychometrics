@@ -30,7 +30,7 @@ module FormHelper
     klass.push(options.fetch(:class, ''))
     klass.push('has-error') if has_errors
 
-    content_tag :div, class: klass.reject(&:blank?).join(' ') do
+    content_tag :div, class: klass.compact_blank.join(' ') do
       concat form.label(field, class: 'control-label') if label
       concat capture(&)
       concat errors_for(form, field) if has_errors

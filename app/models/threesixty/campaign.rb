@@ -5,12 +5,13 @@ module Threesixty
     belongs_to :campaign, class_name: '::Campaign'
     belongs_to :assessment
     belongs_to :report
+
     has_one :project, through: :campaign
     has_one :option, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_one :project_datasheet, through: :campaign
-    has_one :campaign_datasheet, through: :campaign, class_name: 'Datasheet',
-      foreign_key: :campaign_id
+    has_one :campaign_datasheet, through: :campaign, class_name: 'Datasheet'
     has_one :campaign_options, through: :campaign
+
     has_many :nomination_requirements, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :participants, through: :campaign
     has_many :campaign_users, through: :campaign
@@ -25,7 +26,7 @@ module Threesixty
     has_many :email_histories, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :license_usages, through: :campaign
 
-    enum type: %i[empty standard_360 previous_360] # rubocop:disable Naming/VariableNumber
+    enum type: { empty: 0, standard_360: 1, previous_360: 2 } # rubocop:disable Naming/VariableNumber
 
     delegate :client, :datasheet_column_names, :datasheet_data, :name, :subjects, :evaluators,
              :project, :participants, :datasheet, to: :campaign

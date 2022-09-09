@@ -32,7 +32,7 @@ module Threesixty::EndUser
       object.evaluator
     end
 
-    def is_self # rubocop:disable Naming/PredicateName
+    def is_self
       object.subject_id == current_user.id
     end
   end

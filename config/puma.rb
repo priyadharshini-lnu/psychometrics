@@ -60,7 +60,7 @@ rackup      DefaultRackup
 # end
 before_fork do
   # worker specific setup
-  puts 'Puma master process about to fork. Closing existing Active record connections.'
+  puts 'Puma master process about to fork. Closing existing Active record connections.' # rubocop:disable Rails/Output
   ActiveRecord::Base.connection.disconnect!
   Barnes.start # Must have enabled worker mode for this to block to be called
 end

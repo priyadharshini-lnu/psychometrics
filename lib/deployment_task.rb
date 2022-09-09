@@ -5,9 +5,9 @@ class DeploymentTask
 
   def self.add(task_details)
     @records.push(task_details)
-    puts("\n", '=' * 120)
-    puts task_details
-    puts('=' * 120, "\n")
+    Rails.logger.info("\n", '=' * 120)
+    Rails.logger.info(task_details)
+    Rails.logger.info('=' * 120, "\n")
   end
 
   def self.send_deployment_tasks_email

@@ -22,9 +22,7 @@ class MediaResponseUploader < CarrierWave::Uploader::Base
     question.props['maxFileSize']&.megabytes&.to_i || 200.megabytes
   end
 
-  def question
-    model.question
-  end
+  delegate :question, to: :model
 
   private
 

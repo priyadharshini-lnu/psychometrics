@@ -40,10 +40,10 @@ class Report < ApplicationRecord
   belongs_to :assessment
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Client'
+
   has_many :report_families_reports
   has_many :report_families, through: :report_families_reports, source: :report_family
-
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
@@ -103,8 +103,8 @@ class Report < ApplicationRecord
   #
   before_validation :set_assessment, unless: :data_only?
   before_save :delete_hogan_report_setting, :delete_saville_report_setting, :set_provider
-  after_save :delete_assessments_reports, if: :data_only?
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
+  after_save :delete_assessments_reports, if: :data_only?
 
   enum category: { common: 0, threesixty: 1 }, _prefix: :category
   enum provider: PROVIDERS, _prefix: :provider
@@ -140,7 +140,7 @@ class Report < ApplicationRecord
   }
   scope :available_to_view, lambda {
     joins(:assessments).where.
-      has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.now) }
+      has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.zone.now) }
   }
   scope :for_clients, lambda { |client_ids|
     joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }

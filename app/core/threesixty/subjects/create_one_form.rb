@@ -15,7 +15,7 @@ module Threesixty
       validate :check_existing
 
       def check_existing
-        if ::Threesixty::Subject.joins(:user).where(campaign: context.campaign, users: { email: email }).exists?
+        if ::Threesixty::Subject.joins(:user).exists?(campaign: context.campaign, users: { email: email })
           errors.add(:email, :already_exists)
         end
       end

@@ -6,9 +6,9 @@ describe ::Sheets::DatasheetColumnForm do
   context 'Validation' do
     let!(:sheet) do
       create(:sheet, columns: [
-               { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-               { name: 'Uniq', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
-             ])
+        { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
+        { name: 'Uniq', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
+      ])
     end
 
     context 'validate column' do

@@ -6,9 +6,7 @@ module Administration
       attributes :id, :name, :position, :campaign_id, :assessment_id, :campaign_assessment_group_id
       delegate :name, to: :assessment
 
-      def assessment_id
-        assessment.id
-      end
+      delegate :id, to: :assessment, prefix: true
 
       private
 

@@ -23,11 +23,11 @@ module Administration
         administration_project_new_campaign_path(project, object)
       end
 
-      def is_threesixty # rubocop:disable Naming/PredicateName
+      def is_threesixty
         object.threesixty?
       end
 
-      def is_fixed_time # rubocop:disable Naming/PredicateName
+      def is_fixed_time
         object.campaign_options&.fixed_time
       end
 

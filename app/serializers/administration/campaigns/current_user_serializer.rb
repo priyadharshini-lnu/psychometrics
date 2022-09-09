@@ -9,8 +9,7 @@ module Administration
         instance_options[:current_membership]&.grants&.data || {}
       end
 
-      # rubocop:disable Metrics/AbcSize
-      def permissions
+      def permissions # rubocop:disable Metrics/AbcSize
         permissions = GetPermissionsHash.call!(
           Administration::ProjectPolicy,
           object,
@@ -46,7 +45,6 @@ module Administration
         ).approve?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
-      # rubocop:enable Metrics/AbcSize
     end
   end
 end

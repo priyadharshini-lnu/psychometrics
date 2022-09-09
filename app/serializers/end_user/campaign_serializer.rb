@@ -13,7 +13,7 @@ module EndUser
     has_many :groups, serializer: ::EndUser::GroupSerializer
     has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
-    def is_timed_campaign # rubocop:disable Naming/PredicateName
+    def is_timed_campaign
       object.timed?
     end
 

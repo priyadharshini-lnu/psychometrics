@@ -23,9 +23,9 @@ module Assessments
 
       action :destroy do |data|
         block = ::Block.find(data['id'])
-        block.update(deleted_at: Time.now)
+        block.update(deleted_at: Time.zone.now)
         block.remove_from_list
-        block.questions.update_all(deleted_at: Time.now)
+        block.questions.update_all(deleted_at: Time.zone.now)
         nil
       end
 

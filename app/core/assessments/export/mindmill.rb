@@ -93,14 +93,14 @@ module Assessments
             sheet.add_row(header)
             users_results.find_each(batch_size: 100) do |res|
               sheet.add_row([
-                              res.encoded_id,
-                              user_name(res),
-                              res.user.email,
-                              res.created_at.try(:strftime, '%D %r'),
-                              res.completed_at.try(:strftime, '%D %r'),
-                              I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
-                              *external_results(res, keys)
-                            ])
+                res.encoded_id,
+                user_name(res),
+                res.user.email,
+                res.created_at.try(:strftime, '%D %r'),
+                res.completed_at.try(:strftime, '%D %r'),
+                I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+                *external_results(res, keys)
+              ])
             end
           end
         end
@@ -123,7 +123,7 @@ module Assessments
       end
 
       def user_name(res)
-        [res.user.first_name, res.user.last_name].reject(&:blank?).join(', ')
+        [res.user.first_name, res.user.last_name].compact_blank.join(', ')
       end
     end
   end

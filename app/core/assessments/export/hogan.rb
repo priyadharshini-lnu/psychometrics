@@ -100,7 +100,7 @@ module Assessments
       end
 
       def user_name(res)
-        [res.user.first_name, res.user.last_name].reject(&:blank?).join(', ')
+        [res.user.first_name, res.user.last_name].compact_blank.join(', ')
       end
     end
   end

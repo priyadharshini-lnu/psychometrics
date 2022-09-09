@@ -22,7 +22,7 @@ describe UserAssessments::ResetProgress do
     create(:user_assessment,
            users_result: user_result,
            status: :completed,
-           completed_at: Time.now,
+           completed_at: Time.zone.now,
            completion_reason: :user_completed,
            norm: create(:norm))
   end

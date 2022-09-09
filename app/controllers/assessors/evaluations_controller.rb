@@ -39,7 +39,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
   def show
     user_result = @assessor_assessment.users_result
     attributes = { last_activity_at: DateTime.current }
-    attributes = attributes.merge(started_at: Time.now) unless @assessor_assessment.started_at
+    attributes = attributes.merge(started_at: Time.zone.now) unless @assessor_assessment.started_at
     @assessor_assessment.update!(attributes)
     set_locale_for_user_assessment(@assessor_assessment)
 
@@ -80,12 +80,12 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   def set_assessor_assessment
-    @assessor_assessment = policy_scope(UserAssessment).find_by!(id: params[:id] || params[:evaluation_id])
+    @assessor_assessment = policy_scope(UserAssessment).find(params[:id] || params[:evaluation_id])
     authorize([@assessor_assessment])
   end
 
   def set_subject_user_assessment
-    @subject_user_assessment = UserAssessment.find_by!(id: params[:id] || params[:evaluation_id])
+    @subject_user_assessment = UserAssessment.find(params[:id] || params[:evaluation_id])
     authorize([@subject_user_assessment])
   end
 

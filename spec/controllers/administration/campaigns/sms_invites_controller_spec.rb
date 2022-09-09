@@ -52,9 +52,9 @@ RSpec.describe Administration::Campaigns::SmsInvitesController, type: :controlle
       expect(parsed_response.length).to eq(3)
       expect(parsed_response[0]).to eq(SmsInvites::ImportForm::VALID_HEADERS)
       expect(parsed_response[1..]).to match_array([
-                                                      expected_sms_invite_export(sms_invites[0]),
-                                                      expected_sms_invite_export(sms_invites[1])
-                                                    ])
+        expected_sms_invite_export(sms_invites[0]),
+        expected_sms_invite_export(sms_invites[1])
+      ])
     end
   end
 

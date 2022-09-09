@@ -17,7 +17,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     email_schedule = create(
       :threesixty_email_schedule,
       recipient_ids: recipients.map(&:id),
-      scheduled_date: Time.now.advance(days: 2)
+      scheduled_date: Time.zone.now.advance(days: 2)
     )
 
     expect(Threesixty::ScheduleEmailMailer).to_not receive(:send_email)
@@ -28,7 +28,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     email_schedule = create(
       :threesixty_email_schedule,
       recipient_ids: recipients.map(&:id),
-      scheduled_date: Time.now
+      scheduled_date: Time.zone.now
     )
 
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
@@ -48,7 +48,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       meta: { subject_ids: subjects.map(&:id) }
     )
 
@@ -82,7 +82,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::SUBJECT_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       meta: { evaluator_ids: evaluators.map(&:id), subject_ids: 1 }
     )
 
@@ -114,7 +114,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       meta: { 'subject_ids' => user.id }
     )
 
@@ -124,7 +124,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
 
     expect(reminder_history).to_not eq(nil)
     expect(reminder_history.sent_count).to eq(1)
-    expect(reminder_history.last_sent_at).to be_within(4).of(Time.now)
+    expect(reminder_history.last_sent_at).to be_within(4).of(Time.zone.now)
   end
 
   it 'updates reminder history for reminder history and if history is present' do
@@ -132,7 +132,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       meta: { 'subject_ids' => user.id }
     )
 
@@ -140,14 +140,14 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       email_name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       threesixty_campaign: email_schedule.threesixty_campaign,
       sent_count: 1,
-      last_sent_at: Time.now.advance(days: -2)
+      last_sent_at: Time.zone.now.advance(days: -2)
     )
 
     described_class.call!(email_schedule)
 
     reminder_history.reload
     expect(reminder_history.sent_count).to eq(2)
-    expect(reminder_history.last_sent_at).to be_within(2.seconds).of(Time.now)
+    expect(reminder_history.last_sent_at).to be_within(2.seconds).of(Time.zone.now)
   end
 
   it 'sets delivered_at of email_schedule record' do
@@ -155,13 +155,13 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now
+      scheduled_date: Time.zone.now
     )
     expect(email_schedule.delivered_at).to eq(nil)
 
     described_class.call!(email_schedule)
 
-    expect(email_schedule.delivered_at).to be_within(2).of(Time.now)
+    expect(email_schedule.delivered_at).to be_within(2).of(Time.zone.now)
   end
 
   it 'creates email history' do
@@ -169,7 +169,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       meta: { 'subject_ids' => user.id }
     )
 
@@ -191,7 +191,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now
+      scheduled_date: Time.zone.now
     )
     threesixty_subject = create(:threesixty_subject, campaign_id: email_schedule.threesixty_campaign.campaign_id)
     relationship = create(:relationship, name: 'Manager', type: :global)
@@ -216,7 +216,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       consolidated: true,
       meta: { subject_ids: subjects.map(&:id) }
     )
@@ -246,7 +246,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       consolidated: false,
       meta: { subject_ids: subjects.map(&:id) }
     )
@@ -274,7 +274,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       consolidated: true,
       meta: { subject_ids: subjects.map(&:id) }
     )
@@ -311,7 +311,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       consolidated: true,
       meta: { 'subject_ids' => user.id }
     )
@@ -333,7 +333,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.zone.now,
       consolidated: false,
       meta: { 'subject_ids' => user.id }
     )

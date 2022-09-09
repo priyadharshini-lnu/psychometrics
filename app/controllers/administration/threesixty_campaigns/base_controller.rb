@@ -22,7 +22,7 @@ module Administration
       end
 
       def render_license_error(e)
-        render json: { errors: { licenses: [e.message] } }, status: :forbidden
+        render json: { errors: { licenses: [e.message] } }, status: 403
       end
     end
   end

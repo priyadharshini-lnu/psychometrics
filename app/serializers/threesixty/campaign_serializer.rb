@@ -97,7 +97,7 @@ module Threesixty
       object.campaign.status
     end
 
-    def is_subject # rubocop:disable Naming/PredicateName
+    def is_subject
       object.subjects.exists?(user_id: instance_options[:current_user].id)
     end
 

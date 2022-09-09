@@ -67,7 +67,7 @@ module Imports
           data = header.zip(row).to_h
           # Try to find user_result by encoded id
           begin
-            user_result = UsersResult.find_by_encoded_id(data['result_id']) if data['result_id'].present?
+            user_result = UsersResult.find_by(encoded_id: data['result_id']) if data['result_id'].present?
           rescue ActiveRecord::RecordNotFound
             errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + SKIP_ROWS))
             next
@@ -99,7 +99,7 @@ module Imports
             next unless /qid/.match?(key)
 
             # Parse QID and answer's props
-            qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
+            qid, _props = key.split(/\D+/).compact_blank.map(&:to_i)
 
             next duration[qid] = value if key.include?(DURATION)
 
@@ -114,7 +114,7 @@ module Imports
             begin
               parser = "Imports::Assessments::Questions::#{question.type}".constantize
             rescue NameError => e
-              p "#{question.type} - #{e}"
+              Rails.logger.error("#{question.type} - #{e}")
               next
             end
             parsed_value = parser.build_answers(values, question, duration[qid], scoring, user_result)
@@ -184,7 +184,7 @@ module Imports
       end
 
       def parse_norm_data(norm_name, assessment_id)
-        return {} unless norm_name.present?
+        return {} if norm_name.blank?
 
         norm_ids = Norm.
                    joining { dimension }.
@@ -198,7 +198,7 @@ module Imports
       end
 
       def parse_date(date, index)
-        return nil unless date.present?
+        return nil if date.blank?
         return date if date.is_a?(Date) || date.is_a?(Time)
 
         DateTime.strptime(date.to_s, '%D %r')

@@ -98,7 +98,7 @@ module Administration
         def destroy
           @campaign = project.project_campaigns.find(params[:id])
           ::Campaigns::Remove.call(@campaign) do
-            on(:error) { |errors| @campaign.errors[:base] << errors }
+            on(:error) { |errors| @campaign.errors.add(:base, errors) }
           end
           @_resource = @campaign
           respond_to do |format|

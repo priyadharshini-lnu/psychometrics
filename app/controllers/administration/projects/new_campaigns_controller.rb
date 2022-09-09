@@ -15,7 +15,7 @@ module Administration
       initial_state_for %i[index show]
 
       def index
-        unless current_user.campaign_admin_campaigns.where(project_id: params[:project_id]).exists?
+        unless current_user.campaign_admin_campaigns.exists?(project_id: params[:project_id])
           authorize(Campaign, nil, { project_id: params[:project_id] })
         end
         respond_to do |format|

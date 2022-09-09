@@ -6,11 +6,9 @@ class UserDashboardSerializer < ActiveModel::Serializer
   has_one :user, serializer: UserSerializer
   has_one :report, serializer: ReportSerializer
 
-  def campaign_id
-    object.campaign_id
-  end
+  delegate :campaign_id, to: :object
 
-  def is_self # rubocop:disable Naming/PredicateName
+  def is_self
     object.user_id == current_user.id
   end
 

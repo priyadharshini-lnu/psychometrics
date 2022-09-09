@@ -22,22 +22,25 @@
 
 class Task < ApplicationRecord
   # STATUSES constant
-  STATUSES = %i[not_started in_progress completed].freeze
+  STATUSES = { not_started: 0, in_progress: 1, completed: 2 }.freeze
   # PRIORITIES constant High, Medium, Low
-  PRIORITIES = %i[low medium high].freeze
+  PRIORITIES = { low: 0, medium: 1, high: 2 }.freeze
 
   enum status: STATUSES
   enum priority: PRIORITIES
 
   scope :roots, -> { where(parent_id: nil) }
   scope :no_roots, -> { where.not(parent_id: nil) }
+
   belongs_to :membership
-  belongs_to :owner, class_name: 'Membership', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Membership'
   belongs_to :factor
   belongs_to :assessment
   belongs_to :parent, class_name: 'Task'
+
   has_many :sub_tasks, foreign_key: :parent_id, class_name: 'Task', dependent: :destroy
   has_many :comments, as: :commentable
+
   validates :priority, :factor_id, :membership_id, presence: true, if: :root?
   validates :name, :assessment_id, :planned_completed_at, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
@@ -50,7 +53,7 @@ class Task < ApplicationRecord
     planned_completed_at < if completed_at && completed?
                              completed_at
                            else
-                             Date.today
+                             Time.zone.today
                            end
   end
 
@@ -88,7 +91,7 @@ class Task < ApplicationRecord
   end
 
   def completion_callback
-    self.completed_at = Date.today
+    self.completed_at = Time.zone.today
   end
 
   def status_changed_callback

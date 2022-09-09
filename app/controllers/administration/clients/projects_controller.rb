@@ -50,7 +50,7 @@ module Administration
         audit! :export, resource, client: client
         respond_to do |format|
           format.csv do
-            headers['Content-Disposition'] = "attachment; filename=\"projects-#{Date.today}.csv\""
+            headers['Content-Disposition'] = "attachment; filename=\"projects-#{Time.zone.today}.csv\""
             headers['Content-Type'] ||= 'text/csv'
           end
         end

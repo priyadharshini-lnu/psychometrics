@@ -4,7 +4,7 @@ module Hogan
   # deprecated
   class LoadResultsJob < ApplicationJob
     queue_as :external_results
-    retry_on StandardError, wait: ->(executions) { executions * 1.minutes }, attempts: 3
+    retry_on StandardError, wait: ->(executions) { executions * 1.minute }, attempts: 3
 
     def perform(assign, membership_with_result, project)
       assign.original_or_self.reports.select(&:hogan?).each do |report|

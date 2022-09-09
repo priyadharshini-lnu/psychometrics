@@ -89,7 +89,7 @@ describe UserReports::GeneratePdf do
 
       # rubocop:disable Layout/LineLength
       expect(output_path).to include(
-        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
       )
       # rubocop:enable Layout/LineLength
     end
@@ -99,7 +99,7 @@ describe UserReports::GeneratePdf do
 
       # rubocop:disable Layout/LineLength
       expect(output_path).to include(
-        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
       )
       # rubocop:enable Layout/LineLength
     end

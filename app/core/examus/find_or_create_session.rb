@@ -22,7 +22,7 @@ module Examus
         proctoring_session = ProctoringSession.create(
           session_id: SecureRandom.uuid,
           campaign_user_id: campaign_user.id,
-          started_at: Time.now
+          started_at: Time.zone.now
         )
         license = campaign_user.campaign.proctoring_license
         credits = Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)

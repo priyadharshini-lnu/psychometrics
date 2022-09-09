@@ -103,7 +103,7 @@ class Administration::UsersController < Administration::BaseController
     @_resources = policy_scope(resource_class).includes(:clients).all
     audit! :export_users, resource
     respond_to do |format|
-      filename = "#{resource_class.model_name.plural}-#{Date.today}"
+      filename = "#{resource_class.model_name.plural}-#{Time.zone.today}"
       format.csv do
         headers['Content-Disposition'] = "attachment; filename=\"#{filename}.csv\""
         headers['Content-Type'] ||= 'text/csv'

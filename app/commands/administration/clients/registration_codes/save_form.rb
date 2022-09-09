@@ -27,7 +27,7 @@ module Administration
         end
 
         def validate_code_uniqueness
-          if RegistrationCode.where(code: code, end_level_id: end_level_id).exists?
+          if RegistrationCode.exists?(code: code, end_level_id: end_level_id)
             errors.add(:code, I18n.t('administration.clients.registration_codes.errors.duplicate_code'))
           end
         end

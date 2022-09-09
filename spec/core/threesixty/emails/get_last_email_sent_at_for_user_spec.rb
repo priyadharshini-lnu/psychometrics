@@ -11,7 +11,7 @@ describe Threesixty::Emails::GetLastEmailSentAtForUser do
   let(:user) { create(:user) }
 
   it 'returns last emails sent at time for particular user and email type' do
-    last_sent_at = Time.now.advance(days: -1)
+    last_sent_at = Time.zone.now.advance(days: -1)
     create(:threesixty_email_history, threesixty_email_schedule_id: threesixty_email_schedule.id,
       subject_id: user.id, created_at: last_sent_at)
 
@@ -21,7 +21,7 @@ describe Threesixty::Emails::GetLastEmailSentAtForUser do
   end
 
   it "doesn't return last sent time if email of passed type is not sent" do
-    last_sent_at = Time.now.advance(days: -1)
+    last_sent_at = Time.zone.now.advance(days: -1)
     create(:threesixty_email_history, threesixty_email_schedule_id: threesixty_email_schedule.id,
       subject_id: user.id, created_at: last_sent_at)
 
@@ -31,7 +31,7 @@ describe Threesixty::Emails::GetLastEmailSentAtForUser do
   end
 
   it "doesn't return last sent time if no email was not sent for passed user" do
-    last_sent_at = Time.now.advance(days: -1)
+    last_sent_at = Time.zone.now.advance(days: -1)
     create(:threesixty_email_history, threesixty_email_schedule_id: threesixty_email_schedule.id,
       subject_id: create(:user).id, created_at: last_sent_at)
 

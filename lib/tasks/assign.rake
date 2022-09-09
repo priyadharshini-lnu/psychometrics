@@ -26,7 +26,7 @@ namespace :assign do
 
   def assigns_with_incorrect_status
     Assign.joins(:project_assign).
-      where('project_assigns_assigns.status = ?', Assign.statuses[:completed]).
+      where(project_assigns_assigns: { status: Assign.statuses[:completed] }).
       where.not('assigns.status = ?', Assign.statuses[:completed])
   end
 

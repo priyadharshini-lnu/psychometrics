@@ -58,7 +58,7 @@ module Assessments
       end
 
       def user_name(result)
-        [result.evaluator.first_name, result.evaluator.last_name].reject(&:blank?).join(', ')
+        [result.evaluator.first_name, result.evaluator.last_name].compact_blank.join(', ')
       end
 
       def add_headers_and_sub_headers(factors_hash, sheet)

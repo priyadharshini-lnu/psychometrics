@@ -53,7 +53,7 @@ module Administration
       {
         current_user: current_user,
         client: client,
-        report_ids: report_params[:ids].reject(&:blank?),
+        report_ids: report_params[:ids].compact_blank,
         start_date: report_params[:start_date],
         end_date: report_params[:end_date]
       }

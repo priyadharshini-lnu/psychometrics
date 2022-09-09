@@ -16,7 +16,7 @@ class Campaign < ApplicationRecord
   has_many :sheets, dependent: :destroy
   has_one :accesssheet, dependent: :destroy
   has_one :project_datasheet, through: :project, source: :datasheet
-  has_one :campaign_datasheet, class_name: 'Datasheet', foreign_key: :campaign_id, dependent: :destroy
+  has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy
   has_one :dashboard
 
   delegate :fixed_time?,
@@ -35,7 +35,6 @@ class Campaign < ApplicationRecord
   has_many :participants, class_name: 'Threesixty::Participant', dependent: :destroy
   has_many :user_reports, dependent: :destroy
   has_many :campaign_users, dependent: :destroy
-  has_many :instruction_templates, -> { enabled }
   has_many :instruction_templates, -> { enabled }, foreign_key: :threesixty_campaign_id,
                                                      class_name: 'Threesixty::InstructionTemplate'
   has_many :user_assessments, dependent: :destroy
@@ -58,7 +57,7 @@ class Campaign < ApplicationRecord
   delegate :client, to: :project
   THREESIXTY = 'threesixty'
 
-  enum type: %i[common threesixty]
+  enum type: { common: 0, threesixty: 1 }
   enum status: { active: 0, closed: 1, inactive: 2, archived: 3 }
 
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
@@ -77,7 +76,7 @@ class Campaign < ApplicationRecord
   end
 
   def real_status
-    return 'closed' if end_date && end_date < Time.now
+    return 'closed' if end_date && end_date < Time.zone.now
 
     status
   end
@@ -111,8 +110,8 @@ class Campaign < ApplicationRecord
 
   def clone
     deep_clone(include: %i[
-                 campaign_reports campaign_assessments campaign_assessment_groups campaign_options
-               ])
+      campaign_reports campaign_assessments campaign_assessment_groups campaign_options
+    ])
   end
 
   def timed?

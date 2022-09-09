@@ -8,7 +8,7 @@ class Sheet < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
   belongs_to :campaign
-  has_many :rows, class_name: 'SheetRow', foreign_key: :sheet_id, inverse_of: :sheet, dependent: :destroy
+  has_many :rows, class_name: 'SheetRow', inverse_of: :sheet, dependent: :destroy
 
   def column_names
     columns.map { |col| col['name'] }

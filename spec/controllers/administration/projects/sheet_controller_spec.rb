@@ -23,19 +23,19 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
       }, format: :json
 
       expect(sheet.reload.columns).to eq([
-                                               { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-                                                 'dashboard_use' => true, 'visible_in_list' => true },
-                                               { 'name' => 'test', 'type' => 'String', 'accessor_access' => true,
-                                                 'dashboard_use' => true, 'visible_in_list' => true }
-                                             ])
+        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
+          'dashboard_use' => true, 'visible_in_list' => true },
+        { 'name' => 'test', 'type' => 'String', 'accessor_access' => true,
+          'dashboard_use' => true, 'visible_in_list' => true }
+      ])
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq([
-                                      { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-                                        'dashboard_use' => true, 'visible_in_list' => true },
-                                      { 'name' => 'test', 'type' => 'String', 'accessor_access' => true,
-                                        'dashboard_use' => true, 'visible_in_list' => true }
-                                    ])
+        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
+          'dashboard_use' => true, 'visible_in_list' => true },
+        { 'name' => 'test', 'type' => 'String', 'accessor_access' => true,
+          'dashboard_use' => true, 'visible_in_list' => true }
+      ])
     end
 
     it 'renders error if column is invalid' do
@@ -60,15 +60,15 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
       }, format: :json
 
       expect(sheet.reload.columns).to eq([
-                                               { 'name' => 'Email', 'type' => 'String', 'accessor_access' => false,
-                                                 'dashboard_use' => true, 'visible_in_list' => true }
-                                             ])
+        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => false,
+          'dashboard_use' => true, 'visible_in_list' => true }
+      ])
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq([
-                                      { 'name' => 'Email', 'type' => 'String', 'accessor_access' => false,
-                                        'dashboard_use' => true, 'visible_in_list' => true }
-                                    ])
+        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => false,
+          'dashboard_use' => true, 'visible_in_list' => true }
+      ])
     end
   end
 

@@ -54,7 +54,7 @@ module UsersResults::ControllerConcern
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy
-      render json: { error_message: error_message }, status: :unprocessable_entity
+      render json: { error_message: error_message }, status: 422
     end
   end
 
@@ -69,14 +69,14 @@ module UsersResults::ControllerConcern
   end
 
   def complete_multipart_upload
-    media = @users_result.media_responses.find_by!(id: params[:media_id])
+    media = @users_result.media_responses.find(params[:media_id])
     MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
     render json: media.reload, serializer: MediaResponseSerializer
   end
 
   def mark_as_user_selected_take
-    media = @users_result.media_responses.find_by!(id: params[:media_id])
+    media = @users_result.media_responses.find(params[:media_id])
     MediaResponses::MarkAsUserSelected.call!(media)
     head :ok
   end

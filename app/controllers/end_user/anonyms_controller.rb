@@ -27,7 +27,7 @@ module EndUser
       @user_assessment.update(selected_locale: params[:lang]) if params[:lang]
 
       campaign_user = @campaign_assessment.campaign.campaign_users.find_by(user_id: current_user.id)
-      campaign_user.update(started_at: Time.now) unless campaign_user.started_at
+      campaign_user.update(started_at: Time.zone.now) unless campaign_user.started_at
 
       respond_to do |format|
         format.html { render 'end_user/users/dashboard' }

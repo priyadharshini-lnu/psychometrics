@@ -31,6 +31,6 @@ class MembershipSerializer < ActiveModel::Serializer
   end
 
   def name
-    [object.first_name, object.last_name].reject(&:blank?).join(' ')
+    [object.first_name, object.last_name].compact_blank.join(' ')
   end
 end

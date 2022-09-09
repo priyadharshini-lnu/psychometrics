@@ -16,8 +16,6 @@ module SheetRows
       end
     end
 
-    def sheet
-      context.sheet
-    end
+    delegate :sheet, to: :context
   end
 end

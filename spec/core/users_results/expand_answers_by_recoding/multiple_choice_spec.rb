@@ -14,8 +14,8 @@ describe ::UsersResults::ExpandAnswersByRecoding do
     create(:assessment, id: 184)
     create(:question, id: 17_158, type: 'MultipleChoice')
     create(:question_recoding, question_id: 17_158, assessment_id: 184, props: [
-             { index: 0, value: 1 }, { index: 1, value: 2 }, { index: 2, value: 3 }
-           ])
+      { index: 0, value: 1 }, { index: 1, value: 2 }, { index: 2, value: 3 }
+    ])
   end
 
   it do

@@ -53,7 +53,7 @@ feature 'Operations on communications#index', js: true do
     context 'Sorting by created_at' do
       let!(:new_communication) do
         create(:communication,
-               created_at: Time.current - 100.minutes, client_id: project.id)
+               created_at: 100.minutes.ago, client_id: project.id)
       end
 
       before do

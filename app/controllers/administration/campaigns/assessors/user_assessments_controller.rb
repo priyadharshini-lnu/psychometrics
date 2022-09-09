@@ -28,7 +28,7 @@ module Administration
             render json: user_assessment, serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
                    project_id: campaign.project_id, campaign_id: campaign.id
           else
-            render json: { errors: form.errors.messages }, status: :unprocessable_entity
+            render json: { errors: form.errors.messages }, status: 422
           end
         end
 

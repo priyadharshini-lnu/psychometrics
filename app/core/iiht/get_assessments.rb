@@ -5,7 +5,7 @@ module Iiht
     MAX_RESULT_COUNT = 100
 
     def call
-      data = Rails.cache.fetch("#{uniq_cache_key}/GetAssessments", expires_in: 1.days) do
+      data = Rails.cache.fetch("#{uniq_cache_key}/GetAssessments", expires_in: 1.day) do
         load_assessments
       end
 

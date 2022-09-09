@@ -13,7 +13,7 @@ module Users
     def call
       url = gen_url
       $redis.setex(user.sso_key, TTL, token)
-      broadcast :ok, [url, Time.now + TTL]
+      broadcast :ok, [url, Time.zone.now + TTL]
     end
 
     def gen_url

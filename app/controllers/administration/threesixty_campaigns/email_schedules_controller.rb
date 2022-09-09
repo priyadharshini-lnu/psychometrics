@@ -33,7 +33,7 @@ module Administration
           ::Threesixty::Emails::SendSingleScheduledEmail.call!(email_schedule)
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 
@@ -54,7 +54,7 @@ module Administration
           ::Threesixty::Emails::SendSingleScheduledEmail.call!(resource)
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 
@@ -68,7 +68,7 @@ module Administration
         file = ::Threesixty::GenerateMailHistoryCsv.call!(resource)
 
         respond_to do |format|
-          format.csv { send_data file, filename: "mail_history_#{Time.now}.csv" }
+          format.csv { send_data file, filename: "mail_history_#{Time.zone.now}.csv" }
         end
       end
 

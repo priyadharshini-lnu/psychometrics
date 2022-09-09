@@ -32,11 +32,11 @@ class Block < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
-  after_update :sync_with_template, if: :template
   before_save :dup_for_template, if: :save_as_template
+  after_update :sync_with_template, if: :template
 
   acts_as_list scope: :assessment_id
-  enum view: %i[assessments templates]
+  enum view: { assessments: 0, templates: 1 }
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   # Search entity by word
@@ -90,7 +90,7 @@ class Block < ApplicationRecord
 
   # TODO: check that assign to block have no double request
   def assign_to_assessment_ids=(assessment_ids)
-    ::Assessment.where(id: assessment_ids).each do |assessment|
+    ::Assessment.find_each(id: assessment_ids) do |assessment|
       assessment.blocks << dup_for_assessment!(assessment.id)
     end
   end
