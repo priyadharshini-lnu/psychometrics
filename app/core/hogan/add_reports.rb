@@ -81,7 +81,7 @@ module Hogan
       end
     end
 
-    def call_hogan_api(user_report, package_id = nil, &block)
+    def call_hogan_api(user_report, package_id = nil, &)
       report = user_report.report
 
       Services::Hogan::Api::Json::AddParticipantReport.call({
@@ -93,7 +93,7 @@ module Hogan
         provider: credentials&.provider,
         report_id: package_id || user_report.hogan_report_id,
         suitability_id: report.hogan_report_setting.hogan_suitability_id.presence || ''
-      }, &block)
+      }, &)
     end
 
     def lock_manager
