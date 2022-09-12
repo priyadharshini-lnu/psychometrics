@@ -64,19 +64,27 @@ module Hogan
 
       report_by_package_id_map.each do |package_id, user_reports|
         if package_id.present?
-          call_hogan_api(user_reports.first, package_id)
+          call_hogan_api(user_reports.first, package_id) do
+            on(:ok) do
+              UserReport.where(id: user_reports.pluck(:id)).update_all(external_added: true)
+            end
+          end
         else
           user_reports.each do |user_report|
-            call_hogan_api(user_report)
+            call_hogan_api(user_report) do
+              on(:ok) do
+                user_report.update!(external_added: true)
+              end
+            end
           end
         end
       end
     end
 
-    def call_hogan_api(user_report, package_id = nil)
+    def call_hogan_api(user_report, package_id = nil, &block)
       report = user_report.report
 
-      Services::Hogan::API::JSON::AddParticipantReport.call!(
+      Services::Hogan::API::JSON::AddParticipantReport.call({
         group: group,
         norm_id: report.hogan_report_setting.hogan_norm_id,
         language_id: report.hogan_report_setting.hogan_language_id,
@@ -85,7 +93,7 @@ module Hogan
         provider: credentials&.provider,
         report_id: package_id || user_report.hogan_report_id,
         suitability_id: report.hogan_report_setting.hogan_suitability_id.presence || ''
-      )
+      }, &block)
     end
 
     def lock_manager

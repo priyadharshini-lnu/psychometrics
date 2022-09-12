@@ -4132,7 +4132,8 @@ CREATE TABLE public.user_reports (
     user_access boolean DEFAULT false,
     report_family_id bigint,
     pdf_path character varying,
-    approved boolean DEFAULT false
+    approved boolean DEFAULT false,
+    external_added boolean DEFAULT false
 );
 
 
@@ -9747,6 +9748,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220630112848'),
 ('20220728134015'),
 ('20220729103746'),
-('20220809130239');
+('20220809130239'),
+('20220829100916');
 
 
