@@ -10,7 +10,7 @@ module Administration
 
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        :campaigns, :view, campaign_id: record.id
       )
     end
 

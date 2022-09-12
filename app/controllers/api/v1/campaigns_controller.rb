@@ -4,6 +4,7 @@ module Api
   module V1
     class CampaignsController < Api::V1::BaseController
       before_action :set_campaign, only: %i[show update duplicate assessments_reports get_assessments_reports]
+      before_action :pundit_authorize
 
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
