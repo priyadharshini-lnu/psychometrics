@@ -36,7 +36,12 @@
 }
 
 .sider-menu:global(.ant-menu) {
-  border-inline-end: none;
+  &:global(.ant-menu) {
+    border-inline-end: none;
+  }
+  & :global(.ant-menu-item-selected), :global(.ant-menu-submenu-selected) {
+    color: @text-color;
+  }
 }
 .page-sider--expanded {
   & :global(.ant-menu-item), & :global(.ant-menu-submenu-title) {

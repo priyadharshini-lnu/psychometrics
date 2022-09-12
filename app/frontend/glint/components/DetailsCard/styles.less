@@ -5,7 +5,7 @@
 .btnStyles() {
   min-width: 120px;
   position: relative;
-  text-align: left;
+  text-align: start;
 }
 
 @card-body-padding: @space-4;
@@ -48,7 +48,6 @@
 
 :global(.rtl) {
   .actionButton {
-    text-align: right;
     & .buttonIcon, &:focus .buttonIcon {
       right: unset;
       left: 4px;

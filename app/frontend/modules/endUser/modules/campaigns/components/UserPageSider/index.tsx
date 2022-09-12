@@ -36,11 +36,11 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
   icon: <HomeOutlined className={styles.siderIcon} />,
 }, ...showCampaign ? [{
   key: 'campaign',
-  label: 'Campaign',
+  label: I18n.t('campaign.dashboard_menu.campaign'),
   icon: <RightSquareOutlined className={styles.siderIcon} />,
   children: showInsights !== false ? [
-    { label: 'Tasks', key: 'tasks' },
-    { label: 'Insights', key: 'insights' },
+    { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
+    { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
   ] : [{ label: 'Tasks', key: 'tasks' }],
 }] : [], {
   key: 'profile',

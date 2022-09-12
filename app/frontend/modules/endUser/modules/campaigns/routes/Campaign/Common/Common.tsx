@@ -195,7 +195,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
           <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
             <div className={styles.tasksContainer}>
               <Row>
-                <Col span={24} style={{ paddingLeft: '14px' }}>
+                <Col span={24} style={{ paddingInlineStart: '14px' }}>
                   {canBeginCampaign && (
                     <>
                       <Title className={styles.beginText} level={4}>

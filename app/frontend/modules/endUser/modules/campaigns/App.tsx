@@ -21,6 +21,7 @@ import routes from './routes'
 import styles from './styles.less'
 
 const { antdLocale, I18n } = window
+const PAGE_LOAD_WAIT_TIME = 4000
 
 export default function App () {
   const [pageLoading, setPageLoading] = useState(true)
@@ -33,8 +34,12 @@ export default function App () {
 
   useEffect(() => {
     window.addEventListener('load', pageLoadHandler)
+    const pageLoadTimeout = setTimeout(() => {
+      setPageLoading && setPageLoading(false)
+    }, PAGE_LOAD_WAIT_TIME)
     return () => {
       window.removeEventListener('load', pageLoadHandler)
+      clearTimeout(pageLoadTimeout)
     }
   }, [])
 
