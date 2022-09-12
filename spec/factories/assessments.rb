@@ -33,10 +33,12 @@ FactoryBot.define do
       end
     end
 
-    trait :hogan do
+    factory :hogan_assessment, class: ::Assessments::Hogan do
       category { Assessment::CATEGORIES[:hogan] }
       type { ::Assessments::Hogan }
       dimension { nil }
+
+      after(:create) { |assessment| create(:hogan_assessment_setting, assessment: assessment) }
     end
 
     trait :iiht do

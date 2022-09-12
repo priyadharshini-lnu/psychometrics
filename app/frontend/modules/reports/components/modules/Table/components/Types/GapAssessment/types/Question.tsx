@@ -76,6 +76,8 @@ interface OwnProps {
   assessment_id: PropertiesModel['assessment_id']
   questionsChoices: PropertiesModel['props']['questionsChoices']
   hideValues: boolean
+  noOfItems: number | null
+  gapCutoff: number | null
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -87,6 +89,8 @@ const QuestionTypeComponent: FC<Props> = ({
   questionsChoices,
   getQuestions,
   hideValues,
+  noOfItems,
+  gapCutoff,
 }) => {
   const calculateGaps = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -160,12 +164,16 @@ const QuestionTypeComponent: FC<Props> = ({
     const sortedResults = resultsWithoutHoles.sort(
       (firstResult, secondResult) => secondResult.diff - firstResult.diff,
     )
+
+    const minGap = gapCutoff ?? 0
+    const itemLimit = noOfItems ?? 5
+
     const positiveGaps = sortedResults
-      .filter(result => result.diff > 0)
-      .slice(0, 5)
+      .filter(result => result.diff > 0 && result.diff >= minGap)
+      .slice(0, itemLimit)
     const negativeGaps = sortedResults
-      .filter(result => result.diff < 0)
-      .slice(-5)
+      .filter(result => result.diff < 0 && result.diff <= -minGap)
+      .slice(-itemLimit)
       .reverse()
 
     return [positiveGaps, negativeGaps]
