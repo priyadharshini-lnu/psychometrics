@@ -106,7 +106,8 @@ module Api
 
       def campaign_params
         params.permit(
-          :name, :status, :start_date, :end_date, :fixed_time, :duration, :enable_instructions, :instructions
+          :name, :status, :start_date, :end_date, :fixed_time, :duration, :enable_instructions, :instructions,
+          :description
         )
       end
 

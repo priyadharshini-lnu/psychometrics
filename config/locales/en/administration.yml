@@ -588,6 +588,10 @@ en:
         status: Status
         type: Type
       options:
+        description:
+          name: Description
+          save: Save Description
+          save_success: Description saved successfully
         duration: ''
         fixed_time: Fixed Time
         instructions:

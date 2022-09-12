@@ -2,7 +2,8 @@
 
 module EndUser
   class ShortCampaignSerializer < ActiveModel::Serializer
-    attributes :id, :name, :type, :status, :completion_percentage, :progress_status, :user_reports_available
+    attributes :id, :name, :type, :status, :completion_percentage, :progress_status, :user_reports_available,
+               :description
 
     def completion_percentage
       uas = instance_options[:current_user].user_assessments.where(campaign: object)
@@ -18,6 +19,10 @@ module EndUser
 
     def user_reports_available
       object.user_reports.exists?(user_id: instance_options[:current_user], user_access: true)
+    end
+
+    def description
+      object.campaign_options.description
     end
   end
 end

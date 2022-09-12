@@ -12,10 +12,12 @@ module Campaigns
       attribute :identification, Integer
       attribute :proctoring_enabled, { String => Boolean }
       attribute :rules, Hash
+      attribute :description, String
 
       validates :campaign_id, presence: true
       validates :fixed_time_duration, numericality: { only_integer: true }, allow_nil: true
       validates :time_zone, inclusion: { in: ActiveSupport::TimeZone::MAPPING.values }, allow_nil: true
+      validates :description, length: { maximum: 500 }
     end
   end
 end

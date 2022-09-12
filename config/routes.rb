@@ -317,6 +317,7 @@ Rails.application.routes.draw do
           member do
             get :fetch_campaign_options
             get :fetch_campaign_instructions
+            get :fetch_descriptions
             put :update_campaign_options
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end

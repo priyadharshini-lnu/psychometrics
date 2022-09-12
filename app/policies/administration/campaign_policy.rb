@@ -127,6 +127,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end
 
+    def fetch_descriptions?
+      can_manage_options?
+    end
+
     def update_campaign_options?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_options, project_id: project_id, campaign_id: campaign_id
@@ -203,6 +207,10 @@ module Administration
       @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
+    end
+
+    def can_manage_options?
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end
 
     class Scope < Scope

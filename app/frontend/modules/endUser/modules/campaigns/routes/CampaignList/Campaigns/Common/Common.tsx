@@ -32,7 +32,7 @@ export const Common = ({ campaign }) => {
           </>
         )}
         progressPercentage={totalProgress}
-        // description={campaign.description}
+        description={campaign.description}
         /* buttonText will be dynnamic in future based on progress status */
         buttonText={I18n.t('campaign.details')}
         handleButtonClick={handleClick}

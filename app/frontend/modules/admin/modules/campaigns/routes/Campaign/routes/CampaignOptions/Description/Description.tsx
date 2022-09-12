@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import Editor from 'components/Editor'
-import NotificationDispatcher from 'libs/library/dispatchers/NotificationDispatcher'
 import {
-  Row, Col, Button, Select,
+  Row, Col, Button, Select, Input, Typography, message,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import find from 'lodash/find'
 import {
-  fetchInstructions,
+  fetchDescriptions,
   update,
-  updateInstructions,
+  updateDescriptions,
   get as getCampaignOptions,
 } from 'modules/admin/modules/campaigns/core/campaignOptions'
 import { RootState } from 'modules/admin/core/rootReducers'
 
-import { SafeHTML } from 'components/SafeHTML'
-
-import styles from './styles.less'
+import styles from './Description.less'
 
 const { I18n } = window
 
-interface OwnProps {
-  projectId: number
-  campaignId: number
-}
 
 const connecter = connect(
   (state: RootState) => ({
@@ -32,57 +24,64 @@ const connecter = connect(
     availableLocales: state.config.availableLocales,
   }),
   {
-    fetchInstructions,
+    fetchDescriptions,
     update,
-    updateInstructions,
+    updateDescriptions,
   },
 )
-
+interface OwnProps {
+  projectId: number
+  campaignId: number
+}
 export type PropsFromRedux = ConnectedProps<typeof connecter>
+export type Props = OwnProps & PropsFromRedux
+const { TextArea } = Input
+const { Text } = Typography
 
-
-const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
+const DescriptionComponent: React.FC<Props> = ({
   options,
-  fetchInstructions, update, projectId, campaignId, availableLocales, updateInstructions,
+  fetchDescriptions, update, projectId, campaignId, availableLocales, updateDescriptions,
 }) => {
   const [savingInProgress, setSavingInProgress] = useState(false)
   const [leftLocale, setLeftLocale] = useState('en')
-  const [rightLocale, setRightLocale] = useState(null)
+  const [rightLocale, setRightLocale] = useState<string | null>(null)
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   useEffect(() => {
-    fetchInstructions(projectId, campaignId, [leftLocale, rightLocale])
+    fetchDescriptions(projectId, campaignId, [leftLocale, rightLocale])
   }, [])
 
 
-  const updateLeftLocale = (locale) => {
+  const updateLeftLocale = (locale: string) => {
     setLeftLocale(locale)
-    fetchInstructions(projectId, campaignId, [locale, rightLocale])
+    fetchDescriptions(projectId, campaignId, [locale, rightLocale])
   }
 
-  const updateRightLocale = (locale) => {
+  const updateRightLocale = (locale: string) => {
     setRightLocale(locale)
-    fetchInstructions(projectId, campaignId, [leftLocale, locale])
+    fetchDescriptions(projectId, campaignId, [leftLocale, locale])
   }
 
-  const saveInstructions = () => {
+  const saveDescriptions = () => {
     setSavingInProgress(true)
     update(
       projectId, campaignId, { ...options, ...selectedLeftLocale }, leftLocale,
     ).then(() => {
+      setErrors({})
+      message.success(I18n.t('administration.campaigns.options.description.save_success'))
+    }).catch(setErrors).finally(() => {
       setSavingInProgress(false)
-      NotificationDispatcher.notify({ message: I18n.t('administration.campaigns.options.instructions.actions.saved') })
     })
   }
 
-  const selectedLeftLocale = find(options.instructionsWithLocales, (
+  const selectedLeftLocale = find(options.descriptionsWithLocales, (
     { locale },
   ) => locale === leftLocale)
-  const selectedRightLocale = find(options.instructionsWithLocales, (
+  const selectedRightLocale = find(options.descriptionsWithLocales, (
     { locale },
   ) => locale === rightLocale)
 
   return (
-
     <Row>
       <Col span={24}>
         <div className="display-flex justify-content-space-between mt8">
@@ -99,7 +98,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
               <Select.Option value="">
                 {I18n.t('empty')}
               </Select.Option>
-              {(options.availableInstructionLocales || []).map(locale => (
+              {(options.availableDescriptionLocales || []).map(locale => (
                 <Select.Option key={locale} value={locale}>
                   {I18n.t(`languages.${locale}`)}
                 </Select.Option>
@@ -110,35 +109,34 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
       </Col>
       <Col span={24}>
         <div className="display-flex">
-          <Editor
-            type={null}
-            details={null}
+          <TextArea
+            rows={3}
             className="flex1"
-            content={selectedLeftLocale ? selectedLeftLocale.instructions : ''}
-            handleContentChange={(value) => { updateInstructions(value, leftLocale) }}
+            value={selectedLeftLocale?.description ? selectedLeftLocale.description : ''}
+            onChange={({ target: { value } }) => { updateDescriptions(value, leftLocale) }}
+            status={errors?.description ? 'error' : ''}
           />
           {rightLocale && (
           <div className={styles.comparisonBody}>
-            <SafeHTML
-              html={selectedRightLocale ? selectedRightLocale.instructions : ''}
-              config="adminRichText"
-              className="m16"
-            />
+            <div className="m16">
+              {selectedRightLocale ? selectedRightLocale.description : ''}
+            </div>
           </div>
           )}
         </div>
+        {errors?.description && <div><Text type="danger">{errors?.description}</Text></div>}
         <Button
           type="primary"
           className="mtm"
-          onClick={saveInstructions}
+          onClick={saveDescriptions}
           loading={savingInProgress}
         >
           <SaveOutlined />
-          {I18n.t('administration.campaigns.options.instructions.save')}
+          {I18n.t('administration.campaigns.options.description.save')}
         </Button>
       </Col>
     </Row>
   )
 }
 
-export default connecter(Instructions)
+export const Description = connecter(DescriptionComponent)

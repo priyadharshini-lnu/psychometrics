@@ -16,6 +16,7 @@ module Campaigns
       res['campaign_options_attributes']['fixed_time'] = res.delete 'fixed_time' unless res['fixed_time'].nil?
       res['campaign_options_attributes']['fixed_time_duration'] = res.delete 'duration' unless res['duration'].nil?
       res['campaign_options_attributes']['instructions'] = res.delete 'instructions' unless res['instructions'].nil?
+      res['campaign_options_attributes']['description'] = res.delete 'description' unless res['description'].nil?
       unless res['enable_instructions'].nil?
         res['campaign_options_attributes']['instructions_enabled'] = res.delete 'enable_instructions'
       end

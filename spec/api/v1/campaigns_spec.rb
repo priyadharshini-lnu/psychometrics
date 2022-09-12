@@ -247,6 +247,7 @@ assessments and reports.'
         examples 'application/json' => {
           id: 770,
           name: 'Campaign 1',
+          description: 'Campaign Description',
           status: 'active',
           instructions: 'Instr',
           enable_instructions: true,
@@ -268,7 +269,8 @@ assessments and reports.'
             fixed_time: true,
             duration: 111,
             enable_instructions: true,
-            instructions: '<div>My Instructions</div>'
+            instructions: '<div>My Instructions</div>',
+            description: 'Campaign Description'
           }
         end
 
@@ -283,6 +285,7 @@ assessments and reports.'
           expect(campaign['duration']).to eq 111
           expect(campaign['enable_instructions']).to eq true
           expect(campaign['instructions']).to eq '<div>My Instructions</div>'
+          expect(campaign['description']).to eq 'Campaign Description'
         end
       end
     end
@@ -325,7 +328,8 @@ assessments and reports.'
             fixed_time: true,
             duration: 111,
             enable_instructions: true,
-            instructions: '<div>New Instructions</div>'
+            instructions: '<div>New Instructions</div>',
+            description: 'New Description'
           }
         end
 
@@ -335,6 +339,7 @@ assessments and reports.'
           expect(campaign['name']).to eq 'upd_camp1'
           expect(campaign['status']).to eq 'inactive'
           expect(campaign['instructions']).to eq '<div>New Instructions</div>'
+          expect(campaign['description']).to eq 'New Description'
         end
       end
     end

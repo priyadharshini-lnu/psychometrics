@@ -1,3 +1,5 @@
+import * as t from 'io-ts'
+
 export default interface Campaign {
   id: number
   projectId: number
@@ -37,6 +39,8 @@ export interface InstructionsWithLocale {
   locale: string
 }
 
+export const DescriptionWithLocaleTR = t.type({ description: t.union([t.string, t.null]), locale: t.string })
+export type DescriptionWithLocale = t.TypeOf<typeof DescriptionWithLocaleTR>
 export interface CampaignOptions {
   timeZone?: string
   fixedTime: boolean
@@ -46,5 +50,7 @@ export interface CampaignOptions {
   proctoringEnabled: boolean
   rules: object
   identification: string
-  availableLocales: string[]
+  availableInstructionLocales: string[]
+  descriptionsWithLocales: DescriptionWithLocale[]
+  availableDescriptionLocales: string[]
 }

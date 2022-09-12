@@ -266,7 +266,8 @@ module Swagger
             fixed_time: { type: 'boolean', 'x-nullable': true },
             duration: { type: 'integer', 'x-nullable': true },
             enable_instructions: { type: 'boolean', 'x-nullable': true },
-            instructions: { type: 'string', 'x-nullable': true }
+            instructions: { type: 'string', 'x-nullable': true },
+            description: { type: 'string', 'x-nullable': true }
           }
         },
         UpdatedCampaign: {
@@ -279,7 +280,8 @@ module Swagger
             fixed_time: { type: 'boolean', 'x-nullable': true },
             duration: { type: 'integer', 'x-nullable': true },
             enable_instructions: { type: 'boolean', 'x-nullable': true },
-            instructions: { type: 'string', 'x-nullable': true }
+            instructions: { type: 'string', 'x-nullable': true },
+            description: { type: 'string', 'x-nullable': true }
           }
         },
         Campaign: {
@@ -295,7 +297,8 @@ module Swagger
             enable_instructions: { type: 'boolean', 'x-nullable': true },
             instructions: { type: 'string', 'x-nullable': true },
             created_at: { type: 'string', 'x-nullable': true },
-            updated_at: { type: 'string', 'x-nullable': true }
+            updated_at: { type: 'string', 'x-nullable': true },
+            description: { type: 'string', 'x-nullable': true }
           }
         },
         UserCampaign: {

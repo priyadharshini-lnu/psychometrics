@@ -67,7 +67,9 @@ export const DetailsCard: FC<DetailsCardProps> = ({
         <Row align="middle">
           {subtitle}
         </Row>
-        <p>{description}</p>
+        <div className="mb-4">
+          <Typography.Text>{description}</Typography.Text>
+        </div>
       </Space>
       <Row className={styles.cardFooter}>
         <Col lg={progressBarSpan} md={8} xs={12}>

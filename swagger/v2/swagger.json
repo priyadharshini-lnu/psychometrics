@@ -1250,7 +1250,7 @@
                         60,
                         90
                       ],
-                      "nullable": false
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -1402,7 +1402,7 @@
                       60,
                       90
                     ],
-                    "nullable": false
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -1462,7 +1462,7 @@
                       60,
                       90
                     ],
-                    "nullable": false
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -1562,7 +1562,7 @@
                       60,
                       90
                     ],
-                    "nullable": false
+                    "nullable": true
                   }
                 },
                 "required": [
