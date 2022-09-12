@@ -43,7 +43,8 @@ interface Meta extends BaseMeta{
 const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
-    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource, createResource,
+    currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource,
+    createResource,
     requests,
   } = useResources<Client, Meta>(
     'clients',

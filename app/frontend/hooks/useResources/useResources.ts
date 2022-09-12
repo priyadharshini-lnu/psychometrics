@@ -1,4 +1,4 @@
-import { useClient } from '@thetalententerprise/jsonapi-react'
+import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
@@ -17,7 +17,7 @@ import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
   Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
-  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource,
+  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction,
 } from './interfaces'
 import { formatErrors, defaultState } from './utils'
 
@@ -120,6 +120,129 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     })
   }
 
+  const handleCustomMemberDeleteAction = (
+    args: { id: string, action: string, updateStore?: boolean, apiConfig?: ApiConfig},
+  ) => {
+    const {
+      id, action, apiConfig, updateStore,
+    } = args
+    const requestKey: RequestType = `${action}/delete@${id}`
+
+    return new Promise(async (resolve, reject) => {
+      const { error, errors } = await client.delete([resourceName, id, action, apiConfig || {}])
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
+        if (updateStore) setData(data.filter(r => r.id !== id))
+        resolve(null)
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const memberAction = (
+    args: {
+      id: string, action: string, method: HttpAction,
+      body?: Record<string, unknown>,
+      updateStore?: boolean, responseType?: ResponseType, apiConfig?: ApiConfig
+    },
+  ) => {
+    const {
+      id, action, method, body, apiConfig, updateStore,
+    } = { apiConfig: options.apiConfig, ...args }
+    const memberResponseType = options.responseType || responseType
+    const requestKey: RequestType = `${action}/${method}@${id}`
+    setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
+
+    if (method === 'delete') {
+      return handleCustomMemberDeleteAction({
+        id, action, updateStore, apiConfig,
+      })
+    }
+
+    return new Promise(async (resolve, reject) => {
+      let response: IResult<R> | null = null
+      if (method === 'get') {
+        response = await client.fetch<R>([resourceName, id, action, apiConfig || {}])
+      } else {
+        response = await client.mutate<R>(
+          [resourceName, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+        )
+      }
+      const { data, error, errors } = response
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
+        const camelizedData = humps.camelizeKeys(data)
+        if (updateStore) updateIndividualRecord(camelizedData)
+        resolve(camelizedData)
+        responseTypeValidation(memberResponseType, camelizedData)
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const collectionAction = (
+    args: {
+      action: string, method: HttpAction,
+      body?: Record<string, unknown>,
+      updateStore?: boolean, responseType?: ResponseType, apiConfig?: ApiConfig
+    },
+  ) => {
+    const {
+      action, method, body, apiConfig,
+    } = { apiConfig: options.apiConfig, ...args }
+    const memberResponseType = options.responseType || responseType
+    const requestKey: RequestType = `${action}/${method}`
+    setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
+
+    return new Promise(async (resolve, reject) => {
+      let response: IResult<Record<string, string> | Record<string, string>[]> | null = null
+      if (method === 'get') {
+        response = await client.fetch<R>([resourceName, action, apiConfig || {}])
+      } else if (method === 'delete') {
+        response = await client.delete([resourceName, action, apiConfig || {}])
+      } else {
+        response = await client.mutate<R>(
+          [resourceName, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+        )
+      }
+      const { data, error, errors } = response
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
+        const camelizedData = humps.camelizeKeys(data)
+        resolve(camelizedData)
+        responseTypeValidation(memberResponseType, camelizedData)
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const updateIndividualRecord = (camelizedResponse) => {
+    setState((previousState: ResourceState<R[], M>) => {
+      let { data } = previousState
+      let updated = false
+      if (data.length === 0) {
+        updated = true
+        data = [camelizedResponse]
+      } else {
+        data = previousState.data.map((resource) => {
+          if (resource.id === camelizedResponse.id) {
+            updated = true
+            return camelizedResponse
+          }
+          return resource
+        })
+        if (!updated) data = [camelizedResponse, ...previousState.data]
+      }
+      return { ...previousState, data }
+    })
+  }
+
   const fetchSingle = async (
     args: { id: string, responseType?: ResponseType, apiConfig?: ApiConfig },
   ) => {
@@ -135,20 +258,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
-
-        setState((previousState: ResourceState<R[], M>) => {
-          let { data } = previousState
-          if (data.length === 0) {
-            data = [camelizedResponse]
-          } else {
-            data = previousState.data.map((resource) => {
-              if (resource.id === camelizedResponse.id) return camelizedResponse
-              return resource
-            })
-            if (previousState.data.length === data.length) data = [camelizedResponse, ...previousState.data]
-          }
-          return { ...previousState, data }
-        })
+        updateIndividualRecord(response)
         resolve(camelizedResponse)
         if (responseType || args.responseType) {
           responseTypeValidation(args.responseType || responseType, camelizedResponse)
@@ -163,13 +273,13 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const getResource = (id: string) => state.data.find(d => d.id === id)
 
   const createResource: CreateResource<R> = async (
-    attributes, args = { apiConfig },
+    body, args = { apiConfig },
   ) => {
     setRequests({ ...requests, add: { status: RequestStatus.Loading } })
 
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, apiConfig || {}], humps.decamelizeKeys(attributes),
+        [resourceName, apiConfig || {}], humps.decamelizeKeys(body),
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
@@ -186,13 +296,13 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const updateResource: UpdateResource<R> = async (details, args = { apiConfig }) => {
-    const { id, ...attributes } = details
+    const { id, ...body } = details
 
     const requestKey: RequestType = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, id, apiConfig || {}], humps.decamelizeKeys(attributes),
+        [resourceName, id, apiConfig || {}], humps.decamelizeKeys(body),
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
@@ -331,5 +441,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     getErrors,
     isLoading,
     isRequestSuccessful,
+    memberAction,
+    collectionAction,
   }
 }

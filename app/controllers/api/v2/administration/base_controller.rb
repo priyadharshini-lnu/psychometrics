@@ -4,19 +4,24 @@ module Api
   class V2::Administration::BaseController < ActionController::Base
     include JSONAPI::Utils
     include V2::Administration::Concerns::ApiController
+    include Pundit
 
     ACTION_TO_SCHEMA_NAME = {
       create: :create_request, update: :update_request, create_relationship:
       :create_relationship_request, update_relationship: :update_relationship_request
     }.freeze
+    JSON_API_ACTIONS = %i[index show create update destroy get_related_resource show_relationship
+                          create_relationship update_relationship destroy_relationship].freeze
 
     protect_from_forgery with: :null_session
     class_attribute :_crud_schema_class, :_request_schemas
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
+    append_after_action :verify_authorized, except: JSON_API_ACTIONS
 
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     def self.validate_crud_requests(schema_class)
       self._crud_schema_class = schema_class
@@ -81,6 +86,15 @@ module Api
         }
       end
       { errors: errors }
+    end
+
+    def user_not_authorized
+      errors = [{
+        title: I18n.t('errors.forbidden'),
+        status: 403
+      }]
+
+      render json: { errors: errors }, status: 403
     end
 
     def context

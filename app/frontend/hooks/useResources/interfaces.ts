@@ -7,7 +7,10 @@ export enum RequestStatus {
   Failed = 'failed',
 }
 
+export type HttpAction = 'get' | 'post' | 'put' | 'patch' | 'delete'
+
 export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}` | `fetch@${string}`
+  | `${string}/${HttpAction}@${string}` | `${string}/${HttpAction}`
 
 export type Requests = {
   [key in RequestType]?: {
@@ -69,3 +72,7 @@ export type UpdateResource<R> =
   (attribute: { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: ExtraArgs) => Promise<R>
 
 export type RemoveResource = (id: string, args?: ExtraArgs) => Promise<void>
+
+export interface MemberActionOptions {
+  responseType?: ResponseType
+}

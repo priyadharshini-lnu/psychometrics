@@ -42,6 +42,6 @@ module Api::V2::Administration::Concerns::ApiController
     error = error.merge(detail: e.more_info) if e.more_info
     error = error.merge(meta: e.meta) if e.meta
 
-    render json: [error], status: e.status
+    render json: { errors: [error] }, status: e.status
   end
 end
