@@ -159,7 +159,7 @@ export default function ReportPreview ({
         >
           {userReport.richEditorOpened && (
             <Affix className={styles.affix}>
-              <div style={{ zIndex: 9999 }} key="editor" id="froala-editor-toolbar" />
+              <div className={styles.toolbar} style={{ zIndex: 9999 }} key="editor" id="froala-editor-toolbar" />
             </Affix>
           )}
           <Row justify="space-between" style={{ border: '1px solid #ccc' }}>

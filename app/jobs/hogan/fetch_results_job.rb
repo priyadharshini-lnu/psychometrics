@@ -11,6 +11,7 @@ module Hogan
 
       Hogan::FetchResults.call(user_result, credentials, project) do
         on(:not_completed) { raise StandardError, 'Unable to fetch hogan report' }
+        on(:failed_to_add_report_in_hogan) { raise StandardError, 'Failed to add report in hogan' }
       end
     end
   end

@@ -16,6 +16,7 @@ export const GapAssessment: FC<Props> = ({ model }) => {
   const {
     props: {
       sourceType, filter, factorIds, questionsChoices, gapType = GapType.ALL, hideValues = false,
+      noOfItems, gapCutoff,
     },
     assessment_id,
   } = model
@@ -46,6 +47,8 @@ export const GapAssessment: FC<Props> = ({ model }) => {
             filters={[firstFilter, secondFilter]}
             factorIds={factorIds}
             hideValues={hideValues}
+            noOfItems={noOfItems}
+            gapCutoff={gapCutoff}
           />
         )}
         {sourceType === 'Question' && (
@@ -55,6 +58,8 @@ export const GapAssessment: FC<Props> = ({ model }) => {
             filters={[firstFilter, secondFilter]}
             questionsChoices={questionsChoices}
             hideValues={hideValues}
+            noOfItems={noOfItems}
+            gapCutoff={gapCutoff}
           />
         )}
       </Suspense>
