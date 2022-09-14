@@ -115,7 +115,7 @@ function ProfileComponent ({
             <Col span={24}>
               <Title level={3}>{I18n.t('profile.title')}</Title>
               <Row gutter={64}>
-                <Col span={8}>
+                <Col xs={24} sm={24} md={12} lg={8}>
                   <Form.Item>
                     <Upload
                       listType="picture-card"
@@ -139,7 +139,7 @@ function ProfileComponent ({
                     </Upload>
                   </Form.Item>
                 </Col>
-                <Col span={16}>
+                <Col xs={24} sm={24} md={12} lg={16}>
                   <Form
                     layout="vertical"
                     initialValues={user}
@@ -147,12 +147,12 @@ function ProfileComponent ({
                     className={styles.form}
                   >
                     <Row gutter={24}>
-                      <Col span={12}>
+                      <Col xs={24} sm={24} md={12}>
                         <Form.Item name="firstName" label={I18n.t('profile.first_name')}>
                           <Input size="large" />
                         </Form.Item>
                       </Col>
-                      <Col span={12}>
+                      <Col xs={24} sm={24} md={12}>
                         <Form.Item name="lastName" label={I18n.t('profile.last_name')}>
                           <Input size="large" />
                         </Form.Item>
@@ -161,6 +161,33 @@ function ProfileComponent ({
                     <Form.Item name="email" label={I18n.t('profile.email')}>
                       <Input size="large" disabled />
                     </Form.Item>
+
+                    <Row gutter={24}>
+                      <Col xs={24} sm={24} md={12}>
+                        <Form.Item name="age" label={I18n.t('profile.age')}>
+                          <Input size="large" />
+                        </Form.Item>
+                      </Col>
+                      <Col xs={24} sm={24} md={12}>
+                        <Form.Item name="gender" label={I18n.t('profile.gender')}>
+                          <Select size="large">
+                            <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
+                            <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
+                          </Select>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+
+                    <Form.Item name="locale" label={I18n.t('profile.locale')}>
+                      <Select
+                        size="large"
+                      >
+                        <Select.Option value="en">{I18n.t('languages.en')}</Select.Option>
+                        <Select.Option value="ar">{I18n.t('languages.ar')}</Select.Option>
+                        <Select.Option value="de">{I18n.t('languages.de')}</Select.Option>
+                      </Select>
+                    </Form.Item>
+
                     <Form.Item name="timezone" label={I18n.t('profile.timezone')}>
                       <Select
                         size="large"
@@ -204,7 +231,7 @@ function ProfileComponent ({
                     )}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
-                        <Col key={field.id} span={field.half_size ? 12 : 24}>
+                        <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
                           <Form.Item
                             hasFeedback
                             help={errors[field.name]}

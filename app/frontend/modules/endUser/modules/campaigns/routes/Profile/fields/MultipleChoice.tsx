@@ -14,9 +14,48 @@ interface Props {
       choicesTexts: string[]
     }
   }
-  value: string
+  value: string | string[]
   defaultValue?: string
-  onChange: (value:string) => void
+  onChange: (value:string | string[]) => void
+}
+
+const MultipleOptions = ({
+  field, value, onChange, defaultValue,
+}) => {
+  const {
+    id,
+    props: { choices },
+  } = field
+
+  const change = (e) => {
+    if (_.includes(value, e.target.value.toString())) {
+      onChange(_.filter(value, v => v !== e.target.value.toString()))
+    } else {
+      onChange([...(value || []), e.target.value.toString()])
+    }
+  }
+  return (
+    <>
+      {_.times(choices, (choiceId) => {
+        const choice = _.includes((value ?? defaultValue), choiceId.toString())
+        return (
+          <label className={`${styles.label}`}>
+            <span className={cs('fa fa-check', styles.checkIcon)} />
+            <Checkbox
+              type="checkbox"
+              name={`${id}`}
+              value={choiceId}
+              checked={choice}
+              onChange={change}
+            />
+            <span className={styles.option}>
+              {field.props.choicesTexts[choiceId]}
+            </span>
+          </label>
+        )
+      })}
+    </>
+  )
 }
 
 export const MultipleChoice: FC<Props> = ({
@@ -26,10 +65,10 @@ export const MultipleChoice: FC<Props> = ({
     id,
     props: { choices },
   } = field
-
   const change = (e) => {
     onChange(e.target.value)
   }
+
   if (field.props.type === 'SingleAnswer') {
     return (
       <>
@@ -56,28 +95,7 @@ export const MultipleChoice: FC<Props> = ({
   }
 
   if (field.props.type === 'MultipleAnswer') {
-    return (
-      <>
-        {_.times(choices, (choiceId) => {
-          const choice = +(value ?? defaultValue) === choiceId
-          return (
-            <label className={`${styles.label}`}>
-              <span className={cs('fa fa-check', styles.checkIcon)} />
-              <Checkbox
-                type="checkbox"
-                name={`${id}`}
-                value={choiceId}
-                checked={choice}
-                onChange={change}
-              />
-              <span className={styles.option}>
-                {field.props.choicesTexts[choiceId]}
-              </span>
-            </label>
-          )
-        })}
-      </>
-    )
+    return <MultipleOptions field={field} value={value} onChange={onChange} defaultValue={defaultValue} />
   }
 
   if (field.props.type === 'Dropdown') {
