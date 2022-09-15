@@ -6,6 +6,7 @@ module Api
     validate_crud_requests Api::V2::Dashboard::Schema
 
     def upload_image
+      authorize Dashboard, :update?, policy_class: ::Api::Administration::DashboardPolicy
       if dashboard.update(image_upload_params)
         render json: { image: dashboard.image&.url }
       else
@@ -14,6 +15,7 @@ module Api
     end
 
     def refresh
+      authorize Dashboard, :update?, policy_class: ::Api::Administration::DashboardPolicy
       Dashboards::RefreshData.call(dashboard) do
         on(:ok) { head :ok }
         on(:error) do |message|
