@@ -110,6 +110,7 @@ const vendors = [
   'esprima',
   'fbemitter',
   'ajv',
+  'jsonpath',
 ]
 
 const vendors2 = [

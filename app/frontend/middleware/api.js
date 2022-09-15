@@ -1,5 +1,6 @@
 import axios from 'axios'
 import queryString from 'qs'
+import { camelizeKeys } from 'utils/object'
 import humps from 'humps'
 import { LOADING, LOADING_COMPLETE, setResponseDataMismatched } from 'modules/admin/core/request'
 import { setIn } from 'utils/immutable'
@@ -69,7 +70,7 @@ const apiMiddleware = () => next => (action) => {
     request,
     request: {
       method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
-      camelizeErrors = true,
+      camelizeErrors = true, camelizeExcept, camelizeOnly,
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`
@@ -92,7 +93,7 @@ const apiMiddleware = () => next => (action) => {
     })
     .then(({ data, headers }) => {
       if (responseType === 'blob') { downloadFile(data, headers) }
-      const transformedData = camelize ? humps.camelizeKeys(data) : data
+      const transformedData = camelize ? camelizeKeys(data, { except: camelizeExcept, only: camelizeOnly }) : data
       if (window.PsyGlobalState.realEnv !== 'production' && !validResponseData({
         typedResponse, transformedData, requestName: SUCCESS, next,
       })) {
@@ -107,7 +108,7 @@ const apiMiddleware = () => next => (action) => {
     .catch((error) => {
       if (error.response) {
         const errors = camelizeErrors ? humps.camelizeKeys(error.response.data.errors) : error.response.data.errors
-        next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
+        next({ type: FAILURE, errors })
         throw errors
       } else {
         throw error

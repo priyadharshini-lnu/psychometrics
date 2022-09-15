@@ -14,6 +14,7 @@ export interface Request<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any
   typedResponse?: t.Type<T>
+  camelizeExcept?: string[]
 }
 export default interface ApiAction<T> extends AnyAction {
   request: Request<T>
