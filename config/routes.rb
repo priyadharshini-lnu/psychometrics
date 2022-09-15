@@ -92,7 +92,7 @@ Rails.application.routes.draw do
   #
   namespace :administration do
     get 'dashboards', to: 'dashboards#index', as: :dashboard
-    get 'dashboards/*all', to: 'dashboards#dashboards', constraints: { all: /.*/ }
+    get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'
 
     resource :profiles, only: %i[update edit]
