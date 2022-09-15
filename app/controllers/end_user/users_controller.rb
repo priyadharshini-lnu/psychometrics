@@ -15,21 +15,19 @@ class EndUser::UsersController < ApplicationController
 
   # rubocop:disable Metrics/AbcSize
   def dashboard # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-    return render 'end_user/users/dashboard' if show_new_end_user_view?
-
-    subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
-    evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
-    user_campaigns = current_user.campaign_users.where(active: true).pluck(:campaign_id) |
-                     subject_campaigns | evaluator_campaigns
-
-    campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
-                includes(:threesixty_campaign).group_by(&:type)
-
     respond_to do |format|
       format.html do
-        redirect_to select_campaign_url(campaigns.values.flatten.first) if campaigns.values.flatten.size == 1
+        render 'end_user/users/dashboard'
       end
       format.json do
+        subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
+        evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
+        user_campaigns = current_user.campaign_users.where(active: true).pluck(:campaign_id) |
+                         subject_campaigns | evaluator_campaigns
+
+        campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
+                    includes(:threesixty_campaign).group_by(&:type)
+
         json = @single_assigns.uniq.filter_map do |assign|
           next if assign.membership.client.migrated?
 
@@ -53,12 +51,6 @@ class EndUser::UsersController < ApplicationController
     end
   end
   # rubocop:enable Metrics/AbcSize
-
-  def switch_end_user_view
-    cookies[:end_user_view] = params[:view] == 'new' ? 'new' : 'old'
-
-    redirect_to root_path
-  end
 
   def accept_privacy
     current_user.create_privacy_consent!

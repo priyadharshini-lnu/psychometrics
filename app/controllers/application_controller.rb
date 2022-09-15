@@ -17,8 +17,6 @@ class ApplicationController < ::BaseController
 
   DOMAIN_REGEXP = %r{^(https?://.+\.)com}
 
-  helper_method :show_new_end_user_view?
-
   # Sets particular layout in depends of conditions
   #
   def layout_by_resource
@@ -36,12 +34,6 @@ class ApplicationController < ::BaseController
       current_project: @current_project,
       current_membership: @current_membership
     }
-  end
-
-  def show_new_end_user_view?
-    return false unless request.format == 'html'
-
-    Settings.features.new_end_user_view && cookies[:end_user_view] == 'new'
   end
 
   protected

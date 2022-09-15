@@ -41,7 +41,7 @@ html dir=dir
   - if @current_project&.enable_live_chat?
     javascript:
       window.chatwootSettings = {
-        hideMessageBubble: #{show_new_end_user_view?},
+        hideMessageBubble: true,
       };
       (function(d,t) {
         var state = #{@init_state.to_json.html_safe};
