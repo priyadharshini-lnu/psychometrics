@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import {
-  Typography, Avatar, Row, Col,
+  Avatar, Row, Col,
 } from 'antd'
-import { ClockCircleOutlined } from '@ant-design/icons'
 import { DetailsCard } from 'glint'
 import { useHistory } from 'react-router-dom'
 
@@ -14,6 +13,7 @@ import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessme
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 import { secondsLeftFromNow } from 'utils/time'
 
+import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
 import { PrivacyModal } from '../PrivacyModal'
 import { TimingModal } from '../TimingModal'
@@ -22,7 +22,6 @@ import { LanguageModal } from '../LanguageModal'
 import styles from './styles.less'
 
 const { I18n } = window
-const { Text } = Typography
 
 interface Props {
   userAssessment: UserAssessment
@@ -159,14 +158,7 @@ export const InternalAssessment: React.FC<Props> = ({
         handleButtonClick={status === 'not_started' ? handleBeginAssessment : handleContinueAssessment}
         subtitle={(
           <>
-            {timing && (
-              <div>
-                <ClockCircleOutlined className={styles.timeIcon} />
-                <Text type="secondary">
-                  {timing}
-                </Text>
-              </div>
-            )}
+            {timing && <TimerText text={timing} />}
           </>
       )}
       />

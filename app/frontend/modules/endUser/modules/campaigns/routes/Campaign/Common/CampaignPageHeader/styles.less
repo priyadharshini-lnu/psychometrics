@@ -1,9 +1,14 @@
-@import 'styles/ant.variable.less';
-@import 'styles/spacing.less';
+@import "styles/ant.variable.less";
+@import "styles/spacing.less";
 
-.campaignHeader:global(.ant-page-header) {
-  background-color: var(--ant-primary-color);
-  padding-block: @space-2;
+.campaignHeader {
+  &:global(.ant-page-header) {
+    background-color: var(--ant-primary-color);
+    padding-block: @space-2;
+  }
+  & :global(.ant-page-header-heading-left), & :global(.ant-page-header-heading-title) {
+    overflow: visible;
+  }
 }
 .backIcon {
   color: @white;
@@ -12,7 +17,7 @@
   display: inline-block;
   color: @white;
   min-width: 320px;
-  &:hover{
+  &:hover {
     color: @white;
   }
 }
@@ -25,4 +30,16 @@
 }
 .dropdownMenu {
   padding: 0px;
+}
+.dropdownIcon {
+  margin-inline-start: @space-2;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: @screen-sm) {
+  .campaignHeader {
+    & :global(.ant-page-header-heading-title) {
+      white-space: initial;
+    }
+  }
 }

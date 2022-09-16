@@ -39,7 +39,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
 }) => {
   const history = useHistory()
   const activeCampaign = campaigns.find(campaign => campaign.id === activeCampaignId)
-  const completedCampaignsCount = campaigns.filter(campaign => campaign.status === 'completed').length
+  const completedCampaignsCount = campaigns.filter(campaign => campaign.progressStatus === 'completed').length
   const totalCampaigns = campaigns.length
   let activeCampaignName = ''
   if (activeCampaign) {
@@ -90,17 +90,15 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   const titleElement = campaigns.length > 1 ? (
     <Dropdown overlay={menu} trigger={['click']} className={styles.campaignDropdown}>
       <a onClick={e => e.preventDefault()}>
-        <Row>
+        <Row wrap={false}>
           <Col>{activeCampaign && activeCampaignName}</Col>
           <Col
             className={styles.campaignsCount}
             offset={1}
-            span={2}
           >
             {`${completedCampaignsCount}/${totalCampaigns}`}
-
           </Col>
-          <Col span={2}><DownOutlined /></Col>
+          <Col className={styles.dropdownIcon}><DownOutlined /></Col>
         </Row>
       </a>
     </Dropdown>

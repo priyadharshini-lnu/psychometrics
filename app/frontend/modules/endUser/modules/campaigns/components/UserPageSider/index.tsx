@@ -71,7 +71,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   if (pathname.includes('/campaigns/') || pathname.includes('/threesixty_campaigns/')) {
     const [,, campaignId] = location.pathname.split('/')
     campaignIdRef.current = campaignId
-    menuItems = getMenuItems(true, showInsights)
+    menuItems = getMenuItems(true, pathname.includes('/threesixty_campaigns/') ? false : showInsights)
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)
