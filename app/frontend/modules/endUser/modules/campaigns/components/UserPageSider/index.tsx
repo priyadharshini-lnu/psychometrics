@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom'
 import {
   HomeOutlined,
   UserOutlined,
-  RightSquareOutlined,
 } from '@ant-design/icons'
 
 import { PageSider } from 'glint'
+import { CampaignIcon } from 'glint/icons'
 
 import { history } from 'modules/user/store'
 import { RootState } from 'modules/user/core/rootReducers'
@@ -37,7 +37,7 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
 }, ...showCampaign ? [{
   key: 'campaign',
   label: I18n.t('campaign.dashboard_menu.campaign'),
-  icon: <RightSquareOutlined className={styles.siderIcon} />,
+  icon: <CampaignIcon className={styles.siderIcon} />,
   children: showInsights !== false ? [
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },

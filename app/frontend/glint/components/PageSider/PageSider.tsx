@@ -1,11 +1,10 @@
 import React, { useContext, FC, useState } from 'react'
 import { Layout, Menu, Drawer } from 'antd'
-import { MenuUnfoldOutlined, MenuFoldOutlined, MenuOutlined } from '@ant-design/icons'
 import { SelectInfo } from 'rc-menu/lib/interface'
 import cs from 'classnames'
 
-import { MediaQueryContext } from 'glint/components/GlintProvider'
-
+import { MediaQueryContext } from 'glint'
+import { MenuTriggerIcon } from 'glint/icons'
 import styles from './styles.less'
 
 const { Sider } = Layout
@@ -99,14 +98,13 @@ export const PageSider: FC<PageSiderProps> = ({
       className={cs({ [styles['sider-trigger']]: true, [styles['sider-trigger--collapsed']]: menuCollapsed })}
       onClick={handleTrigger}
     >
-      {menuCollapsed ? <MenuUnfoldOutlined className={styles.triggerIcon} />
-        : <MenuFoldOutlined className={styles.triggerIcon} />}
+      <MenuTriggerIcon className={styles.triggerIcon} />
     </div>
   )
 
   const drawerTrigger = (
     <div className={styles['drawer-trigger']} onClick={handleDrawerVisibility}>
-      <MenuOutlined />
+      <MenuTriggerIcon />
     </div>
   )
 
