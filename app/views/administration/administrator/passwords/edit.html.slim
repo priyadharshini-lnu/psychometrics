@@ -1,2 +1,2 @@
 javascript:
-  #{resource.invalid? ? ("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe : ''}
+  #{resource.persisted? && resource.invalid? ? ("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe : ''}
