@@ -36,7 +36,8 @@ module UserReports::PdfGeneration
       async: true,
       notify_user: true,
       update_record: false,
-      skip_logic: params[:skip_logic]
+      skip_logic: params[:skip_logic],
+      view_report_as: view_report_as
     }
     data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
     audit! :download_report, resource, campaign: resource.campaign, payload: params.permit!
@@ -57,5 +58,11 @@ module UserReports::PdfGeneration
     @pdf_export = true
 
     render 'shared/preview_report', layout: 'pdf'
+  end
+
+  private
+
+  def view_report_as
+    raise NoMethodError, 'view_report_as method not defined'
   end
 end

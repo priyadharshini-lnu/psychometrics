@@ -39,7 +39,7 @@ describe UserReports::GeneratePdf do
     it 'returns preview pdf url for assessor' do
       allow(current_user).to receive(:is?).with(:regular).and_return(false)
       allow(current_user).to receive(:is?).with(:assessor).and_return(true)
-      url = described_class.new(user_report, current_user).send(:report_preview_url)
+      url = described_class.new(user_report, current_user, { view_report_as: :assessor }).send(:report_preview_url)
 
       expect(url).to eq(pdf_preview_assessors_campaign_user_report_url(
                           common_url_params.merge(subdomain: Settings.subdomain, campaign_id: user_report.campaign.id)

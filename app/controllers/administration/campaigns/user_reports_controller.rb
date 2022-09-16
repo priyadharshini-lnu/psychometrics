@@ -54,6 +54,10 @@ module Administration
 
       private
 
+      def view_report_as
+        :admin
+      end
+
       def generate_report(user_report)
         UserReports::GenerateAndSavePdfJob.perform_later(user_report, current_user)
       end
