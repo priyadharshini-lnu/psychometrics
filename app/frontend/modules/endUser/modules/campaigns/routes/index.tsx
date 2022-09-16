@@ -8,6 +8,7 @@ import { CheckingWizard } from './CheckingWizard'
 import { Nomination } from './Nomination'
 import { Evaluation } from './Evaluation'
 import { Report } from './Report'
+import { Anonym } from './Anonym'
 
 const routes = [
   {
@@ -67,6 +68,11 @@ const routes = [
   {
     path: '/threesixty_campaigns/:campaignId/reports/:id',
     main: Report,
+    exact: true,
+  },
+  {
+    path: '/anonym/:assessmentKey',
+    main: Anonym,
     exact: true,
   },
 ]

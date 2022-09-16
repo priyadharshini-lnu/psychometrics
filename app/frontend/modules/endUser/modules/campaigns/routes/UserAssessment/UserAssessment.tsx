@@ -115,7 +115,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <ClockCircleOutlined />
                 </>
             )}
-              seconds={100}
+              seconds={remainingAssessmentTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
             )}

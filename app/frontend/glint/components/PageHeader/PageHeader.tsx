@@ -10,6 +10,6 @@ type PageHeaderProps = {
 
 export const PageHeader: React.FC<PageHeaderProps> = ({ children }) => (
   <Header className={styles.pageHeader}>
-    <Row>{children}</Row>
+    <Row className={styles.childrenRow} justify="center">{children}</Row>
   </Header>
 )

@@ -1,24 +1,22 @@
 import React, { FC, ReactNode } from 'react'
 import { PageHeader } from 'antd'
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 
-import { isRtl } from 'utils/locales'
+import { DirectionalNavigateBackIcon } from 'glint'
 import styles from './SubHeader.less'
 
-const { I18n } = window
-const uiLocale = I18n && I18n.uiLocale
-const rtl = uiLocale && isRtl(uiLocale)
 type Props = {
   title: string,
-  onBack: () => void,
+  onBack?: () => void,
   extra?: ReactNode,
+  hideBackIcon?: boolean,
 }
 
-export const SubHeader:FC<Props> = ({ title, onBack, extra }) => (
+export const SubHeader:FC<Props> = ({
+  title, onBack, extra, hideBackIcon,
+}) => (
   <PageHeader
     className={styles.subHeader}
-    backIcon={rtl ? <ArrowRightOutlined className={styles.backIcon} />
-      : <ArrowLeftOutlined className={styles.backIcon} />}
+    backIcon={hideBackIcon ? false : <DirectionalNavigateBackIcon className={styles.backIcon} />}
     ghost={false}
     title={(
       <div className={styles.subHeaderTitle}>

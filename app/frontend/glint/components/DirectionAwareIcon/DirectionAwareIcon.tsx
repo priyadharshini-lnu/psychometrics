@@ -1,5 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
-import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import {
+  LeftOutlined, RightOutlined, ArrowLeftOutlined, ArrowRightOutlined,
+} from '@ant-design/icons'
 
 import { isRtl } from 'utils/locales'
 
@@ -23,5 +25,13 @@ export const DirectionalArrowIcon = (props: HTMLAttributes<HTMLAnchorElement>) =
     {...props}
     RtlIcon={LeftOutlined}
     LtrIcon={RightOutlined}
+  />
+)
+
+export const DirectionalNavigateBackIcon = (props: HTMLAttributes<HTMLAnchorElement>) => (
+  <DirectionAwareIcon
+    {...props}
+    RtlIcon={ArrowRightOutlined}
+    LtrIcon={ArrowLeftOutlined}
   />
 )
