@@ -11,6 +11,8 @@ declare class I18nStore {
 
   tFactor (factor, key): string
 
+  tModule (module, key): string
+
   tOccupation (occupation, key): string
 
   tSavilleFactorName (assessment_id: number, factor: { name: string, id: string }): string

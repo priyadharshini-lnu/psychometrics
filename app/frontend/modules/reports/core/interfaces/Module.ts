@@ -17,8 +17,10 @@ export default interface Module {
     source: {
       valueType: string
       factors: null | Factor[]
+      type: string
     }
-    sourceType: 'Factor' | 'Question'
+    sourceType: 'Factor' | 'Question' | 'ConditionalText' | 'ConditionalFactorOccupationText' |
+      'PipedText' | 'ResultText'
     mainHeaderColor: RGBColor | string
     secondHeaderColor: RGBColor | string
     scoreBackgroundColor: RGBColor | string
@@ -36,4 +38,5 @@ export default interface Module {
     locked?: boolean
   }
   update: () => void
+  getTextByCondition: () => void
 }
