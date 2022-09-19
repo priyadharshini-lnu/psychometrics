@@ -1,25 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: assessments
-#
-#  id                :integer          not null, primary key
-#  name              :string
-#  category          :enum             default("psychometric")
-#  dimension_id      :integer
-#  disabled          :boolean          default(FALSE)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  flow              :json
-#  norm_rules        :json
-#  description       :text
-#  timing            :string
-#  access_reports_at :datetime
-#  status            :integer
-#  owner_id          :integer
-#
-
 FactoryBot.define do
   factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }

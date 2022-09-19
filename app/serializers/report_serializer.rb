@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: reports
-#
-#  id            :integer          not null, primary key
-#  assessment_id :integer
-#  name          :string
-#  disabled      :boolean          default(FALSE)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  type          :integer          default("common")
-#
-
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,

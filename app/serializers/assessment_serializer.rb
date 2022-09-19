@@ -1,24 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: assessments
-#
-#  id                :integer          not null, primary key
-#  name              :string
-#  category          :enum             default("psychometric")
-#  dimension_id      :integer
-#  disabled          :boolean          default(FALSE)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  flow              :json
-#  norm_rules        :json
-#  description       :text
-#  timing            :string
-#  access_reports_at :datetime
-#  status            :integer
-#
-
 class AssessmentSerializer < ActiveModel::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
              :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,

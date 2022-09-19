@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: dimensions
-#
-#  id            :integer          not null, primary key
-#  name          :string
-#  disabled      :boolean          default(FALSE)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  factors_count :integer          default(0)
-#  owner_id      :integer
-#
-
 class Dimension < ApplicationRecord
   include Copyable
   include RansackSearchableFields

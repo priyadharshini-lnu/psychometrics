@@ -1,24 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: communications
-#
-#  id                :integer          not null, primary key
-#  subject           :string
-#  body              :text
-#  assessment_id     :integer
-#  client_id         :integer
-#  recipients        :integer          default("all")
-#  disabled          :boolean          default(FALSE)
-#  delivery_rule     :integer          default("on_specific_datetime")
-#  delivery_at       :datetime
-#  delivery_interval :string
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  owner_id          :integer
-#
-
 class Communication < ApplicationRecord
   include OwnerValidations
 

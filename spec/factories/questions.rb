@@ -1,29 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: questions
-#
-#  id                  :integer          not null, primary key
-#  name                :string
-#  position            :integer
-#  type                :string
-#  props               :json
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  block_id            :integer
-#  deleted_at          :datetime
-#  required_validation :json
-#  validation          :json
-#  display_logic       :json
-#  skip_logic          :json
-#  view                :integer          default("assessments")
-#  disabled            :boolean          default(FALSE)
-#  template_id         :integer
-#  assessment_id       :integer
-#  owner_id            :integer
-#
-
 FactoryBot.define do
   factory :question do
     sequence(:name) { |i| "Question #{i}" }

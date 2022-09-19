@@ -1,16 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: factors_norms
-#
-#  id        :integer          not null, primary key
-#  type      :enum
-#  factor_id :integer
-#  norm_id   :integer
-#  props     :json
-#
-
 FactoryBot.define do
   factory :factors_norm do
     factor

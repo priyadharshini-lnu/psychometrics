@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: license_usages
-#
-#  id                :integer          not null, primary key
-#  license_id        :integer
-#  assigns_report_id :integer
-#  client_id         :integer          not null
-#
-
 class LicenseUsage < ApplicationRecord
   include RansackSearchableJsonField
 

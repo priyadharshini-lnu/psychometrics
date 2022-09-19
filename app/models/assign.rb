@@ -1,28 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: assigns
-#
-#  id                :integer          not null, primary key
-#  assessment_id     :integer          not null
-#  results           :jsonb
-#  scoring           :jsonb
-#  embedded_data     :jsonb
-#  status            :integer          default("not_started")
-#  role              :integer          default("member")
-#  completed_at      :datetime
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  step              :integer
-#  membership_id     :integer          not null
-#  norm_data         :jsonb
-#  started_at        :datetime
-#  agile_scoring     :jsonb
-#  project_assign_id :integer
-#  mindmill_prefix   :string
-#  expiry_date       :datetime
-#
 class Assign < ApplicationRecord
   include EncodableId
 

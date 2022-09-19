@@ -1,25 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: memberships
-#
-#  id                    :integer          not null, primary key
-#  client_id             :integer
-#  user_id               :integer
-#  hris                  :jsonb
-#  disabled              :boolean          default(FALSE)
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  is_retail             :boolean          default(FALSE)
-#  assigns_count         :integer          default(0)
-#  assigns_completed     :boolean          default(FALSE)
-#  project_membership_id :integer
-#  ancestry              :string
-#  role                  :integer          default("member"), not null
-# already_invited        :boolean          default(FALSE)
-#
-
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [

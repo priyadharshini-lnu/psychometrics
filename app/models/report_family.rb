@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: report_families
-#
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class ReportFamily < ApplicationRecord
   has_many :report_families_reports
   has_many :reports, through: :report_families_reports, source: :report

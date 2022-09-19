@@ -1,25 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: tasks
-#
-#  id                   :integer          not null, primary key
-#  membership_id        :integer
-#  factor_id            :integer
-#  assessment_id        :integer
-#  name                 :string
-#  description          :text
-#  priority             :integer
-#  status               :integer
-#  planned_completed_at :datetime
-#  completed_at         :datetime
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  parent_id            :integer
-#  owner_id             :integer
-#
-
 class Task < ApplicationRecord
   # STATUSES constant
   STATUSES = { not_started: 0, in_progress: 1, completed: 2 }.freeze
