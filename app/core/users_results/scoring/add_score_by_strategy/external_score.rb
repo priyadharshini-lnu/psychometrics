@@ -10,7 +10,7 @@ module UsersResults
           factor = factor_data[:factor]
           return if factor.external_scoring.blank?
 
-          factor_scoring = extended_scoring.dig(factor.id.to_s) || {}
+          factor_scoring = extended_scoring.fetch(factor.id.to_s, {})
           factor.external_scoring.each do |row|
             value = JsonPath.new(row['jsonpath']).first(external_results)
             factor_scoring[row['type']] = value

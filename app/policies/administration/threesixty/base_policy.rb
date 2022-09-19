@@ -39,6 +39,12 @@ module Administration::Threesixty
       super_admins_or_admins?
     end
 
+    def has_permission?(resource_type, permission)
+      @user.has_permission?(
+        resource_type, permission, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     protected
 
     def super_admins_or_admins?

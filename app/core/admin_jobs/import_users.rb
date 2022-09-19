@@ -6,10 +6,11 @@ module AdminJobs
     include ActionView::Context
 
     def call
-      import_data = CSV.parse(URI.open(record.file.url))
+      # TODO: get rid of URI.open
+      import_data = CSV.parse(URI.open(record.file.url)) # rubocop:disable Security/Open
       import_data = ::Campaigns::Users::ParseImportData.call!(import_data)
       users_those_pwd_not_changed, imported_users = ::Campaigns::Users::ProcessImport.call!(
-        campaign, record.owner, import_data[1..-1], record.data['operation'], record
+        campaign, record.owner, import_data[1..], record.data['operation'], record
       )
 
       content = content_tag(:div, I18n.t('user.modals.import.imported_users', number: imported_users.size))

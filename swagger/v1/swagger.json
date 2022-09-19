@@ -609,6 +609,7 @@
                 "example": {
                   "id": 770,
                   "name": "Campaign 1",
+                  "description": "Campaign Description",
                   "status": "active",
                   "instructions": "Instr",
                   "enable_instructions": true,
@@ -2545,6 +2546,10 @@
         "instructions": {
           "type": "string",
           "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
         }
       }
     },
@@ -2586,6 +2591,10 @@
           "x-nullable": true
         },
         "instructions": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
           "type": "string",
           "x-nullable": true
         }
@@ -2638,6 +2647,10 @@
           "x-nullable": true
         },
         "updated_at": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
           "type": "string",
           "x-nullable": true
         }

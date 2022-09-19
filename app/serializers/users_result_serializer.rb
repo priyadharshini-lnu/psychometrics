@@ -34,14 +34,14 @@ class UsersResultSerializer < ActiveModel::Serializer
   def remaining_campaign_time
     return unless campaign_user&.real_expiry_date
 
-    [campaign_user.real_expiry_date - Time.now, 0].max
+    [campaign_user.real_expiry_date - Time.zone.now, 0].max
   end
 
   def remaining_assessment_time
     return unless user_assessment.expiry_date
     return if object.not_started?
 
-    assessment_time_left = [user_assessment.expiry_date - Time.now, 0].max
+    assessment_time_left = [user_assessment.expiry_date - Time.zone.now, 0].max
 
     return [assessment_time_left, remaining_campaign_time].min if remaining_campaign_time
 
@@ -92,15 +92,13 @@ class UsersResultSerializer < ActiveModel::Serializer
     }
   end
 
-  def campaign_id
-    campaign.id
-  end
+  delegate :id, to: :campaign, prefix: true
 
   def results
     object.answers
   end
 
-  def is_self # rubocop:disable Naming/PredicateName
+  def is_self
     object.evaluator_id == object.subject_id
   end
 

@@ -17,8 +17,8 @@ describe ::UsersResults::ExpandAnswersByRecoding do
     create(:assessment, id: 184)
     create(:question, id: 17_288, type: 'TextEntry')
     create(:question_recoding, question_id: 17_288, assessment_id: 184, props: [
-             { "index": '3', "value": 3 }, { "index": '4', "value": 4 }
-           ])
+      { index: '3', value: 3 }, { index: '4', value: 4 }
+    ])
   end
 
   it do

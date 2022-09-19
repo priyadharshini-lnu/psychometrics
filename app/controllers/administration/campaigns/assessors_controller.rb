@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class AssessorsController < Administration::Projects::BaseController
+    class AssessorsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[update show destroy spoof]
 
       def index
@@ -62,7 +62,7 @@ module Administration
           ::Assessors::CreateAll.call!(form.assessors, campaign, current_user)
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 
@@ -87,8 +87,8 @@ module Administration
 
       def show
         render json: resource.user,
-          serializer: Administration::Assessors::UserSerializer,
-          project_id: campaign.project_id, campaign_id: campaign.id
+               serializer: Administration::Assessors::UserSerializer,
+               project_id: campaign.project_id, campaign_id: campaign.id
       end
 
       def create
@@ -131,8 +131,7 @@ module Administration
 
       # rubocop:disable Naming/MemoizedInstanceVariableName
       def set_resource
-        @_resource ||= policy_scope(Assessor, policy_scope_class: Administration::Campaigns::AssessorPolicy::Scope).
-                       find(params[:id])
+        @_resource ||= campaign.assessors.find(params[:id])
       end
       # rubocop:enable Naming/MemoizedInstanceVariableName
     end

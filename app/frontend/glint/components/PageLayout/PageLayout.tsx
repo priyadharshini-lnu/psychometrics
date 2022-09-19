@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { FC } from 'react'
 import { Layout } from 'antd'
 import { SelectEventHandler } from 'rc-menu/lib/interface'
 
@@ -7,6 +7,8 @@ import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
 import { PageSider, SiderMenuItem } from '../PageSider'
 import { PageHeader } from '../PageHeader'
 
+import styles from './styles.less'
+
 const { Content } = Layout
 
 type PageLayoutProps = {
@@ -14,38 +16,29 @@ type PageLayoutProps = {
   footer: React.ReactNode
   headerContent: React.ReactNode
   children: React.ReactNode
-  handleSiderMenuSelect: SelectEventHandler
-  siderFooter?: string | React.ReactElement
+  onSiderMenuSelect: SelectEventHandler
+  siderFooter?: (collapsed: boolean) => React.ReactElement
 }
 
 export const PageLayout: FC<PageLayoutProps> = ({
   siderItems,
-  footer, headerContent,
+  footer,
+  headerContent,
   children,
-  handleSiderMenuSelect,
+  onSiderMenuSelect,
   siderFooter,
-}) => {
-  const [collapsed, setCollapsed] = useState(false)
-  const [visible, handleVisible] = useState(false)
-
-  return (
-    <Layout>
-      <PageSider
-        logo={lighthouseLogo}
-        items={siderItems}
-        collapsed={collapsed}
-        drawerVisible={visible}
-        handleDrawer={handleVisible}
-        handleSiderMenuSelect={handleSiderMenuSelect}
-        siderFooter={siderFooter}
-      />
-      <Layout>
-        <PageHeader collapsed={collapsed} setCollapsed={setCollapsed} handleDrawer={handleVisible} visible={visible}>
-          {headerContent}
-        </PageHeader>
-        <Content>{children}</Content>
-        {footer}
-      </Layout>
+}) => (
+  <Layout>
+    <PageSider
+      logo={lighthouseLogo}
+      items={siderItems}
+      onMenuSelect={onSiderMenuSelect}
+      siderFooter={siderFooter}
+    />
+    <Layout className={styles['page-layout']}>
+      <PageHeader>{headerContent}</PageHeader>
+      <Content className={styles['page-content']}>{children}</Content>
+      {footer}
     </Layout>
-  )
-}
+  </Layout>
+)

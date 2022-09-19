@@ -1,0 +1,25 @@
+@import 'styles/ant.variable.less';
+@import 'styles/spacing.less';
+
+.pageContent {
+  background-color: @background-color-base;
+  overflow-x: hidden;
+}
+.campaignHeader:global(.ant-page-header) {
+  background-color: var(--ant-primary-color);
+  padding-block: @space-2;
+}
+.backIcon {
+  color: @white;
+}
+.campaignDropdown {
+  display: inline-block;
+  color: @white;
+  min-width: 320px;
+  &:hover{
+    color: @white;
+  }
+}
+.reportContainer {
+  z-index: 0;
+}

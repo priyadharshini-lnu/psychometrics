@@ -23,9 +23,9 @@ module Assessments
 
       action :destroy do |data|
         block = ::Block.find(data['id'])
-        block.update(deleted_at: Time.now)
+        block.update(deleted_at: Time.zone.now)
         block.remove_from_list
-        block.questions.update_all(deleted_at: Time.now)
+        block.questions.update_all(deleted_at: Time.zone.now)
         nil
       end
 
@@ -78,9 +78,9 @@ module Assessments
 
       action :unlink_template do |data|
         block = ::Block.includes(:template, questions: :template).find(data['id'])
-        block.update_attributes(block.template.general_attributes.merge(template_id: nil))
+        block.update(block.template.general_attributes.merge(template_id: nil))
         block.questions.each do |question|
-          question.update_attributes(question.template.general_attributes.merge(template_id: nil))
+          question.update(question.template.general_attributes.merge(template_id: nil))
         end
         BlockSerializer.new(block).to_hash(include: '**')
         nil

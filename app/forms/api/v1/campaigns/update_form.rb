@@ -12,6 +12,7 @@ module Api
         attribute :duration, Integer
         attribute :enable_instructions, Boolean
         attribute :instructions, String
+        attribute :description, String
 
         validates :status, inclusion: { in: %w[active closed inactive archived] }, allow_nil: true
 

@@ -48,11 +48,13 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
       expect(threesixty_campaign.assessment.dimension).to be_persisted
     end
 
+    # rubocop:disable Lint/EmptyBlock
     it 'updates factor_scoring with correct factor_id' do
     end
 
     it 'sets correct assessment_id for report filter' do
     end
+    # rubocop:enable all
 
     it 'sets correct assessment_id for assessments_reports' do
       threesixty_campaign = described_class.call!(assessment, report, form, project, user)

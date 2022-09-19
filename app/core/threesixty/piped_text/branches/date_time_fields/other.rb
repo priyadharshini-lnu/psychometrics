@@ -15,7 +15,7 @@ module Threesixty
             'y' => :year
           }.freeze
 
-          PREFIX_MATCHER = /([+-])(\d)(\w)/.freeze
+          PREFIX_MATCHER = /([+-])(\d)(\w)/
 
           def call
             prefix = path.last
@@ -32,7 +32,7 @@ module Threesixty
             matches = prefix.match(PREFIX_MATCHER)
             sign = matches[1]
             count = matches[2].to_i
-            Time.now.send(SIGNS[sign], count.send(TYPES[matches[3]]))
+            Time.zone.now.send(SIGNS[sign], count.send(TYPES[matches[3]]))
           end
         end
       end

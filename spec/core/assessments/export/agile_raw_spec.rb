@@ -14,7 +14,7 @@ describe Assessments::Export::AgileRaw do
       evaluator: user,
       campaign: campaign,
       assessment: assessment,
-      answers: YAML.load_file("#{Rails.root}/spec/fixtures/agile_answers.yml")
+      answers: YAML.load_file(Rails.root.join('spec/fixtures/agile_answers.yml'))
     )
   end
 
@@ -22,12 +22,12 @@ describe Assessments::Export::AgileRaw do
   let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
 
   after do
-    FileUtils.rm(file_name) if File.exist?(file_name)
+    FileUtils.rm_rf(file_name)
   end
 
   context 'Agile raw export' do
     it 'first row in xlsx contains result_details_header along with question ids' do
-      assessment.agile.update(config: YAML.load_file("#{Rails.root}/spec/fixtures/agile_group.yml"))
+      assessment.agile.update(config: YAML.load_file(Rails.root.join('spec/fixtures/agile_group.yml')))
 
       xlsx = described_class.call!(assessment, campaign)
       xlsx.serialize(file_name)
@@ -37,19 +37,21 @@ describe Assessments::Export::AgileRaw do
 
       expected_first_row = [
         'ID',
-        'Project',
         'First Name',
         'Last Name',
         'Email',
         'Assessment ID',
-        'completed_at',
         'Assessment Name',
+        'Status',
+        'Started At',
+        'Completed At',
         'Completed Groups',
+        'Norm',
         nil,
+        'cmp-1.group_id',
         'cmp-1.id',
         'cmp-1.answers',
         'cmp-1.duration',
-        'cmp-1.group_id',
         'cmp-1.session_id',
         'cmp-1.start_time',
         'cmp-1.end_time'
@@ -59,7 +61,7 @@ describe Assessments::Export::AgileRaw do
     end
 
     it 'second row in xlsx  contains actual data' do
-      config = YAML.load_file("#{Rails.root}/spec/fixtures/agile_group.yml")
+      config = YAML.load_file(Rails.root.join('spec/fixtures/agile_group.yml'))
       agile = assessment.agile
       agile.update(config: config)
 
@@ -70,19 +72,21 @@ describe Assessments::Export::AgileRaw do
       actual_second_row = xlsx.sheet(0).row(2)
       expected_second_row = [
         users_result.encoded_id,
-        users_result.campaign.try(:name),
         users_result.subject.first_name,
         users_result.subject.last_name,
         users_result.subject.email,
         assessment.id,
-        users_result.completed_at.try(:strftime, '%D %r'),
         assessment.name,
+        I18n.t("activerecord.attributes.users_result.statuses.#{users_result.real_status}", locale: :en),
+        users_result.started_at.try(:strftime, '%D %r'),
+        users_result.completed_at.try(:strftime, '%D %r'),
         nil,
         nil,
+        nil,
+        'nf-1-group',
         'cmp-1',
         'equal',
         1.502,
-        'nf-1-group',
         '39c19fb5-08e9-4030-adc8-c282f4b1eb1a',
         'Mon, 09 May 2022 07:48:50 +0000',
         'Mon, 09 May 2022 07:48:51 +0000'

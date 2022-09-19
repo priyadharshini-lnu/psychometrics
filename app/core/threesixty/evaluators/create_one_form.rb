@@ -30,9 +30,12 @@ module Threesixty
       end
 
       def check_existing_evaluator_subject_relation
-        if ::Threesixty::Participant.where(
-          relationship: relationship, subject: subject_user, evaluator: evaluator_user, campaign: context.campaign
-        ).exists?
+        if ::Threesixty::Participant.exists?(
+          relationship: relationship,
+          subject: subject_user,
+          evaluator: evaluator_user,
+          campaign: context.campaign
+        )
           errors.add(:evaluator_email, :already_exists)
         end
       end
@@ -57,7 +60,7 @@ module Threesixty
       end
 
       def enable_strong_password?
-        context.campaign.project.try(:strong_password_enabled)
+        context.campaign.project&.security_setting&.enforce_strong_password
       end
     end
   end

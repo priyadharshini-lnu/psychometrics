@@ -26,7 +26,7 @@ module Administration
       end
 
       def create
-        resource = resource_class.new(resource_params)
+        @_resource = resource_class.new(resource_params)
         resource.created_by = current_user
         resource.updated_by = current_user
         resource.assign_attributes(view: :templates, type: 'MultipleChoice')

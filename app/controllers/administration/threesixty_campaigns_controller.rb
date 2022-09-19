@@ -64,6 +64,17 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   private
 
+  def pundit_authorize
+    authorize(
+      resource || resource_class,
+      nil,
+      {
+        threesixty_campaign: resource,
+        project_id: params[:project_id] || resource&.campaign&.project_id
+      }
+    )
+  end
+
   def set_resource
     @_resource = ::Threesixty::Campaign.find(params[:id])
   end

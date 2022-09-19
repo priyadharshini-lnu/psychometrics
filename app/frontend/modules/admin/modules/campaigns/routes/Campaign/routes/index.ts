@@ -6,6 +6,7 @@ import RegistrationCodes from './RegistrationCodes'
 import { Datasheet } from './Datasheet'
 import { Admins } from './Admins'
 import CampaignOptions from './CampaignOptions'
+import { Dashboard } from './Dashboard'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -21,6 +22,8 @@ const routes = [
   },
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },
+  { path: '/dashboard/*', component: Dashboard },
+  { path: '/dashboard', component: Dashboard },
   { path: '/registration_codes', component: RegistrationCodes },
   { path: '/datasheet', component: Datasheet },
   { path: '/admins', component: Admins },

@@ -23,7 +23,7 @@ module Clients
 
       def initialize(opts = {})
         super
-        @removing_user_access_report_ids = [] if removing_user_access_report_ids.reject(&:blank?).blank?
+        @removing_user_access_report_ids = [] if removing_user_access_report_ids.compact_blank.blank?
       end
 
       protected
@@ -37,8 +37,7 @@ module Clients
                                                                      disabled: true,
                                                                      client_id: context.client_tenancy.id
                                                                    }).
-                                                                   where(id: report_family_id).
-                                                                   exists?
+                                                                   exists?(id: report_family_id)
       end
 
       # Returns error if there is at least one disabled Report

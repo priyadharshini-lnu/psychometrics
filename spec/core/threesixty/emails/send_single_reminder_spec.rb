@@ -29,7 +29,7 @@ describe Threesixty::Emails::SendSingleReminder do
       email_name: Threesixty::Emails::Name::SUBJECT_REMINDER,
       user: threesixty_subject.user,
       sent_count: 1,
-      last_sent_at: Time.now.advance(days: -3)
+      last_sent_at: Time.zone.now.advance(days: -3)
     )
 
     expect do
@@ -55,7 +55,7 @@ describe Threesixty::Emails::SendSingleReminder do
       email_name: Threesixty::Emails::Name::SUBJECT_REMINDER,
       user: threesixty_subject.user,
       sent_count: 2,
-      last_sent_at: Time.now.advance(days: -2)
+      last_sent_at: Time.zone.now.advance(days: -2)
     )
 
     expect do

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import interact from 'interact.js'
 import panelStore from 'modules/reports/store/PropertyPanelStore'
 import AppStore from 'modules/reports/store/AppStore'
+import cs from 'classnames'
 import styles from './Foundation.less'
 
 const { $ } = window
@@ -17,10 +18,24 @@ class Foundation extends Component {
   }
 
   componentDidMount () {
-    const {
-      preview, aspectRatio,
-    } = this.props
+    const { preview } = this.props
     if (preview) { return }
+    this.applyInteract()
+  }
+
+  componentDidUpdate (prevProps) {
+    const { preview, module } = this.props
+    if (preview || !module) { return }
+    if (prevProps.module.meta.hidden !== module.meta.hidden) {
+      this.applyInteract()
+    }
+  }
+
+  applyInteract = () => {
+    if (!this.base) { return }
+    const {
+      aspectRatio,
+    } = this.props
     interact(this.base)
       .draggable({
         manualStart: true,
@@ -127,6 +142,7 @@ class Foundation extends Component {
     } = this.props
     if (preview) { return }
     e.stopPropagation()
+    if (module.meta.locked) { return }
     if (selected.moduleId === module.id) { return }
 
     const select = () => {
@@ -146,6 +162,7 @@ class Foundation extends Component {
       module, outerStyle: frameStyle, children, shadow, selected,
     } = this.props
     const mprops = module.props
+    if (module.meta.hidden) { return null }
     const {
       left, top, width, height,
     } = mprops.position
@@ -165,24 +182,29 @@ class Foundation extends Component {
     } else {
       style.transform = `translate(${left}px,${top}px)`
     }
-    const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${isSelected ? styles.selected : ''}`
+    const className = cs(styles.base,
+      {
+        [styles.editor]: !preview,
+        [styles.shadow]: shadow && !preview,
+        [styles.selected]: isSelected,
+        [styles.locked]: module.meta.locked,
+      }, 'fe-module-container')
     return (
       <div
         ref={(ref) => { this.base = ref }}
         name={shadow ? '' : `Module_${module.id}`}
-        className={`${className} fe-module-container`}
+        className={className}
         style={style}
         onClick={this.select}
       >
-        <div className={styles.sizeBox}>
+        <div className={styles.sizeBox} ref={(ref) => { this.mover = ref }}>
           <i
             className={`fa fa-arrows ${styles.mover}`}
             data-right="true"
             data-bottom="true"
-            ref={(ref) => { this.mover = ref }}
           />
           <div className={styles.label}>
-            {` x:${left} y:${top} size:${width}x${height}`}
+            {` x:${Math.round(left)} y:${Math.round(top)} size:${Math.round(width)}x${Math.round(height)}`}
           </div>
         </div>
         <div className={`${styles.frame} fe-module-frame-container`} style={frameStyle}>

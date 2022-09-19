@@ -2,12 +2,13 @@ import { createReducer } from 'utils/redux'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
+import { RootState } from 'modules/admin/core/rootReducers'
 
 export const FETCH = 'campaigns/current/FETCH'
 export const UPDATE = 'campaigns/current/UPDATE'
 export const FETCH_ASSESSMENTS_AND_REPORTS = 'campaigns/FETCH_ASSESSMENTS_AND_REPORTS'
 
-export const get = state => _.get(state, ['current'])
+export const get = (state: RootState) => _.get(state, ['current'])
 
 const defaultState = {
   permissions: {},

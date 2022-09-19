@@ -42,19 +42,17 @@ class HomeController < ApplicationController
   end
 
   # Browser upgrade notification
-  # rubocop:disable Style/AndOr
   def upgrade
     @browser_detections = helpers.detect_browser(request.user_agent)
     redirect_to root_path and return if @browser_detections.supported_browser?
 
     render layout: 'devise'
   end
-  # rubocop:enable Style/AndOr
 
   private
 
   def redirect_to_campaign_or_return_url(assessment_status = nil)
-    campaign_id = params.fetch(:campaign_id) { nil }
+    campaign_id = params.fetch(:campaign_id, nil)
     redirect_path = campaign_id.nil? ? root_path : campaign_path(campaign_id)
     return redirect_to(redirect_path) if session[:sso].try(:[], 'return_url').nil?
 
@@ -74,7 +72,7 @@ class HomeController < ApplicationController
   end
 
   def check_assessment_status
-    campaign_id = params.fetch(:campaign_id) { nil }
+    campaign_id = params.fetch(:campaign_id, nil)
     sso_user_assessment_id = session[:sso].try(:[], 'user_assessment_id')
     if sso_user_assessment_id.nil?
       if campaign_id.present?

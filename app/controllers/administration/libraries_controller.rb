@@ -12,7 +12,7 @@ module Administration
     # GET /administration/resources
     def index
       folder_id = params[:q].try(:[], :parent_id_in) || params[:folder_id]
-      @folder = policy_scope(resource_class).find_by_id(folder_id)
+      @folder = policy_scope(resource_class).find_by(id: folder_id)
 
       scope = policy_scope(resource_class).children_of(@folder) if @folder
       scope ||= policy_scope(resource_class).roots

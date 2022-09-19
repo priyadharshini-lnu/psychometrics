@@ -27,6 +27,7 @@ const serializeModule = (module) => {
     props,
     removed: module.removed,
     assessment_id: module.assessment_id,
+    meta: module.meta,
   }
 }
 

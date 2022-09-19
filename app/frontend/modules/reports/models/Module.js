@@ -28,6 +28,7 @@ const Module = function (attrs = {}, page) {
     this.id = Utils.genId()
     this.isNew = true
   }
+  this.meta = attrs.meta || {}
 
   this.assessment_id = attrs.assessment_id || (AppStore.assessments[0] && AppStore.assessments[0].id)
   this.type = attrs.type
@@ -71,6 +72,7 @@ _.extend(Module.prototype, {
       removed: this.removed,
       assessment_id: this.assessment_id,
       isNew: this.isNew,
+      meta: this.meta,
     }
   },
 

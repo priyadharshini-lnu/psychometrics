@@ -14,7 +14,6 @@ export const GlintProvider = ({ children }) => {
     maxWidth: 480,
   })
   const isTablet = useMedia({
-    minwidth: 481,
     maxWidth: 768,
   })
   const isDesktop = useMedia({

@@ -28,7 +28,7 @@ module Imports
               answers << {
                 scale: scale,
                 value: value,
-                choice: use_scoring && factors_scoring[choice.to_i] || (choice.to_i - 1)
+                choice: (use_scoring && factors_scoring[choice.to_i]) || (choice.to_i - 1)
               }
             end
           end

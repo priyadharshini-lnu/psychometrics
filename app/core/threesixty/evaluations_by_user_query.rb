@@ -9,8 +9,7 @@ module Threesixty
     end
 
     def query
-      scope = subject_evaluators_scope(@campaign.participants)
-      scope
+      subject_evaluators_scope(@campaign.participants)
     end
 
     private

@@ -15,6 +15,7 @@ import UpdateNormModal from './UpdateNormModal'
 import UpdateTimeModal from './UpdateTimeModal'
 import UpdateCampaignTimeModal from './UpdateCampaignTimeModal'
 import { Strategies } from '../../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
+import { ProctoringSessionList } from './ProctoringSessionList'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 
@@ -52,6 +53,7 @@ const AssessmentsReports: React.FC<Props> = ({
   regenerateInProgress,
   history,
   extendTime,
+  proctoringSessions,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
@@ -261,6 +263,13 @@ const AssessmentsReports: React.FC<Props> = ({
         <div className={styles.tableDivider} />
         <h3>{I18n.t('common.model.assessments')}</h3>
         <AssessmentList />
+        {proctoringSessions.length !== 0 && (
+          <>
+            <div className={styles.tableDivider} />
+            <h3>{I18n.t('administration.proctoring_sessions.resource_name')}</h3>
+            <ProctoringSessionList proctoringSessions={proctoringSessions} />
+          </>
+        )}
       </div>
       <Modals modals={MODALS} />
     </div>

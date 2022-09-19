@@ -3,6 +3,7 @@
 class DeploymentMailer < ApplicationMailer
   layout 'admin_email'
 
+  # rubocop:disable Rails/I18nLocaleTexts
   def send_deployment_tasks(emails, tasks)
     @tasks = tasks
     mail(
@@ -13,4 +14,5 @@ class DeploymentMailer < ApplicationMailer
       template_name: 'send_deployment_tasks'
     )
   end
+  # rubocop:enable all
 end

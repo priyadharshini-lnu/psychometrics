@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { Layout, Row, Col } from 'antd'
+import cs from 'classnames'
 
 import styles from './styles.less'
 
@@ -12,11 +13,22 @@ type PageFooterProps = {
 export const PageFooter: FC<PageFooterProps> = ({ footerLeft, footerMiddle, footerRight }) => {
   const colSpan = footerLeft ? 8 : 12
   return (
-    <Layout.Footer className={styles.footer}>
+    <Layout.Footer className={styles['page-footer']}>
       <Row align="middle" justify="space-between">
-        {footerLeft && <Col span={8}>{footerLeft}</Col>}
-        <Col span={colSpan}>{footerMiddle}</Col>
-        <Col span={colSpan}>{footerRight}</Col>
+        {footerLeft && (
+          <Col className={styles['footer-left']} span={8}>
+            {footerLeft}
+          </Col>
+        )}
+        <Col
+          className={cs({ [styles['footer-middle']]: footerLeft, [styles['footer-left']]: !footerLeft })}
+          span={colSpan}
+        >
+          {footerMiddle}
+        </Col>
+        <Col className={styles['footer-right']} span={colSpan}>
+          {footerRight}
+        </Col>
       </Row>
     </Layout.Footer>
   )

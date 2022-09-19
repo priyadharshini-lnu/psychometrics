@@ -8,7 +8,7 @@ module Imports
           return nil if values.compact.blank?
 
           {
-            answers: Hash[::Exports::Assessments::Questions::Timing::FIELDS.zip(values)],
+            answers: ::Exports::Assessments::Questions::Timing::FIELDS.zip(values).to_h,
             question_id: question.id,
             duration: duration
           }

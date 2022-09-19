@@ -5,15 +5,22 @@ module ApplicationHelper
   # instead of in an initializer.
   RANDOM_BACKGROUND_IMAGES_COUNT = 7
 
+  def show_dashboard?
+    return false if current_user.is?(:superadmin)
+    return false unless current_user.has_grant?(:dashboards, :view)
+
+    Api::Administration::DashboardPolicy::Scope.new(current_user, Dashboard).resolve.preview_available.exists?
+  end
+
   def device_html_style
-    @current_project ? project_background : random_background
+    current_project ? project_background : random_background
   end
 
   def project_background
-    if @current_project&.background&.image?
-      "background-image: url('#{@current_project.background.url}');"
-    elsif @current_project&.background_color.present?
-      "background: #{@current_project.background_color};"
+    if current_project&.background&.image?
+      "background-image: url('#{current_project.background.url}');"
+    elsif current_project&.background_color.present?
+      "background: #{current_project.background_color};"
     else
       random_background
     end
@@ -24,7 +31,7 @@ module ApplicationHelper
   end
 
   def randomized_background_image
-    background_images[Date.today.day % RANDOM_BACKGROUND_IMAGES_COUNT]
+    background_images[Time.zone.today.day % RANDOM_BACKGROUND_IMAGES_COUNT]
   end
 
   def background_images
@@ -36,7 +43,7 @@ module ApplicationHelper
   end
 
   def namespace_name
-    @current_client ? 'users' : 'administration'
+    current_client ? 'users' : 'administration'
   end
 
   def detect_browser(user_agent)
@@ -56,18 +63,18 @@ module ApplicationHelper
   def show_maintenance_alert?
     return false unless maintenance_start_date
 
-    maintenance_subdomains.empty? || maintenance_subdomains.include?(@current_project&.subdomain)
+    maintenance_subdomains.empty? || maintenance_subdomains.include?(current_project&.subdomain)
   end
 
   def maintenance_started?
     return false unless maintenance_start_date
 
-    (maintenance_subdomains.empty? || maintenance_subdomains.include?(@current_project&.subdomain)) &&
-      Time.now > maintenance_start_date && Time.now < maintenance_end_date
+    (maintenance_subdomains.empty? || maintenance_subdomains.include?(current_project&.subdomain)) &&
+      Time.zone.now > maintenance_start_date && Time.zone.now < maintenance_end_date
   end
 
   def maintenance_subdomains
-    @maintenance_subdomains ||= (ENV['UAE_DATA_MIGRATION_SUBDOMAINS'] || '').split(',')
+    @maintenance_subdomains ||= ENV.fetch('UAE_DATA_MIGRATION_SUBDOMAINS', '').split(',')
   end
 
   def maintenance_start_date
@@ -75,11 +82,11 @@ module ApplicationHelper
   end
 
   def maintenance_end_date
-    maintenance_start_date + (ENV['MAINTENANCE_DURATION'] || 0).to_i.minutes
+    maintenance_start_date + ENV.fetch('MAINTENANCE_DURATION', 0).to_i.minutes
   end
 
   def duration
-    ((ENV['MAINTENANCE_DURATION'] || 0).to_i / 60.0).round(1)
+    (ENV.fetch('MAINTENANCE_DURATION', 0).to_i / 60.0).round(1)
   end
 
   def maintenance_time_frame
@@ -87,5 +94,13 @@ module ApplicationHelper
       start_date: maintenance_start_date.utc.strftime('%B %d, %Y at %l:%M%p GMT'), # October 30, 2021 at 3:30pm GST
       duration: duration
     }
+  end
+
+  def current_project
+    instance_variable_get(:@current_project)
+  end
+
+  def current_client
+    instance_variable_get(:@current_client)
   end
 end

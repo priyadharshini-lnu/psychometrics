@@ -1,16 +1,94 @@
+@import "styles/spacing.less";
+@import "styles/ant.variable.less";
+
 .sidebarLogo,
 .sidebarFooter {
-  padding: 20px;
+  padding-inline: @space-4;
+}
+.page-sider--expanded,
+.page-sider--collapsed {
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  width: 200px;
+  border: 1px solid @border-color-base;
+}
+
+.sider-trigger {
+  position: fixed;
+  left: 214px;
+  top: 14px;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sider-trigger--collapsed {
+  left: 90px;
+}
+
+.drawer-trigger {
+  position: fixed;
+  left: 30px;
+  top: 16px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.sider-menu:global(.ant-menu) {
+  &:global(.ant-menu) {
+    border-inline-end: none;
+  }
+  & :global(.ant-menu-item-selected), :global(.ant-menu-submenu-selected) {
+    color: @text-color;
+  }
+}
+.page-sider--expanded {
+  & :global(.ant-menu-item), & :global(.ant-menu-submenu-title) {
+    padding-left: @space-4 !important;
+  }
+  & :global(.ant-menu-item-only-child){
+    padding-left: @space-11 !important;
+  }
+}
+.page-sider--collapsed {
+  width: 80px;
 }
 .sidebarLogo {
   width: 100%;
   height: auto;
+  padding-block: @space-4;
+  max-height: 140px;
 }
 .sidebarFooter {
   display: flex;
   position: absolute;
   bottom: 0px;
+  padding-bottom: @space-4;
 }
 .profileName {
-  margin: '0px';
+  margin: 0px;
+}
+.sider-drawer {
+  & :global(.ant-drawer-content-wrapper) {
+    max-width: 320px;
+  }
+  & :global(.ant-drawer-body) {
+    padding-inline: 0px;
+  }
+  & .sidebarLogo {
+    padding-block: @space-4;
+  }
+}
+
+:global(.rtl) {
+  .sider-trigger {
+    right: 214px;
+  }
+  .sider-trigger--collapsed {
+    right: 90px;
+  }
+  .triggerIcon {
+    transform: rotate(180deg);
+  }
 }

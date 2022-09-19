@@ -56,7 +56,7 @@ module Administration
       end
 
       def find_user_report
-        @user_report = UserReport.find_by!(id: params[:user_report_id])
+        @user_report = UserReport.find(params[:user_report_id])
       end
 
       def resource_class

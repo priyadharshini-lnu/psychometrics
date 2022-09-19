@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Breadcrumb as AntBreadcrumb } from 'antd'
 import { Request, State } from 'modules/admin/core/ui/breadcrumbs'
+import useTitle from 'hooks/useTitle'
 import styles from './styles.less'
 
 interface Crumb {
@@ -23,6 +24,10 @@ const Breadcrumb: React.FC<Props> = ({
   useEffect(() => {
     fetch(request)
   }, [JSON.stringify(request)])
+
+  const crumbsForTitle = crumbs.slice(-2).map(({ label }) => label(state)).reverse()
+  crumbsForTitle.push('Lighthouse')
+  useTitle({ title: crumbsForTitle.join(' » ') })
 
   return (
     <div className={styles.container} data-testid="breadcrumbs">

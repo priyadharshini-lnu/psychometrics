@@ -43,20 +43,26 @@ module Threesixty
       # Send URL of saved PDF to user
       #
       def notify_user
-        ActionCable.server.broadcast "notification_channel_for_#{current_user.id}",
-                                     type: 'success',
-                                     message: I18n.t('jobs.threesixty.reports.download.message'),
-                                     description: I18n.t(
-                                       'jobs.threesixty.reports.download.description',
-                                       url: user_report.pdf.url
-                                     )
+        ActionCable.server.broadcast \
+          "notification_channel_for_#{current_user.id}",
+          {
+            type: 'success',
+            message: I18n.t('jobs.threesixty.reports.download.message'),
+            description: I18n.t(
+              'jobs.threesixty.reports.download.description',
+              url: user_report.pdf.url
+            )
+          }
       end
 
       def notify_error
-        ActionCable.server.broadcast "notification_channel_for_#{current_user.id}",
-                                     type: 'error',
-                                     message: I18n.t('jobs.threesixty.reports.download.error'),
-                                     description: I18n.t('jobs.threesixty.reports.download.error_description')
+        ActionCable.server.broadcast \
+          "notification_channel_for_#{current_user.id}",
+          {
+            type: 'error',
+            message: I18n.t('jobs.threesixty.reports.download.error'),
+            description: I18n.t('jobs.threesixty.reports.download.error_description')
+          }
       end
     end
   end

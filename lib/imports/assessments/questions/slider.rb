@@ -20,7 +20,7 @@ module Imports
           data.each_with_index do |value, index|
             answers << {
               index: index,
-              value: value.is_a?(Numeric) ? (value / (use_scoring && factors_scoring[index] || 1)) : ''
+              value: value.is_a?(Numeric) ? (value / ((use_scoring && factors_scoring[index]) || 1)) : ''
             }
           end
 

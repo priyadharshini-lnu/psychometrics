@@ -2,7 +2,7 @@
 
 # rubocop:disable Style/MutableConstant
 
-Dir[__dir__ + '/definitions/**/*.rb'].sort.each { |file| require file }
+Dir["#{__dir__}/definitions/**/*.rb"].each { |file| require file }
 
 module Swagger
   module V2
@@ -98,6 +98,24 @@ module Swagger
           ),
           ClientUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Client::Schema.update_request
+          ),
+          DashboardsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.multiple_resource_response
+          ),
+          DashboardResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.single_resource_response
+          ),
+          DashboardCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.create_request
+          ),
+          DashboardUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dashboard::Schema.update_request
+          ),
+          DesignSettingListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DesignSetting::Schema.multiple_resource_response
+          ),
+          DesignSettingUpdateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::DesignSetting::Schema.single_resource_response
           )
         }
       }

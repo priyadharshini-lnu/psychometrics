@@ -91,7 +91,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
               type: 'clients',
               attributes: {
                 name: 'Client 1',
-                year: Time.now.year,
+                year: Time.zone.now.year,
                 type: 'partner',
                 country: 'India',
                 number: '123'
@@ -112,7 +112,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
           client_response = JSON.parse(response.body)['data']
           expect(client_response).to have_key('id')
           expect(client_response).to have_attribute(:name).with_value('Client 1')
-          expect(client_response).to have_attribute(:year).with_value(Time.now.year)
+          expect(client_response).to have_attribute(:year).with_value(Time.zone.now.year)
           expect(client_response).to have_attribute(:type).with_value('partner')
           expect(client_response).to have_attribute(:number).with_value('123')
           expect(client_response).to have_relationship(:project_manager).

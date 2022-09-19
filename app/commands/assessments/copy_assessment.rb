@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assessments
-  class CopyAssessment < Rectify::Command
+  class CopyAssessment < BaseCommand
     private_attr_reader :assessment, :owner_id, :current_user, :skip_owner_validation
 
     def initialize(assessment_id, current_user, owner_id = nil, skip_owner_validation: false)
@@ -15,7 +15,7 @@ module Assessments
       @skip_owner_validation = skip_owner_validation
     end
 
-    def call
+    def call # rubocop:disable Metrics/AbcSize
       # Get original flow and norm_rules
       flow = (assessment.flow || {}).to_json
       norm_rules = (assessment.norm_rules || {}).to_json
@@ -65,7 +65,7 @@ module Assessments
           flow = update_id_in_json_config(flow, question.id, @questions_mapping)
           norm_rules = update_id_in_json_config(norm_rules, question.id, @questions_mapping)
         end
-        new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
+        new_assessment.update(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
 
         new_assessment
       end
@@ -106,11 +106,11 @@ module Assessments
 
           next if json.blank? || json.starts_with?('null')
 
-          question_ids = json.scan(/\"subject\":\"?(\d+)\"?/).flatten
+          question_ids = json.scan(/"subject":"?(\d+)"?/).flatten
           question_ids.each { |question_id| json = update_id_in_json_config(json, question_id, @questions_mapping) }
 
           if column == 'skip_logic'
-            block_ids = json.scan(/\"destinationBlock\":\"?(\d+)\"?/).flatten
+            block_ids = json.scan(/"destinationBlock":"?(\d+)"?/).flatten
             block_ids.each do |id|
               json = update_id_in_json_config(json, id, @blocks_mapping, 'destinationBlock')
             end
@@ -121,7 +121,7 @@ module Assessments
     end
 
     def update_id_in_json_config(json, value, mapping, key = 'subject')
-      json.gsub(/\"#{key}\":\"?#{value}\"?/, "\"#{key}\":#{mapping[value.to_i]}")
+      json.gsub(/"#{key}":"?#{value}"?/, "\"#{key}\":#{mapping[value.to_i]}")
     end
   end
 end

@@ -27,7 +27,7 @@ module Threesixty
     private
 
     def participants_join_query
-      <<-SQL.strip_heredoc
+      <<-SQL.squish
         LEFT JOIN user_assessments
         ON user_assessments.evaluator_id = threesixty_evaluators.user_id
         AND user_assessments.campaign_id = #{threesixty_campaign.campaign_id}

@@ -13,9 +13,11 @@ class Campaign < ApplicationRecord
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :campaign_options, dependent: :destroy
+  has_many :sheets, dependent: :destroy
+  has_one :accesssheet, dependent: :destroy
   has_one :project_datasheet, through: :project, source: :datasheet
-  has_one :campaign_datasheet, class_name: 'Datasheet', foreign_key: :campaign_id, dependent: :destroy
-  has_one :datasheet_column_preference, as: :resource
+  has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy
+  has_one :dashboard
 
   delegate :fixed_time?,
            :fixed_time_duration,
@@ -33,7 +35,6 @@ class Campaign < ApplicationRecord
   has_many :participants, class_name: 'Threesixty::Participant', dependent: :destroy
   has_many :user_reports, dependent: :destroy
   has_many :campaign_users, dependent: :destroy
-  has_many :instruction_templates, -> { enabled }
   has_many :instruction_templates, -> { enabled }, foreign_key: :threesixty_campaign_id,
                                                      class_name: 'Threesixty::InstructionTemplate'
   has_many :user_assessments, dependent: :destroy
@@ -56,7 +57,7 @@ class Campaign < ApplicationRecord
   delegate :client, to: :project
   THREESIXTY = 'threesixty'
 
-  enum type: %i[common threesixty]
+  enum type: { common: 0, threesixty: 1 }
   enum status: { active: 0, closed: 1, inactive: 2, archived: 3 }
 
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
@@ -75,7 +76,7 @@ class Campaign < ApplicationRecord
   end
 
   def real_status
-    return 'closed' if end_date && end_date < Time.now
+    return 'closed' if end_date && end_date < Time.zone.now
 
     status
   end
@@ -89,17 +90,17 @@ class Campaign < ApplicationRecord
   end
 
   def datasheet_column_names
-    datasheet_columns.keys
+    datasheet_columns.map { |c| c['name'] }
   end
 
   def datasheet_columns
-    project_datasheet_columns = project.datasheet&.columns || {}
-    campaign_datasheet_columns = datasheet&.columns || {}
-    project_datasheet_columns.merge(campaign_datasheet_columns)
-  end
-
-  def nomalized_datasheet_columns
-    datasheet_columns.map { |k, v| { name: k, type: v } }
+    project_datasheet_columns = project.datasheet&.columns || []
+    campaign_datasheet_columns = datasheet&.columns || []
+    column_names = (project_datasheet_columns + campaign_datasheet_columns).map { |c| c['name'] }.uniq
+    column_names.map do |column_name|
+      campaign_column = campaign_datasheet_columns.find { |col| col['name'] == column_name }
+      campaign_column || project_datasheet_columns.find { |col| col['name'] == column_name }
+    end
   end
 
   def assessor_assessments
@@ -109,8 +110,8 @@ class Campaign < ApplicationRecord
 
   def clone
     deep_clone(include: %i[
-                 campaign_reports campaign_assessments campaign_assessment_groups campaign_options
-               ])
+      campaign_reports campaign_assessments campaign_assessment_groups campaign_options
+    ])
   end
 
   def timed?
@@ -135,7 +136,7 @@ class Campaign < ApplicationRecord
 
   def set_uniq_code
     self.uniq_code = [
-      ENV['SERVER_NAME'],
+      ENV.fetch('SERVER_NAME', nil),
       project.id,
       id
     ].compact.join('-')

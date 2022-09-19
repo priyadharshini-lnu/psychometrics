@@ -5,10 +5,10 @@ require 'rails_helper'
 describe ::UsersResults::DefaultRecodingValues::SideBySide do
   let(:question) do
     create(:question, type: 'SideBySide', props: { 'choices' => 5, 'scalePoints' => 3, 'columnsData' => [
-             { 'answers' => 2 },
-             { 'answers' => 3 },
-             { 'answers' => 4 }
-           ] })
+      { 'answers' => 2 },
+      { 'answers' => 3 },
+      { 'answers' => 4 }
+    ] })
   end
 
   it do

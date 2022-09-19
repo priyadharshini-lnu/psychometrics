@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class SmsInvitesController < Administration::Projects::BaseController
+    class SmsInvitesController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[update destroy]
 
       def index
@@ -94,7 +94,7 @@ module Administration
 
       def download_example_import_file
         send_file(
-          "#{Rails.root}/public/example_csv/sms_invite_import.csv",
+          Rails.public_path.join('example_csv/sms_invite_import.csv'),
           type: 'text/csv'
         )
       end
@@ -105,11 +105,11 @@ module Administration
         @resource_class ||= SmsInvite
       end
 
+      # rubocop:disable Naming/MemoizedInstanceVariableName
       def set_resource
-        @_resource = policy_scope(
-          resource_class, policy_scope_class: Administration::Campaigns::SmsInvitePolicy::Scope
-        ).find(params[:id])
+        @_resource ||= campaign.sms_invites.find(params[:id])
       end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
 
       def pundit_authorize
         authorize(

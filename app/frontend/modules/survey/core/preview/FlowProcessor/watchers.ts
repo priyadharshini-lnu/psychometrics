@@ -119,6 +119,10 @@ function* genSaveResultsIfNoVideoQuestionInProgress () {
     q => getQuestion(state.preview, q.questionId).type === 'VideoResponse')
 
   if (state.preview.assessmentTimedOut && !inProgressVideoQuestion) {
+    if (state.preview.showSubmitPage) {
+      yield put(hideSubmitPage())
+      return
+    }
     if (!state.preview.end) {
       yield genSimulatePassingAssessment()
     } else {
@@ -138,6 +142,10 @@ function* genSimulatePassingAssessment () {
 
 function* genPassAssessmentIfTimedOut () {
   const state = yield select()
+  if (state.preview.showSubmitPage) {
+    yield put(hideSubmitPage())
+    return
+  }
   if (state.preview.assessmentTimedOut && !state.preview.end) {
     yield genSimulatePassingAssessment()
   }

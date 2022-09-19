@@ -3,7 +3,7 @@
 module Licenses
   class ExpiryCheckJob < ApplicationJob
     def perform
-      License.where(end_date: Date.today).find_each do |license|
+      License.where(end_date: Time.zone.today).find_each do |license|
         Membership.project_admin_role.with_client(license.client_id).find_each do |membership|
           LicenseMailer.license_expire(membership.user_id).deliver_later
         end

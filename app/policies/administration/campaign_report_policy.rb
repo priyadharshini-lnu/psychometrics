@@ -44,6 +44,10 @@ module Administration
       )
     end
 
+    def toggle_user_dashboard?
+      @user.has_permission?(:campaigns, :manage_users)
+    end
+
     def regenerate?
       @user.is?(:superadmin) || @user.has_permission?(
         :reports, :manage, project_id: project_id, campaign_id: campaign_id

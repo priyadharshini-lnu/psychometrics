@@ -42,7 +42,7 @@ module Campaigns
       end
 
       def validate_code_uniqueness
-        if RegistrationCode.where(code: code, campaign_id: campaign_id).exists?
+        if RegistrationCode.exists?(code: code, campaign_id: campaign_id)
           errors.add(:code, I18n.t('administration.clients.registration_codes.errors.duplicate_code'))
         end
       end

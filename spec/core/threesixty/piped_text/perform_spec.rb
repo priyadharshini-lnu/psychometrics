@@ -72,7 +72,7 @@ describe Threesixty::PipedText::Perform do
 
     it do
       response = described_class.call!('{{d://Current?f=%-d/%-m/%Y}}', threesixty_campaign: double, subject: user)
-      expect(response).to eq(Time.now.strftime('%-d/%-m/%Y'))
+      expect(response).to eq(Time.zone.now.strftime('%-d/%-m/%Y'))
     end
 
     it do
@@ -83,19 +83,21 @@ describe Threesixty::PipedText::Perform do
                                  'https://ttedev.me:3030/uploads/media_response/asset/prometeus.pdf'
                                }
       response = described_class.call!('{{answer://FileUpload/826?w=50%&h=500px}}', result: result)
-      expect(response).to eq('<object style="width: 50%; height: 500px; background: black; border: none;"'\
-        ' data="https://ttedev.me:3030/uploads/media_response/asset/prometeus.pdf" type="application/pdf"></object>')
+      expect(response).to eq(
+        '<object style="width: 50%; height: 500px; background: black; border: none;" ' \
+        'data="https://ttedev.me:3030/uploads/media_response/asset/prometeus.pdf" type="application/pdf"></object>'
+      )
     end
 
     it 'empty if error occurs' do
       response = described_class.call!('{{d://Current?f=%--}}')
       expect { response.call }.to raise_error(Exception)
-      expect(response).to eq(Time.now.strftime(''))
+      expect(response).to eq(Time.zone.now.strftime(''))
     end
 
     it do
       response = described_class.call!('{{d://Other/+1d?f=%-d/%-m/%Y}}', threesixty_campaign: double, subject: user)
-      time = Time.now + 1.day
+      time = 1.day.from_now
       expect(response).to eq(time.strftime('%-d/%-m/%Y'))
     end
   end

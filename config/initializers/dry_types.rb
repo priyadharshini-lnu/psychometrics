@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
+dry_error_translation_file_path = Dir.glob(['config/locales/**/*.yml'])
 Dry::Schema.config.messages.backend = :i18n
 Dry::Schema.config.messages.top_namespace = :dry_errors
+Dry::Schema.config.messages.load_paths += dry_error_translation_file_path
+
+Dry::Validation::Contract.config.messages.backend = :i18n
+Dry::Validation::Contract.config.messages.top_namespace = :dry_errors
+Dry::Validation::Contract.config.messages.load_paths += dry_error_translation_file_path
 
 module Types
   include Dry.Types()

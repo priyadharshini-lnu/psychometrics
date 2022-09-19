@@ -29,14 +29,14 @@ module Threesixty
       end
 
       def sql
-        <<-SQL.strip_heredoc
-          SELECT datasheet_rows.id, datasheet_rows.email, "data"->>'First Name' as first_name, "data"->>'Last Name' as last_name
-            FROM datasheet_rows
-            JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and (
-              datasheets.project_id = :project_id OR datasheets.campaign_id = :campaign_id
+        <<-SQL.squish
+          SELECT sheet_rows.id, sheet_rows.email, "data"->>'First Name' as first_name, "data"->>'Last Name' as last_name
+            FROM sheet_rows
+            JOIN sheets on sheets.id = sheet_rows.sheet_id and (
+              sheets.project_id = :project_id OR sheets.campaign_id = :campaign_id
             )
-            WHERE datasheets.type = 'Datasheet'
-            AND datasheet_rows.email ILIKE :query OR "data"->>'First Name' ILIKE :query OR "data"->>'Last Name' ILIKE :query
+            WHERE sheets.type = 'Datasheet'
+            AND sheet_rows.email ILIKE :query OR "data"->>'First Name' ILIKE :query OR "data"->>'Last Name' ILIKE :query
           LIMIT :limit
         SQL
       end

@@ -2,7 +2,7 @@
 
 module Threesixty
   class EmailTemplateMailer < ApplicationMailer
-    layout '/mailer/layouts/end_user_email_without_footer'
+    layout 'mailer/layouts/end_user_email_without_footer'
 
     def test_email(email_template, to_email)
       @body = email_template.content

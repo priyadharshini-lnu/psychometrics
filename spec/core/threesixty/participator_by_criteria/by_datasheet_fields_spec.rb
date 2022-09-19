@@ -9,14 +9,14 @@ describe Threesixty::ParticipatorByCriteria::ByDatasheetFields do
 
   it 'returns subject matching datasheet criteria' do
     create(
-      :datasheet_row,
-      datasheet: datasheet,
+      :sheet_row,
+      sheet: datasheet,
       email: threesixty_subjects[0].email,
       data: { 'gender' => 'M' }
     )
     create(
-      :datasheet_row,
-      datasheet: datasheet,
+      :sheet_row,
+      sheet: datasheet,
       email: threesixty_subjects[1].email,
       data: { 'gender' => 'F' }
     )
@@ -33,14 +33,14 @@ describe Threesixty::ParticipatorByCriteria::ByDatasheetFields do
 
   it 'works with multiple datasheet criteria' do
     create(
-      :datasheet_row,
-      datasheet: datasheet,
+      :sheet_row,
+      sheet: datasheet,
       email: threesixty_subjects[0].email,
       data: { 'gender' => 'M', 'role' => 'QA' }
     )
     create(
-      :datasheet_row,
-      datasheet: datasheet,
+      :sheet_row,
+      sheet: datasheet,
       email: threesixty_subjects[1].email,
       data: { 'gender' => 'M', 'role' => 'Developer' }
     )

@@ -47,60 +47,60 @@ describe 'Reports' do
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :campaign_id, in: :query, type: :string, required: false,
-      description: 'if is not filled, the system takes the last campaign id'
+                description: 'if is not filled, the system takes the last campaign id'
 
       response '200', 'Success' do
         schema type: 'array', items: { '$ref' => '#/definitions/UserReport' }
         examples 'application/json' => [
           {
-            "id": 127,
-            "name": 'Thriving Index - Resource Pro',
-            "description": 'Description for Thriving Index - Resource Pro',
-            "icon_url": 'https://some.aws.s3.com/report_icon1.jpg',
-            "poster_url": 'https://some.aws.s3.com/report_poster1.jpg',
-            "user_access": false,
-            "output_type": {
-              "pdf": true,
-              "results": false
+            id: 127,
+            name: 'Thriving Index - Resource Pro',
+            description: 'Description for Thriving Index - Resource Pro',
+            icon_url: 'https://some.aws.s3.com/report_icon1.jpg',
+            poster_url: 'https://some.aws.s3.com/report_poster1.jpg',
+            user_access: false,
+            output_type: {
+              pdf: true,
+              results: false
             },
-            "status": 'not_ready',
-            "campaign_id": 1,
-            "assessments": [
+            status: 'not_ready',
+            campaign_id: 1,
+            assessments: [
               {
-                "id": 91_731,
-                "name": 'Thriving Index Assessment',
-                "description": 'Self-assessment to understand your signature strengths and potential blindspots',
-                "icon_url": 'https://some.aws.s3.com/assessment_icon1.jpg',
-                "poster_url": 'https://some.aws.s3.com/assessment_poster1.jpg',
-                "status": 'not_started',
-                "started_at": '2019-01-06T20:54:05.714+04:00',
-                "completed_at": '2019-01-06T20:54:05.714+04:00'
+                id: 91_731,
+                name: 'Thriving Index Assessment',
+                description: 'Self-assessment to understand your signature strengths and potential blindspots',
+                icon_url: 'https://some.aws.s3.com/assessment_icon1.jpg',
+                poster_url: 'https://some.aws.s3.com/assessment_poster1.jpg',
+                status: 'not_started',
+                started_at: '2019-01-06T20:54:05.714+04:00',
+                completed_at: '2019-01-06T20:54:05.714+04:00'
               }
             ]
           },
           {
-            "id": 110,
-            "name": 'Custom Report',
-            "description": 'Description for Custom Report',
-            "icon_url": 'https://some.aws.s3.com/report_icon2.jpg',
-            "poster_url": 'https://some.aws.s3.com/report_poster2.jpg',
-            "user_access": true,
-            'output_type': {
-              "pdf": true,
-              "results": true
+            id: 110,
+            name: 'Custom Report',
+            description: 'Description for Custom Report',
+            icon_url: 'https://some.aws.s3.com/report_icon2.jpg',
+            poster_url: 'https://some.aws.s3.com/report_poster2.jpg',
+            user_access: true,
+            output_type: {
+              pdf: true,
+              results: true
             },
-            "status": 'not_ready',
-            "campaign_id": 1,
-            "assessments": [
+            status: 'not_ready',
+            campaign_id: 1,
+            assessments: [
               {
-                "id": 91_731,
-                "name": 'Thriving Index Assessment',
-                "description": 'Self-assessment to understand your signature strengths and potential blindspots',
-                "icon_url": 'https://some.aws.s3.com/assessment_icon2.jpg',
-                "poster_url": 'https://some.aws.s3.com/assessment_poster2.jpg',
-                "status": 'not_started',
-                "started_at": '2019-01-06T20:54:05.714+04:00',
-                "completed_at": '2019-01-06T20:54:05.714+04:00'
+                id: 91_731,
+                name: 'Thriving Index Assessment',
+                description: 'Self-assessment to understand your signature strengths and potential blindspots',
+                icon_url: 'https://some.aws.s3.com/assessment_icon2.jpg',
+                poster_url: 'https://some.aws.s3.com/assessment_poster2.jpg',
+                status: 'not_started',
+                started_at: '2019-01-06T20:54:05.714+04:00',
+                completed_at: '2019-01-06T20:54:05.714+04:00'
               }
             ]
           }
@@ -140,7 +140,7 @@ describe 'Reports' do
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
       parameter name: :campaign_id, in: :query, type: :string, required: false,
-      description: 'if is not filled, the system takes the last campaign id'
+                description: 'if is not filled, the system takes the last campaign id'
 
       before do
         create(:factor, dimension: dimension)
@@ -161,7 +161,7 @@ describe 'Reports' do
         schema '$ref' => '#/definitions/ReportResults'
         examples 'application/json' => {
           'user_data' => { 'first_name' => 'Jane', 'last_name' => 'Doe' },
-          'campaign_id': 1,
+          campaign_id: 1,
           'assessments' => [
             {
               'id' => 17,
@@ -246,7 +246,7 @@ describe 'Reports' do
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
       parameter name: :campaign_id, in: :query, type: :string, required: false,
-      description: 'if is not filled, the system takes the last campaign id'
+                description: 'if is not filled, the system takes the last campaign id'
 
       response '200', 'Success' do
         schema '$ref' => '#/definitions/ReportPdf'
@@ -285,22 +285,22 @@ describe 'Reports' do
       security [basic: []]
       parameter name: :report_id, in: :path, type: :integer
       parameter name: :since, in: :query, type: :string, required: false,
-        description: 'Returns results that have been updated after since.'
+                description: 'Returns results that have been updated after since.'
       parameter name: :include_occupations, in: :query, type: :string, required: false,
-        description: 'true - returns occupations'
+                description: 'true - returns occupations'
       parameter name: :include_factors, in: :query, type: :string, required: false,
-        description: 'true - returns factors'
+                description: 'true - returns factors'
 
       response '200', 'Get all report dimensions' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
-          'dimensions': [
+          dimensions: [
             {
-              'id': 12,
-              'name': 'Dimension Name'
+              id: 12,
+              name: 'Dimension Name'
             }
           ],
-          'server_time': '2019-10-06T18:25:43.511Z'
+          server_time: '2019-10-06T18:25:43.511Z'
         }
 
         let(:report_id) { report.id }
@@ -341,21 +341,21 @@ describe 'Reports' do
       response '200', 'Success' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
-          'dimensions': [
+          dimensions: [
             {
-              'id': 12,
-              'name': 'Dimension name',
-              'occupations': [
+              id: 12,
+              name: 'Dimension name',
+              occupations: [
                 {
-                  'id': 123,
-                  'name': 'Occupation Name',
-                  'description': 'Lorem ipsum dolor sit amet.',
-                  'updated_at': '2019-10-06T18:25:43.511Z'
+                  id: 123,
+                  name: 'Occupation Name',
+                  description: 'Lorem ipsum dolor sit amet.',
+                  updated_at: '2019-10-06T18:25:43.511Z'
                 }
               ]
             }
           ],
-          'server_time': '2019-10-03T18:25:43.511Z'
+          server_time: '2019-10-03T18:25:43.511Z'
         }
 
         let(:report_id) { report.id }
@@ -381,31 +381,31 @@ describe 'Reports' do
       response '200', 'Success' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
-          'dimensions': [
+          dimensions: [
             {
-              'id': 12,
-              'name': 'Dimension name',
-              'occupations': [
+              id: 12,
+              name: 'Dimension name',
+              occupations: [
                 {
-                  'id': 123,
-                  'name': 'Occupation Name',
-                  'description': 'Lorem ipsum dolor sit amet.',
-                  'updated_at': '2019-10-06T18:25:43.511Z'
+                  id: 123,
+                  name: 'Occupation Name',
+                  description: 'Lorem ipsum dolor sit amet.',
+                  updated_at: '2019-10-06T18:25:43.511Z'
                 }
               ]
             }
           ],
-          'server_time': '2019-10-03T18:25:43.511Z'
+          server_time: '2019-10-03T18:25:43.511Z'
         }
 
         before do
           occupation = dimension.occupations.first
-          occupation.update(updated_at: Time.now + 10.minutes)
+          occupation.update(updated_at: 10.minutes.from_now)
         end
 
         let(:report_id) { report.id }
         let(:include_occupations) { true }
-        let(:since) { (Time.now + 10.minutes).utc.iso8601 }
+        let(:since) { 10.minutes.from_now.utc.iso8601 }
 
         run_test! do |response|
           result = JSON.parse(response.body)
@@ -442,21 +442,21 @@ describe 'Reports' do
       response '200', 'Get report dimensions with factors' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
-          'dimensions': [
+          dimensions: [
             {
-              'id': 12,
-              'name': 'Dimension Name',
-              'factors': [
+              id: 12,
+              name: 'Dimension Name',
+              factors: [
                 {
-                  'id': 123,
-                  'name': 'Factor Name',
-                  'description': 'Lorem ipsum dolor sit amet.',
-                  'updated_at': '2019-10-06T18:25:43.511Z'
+                  id: 123,
+                  name: 'Factor Name',
+                  description: 'Lorem ipsum dolor sit amet.',
+                  updated_at: '2019-10-06T18:25:43.511Z'
                 }
               ]
             }
           ],
-          'server_time': '2019-10-06T18:25:43.511Z'
+          server_time: '2019-10-06T18:25:43.511Z'
         }
 
         let(:report_id) { report.id }
@@ -481,31 +481,31 @@ describe 'Reports' do
       response '200', 'Get all report dimensions with factors since the updated_at' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
-          'dimensions': [
+          dimensions: [
             {
-              'id': 12,
-              'name': 'Dimension name',
-              'factors': [
+              id: 12,
+              name: 'Dimension name',
+              factors: [
                 {
-                  'id': 123,
-                  'name': 'Factor Name',
-                  'description': 'Lorem ipsum dolor sit amet.',
-                  'updated_at': '2019-10-06T18:25:43.511Z'
+                  id: 123,
+                  name: 'Factor Name',
+                  description: 'Lorem ipsum dolor sit amet.',
+                  updated_at: '2019-10-06T18:25:43.511Z'
                 }
               ]
             }
           ],
-          'server_time': '2019-10-06T18:25:43.511Z'
+          server_time: '2019-10-06T18:25:43.511Z'
         }
 
         before do
           factor = dimension.factors.first
-          factor.update(updated_at: Time.now + 10.minutes)
+          factor.update(updated_at: 10.minutes.from_now)
         end
 
         let(:report_id) { report.id }
         let(:include_factors) { true }
-        let(:since) { (Time.now + 10.minutes).utc.iso8601 }
+        let(:since) { 10.minutes.from_now.utc.iso8601 }
 
         run_test! do |response|
           result = JSON.parse(response.body)
@@ -574,13 +574,13 @@ describe 'Reports' do
 
         let(:body) do
           {
-            "user_access": true
+            user_access: true
           }
         end
         schema '$ref' => '#/definitions/UserReport'
 
         examples 'application/json' => {
-          "user_access": false
+          user_access: false
         }
 
         run_test! do |response|
@@ -599,10 +599,10 @@ describe 'Reports' do
 
         examples 'application/json' =>
         {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': nil,
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: nil,
+          meta: nil
         }
 
         run_test! do |response|
@@ -620,10 +620,10 @@ describe 'Reports' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1000,
-          'message': 'Invalid authentication',
-          'more_info': 'API User is disabled',
-          'meta': nil
+          code: 1000,
+          message: 'Invalid authentication',
+          more_info: 'API User is disabled',
+          meta: nil
         }
 
         run_test! do |response|

@@ -1,31 +1,8 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: questions
-#
-#  id                  :integer          not null, primary key
-#  name                :string
-#  position            :integer
-#  type                :string
-#  props               :json
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  block_id            :integer
-#  deleted_at          :datetime
-#  required_validation :json
-#  validation          :json
-#  display_logic       :json
-#  skip_logic          :json
-#  view                :integer          default("assessments")
-#  disabled            :boolean          default(FALSE)
-#  template_id         :integer
-#  assessment_id       :integer
-#  owner_id            :integer
-#
-
 class Question < ApplicationRecord
   include Copyable
+  include OwnerValidations
 
   # For assessment builder
   attr_accessor :save_as_template, :permanent_remove
@@ -33,9 +10,10 @@ class Question < ApplicationRecord
   belongs_to :block
   belongs_to :assessment, touch: true
   belongs_to :template, class_name: 'Question', dependent: :destroy
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Client'
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
+
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
   has_many :question_recodings, dependent: :destroy
@@ -44,7 +22,7 @@ class Question < ApplicationRecord
   has_many :translations, as: :translateable, dependent: :destroy
   has_many :media_responses, dependent: :nullify
 
-  enum view: %i[assessments templates blocks]
+  enum view: { assessments: 0, templates: 1, blocks: 2 }
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   scope :not_deleted, -> { where(deleted_at: nil) }
@@ -65,12 +43,12 @@ class Question < ApplicationRecord
       reorder('reposition ASC')
   }
 
+  before_save :dup_for_template, if: :save_as_template
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
-  after_update :sync_with_template, if: :template
   before_create :set_view
   after_create :create_in_template_block, if: proc { block && block.template.present? }
   after_create :create_in_assessments_blocks, if: proc { block&.blocks&.any? }
-  before_save :dup_for_template, if: :save_as_template
+  after_update :sync_with_template, if: :template
 
   #
   # Disables single column inheritance
@@ -129,7 +107,7 @@ class Question < ApplicationRecord
   end
 
   def assign_to_assessment_ids=(assessment_ids)
-    ::Assessment.includes(:blocks).where(id: assessment_ids).each do |assessment|
+    ::Assessment.includes(:blocks).find_each(id: assessment_ids) do |assessment|
       if assessment.blocks.empty? || assessment.blocks.last.try(:template_id).present?
         assessment.blocks.create!(name: name)
       end
@@ -138,7 +116,7 @@ class Question < ApplicationRecord
   end
 
   def sync_with_template
-    template.update_attributes(general_attributes)
+    template.update(general_attributes)
   end
 
   def set_view
@@ -157,7 +135,7 @@ class Question < ApplicationRecord
   end
 
   def detect_specified_scoring
-    factors_scorings.detect { |fs| !fs.props.blank? }&.props || []
+    factors_scorings.detect { |fs| fs.props.present? }&.props || []
   end
 
   def of_sub_type?(*types)

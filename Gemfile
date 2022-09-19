@@ -1,24 +1,26 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.7.4'
-gem 'bundler',                    '~> 2.2.31'
+ruby '3.1.2'
+gem 'bundler',                    '~> 2.3.17'
 gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'faraday',                    '~> 1.3.0'
+gem 'bootsnap', '>= 1.12.0', require: false
+gem 'faraday',                    '~> 1.10.0'
 gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
-gem 'pg',                         '~> 0.19.0'
+gem 'pg',                         '~> 1.4'
 gem 'puma',                       '~> 5.6.2'
-gem 'rails',                      '~> 5.2.0'
+gem 'rails',                      '~> 6.0'
+gem 'rails-i18n',                 '~> 6.0'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'terser', '~> 1.1.11'
 
 source 'https://rails-assets.org/' do
+  gem 'rails-assets-bootstrap', '~> 3.3.7'
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
@@ -26,16 +28,16 @@ source 'https://rails-assets.org/' do
   gem 'rails-assets-bootstrap-select', '~> 1.11.0'
   gem 'rails-assets-datatables', '1.10.12'
   gem 'rails-assets-jquery', '1.12'
-  gem 'rails-assets-jquery-serialize-object', '2.5.0'
   gem 'rails-assets-jquery.fileDownload', '1.4.2'
+  gem 'rails-assets-jquery-serialize-object', '2.5.0'
   gem 'rails-assets-js-cookie', '2.1.3'
   gem 'rails-assets-ladda', '~> 1.0.5'
   gem 'rails-assets-lodash', '~> 4.17.11'
   gem 'rails-assets-moment', '~> 2.29.1'
   gem 'rails-assets-moment-timezone', '~> 0.5.14'
   gem 'rails-assets-multiselect', '0.9.12'
-  gem 'rails-assets-mustache.js'
-  gem 'rails-assets-noty'
+  gem 'rails-assets-mustache.js', '~> 2.2.1'
+  gem 'rails-assets-noty', '~> 2.3.8'
   gem 'rails-assets-quicksearch', '2.3.1'
   gem 'rails-assets-Sortable', '1.6.0'
   gem 'rails-assets-x-editable', '~> 1.5.0'
@@ -44,11 +46,12 @@ end
 ### Authentication and authorization
 gem 'devise',                     '~> 4.7.3'
 gem 'devise-i18n',                '~> 1.9.2'
-gem 'devise-security',            '~> 0.17.0'
 gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
-gem 'pundit',                     '~> 2.1.0'
-gem 'two_factor_authentication',  '~> 2.2.0'
+gem 'devise-security',            '~> 0.17.0'
+gem 'pundit',                     '~> 2.1.1'
+gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
+  branch: 'fix_deprecated_methods'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
@@ -69,7 +72,7 @@ gem 'kaminari',                   '~> 1.2.1'
 gem 'breadcrumbs_on_rails',       '~> 4.1.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack', '~> 2.3.0'
+gem 'ransack',                    '~> 2.6.0'
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.5'
 
@@ -77,13 +80,18 @@ gem 'active_link_to',             '~> 1.0.5'
 gem 'i18n-js',                    '~> 3.9.2'
 
 ### Decorator
-gem 'annotate', '~> 2.7.0'
-gem 'draper',                     '~> 3.0.0'
+gem 'draper', '~> 4.0.2'
 ### For organisation ENV variable
-gem 'config',                     '~> 2.2.1'
+gem 'config',                     '~> 4.0.0'
 gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails', '~> 1.11.1'
+
+### Required as dependency
+# TODO: remove when upgraded to Rails 7
+gem 'net-imap', require: false
+gem 'net-pop', require: false
+gem 'net-smtp', require: false
 
 ### XLS import
 gem 'file_validators',            '~> 3.0.0'
@@ -92,10 +100,8 @@ gem 'rubyXL',                     '~> 3.4.6'
 # For import csv
 gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
-gem 'ckeditor'
 gem 'jquery-fileupload-rails', '~> 0.4.6'
-gem 'redis', '~> 4.7.0'
-gem 'redis-rails', '~> 5.0.2'
+gem 'redis', '~> 4.7.1'
 gem 'redlock', '~> 1.2.2'
 
 # A workaround for `roo` since it requires an old version of rubyzip
@@ -104,7 +110,7 @@ gem 'rubyzip', '~> 2.3'
 ### dependencies for XLS export (via templates)
 gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'caxlsx_rails', '~> 0.6.0'
-gem 'roo', '~> 2.8.2'
+gem 'roo', '~> 2.9'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
 gem 'acts_as_list', '~> 1.0.2'
@@ -118,17 +124,17 @@ gem 'sentry-ruby', '~> 4.1.4'
 gem 'sentry-sidekiq', '~> 4.1.2'
 
 # DSL for activerecord
-gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel.git', branch: 'feature/fix-97'
+gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
 
 # Cloning ActiveRecord object
-gem 'deep_cloneable', '~> 2.4.0'
+gem 'deep_cloneable', '~> 3.0.0'
 
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
 gem 'carrierwave', '~> 1.3.2'
 gem 'carrierwave-base64', '~> 2.5.3'
-gem 'carrierwave_direct'
+gem 'carrierwave_direct', '~> 2.1.0'
 gem 'fog-aws', '~> 2.0.1'
 gem 'inky-rb', '~> 1.3.8', require: 'inky'
 gem 'mini_magick', '~> 4.11.0'
@@ -140,16 +146,15 @@ gem 'browser', '~> 5.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 6.4.1'
+gem 'sidekiq', '~> 6.5.1'
 
-gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
 
 gem 'dry-swagger', '~> 0.7.2'
 gem 'dry-validation', '~> 1.8.0'
 gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.0.0'
-gem 'money-rails', '~> 1.14.0'
+gem 'money-rails', '~> 1.15.0'
 gem 'reform-rails', '~> 0.2.3'
 gem 'validates_timeliness', '~> 5.0.0'
 gem 'virtus', '~> 1.0.5'
@@ -159,6 +164,8 @@ gem 'savon', '~> 2.12.1'
 # Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
+### Adding mime types support gem
+gem 'mimemagic'
 # for service objects
 gem 'interactor', '~> 3.1.2'
 # Help ActiveRecord::Enum feature to work fine with I18n and simple_form.
@@ -167,9 +174,9 @@ gem 'enum_help', '~> 0.0.17'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'encryptor', '~> 3.0.0'
-gem 'js-routes', '~> 1.4.4'
 gem 'jsonapi-authorization', git: 'https://github.com/TheTalentEnterprise/jsonapi-authorization', branch: 'namespace'
-gem 'jsonapi-utils', '~> 0.7.3'
+gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils', ref: '3634294'
+gem 'js-routes', '~> 1.4.4'
 gem 'rswag-api', '~> 2.5.1'
 gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
@@ -186,20 +193,23 @@ gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_syste
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print', '~> 1.9.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'hirb'
   gem 'parallel_tests', '~> 3.7'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
-  gem 'rspec-rails', '~> 4.0.0'
+  gem 'rspec-rails', '~> 5.1.2'
   # A fake data generator
   ### Generate schema in each model
-  gem 'derailed_benchmarks', '~> 2.1.1'
-  gem 'i18n-tasks', '~> 1.0.11'
+  gem 'derailed_benchmarks', '~> 1.7.0'
+  gem 'i18n-tasks', '~> 1.0'
   gem 'rswag-specs', '~> 2.4.0'
-  gem 'rubocop', '~>  0.82.0', require: false
-  gem 'rubocop-performance', '~> 1.5.2'
+  gem 'rubocop', '~>  1.31.2', require: false
+  gem 'rubocop-performance'
+  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'stackprof', '~> 0.2.12'
 end
@@ -207,14 +217,13 @@ end
 group :development do
   gem 'bullet', '~> 7.0.1'
   gem 'listen', '~> 3.7.1'
-  gem 'web-console', '~> 3.3.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 1.7.2'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '~> 2.1.1'
+  gem 'spring-watcher-listen', '~> 2.0.1'
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.18.0'
-  gem 'meta_request', '~> 0.6.0'
+  gem 'meta_request', '~> 0.7.0'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -222,13 +231,15 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
-  gem 'faker', '~> 1.8.7'
+  gem 'faker', '~> 2.21'
   gem 'jsonapi-rspec', '~> 0.0.11'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
+  gem 'rubocop-faker'
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.3.0'
   gem 'simplecov', '~> 0.21.2'
+  gem 'solargraph', '~>0.45.0'
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.6.0'
   gem 'webmock', '~> 3.14.0'
@@ -237,12 +248,14 @@ group :test do
 end
 
 # for creating and rendering QR codes into various formats
-gem 'rqrcode'
+gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.3.0'
+gem 'sidekiq-cron', '~> 1.7.0'
 
 gem 'xml-simple', '~> 1.1.5'
 
 # required for azure
 gem 'sidekiq_alive', '~> 2.1.4'
+
+gem 'psych', '3.3.2'

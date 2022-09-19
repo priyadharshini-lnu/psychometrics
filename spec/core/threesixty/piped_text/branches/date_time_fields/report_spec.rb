@@ -8,7 +8,7 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Report do
     let(:subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
 
     it 'returns self evaluation date' do
-      completed_at = Time.now
+      completed_at = Time.zone.now
       create(
         :user_assessment,
         subject_id: subject.user_id,
@@ -28,13 +28,13 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Report do
     end
 
     it 'returns last evaluation date for subject' do
-      last_completed_at = Time.now
+      last_completed_at = Time.zone.now
       evaluators = create_list(:threesixty_evaluator, 2, campaign: threesixty_campaign.campaign)
       create(
         :user_assessment,
         subject_id: subject.user_id,
         evaluator_id: evaluators[0].user_id,
-        completed_at: Time.now.advance(days: -1),
+        completed_at: Time.zone.now.advance(days: -1),
         campaign: threesixty_campaign.campaign,
         status: :completed
       )

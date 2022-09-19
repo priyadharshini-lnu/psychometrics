@@ -5,15 +5,15 @@ Rswag::Api.configure do |c|
   # This is used by the Swagger middleware to serve requests for API descriptions
   # NOTE: If you're using rswag-specs to generate Swagger, you'll need to ensure
   # that it's configured to generate files in the same folder
-  c.swagger_root = Rails.root.to_s + '/swagger'
+  c.swagger_root = Rails.root.join('swagger')
 
   # Inject a lamda function to alter the returned Swagger prior to serialization
   # The function will have access to the rack env for the current request
   # For example, you could leverage this to dynamically assign the "host" property
   #
   c.swagger_filter = lambda do |swagger, _env|
-    subdomain = Settings.subdomain && (Settings.subdomain + '.')
-    port = Settings.port && (':' + Settings.port.to_s)
+    subdomain = Settings.subdomain && "#{Settings.subdomain}."
+    port = Settings.port && ":#{Settings.port}"
     host = "#{subdomain}#{Settings.domain}#{port}"
     base_path = swagger['basePath']
     swagger['host'] = host

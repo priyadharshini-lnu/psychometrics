@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 
 import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
 import cs from 'classnames'
+import _ from 'lodash'
 
 import AppStore from 'modules/reports/store/AppStore'
 import ResultStore from 'modules/reports/store/ResultStore'
@@ -31,10 +32,12 @@ interface Props {
   sections: TableSectionsType
   tableStyle: TableStyleType
   hideValues: boolean
+  noOfItems: number | null
+  scoreCutoff: number | null
 }
 
 const FactorType: FC<Props> = ({
-  assessment_id, filterId, factorIds, sections, tableStyle, hideValues,
+  assessment_id, filterId, factorIds, sections, tableStyle, hideValues, noOfItems, scoreCutoff,
 }) => {
   const calculateHighestLowest = (
     assessment_id: PreviewModel['assessment_id'],
@@ -48,9 +51,12 @@ const FactorType: FC<Props> = ({
       (firstFactor, secondFactor) => secondFactor.avg - firstFactor.avg,
     ).filter(r => r.avg > 0)
 
-    // splice to exclude highestScore entries from lowest
-    const highestFactors = sortedFactors.splice(0, 5)
-    const lowestFactors = sortedFactors.slice(-5).reverse()
+    // _.remove to exclude highestScore entries from lowest
+    const itemLimit = noOfItems || 5
+    const highestFactors = _.remove(sortedFactors, (r, i) => r.avg >= (scoreCutoff ?? -Infinity) && i < itemLimit)
+    const lowestFactors = sortedFactors
+      .filter(r => r.avg < (scoreCutoff ?? Infinity))
+      .slice(-(noOfItems ?? 5)).reverse()
 
     return [highestFactors, lowestFactors]
   }

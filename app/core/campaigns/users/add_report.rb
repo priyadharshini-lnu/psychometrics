@@ -19,6 +19,7 @@ module Campaigns
           user_access: options[:user_access],
           report_family_id: options[:report_family_id]
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
+        return broadcast :ok, user_report: user_report if report.data_only?
 
         user_assessments = options[:assessments].map do |assessment|
           find_or_create_assessment_to_user(assessment, user_report)
@@ -49,7 +50,7 @@ module Campaigns
         user_assessment
       end
 
-      def create_assessment_to_user(assessment)
+      def create_assessment_to_user(assessment) # rubocop:disable Metrics/PerceivedComplexity
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
         user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)

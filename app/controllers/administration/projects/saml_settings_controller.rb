@@ -37,7 +37,7 @@ module Administration
         end
 
         render json: project.saml_setting, serializer: ::Administration::Projects::SamlSettingSerializer,
-                requires_verification: requires_verification
+               requires_verification: requires_verification
       end
 
       def destroy

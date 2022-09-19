@@ -3,8 +3,7 @@
 module Administration
   module Assessments
     class AssignForm < BaseForm
-      attr_accessor :client_ids, :report_ids
-      attr_accessor :manager_ids, :user_ids
+      attr_accessor :client_ids, :report_ids, :manager_ids, :user_ids
 
       def access_reports
         @access_reports || (access_reports_at.nil? ? 'immediately' : 'specific_datetime')
@@ -22,7 +21,7 @@ module Administration
         return @access_reports_at_date if @access_reports_at_date
         return @access_reports_at.strftime('%Y-%m-%d') if @access_reports_at
 
-        Date.today
+        Time.zone.today
       end
 
       def access_reports_at_time
@@ -31,7 +30,7 @@ module Administration
       end
 
       def membership_ids
-        (user_ids + manager_ids).reject(&:blank?)
+        (user_ids + manager_ids).compact_blank
       end
     end
   end

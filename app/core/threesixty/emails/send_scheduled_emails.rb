@@ -6,7 +6,7 @@ module Threesixty
       def call
         Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules.call!
 
-        Threesixty::EmailSchedule.where(delivered_at: nil).where('scheduled_date <= ?', Time.now).
+        Threesixty::EmailSchedule.where(delivered_at: nil).where('scheduled_date <= ?', Time.zone.now).
           find_each do |schedule_email|
             Threesixty::Emails::SendSingleScheduledEmail.call!(schedule_email)
         rescue StandardError => e

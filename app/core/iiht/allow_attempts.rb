@@ -10,7 +10,7 @@ module Iiht
 
     def call
       response = Iiht::GetScores.call!(user_assessment)
-      schedule = response.dig('schedules')&.find do |s|
+      schedule = response['schedules']&.find do |s|
         s['scheduleId'] == user_assessment.iiht_user_assessment.schedule_id
       end
       return broadcast :ok if schedule.blank?

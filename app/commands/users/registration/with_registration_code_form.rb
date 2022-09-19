@@ -23,7 +23,7 @@ module Users
 
       def validate_restricted_domains
         restricted_domains = registration_code_record&.first&.restricted_domains
-        if email.present? && restricted_domains.presence&.none? { |domain| email.split('@')&.last&.downcase == domain }
+        if email.present? && restricted_domains.presence&.none?(email.split('@')&.last&.downcase)
           errors.add(:email,
                      I18n.t('activemodel.errors.models.register.attributes.registration_code.incorrect_email_domain'))
         end

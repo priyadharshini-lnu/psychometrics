@@ -7,7 +7,7 @@ module Blocks
         controller  = name.downcase.split('::').last
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
-          block = ::Block.find_by_id(params['block_id'])
+          block = ::Block.find_by(id: params['block_id'])
           if policy(block).open_channel?
             begin
               data            = yield(request['data'], current_user, block)
@@ -29,7 +29,7 @@ module Blocks
             rescue StandardError => e
               Rails.logger.error("#{e.message}\n")
               Rails.logger.error(e.backtrace.join("\n"))
-              transmit(notification: { level: 'error', message: e.message }, 'action': action_name, type: 'error')
+              transmit({ notification: { level: 'error', message: e.message }, action: action_name, type: 'error' })
             end
           end
         end

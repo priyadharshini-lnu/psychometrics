@@ -16,7 +16,7 @@ module UsersResults
     attribute :progress, Integer
 
     def norm_id
-      norm_data.dig(:id)&.to_i
+      norm_data[:id]&.to_i
     end
 
     def attributes

@@ -7,13 +7,13 @@ describe Threesixty::Emails::SendScheduledEmails do
     not_delivered_email_schedule = create_list(
       :threesixty_email_schedule,
       2,
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       delivered_at: nil
     )
     delivered_email = create(:threesixty_email_schedule,
-                             delivered_at: Time.now, scheduled_date: Time.now.advance(days: -1))
+                             delivered_at: Time.zone.now, scheduled_date: Time.zone.now.advance(days: -1))
     scheduled_for_future_email = create(:threesixty_email_schedule,
-                                        delivered_at: Time.now, scheduled_date: Time.now.advance(days: 1))
+                                        delivered_at: Time.zone.now, scheduled_date: Time.zone.now.advance(days: 1))
 
     expect(Threesixty::Emails::SendSingleScheduledEmail).to receive(:call!).
       with(not_delivered_email_schedule[0])

@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
-import moment from 'moment'
+import moment, { Moment } from 'moment'
+import { RangeValue } from 'rc-picker/lib/interface'
 
 export const FILTER_PREDICATES = {
   recordType: 'In',
@@ -55,11 +56,11 @@ const AuditLogList: React.FC<Props> = (
     fetch(tableConfig)
   }, [tableConfig])
 
-  let initialRange: [moment.Moment, moment.Moment] | null = null
+  let initialRange: [Moment, Moment] | null = null
   if (tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq) {
     initialRange = [moment(tableConfig.filters.created_at_gteq), moment(tableConfig.filters.created_at_lteq)]
   }
-  const [range, setRange] = useState<[moment.Moment, moment.Moment] | null>(initialRange || null)
+  const [range, setRange] = useState<RangeValue<Moment> | null | undefined>(initialRange || null)
 
   const filterProps = (type: string, value = '') => ({
     filterDropdown: ({
@@ -141,7 +142,7 @@ const AuditLogList: React.FC<Props> = (
                 <div style={{ padding: 8 }}>
                   <DatePicker.RangePicker
                     value={range}
-                    onChange={(dates: [moment.Moment, moment.Moment]) => setRange(dates)}
+                    onChange={dates => setRange(dates)}
                   />
                   <div className="mtm flex justify-content-space-between">
                     <Button
@@ -152,8 +153,8 @@ const AuditLogList: React.FC<Props> = (
                       onClick={() => {
                         confirm({ closeDropdown: true })
                         if (range) {
-                          changeFilter('created_at_gteq', range[0].startOf('day').toString())
-                          changeFilter('created_at_lteq', range[1].endOf('day').toString())
+                          range[0] && changeFilter('created_at_gteq', range[0].startOf('day').toString())
+                          range[1] && changeFilter('created_at_lteq', range[1].endOf('day').toString())
                         }
                       }}
                     >

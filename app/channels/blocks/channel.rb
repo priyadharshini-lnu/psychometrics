@@ -12,8 +12,10 @@ module Blocks
       block = Block.find(params['block_id'])
       if Administration::BlockPolicy.new(current_user, block).edit?
         transmit(
-          action: 'block_data',
-          data: BlockSerializer.new(block).to_hash(include: '**')
+          {
+            action: 'block_data',
+            data: BlockSerializer.new(block).to_hash(include: '**')
+          }
         )
       else
         reject

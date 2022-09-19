@@ -1,0 +1,74 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+describe Sheets::ParseFile do
+  let(:file) { double('file', content_type: 'application/xlsx', original_filename: 'sheet file name') }
+  let(:form) do
+    stub_form(valid?: true, file: file, data_rows: data_rows,
+              parsed_file: parsed_file, id: nil)
+  end
+  let(:parsed_file) do
+    [
+      { 'Email' => 'Email', 'key' => 'Text' },
+      { 'Email' => 'Text', 'key' => 'Text' },
+      { 'Email' => email, 'key' => 'value' }
+    ]
+  end
+  let(:data_rows) do
+    [
+      { 'Email' => email, 'key' => 'value', 'value' => '' }
+    ]
+  end
+  let(:email)       { 'test@email.com' }
+  let(:project)     { create(:project) }
+  let(:columns) do
+    [
+      {
+        'name' => 'Email',
+        'type' => 'Text',
+        'accessor_access' => true,
+        'dashboard_use' => true,
+        'visible_in_list' => true
+      }, {
+        'name' => 'key',
+        'type' => 'Text',
+        'accessor_access' => false,
+        'dashboard_use' => false,
+        'visible_in_list' => false
+      }
+    ]
+  end
+  subject { described_class.call(form, project, 'Datasheet') }
+
+  context 'sheet is Accesssheet' do
+    it 'deletes existing record' do
+      sheet = project.sheets.create!(columns: columns, type: 'Accesssheet')
+      described_class.call(form, project, 'Accesssheet')
+      expect(Sheet.find_by(id: sheet.id)).to eq(nil)
+    end
+  end
+
+  it 'creates valid sheet' do
+    expect { subject }.to change { Sheet.count }.from(0).to(1)
+    sheet = project.sheets.first
+    expect(sheet.project).to eq(project)
+    expect(sheet.columns).to eq(columns)
+  end
+
+  it 'creates valid sheet row' do
+    expect { subject }.to change { Sheet.count }.from(0).to(1)
+    sheet_row = project.sheets.first.rows.last
+    expect(sheet_row.email).to eq(email)
+    expect(sheet_row.data).to eq({ 'key' => 'value', 'value' => '' })
+  end
+
+  it 'merge exists sheet row data' do
+    sheet = project.sheets.create(columns: columns)
+    sheet_row = sheet.rows.create(email: email, data: { 'Name' => 'James' })
+
+    subject
+
+    expect(sheet_row.reload.data).to eq({ 'key' => 'value', 'value' => '', 'Name' => 'James' })
+  end
+end

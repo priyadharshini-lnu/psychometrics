@@ -42,7 +42,7 @@ export type OwnProps = {
   onFailedSubmission?(values: object, errors: object): void
   formProps?: FormProps
   onStatusChange?(value: string): void
-  onSuccessfulSubmission?(response: object): void
+  onSuccessfulSubmission?(response: object, values?: object): void
   transformValues?(values: Record<string, unknown>): Record<string, unknown>
   storeManager?: {
     form?: FormInstance,
@@ -54,6 +54,7 @@ export type OwnProps = {
   }): ReactElement
   scrollToFirstError?: boolean
   mockRequest?: boolean
+  nullifyEmptyString?: boolean
 }
 
 const ResourceForm: React.FC<Props> = ({
@@ -72,6 +73,7 @@ const ResourceForm: React.FC<Props> = ({
   children,
   transformValues,
   scrollToFirstError,
+  nullifyEmptyString,
 }: Props) => {
   const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
@@ -148,12 +150,18 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const handleSave = async (values: Record<string, unknown>) => {
+    let transformedValues = values
+    if (nullifyEmptyString) {
+      transformedValues = _.transform(transformedValues, (result, value, key) => {
+        result[key] = value === '' ? null : value
+      }, {})
+    }
     if (transformValues) {
-      values = transformValues(values)
+      transformedValues = transformValues(transformedValues)
     }
     setBaseErrors([])
     handleStatusChange(Status.Saving)
-    saveRequest(values)
+    saveRequest(transformedValues)
       .then((response: object) => {
         handleStatusChange(Status.SaveSuccessful)
         if (showSuccessMessages) {
@@ -164,7 +172,7 @@ const ResourceForm: React.FC<Props> = ({
           message.success(messageText)
         }
         removeErrors()
-        onSuccessfulSubmission && onSuccessfulSubmission(response)
+        onSuccessfulSubmission && onSuccessfulSubmission(response, values)
       })
       .catch((errors: Error) => {
         onFailedSubmission && onFailedSubmission(values, errors)

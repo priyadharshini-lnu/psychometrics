@@ -6,7 +6,7 @@ module Threesixty
       module DateTimeFields
         class Current < BaseField
           def call
-            broadcast :ok, Time.now.strftime(params['f'])
+            broadcast :ok, Time.zone.now.strftime(params['f'])
           rescue StandardError
             broadcast :ok, ''
           end

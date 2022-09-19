@@ -7,7 +7,10 @@ export enum RequestStatus {
   Failed = 'failed',
 }
 
-export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}`
+export type HttpAction = 'get' | 'post' | 'put' | 'patch' | 'delete'
+
+export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}` | `fetch@${string}`
+  | `${string}/${HttpAction}@${string}` | `${string}/${HttpAction}`
 
 export type Requests = {
   [key in RequestType]?: {
@@ -36,17 +39,22 @@ export interface UrlQuery {
 
 export interface ApiConfig extends UrlQuery {
   include?: string[]
+  query?: {
+    [key:string]: unknown
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ResponseType = any
 
+export interface StateManager<R, M> {
+  state: ResourceState<R, M>,
+  setState: ((state: ResourceState<R, M>) => void) |
+    ((callback: (state: ResourceState<R, M>) => ResourceState<R, M>) => void),
+}
 export interface Options<R, M> {
   apiConfig?: ApiConfig,
-  stateManager?: {
-    setState: (state: ResourceState<R, M>) => void,
-    state: ResourceState<R, M>
-  },
+  stateManager?: StateManager<R, M>,
   responseType?: ResponseType,
   trackUrl?: boolean,
 }
@@ -64,3 +72,7 @@ export type UpdateResource<R> =
   (attribute: { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: ExtraArgs) => Promise<R>
 
 export type RemoveResource = (id: string, args?: ExtraArgs) => Promise<void>
+
+export interface MemberActionOptions {
+  responseType?: ResponseType
+}

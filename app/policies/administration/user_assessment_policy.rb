@@ -35,7 +35,7 @@ module Administration
     end
 
     def rescore_response?
-      !record&.assessment&.external? && @user.is?(:superadmin) || @user.has_permission?(
+      (!record&.assessment&.external? && @user.is?(:superadmin)) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
     end

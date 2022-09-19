@@ -90,7 +90,7 @@ const UpdateAssessorFormModal: React.FC<Props> = ({
             placeholder={I18n.t('campaign_assessment.modals.update_assessor_form.select_assessor')}
             showSearch
             filterOption={
-              (inputVal, optionData) => (optionData?.key.toLowerCase().includes(inputVal.toLowerCase()))
+              (inputVal, optionData) => (optionData?.key?.toLowerCase().includes(inputVal.toLowerCase()))
             }
           >
             <Select.Option value="">{I18n.t('common.text.na')}</Select.Option>

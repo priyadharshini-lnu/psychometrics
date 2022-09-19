@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import store from 'modules/reports/store/PageList'
 import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
 import { DragSource, DropTarget } from 'react-dnd'
+import { RightOutlined } from '@ant-design/icons'
 import styles from './PageEditor.less'
 
 const pageSource = {
@@ -58,6 +59,12 @@ let PageLabel = class extends Component {
     store.update()
   }
 
+  openModules = (e) => {
+    e.stopPropagation()
+    const { onOpenModules, page } = this.props
+    onOpenModules(page)
+  }
+
   render () {
     const {
       page, isDragging, connectDragSource, connectDropTarget, active, number,
@@ -75,6 +82,9 @@ let PageLabel = class extends Component {
         />
         <div className={styles.pageName}>{page.name}</div>
         <div className={styles.pageNumber}>{number}</div>
+        <div className={styles.showModules} onClick={this.openModules}>
+          <RightOutlined />
+        </div>
       </div>,
     ))
   }

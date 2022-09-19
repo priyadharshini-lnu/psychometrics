@@ -5,7 +5,7 @@ module Communications
     queue_as :low_priority
 
     def perform
-      new_last_ran_at = Time.now
+      new_last_ran_at = Time.zone.now
       Communication.
         new_assignment_recipients.
         joins(project_campaign: :user_assessments).

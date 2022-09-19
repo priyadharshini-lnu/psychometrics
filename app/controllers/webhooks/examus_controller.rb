@@ -1,32 +1,31 @@
 # frozen_string_literal: true
 
 module Webhooks
-  class ExamusController < ::ApplicationController
-    skip_before_action :authenticate_user!
-    skip_before_action :verify_authenticity_token, only: %i[create]
+  class ExamusController < ActionController::Base
+    skip_before_action :verify_authenticity_token
 
-    before_action :authenticate_request, only: %i[create]
-
-    rescue_from Errors::JWTAuthError do |e|
-      render json: { message: e.message }, status: :unauthorized
+    rescue_from Errors::JwtAuthError do |e|
+      raise "Examus webhook error: #{e.message}. Params: #{params}"
     end
 
     def create
-      @proctoring_session&.update_attributes(results: params['examu'], completed_at: params['sessionEnd'])
-      Examus::RecalculateCredits.call!(@proctoring_session)
+      ::Examus::AuthorizeExamusRequest.call!(request.headers)
+      data = JSON.parse(request.raw_post)
+      proctoring_session = ProctoringSession.find_by!(session_id: data['sessionId'])
+      proctoring_session&.update(
+        results: data.slice('archive', 'conclusion', 'comment', 'score', 'reportUrl'),
+        completed_at: data['sessionEnd'],
+        started_at: data['sessionStart']
+      )
+      Examus::RecalculateCredits.call!(proctoring_session)
 
       render json: 'OK', status: :ok
     end
 
     private
 
-    def authenticate_request
-      @proctoring_session = ::Examus::AuthorizeExamusRequest.call!(request.headers)
-      render json: { error: 'Not Authorized' }, status: 401 unless @proctoring_session
-    end
-
     def result_params
-      params.permit!
+      params.permit(:archive, :conclusion, :comment, :score)
     end
   end
 end

@@ -3,7 +3,7 @@
 namespace :threesixty do
   task :load_instruction_template, [:template_name] => :environment do |_, args|
     instruction_templates = YAML.safe_load(
-      ERB.new(File.read("#{Rails.root}/config/threesixty/instruction_template.yml")).result
+      ERB.new(File.read(Rails.root.join('config/threesixty/instruction_template.yml'))).result
     )
     instruction_template = instruction_templates.find { |it| it['name'] == args[:template_name] }
 

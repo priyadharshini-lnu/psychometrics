@@ -102,7 +102,7 @@ describe UserAssessments::Pass do
 
       expect(user_assessment.status).to eq('in_progress')
       expect(user_assessment.selected_locale).to be_nil
-      expect(user_assessment.expiry_date).to eq(20.second.from_now)
+      expect(user_assessment.expiry_date).to eq(20.seconds.from_now)
     end
 
     it 'status = completed' do

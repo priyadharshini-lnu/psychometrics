@@ -48,9 +48,7 @@ module Api
         params[:project_id] || params[:id]
       end
 
-      def project_membership
-        user.project_membership
-      end
+      delegate :project_membership, to: :user
 
       def render_validation_errors(form)
         raise Api::Errors::ValidationFailed, form.errors.full_messages.first

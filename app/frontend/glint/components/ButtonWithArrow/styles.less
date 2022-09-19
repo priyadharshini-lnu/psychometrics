@@ -1,0 +1,36 @@
+@import 'styles/ant.variable.less';
+@import 'styles/spacing.less';
+
+
+.btn {
+  margin-top: @space-7;
+  height: auto;
+  font-size: 16px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  &.submit {
+    margin: @space-9 0;
+  }
+
+  &:active > span + :global(.anticon) {
+    position: absolute;
+  }
+  &:focus > span + :global(.anticon) {
+    position: absolute;
+  }
+
+  .icon {
+    position: absolute;
+    align-self: center;
+    font-size: 12px;
+    right: 8px;
+    &:active {
+      position: absolute;
+    }
+  }
+}
+
+a.btn {
+  padding: @space-1 !important;
+}

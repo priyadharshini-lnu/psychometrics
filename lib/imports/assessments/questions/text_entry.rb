@@ -73,7 +73,7 @@ module Imports
           data.each_with_index do |value, index|
             answers << {
               index: index,
-              value: use_scoring && factors_scoring[value] || value
+              value: (use_scoring && factors_scoring[value]) || value
             }
           end
           answers

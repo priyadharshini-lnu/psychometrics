@@ -20,8 +20,8 @@ describe UsersResults::Reset do
       step: 100,
       occupations: test)
     users_result.user_assessment.update!(
-      completed_at: Time.now, norm_id: norm.id, status: :completed, expiry_date: Time.now,
-      last_activity_at: Time.now
+      completed_at: Time.zone.now, norm_id: norm.id, status: :completed, expiry_date: Time.zone.now,
+      last_activity_at: Time.zone.now
     )
     users_result
   end
@@ -37,7 +37,7 @@ describe UsersResults::Reset do
   subject { described_class.call(user_assessment) }
 
   it '.call!' do
-    expect(described_class).to respond_to(:'call!').with_unlimited_arguments
+    expect(described_class).to respond_to(:call!).with_unlimited_arguments
   end
 
   it "doesn't call Iiht::UpdateAttempts for iiht assessment if number of allowed attempts is not surpassed" do
@@ -87,10 +87,10 @@ describe UsersResults::Reset do
       and change { user_assessment.norm_id }.from(norm.id).to(nil).
       and change { users_result.occupations }.from(test).to(nil).
       and change { user_assessment.status }.from('completed').to('not_started').
-      and change { user_assessment.completed_at }.from(Time.now).to(nil).
+      and change { user_assessment.completed_at }.from(Time.zone.now).to(nil).
       and change { users_result.step }.from(100).to(0).
-      and change { user_assessment.expiry_date }.from(Time.now).to(nil).
-      and change { user_assessment.last_activity_at }.from(Time.now).to(nil).
+      and change { user_assessment.expiry_date }.from(Time.zone.now).to(nil).
+      and change { user_assessment.last_activity_at }.from(Time.zone.now).to(nil).
       and change { user_assessment.reset_count }.from(0).to(1)
   end
 

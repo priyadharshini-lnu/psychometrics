@@ -100,10 +100,11 @@ module Threesixty
       end
 
       def get_participators(participator_type)
-        if participator_type == :subject
-          threesixty_campaign.subjects
-        elsif participator_type == :evaluator
-          threesixty_campaign.evaluators
+        case participator_type
+          when :subject
+            threesixty_campaign.subjects
+          when :evaluator
+            threesixty_campaign.evaluators
         end.includes(:user)
       end
     end

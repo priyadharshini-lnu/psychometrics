@@ -27,7 +27,7 @@ module Imports
 
             values.to_s.split(',').each do |index|
               answers << {
-                index: use_scoring && factors_scoring[index.to_i] || (index.to_i - 1),
+                index: (use_scoring && factors_scoring[index.to_i]) || (index.to_i - 1),
                 value: true
               }
             end

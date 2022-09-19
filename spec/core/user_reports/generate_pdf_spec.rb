@@ -39,7 +39,7 @@ describe UserReports::GeneratePdf do
     it 'returns preview pdf url for assessor' do
       allow(current_user).to receive(:is?).with(:regular).and_return(false)
       allow(current_user).to receive(:is?).with(:assessor).and_return(true)
-      url = described_class.new(user_report, current_user).send(:report_preview_url)
+      url = described_class.new(user_report, current_user, { view_report_as: :assessor }).send(:report_preview_url)
 
       expect(url).to eq(pdf_preview_assessors_campaign_user_report_url(
                           common_url_params.merge(subdomain: Settings.subdomain, campaign_id: user_report.campaign.id)
@@ -89,7 +89,7 @@ describe UserReports::GeneratePdf do
 
       # rubocop:disable Layout/LineLength
       expect(output_path).to include(
-        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
       )
       # rubocop:enable Layout/LineLength
     end
@@ -99,7 +99,7 @@ describe UserReports::GeneratePdf do
 
       # rubocop:disable Layout/LineLength
       expect(output_path).to include(
-        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
       )
       # rubocop:enable Layout/LineLength
     end
@@ -125,6 +125,9 @@ describe UserReports::GeneratePdf do
             file_name: report_file_name,
             file_path: "uploads/user_report/pdf/#{user_report.id}/#{report_file_name}",
             update_record: true
+          },
+          meta: {
+            campaign_id: user_report.campaign_id, report_id: user_report.report_id, user_id: user_report.user_id
           },
           async: nil
         )

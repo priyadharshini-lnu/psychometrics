@@ -12,8 +12,7 @@ module Reports
       @resources = ::Reports::GetDataConfigurationResources.call!(report)
     end
 
-    # rubocop:disable Metrics/AbcSize
-    def call
+    def call # rubocop:disable Metrics/AbcSize
       xlsx = Axlsx::Package.new do |package|
         workbook = package.workbook
         add_workbook_styles(workbook)
@@ -49,13 +48,12 @@ module Reports
 
           users_results.includes(:subject).group_by(&:subject_id).each do |_, results|
             results = ::Reports::BuildResults.call(report, results, resources)[:ok].flatten
-            sheet.add_row(results.map { |r| r[:value] }, style: content_style)
+            sheet.add_row(results.pluck(:value), style: content_style)
           end
         end
       end
       broadcast :ok, xlsx
     end
-    # rubocop:enable Metrics/AbcSize
 
     private
 

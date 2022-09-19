@@ -23,7 +23,7 @@ describe Assigns::AverageScoring do
   end
 
   it '.call!' do
-    expect(described_class).to respond_to(:'call!').with_unlimited_arguments
+    expect(described_class).to respond_to(:call!).with_unlimited_arguments
   end
 
   context 'calculate' do

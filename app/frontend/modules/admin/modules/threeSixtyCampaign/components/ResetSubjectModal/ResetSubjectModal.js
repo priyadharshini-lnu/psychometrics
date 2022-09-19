@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ConfirmationModal from 'components/ConfirmationModal'
+import { ConfirmationModal } from 'glint'
 import { Checkbox } from 'antd'
 
 export default function ResetSubjectModal ({

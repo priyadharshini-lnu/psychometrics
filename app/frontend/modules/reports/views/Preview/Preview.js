@@ -3,6 +3,7 @@ import store from 'modules/reports/store/PreviewStore'
 import PageList from 'modules/reports/store/PageList'
 import LogicResolver from 'modules/reports/models/logic/LogicResolver'
 import Page from './Page'
+import { ModuleOverrides } from './ModuleOverrides'
 
 export class Preview extends Component {
   componentDidMount () {
@@ -17,7 +18,7 @@ export class Preview extends Component {
 
   render () {
     const {
-      localeDirection, loaded, showOverrides, rstore, moduleOverrides, pdfExport, skipLogic,
+      localeDirection, loaded, showOverrides, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
     } = this.props
     if (!loaded) { return null }
     const visiblePages = skipLogic
@@ -35,8 +36,10 @@ export class Preview extends Component {
             showOverrides={showOverrides}
             moduleOverrides={moduleOverrides}
             pdfExport={pdfExport}
+            dashboard={dashboard}
           />
         ))}
+        {showOverrides && <ModuleOverrides pages={visiblePages} rstore={rstore} moduleOverrides={moduleOverrides} />}
       </div>
     )
   }

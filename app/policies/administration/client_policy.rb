@@ -96,6 +96,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:project_settings, :design, project_id: project_id)
     end
 
+    def profile?
+      has_permission?(:project_settings, :profile)
+    end
+
     def export?
       @user.is?(:superadmin)
     end
@@ -126,13 +130,13 @@ module Administration
         end.pluck(:project_id)
 
         clients_scope = scope.where(
-          'id IN (?)', (permitted_client_admin_clients_ids + permitted_project_admin_client_ids +
+          id: (permitted_client_admin_clients_ids + permitted_project_admin_client_ids +
             permitted_campaign_admin_project_ids)
         )
 
         clients = clients_scope.not_retails.select(:id, :ancestry)
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
-        client_ids = client_ids.nil? ? [] : client_ids
+        client_ids = [] if client_ids.nil?
         ancestor_ids = ancestors.nil? ? [] : ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
         scope.where('id in (?) or ancestry ~ ?', ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
       end

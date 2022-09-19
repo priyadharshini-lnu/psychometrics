@@ -13,6 +13,7 @@ module PrivateAccessors
 
   def private_attr_writer(*names)
     attr_writer(*names)
+
     names = names.map { |attr| "#{attr}=".to_sym }
     private(*names)
   end

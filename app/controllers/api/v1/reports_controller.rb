@@ -27,12 +27,15 @@ module Api
           raise Api::Errors::AssessmentsNotCompleted, "Assessments for report #{report.id} are not completed"
         end
 
+        if @user_report.report.data_only? && report_user_results.length.zero?
+          raise Api::Errors::AssessmentsNotCompleted, "Assessments for report #{report.id} are not completed"
+        end
+
         if @user_report.report.data_configuration.empty?
           raise Api::Errors::ResourceNotConfigured, no_config_message(params[:id])
         end
 
-        results = @user_report.user_results
-        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call!(report, results),
+        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call!(report, user_report_results),
                                                    user_report: @user_report).to_h
       end
 
@@ -52,8 +55,8 @@ module Api
         raise Api::Errors::ResourceNotConfigured, no_config_message(params[:id]) if report.data_configuration.blank?
 
         render json: report,
-          include: '**',
-          serializer: Api::V1::ReportDimensionsSerializer,
+               include: '**',
+               serializer: Api::V1::ReportDimensionsSerializer,
           **serialization_params.merge(report: report)
       end
 
@@ -78,6 +81,19 @@ module Api
       end
 
       private
+
+      def user_report_results
+        @user_report.report.assessment_ids.present? ? @user_report.user_results : report_user_results
+      end
+
+      def report_user_results
+        @report_user_results ||= begin
+          user_result_ids = user.self_user_assessments.completed.where(
+            campaign_id: campaign_id, assessment_id: @user_report.report.data_configuration_assessment_ids
+          ).pluck(:users_result_id)
+          ::UsersResult.where(id: user_result_ids)
+        end
+      end
 
       def pundit_authorize
         authorize(

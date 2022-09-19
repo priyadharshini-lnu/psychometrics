@@ -19,7 +19,13 @@ module Threesixty
       attr_reader :threesixty_campaign
 
       def read_yaml
-        YAML.safe_load(ERB.new(File.read("#{Rails.root}/config/threesixty/instruction_template.yml")).result)
+        YAML.safe_load(
+          ERB.new(
+            File.read(
+              Rails.root.join('config/threesixty/instruction_template.yml')
+            )
+          ).result
+        )
       end
     end
   end

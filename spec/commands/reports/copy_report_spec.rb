@@ -10,8 +10,8 @@ describe Reports::CopyReport do
       report = build(:report)
       pages = build_list(:page, 2)
       module1 = build(:module)
-      module2 = build(:module, props: { "filters": [filters.first.id, filters.last.id] })
-      module3 = build(:module, props: { "filters": filters.first.id })
+      module2 = build(:module, props: { filters: [filters.first.id, filters.last.id] })
+      module3 = build(:module, props: { filters: filters.first.id })
       module4 = build(:module)
 
       modules = [module1, module2, module3, module4]
@@ -30,6 +30,8 @@ describe Reports::CopyReport do
       report
     end
 
+    let(:user) { create(:user) }
+
     before do
       occupation = create(:occupation)
       create(:translation, translateable: occupation, resource: report)
@@ -39,7 +41,7 @@ describe Reports::CopyReport do
     end
 
     context 'Success' do
-      subject { described_class.call(report.id) }
+      subject { described_class.call(report.id, user) }
 
       it 'broadcasts :ok' do
         expect { subject }.to broadcast(:ok)

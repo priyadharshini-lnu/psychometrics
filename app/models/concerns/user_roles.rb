@@ -3,37 +3,33 @@
 module UserRoles
   extend ActiveSupport::Concern
 
-  included do
-    # Roles constants
-    SUPER_ADMIN_ROLE = 'Users::SuperAdmin'
-    REGULAR_ROLE = 'Users::Regular'
-    ADMIN_ROLE = 'Users::Admin'
+  # Roles constants
+  SUPER_ADMIN_ROLE = 'Users::SuperAdmin'
+  REGULAR_ROLE = 'Users::Regular'
+  ADMIN_ROLE = 'Users::Admin'
 
-    USER_ROLES = {
-      superadmin: SUPER_ADMIN_ROLE,
-      admin: ADMIN_ROLE,
-      regular: REGULAR_ROLE
-    }.freeze
+  USER_ROLES = {
+    superadmin: SUPER_ADMIN_ROLE,
+    admin: ADMIN_ROLE,
+    regular: REGULAR_ROLE
+  }.freeze
 
-    USER_ROLES_SCOPES = {
-      administration: [
-        USER_ROLES.key(SUPER_ADMIN_ROLE),
-        :assessor,
-        Membership::PROJECT_ADMIN_ROLE,
-        Membership::CLIENT_ADMIN_ROLE,
-        Membership::CAMPAIGN_ADMIN_ROLE
-      ],
-      user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
-    }.freeze
+  USER_ROLES_SCOPES = {
+    administration: [
+      USER_ROLES.key(SUPER_ADMIN_ROLE),
+      :assessor,
+      Membership::PROJECT_ADMIN_ROLE,
+      Membership::CLIENT_ADMIN_ROLE,
+      Membership::CAMPAIGN_ADMIN_ROLE
+    ],
+    user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
+  }.freeze
 
-    # Contain information about ability to manage list of roles
-    USER_ROLES_HIERARCHY = {
-      superadmin: USER_ROLES.values,
-      regular: Membership::MEMBERSHIP_ROLES
-    }.freeze
-
-    validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
-  end
+  # Contain information about ability to manage list of roles
+  USER_ROLES_HIERARCHY = {
+    superadmin: USER_ROLES.values,
+    regular: Membership::MEMBERSHIP_ROLES
+  }.freeze
 
   def is?(*roles)
     roles.map!(&:to_sym)
@@ -65,14 +61,17 @@ module UserRoles
   end
 
   def has_grant?(scope, grant)
+    return true if is?(:superadmin)
+
     memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 
   def has_permission?(scope, grant, project_id: nil, campaign_id: nil)
     return true if is?(:superadmin)
-    return false unless project_id
+    return false if project_id.nil? && campaign_id.nil?
 
-    project = Client.find(project_id)
+    project = Client.find(project_id) if project_id
+    project ||= Campaign.find(campaign_id).project
 
     project_based_client_ids = [].tap do |arr|
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.parent_id])
@@ -92,7 +91,7 @@ module UserRoles
   end
 
   def admin?
-    is?(:superadmin, :client_admin, :project_admin)
+    is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
   end
 
   def assessor?

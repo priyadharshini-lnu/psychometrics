@@ -1,0 +1,80 @@
+@import "styles/ant.variable.less";
+@import "styles/spacing.less";
+
+.container {
+  max-height: 75vh;
+  overflow: hidden;
+  & :global(.ant-card) {
+    max-height: 100%;
+  }
+  :global {
+    .vjs-record {
+      &.vjs-device-button {
+        &.vjs-control {
+          display: none;
+          pointer-events: none;
+        }
+      }
+      .vjs-modal-dialog {
+        display: none;
+      }
+    }
+    .vjs_video_3-dimensions {
+      width: auto;
+      height: auto;
+    }
+  }
+  text-align: center;
+  .card {
+    text-align: center;
+    margin-bottom: @space-3;
+    video {
+      background: @background-color-base;
+      border-radius: 6px;
+      height: 400px;
+      width: 100%;
+    }
+    .videoOverlap {
+      background: @background-color-base;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      max-height: 100%;
+      position: absolute;
+      padding: @space-32 0;
+
+      .allowTitle {
+        color: @text-color;
+        margin-bottom: 30px;
+      }
+
+      .iconContainer {
+        display: inline-block;
+        font-size: 40px;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        border-radius: 50%;
+        color: @white;
+        .icon {
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+          background: transparent url("./icon.svg");
+          background-size: contain;
+        }
+      }
+    }
+  }
+
+  .continueButton {
+    margin-top: @space-6;
+    text-transform: uppercase;
+  }
+
+  .mainIcon {
+    color: @disabled-color;
+    font-size: 45px;
+    margin-bottom: @space-4;
+  }
+}

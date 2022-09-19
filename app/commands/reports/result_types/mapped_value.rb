@@ -4,7 +4,7 @@ module Reports
   module ResultTypes
     class MappedValue < BaseType
       def call
-        source = data.dig('source')
+        source = data['source']
         result = ::Reports::BuildResults::CLASS_MAP[source['type'].to_sym].
                  constantize.call(context, source).try(:[], :value)
         {
@@ -18,9 +18,9 @@ module Reports
       private
 
       def calculate(compared_value)
-        rules = data.dig('rules')
+        rules = data['rules']
         rules.each do |rule|
-          return rule['result'] if rule.dig('conditions').all? do |condition|
+          return rule['result'] if rule['conditions'].all? do |condition|
             EvaluateCondition.call(condition['type'], [compared_value, condition['value']])[:ok]
           end
         end

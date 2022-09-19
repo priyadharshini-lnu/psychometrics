@@ -14,16 +14,17 @@ module Builders
         ActiveRecord::Base.transaction do
           _id = params.delete(:id)
           questions = params.delete(:questions)
-          @block.update(params)
+          @block.update!(params)
           questions.each do |question_params|
             question = block.questions.find_or_initialize_by(id: question_params.delete(:id))
-            question.update(question_params)
+            question.update!(question_params)
           end
-        rescue StandardError => e
+        # TODO: remove StandardError??
+        rescue ActiveRecord::RecordInvalid, StandardError => e
           Rails.logger.info(e)
-          return false
+
+          false
         end
-        true
       end
     end
   end

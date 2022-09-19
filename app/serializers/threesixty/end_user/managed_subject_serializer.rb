@@ -7,9 +7,7 @@ module Threesixty::EndUser
     has_one :user, serializer: UserSerializer
     has_many :evaluators, serializer: Threesixty::EndUser::EvaluationSerializer
 
-    def user
-      object.user
-    end
+    delegate :user, to: :object
 
     def evaluators
       object.evaluators.where(evaluator_nomination_status: :completed)

@@ -17,13 +17,13 @@ module Administration
         # Returns error if Assessment is not yet assigned to Client
         #
         def assessments_assigned_to_client
-          errors.add(:assessment_ids, :invalid) unless (assessment_ids - context.client_assessment_ids).blank?
+          errors.add(:assessment_ids, :invalid) if (assessment_ids - context.client_assessment_ids).present?
         end
 
         # Returns error if there is at least one already assigned Assessment
         #
         def assessments_uniqueness
-          errors.add(:assessment_ids, :taken) unless (assessment_ids & context.membership_assessment_ids).blank?
+          errors.add(:assessment_ids, :taken) if (assessment_ids & context.membership_assessment_ids).present?
         end
       end
     end

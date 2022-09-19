@@ -17,6 +17,10 @@ module Exports
         #     Scale
         #   [1, 2, 3,   4,'2,3',6,  ...]
         #   WHERE: Choices grouped by scale
+        #
+        # rubocop:disable Metrics/CyclomaticComplexity
+        # rubocop:disable Metrics/PerceivedComplexity
+        # rubocop:disable Metrics/AbcSize
         def self.result(user_result, question, scoring = false, export_with_labels = false)
           answers = get_answers(user_result, question)
           parsed_result = []
@@ -34,7 +38,7 @@ module Exports
             question.props['choices'].to_i.times do |choice|
               values = (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'values')
               column_data = question.props['columnsData'][scale]
-              parsed_result << '' && next unless values
+              (parsed_result << '') && next unless values
 
               parsed_result << if column_data['type'] == 'Text'
                                  values.map { |value| value['value'] }
@@ -54,6 +58,7 @@ module Exports
           parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
+        # rubocop:enable all
 
         def self.question_id_and_choice_headers(question)
           question_id_header = []

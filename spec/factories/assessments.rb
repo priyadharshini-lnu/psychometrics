@@ -1,29 +1,9 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: assessments
-#
-#  id                :integer          not null, primary key
-#  name              :string
-#  category          :enum             default("psychometric")
-#  dimension_id      :integer
-#  disabled          :boolean          default(FALSE)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  flow              :json
-#  norm_rules        :json
-#  description       :text
-#  timing            :string
-#  access_reports_at :datetime
-#  status            :integer
-#  owner_id          :integer
-#
-
 FactoryBot.define do
   factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
-    description { Faker::Lorem.characters(5) }
+    description { Faker::Lorem.characters(number: 5) }
     dimension
     extra { { icon_color: '#845EC2' } }
 
@@ -33,10 +13,12 @@ FactoryBot.define do
       end
     end
 
-    trait :hogan do
+    factory :hogan_assessment, class: ::Assessments::Hogan do
       category { Assessment::CATEGORIES[:hogan] }
       type { ::Assessments::Hogan }
       dimension { nil }
+
+      after(:create) { |assessment| create(:hogan_assessment_setting, assessment: assessment) }
     end
 
     trait :iiht do

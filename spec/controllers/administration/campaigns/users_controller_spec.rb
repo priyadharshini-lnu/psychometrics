@@ -7,6 +7,16 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   let(:user) { create(:user, :with_project_membership, email: 'tester@gmail.com') }
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+  let!(:proctoring_session) do
+    create(:proctoring_session, campaign_user: campaign_user, started_at: 1.day.ago, completed_at: Time.zone.now,
+      results: {
+        score: 1,
+        comment: 'comment1',
+        conclusion: 'conclusion1',
+        reportUrl: 'https://examus-report.com/report/10',
+        archive: 'https://examus-report.com/archive/10'
+      })
+  end
   let(:assessment) { create(:assessment, name: 'Test Assessment') }
   let(:report) { create(:report, assessments: [assessment]) }
   let(:report_family) { report.report_families.first }
@@ -94,6 +104,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'additional_time' => campaign_user.additional_time,
       'completed_at' => nil,
       'started_at' => nil,
+      'proctoring_sessions' => [proctoring_response],
       'permissions' => {
         'add_report' => true,
         'regenerate_report' => true,
@@ -102,6 +113,21 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       },
       'hogan_id' => nil
     })
+  end
+
+  def proctoring_response
+    results = proctoring_session.results
+    {
+      'id' => proctoring_session.id,
+      'session_id' => proctoring_session.session_id,
+      'started_at' => I18n.l(proctoring_session.started_at, format: :short),
+      'completed_at' => I18n.l(proctoring_session.completed_at, format: :short),
+      'score' => results['score'],
+      'comment' => results['comment'],
+      'conclusion' => results['conclusion'],
+      'report_url' => results['reportUrl'],
+      'archive_url' => results['archive']
+    }
   end
 
   def check_report_response(report_response, user_report)

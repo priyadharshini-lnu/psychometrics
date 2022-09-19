@@ -107,7 +107,7 @@ export const exportUsers = (campaignId: number): ApiAction<{}> => ({
   type: EXPORT_USERS,
   request: {
     method: 'get',
-    url: `/administration/new_campaigns/${campaignId}/users.csv`,
+    url: `/administration/new_campaigns/${campaignId}/users/export`,
   },
 })
 

@@ -9,7 +9,7 @@ module Administration
     # Rejects empty elements from array
     #
     def report_ids=(ids)
-      super(ids.reject(&:blank?))
+      super(ids.compact_blank)
     end
   end
 end

@@ -3,21 +3,25 @@
 module Api
   class V2::Administration::BaseController < ActionController::Base
     include JSONAPI::Utils
+    include V2::Administration::Concerns::ApiController
+    include Pundit
 
     ACTION_TO_SCHEMA_NAME = {
       create: :create_request, update: :update_request, create_relationship:
       :create_relationship_request, update_relationship: :update_relationship_request
     }.freeze
+    JSON_API_ACTIONS = %i[index show create update destroy get_related_resource show_relationship
+                          create_relationship update_relationship destroy_relationship].freeze
 
     protect_from_forgery with: :null_session
     class_attribute :_crud_schema_class, :_request_schemas
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
-    prepend_before_action :authenticate, unless: -> { try(:skip_authentication?) }
+    append_after_action :verify_authorized, except: JSON_API_ACTIONS
 
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     def self.validate_crud_requests(schema_class)
       self._crud_schema_class = schema_class
@@ -28,7 +32,7 @@ module Api
       self._request_schemas[action] = schema
     end
 
-    def validate_requests_schema
+    def validate_requests_schema # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       schema_validation = nil
       action = params[:action].to_sym
       if _request_schemas&.dig(action)
@@ -54,7 +58,7 @@ module Api
       end
 
       if schema_validation&.failure?
-        render json: convert_dry_errors_to_json_api_standard(schema_validation.errors), status: :unprocessable_entity
+        render json: convert_dry_errors_to_json_api_standard(schema_validation.errors), status: 422
       end
     end
 
@@ -66,29 +70,9 @@ module Api
       jsonapi_render_errors error
     end
 
-    def authenticate
-      if ::ActionController::HttpAuthentication::Basic.has_basic_credentials?(request)
-        @api_key      = fetch_api_key
-        @current_user = @api_key&.user
-        raise Errors::Api::AuthError unless @api_key
-        raise Errors::Api::AuthError, 'API User is disabled' if @current_user&.disabled
-      else
-        authenticate_user!
-      end
-    end
-
     def serialize_user(user)
       JSONAPI::ResourceSerializer.new(Api::V2::UserResource).
         serialize_to_hash(Api::V2::UserResource.new(user, nil))
-    end
-
-    def fetch_api_key
-      authenticate_with_http_basic do |key, token|
-        possible_api_key = ApiKey.active.find_by(key: key)
-        return nil if possible_api_key.nil? || possible_api_key.token != token
-
-        possible_api_key
-      end
     end
 
     def convert_dry_errors_to_json_api_standard(dry_errors)
@@ -104,12 +88,17 @@ module Api
       { errors: errors }
     end
 
-    def context
-      { user: current_user, namespace: %i[api administration] }
+    def user_not_authorized
+      errors = [{
+        title: I18n.t('errors.forbidden'),
+        status: 403
+      }]
+
+      render json: { errors: errors }, status: 403
     end
 
-    def user_not_authorized
-      head :forbidden
+    def context
+      { user: current_user, namespace: %i[api administration] }
     end
   end
 end

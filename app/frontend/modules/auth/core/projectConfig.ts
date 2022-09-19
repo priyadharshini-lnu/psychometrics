@@ -1,0 +1,30 @@
+import { createReducer } from 'utils/redux'
+
+type LoginBoxPosition = 'left' | 'right' | 'auto'
+
+interface State {
+  id?: number
+  client_logo: null | string,
+  secondary_logo: null | string,
+  background: null | string,
+  background_color?: string,
+  login_box_position: LoginBoxPosition,
+  saml_login_allowed: boolean
+  saml_enforced: boolean
+  primary_color?: string
+  error_color?: string,
+  warning_color?: string,
+  success_color?: string,
+  info_color?: string,
+}
+
+export const defaultState: State = {
+  client_logo: null,
+  secondary_logo: null,
+  background: null,
+  login_box_position: 'auto',
+  saml_login_allowed: false,
+  saml_enforced: false,
+}
+
+export default createReducer({}, defaultState)

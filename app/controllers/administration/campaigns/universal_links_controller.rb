@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class UniversalLinksController < Administration::Projects::BaseController
+    class UniversalLinksController < Administration::Campaigns::BaseController
       def show
         universal_link = assessment.decorate.anonym_link_for_campaign(campaign)
         type = params[:type]
@@ -31,7 +31,7 @@ module Administration
       private
 
       def format(name, type)
-        file_name = name.downcase.split(/\s|-|_/).reject(&:blank?).join('_')
+        file_name = name.downcase.split(/\s|-|_/).compact_blank.join('_')
         "qr_code_#{file_name}.#{type}"
       end
 
@@ -50,7 +50,7 @@ module Administration
       end
 
       def assessment
-        @assessment ||= Assessment.find(params[:id])
+        @assessment ||= campaign.campaign_assessments.find_by(assessment_id: params[:id])&.assessment
       end
     end
   end

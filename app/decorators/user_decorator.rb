@@ -84,7 +84,7 @@ class UserDecorator < BaseDecorator
   def client_end_level_hierarchy
     object.clients.end_level.map do |client|
       clients_array = client.path.order(:id)
-      whole_path = clients_array.map do |c|
+      whole_path = clients_array.filter_map do |c|
         next if c.tenancy?
 
         path = if c.campaign_level? || c.sub_campaign_level?
@@ -94,7 +94,7 @@ class UserDecorator < BaseDecorator
                end
         path ||= h.administration_client_users_path(c)
         h.link_to c.decorate.html_escaped_display_name, path
-      end.compact.join(' > ')
+      end.join(' > ')
       "&#187; #{whole_path}"
     end
   end

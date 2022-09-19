@@ -7,13 +7,9 @@ import {
   PieChartOutlined,
   DatabaseOutlined,
   MessageOutlined,
-  FormOutlined,
 } from '@ant-design/icons'
 
 import { get as getCurrentUser } from 'core/currentUser'
-import {
-  getCurrentAssessmentId, getAssessmentPermissions,
-} from 'modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { RootState } from 'modules/admin/core/rootReducers'
 
 import routeUtils from 'utils/route'
@@ -23,28 +19,20 @@ const { I18n } = window
 
 const connector = connect((state: RootState) => ({
   currentUser: getCurrentUser(state),
-  assessmentId: getCurrentAssessmentId(state),
-  assessmentPermissions: getAssessmentPermissions(state),
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 const TopMenuComponent: FC<PropsFromRedux> = ({
   currentUser,
-  assessmentId,
-  assessmentPermissions,
 }) => {
   const { pathname } = useLocation()
 
   const history = useHistory()
 
   const handleOnSelect = ({ key }) => {
-    if (key === 'assessment_builder') {
-      window.location.pathname = `/administration/assessments/${assessmentId}`
-    } else {
-      const basePath = routeUtils.getBasePath(settings.urlPrefix)
-      history.push(`${basePath}/${key}`)
-    }
+    const basePath = routeUtils.getBasePath(settings.urlPrefix)
+    history.push(`${basePath}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
@@ -79,22 +67,21 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
         <SolutionOutlined />
         {I18n.t('common.model.admins')}
       </Menu.Item> */}
-      {currentUser.permissions.manageMessages && (
+      {(currentUser.permissions.accessEmailMessages
+        || currentUser.permissions.accessMessagesOptions
+        || currentUser.permissions.accessInstructionMessages) && (
         <Menu.Item key="messages/options" icon={<MessageOutlined />}>
           {I18n.t('administration.threesixty_campaigns.menu.messages.title')}
         </Menu.Item>
       )}
-      <Menu.Item key="reports/options" icon={<PieChartOutlined />}>
-        {I18n.t('administration.threesixty_campaigns.menu.report.title')}
-      </Menu.Item>
+      {currentUser.permissions.editReportOptions && (
+        <Menu.Item key="reports/options" icon={<PieChartOutlined />}>
+          {I18n.t('administration.threesixty_campaigns.menu.report.title')}
+        </Menu.Item>
+      )}
       <Menu.Item key="datasheets" icon={<DatabaseOutlined />}>
         {I18n.t('administration.threesixty_campaigns.menu.datasheet.title')}
       </Menu.Item>
-      {assessmentPermissions?.editAssessment && (
-      <Menu.Item key="assessment_builder" icon={<FormOutlined />}>
-        {I18n.t('administration.threesixty_campaigns.menu.assessment.title')}
-      </Menu.Item>
-      )}
     </Menu>
   )
 }

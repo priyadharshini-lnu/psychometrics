@@ -11,6 +11,7 @@ import ConnectionCheck from 'components/ConnectionCheck'
 import { connected, disconnected } from 'core/connection'
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
+import containerStyles from './AssessmentContainer.less'
 import 'styles/ant.less'
 import 'modules/survey/styles/globals.less'
 import 'utils/i18n'
@@ -90,7 +91,7 @@ class AssessmentContainer extends Component {
         />
         {type === 'preview_assessment' && <Header langs={this.langPartial} />}
         <DndProvider backend={HTML5Backend}>
-          <div className="ant-row">
+          <div className={containerStyles.previewConainer}>
             {disabled && this.overlay()}
             <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
           </div>

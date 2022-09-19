@@ -6,13 +6,13 @@ module EncodableId
   class_methods do
     def encode_id(id)
       if id.present?
-        hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.default)
+        hashids = Hashids.new(ENV.fetch('HASHIDS_SALT', nil), Settings.hashids_length.default)
         hashids.encode(id)
       end
     end
 
     def decode_id(id)
-      hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.default)
+      hashids = Hashids.new(ENV.fetch('HASHIDS_SALT', nil), Settings.hashids_length.default)
       hashids.decode(id)
     end
 

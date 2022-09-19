@@ -14,7 +14,7 @@ module Assigns
 
     attr_reader :assign
 
-    def calculate_occupations
+    def calculate_occupations # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       assign.assessment&.
              dimension&.
              occupations&.
@@ -29,8 +29,8 @@ module Assigns
           valid_factors << occupations_factor if condition_valid?(occupations_factor, avg_scoring)
         end
         # Calculates ratio of valid factors
-        valid_factors_weight_sum = valid_factors.map { |f| f[:weight] }.reduce(&:+) || 0
-        total_factors_weight_sum = occupation.occupations_factors.map { |f| f[:weight] }.reduce(&:+)
+        valid_factors_weight_sum = valid_factors.sum { |f| f[:weight] } || 0
+        total_factors_weight_sum = occupation.occupations_factors.sum { |f| f[:weight] }
         value = total_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) : 0
 
         mem << {

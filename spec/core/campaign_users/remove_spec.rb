@@ -30,8 +30,8 @@ describe CampaignUsers::Remove do
 
   context 'remove user result' do
     let(:users_result) { create :users_result }
-    let!(:user_assessment_1) { create :user_assessment, campaign: campaign, subject: user }
-    let!(:user_assessment_2) { create :user_assessment, users_result: users_result }
+    let!(:user_assessment_one) { create :user_assessment, campaign: campaign, subject: user }
+    let!(:user_assessment_two) { create :user_assessment, users_result: users_result }
 
     it 'if its not associated with any other assessment' do
       described_class.call!(options)

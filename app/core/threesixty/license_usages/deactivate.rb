@@ -18,7 +18,7 @@ module Threesixty
         active_license_usages_count = active_license_usages.count
         active_license_usages.update_all(
           status_updated_by_id: updater_id,
-          status_updated_at: Time.now,
+          status_updated_at: Time.zone.now,
           status: 'inactive'
         )
         threesixty_license = threesixty_campaign.campaign.client.licenses.find_by(type: 'threesixty')

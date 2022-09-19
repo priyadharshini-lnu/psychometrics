@@ -4,7 +4,7 @@ module Threesixty
   class Subject < ApplicationRecord
     include Threesixty::Participator
 
-    has_many :participants, foreign_key: :subject_id, primary_key: :user_id
+    has_many :participants, primary_key: :user_id
 
     has_many :subjects_relationships, primary_key: :user_id
 

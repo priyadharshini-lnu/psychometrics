@@ -22,7 +22,7 @@ module Assigns
     private
 
     def add_additional_time
-      assign_with_result.update_attributes(
+      assign_with_result.update(
         status: :interrupted,
         expiry_date: nil,
         last_activity_at: nil,

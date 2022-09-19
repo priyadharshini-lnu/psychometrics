@@ -25,7 +25,7 @@ module UserAssessments
       params[:progress_reseted] = false
       params[:selected_locale] = lang if lang
       params[:expiry_date] = time.second.from_now if time
-      params[:started_at] = Time.now unless user_assessment.started_at
+      params[:started_at] = Time.zone.now unless user_assessment.started_at
       params
     end
 

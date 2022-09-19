@@ -23,7 +23,7 @@ interface Props {
   resourceId?: number
   resourceBaseUrl?: string
   showSuccessMessages?: boolean
-  onSuccessfulSubmission?(response: object): void
+  onSuccessfulSubmission?(response: object, values?: object): void
   request?: Partial<Request>
   storeManager?: {
     form?: FormInstance,
@@ -35,6 +35,7 @@ interface Props {
   transformValues?(values: Record<string, unknown>): Record<string, unknown>
   scrollToFirstError?: boolean
   submitButtonName?: string
+  nullifyEmptyString?: boolean
 }
 
 interface Request {
@@ -67,8 +68,8 @@ const ResourceFormModal: React.FC<Props> = (props) => {
 
   const isEdit = () => !!resource || !!resourceId
 
-  const handleSuccessfulSubmission = (response: object) => {
-    onSuccessfulSubmission && onSuccessfulSubmission(response)
+  const handleSuccessfulSubmission = (response: object, values: object) => {
+    onSuccessfulSubmission && onSuccessfulSubmission(response, values)
     close()
   }
 

@@ -9,7 +9,7 @@ module Threesixty::InitialState
     end
   end
 
-  def set_init_state
+  def set_init_state # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     @current_project ||= GetProjectBySubdomain.call!(request.subdomain)
 
     @init_state = {
@@ -23,6 +23,20 @@ module Threesixty::InitialState
         }
       }.merge(campaign_intial_state),
       config: {
+        design: {
+          logo: @current_project.design_setting&.logo&.url,
+          secondary_logo: @current_project.design_setting&.secondary_logo&.url,
+          primary_color: @current_project.design_setting&.primary_color,
+          error_color: @current_project.design_setting&.error_color,
+          warning_color: @current_project.design_setting&.warning_color,
+          success_color: @current_project.design_setting&.success_color,
+          info_color: @current_project.design_setting&.info_color
+        },
+        profile: {
+          fields: @current_project.profile_setting&.profile_fields&.map do |q|
+            ProfileFieldSerializer.new(q).to_h
+          end
+        },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,
         maintenance: {
@@ -39,7 +53,7 @@ module Threesixty::InitialState
   end
 
   def live_chat_token
-    @current_project.live_chat_token.blank? ? Settings.live_chat.token : @current_project.live_chat_token
+    @current_project.live_chat_token.presence || Settings.live_chat.token
   end
 
   def serialized_current_user
@@ -53,6 +67,6 @@ module Threesixty::InitialState
   end
 
   def remaining_maintenance_time
-    (ENV['MAINTENANCE_START_DATETIME'].to_time - Time.now).to_i if ENV['MAINTENANCE_START_DATETIME']
+    (ENV['MAINTENANCE_START_DATETIME'].to_time - Time.zone.now).to_i if ENV['MAINTENANCE_START_DATETIME']
   end
 end

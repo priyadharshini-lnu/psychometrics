@@ -20,17 +20,17 @@ module Users
       if @form.valid?
         registration_command_class.call(@form, @current_project) do
           on(:error) do
-            @form.errors[:base].clear
-            @form.errors[:base] << I18n.t('administration.clients.registration_codes.errors.license_issue')
+            @form.errors.delete(:base)
+            @form.errors.add(:base, I18n.t('administration.clients.registration_codes.errors.license_issue'))
             respond_with @form
           end
           on(:ok) do |_resource|
             flash[:notice] = t('devise.registrations.success')
-            redirect_to users_sign_up_success_path
+            redirect_to root_path
           end
         end
       else
-        @form.errors[:base] << I18n.t('administration.clients.registration_codes.errors.review')
+        @form.errors.add(:base, I18n.t('administration.clients.registration_codes.errors.review'))
         respond_with @form
       end
     end

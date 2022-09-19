@@ -19,9 +19,7 @@ module Api
         "#{instance_options[:url]}?user_assessment_id=#{object.id}"
       end
 
-      def status
-        object.status
-      end
+      delegate :status, to: :object
 
       private
 

@@ -9,6 +9,6 @@ feature 'Show Usage Licenses for Client Tenancy' do
 
   given!(:client) { create(:tenancy) }
 
-  scenario 'SA should be able to see usage licenses statistics' do
+  scenario 'SA should be able to see usage licenses statistics' do # rubocop:disable Lint/EmptyBlock
   end
 end

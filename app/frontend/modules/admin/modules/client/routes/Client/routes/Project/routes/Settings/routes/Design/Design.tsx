@@ -1,71 +1,244 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Radio, Button, Upload, RadioChangeEvent,
+  Row, Col, Form, Radio, Button, Upload, ConfigProvider,
 } from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
-
-import ColorPicker from 'modules/reports/components/ColorPicker'
+import { ColorPicker } from 'components/ColorPicker'
+import { useResources } from 'hooks/useResources/useResources'
+import { useParams } from 'react-router-dom'
+import _ from 'lodash'
+import {
+  Files, DesignSettings as DesignSettingsType,
+  uploadFiles,
+} from 'modules/admin/modules/client/core/designSettings'
+import { UploadFile } from 'antd/lib/upload/interface'
+import type { Theme } from 'antd/lib/config-provider/context'
+import { DesignPreview } from './DesignPreview'
+import styles from './styles.less'
 
 const { I18n } = window
 
-export const Design: React.FC = () => {
-  const [backgroundType, setBackgroundType] = useState('image')
+const connecter = connect(() => {}, { uploadFiles })
 
-  const handleBackgroundType = (e: RadioChangeEvent) => {
-    setBackgroundType(e.target.value)
+type Props = ConnectedProps<typeof connecter>
+
+export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
+  const { projectId } = useParams<{ projectId: string }>()
+  const [isLoading, setIsLoading] = useState(false)
+  const {
+    data, updateResource, fetch,
+  } = useResources<DesignSettingsType>('design_settings')
+  const [form] = Form.useForm()
+  const [designSettings] = data
+  const [values, setValues] = useState({})
+  useEffect(() => {
+    if (designSettings) {
+      form.setFieldsValue(designSettings)
+      setIsLoading(false)
+    }
+  }, [designSettings])
+
+  useEffect(() => {
+    fetch({
+      apiConfig: {
+        filter: { project_id_eq: projectId },
+      },
+    })
+    return () => ConfigProvider.config({
+      theme: {},
+    })
+  }, [])
+
+  const onFinish = (values) => {
+    setIsLoading(true)
+
+    const update = () => {
+      const jsonData = _.pick(values, [
+        'backgroundColor',
+        'loginBoxPosition',
+        'primaryColor',
+        'errorColor',
+        'warningColor',
+        'successColor',
+        'infoColor',
+      ])
+      updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType)
+    }
+    const files: Files = {
+      ..._.pick(values, ['logo', 'background']),
+      secondary_logo: values.secondaryLogo,
+    }
+
+    if (_.some(files, f => f && !!f.file)) {
+      const formData = new FormData()
+      _.each(files, (img, name) => {
+        if (img?.file) {
+          (img.file as UploadFile).status === 'removed'
+            ? formData.append(`remove_${name}`, '1')
+            : formData.append(name, img.file as File, img.file.name)
+        }
+      })
+      uploadFiles(designSettings.id, formData).finally(update)
+    } else {
+      update()
+    }
   }
 
+  const removeFile = (file: UploadFile) => {
+    form.setFieldsValue({ [file.name]: null })
+  }
+
+  const resetColor = (field) => {
+    form.setFieldsValue({ [field]: null })
+  }
+
+  const logo = Form.useWatch('logo', form)
+  const background = Form.useWatch('background', form)
+  const secondaryLogo = Form.useWatch('secondaryLogo', form)
+
+  const colors = _.pick(designSettings,
+    ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
+
   return (
-    <Row justify="space-between" className="ps-1">
+    <Row justify="space-between" className="pl">
       <Col sm={24} md={16} xl={12} xxl={10}>
         <Form
+          name="design"
+          onValuesChange={value => setValues({ ...values, ...value })}
           layout="horizontal"
           labelAlign="left"
+          form={form}
           labelCol={{
             sm: 24,
             md: 10,
             lg: 8,
             xl: 8,
           }}
+          onFinish={onFinish}
+          initialValues={designSettings}
         >
-          <Form.Item name="clientLogo" label={I18n.t('administration.projects.design_settings.client_logo_label')}>
-            <Upload listType="picture" maxCount={1}>
+          <Form.Item name="logo" label={I18n.t('administration.projects.design_settings.client_logo_label')}>
+            <Upload
+              listType="picture"
+              maxCount={1}
+              onRemove={removeFile}
+              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              fileList={logo && typeof logo === 'string' ? [{
+                uid: '1', name: 'logo', status: 'done', url: logo,
+              }] : undefined}
+              beforeUpload={() => false}
+            >
               <Button icon={<UploadOutlined />}>{I18n.t('administration.projects.design_settings.logo_upload')}</Button>
             </Upload>
           </Form.Item>
           <Form.Item name="background" label={I18n.t('administration.projects.design_settings.background_label')}>
-            <Radio.Group value={backgroundType} onChange={handleBackgroundType}>
-              <Radio value="image">{I18n.t('administration.projects.design_settings.image_label')}</Radio>
-              <Radio value="color">{I18n.t('administration.projects.design_settings.color_label')}</Radio>
-            </Radio.Group>
-            <div className="mt-2">
-              {backgroundType === 'image' ? (
-                <Upload listType="picture" maxCount={1}>
-                  <Button icon={<UploadOutlined />}>
-                    {I18n.t('administration.projects.design_settings.bg_upload')}
-                  </Button>
-                </Upload>
-              ) : (
-                <ColorPicker color="red" onChange={() => null} />
-              )}
-            </div>
-          </Form.Item>
-          <Form.Item name="boxPosition" label={I18n.t('administration.projects.design_settings.position_label')}>
-            <Radio.Group value="right">
-              <Radio value="right">{I18n.t('administration.projects.design_settings.position_right')}</Radio>
-              <Radio value="center">{I18n.t('administration.projects.design_settings.position_center')}</Radio>
-              <Radio value="left">{I18n.t('administration.projects.design_settings.position_left')}</Radio>
-            </Radio.Group>
+            <Upload
+              listType="picture"
+              maxCount={1}
+              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              fileList={background && typeof background === 'string' ? [{
+                uid: '1', name: 'background', status: 'done', url: background,
+              }] : undefined}
+              beforeUpload={() => false}
+            >
+              <Button icon={<UploadOutlined />}>
+                {I18n.t('administration.projects.design_settings.bg_upload')}
+              </Button>
+            </Upload>
           </Form.Item>
           <Form.Item name="secondaryLogo" label={I18n.t('administration.projects.design_settings.sec_logo_label')}>
-            <Upload listType="picture" maxCount={1}>
+            <Upload
+              listType="picture"
+              maxCount={1}
+              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              fileList={secondaryLogo && typeof secondaryLogo === 'string' ? [{
+                uid: '1', name: 'secondary_logo', status: 'done', url: secondaryLogo,
+              }] : undefined}
+              beforeUpload={() => false}
+            >
               <Button icon={<UploadOutlined />}>
                 {I18n.t('administration.projects.design_settings.sec_logo_upload')}
               </Button>
             </Upload>
           </Form.Item>
+          <Form.Item label={I18n.t('administration.projects.design_settings.background_color')}>
+            <div className={styles.colorPicker}>
+              <Form.Item name="backgroundColor">
+                <ColorPicker swatchClass={styles.swatch} defaultValue="#ffffff" />
+              </Form.Item>
+              <Button onClick={() => resetColor('backgroundColor')}>
+                {I18n.t('administration.projects.design_settings.reset')}
+              </Button>
+            </div>
+          </Form.Item>
+          <Form.Item label={I18n.t('administration.projects.design_settings.primary_color')}>
+            <div className={styles.colorPicker}>
+              <Form.Item name="primaryColor">
+                <ColorPicker swatchClass={styles.swatch} defaultValue="#009ea7" />
+              </Form.Item>
+              <Button onClick={() => resetColor('primaryColor')}>
+                {I18n.t('administration.projects.design_settings.reset')}
+              </Button>
+            </div>
+          </Form.Item>
+          <Form.Item label={I18n.t('administration.projects.design_settings.error_color')}>
+            <div className={styles.colorPicker}>
+              <Form.Item name="errorColor">
+                <ColorPicker swatchClass={styles.swatch} defaultValue="#f5222d" />
+              </Form.Item>
+              <Button onClick={() => resetColor('errorColor')}>
+                {I18n.t('administration.projects.design_settings.reset')}
+              </Button>
+            </div>
+          </Form.Item>
+          <Form.Item label={I18n.t('administration.projects.design_settings.warning_color')}>
+            <div className={styles.colorPicker}>
+              <Form.Item name="warningColor">
+                <ColorPicker swatchClass={styles.swatch} defaultValue="#faad14" />
+              </Form.Item>
+              <Button onClick={() => resetColor('warningColor')}>
+                {I18n.t('administration.projects.design_settings.reset')}
+              </Button>
+            </div>
+          </Form.Item>
+          <Form.Item label={I18n.t('administration.projects.design_settings.success_color')}>
+            <div className={styles.colorPicker}>
+              <Form.Item name="successColor">
+                <ColorPicker swatchClass={styles.swatch} defaultValue="#52c41a" />
+              </Form.Item>
+              <Button onClick={() => resetColor('successColor')}>
+                {I18n.t('administration.projects.design_settings.reset')}
+              </Button>
+            </div>
+          </Form.Item>
+          <Form.Item label={I18n.t('administration.projects.design_settings.info_color')}>
+            <div className={styles.colorPicker}>
+              <Form.Item name="infoColor">
+                <ColorPicker swatchClass={styles.swatch} defaultValue="#009ea7" />
+              </Form.Item>
+              <Button onClick={() => resetColor('infoColor')}>
+                {I18n.t('administration.projects.design_settings.reset')}
+              </Button>
+            </div>
+          </Form.Item>
+          <Form.Item name="loginBoxPosition" label={I18n.t('administration.projects.design_settings.position_label')}>
+            <Radio.Group>
+              <Radio value="left">{I18n.t('administration.projects.design_settings.position_left')}</Radio>
+              <Radio value="auto">{I18n.t('administration.projects.design_settings.position_auto')}</Radio>
+              <Radio value="right">{I18n.t('administration.projects.design_settings.position_right')}</Radio>
+            </Radio.Group>
+          </Form.Item>
+          <Button type="primary" htmlType="submit" className="mb-16" loading={isLoading}>
+            {I18n.t('administration.save')}
+          </Button>
         </Form>
+      </Col>
+      <Col sm={24} md={16} xl={12} xxl={14}>
+        <DesignPreview config={{ ...colors, ...values }} />
       </Col>
     </Row>
   )
 }
+
+export const Design = connecter(DesignComponent)

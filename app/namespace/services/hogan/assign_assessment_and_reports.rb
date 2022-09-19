@@ -21,11 +21,11 @@ module Services
       private
 
       def create_group
-        Services::Hogan::API::JSON::GroupDetails.call(
+        Services::Hogan::Api::Json::GroupDetails.call(
           group: context.group, provider: context.credentials&.provider
         ) do
           on(:error) do
-            Services::Hogan::API::JSON::CreateGroup.call!(group: context.group, provider: context.credentials&.provider)
+            Services::Hogan::Api::Json::CreateGroup.call!(group: context.group, provider: context.credentials&.provider)
           end
         end
       end
@@ -34,7 +34,7 @@ module Services
         return if context.membership.hogan_credential.present?
 
         password = Devise.friendly_token.first(10)
-        participant_id = Services::Hogan::API::JSON::AddParticipantToGroup.call!(
+        participant_id = Services::Hogan::Api::Json::AddParticipantToGroup.call!(
           group: context.group, password: password, provider: context.credentials&.provider
         )
         context.credentials = context.membership.create_hogan_credential(
@@ -43,7 +43,7 @@ module Services
       end
 
       def add_participant_assessment
-        Services::Hogan::API::JSON::AddParticipantAssessment.call!(
+        Services::Hogan::Api::Json::AddParticipantAssessment.call!(
           participant_id: context.membership.hogan_credential.participant_id,
           group: context.group,
           assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
@@ -56,7 +56,7 @@ module Services
         context.reports.each do |report|
           next unless report.hogan?
 
-          Services::Hogan::API::JSON::AddParticipantReport.call!(
+          Services::Hogan::Api::Json::AddParticipantReport.call!(
             group: context.group,
             norm_id: report.hogan_report_setting.hogan_norm_id,
             language_id: report.hogan_report_setting.hogan_language_id,

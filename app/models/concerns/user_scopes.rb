@@ -45,12 +45,13 @@ module UserScopes
 
     # Fileter by role
     scope :with_role, lambda { |role|
-      if role == 'users'
-        joins(:memberships).
-          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
-      elsif role == 'administrators'
-        joining { memberships.outer }.
-          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
+      case role
+        when 'users'
+          joins(:memberships).
+            where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
+        when 'administrators'
+          joining { memberships.outer }.
+            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
       end
     }
 
@@ -67,9 +68,11 @@ module UserScopes
         Membership.roles[role]
       end
 
-      joins(:memberships).where(
-        'users.role IN (?)', user_roles
-      ).or(User.joins(:memberships).where('memberships.role IN (?)', membership_roles_indexes))
+      joins(:memberships).
+        where(users: { role: user_roles }).
+        or
+      User.joins(:memberships.
+        where(memberships: { role: membership_roles_indexes }))
     }
 
     scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }

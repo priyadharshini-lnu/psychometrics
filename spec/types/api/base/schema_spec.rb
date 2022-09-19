@@ -224,7 +224,7 @@ describe Api::Base::Schema do
   end
 
   describe 'Response Types' do
-    class TestResponseSchema < TestSchema
+    class TestResponseSchema < TestSchema # rubocop:disable Lint/ConstantDefinitionInBlock
       def self.relationships(_)
         [
           { name: :has_one, resource: :users, relationship: :one, required: false, allowed_blank: false },

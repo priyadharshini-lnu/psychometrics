@@ -588,6 +588,10 @@ en:
         status: Status
         type: Type
       options:
+        description:
+          name: Description
+          save: Save Description
+          save_success: Description saved successfully
         duration: ''
         fixed_time: Fixed Time
         instructions:
@@ -2328,46 +2332,34 @@ en:
     create: Create
     created: Successfully created
     created_by: Created By
-    datasheets:
-      drawers:
-        add_edit:
-          cancelText: Cancel
-          markdown:
-            preview: Preview
-            title: Markdown
-          save: Save
-          saving: Saving
-          success_message_add: New record added
-          success_message_edit: Record updated
-          title_add: Add datasheet record
-          title_edit: Edit datasheet record
-          validations:
-            required_email: Please enter email
-        view:
-          campaign_title: Campaign level record
-          edit_button: Edit
-          project_title: Project level record
-          title: Datasheet record details
-      list:
-        column_toggler:
-          title: Show/Hide columns
-          tool_tip: Show/Hide table columns
-        header:
-          add_record: Add record
-          search_record: Search records
-      modals:
-        delete_records:
-          cancelText: Cancel
-          content:
-            one: Are you sure you want to delete the record?
-            other: Are you sure you want to delete {{count}} records?
-          okText: Yes, delete
-          successMessage:
-            one: Record deleted
-            other: "{{count}} records deleted"
-          title:
-            one: Delete record
-            other: Delete records
+    dashboard:
+      dashboards: Dashboards
+      get_started: Get Started
+      initialize_msg: Initialize a Dashboard for this Campaign
+      preview:
+        embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
+        embed_token_error_title: Unable to generate Embed token.
+      settings:
+        accesssheet_view_name: Accesssheet View Name
+        datasheet_view_name: Datasheet View Name
+        refresh: Refresh
+        view_names: View Names
+      tabs:
+        accesssheet: Accesssheet
+        accesssheet_setting: Accesssheet Settings
+        dashboard: Dashboard
+        preview: Preview
+        settings: Settings
+    dashboard_form:
+      fields:
+        dataset_id: Dataset Id
+        enabled: Enabled
+        image: Image
+        refresh_interval: Refresh Interval (minutes)
+        report_id: Report Id
+      image_upload_failed: Image upload failed.
+      none: None
+      refresh_success: Refresh of dataset scheduled successfully.
     dates:
       completed: Completed At
       created: Created At
@@ -2538,6 +2530,16 @@ en:
       female: Female
       male: Male
       not_set: Not set
+    grants:
+      common:
+        view: View
+      dashboard:
+        name: Dashboard
+        permissions:
+          accesssheet_manage: Accesssheet Manage
+          accesssheet_settings: Accesssheet Settings
+          accesssheet_view: Accesssheet View
+          settings: Settings
     hide: Hide
     home:
       index:
@@ -2568,6 +2570,7 @@ en:
           error: "[Row %{row}] %{error}"
           invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_format: Invalid File format
+          question_mismatch: Question is not present in the assessment you are importing.
           user:
             record_not_found: Can't find existing user with email %{email}.
           user_assessment:
@@ -2816,12 +2819,12 @@ en:
       clients: Client Tenancies
       communication_center: Communication Center
       create: Create
+      dashboard: Dashboard
       datasheets: Datasheets
       design: Design
       dimension: Dimension
       dimensions: Dimensions
       factors: Factors
-      home: Dashboard
       innovation_styles: Innovation Styles
       innovation_styles_factors: Factors
       libraries: Media Library
@@ -3008,6 +3011,19 @@ en:
         assessors: Assessors
         sms_invites: SMS Invites
         subjects: Subjects
+    proctoring_sessions:
+      columns:
+        comment: Comment
+        completed_at: Completed at
+        conclusion: Conclusion
+        links: Links
+        score: Score
+        session_id: Session Id
+        started_at: Started at
+      links:
+        report: Report
+        review: Review
+      resource_name: Proctoring Sessions
     products:
       copy:
         error: Product
@@ -3086,6 +3102,7 @@ en:
     project_tabs:
       design: Design
       general: General
+      profile: Profile
       webhooks: Webhooks
     project_users:
       cancel: Cancel
@@ -3119,18 +3136,25 @@ en:
     projects:
       addProject: Add Project
       design_settings:
+        background_color: Background Color
         background_label: Background
         bg_upload: Upload
         client_logo_label: Client Logo
         color_label: Color
+        error_color: Error Color
         image_label: Image
+        info_color: Info Color
         logo_upload: Upload
-        position_center: Center
+        position_auto: Auto
         position_label: Login Box Position
         position_left: Left
         position_right: Right
+        primary_color: Primary Color
+        reset: Reset
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
+        success_color: Success Color
+        warning_color: Warning Color
       general_settings:
         2fa: Enable Two factor authentication
         dp_consent: Enable Data Processing consent
@@ -3142,6 +3166,14 @@ en:
         project_number_label: Project Number
         save_changes: Save Changes
         sub_domain_label: Sub Domain
+      profile_settings:
+        month:
+          one: "{{count}} Month"
+          other: "{{count}} Months"
+        months: Months
+        never: Never
+        update_in: Notify Profile Update in
+        year: Year
       webhook_settings:
         add: Add Webhook
         column_active: Active
@@ -3384,7 +3416,67 @@ en:
       security: Security Settings
       security_setting: Security settings
       send_unlock_email: Send unlock email
+      tfa_enabled: Enable Two Factor Authentication
       update_success_msg: Password settings successfull updated
+    sheets:
+      column:
+        add_column: Add Column
+        reorder: Reorder
+        save_order: Save order
+      drawers:
+        add_edit:
+          cancelText: Cancel
+          markdown:
+            preview: Preview
+            title: Markdown
+          save: Save
+          saving: Saving
+          success_message_add: New record added
+          success_message_edit: Record updated
+          title_add: Add Sheet record
+          title_edit: Edit Sheet Row record
+          validations:
+            required_email: Please enter email
+        view:
+          campaign_title: Campaign level record
+          edit_button: Edit
+          project_title: Project level record
+          title: Sheet Row record details
+      list:
+        column_toggler:
+          title: Show/Hide columns
+          tool_tip: Show/Hide table columns
+        header:
+          add_record: Add record
+          search_record: Search records
+      modals:
+        delete_records:
+          cancelText: Cancel
+          content:
+            one: Are you sure you want to delete the record?
+            other: Are you sure you want to delete {{count}} records?
+          okText: Yes, delete
+          successMessage:
+            one: Column and related data deleted
+            other: "{{columns}} and related data deleted"
+          title:
+            one: Delete record
+            other: Delete records
+        remove_columns:
+          cancelText: Cancel
+          content:
+            one: Deleting a column ({{columns}}) will remove the data in this column for all rows
+            other: Deleting a columns ({{columns}}) will remove the data in this column for all rows
+          okText: Yes, delete
+          successMessage:
+            one: Columns deleted
+            other: "{{count}} records deleted"
+          title:
+            one: Delete column
+            other: Delete columns
+      tabs:
+        rows: Rows
+        settings: Settings
     show: Show
     sms_invites:
       actions:
@@ -3712,6 +3804,12 @@ en:
         welcome_message:
           description: This message will be displayed to subjects when they log in to begin the assessment or view their task list
           name: Welcome Message
+      manage:
+        assessment: Assessment
+        dimension: Dimensions
+        manage_relationships: Manage Relationships...
+        report: Report
+        title: Manage
       menu:
         assessment:
           title: Assessment
@@ -3728,6 +3826,11 @@ en:
             subject_report:
               title: Subject Report
           title: Report
+      messages:
+        email_messages: Email Messages
+        instruction_messages: Instruction Messages
+        mail_history: Mail History
+        options: Options
       reports:
         show:
           title: Subject Report

@@ -36,6 +36,7 @@ declare class AppStore {
       name: string
       minRequiredResponses: number
     }>
+    dataSheetColumns: Array<{type: string, name: string}>
   }
 }
 

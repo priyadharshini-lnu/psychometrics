@@ -3,10 +3,6 @@
 module Communications
   module ReminderType
     class NotCompletedJob < NotStartedJob
-      def perform(communication)
-        super(communication)
-      end
-
       private
 
       def fetch_memberships(communication)

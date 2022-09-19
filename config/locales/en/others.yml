@@ -13,6 +13,12 @@ en:
         is_applying_to_existing_users: Apply these changes to existing users
       regenerate_reports:
         report_ids: Reports
+      sheet_column:
+        accessor_access: Accessor access
+        dashboard_use: Dashboard use
+        name: Name
+        type: Type
+        visible_in_list: Visible in list
       update_assessment:
         is_applying_to_existing_users: Apply these changes to existing users
     errors:
@@ -39,6 +45,10 @@ en:
               reports_disabled: You selected disabled Report(s)
             removing_report_ids:
               not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
+        column:
+          attributes:
+            name:
+              not_unique: This field is already present
         create_all:
           attributes:
             assessors:
@@ -84,14 +94,6 @@ en:
               blank: Subject Email can't be blank
               invalid: Subject Email is invalid
               not_exists: Subject not found with email address %{email}
-        datasheet:
-          attributes:
-            file:
-              email_blank: 'Row %{row_number}: Email field can''t be blank'
-              email_duplicate: There are duplicates in Email column
-              invalid_column_type: Column type must be String, Text, Number, HTML or Markdown
-              invalid_format: Invalid format (.xlsx)
-              no_email_column: File does not contain Email column
         email_schedule:
           attributes:
             content:
@@ -176,6 +178,26 @@ en:
               invalid: SMS Invite code is invalid
         saml_setting:
           invalid_cert: Invalid certificate
+        sheet:
+          attributes:
+            file:
+              column_type_mismatch: Column <b>%{col}</b> is expected to be of type %{type} but got <b>%{got}</b>
+              email_blank: 'Row %{row_number}: Email field can''t be blank'
+              email_duplicate: There are duplicates in Email column
+              invalid_column: Invalid column %{name}
+              invalid_column_name: Column <b>"%{column}"</b> is invalid
+              invalid_column_name_size: Column <b>"%{column}"</b> name too long (max 64)
+              invalid_column_type: Column type must be String, Text, Number, HTML or Markdown
+              invalid_format: Invalid format (.xlsx)
+              invalid_number_value: <b>Row#%{index}</b> Column <b>"%{column}"</b> is not a Number
+              invalid_string_value: <b>Row#%{index}</b> column <b>"%{column}"</b> is not a String
+              invalid_string_value_size: <b>Row#%{index}</b> column <b>"%{column}"</b>  too long (max 256)
+              no_email_column: File does not contain Email column
+        sheet_row_form:
+          attributes:
+            email:
+              blank: Email can't be blank
+              not_uniq_email: Row with email is already present
         sms_invites_create:
           attributes:
             first_name:
@@ -626,6 +648,7 @@ en:
         export_report_data: Export report data
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
+        import_accesssheet: Import Accessheet
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
         import_raw_data: Import Raw Data
@@ -641,6 +664,7 @@ en:
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
+        failed: Failed
         in_progress: In Progress
         scheduled: Scheduled
       updated_at: Modified Date
@@ -873,6 +897,61 @@ en:
       load_results: 'Load Results: %{report}'
       processing: Processing...
       results: Results
+  auth:
+    current_password: Current Password
+    current_password_placeholder: Enter Current Password
+    email: Email
+    email_placeholder: Enter Email Address
+    expired_password:
+      description: Please fill all fields to crete a new password
+      submit: Submit
+      title: Renew your password
+    login:
+      description: Please login with your personal account information
+      forgot_password: Forgot Password?
+      login_btn: Login
+      not_member: Not a member?
+      or: OR
+      sso_btn: Login with Single Sign-On
+      title: Welcome Back!
+    new_password: New Password
+    otp:
+      code: Code
+      code_placeholder: One Time Password
+      description: Please enter the OTP, you have received at your registered email address
+      resend: Resend OTP
+      submit: Verify
+      title: One-Time Password
+    password: Password
+    password_confirmation: Confirm Password
+    password_confirmation_placeholder: Enter Password Confirmation
+    password_placeholder: Enter Password
+    registration:
+      description: Fill in the details below to register and create a new account
+      email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
+      first_name: First Name
+      first_name_placeholder: Enter First Name
+      have_account: Already have an account?
+      last_name: Last Name
+      last_name_placeholder: Enter Last Name
+      login_now: Login Now!
+      registration_code: Registration Code
+      registration_code_placeholder: Enter Registration Code
+      terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service and Privacy Policy</a>
+      title: Sign Up
+    reset_password:
+      back_to: Back to
+      description: Enter the email associated with your account
+      submit: Reset Password
+      title: Forgot Password?
+    set_password:
+      description: To create a new password, please enter your new password in the boxes below
+      submit: Submit
+      title: Create Password
+    sign_in: Sign In
+    sign_out: Sign Out
+    sign_up: Sign Up
+    terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
   browsers:
     chrome: Google Chrome
     download:
@@ -900,6 +979,13 @@ en:
     completed: Completed
     continue: Continue Assessment
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
+    dashboard_menu:
+      campaign: Campaign
+      home: Home
+      insights: Insights
+      livechat: Live Support
+      profile: Profile
+      tasks: Tasks
     details: Details
     edit_evaluation:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
@@ -911,6 +997,8 @@ en:
     inactive_campaign_message: Currently, you have not been assigned any activities.
     ineligible: Ineligible
     instructions:
+      collapse_link_text: Show less
+      expand_link_text: Show more
       heading: Please review the guidelines below before you get started. We wish you all the best!
     interrupted: Interrupted
     language:
@@ -923,6 +1011,7 @@ en:
     not_started: New
     panels:
       assessments: Tasks
+      dashboard: Dashboard
       reports: Reports
     thank_you_for_time: Thank you for your time
     time_left:
@@ -1019,6 +1108,7 @@ en:
       report_bundle: Report Bundle
       report_name: Report name
       user_access: User Access
+      user_dashboard: User Dashboard
     form:
       operation: Operation
       operation_options:
@@ -1145,6 +1235,7 @@ en:
       search: Search
       send: Send
       update: Update
+      upload: Upload
     column:
       action: Action
       category: Category
@@ -1174,6 +1265,7 @@ en:
       cancel: Cancel
       confirm: Confirm
       continue: Continue
+      copied: Copied to clipboard
       default: Default
       download: Download
       minutes: Minutes
@@ -1198,17 +1290,6 @@ en:
     QAR: QAR
     SAR: SAR
     USD: USD
-  datasheet:
-    import_modal:
-      operations:
-        merge_with_existing: Merge with existing data
-        replace_existing: Replace the existing record’s data
-      success_message: File successfully upload. Import of datasheet record in progress
-      title: Import Datasheet Records
-    menu:
-      export: Export Datasheet
-      export_info: No data to export.
-      import: Import Datasheet
   devise:
     administrators:
       meta_title: Login to administration panel
@@ -1794,6 +1875,26 @@ en:
       values:
         empty: Empty
         required: "%{title} is required"
+  profile:
+    add_field: Add Field
+    add_photo: Add Photo
+    age: Age
+    change_password: Change Password
+    change_photo: Change Photo
+    email: Email
+    female: Female
+    first_name: First Name
+    gender: Gender
+    last_name: Last Name
+    locale: Locale
+    male: Male
+    not_disclosed: Prefer not to disclose
+    password: Password
+    password_confirmation: Password Confirmation
+    success_update: Profile settings updated successfully
+    timezone: Timezone
+    title: My Profile
+    update: Update
   profiles:
     edit:
       header: Profile Settings
@@ -1966,6 +2067,16 @@ en:
       title: Forgot Password?
     terms_conditions_privacy: Privacy Statement
     tte_terms_and_condition: TTE - Terms, Conditions and Privacy Statement
+  sheet:
+    import_modal:
+      alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.
+      success_message: File successfully upload. Import of datasheet record in progress
+      title: Import Sheet Records
+    menu:
+      export: Export Sheet
+      export_info: No data to export.
+      import: Import Sheet
+    no_sheet: You have to import sheet first
   simple_form:
     error_notification:
       default_message: 'Please review the problems below:'
@@ -2418,6 +2529,8 @@ en:
       exactly: Exactly %{count}
     nominations: Nominations
     options:
+      form:
+        value_not_valid: doesn't have a valid value
       global:
         cannot_re_edit: Participants cannot edit evaluations
         disable_all_evaluations: Disable all evaluations
@@ -2528,7 +2641,8 @@ en:
       email: Email Address
       first_name: First Name
       last_name: Last Name
-      password: Password
+      password: New Password
+      password_confirmation: Password Confirmation
     form:
       email: Email
       first_name: First name
@@ -2584,6 +2698,9 @@ en:
         declined: Declined
         denied: Denied
         waiting: Waiting
+    timer_title:
+      assessment: Assessment
+      campaign: Campaign
   user_reports:
     actions:
       regenerate: Regenerate

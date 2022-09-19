@@ -1,8 +1,12 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, {
+  FC, useEffect, useState, useContext,
+} from 'react'
 import {
   Row, Col, Button, Typography, Space,
 } from 'antd'
-import { UnorderedListOutlined, TableOutlined } from '@ant-design/icons'
+import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons'
+
+import { MediaQueryContext } from 'glint'
 
 import styles from './styles.less'
 
@@ -24,6 +28,7 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
   onViewChange, title, children, defaultView = 'list',
 }) => {
   const [view, setView] = useState<string>(defaultView)
+  const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
 
   useEffect(() => {
     onViewChange && onViewChange(view)
@@ -37,8 +42,17 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
             {title}
           </Title>
         </Col>
+        { !isMobile && (
         <Col span={12} className={styles.viewControls}>
           <Space>
+            <Button
+              className={view === VIEW_TYPE.grid ? styles.activeButton : styles.inActiveButton}
+              id={VIEW_TYPE.grid}
+              onClick={() => setView(VIEW_TYPE.grid)}
+              shape="circle"
+              icon={<AppstoreOutlined />}
+              size="middle"
+            />
             <Button
               className={view === VIEW_TYPE.list ? styles.activeButton : styles.inActiveButton}
               id={VIEW_TYPE.list}
@@ -47,16 +61,9 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
               icon={<UnorderedListOutlined />}
               size="middle"
             />
-            <Button
-              className={view === VIEW_TYPE.grid ? styles.activeButton : styles.inActiveButton}
-              id={VIEW_TYPE.grid}
-              onClick={() => setView(VIEW_TYPE.grid)}
-              shape="circle"
-              icon={<TableOutlined />}
-              size="middle"
-            />
           </Space>
         </Col>
+        )}
       </Row>
       {children(view)}
     </>

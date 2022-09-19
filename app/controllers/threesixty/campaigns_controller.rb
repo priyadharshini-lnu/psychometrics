@@ -28,7 +28,7 @@ module Threesixty
 
     def show
       respond_to do |format|
-        format.html {}
+        format.html
         format.json do
           managed_subjects = Threesixty::Evaluators::GetManagedSubjectsQuery.new(@campaign, current_user).
                              query.includes(:user)

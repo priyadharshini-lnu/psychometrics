@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Modules } from 'modules/reports/components/modules'
 import store from 'modules/reports/store/PageList'
 import AppStore from 'modules/reports/store/AppStore'
+import cs from 'classnames'
 import styles from './Page.less'
 
 class Page extends Component {
@@ -14,8 +15,9 @@ class Page extends Component {
 
   renderModuleType = (module, i) => {
     const {
-      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides, pdfExport,
+      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides, pdfExport, dashboard,
     } = this.props
+    if (dashboard && module.props.hideOnDashboard) { return null }
     if (!module.type) { return }
     const View = Modules[module.type]
     return (
@@ -36,8 +38,9 @@ class Page extends Component {
 
   renderShadowModule = (module, i) => {
     const {
-      model, pageNumber, totalPages, pdfExport,
+      model, pageNumber, totalPages, pdfExport, dashboard,
     } = this.props
+    if (dashboard && module.props.hideOnDashboard) { return null }
     if (module.onPage(model)) { return }
     const View = Modules[module.type]
     return (
@@ -54,13 +57,23 @@ class Page extends Component {
   }
 
   render () {
-    const { model = {} } = this.props
+    const { model = {}, pdfExport, dashboard } = this.props
     const style = {
       ...AppStore.report.props.sizes,
     }
 
+    if (!pdfExport && dashboard) {
+      const max = _.reduce([...model.modules.list, ...store.showOnAllPages.list], (max, m) => {
+        if (m.props.hideOnDashboard) { return max }
+        const point = m.props.position.top + m.props.position.height
+        return (point > max) ? point : max
+      }, 0)
+
+      style.height = max
+    }
+
     return (
-      <div className={styles.page} name={`Page#${model.id}`}>
+      <div className={cs(styles.page, { [styles.dashboard]: !pdfExport })} name={`Page#${model.id}`}>
         <div className={`${styles.pageContainer} fe-page-container`} style={style}>
           <div className={styles.pageContent}>
             {model.modules.list.map(this.renderModuleType)}

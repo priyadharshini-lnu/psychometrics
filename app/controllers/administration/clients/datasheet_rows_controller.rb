@@ -15,7 +15,7 @@ module Administration
         @_resources = filter_form.
                       result.
                       joins(:datasheet).
-                      where(datasheets: { project_id: project.id }).
+                      where(sheets: { project_id: project.id }).
                       page(params[:page])
 
         respond_to do |format|
@@ -24,9 +24,7 @@ module Administration
         end
       end
 
-      def destroy
-        resource.destroy
-      end
+      delegate :destroy, to: :resource
 
       def i18n
         'clients.datasheet_rows'

@@ -10,6 +10,7 @@
 
 
   .sizeBox {
+    min-width: 180px;
     position: absolute;
     display: none;
     font-size: 10px;
@@ -19,6 +20,7 @@
     top: -26px;
     align-items: center;
     user-select: none;
+    cursor: move;
     .label {
       padding: 4px;
     }
@@ -32,14 +34,16 @@
       display: flex;
     }
   }
-
+  &.locked {
+    pointer-events: none
+  }
 }
 
-.base:hover {
+.base.editor:hover {
   box-shadow: #C7D4ED 0 0 0.2em 1px;
 }
 
-.base.selected:hover {
+.base.editor.selected:hover {
   box-shadow: #639CD3 0 0 0 1px;
 }
 
@@ -74,5 +78,4 @@
   margin-right: 5px;
   padding: 4px;
   font-size: 18px;
-  cursor: move;
 }

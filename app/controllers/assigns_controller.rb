@@ -1,26 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: assigns
-#
-#  id            :integer          not null, primary key
-#  assessment_id :integer
-#  results       :jsonb
-#  scoring       :jsonb
-#  embedded_data :jsonb
-#  status        :integer          default("not_started")
-#  role          :integer          default("member")
-#  completed_at  :datetime
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  step          :integer
-#  membership_id :integer
-#  norm_data     :jsonb
-#  agile_scoring :jsonb
-#  started_at    :datetime
-#
-
 class AssignsController < ApplicationController
   include ::Threesixty::InitialState
   include AuthenticateAnonymousUser
@@ -68,8 +47,8 @@ class AssignsController < ApplicationController
     UpdateAssign.call(@form, @assign, current_user)
 
     render json: @assign,
-    serializer: AssignUpdateSerializer,
-    current_block_id: params[:current_block_id], piped_text_context: build_piped_context
+           serializer: AssignUpdateSerializer,
+           current_block_id: params[:current_block_id], piped_text_context: build_piped_context
   end
 
   def update_meta_data
@@ -101,7 +80,7 @@ class AssignsController < ApplicationController
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy
-      render json: { error_message: error_message }, status: :unprocessable_entity
+      render json: { error_message: error_message }, status: 422
     end
   end
 
@@ -116,14 +95,14 @@ class AssignsController < ApplicationController
   end
 
   def complete_multipart_upload
-    media = @assign.media_responses.find_by!(id: params[:media_id])
+    media = @assign.media_responses.find(params[:media_id])
     MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
     render json: media.reload, serializer: MediaResponseSerializer
   end
 
   def mark_as_user_selected_take
-    media = @assign.media_responses.find_by!(id: params[:media_id])
+    media = @assign.media_responses.find(params[:media_id])
     MediaResponses::MarkAsUserSelected.call!(media)
     head :ok
   end
@@ -173,7 +152,7 @@ class AssignsController < ApplicationController
   def resource_params
     params[:resource].permit(
       :current_element, :current_page, :status, :step, norm_data: {}, embedded_data: {}, results: {},
-      prev_pages: [:element, :page, questionIds: []]
+      prev_pages: [:element, :page, { questionIds: [] }]
     )
   end
 

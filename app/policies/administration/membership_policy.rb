@@ -3,7 +3,7 @@
 module Administration
   class MembershipPolicy < Administration::UserPolicy
     CREATE_PARAMETERS = %i[parent_id role].freeze
-    UPDATE_PARAMETERS = [:parent_id, :role, hris_data: %i[key value]].freeze
+    UPDATE_PARAMETERS = [:parent_id, :role, { hris_data: %i[key value] }].freeze
     USER_PARAMETERS = %i[first_name last_name email].freeze
     UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
     GRANT_PARAMETERS = [data: [
@@ -22,18 +22,20 @@ module Administration
       results: [],
       assessors: [],
       registration_codes: [],
-      datasheets: []
+      datasheets: [],
+      dashboards: [],
+      messages: []
     ]].freeze
 
     def create?
       @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
-    def new_step_1?
+    def new_step_one?
       create?
     end
 
-    def new_step_2?
+    def new_step_two?
       create?
     end
 
@@ -56,7 +58,7 @@ module Administration
     def permitted_attributes_for_update
       if @user.is?(:superadmin) && (@record.user.is?(:client_admin) || @record.user.is?(:project_admin))
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
-      elsif @user.is?(:client_admin) && @record.user.is?(:project_admin)
+      elsif @user.is?(:client_admin) && @record.user.is?(:project_admin) # rubocop:disable Lint/DuplicateBranch
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
       else
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS]]

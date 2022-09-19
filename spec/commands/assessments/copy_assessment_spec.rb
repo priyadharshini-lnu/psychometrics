@@ -19,45 +19,45 @@ describe Assessments::CopyAssessment do
       create(:question_recoding, question: questions.first, assessment: assessment)
 
       flow = {
-        'elements': [
-          { 'type': 'Block', 'elements': [], 'path': [0], 'props': { 'current': block.id } }
+        elements: [
+          { type: 'Block', elements: [], path: [0], props: { current: block.id } }
         ]
       }
       assessment.update_attribute(:flow, flow)
 
       display_logic = [
         {
-          'conditionType': 'Question',
-          'type': 'bool',
-          'subject': questions[1].id,
-          'answer': 0,
-          'predicate': 'Selected'
+          conditionType: 'Question',
+          type: 'bool',
+          subject: questions[1].id,
+          answer: 0,
+          predicate: 'Selected'
         }
       ]
       end_of_block_skip_logic = [
         {
-          'subject': questions.first.id,
-          'prefix': 'And',
-          'answer': 0,
-          'predicate': 'NotSelected',
-          'type': 'bool',
-          'destination': 'EndOfBlock'
+          subject: questions.first.id,
+          prefix: 'And',
+          answer: 0,
+          predicate: 'NotSelected',
+          type: 'bool',
+          destination: 'EndOfBlock'
         }
       ]
       destination_skip_logic = [
         {
-          'subject': questions.last.id,
-          'prefix': 'And',
-          'answer': '5',
-          'predicate': 'Selected',
-          'type': 'bool',
-          'destination': 'SpecificBlock',
-          'destinationBlock': block.id
+          subject: questions.last.id,
+          prefix: 'And',
+          answer: '5',
+          predicate: 'Selected',
+          type: 'bool',
+          destination: 'SpecificBlock',
+          destinationBlock: block.id
         }
       ]
 
-      questions.first.update_attributes(display_logic: display_logic, skip_logic: end_of_block_skip_logic)
-      questions.last.update_attributes(skip_logic: destination_skip_logic)
+      questions.first.update(display_logic: display_logic, skip_logic: end_of_block_skip_logic)
+      questions.last.update(skip_logic: destination_skip_logic)
     end
 
     let(:copy) { described_class.call(assessment.id, user)[:ok][:assessment] }
@@ -66,7 +66,7 @@ describe Assessments::CopyAssessment do
       expect(copy).to be_an_instance_of(Assessments::Common)
       expect(copy.persisted?).to be_truthy
 
-      expect(copy.name).to eq(assessment.name + ' (1)')
+      expect(copy.name).to eq("#{assessment.name} (1)")
     end
 
     it 'copies all blocks' do
@@ -74,7 +74,7 @@ describe Assessments::CopyAssessment do
     end
 
     it 'replaces block_id in flow' do
-      pattern = /\"current\":\"?#{copy.blocks.first.id}\"?/
+      pattern = /"current":"?#{copy.blocks.first.id}"?/
       expect(copy.flow.to_json.match(pattern)).not_to be_nil
     end
 
@@ -85,7 +85,7 @@ describe Assessments::CopyAssessment do
     it 'replaces question_id in display_logic' do
       question_id = assessment.blocks.first.questions.first.id
       copied_display_logic = copy.blocks.first.questions.first.display_logic.to_json
-      pattern = /\"subject\":#{question_id}/
+      pattern = /"subject":#{question_id}/
 
       expect(copied_display_logic.match(pattern)).to be_nil
     end
@@ -103,8 +103,8 @@ describe Assessments::CopyAssessment do
       new_question_id = copy.questions.first.id
       copied_skip_logic = copy.questions.first.skip_logic.to_json
 
-      old_question_id_pattern = /\"subject\":#{old_question_id}/
-      new_question_id_pattern = /\"subject\":#{new_question_id}/
+      old_question_id_pattern = /"subject":#{old_question_id}/
+      new_question_id_pattern = /"subject":#{new_question_id}/
 
       expect(copied_skip_logic.match(old_question_id_pattern)).to be_nil
       expect(copied_skip_logic.match(new_question_id_pattern)).not_to be_nil
@@ -115,8 +115,8 @@ describe Assessments::CopyAssessment do
       new_block_id = copy.blocks.first.id
       copied_skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
 
-      old_block_id_pattern = /\"destinationBlock\":\"?#{old_block_id}\"?/
-      new_block_id_pattern = /\"destinationBlock\":\"?#{new_block_id}\"?/
+      old_block_id_pattern = /"destinationBlock":"?#{old_block_id}"?/
+      new_block_id_pattern = /"destinationBlock":"?#{new_block_id}"?/
 
       expect(copied_skip_logic.match(old_block_id_pattern)).to be_nil
       expect(copied_skip_logic.match(new_block_id_pattern)).not_to be_nil

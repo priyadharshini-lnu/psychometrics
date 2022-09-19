@@ -9,9 +9,9 @@ class UpdateCompetencyTableQuestionChoices < ActiveRecord::Migration[5.2]
       question_id = m.props.delete('questionId')
       question_choice_ids = m.props.delete('questionChoiceIds')
       m.props = m.props.merge({
-        'questionsChoices': [{
-          'questionId': question_id,
-          'choiceIds': question_choice_ids
+        questionsChoices: [{
+          questionId: question_id,
+          choiceIds: question_choice_ids
         }]
       })
       m.save(validate: false)

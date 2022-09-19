@@ -52,7 +52,7 @@ module Reports
 
     def all_question_ids
       configuration_sections.map do |section|
-        section['data'].map { |sub_header| sub_header['questionId'] }.compact
+        section['data'].filter_map { |sub_header| sub_header['questionId'] }
       end.flatten
     end
   end

@@ -6,7 +6,7 @@ RSpec.describe Api::V2::Client::Schema do
   let(:valid_params) do
     jsonapi_resource_request(
       'clients',
-      { id: '100', name: 'Client Name', number: '123', year: Time.now.year, type: 'partner', country: 'UAE' },
+      { id: '100', name: 'Client Name', number: '123', year: Time.zone.now.year, type: 'partner', country: 'UAE' },
       { project_manager: { id: '1', type: 'users' } }
     )
   end

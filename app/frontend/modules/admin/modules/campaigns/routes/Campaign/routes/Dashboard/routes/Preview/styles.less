@@ -1,0 +1,47 @@
+@import 'styles/ant.variable.less';
+@import 'styles/spacing.less';
+
+.fullScreenIcon {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  bottom: 0px;
+  right: 4px;
+  background: @base-primary;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 8px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.embedContainer {
+  height: calc(100vh - 208px);
+
+  iframe {
+    border: 0;
+  }
+}
+
+.normalMode {
+  position: relative;
+}
+
+.fullScreenMode {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
+
+  .pageHeader {
+    border: 1px solid #ddd;
+    padding: @space-2 @space-6;
+  }
+
+  .embedContainer {
+    height: calc(100vh - 54px);
+  }
+}

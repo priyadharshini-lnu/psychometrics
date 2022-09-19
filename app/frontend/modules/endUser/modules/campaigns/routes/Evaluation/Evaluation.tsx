@@ -1,0 +1,250 @@
+import React, { useEffect } from 'react'
+import {
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
+} from 'antd'
+import { DownOutlined, ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
+import qs from 'qs'
+
+import userPresenter from 'presenters/user'
+import statusPresenter from 'presenters/status'
+import PassAssessment from 'modules/survey/containers/AssessmentContainer'
+import { isRtl } from 'utils/locales'
+import { secondsLeftFromNow } from 'utils/time'
+import { Language } from 'modules/endUser/modules/campaigns/components/Language'
+import store from 'modules/user/store'
+import { CountdownTimer, PageHeader as GlintPageHeader } from 'glint'
+
+import { connect } from 'react-redux'
+import {
+  fetchEvaluation, fetchAssessment, clearEvaluation,
+  updateStatus,
+} from 'modules/user/modules/campaigns/core/evaluation'
+import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
+import { getProgress } from 'core/preview/FlowProcessor/selectors'
+import { ResourcesTabs } from '../../components/ResourcesTabs'
+import styles from './Evaluation.less'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const connector = connect((state: any) => ({
+  evaluation: state.campaigns.evaluation,
+  preview: state.preview,
+  progress: state.preview.initialized && getProgress(state.preview),
+}), {
+  fetchEvaluation,
+  fetchAssessment,
+  clearEvaluation,
+  updateStatus,
+  markAssessmentTimedOut,
+})
+const { Content } = Layout
+const { I18n } = window
+const { Text } = Typography
+
+const EvaluationComponent = ({
+  evaluation: {
+    loaded, error, assessment, results,
+    results: {
+      id,
+      user_assessment_id: userAssessmentId,
+      subject,
+      user,
+      is_self: isSelf,
+      selected_locale: selectedLanguage,
+      available_translations: availableTranslations,
+      translations,
+      participant: {
+        manager_evaluation_status: managerEvaluationStatus,
+      },
+      expiry_date,
+    },
+  }, fetchAssessment, clearEvaluation, updateStatus,
+  match: { params },
+  preview: {
+    enableProgress,
+    type,
+    initialized,
+    started,
+  },
+  preview,
+  markAssessmentTimedOut,
+  progress,
+}) => {
+  const assessmentRef = React.createRef()
+  const {
+    edit, step, approve_evaluation, lang, read,
+  } = qs.parse(location.search.substr(1))
+
+  useEffect(() => {
+    fetchAssessment(params.campaignId, params.id, {
+      isEdit: edit, isRead: read, step, approve_evaluation, lang,
+    })
+    if (edit === 'true') {
+      history.replaceState(null, '', location.href.replace('edit=true', 'edit=false'))
+    }
+  }, [])
+
+  if (!loaded) { return null }
+
+  const handleStatusClick = (status) => {
+    updateStatus(params.campaignId, params.id, status)
+  }
+
+  const StatusMenu = () => (
+    <Menu onClick={(e) => {
+      handleStatusClick(e.key)
+    }}
+    >
+      <Menu.Item key="approved">
+        {I18n.t('threesixty.approved')}
+      </Menu.Item>
+      <Menu.Item key="waiting">
+        {I18n.t('threesixty.waiting')}
+      </Menu.Item>
+      <Menu.Item key="denied">
+        {I18n.t('threesixty.denied')}
+      </Menu.Item>
+    </Menu>
+  )
+
+  const StatusDropdown = () => {
+    if (approve_evaluation) {
+      return (
+        <Dropdown
+          trigger={['click']}
+          overlay={StatusMenu}
+        >
+          <Button>
+            {statusPresenter.getApprovalStatus(managerEvaluationStatus)}
+            <DownOutlined />
+          </Button>
+        </Dropdown>
+      )
+    }
+
+    return null
+  }
+
+  const titleElement = (
+    <Text className={styles.campaignDropdown}>
+      {approve_evaluation ? (
+        <>
+          {I18n.t('threesixty.subject')}
+          :
+          {' '}
+          <Tooltip placement="topLeft" title={subject.email}>
+            {userPresenter.getFullName(subject)}
+          </Tooltip>
+              &nbsp; &nbsp;
+          {I18n.t('threesixty.evaluator')}
+          :
+          {' '}
+          <Tooltip placement="topLeft" title={user.email}>
+            {userPresenter.getFullName(user)}
+          </Tooltip>
+        </>
+      ) : (
+        <>
+          {I18n.t('threesixty.evaluate')}
+          :
+          {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullName(subject)}
+        </>
+      )
+          }
+
+    </Text>
+  )
+
+
+  const handleBackButtonClick = () => {
+    clearEvaluation()
+    window.location.href = `/threesixty_campaigns/${params.campaignId}`
+  }
+
+  if (!loaded || error) { return null }
+  const rtl = isRtl(I18n.uiLocale)
+  return (
+    <>
+      <GlintPageHeader>
+        <Col flex="auto" className="ta-e">
+          <Space align="center" size="large" />
+          {availableTranslations
+              && availableTranslations.length > 1
+              && (
+              <Language
+                selectedLanguage={selectedLanguage}
+                availableTranslations={availableTranslations || []}
+              />
+              )
+            }
+        </Col>
+      </GlintPageHeader>
+      <Content className={styles.pageContent}>
+        <PageHeader
+          className={styles.campaignHeader}
+          backIcon={(
+            <Space>
+              {rtl ? (
+                <ArrowRightOutlined
+                  className={styles.backIcon}
+                />
+              ) : <ArrowLeftOutlined className={styles.backIcon} />}
+              <CountdownTimer
+                notificationPoints={[{ completionPercentage: 30, type: 'info' },
+                  { completionPercentage: 15, type: 'warning' },
+                  { completionPercentage: 5, type: 'error' }]}
+                seconds={secondsLeftFromNow(expiry_date)}
+                onFinish={() => markAssessmentTimedOut(preview)}
+              />
+            </Space>
+        )}
+          ghost={false}
+          title={titleElement}
+          onBack={handleBackButtonClick}
+          extra={[
+            type !== 'preview_block' && enableProgress
+                && (
+                <Progress
+                  key="1"
+                  className={styles.progressBar}
+                  strokeColor="#fff"
+                  percent={progress}
+                  style={{ width: '200px' }}
+                />
+                ),
+          ]}
+        />
+        <Row justify="end" className="mtm mrm">
+          <Col flex="none">
+            <StatusDropdown />
+          </Col>
+        </Row>
+        {!error && (
+        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+          <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+            <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+              <PassAssessment
+                ref={assessmentRef}
+                id="pass_assessment"
+                initialized={initialized}
+                type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
+                isThreesixty="true"
+                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
+                data={assessment}
+                result={results}
+                dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}
+                locales={translations}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                notAnEndPage={approve_evaluation || edit === 'true'}
+                rstore={store}
+              />
+            </div>
+          </ResourcesTabs>
+        </ConfigProvider>
+        )}
+      </Content>
+    </>
+
+  )
+}
+
+export const Evaluation = connector(EvaluationComponent)

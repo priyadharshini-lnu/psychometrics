@@ -104,10 +104,9 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
       />
       )}
       {type === 'Email' && <EmailPropertyPanel model={model} />}
-      {!restricted && (
-        <RequiredValidations model={model} update={forceUpdate} />
-      )}
-      {!restricted && <ValidationTypes model={model} update={forceUpdate} />}
+
+      <RequiredValidations model={model} update={forceUpdate} />
+      <ValidationTypes restricted={restricted} model={model} update={forceUpdate} />
     </>
   )
 }

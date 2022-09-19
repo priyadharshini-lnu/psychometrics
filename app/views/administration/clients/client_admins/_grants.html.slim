@@ -51,6 +51,13 @@
 - campaigns_manage_admins_id = dom_id(u, :campaigns_admins)
 - campaigns_manage_options_id = dom_id(u, :campaigns_manage_options)
 - campaigns_manage_messages_id = dom_id(u, :campaigns_manage_messages)
+- campaigns_participant_options_id = dom_id(u, :campaigns_participant_options)
+- campaigns_reset_nominations_id = dom_id(u, :campaigns_reset_nominations)
+- campaigns_report_options_id = dom_id(u, :campaigns_report_options)
+
+- messages_email_id = dom_id(u, :messages_email)
+- messages_instructions_id = dom_id(u, :messages_instructions)
+- messages_options_id = dom_id(u, :messages_options)
 
 - assessors_view_id = dom_id(u, :assessors_view)
 - assessors_manage_id = dom_id(u, :assessors_manage)
@@ -134,9 +141,10 @@ table.table.grants-table
             - if policy(:membership).manage_grants_for_action?('project_settings', 'integrations', client: client)
               label
                 = check_box_tag 'resource[grants_attributes][data][project_settings][]',
-                        'integration', resource.has_grant?(:project_settings, :integrations), id: project_settings_integrations_id, data: { turn_on: [project_settings_integrations_id] }
+                        'integrations', resource.has_grant?(:project_settings, :integrations), id: project_settings_integrations_id, data: { turn_on: [project_settings_integrations_id] }
                 | Integrations
 
+    = render 'shared/administration/grants/dashboards'
 
     - if policy(:membership).manage_grants_for_actions?('sms_invites', ['view', 'manage'], client: client)
       tr
@@ -189,7 +197,54 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][campaigns][]',
                         'manage_messages', resource.has_grant?(:campaigns, :manage_messages), id: campaigns_manage_messages_id
                 | Manage Messages
+            - if policy(:membership).manage_grants_for_action?('campaigns', 'participant_options', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                        'participant_options', resource.has_grant?(:campaigns, :participant_options), id: campaigns_participant_options_id
+                | Participant Options
+                sup
+                  a href='#sup-note-1' 1
+            - if policy(:membership).manage_grants_for_action?('campaigns', 'reset_nominations', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                        'reset_nominations', resource.has_grant?(:campaigns, :reset_nominations), id: campaigns_reset_nominations_id
+                | Reset Nominations
+                sup
+                  a href='#sup-note-1' 1
+            - if policy(:membership).manage_grants_for_action?('campaigns', 'report_options', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                        'report_options', resource.has_grant?(:campaigns, :report_options), id: campaigns_report_options_id
+                | Report Options
+                sup
+                  a href='#sup-note-1' 1
 
+    - if policy(:membership).manage_grants_for_actions?('messages', ['email', 'instructions', 'options'], client: client)
+      tr
+        td Messages
+        td
+          div.grants-grid
+            - if policy(:membership).manage_grants_for_action?('messages', 'email', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][messages][]',
+                        'email', resource.has_grant?(:messages, :email), id: messages_email_id
+                | Email
+                sup
+                  a href='#sup-note-1' 1
+            - if policy(:membership).manage_grants_for_action?('messages', 'instructions', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][messages][]',
+                        'instructions', resource.has_grant?(:messages, :instructions), id: messages_instructions_id
+                | Instructions
+                sup
+                  a href='#sup-note-1' 1
+            - if policy(:membership).manage_grants_for_action?('messages', 'options', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][messages][]',
+                        'options', resource.has_grant?(:messages, :options), id: messages_options_id
+                | Options
+                sup
+                  a href='#sup-note-1' 1
 
     - if policy(:membership).manage_grants_for_actions?('norms', ['view', 'manage'], client: client)
       tr
@@ -396,3 +451,10 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][datasheets][]',
                         'manage', resource.has_grant?(:datasheets, :manage), id: datasheet_manage_id, data: { turn_on: [datasheet_view_id] }
                 | Manage
+hr
+|Notes
+br
+div.notes
+  ol
+    li#sup-note-1
+      | Permissions specific to 360 campaigns.

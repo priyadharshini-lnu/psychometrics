@@ -28,9 +28,7 @@ module UsersResults
       }
     end
 
-    def agile
-      object.agile
-    end
+    delegate :agile, to: :object
 
     def attributes(*_)
       super.transform_keys { |k| k.to_s.camelcase(:lower) }

@@ -5,7 +5,7 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
-               :is_timed_campaign, :campaigns_count
+               :is_timed_campaign, :campaigns_count, :user_reports_available
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
@@ -13,7 +13,7 @@ module EndUser
     has_many :groups, serializer: ::EndUser::GroupSerializer
     has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
-    def is_timed_campaign # rubocop:disable Naming/PredicateName
+    def is_timed_campaign
       object.timed?
     end
 
@@ -47,6 +47,10 @@ module EndUser
 
     def campaigns_count
       current_user.campaigns.visible_to_end_user.count
+    end
+
+    def user_reports_available
+      object.user_reports.exists?(user_id: current_user.id, user_access: true)
     end
 
     private

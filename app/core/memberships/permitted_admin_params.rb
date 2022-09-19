@@ -18,7 +18,8 @@ module Memberships
       assessors: [],
       registration_codes: [],
       datasheets: [],
-      sms_invites: []
+      sms_invites: [],
+      messages: []
     ]].freeze
 
     def initialize(params_for, user, resource)

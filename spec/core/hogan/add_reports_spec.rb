@@ -3,9 +3,7 @@
 require 'rails_helper'
 
 describe Hogan::AddReports do
-  let(:assessment) do
-    create(:assessment, type: 'Assessments::Hogan', hogan_assessment_setting: build(:hogan_assessment_setting))
-  end
+  let(:assessment) { create(:hogan_assessment) }
   let(:report) do
     create(:report,
            assessments: [assessment],
@@ -22,11 +20,12 @@ describe Hogan::AddReports do
   let(:user) { create(:user) }
   let(:user_report) { create(:user_report, report: report, report_family: report_family) }
   it 'when credentials are empty we create them' do
-    expect(Services::Hogan::API::JSON::GroupDetails).to receive(:call).and_return(double('res', success?: true))
-    expect(Services::Hogan::API::JSON::AddParticipantToGroup).to receive(:call!).
+    expect(Services::Hogan::Api::Json::GroupDetails).to receive(:call).and_return(double('res', success?: true))
+    expect(Services::Hogan::Api::Json::AddParticipantToGroup).to receive(:call!).
       and_return(double('res', participant_id: 1))
-    expect(Services::Hogan::API::JSON::AddParticipantAssessment).to receive(:call!)
-    expect(Services::Hogan::API::JSON::AddParticipantReport).to receive(:call!)
+    expect(Services::Hogan::Api::Json::AddParticipantAssessment).to receive(:call!)
+    expect(Services::Hogan::Api::Json::AddParticipantReport).to receive(:call)
+
     Hogan::AddReports.call!(
       group: 'any',
       credentials: nil,
@@ -49,12 +48,12 @@ describe Hogan::AddReports do
     end
     let(:extra_user_report) { create(:user_report, report: extra_report, report_family: report_family) }
 
-    it 'we call Hogan API once' do
-      expect(Services::Hogan::API::JSON::GroupDetails).to receive(:call).and_return(double('res', success?: true))
-      expect(Services::Hogan::API::JSON::AddParticipantToGroup).to receive(:call!).
+    it 'we call Hogan Api once' do
+      expect(Services::Hogan::Api::Json::GroupDetails).to receive(:call).and_return(double('res', success?: true))
+      expect(Services::Hogan::Api::Json::AddParticipantToGroup).to receive(:call!).
         and_return(double('res', participant_id: 1))
-      expect(Services::Hogan::API::JSON::AddParticipantAssessment).to receive(:call!)
-      expect(Services::Hogan::API::JSON::AddParticipantReport).to receive(:call!).exactly(1).time
+      expect(Services::Hogan::Api::Json::AddParticipantAssessment).to receive(:call!)
+      expect(Services::Hogan::Api::Json::AddParticipantReport).to receive(:call).exactly(1).time
       Hogan::AddReports.call!(
         group: 'any',
         credentials: nil,
@@ -76,12 +75,12 @@ describe Hogan::AddReports do
     end
     let(:extra_user_report) { create(:user_report, report: extra_report) }
 
-    it 'we call Hogan API two times' do
-      expect(Services::Hogan::API::JSON::GroupDetails).to receive(:call).and_return(double('res', success?: true))
-      expect(Services::Hogan::API::JSON::AddParticipantToGroup).to receive(:call!).
+    it 'we call Hogan Api two times' do
+      expect(Services::Hogan::Api::Json::GroupDetails).to receive(:call).and_return(double('res', success?: true))
+      expect(Services::Hogan::Api::Json::AddParticipantToGroup).to receive(:call!).
         and_return(double('res', participant_id: 1))
-      expect(Services::Hogan::API::JSON::AddParticipantAssessment).to receive(:call!)
-      expect(Services::Hogan::API::JSON::AddParticipantReport).to receive(:call!).exactly(2).time
+      expect(Services::Hogan::Api::Json::AddParticipantAssessment).to receive(:call!)
+      expect(Services::Hogan::Api::Json::AddParticipantReport).to receive(:call).exactly(2).time
       Hogan::AddReports.call!(
         group: 'any',
         credentials: nil,
@@ -91,6 +90,77 @@ describe Hogan::AddReports do
       )
 
       expect(user.hogan_credential).to be_truthy
+    end
+
+    context 'external_added updates for report belonging to package' do
+      before do
+        expect(Services::Hogan::Api::Json::GroupDetails).to receive(:call).and_return(double('res', success?: true))
+        expect(Services::Hogan::Api::Json::AddParticipantToGroup).to receive(:call!).
+          and_return(double('res', participant_id: 1))
+        expect(Services::Hogan::Api::Json::AddParticipantAssessment).to receive(:call!)
+        report_families_report.update(external_package_id: nil)
+      end
+
+      it 'updates external_added to true if user_report got added to hogan' do
+        stub_command_broadcast('Services::Hogan::Api::Json::AddParticipantReport', :ok, [])
+        Hogan::AddReports.call!(
+          group: 'any',
+          credentials: nil,
+          user_id: user.id,
+          assessment: assessment,
+          reports: [user_report]
+        )
+
+        expect(user_report.reload.external_added).to eq(true)
+      end
+
+      it "doesn't external_added to true if user_report didn't got added to hogan" do
+        stub_command_broadcast('Services::Hogan::Api::Json::AddParticipantReport', :error, [])
+        Hogan::AddReports.call!(
+          group: 'any',
+          credentials: nil,
+          user_id: user.id,
+          assessment: assessment,
+          reports: [user_report]
+        )
+
+        expect(user_report.reload.external_added).to eq(false)
+      end
+    end
+
+    context 'external_added updates for report not belonging to package' do
+      before do
+        expect(Services::Hogan::Api::Json::GroupDetails).to receive(:call).and_return(double('res', success?: true))
+        expect(Services::Hogan::Api::Json::AddParticipantToGroup).to receive(:call!).
+          and_return(double('res', participant_id: 1))
+        expect(Services::Hogan::Api::Json::AddParticipantAssessment).to receive(:call!)
+      end
+
+      it 'updates external_added to true if user_report got added to hogan' do
+        stub_command_broadcast('Services::Hogan::Api::Json::AddParticipantReport', :ok, [])
+        Hogan::AddReports.call!(
+          group: 'any',
+          credentials: nil,
+          user_id: user.id,
+          assessment: assessment,
+          reports: [user_report]
+        )
+
+        expect(user_report.reload.external_added).to eq(true)
+      end
+
+      it "doesn't external_added to true if user_report didn't got added to hogan" do
+        stub_command_broadcast('Services::Hogan::Api::Json::AddParticipantReport', :error, [])
+        Hogan::AddReports.call!(
+          group: 'any',
+          credentials: nil,
+          user_id: user.id,
+          assessment: assessment,
+          reports: [user_report]
+        )
+
+        expect(user_report.reload.external_added).to eq(false)
+      end
     end
   end
 end

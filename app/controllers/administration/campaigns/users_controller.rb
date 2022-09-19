@@ -13,15 +13,6 @@ module Administration
                 ransack(params[:filters]).result
 
         respond_to do |format|
-          format.csv do
-            audit! :export_users, campaign, campaign: campaign
-            AdminJob.call(
-              :export_users,
-              { campaign_id: campaign.id, filters: params[:filters] },
-              current_user
-            )
-            head :ok
-          end
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
               users.page(params[:page]),
@@ -102,6 +93,16 @@ module Administration
         end
       end
 
+      def export
+        audit! :export_users, campaign, campaign: campaign
+        AdminJob.call(
+          :export_users,
+          { campaign_id: campaign.id, filters: params[:filters] },
+          current_user
+        )
+        head :ok
+      end
+
       def show
         render json: resource, serializer: Administration::UserDetailSerializer, campaign: campaign
       end
@@ -113,10 +114,11 @@ module Administration
             on(:ok) do |user|
               audit! :create_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
               return render json: user, serializer: Administration::Campaigns::UserSerializer,
-                campaign_id: campaign.id, project_id: campaign.project_id
+                            campaign_id: campaign.id, project_id: campaign.project_id
             end
             on(:error) do |errors|
-              return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
+              return render json: { errors: errors.is_a?(String) ? { base: errors } : errors },
+                            status: 422
             end
           end
         else
@@ -130,7 +132,7 @@ module Administration
           audit! :update_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
           resource.update(form.attributes)
           render json: resource, serializer: Administration::Campaigns::UserSerializer,
-            campaign_id: campaign.id, project_id: campaign.project_id
+                 campaign_id: campaign.id, project_id: campaign.project_id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -146,6 +148,8 @@ module Administration
         ::CampaignUsers::Remove.call!(
           campaign_user: campaign_user
         )
+        audit! :delete_campaign_user, campaign_user, campaign: campaign_user.campaign,
+          payload: { email: resource.email }
         render json: resource.id
       end
 

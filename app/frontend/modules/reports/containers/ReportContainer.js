@@ -40,7 +40,7 @@ class ReportContainer extends Component {
   }
 
   render () {
-    const { showOverrides = false, userReport: { moduleOverrides } } = this.props
+    const { showOverrides = false, userReport: { moduleOverrides }, dashboard } = this.props
     return (
       <Provider store={rstore}>
         <div className="row">
@@ -49,6 +49,7 @@ class ReportContainer extends Component {
             localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
             showOverrides={showOverrides}
             moduleOverrides={moduleOverrides}
+            dashboard={dashboard}
           />
         </div>
       </Provider>

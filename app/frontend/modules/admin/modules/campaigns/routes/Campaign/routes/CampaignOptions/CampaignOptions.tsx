@@ -21,6 +21,7 @@ import Section from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
 import { getFeatures } from 'core/config'
 import Instructions from './Instructions'
+import { Description } from './Description'
 
 const { I18n } = window
 
@@ -183,7 +184,11 @@ const CampaignOptions: React.FC<Props> = ({
                           </label>
                         </Col>
                         <Col span={22}>
-                          <Radio.Group defaultValue="passport" onChange={saveIdentificationType}>
+                          <Radio.Group
+                            defaultValue="passport"
+                            onChange={saveIdentificationType}
+                            value={options.identification}
+                          >
                             {Object.entries(identifications).map(
                               ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
                             )}
@@ -205,6 +210,11 @@ const CampaignOptions: React.FC<Props> = ({
         />
 
         {options.instructionsEnabled && <Instructions projectId={parsedProjectId} campaignId={parsedCampaignId} />}
+
+        <div className="mb-8 mt-8">
+          <h4>{I18n.t('administration.campaigns.options.description.name')}</h4>
+          <Description projectId={parsedProjectId} campaignId={parsedCampaignId} />
+        </div>
       </Section>
     </div>
   )

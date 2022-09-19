@@ -11,7 +11,7 @@ RSpec.describe Administration::Campaigns::SmsRecordsController, type: :controlle
 
   describe 'GET create' do
     it 'create sms_record and schedules send_sms_invites admin job is params are valid' do
-      message = Faker::Lorem.characters(5)
+      message = Faker::Lorem.characters(number: 5)
       link_expiry = DateTime.now
 
       expect(AdminJob).to receive(:call)

@@ -2,8 +2,8 @@
 
 module Services
   module Hogan
-    module API
-      module JSON
+    module Api
+      module Json
         class AddParticipantReport < Base
           def call
             response = post(
@@ -19,7 +19,8 @@ module Services
                     reportId: context.report_id,
                     assessmentId: context.assessment_id,
                     normId: context.norm_id,
-                    languageId: context.language_id
+                    languageId: context.language_id,
+                    suitabilityid: context.suitability_id
                   }
                 ]
               },

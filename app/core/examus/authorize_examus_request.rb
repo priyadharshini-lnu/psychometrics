@@ -20,16 +20,16 @@ module Examus
         @proctoring_session ||= ProctoringSession.find_by(session_id: decoded_auth_token[:sessionId])
       end
 
-      @proctoring_session || add_error(:token, 'Invalid token') && nil
+      @proctoring_session || (add_error(:token, 'Invalid token') && nil)
     end
 
     def decoded_auth_token
-      @decoded_auth_token ||= Examus::JWTTokenizer.decode(http_auth_header)
+      @decoded_auth_token ||= Examus::JwtTokenizer.decode(http_auth_header)
     end
 
     def http_auth_header
       if headers['Authorization'].present?
-        return headers['Authorization'].split(' ').last
+        return headers['Authorization'].split.last
       else
         add_error(:token, 'Missing token')
       end

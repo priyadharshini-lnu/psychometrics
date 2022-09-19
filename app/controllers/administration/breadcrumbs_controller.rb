@@ -6,10 +6,7 @@ module Administration
     before_action :pundit_authorize, except: %i[index]
 
     def index
-      object =
-        params[:fields].each_with_object({}) do |field, hash|
-          hash[field] = send(field)
-        end
+      object = params[:fields].index_with { |field| send(field) }
 
       render json: BreadcrumbSerializer.new(object, fields: params[:fields]).to_h
     end

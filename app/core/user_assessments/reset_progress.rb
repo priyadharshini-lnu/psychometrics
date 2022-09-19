@@ -4,9 +4,10 @@ module UserAssessments
   class ResetProgress < BaseCommand
     private_attr_reader :user_assessment, :user_result
 
-    def initialize(user_assessment)
+    def initialize(user_assessment, **options)
       @user_assessment = user_assessment
       @user_result = user_assessment.users_result
+      @options = options
     end
 
     def call
@@ -17,7 +18,7 @@ module UserAssessments
           completed_at: nil,
           completion_reason: nil,
           norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil,
-          progress_reseted: true
+          progress_reseted: @options[:reset_flag] || false
         )
         user_result.update!(
           answers: set_answers_as_dirty,

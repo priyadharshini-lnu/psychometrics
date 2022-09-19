@@ -10,7 +10,7 @@ module Iiht
 
     def call
       response = client.get('GetUserAssessmentResult', request_body)
-      result = ::JSON.parse(response.body).dig('result')
+      result = ::JSON.parse(response.body)['result']
       unless result['isSuccess']
         raise "IIHT::GetScores failed for UserAssessment: #{user_assessment.id}. Error: #{result['errorMessage']}"
       end

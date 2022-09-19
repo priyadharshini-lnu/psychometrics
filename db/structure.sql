@@ -92,6 +92,73 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    email public.citext DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    disabled boolean DEFAULT false,
+    role character varying DEFAULT 'Users::Regular'::character varying,
+    invitation_token character varying,
+    invitation_created_at timestamp without time zone,
+    invitation_sent_at timestamp without time zone,
+    invitation_accepted_at timestamp without time zone,
+    invitation_limit integer,
+    invited_by_type character varying,
+    invited_by_id integer,
+    invitations_count integer DEFAULT 0,
+    authentication_token character varying(30),
+    is_anonym boolean DEFAULT false,
+    grants jsonb,
+    created_by_id integer,
+    modified_by_id integer,
+    spoof_token character varying,
+    encrypted_invitation_raw character varying,
+    project_id integer,
+    second_factor_attempts_count integer DEFAULT 0,
+    encrypted_otp_secret_key character varying,
+    encrypted_otp_secret_key_iv character varying,
+    encrypted_otp_secret_key_salt character varying,
+    direct_otp character varying,
+    direct_otp_sent_at timestamp without time zone,
+    totp_timestamp timestamp without time zone,
+    settings jsonb DEFAULT '{}'::jsonb,
+    already_invited boolean DEFAULT false,
+    locale character varying,
+    enable_2fa boolean DEFAULT true NOT NULL,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    password_changed_at timestamp without time zone,
+    photo character varying,
+    timezone character varying
+);
+
+
+--
+-- Name: abc; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.abc AS
+ SELECT users.email AS "^^.._1111.Email"
+   FROM public.users;
+
+
+--
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -699,7 +766,8 @@ CREATE TABLE public.campaign_option_translations (
     locale character varying NOT NULL,
     campaign_option_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    description text
 );
 
 
@@ -738,7 +806,8 @@ CREATE TABLE public.campaign_options (
     updated_at timestamp without time zone NOT NULL,
     proctoring_enabled boolean DEFAULT false,
     identification integer DEFAULT 0,
-    rules jsonb DEFAULT '{"allow_voices": false, "allow_to_use_books": false, "allow_to_use_excel": false, "allow_to_use_paper": true, "allow_to_use_websites": false, "allow_absence_in_frame": false, "allow_to_use_calculator": true, "allow_to_use_messengers": false, "allow_wrong_gaze_direction": false, "allow_to_use_human_assistant": false}'::jsonb
+    rules jsonb DEFAULT '{"allow_voices": false, "allow_to_use_books": false, "allow_to_use_excel": false, "allow_to_use_paper": true, "allow_to_use_websites": false, "allow_absence_in_frame": false, "allow_to_use_calculator": true, "allow_to_use_messengers": false, "allow_wrong_gaze_direction": false, "allow_to_use_human_assistant": false}'::jsonb,
+    description text
 );
 
 
@@ -773,7 +842,8 @@ CREATE TABLE public.campaign_reports (
     user_access boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessor_access boolean DEFAULT false
+    assessor_access boolean DEFAULT false,
+    user_dashboard boolean DEFAULT false
 );
 
 
@@ -936,13 +1006,12 @@ CREATE TABLE public.clients (
     end_level boolean DEFAULT false,
     hogan_group_name character varying,
     privacy_consent boolean,
-    two_factor_enabled boolean DEFAULT false,
-    strong_password_enabled boolean DEFAULT false,
     secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
     locales json DEFAULT '[]'::json,
-    live_chat_token character varying
+    live_chat_token character varying,
+    design_migrated boolean DEFAULT false
 );
 
 
@@ -1179,6 +1248,43 @@ ALTER SEQUENCE public.communications_users_id_seq OWNED BY public.communications
 
 
 --
+-- Name: dashboards; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.dashboards (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    name character varying,
+    dataset_id character varying,
+    report_id character varying,
+    enabled boolean DEFAULT false,
+    refresh_interval integer DEFAULT 15,
+    image character varying,
+    last_refreshed_at timestamp without time zone,
+    refresh_tried_at timestamp without time zone
+);
+
+
+--
+-- Name: dashboards_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.dashboards_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dashboards_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.dashboards_id_seq OWNED BY public.dashboards.id;
+
+
+--
 -- Name: data_geos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1247,58 +1353,32 @@ ALTER SEQUENCE public.datasheet_column_preferences_id_seq OWNED BY public.datash
 
 
 --
--- Name: datasheet_rows; Type: TABLE; Schema: public; Owner: -
+-- Name: design_settings; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.datasheet_rows (
+CREATE TABLE public.design_settings (
     id bigint NOT NULL,
-    datasheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: datasheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.datasheet_rows_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: datasheet_rows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.datasheet_rows_id_seq OWNED BY public.datasheet_rows.id;
-
-
---
--- Name: datasheets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.datasheets (
-    id bigint NOT NULL,
-    project_id bigint,
-    columns jsonb,
+    logo character varying,
+    background character varying,
+    login_box_position character varying,
+    background_color character varying,
+    secondary_logo character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    campaign_id bigint,
-    type character varying DEFAULT 'Datasheet'::character varying
+    project_id bigint NOT NULL,
+    primary_color character varying,
+    error_color character varying,
+    warning_color character varying,
+    success_color character varying,
+    info_color character varying
 );
 
 
 --
--- Name: datasheets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: design_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.datasheets_id_seq
+CREATE SEQUENCE public.design_settings_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1307,10 +1387,10 @@ CREATE SEQUENCE public.datasheets_id_seq
 
 
 --
--- Name: datasheets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: design_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.datasheets_id_seq OWNED BY public.datasheets.id;
+ALTER SEQUENCE public.design_settings_id_seq OWNED BY public.design_settings.id;
 
 
 --
@@ -1756,7 +1836,8 @@ CREATE TABLE public.hogan_report_settings (
     hogan_language_id character varying NOT NULL,
     load_report boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    hogan_suitability_id character varying
 );
 
 
@@ -2541,7 +2622,9 @@ CREATE TABLE public.proctoring_sessions (
     status integer,
     results jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    invalid_session boolean DEFAULT false,
+    last_status_checked_at timestamp without time zone
 );
 
 
@@ -2694,6 +2777,73 @@ CREATE SEQUENCE public.products_id_seq
 --
 
 ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
+
+
+--
+-- Name: profile_fields; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profile_fields (
+    id bigint NOT NULL,
+    required boolean,
+    half_size boolean,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    question_id bigint NOT NULL,
+    profile_setting_id bigint NOT NULL
+);
+
+
+--
+-- Name: profile_fields_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.profile_fields_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: profile_fields_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.profile_fields_id_seq OWNED BY public.profile_fields.id;
+
+
+--
+-- Name: profile_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profile_settings (
+    id bigint NOT NULL,
+    update_in integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    project_id bigint NOT NULL
+);
+
+
+--
+-- Name: profile_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.profile_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: profile_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.profile_settings_id_seq OWNED BY public.profile_settings.id;
 
 
 --
@@ -2941,7 +3091,8 @@ CREATE TABLE public.reports (
     poster character varying,
     require_approval boolean DEFAULT false,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    data_only boolean DEFAULT false
 );
 
 
@@ -3047,7 +3198,8 @@ CREATE TABLE public.reports_modules (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     type character varying,
-    assessment_id bigint
+    assessment_id bigint,
+    meta json DEFAULT '{"hidden":false,"locked":false}'::json
 );
 
 
@@ -3304,7 +3456,8 @@ CREATE TABLE public.security_settings (
     auto_unlock_time integer DEFAULT 10,
     send_unlock_email boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tfa_enabled boolean DEFAULT false
 );
 
 
@@ -3325,6 +3478,74 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sheet_rows_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sheet_rows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sheet_rows_id_seq OWNED BY public.sheet_rows.id;
+
+
+--
+-- Name: sheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint,
+    type character varying DEFAULT 'Datasheet'::character varying,
+    flat_view_sha character varying
+);
+
+
+--
+-- Name: sheets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sheets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sheets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sheets_id_seq OWNED BY public.sheets.id;
 
 
 --
@@ -4113,6 +4334,44 @@ ALTER SEQUENCE public.user_assessments_id_seq OWNED BY public.user_assessments.i
 
 
 --
+-- Name: user_profiles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_profiles (
+    id bigint NOT NULL,
+    age integer,
+    age_updated_at timestamp without time zone,
+    gender integer,
+    timezone character varying,
+    photo character varying,
+    locale character varying,
+    custom_fields json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_id bigint NOT NULL
+);
+
+
+--
+-- Name: user_profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_profiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_profiles_id_seq OWNED BY public.user_profiles.id;
+
+
+--
 -- Name: user_reports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4128,7 +4387,8 @@ CREATE TABLE public.user_reports (
     user_access boolean DEFAULT false,
     report_family_id bigint,
     pdf_path character varying,
-    approved boolean DEFAULT false
+    approved boolean DEFAULT false,
+    external_added boolean DEFAULT false
 );
 
 
@@ -4149,62 +4409,6 @@ CREATE SEQUENCE public.user_reports_id_seq
 --
 
 ALTER SEQUENCE public.user_reports_id_seq OWNED BY public.user_reports.id;
-
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users (
-    id integer NOT NULL,
-    email public.citext DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip inet,
-    last_sign_in_ip inet,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    first_name character varying,
-    last_name character varying,
-    disabled boolean DEFAULT false,
-    role character varying DEFAULT 'Users::Regular'::character varying,
-    invitation_token character varying,
-    invitation_created_at timestamp without time zone,
-    invitation_sent_at timestamp without time zone,
-    invitation_accepted_at timestamp without time zone,
-    invitation_limit integer,
-    invited_by_type character varying,
-    invited_by_id integer,
-    invitations_count integer DEFAULT 0,
-    authentication_token character varying(30),
-    is_anonym boolean DEFAULT false,
-    grants jsonb,
-    created_by_id integer,
-    modified_by_id integer,
-    spoof_token character varying,
-    encrypted_invitation_raw character varying,
-    project_id integer,
-    second_factor_attempts_count integer DEFAULT 0,
-    encrypted_otp_secret_key character varying,
-    encrypted_otp_secret_key_iv character varying,
-    encrypted_otp_secret_key_salt character varying,
-    direct_otp character varying,
-    direct_otp_sent_at timestamp without time zone,
-    totp_timestamp timestamp without time zone,
-    settings jsonb DEFAULT '{}'::jsonb,
-    already_invited boolean DEFAULT false,
-    locale character varying,
-    enable_2fa boolean DEFAULT true NOT NULL,
-    failed_attempts integer DEFAULT 0 NOT NULL,
-    unlock_token character varying,
-    locked_at timestamp without time zone,
-    password_changed_at timestamp without time zone
-);
 
 
 --
@@ -4561,6 +4765,13 @@ ALTER TABLE ONLY public.communications_users ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: dashboards id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dashboards ALTER COLUMN id SET DEFAULT nextval('public.dashboards_id_seq'::regclass);
+
+
+--
 -- Name: data_geos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4575,17 +4786,10 @@ ALTER TABLE ONLY public.datasheet_column_preferences ALTER COLUMN id SET DEFAULT
 
 
 --
--- Name: datasheet_rows id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: design_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheet_rows ALTER COLUMN id SET DEFAULT nextval('public.datasheet_rows_id_seq'::regclass);
-
-
---
--- Name: datasheets id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.datasheets ALTER COLUMN id SET DEFAULT nextval('public.datasheets_id_seq'::regclass);
+ALTER TABLE ONLY public.design_settings ALTER COLUMN id SET DEFAULT nextval('public.design_settings_id_seq'::regclass);
 
 
 --
@@ -4862,6 +5066,20 @@ ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.pro
 
 
 --
+-- Name: profile_fields id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_fields ALTER COLUMN id SET DEFAULT nextval('public.profile_fields_id_seq'::regclass);
+
+
+--
+-- Name: profile_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_settings ALTER COLUMN id SET DEFAULT nextval('public.profile_settings_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4978,6 +5196,20 @@ ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.security_settings ALTER COLUMN id SET DEFAULT nextval('public.security_settings_id_seq'::regclass);
+
+
+--
+-- Name: sheet_rows id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_rows ALTER COLUMN id SET DEFAULT nextval('public.sheet_rows_id_seq'::regclass);
+
+
+--
+-- Name: sheets id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheets ALTER COLUMN id SET DEFAULT nextval('public.sheets_id_seq'::regclass);
 
 
 --
@@ -5125,6 +5357,13 @@ ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public
 --
 
 ALTER TABLE ONLY public.user_assessments ALTER COLUMN id SET DEFAULT nextval('public.user_assessments_id_seq'::regclass);
+
+
+--
+-- Name: user_profiles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_profiles ALTER COLUMN id SET DEFAULT nextval('public.user_profiles_id_seq'::regclass);
 
 
 --
@@ -5394,6 +5633,14 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
+-- Name: dashboards dashboards_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dashboards
+    ADD CONSTRAINT dashboards_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: data_geos data_geos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5410,19 +5657,11 @@ ALTER TABLE ONLY public.datasheet_column_preferences
 
 
 --
--- Name: datasheet_rows datasheet_rows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: design_settings design_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheet_rows
-    ADD CONSTRAINT datasheet_rows_pkey PRIMARY KEY (id);
-
-
---
--- Name: datasheets datasheets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.datasheets
-    ADD CONSTRAINT datasheets_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT design_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -5746,6 +5985,22 @@ ALTER TABLE ONLY public.products
 
 
 --
+-- Name: profile_fields profile_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_fields
+    ADD CONSTRAINT profile_fields_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profile_settings profile_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_settings
+    ADD CONSTRAINT profile_settings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5887,6 +6142,22 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.security_settings
     ADD CONSTRAINT security_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sheet_rows sheet_rows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_rows
+    ADD CONSTRAINT sheet_rows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sheets sheets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheets
+    ADD CONSTRAINT sheets_pkey PRIMARY KEY (id);
 
 
 --
@@ -6055,6 +6326,14 @@ ALTER TABLE ONLY public.translations
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT user_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_profiles user_profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_profiles
+    ADD CONSTRAINT user_profiles_pkey PRIMARY KEY (id);
 
 
 --
@@ -6659,38 +6938,10 @@ CREATE INDEX index_communications_users_on_user_id ON public.communications_user
 
 
 --
--- Name: index_datasheet_rows_on_datasheet_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_dashboards_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_datasheet_rows_on_datasheet_id ON public.datasheet_rows USING btree (datasheet_id);
-
-
---
--- Name: index_datasheet_rows_on_email_and_datasheet_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_datasheet_rows_on_email_and_datasheet_id ON public.datasheet_rows USING btree (email, datasheet_id);
-
-
---
--- Name: index_datasheets_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_datasheets_on_campaign_id ON public.datasheets USING btree (campaign_id);
-
-
---
--- Name: index_datasheets_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_datasheets_on_project_id ON public.datasheets USING btree (project_id);
-
-
---
--- Name: index_datasheets_on_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_datasheets_on_type ON public.datasheets USING btree (type);
+CREATE INDEX index_dashboards_on_campaign_id ON public.dashboards USING btree (campaign_id);
 
 
 --
@@ -6698,6 +6949,13 @@ CREATE INDEX index_datasheets_on_type ON public.datasheets USING btree (type);
 --
 
 CREATE UNIQUE INDEX index_dd1550fac3e20f3c72e929b92570e38fc03f70a8 ON public.campaign_option_translations USING btree (campaign_option_id, locale);
+
+
+--
+-- Name: index_design_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_design_settings_on_project_id ON public.design_settings USING btree (project_id);
 
 
 --
@@ -7177,6 +7435,27 @@ CREATE INDEX index_product_reports_on_report_id ON public.product_reports USING 
 
 
 --
+-- Name: index_profile_fields_on_profile_setting_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_fields_on_profile_setting_id ON public.profile_fields USING btree (profile_setting_id);
+
+
+--
+-- Name: index_profile_fields_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_fields_on_question_id ON public.profile_fields USING btree (question_id);
+
+
+--
+-- Name: index_profile_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_settings_on_project_id ON public.profile_settings USING btree (project_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7370,6 +7649,34 @@ CREATE INDEX index_saville_report_settings_on_report_id ON public.saville_report
 --
 
 CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.saville_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_sheet_rows_on_sheet_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheet_rows_on_sheet_id ON public.sheet_rows USING btree (sheet_id);
+
+
+--
+-- Name: index_sheets_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheets_on_campaign_id ON public.sheets USING btree (campaign_id);
+
+
+--
+-- Name: index_sheets_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheets_on_project_id ON public.sheets USING btree (project_id);
+
+
+--
+-- Name: index_sheets_on_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheets_on_type ON public.sheets USING btree (type);
 
 
 --
@@ -7674,6 +7981,13 @@ CREATE INDEX index_user_assessments_on_users_result_id ON public.user_assessment
 
 
 --
+-- Name: index_user_profiles_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_profiles_on_user_id ON public.user_profiles USING btree (user_id);
+
+
+--
 -- Name: index_user_reports_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7907,6 +8221,14 @@ ALTER TABLE ONLY public.sms_records
 
 
 --
+-- Name: profile_settings fk_rails_008694ea3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_settings
+    ADD CONSTRAINT fk_rails_008694ea3f FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_options fk_rails_0437d1f6f7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7915,10 +8237,10 @@ ALTER TABLE ONLY public.threesixty_options
 
 
 --
--- Name: datasheets fk_rails_048d5b6779; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sheets fk_rails_048d5b6779; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheets
+ALTER TABLE ONLY public.sheets
     ADD CONSTRAINT fk_rails_048d5b6779 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
@@ -8307,6 +8629,14 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: profile_fields fk_rails_44c222c31a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_fields
+    ADD CONSTRAINT fk_rails_44c222c31a FOREIGN KEY (question_id) REFERENCES public.questions(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users fk_rails_45307c95a3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8323,10 +8653,10 @@ ALTER TABLE ONLY public.clients
 
 
 --
--- Name: datasheets fk_rails_481da9714d; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sheets fk_rails_481da9714d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheets
+ALTER TABLE ONLY public.sheets
     ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
@@ -8336,6 +8666,14 @@ ALTER TABLE ONLY public.datasheets
 
 ALTER TABLE ONLY public.threesixty_instruction_template_translations
     ADD CONSTRAINT fk_rails_4950e70e58 FOREIGN KEY (threesixty_instruction_template_id) REFERENCES public.threesixty_instruction_templates(id);
+
+
+--
+-- Name: dashboards fk_rails_4d4d1beb84; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dashboards
+    ADD CONSTRAINT fk_rails_4d4d1beb84 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -8491,11 +8829,11 @@ ALTER TABLE ONLY public.text_module_overrides
 
 
 --
--- Name: datasheet_rows fk_rails_782a23bcc9; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: sheet_rows fk_rails_782a23bcc9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.datasheet_rows
-    ADD CONSTRAINT fk_rails_782a23bcc9 FOREIGN KEY (datasheet_id) REFERENCES public.datasheets(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.sheet_rows
+    ADD CONSTRAINT fk_rails_782a23bcc9 FOREIGN KEY (sheet_id) REFERENCES public.sheets(id) ON DELETE CASCADE;
 
 
 --
@@ -8587,6 +8925,14 @@ ALTER TABLE ONLY public.tasks
 
 
 --
+-- Name: user_profiles fk_rails_87a6352e58; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_profiles
+    ADD CONSTRAINT fk_rails_87a6352e58 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports_accesses fk_rails_88e27a8e2d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8624,6 +8970,14 @@ ALTER TABLE ONLY public.hogan_credentials
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_8c39407ad4 FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: design_settings fk_rails_8c47501b9a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_8c47501b9a FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -8744,6 +9098,14 @@ ALTER TABLE ONLY public.saville_report_settings
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_a0f5b5ec09 FOREIGN KEY (relationship_id) REFERENCES public.relationships(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: profile_fields fk_rails_a132f26c57; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_fields
+    ADD CONSTRAINT fk_rails_a132f26c57 FOREIGN KEY (profile_setting_id) REFERENCES public.profile_settings(id) ON DELETE CASCADE;
 
 
 --
@@ -9733,14 +10095,40 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220606151635'),
 ('20220608104948'),
 ('20220609042528'),
+('20220609110619'),
+('20220609111758'),
 ('20220609112219'),
 ('20220609114435'),
 ('20220609120021'),
 ('20220609123501'),
 ('20220609124428'),
 ('20220609125511'),
+('20220610114559'),
 ('20220613192348'),
 ('20220616103155'),
-('20220630112848');
+('20220630112848'),
+('20220704083505'),
+('20220712103553'),
+('20220713095522'),
+('20220714145940'),
+('20220720075400'),
+('20220721114549'),
+('20220725113027'),
+('20220727081709'),
+('20220727115619'),
+('20220728085459'),
+('20220728121608'),
+('20220728134015'),
+('20220729103746'),
+('20220809130239'),
+('20220810132037'),
+('20220817094010'),
+('20220817165939'),
+('20220818101822'),
+('20220820184329'),
+('20220822202512'),
+('20220829100916'),
+('20220908094242'),
+('20220909080050');
 
 

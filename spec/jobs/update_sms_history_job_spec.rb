@@ -26,17 +26,26 @@ RSpec.describe UpdateSmsHistoryJob, type: :job do
     allow(Sms::TwilioClient).to receive_message_chain(:get, :messages, :fetch).
       and_return(double(price: price, num_segments: nil))
 
-    expect do
-      perform_enqueued_jobs { job }
-    end.to raise_exception(StandardError, "Price or num_of_segments not present for twilio message with sid #{sid}")
+    perform_enqueued_jobs do
+      expect { job }.to raise_exception(
+        StandardError, "Price or num_of_segments not present for twilio message with sid #{sid}"
+      )
+    end
   end
 
   it 'raise exception is price is nil' do
     allow(Sms::TwilioClient).to receive_message_chain(:get, :messages, :fetch).
       and_return(double(price: nil, num_segments: num_segments))
 
-    expect do
-      perform_enqueued_jobs { job }
-    end.to raise_exception(StandardError, "Price or num_of_segments not present for twilio message with sid #{sid}")
+    perform_enqueued_jobs do
+      expect { job }.to raise_exception(
+        StandardError, "Price or num_of_segments not present for twilio message with sid #{sid}"
+      )
+    end
+  end
+
+  after do
+    clear_enqueued_jobs
+    clear_performed_jobs
   end
 end

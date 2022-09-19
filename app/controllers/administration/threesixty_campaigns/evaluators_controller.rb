@@ -50,7 +50,7 @@ module Administration
 
       def download_example_import_file
         send_file(
-          "#{Rails.root}/public/example_csv/evaluator_import.csv",
+          Rails.public_path.join('example_csv/evaluator_import.csv'),
           type: 'text/csv'
         )
       end
@@ -62,7 +62,7 @@ module Administration
           evaluators = evaluators_from_csv(form.file.path)
           validate_and_add_evaluators(evaluators: evaluators)
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 
@@ -77,10 +77,8 @@ module Administration
             %w[add_evaluator create_all],
             %w[import_evaluator import],
             'manage_datasheets',
-            'manage_relationships',
             'export_results',
             'export_completion_status',
-            'edit_dimension',
             'reset_all_participants',
             'reset_all_nominations'
           ],
@@ -103,7 +101,7 @@ module Administration
                                                              threesixty_campaign, current_user)
           render json: result.slice(:existing_evaluators_whose_password_not_changed)
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: 400
         end
       end
 

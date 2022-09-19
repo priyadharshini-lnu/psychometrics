@@ -14,13 +14,15 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          threesixty_campaign: threesixty_campaign,
-          project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+          {
+            threesixty_campaign: threesixty_campaign,
+            project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+          }
         )
       end
 
       def render_license_error(e)
-        render json: { errors: { licenses: [e.message] } }, status: :forbidden
+        render json: { errors: { licenses: [e.message] } }, status: 403
       end
     end
   end

@@ -4,7 +4,7 @@ import {
   List, Collapse, Modal, Progress, Tooltip,
 } from 'antd'
 import { CheckCircleFilled, QuestionCircleOutlined } from '@ant-design/icons'
-import ConfirmationModal from 'components/ConfirmationModal'
+import { ConfirmationModal } from 'glint'
 import { SafeHTML } from 'components/SafeHTML'
 import userPresenter from 'presenters/user'
 import connect from './connect'

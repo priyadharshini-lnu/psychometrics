@@ -15,7 +15,7 @@ module Administration
 
           head :ok
         else
-          render json: { errors: form.errors.messages }, status: :unprocessable_entity
+          render json: { errors: form.errors.messages }, status: 422
         end
       end
 

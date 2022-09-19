@@ -20,7 +20,7 @@ module Agiles
     def scrub_keys(groups)
       iterate_blocks(groups, ['AssessmentScene']) do |block, _|
         block.delete('scoring')
-        questions = block.dig('questions')
+        questions = block['questions']
         questions.each { |q| q.except!('answers', 'scoring') }
       end
     end
@@ -32,7 +32,7 @@ module Agiles
         random_set = nil if group != prev_group
         prev_group = group
         random_sets = Set.new
-        questions = block.dig('questions')
+        questions = block['questions']
         questions.each do |q|
           q['randomSet'] ||= 1
           random_sets.add q['randomSet']

@@ -1,0 +1,2 @@
+
+export { UserAssessment } from './UserAssessment'

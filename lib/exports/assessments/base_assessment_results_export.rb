@@ -74,7 +74,7 @@ module Exports
       end
 
       def user_name(first_name, last_name)
-        [first_name, last_name].reject(&:blank?).join(', ')
+        [first_name, last_name].compact_blank.join(', ')
       end
     end
   end

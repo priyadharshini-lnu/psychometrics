@@ -5,12 +5,12 @@ require 'rails_helper'
 describe Campaigns::GetDatasheetData do
   let(:campaign) { create(:campaign) }
   let(:project) { campaign.project }
-  let(:campaign_datasheet) { create(:datasheet, campaign: campaign, columns: { 'Name' => 'String' }) }
-  let(:project_datasheet) { create(:datasheet, project: project, columns: { 'Name' => 'String' }) }
+  let(:campaign_datasheet) { create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'String' }]) }
+  let(:project_datasheet) { create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }]) }
 
   it 'returns campaign datasheet data if there is not project datasheet' do
-    create(:datasheet_row, email: 'james@cc.com', datasheet: campaign_datasheet, data: { 'Name' => 'James' })
-    create(:datasheet_row, email: 'smith@cc.com', datasheet: campaign_datasheet, data: { 'Name' => 'Smith' })
+    create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet, data: { 'Name' => 'James' })
+    create(:sheet_row, email: 'smith@cc.com', sheet: campaign_datasheet, data: { 'Name' => 'Smith' })
 
     result = described_class.call!(campaign, %w[james@cc.com smith@cc.com])
 
@@ -21,7 +21,7 @@ describe Campaigns::GetDatasheetData do
   end
 
   it 'return project datsheet data if there is no campaign datasheet' do
-    create(:datasheet_row, email: 'james@cc.com', datasheet: project_datasheet, data: { 'Name' => 'James' })
+    create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet, data: { 'Name' => 'James' })
 
     result = described_class.call!(campaign, 'james@cc.com')
 
@@ -29,9 +29,9 @@ describe Campaigns::GetDatasheetData do
   end
 
   it 'returns combined datasheet columns' do
-    create(:datasheet_row, email: 'james@cc.com', datasheet: project_datasheet,
+    create(:sheet_row, email: 'james@cc.com', sheet: project_datasheet,
       data: { 'Name' => 'James', 'Id' => 1 })
-    create(:datasheet_row, email: 'james@cc.com', datasheet: campaign_datasheet,
+    create(:sheet_row, email: 'james@cc.com', sheet: campaign_datasheet,
       data: { 'Name' => 'Smith', 'Title' => 'Developer' })
 
     result = described_class.call!(campaign, 'james@cc.com')

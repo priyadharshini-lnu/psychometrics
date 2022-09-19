@@ -51,7 +51,7 @@ class CampaignUser < ApplicationRecord
   def real_status
     return status if !campaign.fixed_time? || expiry_date.nil? || completed_campaign?
 
-    return 'timed_out' if expiry_date && expiry_date < Time.now
+    return 'timed_out' if expiry_date && expiry_date < Time.zone.now
 
     status
   end

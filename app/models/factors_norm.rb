@@ -1,16 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: factors_norms
-#
-#  id        :integer          not null, primary key
-#  type      :enum
-#  factor_id :integer
-#  norm_id   :integer
-#  props     :json
-#
-
 class FactorsNorm < ApplicationRecord
   belongs_to :factor
   belongs_to :norm, touch: true
@@ -50,7 +39,7 @@ class FactorsNorm < ApplicationRecord
     #
     #
     def structured_hash(scope)
-      factors = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
+      factors = scope.select('factors.*, factors_norms.props as factors_norms_props').order(id: :asc).all
       factors.map do |factor|
         data                       = { id: factor.id, name: factor.name }
         data[:factors_norms_props] = factor['factors_norms_props'] || []
@@ -109,24 +98,33 @@ class FactorsNorm < ApplicationRecord
 
   def score_from_less_than_score_to
     props.each do |item|
-      if item['score_from'].present? && item['score_to'].present? && item['score_from'].to_f >= item['score_to'].to_f
-        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_less_than_score_from')
-      end
+      next unless item['score_from'].present? &&
+                  item['score_to'].present? &&
+                  item['score_from'].to_f >= item['score_to'].to_f
+
+      errors.add(
+        :props,
+        I18n.t('activerecord.errors.models.factors_norm.score_to_less_than_score_from')
+      )
     end
   end
 
   def scoring_valid
     props.each do |item|
-      if item['score_to'].present?
-        unless item['score_to'].to_s.valid_float?
-          errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number')
-        end
+      if item['score_to'].present? && !item['score_to'].to_s.valid_float?
+        errors.add(
+          :props,
+          I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number')
+        )
       end
-      next unless item['score_from'].present?
 
-      unless item['score_from'].to_s.valid_float?
-        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
-      end
+      next if item['score_from'].blank?
+      next if item['score_from'].to_s.valid_float?
+
+      errors.add(
+        :props,
+        I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
+      )
     end
   end
 

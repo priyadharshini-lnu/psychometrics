@@ -17,8 +17,8 @@ module Licenses
     validate :license_expire_validation, if: -> { end_date && start_date }
 
     def license_expire_validation
-      if end_date && start_date
-        errors.add(:end_date, :invalid) if end_date <= start_date
+      if end_date && start_date && (end_date <= start_date)
+        errors.add(:end_date, :invalid)
       end
     end
   end

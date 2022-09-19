@@ -2,7 +2,7 @@
 
 module Scoring
   class PickGroupRank
-    def calculate(question, result, scoring_template)
+    def calculate(question, result, scoring_template) # rubocop:disable Metrics/PerceivedComplexity
       scale_points = question.props['scalePoints']
       response     = (1..scale_points).map { |_i| [] }
       result['answers']&.each do |res|
@@ -13,10 +13,10 @@ module Scoring
       end
       values =
         response.map do |r|
-          if !r.empty?
-            r.sum.to_f / r.size
-          else
+          if r.empty?
             0
+          else
+            r.sum.to_f / r.size
           end
         end
       { value: values, options: [] }

@@ -90,13 +90,44 @@ describe Reports::BuildResults do
       end
     end
 
+    context 'sheet' do
+      let(:data) do
+        {
+          'id' => 'Performance_Rating',
+          'type' => 'sheet',
+          'key' => 'Performance Rating',
+          'category' => 'computed_scores'
+        }
+      end
+      let(:sheet) do
+        create(:sheet, campaign: user_result.campaign)
+      end
+      let!(:sheet_row) do
+        create(:sheet_row, sheet: sheet, email: user_result.subject.email,
+                data: { 'Performance Rating' => 2.5 })
+      end
+
+      it 'should return sheet column value' do
+        result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
+        expect(result).to eq(key: 'Performance_Rating', name: 'Performance Rating',
+                             value: 2.5, config_data: data)
+      end
+      it 'should return nil for sheet column' do
+        user_result = create(:users_result)
+        build_results_command = described_class.new(report, [user_result])
+        result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
+        expect(result).to eq(key: 'Performance_Rating', name: 'Performance Rating',
+                             value: nil, config_data: data)
+      end
+    end
+
     context 'ExternalResults' do
       let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => user_result.assessment_id, 'label' => 'Attempted' } }
       subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }
 
       it {
         is_expected.to eq(key: 'ed.attempted', name: 'Attempted',
-                             value: external_results['ed.attempted'], config_data: data)
+                          value: external_results['ed.attempted'], config_data: data)
       }
 
       context 'when data is not valid' do
@@ -108,6 +139,26 @@ describe Reports::BuildResults do
           data['assessmentId'] = 'not_exists'
           is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: nil, config_data: data)
         end
+      end
+    end
+
+    context 'RankedOccupations' do
+      it 'returns nil as key, value and name if user_result for the assessment is missing' do
+        data = { 'assessmentId' => user_result.assessment_id + 1, 'position' => 1 }
+        result = Reports::ResultTypes::RankedOccupations.call(build_results_command, data)
+
+        expect(result).to eq(key: nil, name: nil, config_data: data, value: nil)
+      end
+
+      it 'returns nil as key and value if user_result for the assessment is missing' do
+        occupation = create(:occupation)
+        user_result.update(occupations: [{ value: 'first', id: 2 }, { value: 'second', id: occupation.id }])
+        data = { 'assessmentId' => user_result.assessment_id, 'position' => 2 }
+        result = Reports::ResultTypes::RankedOccupations.call(build_results_command, data)
+
+        expect(result).to eq(
+          key: occupation.id, name: occupation.decorate.display_name, config_data: data, value: 'second'
+        )
       end
     end
 
@@ -270,20 +321,20 @@ describe Reports::BuildResults do
     context 'Ref' do
       let(:data_configuration) do
         {
-          "refs": [
+          refs: [
             {
-              "ref_id": 'factor_x',
-              "type": 'normed_factor',
-              "assessmentId": user_result.assessment.id,
-              "factorId": 1
+              ref_id: 'factor_x',
+              type: 'normed_factor',
+              assessmentId: user_result.assessment.id,
+              factorId: 1
             }
           ],
-          "sections": [
+          sections: [
             {
-              "data": [
+              data: [
                 {
-                  "type": 'ref',
-                  "ref": 'factor_x'
+                  type: 'ref',
+                  ref: 'factor_x'
                 }
               ]
             }
@@ -301,18 +352,18 @@ describe Reports::BuildResults do
 
       it 'resolves to the ref' do
         is_expected.to eq([
-                            {
-                              config_data: {
-                                'assessmentId' => user_result.assessment.id,
-                                'factorId' => 1,
-                                'ref_id' => 'factor_x',
-                                'type' => 'normed_factor'
-                              },
-                              key: 1,
-                              name: 'Test factor1',
-                              value: 3
-                            }
-                          ])
+          {
+            config_data: {
+              'assessmentId' => user_result.assessment.id,
+              'factorId' => 1,
+              'ref_id' => 'factor_x',
+              'type' => 'normed_factor'
+            },
+            key: 1,
+            name: 'Test factor1',
+            value: 3
+          }
+        ])
       end
     end
   end

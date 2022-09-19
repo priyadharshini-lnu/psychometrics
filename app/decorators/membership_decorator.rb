@@ -4,7 +4,7 @@ class MembershipDecorator < BaseDecorator
   def display_name
     return object.user.decorate.display_name unless object.respond_to?(:first_name)
 
-    [object.first_name, object.last_name].reject(&:blank?).join(' ')
+    [object.first_name, object.last_name].compact_blank.join(' ')
   end
 
   def role_name

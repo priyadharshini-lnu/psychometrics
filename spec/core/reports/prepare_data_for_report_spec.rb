@@ -12,9 +12,9 @@ describe Reports::PrepareDataForReport do
     let(:manager) { create(:relationship, name: 'manager') }
     let(:peer) { create(:relationship, name: 'peer') }
     let(:customer) { create(:relationship, name: 'customer') }
-    let(:evaluator_1) { create(:user) }
-    let(:evaluator_2) { create(:user) }
-    let(:evaluator_3) { create(:user) }
+    let(:first_evaluator) { create(:user) }
+    let(:second_evaluator) { create(:user) }
+    let(:third_evaluator) { create(:user) }
     let(:user_report) do
       create(:user_report, report: threesixty_campaign.report,
                                 campaign: threesixty_campaign.campaign, user_id: subject.user_id)
@@ -22,8 +22,8 @@ describe Reports::PrepareDataForReport do
 
     before do
       allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-      create_users_result(threesixty_campaign, subject, evaluator_1, manager)
-      create_users_result(threesixty_campaign, subject, evaluator_2, peer)
+      create_users_result(threesixty_campaign, subject, first_evaluator, manager)
+      create_users_result(threesixty_campaign, subject, second_evaluator, peer)
     end
 
     it do
@@ -32,11 +32,10 @@ describe Reports::PrepareDataForReport do
         subject: subject,
         report: threesixty_campaign.report,
         user_report: user_report,
-        current_user: evaluator_1
+        current_user: first_evaluator
       }
       results = described_class.new(args).serialize_results
-      expect(results[threesixty_campaign.assessment.id].
-        map { |r| r[:relationship] }).to match_array %w[manager peer]
+      expect(results[threesixty_campaign.assessment.id].pluck(:relationship)).to match_array %w[manager peer]
     end
   end
 

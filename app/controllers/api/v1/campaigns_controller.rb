@@ -4,6 +4,7 @@ module Api
   module V1
     class CampaignsController < Api::V1::BaseController
       before_action :set_campaign, only: %i[show update duplicate assessments_reports get_assessments_reports]
+      before_action :pundit_authorize
 
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
@@ -26,17 +27,19 @@ module Api
       end
 
       def assign_user
-        normalized_params = API::NormalizeCampaignParams.call!(params)
+        normalized_params = Api::NormalizeCampaignParams.call!(params)
         form = Api::V1::Campaigns::AttachToUserForm.from_params(normalized_params).
                with_context(project: project, user: user)
         if form.valid?
           normalized_params[:campaigns].map do |campaign_attrs|
             campaign = Campaign.find(campaign_attrs[:id])
+            # rubocop:disable Style/OpenStructUse
             struct = OpenStruct.new(
               email: form.email,
               operation: campaign_attrs[:existing_record],
               active: campaign_attrs[:active]
             )
+            # rubocop:enable all
             audit! :assign_user, campaign, payload: campaign_attrs.permit!, campaign: campaign
             ::Campaigns::Users::Create.call(struct, campaign, current_user) do
               on(:error) { raise Api::Errors::NotEnoughLicences, 'Not Enough Licenses' }
@@ -51,7 +54,7 @@ module Api
       def create
         form = Api::V1::Campaigns::CreateForm.from_params(params)
         if form.valid?
-          normalized_params = ::Campaigns::NormalizeAPIRequest.call!(campaign_params)
+          normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           campaign = Campaign.create!(normalized_params.merge(project_id: project.id))
           audit! :api_create, campaign, payload: params.permit!, campaign: campaign
           render json: campaign, serializer: Api::V1::CampaignSerializer
@@ -63,7 +66,7 @@ module Api
       def update
         form = Api::V1::Campaigns::UpdateForm.from_params(params)
         if form.valid?
-          normalized_params = ::Campaigns::NormalizeAPIRequest.call!(campaign_params)
+          normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           @campaign.update!(normalized_params)
           audit! :api_update, @campaign, payload: params.permit!, campaign: @campaign
           render json: @campaign, serializer: Api::V1::CampaignSerializer
@@ -103,7 +106,8 @@ module Api
 
       def campaign_params
         params.permit(
-          :name, :status, :start_date, :end_date, :fixed_time, :duration, :enable_instructions, :instructions
+          :name, :status, :start_date, :end_date, :fixed_time, :duration, :enable_instructions, :instructions,
+          :description
         )
       end
 

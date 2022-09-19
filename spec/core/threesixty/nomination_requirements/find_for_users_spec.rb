@@ -9,7 +9,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
   let(:datasheet) { create(:datasheet, project: campaign.project) }
 
   it 'returns first nomination requirement if subject_condition is empty' do
-    create(:datasheet_row, datasheet: datasheet, email: current_user.email)
+    create(:sheet_row, sheet: datasheet, email: current_user.email)
     nomination_requirement = create(:threesixty_nomination_requirement,
                                     threesixty_campaign_id: campaign.id, subject_conditions: [])
 
@@ -17,7 +17,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
   end
 
   it 'returns nill when there are no nomination_requirements' do
-    create(:datasheet_row, datasheet: datasheet, email: current_user.email)
+    create(:sheet_row, sheet: datasheet, email: current_user.email)
 
     expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
   end
@@ -52,7 +52,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '20',
         'Rank' => 'General'
@@ -62,7 +62,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '20',
         'Rank' => 'Major'
@@ -72,7 +72,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2017',
         'Age' => '20',
         'Rank' => 'Major'
@@ -82,7 +82,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '21',
         'Rank' => 'Major'
@@ -92,7 +92,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '20',
         'Rank' => 'Sergeant'
@@ -126,7 +126,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '20',
         'Rank' => 'Sergeant'
@@ -136,7 +136,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2017',
         'Age' => '20',
         'Rank' => 'Major'
@@ -146,7 +146,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '21',
         'Rank' => 'Sergeant'
@@ -156,7 +156,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2017',
         'Age' => '20',
         'Rank' => 'Sergeant'
@@ -183,7 +183,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '20'
       })
@@ -192,7 +192,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '21'
       })
@@ -201,7 +201,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2017',
         'Age' => '20'
       })
@@ -239,7 +239,7 @@ describe Threesixty::NominationRequirements::FindForUsers do
     end
 
     it 'returns top nomination_requirement ordered by position' do
-      create(:datasheet_row, datasheet: datasheet, email: current_user.email, data: {
+      create(:sheet_row, sheet: datasheet, email: current_user.email, data: {
         'YearOfJoining' => '2016',
         'Age' => '20'
       })

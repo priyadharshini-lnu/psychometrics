@@ -4,6 +4,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 
 const CHANGE_LOCALE = 'threeSixty/users/CHANGE_LOCALE'
 const SYNC = 'threeSixty/user/SYNC'
+const UPLOAD_PHOTO = 'threeSixty/user/UPLOAD_PHOTO'
 const SET_USER = 'threeSixty/user/SET_USER'
 
 export const get = state => _.get(state, ['currentUser'])
@@ -35,8 +36,19 @@ export const sync = data => ({
     method: 'patch',
     url: '/users/update_details',
     body: { user: data },
+    camelizeErrors: false,
   },
 })
+
+export const uploadPhoto = formData => ({
+  type: UPLOAD_PHOTO,
+  request: {
+    method: 'patch',
+    url: '/users/upload_photo',
+    body: formData,
+  },
+})
+
 
 export const setUser = user => ({
   type: SET_USER,
@@ -46,6 +58,8 @@ export const setUser = user => ({
 
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
+    case UPLOAD_PHOTO:
+      return { ...state, photo: action.response.photo }
     case SET_USER:
       return action.payload.user
     default:

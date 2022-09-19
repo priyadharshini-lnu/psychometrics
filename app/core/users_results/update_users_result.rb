@@ -49,7 +49,7 @@ module UsersResults
       # Calculates scoring and sets time of completion
       if user_assessment.completed?
         norm_id = user_assessment.applicable_norm_id || user_assessment_form_attributes[:norm_id]
-        user_assessment.update!(completed_at: Time.now, norm_id: norm_id)
+        user_assessment.update!(completed_at: Time.zone.now, norm_id: norm_id)
         users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
         users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)

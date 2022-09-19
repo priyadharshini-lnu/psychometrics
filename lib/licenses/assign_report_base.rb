@@ -18,8 +18,7 @@ module Licenses
 
     # licenseable - it's AssignReport
     def self.use(licenseable)
-      license_usage = new(licenseable)
-      license_usage
+      new(licenseable)
     end
 
     private
@@ -32,7 +31,7 @@ module Licenses
 
       # Returns if license was already used by another Report from Report Family
       # TASK: gitlab.com/tte-lighthouse/psychometrics/issues/48
-      return if user.license_usages.where(license: licenses).exists?
+      return if user.license_usages.exists?(license: licenses)
 
       # Detects first license which has enough free space
       license = licenses.detect(&:enough_licenses?)

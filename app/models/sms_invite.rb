@@ -3,8 +3,8 @@
 class SmsInvite < ApplicationRecord
   has_shortened_urls
   belongs_to :campaign
-  belongs_to :creator, class_name: 'User', foreign_key: :creator_id
-  belongs_to :registered_user, class_name: 'User', foreign_key: :registered_user_id
+  belongs_to :creator, class_name: 'User'
+  belongs_to :registered_user, class_name: 'User'
   has_one :project, through: :campaign
   has_many :sms_histories
 

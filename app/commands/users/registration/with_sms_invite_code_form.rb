@@ -13,7 +13,7 @@ module Users
       def validate_sms_invite_code
         sms_invite = context.project.sms_invites.
                      where.not(status: :registered).
-                     where('expiry >= :now', now: Time.now).
+                     where('expiry >= :now', now: Time.zone.now).
                      find_by(code: sms_invite_code)
         if sms_invite.nil?
           errors.add(:sms_invite_code,

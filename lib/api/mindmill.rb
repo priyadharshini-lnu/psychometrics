@@ -3,12 +3,12 @@
 module Api
   class Mindmill
     COMPANY_ID = 70
-    KEY = ENV['MINDMILL_KEY']
+    KEY = ENV.fetch('MINDMILL_KEY', nil)
     WSDL_URL = 'https://evo-api.mindmill.co.uk/ICAS/ICAS1.asmx?WSDL'
     AVAILABLE_LANGUAGES = %w[en ar fr].freeze
 
-    attr_accessor :api, :appid, :assessment, :current_membership, :locale, :assign
-    attr_accessor :report, :ssourl, :has_in_progress_assign, :scores
+    attr_accessor :api, :appid, :assessment, :current_membership, :locale, :assign, :report, :ssourl,
+                  :has_in_progress_assign, :scores
 
     def initialize(assign, current_membership, user_locale = 'en')
       @api = Savon.client(wsdl: WSDL_URL, soap_version: 2, log_level: :debug, logger: Rails.logger)
@@ -26,8 +26,9 @@ module Api
     def assign_user
       @ssourl = has_in_progress_assign ? new_assign_user : add_new_user
     rescue Savon::SOAPFault => e
-      p e.http.code
-      p 'Error-' * 10
+      Rails.logger.error(e.http.code)
+      Rails.logger.error('Error-' * 10)
+
       false
     end
 
@@ -52,8 +53,9 @@ module Api
       return result if result.start_with?('http')
       return request_ssourl if result == 'D'
 
-      p 'add_new_user - ' * 5
-      p 'Result doesn\'t contains url or D'
+      Rails.logger.warn('add_new_user - ' * 5)
+      Rails.logger.warn('Result doesn\'t contains url or D')
+
       false
     end
 
@@ -66,8 +68,9 @@ module Api
       result = response.body[:request_ssourl_response][:request_ssourl_result]
       return result if result.start_with?('http')
 
-      p 'request_ssourl - ' * 5
-      p 'Result doesn\'t contains url'
+      Rails.logger.warn('request_ssourl - ' * 5)
+      Rails.logger.warn('Result doesn\'t contains url')
+
       false
     end
 

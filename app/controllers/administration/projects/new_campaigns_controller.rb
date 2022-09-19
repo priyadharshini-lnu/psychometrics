@@ -8,14 +8,14 @@ module Administration
       prepend_before_action :set_resource_class
       skip_after_action :verify_policy_scoped, only: %i[index show]
       before_action :set_campaign, only: %i[
-        show update assessments_and_reports fetch_campaign_options
-        fetch_campaign_instructions update_campaign_options destroy
+        show update assessments_and_reports fetch_campaign_options fetch_campaign_instructions
+        update_campaign_options destroy fetch_descriptions
       ]
       append_before_action :pundit_authorize, except: [:index]
       initial_state_for %i[index show]
 
       def index
-        unless current_user.campaign_admin_campaigns.where(project_id: params[:project_id]).exists?
+        unless current_user.campaign_admin_campaigns.exists?(project_id: params[:project_id])
           authorize(Campaign, nil, { project_id: params[:project_id] })
         end
         respond_to do |format|
@@ -66,7 +66,7 @@ module Administration
           format.html { render :index }
           format.json do
             render json: @campaign, serializer: Administration::Campaigns::CampaignSerializer,
-              current_user: current_user
+                   current_user: current_user
           end
         end
       end
@@ -111,7 +111,18 @@ module Administration
             CampaignOptionsLocaleSerializer.new(@campaign.campaign_options, locale: locale).to_h
           end
         end
-        render json: { list: list, available_locales: @campaign.campaign_options.translations.map(&:locale) }
+        available_locales = @campaign.campaign_options.translations.pluck(:locale)
+        render json: { list: list, available_locales: available_locales }
+      end
+
+      def fetch_descriptions
+        list = params[:locales].values.map do |locale|
+          Mobility.with_locale(locale) do
+            { description: @campaign.campaign_options.description, locale:  locale }
+          end
+        end
+        available_locales = @campaign.campaign_options.translations.pluck(:locale)
+        render json: { list: list, available_locales: available_locales }
       end
 
       def update_campaign_options
@@ -123,7 +134,7 @@ module Administration
         if form.valid?
           audit! :update_campaign_options, campaign, payload: campaign_options_params, campaign: @campaign
           Mobility.with_locale(params[:locale]) do
-            campaign_options.update_attributes(campaign_options_params)
+            campaign_options.update(campaign_options_params)
           end
           render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
         else
@@ -180,7 +191,7 @@ module Administration
 
       def campaign_options_params
         resource_params.permit(:fixed_time, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions,
-                               :proctoring_enabled, :identification,
+                               :proctoring_enabled, :identification, :description,
                                rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
                                           allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
                                           allow_to_use_messengers allow_wrong_gaze_direction

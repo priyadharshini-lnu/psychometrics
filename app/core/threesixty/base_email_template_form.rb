@@ -22,7 +22,7 @@ module Threesixty
     private
 
     def validate_consolidated_pipetext
-      invalid_pipetexts = content.scan(%r{{{s:\/.*?}}})
+      invalid_pipetexts = content.scan(%r{{{s:/.*?}}})
       return if invalid_pipetexts.empty?
 
       errors.add(:content,
@@ -31,7 +31,7 @@ module Threesixty
     end
 
     def validate_unconsolidated_pipetext
-      invalid_pipetexts = content.scan(%r{{{st:\/.*?}}})
+      invalid_pipetexts = content.scan(%r{{{st:/.*?}}})
       return if invalid_pipetexts.empty?
 
       errors.add(:content,

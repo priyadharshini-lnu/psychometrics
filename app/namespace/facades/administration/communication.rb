@@ -88,8 +88,8 @@ module Facades
       end
 
       def sub_campaign_behavior
-        'communication-changeable sub_campaign_id owner-resettable client-resettable project-resettable '\
-        'campaign-resettable'
+        'communication-changeable sub_campaign_id owner-resettable client-resettable project-resettable ' \
+          'campaign-resettable'
       end
 
       def memberships_behavior

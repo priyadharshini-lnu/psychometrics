@@ -1,0 +1,225 @@
+import _ from 'lodash'
+import React, { useContext, useState } from 'react'
+import {
+  Table, Dropdown, Menu, Button, Row, Popconfirm, Card, Typography,
+} from 'antd'
+import {
+  DownOutlined, CheckOutlined, ReloadOutlined, DeleteOutlined, PlusOutlined,
+} from '@ant-design/icons'
+
+import userPresenter from 'presenters/user'
+import statusPresenter from 'presenters/status'
+import conditionPresenter from 'presenters/condition'
+import { EVALUATOR_NOMINATION_STATUSES } from 'constants/participantStatuses'
+import { MediaQueryContext } from 'glint'
+import styles from './RequirementTable.less'
+import { InlineInput } from '../InlineInput'
+
+const { Column } = Table
+const { I18n } = window
+const { Title, Text } = Typography
+
+export const RequirementTable = (props) => {
+  const {
+    removeNomination, updateStatus, allowedRelationshipsForNewNominations,
+    match, handleAddNomination,
+    nomination: { isSelf, options },
+    canNominate,
+    requirement: { condition, title, evaluators },
+    match: { params: { campaignId, id: nominationId } },
+  } = props
+  const { isMobile } = useContext(MediaQueryContext)
+  const [showForm, setShowForm] = useState(false)
+
+  const StatusMenu = evaluator => (
+    <Menu onClick={(e) => {
+      updateStatus({
+        campaignId, nominationId, evaluatorId: evaluator.id, status: e.key,
+      })
+    }}
+    >
+      <Menu.Item key="approved">
+        {I18n.t('threesixty.approved')}
+      </Menu.Item>
+      <Menu.Item key="waiting">
+        {I18n.t('threesixty.waiting')}
+      </Menu.Item>
+      <Menu.Item key="denied">
+        {I18n.t('threesixty.denied')}
+      </Menu.Item>
+    </Menu>
+  )
+
+  const renderRequirementCell = (value) => {
+    if (value.evaluator) {
+      return {
+        children: (
+          <>
+            <Text>{userPresenter.getFullName(value.evaluator)}</Text>
+            <br />
+            <Text type="secondary">{value.evaluator.email}</Text>
+          </>),
+      }
+    }
+
+    return {
+      children: <InlineInput
+        title={title}
+        match={match}
+        relationship={condition.relationshipId}
+        handleAddNomination={handleAddNomination}
+        {...props}
+        hideForm={() => { setShowForm(false) }}
+      />,
+      props: { colSpan: 4 },
+    }
+  }
+
+  const renderApprovalStatus = (evaluator) => {
+    if (evaluator.id === 'form') { return { props: { colSpan: 0 } } }
+    if (!evaluator) { return { props: { colSpan: 0 } } }
+    if (evaluator.evaluatorNominationStatus === EVALUATOR_NOMINATION_STATUSES.DECLINED) {
+      return { children: 'Declined' }
+    }
+    if (isSelf) {
+      return { children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
+    }
+
+    if (!options.participants.manager.canApproveNominations) {
+      return { children: '' }
+    }
+
+    if (evaluator.approvalStatus !== 'waiting') {
+      return (
+        <Dropdown
+          trigger={['click']}
+          overlay={() => StatusMenu(evaluator)}
+        >
+          <div>
+            { statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
+            <DownOutlined />
+          </div>
+        </Dropdown>
+      )
+    }
+
+    return (
+      <Row>
+        <Button
+          size="small"
+          type="primary"
+          onClick={() => updateStatus({
+            campaignId, nominationId, evaluatorId: evaluator.id, status: 'approved',
+          })}
+        >
+          {I18n.t('threesixty.approve')}
+        </Button>
+        <Button
+          size="small"
+          danger
+          onClick={() => updateStatus({
+            campaignId, nominationId, evaluatorId: evaluator.id, status: 'denied',
+          })}
+        >
+          {I18n.t('threesixty.deny')}
+        </Button>
+      </Row>
+    )
+  }
+
+  const renderStatus = ({ evaluator, evaluatorNominationStatus }) => {
+    if (!evaluator) { return { props: { colSpan: 0 } } }
+    return {
+      children: (
+        <>
+          {evaluatorNominationStatus === 'completed'
+            ? <CheckOutlined />
+            : <ReloadOutlined className={styles.waitingIcon} /> }
+          {' '}
+          {statusPresenter.getStatus(evaluatorNominationStatus)}
+        </>),
+    }
+  }
+
+  // eslint-disable-next-line no-mixed-operators
+  const rowData = evaluators && [...evaluators] || []
+  if (showForm) {
+    rowData.push({ id: 'form' })
+  }
+
+  let canAdd = canNominate
+  if (options.participants.subject.limitRelationshipThatSubjectCanSelect) {
+    canAdd = canAdd && _.get(options, ['participants', 'subject', 'canSelectRelationships', condition.relationshipId])
+  }
+
+  const relationshipAllowed = _.find(allowedRelationshipsForNewNominations,
+    relationship => relationship.id === condition.relationshipId)
+
+  if (!relationshipAllowed) { canAdd = false }
+
+  return (
+    <Card
+      title={isMobile ? '' : (
+        <span>
+          <Title level={5} className={styles.cardTitle}>{title}</Title>
+          {' '}
+          {!condition.withoutConditions && `(${conditionPresenter.getCondition(condition)})`}
+        </span>
+      )}
+      className={styles.card}
+    >
+      <Table
+        rowKey="id"
+        dataSource={rowData}
+        pagination={false}
+        className={styles.dataTable}
+      >
+        <Column
+          width="50%"
+          title={isMobile ? '' : (
+            <Text type="secondary" className={styles.columnTitle}>Name</Text>
+          )}
+          key="title"
+          render={renderRequirementCell}
+        />
+        <Column
+          width="20%"
+          title={isMobile ? ''
+            : <Text type="secondary" className={styles.columnTitle}>{I18n.t('threesixty.evaluation')}</Text>}
+          render={renderStatus}
+          key="evaluatorNominationStatus"
+        />
+        <Column
+          title={isMobile ? ''
+            : <Text type="secondary" className={styles.columnTitle}>{I18n.t('threesixty.nomination')}</Text>}
+          render={renderApprovalStatus}
+          key="status"
+        />
+        <Column
+          title={isMobile ? '' : <Text type="secondary" className={styles.columnTitle}>Action</Text>}
+          width="5%"
+          render={(value) => {
+            if (!value.canRemove || !value.evaluator || !canNominate) { return { props: { colSpan: 0 } } }
+            return (
+              <Popconfirm
+                title={I18n.t('threesixty.confirmation_for_nomination_removal')}
+                onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
+              >
+                <DeleteOutlined />
+              </Popconfirm>
+            )
+          }}
+        />
+      </Table>
+      {canAdd && (
+        <Row justify="end" style={{ marginTop: 8 }}>
+          <Button type="link" onClick={() => setShowForm(true)} disabled={showForm}>
+            <PlusOutlined />
+            {' '}
+            {title}
+          </Button>
+        </Row>
+      )}
+    </Card>
+  )
+}

@@ -7,6 +7,7 @@ import keyBy from 'lodash/keyBy'
 import meanBy from 'lodash/meanBy'
 import round from 'lodash/round'
 import cs from 'classnames'
+import _ from 'lodash'
 
 import { RootState } from 'modules/reports/core/rootReducers'
 import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
@@ -86,6 +87,8 @@ interface OwnProps {
   sections: TableSectionsType
   tableStyle: TableStyleType
   hideValues: boolean
+  noOfItems: number | null
+  scoreCutoff: number | null
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -98,6 +101,8 @@ const QuestionTypeComponent: FC<Props> = ({
   sections,
   tableStyle,
   hideValues,
+  noOfItems = 5,
+  scoreCutoff,
 }) => {
   const calculateHighestLowest = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -163,9 +168,14 @@ const QuestionTypeComponent: FC<Props> = ({
     const sortedResults = results.sort(
       (firstResult, secondResult) => secondResult.value - firstResult.value,
     )
+
+    const itemLimit = noOfItems ?? 5
     // splice to exclude highestScore entries from lowest
-    const highestScoreChoices = sortedResults.splice(0, 5)
-    const lowestScoreChoices = sortedResults.slice(-5).reverse()
+    // eslint-disable-next-line max-len
+    const highestScoreChoices = _.remove(sortedResults, (r, i) => r.value >= (scoreCutoff ?? -Infinity) && i < itemLimit)
+    const lowestScoreChoices = sortedResults
+      .filter(x => x.value < (scoreCutoff || Infinity))
+      .slice(-(noOfItems ?? 5)).reverse()
 
     return [highestScoreChoices, lowestScoreChoices]
   }

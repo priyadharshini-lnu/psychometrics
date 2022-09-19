@@ -12,6 +12,7 @@ module SecuritySettings
     attribute :attempts_to_lock, Integer
     attribute :auto_unlock_time, Integer
     attribute :send_unlock_email, Boolean
+    attribute :tfa_enabled, Boolean
 
     validates :min_password_length, numericality: { greater_than_or_equal_to: 8, less_than_or_equal_to: 128 }
   end

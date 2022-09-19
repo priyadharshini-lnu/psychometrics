@@ -1,11 +1,94 @@
-import React from 'react'
-import { ToggleEndUserViewLink } from 'components/ToggleEndUserViewLink'
+import React, { useEffect, useState } from 'react'
+import {
+  Spin,
+  ConfigProvider, notification,
+} from 'antd'
+import { Route } from 'react-router-dom'
+import store, { history } from 'modules/user/store'
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
+import _ from 'lodash'
+import humps from 'humps'
 
-const App: React.FC<{}> = () => (
-  <div>
-    <ToggleEndUserViewLink />
-    <h1>New layout and components here</h1>
-  </div>
-)
+import ConnectionCheck from 'components/ConnectionCheck'
+import { UserPageLayout } from 'modules/endUser/modules/campaigns/components/UserPageLayout'
+import { GlintProvider } from 'glint'
 
-export default App
+import { connected, disconnected } from 'core/connection'
+
+import { useWindowInnerSize } from 'modules/user/rootHooks'
+import routes from './routes'
+import styles from './styles.less'
+
+const { antdLocale, I18n } = window
+const PAGE_LOAD_WAIT_TIME = 4000
+
+export default function App () {
+  const [pageLoading, setPageLoading] = useState(true)
+
+  const pageLoadHandler = () => {
+    setPageLoading(false)
+  }
+
+  useWindowInnerSize(document.documentElement)
+
+  useEffect(() => {
+    window.addEventListener('load', pageLoadHandler)
+    const pageLoadTimeout = setTimeout(() => {
+      setPageLoading && setPageLoading(false)
+    }, PAGE_LOAD_WAIT_TIME)
+    return () => {
+      window.removeEventListener('load', pageLoadHandler)
+      clearTimeout(pageLoadTimeout)
+    }
+  }, [])
+
+  useEffect(() => {
+    const { config: { maintenance: { remainingTime }, design } } = store.getState()
+    if (remainingTime && remainingTime > 0) {
+      setTimeout(() => {
+        notification.warning({
+          message: I18n.t('frontend.maintenance.notification'),
+          duration: 15,
+        })
+        setTimeout(() => {
+          location.reload()
+        }, 60000)
+      }, (remainingTime - 40) * 1000)
+    }
+
+    ConfigProvider.config({
+      theme: humps.camelizeKeys(
+        _.pick(design, ['primary_color', 'error_color', 'warning_color', 'success_color', 'info_color']),
+      ),
+    })
+  }, [])
+
+  if (pageLoading) {
+    return (
+      <div className={styles.spinLoader}>
+        <Spin size="large" />
+      </div>
+    )
+  }
+
+  return (
+    <Provider store={store}>
+      <ConfigProvider locale={antdLocale} direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}>
+        <GlintProvider>
+          <ConnectedRouter history={history}>
+            <UserPageLayout>
+              <ConnectionCheck
+                onConnected={() => store.dispatch(connected())}
+                onDisconnected={() => store.dispatch(disconnected())}
+              />
+              {routes.map((route, i) => (
+                <Route key={i} path={route.path} exact={route.exact} component={route.main} />
+              ))}
+            </UserPageLayout>
+          </ConnectedRouter>
+        </GlintProvider>
+      </ConfigProvider>
+    </Provider>
+  )
+}

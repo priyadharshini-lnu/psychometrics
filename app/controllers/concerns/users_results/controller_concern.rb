@@ -21,13 +21,13 @@ module UsersResults::ControllerConcern
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
     render json: @users_result,
-            serializer: UsersResultUpdateSerializer,
-            current_block_id: params[:current_block_id],
-            current_user: current_user,
-            threesixty_campaign: @users_result.campaign.threesixty_campaign,
-            campaign: @users_result.campaign,
-            locale: current_user.locale,
-            progress_was_reseted: progress_was_reseted
+           serializer: UsersResultUpdateSerializer,
+           current_block_id: params[:current_block_id],
+           current_user: current_user,
+           threesixty_campaign: @users_result.campaign.threesixty_campaign,
+           campaign: @users_result.campaign,
+           locale: current_user.locale,
+           progress_was_reseted: progress_was_reseted
   end
 
   def update_meta_data
@@ -54,7 +54,7 @@ module UsersResults::ControllerConcern
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy
-      render json: { error_message: error_message }, status: :unprocessable_entity
+      render json: { error_message: error_message }, status: 422
     end
   end
 
@@ -69,14 +69,14 @@ module UsersResults::ControllerConcern
   end
 
   def complete_multipart_upload
-    media = @users_result.media_responses.find_by!(id: params[:media_id])
+    media = @users_result.media_responses.find(params[:media_id])
     MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
     render json: media.reload, serializer: MediaResponseSerializer
   end
 
   def mark_as_user_selected_take
-    media = @users_result.media_responses.find_by!(id: params[:media_id])
+    media = @users_result.media_responses.find(params[:media_id])
     MediaResponses::MarkAsUserSelected.call!(media)
     head :ok
   end
@@ -97,7 +97,7 @@ module UsersResults::ControllerConcern
   def resource_params
     params[:resource].permit(
       :current_element, :current_page, :status, :step, :progress, norm_data: {},
-      prev_pages: [:element, :page, questionIds: []], embedded_data: {}, answers: {}
+      prev_pages: [:element, :page, { questionIds: [] }], embedded_data: {}, answers: {}
     )
   end
 

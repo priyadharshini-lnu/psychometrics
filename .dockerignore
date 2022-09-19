@@ -63,6 +63,8 @@ config/environments/frontend.rb
 .pryrc
 npm-debug.log
 
+.solargraph.yml
+
 /node_modules
 /public/packs
 /public/packs-test

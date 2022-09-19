@@ -1,0 +1,35 @@
+@import 'glint/styles/mixins.less';
+@import 'styles/ant.variable.less';
+@import 'styles/variables.less';
+@import 'styles/spacing.less';
+
+.container-campaign {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-block: @space-12;
+}
+.campaign-title {
+  position: relative;
+  .highlighter();
+}
+.campaign-instruction, .campaign-title {
+  padding-inline-start: @space-4;
+  display: block;
+}
+.pageContent {
+  background-color: @white;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: @screen-sm) {
+  .container-campaign {
+    padding-inline: @space-8;
+  }
+}
+
+:global(.rtl) {
+  & .campaign-title:before {
+    left:unset;
+    right: 0px;
+  }
+}

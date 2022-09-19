@@ -7,7 +7,7 @@ module Questions
         controller  = name.downcase.split('::').last
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
-          question = ::Question.find_by_id(params['question_id'])
+          question = ::Question.find_by(id: params['question_id'])
           if policy(question).open_channel?
             begin
               data            = yield(request['data'], current_user, question)
@@ -29,7 +29,7 @@ module Questions
             rescue StandardError => e
               Rails.logger.error("#{e.message}\n")
               Rails.logger.error(e.backtrace.join("\n"))
-              transmit(notification: { level: 'error', message: e.message }, 'action': action_name, type: 'error')
+              transmit({ notification: { level: 'error', message: e.message }, action: action_name, type: 'error' })
             end
           end
         end

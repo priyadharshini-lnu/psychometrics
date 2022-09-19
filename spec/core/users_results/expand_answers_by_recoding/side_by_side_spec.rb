@@ -27,23 +27,23 @@ describe ::UsersResults::ExpandAnswersByRecoding do
     create(:assessment, id: 184)
     create(:question, id: 17_157, type: 'SideBySide')
     create(:question_recoding, question_id: 17_157, assessment_id: 184, props: [
-             { 'scale' => 0,
-               'choice' => 0, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
-             { 'scale' => 1,
-               'choice' => 0, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
-             { 'scale' => 0,
-               'choice' => 1, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
-             { 'scale' => 1,
-               'choice' => 1, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
-             { 'scale' => 0,
-               'choice' => 2, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
-             { 'scale' => 1,
-               'choice' => 2, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
-             { 'scale' => 0,
-               'choice' => 3, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
-             { 'scale' => 1,
-               'choice' => 3, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] }
-           ])
+      { 'scale' => 0,
+        'choice' => 0, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
+      { 'scale' => 1,
+        'choice' => 0, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
+      { 'scale' => 0,
+        'choice' => 1, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
+      { 'scale' => 1,
+        'choice' => 1, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
+      { 'scale' => 0,
+        'choice' => 2, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
+      { 'scale' => 1,
+        'choice' => 2, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
+      { 'scale' => 0,
+        'choice' => 3, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] },
+      { 'scale' => 1,
+        'choice' => 3, 'values' => [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }] }
+    ])
   end
 
   it do

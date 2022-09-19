@@ -37,7 +37,7 @@ module Administration
     end
 
     def upload_data_sheet
-      @form = ::Datasheets::DatasheetForm.from_params(params)
+      @form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: 'Datasheet')
       render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
     end
 
@@ -52,6 +52,8 @@ module Administration
       @_resource.set_default_color
     end
 
+    # rubocop:disable Metrics/PerceivedComplexity
+    # rubocop:disable Metrics/AbcSize
     def create
       @_resource = resource_class.new(resource_params)
 
@@ -77,13 +79,14 @@ module Administration
         end
       end
     end
+    # rubocop:enable all
 
     def external_reports
       assessment_ids = params[:assessment_ids].to_s.split(',').compact
       reports = hogan_reports(assessment_ids)
       reports = saville_reports(assessment_ids) if reports.empty?
       reports_array = reports.map do |r|
-        { id: r.id.downcase, name: "#{r.name} - #{r.id}", selected: params[:external_report_id] == r.id.downcase }
+        { id: r.id, name: "#{r.name} - #{r.id}", selected: params[:external_report_id] == r.id }
       end
 
       render json: reports_array
@@ -136,7 +139,7 @@ module Administration
     end
 
     def copy
-      event = ::Reports::CopyReport.call(resource.id)
+      event = ::Reports::CopyReport.call(resource.id, current_user)
       audit! :copy, resource, payload: { source_id: resource.id }
 
       respond_to do |format|
@@ -195,7 +198,7 @@ module Administration
       report_params = params.require(:resource).permit(
         :name, :description, :provider, :owner_id, :mindmill, :icon, :icon_color, :props,
         :remove_icon, :default_language,
-        :poster, :remove_poster, :require_approval,
+        :poster, :remove_poster, :require_approval, :data_only,
         report_family_ids: [], assessment_ids: [],
         hogan_report_setting_attributes: %i[id hogan_report_id _destroy],
         saville_report_setting_attributes: %i[id saville_report_id _destroy]
@@ -235,7 +238,11 @@ module Administration
 
       return [] unless assessment
 
-      Settings.providers.saville.reports.select { |r| assessment[:report_ids].include?(r[:id]) }
+      Settings.providers.saville.reports.select { |r| assessment[:report_ids].include?(r[:id]) }.map do |report|
+        cloned_report = report.dup
+        cloned_report.id.downcase!
+        cloned_report
+      end
     end
   end
 end

@@ -2,7 +2,7 @@
 
 class StrongPasswordValidator < ActiveModel::EachValidator
   # Regex for minimum 8 characters password with alphanumeric and special characters
-  REGEX = /\A(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[[:^alnum:]])/x.freeze
+  REGEX = /\A(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[[:^alnum:]])/x
 
   def validate_each(record, attribute, value)
     unless strong?(value)

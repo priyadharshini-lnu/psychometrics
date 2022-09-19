@@ -7,15 +7,9 @@ import ConditionalDropdown from 'components/ConditionalDropdown'
 
 const menu = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
-  openModal, dimensionId, permissions, onExport, handleRescoreAssessment,
+  permissions, onExport, handleRescoreAssessment,
 }) => (
   <Menu>
-    {permissions.manageRelationships && (
-      <Menu.Item key="manage_relationship">
-        <a onClick={() => openModal('ManageRelationshipsModal')} role="button" tabIndex={-1}>Manage Relationships...</a>
-      </Menu.Item>
-    )}
-    <Menu.Divider />
     {permissions.exportResults && (
       <Menu.Item key="export_results">
         <a
@@ -30,14 +24,6 @@ const menu = ({
     {permissions.exportCompletionStatus && (
       <Menu.Item key="export_completion_status" onClick={() => onExport()}>
         Export Completion Status
-      </Menu.Item>
-    )}
-    <Menu.Divider />
-    {permissions.editDimension && (
-      <Menu.Item key="dimension">
-        <a href={`/administration/dimensions/${dimensionId}/factors`} role="button" tabIndex={-1}>
-          Edit Dimension
-        </a>
       </Menu.Item>
     )}
     <Menu.Divider />
@@ -74,7 +60,7 @@ const menu = ({
 )
 
 export default function ToolsDropdown ({
-  resetCampaign, resetAllNominations, openModal, dimensionId, rescoreAssessment,
+  resetCampaign, resetAllNominations, openModal, rescoreAssessment,
   match: { params: { campaignId, projectId } }, permissions,
   exportCompletionStatuses,
 }) {
@@ -127,7 +113,6 @@ export default function ToolsDropdown ({
         resetAllNominationsWithConfirmation,
         handleRescoreAssessment,
         openModal,
-        dimensionId,
         permissions,
         onExport,
       })}

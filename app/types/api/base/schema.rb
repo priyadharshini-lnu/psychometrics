@@ -87,13 +87,13 @@ module Api
         end
       end
 
-      def self.define_schema(&block)
+      def self.define_schema(&)
         namespace = self.namespace
         Dry::Schema.define do
-          config.messages.load_paths += I18n.load_path
+          config.messages.load_paths += I18n.load_path.filter { |file| file.match(/\.yml$/) }
           config.messages.namespace = namespace
 
-          instance_eval(&block)
+          instance_eval(&)
         end
       end
 

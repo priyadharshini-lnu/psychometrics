@@ -22,7 +22,7 @@ feature 'CRUD User' do
       let(:tenancy) { project.root }
       scenario 'I can create a Client Admin', skip: true do
         visit administration_client_path(tenancy)
-        href = new_step_1_administration_client_client_admins_path(tenancy)
+        href = new_step_one_administration_client_client_admins_path(tenancy)
         find("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']").click
         wait_for_ajax
         fill_in 'prepare_user_email', with: 'romero@gmail.com'
@@ -66,7 +66,7 @@ feature 'CRUD User' do
 
       scenario 'I can create project admin with limit privileges', skip: true do
         visit administration_client_projects_path(project.tte)
-        href = new_step_1_administration_client_project_admins_path(project)
+        href = new_step_one_administration_client_project_admins_path(project)
         find("#client_#{project.id} td .add-icon-box a[href='#{href}']").click
         wait_for_ajax
 
@@ -134,7 +134,7 @@ feature 'CRUD User' do
 
         scenario 'I can create another Client Admin', skip: true do
           visit administration_client_path(tenancy)
-          href = new_step_1_administration_client_client_admins_path(tenancy)
+          href = new_step_one_administration_client_client_admins_path(tenancy)
           expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']")
         end
       end
@@ -144,7 +144,7 @@ feature 'CRUD User' do
 
         scenario 'I cant create another Client Admin', skip: true do
           visit administration_client_path(tenancy)
-          href = new_step_1_administration_client_client_admins_path(tenancy)
+          href = new_step_one_administration_client_client_admins_path(tenancy)
           expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']")
         end
       end

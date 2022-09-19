@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+class Api::V2::Administration::ProfileSettingResource < Api::V2::Administration::BaseResource
+  attributes :update_in, :profile_fields
+
+  has_one :project
+
+  ransack_filters %i[project_id_eq]
+
+  def profile_fields
+    @model.profile_fields.map { |q| ProfileFieldSerializer.new(q).to_h }
+  end
+
+  def profile_fields=(new_fields)
+    new_fields.each do |new_field|
+      field = @model.profile_fields.find_by(question_id: new_field[:question_id])
+      next field.destroy if new_field[:_remove]
+
+      params = new_field.permit(%i[question_id required half_size position])
+      if field
+        field.update!(params)
+      else
+        @model.profile_fields.create(params)
+      end
+    end
+  end
+end
