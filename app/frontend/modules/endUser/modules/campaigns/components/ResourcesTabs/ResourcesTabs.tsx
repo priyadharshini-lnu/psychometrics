@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Tabs } from 'antd'
+import styles from './ResourcesTabs.less'
 import { ResourceList } from '../ResourceList'
 
 const { TabPane } = Tabs
@@ -15,7 +16,7 @@ export const ResourcesTabs = ({
   const [tab, setTab] = useState('assessment')
 
   return (
-    <Tabs defaultActiveKey={tab} className="tabs-row" onChange={setTab}>
+    <Tabs defaultActiveKey={tab} className={styles.tabs} onChange={setTab}>
       <TabPane tab={I18n.t('frontend.assessment')} key="assessment">
         {tab === 'assessment' && children}
       </TabPane>
