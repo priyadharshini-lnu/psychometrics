@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Checkbox, Layout,
+  Col, Row, Typography, Form, Upload, Input, Select, message, Checkbox, Layout, InputNumber,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
@@ -165,23 +165,22 @@ function ProfileComponent ({
                     <Row gutter={24}>
                       <Col xs={24} sm={24} md={12}>
                         <Form.Item name="age" label={I18n.t('profile.age')}>
-                          <Input size="large" />
+                          <InputNumber className={styles.numberInput} size="large" />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
                         <Form.Item name="gender" label={I18n.t('profile.gender')}>
                           <Select size="large">
-                            <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
-                            <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
+                            <Select.Option value="0">{I18n.t('profile.male')}</Select.Option>
+                            <Select.Option value="1">{I18n.t('profile.female')}</Select.Option>
+                            <Select.Option value="2">{I18n.t('profile.not_disclosed')}</Select.Option>
                           </Select>
                         </Form.Item>
                       </Col>
                     </Row>
 
                     <Form.Item name="locale" label={I18n.t('profile.locale')}>
-                      <Select
-                        size="large"
-                      >
+                      <Select size="large">
                         <Select.Option value="en">{I18n.t('languages.en')}</Select.Option>
                         <Select.Option value="ar">{I18n.t('languages.ar')}</Select.Option>
                         <Select.Option value="de">{I18n.t('languages.de')}</Select.Option>

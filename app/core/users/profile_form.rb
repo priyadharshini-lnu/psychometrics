@@ -7,6 +7,9 @@ module Users
     attribute :password, String
     attribute :password_confirmation, String
     attribute :timezone, String
+    attribute :age, Integer
+    attribute :locale, String
+    attribute :gender, String
     attribute :custom_fields, Hash
 
     validates :first_name, :last_name, presence: true

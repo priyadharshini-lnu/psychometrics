@@ -1888,6 +1888,7 @@ en:
     last_name: Last Name
     locale: Locale
     male: Male
+    not_disclosed: Prefer not to disclose
     password: Password
     password_confirmation: Password Confirmation
     success_update: Profile settings updated successfully
