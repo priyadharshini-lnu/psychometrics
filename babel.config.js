@@ -44,14 +44,6 @@ module.exports = function config (api) {
       'babel-plugin-macros',
       '@babel/plugin-syntax-dynamic-import',
       '@babel/plugin-proposal-export-default-from',
-      '@babel/plugin-proposal-optional-chaining',
-      '@babel/plugin-proposal-nullish-coalescing-operator',
-      [
-        '@babel/plugin-proposal-object-rest-spread',
-        {
-          useBuiltIns: true,
-        },
-      ],
       [
         '@babel/plugin-transform-runtime',
         {
