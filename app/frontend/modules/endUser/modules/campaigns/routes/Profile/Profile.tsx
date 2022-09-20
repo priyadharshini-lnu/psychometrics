@@ -171,9 +171,9 @@ function ProfileComponent ({
                       <Col xs={24} sm={24} md={12}>
                         <Form.Item name="gender" label={I18n.t('profile.gender')}>
                           <Select size="large">
-                            <Select.Option value="0">{I18n.t('profile.male')}</Select.Option>
-                            <Select.Option value="1">{I18n.t('profile.female')}</Select.Option>
-                            <Select.Option value="2">{I18n.t('profile.not_disclosed')}</Select.Option>
+                            <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
+                            <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
+                            <Select.Option value="not_disclosed">{I18n.t('profile.not_disclosed')}</Select.Option>
                           </Select>
                         </Form.Item>
                       </Col>
