@@ -6,6 +6,9 @@
   max-width: 900px;
   margin-inline: auto;
   margin-block: @space-12;
+  @media (max-width: @screen-md) {
+    padding: 0 @space-4;
+  }
 }
 
 .form {
@@ -80,6 +83,7 @@
   display: flex;
   align-self: flex-end;
 }
+
 .pageContent {
   background-color: @white;
   overflow-x: hidden;
