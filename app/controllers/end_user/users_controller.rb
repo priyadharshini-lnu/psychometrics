@@ -43,7 +43,7 @@ class EndUser::UsersController < ApplicationController
 
         if campaigns['threesixty']
           json.concat(serializer_campaign(campaigns['threesixty'].map(&:threesixty_campaign),
-                                          Threesixty::CampaignSerializer))
+                                          Threesixty::EndUser::ShortCampaignSerializer))
         end
 
         render json: json

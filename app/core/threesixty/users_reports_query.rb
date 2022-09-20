@@ -11,7 +11,11 @@ module Threesixty
     end
 
     def query
-      UserReport.where(campaign_id: @campaign.campaign_id, user_id: user_ids)
+      user_ids_for_report = @campaign.participants.where(
+        subject_id: user_ids, status: :completed
+      ).pluck(:subject_id).uniq
+
+      UserReport.where(campaign_id: @campaign.campaign_id, user_id: user_ids_for_report)
     end
 
     private

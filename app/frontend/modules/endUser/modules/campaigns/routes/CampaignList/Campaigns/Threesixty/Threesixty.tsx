@@ -8,14 +8,14 @@ import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/comm
 
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { DetailsCard } from 'glint'
-
+import { getTotalProgress } from 'modules/user/modules/campaigns/core/campaign/selectors'
 import styles from './styles.less'
 
 const { I18n } = window
 
 export const Threesixty = ({ campaign }) => {
   const history = useHistory()
-  const totalProgress = round(campaign.completionPercentage)
+  const totalProgress = round(getTotalProgress(campaign))
 
   const handleClick = () => {
     history.push(`/threesixty_campaigns/${campaign.id}`)
