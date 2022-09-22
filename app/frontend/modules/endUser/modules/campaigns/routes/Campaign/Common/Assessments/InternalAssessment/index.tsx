@@ -30,6 +30,8 @@ interface Props {
   campaignExpiryDate: string
   view: string
   disabled: boolean
+  campaignNotStarted: boolean
+  prevCompleted: boolean
 
 }
 const buttonTextData = {
@@ -47,6 +49,8 @@ export const InternalAssessment: React.FC<Props> = ({
   isPartOfTimedCampaign,
   campaignExpiryDate,
   disabled,
+  prevCompleted,
+  campaignNotStarted,
 }) => {
   const history = useHistory()
   const {
@@ -57,6 +61,14 @@ export const InternalAssessment: React.FC<Props> = ({
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLang, setShowLang] = useState(false)
   const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
+  let actionDisabledText = ''
+  if (!prevCompleted) {
+    actionDisabledText = I18n.t('campaign.complete_prev')
+  }
+  if (campaignNotStarted) {
+    actionDisabledText = I18n.t('campaign.begin_campaign_msg')
+  }
+
 
   const handleBeginAssessment = () => {
     if (isPartOfTimedCampaign && campaignExpiryDate && assessmentExtra.timer) {
@@ -154,7 +166,7 @@ export const InternalAssessment: React.FC<Props> = ({
         buttonText={buttonTextData[status]}
         actionDisabled={disabled}
         actionLoading={loading}
-        actionDisabledText={I18n.t('campaign.complete_prev')}
+        actionDisabledText={actionDisabledText}
         handleButtonClick={status === 'not_started' ? handleBeginAssessment : handleContinueAssessment}
         subtitle={(
           <>

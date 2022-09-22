@@ -244,6 +244,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                 campaign={campaign}
                 loginHogan={loginHogan}
                 canNotStartAssessment={canNotStartAssessment}
+                campaignNotStarted={canBeginCampaign || canContinueCampaign}
                 acceptPolicy={acceptPolicy}
                 isTimedCampaign={isTimedCampaign}
                 expiryDate={expiryDate}

@@ -12,6 +12,9 @@ const { Title } = Typography
 const { I18n } = window
 
 const prevAssessmentsCompleted = (userAssessments: UserAssessment[], userAssessment: UserAssessment) => {
+  if (userAssessments.length === 1) {
+    return true
+  }
   const prevs = _.take(userAssessments, _.findIndex(userAssessments, userAssessment))
   return !!prevs.length && _.some(prevs, ua => ua.status !== 'completed')
 }
@@ -36,7 +39,15 @@ const isAnyAssessmentInPreviousGroupInEligible = (campaign, group) => {
 }
 
 export const AssessmentsContainer = ({
-  ungrouped, groups, canNotStartAssessment, campaign, loginHogan, acceptPolicy, isTimedCampaign, expiryDate,
+  ungrouped,
+  groups,
+  canNotStartAssessment,
+  campaign,
+  loginHogan,
+  acceptPolicy,
+  isTimedCampaign,
+  expiryDate,
+  campaignNotStarted,
 }) => (
   <ViewsContainer
     title={I18n.t('campaign_assessment.assessments_heading')}
@@ -50,15 +61,15 @@ export const AssessmentsContainer = ({
         tabCol = 24
         deskCol = 24
       }
+      let prevGroup
       return (
         <>
           {groups.map((group) => {
-            let prevGroup
             const size = group.campaignAssessmentIds.length
-            let prevCompleted = false
+            let prevCompleted = true
             let previousAssessmentIsIneligible = false
             if (group.previousGroupRequired) {
-              prevCompleted = !prevGroupIsCompleted(campaign, prevGroup)
+              prevCompleted = prevGroupIsCompleted(campaign, prevGroup)
               if (isAnyAssessmentInPreviousGroupInEligible(campaign, prevGroup)) {
                 return null
               }
@@ -78,9 +89,9 @@ export const AssessmentsContainer = ({
                 <Row gutter={[16, 16]}>
                   {userAssessments.map((userAssessment) => {
                     const Assessment = Assessments[userAssessment.type]
-                    let isDisabled = canNotStartAssessment || prevCompleted
+                    const isDisabled = canNotStartAssessment || !prevCompleted
                     if (!isDisabled && group.previousAssessmentsRequired) {
-                      isDisabled = prevAssessmentsCompleted(userAssessments, userAssessment)
+                      prevCompleted = prevAssessmentsCompleted(userAssessments, userAssessment)
                       if (previousAssessmentIsIneligible) {
                         return null
                       }
@@ -95,7 +106,9 @@ export const AssessmentsContainer = ({
                           size={size}
                           loginHogan={loginHogan}
                           acceptPolicy={acceptPolicy}
-                          disabled={isDisabled}
+                          disabled={canNotStartAssessment || !prevCompleted}
+                          prevCompleted={prevCompleted}
+                          campaignNotStarted={campaignNotStarted}
                           isPartOfTimedCampaign={isTimedCampaign}
                           campaignExpiryDate={expiryDate}
                         />
@@ -121,6 +134,8 @@ export const AssessmentsContainer = ({
                       loginHogan={loginHogan}
                       acceptPolicy={acceptPolicy}
                       disabled={canNotStartAssessment}
+                      campaignNotStarted={campaignNotStarted}
+                      prevCompleted
                       isPartOfTimedCampaign={isTimedCampaign}
                       campaignExpiryDate={expiryDate}
                     />
