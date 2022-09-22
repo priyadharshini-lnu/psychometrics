@@ -9,6 +9,7 @@ import { Statuses, UserAssessment } from 'modules/user/modules/campaigns/core/us
 import styles from './AssessmentsContainer.less'
 
 const { Title } = Typography
+const { I18n } = window
 
 const prevAssessmentsCompleted = (userAssessments: UserAssessment[], userAssessment: UserAssessment) => {
   const prevs = _.take(userAssessments, _.findIndex(userAssessments, userAssessment))
@@ -37,7 +38,11 @@ const isAnyAssessmentInPreviousGroupInEligible = (campaign, group) => {
 export const AssessmentsContainer = ({
   ungrouped, groups, canNotStartAssessment, campaign, loginHogan, acceptPolicy, isTimedCampaign, expiryDate,
 }) => (
-  <ViewsContainer title="Your Tasks">
+  <ViewsContainer
+    title={I18n.t('campaign_assessment.assessments_heading')}
+    defaultView="grid"
+    viewTypeStorageKey="asessmentListingType"
+  >
     {(view) => {
       let tabCol = 12
       let deskCol = 8
@@ -102,29 +107,28 @@ export const AssessmentsContainer = ({
             )
           })}
           {!!ungrouped.length && (
-            <div className={styles.group}>
-              <Title level={5}>Ungrouped</Title>
-              <Row gutter={[16, 16]}>
-                {ungrouped.map((userAssessment) => {
-                  const Assessment = Assessments[userAssessment.type]
-                  return (
-                    <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
-                      <Assessment
-                        history={history}
-                        view={view}
-                        userAssessment={userAssessment}
-                        loginHogan={loginHogan}
-                        acceptPolicy={acceptPolicy}
-                        disabled={canNotStartAssessment}
-                        isPartOfTimedCampaign={isTimedCampaign}
-                        campaignExpiryDate={expiryDate}
-                      />
-                    </Col>
-                  )
-                })}
-              </Row>
-
-            </div>
+          <div className={styles.group}>
+            <Title level={5}>{I18n.t('campaign_assessment.ungrouped_assessments_heading')}</Title>
+            <Row gutter={[16, 16]}>
+              {ungrouped.map((userAssessment) => {
+                const Assessment = Assessments[userAssessment.type]
+                return (
+                  <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
+                    <Assessment
+                      history={history}
+                      view={view}
+                      userAssessment={userAssessment}
+                      loginHogan={loginHogan}
+                      acceptPolicy={acceptPolicy}
+                      disabled={canNotStartAssessment}
+                      isPartOfTimedCampaign={isTimedCampaign}
+                      campaignExpiryDate={expiryDate}
+                    />
+                  </Col>
+                )
+              })}
+            </Row>
+          </div>
           )}
         </>
       )
