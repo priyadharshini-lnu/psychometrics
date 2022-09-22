@@ -40,7 +40,7 @@ Rails.application.configure do
   }
   config.public_file_server.headers['Access-Control-Allow-Origin'] = '*' if Settings.asset_host.present?
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :terser
+  config.assets.js_compressor = :terser if ENV.fetch('DISABLE_TERSER', 'false') == 'false'
   config.logger = Syslog::Logger.new 'psychometrics'
   # config.assets.css_compressor = :sass
 
