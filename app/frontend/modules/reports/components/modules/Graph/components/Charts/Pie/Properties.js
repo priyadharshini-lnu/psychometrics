@@ -48,6 +48,7 @@ class Properties extends Component {
         return null
       }
     }
+    if (!model.getSourceType()) { return null }
     const seriesFunction = Series[model.getSourceType()].functions
     const funcs = typeof seriesFunction === 'function' ? seriesFunction.call(this, question) : seriesFunction
 
