@@ -213,7 +213,7 @@ const EvaluationComponent = ({
                 ),
           ]}
         />
-        <Row justify="end" className="mtm mrm">
+        <Row justify="end" className="mrm">
           <Col flex="none">
             <StatusDropdown />
           </Col>

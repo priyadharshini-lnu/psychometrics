@@ -113,7 +113,7 @@ const NominationComponent = (props) => {
           onBack={() => props.history.push(`/threesixty_campaigns/${props.match.params.campaignId}`)}
         />
         <Row justify="center">
-          <Col xs={24} lg={22} xl={18} xxl={16}>
+          <Col xs={24} lg={22} xl={20} xxl={14}>
             {hasNominationPermission && evalautionCompletedForSubject && (
             <Alert
               message={I18n.t('threesixty.evaluation_closed_nomination_message')}

@@ -111,7 +111,7 @@ export const NominationForm = (props) => {
                 value={form.attrs.relationshipId}
                 onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
                 placeholder={I18n.t('threesixty.select_relationnship')}
-                className="relationship-select"
+                dropdownMatchSelectWidth={false}
               >
                 <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
                 {relationshipWithoutSelf(relationships, options).map(relation => (
@@ -135,7 +135,7 @@ export const NominationForm = (props) => {
         )}
       <div>
         {hasEvaluations && (
-          <Row justify="end" gutter={8}>
+          <Row className={styles.btnRow} justify="end" gutter={[8, 8]}>
             {isSelf && canSendRequestApprovalEmail && (
             <Col>
               <Button type="link" onClick={handleRequestApproval} disabled={requestApprovalButtonDisabled}>

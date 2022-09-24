@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { useContext, useState } from 'react'
 import {
-  Table, Dropdown, Menu, Button, Row, Popconfirm, Card, Typography,
+  Table, Dropdown, Menu, Button, Row, Popconfirm, Card, Typography, Space,
 } from 'antd'
 import {
   DownOutlined, CheckOutlined, ReloadOutlined, DeleteOutlined, PlusOutlined,
@@ -96,8 +96,10 @@ export const RequirementTable = (props) => {
           overlay={() => StatusMenu(evaluator)}
         >
           <div>
-            { statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
-            <DownOutlined />
+            <Space>
+              { statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
+              <DownOutlined />
+            </Space>
           </div>
         </Dropdown>
       )
@@ -199,7 +201,7 @@ export const RequirementTable = (props) => {
           title={isMobile ? '' : <Text type="secondary" className={styles.columnTitle}>Action</Text>}
           width="5%"
           render={(value) => {
-            if (!value.canRemove || !value.evaluator || !canNominate) { return { props: { colSpan: 0 } } }
+            if (!value.canRemove || !value.evaluator || !canNominate) { return <>N/A</> }
             return (
               <Popconfirm
                 title={I18n.t('threesixty.confirmation_for_nomination_removal')}

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { useState } from 'react'
 import {
-  Menu, Dropdown, List, Collapse, Progress, Modal, Tooltip, Typography, Row, Checkbox,
+  Menu, Dropdown, Progress, Modal, Tooltip, Typography, Row, Checkbox,
 } from 'antd'
 import {
   InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
@@ -31,7 +31,6 @@ const connector = connect((state: any) => ({
   declineEvaluation,
 })
 
-const { Panel } = Collapse
 const { I18n } = window
 const { Title } = Typography
 
@@ -98,11 +97,12 @@ const EvaluationListComponent = ({
   }
 
   const handleAssessmentLinkClick = (e, item, href) => {
-    location.href = href
     if (isEvaluationCompleted(item)) {
       setEditModal(item)
       e.preventDefault()
+      return
     }
+    location.href = href
   }
 
   const EvaluationItem = ({ item }) => {
@@ -148,10 +148,10 @@ const EvaluationListComponent = ({
     )
   }
 
-  const SubjectItem = (item) => {
+  const SubjectItem = ({ item }) => {
     const { user } = item || { user: undefined }
     return (
-      <List.Item>
+      <>
         <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
           <a href="#">
             <Tooltip placement="topLeft" title={user?.email ?? ''}>
@@ -160,20 +160,17 @@ const EvaluationListComponent = ({
             <DownOutlined />
           </a>
         </Dropdown>
-      </List.Item>
+      </>
     )
   }
 
   const ManagedList = ({ title, list }) => (
-    <Collapse className={styles.collapse} bordered={false} defaultActiveKey="panel">
-      <Panel header={title} key="panel">
-        <List
-          size="large"
-          dataSource={list}
-          renderItem={SubjectItem}
-        />
-      </Panel>
-    </Collapse>
+    <CollapseItem
+      title={title}
+      list={list}
+    >
+      {item => <SubjectItem item={item} />}
+    </CollapseItem>
   )
 
   return (

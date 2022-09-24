@@ -79,7 +79,7 @@ const ThreesixtyComponent = ({
       </div>
       )}
       <Row justify="center" className={styles.listContainer}>
-        <Col xs={24} lg={22} xl={18} xxl={16}>
+        <Col xs={24} lg={22} xl={20} xxl={14}>
           <>
             {welcomeMessage && (
             <Card>
