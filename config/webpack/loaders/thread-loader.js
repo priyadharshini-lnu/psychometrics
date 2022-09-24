@@ -8,9 +8,10 @@ module.exports = {
   ],
   use: [
     {
-      loader: 'babel-loader',
+      loader: 'thread-loader',
       options: {
-        cacheDirectory: resolve(__dirname, '..', '..', '..', 'tmp', 'cache', 'webpacker'),
+        poolTimeout: 30000,
+        workers: process.env.THREAD_LOADER_WORKERS,
       },
     },
   ],

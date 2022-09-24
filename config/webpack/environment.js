@@ -9,6 +9,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 // Uncomment to activate bundle analyzer
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
+const threadLoader = require('./loaders/thread-loader')
 const lessLoader = require('./loaders/less')
 const jsTsLoader = require('./loaders/js-ts')
 const svgLoader = require('./loaders/svg')
@@ -61,100 +62,90 @@ if (__DEV__) {
 //   )
 // }
 
-const myCssLoaderOptions = {
-  modules: true,
-  localIdentName: __PROD__ ? '[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
-}
-
-const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
-
-CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
-
+environment.loaders.append('thread-loader', threadLoader)
 environment.loaders.append('less', lessLoader.withModules)
 environment.loaders.append('lessGlobals', lessLoader.withoutModules)
-
 environment.loaders.append('babel', jsTsLoader)
-
 environment.loaders.append('svgr', svgLoader)
 
 loaders.nodeModules.use[0].options.sourceMaps = true
 
 const vendors = [
-  'react',
-  'react-dom',
-  'react-dnd',
-  'redux',
-  'reselect',
-  'react-dnd-html5-backend',
-  'react-dnd-touch-backend',
-  'react-froala-wysiwyg',
-  'froala-editor',
-  'classnames',
-  'prop-types',
-  'react-bootstrap',
-  'react-overlays',
-  'react-select',
-  'axios',
-  'lodash',
-  'redux-logger',
-  'action-cable-react',
-  'moment',
-  'libs/conditions',
-  'libs/library',
-  'video.js',
-  'face-api.js',
-  'd3',
-  'codemirror',
-  'sockjs-client',
-  'mime-db',
-  'esprima',
-  'fbemitter',
-  'ajv',
-  'jsonpath',
+  'node_modules/react',
+  'node_modules/react-dom',
+  'node_modules/react-dnd',
+  'node_modules/redux',
+  'node_modules/reselect',
+  'node_modules/react-dnd-html5-backend',
+  'node_modules/react-dnd-touch-backend',
+  'node_modules/react-froala-wysiwyg',
+  'node_modules/froala-editor',
+  'node_modules/classnames',
+  'node_modules/prop-types',
+  'node_modules/react-bootstrap',
+  'node_modules/react-overlays',
+  'node_modules/react-select',
+  'node_modules/axios',
+  'node_modules/lodash',
+  'node_modules/redux-logger',
+  'node_modules/action-cable-react',
+  'node_modules/moment',
+  'frontend/libs/conditions',
+  'frontend/libs/library',
+  'node_modules/video.js',
+  'node_modules/face-api.js',
+  'node_modules/d3',
+  'node_modules/codemirror',
+  'node_modules/sockjs-client',
+  'node_modules/mime-db',
+  'node_modules/esprima',
+  'node_modules/fbemitter',
+  'node_modules/ajv',
+  'node_modules/jsonpath',
 ]
 
 const vendors2 = [
-  'antd',
-  '@ant-design',
-  'rc-picker',
-  'rc-menu',
-  'rc-tree-select',
-  'rc-table',
-  'rc-tree',
-  'rc-tabs',
-  'rc-select',
-  'rc-animate',
-  'rc-slider',
-  'rc-field-form',
-  'rc-trigger',
-  'rc-input-number',
-  'rc-drawer',
-  'rc-steps',
-  'rc-pagination',
-  'rc-progress',
-  'rc-collapse',
-  'rc-notification',
-  'rc-virtual-list',
-  'rc-mentions',
-  'rc-dialog',
-  'rc-switch',
-  'rc-utils',
-  'rc-cascade',
-  'babel-runtime',
-  'tinycolor2',
-  '@tensorflow/tfjs-core',
-  'io-ts',
-  'fp-ts',
-  'history',
-  'recordrtc',
-  'remarkable',
-  'highcharts',
-  'autolinker',
-  'caniuse-lite',
-  '@sentry',
-  'crypto-js',
-  'rrweb',
-  'interact.js',
+  'node_modules/antd',
+  'node_modules/@ant-design',
+  'node_modules/rc-picker',
+  'node_modules/rc-menu',
+  'node_modules/rc-tree-select',
+  'node_modules/rc-table',
+  'node_modules/rc-tree',
+  'node_modules/rc-tabs',
+  'node_modules/rc-select',
+  'node_modules/rc-animate',
+  'node_modules/rc-slider',
+  'node_modules/rc-field-form',
+  'node_modules/rc-trigger',
+  'node_modules/rc-input-number',
+  'node_modules/rc-drawer',
+  'node_modules/rc-steps',
+  'node_modules/rc-pagination',
+  'node_modules/rc-progress',
+  'node_modules/rc-collapse',
+  'node_modules/rc-notification',
+  'node_modules/rc-virtual-list',
+  'node_modules/rc-mentions',
+  'node_modules/rc-dialog',
+  'node_modules/rc-switch',
+  'node_modules/rc-utils',
+  'node_modules/rc-cascade',
+  'node_modules/babel-runtime',
+  'node_modules/tinycolor2',
+  'node_modules/@tensorflow/tfjs-core',
+  'node_modules/io-ts',
+  'node_modules/fp-ts',
+  'node_modules/history',
+  'node_modules/recordrtc',
+  'node_modules/remarkable',
+  'node_modules/highcharts',
+  'node_modules/autolinker',
+  'node_modules/caniuse-lite',
+  'node_modules/@sentry',
+  'node_modules/crypto-js',
+  'node_modules/rrweb',
+  'node_modules/interact.js',
 ]
 
 environment.config.merge({
