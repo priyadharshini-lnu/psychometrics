@@ -1,0 +1,1 @@
+export { ProfileCardTitle } from './ProfileCardTitle'

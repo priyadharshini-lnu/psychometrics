@@ -4,10 +4,14 @@ module Threesixty
   class CurrentUserSerializer < ActiveModel::Serializer
     attributes :id, :is_manager, :email, :first_name, :last_name, :full_name,
                :is_super_admin, :is_anonym, :permissions, :photo, :timezone, :custom_fields,
-               :age, :gender, :locale
+               :age, :gender, :locale, :profile_completion_percentage, :last_sign_in_at
 
     def is_manager
       true
+    end
+
+    def profile_completion_percentage
+      Users::ProfileCompletion.call!(object)
     end
 
     delegate(*UserProfile::PROFILE_FIELDS, :custom_fields, to: :user_profile)

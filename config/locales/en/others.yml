@@ -1014,6 +1014,12 @@ en:
       assessments: Tasks
       dashboard: Dashboard
       reports: Reports
+    profile:
+      complete_profile_label: Complete Now
+      heading: Complete your Profile
+      last_login_text: 'Last login on :'
+      sub_heading: Complete your full profile information
+      welcome_text: Welcome Back,
     thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel
