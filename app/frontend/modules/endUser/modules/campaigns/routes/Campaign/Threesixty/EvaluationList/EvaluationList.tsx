@@ -7,6 +7,7 @@ import {
   InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
 } from '@ant-design/icons'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import { CollapseItem } from 'glint'
 import { SafeHTML } from 'components/SafeHTML'
@@ -35,9 +36,10 @@ const { I18n } = window
 const { Title } = Typography
 
 const EvaluationListComponent = ({
-  evaluations, managedSubjects, declineEvaluation, options, history, percent, evaluationsCounters,
+  evaluations, managedSubjects, declineEvaluation, options, percent, evaluationsCounters,
   instructions,
 }) => {
+  const history = useHistory()
   const [showHelp, setShowHelp] = useState(false)
   const [editModal, setEditModal] = useState(null)
   const isEvaluationCompleted = item => item.status === STATUSES.COMPLETED
@@ -73,9 +75,8 @@ const EvaluationListComponent = ({
         <Menu.Item
           key={evaluator.id}
           onClick={() => {
-            history.push(`
-            /threesixty_campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approve_evaluation=true&read=true
-            `)
+            // eslint-disable-next-line max-len
+            history.push(`/threesixty_campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approve_evaluation=true&read=true`)
           }}
         >
           {userPresenter.getFullNameWithEmail(evaluator.user)}
@@ -155,9 +156,12 @@ const EvaluationListComponent = ({
         <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
           <a href="#">
             <Tooltip placement="topLeft" title={user?.email ?? ''}>
-              <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
+              <div className={styles.flex}>
+                {userPresenter.selfUserName(item)}
+                {' '}
+                <DownOutlined />
+              </div>
             </Tooltip>
-            <DownOutlined />
           </a>
         </Dropdown>
       </>

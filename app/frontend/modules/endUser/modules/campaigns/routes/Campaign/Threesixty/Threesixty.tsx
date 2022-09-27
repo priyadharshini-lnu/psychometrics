@@ -44,7 +44,7 @@ const connector = connect((state:any) => ({
 })
 
 const ThreesixtyComponent = ({
-  history, instructions, campaign, evaluationsCounters,
+  instructions, campaign, evaluationsCounters,
   nominationsCounters, reportsCounters, totalProgress,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
@@ -96,7 +96,7 @@ const ThreesixtyComponent = ({
               {evaluationsCounters.totalEvaluations !== 0 && !camapaignClosed
                 && (
                   <Col xs={{ span: 24 }} flex={colFlex} style={{ marginTop: 16 }}>
-                    <EvaluationList history={history} percent={evaluationsPercent} />
+                    <EvaluationList percent={evaluationsPercent} />
                   </Col>
                 )}
               {reportsCounters.totalReports !== 0
