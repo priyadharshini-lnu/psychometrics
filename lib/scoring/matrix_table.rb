@@ -13,7 +13,7 @@ module Scoring
           template['scale'] == answer['scale'] && template['choice'] == answer['choice']
         end
         if object
-          values << object['value']
+          values << object['value'] if object['value']
           options << { choice: answer['choice'], value: object['value'] }
         end
       end
