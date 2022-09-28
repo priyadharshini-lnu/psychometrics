@@ -25,7 +25,7 @@ const LoginComponent: React.FC<Props> = ({
       <Flash flash={flash} />
       <form
         className="ant-form ant-form-vertical"
-        action="/users/sign_in"
+        action="/administration"
         method="post"
       >
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
