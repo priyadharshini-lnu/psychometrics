@@ -6,12 +6,12 @@ import {
   Layout, Row, Col, Alert, Button, Result, Typography,
 } from 'antd'
 import {
-  RightOutlined, PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined,
+  PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined,
 } from '@ant-design/icons'
 import { STATUSES } from 'constants/campaign'
 import cs from 'classnames'
 
-import { ProgressStatus } from 'glint'
+import { ProgressStatus, DirectionalArrowIcon } from 'glint'
 import { RootState } from 'modules/user/core/rootReducers'
 import {
   fetchCampaign,
@@ -210,7 +210,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                       >
                         {I18n.t('campaign.begin')}
                         {' '}
-                        <RightOutlined />
+                        <DirectionalArrowIcon />
                       </Button>
                     </>
                   )}
@@ -232,7 +232,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                       >
                         {I18n.t('campaign.continue')}
                         {' '}
-                        <RightOutlined />
+                        <DirectionalArrowIcon />
                       </Button>
                     </>
                   )}

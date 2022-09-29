@@ -4,10 +4,19 @@
 .collapse {
   background-color: @white;
   & > :global(.ant-collapse-item > .ant-collapse-header) {
-    padding-inline: 0px;
+    padding-inline-start: 0px;
   }
   & > :global(.ant-collapse-item > .ant-collapse-header .ant-collapse-arrow) {
     color: var(--ant-primary-color);
     margin-inline-end: @space-2;
+  }
+}
+
+:global(.rtl) {
+  .collapse {
+    & > :global(.ant-collapse-item > .ant-collapse-header .ant-collapse-arrow) {
+      position: initial;
+      transform: none;
+    }
   }
 }

@@ -106,7 +106,7 @@ export const RequirementTable = (props) => {
     }
 
     return (
-      <Row>
+      <Row gutter={[8, 0]}>
         <Button
           size="small"
           type="primary"
@@ -201,14 +201,16 @@ export const RequirementTable = (props) => {
           title={isMobile ? '' : <Text type="secondary" className={styles.columnTitle}>Action</Text>}
           width="5%"
           render={(value) => {
-            if (!value.canRemove || !value.evaluator || !canNominate) { return <>N/A</> }
+            if (!value.canRemove || !value.evaluator || !canNominate) { return null }
             return (
-              <Popconfirm
-                title={I18n.t('threesixty.confirmation_for_nomination_removal')}
-                onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
-              >
-                <DeleteOutlined />
-              </Popconfirm>
+              <div className="ta-e">
+                <Popconfirm
+                  title={I18n.t('threesixty.confirmation_for_nomination_removal')}
+                  onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
+                >
+                  <DeleteOutlined />
+                </Popconfirm>
+              </div>
             )
           }}
         />

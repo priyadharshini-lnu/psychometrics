@@ -19,3 +19,11 @@
     padding-block-end: @space-2;
   }
 }
+
+:global(.rtl) {
+  & .card {
+    & :global(.ant-card-head-title):before {
+      right: 0;
+    }
+  }
+}
