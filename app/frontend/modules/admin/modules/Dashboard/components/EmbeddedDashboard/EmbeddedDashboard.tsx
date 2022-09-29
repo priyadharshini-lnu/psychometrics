@@ -45,9 +45,18 @@ export const EmbeddedDashboard: React.FC<Props> = ({
         customLayout: {
           displayOption: pbi.models.DisplayOption.FitToPage,
         },
+        visualSettings: {
+          visualHeaders: [
+            {
+              settings: {
+                visible: false,
+              },
+            },
+          ],
+        },
         panes: {
           filters: {
-            visible: true,
+            visible: false,
           },
           pageNavigation: {
             visible: true,
