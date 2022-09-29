@@ -68,11 +68,8 @@ module UserScopes
         Membership.roles[role]
       end
 
-      joins(:memberships).
-        where(users: { role: user_roles }).
-        or
-      User.joins(:memberships.
-        where(memberships: { role: membership_roles_indexes }))
+      joins(:memberships).where(users: { role: user_roles }).
+        or(User.joins(:memberships).where(memberships: { role: membership_roles_indexes }))
     }
 
     scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
