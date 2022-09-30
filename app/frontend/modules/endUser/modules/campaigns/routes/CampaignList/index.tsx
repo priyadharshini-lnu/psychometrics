@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import {
   Col, Row, Typography, Layout, Card,
 } from 'antd'
+import moment from 'moment'
 
 import { PageHeader } from 'glint'
 import { ProfileCompletion } from 'modules/endUser/modules/campaigns/components/ProfileCompletion'
@@ -29,6 +30,7 @@ const { Content } = Layout
 const mapStateToProps = (state: RootState) => ({
   campaigns: state.campaigns.campaigns,
   profileCompletionPercentage: state.currentUser.profileCompletionPercentage,
+  profileLastUpdatedAt: state.currentUser.updatedAt,
 })
 
 const mapDispatchToProps = {
@@ -47,6 +49,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   loginHogan,
   acceptPolicy,
   profileCompletionPercentage,
+  profileLastUpdatedAt,
 }) => {
   const history = useHistory()
 
@@ -59,6 +62,10 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   }
 
   const isProfileComplete = profileCompletionPercentage === 100
+  const profileCardSubHeading = isProfileComplete
+    ? (profileLastUpdatedAt
+      && `${I18n.t('campaign.profile.last_updated_text')} ${moment(profileLastUpdatedAt).format('ll')}`)
+    : I18n.t('campaign.profile.sub_heading')
 
   return (
     <>
@@ -72,20 +79,17 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
           <Row gutter={[32, 32]}>
             <Col span={24}>
               <Card
-                bodyStyle={{ display: isProfileComplete ? 'none' : 'block' }}
                 title={(<ProfileCardTitle />)}
                 className={styles.profileCard}
                 bordered={false}
               >
-                {!isProfileComplete
-                  && (
-                  <ProfileCompletion
-                    title={I18n.t('campaign.profile.heading')}
-                    subTitle={I18n.t('campaign.profile.sub_heading')}
-                    completionPercent={profileCompletionPercentage}
-                    handleComplete={handleProfileCompletion}
-                  />
-                  )}
+                <ProfileCompletion
+                  title={isProfileComplete
+                    ? I18n.t('campaign.profile.complete_heading') : I18n.t('campaign.profile.incomplete_heading')}
+                  subTitle={profileCardSubHeading}
+                  completionPercent={profileCompletionPercentage}
+                  handleComplete={handleProfileCompletion}
+                />
               </Card>
             </Col>
             <Col span={24}>

@@ -32,6 +32,7 @@ const ProfileCardTitleComponent: FC<Props> = ({ currentUser }) => (
         </Title>
       </Space>
     </Col>
+    {currentUser.lastSignInAt && (
     <Col flex="auto" className={styles.lastLogin}>
       <Text>
         {I18n.t('campaign.profile.last_login_text')}
@@ -39,6 +40,7 @@ const ProfileCardTitleComponent: FC<Props> = ({ currentUser }) => (
         {moment(currentUser.lastSignInAt).format('ll')}
       </Text>
     </Col>
+    )}
   </Row>
 )
 

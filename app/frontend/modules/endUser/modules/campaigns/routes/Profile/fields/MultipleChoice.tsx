@@ -1,7 +1,6 @@
 
 import React, { FC } from 'react'
 import { Select, Radio, Checkbox } from 'antd'
-import cs from 'classnames'
 import _ from 'lodash'
 import styles from './styles.less'
 
@@ -40,7 +39,6 @@ const MultipleOptions = ({
         const choice = _.includes((value ?? defaultValue), choiceId.toString())
         return (
           <label className={`${styles.label}`}>
-            <span className={cs('fa fa-check', styles.checkIcon)} />
             <Checkbox
               type="checkbox"
               name={`${id}`}
@@ -76,7 +74,6 @@ export const MultipleChoice: FC<Props> = ({
           const choice = +(value ?? defaultValue) === choiceId
           return (
             <label className={`${styles.label}`}>
-              <span className={cs('fa fa-check', styles.checkIcon)} />
               <Radio
                 type="radio"
                 name={`${id}`}

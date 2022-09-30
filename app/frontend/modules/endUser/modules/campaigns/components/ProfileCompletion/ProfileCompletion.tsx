@@ -23,12 +23,20 @@ export const ProfileCompletion:FC<Props> = ({
     <Col span={18}>
       <Title level={5}>{title}</Title>
       <Space size="middle" direction="vertical">
-        <Text>{subTitle}</Text>
-        <Button type="primary" onClick={handleComplete}>
-          {I18n.t('campaign.profile.complete_profile_label')}
-          {' '}
-          <DirectionalArrowIcon />
-        </Button>
+        {subTitle && <Text>{subTitle}</Text>}
+        {completionPercent === 100 ? (
+          <Button type="link" className={styles.editLink} onClick={handleComplete}>
+            {I18n.t('campaign.profile.edit_profile_label')}
+            {' '}
+          </Button>
+        )
+          : (
+            <Button type="primary" onClick={handleComplete}>
+              {I18n.t('campaign.profile.complete_profile_label')}
+              {' '}
+              <DirectionalArrowIcon />
+            </Button>
+          )}
       </Space>
     </Col>
     <Col span={6} className={styles.progressCol}>
