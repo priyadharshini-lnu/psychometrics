@@ -8,13 +8,13 @@ import {
 import { ArrowLeftOutlined, ArrowRightOutlined, ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
+import { Language } from 'modules/endUser/modules/campaigns/components/Language'
 import { PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext } from 'glint'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { isInsideIframe } from 'utils/isInsideIframe'
 import store from 'modules/user/store'
 import { ResourcesTabs } from 'modules/endUser/modules/campaigns/components/ResourcesTabs'
-import LangDropdown from 'components/LangDropdown'
 import { PageContentSkeleton } from 'modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import {
@@ -46,8 +46,6 @@ type UserAssessmentProps = PropsFromRedux & RouteComponentProps<Params>
 
 const { Content } = Layout
 const { I18n } = window
-const locales = I18n.availableLocales
-const current = I18n.locale
 
 const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   userAssessment: {
@@ -121,7 +119,12 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             )}
             {availableTranslations
               && availableTranslations.length > 1
-              && <LangDropdown locales={locales} current={current} />
+              && (
+              <Language
+                selectedLanguage={selectedLanguage}
+                availableTranslations={availableTranslations || []}
+              />
+              )
             }
           </Space>
         </Col>
