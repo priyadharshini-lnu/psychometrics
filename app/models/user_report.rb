@@ -79,4 +79,12 @@ class UserReport < ApplicationRecord
   def hogan_report_id
     report.hogan_report_setting.hogan_report_id
   end
+
+  def details_to_log
+    {
+      user_email: user.email,
+      user_name: user.decorate.full_name,
+      report_name: report.name
+    }
+  end
 end
