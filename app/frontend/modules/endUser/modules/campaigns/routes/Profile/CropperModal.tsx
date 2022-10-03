@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Modal } from 'antd'
 import { FixedCropperRef, FixedCropper, ImageRestriction } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
@@ -12,6 +12,11 @@ export function CropperModal ({
     setLoading(true)
     onCrop(cropperRef.current?.getCanvas())
   }
+
+  useEffect(() => {
+    setLoading(false)
+  }, [show])
+
   return (
     <Modal
       centered
