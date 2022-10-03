@@ -1627,7 +1627,7 @@ en:
     manage: Manage
     'no': 'No'
     passwordSetting:
-      update_success: Password settings successfull updated
+      update_success: Security settings successfully updated
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
       refresh: Refresh
