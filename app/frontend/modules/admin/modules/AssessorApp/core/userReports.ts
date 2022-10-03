@@ -33,10 +33,12 @@ interface UserReportDetail extends t.TypeOf<typeof UserReportDetailTR> {
 export type State = {
   list: UserReport[],
   current: UserReportDetail,
+  externalReport: ExternalReportDetails,
 }
 
 const defaultState: State = {
   list: [],
+  externalReport: {} as ExternalReportDetails,
   current: {
     loaded: false,
     user: { id: undefined, email: '' },
@@ -80,6 +82,27 @@ export const download = (campaignId: number, id: number, params) => ({
   },
 })
 
+const ExternalReportDetailsTR = t.type({
+  id: t.number,
+  userId: t.number,
+  reportName: t.string,
+  userEmail: t.string,
+  pdfUrl: t.string,
+  canDownloadReport: t.boolean,
+})
+type ExternalReportDetails = t.TypeOf<typeof ExternalReportDetailsTR>
+export const getExternalReport = (state: RootState) => _.get(get(state), ['externalReport'])
+type FetchExternalReportDetailsType = ApiActionResponse<ExternalReportDetails>
+export const FETCH_EXTERNAL_REPORT_DETAILS = 'campaigns/userReports/FETCH_EXTERNAL_REPORT_DETAILS'
+export const fetchExternalReportDetails = (campaignId: number, id: number) => ({
+  type: FETCH_EXTERNAL_REPORT_DETAILS,
+  request: {
+    url: `/assessors/campaigns/${campaignId}/user_reports/${id}`,
+    responseType: ExternalReportDetailsTR,
+  },
+})
+
+
 const HANDLERS = {
   [FETCH_SINGLE_USER]: (state: State, { response }: ApiActionResponse<FetchSingle>) => (
     { ...state, list: response.userReports }),
@@ -93,6 +116,10 @@ const HANDLERS = {
       moduleOverrides: action.response.module_overrides,
       loaded: true,
     },
+  }),
+  [FETCH_EXTERNAL_REPORT_DETAILS]: (state: State, action: FetchExternalReportDetailsType) => ({
+    ...state,
+    externalReport: action.response,
   }),
 }
 

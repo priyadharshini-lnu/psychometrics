@@ -6,10 +6,6 @@ module Assessors
       @user.is?(:assessor)
     end
 
-    def download?
-      @user.is?(:assessor)
-    end
-
     def pdf_preview?
       @user.is?(:assessor)
     end

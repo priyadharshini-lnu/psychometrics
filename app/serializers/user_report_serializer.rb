@@ -2,7 +2,7 @@
 
 class UserReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
-             :approved
+             :approved, :permissions
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
@@ -43,6 +43,19 @@ class UserReportSerializer < ActiveModel::Serializer
 
   def module_overrides
     TextModuleOverride.where(user_report_id: object.id)
+  end
+
+  def permissions
+    GetPermissionsHash.call!(
+      Administration::UserReportPolicy,
+      current_user,
+      object,
+      ['download'],
+      {
+        project_id: object.campaign.project_id,
+        campaign_id: object.campaign_id
+      }
+    )
   end
 
   private

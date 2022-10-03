@@ -23,6 +23,7 @@
 - sms_invites_manage_id = dom_id(u, :sms_invites_manage)
 
 - results_view_report_id = dom_id(u, :results_view_report)
+- results_download_report_id = dom_id(u, :results_view_report)
 - results_report_data_id = dom_id(u, :results_report_data)
 - results_raw_responses_id = dom_id(u, :results_raw_responses)
 - results_scores_id = dom_id(u, :results_scores)
@@ -124,6 +125,11 @@ table.table.grants-table
               = check_box_tag 'resource[grants_attributes][data][results][]',
                       'view_report', resource.has_grant?(:results, :view_report), id: results_view_report_id
               | View Report
+          - if policy(:membership).manage_grants_for_action?('results', 'download_report', project: project)
+            label.text-nowrap
+              = check_box_tag 'resource[grants_attributes][data][results][]',
+                      'download_report', resource.has_grant?(:results, :download_report), id: results_download_report_id
+              | Download Report
           - if policy(:membership).manage_grants_for_action?('results', 'report_data', project: project)
             label.text-nowrap
               = check_box_tag 'resource[grants_attributes][data][results][]',

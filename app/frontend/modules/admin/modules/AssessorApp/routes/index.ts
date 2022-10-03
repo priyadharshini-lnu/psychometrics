@@ -3,6 +3,7 @@ import UserList from './UserList'
 import UserDetails from './UserDetails'
 import Evaluation from './Evaluation'
 import ReportPreview from './ReportPreview'
+import { ExternalReportPreview } from './ExternalReportPreview'
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/campaigns/:campaignId/user_reports/:id',
     component: ReportPreview,
+  },
+  {
+    path: '/campaigns/:campaignId/external_user_report/:id',
+    component: ExternalReportPreview,
   },
   {
     path: '/campaigns/:campaignId/evaluations/:userId',

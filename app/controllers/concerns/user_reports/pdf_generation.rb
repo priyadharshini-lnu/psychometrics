@@ -16,6 +16,10 @@ module UserReports::PdfGeneration
 
     respond_to do |format|
       format.json do
+        if resource.external_report?
+          return render json: resource, serializer: Administration::ExternalUserReportSerializer
+        end
+
         render json: resource, report: resource.report,
               results: UserReports::GroupedResultsByAssessment.call!(resource),
               piped_text_context: {},

@@ -5,6 +5,7 @@ import UsersAssessmentsReports
 import AssessorsDetails
   from 'modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
 import ReportPreview from 'modules/admin/modules/campaigns/routes/ReportPreview'
+import { ExternalReportPreview } from 'modules/admin/modules/campaigns/routes/ExternalReportPreview'
 
 export const routes = [
   {
@@ -26,6 +27,10 @@ export const routes = [
   {
     path: '/:projectId/new_campaigns/:campaignId/user_reports/:id',
     component: ReportPreview,
+  },
+  {
+    path: '/:projectId/new_campaigns/:campaignId/external_user_report/:id',
+    component: ExternalReportPreview,
   },
   {
     path: '/:projectId/new_campaigns/:campaignId',

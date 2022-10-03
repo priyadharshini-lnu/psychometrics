@@ -1,0 +1,118 @@
+import React, { useEffect, FC, useState } from 'react'
+import {
+  Layout, Button, Row, Col, PageHeader, Spin, Space,
+} from 'antd'
+import { ArrowLeftOutlined, DownloadOutlined } from '@ant-design/icons'
+import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import { useParams } from 'react-router-dom'
+import { connect, ConnectedProps } from 'react-redux'
+import {
+  fetchExternalReportDetails, FETCH_EXTERNAL_REPORT_DETAILS, getExternalReport,
+} from 'modules/admin/modules/campaigns/core/userReports'
+import { RootState } from 'modules/admin/core/rootReducers'
+import { isRequestInProgress } from 'modules/admin/core/request'
+import { getFeatures } from 'core/config'
+import { PDFViewer } from 'components/PDFViewer'
+
+const connecter = connect((state: RootState) => ({
+  userReport: getExternalReport(state),
+  reportLoadingInProgress: isRequestInProgress(state, FETCH_EXTERNAL_REPORT_DETAILS),
+  features: getFeatures(state),
+}), {
+  fetchExternalReportDetails,
+})
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux
+
+const { Content } = Layout
+const { I18n } = window
+
+const ExternalReportPreviewComponent: FC<Props> = ({
+  fetchExternalReportDetails, userReport, reportLoadingInProgress,
+}) => {
+  const [pdfLoadingComplete, setPdfLoadingComplete] = useState(false)
+  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const parsedCampaignId = parseInt(campaignId, 10)
+  const parsedUserReportId = parseInt(id, 10)
+  useEffect(() => {
+    fetchExternalReportDetails(parsedCampaignId, parsedUserReportId)
+  }, [])
+
+  return (
+    <div>
+      <Layout>
+        <Content className="fluid-container">
+          <Breadcrumb
+            request={{
+              fields: ['project', 'campaign', 'client'],
+              data: {
+                campaignId: parsedCampaignId,
+              },
+            }}
+            crumbs={[{
+              link: () => '/administration',
+              label: () => I18n.t('administration.clients.tenancies'),
+            }, {
+              link: state => `/administration/clients/${state.client.id}/projects`,
+              label: state => state.client.name,
+            }, {
+              link: state => `/administration/projects/${state.project.id}/new_campaigns`,
+              label: state => state.project.name,
+            }, {
+              link: state => `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
+              label: state => state.campaign?.name,
+            }, {
+              link: state => (reportLoadingInProgress
+                ? ''
+                // eslint-disable-next-line max-len
+                : `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}/users/${userReport.userId}`
+              ),
+              label: () => userReport.userEmail,
+            }, {
+              label: () => userReport.reportName,
+            }]}
+          />
+          <PageHeader
+            ghost={false}
+            title={(
+              <Space>
+                <span>{I18n.t('user_reports.preview_report')}</span>
+                {!pdfLoadingComplete && <Spin />}
+              </Space>
+              )}
+            className="page-header"
+            backIcon={(
+              <div>
+                <ArrowLeftOutlined />
+              </div>
+              )}
+            extra={userReport.canDownloadReport ? [
+              <Button href={userReport.pdfUrl} target="_blank" icon={<DownloadOutlined />}>
+                {I18n.t('common.text.download')}
+              </Button>,
+            ] : []}
+          >
+            <Row justify="space-between">
+              <Col flex={1}>
+                <Row justify="center">
+                  <Col>
+                    {userReport.pdfUrl
+                        && (
+                        <PDFViewer
+                          fileUrl={userReport.pdfUrl}
+                          onLoadingComplete={() => setPdfLoadingComplete(true)}
+                        />
+                        )}
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+
+          </PageHeader>
+        </Content>
+      </Layout>
+    </div>
+  )
+}
+
+export const ExternalReportPreview = connecter(ExternalReportPreviewComponent)

@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Dropdown, Menu,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, Dropdown, Menu,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
@@ -9,11 +9,9 @@ import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { useParams, useLocation, useHistory } from 'react-router-dom'
 import {
-  fetchSingle as fetchReport, getCurrent, download, DOWNLOAD, asyncDownload,
+  fetchSingle as fetchReport, getCurrent,
 } from 'modules/admin/modules/AssessorApp/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
-import { getFeatures } from 'core/config'
 import styles from './styles.less'
 
 const { Content } = Layout
@@ -21,19 +19,15 @@ const { I18n } = window
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
-  downloadInProgress: isRequestInProgress(state, DOWNLOAD),
-  features: getFeatures(state),
 }), {
   fetchReport,
-  download,
-  asyncDownload,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const ReportPreview: FC<Props> = ({
-  userReport, fetchReport, download, downloadInProgress, features, asyncDownload,
+  userReport, fetchReport,
 }) => {
   const location = useLocation()
   const history = useHistory()
@@ -79,15 +73,6 @@ const ReportPreview: FC<Props> = ({
   }
 
   const { user } = userReport
-
-  const onReportDownloadClick = () => {
-    if (features.url_to_pdf_lambda) {
-      asyncDownload(parsedCampaignId, parsedId)
-      message.success(I18n.t('user_reports.messages.async_generation'))
-    } else {
-      download(parsedCampaignId, parsedId, { skipLogic })
-    }
-  }
 
   return (
     <Layout>
@@ -142,14 +127,6 @@ const ReportPreview: FC<Props> = ({
                 </Space>
               </Button>
             </Dropdown>,
-            <Button
-              key="download"
-              onClick={onReportDownloadClick}
-              loading={downloadInProgress}
-              disabled={downloadInProgress}
-            >
-              {I18n.t('common.text.download')}
-            </Button>,
           ]}
         >
           <Row justify="center">
