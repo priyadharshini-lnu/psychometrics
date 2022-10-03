@@ -14,15 +14,15 @@ interface Props {
     }
   }
   value: string | string[]
+  locked: boolean
   defaultValue?: string
   onChange: (value:string | string[]) => void
 }
 
 const MultipleOptions = ({
-  field, value, onChange, defaultValue,
+  field, value, onChange, defaultValue, locked,
 }) => {
   const {
-    id,
     props: { choices },
   } = field
 
@@ -41,7 +41,7 @@ const MultipleOptions = ({
           <label className={`${styles.label}`}>
             <Checkbox
               type="checkbox"
-              name={`${id}`}
+              disabled={locked}
               value={choiceId}
               checked={choice}
               onChange={change}
@@ -57,7 +57,7 @@ const MultipleOptions = ({
 }
 
 export const MultipleChoice: FC<Props> = ({
-  field, value, onChange, defaultValue,
+  field, value, onChange, defaultValue, locked,
 }) => {
   const {
     id,
@@ -75,6 +75,7 @@ export const MultipleChoice: FC<Props> = ({
           return (
             <label className={`${styles.label}`}>
               <Radio
+                disabled={locked}
                 type="radio"
                 name={`${id}`}
                 value={choiceId}
@@ -92,13 +93,22 @@ export const MultipleChoice: FC<Props> = ({
   }
 
   if (field.props.type === 'MultipleAnswer') {
-    return <MultipleOptions field={field} value={value} onChange={onChange} defaultValue={defaultValue} />
+    return (
+      <MultipleOptions
+        locked={locked}
+        field={field}
+        value={value}
+        onChange={onChange}
+        defaultValue={defaultValue}
+      />
+    )
   }
 
   if (field.props.type === 'Dropdown') {
     return (
       <Select
         size="large"
+        disabled={locked}
         onChange={value => onChange(value)}
         value={`${value ?? defaultValue ?? ''}`}
       >

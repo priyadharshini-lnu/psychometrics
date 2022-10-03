@@ -13,6 +13,7 @@ export const ProfileFieldTR = t.type({
   required: t.boolean,
   halfSize: t.boolean,
   position: t.number,
+  locked: t.boolean,
 })
 
 export const ProfileSettingsTR = t.intersection([
@@ -27,6 +28,8 @@ export const ProfileSettingsTR = t.intersection([
         id: t.string,
       }),
       t.undefined]),
+    requiredDefaultFields: t.type({}),
+    lockedDefaultFields: t.type({}),
   }),
 ])
 

@@ -11,13 +11,14 @@ interface Props {
       choicesTexts: string[]
     }
   }
+  locked: boolean
   value: string
   defaultValue: string
   onChange: (value:string) => void
 }
 
 export const TextEntry: FC<Props> = ({
-  field, value, onChange, defaultValue,
+  field, value, onChange, defaultValue, locked,
 }) => {
   const change = (e) => {
     onChange(e.currentTarget.value)
@@ -34,7 +35,7 @@ export const TextEntry: FC<Props> = ({
   if (field.props.type === 'MultiLine') {
     return (
       <div>
-        <Input.TextArea rows={4} value={value ?? defaultValue} onChange={change} />
+        <Input.TextArea disabled={locked} rows={4} value={value ?? defaultValue} onChange={change} />
       </div>
     )
   }

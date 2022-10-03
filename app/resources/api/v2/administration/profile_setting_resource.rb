@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ProfileSettingResource < Api::V2::Administration::BaseResource
-  attributes :update_in, :profile_fields
+  attributes :update_in, :profile_fields, :required_default_fields, :locked_default_fields
 
   has_one :project
 
@@ -16,7 +16,7 @@ class Api::V2::Administration::ProfileSettingResource < Api::V2::Administration:
       field = @model.profile_fields.find_by(question_id: new_field[:question_id])
       next field.destroy if new_field[:_remove]
 
-      params = new_field.permit(%i[question_id required half_size position])
+      params = new_field.permit(%i[question_id required half_size position locked])
       if field
         field.update!(params)
       else

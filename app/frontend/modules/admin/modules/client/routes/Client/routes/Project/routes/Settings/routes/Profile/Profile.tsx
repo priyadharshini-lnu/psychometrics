@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
   Row, Col, Form, Button, Select, message,
 } from 'antd'
+import humps from 'humps'
 import { useResources } from 'hooks/useResources/useResources'
 import { BaseMeta } from 'hooks/useResources/interfaces'
 import { useParams } from 'react-router-dom'
@@ -10,6 +11,7 @@ import {
   ProfileSettings as ProfileSettingsType,
   QuestionField as QuestionFieldType,
 } from 'modules/admin/modules/client/core/profileSettings'
+import { DefaultFields } from './DefaultFields'
 import { Fields } from './Fields'
 import styles from './Profile.less'
 
@@ -47,8 +49,28 @@ export const Profile: React.FC<{}> = () => {
     }])
   }
 
+  const updateRequiredSettings = (data) => {
+    setData([{
+      ...profileSettings,
+      requiredDefaultFields: data,
+    }])
+  }
+
+  const updateLockedSettings = (data) => {
+    setData([{
+      ...profileSettings,
+      lockedDefaultFields: data,
+    }])
+  }
+
   const onFinish = (values) => {
-    updateResource({ id: profileSettings.id, ...values, profileFields: profileSettings.profileFields }).then(() => {
+    updateResource({
+      id: profileSettings.id,
+      ...values,
+      profileFields: profileSettings.profileFields,
+      requiredDefaultFields: profileSettings.requiredDefaultFields,
+      lockedDefaultFields: profileSettings.lockedDefaultFields,
+    }).then(() => {
       message.success(I18n.t('profile.success_update'))
     })
   }
@@ -63,6 +85,7 @@ export const Profile: React.FC<{}> = () => {
         required: false,
         halfSize: false,
         position: profileSettings.profileFields.length + 1,
+        locked: false,
       }],
     }])
   }
@@ -117,6 +140,12 @@ export const Profile: React.FC<{}> = () => {
               </Select.Option>
             </Select>
           </Form.Item>
+          <DefaultFields
+            requiredFields={humps.decamelizeKeys(profileSettings.requiredDefaultFields)}
+            lockedFields={humps.decamelizeKeys(profileSettings.lockedDefaultFields)}
+            onChangeRequired={updateRequiredSettings}
+            onChangeLocked={updateLockedSettings}
+          />
           <Fields
             profileFields={profileSettings.profileFields}
             questions={meta.fieldQuestions}

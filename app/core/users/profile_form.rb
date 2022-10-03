@@ -19,6 +19,7 @@ module Users
     validates_confirmation_of :password, unless: -> { password.blank? }
 
     validate :validate_project_fields, if: :project?
+    validate :validate_default_fields, if: :project?
 
     def password_length
       return unless password
@@ -33,6 +34,14 @@ module Users
         if (field.required || field.question.required_validation['enabled']) &&
            custom_fields[field.question_id.to_s.to_sym].blank?
           errors.add(field.question.name, 'required')
+        end
+      end
+    end
+
+    def validate_default_fields
+      project.profile_setting.required_default_fields.each do |field, value|
+        if value && !project.profile_setting.locked_default_fields[field] && send(field).blank?
+          errors.add(field, 'required')
         end
       end
     end

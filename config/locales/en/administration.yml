@@ -3167,11 +3167,14 @@ en:
         save_changes: Save Changes
         sub_domain_label: Sub Domain
       profile_settings:
+        age: Age
+        locked: Locked
         month:
           one: "{{count}} Month"
           other: "{{count}} Months"
         months: Months
         never: Never
+        required: Required
         update_in: Notify Profile Update in
         year: Year
       webhook_settings:

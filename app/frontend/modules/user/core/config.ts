@@ -11,6 +11,8 @@ export const defaultState = {
   },
   profile: {
     fields: [],
+    requiredFields: {},
+    lockedFields: {},
   },
 }
 

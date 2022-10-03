@@ -9,7 +9,7 @@ module Threesixty::InitialState
     end
   end
 
-  def set_init_state # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def set_init_state # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
     @current_project ||= GetProjectBySubdomain.call!(request.subdomain)
 
     @init_state = {
@@ -35,7 +35,9 @@ module Threesixty::InitialState
         profile: {
           fields: @current_project.profile_setting&.profile_fields&.map do |q|
             ProfileFieldSerializer.new(q).to_h
-          end
+          end,
+          requiredFields: @current_project.profile_setting&.required_default_fields || {},
+          lockedFields: @current_project.profile_setting&.locked_default_fields || {}
         },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,
