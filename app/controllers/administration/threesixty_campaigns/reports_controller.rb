@@ -27,6 +27,7 @@ module Administration
               payload: { user_email: @user_report.user.email }
           end
           format.pdf do
+            @pdf_export = true
             audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign,
               payload: { user_email: @user_report.user.email }
             render :export, formats: :html, layout: 'pdf', content_type: 'text/html'
