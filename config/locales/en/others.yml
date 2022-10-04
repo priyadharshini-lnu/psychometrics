@@ -918,7 +918,7 @@ en:
     otp:
       code: Code
       code_placeholder: One Time Password
-      description: Please enter the OTP, you have received at your registered email address
+      description: Please enter the OTP that was sent to your registered email address.
       resend: Resend OTP
       submit: Verify
       title: One-Time Password
