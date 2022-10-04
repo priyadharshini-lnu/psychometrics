@@ -883,7 +883,9 @@ CREATE TABLE public.campaigns (
     options jsonb DEFAULT '{}'::jsonb,
     start_date timestamp without time zone,
     end_date timestamp without time zone,
-    uniq_code character varying
+    uniq_code character varying,
+    encrypted_pdf_password character varying,
+    encrypted_pdf_password_iv character varying
 );
 
 
@@ -9750,6 +9752,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220729103746'),
 ('20220809130239'),
 ('20220829100916'),
-('20220927143437');
+('20220927143437'),
+('20220929123807');
 
 

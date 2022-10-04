@@ -50,7 +50,8 @@ module UserReports
         output_file_path: "#{options[:file_path] || user_report.pdf.store_dir}/#{report_file_name}",
         webhook_message: webhook_message,
         async: options[:async],
-        low_priority: options[:low_priority]
+        low_priority: options[:low_priority],
+        pdf_password: campaign.pdf_password
       )
       Rails.logger.info(
         log_type: 'UserReports::GeneratePdf',

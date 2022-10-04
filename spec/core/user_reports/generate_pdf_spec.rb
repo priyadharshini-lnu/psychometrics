@@ -126,7 +126,8 @@ describe UserReports::GeneratePdf do
             file_path: "uploads/user_report/pdf/#{user_report.id}/#{report_file_name}",
             update_record: true
           },
-          async: nil
+          async: nil,
+          pdf_password: user_report.campaign.pdf_password
         )
       )
 
