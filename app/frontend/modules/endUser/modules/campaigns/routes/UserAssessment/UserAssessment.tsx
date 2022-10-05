@@ -89,7 +89,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   return (
     <>
       <GlintPageHeader>
-        <Col flex="auto" className="ta-e">
+        <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
             {remainingCampaignTime && (
             <CountdownTimer
@@ -117,7 +117,10 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               onFinish={() => markAssessmentTimedOut(preview)}
             />
             )}
-            {availableTranslations
+          </Space>
+        </Col>
+        <Col span={4} className="ta-e">
+          {availableTranslations
               && availableTranslations.length > 1
               && (
               <Language
@@ -126,7 +129,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               />
               )
             }
-          </Space>
         </Col>
       </GlintPageHeader>
       <Content className={styles.pageContent}>

@@ -106,7 +106,7 @@ export const RequirementTable = (props) => {
     }
 
     return (
-      <Row gutter={[8, 0]}>
+      <Space>
         <Button
           size="small"
           type="primary"
@@ -125,7 +125,7 @@ export const RequirementTable = (props) => {
         >
           {I18n.t('threesixty.deny')}
         </Button>
-      </Row>
+      </Space>
     )
   }
 
@@ -179,7 +179,7 @@ export const RequirementTable = (props) => {
         <Column
           width="50%"
           title={isMobile ? '' : (
-            <Text type="secondary" className={styles.columnTitle}>Name</Text>
+            <Text type="secondary" className={styles.columnTitle}>{I18n.t('threesixty.name_label')}</Text>
           )}
           key="title"
           render={renderRequirementCell}
@@ -198,7 +198,11 @@ export const RequirementTable = (props) => {
           key="status"
         />
         <Column
-          title={isMobile ? '' : <Text type="secondary" className={styles.columnTitle}>Action</Text>}
+          title={isMobile ? '' : (
+            <Text type="secondary" className={styles.columnTitle}>
+              {I18n.t('threesixty.action')}
+            </Text>
+          )}
           width="5%"
           render={(value) => {
             if (!value.canRemove || !value.evaluator || !canNominate) { return null }

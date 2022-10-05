@@ -9,6 +9,7 @@ import {
 import { PageSider } from 'glint'
 import { CampaignIcon } from 'glint/icons'
 
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
 import { history } from 'modules/user/store'
 import { RootState } from 'modules/user/core/rootReducers'
 import {
@@ -58,6 +59,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
   const isThreesixty = pathname.includes('/threesixty_campaigns/')
+  const siderLogo = logo || lighthouseLogo
 
   const handleMenuSelect = (menu) => {
     if (menu.key === 'tasks') {
@@ -87,7 +89,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   return (
     !isAnonym ? (
       <PageSider
-        logo={logo}
+        logo={siderLogo}
         logoAltText={projectName}
         activeKey={activeItem}
         onMenuSelect={handleMenuSelect}
