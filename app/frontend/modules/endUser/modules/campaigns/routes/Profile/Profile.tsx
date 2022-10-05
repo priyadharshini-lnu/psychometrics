@@ -124,6 +124,7 @@ function ProfileComponent ({
                   <Form.Item>
                     <Upload
                       listType="picture-card"
+                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
                       showUploadList={false}
                       maxCount={1}
                       className={styles.upload}
