@@ -183,7 +183,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
             ) : (
               instructionsEnabled && (
               <InstructionsPanel
-                description={<SafeHTML html={instructions} />}
+                description={<SafeHTML html={instructions} config="adminRichText" />}
                 title={I18n.t('campaign.instructions.heading')}
                 heightLimit={100}
               />
