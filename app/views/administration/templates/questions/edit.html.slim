@@ -2,6 +2,7 @@
 = stylesheet_pack_tag 'vendors2'
 
 #psychometrics_question_center
+script src="https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js"
 
 = javascript_pack_tag 'vendors2'
 = javascript_pack_tag 'vendors'
@@ -11,3 +12,8 @@
 
 javascript:
   x_navigation_minimize('close');
+  window.WEBSPELLCHECKER_CONFIG = {
+      autoSearch: true,
+      autoDestroy: true,
+      serviceId: '7VTqCWMdsxJbLgr',
+    }

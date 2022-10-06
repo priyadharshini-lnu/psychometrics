@@ -10,6 +10,7 @@ import { RootState } from 'modules/user/core/rootReducers'
 import { PageHeader } from 'glint'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import LangDropdown from 'components/LangDropdown'
+import Utils from 'modules/reports/utils/Utils'
 import _ from 'lodash'
 
 import {
@@ -272,7 +273,7 @@ function ProfileComponent ({
                             help={errors?.[field.name]}
                             validateStatus={errors?.[field.name] ? 'error' : ''}
                             name={`field_${field.question_id}`}
-                            label={field.name}
+                            label={Utils.stripHTML(field.question.props.questionText)}
                           >
                             <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />
                           </Form.Item>
