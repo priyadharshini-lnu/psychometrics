@@ -106,7 +106,8 @@ ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
-ENV BUNDLE_WITHOUT 'development test'
+ENV BUNDLE_WITHOUT='development test'
+ENV THREAD_LOADER_WORKERS='3'
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
