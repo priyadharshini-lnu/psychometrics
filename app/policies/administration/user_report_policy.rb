@@ -15,13 +15,11 @@ module Administration
     end
 
     def pdf_preview?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :results, :view_report, project_id: project_id, campaign_id: campaign_id
-      )
+      has_permission?(:results, :download_report)
     end
 
     def download?
-      show?
+      has_permission?(:results, :download_report)
     end
 
     def approve?

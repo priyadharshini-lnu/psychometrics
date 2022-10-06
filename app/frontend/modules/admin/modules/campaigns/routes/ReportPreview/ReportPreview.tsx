@@ -85,6 +85,40 @@ export default function ReportPreview ({
     }
   }
 
+  const actions = () => {
+    const actionList = [
+      <Dropdown overlay={(
+        <Menu onClick={onChangeView}>
+          <Menu.Item key="subject">{I18n.t('common.text.subject')}</Menu.Item>
+          <Menu.Item key="all">{I18n.t('common.text.all_pages')}</Menu.Item>
+        </Menu>
+        )}
+      >
+        <Button>
+          <Space>
+            {I18n.t('common.text.view_as')}
+            {skipLogic ? I18n.t('common.text.all_pages') : I18n.t('common.text.subject') }
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>,
+    ]
+
+    if (!userReport.permissions.download) return actionList
+
+    return [
+      ...actionList,
+      <Button
+        onClick={onReportDownloadClick}
+        loading={downloadInProgress}
+        disabled={downloadInProgress}
+        key="download"
+      >
+        {I18n.t('common.text.download')}
+      </Button>,
+    ]
+  }
+
   return (
     <Layout>
       <Content className={cs('fluid-container', styles.container)}>
@@ -131,31 +165,7 @@ export default function ReportPreview ({
               <ArrowLeftOutlined />
             </div>
           )}
-          extra={[
-            <Dropdown overlay={(
-              <Menu onClick={onChangeView}>
-                <Menu.Item key="subject">{I18n.t('common.text.subject')}</Menu.Item>
-                <Menu.Item key="all">{I18n.t('common.text.all_pages')}</Menu.Item>
-              </Menu>
-              )}
-            >
-              <Button>
-                <Space>
-                  {I18n.t('common.text.view_as')}
-                  {skipLogic ? I18n.t('common.text.all_pages') : I18n.t('common.text.subject') }
-                  <DownOutlined />
-                </Space>
-              </Button>
-            </Dropdown>,
-            <Button
-              onClick={onReportDownloadClick}
-              loading={downloadInProgress}
-              disabled={downloadInProgress}
-              key="download"
-            >
-              {I18n.t('common.text.download')}
-            </Button>,
-          ]}
+          extra={actions()}
         >
           {userReport.richEditorOpened && (
             <Affix className={styles.affix}>

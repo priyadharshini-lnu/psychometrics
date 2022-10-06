@@ -46,10 +46,14 @@ interface UserReportDetails {
   richEditorOpened: boolean
   approved: boolean
   campaignId?: number
+  permissions: {
+    download: boolean
+  }
 }
 
 export interface State {
   list: UserReport[],
+  externalReport: ExternalReportDetails,
   current: UserReportDetails,
   selectedIds: number[]
 }
@@ -57,6 +61,7 @@ export interface State {
 const defaultState: State = {
   list: [],
   selectedIds: [],
+  externalReport: {} as ExternalReportDetails,
   current: {
     user: { },
     options: { reports: { approval: {} } },
@@ -68,6 +73,7 @@ const defaultState: State = {
     moduleOverrides: [],
     approved: false,
     richEditorOpened: false,
+    permissions: { download: false },
   },
 }
 
@@ -219,6 +225,27 @@ type CreateModuleOverride = ApiActionResponse<ModuleOverride>
 type ApproveModuleOverride = ApiActionResponse<ModuleOverride>
 type RemoveModuleOverride = ApiActionResponse<{}>
 
+const ExternalReportDetailsTR = t.type({
+  id: t.number,
+  userId: t.number,
+  reportName: t.string,
+  userEmail: t.string,
+  pdfUrl: t.string,
+  canDownloadReport: t.boolean,
+})
+type ExternalReportDetails = t.TypeOf<typeof ExternalReportDetailsTR>
+export const getExternalReport = (state: RootState) => _.get(get(state), ['externalReport'])
+type FetchExternalReportDetailsType = ApiActionResponse<ExternalReportDetails>
+export const FETCH_EXTERNAL_REPORT_DETAILS = 'campaigns/userReports/FETCH_EXTERNAL_REPORT_DETAILS'
+export const fetchExternalReportDetails = (campaignId: number, id: number) => ({
+  type: FETCH_EXTERNAL_REPORT_DETAILS,
+  request: {
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}`,
+    responseType: ExternalReportDetailsTR,
+  },
+})
+
+
 const HANDLERS = {
   [FETCH_SINGLE]: (state: State, action: FetchSingleType) => ({
     ...state,
@@ -229,6 +256,10 @@ const HANDLERS = {
       user: action.response.user,
       loaded: true,
     },
+  }),
+  [FETCH_EXTERNAL_REPORT_DETAILS]: (state: State, action: FetchExternalReportDetailsType) => ({
+    ...state,
+    externalReport: action.response,
   }),
   [SET_USER_REPORTS]: (state: State, { userReports }: CustomAction<{userReports: UserReport[]}>) => (
     { ...state, list: userReports }),

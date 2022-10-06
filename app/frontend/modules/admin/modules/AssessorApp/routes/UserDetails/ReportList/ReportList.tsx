@@ -79,19 +79,24 @@ interface ActionMenuProps {
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, id, internal, reportUrl,
-}) => (
-  <Menu>
-    {internal && (
+}) => {
+  const previewUrl = () => {
+    if (internal) {
+      return `/assessors/campaigns/${campaignId}/user_reports/${id}/`
+    }
+
+    return `/assessors/campaigns/${campaignId}/external_user_report/${id}/`
+  }
+
+  return (
+    <Menu>
       <Menu.Item key="viewReport" disabled={!reportUrl}>
-        <Link to={`/assessors/campaigns/${campaignId}/user_reports/${id}/`}>
+        <Link to={previewUrl()}>
           {I18n.t('reports.actions.view')}
         </Link>
       </Menu.Item>
-    )}
-    <Menu.Item key="downloadReport" disabled={!reportUrl}>
-      <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
-    </Menu.Item>
-  </Menu>
-)
+    </Menu>
+  )
+}
 
 export default connecter(UserReports)

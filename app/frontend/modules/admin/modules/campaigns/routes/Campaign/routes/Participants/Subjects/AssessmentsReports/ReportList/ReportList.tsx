@@ -125,6 +125,13 @@ interface ActionMenuProps {
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl, permissions,
 }) => {
+  const previewUrl = () => {
+    if (internal) {
+      return `/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`
+    }
+
+    return `/administration/projects/${projectId}/new_campaigns/${campaignId}/external_user_report/${userReportId}`
+  }
   const handleDelete = () => {
     Modal.confirm({
       title: I18n.t('common.text.confirm'),
@@ -143,9 +150,9 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      {internal && permissions.viewReport && (
+      {permissions.viewReport && (
         <Menu.Item key="viewReport">
-          <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
+          <Link to={previewUrl()}>
             {I18n.t('reports.actions.view')}
           </Link>
         </Menu.Item>

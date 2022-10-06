@@ -16,9 +16,13 @@ module UserReports::PdfGeneration
     respond_to do |format|
       format.html do
         audit! :view_report, resource, campaign: resource.campaign,
-          payload: { user_email: resource.user.email }
+          payload: params.permit!.merge(resource.details_to_log)
       end
       format.json do
+        if resource.external_report?
+          return render json: resource, serializer: Administration::ExternalUserReportSerializer
+        end
+
         render json: resource, report: resource.report,
                results: UserReports::GroupedResultsByAssessment.call!(resource),
                piped_text_context: {},
@@ -40,7 +44,8 @@ module UserReports::PdfGeneration
       view_report_as: view_report_as
     }
     data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
-    audit! :download_report, resource, campaign: resource.campaign, payload: params.permit!
+    audit! :download_report, resource, campaign: resource.campaign,
+      payload: params.permit!.merge(resource.details_to_log)
     respond_to do |format|
       format.pdf do
         send_file data[:file_path], type: 'application/pdf'
