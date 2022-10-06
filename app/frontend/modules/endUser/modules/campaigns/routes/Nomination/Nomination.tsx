@@ -123,7 +123,7 @@ const NominationComponent = (props) => {
             />
             )}
             {instruction && (
-            <Card>
+            <Card className="mt-8">
               <SafeHTML html={instruction.content} />
             </Card>
             )}
