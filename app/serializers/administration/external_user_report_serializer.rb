@@ -8,9 +8,7 @@ module Administration
       object.report.name
     end
 
-    def user_id
-      object.user_id
-    end
+    delegate :user_id, to: :object
 
     def user_email
       object.user.email

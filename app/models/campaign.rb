@@ -7,9 +7,9 @@ class Campaign < ApplicationRecord
 
   attr_encrypted :pdf_password, key: Base64.decode64(Rails.application.secrets.encrypted_key.to_s)
 
+  before_create -> { self.pdf_password = SecureRandom.hex }
   after_create_commit :ensure_campaign_options
   after_create :set_uniq_code
-  before_create -> { self.pdf_password = SecureRandom.hex }
 
   belongs_to :project, class_name: 'Client'
 
