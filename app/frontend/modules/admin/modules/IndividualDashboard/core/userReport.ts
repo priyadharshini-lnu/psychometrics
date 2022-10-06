@@ -2,7 +2,6 @@ import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import * as t from 'io-ts'
 import { RootState } from 'modules/admin/core/rootReducers'
-import humps from 'humps'
 import { AnyAction } from 'redux'
 
 export const UserReportTR = t.type({
@@ -15,7 +14,7 @@ export const CustomFieldsTR = t.array(
   t.type({
     name: t.string,
     value: t.union([t.string, t.null]),
-  })
+  }),
 )
 export const UserTR = t.type({
   id: t.union([t.number, t.undefined]),
@@ -66,7 +65,7 @@ export const fetchReport = (campaignId: number, email: string) => ({
     url: `/administration/new_campaigns/${campaignId}/user_reports/dashboard`,
     camelizeExcept: ['$.results', '$.report', '$.user'],
     typedResponse: UserReportDetailTR,
-    body: { email }
+    body: { email },
   },
 })
 
@@ -76,9 +75,9 @@ export const clearUseReportDetails = () => ({ type: CLEAR_USER_REPORT_DETAILS })
 const HANDLERS = {
   [FETCH_REPORT]: (state: State, action: AnyAction) => ({
     ...state,
-    current: { ...action.response, loaded: true, },
+    current: { ...action.response, loaded: true },
   }),
   [CLEAR_USER_REPORT_DETAILS]: (state: State) => ({ ...state, current: defaultState.current }),
 }
 
-export const reducer =  createReducer(HANDLERS, defaultState)
+export const reducer = createReducer(HANDLERS, defaultState)

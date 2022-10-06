@@ -1,5 +1,7 @@
-import React, { useContext, useEffect } from 'react'
-import { Skeleton, Row, Col, PageHeader, Descriptions } from 'antd'
+import React, { useEffect } from 'react'
+import {
+  Skeleton, Row, Col, PageHeader, Descriptions,
+} from 'antd'
 import Report from 'modules/reports/report'
 import { useLocation, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -14,7 +16,7 @@ const { I18n } = window
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
-  isReportLoadingInProgress: isRequestInProgress(state, FETCH_REPORT)
+  isReportLoadingInProgress: isRequestInProgress(state, FETCH_REPORT),
 }), {
   fetchReport,
   clearUseReportDetails,
@@ -50,19 +52,19 @@ export const DashboardReportComponent: React.FC<Props> = ({
   } = userReport
 
   return (
-    <div className='p6'>
+    <div className="p6">
       <PageHeader
-      ghost={false}
-      title={userPresenter.getFullName({ firstName: user.first_name, lastName: user.last_name })}
-      subTitle={user.email}
-      backIcon={false}
+        ghost={false}
+        title={userPresenter.getFullName({ firstName: user.first_name, lastName: user.last_name })}
+        subTitle={user.email}
+        backIcon={false}
       >
         <Descriptions size="small" column={4}>
           <Descriptions.Item label={I18n.t('profile.age')}>{user.age}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.gender')}>{user.gender}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.locale')}>{user.locale}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.timezone')}>{user.timezone}</Descriptions.Item>
-          {user.custom_fields.map((field) => (
+          {user.custom_fields.map(field => (
             <Descriptions.Item label={field.name}>{field.value}</Descriptions.Item>
           ))}
         </Descriptions>

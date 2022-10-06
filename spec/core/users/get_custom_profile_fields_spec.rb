@@ -21,7 +21,7 @@ describe Users::GetCustomProfileFields do
 
     expect(result).to eq([
       { name: 'Q2', value: 'Q2 Answer' },
-      { name: 'Q1', value: 'Q1 Answer'}
+      { name: 'Q1', value: 'Q1 Answer' }
     ])
   end
 end
