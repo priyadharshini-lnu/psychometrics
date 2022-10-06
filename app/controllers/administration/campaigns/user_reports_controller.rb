@@ -52,6 +52,27 @@ module Administration
         head :ok
       end
 
+      def dashboard
+        user = campaign.users.find_by!(email: params[:email])
+        campaign_dashboard = campaign.campaign_reports.find_by!(user_dashboard: true)
+        user_dashboard = campaign_dashboard.user_reports.find_by!(user_id: user.id)
+
+        respond_to do |format|
+          format.html do
+            audit! :view_report, user_dashboard, campaign: user_dashboard.campaign,
+              payload: params.permit!.merge(user_dashboard.details_to_log)
+          end
+          format.json do
+            render json: user_dashboard, report: user_dashboard.report,
+                   results: UserReports::GroupedResultsByAssessment.call!(user_dashboard),
+                   piped_text_context: {},
+                   user_results: user_dashboard.user_results,
+                   serializer: Administration::IndividualDashboardSerializer,
+                   include: '**'
+          end
+        end
+      end
+
       private
 
       def view_report_as
