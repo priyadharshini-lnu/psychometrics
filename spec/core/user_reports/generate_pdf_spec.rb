@@ -129,7 +129,8 @@ describe UserReports::GeneratePdf do
           meta: {
             campaign_id: user_report.campaign_id, report_id: user_report.report_id, user_id: user_report.user_id
           },
-          async: nil
+          async: nil,
+          pdf_password: user_report.campaign.pdf_password
         )
       )
 

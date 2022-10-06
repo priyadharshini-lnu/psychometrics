@@ -36,7 +36,8 @@ module Lambdas
       body = options.slice(:url, :width, :height, :meta).
              merge(
                presignS3Url: get_presigned_url,
-               webhookMessage: webhook_message
+               webhookMessage: webhook_message,
+               pdfPassword: options[:pdf_password]
              )
       return body unless options[:async]
 

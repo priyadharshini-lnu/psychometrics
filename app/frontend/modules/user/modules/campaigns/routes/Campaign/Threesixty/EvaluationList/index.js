@@ -79,6 +79,7 @@ function EvaluationList ({
   }
 
   const handleAssessmentLinkClick = (e, item) => {
+    if (canNotEvaluate(item)) { e.preventDefault() }
     if (isEvaluationCompleted(item)) {
       setEditModal(item)
       e.preventDefault()

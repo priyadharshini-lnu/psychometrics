@@ -48,7 +48,6 @@ Rails.application.routes.draw do
       resources :campaigns, only: [] do
         resources :user_reports, only: [] do
           member do
-            get :download
             get :pdf_preview
           end
         end
