@@ -57,11 +57,10 @@ module Threesixty
       end
 
       def create_evaluator(evaluator_user)
-        evaluator = ::Threesixty::Evaluator.find_or_create_by!(
+        ::Threesixty::Evaluator.find_or_create_by!(
           user: evaluator_user,
           campaign: threesixty_campaign.campaign
         )
-        evaluator
       end
 
       def create_participant(evaluator, evaluator_user)

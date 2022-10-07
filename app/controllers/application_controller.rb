@@ -15,9 +15,7 @@ class ApplicationController < ::BaseController
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :redirect_to_ae_domain, if: :redirect_to_ae_enabled?
 
-  DOMAIN_REGEXP = %r{^((?:http|https):\/\/.+\.)com}.freeze
-
-  helper_method :show_new_end_user_view?
+  DOMAIN_REGEXP = %r{^(https?://.+\.)com}
 
   # Sets particular layout in depends of conditions
   #
@@ -36,10 +34,6 @@ class ApplicationController < ::BaseController
       current_project: @current_project,
       current_membership: @current_membership
     }
-  end
-
-  def show_new_end_user_view?
-    Settings.features.new_end_user_view && cookies[:end_user_view] == 'new'
   end
 
   protected
@@ -84,14 +78,14 @@ class ApplicationController < ::BaseController
 
   private
 
-  def set_mobility_locale
-    Mobility.with_locale(ui_locale) do
-      yield
-    end
+  def set_mobility_locale(&)
+    Mobility.with_locale(ui_locale, &)
   end
 
   # Detect Client by subdomain
 
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Assessors')
@@ -100,7 +94,7 @@ class ApplicationController < ::BaseController
     return if request.controller_class.to_s.start_with?('Webhooks')
 
     @current_project = GetProjectBySubdomain.call!(request.subdomain)
-    return render_423 if @current_project&.disabled?
+    return render_http_locked if @current_project&.disabled?
 
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
 
@@ -108,9 +102,10 @@ class ApplicationController < ::BaseController
 
     @current_client = @current_project.client
   end
+  # rubocop:enable all
 
   # Fetch membership
-  def set_membership
+  def set_membership # rubocop:disable Metrics/PerceivedComplexity
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
@@ -144,15 +139,15 @@ class ApplicationController < ::BaseController
     I18n.locale = ui_locale
   end
 
-  def render_423
-    render file: "#{Rails.root}/public/423.html", layout: false, status: :locked
+  def render_http_locked
+    render file: Rails.public_path.join('423.html'), layout: false, status: :locked
   end
 
   def redirect_to_ae_enabled?
     return false unless Rails.env.production?
     return false unless ENV['UAE_DATA_MIGRATION_REDIRECT_ENABLED'] == 'true'
 
-    domains = (ENV['UAE_DATA_MIGRATION_SUBDOMAINS'] || '').split(',')
+    domains = ENV.fetch('UAE_DATA_MIGRATION_SUBDOMAINS', '')&.split(',')
     domains.include?(@current_project&.subdomain)
   end
 end

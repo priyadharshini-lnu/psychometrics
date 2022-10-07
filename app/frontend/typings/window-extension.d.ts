@@ -1,3 +1,4 @@
+import { Locale } from 'antd/lib/locale-provider'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export { }
 
@@ -7,7 +8,7 @@ declare global {
     __INITIAL_STATE__: any
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
     __DISABLE_LOGGER_: boolean
-    antdLocale: {}
+    antdLocale: Locale
     PsyGlobalState: {
       realEnv: 'development' | 'review' | 'staging' | 'production'
       sentryUrl: string,
@@ -23,5 +24,9 @@ declare global {
       isElementInViewport: (HTMLElement) => boolean
     }
     x_navigation_minimize: (state: string) => null
+    $chatwoot: unknnown
+  }
+  interface WindowEventMap {
+    'local-storage': CustomEvent
   }
 }

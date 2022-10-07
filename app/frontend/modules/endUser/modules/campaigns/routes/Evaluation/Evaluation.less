@@ -1,0 +1,41 @@
+@import "styles/ant.variable.less";
+@import "styles/spacing.less";
+
+.pageContent {
+  background-color: @white;
+  overflow-x: hidden;
+}
+.campaignHeader:global(.ant-page-header) {
+  background-color: var(--ant-primary-color);
+  padding-block: @space-2;
+}
+.backIcon {
+  color: @white;
+}
+.campaignDropdown {
+  display: inline-block;
+  color: @white;
+  min-width: 320px;
+  &:hover {
+    color: @white;
+  }
+}
+.progressBar {
+  & :global(.ant-progress-bg) {
+    background-color: var(--ant-primary-color);
+  }
+  & :global(.ant-progress-text) {
+    color: @white;
+  }
+}
+.dropdownRow {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 960px;
+  border-inline: 1px @normal-color solid;
+}
+.dropdownCol {
+  padding-inline-end: @space-8;
+  padding-top: @space-3;
+}

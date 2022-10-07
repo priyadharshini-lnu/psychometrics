@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Examus::FindOrCreateSession do
-  let(:campaign_user) { create(:campaign_user, started_at: Time.now) }
+  let(:campaign_user) { create(:campaign_user, started_at: Time.zone.now) }
 
   context 'with enough License' do
     it "creates proctoring_session if it already doesn't exists" do

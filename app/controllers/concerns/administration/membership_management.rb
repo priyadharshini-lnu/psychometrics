@@ -32,7 +32,7 @@ module Administration
 
     def show
       render json: resource, serializer: Administration::Memberships::WithGrantsAndPermissionsSerializer,
-        current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+             current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
     end
 
     def find_or_create_user
@@ -40,7 +40,7 @@ module Administration
       ::Memberships::PrepareUserToCreateCommand.call(form, default_grants) do
         on(:ok) do |admin|
           return render json: admin, serializer: Administration::Memberships::WithGrantsSerializer,
-              current_user: current_user, project_id: campaign.project_id
+                        current_user: current_user, project_id: campaign.project_id
         end
         on(:invalid) { |f| return render json: { errors: f.errors.full_messages.first }, status: 400 }
       end
@@ -54,7 +54,7 @@ module Administration
         on(:ok) do |admin|
           audit! :create, admin, campaign: campaign, payload: permitted_resource_params
           return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
-              current_user: current_user, project_id: campaign.project_id
+                        current_user: current_user, project_id: campaign.project_id
         end
       end
     end
@@ -65,7 +65,7 @@ module Administration
         on(:ok) do |admin|
           audit! :update, admin, campaign: campaign, payload: permitted_resource_params
           return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
-            current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+                        current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
         end
         on(:invalid) do |f|
           return render json: { errors: f.errors.full_messages.first }, status: 400

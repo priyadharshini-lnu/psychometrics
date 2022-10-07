@@ -1,4 +1,4 @@
-.highlighter(@height: 100%, @positionLeft: 0px) {
+.highlighter(@height: 100%, @positionLeft: 0px, @positionTop: 50%, @translateY: -50%) {
   &:before {
     content: '';
     position: absolute;
@@ -6,10 +6,10 @@
     width: 3px;
     height: @height;
     left: @positionLeft;
-    top: 50%;
+    top: @positionTop;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(if(@height=100%, -50%, @translateY));
   }
 }

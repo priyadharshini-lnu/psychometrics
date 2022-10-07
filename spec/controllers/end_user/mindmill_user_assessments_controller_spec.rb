@@ -32,10 +32,7 @@ RSpec.describe EndUser::MindmillUserAssessmentsController, type: :controller do
 
       get :pass, params: { id: user_assessment.id }
 
-      # rubocop:disable Layout/LineLength
       ssol_url = "http://mm.com/sso=1&URL=#{request.base_url}#{redirect_mindmill_user_assessment_path(user_assessment.id)}"
-      # rubocop:enable Layout/LineLength
-
       expect(response).to redirect_to(ssol_url)
     end
   end

@@ -57,6 +57,13 @@ class PropertyPanel extends Component {
     model.update()
   }
 
+  hideOnDashboard = () => {
+    const { module } = this.props
+    const model = new ModuleModel(module, { id: module.page_id })
+    model.props.hideOnDashboard = !model.props.hideOnDashboard
+    model.update()
+  }
+
   renderCustomProperties () {
     const { selected, module, page } = this.props
 
@@ -191,7 +198,16 @@ class PropertyPanel extends Component {
                 />
                 Show On All Pages
               </label>
-
+            </li>
+            <li>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={module.props.hideOnDashboard || false}
+                  onChange={() => this.hideOnDashboard()}
+                />
+                Hide on Dashboard
+              </label>
             </li>
           </ul>
         </div>

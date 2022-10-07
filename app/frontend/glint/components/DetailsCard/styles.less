@@ -1,14 +1,60 @@
-@import 'glint/styles/mixins.less';
+@import "glint/styles/mixins.less";
+@import "styles/ant.variable.less";
+@import "styles/spacing.less";
 
+.btnStyles() {
+  min-width: 120px;
+  position: relative;
+  text-align: start;
+}
+
+@card-body-padding: @space-4;
 .detailsCard {
   height: 100%;
-  border-radius: 4px;
+  width: 100%;
+  border: 1px solid @border-color-base;
+  border-radius: calc(2 * @border-radius-sm);
+  padding-bottom: @card-padding-base;
+  & :global(.ant-card-body) {
+    padding: @space-3 @space-4;
+  }
 }
-.title {
+.title:global(.ant-typography) {
   position: relative;
-  .highlighter(80%, -24px);
+  font-size: 16px;
+  font-weight: 500;
+  .highlighter(20px, calc(-@card-body-padding - 1px), 1.75rem, @translateY: -24px);
 }
 
 .buttonCol {
-  text-align: right;
+  text-align: end;
+}
+.actionButton {
+  .btnStyles();
+  & :global(.ant-btn) {
+    .btnStyles();
+  }
+  & .buttonIcon, &:focus .buttonIcon {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  }
+}
+.cardFooter {
+  position: absolute;
+  width: calc(100% - 2 * @card-body-padding);
+  bottom: @card-padding-base-sm;
+}
+
+:global(.rtl) {
+  .actionButton {
+    & .buttonIcon, &:focus .buttonIcon {
+      right: unset;
+      left: 4px;
+    }
+  }
+  & .title:before {
+    right: -@card-body-padding;
+    left: unset;
+  }
 }

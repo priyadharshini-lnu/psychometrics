@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SmtpSettingMailer < ApplicationMailer
+  # rubocop:disable Rails/I18nLocaleTexts
   def test_email(smtp_attributes, to_email)
     smtp_setting = SmtpSetting.new(smtp_attributes)
     mail(
@@ -12,4 +13,5 @@ class SmtpSettingMailer < ApplicationMailer
       delivery_method_options: smtp_setting.settings_for_email
     )
   end
+  # rubocop:enable all
 end

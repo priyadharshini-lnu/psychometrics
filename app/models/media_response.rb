@@ -41,9 +41,7 @@ class MediaResponse < ApplicationRecord
   def set_user_selected
     return unless question.type == 'VideoResponse'
 
-    media_responses_exists = question.media_responses.where(
-      assign_id: assign&.id, users_result_id: users_result&.id
-    ).exists?
+    media_responses_exists = question.media_responses.exists?(assign_id: assign&.id, users_result_id: users_result&.id)
 
     self.user_selected = true unless media_responses_exists
   end

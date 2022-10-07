@@ -10,7 +10,7 @@ module Exports
         # Parse RESULT data for XLSX
         def self.result(user_result, question, _scoring = false, _export_with_labels = false)
           answers = get_answers(user_result, question)
-          all_answers = FIELDS.map { |field| answers.try(:[], field.underscore) unless answers.blank? }
+          all_answers = FIELDS.map { |field| answers.try(:[], field.underscore) if answers.present? }
           all_answers << get_duration(user_result, question)
         end
 

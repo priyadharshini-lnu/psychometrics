@@ -7,7 +7,9 @@ describe BulkReports::CompressJob do
   let(:compressor) { double('compressor') }
 
   describe '#perform' do
-    let(:output_dir) { Rails.root.join('tmp', "bulk_reports#{ENV['TEST_ENV_NUMBER']}", "compressed_#{report.id}").to_s }
+    let(:output_dir) do
+      Rails.root.join('tmp', "bulk_reports#{ENV.fetch('TEST_ENV_NUMBER', nil)}", "compressed_#{report.id}").to_s
+    end
 
     it 'creates output folder for compressed files' do
       expect(Compressor).to receive(:new).and_return(compressor)

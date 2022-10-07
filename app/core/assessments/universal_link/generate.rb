@@ -16,7 +16,7 @@ module Assessments
         campaign_assessment = campaign.campaign_assessments.find_by(assessment_id: assessment.id)
         campaign_assessment.update!(
           assessment_key: generate_random_key,
-          key_generated_at: Time.now
+          key_generated_at: Time.zone.now
         )
 
         broadcast(:ok, campaign_assessment)

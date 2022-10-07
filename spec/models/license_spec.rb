@@ -35,7 +35,7 @@ RSpec.describe License, type: :model do
 
     it { should validate_presence_of(:report_family_id) }
     context '#license_expire_validation' do
-      let(:license) { described_class.new(start_date: Date.today) }
+      let(:license) { described_class.new(start_date: Time.zone.today) }
       subject { license.send(:license_expire_validation) }
       it do
         license.end_date = 1.day.ago
@@ -44,7 +44,7 @@ RSpec.describe License, type: :model do
       end
 
       it do
-        license.end_date = Date.today
+        license.end_date = Time.zone.today
         expect(license.errors).to receive(:add).with(:end_date, :invalid)
         subject
       end
@@ -87,32 +87,32 @@ RSpec.describe License, type: :model do
 
     it 'returns zero
         if used number license less then given license' do
-      license.update_attributes(number: 10, used_number: 5)
+      license.update(number: 10, used_number: 5)
       expect(license.used_overuse_number).to be_zero
     end
 
     it 'returns greater than zero
         if used number license have been over use' do
-      license.update_attributes(number: 10, used_number: 15)
+      license.update(number: 10, used_number: 15)
       expect(license.used_overuse_number).to eq(5)
     end
   end
 
   context '#enough_licenses?' do
     it 'returns false' do
-      license.update_attributes(number: 0)
+      license.update(number: 0)
       expect(license.enough_licenses?).to be_falsey
     end
 
     it 'returns false
         if Client has no enough licenses' do
-      license.update_attributes(number: 10, overuse_number: 5, used_number: 15)
+      license.update(number: 10, overuse_number: 5, used_number: 15)
       expect(license.enough_licenses?).to be_falsey
     end
 
     it 'returns true
         if Client has enough licenses' do
-      license.update_attributes(number: 10, used_number: 5)
+      license.update(number: 10, used_number: 5)
       expect(license.enough_licenses?).to be_truthy
     end
   end

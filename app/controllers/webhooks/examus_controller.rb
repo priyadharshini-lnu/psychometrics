@@ -4,7 +4,7 @@ module Webhooks
   class ExamusController < ActionController::Base
     skip_before_action :verify_authenticity_token
 
-    rescue_from Errors::JWTAuthError do |e|
+    rescue_from Errors::JwtAuthError do |e|
       raise "Examus webhook error: #{e.message}. Params: #{params}"
     end
 
@@ -12,7 +12,7 @@ module Webhooks
       ::Examus::AuthorizeExamusRequest.call!(request.headers)
       data = JSON.parse(request.raw_post)
       proctoring_session = ProctoringSession.find_by!(session_id: data['sessionId'])
-      proctoring_session&.update_attributes(
+      proctoring_session&.update(
         results: data.slice('archive', 'conclusion', 'comment', 'score', 'reportUrl'),
         completed_at: data['sessionEnd'],
         started_at: data['sessionStart']

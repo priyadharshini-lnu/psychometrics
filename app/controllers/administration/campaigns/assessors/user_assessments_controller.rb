@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     module Assessors
-      class UserAssessmentsController < Administration::Projects::BaseController
+      class UserAssessmentsController < Administration::Campaigns::BaseController
         before_action :set_resource, only: %i[reset]
 
         def index
@@ -26,9 +26,9 @@ module Administration
           if form.valid?
             user_assessment = ::Assessors::UserAssessments::Create.call!(form)
             render json: user_assessment, serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
-              project_id: campaign.project_id, campaign_id: campaign.id
+                   project_id: campaign.project_id, campaign_id: campaign.id
           else
-            render json: { errors: form.errors.messages }, status: :unprocessable_entity
+            render json: { errors: form.errors.messages }, status: 422
           end
         end
 
@@ -51,6 +51,7 @@ module Administration
             resource || UserAssessment,
             nil,
             project_id: campaign.project_id,
+            campaign_id: campaign.id,
             policy_class: Administration::Campaigns::Assessors::UserAssessmentPolicy
           )
         end
@@ -60,8 +61,7 @@ module Administration
         end
 
         def assessor
-          @assessor ||= policy_scope(Assessor, policy_scope_class: Administration::Campaigns::AssessorPolicy::Scope).
-                        find(params[:assessor_id])
+          @assessor ||= campaign.assessors.find(params[:assessor_id])
         end
 
         def resource_params
@@ -70,10 +70,7 @@ module Administration
 
         # rubocop:disable Naming/MemoizedInstanceVariableName
         def set_resource
-          @_resource ||= policy_scope(
-            UserAssessment,
-            policy_scope_class: Administration::Campaigns::Assessors::UserAssessmentPolicy::Scope
-          ).find(params[:id])
+          @_resource ||= campaign.user_assessments.find(params[:id])
         end
         # rubocop:enable Naming/MemoizedInstanceVariableName
       end

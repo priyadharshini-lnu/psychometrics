@@ -13,6 +13,7 @@ module Administration
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
       end
 
+      # rubocop:disable Metrics/PerceivedComplexity
       # rubocop:disable Metrics/AbcSize
       def create
         init_assign_form
@@ -47,7 +48,7 @@ module Administration
                       success: t('.successfully', name: @assessment.decorate.display_name))
         end
       end
-      # rubocop:enable Metrics/AbcSize
+      # rubocop:enable all
 
       def form
         unless assign_params[:client_ids]

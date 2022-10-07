@@ -41,7 +41,7 @@ module UsersResults
     def complete_event
       attributes = norm_attributes.merge(
         status: :completed,
-        completed_at: Time.now
+        completed_at: Time.zone.now
       )
       user_result.is_a?(Assign) ? user_result.update!(attributes) : user_result.user_assessment.update!(attributes)
 

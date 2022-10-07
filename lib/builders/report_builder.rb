@@ -36,7 +36,7 @@ module Builders
 
     def save
       ActiveRecord::Base.transaction do
-        @report.update(@report_params.slice(:name, :props, :data_sheet_columns))
+        @report.update!(@report_params.slice(:name, :props, :data_sheet_columns))
         @report_params[:pages].each do |page_params|
           id = page_params.delete(:id)
           modules = page_params.delete(:modules)
@@ -44,20 +44,21 @@ module Builders
 
           page.destroy && next if page_params.delete(:removed)
 
-          page.update(page_params)
+          page.update!(page_params)
 
           modules.each do |module_params|
             mod = page.modules.find_or_initialize_by(id: module_params.delete(:id))
             mod.destroy && next if module_params.delete(:removed)
 
-            mod.update(module_params)
+            mod.update!(module_params)
           end
         end
-      rescue StandardError => e
+      # TODO: remove StandardError??
+      rescue ActiveRecord::RecordInvalid, StandardError => e
         Rails.logger.info(e)
-        return false
+
+        false
       end
-      true
     end
   end
 end

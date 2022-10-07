@@ -37,6 +37,9 @@ ar:
     audio_response:
       permission_denied_message: الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك
       permission_text: الرجاء السماح بإستخدام الميكروفون لتسجيل الصوت
+    card_actions:
+      begin: ابدأ
+      continue: استمرار
     categories:
       '360': حملة 360
       agile: AGILE- آجايل
@@ -106,15 +109,78 @@ ar:
         ready: 'اضغط على زر التسجيل عندما تكون جاهزاً '
       use_this: تسليم هذا
     wait: انتظر
+  auth:
+    current_password: كلمة المرور الحالية
+    current_password_placeholder: إدخل كلمة السر الحالية
+    email: البريد الإلكتروني
+    email_placeholder: أدخل عنوان البريد الالكتروني
+    expired_password:
+      description: يرجى ملء جميع الحقول لإنشاء كلمة مرور جديدة
+      submit: إعادة تعيين كلمة السر
+      title: غير كلمة المرور الخاصة بك
+    login:
+      description: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
+      forgot_password: هل نسيت كلمة السر؟
+      login_btn: تسجيل الدخول
+      not_member: لم تسجل؟
+      or: أو
+      sso_btn: تسجيل الدخول باستخدام الدخول الموحد
+      title: مرحباً
+    new_password: كلمة السر الجديدة
+    otp:
+      code: رمز
+      code_placeholder: OTP
+      description: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
+      resend: إعادة إرسال OTP
+      submit: تسليم
+      title: كلمة السر لمرة واحدة
+    password: كلمه السر
+    password_confirmation: تأكيد كلمة المرور
+    password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
+    password_placeholder: أدخل كلمة مرور جديدة
+    registration:
+      description: املأ التفاصيل أدناه للتسجيل وإنشاء حساب جديد
+      email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
+      first_name: الاسم الاول
+      first_name_placeholder: أدخل اسمك الأول
+      have_account: مسجل بالفعل؟
+      last_name: إسم العائلة
+      last_name_placeholder: أدخل اسم عائلتك
+      login_now: Login Now!
+      registration_code: رمز التسجيل
+      registration_code_placeholder: أدخل رمز التسجيل
+      terms_notice: بالتسجيل ، فإنك توافق على <a href="%{terms_url}"> بنود الخدمة وسياسة الخصوصية </a>
+      title: التسجيل
+    reset_password:
+      back_to_sign_in: العودة إلى صفحة تسجيل الدخول
+      description: أدخل البريد الإلكتروني المرتبط بتسجيلك
+      submit: إعادة تعيين كلمة المرور
+      title: هل نسيت كلمة السر؟
+    set_password:
+      description: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
+      submit: تسليم
+      title: أنشئ كلمة مرور
+    sign_in: تسجيل الدخول
+    sign_out: تسجيل خروج
+    sign_up: تسجيل
+    terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
   campaign:
     all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
     begin: ابدأ مهامك
+    campaigns: الحملات
     complete_all: أكمل جميع التقييمات ذات الصلة
     complete_prev: " أكمل جميع التقييمات السابقة"
     completed: تم إكماله
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بالعديد من الأنشطة التي تحتاج إلى إكمالها. يرجى التأكد من التحقق من اكتمال جميع الأنشطة المخصصة عبر جميع الحملات.
+    dashboard_menu:
+      campaign: الحملة
+      home: الصفحة الرئيسية
+      insights: البصائر
+      profile: تفاصيلي
+      tasks: مهامي
+    details: مشاهدة التفاصيل
     edit_evaluation:
       body: يرجى العلم أنه بمجرد النقر فوق إعادة التقييم ، سيتم توجيهك إلى بداية الاستبيان حيث يمكنك تعديل الردود. ستظل الردود السابقة متاحة ولكن يمكنك تغييرها حسب الحاجة. عند التحرير ، سيتعين عليك إعادة إرسال التقييم لإكمال العملية.
       edit: إعادة التقييم
@@ -136,6 +202,15 @@ ar:
     panels:
       assessments: مهامك
       reports: تقارير
+    profile:
+      complete_heading: ملف التعريف الخاص بك مكتمل
+      complete_profile_label: تحديث ملفك الشخصي
+      edit_profile_label: تحديث ملفك الشخصي
+      incomplete_heading: تحديث ملفك الشخصي
+      last_login_text: 'آخر مرة سجلت الدخول فيها :'
+      last_updated_text: 'تم تحديث ملف التعريف الخاص بك في آخر مرة:'
+      sub_heading: أكمل معلومات ملفك الشخصي الكامل
+      welcome_text: أهلا وسهلا
     thank_you_for_time: شكراً لك على وقتك
     time_left:
       cancel: إلغاء
@@ -147,6 +222,12 @@ ar:
       notification: 'لديك %{minutes} و %{seconds} لإكمال التقييمات '
     ungrouped: مهام غير مجمعة
     welcome: مرحباً
+  campaign_assessment:
+    assessments_heading: مهامك
+    statuses:
+      completed: تم اكماله
+      in_progress: " على قيد التقدم"
+      not_started: لم يبدأ بعد
   checking_wizard:
     audio_check:
       access: إذن الدخول
@@ -308,6 +389,25 @@ ar:
   navigation:
     logout: تسجيل خروج
     profile: الملف الشخصى
+  profile:
+    add_photo: أضف صورتك
+    age: عمرك
+    change_password: غيّر كلمة المرور
+    change_photo: غير صورتك
+    email: البريد الإلكتروني
+    female: إناثا
+    first_name: الاسم الاول
+    gender: جنس
+    last_name: إسم العائلة
+    locale: لغة
+    male: رجل
+    not_disclosed: أنا أفضل عدم الإفصاح
+    password: كلمة المرور
+    password_confirmation: تأكيد كلمة المرور
+    success_update: تم حفظ التفاصيل الخاصة بك بنجاح
+    timezone: المنطقة الزمنية
+    title: تفاصيلي
+    update: حفظ
   reports:
     actions:
       add: إضافة تقرير

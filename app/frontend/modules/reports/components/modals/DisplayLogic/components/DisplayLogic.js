@@ -29,14 +29,16 @@ export default class DisplayLogic extends Component {
   }
 
   renderConditions = () => {
-    const { factors } = this.props
+    const { factors, assessments } = this.props
     const { displayLogic } = this.state
+
     return (
       <LogicElement
-        types={['Question', 'DataSheet', 'Factor']}
+        types={['Question', 'DataSheet', 'Factor', 'Assessment']}
         onChange={this.update}
         logic={displayLogic}
         factors={factors}
+        assessments={assessments}
       />
     )
   }

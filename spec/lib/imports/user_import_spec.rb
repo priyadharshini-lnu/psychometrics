@@ -24,7 +24,7 @@ RSpec.describe Imports::UserImport do
   end
   let!(:body) do
     Array.new(5) do
-      ['Yes', Faker::Name.first_name, Faker::Name.last_name, Faker::Internet.email, Faker::Lorem.characters(10),
+      ['Yes', Faker::Name.first_name, Faker::Name.last_name, Faker::Internet.email, Faker::Lorem.characters(number: 10),
        Time.current]
     end
   end
@@ -32,17 +32,17 @@ RSpec.describe Imports::UserImport do
     headers + body
   end
   let(:open_spreadsheet) do
-    OpenStruct.new(to_a: parsed_array)
+    OpenStruct.new(to_a: parsed_array) # rubocop:disable Style/OpenStructUse
   end
   let(:existing_users) do
     [
       [
         'Yes', user_with_password.first_name, user_with_password.last_name, user_with_password.email,
-        Faker::Lorem.characters(10), user_with_password.created_at, nil
+        Faker::Lorem.characters(number: 10), user_with_password.created_at, nil
       ],
       [
         'Yes', user_without_password.first_name, user_without_password.last_name, user_without_password.email,
-        Faker::Lorem.characters(10), user_without_password.created_at, nil
+        Faker::Lorem.characters(number: 10), user_without_password.created_at, nil
       ]
     ]
   end

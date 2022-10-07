@@ -14,21 +14,21 @@ describe Assigns::Reset do
                     scoring: test,
                     embedded_data: test,
                     status: Assign.statuses[:completed],
-                    completed_at: Time.now,
+                    completed_at: Time.zone.now,
                     step: 100,
-                    started_at: Time.now,
+                    started_at: Time.zone.now,
                     norm_data: test,
                     agile_scoring: test,
                     occupations: test,
-                    expiry_date: Time.now,
-                    last_activity_at: Time.now)
+                    expiry_date: Time.zone.now,
+                    last_activity_at: Time.zone.now)
   end
   let(:assign_with_result) { assign.assign_with_result }
 
   subject { described_class.call(assign) }
 
   it '.call!' do
-    expect(described_class).to respond_to(:'call!').with_unlimited_arguments
+    expect(described_class).to respond_to(:call!).with_unlimited_arguments
   end
 
   it 'reset result data for assign with results' do
@@ -39,11 +39,11 @@ describe Assigns::Reset do
       and change { assign_with_result.agile_scoring }.from(test).to({}).
       and change { assign_with_result.occupations }.from(test).to([]).
       and change { assign_with_result.status }.from('completed').to('not_started').
-      and change { assign_with_result.completed_at }.from(Time.now).to(nil).
-      and change { assign_with_result.started_at }.from(Time.now).to(nil).
+      and change { assign_with_result.completed_at }.from(Time.zone.now).to(nil).
+      and change { assign_with_result.started_at }.from(Time.zone.now).to(nil).
       and change { assign_with_result.step }.from(100).to(0).
-      and change { assign_with_result.expiry_date }.from(Time.now).to(nil).
-      and change { assign_with_result.last_activity_at }.from(Time.now).to(nil)
+      and change { assign_with_result.expiry_date }.from(Time.zone.now).to(nil).
+      and change { assign_with_result.last_activity_at }.from(Time.zone.now).to(nil)
   end
 
   it 'dont touch original assign' do

@@ -2,8 +2,8 @@
 
 module Services
   module Hogan
-    module API
-      module JSON
+    module Api
+      module Json
         class AddParticipantAssessment < Base
           def call
             response = post(

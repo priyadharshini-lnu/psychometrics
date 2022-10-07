@@ -6,6 +6,6 @@ class EmailValidator < ActiveModel::Validator
   def validate(record)
     return if record.email.match? URI::MailTo::EMAIL_REGEXP
 
-    record.errors[:email] << I18n.t('errors.messages.invalid')
+    record.errors.add(:email, I18n.t('errors.messages.invalid'))
   end
 end

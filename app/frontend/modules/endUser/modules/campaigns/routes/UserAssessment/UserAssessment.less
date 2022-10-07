@@ -1,0 +1,40 @@
+@import "styles/ant.variable.less";
+@import "styles/spacing.less";
+
+.campaignHeader:global(.ant-page-header) {
+  background-color: var(--ant-primary-color);
+  padding-block: @space-2;
+}
+.backIcon {
+  color: @white;
+}
+.campaignDropdown {
+  display: inline-block;
+  color: @white;
+  white-space: break-spaces;
+  min-width: 320px;
+  &:hover {
+    color: @white;
+  }
+}
+.campaignsCount {
+  font-size: @font-size-base;
+  font-weight: 400;
+}
+.progressStatus {
+  & :global(.ant-progress-text) {
+    color: @white;
+  }
+  & :global(.ant-progress-inner) {
+    color: var(--ant-primary-7);
+  }
+}
+.pageContent {
+  background-color: @white;
+  overflow-x: hidden;
+}
+.assessmentContainer {
+  max-width: 1200px;
+  margin: auto;
+  padding-inline: @space-2;
+}

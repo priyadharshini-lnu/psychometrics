@@ -25,10 +25,19 @@ Rails.application.routes.draw do
     end
   end
 
-  concern :datasheet_management do
+  concern :sheet_management do
+    collection do
+      get :get_columns
+      post :add_column
+      put :update_column
+      put :update_columns_order
+      delete :remove_columns
+    end
+  end
+
+  concern :sheet_row_management do
     collection do
       delete :bulk_delete
-      put :save_column_preference
       put :import
       get :export
     end
@@ -81,7 +90,8 @@ Rails.application.routes.draw do
   # Administration panel
   #
   namespace :administration do
-    get 'dashboard', to: 'home#index'
+    get 'dashboards', to: 'dashboards#index', as: :dashboard
+    get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'
 
     resource :profiles, only: %i[update edit]
@@ -137,7 +147,8 @@ Rails.application.routes.draw do
         end
         resources :sms_records, only: %i[create]
 
-        resources :datasheet_rows, concerns: :datasheet_management
+        resources :sheets, concerns: :sheet_management
+        resources :sheet_rows, concerns: :sheet_row_management
 
         resources :registration_codes do
           member do
@@ -166,6 +177,7 @@ Rails.application.routes.draw do
             post :export
             patch :toggle_user_access
             patch :toggle_assessor_access
+            patch :toggle_user_dashboard
           end
         end
         resources :user_reports do
@@ -269,7 +281,8 @@ Rails.application.routes.draw do
 
     resources :projects, :new_projects do
       scope module: :projects do
-        resources :datasheet_rows, concerns: :datasheet_management
+        resources :sheets, concerns: :sheet_management
+        resources :sheet_rows, concerns: :sheet_row_management
         resources :saml_settings, only: %i[create update] do
           collection do
             post :test_saml
@@ -303,6 +316,7 @@ Rails.application.routes.draw do
           member do
             get :fetch_campaign_options
             get :fetch_campaign_instructions
+            get :fetch_descriptions
             put :update_campaign_options
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end
@@ -377,8 +391,8 @@ Rails.application.routes.draw do
             get :spoof
           end
           collection do
-            get :new_step_1
-            post :new_step_2
+            get :new_step_one
+            post :new_step_two
             post :assign_multiple
           end
         end
@@ -390,8 +404,8 @@ Rails.application.routes.draw do
             get :spoof
           end
           collection do
-            get :new_step_1
-            post :new_step_2
+            get :new_step_one
+            post :new_step_two
             post :assign_multiple
           end
         end
@@ -461,7 +475,7 @@ Rails.application.routes.draw do
           get :download_qrcode
           post :generate_universal_link
         end
-        resources :datasheet_rows, except: %i[show edit update]
+        resources :sheet_rows, except: %i[show edit update]
         get '*all', to: 'projects#index', constraints: { all: /.*/ }
       end
     end
@@ -873,8 +887,9 @@ Rails.application.routes.draw do
     resources :highlights, only: %i[update]
 
     scope module: :end_user do
-      get '/switch_end_user_view', to: 'users#switch_end_user_view', as: :switch_view
-      resources :campaigns, only: %i[show]
+      resources :campaigns, only: %i[show] do
+        get :insights
+      end
       get :dashboard, to: 'users#dashboard'
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
@@ -949,6 +964,7 @@ Rails.application.routes.draw do
         collection do
           post :change_locale
           patch :update_details
+          patch :upload_photo
         end
       end
     end
@@ -1027,6 +1043,7 @@ Rails.application.routes.draw do
     get 'identify', to: 'home#identify', as: :identify
     get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed', as: :assessment_completed
     get 'upgrade', to: 'home#upgrade'
+    get 'profile', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 
@@ -1044,7 +1061,7 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web, at: '/sidekiq'
 
-  root to: 'administration/administrator/sessions#new'
+  root to: 'administration/administrator/sessions#new', as: :admin_root
 
   constraints format: :json do
     namespace :api do
@@ -1090,8 +1107,16 @@ Rails.application.routes.draw do
           jsonapi_resources :clients do
             jsonapi_relationships
           end
-
           jsonapi_resources :users
+          jsonapi_resources :dashboards, only: %i[index create update]
+          jsonapi_resources :design_settings, only: %i[index update] do
+            resource :uploads, only: %i[update]
+          end
+          jsonapi_resources :profile_settings, only: %i[index update]
+          jsonapi_resources :dashboards, only: %i[index show create update] do
+            patch :upload_image
+            post :refresh
+          end
         end
       end
     end

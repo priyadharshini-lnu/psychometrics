@@ -6,7 +6,6 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import store, { history } from 'modules/admin/store'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
-import { RecoilRoot } from 'recoil'
 import RouteList from 'components/RouteList'
 import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
 import humps from 'humps'
@@ -23,18 +22,16 @@ const App: React.FC<void> = () => (
   <div className="ms-2" style={{ background: 'white' }}>
     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
     <Provider store={store as any}>
-      <RecoilRoot>
-        <ApiProvider client={client}>
-          <DndProvider backend={HTML5Backend}>
-            <Router>
-              <ConnectedRouter history={history}>
-                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-                <IncorrectResponseErrorModal />
-              </ConnectedRouter>
-            </Router>
-          </DndProvider>
-        </ApiProvider>
-      </RecoilRoot>
+      <ApiProvider client={client}>
+        <DndProvider backend={HTML5Backend}>
+          <Router>
+            <ConnectedRouter history={history}>
+              <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+              <IncorrectResponseErrorModal />
+            </ConnectedRouter>
+          </Router>
+        </DndProvider>
+      </ApiProvider>
     </Provider>
   </div>
 )

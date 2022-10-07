@@ -13,7 +13,7 @@ function Participants ({ history, routes, currentUser }) {
     <div>
       <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
         <Menu.Item key="/participants">Participants</Menu.Item>
-        {currentUser.permissions.manageOptions && (
+        {currentUser.permissions.editParticipantOptions && (
           <Menu.Item key="/participants/options">Options</Menu.Item>
         )}
       </Menu>

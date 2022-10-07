@@ -29,11 +29,11 @@ module Administration
       assessment.norms.map { |n| NormSerializer.new(n).to_h }
     end
 
-    def has_external_norm # rubocop:disable Naming/PredicateName
+    def has_external_norm
       assessment.has_external_norm?
     end
 
-    def is_external # rubocop:disable Naming/PredicateName
+    def is_external
       assessment.external?
     end
 

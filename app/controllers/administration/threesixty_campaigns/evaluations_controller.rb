@@ -11,27 +11,32 @@ module Administration
       before_action :init_breadcrumbs, except: %i[update destroy]
 
       def show
-        @participant = threesixty_campaign.participants.find_by!(subject_id: resource.user_id,
-                                            evaluator_id: params[:id])
+        @participant = threesixty_campaign.participants.find_by!(
+          subject_id: resource.user_id, evaluator_id: params[:id]
+        )
         @users_result = @participant.users_result
         set_locale_for_user_assessment(@participant)
         @participant.status = :in_progress
         @users_result.current_element = nil
         @users_result.current_page = 0
         piped_text_context = get_piped_text_context
-        @results = UsersResultSerializer.new(@users_result, participant: @participant, campaign: threesixty_campaign,
-                                             current_user: current_user, locale: @selected_locale,
-                                             piped_text_context: piped_text_context, read_only: true).
-                   to_hash(include: '**')
+        @results = UsersResultSerializer.new(
+          @users_result,
+          participant: @participant, campaign: threesixty_campaign,
+          current_user: current_user, locale: @selected_locale,
+          piped_text_context: piped_text_context, read_only: true
+        ).to_hash(include: '**')
 
-        @assessment = ::AssessmentSerializer.new(threesixty_campaign.assessment,
-                                                 piped_text_context: piped_text_context).
-                      to_hash(include: '**')
+        @assessment = ::AssessmentSerializer.new(
+          threesixty_campaign.assessment,
+          piped_text_context: piped_text_context
+        ).to_hash(include: '**')
       end
 
       def update
-        @participant = threesixty_campaign.participants.find_by!(subject_id: resource.user_id,
-                                            evaluator_id: params[:id])
+        @participant = threesixty_campaign.participants.find_by!(
+          subject_id: resource.user_id, evaluator_id: params[:id]
+        )
         @users_result = @participant.users_result
 
         form = ::UsersResults::UpdatingForm.from_params(params.require(:resource))
@@ -41,9 +46,11 @@ module Administration
       end
 
       def destroy
-        participant = ::Threesixty::Participant.find_by!(campaign_id: threesixty_campaign.campaign_id,
-                                             subject_id: resource.user_id,
-                                             evaluator_id: params[:id])
+        participant = ::Threesixty::Participant.find_by!(
+          campaign_id: threesixty_campaign.campaign_id,
+          subject_id: resource.user_id,
+          evaluator_id: params[:id]
+        )
         participant.update!(
           evaluator_nomination_status: :waiting, status: :not_started, completed_at: nil
         )

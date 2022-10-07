@@ -21,9 +21,7 @@ module Threesixty
             Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(campaign, user, criteria, subject.user)
           end
         end
-        if can_nominate_anyone_from_datasheet?
-          users = users.concat(SearchInDatasheetQuery.new(@campaign, @subject, @q).query)
-        end
+        users.concat(SearchInDatasheetQuery.new(@campaign, @subject, @q).query) if can_nominate_anyone_from_datasheet?
         users
       end
 
@@ -32,7 +30,7 @@ module Threesixty
       end
 
       def sql
-        <<-SQL.strip_heredoc
+        <<-SQL.squish
         SELECT users.id, users.email, users.first_name, users.last_name
           FROM threesixty_evaluators
           JOIN users on users.id = threesixty_evaluators.user_id

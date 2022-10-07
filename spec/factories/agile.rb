@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :agile do
-    config {}
+    config {} # rubocop:disable Lint/EmptyBlock
     assessment
   end
 end

@@ -43,3 +43,7 @@ module JsonApiHelper
     { data: data }
   end
 end
+
+class JsonApiHelperClass
+  extend JsonApiHelper
+end

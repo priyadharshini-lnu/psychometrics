@@ -21,7 +21,7 @@ module Administration
           ::Threesixty::NominationRequirements::SaveAll.call!(threesixty_campaign, form)
           render json: :ok
         else
-          render json: :error, status: :bad_request
+          render json: :error, status: 400
         end
       end
 

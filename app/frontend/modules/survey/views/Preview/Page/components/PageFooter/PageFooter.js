@@ -95,7 +95,13 @@ class PageFooter extends Component {
           onConfirm={this.moveToNextPage}
         >
           {showSubmit ? (
-            <Button size="large" type="primary" disabled={isDisconnected} onClick={this.handleNextClick}>
+            <Button
+              size="large"
+              type="primary"
+              disabled={isDisconnected}
+              className={styles.next}
+              onClick={this.handleNextClick}
+            >
               {I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
             </Button>
           ) : (

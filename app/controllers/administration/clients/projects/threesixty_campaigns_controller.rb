@@ -22,6 +22,7 @@ module Administration
               campaignDetails: {
                 id: resource.id,
                 name: resource.name,
+                campaignId: resource.campaign_id,
                 reportId: resource.report_id,
                 assessmentId: resource.assessment_id,
                 dimensionId: resource.assessment.dimension_id,
@@ -97,7 +98,7 @@ module Administration
         def destroy
           @campaign = project.project_campaigns.find(params[:id])
           ::Campaigns::Remove.call(@campaign) do
-            on(:error) { |errors| @campaign.errors[:base] << errors }
+            on(:error) { |errors| @campaign.errors.add(:base, errors) }
           end
           @_resource = @campaign
           respond_to do |format|
@@ -166,7 +167,6 @@ module Administration
             current_user,
             nil,
             %w[
-              edit_subject_report
               manage_reports_options
             ],
             project_id: project.id

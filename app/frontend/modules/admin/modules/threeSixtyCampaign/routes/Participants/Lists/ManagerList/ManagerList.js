@@ -4,6 +4,7 @@ import { Col, Row } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import UserEditModal from 'modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ToolsDropdown from '../ToolsDropdown'
+import { Manage } from '../Manage'
 import EvaluatorTable from '../EvaluatorList/EvaluatorTable/EvaluatorTable'
 import Pagination from '../../../../components/Pagination'
 import SearchInput from '../SearchInput'
@@ -42,6 +43,7 @@ export default function ManagerList ({
             path="/participants/managers"
             searchTerm={searchTerm}
           />
+          <Manage />
           <ToolsDropdown permissions={permissions} />
         </Col>
       </Row>

@@ -9,9 +9,11 @@ module AdminJobs
                   else
                     campaign_assessment.norm_id
                   end
+
         norm_data = {
           norm_id: norm_id,
-          fixed_norm: record.data['fixed_norm']
+          fixed_norm: record.data['fixed_norm'],
+          nullifly_norm: true
         }
       end
       results.find_each do |res|

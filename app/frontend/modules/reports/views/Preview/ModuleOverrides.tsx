@@ -1,0 +1,247 @@
+import React, {
+  useEffect, useState, FC, ReactElement,
+} from 'react'
+import { Button, Checkbox, Popconfirm } from 'antd'
+import {
+  EditOutlined, CheckOutlined, CloseOutlined, SaveOutlined,
+} from '@ant-design/icons'
+import { connect, ConnectedProps } from 'react-redux'
+import { Store } from 'redux'
+import ReactMarkdown from 'react-markdown'
+import { renderToStaticMarkup } from 'react-dom/server'
+import htmldiff from 'libs/htmldiff'
+import { openRichEditor, closeRichEditor } from 'modules/reports/core/builder/actions'
+import {
+  createTextOverride, updateTextOverride, approveTextOverride, removeTextOverride,
+} from 'modules/admin/modules/campaigns/core/userReports'
+import I18nStore from 'modules/reports/store/I18nStore'
+import { SafeHTML } from 'components/SafeHTML'
+import cs from 'classnames'
+import { RootState } from 'modules/reports/core/rootReducers'
+import FroalaEditor from 'react-froala-wysiwyg'
+import config from 'modules/reports/components/modules/Text/components/froalaConfig'
+import ModuleInterface from 'modules/reports/core/interfaces/Module'
+import GetText from 'modules/reports/components/modules/Text/components/GetText'
+import PipedText from 'modules/reports/components/modules/Text/components/PipedText'
+import LookupResultTextValue from 'modules/reports/components/modules/Text/components/LookupResultTextValue'
+import _ from 'lodash'
+import styles from './styles.less'
+
+const connector = connect(
+  (state: RootState, { rstore }: {rstore: Store}) => ({
+    richEditorOpened: state.report.builder.richEditorOpened,
+    userReport: rstore?.getState().campaigns.userReports.current,
+  }),
+  (dispatch, { rstore }: {rstore: Store}) => ({
+    approveTextOverride: (...args:[number, {}]) => rstore.dispatch(approveTextOverride(...args)),
+    removeTextOverride: (...args:[number, number, number]) => rstore.dispatch(removeTextOverride(...args)),
+    openReviewEditor: () => rstore.dispatch(openRichEditor()),
+    closeReviewEditor: () => rstore.dispatch(closeRichEditor()),
+    createTextOverride: (...args:[number, {}]) => rstore.dispatch(createTextOverride(...args)),
+    updateTextOverride: (...args:[number, number, {}]) => rstore.dispatch(updateTextOverride(...args)),
+  }),
+)
+
+interface Override {
+  id: number
+  content: string
+  moduleId: number
+  approved: boolean
+}
+
+export type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = PropsFromRedux & {
+  override: Override
+  module: ModuleInterface
+}
+
+const OverrideComponent: FC<Props> = ({
+  override, userReport, module,
+  openReviewEditor, approveTextOverride, closeReviewEditor,
+  removeTextOverride, updateTextOverride, createTextOverride,
+}) => {
+  const [box, setBox] = useState<{}>({})
+  const [edit, setEdit] = useState(false)
+  const [showDiff, setShowDiff] = useState(false)
+  const [content, setContent] = useState<string>()
+
+  useEffect(() => {
+    const el = document.querySelector(`[name=Module_${module.id}]`) as HTMLElement
+    const page = el?.parentElement?.parentElement?.parentElement
+    const rect = el?.getBoundingClientRect()
+    if (!rect || !parent) { return }
+    setBox({
+      left: rect?.left - (page?.getBoundingClientRect()?.left || 0),
+      top: el?.offsetTop + (page?.offsetTop || 0),
+      width: rect?.width,
+      height: rect?.height,
+    })
+  }, [])
+
+  const openEditor = (override) => {
+    setContent(override?.content)
+    openReviewEditor()
+    setEdit(true)
+  }
+
+  const closeEditor = () => {
+    closeReviewEditor()
+    setEdit(false)
+  }
+
+  const saveReview = (override) => {
+    const { id, campaignId } = userReport || {}
+    const data = {
+      userReportId: id,
+      moduleId: module.id,
+      content,
+    }
+    override ? updateTextOverride(campaignId, override.id, data) : createTextOverride(campaignId, data)
+    closeEditor()
+  }
+
+  const getTypeContent = () => {
+    const compileMarkdown = markdown => (
+      <ReactMarkdown>
+        {markdown}
+      </ReactMarkdown>
+    )
+    if (module.props.sourceType === 'ConditionalText') {
+      return renderToStaticMarkup(compileMarkdown(module.getTextByCondition()))
+    }
+    if (module.props.sourceType === 'ConditionalFactorOccupationText') {
+      return renderToStaticMarkup(compileMarkdown(GetText.run(module)))
+    }
+    if (module.props.sourceType === 'PipedText') {
+      return PipedText.run(module)
+    }
+    if (module.props.sourceType === 'ResultText') {
+      const result = LookupResultTextValue.run(module)
+      return result ? renderToStaticMarkup(result as ReactElement) : ''
+    }
+    return I18nStore.tModule(module, 'text')
+  }
+
+  return (
+    <div
+      className={styles.editable}
+      style={box}
+    >
+      {edit && (
+        <FroalaEditor
+          key="editor"
+          config={config}
+          model={content || getTypeContent()}
+          onModelChange={content => setContent(content)}
+        />
+      )}
+
+      {override && showDiff && (
+        <SafeHTML
+          html={htmldiff(getTypeContent(), override?.content)}
+          className={cs(styles.editor, { [styles.diff]: showDiff })}
+          config="adminRichText"
+        />
+      )}
+
+      <div className={styles.buttons}>
+        {edit
+          ? (
+            <>
+              <Button
+                type="primary"
+                size="small"
+                onClick={() => saveReview(override)}
+                className={cs(styles.edit)}
+              >
+                <SaveOutlined />
+              </Button>
+              <Button
+                type="primary"
+                size="small"
+                className={cs(styles.discard)}
+                onClick={() => closeEditor()}
+              >
+                <CloseOutlined />
+              </Button>
+            </>
+          ) : (
+            <>
+              {override?.content && (
+              <Checkbox
+                className={cs(styles.checkbox)}
+                checked={showDiff}
+                onChange={() => setShowDiff(!showDiff)}
+              >
+                Show diff
+              </Checkbox>
+              )}
+              <Button
+                type="primary"
+                size="small"
+                onClick={() => openEditor(override)}
+                className={cs(styles.edit)}
+              >
+                <EditOutlined />
+              </Button>
+              {override?.approved
+                ? (
+                  <Button
+                    type="primary"
+                    size="small"
+                    className={cs(styles.approved)}
+                  >
+                    <CheckOutlined />
+                    {' '}
+                    Accepted
+                  </Button>
+                )
+                : (
+                  <Button
+                    type="primary"
+                    size="small"
+                    className={cs(styles.approve)}
+                    onClick={() => approveTextOverride(userReport.campaignId, {
+                      id: override?.id,
+                      moduleId: module.id,
+                      userReportId: userReport.id,
+                    })}
+                  >
+                    <CheckOutlined />
+                  </Button>
+                )}
+              {override && (
+                <Popconfirm
+                  overlayStyle={{ zIndex: 9999 }}
+                  title="Are you sure to discard this text?"
+                  onConfirm={() => removeTextOverride(userReport.campaignId, override.id, userReport.id)}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <Button type="primary" size="small" className={cs(styles.discard)}>
+                    <CloseOutlined />
+                  </Button>
+                </Popconfirm>
+              )}
+            </>
+          )}
+      </div>
+    </div>
+  )
+}
+
+export const Override = connector(OverrideComponent)
+
+export const ModuleOverrides = ({ moduleOverrides, rstore, pages }) => {
+  const modules = _.reduce(pages, (list, page) => [...list, ..._.reduce(page.modules.list, (mlist, module) => {
+    if (module.type === 'Text' && module.props.editable) {
+      return [...mlist, module]
+    }
+    return mlist
+  }, [])], [])
+
+  return modules.map((module) => {
+    const override = _.find(moduleOverrides, override => override.moduleId === module.id)
+    return <Override module={module} override={override} rstore={rstore} />
+  })
+}

@@ -2,8 +2,8 @@
 
 module Services
   module Hogan
-    module API
-      module JSON
+    module Api
+      module Json
         class ParticipantReport < Base
           def call
             response = get(
@@ -24,7 +24,7 @@ module Services
           end
 
           def report
-            context.response.dig('reportFile')
+            context.response['reportFile']
           end
         end
       end

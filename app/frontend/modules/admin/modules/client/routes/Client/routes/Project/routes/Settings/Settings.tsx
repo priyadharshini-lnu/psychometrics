@@ -63,10 +63,13 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
         }
         {currentUser.permissions.manageProjectWebhooksSetting && (
           <Menu.Item key="/webhooks">{I18n.t('administration.project_tabs.webhooks')}</Menu.Item>)
-        }
-        {currentUser.permissions.manageDesignSetting && (
-          <Menu.Item key="/design">{I18n.t('administration.project_tabs.design')}</Menu.Item>)
         } */}
+        {currentUser.permissions.manageDesignSettings && (
+          <Menu.Item key="/design">{I18n.t('administration.project_tabs.design')}</Menu.Item>)
+        }
+        {currentUser.permissions.manageProfileSettings && (
+          <Menu.Item key="/profile">{I18n.t('administration.project_tabs.profile')}</Menu.Item>)
+        }
       </Menu>
       <RouteList routes={modifiedRoutes()} urlPrefix={prefix} />
     </div>

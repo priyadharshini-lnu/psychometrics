@@ -27,7 +27,7 @@ module Reports
           }
           if filter['id']
             db_filter = map_filters[filter['id']].first
-            db_filter.update_attributes(filter_attrs)
+            db_filter.update(filter_attrs)
           else
             report.filters.create(filter_attrs)
           end
@@ -35,7 +35,7 @@ module Reports
         # clear unused filter from all modules
         Reports::Module.joins(:page).where(reports_pages: { report_id: report.id }).
           where("reports_modules.props ->> 'filter' is not null").each do |r|
-          if r.props['filter']&.is_a?(Array)
+          if r.props['filter'].is_a?(Array)
             r.props['filter'] = r.props['filter'] - removed_ids
             r.save
           end

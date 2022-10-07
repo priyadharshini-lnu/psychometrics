@@ -22,9 +22,9 @@ module MediaResponses
         policy: policy,
         success_action_status: uploader.success_action_status,
         'x-amz-algorithm': uploader.algorithm,
-        "x-amz-credential": uploader.credential,
-        "x-amz-date": uploader.date,
-        "x-amz-signature": uploader.signature
+        'x-amz-credential': uploader.credential,
+        'x-amz-date': uploader.date,
+        'x-amz-signature': uploader.signature
       }
 
       broadcast(:ok, data)

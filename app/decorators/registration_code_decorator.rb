@@ -7,7 +7,7 @@ class RegistrationCodeDecorator < BaseDecorator
 
   def url
     h.new_user_registration_url(domain: Settings.domain,
-      subdomain: object.project.subdomain, code: object.code)
+                                subdomain: object.project.subdomain, code: object.code)
   end
 
   def i18n

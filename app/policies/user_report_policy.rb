@@ -16,6 +16,7 @@ class UserReportPolicy < BasePolicy
   private
 
   def check_user_report
+    # rubocop:disable Style/OpenStructUse
     can_view_report = ::Threesixty::UsersReportsQuery.
                       new(
                         @record.campaign.threesixty_campaign,
@@ -24,6 +25,7 @@ class UserReportPolicy < BasePolicy
                       ).
                       query.
                       include?(@record)
+    # rubocop:enable all
     return can_view_report unless @record.report.require_approval?
 
     @record.approved? && can_view_report

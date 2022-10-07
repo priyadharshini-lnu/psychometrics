@@ -41,7 +41,7 @@ module Users
     def add_assessment_to_user(user)
       users_result = UsersResult.create(answers: {})
       UserAssessment.create(
-        started_at: Time.now,
+        started_at: Time.zone.now,
         expiry_date: assessment.extra['timer']&.second&.from_now,
         assessment: assessment,
         campaign: campaign,

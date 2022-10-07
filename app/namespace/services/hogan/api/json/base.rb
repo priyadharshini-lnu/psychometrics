@@ -2,8 +2,8 @@
 
 module Services
   module Hogan
-    module API
-      module JSON
+    module Api
+      module Json
         class Base < BaseCommand
           private_attr_reader :context
 
@@ -11,7 +11,7 @@ module Services
           API_BASE = Rails.application.secrets.hogan[:json_api_url].freeze
 
           def initialize(args)
-            @context = OpenStruct.new(args)
+            @context = OpenStruct.new(args) # rubocop:disable Style/OpenStructUse
           end
 
           def client_with_auth(provider)
@@ -79,12 +79,12 @@ module Services
 
           private
 
-          def get(endpoint:, request: {}, provider:)
+          def get(endpoint:, provider:, request: {})
             response = client_with_auth(provider).get(Addressable::URI.encode(endpoint), request)
             { body: ::JSON.parse(response.body), status: response.status }
           end
 
-          def post(endpoint:, request: {}, provider:)
+          def post(endpoint:, provider:, request: {})
             client = endpoint == TOKEN_ENDPOINT ? client_without_auth : client_with_auth(provider)
             request = client.headers['Content-Type'] == 'application/json' ? ::JSON.generate(request) : request
             response = client.post(Addressable::URI.encode(endpoint), request)

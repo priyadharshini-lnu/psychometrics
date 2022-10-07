@@ -3,7 +3,7 @@
 class AdminJobRecord < ApplicationRecord
   self.table_name = 'admin_jobs'
 
-  belongs_to :owner, class_name: 'User', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'User'
 
   mount_uploader :file, FileUploader
 
@@ -30,10 +30,13 @@ class AdminJobRecord < ApplicationRecord
     completion_status_export: 19,
     threesixty_campaign_export_completion_status: 20,
     compact_completion_status_export: 21,
-    export_users: 22
+    export_users: 22,
+    import_accesssheet: 23
   }
 
-  enum status: { scheduled: 0, in_progress: 1, completed: 2 }
+  enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
+
+  after_commit -> { broadcast(:update) }, if: proc { status_previously_changed? || completed_tasks_previously_changed? }
 
   def progress
     return 100 if completed? || total_tasks.zero?
@@ -49,14 +52,12 @@ class AdminJobRecord < ApplicationRecord
       self.status = :completed if completed_tasks == total_tasks
       save!
     end
-    broadcast(:update)
   end
 
   def complete!(error_messages = [])
     return if completed?
 
     update!(status: :completed, completed_tasks: total_tasks, error_messages: error_messages)
-    broadcast(:update)
   end
 
   def broadcast(action)

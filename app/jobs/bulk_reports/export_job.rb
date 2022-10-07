@@ -38,7 +38,7 @@ module BulkReports
     def make_path
       dir = bulk_report.input_dir
       dir = File.join(dir, user.email)
-      filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+      filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
 
       FileUtils.mkdir_p(dir)
       @output = File.join(dir, filename)

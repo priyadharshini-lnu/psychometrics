@@ -16,15 +16,15 @@ module Projects
     end
 
     def sql
-      <<-SQL.strip_heredoc
+      <<-SQL.squish
         SELECT users.id, users.email, users.first_name, users.last_name, users.locale, 'users' as source
         FROM users
         WHERE project_id = :project_id AND (email LIKE :query OR first_name LIKE :query OR last_name LIKE :query)
         UNION
-        SELECT datasheet_rows.id, datasheet_rows.email, null as first_name, null as last_name, null as locale, 'datasheets' as source
-        FROM datasheet_rows
-        JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and datasheets.project_id = :project_id
-        WHERE datasheets.type = 'Datasheet' AND datasheet_rows.email LIKE :query
+        SELECT sheet_rows.id, sheet_rows.email, null as first_name, null as last_name, null as locale, 'sheets' as source
+        FROM sheet_rows
+        JOIN sheets on sheets.id = sheet_rows.sheet_id and sheets.project_id = :project_id
+        WHERE sheets.type = 'Datasheet' AND sheet_rows.email LIKE :query
         LIMIT :limit
       SQL
     end

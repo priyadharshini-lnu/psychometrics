@@ -1,0 +1,50 @@
+import React, { ReactElement } from 'react'
+import _ from 'lodash'
+import ResultStore from 'modules/reports/store/ResultStore'
+import AppStore from 'modules/reports/store/AppStore'
+import Factors from 'modules/reports/commands/Factors'
+import ReactMarkdown from 'react-markdown'
+import GetSavilleScore from './GetSavilleScore'
+
+const LookupResultTextValue = {
+  run (model): ReactElement | number | string | null {
+    const sourceType = _.get(model, 'props.source.type')
+    switch (sourceType) {
+      case 'DataSheet': {
+        const columnName = _.get(model, ['props', 'source', 'columns', 0])
+        if (columnName) {
+          const field = _.find(AppStore.report.dataSheetColumns, { name: columnName })
+          if (!field) break
+          const text = _.get(ResultStore, ['results', model.assessment_id, 'dataSheet', columnName])
+          if (field.type === 'Markdown') {
+            return <ReactMarkdown>{text}</ReactMarkdown>
+          }
+          return text
+        }
+        break
+      }
+      case 'Count':
+      case 'Score':
+      case 'Stability':
+      case 'RawScale':
+      case 'PercentileScale': {
+        const factor = _.get(model, ['props', 'source', 'factors', 0])
+        if (factor) {
+          const externalScoring = _.get(ResultStore, ['results', model.assessment_id, 'externalScoring'])
+          return Factors.LookupValue.call(externalScoring, sourceType, factor, 'string')
+        }
+        break
+      }
+      case 'Saville#Ipsative':
+      case 'Saville#Nipsative':
+      case 'Saville#Normative':
+      case 'Saville#Raw':
+        return GetSavilleScore.run(model)
+      default:
+    }
+    return ''
+  },
+}
+
+
+export default LookupResultTextValue

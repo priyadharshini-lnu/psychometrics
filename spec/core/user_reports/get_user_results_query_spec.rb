@@ -26,10 +26,10 @@ describe UserReports::GetUserResultsQuery do
     same_campaign_users_assessment = create(:user_assessment, :with_result, campaign: campaign,
       assessment: assessments[0], subject: user, evaluator: user, status: :completed)
     different_campaign_user_assessment1 = create(:user_assessment, :with_result, campaign: create(:campaign),
-      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.now)
+      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.zone.now)
     different_campaign_user_assessment2 = create(:user_assessment, :with_result, campaign: create(:campaign),
       assessment: assessments[1], subject: user, evaluator: user, status: :completed,
-      completed_at: Time.now.advance(days: 2))
+      completed_at: Time.zone.now.advance(days: 2))
 
     users_results = described_class.new(user_report).query
 
@@ -43,10 +43,10 @@ describe UserReports::GetUserResultsQuery do
     same_campaign_users_assessment1 = create(:user_assessment, :with_result, campaign: campaign,
       assessment: assessments[0], subject: user, evaluator: user, status: :completed)
     same_campaign_users_assessment2 = create(:user_assessment, :with_result, campaign: campaign,
-      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.now)
+      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.zone.now)
     different_campaign_user_assessment = create(:user_assessment, :with_result, campaign: create(:campaign),
       assessment: assessments[1], subject: user, evaluator: user, status: :completed,
-      completed_at: Time.now.advance(days: 2))
+      completed_at: Time.zone.now.advance(days: 2))
 
     users_results = described_class.new(user_report).query
 
@@ -60,7 +60,7 @@ describe UserReports::GetUserResultsQuery do
       assessment: assessments[1], subject: user, evaluator: user, status: :not_started)
     different_campaign_user_result = create(:user_assessment, :with_result, campaign: create(:campaign),
       assessment: assessments[1], subject: user, evaluator: user, status: :completed,
-      completed_at: Time.now.advance(days: 2))
+      completed_at: Time.zone.now.advance(days: 2))
 
     users_results = described_class.new(user_report).query
 

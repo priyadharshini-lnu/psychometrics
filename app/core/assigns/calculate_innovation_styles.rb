@@ -14,7 +14,7 @@ module Assigns
 
     attr_reader :assign
 
-    def calculate_innovation_styles
+    def calculate_innovation_styles # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       assign.assessment&.
              dimension&.
              innovation_styles&.
@@ -29,8 +29,8 @@ module Assigns
           valid_factors << innovation_styles_factor if condition_valid?(innovation_styles_factor, avg_scoring)
         end
         # Calculates ratio of valid factors
-        valid_factors_weight_sum = valid_factors.map { |f| f[:weight] }.reduce(&:+) || 0
-        total_factors_weight_sum = innovation_style.innovation_styles_factors.map { |f| f[:weight] }.reduce(&:+)
+        valid_factors_weight_sum = valid_factors.sum { |f| f[:weight] } || 0
+        total_factors_weight_sum = innovation_style.innovation_styles_factors.sum { |f| f[:weight] }
         value = total_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) * 100 : 0
 
         mem << {

@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class UserAssessmentsController < Administration::Projects::BaseController
+    class UserAssessmentsController < Administration::Campaigns::BaseController
       before_action :set_resource
       before_action :pundit_authorize
 
@@ -33,7 +33,7 @@ module Administration
           user_result_id: user_result.id,
           campaign_id: campaign.id
         }, current_user)
-
+        audit! :rescore_results, resource, campaign: resource.campaign
         render json: :ok
       end
 
@@ -42,7 +42,7 @@ module Administration
           on(:ok) do
             audit! :reset, resource, campaign: resource.campaign
             return render json: resource.user, serializer: Administration::UserDetailSerializer,
-              campaign: resource.campaign
+                          campaign: resource.campaign
           end
           on(:error) do |error|
             return render json: { errors: error }, status: 422
@@ -63,7 +63,8 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
       end
 
@@ -75,9 +76,11 @@ module Administration
         UserAssessment
       end
 
+      # rubocop:disable Naming/MemoizedInstanceVariableName
       def set_resource
-        @_resource = policy_scope(resource_class).find(params[:id])
+        @_resource ||= campaign.user_assessments.find(params[:id])
       end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
   end
 end

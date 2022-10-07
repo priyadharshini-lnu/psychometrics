@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require js-cookie
 //= require common
-//= require bootstrap-slider
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require bootstrap-colorpicker
@@ -31,7 +30,7 @@
 
 //= require cable
 
-///// Translations
+// /// Translations
 //= require i18n
 //= require i18n/translations
 

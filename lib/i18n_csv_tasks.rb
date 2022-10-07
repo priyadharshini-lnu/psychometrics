@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# Trick to pass Zeitwerk check
+module I18nCsvTasks
+end
+
 unless defined?(Rails)
   require 'i18n/tasks/commands'
   require 'csv'

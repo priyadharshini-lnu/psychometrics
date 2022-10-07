@@ -1,17 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: assigns_reports
-#
-#  id                :integer          not null, primary key
-#  report_id         :integer
-#  assign_id         :integer
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  access_reports_at :datetime
-#
-
 class AssignsReport < ApplicationRecord
   LICENSES = {
     Assessment::PSYCHOMETRIC => Licenses::AssignReportPsychometrics,

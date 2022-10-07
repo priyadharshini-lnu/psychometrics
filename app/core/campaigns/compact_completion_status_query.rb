@@ -9,7 +9,7 @@ module Campaigns
     end
 
     def query
-      sql = <<-SQL.strip_heredoc
+      sql = <<-SQL.squish
             SELECT * FROM crosstab(
               'SELECT DISTINCT u.email "Email", u.first_name "First Name", u.last_name "Last Name", a."name" "Assessment",
                 CASE

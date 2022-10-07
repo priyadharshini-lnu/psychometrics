@@ -5,7 +5,7 @@ module Campaigns
     class Form < Rectify::Form
       attribute :report_family_id, Integer
       attribute :report_ids, Array
-      attribute :report_access, Hash[String => Boolean]
+      attribute :report_access, { String => Boolean }
       attribute :operation, String, default: 'skip_existing'
 
       validates :report_family_id, presence: true

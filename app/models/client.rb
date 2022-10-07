@@ -1,39 +1,12 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: clients
-#
-#  id                 :integer          not null, primary key
-#  name               :string
-#  subdomain          :string
-#  logo               :string
-#  design             :json
-#  disabled           :boolean          default(FALSE)
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  background         :string
-#  type               :integer          default("partner")
-#  licenses_count     :integer          default(0)
-#  number             :string
-#  country            :string
-#  year               :integer
-#  applicable_level   :integer          default("project")
-#  project_manager_id :integer
-#  archived           :boolean          default(FALSE)
-#  tte_id             :integer
-#  created_by_id      :integer
-#  modified_by_id     :integer
-#  ancestry           :string
-#  ancestry_depth     :integer          default(0)
-#  end_level          :boolean          default(FALSE)
-#
-
 # rubocop:disable Metrics/ClassLength
 class Client < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+
   attr_writer :license_msg
+
   attribute :webhook, :string
   attribute :webhook_auth_enabled, :boolean
   attribute :webhook_username, :string
@@ -45,12 +18,8 @@ class Client < ApplicationRecord
     sub_campaign: 3
   }.freeze
 
-  LOGIN_BOX_POSITIONS = %i[right center left].freeze
-
   has_ancestry cache_depth: true
   store :design, accessors: %i[background_color login_box_position]
-
-  after_initialize :initialize_login_box_position, if: :new_record?
 
   # Disables single column inheritance
   self.inheritance_column = :_type_disabled
@@ -65,21 +34,22 @@ class Client < ApplicationRecord
   has_one :smtp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
   has_one :security_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :design_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :profile_setting, dependent: :destroy, foreign_key: :project_id
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
   has_many :end_users, class_name: 'Users::Regular', foreign_key: :project_id
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
-           source: :membership,
            class_name: 'Membership'
   has_many :project_admins, through: :project_admin_memberships, source: :user, class_name: 'User'
   has_many :client_admin_memberships, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) },
-           source: :membership, class_name: 'Membership'
+           class_name: 'Membership'
   has_many :client_admins, through: :client_admin_memberships, source: :user, class_name: 'User'
-  has_many :assigned_memberships, -> { assigned.distinct }, source: :membership, class_name: 'Membership'
-  has_many :completed_memberships, -> { completed.distinct }, source: :membership, class_name: 'Membership'
+  has_many :assigned_memberships, -> { assigned.distinct }, class_name: 'Membership'
+  has_many :completed_memberships, -> { completed.distinct }, class_name: 'Membership'
   has_many :end_memberships, -> { where.not(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
-           source: :membership, class_name: 'Membership'
+           class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) },
            through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) },
@@ -124,9 +94,9 @@ class Client < ApplicationRecord
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
            through: :projects, source: :users
 
-  has_one :datasheet, foreign_key: :project_id, dependent: :destroy
+  has_many :sheets, foreign_key: :project_id, dependent: :destroy
+  has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
   has_one :privacy_link, dependent: :destroy
-  has_one :datasheet_column_preference, as: :resource
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
   accepts_nested_attributes_for :privacy_link, allow_destroy: true
@@ -134,15 +104,15 @@ class Client < ApplicationRecord
   before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
 
   validates :name, :type, presence: true, length: { maximum: 50 }
-  with_options if: :root? do |root|
-    root.validates :number, :country, :year, presence: true
-    root.validates :project_manager, presence: true, on: :create
+  with_options if: :root? do
+    validates :number, :country, :year, presence: true
+    validates :project_manager, presence: true, on: :create
   end
-  with_options if: :project? do |project|
-    project.validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
-    project.validates :webhook, http_url: { presence: false }
-    project.validate :subdomain_format_validation
-    project.validate :reserved_subdomain_validation
+  with_options if: :project? do
+    validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
+    validates :webhook, http_url: { presence: false }
+    validate :subdomain_format_validation
+    validate :reserved_subdomain_validation
   end
   # disabled this validation as it was causing error while saving sub-campaign
   # TODO: Needs to be investigated
@@ -150,16 +120,21 @@ class Client < ApplicationRecord
   validate :allowed_data, if: -> { operator }
 
   before_validation :ensure_subdomain, if: :retail?
+  before_create lambda {
+    self.migrated = true
+    self.design_migrated = true
+  }, if: :project?
   after_create :set_hogan_group_name, if: :project?
-  before_create -> { self.migrated = true }, if: :project?
   after_create :create_smtp_setting, if: :project?
   after_create :create_security_setting, if: :project?
+  after_create :create_design_setting, if: :project?
+  after_create :create_profile_setting, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
   # Type of client.
   # Retail - is client who bought some product
-  enum type: %i[partner corporate distributer associate tte retail other]
+  enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
   mount_base64_uploader :logo, ImageUploader
@@ -168,6 +143,7 @@ class Client < ApplicationRecord
 
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
+  delegate :tfa_enabled?, to: :security_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
@@ -179,16 +155,13 @@ class Client < ApplicationRecord
                                       }
   scope :end_level, -> { where(end_level: true) }
   scope :projects_of, lambda { |client_id|
-                        where(id: client_id).
-                          take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project])
+                        find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:project])
                       }
   scope :campaigns_of, lambda { |client_id|
-                         where(id: client_id).
-                           take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign])
+                         find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign])
                        }
   scope :sub_campaigns_of, lambda { |client_id|
-                             where(id: client_id).
-                               take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign])
+                             find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign])
                            }
   scope :campaigns_and_sub_campaigns_of, lambda { |client_id|
                                            Client.campaigns_of(client_id).
@@ -309,7 +282,7 @@ class Client < ApplicationRecord
 
   def generate_hogan_group_name
     [
-      ENV['SERVER_NAME'],
+      ENV.fetch('SERVER_NAME', nil),
       client.name.gsub(/[^0-9A-Za-z\s]/, ''),
       project.id
     ].compact.join('-')
@@ -349,13 +322,9 @@ class Client < ApplicationRecord
   end
 
   def allowed_data
-    if operator.is?(:project_admin)
-      errors.add(:base) if root?
+    if operator.is?(:project_admin) && root?
+      errors.add(:base)
     end
-  end
-
-  def initialize_login_box_position
-    self.login_box_position = LOGIN_BOX_POSITIONS[0]
   end
 end
 # rubocop:enable Metrics/ClassLength

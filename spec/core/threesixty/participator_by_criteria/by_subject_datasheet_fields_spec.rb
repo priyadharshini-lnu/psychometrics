@@ -20,20 +20,20 @@ describe Threesixty::ParticipatorByCriteria::BySubjectDatasheetFields do
     end
 
     create(
-      :datasheet_row,
-      datasheet: datasheet,
+      :sheet_row,
+      sheet: datasheet,
       email: threesixty_subjects[0].email,
       data: { 'gender' => 'M' }
     )
     create(
-      :datasheet_row,
-      datasheet: datasheet,
+      :sheet_row,
+      sheet: datasheet,
       email: threesixty_subjects[1].email,
       data: { 'gender' => 'M' }
     )
     create(
-      :datasheet_row,
-      datasheet: datasheet,
+      :sheet_row,
+      sheet: datasheet,
       email: threesixty_subjects[2].email,
       data: { 'gender' => 'F' }
     )

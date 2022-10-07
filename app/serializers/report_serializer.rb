@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: reports
-#
-#  id            :integer          not null, primary key
-#  assessment_id :integer
-#  name          :string
-#  disabled      :boolean          default(FALSE)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  type          :integer          default("common")
-#
-
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
@@ -25,7 +12,8 @@ class ReportSerializer < ActiveModel::Serializer
 
   def pages
     object.pages.map do |page|
-      Reports::PageSerializer.new(page, piped_text_context: @instance_options[:piped_text_context])
+      Reports::PageSerializer.new(page, piped_text_context: @instance_options[:piped_text_context],
+                                        builder: @instance_options[:builder])
     end
   end
 
@@ -94,9 +82,9 @@ class ReportSerializer < ActiveModel::Serializer
   def result_completed_at
     return if results.blank?
 
-    dates = results.map do |result|
+    dates = results.filter_map do |result|
       result&.completed_at&.to_date
-    end.compact.sort
+    end.sort
 
     return '' if dates.empty?
 
@@ -111,7 +99,7 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def norm_used
-    norms = Norm.where(id: results.map(&:norm_id).compact).index_by(&:id)
+    norms = Norm.where(id: results.filter_map(&:norm_id)).index_by(&:id)
 
     results.each_with_object({}) do |result, acc|
       next unless result.norm_id
@@ -134,10 +122,10 @@ class ReportSerializer < ActiveModel::Serializer
 
     @assigns ||= Assign.includes(:membership).joins(:membership).
                  where(assessment_id: object.assessment_ids,
-                        memberships: {
-                          client_id: @instance_options[:membership].client_id,
-                          user_id: @instance_options[:membership].user_id
-                        })
+                       memberships: {
+                         client_id: @instance_options[:membership].client_id,
+                         user_id: @instance_options[:membership].user_id
+                       })
   end
 
   def factor_norms
@@ -147,9 +135,7 @@ class ReportSerializer < ActiveModel::Serializer
     end
   end
 
-  def dimension_ids
-    object.dimension_ids
-  end
+  delegate :dimension_ids, to: :object
 
   def completed_assessments
     object.assessment_ids
@@ -159,7 +145,7 @@ class ReportSerializer < ActiveModel::Serializer
     return object.data_sheet_columns unless object.category_threesixty?
     return {} unless connected_campaign
 
-    connected_campaign.nomalized_datasheet_columns
+    connected_campaign.datasheet_columns
   end
 
   # Returns YAML rules for exporting data.

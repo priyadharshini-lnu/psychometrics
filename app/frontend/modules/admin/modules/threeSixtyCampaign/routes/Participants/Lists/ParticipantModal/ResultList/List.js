@@ -12,6 +12,7 @@ const MANAGER_STATUSES = ['waiting', 'approved', 'denied']
 export default function List ({
   participants,
   relationships,
+  permissions,
   update,
   remove,
   options,
@@ -98,19 +99,21 @@ export default function List ({
           if (completedAt) { return moment(completedAt).format('YYYY-MM-DD HH:mm:ss') }
         }}
       />
-      <Table.Column
-        key="actions"
-        render={({
-          id, result, evaluator,
-        }) => (
-          <Confirmation
-            title={I18n.t('threesixty.confirm')}
-            onConfirm={() => destroyEvaluation(id, result.subjectId, evaluator.id)}
-          >
-            <DeleteOutlined />
-          </Confirmation>
-        )}
-      />
+      {permissions.allowResultsDelete && (
+        <Table.Column
+          key="actions"
+          render={({
+            id, result, evaluator,
+          }) => (
+            <Confirmation
+              title={I18n.t('threesixty.confirm')}
+              onConfirm={() => destroyEvaluation(id, result.subjectId, evaluator.id)}
+            >
+              <DeleteOutlined />
+            </Confirmation>
+          )}
+        />
+      )}
     </Table>
   )
 }

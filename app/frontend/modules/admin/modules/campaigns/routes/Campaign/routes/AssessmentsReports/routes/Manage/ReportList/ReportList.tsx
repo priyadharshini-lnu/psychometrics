@@ -32,6 +32,7 @@ const ReportList: React.FC<Props> = ({
   selectRecords,
   toggleAssessorAccess,
   exportData,
+  toggleUserDashboard,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
 
@@ -86,6 +87,17 @@ const ReportList: React.FC<Props> = ({
                 checked={assessorAccess}
                 disabled={!reportPermissions.toggleAssessorAccess}
                 onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_report.column.user_dashboard')}
+            key="userDashboard"
+            render={({ userDashboard, id }) => (
+              <Switch
+                checked={userDashboard}
+                disabled={!reportPermissions.toggleUserDashboard}
+                onChange={() => toggleUserDashboard(parsedCampaignId, id)}
               />
             )}
           />

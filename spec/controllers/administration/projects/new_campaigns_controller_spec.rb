@@ -19,4 +19,33 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
       expect(response.body).to eq(campaign.id.to_s)
     end
   end
+
+  describe 'fetch_descriptions' do
+    it 'passes description with all locales passed in params' do
+      campaign_option = create(:campaign_option, campaign: campaign, description: 'En Desc')
+      Mobility.with_locale('ar') do
+        campaign_option.update(description: 'Ar Desc')
+      end
+      Mobility.with_locale('ar') do
+        campaign_option.update(description: 'Ar Desc')
+      end
+      Mobility.with_locale('fr') do
+        campaign_option.update(description: 'Fr Desc')
+      end
+      get :fetch_descriptions,
+          params: { id: campaign.id, project_id: campaign.project_id, locales: { 0 => 'en', 1 => 'ar' } }
+
+      parsed_body = JSON.parse(response.body)
+
+      expect(parsed_body).to eq(
+        {
+          'list' => [
+            { 'description' => 'En Desc', 'locale' => 'en' },
+            { 'description' => 'Ar Desc', 'locale' => 'ar' }
+          ],
+          'available_locales' => %w[en ar fr]
+        }
+      )
+    end
+  end
 end

@@ -1,5 +1,4 @@
 const { resolve } = require('path')
-const { cpus } = require('os')
 
 module.exports = {
   test: /\.(js|jsx|ts|tsx)?$/,
@@ -8,13 +7,6 @@ module.exports = {
     resolve(__dirname, '..', '..', '..', 'app', 'frontend'),
   ],
   use: [
-    {
-      loader: 'thread-loader',
-      options: {
-        poolTimeout: 30000,
-        workers: process.env.THREAD_LOADER_WORKERS,
-      },
-    },
     {
       loader: 'babel-loader',
       options: {

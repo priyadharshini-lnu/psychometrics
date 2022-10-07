@@ -18,7 +18,7 @@ module Api
         attribute :login_box_position, String
         attribute :webhook, String
 
-        validates :login_box_position, inclusion: { in: %w[left right center] }, allow_nil: true
+        validates :login_box_position, inclusion: { in: %w[left right center auto] }, allow_nil: true
         validates :background_color, hex_color: true
         validates :project_logo, base64: { presence: false }
         validates :partner_logo, base64: { presence: false }

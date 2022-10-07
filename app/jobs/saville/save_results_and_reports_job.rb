@@ -12,7 +12,7 @@ module Saville
       saville_user_assessment = SavilleUserAssessment.find_by(request_id: request_id)
       return unless saville_user_assessment
 
-      results = Array.wrap(parsed_response.dig('Results'))
+      results = Array.wrap(parsed_response['Results'])
       return results if results.blank?
 
       user_assessment = saville_user_assessment.user_assessment
@@ -62,7 +62,7 @@ module Saville
 
     def parsed_scores(results)
       scores = results.each_with_object([]) do |result, acc|
-        Array.wrap(result.dig('DetailResult')).each do |factor|
+        Array.wrap(result['DetailResult']).each do |factor|
           id = score_type = nil
           score_details = Array.wrap(factor.dig('CompetencyAssessed', 'CompetencyId', 'IdValue'))
           score_details.each do |id_or_score_type|

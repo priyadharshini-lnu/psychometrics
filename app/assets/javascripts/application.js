@@ -16,7 +16,6 @@
 //= require lodash
 //= require common
 //= require managers/assessments
-//= require bootstrap-slider
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require bootstrap-colorpicker
@@ -30,6 +29,6 @@
 //= require administration/overrides/filterrific
 //= require file_downloader
 
-///// Translations
+// /// Translations
 //= require i18n
 //= require i18n/translations

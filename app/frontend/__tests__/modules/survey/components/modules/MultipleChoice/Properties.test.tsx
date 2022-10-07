@@ -51,7 +51,6 @@ describe('Assessment builder - MultipleChoice - Property panel', () => {
       setFormFields: jest.fn(),
       changeArrayProps: jest.fn(),
     },
-    restricted: true,
   }
 
   test('Should match snapshot with Single Answer type', () => {

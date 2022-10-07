@@ -90,29 +90,29 @@ describe Reports::BuildResults do
       end
     end
 
-    context 'Datasheet' do
+    context 'sheet' do
       let(:data) do
         {
           'id' => 'Performance_Rating',
-          'type' => 'datasheet',
+          'type' => 'sheet',
           'key' => 'Performance Rating',
           'category' => 'computed_scores'
         }
       end
-      let(:datasheet) do
-        create(:datasheet, campaign: user_result.campaign)
+      let(:sheet) do
+        create(:sheet, campaign: user_result.campaign)
       end
-      let!(:datasheet_row) do
-        create(:datasheet_row, datasheet: datasheet, email: user_result.subject.email,
+      let!(:sheet_row) do
+        create(:sheet_row, sheet: sheet, email: user_result.subject.email,
                 data: { 'Performance Rating' => 2.5 })
       end
 
-      it 'should return datasheet column value' do
+      it 'should return sheet column value' do
         result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
         expect(result).to eq(key: 'Performance_Rating', name: 'Performance Rating',
                              value: 2.5, config_data: data)
       end
-      it 'should return nil for datasheet column' do
+      it 'should return nil for sheet column' do
         user_result = create(:users_result)
         build_results_command = described_class.new(report, [user_result])
         result = Reports::ResultTypes::Datasheet.call(build_results_command, data)
@@ -127,7 +127,7 @@ describe Reports::BuildResults do
 
       it {
         is_expected.to eq(key: 'ed.attempted', name: 'Attempted',
-                             value: external_results['ed.attempted'], config_data: data)
+                          value: external_results['ed.attempted'], config_data: data)
       }
 
       context 'when data is not valid' do
@@ -321,20 +321,20 @@ describe Reports::BuildResults do
     context 'Ref' do
       let(:data_configuration) do
         {
-          "refs": [
+          refs: [
             {
-              "ref_id": 'factor_x',
-              "type": 'normed_factor',
-              "assessmentId": user_result.assessment.id,
-              "factorId": 1
+              ref_id: 'factor_x',
+              type: 'normed_factor',
+              assessmentId: user_result.assessment.id,
+              factorId: 1
             }
           ],
-          "sections": [
+          sections: [
             {
-              "data": [
+              data: [
                 {
-                  "type": 'ref',
-                  "ref": 'factor_x'
+                  type: 'ref',
+                  ref: 'factor_x'
                 }
               ]
             }
@@ -352,18 +352,18 @@ describe Reports::BuildResults do
 
       it 'resolves to the ref' do
         is_expected.to eq([
-                            {
-                              config_data: {
-                                'assessmentId' => user_result.assessment.id,
-                                'factorId' => 1,
-                                'ref_id' => 'factor_x',
-                                'type' => 'normed_factor'
-                              },
-                              key: 1,
-                              name: 'Test factor1',
-                              value: 3
-                            }
-                          ])
+          {
+            config_data: {
+              'assessmentId' => user_result.assessment.id,
+              'factorId' => 1,
+              'ref_id' => 'factor_x',
+              'type' => 'normed_factor'
+            },
+            key: 1,
+            name: 'Test factor1',
+            value: 3
+          }
+        ])
       end
     end
   end

@@ -24,7 +24,7 @@ export default class LogicElement extends Component {
 
   render () {
     const {
-      logic, onChange, types, factors,
+      logic, onChange, types, factors, assessments,
     } = this.props
     return (
       <div className={css.listWrapper}>
@@ -40,6 +40,7 @@ export default class LogicElement extends Component {
             addList={this.addNewList}
             removeList={this.removeList}
             factors={factors}
+            assessments={assessments}
           />
         ))}
       </div>

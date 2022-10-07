@@ -1,0 +1,37 @@
+@import "styles/ant.variable.less";
+@import "styles/spacing.less";
+@import "glint/styles/mixins.less";
+
+.card {
+  margin-bottom: @space-5;
+  & :global(.ant-card-body) {
+    padding-top: 0px;
+  }
+  & :global(.ant-card-head-title) {
+    padding-bottom: 0px;
+  }
+  & :global(.ant-card-head) {
+    border-bottom: none;
+    position: relative;
+    .highlighter(35%);
+  }
+}
+.dataTable {
+  & :global(.ant-table-cell):first-child {
+    padding-inline-start: 0px;
+  }
+  & :global(.ant-table-row):hover {
+    & :global(.ant-table-cell) {
+      background-color: @white;
+    }
+  }
+  & :global(.ant-table-thead) :global(.ant-table-cell) {
+    background-color: @white;
+    &:before {
+      content: none !important;
+    }
+  }
+}
+.waitingIcon {
+  color: var(--ant-warning-color);
+}

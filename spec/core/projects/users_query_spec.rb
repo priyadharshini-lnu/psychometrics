@@ -7,8 +7,8 @@ describe Projects::UsersQuery do
   let(:datasheet) { create(:datasheet, project: project) }
 
   before do
-    create(:datasheet_row, datasheet: datasheet, email: 'tony@ferg.com')
-    create(:datasheet_row, datasheet: datasheet, email: 'el@kwin.com')
+    create(:sheet_row, sheet: datasheet, email: 'tony@ferg.com')
+    create(:sheet_row, sheet: datasheet, email: 'el@kwin.com')
     create(:user, email: 'tony@alal.com', project: project)
     create(:user, email: 'tony@coco.com')
   end

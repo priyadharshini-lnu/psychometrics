@@ -9,7 +9,7 @@ module Threesixty
       validate :subject_fields
 
       def no_duplicates
-        if subjects.map { |subject| subject[:email] }.uniq.size != subjects.size
+        if subjects.pluck(:email).uniq.size != subjects.size
           errors.add(:subjects, :email_duplicated)
         end
       end

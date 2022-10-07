@@ -20,8 +20,9 @@ describe Hogan::FetchResults do
 
   it 'when credentials are empty we create them' do
     allow(users_result).to receive(:external_user_reports).with(:hogan).and_return([user_report])
-    expect(Services::Hogan::API::JSON::ParticipantReport).to receive(:call!).and_return(double('res', report: 'base64'))
-    expect(Services::Hogan::API::JSON::ParticipantScore).to receive(:call!).and_return('results')
+    expect(Services::Hogan::Api::Json::ParticipantReport).to receive(:call!).and_return(double('res', report: 'base64'))
+    expect(Services::Hogan::Api::Json::ParticipantScore).to receive(:call!).and_return('results')
+
     Hogan::FetchResults.call!(users_result, user.hogan_credential, project)
 
     expect(users_result.external_results).to eq 'results'
@@ -38,9 +39,9 @@ describe Hogan::FetchResults do
     report2 = create(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting))
     user_report2 = create(:user_report, external_added: false, report: report2)
     allow(users_result).to receive(:external_user_reports).with(:hogan).and_return([user_report, user_report2])
-    expect(Services::Hogan::API::JSON::ParticipantReport).to receive(:call!).twice.
+    expect(Services::Hogan::Api::Json::ParticipantReport).to receive(:call!).twice.
       and_return(double('res', report: 'base64'))
-    expect(Services::Hogan::API::JSON::ParticipantScore).to receive(:call!).and_return('results')
+    expect(Services::Hogan::Api::Json::ParticipantScore).to receive(:call!).and_return('results')
     expect(Hogan::AddReports).to receive(:call!).with(
       group: project.hogan_group_name,
       credentials: user.hogan_credential,

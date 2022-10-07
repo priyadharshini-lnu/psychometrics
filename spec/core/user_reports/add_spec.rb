@@ -11,7 +11,7 @@ describe Campaigns::UserReports::Add do
   let(:report_family) { report.report_families.first }
   let(:form) do
     Campaigns::UserReports::AddForm.new(report_ids: report.id, report_family_id: report_family.id,
-      report_access: { report.id.to_s => true })
+                                        report_access: { report.id.to_s => true })
   end
   let(:license) do
     create(

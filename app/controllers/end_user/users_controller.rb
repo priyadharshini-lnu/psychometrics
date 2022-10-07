@@ -9,24 +9,26 @@ class EndUser::UsersController < ApplicationController
   initial_state_for %i[dashboard]
   skip_before_action :authenticate_user!, only: %i[change_locale]
 
+  def show
+    redirect_to new_user_session_path
+  end
+
   # rubocop:disable Metrics/AbcSize
-  def dashboard
-    return render 'end_user/users/dashboard' if show_new_end_user_view?
-
-    subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
-    evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
-    user_campaigns = current_user.campaign_users.where(active: true).pluck(:campaign_id) |
-                     subject_campaigns | evaluator_campaigns
-
-    campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
-                includes(:threesixty_campaign).group_by(&:type)
-
+  def dashboard # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     respond_to do |format|
       format.html do
-        redirect_to select_campaign_url(campaigns.values.flatten.first) if campaigns.values.flatten.size == 1
+        render 'end_user/users/dashboard'
       end
       format.json do
-        json = @single_assigns.uniq.map do |assign|
+        subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
+        evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
+        user_campaigns = current_user.campaign_users.where(active: true).pluck(:campaign_id) |
+                         subject_campaigns | evaluator_campaigns
+
+        campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
+                    includes(:threesixty_campaign).group_by(&:type)
+
+        json = @single_assigns.uniq.filter_map do |assign|
           next if assign.membership.client.migrated?
 
           applicable_level_project = assign.membership.client.applicable_level == 'project'
@@ -35,13 +37,13 @@ class EndUser::UsersController < ApplicationController
           next if !applicable_level_project && assign.original_assigns.all? { |a| a.membership&.disabled? }
 
           ::EndUser::AssignSerializer.new(assign).to_h
-        end.compact
+        end
 
         json.concat(serializer_campaign(campaigns['common'], ::EndUser::ShortCampaignSerializer)) if campaigns['common']
 
         if campaigns['threesixty']
           json.concat(serializer_campaign(campaigns['threesixty'].map(&:threesixty_campaign),
-                                          Threesixty::CampaignSerializer))
+                                          Threesixty::EndUser::ShortCampaignSerializer))
         end
 
         render json: json
@@ -49,12 +51,6 @@ class EndUser::UsersController < ApplicationController
     end
   end
   # rubocop:enable Metrics/AbcSize
-
-  def switch_end_user_view
-    cookies[:end_user_view] = params[:view] == 'new' ? 'new' : 'old'
-
-    redirect_to root_path
-  end
 
   def accept_privacy
     current_user.create_privacy_consent!
@@ -68,15 +64,23 @@ class EndUser::UsersController < ApplicationController
   end
 
   def update_details
-    form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user)
+    form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user, project: @current_project)
+    return render json: { errors: form.errors.messages }, status: 400 unless form.valid?
 
-    return render json: { errors: form.errors.messages }, status: :bad_request unless form.valid?
-
-    if current_user.update(form.attributes)
+    if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
+      current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
       bypass_sign_in(current_user, scope: :user)
       render json: current_user, serializer: Threesixty::CurrentUserSerializer, project_id: @current_project.id
     else
-      render json: { errors: current_user.errors.messages }, status: :bad_request
+      render json: { errors: current_user.errors.messages }, status: 400
+    end
+  end
+
+  def upload_photo
+    if current_user.user_profile.update(photo: params[:photo])
+      render json: { photo: current_user.user_profile.photo&.url }
+    else
+      render json: { errors: current_user.user_profile.errors.messages }, status: 400
     end
   end
 

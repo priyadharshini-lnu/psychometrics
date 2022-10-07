@@ -57,7 +57,7 @@ module Threesixty
 
     def update_status
       authorize @participant
-      @participant.update_attributes(manager_evaluation_status: params[:status])
+      @participant.update(manager_evaluation_status: params[:status])
       render json: @participant, serializer: Threesixty::EndUser::ParticipantSerializer, include: '**'
     end
 

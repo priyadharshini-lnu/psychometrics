@@ -1,29 +1,18 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: reports_pages
-#
-#  id         :integer          not null, primary key
-#  report_id  :integer
-#  name       :string
-#  props      :json
-#  position   :integer
-#  deleted_at :datetime
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 module Reports
   class Page < ApplicationRecord
     include Copyable
 
     belongs_to :report, touch: true
+
     has_many :modules, class_name: 'Reports::Module', dependent: :destroy
+
     default_scope { order(:position) }
-    validates :report, presence: true
 
     acts_as_list scope: :report_id
+
+    validates :report, presence: true
 
     def self.table_name_prefix
       'reports_'

@@ -6,7 +6,7 @@ module Imports
       class MatrixTable
         include ImportExportConst
         # Parse RESULT data for XLSX
-        def self.build_answers(data, question, duration, use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, use_scoring = false, _assign) # rubocop:disable Metrics/PerceivedComplexity
           return nil if data.compact.blank?
 
           answers = []
@@ -40,7 +40,7 @@ module Imports
 
               scales.to_s.split(',').each do |scale|
                 answers << {
-                  scale: use_scoring && factors_scoring["#{choice}-#{scale}"] || scale.to_i - 1,
+                  scale: (use_scoring && factors_scoring["#{choice}-#{scale}"]) || (scale.to_i - 1),
                   value: true,
                   choice: choice
                 }

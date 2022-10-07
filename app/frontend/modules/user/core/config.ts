@@ -9,6 +9,11 @@ export const defaultState = {
   maintenance: {
     startDate: null,
   },
+  profile: {
+    fields: [],
+    requiredFields: {},
+    lockedFields: {},
+  },
 }
 
 export default function reducer (state = defaultState) {

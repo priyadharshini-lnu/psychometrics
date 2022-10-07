@@ -25,8 +25,10 @@ module Hogan
 
       # Sets loaded report
       assigns_reports_scope.find_each do |assigns_report|
-        assigns_report.update(external_report: "data:application/pdf;base64,#{participant_report}",
-          generating: false)
+        assigns_report.update(
+          external_report: "data:application/pdf;base64,#{participant_report}",
+          generating: false
+        )
       end
 
       # Fetchs score and sets to AssignsReports
@@ -47,7 +49,7 @@ module Hogan
     # Loads report from Hogan
     #
     def get_participant_report
-      Services::Hogan::API::JSON::ParticipantReport.call!(
+      Services::Hogan::Api::Json::ParticipantReport.call!(
         group: hogan_group_name,
         assessment_id: hogan_assessment_id,
         report_id: hogan_report_id,
@@ -59,7 +61,7 @@ module Hogan
     # Loads scores from Hogan
     #
     def get_participant_score
-      Services::Hogan::API::JSON::ParticipantScore.call!(
+      Services::Hogan::Api::Json::ParticipantScore.call!(
         group: hogan_group_name,
         participant_id: hogan_participant_id,
         assessment_id: hogan_assessment_id,
@@ -78,7 +80,7 @@ module Hogan
           joins(assign: :project_assign).
           where(report_id: report.id).
           where(assigns: { assessment_id: assign.assessment.id }).
-          where('project_assigns_assigns.id = ?', assign.assign_with_result.id)
+          where(project_assigns_assigns: { id: assign.assign_with_result.id })
       end
     end
   end

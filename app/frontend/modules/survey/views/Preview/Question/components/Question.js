@@ -83,7 +83,9 @@ class Question extends Component {
         <div className={styles.content}>
           {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
           <div className={styles.contentOuter}>
-            {this.renderPreview()}
+            <div className={styles.previewContainer}>
+              {this.renderPreview()}
+            </div>
           </div>
         </div>
       </div>

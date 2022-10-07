@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { DatasheetManagement } from 'modules/admin/modules/DatasheetManagement'
+import { SheetTabs } from 'modules/admin/modules/SheetManagement'
 
-import { ParentResourceType } from 'modules/admin/modules/DatasheetManagement/interfaces'
+import { ParentResourceType } from 'modules/admin/modules/SheetManagement/interfaces'
 
 export const Datasheet = () => (
-  <DatasheetManagement parentResourceType={ParentResourceType.Project} />
+  <SheetTabs parentResourceType={ParentResourceType.Project} />
 )

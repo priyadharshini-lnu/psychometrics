@@ -72,8 +72,8 @@ RSpec.describe RegistrationCode, type: :model do
 
     it 'needs a sensible start and end date' do
       new_form = @form
-      new_form.start_date = Time.now + 20.days
-      new_form.end_date = Time.now + 19.days
+      new_form.start_date = 20.days.from_now
+      new_form.end_date = 19.days.from_now
       expect(new_form.valid?).to be_falsy
       expect(new_form.errors.messages[:end_date].present?).to be_truthy
     end

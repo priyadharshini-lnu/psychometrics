@@ -29,6 +29,7 @@ namespace :one_time do
     end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def fix_user_result(user_result, questions, dry_run)
     answers = user_result.answers
     scoring = user_result.scoring
@@ -55,4 +56,5 @@ namespace :one_time do
     # pp answers
     user_result.update_column('answers', answers) if answers_updated && !dry_run
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end

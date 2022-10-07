@@ -38,14 +38,12 @@ module Threesixty
       def user_eligible_for_reminder?(reminder_history, days, times)
         return if reminder_history.sent_count >= times
 
-        Date.today == reminder_history.last_sent_at.to_date.advance(days: days)
+        Time.zone.today == reminder_history.last_sent_at.to_date.advance(days: days)
       end
 
       def reminder_histories
-        @reminder_histories ||= threesixty_campaign.
-                                reminder_histories.
-                                each_with_object({}) do |reminder_history, acc|
-          acc["#{reminder_history.user_id}-#{reminder_history.email_name}"] = reminder_history
+        @reminder_histories ||= threesixty_campaign.reminder_histories.index_by do |reminder_history|
+          "#{reminder_history.user_id}-#{reminder_history.email_name}"
         end
       end
 
@@ -60,19 +58,17 @@ module Threesixty
       end
 
       def send_email(user)
-        if email_name == ::Threesixty::Emails::Name::SUBJECT_REMINDER
-          Threesixty::Emails::Send.call!(
-            email_name,
-            threesixty_campaign: threesixty_campaign,
-            recipient_ids: [user.id]
-          )
-        elsif email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
+        if send_email_applicable?
           Threesixty::Emails::Send.call!(
             email_name,
             threesixty_campaign: threesixty_campaign,
             recipient_ids: [user.id]
           )
         end
+      end
+
+      def send_email_applicable?
+        [::Threesixty::Emails::Name::SUBJECT_REMINDER, ::Threesixty::Emails::Name::EVALUATOR_REMINDER].any?(email_name)
       end
     end
   end

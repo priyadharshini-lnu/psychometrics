@@ -1,0 +1,25 @@
+@import "styles/ant.variable.less";
+
+:global(.ant-notification-notice) {
+  &.notification--warning,
+  &.notification--error {
+    :global {
+      .ant-notification-notice-message,
+      .ant-notification-close-x,
+      .anticon.ant-notification-notice-icon-warning {
+        color: @white;
+        font-weight: bold;
+      }
+    }
+  }
+  &.notification--warning {
+    background-color: var(--ant-warning-color);
+  }
+  &.notification--error {
+    background-color: var(--ant-error-color);
+  }
+}
+
+.timer :global(.ant-statistic-content) {
+  font-size: 14px;
+}

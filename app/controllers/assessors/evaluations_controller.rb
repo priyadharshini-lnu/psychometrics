@@ -5,7 +5,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
   before_action :set_assessor_assessment, only: %i[show]
   before_action :set_subject_user_assessment, only: %i[subject_assessment]
 
-  def evaluate
+  def evaluate # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     authorize(UserAssessment)
     campaign = Campaign.find(params[:campaign_id])
     user = User.find(params[:id])
@@ -19,15 +19,20 @@ class Assessors::EvaluationsController < Assessors::BaseController
     ).map(&:assessment_id)
 
     @subject_user_assessment ||= UserAssessment.where(campaign_id: campaign.id,
-                                                        subject_id: user.id,
-                                                        evaluator_id: user.id,
-                                                        assessment_id: assessment_ids)
-    datasheet = campaign.datasheet_data(user.email)
+                                                      subject_id: user.id,
+                                                      evaluator_id: user.id,
+
+                                                      assessment_id: assessment_ids)
+    if campaign.datasheet
+      datasheet_columns = Sheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
+      datasheet = campaign.datasheet_data(user.email)
+    end
+
     render json: {
       user_info: {
         user: UserSerializer.new(user).to_hash,
-        datasheet: datasheet,
-        datasheet_columns: campaign.datasheet_columns
+        datasheet_columns: datasheet_columns || [],
+        datasheet: datasheet&.slice(*datasheet_columns.map { |col| col['name'] }) || {}
       },
       assessor_assessments: @assessor_assessments.map { |a| { id: a.id, name: a.assessment.name } },
       subject_assessments: @subject_user_assessment.map { |a| { id: a.id, name: a.assessment.name } }
@@ -37,7 +42,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
   def show
     user_result = @assessor_assessment.users_result
     attributes = { last_activity_at: DateTime.current }
-    attributes = attributes.merge(started_at: Time.now) unless @assessor_assessment.started_at
+    attributes = attributes.merge(started_at: Time.zone.now) unless @assessor_assessment.started_at
     @assessor_assessment.update!(attributes)
     set_locale_for_user_assessment(@assessor_assessment)
 
@@ -78,12 +83,12 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   def set_assessor_assessment
-    @assessor_assessment = policy_scope(UserAssessment).find_by!(id: params[:id] || params[:evaluation_id])
+    @assessor_assessment = policy_scope(UserAssessment).find(params[:id] || params[:evaluation_id])
     authorize([@assessor_assessment])
   end
 
   def set_subject_user_assessment
-    @subject_user_assessment = UserAssessment.find_by!(id: params[:id] || params[:evaluation_id])
+    @subject_user_assessment = UserAssessment.find(params[:id] || params[:evaluation_id])
     authorize([@subject_user_assessment])
   end
 

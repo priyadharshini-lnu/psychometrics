@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
 import { createReducer, Payload } from 'utils/redux'
-import { CampaignOptions, InstructionsWithLocale } from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import {
+  CampaignOptions, DescriptionWithLocaleTR, DescriptionWithLocale, InstructionsWithLocale,
+} from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
 
@@ -63,6 +65,31 @@ export const updateInstructions = (instructions: string, locale: string) => ({
 type CampaignOptionResponse = ApiActionResponse<CampaignOptions>
 type FetchInstructionsResponse = ApiActionResponse<{ list: InstructionsWithLocale[], availableLocales: string[]}>
 
+const FetchDescriptionsTR = t.type({
+  list: t.array(DescriptionWithLocaleTR),
+  availableLocales: t.array(t.string),
+})
+type FetchDescriptionResponse = ApiActionResponse<{ list: DescriptionWithLocale[], availableLocales: string[]}>
+
+export const FETCH_DESCRIPTIONS = 'campaigns/campaignOptions/FETCH_DESCRIPTIONS'
+export const UPDATE_DESCRIPTIONS = 'campaigns/campaignOptions/UPDATE_DESCRIPTION'
+export const fetchDescriptions = (projectId: number, campaignId: number, locales) => ({
+  type: FETCH_DESCRIPTIONS,
+  request: {
+    method: 'get',
+    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/fetch_descriptions`,
+    body: { locales: locales.filter(l => l) },
+    typedResponse: FetchDescriptionsTR,
+  },
+})
+
+export const updateDescriptions = (descriptions: string, locale: string) => ({
+  type: UPDATE_DESCRIPTIONS,
+  payload: {
+    locale,
+    descriptions,
+  },
+})
 
 const HANDLERS = {
   [FETCH]: (state: CampaignOptions, { response }: CampaignOptionResponse) => ({ ...state, ...response }),
@@ -73,7 +100,7 @@ const HANDLERS = {
     return {
       ...state,
       instructionsWithLocales,
-      availableLocales: _.uniq([I18n.defaultLocale, ...response.availableLocales]),
+      availableInstructionLocales: _.uniq([I18n.defaultLocale, ...response.availableLocales]),
     }
   },
   [UPDATE]: (state: CampaignOptions, { response }: CampaignOptionResponse) => ({ ...state, ...response }),
@@ -84,6 +111,25 @@ const HANDLERS = {
     instructions => instructions.map((instr) => {
       if (instr.locale !== payload.locale) { return instr }
       return { ...instr, instructions: payload.instructions }
+    }),
+  ),
+  [FETCH_DESCRIPTIONS]: (state: CampaignOptions, { response }: FetchDescriptionResponse) => {
+    const descriptionsWithLocales = response.list.map(
+      resItem => (state.descriptionsWithLocales || []).find(item => item.locale === resItem.locale) || resItem,
+    )
+    return {
+      ...state,
+      descriptionsWithLocales,
+      availableDescriptionLocales: _.uniq([I18n.defaultLocale, ...response.availableLocales]),
+    }
+  },
+  [UPDATE_DESCRIPTIONS]: (state: CampaignOptions,
+    { payload }: Payload<{ locale: string, descriptions: string}>) => updateIn(
+    state,
+    'descriptionsWithLocales',
+    (descriptions: DescriptionWithLocale[]) => descriptions.map((description) => {
+      if (description.locale !== payload.locale) { return description }
+      return { ...description, description: payload.descriptions }
     }),
   ),
 }

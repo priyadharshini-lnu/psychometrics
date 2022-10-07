@@ -25,8 +25,8 @@ module AdministrationHelper
   #    span.fa.fa-sign-out
   # ```
   #
-  def confirmation_link(name = nil, options = nil, html_options = nil, &block)
-    link_to name, options, html_options, &block
+  def confirmation_link(name = nil, options = nil, html_options = nil, &)
+    link_to(name, options, html_options, &)
   end
 
   #
@@ -51,14 +51,12 @@ module AdministrationHelper
   end
 
   def link_to_sort(_resource_class, name, filter_form, tail = nil)
-    unless tail
-      case name
-        when :created_at, :updated_at
-          tail = Settings.timezone_tip
-        else
-          tail = ''
-      end
-    end
+    tail ||= case name
+               when :created_at, :updated_at
+                 Settings.timezone_tip
+               else
+                 ''
+             end
     sort_link(filter_form, name, t(".#{name}") + tail)
   end
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import ColorPicker from 'components/ColorPicker'
+import ColorPicker from 'modules/survey/components/ColorPicker'
 import { Input, Checkbox } from 'antd'
 
 import styles from './StaticContent.less'

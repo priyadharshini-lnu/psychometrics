@@ -1,50 +1,6 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: users
-#
-#  id                             :integer          not null, primary key
-#  email                          :string           default(""), not null
-#  encrypted_password             :string           default(""), not null
-#  reset_password_token           :string
-#  reset_password_sent_at         :datetime
-#  remember_created_at            :datetime
-#  sign_in_count                  :integer          default(0), not null
-#  current_sign_in_at             :datetime
-#  last_sign_in_at                :datetime
-#  current_sign_in_ip             :inet
-#  last_sign_in_ip                :inet
-#  created_at                     :datetime         not null
-#  updated_at                     :datetime         not null
-#  first_name                     :string
-#  last_name                      :string
-#  disabled                       :boolean          default(FALSE)
-#  role                           :string           default("Users::Regular")
-#  invitation_token               :string
-#  invitation_created_at          :datetime
-#  invitation_sent_at             :datetime
-#  invitation_accepted_at         :datetime
-#  invitation_limit               :integer
-#  invited_by_type                :string
-#  invited_by_id                  :integer
-#  invitations_count              :integer          default(0)
-#  authentication_token           :string(30)
-#  is_anonym                      :boolean          default(FALSE)
-#  grants                         :jsonb
-#  created_by_id                  :integer
-#  modified_by_id                 :integer
-#  spoof_token                    :string
-#  second_factor_attempts_count   :integer          default: 0
-#  encrypted_otp_secret_key       :string
-#  encrypted_otp_secret_key_iv    :string
-#  encrypted_otp_secret_key_salt  :string
-#  direct_otp                     :string
-#  direct_otp_sent_at             :datetime
-#  totp_timestamp                 :timestamp
-
 # rubocop:disable Metrics/ClassLength
-
 class User < ApplicationRecord
   include UserScopes
   include UserRoles
@@ -91,7 +47,8 @@ class User < ApplicationRecord
     assessors: %w[view manage],
     registration_codes: %w[view manage],
     sms_invites: %w[view manage],
-    datasheet: %w[view manage]
+    datasheet: %w[view manage],
+    messages: %w[email instructions options]
   }.with_indifferent_access.freeze
 
   # overrides required for devise_security
@@ -109,17 +66,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :secure_validatable, :password_archivable, :password_expirable,
          :lockable, :timeoutable, request_keys: { subdomain: false }
 
-  attr_accessor :create_by_invite
-  attr_accessor :terms
+  attr_accessor :create_by_invite, :terms, :current_membership
   # HRIS data
   attr_accessor :hris_data
-  attr_accessor :current_membership
 
   self.inheritance_column = :role
 
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
   belongs_to :project, class_name: 'Client'
+
   has_many :memberships, inverse_of: :user # on delete cascade
   has_many :clients, through: :memberships
   has_many :ttes, through: :clients
@@ -138,7 +94,7 @@ class User < ApplicationRecord
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
-  has_many :api_keys, inverse_of: :user
+  has_many :api_keys, inverse_of: :user, dependent: :destroy
   has_many :user_assessments, inverse_of: :subject, foreign_key: :subject_id, dependent: :destroy
   has_many :self_user_assessments, lambda {
     UserAssessment.self_assessment
@@ -162,25 +118,29 @@ class User < ApplicationRecord
 
   has_one :security_setting, through: :project
   has_one :privacy_consent
+  has_one :user_profile
 
   accepts_nested_attributes_for :memberships
 
   validates :email, uniqueness: { scope: %i[project_id] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
-  validates_format_of     :email,
-                          with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
-  validates_presence_of   :email
-  validates_presence_of     :password, if: :password_required?
-  validates_confirmation_of :password, if: :password_required?
-  validates_length_of       :password, within: Devise.password_length, allow_blank: true
+  validates :email, format: { with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email? }
+  validates :email, presence: true
+  validates :password, presence: { if: :password_required? }
+  validates :password, confirmation: { if: :password_required? }
+  validates :password, length: { within: Devise.password_length, allow_blank: true }
   validates :password, repeats_in_password: true, if: :restrict_sequences?
-  # validate :validate_grants
+  validates :role, inclusion: { in: UserRoles::USER_ROLES.values }, presence: true, allow_nil: true
 
   before_save :ensure_authentication_token
   before_save do
     self.email = email.downcase
     self.locale = locale.presence
   end
+
+  after_create :create_user_profile
+
+  mount_uploader :photo, ImageUploader
 
   has_one_time_password(encrypted: true)
 
@@ -216,9 +176,7 @@ class User < ApplicationRecord
   end
 
   def password_complexity
-    if security_setting
-      return {} unless enforce_strong_password?
-    end
+    return {} if security_setting && !enforce_strong_password?
 
     super # { digit: 1, lower: 1, symbol: 1, upper: 1 }
   end
@@ -293,6 +251,10 @@ class User < ApplicationRecord
     security_setting ? security_setting&.lock_account : super(type)
   end
 
+  def log_attribute_for_delete
+    slice(:id, :email)
+  end
+
   protected
 
   def attempts_exceeded?
@@ -321,10 +283,6 @@ class User < ApplicationRecord
     end
   end
 
-  def log_attribute_for_delete
-    slice(:id, :email)
-  end
-
   private
 
   def email_validation
@@ -346,7 +304,7 @@ class User < ApplicationRecord
   end
 
   def user_member_role_exists?(client_id)
-    memberships.where.not(role: :member).where(client_id: client_id).exists?
+    memberships.where.not(role: :member).exists?(client_id: client_id)
   end
 
   # @deprecated
@@ -403,8 +361,9 @@ class User < ApplicationRecord
       subdomain = warden_conditions[:subdomain]&.gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
-        membership = Membership.join_user.find_by(users: { email: warden_conditions[:email]&.downcase },
-          client_id: project.id)
+        membership = Membership.join_user.find_by(
+          users: { email: warden_conditions[:email]&.downcase }, client_id: project.id
+        )
         if membership
           find_user_with_membership(project, subdomain, warden_conditions)
         else

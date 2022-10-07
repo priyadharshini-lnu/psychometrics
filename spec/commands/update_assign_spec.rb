@@ -9,7 +9,7 @@ describe UpdateAssign do
   subject { described_class.call(form, assign, current_user) }
 
   context 'form is invalid' do
-    let(:form) { double('form', 'invalid?': true) }
+    let(:form) { double('form', invalid?: true) }
 
     it 'broadcast :invalid' do
       expect { subject }.to broadcast(:invalid)
@@ -35,7 +35,7 @@ describe UpdateAssign do
     let(:current_user)    { membership.user }
     let!(:assign)         { create(:assign, assessment: assessment, membership: membership, step: 3) }
     let(:assigns_report)  { create(:assigns_report, :licensed, assign: assign, report: report) }
-    let(:form)            { double('form', 'invalid?': false, attributes_with_values: {}) }
+    let(:form)            { double('form', invalid?: false, attributes_with_values: {}) }
 
     it { expect { subject }.to broadcast(:ok) }
     it { expect { subject }.not_to broadcast(:invalid) }
@@ -49,11 +49,11 @@ describe UpdateAssign do
 
       context 'assign is completed' do
         before do
-          allow(assign).to receive(:'completed?').and_return(true)
+          allow(assign).to receive(:completed?).and_return(true)
         end
 
         it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(assign, assign.norm_data) }
-        it { is_expected.to receive(:'completed_at=').with(Time.now) }
+        it { is_expected.to receive(:'completed_at=').with(Time.zone.now) }
       end
     end
 

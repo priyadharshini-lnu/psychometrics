@@ -46,7 +46,7 @@ module Threesixty
         end
         render json: result, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
       else
-        render json: { errors: form.error_messages }, status: :bad_request
+        render json: { errors: form.error_messages }, status: 400
       end
     end
 

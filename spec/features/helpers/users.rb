@@ -31,7 +31,7 @@ module Features
       # rubocop:disable Metrics/AbcSize
       def create_project_admin(project, opts = {})
         visit administration_client_projects_path(project.tte)
-        href = new_step_1_administration_client_project_admins_path(project)
+        href = new_step_one_administration_client_project_admins_path(project)
         find("#client_#{project.id} td .add-icon-box a[href='#{href}']").click
         wait_for_ajax
         within '.new_prepare_user' do

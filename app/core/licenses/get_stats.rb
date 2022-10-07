@@ -9,19 +9,21 @@ module Licenses
 
     private
 
+    # rubocop:disable Rails/DurationArithmetic
     def get_stats
       expiring_licenses = License.where(
-        'end_date > ? AND end_date < ?', Time.now, Time.now + 30.days
+        'end_date > ? AND end_date < ?', Time.zone.now, Time.zone.now + 30.days
       ).includes(:client)
 
       license_usages = LicenseUsage.active.where(
-        'created_at > ? AND created_at < ?', Time.now - 7.days, Time.now
+        'created_at > ? AND created_at < ?', Time.zone.now - 7.days, Time.zone.now
       ).group(:license_id).count
 
       used_licenses = License.where(id: license_usages.keys).includes(:client)
 
       get_hash(expiring_licenses, used_licenses, license_usages)
     end
+    # rubocop:enable all
 
     def get_hash(expiring_licenses, used_licenses, license_usages)
       hash = {

@@ -16,7 +16,7 @@ class Graph extends Component {
 
   renderGraph () {
     const {
-      factors, module: model, preview, animation,
+      factors, module: model, preview,
     } = this.props
     if (model.textConditions.length > 0) {
       const {
@@ -31,7 +31,7 @@ class Graph extends Component {
           factors={factors}
           model={model}
           preview={preview}
-          animation={animation}
+          animation={preview}
         />
       )
     }

@@ -27,9 +27,10 @@ module Administration
               payload: permit!.merge(@user_report.details_to_log)
           end
           format.pdf do
+            @pdf_export = true
             audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign,
               payload: permit!.merge(@user_report.details_to_log)
-            render :export, formats: 'html', layout: 'pdf', content_type: 'text/html'
+            render :export, formats: :html, layout: 'pdf', content_type: 'text/html'
           end
         end
       end

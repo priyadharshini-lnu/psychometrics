@@ -3,7 +3,9 @@
 module Administration
   class UserReportPolicy < Administration::BasePolicy
     def create?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def show?
@@ -27,7 +29,9 @@ module Administration
     end
 
     def regenerate?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def destroy?

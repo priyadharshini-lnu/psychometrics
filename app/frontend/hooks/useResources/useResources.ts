@@ -1,4 +1,4 @@
-import { useClient } from '@thetalententerprise/jsonapi-react'
+import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
@@ -17,11 +17,11 @@ import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
   Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
-  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource,
+  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction,
 } from './interfaces'
-import { formatErrors } from './utils'
+import { formatErrors, defaultState } from './utils'
 
-export function useResources<R extends {id: string, type: string }, M extends BaseMeta = BaseMeta> (
+export function useResources<R extends {id: string}, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
@@ -42,9 +42,7 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     // eslint-disable-next-line prefer-destructuring
     setState = stateManager.setState
   } else {
-    [state, setState] = useState<ResourceState<R[], M>>({
-      data: [], requests: {}, meta: {} as M, query: {},
-    })
+    [state, setState] = useState<ResourceState<R[], M>>(defaultState<R[], M>())
   }
 
   const queryFromUrl = (trackUrl ? queryString?.q || {} : {}) as UrlQuery
@@ -85,10 +83,13 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     }
   }
 
+  const getRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => (
+    errors ? RequestStatus.Failed : RequestStatus.Success
+  )
+
   const setRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => {
-    const status = errors ? RequestStatus.Failed : RequestStatus.Success
+    const status = getRequestStatus(type, errors)
     setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
-    return status
   }
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
@@ -104,34 +105,185 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
       } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus('fetch', formattedErrors)
-      if (status === RequestStatus.Success && response) {
+      if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
         setState((previousState: ResourceState<R[], M>) => (
           { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
-
+        resolve(camelizedResponse)
         if (responseType || args.responseType) {
           responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
         }
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus('fetch', formattedErrors)
     })
   }
 
+  const handleCustomMemberDeleteAction = (
+    args: { id: string, action: string, updateStore?: boolean, apiConfig?: ApiConfig},
+  ) => {
+    const {
+      id, action, apiConfig, updateStore,
+    } = args
+    const requestKey: RequestType = `${action}/delete@${id}`
+
+    return new Promise(async (resolve, reject) => {
+      const { error, errors } = await client.delete([resourceName, id, action, apiConfig || {}])
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
+        if (updateStore) setData(data.filter(r => r.id !== id))
+        resolve(null)
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const memberAction = (
+    args: {
+      id: string, action: string, method: HttpAction,
+      body?: Record<string, unknown>,
+      updateStore?: boolean, responseType?: ResponseType, apiConfig?: ApiConfig
+    },
+  ) => {
+    const {
+      id, action, method, body, apiConfig, updateStore,
+    } = { apiConfig: options.apiConfig, ...args }
+    const memberResponseType = options.responseType || responseType
+    const requestKey: RequestType = `${action}/${method}@${id}`
+    setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
+
+    if (method === 'delete') {
+      return handleCustomMemberDeleteAction({
+        id, action, updateStore, apiConfig,
+      })
+    }
+
+    return new Promise(async (resolve, reject) => {
+      let response: IResult<R> | null = null
+      if (method === 'get') {
+        response = await client.fetch<R>([resourceName, id, action, apiConfig || {}])
+      } else {
+        response = await client.mutate<R>(
+          [resourceName, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+        )
+      }
+      const { data, error, errors } = response
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
+        const camelizedData = humps.camelizeKeys(data)
+        if (updateStore) updateIndividualRecord(camelizedData)
+        resolve(camelizedData)
+        responseTypeValidation(memberResponseType, camelizedData)
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const collectionAction = (
+    args: {
+      action: string, method: HttpAction,
+      body?: Record<string, unknown>,
+      updateStore?: boolean, responseType?: ResponseType, apiConfig?: ApiConfig
+    },
+  ) => {
+    const {
+      action, method, body, apiConfig,
+    } = { apiConfig: options.apiConfig, ...args }
+    const memberResponseType = options.responseType || responseType
+    const requestKey: RequestType = `${action}/${method}`
+    setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
+
+    return new Promise(async (resolve, reject) => {
+      let response: IResult<Record<string, string> | Record<string, string>[]> | null = null
+      if (method === 'get') {
+        response = await client.fetch<R>([resourceName, action, apiConfig || {}])
+      } else if (method === 'delete') {
+        response = await client.delete([resourceName, action, apiConfig || {}])
+      } else {
+        response = await client.mutate<R>(
+          [resourceName, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+        )
+      }
+      const { data, error, errors } = response
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
+        const camelizedData = humps.camelizeKeys(data)
+        resolve(camelizedData)
+        responseTypeValidation(memberResponseType, camelizedData)
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const updateIndividualRecord = (camelizedResponse) => {
+    setState((previousState: ResourceState<R[], M>) => {
+      let { data } = previousState
+      let updated = false
+      if (data.length === 0) {
+        updated = true
+        data = [camelizedResponse]
+      } else {
+        data = previousState.data.map((resource) => {
+          if (resource.id === camelizedResponse.id) {
+            updated = true
+            return camelizedResponse
+          }
+          return resource
+        })
+        if (!updated) data = [camelizedResponse, ...previousState.data]
+      }
+      return { ...previousState, data }
+    })
+  }
+
+  const fetchSingle = async (
+    args: { id: string, responseType?: ResponseType, apiConfig?: ApiConfig },
+  ) => {
+    const { apiConfig, id } = { apiConfig: options.apiConfig, ...args }
+    const requestKey: RequestType = `fetch@${id}`
+    setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
+
+    return new Promise(async (resolve, reject) => {
+      const {
+        data: response, error, errors,
+      } = await client.fetch<R>([resourceName, id, apiConfig || {}])
+
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
+        const camelizedResponse = humps.camelizeKeys(response)
+        updateIndividualRecord(camelizedResponse)
+        resolve(camelizedResponse)
+        if (responseType || args.responseType) {
+          responseTypeValidation(args.responseType || responseType, camelizedResponse)
+        }
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const getResource = (id: string) => state.data.find(d => d.id === id)
+
   const createResource: CreateResource<R> = async (
-    attributes, args = { apiConfig },
+    body, args = { apiConfig },
   ) => {
     setRequests({ ...requests, add: { status: RequestStatus.Loading } })
 
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, apiConfig || {}], humps.decamelizeKeys(attributes),
+        [resourceName, apiConfig || {}], humps.decamelizeKeys(body),
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus('add', formattedErrors)
-      if (status === RequestStatus.Success && response) {
+      if (getRequestStatus('add', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
         setData([camelizedResponse, ...data])
         resolve(camelizedResponse)
@@ -139,28 +291,30 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus('add', formattedErrors)
     })
   }
 
   const updateResource: UpdateResource<R> = async (details, args = { apiConfig }) => {
-    const { id, ...attributes } = details
+    const { id, ...body } = details
+
     const requestKey: RequestType = `update@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, id, apiConfig || {}], humps.decamelizeKeys(attributes),
+        [resourceName, id, apiConfig || {}], humps.decamelizeKeys(body),
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus(requestKey, formattedErrors)
-      if (status === RequestStatus.Success && data && response) {
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data && response) {
         const camelizedResponse = humps.camelizeKeys(response)
-        resolve(camelizedResponse)
         setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
+        resolve(camelizedResponse)
         responseTypeValidation(args?.responseType || responseType, camelizedResponse)
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus(requestKey, formattedErrors)
     })
   }
 
@@ -171,13 +325,13 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
 
     return new Promise(async (resolve, reject) => {
       const formattedErrors = formatErrors(errors || error, schema)
-      const status = setRequestStatus(requestKey, formattedErrors)
-      if (status === 'success') {
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
         setData(data.filter(r => r.id !== id))
         resolve()
       } else {
         reject(formattedErrors)
       }
+      setRequestStatus(requestKey, formattedErrors)
     })
   }
 
@@ -256,7 +410,13 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
   const isLoading = (action: string, resource_id: null | string = null): boolean => {
     const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
 
-    return request ? request.status === 'loading' : false
+    return request ? request.status === RequestStatus.Loading : false
+  }
+
+  const isRequestSuccessful = (action: string, resource_id: null | string = null): boolean => {
+    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+
+    return request ? request.status === RequestStatus.Success : false
   }
 
   return {
@@ -265,6 +425,8 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     requests,
     setData,
     fetch,
+    fetchSingle,
+    getResource,
     createResource,
     updateResource,
     removeResource,
@@ -278,5 +440,8 @@ export function useResources<R extends {id: string, type: string }, M extends Ba
     handleTableChange,
     getErrors,
     isLoading,
+    isRequestSuccessful,
+    memberAction,
+    collectionAction,
   }
 }

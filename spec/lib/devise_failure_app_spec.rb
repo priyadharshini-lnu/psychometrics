@@ -46,6 +46,7 @@ describe DeviseFailureApp do
   private
 
   def build_request(params = {})
+    # rubocop:disable Style/OpenStructUse
     env = {
       'REQUEST_URI' => 'http://example.com/',
       'HTTP_HOST' => 'example.com',
@@ -54,6 +55,7 @@ describe DeviseFailureApp do
       'rack.input' => '',
       'warden' => OpenStruct.new(message: nil)
     }
+    # rubocop:enable all
     request = ActionDispatch::Request.new(env)
     params.each do |method, value|
       allow(request).to receive(method).and_return(value)

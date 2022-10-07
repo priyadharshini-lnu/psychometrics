@@ -6,29 +6,29 @@ describe Agiles::ScrubConfig do
   context '.call' do
     let(:config) do
       {
-        'completedGroups': [],
-        'groups': [
+        completedGroups: [],
+        groups: [
           {
-            'id': 'intro-group',
-            'scenes': [
+            id: 'intro-group',
+            scenes: [
               {
-                'id': 'intro-1',
-                'type': 'ContentScene',
-                'data': {
-                  'theme': 'white',
-                  'items': [
+                id: 'intro-1',
+                type: 'ContentScene',
+                data: {
+                  theme: 'white',
+                  items: [
                     {
-                      'type': 'text',
-                      'style': 'h2',
-                      'align': 'center',
-                      'text': 'instructions:intro-1.title'
+                      type: 'text',
+                      style: 'h2',
+                      align: 'center',
+                      text: 'instructions:intro-1.title'
                     }
                   ],
-                  'buttons': [
+                  buttons: [
                     {
-                      'type': 'primary',
-                      'label': 'instructions:intro-1.next',
-                      'target': 'next'
+                      type: 'primary',
+                      label: 'instructions:intro-1.next',
+                      target: 'next'
                     }
                   ]
                 }
@@ -36,38 +36,38 @@ describe Agiles::ScrubConfig do
             ]
           },
           {
-            'id': 'nf-1-group',
-            'scenes': [
+            id: 'nf-1-group',
+            scenes: [
               {
-                'id': 'nf-1-ass',
-                'type': 'AssessmentScene',
-                'data': {
-                  'theme': 'blue',
-                  'maxDuration': 240,
-                  'blocks': [
+                id: 'nf-1-ass',
+                type: 'AssessmentScene',
+                data: {
+                  theme: 'blue',
+                  maxDuration: 240,
+                  blocks: [
                     {
-                      'id': 'nf-1-ass-block-1',
-                      'type': 'Comparator',
-                      'randomise': true,
-                      'questions': [
+                      id: 'nf-1-ass-block-1',
+                      type: 'Comparator',
+                      randomise: true,
+                      questions: [
                         {
-                          'id': 'cmp-1',
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '7',
-                          'right': '12',
-                          'answers': ['hello-world']
+                          id: 'cmp-1',
+                          text: 'questions:nf.which_is_greater',
+                          left: '7',
+                          right: '12',
+                          answers: ['hello-world']
                         },
                         {
-                          'id': 'cmp-2',
-                          'text': 'questions:nf.which_is_greater',
-                          'left': '5',
-                          'right': '7',
-                          'answers': ['hello-world']
+                          id: 'cmp-2',
+                          text: 'questions:nf.which_is_greater',
+                          left: '5',
+                          right: '7',
+                          answers: ['hello-world']
                         }
                       ],
-                      'scoring': [
-                        { 'first': 1 },
-                        { 'second': 2 }
+                      scoring: [
+                        { first: 1 },
+                        { second: 2 }
                       ]
                     }
                   ]
@@ -76,8 +76,8 @@ describe Agiles::ScrubConfig do
             ]
           }
         ],
-        'locale': {},
-        'assets': {}
+        locale: {},
+        assets: {}
       }.with_indifferent_access
     end
 

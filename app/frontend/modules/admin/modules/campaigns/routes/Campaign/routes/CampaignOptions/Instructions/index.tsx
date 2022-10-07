@@ -99,7 +99,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
               <Select.Option value="">
                 {I18n.t('empty')}
               </Select.Option>
-              {(options.availableLocales || []).map(locale => (
+              {(options.availableInstructionLocales || []).map(locale => (
                 <Select.Option key={locale} value={locale}>
                   {I18n.t(`languages.${locale}`)}
                 </Select.Option>
@@ -129,7 +129,6 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
         </div>
         <Button
           type="primary"
-          size="large"
           className="mtm"
           onClick={saveInstructions}
           loading={savingInProgress}

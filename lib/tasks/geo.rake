@@ -6,8 +6,8 @@ namespace :geo do
     ::Datas::Geo.transaction do
       ::Datas::Geo.delete_all
 
-      file_name = Rails.env == 'test' ? 'GeoLite2-City-Locations-en_test.csv' : 'GeoLite2-City-Locations-en.csv'
-      source_path = Rails.root.join('public', 'source', file_name)
+      file_name = Rails.env.test? ? 'GeoLite2-City-Locations-en_test.csv' : 'GeoLite2-City-Locations-en.csv'
+      source_path = Rails.public_path.join('source', file_name)
 
       source = Roo::CSV.new(source_path)
       datas = source.parse(
@@ -18,7 +18,7 @@ namespace :geo do
         city: /city_name/
       )
 
-      datas[1..-1].each do |data|
+      datas[1..].each do |data|
         ::Datas::Geo.create(data)
       end
     end

@@ -8,7 +8,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let!(:proctoring_session) do
-    create(:proctoring_session, campaign_user: campaign_user, started_at: 1.day.ago, completed_at: Time.now,
+    create(:proctoring_session, campaign_user: campaign_user, started_at: 1.day.ago, completed_at: Time.zone.now,
       results: {
         score: 1,
         comment: 'comment1',

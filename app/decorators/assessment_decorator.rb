@@ -26,10 +26,7 @@ class AssessmentDecorator < BaseDecorator
   end
 
   # TODO: Paul quick fix
-  def timing
-    object.timing
-    # object.timing ? "- #{object.timing}" : ''
-  end
+  delegate :timing, to: :object
 
   def anonym_link?(client)
     assessments_client = client.assessments_clients.find_by(assessment_id: object.id)

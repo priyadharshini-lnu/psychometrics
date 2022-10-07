@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class RegistrationCodesController < Administration::Projects::BaseController
+    class RegistrationCodesController < Administration::Campaigns::BaseController
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
       before_action :set_resource, only: %i[update destroy download_qrcode]
@@ -29,7 +29,7 @@ module Administration
           code = ::Campaigns::RegistrationCodes::Create.call!(form, campaign)
           audit! :create, code, payload: params.permit!, campaign: campaign
           render json: code, serializer: RegistrationCodeSerializer,
-          project_id: campaign.project_id, campaign_id: campaign.id
+                 project_id: campaign.project_id, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -46,7 +46,7 @@ module Administration
           code = ::Campaigns::RegistrationCodes::Update.call!(form, resource)
           audit! :update, code, payload: params.permit!, campaign: campaign
           render json: code, serializer: RegistrationCodeSerializer,
-            project_id: campaign.project_id, campaign_id: campaign.id
+                 project_id: campaign.project_id, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -94,6 +94,12 @@ module Administration
           }
         )
       end
+
+      # rubocop:disable Naming/MemoizedInstanceVariableName
+      def set_resource
+        @_resource ||= campaign.registration_codes.find(params[:id])
+      end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
 
       def resource_class
         RegistrationCode

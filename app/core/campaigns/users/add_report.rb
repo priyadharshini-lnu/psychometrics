@@ -50,7 +50,7 @@ module Campaigns
         user_assessment
       end
 
-      def create_assessment_to_user(assessment)
+      def create_assessment_to_user(assessment) # rubocop:disable Metrics/PerceivedComplexity
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
         user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)

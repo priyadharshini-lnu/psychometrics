@@ -15,13 +15,14 @@ module Administration
 
       # Redirect administrator after log in
       def after_sign_in_path_for(resource)
+        return administration_dashboard_path if helpers.show_dashboard?
         return assessors_dashboard_path if resource.is?(:assessor)
 
         stored_location_for(resource) || administration_root_path
       end
 
       def after_sign_out_path_for(_resource)
-        new_administration_session_path
+        root_path
       end
     end
   end

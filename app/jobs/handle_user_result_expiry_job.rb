@@ -5,7 +5,7 @@ class HandleUserResultExpiryJob < ApplicationJob
   def perform
     assign_form = AssignForm.from_params(status: :completed)
     Assign.in_progress.
-      where('expiry_date <= :current', current: 10.second.from_now).
+      where('expiry_date <= :current', current: 10.seconds.from_now).
       preload(membership: :user).
       find_each do |assign|
         UpdateAssign.call(assign_form, assign, assign.membership.user)
@@ -17,7 +17,7 @@ class HandleUserResultExpiryJob < ApplicationJob
     )
     UsersResult.joins(:user_assessment).
       merge(UserAssessment.in_progress).
-      where('user_assessments.expiry_date <= :current', current: 10.second.from_now).find_each do |result|
+      where('user_assessments.expiry_date <= :current', current: 10.seconds.from_now).find_each do |result|
         ::UsersResults::UpdateUsersResult.call(users_results_form, result, result.user)
       end
   end

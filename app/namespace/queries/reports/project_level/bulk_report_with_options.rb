@@ -30,17 +30,17 @@ module Queries
         end
 
         def filter_by_client_id(client_id)
-          @relation = @relation.where('memberships.client_id = ?', client_id)
+          @relation = @relation.where(memberships: { client_id: client_id })
         end
 
         def filter_by_completion_date(start_date, end_date)
           @relation = @relation.
-                      where('assigns.status = ?', Assign.statuses[:completed]).
+                      where(assigns: { status: Assign.statuses[:completed] }).
                       where('assigns.completed_at::date BETWEEN ? AND ?', start_date.to_date, end_date.to_date)
         end
 
         def filter_by_membership_role
-          @relation = @relation.where('memberships.role != ?', Membership.roles[Membership::PROJECT_ADMIN_ROLE])
+          @relation = @relation.where.not(memberships: { role: Membership.roles[Membership::PROJECT_ADMIN_ROLE] })
         end
       end
     end

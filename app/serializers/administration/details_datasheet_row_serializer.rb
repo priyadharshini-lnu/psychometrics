@@ -5,15 +5,11 @@ module Administration
     attributes :record, :type, :columns
 
     def record
-      DatasheetRows::GetData.call!(object, datasheet: datasheet)
+      SheetRows::GetData.call!(object, datasheet: datasheet)
     end
 
     def type
       datasheet.campaign_id? ? 'new_campaign' : 'project'
-    end
-
-    def columns
-      Datasheets::GetColumnDefinition.call!(datasheet)
     end
 
     private

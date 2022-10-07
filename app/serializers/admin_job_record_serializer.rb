@@ -9,11 +9,9 @@ class AdminJobRecordSerializer < ActiveModel::Serializer
     AdminJob::JOBS[object.operation.to_sym].generate_title_link(object)
   end
 
-  # rubocop:disable Naming/PredicateName
   def is_valid
     AdminJob::JOBS[object.operation.to_sym].valid?(object)
   end
-  # rubocop:enable Naming/PredicateName
 
   def details
     AdminJob::JOBS[object.operation.to_sym].generate_details(object)

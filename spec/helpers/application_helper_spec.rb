@@ -22,7 +22,7 @@ describe ApplicationHelper do
   describe '#randomized_background_image' do
     it 'returns expected image path' do
       image = helper.randomized_background_image
-      expected_image_path = "administration/backgrounds/lh-background-#{Date.today.day % 7}.png"
+      expected_image_path = "administration/backgrounds/lh-background-#{Time.zone.today.day % 7}.png"
 
       expect(image).to satisfy('is of expected format') { |p| expected_image_path.match?(p) }
     end

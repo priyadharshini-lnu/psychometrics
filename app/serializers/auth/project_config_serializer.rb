@@ -1,0 +1,55 @@
+# frozen_string_literal: true
+
+module Auth
+  class ProjectConfigSerializer < ActiveModel::Serializer
+    attributes :id, :background_color, :login_box_position, :background, :saml_login_allowed,
+               :saml_enforced, :client_logo, :secondary_logo, :primary_color,
+               :error_color, :warning_color, :success_color, :info_color
+
+    DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
+
+    DELEGATE_METHODS.each do |name|
+      define_method name do
+        design_setting.send(name) if design_setting.respond_to?(name)
+      end
+    end
+
+    def background_color
+      object.design_migrated? ? design_setting.background_color : object.design['background_color']
+    end
+
+    def login_box_position
+      object.design_migrated? ? design_setting.login_box_position : object.design['login_box_position']
+    end
+
+    def client_logo
+      design_setting.logo&.url
+    end
+
+    def secondary_logo
+      design_setting.secondary_logo&.url
+    end
+
+    def background
+      design_setting.background&.url || fallback_background
+    end
+
+    def saml_login_allowed
+      object.saml_login_allowed?
+    end
+
+    def saml_enforced
+      object.saml_enforced?
+    end
+
+    private
+
+    def design_setting
+      object.design_migrated ? object.design_setting : object
+    end
+
+    def fallback_background
+      instance_options[:background] unless background_color
+    end
+  end
+end

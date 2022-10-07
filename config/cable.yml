@@ -15,6 +15,6 @@ staging:
 production:
   adapter: redis
   url: <%= ENV["REDIS_URL"] || 'redis://localhost:6379/1' %>
-  path: '/var/run/redis/redis.sock'
-  db: 1
   channel_prefix: psychometrics_production
+  ssl_params:
+    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>

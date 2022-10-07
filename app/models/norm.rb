@@ -1,31 +1,16 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: norms
-#
-#  id           :integer          not null, primary key
-#  name         :string
-#  disabled     :boolean          default(FALSE)
-#  created_by   :integer
-#  updated_by   :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  dimension_id :integer
-#  owner_id     :integer
-#
-
 class Norm < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include OwnerValidations
 
-  belongs_to :created_by, class_name: 'User', foreign_key: :created_by_id
-  belongs_to :updated_by, class_name: 'User', foreign_key: :updated_by_id
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :updated_by, class_name: 'User'
   has_many :factors_norms, dependent: :destroy
   has_many :factors, through: :factors_norms
   belongs_to :dimension
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Client'
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true

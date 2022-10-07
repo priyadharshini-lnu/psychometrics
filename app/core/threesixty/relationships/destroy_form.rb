@@ -11,7 +11,7 @@ module Threesixty
       attr_reader :user
 
       def check_relationship_not_in_use
-        if Threesixty::Participant.where(relationship_id: id).exists?
+        if Threesixty::Participant.exists?(relationship_id: id)
           errors.add(:relationship, 'This Relationship is used')
         end
       end

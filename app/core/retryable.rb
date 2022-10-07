@@ -5,7 +5,7 @@ module Retryable
     base.cattr_accessor :_retry_settings
   end
 
-  def call
+  def call # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return super if _retry_settings.blank?
 
     begin

@@ -189,11 +189,13 @@ export class Header extends Component {
               id="main_menu"
             >
               <MenuItem onSelect={this.createBlock}>Add Block</MenuItem>
+              {!isThreeSixtyAsessment && (
               <MenuItem onSelect={toggleInstructions}>
                 {instructions.enabled ? 'Hide' : 'Show'}
                 {' '}
                 Instructions
               </MenuItem>
+              )}
               <MenuItem onSelect={this.openSearchPopup}>Copy Block From...</MenuItem>
               <MenuItem onSelect={this.export}>Export Translations</MenuItem>
               <li>

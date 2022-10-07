@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Examus
-  class JWTTokenizer
+  class JwtTokenizer
     class << self
       def encode(payload, alg = 'HS256')
         JWT.encode payload, Rails.application.secrets.examus[:jwt_secret], alg
@@ -11,7 +11,7 @@ module Examus
         body = JWT.decode(token, Rails.application.secrets.examus[:jwt_secret])
         HashWithIndifferentAccess.new body
       rescue JWT::DecodeError, JWT::VerificationError => e
-        raise Errors::JWTAuthError, e.message
+        raise Errors::JwtAuthError, e.message
       end
     end
   end

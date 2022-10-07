@@ -10,16 +10,16 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   let(:manager) { create(:relationship, name: 'Manager', type: :global) }
   let(:peer) { create(:relationship, name: 'Peer') }
 
-  let(:evaluator_1) { create(:threesixty_evaluator, campaign: campaign.campaign) }
-  let(:evaluator_2) { create(:threesixty_evaluator, campaign: campaign.campaign) }
-  let(:evaluator_3) { create(:threesixty_evaluator, campaign: campaign.campaign) }
-  let(:evaluator_4) { create(:threesixty_evaluator, campaign: campaign.campaign) }
+  let(:first_evaluator) { create(:threesixty_evaluator, campaign: campaign.campaign) }
+  let(:second_evaluator) { create(:threesixty_evaluator, campaign: campaign.campaign) }
+  let(:third_evaluator) { create(:threesixty_evaluator, campaign: campaign.campaign) }
+  let(:fourth_evaluator) { create(:threesixty_evaluator, campaign: campaign.campaign) }
 
   describe '.call with multi AND conditions' do
     before do
       campaign.option = option
-      create_participant(campaign, subject, evaluator_1, manager)
-      create_participant(campaign, subject, evaluator_2, peer)
+      create_participant(campaign, subject, first_evaluator, manager)
+      create_participant(campaign, subject, second_evaluator, peer)
 
       option.reports = {
         'availability' => {
@@ -37,8 +37,8 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   describe '.call with multi AND conditions' do
     before do
       campaign.option = option
-      create_participant(campaign, subject, evaluator_1, manager)
-      create_participant(campaign, subject, evaluator_2, peer)
+      create_participant(campaign, subject, first_evaluator, manager)
+      create_participant(campaign, subject, second_evaluator, peer)
 
       option.reports = {
         'availability' => {
@@ -72,14 +72,14 @@ describe Threesixty::Reports::ResolveReleaseCondition do
     end
 
     it do
-      create_participant(campaign, subject, evaluator_3, peer)
+      create_participant(campaign, subject, third_evaluator, peer)
       @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
       expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
     it do
-      create_participant(campaign, subject, evaluator_3, peer)
-      create_participant(campaign, subject, evaluator_4, peer)
+      create_participant(campaign, subject, third_evaluator, peer)
+      create_participant(campaign, subject, fourth_evaluator, peer)
       @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
       expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be true
     end
@@ -88,8 +88,8 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   describe '.call with multi OR conditions' do
     before do
       campaign.option = option
-      create_participant(campaign, subject, evaluator_1, manager)
-      create_participant(campaign, subject, evaluator_2, peer, :waiting)
+      create_participant(campaign, subject, first_evaluator, manager)
+      create_participant(campaign, subject, second_evaluator, peer, :waiting)
 
       option.reports = {
         'availability' => {
@@ -114,14 +114,14 @@ describe Threesixty::Reports::ResolveReleaseCondition do
     end
 
     it do
-      create_participant(campaign, subject, evaluator_3, peer)
+      create_participant(campaign, subject, third_evaluator, peer)
       @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
       expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
     it do
-      create_participant(campaign, subject, evaluator_3, manager)
-      create_participant(campaign, subject, evaluator_4, peer)
+      create_participant(campaign, subject, third_evaluator, manager)
+      create_participant(campaign, subject, fourth_evaluator, peer)
       @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
       expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be true
     end
@@ -130,7 +130,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   describe '.call with single condition' do
     before do
       campaign.option = option
-      create_participant(campaign, subject, evaluator_1, manager)
+      create_participant(campaign, subject, first_evaluator, manager)
 
       option.reports = {
         'availability' => {
@@ -156,14 +156,14 @@ describe Threesixty::Reports::ResolveReleaseCondition do
     end
 
     it do
-      create_participant(campaign, subject, evaluator_2, manager)
+      create_participant(campaign, subject, second_evaluator, manager)
       @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
       expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
     it do
-      create_participant(campaign, subject, evaluator_2, manager)
-      create_participant(campaign, subject, evaluator_3, peer)
+      create_participant(campaign, subject, second_evaluator, manager)
+      create_participant(campaign, subject, third_evaluator, peer)
       @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
       expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be true
     end

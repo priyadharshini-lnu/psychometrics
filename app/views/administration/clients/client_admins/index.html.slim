@@ -20,7 +20,7 @@
         .pull-right
           - if policy(:membership).can_manage_client_admins?
               .add-icon-box
-                = link_to new_step_1_administration_client_client_admins_path(client), remote: true, class: 'btn btn-default'
+                = link_to new_step_one_administration_client_client_admins_path(client), remote: true, class: 'btn btn-default'
                   span.fa.fa-plus
                   = t('common.actions.add')
       .panel-body

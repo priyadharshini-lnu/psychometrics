@@ -33,7 +33,7 @@ module Lambdas
     end
 
     def request_body
-      body = options.slice(:url, :width, :height).
+      body = options.slice(:url, :width, :height, :meta).
              merge(
                presignS3Url: get_presigned_url,
                webhookMessage: webhook_message,

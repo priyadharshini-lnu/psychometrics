@@ -20,11 +20,9 @@ module EndUser
       object.assessment.hogan?
     end
 
-    def hogan_report_setting
-      object.hogan_report_setting
-    end
+    delegate :hogan_report_setting, to: :object
 
-    def has_external_report # rubocop:disable Naming/PredicateName
+    def has_external_report
       !!assigns_report&.external_report
     end
 

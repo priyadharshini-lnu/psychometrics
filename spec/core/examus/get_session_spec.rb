@@ -7,7 +7,7 @@ describe Examus::GetSession do
     session_id = 'abc'
     token = 'token'
     session = { 'status' => 'started' }
-    allow(Examus::JWTTokenizer).to receive(:encode).and_return(token)
+    allow(Examus::JwtTokenizer).to receive(:encode).and_return(token)
     stub = stub_request(:get, "https://examus.net/api/v2/integration/simple/test/sessions/#{session_id}/status/").
            with(headers: { 'Content-Type' => 'application/json', 'Authorization' => "JWT #{token}" }).
            to_return({ body: session.to_json })
@@ -19,7 +19,7 @@ describe Examus::GetSession do
   it 'returns nil if examus session is nil' do
     session_id = 'abc'
     token = 'token'
-    allow(Examus::JWTTokenizer).to receive(:encode).and_return(token)
+    allow(Examus::JwtTokenizer).to receive(:encode).and_return(token)
     stub = stub_request(:get, "https://examus.net/api/v2/integration/simple/test/sessions/#{session_id}/status/").
            with(headers: { 'Content-Type' => 'application/json', 'Authorization' => "JWT #{token}" }).
            to_return({ status: 404 })

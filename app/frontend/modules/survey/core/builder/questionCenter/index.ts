@@ -15,7 +15,7 @@ export const INIT_QUESTION_CENTER = 'survey/question_center/INIT_QUESTION_CENTER
 const SAVE = 'survey/question_center/SAVE'
 
 export const save = (q: QuestionInerface) => {
-  const question = QuestionSerializer(q)
+  const question = QuestionSerializer(new Question(q))
 
   return {
     type: SAVE,

@@ -6,6 +6,7 @@ import { getFlatFactors } from 'modules/reports/core/builder/selectors'
 export default connect(
   state => ({
     ...getData(state.report).displayLogic,
+    assessments: state.report.builder.assessments,
     factors: getFlatFactors(state),
   }),
   {

@@ -65,10 +65,10 @@ module Imports
                     group_by(&:id)
         # rubocop:disable Metrics/BlockLength
         rows.each_with_index.map do |row, index|
-          data = Hash[header.zip(row)]
+          data = header.zip(row).to_h
           # Try to find assign by encoded id
           begin
-            assign = Assign.includes(:membership).find_by_encoded_id(data['result_id']) if data['result_id'].present?
+            assign = Assign.includes(:membership).find_by(encoded_id: data['result_id']) if data['result_id'].present?
           rescue ActiveRecord::RecordNotFound
             errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + SKIP_ROWS))
             return [nil]
@@ -84,12 +84,13 @@ module Imports
             assign = membership.assigns.find_or_create_by(assessment_id: assessment_id)
           end
 
-          status = if data['status'] == 'Completed'
-                     :completed
-                   elsif data['status'] == 'New'
-                     :not_started
-                   else
-                     :in_progress
+          status = case data['status']
+                     when 'Completed'
+                       :completed
+                     when 'New'
+                       :not_started
+                     else
+                       :in_progress
                    end
           assign.assign_attributes(
             started_at: parse_date(data['started_at'], index),
@@ -107,7 +108,7 @@ module Imports
             next unless /qid/.match?(key)
 
             # Parse QID and answer's props
-            qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
+            qid, _props = key.split(/\D+/).compact_blank.map(&:to_i)
 
             next duration[qid] = value if key.include?(DURATION)
 
@@ -122,7 +123,7 @@ module Imports
             begin
               parser = "Imports::Assessments::Questions::#{question.type}".constantize
             rescue NameError => e
-              p "#{question.type} - #{e}"
+              Rails.logger.error("#{question.type} - #{e}")
               next
             end
             parsed_value = parser.build_answers(values, question, duration[qid], scoring, assign)
@@ -179,7 +180,7 @@ module Imports
       end
 
       def parse_norm_data(norm_name, assessment_id)
-        return {} unless norm_name.present?
+        return {} if norm_name.blank?
 
         norm_ids = Norm.
                    joining { dimension }.
@@ -193,13 +194,13 @@ module Imports
       end
 
       def parse_date(date, index)
-        return nil unless date.present?
+        return nil if date.blank?
         return date if date.is_a?(Date) || date.is_a?(Time)
 
         DateTime.strptime(date.to_s, '%D %r')
       rescue StandardError
         errors.add(:base, I18n.t('administration.imports.errors.result.error',
-                                 row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
+                                 row: index + SKIP_ROWS, error: "Invalid Date :#{date}"))
       end
     end
   end

@@ -38,17 +38,17 @@ describe 'Users' do
       response '200', 'SSO URL Created' do
         schema '$ref' => '#/definitions/SsoUrl'
         examples 'application/json' => {
-          "url": 'https://example.com/sso?token=d98df98d9f3434asdfasf98987',
-          "expires_at": '2014-01-01T23:28:56.782Z',
-          "assessments": [
+          url: 'https://example.com/sso?token=d98df98d9f3434asdfasf98987',
+          expires_at: '2014-01-01T23:28:56.782Z',
+          assessments: [
             {
-              "id": '3456',
-              "name": 'Thriving Index Assessment',
-              "description": 'Self-assessment to understand your signature strengths and potential blindspots',
-              "icon_url": 'https://some.aws.s3.com/icon1.jpg',
-              "poster_url": 'https://some.aws.s3.com/poster1.jpg',
-              "url": 'https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875',
-              "status": 'not_started'
+              id: '3456',
+              name: 'Thriving Index Assessment',
+              description: 'Self-assessment to understand your signature strengths and potential blindspots',
+              icon_url: 'https://some.aws.s3.com/icon1.jpg',
+              poster_url: 'https://some.aws.s3.com/poster1.jpg',
+              url: 'https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875',
+              status: 'not_started'
             }
           ]
         }
@@ -90,13 +90,13 @@ the campaign\'s default assessments and reports.'
       response '200', 'User created' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
-          "id": 14_602,
-          "first_name": 'John',
-          "last_name": 'Doe',
-          "email": 'john.doe@example.com',
-          "created_at": '2019-03-04T15:47:33.570+04:00',
-          "updated_at": '2019-03-04T15:47:33.950+04:00',
-          "campaign_ids": [
+          id: 14_602,
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          created_at: '2019-03-04T15:47:33.570+04:00',
+          updated_at: '2019-03-04T15:47:33.950+04:00',
+          campaign_ids: [
             510
           ]
         }
@@ -128,12 +128,12 @@ the campaign\'s default assessments and reports.'
           'message' => 'User with this email exists',
           'more_info' => 'Email address john.doe@example.com is already taken',
           'meta' => {
-            'existing_user': {
-              'id': 12,
-              'first_name': 'John',
-              'last_name': 'Doe',
-              'email': 'john.doe@example.com',
-              'created_at': '2019-10-28T17:00:00.000+04:00'
+            existing_user: {
+              id: 12,
+              first_name: 'John',
+              last_name: 'Doe',
+              email: 'john.doe@example.com',
+              created_at: '2019-10-28T17:00:00.000+04:00'
             }
           }
         }
@@ -170,9 +170,9 @@ the campaign\'s default assessments and reports.'
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 1005,
-          "message": 'Resource not found',
-          "more_info": 'Project with id=111 was not found'
+          code: 1005,
+          message: 'Resource not found',
+          more_info: 'Project with id=111 was not found'
         }
 
         run_test! do |response|
@@ -194,9 +194,9 @@ the campaign\'s default assessments and reports.'
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 1003,
-          "message": 'Not enough licenses',
-          "more_info": "'Client Tenancy 1' does not have enough licenses for 'report 2'"
+          code: 1003,
+          message: 'Not enough licenses',
+          more_info: "'Client Tenancy 1' does not have enough licenses for 'report 2'"
         }
 
         let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
@@ -233,13 +233,13 @@ enough licenses for '#{report.name}'",
       response '200', 'User updated' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
-          "id": 14_602,
-          "first_name": 'Kamaru',
-          "last_name": 'Usman',
-          "email": 'marti@gmail.com',
-          "created_at": '2019-03-04T15:47:33.570+04:00',
-          "updated_at": '2019-03-04T15:47:33.950+04:00',
-          "campaign_ids": [
+          id: 14_602,
+          first_name: 'Kamaru',
+          last_name: 'Usman',
+          email: 'marti@gmail.com',
+          created_at: '2019-03-04T15:47:33.570+04:00',
+          updated_at: '2019-03-04T15:47:33.950+04:00',
+          campaign_ids: [
             510
           ]
         }
@@ -272,22 +272,22 @@ enough licenses for '#{report.name}'",
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :body, in: :body,
-       schema: { '$ref' => '#/definitions/UpdatedCampaignAssessmentsAndReports' }, required: true
+                schema: { '$ref' => '#/definitions/UpdatedCampaignAssessmentsAndReports' }, required: true
 
       response '200', 'Assessments and reports updated' do
         schema '$ref' => '#/definitions/AssessmentsAndReports'
         examples 'application/json' => {
-          "reports": [
+          reports: [
             {
-              "id": 1,
-              "user_access": true,
-              "report_bundle_id": 1
+              id: 1,
+              user_access: true,
+              report_bundle_id: 1
             }
           ],
-          "assessments": [
+          assessments: [
             {
-              "id": 1,
-              "norm_id": 2
+              id: 1,
+              norm_id: 2
             }
           ]
         }

@@ -27,7 +27,7 @@ module Administration
         license_counter_update = resource.active? ? 'decrement!' : 'increment!'
         new_status = resource.active? ? 'inactive' : 'active'
         resource.update!(status: new_status,
-          status_updated_at: Time.now, status_updated_by_id: current_user.id)
+                         status_updated_at: Time.zone.now, status_updated_by_id: current_user.id)
         resource.license.method(license_counter_update).call(:used_number)
       end
 

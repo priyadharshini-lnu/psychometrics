@@ -14,7 +14,7 @@ module Licenses
         if status_response.nil? || status_response['status'] == 'late_to_start'
           ProctoringSessions::MarkInvalid.call!(ps)
         end
-        ps.update!(last_status_checked_at: Time.now)
+        ps.update!(last_status_checked_at: Time.zone.now)
       end
     end
   end

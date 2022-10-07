@@ -23,23 +23,23 @@ describe 'Projects' do
       response '200', 'Project created' do
         schema '$ref' => '#/definitions/Project'
         examples 'application/json' => {
-          'id': 770,
-          'client_id': 1,
-          'name': 'Project 1',
-          'subdomain': 'xyz',
-          'client_reference': 'XYZ 001',
-          'locales': %w[en ar],
-          'data_processing_consent': true,
-          'enable_strong_password': true,
-          'enable_2factor_auth': true,
-          'project_logo_url': 'base64image',
-          'partner_logo_url': 'base64image',
-          'background_image_url': 'base64image',
-          'background_color': '#ffffff',
-          'login_box_position': 'left',
-          'webhook': 'https://my.site.com',
-          'created_at': '2019-03-05T10:56:53.349+04:00',
-          'updated_at': '2019-03-05T10:56:53.349+04:00'
+          id: 770,
+          client_id: 1,
+          name: 'Project 1',
+          subdomain: 'xyz',
+          client_reference: 'XYZ 001',
+          locales: %w[en ar],
+          data_processing_consent: true,
+          enable_strong_password: true,
+          enable_2factor_auth: true,
+          project_logo_url: 'base64image',
+          partner_logo_url: 'base64image',
+          background_image_url: 'base64image',
+          background_color: '#ffffff',
+          login_box_position: 'left',
+          webhook: 'https://my.site.com',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:body) do
@@ -49,8 +49,8 @@ describe 'Projects' do
             locales: ['en'],
             background_color: '#cccccc',
             webhook: 'https://my.site.com',
-            login_box_position: 'right',
             name: 'project1',
+            login_box_position: 'right',
             data_processing_consent: true
           }
         end
@@ -80,30 +80,32 @@ describe 'Projects' do
       response '200', 'Project updated' do
         schema '$ref' => '#/definitions/Project'
         examples 'application/json' => {
-          'id': 770,
-          'name': 'Project 1',
-          'client_id': 1,
-          'subdomain': 'xyz',
-          'client_reference': 'XYZ 001',
-          'locales': %w[en ar],
-          'data_processing_consent': true,
-          'enable_strong_password': true,
-          'enable_2factor_auth': true,
-          'background_color': '#ffffff',
-          'project_logo_url': 'url_to_logo',
-          'partner_logo_url': 'url_to_logo',
-          'background_image_url': 'url_to_image',
-          'login_box_position': 'left',
-          'webhook': 'https://my.site.com',
-          'created_at': '2019-03-05T10:56:53.349+04:00',
-          'updated_at': '2019-03-05T10:56:53.349+04:00'
+          id: 770,
+          name: 'Project 1',
+          client_id: 1,
+          subdomain: 'xyz',
+          client_reference: 'XYZ 001',
+          locales: %w[en ar],
+          data_processing_consent: true,
+          enable_strong_password: true,
+          enable_2factor_auth: true,
+          background_color: '#ffffff',
+          project_logo_url: 'url_to_logo',
+          partner_logo_url: 'url_to_logo',
+          background_image_url: 'url_to_image',
+          login_box_position: 'left',
+          webhook: 'https://my.site.com',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:body) do
           {
             subdomain: 'new',
             name: 'newname',
-            webhook: 'https://my.site.com'
+            webhook: 'https://my.site.com',
+            background_color: '#000000',
+            login_box_position: 'center'
           }
         end
 
@@ -113,6 +115,8 @@ describe 'Projects' do
           project = JSON.parse(response.body)
           expect(project['name']).to eq 'newname'
           expect(project['subdomain']).to eq 'new'
+          expect(project['background_color']).to eq '#000000'
+          expect(project['login_box_position']).to eq 'auto'
           expect(project['webhook']).to eq 'https://my.site.com'
         end
       end
@@ -131,23 +135,23 @@ describe 'Projects' do
       response '200', 'Project Getd' do
         schema '$ref' => '#/definitions/Project'
         examples 'application/json' => {
-          'id': 770,
-          'name': 'Project 1',
-          'client_id': 1,
-          'subdomain': 'xyz',
-          'client_reference': 'XYZ 001',
-          'locales': %w[en ar],
-          'data_processing_consent': true,
-          'enable_strong_password': true,
-          'enable_2factor_auth': true,
-          'background_color': '#ffffff',
-          'project_logo_url': 'url_to_logo',
-          'partner_logo_url': 'url_to_logo',
-          'background_image_url': 'url_to_image',
-          'login_box_position': 'left',
-          'webhook': 'https://my.site.com',
-          'created_at': '2019-03-05T10:56:53.349+04:00',
-          'updated_at': '2019-03-05T10:56:53.349+04:00'
+          id: 770,
+          name: 'Project 1',
+          client_id: 1,
+          subdomain: 'xyz',
+          client_reference: 'XYZ 001',
+          locales: %w[en ar],
+          data_processing_consent: true,
+          enable_strong_password: true,
+          enable_2factor_auth: true,
+          background_color: '#ffffff',
+          project_logo_url: 'url_to_logo',
+          partner_logo_url: 'url_to_logo',
+          background_image_url: 'url_to_image',
+          login_box_position: 'left',
+          webhook: 'https://my.site.com',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:project_id) { project.id }
@@ -173,13 +177,13 @@ describe 'Projects' do
       response '200', 'User info' do
         schema '$ref' => '#/definitions/GetUser'
         examples 'application/json' => {
-          "id": 14_602,
-          "first_name": 'John',
-          "last_name": 'Doe',
-          "email": 'john.doe@example.com',
-          "created_at": '2019-03-04T15:47:33.570+04:00',
-          "updated_at": '2019-03-04T15:47:33.950+04:00',
-          "campaign_ids": [
+          id: 14_602,
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          created_at: '2019-03-04T15:47:33.570+04:00',
+          updated_at: '2019-03-04T15:47:33.950+04:00',
+          campaign_ids: [
             510
           ]
         }
@@ -200,10 +204,10 @@ describe 'Projects' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          'code': 1005,
-          'message': 'Resource not found',
-          'more_info': 'User with email=ttt@example.com was not found',
-          'meta': nil
+          code: 1005,
+          message: 'Resource not found',
+          more_info: 'User with email=ttt@example.com was not found',
+          meta: nil
         }
 
         run_test! do |response|

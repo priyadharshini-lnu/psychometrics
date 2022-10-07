@@ -9,10 +9,10 @@ module Hogan
     end
 
     def call
-      return broadcast :ok, {} unless old_results.present?
+      return broadcast :ok, {} if old_results.blank?
 
       score = old_results.dig('participant', 'assessment', 'score') || []
-      return broadcast :ok, old_results unless score.present?
+      return broadcast :ok, old_results if score.blank?
 
       scores = {
         'percentileScores' => {

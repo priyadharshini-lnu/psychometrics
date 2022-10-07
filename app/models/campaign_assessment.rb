@@ -28,11 +28,11 @@ class CampaignAssessment < ApplicationRecord
   end
 
   def expired?
-    Time.now > key_expires_at.to_i
+    Time.zone.now > key_expires_at.to_i
   end
 
   def has_valid_universal_link?
-    !assessment_key.blank? && !expired?
+    assessment_key.present? && !expired?
   end
 
   def set_position
@@ -66,7 +66,7 @@ class CampaignAssessment < ApplicationRecord
   private
 
   def pearson_norm_name
-    assessment.pearson_norms.find { |norm| norm[:id] == external_norm_id }.dig(:name)
+    assessment.pearson_norms.find { |norm| norm[:id] == external_norm_id }[:name]
   end
 
   def saville_norm_name

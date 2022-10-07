@@ -5,6 +5,8 @@ class DatasheetRow < ApplicationRecord
 
   before_save { self.email = email&.downcase }
 
+  delegate :columns, to: :datasheet
+
   def log_attribute_for_delete
     slice(:id, :email, :data)
   end

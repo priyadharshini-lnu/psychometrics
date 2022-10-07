@@ -6,9 +6,9 @@ module AdminJobs
 
     def call
       file = Roo::Excelx.new(record.file.url)
-      form = ::Datasheets::DatasheetForm.new(file: file, operation: record.data['operation'])
+      form = ::Sheets::SheetForm.new(file: file).with_context(sheet_type: 'Datasheet')
 
-      ::Datasheets::ParseFile.call(form, parent_resource)
+      ::Sheets::ParseFile.call(form, parent_resource, 'Datasheet')
 
       broadcast :ok
     end
@@ -27,7 +27,7 @@ module AdminJobs
     private
 
     def parent_resource_url
-      return administration_project_datasheet_rows_path(parent_resource.id) if parent_resource.is_a?(Client)
+      return administration_project_sheet_rows_path(parent_resource.id) if parent_resource.is_a?(Client)
 
       return threesixty_datasheet_path if parent_resource.threesixty?
 

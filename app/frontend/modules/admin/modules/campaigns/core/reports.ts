@@ -13,6 +13,7 @@ const defaultState = {
   reportPermissions: {
     toggleUserAccess: false,
     toggleAssessorAccess: false,
+    toggleUserDashboard: false,
     addReport: false,
     bulkDownload: false,
     regenerate: false,
@@ -24,6 +25,7 @@ export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedI
 export const CREATE = 'resource/campaigns/report/CREATE'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
+export const TOGGLE_USER_DASHBOARD = 'resource/campaigns/report/TOGGLE_USER_DASHBOARD'
 export const TOGGLE_ASSESSOR_ACCESS = 'campaigns/report/TOGGLE_ASSESSOR_ACCESS'
 export const TOGGLE_ASSESSOR_ACCESS_REQUEST = 'campaigns/report/TOGGLE_ASSESSOR_ACCESS_REQUEST'
 export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
@@ -51,6 +53,14 @@ export const toggleUserAccess = (campaignId: number, campaignReportId: number, t
     body: {
       toggle_user_access: toggleUserAccess,
     },
+  },
+})
+
+export const toggleUserDashboard = (campaignId: number, campaignReportId: number) => ({
+  type: TOGGLE_USER_DASHBOARD,
+  request: {
+    method: 'patch',
+    url: `/administration/new_campaigns/${campaignId}/reports/${campaignReportId}/toggle_user_dashboard`,
   },
 })
 
@@ -116,6 +126,7 @@ export interface State {
   reportPermissions: {
     toggleUserAccess: boolean
     toggleAssessorAccess: boolean
+    toggleUserDashboard: boolean
     addReport: boolean
     bulkDownload: boolean
     regenerate: boolean
@@ -142,6 +153,11 @@ const HANDLERS = {
 
       return report
     }))
+  ),
+  [TOGGLE_USER_DASHBOARD]: (state: State, { response }: ToggleUserAccessType) => (
+    updateIn(state, ['list'], (reports: Report[]) => _.map(reports, (report: Report) => (
+      report.id === response.id ? response : { ...report, userDashboard: false }
+    )))
   ),
   [TOGGLE_ASSESSOR_ACCESS_REQUEST]: (state: State, { id }: ToggleAssessorAccessType) => (
     updateIn(state, ['list'], (reports: Report[]) => _.map(reports, (report: Report) => {

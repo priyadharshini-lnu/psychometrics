@@ -12,7 +12,7 @@ module Examus
 
     def call
       proctoring_session, = Examus::FindOrCreateSession.call!(campaign_user)
-      jwt = Examus::JWTTokenizer.encode(payload(proctoring_session))
+      jwt = Examus::JwtTokenizer.encode(payload(proctoring_session))
       config = Rails.application.secrets.examus
       url = "#{config[:url]}/integration/simple/#{config[:integration_name]}/start/?token=#{jwt}"
 

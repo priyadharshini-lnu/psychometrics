@@ -17,7 +17,7 @@ module DataMigration
     end
 
     def log(message = nil, level = nil)
-      out.puts [level ? ' ' * level : nil, prompt, message].reject(&:nil?).join('> ')
+      out.puts [level ? ' ' * level : nil, prompt, message].compact.join('> ')
     end
   end
 end

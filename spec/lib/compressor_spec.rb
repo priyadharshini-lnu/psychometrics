@@ -6,26 +6,26 @@ require 'zip'
 describe Compressor do
   before(:all) do
     @report = build_stubbed(:bulk_report)
-    path = Rails.root.join('tmp', "bulk_reports#{ENV['TEST_ENV_NUMBER']}").to_s
+    path = Rails.root.join('tmp', "bulk_reports#{ENV.fetch('TEST_ENV_NUMBER', nil)}").to_s
     @input_dir = File.join(path, @report.id.to_s)
     @output_dir = File.join(path, "compressed_#{@report.id}")
     @max_file_size = 200_000 # 200 Kb
 
-    [@input_dir, @output_dir].each { |dir| FileUtils.mkdir_p(dir) unless File.exist?(dir) }
+    [@input_dir, @output_dir].each { |dir| FileUtils.mkdir_p(dir) }
 
     ['one@example.com', 'two@example.com'].each_with_index do |user, index|
       FileUtils.mkdir_p(File.join(@input_dir, user))
       (2 - index).times do |i|
         File.open(File.join(@input_dir, user, "report_#{i}.txt"), 'w') do |f|
-          Faker::Lorem.paragraphs(2046).each { |p| f.puts p }
+          Faker::Lorem.paragraphs(number: 2046).each { |p| f.puts p }
         end
       end
     end
   end
 
   after(:all) do
-    FileUtils.rm_rf(@output_dir) if File.exist?(@output_dir)
-    FileUtils.rm_rf(@input_dir) if File.exist?(@input_dir)
+    FileUtils.rm_rf(@output_dir)
+    FileUtils.rm_rf(@input_dir)
   end
 
   after(:each) do
@@ -54,12 +54,12 @@ describe Compressor do
 
       output_file = Dir.children(@output_dir).first
       original_entries = Dir.chdir(@input_dir) do
-        Dir.glob('**/*').sort.join(',')
+        Dir.glob('**/*').join(',')
       end
       zipped_entries = Zip::File.open(File.join(@output_dir, output_file)) do |zip_file|
         zip_file.entries.sort.join(',')
       end
-      zipped_entries.gsub!(%r{\/\,}, ',')
+      zipped_entries.gsub!(%r{/,}, ',')
       expect(original_entries).to eq zipped_entries
     end
 

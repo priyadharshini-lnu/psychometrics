@@ -35,14 +35,14 @@ module Reports
         data.dig('formula', 'args') || []
       end
 
-      def calc(results, formula_op, total_weight)
+      def calc(results, formula_op, total_weight) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         return if results.blank?
         return if results.any?(&:nil?)
 
-        return (results.inject(0.0, :+) / total_weight.to_f).round(2) if formula_op == AVERAGE
+        return (results.sum(0.0) / total_weight.to_f).round(2) if formula_op == AVERAGE
         return results.min if formula_op == MIN
         return results.max if formula_op == MAX
-        return results.inject(&:+) if formula_op == ADD
+        return results.sum if formula_op == ADD
         return results.inject(&:-) if formula_op == SUBTRACT
         return results.inject(&:/) if formula_op == DIVIDE
         return results.inject(&:*) if formula_op == MULTIPLY

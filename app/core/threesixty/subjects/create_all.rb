@@ -36,7 +36,7 @@ module Threesixty
           user
         else
           new_user = ::Users::Regular.create!(subject.merge(project: project,
-                                              create_by_invite: subject[:password].blank?))
+                                                            create_by_invite: subject[:password].blank?))
           AuditLogModule.audit!(:create, new_user, campaign: threesixty_campaign.campaign,
                                 payload: subject, user: @current_user)
           new_user
@@ -68,14 +68,14 @@ module Threesixty
 
       def project_users_indexed
         @project_users_indexed ||= User.
-                                   where(project_id: project.id, email: subjects.map { |s| s[:email] }).
+                                   where(project_id: project.id, email: subjects.pluck(:email)).
                                    index_by { |user| user.email.downcase }
       end
 
       def create_users_report(user)
         ::UserReport.find_or_create_by(user: user,
-                                        report: threesixty_campaign.report,
-                                        campaign: threesixty_campaign.campaign)
+                                       report: threesixty_campaign.report,
+                                       campaign: threesixty_campaign.campaign)
       end
 
       def create_membership(user)

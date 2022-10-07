@@ -152,7 +152,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def export
     respond_to do |format|
       format.xlsx do
-        headers['Content-Disposition'] = "attachment; filename=\"#{resource.name}-#{Date.today}.xlsx\""
+        headers['Content-Disposition'] = "attachment; filename=\"#{resource.name}-#{Time.zone.today}.xlsx\""
         headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
       end
     end
@@ -163,7 +163,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def upload_data_sheet
-    @form = ::Datasheets::DatasheetForm.from_params(params)
+    @form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: 'Datasheet')
     render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
   end
 

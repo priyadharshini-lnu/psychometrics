@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: products
-#
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  image       :string
-#  disabled    :boolean          default(FALSE)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#
-
 FactoryBot.define do
   factory :product do
     sequence(:name) { |n| "Product #{n}" }

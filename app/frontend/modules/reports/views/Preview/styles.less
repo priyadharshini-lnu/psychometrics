@@ -1,0 +1,58 @@
+@import 'styles/spacing';
+
+@background: #589DA5;
+
+.editable {
+  position: absolute;
+  border: 1px dashed #ccc;
+  z-index: 5000;
+
+  &:hover {
+    .buttons {
+      opacity: 1;
+    }
+  }
+}
+
+.buttons {
+  position: absolute;
+  top: -28px;
+  right: 0;
+  display: flex;
+  background-color: @background;
+  padding: @space-1/2 @space-1;
+  opacity: 0;
+  transition: 0.4s;
+
+  label {
+    color: #fff;
+  }
+
+  .edit, .approve {
+    background-color: @background;
+  }
+
+  .approve, .approved, .discard {
+    margin-left: @space-1 / 4;
+  }
+}
+
+.checkbox {
+  padding-top: @space-2;
+}
+
+.editor {
+  background-color: #fff;
+  &.diff {
+    ins {
+      text-decoration: none;
+      background-color: #d4fcbc;
+    }
+
+    del {
+      text-decoration: line-through;
+      background-color: #fbb6c2;
+      color: #555;
+    }
+  }
+}

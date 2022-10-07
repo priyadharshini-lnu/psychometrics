@@ -4,6 +4,7 @@ module Threesixty
   module Evaluators
     class CreateAllForm < Rectify::Form
       attr_reader :evaluators_with_relations
+
       attribute :evaluators, Array
 
       validate :no_duplicates

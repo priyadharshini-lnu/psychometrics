@@ -26,10 +26,9 @@ const { I18n } = window
 
 export interface Props {
   model: PropertiesModel
-  restricted: boolean
 }
 
-export const Properties: FC<Props> = ({ model, restricted }) => {
+export const Properties: FC<Props> = ({ model }) => {
   const forceUpdate = useForceUpdate()
 
   const handleAnswerTypeChange = (selectedType: string) => {
@@ -125,12 +124,8 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
           onSizeChange={handleImageGridSizeChange}
         />
       )}
-      {!restricted && (
-        <RequiredValidations model={model} update={() => forceUpdate()} />
-      )}
-      {!restricted && (
-        <ValidationTypes model={model} update={() => forceUpdate()} />
-      )}
+      <RequiredValidations model={model} update={() => forceUpdate()} />
+      <ValidationTypes model={model} update={() => forceUpdate()} />
     </div>
   )
 }

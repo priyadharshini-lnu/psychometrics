@@ -14,7 +14,7 @@ module CampaignUsers
       return broadcast :ok if campaign_user.completion_status == completion_status
 
       campaign_user.update({
-        completed_at: completion_status == 'completed' ? Time.now : nil,
+        completed_at: completion_status == 'completed' ? Time.zone.now : nil,
         completion_status: completion_status
       })
 
@@ -28,9 +28,9 @@ module CampaignUsers
 
       return 'not_started' if statuses.empty?
 
-      return 'completed' if statuses.all? { |status| status == 'completed' }
+      return 'completed' if statuses.all?('completed')
 
-      return 'not_started' if statuses.all? { |status| status == 'not_started' }
+      return 'not_started' if statuses.all?('not_started')
 
       'in_progress'
     end

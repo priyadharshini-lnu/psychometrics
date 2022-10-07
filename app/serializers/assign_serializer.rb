@@ -1,26 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: assigns
-#
-#  id            :integer          not null, primary key
-#  assessment_id :integer
-#  results       :jsonb
-#  scoring       :jsonb
-#  embedded_data :jsonb
-#  status        :integer          default("not_started")
-#  role          :integer          default("member")
-#  completed_at  :datetime
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  step          :integer
-#  membership_id :integer
-#  norm_data     :jsonb
-#  agile_scoring :jsonb
-#  started_at    :datetime
-#
-
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
@@ -35,7 +14,7 @@ class AssignSerializer < ActiveModel::Serializer
   def remaining_assessment_time
     return unless object.expiry_date
 
-    [object.expiry_date - Time.now, 0].max
+    [object.expiry_date - Time.zone.now, 0].max
   end
 
   def status
@@ -105,7 +84,7 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   # TODO: (atanych): refactor within https://gitlab.com/tte-lighthouse/psychometrics/issues/59
-  def external_scoring
+  def external_scoring # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     return {} if object.assessment.psychometric?
     return object.external_results if object.assessment.mindmill?
 

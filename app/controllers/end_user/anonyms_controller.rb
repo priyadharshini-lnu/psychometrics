@@ -16,8 +16,6 @@ module EndUser
     before_action :set_user_assessment_and_result, only: [:show]
     before_action :set_locale
 
-    helper_method :show_new_end_user_view?
-
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
     def show
@@ -27,7 +25,7 @@ module EndUser
       @user_assessment.update(selected_locale: params[:lang]) if params[:lang]
 
       campaign_user = @campaign_assessment.campaign.campaign_users.find_by(user_id: current_user.id)
-      campaign_user.update(started_at: Time.now) unless campaign_user.started_at
+      campaign_user.update(started_at: Time.zone.now) unless campaign_user.started_at
 
       respond_to do |format|
         format.html { render 'end_user/users/dashboard' }
@@ -47,10 +45,6 @@ module EndUser
     def error; end
 
     private
-
-    def show_new_end_user_view?
-      false
-    end
 
     def set_campaign_assessment
       @campaign_assessment = ::CampaignAssessment.find_by assessment_key: params[:assessment_key]

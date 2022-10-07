@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module API
+module Api
   class UserSearchQuery < Rectify::Query
     private_attr_reader :project, :search_params
 
@@ -19,8 +19,8 @@ module API
         where_datasheet = search_params[:datasheet].map do |k, v|
           "data->>'#{sanitize_string(k)}' = '#{sanitize_string(v)}'"
         end.join(' AND ')
-        query = query.joins('INNER JOIN datasheet_rows ON datasheet_rows.email = users.email').
-                where(datasheet_rows: { datasheet_id: project.datasheet.id }).
+        query = query.joins('INNER JOIN sheet_rows ON sheet_rows.email = users.email').
+                where(sheet_rows: { sheet_id: project.datasheet.id }).
                 where(where_datasheet)
       end
       query.select(:id, :first_name, :last_name, :email, :created_at, :updated_at)

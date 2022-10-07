@@ -6,6 +6,39 @@
   width: 100%;
 }
 
+.leftMain {
+  display: flex;
+}
+
+.modules {
+  position: fixed;
+  top: 40px;
+  left: 200px;
+  width: 300px;
+  bottom: 0;
+  border: none;
+  box-shadow: none;
+  z-index: 1500;
+  background: #f8f8f8;
+  overflow: scroll;
+
+  .caption {
+    padding: 12px 8px;
+    font-weight: bold;
+  }
+}
+
+.cover {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #000000aa;
+
+}
 
 .leftSide {
   overflow-x: hidden;
@@ -32,10 +65,24 @@
     border-top: 0;
     cursor: pointer;
 
+
+    .showModules {
+      padding: 0 5px;
+      transition: 0.4s;
+      border-radius: 2px;
+      visibility: hidden;
+      &:hover {
+        background: #ccc;
+      }
+    }
+
     &:hover {
       background: #eee;
       i {
         color: #555;
+      }
+      .showModules {
+        visibility: visible;
       }
     }
 

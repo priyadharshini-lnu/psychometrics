@@ -10,7 +10,7 @@ module Administration
 
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :view, project_id: project_id, campaign_id: campaign_id
+        :campaigns, :view, campaign_id: record.id
       )
     end
 
@@ -127,6 +127,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end
 
+    def fetch_descriptions?
+      can_manage_options?
+    end
+
     def update_campaign_options?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_options, project_id: project_id, campaign_id: campaign_id
@@ -147,6 +151,18 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(
         :registration_codes, :view, project_id: project_id, campaign_id: campaign_id
       )
+    end
+
+    def view_dashboard?
+      has_permission?(:dashboards, :view)
+    end
+
+    def view_accesssheet?
+      has_permission?(:dashboards, :accesssheet_view)
+    end
+
+    def view_accesssheet_settings?
+      has_permission?(:dashboards, :accesssheet_settings)
     end
 
     def view_datasheets?
@@ -191,6 +207,10 @@ module Administration
       @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
+    end
+
+    def can_manage_options?
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end
 
     class Scope < Scope

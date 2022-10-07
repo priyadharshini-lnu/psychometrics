@@ -18,7 +18,7 @@ module Blocks
       end
 
       action :destroy do |data|
-        ::Question.find(data['id']).update(deleted_at: Time.now)
+        ::Question.find(data['id']).update(deleted_at: Time.zone.now)
         nil
       end
 

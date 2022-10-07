@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class UserReportsController < Administration::Projects::BaseController
+    class UserReportsController < Administration::Campaigns::BaseController
       include UserReports::PdfGeneration
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access]
@@ -15,7 +15,7 @@ module Administration
             on(:ok) do
               audit! :create, campaign_user, payload: params.permit!, campaign: campaign
               render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
-                campaign: campaign_user.campaign
+                     campaign: campaign_user.campaign
             end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
           end
@@ -54,6 +54,10 @@ module Administration
 
       private
 
+      def view_report_as
+        :admin
+      end
+
       def generate_report(user_report)
         UserReports::GenerateAndSavePdfJob.perform_later(user_report, current_user)
       end
@@ -62,7 +66,8 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
         )
       end
 
@@ -73,6 +78,12 @@ module Administration
       def resource_class
         UserReport
       end
+
+      # rubocop:disable Naming/MemoizedInstanceVariableName
+      def set_resource
+        @_resource ||= campaign.user_reports.find(params[:id])
+      end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
   end
 end

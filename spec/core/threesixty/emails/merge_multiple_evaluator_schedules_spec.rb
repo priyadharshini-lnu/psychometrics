@@ -13,7 +13,7 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       2,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true
     )
 
@@ -29,7 +29,7 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       2,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: false
     )
 
@@ -45,7 +45,7 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true,
       meta: { 'subject_ids' => subjects[0].id }
     )
@@ -53,7 +53,7 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true,
       meta: { 'subject_ids' => subjects[1].id }
     )
@@ -69,14 +69,14 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true
     )
     email_schedules << create(
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[1].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true
     )
 
@@ -92,14 +92,14 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true
     )
     email_schedules << create(
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_INVITE,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true
     )
 
@@ -115,7 +115,7 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true,
       auto_triggered: false
     )
@@ -123,15 +123,15 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true,
-      delivered_at: Time.now
+      delivered_at: Time.zone.now
     )
     email_schedules << create(
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_INVITE,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: -1),
+      scheduled_date: Time.zone.now.advance(days: -1),
       consolidated: true
     )
 
@@ -147,16 +147,16 @@ describe Threesixty::Emails::MergeMultipleEvaluatorEmailSchedules do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: 1),
+      scheduled_date: Time.zone.now.advance(days: 1),
       consolidated: true
     )
     email_schedules << create(
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now.advance(days: 1),
+      scheduled_date: Time.zone.now.advance(days: 1),
       consolidated: true,
-      delivered_at: Time.now
+      delivered_at: Time.zone.now
     )
 
     email_schedule_count = Threesixty::EmailSchedule.where(id: email_schedules.map(&:id)).count

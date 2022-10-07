@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class CampaignAssessmentsController < Administration::Projects::BaseController
+    class CampaignAssessmentsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[update update_external_config]
       before_action :pundit_authorize
 
@@ -10,8 +10,8 @@ module Administration
         resource.update(resource_params)
         audit! :update, resource, payload: resource_params, campaign: resource.campaign
         render json: resource,
-         serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
-         current_user: current_user
+               serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
+               current_user: current_user
       end
 
       def update_positions
@@ -19,7 +19,7 @@ module Administration
         ::CampaignAssessments::UpdatePositions.call(campaign, campaign_assessments) do
           on(:ok) do
             render json: campaign,
-            serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+                   serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
           end
           on(:error) { |errors| return render json: { errors: errors }, status: 400 }
         end
@@ -37,6 +37,15 @@ module Administration
 
       private
 
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: project.id,
+          campaign_id: campaign.id
+        )
+      end
+
       def update_position_params
         params.permit(campaign_assessments: [%i[id position campaign_assessment_group_id]])
       end
@@ -49,9 +58,11 @@ module Administration
         CampaignAssessment
       end
 
+      # rubocop:disable Naming/MemoizedInstanceVariableName
       def set_resource
-        @_resource = policy_scope(resource_class).find(params[:id])
+        @_resource ||= campaign.campaign_assessments.find(params[:id])
       end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
   end
 end

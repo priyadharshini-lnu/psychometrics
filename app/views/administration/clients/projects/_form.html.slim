@@ -27,7 +27,6 @@
           include_hidden: false,
           input_html: { multiple: true }
         = f.input :privacy_consent
-        = f.input :strong_password_enabled
         = f.simple_fields_for :privacy_link do |p|
           = p.input :_destroy, as: :boolean, label: t('.enable_privacy_links'),
             checked_value: false, unchecked_value: true,
@@ -35,7 +34,6 @@
           #privacy_link_details.mbm class="#{@privacy_link_enabled ? '' : 'hidden'}"
             = p.input :text, label: t('.privacy_text')
             = p.input :link, as: :string, label: t('.privacy_link')
-        = f.input :two_factor_enabled, label: t('.2fa_enable')
         = f.input :enable_live_chat, label: t('.enable_live_chat')
         #live_chat_token.mbm.pl class="#{resource.enable_live_chat ? '' : 'hidden'}"
           = f.input :live_chat_token, label: t('.live_chat_token'), placeholder: t('.optional')
@@ -45,28 +43,6 @@
           = f.input :webhook_username, label: t('.webhook_username'), input_html: { autocomplete: 'off' }
           = f.input :webhook_password, label: t('.webhook_password'), placeholder: (resource.webhook_subscription&.password.blank? ? '' : '*****'), input_html: { autocomplete: 'new-password' }
       .clearfix
-      -if policy(:client, { project_id: client.id}).design?
-        .well
-          h3 Design
-          // File input
-          = f.input :logo, hint: (f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb), :class => 'thumb') if f.object.logo.present?)
-          .row.mhn
-            .col-sm-5.pln
-              = f.input :background, hint: (f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb), :class => 'thumb') if f.object.background.present?)
-            .col-sm-2 OR
-            .col-sm-5.prn
-              .form-group
-                = f.label :background_color, class: 'control-label'
-                .input-group.colorfield
-                  = f.input_field :background_color, class: 'form-control'
-                  span.input-group-addon
-                    i
-          = f.input :login_box_position,
-            as: :radio_buttons,
-            collection: Client::LOGIN_BOX_POSITIONS.map { |position| [position.to_s.capitalize, position] },
-            checked: resource.login_box_position,
-            item_wrapper_class: 'radio-inline'
-          = f.input :secondary_logo, hint: (f.input(:remove_secondary_logo, as: :boolean) + image_tag(f.object.secondary_logo.url(:thumb), :class => 'thumb') if f.object.secondary_logo.present?)
 
   .modal-footer
     .btn-group

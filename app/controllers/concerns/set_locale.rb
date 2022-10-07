@@ -35,7 +35,7 @@ module SetLocale
     ].find { |l| valid_ui_locale?(l) }
 
     # Fallback to default locale if params[:lang] is set but not valid
-    unless params[:lang].blank?
+    if params[:lang].present?
       locale = valid_ui_locale?(params[:lang]) ? params[:lang] : I18n.default_locale.to_s
     end
 
@@ -51,7 +51,7 @@ module SetLocale
   end
 
   # Adapted from https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb
-  def user_preferred_locale
+  def user_preferred_locale # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     header = request.env['HTTP_ACCEPT_LANGUAGE']
     return if header.nil?
 

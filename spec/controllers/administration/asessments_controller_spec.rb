@@ -114,9 +114,9 @@ RSpec.describe Administration::AssessmentsController, type: :controller do
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq([
-                                      { 'id' => 'n1', 'name' => '(fr) norm1', 'selected' => true },
-                                      { 'id' => 'n2', 'name' => '(no) norm2', 'selected' => false }
-                                    ])
+        { 'id' => 'n1', 'name' => '(fr) norm1', 'selected' => true },
+        { 'id' => 'n2', 'name' => '(no) norm2', 'selected' => false }
+      ])
     end
   end
 end

@@ -34,7 +34,7 @@ module Threesixty
       "#{counters[:completed_evaluators]} / #{counters[:total_evaluators]}"
     end
 
-    def is_subject # rubocop:disable Naming/PredicateName
+    def is_subject
       !!object.self_subject
     end
 
@@ -50,7 +50,8 @@ module Threesixty
         [
           %w[login spoof],
           'edit',
-          'remove_from_campaign'
+          'remove_from_campaign',
+          'allow_results_delete'
         ],
         {
           project_id: instance_options[:project_id]

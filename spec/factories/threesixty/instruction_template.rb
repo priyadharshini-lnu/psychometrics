@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :threesixty_instruction_template, class: 'Threesixty::InstructionTemplate' do
     threesixty_campaign
-    name { Faker::Lorem.characters(5) }
+    name { Faker::Lorem.characters(number: 5) }
     content { Faker::Lorem.sentence }
   end
 end

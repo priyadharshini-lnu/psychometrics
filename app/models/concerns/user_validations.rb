@@ -11,6 +11,6 @@ module UserValidations
   private
 
   def enable_strong_password?
-    admin? || project.try(:strong_password_enabled)
+    admin? || project&.security_setting&.enforce_strong_password
   end
 end

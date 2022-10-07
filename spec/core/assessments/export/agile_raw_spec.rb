@@ -14,7 +14,7 @@ describe Assessments::Export::AgileRaw do
       evaluator: user,
       campaign: campaign,
       assessment: assessment,
-      answers: YAML.load_file("#{Rails.root}/spec/fixtures/agile_answers.yml")
+      answers: YAML.load_file(Rails.root.join('spec/fixtures/agile_answers.yml'))
     )
   end
 
@@ -22,12 +22,12 @@ describe Assessments::Export::AgileRaw do
   let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
 
   after do
-    FileUtils.rm(file_name) if File.exist?(file_name)
+    FileUtils.rm_rf(file_name)
   end
 
   context 'Agile raw export' do
     it 'first row in xlsx contains result_details_header along with question ids' do
-      assessment.agile.update(config: YAML.load_file("#{Rails.root}/spec/fixtures/agile_group.yml"))
+      assessment.agile.update(config: YAML.load_file(Rails.root.join('spec/fixtures/agile_group.yml')))
 
       xlsx = described_class.call!(assessment, campaign)
       xlsx.serialize(file_name)
@@ -61,7 +61,7 @@ describe Assessments::Export::AgileRaw do
     end
 
     it 'second row in xlsx  contains actual data' do
-      config = YAML.load_file("#{Rails.root}/spec/fixtures/agile_group.yml")
+      config = YAML.load_file(Rails.root.join('spec/fixtures/agile_group.yml'))
       agile = assessment.agile
       agile.update(config: config)
 

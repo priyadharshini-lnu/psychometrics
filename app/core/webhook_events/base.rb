@@ -23,7 +23,7 @@ module WebhookEvents
       prepare_payload.keys + common_payload_attrs
     end
 
-    def common_attrs
+    def common_attrs # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       ctx = self.ctx || {}
       {
         subject: {

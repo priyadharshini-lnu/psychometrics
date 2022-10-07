@@ -1,18 +1,30 @@
-@import 'styles/variables.less';
+@import 'styles/ant.variable.less';
+@import 'styles/spacing.less';
 
-:global {
-  footer.ant-layout-footer {
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    padding: 1.5rem 50px;
-
-  }
+.page-footer:global(.ant-layout-footer) {
+  background: @white;
+  border: 1px solid @border-color-base;
+  border-inline-start: none;
+  padding: @space-2 @space-8;
+}
+.footer-middle {
+  text-align: center;
+}
+.footer-right {
+  text-align: end;
 }
 
 @media(max-width: @screen-lg) {
   :global(.ant-layout-footer) {
-    &.footer {
-      padding: 0 20px;
+    &.page-footer {
+      padding: @space-4 @space-5;
+      border-inline: none;
     }
+  }
+}
+
+:global(.rtl) {
+  .footer-left {
+    text-align: right;
   }
 }

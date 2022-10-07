@@ -15,12 +15,12 @@ module Administration
         user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
       end
 
-      def manage_datasheets?
-        user.is?(:superadmin) || user.has_permission?(:datasheets, :manage, project_id: project_id)
+      def allow_results_delete?
+        has_permission?(:results, :reset_responses)
       end
 
-      def manage_relationships?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+      def manage_datasheets?
+        user.is?(:superadmin) || user.has_permission?(:datasheets, :manage, project_id: project_id)
       end
 
       def approve_report?
@@ -68,7 +68,7 @@ module Administration
       end
 
       def reset_all_nominations?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :reset_nominations)
       end
 
       def edit_user?

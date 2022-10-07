@@ -4,7 +4,7 @@ module Administration
   module Threesixty
     class RelationshipPolicy < BasePolicy
       def fetch_with_usage?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
       end
 
       class Scope < Scope

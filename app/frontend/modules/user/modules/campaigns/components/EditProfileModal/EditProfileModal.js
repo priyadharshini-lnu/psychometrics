@@ -17,7 +17,7 @@ export default function EditProfileModal ({
 }) {
   const [profileDetails, setProfileDetails] = useState(user)
   const {
-    email, firstName, lastName, password,
+    email, firstName, lastName, password, passwordConfirmation,
   } = profileDetails
 
   useEffect(() => {
@@ -69,6 +69,10 @@ export default function EditProfileModal ({
 
         <Form.Item label={I18n.t('user.fields.password')}>
           <Input.Password value={password} name="password" onChange={handleInputChange} />
+        </Form.Item>
+
+        <Form.Item label={I18n.t('user.fields.password_confirmation')}>
+          <Input.Password value={passwordConfirmation} name="passwordConfirmation" onChange={handleInputChange} />
         </Form.Item>
 
         <Form.Item label={I18n.t('user.fields.first_name')}>

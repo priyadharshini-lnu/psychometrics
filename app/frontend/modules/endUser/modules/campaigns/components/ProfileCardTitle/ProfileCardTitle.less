@@ -1,0 +1,18 @@
+@import 'styles/ant.variable.less';
+
+.welcomeText:global(.ant-typography) {
+  margin-bottom: 0px;
+}
+.lastLogin {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+@media screen and (max-width: @screen-sm) {
+  .lastLogin{
+    justify-content: flex-start;
+  }
+}

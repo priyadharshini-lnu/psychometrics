@@ -46,7 +46,7 @@ RSpec.describe SoftDelete, type: :model do
   end
 
   it 'restores deleted record' do
-    blog = BlogPost.create(deleted_at: Time.now, deleted_by: user)
+    blog = BlogPost.create(deleted_at: Time.zone.now, deleted_by: user)
     blog.restore!
 
     expect(blog.deleted_at).to eq(nil)
@@ -63,7 +63,7 @@ RSpec.describe SoftDelete, type: :model do
 
   describe 'Scopes' do
     it 'deleted' do
-      soft_delete_blog = BlogPost.create(deleted_at: Time.now, deleted_by: user)
+      soft_delete_blog = BlogPost.create(deleted_at: Time.zone.now, deleted_by: user)
       not_deleted_blog = BlogPost.create
       deleted_blogs = BlogPost.deleted
 
@@ -72,7 +72,7 @@ RSpec.describe SoftDelete, type: :model do
     end
 
     it 'not_deleted' do
-      soft_delete_blog = BlogPost.create(deleted_at: Time.now, deleted_by: user)
+      soft_delete_blog = BlogPost.create(deleted_at: Time.zone.now, deleted_by: user)
       not_deleted_blog = BlogPost.create
       not_deleted_blogs = BlogPost.not_deleted
 
@@ -83,7 +83,7 @@ RSpec.describe SoftDelete, type: :model do
     it 'with_resource_state' do
       active_blog = BlogPost.create
       archieved_blog = BlogPost.create(archived: true)
-      deleted_bog = BlogPost.create(deleted_at: Time.now, deleted_by: user)
+      deleted_bog = BlogPost.create(deleted_at: Time.zone.now, deleted_by: user)
 
       expect(BlogPost.with_resource_state('active')).to match_array([active_blog])
       expect(BlogPost.with_resource_state('archived')).to match_array([archieved_blog])

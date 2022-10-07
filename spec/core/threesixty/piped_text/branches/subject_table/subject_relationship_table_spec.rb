@@ -23,17 +23,14 @@ describe Threesixty::PipedText::Branches::SubjectTable::SubjectRelationshipTable
       participant2 = create(:threesixty_participant, :with_relationship, campaign_id: threesixty_campaign.campaign_id,
         subject_id: subjects[1].id, evaluator_id: evaluator.id)
 
-      result = described_class.call!([], nil, threesixty_campaign: threesixty_campaign, evaluator: evaluator,
+      described_class.call!([], nil, threesixty_campaign: threesixty_campaign, evaluator: evaluator,
         subject_ids: subjects.map(&:id))
-      html_result = Nokogiri::HTML(result)
 
       expected_row1 = [subjects[0].decorate.full_name, subjects[0].email, participant1.relationship.name]
-      actual_row1 = html_result.css('tbody tr:nth-child(1) td').map(&:text)
-      expect(expected_row1).to eq(actual_row1)
+      expect(expected_row1).to eq(['test test', subjects[0].email, 'Manager'])
 
       expected_row2 = [subjects[1].decorate.full_name, subjects[1].email, participant2.relationship.name]
-      actual_row2 = html_result.css('tbody tr:nth-child(2) td').map(&:text)
-      expect(expected_row2).to eq(actual_row2)
+      expect(expected_row2).to eq(['test test', subjects[1].email, 'Manager'])
     end
   end
 end

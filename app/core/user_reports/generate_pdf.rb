@@ -39,7 +39,7 @@ module UserReports
       { file_path: file_path }
     end
 
-    def export_pdf_using_lambda
+    def export_pdf_using_lambda # rubocop:disable Metrics/AbcSize
       file_path =  "#{options[:file_path] || user_report.pdf.store_dir}/#{report_file_name}"
       webhook_message = { user_report_id: user_report.id, file_name: report_file_name, file_path: file_path }
       webhook_message[:notify_user_id] = current_user.id if options[:notify_user]
@@ -51,6 +51,11 @@ module UserReports
         webhook_message: webhook_message,
         async: options[:async],
         low_priority: options[:low_priority],
+        meta: {
+          campaign_id: campaign.id,
+          report_id: report.id,
+          user_id: user.id
+        },
         pdf_password: campaign.pdf_password
       )
       Rails.logger.info(
@@ -77,7 +82,7 @@ module UserReports
     def report_preview_url
       if current_user.is?(:regular)
         report_preview_user_url
-      elsif current_user.is?(:assessor)
+      elsif current_user.is?(:assessor) && options[:view_report_as] == :assessor
         report_preview_assessor_url
       else
         report_preview_admin_url
@@ -130,12 +135,11 @@ module UserReports
 
     def report_file_name
       @report_file_name ||=
-        "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+        "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
     end
 
     def report_directory
-      dir = Rails.root.join('tmp', 'reports')
-      File.join(dir, user.email)
+      Rails.root.join('tmp/reports', user.email)
     end
 
     def default_report_preview_url_params

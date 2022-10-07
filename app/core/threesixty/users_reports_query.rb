@@ -11,7 +11,11 @@ module Threesixty
     end
 
     def query
-      UserReport.where(campaign_id: @campaign.campaign_id, user_id: user_ids)
+      user_ids_for_report = @campaign.participants.where(
+        subject_id: user_ids, status: :completed
+      ).pluck(:subject_id).uniq
+
+      UserReport.where(campaign_id: @campaign.campaign_id, user_id: user_ids_for_report)
     end
 
     private
@@ -60,7 +64,7 @@ module Threesixty
 
     def subject_evaluator_counters
       user_ids = @subjects.pluck(:user_id)
-      user_ids = user_ids.push(subject.user_id) if subject
+      user_ids.push(subject.user_id) if subject
 
       @subject_evaluator_counters ||= ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         user_ids,

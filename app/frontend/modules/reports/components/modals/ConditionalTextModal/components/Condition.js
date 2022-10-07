@@ -125,7 +125,8 @@ class Condition extends Component {
 
   renderAssessmentSelect () {
     const { condition, assessments } = this.props
-    if (condition.type !== 'Factor' && condition.type !== 'EmbeddedData') { return null }
+    if (!_.includes(['Factor', 'EmbededData', 'RawScale', 'PercentileScale',
+      'PercentileSubscale'], condition.type)) { return null }
 
     return (
       <select

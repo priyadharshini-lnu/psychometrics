@@ -43,13 +43,13 @@ const MultiItemsTemplate: ComponentStory<typeof ProgressStatus> = () => (
   <div style={{ background: '#009ea7', padding: '12px' }}>
     <Row>
       <Col span={8}>
-        <ProgressStatus theme="light" count="01" statusText="Not Started" StatusIcon={CheckCircleOutlined} />
+        <ProgressStatus theme="light" count={1} statusText="Not Started" StatusIcon={CheckCircleOutlined} />
       </Col>
       <Col span={8}>
-        <ProgressStatus theme="light" count="01" statusText="In Progress" StatusIcon={ClockCircleOutlined} />
+        <ProgressStatus theme="light" count={1} statusText="In Progress" StatusIcon={ClockCircleOutlined} />
       </Col>
       <Col span={8}>
-        <ProgressStatus theme="light" count="01" statusText="Completed" StatusIcon={PlayCircleOutlined} />
+        <ProgressStatus theme="light" count={1} statusText="Completed" StatusIcon={PlayCircleOutlined} />
       </Col>
     </Row>
   </div>

@@ -10,7 +10,7 @@ module CampaignUsers
 
     def call
       examus_session_url = transaction do
-        campaign_user.update_attributes(attributes) if campaign_user.interrupted_campaign?
+        campaign_user.update(attributes) if campaign_user.interrupted_campaign?
         Examus::GetSessionUrl.call!(campaign_user) if campaign_user.proctoring_enabled?
       end
 

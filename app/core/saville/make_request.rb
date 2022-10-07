@@ -21,7 +21,7 @@ module Saville
     private
 
     def xml
-      ActionController::Base.render(file: file_path, locals: all_attributes).squish
+      ApplicationController.render(inline: File.read(file_path), layout: false, locals: all_attributes).squish
     end
 
     def file_path
@@ -37,7 +37,7 @@ module Saville
 
     def client
       Savon.client(
-        wsdl: Rails.application.secrets.saville.dig(:wsdl_url),
+        wsdl: Rails.application.secrets.saville[:wsdl_url],
         soap_version: 1,
         log_level: :debug,
         logger: Rails.logger,

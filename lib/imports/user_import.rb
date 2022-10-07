@@ -31,6 +31,7 @@ module Imports
     ## Custom current user helper for Pundit
 
     attr_accessor :client_id, :importer, :client
+
     validates :client_id, :importer, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
@@ -49,7 +50,7 @@ module Imports
       importer
     end
 
-    def process!
+    def process! # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       # Return error if form not valid
       return false unless valid?
 
@@ -82,8 +83,7 @@ module Imports
     # Parse file
     # Return array of new Users
     #
-    # rubocop:disable Metrics/AbcSize
-    def load_imported_items
+    def load_imported_items # rubocop:disable Metrics/AbcSize
       self.client = policy_scope(::Client).find(client_id)
       raise 'Invalid client' unless client
 
@@ -103,7 +103,7 @@ module Imports
         user = Users::Regular.find_or_initialize_by(email: attributes[:email].downcase, project_id: client.project.id)
         next if user.is?(:superadmin)
 
-        header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
+        header.zip(row)[HEADER_IMPORT_DATA.size..]&.each_with_index do |z, i|
           memberships_attributes[:hris_data][i.to_s] = { 'key' => z.first, 'value' => z.last }
         end
 
@@ -127,7 +127,6 @@ module Imports
       end
       [nil]
     end
-    # rubocop:enable Metrics/AbcSize
 
     def open_spreadsheet
       case File.extname(file.original_filename)

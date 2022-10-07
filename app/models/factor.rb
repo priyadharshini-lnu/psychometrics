@@ -1,21 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: factors
-#
-#  id               :integer          not null, primary key
-#  name             :string
-#  subfactors_count :integer          default(0)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  dimension_id     :integer
-#  parent_id        :integer
-#  disabled         :boolean          default(FALSE)
-#  icon             :string
-#  description      :text
-#
-
 class Factor < ApplicationRecord
   include Copyable
   include RansackSearchableFields
@@ -36,11 +20,12 @@ class Factor < ApplicationRecord
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
   validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
+  # TODO: remove allow_blank?
 
   before_create :increment_factors
-  before_destroy :decrement_factors
-  after_update ::Callbacks::Models::Factors::UpdateAliases.new
   after_create :create_aliases
+  after_update ::Callbacks::Models::Factors::UpdateAliases.new
+  before_destroy :decrement_factors
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
 
   enum scoring_strategy: {

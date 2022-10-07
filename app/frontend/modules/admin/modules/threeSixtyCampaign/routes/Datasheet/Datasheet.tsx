@@ -1,11 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { SheetTabs } from 'modules/admin/modules/SheetManagement'
 
-import { DatasheetManagement } from 'modules/admin/modules/DatasheetManagement'
+import { ParentResourceType } from 'modules/admin/modules/SheetManagement/interfaces'
+import { RootState } from 'modules/admin/core/rootReducers'
 
-import { ParentResourceType } from 'modules/admin/modules/DatasheetManagement/interfaces'
-
-const Datasheet = () => (
-  <DatasheetManagement parentResourceType={ParentResourceType.Campaign} />
+const Datasheet = ({ campaignId }) => (
+  <SheetTabs parentResourceType={ParentResourceType.Campaign} parentResourceId={campaignId} />
 )
 
-export default Datasheet
+export default connect(({ threeSixtyCampaign: { campaignDetails: { campaignId } } }: RootState) => ({
+  campaignId,
+}), {})(Datasheet)

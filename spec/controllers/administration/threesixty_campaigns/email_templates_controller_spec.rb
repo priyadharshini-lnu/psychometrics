@@ -25,19 +25,19 @@ RSpec.describe Administration::ThreesixtyCampaigns::EmailTemplatesController, ty
 
     expect(response.status).to eq(200)
     expect(parsed_response['list']).to eq([
-                                            {
-                                              'id' => template.id,
-                                              'locale' => 'en',
-                                              'content' => 'En',
-                                              'subject' => 'Sub'
-                                            },
-                                            {
-                                              'id' => template.id,
-                                              'locale' => 'ar',
-                                              'content' => 'Ar',
-                                              'subject' => 'Sub'
-                                            }
-                                          ])
+      {
+        'id' => template.id,
+        'locale' => 'en',
+        'content' => 'En',
+        'subject' => 'Sub'
+      },
+      {
+        'id' => template.id,
+        'locale' => 'ar',
+        'content' => 'Ar',
+        'subject' => 'Sub'
+      }
+    ])
     expect(parsed_response['available_locales']).to eq(%w[en ar])
   end
 end

@@ -1,0 +1,9 @@
+@headerHeight: 52px;
+@footerHeight: 68px;
+@pageHeaderHeight: 56px;
+@previewContainerMinHeight: calc(100vh - @headerHeight - @footerHeight - @pageHeaderHeight);
+.previewConainer {
+  display: flex;
+  flex-flow: row-wrap;
+  min-height: @previewContainerMinHeight;
+}

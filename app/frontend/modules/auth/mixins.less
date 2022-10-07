@@ -1,0 +1,12 @@
+@import 'styles/ant.variable.less';
+
+.responsiveContainer(@default-width, @large-screen-width, @small-screen-width) {
+  flex: 1;
+  max-width: @default-width;
+  @media (min-width: @screen-lg) and (max-width: @screen-xl ) {
+    max-width: @large-screen-width;
+  }
+  @media (max-width: @screen-xs) {
+    max-width: @small-screen-width;
+  }
+}

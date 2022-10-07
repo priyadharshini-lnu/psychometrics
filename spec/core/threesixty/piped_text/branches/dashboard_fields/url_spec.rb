@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Threesixty::PipedText::Branches::DashboardFields::Url do
   describe '.call' do
     let(:new_user) { create(:user, project: create(:project)) }
-    let(:existing_user) { create(:user, project: create(:project), invitation_accepted_at: Time.now) }
+    let(:existing_user) { create(:user, project: create(:project), invitation_accepted_at: Time.zone.now) }
 
     it 'new user' do
       response = described_class.call!(%w[Url], {}, recipient: new_user, threesixty_campaign: 'ddd')

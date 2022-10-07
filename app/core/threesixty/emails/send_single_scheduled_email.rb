@@ -12,12 +12,12 @@ module Threesixty
       end
 
       def call
-        return if schedule_email.scheduled_date.nil? || schedule_email.scheduled_date > Time.now
+        return if schedule_email.scheduled_date.nil? || schedule_email.scheduled_date > Time.zone.now
 
         User.where(id: schedule_email.recipient_ids).each do |recipient|
           send_email(recipient)
         end
-        schedule_email.update(delivered_at: Time.now)
+        schedule_email.update(delivered_at: Time.zone.now)
       end
 
       private
@@ -72,7 +72,7 @@ module Threesixty
           email_name: schedule_email.name
         )
         reminder_history.sent_count += 1
-        reminder_history.last_sent_at = Time.now
+        reminder_history.last_sent_at = Time.zone.now
         reminder_history.save!
       end
 

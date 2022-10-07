@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Errors
-  class JWTAuthError < StandardError; end
+  class JwtAuthError < StandardError; end
 end

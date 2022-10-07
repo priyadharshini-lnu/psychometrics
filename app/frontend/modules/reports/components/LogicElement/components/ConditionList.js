@@ -74,7 +74,7 @@ export default class ConditionList extends Component {
 
   render () {
     const {
-      model, conditionsCount, onChange, types, safeFirstElement, factors,
+      model, conditionsCount, onChange, types, safeFirstElement, factors, assessments,
     } = this.props
     const { conditions } = model
     const count = conditionsCount
@@ -94,6 +94,7 @@ export default class ConditionList extends Component {
               moveToNewConditionList={this.moveToNewConditionList}
               disableRemove={safeFirstElement && i === 0 && model.conditions.length === 1}
               factors={factors}
+              assessments={assessments}
             />
           ))}
         </div>

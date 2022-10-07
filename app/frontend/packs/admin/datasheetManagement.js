@@ -7,7 +7,7 @@ import 'styles/utils.less'
 
 import initSentry from 'libs/initSentry'
 
-import DatasheetManagementApp from 'modules/admin/modules/DatasheetManagement/App'
+import DatasheetManagementApp from 'modules/admin/modules/SheetManagement/App'
 
 initSentry()
 

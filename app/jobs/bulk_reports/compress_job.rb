@@ -6,7 +6,7 @@ module BulkReports
 
     def perform(report)
       # Start with cleaning up
-      FileUtils.rm_rf(report.output_dir) if File.exist?(report.output_dir)
+      FileUtils.rm_rf(report.output_dir)
 
       # Create a fresh directory for output
       FileUtils.mkdir_p(report.output_dir)
@@ -14,7 +14,7 @@ module BulkReports
       options = [
         report.input_dir,
         report.output_dir,
-        size_limit: Settings.bulk_reports.size_limit, base_file_name: 'bulk-report'
+        { size_limit: Settings.bulk_reports.size_limit, base_file_name: 'bulk-report' }
       ]
       Sidekiq.logger.info("Compressor.new(#{options})")
       Compressor.new(*options).process
@@ -27,7 +27,7 @@ module BulkReports
     private
 
     def clean(report)
-      FileUtils.rm_rf(report.output_dir) if File.exist?(report.output_dir)
+      FileUtils.rm_rf(report.output_dir)
     end
 
     def add_files_to_bulk_report(report)

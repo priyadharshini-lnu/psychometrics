@@ -9,9 +9,9 @@ describe Threesixty::Participants::GetStatus do
   let(:peer_relationship) { create(:relationship, name: 'peer') }
   let(:nomination_requirement) do
     create(:threesixty_nomination_requirement, conditions: [
-             { 'relationship_id' => manager_relationship.id, 'value' => '4' },
-             { 'relationship_id' => peer_relationship.id, 'value' => '5' }
-           ])
+      { 'relationship_id' => manager_relationship.id, 'value' => '4' },
+      { 'relationship_id' => peer_relationship.id, 'value' => '5' }
+    ])
   end
 
   it 'nomination requirements are valid and evaluations are completed' do

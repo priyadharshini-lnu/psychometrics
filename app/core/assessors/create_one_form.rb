@@ -23,12 +23,13 @@ module Assessors
     end
 
     def check_existing_assessor_subject_relation
-      if UserAssessment.joins(:relationship).where(
+      if UserAssessment.joins(:relationship).exists?(
         relationships: { name: Relationship::ASSESSOR },
         subject: subject,
         evaluator: assessor_user,
         campaign: context.campaign
-      ).exists?
+      )
+
         errors.add(:assessor_email, :already_exists)
       end
     end

@@ -32,7 +32,7 @@ module Administration
 
           respond_to do |format|
             format.csv do
-              headers['Content-Disposition'] = "attachment; filename=\"campaigns-#{Date.today}.csv\""
+              headers['Content-Disposition'] = "attachment; filename=\"campaigns-#{Time.zone.today}.csv\""
               headers['Content-Type'] ||= 'text/csv'
             end
           end

@@ -18,17 +18,15 @@ namespace :assign do
     end
   end
 
-  def update_records(records)
+  def update_records(records, &)
     todo_size = records.size
-    records.find_each do |record|
-      yield record
-    end
+    records.find_each(&)
     puts "updated #{todo_size} records"
   end
 
   def assigns_with_incorrect_status
     Assign.joins(:project_assign).
-      where('project_assigns_assigns.status = ?', Assign.statuses[:completed]).
+      where(project_assigns_assigns: { status: Assign.statuses[:completed] }).
       where.not('assigns.status = ?', Assign.statuses[:completed])
   end
 

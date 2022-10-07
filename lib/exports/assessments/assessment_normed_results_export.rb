@@ -98,7 +98,7 @@ module Exports
       end
 
       def user_name(assign)
-        [assign.user_first_name, assign.user_last_name].reject(&:blank?).join(', ')
+        [assign.user_first_name, assign.user_last_name].compact_blank.join(', ')
       end
     end
   end

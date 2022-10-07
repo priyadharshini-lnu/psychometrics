@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HttpUrlValidator < ActiveModel::EachValidator
-  HOST_REGEX = /.+\.[a-z]{2,7}\z/ix.freeze
+  HOST_REGEX = /.+\.[a-z]{2,7}\z/ix
   VALID_SCHEMES = %w[http https].freeze
 
   def validate_each(record, attribute, value)

@@ -59,7 +59,7 @@ module Administration
           end
           render :new if resource.errors.any?
         end
-        # rubocop:enable Metrics/AbcSize
+        # rubocop:enable all
 
         def destroy
           Assigns::Destroy.call!(resource)

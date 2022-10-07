@@ -3,7 +3,8 @@
 module AdminJobs
   class ImportSmsInvites < AdminJobs::Base
     def call
-      rows = CSV.parse(URI.open(record.file.url), headers: :first_row).map(&:to_h)
+      # TODO: get rid of URI.open
+      rows = CSV.parse(URI.open(record.file.url), headers: :first_row).map(&:to_h) # rubocop:disable Security/Open
       ::SmsInvites::Import.call!(campaign, rows, record)
 
       broadcast :ok

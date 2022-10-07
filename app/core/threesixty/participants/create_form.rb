@@ -73,16 +73,16 @@ module Threesixty
       end
 
       def check_datasheet_criteria(evaluator = nil)
-        evaluator ||= OpenStruct.new(email: evaluator_email)
+        evaluator ||= OpenStruct.new(email: evaluator_email) # rubocop:disable Style/OpenStructUse
         user_datasheet = threesixty_campaign.campaign.datasheet_data(evaluator.email)
 
         return can_not_be_processed! if user_datasheet.blank?
 
-        if limit_nomination_by_subject_from_datasheet?
-          unless Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(threesixty_campaign,
-                                                                        evaluator, datasheet_criteria, subject.user)
-            can_not_be_processed!
-          end
+        if limit_nomination_by_subject_from_datasheet? &&
+           !Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(
+             threesixty_campaign, evaluator, datasheet_criteria, subject.user
+           )
+          can_not_be_processed!
         end
       end
 

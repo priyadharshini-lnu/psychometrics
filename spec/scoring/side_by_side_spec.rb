@@ -23,13 +23,13 @@ RSpec.describe Scoring::SideBySide do
       context 'when answer: s0c0i1, s1c2i0, s1c2i1' do
         it 'returns 1.3333' do
           result = side_by_side.calculate(Question.new, { 'answers' => [
-                                            { 'scale' => 0, 'choice' => 0, 'values' => [
-                                              { 'index' => 1, 'value' => true }
-                                            ] },
-                                            { 'scale' => 1, 'choice' => 2, 'values' => [
-                                              { 'index' => 0, 'value' => true }, { 'index' => 1, 'value' => true }
-                                            ] }
-                                          ] }, template_data)[:value]
+            { 'scale' => 0, 'choice' => 0, 'values' => [
+              { 'index' => 1, 'value' => true }
+            ] },
+            { 'scale' => 1, 'choice' => 2, 'values' => [
+              { 'index' => 0, 'value' => true }, { 'index' => 1, 'value' => true }
+            ] }
+          ] }, template_data)[:value]
           expect(result).to eq(3)
         end
       end

@@ -53,7 +53,7 @@ describe Threesixty::Participants::CreateForm do
 
   describe 'check with enabled anyone option' do
     before do
-      campaign.option.participants = { 'subject': { 'can_nominate_anyone_not_in_assessment': true } }
+      campaign.option.participants = { subject: { can_nominate_anyone_not_in_assessment: true } }
       @params = {
         evaluator_email: 'unexists@a.com',
         relationship_id: peer.id,
@@ -90,14 +90,14 @@ describe Threesixty::Participants::CreateForm do
 
   describe 'with validating from datasheet' do
     before do
-      campaign.option.participants = { 'subject': {
-        'can_nominate_anyone_from_datasheet': true,
-        'limit_nomination_by_subject_from_datasheet': true,
-        'limit_nomination_by_subject_from_datasheet_criteria': [
+      campaign.option.participants = { subject: {
+        can_nominate_anyone_from_datasheet: true,
+        limit_nomination_by_subject_from_datasheet: true,
+        limit_nomination_by_subject_from_datasheet_criteria: [
           { 'field' => 'Age', 'value' => '55', 'comparator' => 'equal' }
         ]
       } }
-      create(:datasheet_row, datasheet: datasheet, email: subject.user.email, data: { 'Age' => 21, 'No.' => 2 })
+      create(:sheet_row, sheet: datasheet, email: subject.user.email, data: { 'Age' => 21, 'No.' => 2 })
     end
 
     it 'should returns error without datasheet' do
@@ -109,7 +109,7 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should returns error with falsy criteria' do
-      create(:datasheet_row, datasheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
+      create(:sheet_row, sheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
       form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id).
              with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be false
@@ -118,11 +118,11 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be valid without conditions' do
-      campaign.option.participants = { 'subject': {
-        'can_nominate_anyone_from_datasheet': true,
-        'limit_nomination_by_subject_from_datasheet': false
+      campaign.option.participants = { subject: {
+        can_nominate_anyone_from_datasheet: true,
+        limit_nomination_by_subject_from_datasheet: false
       } }
-      create(:datasheet_row, datasheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
+      create(:sheet_row, sheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
       form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id,
                                          first_name: 'first_name', last_name: 'last_name').
              with_context(threesixty_campaign: campaign, subject: subject)
@@ -131,7 +131,7 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be valid with truly criteria' do
-      create(:datasheet_row, datasheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 55, 'No.' => 1 })
+      create(:sheet_row, sheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 55, 'No.' => 1 })
       form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id,
                                          first_name: 'first_name', last_name: 'last_name').
              with_context(threesixty_campaign: campaign, subject: subject)
@@ -140,7 +140,7 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be valid and returns existed user' do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 55, 'No.' => 1 })
+      create(:sheet_row, sheet: datasheet, email: user.email, data: { 'Age' => 55, 'No.' => 1 })
       form = described_class.from_params(evaluator_email: user.email, relationship_id: peer.id).
              with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be true
@@ -148,7 +148,7 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be invalid by uniquesness for existed user' do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 55, 'No.' => 1 })
+      create(:sheet_row, sheet: datasheet, email: user.email, data: { 'Age' => 55, 'No.' => 1 })
       create(:threesixty_participant, campaign: campaign.campaign, evaluator_id: user.id, subject_id: subject.user_id)
       form = described_class.from_params(evaluator_email: user.email, relationship_id: peer.id).
              with_context(threesixty_campaign: campaign, subject: subject)
@@ -160,7 +160,7 @@ describe Threesixty::Participants::CreateForm do
 
   describe 'check with disabled anyone option' do
     before do
-      campaign.option.participants = { 'subject': { 'can_nominate_anyone_not_in_assessment': false } }
+      campaign.option.participants = { subject: { can_nominate_anyone_not_in_assessment: false } }
     end
 
     it 'should be invalid for unexisted user' do

@@ -6,6 +6,7 @@ class UserReport < ApplicationRecord
   belongs_to :norm
   belongs_to :campaign
   belongs_to :report_family
+
   has_one :saville_report_setting, through: :report
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign

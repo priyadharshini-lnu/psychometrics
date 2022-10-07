@@ -27,10 +27,10 @@ export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
 
-enum SelectedTypes {
-  'Module',
-  'Page',
-  'Report'
+export enum SelectedTypes {
+  'Module'= 'Module',
+  'Page'= 'Page',
+  'Report'= 'Report'
 }
 
 export const init = (data, userReport = null, campaignId = null) => ({

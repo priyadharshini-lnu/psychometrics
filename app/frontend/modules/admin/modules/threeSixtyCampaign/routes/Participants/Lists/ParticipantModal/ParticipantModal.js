@@ -13,6 +13,7 @@ import ResultList from './ResultList'
 export default function ParticipantModal ({
   closeModal,
   user,
+  permissions,
   onClose,
   fetchParticipants,
   fetchRelationships,
@@ -56,7 +57,7 @@ export default function ParticipantModal ({
           <EvaluationList match={match} />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Results" key="results">
-          <ResultList match={match} />
+          <ResultList permissions={permissions} match={match} />
         </Tabs.TabPane>
       </Tabs>
     </Modal>

@@ -10,6 +10,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
+
   has_one :saville_user_assessment, dependent: :destroy
   has_one :pearson_user_assessment, dependent: :destroy
   has_one :iiht_user_assessment, dependent: :destroy
@@ -23,6 +24,7 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   has_one :threesixty_campaign, through: :campaign
+
   delegate :saville_assessment_id, :saville?, :pearson_assessment_id,
            :pearson_assessment_language, :pearson?, :iiht?,
            to: :assessment
@@ -30,7 +32,6 @@ class UserAssessment < ApplicationRecord
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
   scope :self_assessment, -> { where('subject_id = evaluator_id') }
-
   scope :filter_by_subject_or_assessment, lambda { |query|
     joins(:subject, :assessment).where(
       'users.first_name ILIKE :query OR users.last_name ILIKE :query OR users.email ILIKE :query OR
@@ -44,11 +45,10 @@ class UserAssessment < ApplicationRecord
     end
   }
 
+  before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
-
-  before_save :set_default_relationship
 
   alias result users_result
 
