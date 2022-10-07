@@ -25,7 +25,7 @@ module Users
       return unless password
 
       if context.user.password_length.exclude?(password.size)
-        errors.add(:password, :too_short, { count: context.user.password_length.min })
+        errors.add(:password, :too_short, count: context.user.password_length.min)
       end
     end
 
