@@ -16,7 +16,7 @@ const prevAssessmentsCompleted = (userAssessments: UserAssessment[], userAssessm
     return true
   }
   const prevs = _.take(userAssessments, _.findIndex(userAssessments, userAssessment))
-  return !!prevs.length && _.some(prevs, ua => ua.status !== 'completed')
+  return (prevs.length === 0) || _.every(prevs, ua => ua.status === 'completed')
 }
 
 const prevGroupIsCompleted = (campaign, group) => {
