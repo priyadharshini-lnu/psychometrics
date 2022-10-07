@@ -37,6 +37,9 @@ ar:
     audio_response:
       permission_denied_message: الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك
       permission_text: الرجاء السماح بإستخدام الميكروفون لتسجيل الصوت
+    card_actions:
+      begin: ابدأ
+      continue: استمرار
     categories:
       '360': حملة 360
       agile: AGILE- آجايل
@@ -110,11 +113,19 @@ ar:
     all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
     begin: ابدأ مهامك
+    campaigns: الحملات
     complete_all: أكمل جميع التقييمات ذات الصلة
     complete_prev: " أكمل جميع التقييمات السابقة"
     completed: تم إكماله
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بالعديد من الأنشطة التي تحتاج إلى إكمالها. يرجى التأكد من التحقق من اكتمال جميع الأنشطة المخصصة عبر جميع الحملات.
+    dashboard_menu:
+      campaign: الحملة
+      home: الصفحة الرئيسية
+      insights: البصائر
+      profile: تفاصيلي
+      tasks: مهامي
+    details: مشاهدة التفاصيل
     edit_evaluation:
       body: يرجى العلم أنه بمجرد النقر فوق إعادة التقييم ، سيتم توجيهك إلى بداية الاستبيان حيث يمكنك تعديل الردود. ستظل الردود السابقة متاحة ولكن يمكنك تغييرها حسب الحاجة. عند التحرير ، سيتعين عليك إعادة إرسال التقييم لإكمال العملية.
       edit: إعادة التقييم
@@ -136,6 +147,15 @@ ar:
     panels:
       assessments: مهامك
       reports: تقارير
+    profile:
+      complete_heading: ملف التعريف الخاص بك مكتمل
+      complete_profile_label: تحديث ملفك الشخصي
+      edit_profile_label: تحديث ملفك الشخصي
+      incomplete_heading: تحديث ملفك الشخصي
+      last_login_text: 'آخر مرة سجلت الدخول فيها :'
+      last_updated_text: 'تم تحديث ملف التعريف الخاص بك في آخر مرة:'
+      sub_heading: أكمل معلومات ملفك الشخصي الكامل
+      welcome_text: أهلا وسهلا
     thank_you_for_time: شكراً لك على وقتك
     time_left:
       cancel: إلغاء
@@ -147,6 +167,12 @@ ar:
       notification: 'لديك %{minutes} و %{seconds} لإكمال التقييمات '
     ungrouped: مهام غير مجمعة
     welcome: مرحباً
+  campaign_assessment:
+    assessments_heading: مهامك
+    statuses:
+      completed: تم اكماله
+      in_progress: " على قيد التقدم"
+      not_started: لم يبدأ بعد
   checking_wizard:
     audio_check:
       access: إذن الدخول
@@ -308,6 +334,25 @@ ar:
   navigation:
     logout: تسجيل خروج
     profile: الملف الشخصى
+  profile:
+    add_photo: أضف صورتك
+    age: عمرك
+    change_password: غيّر كلمة المرور
+    change_photo: غير صورتك
+    email: البريد الإلكتروني
+    female: إناثا
+    first_name: الاسم الاول
+    gender: جنس
+    last_name: إسم العائلة
+    locale: لغة
+    male: رجل
+    not_disclosed: أنا أفضل عدم الإفصاح
+    password: كلمة المرور
+    password_confirmation: تأكيد كلمة المرور
+    success_update: تم حفظ التفاصيل الخاصة بك بنجاح
+    timezone: المنطقة الزمنية
+    title: تفاصيلي
+    update: حفظ
   reports:
     actions:
       add: إضافة تقرير

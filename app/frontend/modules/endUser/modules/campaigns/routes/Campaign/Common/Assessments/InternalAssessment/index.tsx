@@ -12,6 +12,7 @@ import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessme
 
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 import { secondsLeftFromNow } from 'utils/time'
+import { shortify } from 'utils/string'
 
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
@@ -33,13 +34,6 @@ interface Props {
   campaignNotStarted: boolean
   prevCompleted: boolean
 
-}
-const buttonTextData = {
-  in_progress: 'Continue',
-  completed: '',
-  not_started: 'Begin',
-  timed_out: '',
-  interrupted: 'Continue',
 }
 
 export const InternalAssessment: React.FC<Props> = ({
@@ -69,6 +63,13 @@ export const InternalAssessment: React.FC<Props> = ({
     actionDisabledText = I18n.t('campaign.begin_campaign_msg')
   }
 
+  const buttonTextData = {
+    in_progress: I18n.t('assessments.card_actions.continue'),
+    completed: '',
+    not_started: I18n.t('assessments.card_actions.begin'),
+    timed_out: '',
+    interrupted: I18n.t('assessments.card_actions.continue'),
+  }
 
   const handleBeginAssessment = () => {
     if (isPartOfTimedCampaign && campaignExpiryDate && assessmentExtra.timer) {
@@ -138,7 +139,7 @@ export const InternalAssessment: React.FC<Props> = ({
     <Avatar
       className={styles.titleAvatar}
     >
-      {assessmentName.substring(0, 2)}
+      {shortify(assessmentName)}
     </Avatar>
   )
   const assessmentTitle = view === 'list'

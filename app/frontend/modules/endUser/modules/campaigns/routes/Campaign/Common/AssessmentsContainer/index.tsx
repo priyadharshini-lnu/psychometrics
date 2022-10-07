@@ -121,7 +121,9 @@ export const AssessmentsContainer = ({
           })}
           {!!ungrouped.length && (
           <div className={styles.group}>
-            <Title level={5}>{I18n.t('campaign_assessment.ungrouped_assessments_heading')}</Title>
+            {groups.length > 0 && (
+              <Title level={5}>{I18n.t('campaign_assessment.ungrouped_assessments_heading')}</Title>
+            )}
             <Row gutter={[16, 16]}>
               {ungrouped.map((userAssessment) => {
                 const Assessment = Assessments[userAssessment.type]

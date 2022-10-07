@@ -93,7 +93,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
               </Card>
             </Col>
             <Col span={24}>
-              <Title level={4} className={styles['campaign-title']}>Campaigns</Title>
+              <Title level={4} className={styles['campaign-title']}>{I18n.t('campaign.campaigns')}</Title>
               <Text className={styles['campaign-instruction']}>
                 {campaigns.length
                   ? I18n.t('campaign.dashboard_instructions') : I18n.t('campaign.inactive_campaign_message')}

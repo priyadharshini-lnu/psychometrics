@@ -713,6 +713,9 @@ en:
       resume: Resume
       start_recording: Start recording
       stop: Stop
+    card_actions:
+      begin: Begin
+      continue: Continue
     categories:
       '360': 360 Campaign
       agile: AGILE
@@ -1729,6 +1732,64 @@ en:
     vi: Vietnamese
     zh: Chinese Simplified
     zh-TW: Chinese Traditional
+  languages_localized:
+    ar: عربي
+    bg: български
+    bs: bosanski
+    ca: català
+    cn: 中国人
+    cs: čeština
+    cy: Cymraeg
+    da: dansk
+    de: Deutsch
+    el: Ελληνικά
+    en: English
+    en-GB: English - UK
+    eo: Esperanto
+    es: Spanish (Latin America)
+    es-ES: Spanish (Spain)
+    et: Estonian
+    fa: Persian
+    fi: Finnish
+    fr: Français
+    gu: Gujarati
+    he: Hebrew
+    hi: हिन्दी
+    hr: Croatian
+    hu: Hungarian
+    id: Bahasa Indonesia
+    it: Italian
+    ja: Japanese
+    km: Khmer
+    ko: Korean
+    lt: Lithuanian
+    lv: Latvian
+    mk: Macedonian
+    mn: Mongolian
+    ms: Bahasa Malaysia
+    my: Myanmar
+    nl: Dutch
+    'no': Norwegian
+    pl: Polish
+    pt: Portuguese
+    pt-BR: Brazilian Portuguese
+    ro: Romanian
+    ru: Russian
+    sk: Slovak
+    sl: Slovenian
+    sr-Cyrl: Serbian Cyrillic
+    sr-Latn: Serbian Latin
+    sv: Swedish
+    sw: Swahili
+    ta: Tamil
+    th: Thai
+    tl: Tagalog
+    tr: Turkish
+    uk: Ukrainian
+    ur: Urdu
+    vi: Vietnamese
+    zh: 汉语
+    zh-TW: 漢語
   layouts:
     users:
       dashboard: Dashboard
@@ -1903,7 +1964,7 @@ en:
     not_disclosed: Prefer not to disclose
     password: Password
     password_confirmation: Password Confirmation
-    success_update: Profile settings updated successfully
+    success_update: Profile was saved successfully
     timezone: Timezone
     title: My Profile
     update: Update

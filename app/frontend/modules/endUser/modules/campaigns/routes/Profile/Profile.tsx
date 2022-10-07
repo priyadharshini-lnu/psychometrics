@@ -106,6 +106,16 @@ function ProfileComponent ({
     setShowCropper(true)
   }
 
+  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${moment.tz(zone).format('Z')}) ${zone}` }))
+    .sort((a, b) => Number(moment.tz(a.zone).format('ZZ')) - Number(moment.tz(b.zone).format('ZZ')))
+  const timezoneGuess = moment.tz.guess()
+
+  if (timezoneGuess) {
+    timezoneNames.unshift({
+      zone: timezoneGuess,
+      label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
+    })
+  }
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
       <LangDropdown locales={locales} current={current} />
@@ -211,9 +221,9 @@ function ProfileComponent ({
                       validateStatus={errors?.locale ? 'error' : ''}
                     >
                       <Select size="large" disabled={lockedFields.locale}>
-                        <Select.Option value="en">{I18n.t('languages.en')}</Select.Option>
-                        <Select.Option value="ar">{I18n.t('languages.ar')}</Select.Option>
-                        <Select.Option value="de">{I18n.t('languages.de')}</Select.Option>
+                        {_.map(locales, locale => (
+                          <Select.Option value={locale}>{I18n.t(`languages_localized.${locale}`)}</Select.Option>
+                        ))}
                       </Select>
                     </Form.Item>
 
@@ -231,9 +241,9 @@ function ProfileComponent ({
                         filterOption={(search, option) => `${option?.value}`
                           .toLowerCase().includes(search.toLowerCase())}
                       >
-                        {timeZones.map((zone, i) => (
-                          <Select.Option key={i} value={zone}>
-                            {`(GMT${moment.tz(zone).format('Z')}) ${zone}`}
+                        {timezoneNames.map((item, i) => (
+                          <Select.Option key={i} value={item.zone}>
+                            {item.label}
                           </Select.Option>
                         ))}
                       </Select>

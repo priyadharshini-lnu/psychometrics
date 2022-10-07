@@ -42,7 +42,7 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
   children: showInsights !== false ? [
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
-  ] : [{ label: 'Tasks', key: 'tasks' }],
+  ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
 }] : [], {
   key: 'profile',
   label: I18n.t('campaign.dashboard_menu.profile'),

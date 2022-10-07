@@ -25,9 +25,11 @@ const LangDropdown: React.FC<Props> = ({ locales, current, changeLocale }) => {
   const menu = (
     <Menu onClick={onSelect}>
       {_.map(locales, locale => (
-        <Menu.Item key={locale}>
-          {I18n.t(`languages.${locale}`)}
-        </Menu.Item>
+        locale !== current ? (
+          <Menu.Item key={locale}>
+            {I18n.t(`languages_localized.${locale}`)}
+          </Menu.Item>
+        ) : null
       ))}
     </Menu>
   )
@@ -43,7 +45,7 @@ const LangDropdown: React.FC<Props> = ({ locales, current, changeLocale }) => {
               ? <LoadingOutlined />
               : (
                 <span>
-                  {I18n.t(`languages.${current}`)}
+                  {I18n.t(`languages_localized.${current}`)}
                   {' '}
                   <DownOutlined />
                 </span>

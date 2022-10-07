@@ -3,7 +3,7 @@
 
 ENV['RAILS_ENV'] ||= ENV.fetch('RACK_ENV', 'development')
 ENV['NODE_ENV']  ||= 'development'
-ENV['NODE_OPTIONS'] = '--max_old_space_size=2048'
+ENV['NODE_OPTIONS'] = '--max_old_space_size=4096'
 
 require 'pathname'
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile',
