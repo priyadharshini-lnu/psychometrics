@@ -17,7 +17,6 @@ html.body-full-height
     - if show_maintenance_alert?
       div style="color: #fff;width: 100%;padding: 10px;font-size: 14px;background: #fa8c16; text-align: center;"
         = t('maintenance_message', **maintenance_time_frame)
-    = render 'devise/shared/video'
     = render 'devise/shared/locales'
 
     javascript:

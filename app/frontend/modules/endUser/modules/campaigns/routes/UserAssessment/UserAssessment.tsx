@@ -10,6 +10,7 @@ import qs from 'qs'
 
 import { Language } from 'modules/endUser/modules/campaigns/components/Language'
 import { PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext } from 'glint'
+import { Notification } from 'glint/components/CountdownTimer'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { isInsideIframe } from 'utils/isInsideIframe'
@@ -84,6 +85,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
 
   const enableBackButton = !isInsideIframe() || proctoringEnabled
+  const notificationDurations: Notification[] = [
+    { completionPercentage: 50, type: 'info' },
+    { completionPercentage: 75, type: 'warning' },
+    { completionPercentage: 90, type: 'error' },
+  ]
+  const notificationMessage = (minutes: number, seconds: number) => (
+    I18n.t('campaign.timer.notification', { minutes, seconds })
+  )
 
   const rtl = isRtl(I18n.uiLocale)
   return (
@@ -100,6 +109,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <ClockCircleOutlined />
                 </>
               )}
+              notificationPoints={notificationDurations}
+              notificationTemplate={notificationMessage}
               seconds={remainingCampaignTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
@@ -113,6 +124,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <ClockCircleOutlined />
                 </>
             )}
+              notificationPoints={notificationDurations}
+              notificationTemplate={notificationMessage}
               seconds={remainingAssessmentTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
