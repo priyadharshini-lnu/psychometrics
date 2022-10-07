@@ -5,7 +5,7 @@ import styles from './styles.less'
 
 const { setTimeout, clearTimeout } = window
 
-type Notification = {
+export type Notification = {
   completionPercentage: number
   type: 'info' | 'warning' | 'error'
 }
