@@ -5,7 +5,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
   before_action :set_assessor_assessment, only: %i[show]
   before_action :set_subject_user_assessment, only: %i[subject_assessment]
 
-  def evaluate
+  def evaluate # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     authorize(UserAssessment)
     campaign = Campaign.find(params[:campaign_id])
     user = User.find(params[:id])
@@ -21,15 +21,18 @@ class Assessors::EvaluationsController < Assessors::BaseController
     @subject_user_assessment ||= UserAssessment.where(campaign_id: campaign.id,
                                                       subject_id: user.id,
                                                       evaluator_id: user.id,
+
                                                       assessment_id: assessment_ids)
-    datasheet_columns = Sheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
-    datasheet = campaign.datasheet_data(user.email)
+    if campaign.datasheet
+      datasheet_columns = Sheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
+      datasheet = campaign.datasheet_data(user.email)
+    end
 
     render json: {
       user_info: {
         user: UserSerializer.new(user).to_hash,
-        datasheet_columns: datasheet_columns,
-        datasheet: datasheet.slice(*datasheet_columns.map { |col| col['name'] })
+        datasheet_columns: datasheet_columns || [],
+        datasheet: datasheet&.slice(*datasheet_columns.map { |col| col['name'] }) || {}
       },
       assessor_assessments: @assessor_assessments.map { |a| { id: a.id, name: a.assessment.name } },
       subject_assessments: @subject_user_assessment.map { |a| { id: a.id, name: a.assessment.name } }
