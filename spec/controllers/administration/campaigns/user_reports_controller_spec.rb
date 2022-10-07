@@ -139,7 +139,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
       get :dashboard, params: { new_campaign_id: campaign.id, email: user.email }, format: :html
 
-      expect(response).to render_template(dashboard)
+      expect(response).to render_template('dashboard')
     end
 
     it 'renders json for json request' do

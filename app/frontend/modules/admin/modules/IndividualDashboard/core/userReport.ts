@@ -17,7 +17,7 @@ export const CustomFieldsTR = t.array(
   }),
 )
 export const UserTR = t.type({
-  id: t.union([t.number, t.undefined]),
+  id: t.number,
   email: t.string,
   first_name: t.union([t.string, t.null]),
   last_name: t.union([t.string, t.null]),
