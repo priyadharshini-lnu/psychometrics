@@ -246,7 +246,7 @@ jobs:
             cp config/database.yml.sample config/database.yml
             cp config/application.yml.sample  config/application.yml
             (find tmp/cache/webpacker tmp/cache/assets/sprockets -type f -mtime +30 -delete) || echo "No old cache files to prune"
-            (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile)
+            (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile)
             DISABLE_COVERAGE=1 WEBPACKER_PRECOMPILE=false bundle exec rails assets:precompile
       - save_webpack_cache
 

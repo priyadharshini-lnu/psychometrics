@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Typography, Input, Button as ButtonAnt,
+  Typography, Input, Button as ButtonAnt, Form,
 } from 'antd'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import styles from './styles.less'
@@ -23,10 +23,12 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
       {I18n.t('auth.otp.description')}
     </Typography.Paragraph>
     <Flash flash={flash} />
-    <form
-      className="ant-form ant-form-vertical"
+    <Form
+      id="form-login"
+      layout="vertical"
       action="/users/two_factor_authentication"
       method="post"
+      onFinish={() => (document.getElementById('form-login') as HTMLFormElement).submit()}
     >
       <Input type="hidden" name="_method" value="put" />
       <Input type="hidden" name="authenticity_token" value={csrfToken} />
@@ -53,7 +55,7 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
           {I18n.t('auth.sign_out')}
         </a>
       </div>
-    </form>
+    </Form>
   </div>
 )
 

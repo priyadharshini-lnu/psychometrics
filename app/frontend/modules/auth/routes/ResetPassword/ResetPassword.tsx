@@ -2,7 +2,7 @@ import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-  Typography, Input, Alert,
+  Typography, Input, Alert, Form,
 } from 'antd'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import styles from '../Registration/styles.less'
@@ -29,10 +29,12 @@ const ResetPasswordComponent: React.FC<Props> = ({
           {errors.base.map(message => <Alert message={message} type="error" />)}
         </div>
       )}
-      <form
-        className="ant-form ant-form-vertical"
+      <Form
+        id="form-reset"
+        layout="vertical"
         action={projectConfig.id ? '/users/password' : '/administration/passwords'}
         method="post"
+        onFinish={() => (document.getElementById('form-reset') as HTMLFormElement).submit()}
       >
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
         <InputField
@@ -51,13 +53,12 @@ const ResetPasswordComponent: React.FC<Props> = ({
           block
         />
         <div>
-          {I18n.t('auth.reset_password.back_to')}
           {' '}
           <Link to="/users/sign_in">
-            {I18n.t('auth.sign_in')}
+            {I18n.t('auth.reset_password.back_to_sign_in')}
           </Link>
         </div>
-      </form>
+      </Form>
     </div>
   )
 }
