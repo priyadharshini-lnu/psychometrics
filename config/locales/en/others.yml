@@ -943,7 +943,7 @@ en:
       terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service and Privacy Policy</a>
       title: Sign Up
     reset_password:
-      back_to: Back to
+      back_to_sign_in: Back to Sign In
       description: Enter the email associated with your account
       submit: Reset Password
       title: Forgot Password?
@@ -977,6 +977,7 @@ en:
     all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
     begin: Begin your tasks
     begin_campaign_msg: Start campaign before taking assessments
+    campaigns: Campaigns
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
     complete_prev: Complete all previous assessments

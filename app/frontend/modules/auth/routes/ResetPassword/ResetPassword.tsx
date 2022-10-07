@@ -51,10 +51,9 @@ const ResetPasswordComponent: React.FC<Props> = ({
           block
         />
         <div>
-          {I18n.t('auth.reset_password.back_to')}
           {' '}
           <Link to="/users/sign_in">
-            {I18n.t('auth.sign_in')}
+            {I18n.t('auth.reset_password.back_to_sign_in')}
           </Link>
         </div>
       </form>
