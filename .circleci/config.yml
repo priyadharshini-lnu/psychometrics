@@ -232,7 +232,7 @@ jobs:
 
   webpack:
     executor: tte-executor
-    resource_class: xlarge
+    resource_class: 2xlarge
     steps:
       - checkout
       - webpack_files

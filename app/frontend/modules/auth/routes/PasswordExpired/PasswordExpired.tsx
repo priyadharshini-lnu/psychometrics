@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Typography, Input } from 'antd'
+import { Typography, Input, Form } from 'antd'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import styles from '../Registration/styles.less'
 import { RootState } from '../../core/reducers'
@@ -24,9 +24,12 @@ const PasswordExpiredComponent: React.FC<Props> = ({
         {I18n.t('auth.expired_password.description')}
       </Typography.Paragraph>
       <Flash flash={flash} />
-      <form
+      <Form
+        id="form-login"
+        layout="vertical"
         action="/users/password_expired"
         method="post"
+        onFinish={() => (document.getElementById('form-login') as HTMLFormElement).submit()}
       >
         <Input type="hidden" name="_method" value="put" />
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
@@ -59,7 +62,7 @@ const PasswordExpiredComponent: React.FC<Props> = ({
           className={styles.submit}
           block
         />
-      </form>
+      </Form>
     </div>
   )
 }
