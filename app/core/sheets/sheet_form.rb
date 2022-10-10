@@ -92,7 +92,7 @@ module Sheets
         end
 
         unless RegexConstants::SHEET_COLUMN_REGEX.match?(name)
-          errors.add(:file, :invalid_column_name, { column: name })
+          errors.add(:file, :invalid_column_name, column: name)
         end
       end
     end
