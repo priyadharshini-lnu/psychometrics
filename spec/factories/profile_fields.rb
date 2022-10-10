@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :profile_field do
-    requierd { false }
+    required { false }
     half_size { false }
     position { 1 }
   end

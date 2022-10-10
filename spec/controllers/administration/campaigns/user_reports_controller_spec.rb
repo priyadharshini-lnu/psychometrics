@@ -101,6 +101,61 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     end
   end
 
+  describe 'GET dashboard' do
+    it 'returns 404 if user with the email is not present' do
+      campaign_report = create(:campaign_report,  user_dashboard: true)
+      campaign = campaign_report.campaign
+
+      expect do
+        get :dashboard, params: { new_campaign_id: campaign.id, email: 'randomemail@cc.com' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it 'returns 404 if there is no user dashboard in a campaign' do
+      campaign_user = create(:campaign_user)
+      campaign = campaign_user.campaign
+
+      expect do
+        get :dashboard, params: { new_campaign_id: campaign.id, email: campaign_user.user.email }
+      end.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it 'returns 404 if there user do not have a dashboard report' do
+      campaign_report = create(:campaign_report,  user_dashboard: true)
+      campaign = campaign_report.campaign
+      campaign_user = create(:campaign_user, campaign: campaign)
+
+      expect do
+        get :dashboard, params: { new_campaign_id: campaign.id, email: campaign_user.user.email }
+      end.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it 'renders html template for html request' do
+      campaign_report = create(:campaign_report,  user_dashboard: true)
+      campaign = campaign_report.campaign
+      campaign_user = create(:campaign_user, campaign: campaign)
+      user = campaign_user.user
+      create(:user_report, campaign_id: campaign.id, report_id: campaign_report.report_id, user_id: user.id)
+
+      get :dashboard, params: { new_campaign_id: campaign.id, email: user.email }, format: :html
+
+      expect(response).to render_template('dashboard')
+    end
+
+    it 'renders json for json request' do
+      campaign_report = create(:campaign_report, user_dashboard: true)
+      campaign = campaign_report.campaign
+      campaign_user = create(:campaign_user, campaign: campaign)
+      user = campaign_user.user
+      create(:user_report, campaign_id: campaign.id, report_id: campaign_report.report_id, user_id: user.id)
+
+      get :dashboard, params: { new_campaign_id: campaign.id, email: user.email }, format: :json
+
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response.keys).to include('report', 'results', 'status', 'user')
+    end
+  end
+
   private
 
   def check_report_response(report_response)

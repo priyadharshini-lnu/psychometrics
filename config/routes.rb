@@ -189,6 +189,7 @@ Rails.application.routes.draw do
           end
           collection do
             post :regenerate
+            get :dashboard
           end
         end
         resources :text_module_overrides do
