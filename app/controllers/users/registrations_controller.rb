@@ -25,8 +25,8 @@ module Users
             respond_with @form
           end
           on(:ok) do |_resource|
-            flash[:notice] = t('devise.registrations.success')
-            redirect_to root_path
+            flash[:notice] = t('devise.registrations.success.instruction')
+            redirect_to new_user_session_path
           end
         end
       else
