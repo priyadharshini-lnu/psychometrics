@@ -44,7 +44,7 @@ const ProfileComponent: FC<ProfileProps> = ({ currentUser, collapsed }) => {
         {userImg}
       </Col>
       <Col flex={1} className={cs({ 'ta-c': collapsed })}>
-        {!collapsed && <p className={styles['profile-name']}>{currentUser.fullName}</p>}
+        {!collapsed && <div className={styles['profile-name']}>{currentUser.fullName}</div>}
         <Button
           className={styles['profile-logout']}
           type="link"

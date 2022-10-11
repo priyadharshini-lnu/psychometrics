@@ -1,3 +1,5 @@
+@import 'styles/ant.variable.less';
+
 :global(.ant-btn).profile-logout {
   border: none;
   padding: 0px;
@@ -8,4 +10,16 @@
 }
 .profile-name {
   margin: 0px;
+  display: block;
+  text-overflow: ellipsis;
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: @screen-md) {
+  .profile-name{
+    width: auto;
+    white-space: normal;
+  }
 }
