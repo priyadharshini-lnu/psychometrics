@@ -1,5 +1,6 @@
 import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
+import _ from 'lodash'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
@@ -97,7 +98,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = apiConfig
 
-    if (queryState) { newApiConfig = { ...apiConfig, ...queryState } }
+    if (queryState) { newApiConfig = _.merge(newApiConfig, queryState) }
 
     return new Promise(async (resolve, reject) => {
       const {
