@@ -8,10 +8,11 @@ interface Props {
   onLoadingComplete?: () => void
 }
 
-const SCALE_STEP = 0.1
+const SCALE_STEP = 0.12
+const INITIAL_SCALE = 1.2
 export const PDFViewer: FC<Props> = ({ fileUrl, onLoadingComplete }) => {
   const [numPages, setNumPages] = useState(1)
-  const [scale, setScale] = useState(1)
+  const [scale, setScale] = useState(INITIAL_SCALE)
   const [loaded, setLoaded] = useState(false)
 
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -30,17 +31,18 @@ export const PDFViewer: FC<Props> = ({ fileUrl, onLoadingComplete }) => {
   const decrementScale = () => {
     setScale(scale => scale - SCALE_STEP)
   }
+  const percentage = Math.round(scale * (1 / INITIAL_SCALE * 100))
 
   return (
     <div className={styles.reportContainer}>
       <InputNumber
-        value={`${Math.round(scale * 100)} %`}
+        value={`${percentage} %`}
         readOnly
         disabled={!loaded}
         width={40}
         className={styles.scaleChanger}
-        addonBefore={<Button type="text" size="small" disabled={scale <= 0.7} onClick={decrementScale}>-</Button>}
-        addonAfter={<Button type="text" size="small" disabled={scale >= 2} onClick={incrementScale}>+</Button>}
+        addonBefore={<Button type="text" size="small" disabled={percentage <= 80} onClick={decrementScale}>-</Button>}
+        addonAfter={<Button type="text" size="small" disabled={percentage >= 180} onClick={incrementScale}>+</Button>}
       />
 
       <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess} onLoadProgress={handleLoading} loading="">
