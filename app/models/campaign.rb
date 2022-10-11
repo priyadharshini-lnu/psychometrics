@@ -5,6 +5,9 @@ class Campaign < ApplicationRecord
 
   self.inheritance_column = :_type_disabled
 
+  attr_encrypted :pdf_password, key: Base64.decode64(Rails.application.secrets.encrypted_key.to_s)
+
+  before_create -> { self.pdf_password = SecureRandom.hex }
   after_create_commit :ensure_campaign_options
   after_create :set_uniq_code
 

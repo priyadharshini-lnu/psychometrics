@@ -18,6 +18,7 @@ interface Props {
         choicesTexts: string[]
       }
     }
+    locked: boolean
   }
   value?: string
   defaultValue?: string
@@ -29,7 +30,7 @@ const CustomField: FC<Props> = ({
 }) => {
   const Field = FIELDS[field.question.type]
   return (
-    <Field field={field.question} value={value} defaultValue={defaultValue} onChange={onChange} />
+    <Field field={field.question} locked={field.locked} value={value} defaultValue={defaultValue} onChange={onChange} />
   )
 }
 

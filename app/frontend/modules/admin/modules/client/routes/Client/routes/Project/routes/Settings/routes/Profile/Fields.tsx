@@ -45,6 +45,10 @@ export const Fields: React.FC<Props> = ({
     onChange(profileFields.map(d => (d.position === row.position ? { ...row, halfSize: !row.halfSize } : d)))
   }
 
+  const changeLocked = (row) => {
+    onChange(profileFields.map(d => (d.position === row.position ? { ...row, locked: !row.locked } : d)))
+  }
+
   const addField = () => {
     if (question) {
       const q = _.find(questions, { id: question })
@@ -121,6 +125,11 @@ export const Fields: React.FC<Props> = ({
         title="Required"
         dataIndex="required"
         render={(_, row:ProfileField) => <Checkbox onChange={() => changeRequired(row)} checked={row.required} />}
+      />
+      <Column
+        title="Locked"
+        dataIndex="locked"
+        render={(_, row:ProfileField) => <Checkbox onChange={() => changeLocked(row)} checked={row.locked} />}
       />
       <Column
         title="Half Size"

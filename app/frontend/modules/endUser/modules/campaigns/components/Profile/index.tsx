@@ -39,7 +39,7 @@ const ProfileComponent: FC<ProfileProps> = ({ currentUser, collapsed }) => {
   }
 
   return (
-    <Row gutter={[12, 0]} justify="center" className="items-center">
+    <Row gutter={[6, 0]} justify="center">
       <Col>
         {userImg}
       </Col>

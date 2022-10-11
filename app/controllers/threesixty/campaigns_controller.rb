@@ -30,17 +30,8 @@ module Threesixty
       respond_to do |format|
         format.html
         format.json do
-          managed_subjects = Threesixty::Evaluators::GetManagedSubjectsQuery.new(@campaign, current_user).
-                             query.includes(:user)
-          subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user, managed_subjects)
-          evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
-          reports = ::Threesixty::UsersReportsQuery.new(@campaign, managed_subjects, current_user)
-
-          managed_subjects = [] unless @campaign.option.participants.dig('manager', 'can_approves_evaluations')
-
-          render json: @campaign, serializer: Threesixty::CampaignSerializer,
-                 subjects: subjects, evaluations: evaluations, current_user: current_user,
-                 managed_subjects: managed_subjects, reports: reports, include: '**'
+          render json: @campaign, serializer: Threesixty::EndUser::CampaignSerializer,
+                 current_user: current_user, include: '**'
         end
       end
     end

@@ -9,6 +9,12 @@ const initSentry = () => {
     environment: realEnv,
     normalizeDepth: 4,
     integrations: [new SentryRRWeb()],
+    ignoreErrors: [
+      'Existing connection must be closed before opening',
+      'Non-Error promise rejection captured with value: undefined',
+      'ResizeObserver loop limit exceeded',
+      "undefined is not a constructor (evaluating 'new(window.AudioContext||window.webkitAudioContext)')",
+    ],
   })
 
   Sentry.setUser(currentUser)

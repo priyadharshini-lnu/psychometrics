@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Typography, Input,
+  Typography, Input, Form,
 } from 'antd'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import styles from '../Registration/styles.less'
@@ -24,10 +24,12 @@ const SetPasswordComponent: React.FC<Props> = ({
       <Typography.Paragraph className={styles.description}>
         {I18n.t('auth.set_password.description')}
       </Typography.Paragraph>
-      <form
-        className="ant-form ant-form-vertical"
+      <Form
+        id="form-password"
+        layout="vertical"
         action={projectConfig.id ? '/users/password' : '/administration/passwords'}
         method="post"
+        onFinish={() => (document.getElementById('form-password') as HTMLFormElement).submit()}
       >
         <Input type="hidden" name="_method" value="patch" />
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
@@ -54,7 +56,7 @@ const SetPasswordComponent: React.FC<Props> = ({
           className={styles.submit}
           block
         />
-      </form>
+      </Form>
     </div>
   )
 }

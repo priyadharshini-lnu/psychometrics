@@ -136,7 +136,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
             <Upload
               listType="picture"
               maxCount={1}
-              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg,.mp4"
               fileList={background && typeof background === 'string' ? [{
                 uid: '1', name: 'background', status: 'done', url: background,
               }] : undefined}

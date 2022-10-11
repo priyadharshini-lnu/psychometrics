@@ -10,6 +10,7 @@ import { RootState } from 'modules/user/core/rootReducers'
 import { PageHeader } from 'glint'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import LangDropdown from 'components/LangDropdown'
+import Utils from 'modules/reports/utils/Utils'
 import _ from 'lodash'
 
 import {
@@ -37,6 +38,11 @@ interface Image {
 interface Errors {
   password?: []
   passwordConfirmation?: []
+  age?: []
+  first_name?: []
+  last_name?: []
+  locale?: []
+  timezone?: []
 }
 
 const AVAILABLE_QUESTIONS = {
@@ -48,7 +54,7 @@ const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
   && AVAILABLE_QUESTIONS[question.type].includes(question.props.type)
 
 function ProfileComponent ({
-  user, uploadPhoto, sync, fields,
+  user, uploadPhoto, sync, fields, lockedFields,
 }) {
   const [changePassword, setChangePassword] = useState(false)
   const [showCropper, setShowCropper] = useState(false)
@@ -100,6 +106,16 @@ function ProfileComponent ({
     setShowCropper(true)
   }
 
+  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${moment.tz(zone).format('Z')}) ${zone}` }))
+    .sort((a, b) => Number(moment.tz(a.zone).format('ZZ')) - Number(moment.tz(b.zone).format('ZZ')))
+  const timezoneGuess = moment.tz.guess()
+
+  if (timezoneGuess) {
+    timezoneNames.unshift({
+      zone: timezoneGuess,
+      label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
+    })
+  }
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
       <LangDropdown locales={locales} current={current} />
@@ -119,6 +135,7 @@ function ProfileComponent ({
                   <Form.Item>
                     <Upload
                       listType="picture-card"
+                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
                       showUploadList={false}
                       maxCount={1}
                       className={styles.upload}
@@ -148,55 +165,85 @@ function ProfileComponent ({
                   >
                     <Row gutter={24}>
                       <Col xs={24} sm={24} md={12}>
-                        <Form.Item name="firstName" label={I18n.t('profile.first_name')}>
-                          <Input size="large" />
+                        <Form.Item
+                          name="firstName"
+                          label={I18n.t('profile.first_name')}
+                          hasFeedback
+                          help={errors?.first_name}
+                          validateStatus={errors?.first_name ? 'error' : ''}
+                        >
+                          <Input size="large" disabled={lockedFields.first_name} />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
-                        <Form.Item name="lastName" label={I18n.t('profile.last_name')}>
-                          <Input size="large" />
+                        <Form.Item
+                          name="lastName"
+                          label={I18n.t('profile.last_name')}
+                          hasFeedback
+                          help={errors?.last_name}
+                          validateStatus={errors?.last_name ? 'error' : ''}
+                        >
+                          <Input size="large" disabled={lockedFields.last_name} />
                         </Form.Item>
                       </Col>
                     </Row>
                     <Form.Item name="email" label={I18n.t('profile.email')}>
                       <Input size="large" disabled />
                     </Form.Item>
-
                     <Row gutter={24}>
                       <Col xs={24} sm={24} md={12}>
-                        <Form.Item name="age" label={I18n.t('profile.age')}>
-                          <InputNumber className={styles.numberInput} size="large" />
+                        <Form.Item
+                          name="age"
+                          label={I18n.t('profile.age')}
+                          hasFeedback
+                          help={errors?.age}
+                          validateStatus={errors?.age ? 'error' : ''}
+                        >
+                          <InputNumber className={styles.numberInput} size="large" disabled={lockedFields.age} />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
-                        <Form.Item name="gender" label={I18n.t('profile.gender')}>
-                          <Select size="large">
-                            <Select.Option value="0">{I18n.t('profile.male')}</Select.Option>
-                            <Select.Option value="1">{I18n.t('profile.female')}</Select.Option>
-                            <Select.Option value="2">{I18n.t('profile.not_disclosed')}</Select.Option>
+                        <Form.Item name="gender" label={I18n.t('profile.gender')} hasFeedback>
+                          <Select size="large" disabled={lockedFields.gender}>
+                            <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
+                            <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
+                            <Select.Option value="not_disclosed">{I18n.t('profile.not_disclosed')}</Select.Option>
                           </Select>
                         </Form.Item>
                       </Col>
                     </Row>
 
-                    <Form.Item name="locale" label={I18n.t('profile.locale')}>
-                      <Select size="large">
-                        <Select.Option value="en">{I18n.t('languages.en')}</Select.Option>
-                        <Select.Option value="ar">{I18n.t('languages.ar')}</Select.Option>
-                        <Select.Option value="de">{I18n.t('languages.de')}</Select.Option>
+                    <Form.Item
+                      name="locale"
+                      label={I18n.t('profile.locale')}
+                      hasFeedback
+                      help={errors?.locale}
+                      validateStatus={errors?.locale ? 'error' : ''}
+                    >
+                      <Select size="large" disabled={lockedFields.locale}>
+                        {_.map(locales, locale => (
+                          <Select.Option value={locale}>{I18n.t(`languages_localized.${locale}`)}</Select.Option>
+                        ))}
                       </Select>
                     </Form.Item>
 
-                    <Form.Item name="timezone" label={I18n.t('profile.timezone')}>
+                    <Form.Item
+                      name="timezone"
+                      label={I18n.t('profile.timezone')}
+                      hasFeedback
+                      help={errors?.timezone}
+                      validateStatus={errors?.timezone ? 'error' : ''}
+                    >
                       <Select
+                        disabled={lockedFields.timezone}
                         size="large"
                         showSearch
                         filterOption={(search, option) => `${option?.value}`
                           .toLowerCase().includes(search.toLowerCase())}
                       >
-                        {timeZones.map((zone, i) => (
-                          <Select.Option key={i} value={zone}>
-                            {`(GMT${moment.tz(zone).format('Z')}) ${zone}`}
+                        {timezoneNames.map((item, i) => (
+                          <Select.Option key={i} value={item.zone}>
+                            {item.label}
                           </Select.Option>
                         ))}
                       </Select>
@@ -211,8 +258,8 @@ function ProfileComponent ({
                       <>
                         <Form.Item
                           hasFeedback
-                          help={errors.password}
-                          validateStatus={errors.password ? 'error' : ''}
+                          help={errors?.password}
+                          validateStatus={errors?.password ? 'error' : ''}
                           name="password"
                           label={I18n.t('profile.password')}
                         >
@@ -220,8 +267,8 @@ function ProfileComponent ({
                         </Form.Item>
                         <Form.Item
                           name="passwordConfirmation"
-                          help={errors.passwordConfirmation}
-                          validateStatus={errors.passwordConfirmation ? 'error' : ''}
+                          help={errors?.passwordConfirmation}
+                          validateStatus={errors?.passwordConfirmation ? 'error' : ''}
                           label={I18n.t('profile.password_confirmation')}
                         >
                           <Input type="password" />
@@ -233,10 +280,10 @@ function ProfileComponent ({
                         <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
                           <Form.Item
                             hasFeedback
-                            help={errors[field.name]}
-                            validateStatus={errors[field.name] ? 'error' : ''}
+                            help={errors?.[field.name]}
+                            validateStatus={errors?.[field.name] ? 'error' : ''}
                             name={`field_${field.question_id}`}
-                            label={field.name}
+                            label={Utils.stripHTML(field.question.props.questionText)}
                           >
                             <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />
                           </Form.Item>
@@ -270,6 +317,7 @@ function ProfileComponent ({
 const connector = connect((state: RootState) => ({
   user: getUser(state),
   fields: state.config.profile.fields,
+  lockedFields: state.config.profile.lockedFields,
 }), {
   sync,
   uploadPhoto,

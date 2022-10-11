@@ -14,8 +14,6 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_reference :user_profiles, :user, foreign_key: { on_delete: :cascade }, null: false
-
-    User.find_each { |user| user.create_user_profile(photo: user.photo) }
   end
 
   def down

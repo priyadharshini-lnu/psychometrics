@@ -4,7 +4,7 @@ import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-  Typography, Input, Alert, Row, Col,
+  Typography, Input, Alert, Row, Col, Form,
 } from 'antd'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import styles from './styles.less'
@@ -27,10 +27,12 @@ const RegistrationComponent: React.FC<Props> = ({ csrfToken, user, errors }) => 
         {errors.base.map(message => <Alert message={message} type="error" />)}
       </div>
     )}
-    <form
-      className="ant-form ant-form-vertical"
+    <Form
+      id="form-registration"
+      layout="vertical"
       action="/users"
       method="post"
+      onFinish={() => (document.getElementById('form-registration') as HTMLFormElement).submit()}
     >
       <Input type="hidden" name="authenticity_token" value={csrfToken} />
       <Row gutter={16}>
@@ -102,7 +104,7 @@ const RegistrationComponent: React.FC<Props> = ({ csrfToken, user, errors }) => 
           {I18n.t('auth.registration.login_now')}
         </Link>
       </div>
-    </form>
+    </Form>
   </div>
 )
 

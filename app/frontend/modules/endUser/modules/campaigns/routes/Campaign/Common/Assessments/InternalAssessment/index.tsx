@@ -12,6 +12,7 @@ import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessme
 
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 import { secondsLeftFromNow } from 'utils/time'
+import { shortify } from 'utils/string'
 
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
@@ -30,14 +31,9 @@ interface Props {
   campaignExpiryDate: string
   view: string
   disabled: boolean
+  campaignNotStarted: boolean
+  prevCompleted: boolean
 
-}
-const buttonTextData = {
-  in_progress: 'Continue',
-  completed: '',
-  not_started: 'Begin',
-  timed_out: '',
-  interrupted: 'Continue',
 }
 
 export const InternalAssessment: React.FC<Props> = ({
@@ -47,6 +43,8 @@ export const InternalAssessment: React.FC<Props> = ({
   isPartOfTimedCampaign,
   campaignExpiryDate,
   disabled,
+  prevCompleted,
+  campaignNotStarted,
 }) => {
   const history = useHistory()
   const {
@@ -57,6 +55,21 @@ export const InternalAssessment: React.FC<Props> = ({
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLang, setShowLang] = useState(false)
   const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
+  let actionDisabledText = ''
+  if (!prevCompleted) {
+    actionDisabledText = I18n.t('campaign.complete_prev')
+  }
+  if (campaignNotStarted) {
+    actionDisabledText = I18n.t('campaign.begin_campaign_msg')
+  }
+
+  const buttonTextData = {
+    in_progress: I18n.t('assessments.card_actions.continue'),
+    completed: '',
+    not_started: I18n.t('assessments.card_actions.begin'),
+    timed_out: '',
+    interrupted: I18n.t('assessments.card_actions.continue'),
+  }
 
   const handleBeginAssessment = () => {
     if (isPartOfTimedCampaign && campaignExpiryDate && assessmentExtra.timer) {
@@ -126,7 +139,7 @@ export const InternalAssessment: React.FC<Props> = ({
     <Avatar
       className={styles.titleAvatar}
     >
-      {assessmentName.substring(0, 2)}
+      {shortify(assessmentName)}
     </Avatar>
   )
   const assessmentTitle = view === 'list'
@@ -154,7 +167,7 @@ export const InternalAssessment: React.FC<Props> = ({
         buttonText={buttonTextData[status]}
         actionDisabled={disabled}
         actionLoading={loading}
-        actionDisabledText={I18n.t('campaign.complete_prev')}
+        actionDisabledText={actionDisabledText}
         handleButtonClick={status === 'not_started' ? handleBeginAssessment : handleContinueAssessment}
         subtitle={(
           <>

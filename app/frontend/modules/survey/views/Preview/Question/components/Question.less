@@ -159,3 +159,10 @@
 .ltr_direction{
   direction: ltr;
 }
+
+:global(.rtl) {
+  & .previewContainer:before {
+    left: initial;
+    right: -32px;
+  }
+}

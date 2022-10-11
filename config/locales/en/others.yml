@@ -713,6 +713,9 @@ en:
       resume: Resume
       start_recording: Start recording
       stop: Stop
+    card_actions:
+      begin: Begin
+      continue: Continue
     categories:
       '360': 360 Campaign
       agile: AGILE
@@ -918,7 +921,7 @@ en:
     otp:
       code: Code
       code_placeholder: One Time Password
-      description: Please enter the OTP, you have received at your registered email address
+      description: Please enter the OTP that was sent to your registered email address.
       resend: Resend OTP
       submit: Verify
       title: One-Time Password
@@ -940,7 +943,7 @@ en:
       terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service and Privacy Policy</a>
       title: Sign Up
     reset_password:
-      back_to: Back to
+      back_to_sign_in: Back to Sign In
       description: Enter the email associated with your account
       submit: Reset Password
       title: Forgot Password?
@@ -973,9 +976,11 @@ en:
     all_activities_are_completed: All activities are now complete.
     all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
     begin: Begin your tasks
+    begin_campaign_msg: Start campaign before taking assessments
+    campaigns: Campaigns
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
-    complete_prev: Complete all prev assessments
+    complete_prev: Complete all previous assessments
     completed: Completed
     continue: Continue Assessment
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
@@ -1013,6 +1018,15 @@ en:
       assessments: Tasks
       dashboard: Dashboard
       reports: Reports
+    profile:
+      complete_heading: Your Profile is Complete
+      complete_profile_label: Complete Now
+      edit_profile_label: Edit Profile
+      incomplete_heading: Complete your Profile
+      last_login_text: 'Last login on :'
+      last_updated_text: 'Profile was last updated on:'
+      sub_heading: Complete your full profile information
+      welcome_text: Welcome Back,
     thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel
@@ -1029,6 +1043,7 @@ en:
   campaign_assessment:
     actions:
       rescore: Rescore Assessment
+    assessments_heading: Your Tasks
     column:
       assessment_name: Assessment name
       assessor_form: Assessor Form
@@ -1099,6 +1114,7 @@ en:
       not_started: Not Started
       timed_out: Timed Out
       universal_link: Universal link
+    ungrouped_assessments_heading: Ungrouped
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -1615,7 +1631,7 @@ en:
     manage: Manage
     'no': 'No'
     passwordSetting:
-      update_success: Password settings successfull updated
+      update_success: Security settings successfully updated
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
       refresh: Refresh
@@ -1717,6 +1733,64 @@ en:
     vi: Vietnamese
     zh: Chinese Simplified
     zh-TW: Chinese Traditional
+  languages_localized:
+    ar: عربي
+    bg: български
+    bs: bosanski
+    ca: català
+    cn: 中国人
+    cs: čeština
+    cy: Cymraeg
+    da: dansk
+    de: Deutsch
+    el: Ελληνικά
+    en: English
+    en-GB: English - UK
+    eo: Esperanto
+    es: Spanish (Latin America)
+    es-ES: Spanish (Spain)
+    et: Estonian
+    fa: Persian
+    fi: Finnish
+    fr: Français
+    gu: Gujarati
+    he: Hebrew
+    hi: हिन्दी
+    hr: Croatian
+    hu: Hungarian
+    id: Bahasa Indonesia
+    it: Italian
+    ja: Japanese
+    km: Khmer
+    ko: Korean
+    lt: Lithuanian
+    lv: Latvian
+    mk: Macedonian
+    mn: Mongolian
+    ms: Bahasa Malaysia
+    my: Myanmar
+    nl: Dutch
+    'no': Norwegian
+    pl: Polish
+    pt: Portuguese
+    pt-BR: Brazilian Portuguese
+    ro: Romanian
+    ru: Russian
+    sk: Slovak
+    sl: Slovenian
+    sr-Cyrl: Serbian Cyrillic
+    sr-Latn: Serbian Latin
+    sv: Swedish
+    sw: Swahili
+    ta: Tamil
+    th: Thai
+    tl: Tagalog
+    tr: Turkish
+    uk: Ukrainian
+    ur: Urdu
+    vi: Vietnamese
+    zh: 汉语
+    zh-TW: 漢語
   layouts:
     users:
       dashboard: Dashboard
@@ -1891,7 +1965,7 @@ en:
     not_disclosed: Prefer not to disclose
     password: Password
     password_confirmation: Password Confirmation
-    success_update: Profile settings updated successfully
+    success_update: Profile was saved successfully
     timezone: Timezone
     title: My Profile
     update: Update
@@ -2442,6 +2516,7 @@ en:
       reject: Reject
       text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
       title: Data processing consent
+    action: Action
     add: Add
     and: And
     approve: Approve
@@ -2518,6 +2593,7 @@ en:
         undelivered: Undelivered
     mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
     my_projects: My Projects
+    name_label: Name
     nominate: Nominate
     nominate_evaluators: Nominate Evaluators to
     nomination: Nomination

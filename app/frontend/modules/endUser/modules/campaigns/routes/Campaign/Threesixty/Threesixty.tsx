@@ -44,7 +44,7 @@ const connector = connect((state:any) => ({
 })
 
 const ThreesixtyComponent = ({
-  history, instructions, campaign, evaluationsCounters,
+  instructions, campaign, evaluationsCounters,
   nominationsCounters, reportsCounters, totalProgress,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
@@ -79,7 +79,7 @@ const ThreesixtyComponent = ({
       </div>
       )}
       <Row justify="center" className={styles.listContainer}>
-        <Col xs={24} lg={22} xl={18} xxl={16}>
+        <Col xs={24} lg={22} xl={20} xxl={14}>
           <>
             {welcomeMessage && (
             <Card>
@@ -96,7 +96,7 @@ const ThreesixtyComponent = ({
               {evaluationsCounters.totalEvaluations !== 0 && !camapaignClosed
                 && (
                   <Col xs={{ span: 24 }} flex={colFlex} style={{ marginTop: 16 }}>
-                    <EvaluationList history={history} percent={evaluationsPercent} />
+                    <EvaluationList percent={evaluationsPercent} />
                   </Col>
                 )}
               {reportsCounters.totalReports !== 0

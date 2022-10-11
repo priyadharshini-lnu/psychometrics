@@ -14,6 +14,11 @@ const routes = [
     exact: true,
   },
   {
+    path: '/administration',
+    main: LoginAdmin,
+    exact: true,
+  },
+  {
     path: '/administration/sign_in',
     main: LoginAdmin,
     exact: true,

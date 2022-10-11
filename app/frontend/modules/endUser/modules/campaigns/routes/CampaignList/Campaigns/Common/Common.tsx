@@ -7,7 +7,7 @@ import round from 'lodash/round'
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
-import { DetailsCard } from 'glint'
+import { DetailsCard, ViewMoreText } from 'glint'
 
 import styles from './styles.less'
 
@@ -27,8 +27,7 @@ export const Common = ({ campaign }) => {
         title={_.truncate(campaign.name, { length: ASSESSMENT_TITLE_MAX_LENGTH })}
         subtitle={campaign.timing && <TimerText text={campaign.timing} />}
         progressPercentage={totalProgress}
-        description={campaign.description}
-        /* buttonText will be dynnamic in future based on progress status */
+        description={campaign.description && <ViewMoreText maxTextLen={200} text={campaign.description} />}
         buttonText={I18n.t('campaign.details')}
         handleButtonClick={handleClick}
       />

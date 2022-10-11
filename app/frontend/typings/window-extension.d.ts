@@ -26,4 +26,7 @@ declare global {
     x_navigation_minimize: (state: string) => null
     $chatwoot: unknnown
   }
+  interface WindowEventMap {
+    'local-storage': CustomEvent
+  }
 }

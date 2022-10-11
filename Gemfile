@@ -17,7 +17,7 @@ gem 'puma',                       '~> 5.6.2'
 gem 'rails',                      '~> 6.0'
 gem 'rails-i18n',                 '~> 6.0'
 gem 'sassc-rails', '~> 2.1.2'
-gem 'terser', '~> 1.1.11'
+gem 'terser', '~> 1.1.11' if ENV.fetch('DISABLE_TERSER', 'false') == 'false'
 
 source 'https://rails-assets.org/' do
   gem 'rails-assets-bootstrap', '~> 3.3.7'
@@ -224,6 +224,7 @@ group :development do
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.18.0'
   gem 'meta_request', '~> 0.7.0'
+  gem 'solargraph', '~>0.45.0'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -239,7 +240,6 @@ group :test do
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.3.0'
   gem 'simplecov', '~> 0.21.2'
-  gem 'solargraph', '~>0.45.0'
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.6.0'
   gem 'webmock', '~> 3.14.0'

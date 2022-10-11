@@ -213,15 +213,15 @@ const EvaluationComponent = ({
                 ),
           ]}
         />
-        <Row justify="end" className="mtm mrm">
-          <Col flex="none">
-            <StatusDropdown />
-          </Col>
-        </Row>
         {!error && (
         <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
           <ResourcesTabs assessmentStarted={started} assessment={assessment}>
             <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+              <Row justify="end" className={styles.dropdownRow}>
+                <Col className={styles.dropdownCol}>
+                  <StatusDropdown />
+                </Col>
+              </Row>
               <PassAssessment
                 ref={assessmentRef}
                 id="pass_assessment"

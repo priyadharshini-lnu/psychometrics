@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import {
-  Input, Button, Form, AutoComplete,
+  Input, Button, Form, AutoComplete, Space,
 } from 'antd'
 import userPresenter from 'presenters/user'
+import styles from './InlineInput.less'
 
 const { I18n } = window
 
@@ -38,6 +39,7 @@ export const InlineInput = ({
         <Form.Item
           validateStatus={hasErrors.user ? 'error' : ''}
           help={hasErrors.email ? 'Email is required' : ''}
+          className={styles.searchField}
         >
           <AutoComplete
             dataSource={users.map(user => ({
@@ -56,8 +58,10 @@ export const InlineInput = ({
           </AutoComplete>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" onClick={handleAdd}>{I18n.t('threesixty.add')}</Button>
-          <Button type="default" onClick={hideForm}>{I18n.t('threesixty.cancel')}</Button>
+          <Space>
+            <Button type="primary" onClick={handleAdd}>{I18n.t('threesixty.add')}</Button>
+            <Button type="default" onClick={hideForm}>{I18n.t('threesixty.cancel')}</Button>
+          </Space>
         </Form.Item>
       </Form>
     </>

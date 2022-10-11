@@ -16,7 +16,7 @@ module Scoring
         answer['values'].each do |inner_result|
           inner_object = object['values'].find { |template| template['index'] == inner_result['index'] }
           if inner_object
-            values << inner_object['value']
+            values << inner_object['value'] if inner_object['value']
             options << { choice: answer['choice'], value: inner_object['value'] }
           end
         end

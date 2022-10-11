@@ -102,7 +102,13 @@ const ReportListComponent = ({
             title={managerApprovesReports ? I18n.t('threesixty.approve_reports') : I18n.t('threesixty.view_reports')}
             list={approvalReports}
           >
-            {item => <ReportItem item={item} showReport={() => showReport(item)} />}
+            {item => (
+              <ReportItem
+                item={item}
+                showReport={() => showReport(item)}
+                managerApprovesReports={managerApprovesReports}
+              />
+            )}
           </CollapseItem>
           )}
         {reportHelp && (
@@ -124,10 +130,10 @@ const ReportListComponent = ({
   )
 }
 
-const ReportItem = ({ item, showReport }) => (
+const ReportItem = ({ item, showReport, managerApprovesReports }) => (
   <Tooltip placement="topLeft" title={item.user.email} key={item.user.email}>
     <Checkbox
-      checked={!item.approval_status}
+      checked={!managerApprovesReports || item.approvalStatus === 'approved'}
       onClick={showReport}
     >
       <span className={styles.subjectLabel}>{userPresenter.selfUserName(item)}</span>

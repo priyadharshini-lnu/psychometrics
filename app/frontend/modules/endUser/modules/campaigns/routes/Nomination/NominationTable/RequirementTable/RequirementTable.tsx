@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { useContext, useState } from 'react'
 import {
-  Table, Dropdown, Menu, Button, Row, Popconfirm, Card, Typography,
+  Table, Dropdown, Menu, Button, Row, Popconfirm, Card, Typography, Space,
 } from 'antd'
 import {
   DownOutlined, CheckOutlined, ReloadOutlined, DeleteOutlined, PlusOutlined,
@@ -96,15 +96,17 @@ export const RequirementTable = (props) => {
           overlay={() => StatusMenu(evaluator)}
         >
           <div>
-            { statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
-            <DownOutlined />
+            <Space>
+              { statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
+              <DownOutlined />
+            </Space>
           </div>
         </Dropdown>
       )
     }
 
     return (
-      <Row>
+      <Space>
         <Button
           size="small"
           type="primary"
@@ -123,7 +125,7 @@ export const RequirementTable = (props) => {
         >
           {I18n.t('threesixty.deny')}
         </Button>
-      </Row>
+      </Space>
     )
   }
 
@@ -177,7 +179,7 @@ export const RequirementTable = (props) => {
         <Column
           width="50%"
           title={isMobile ? '' : (
-            <Text type="secondary" className={styles.columnTitle}>Name</Text>
+            <Text type="secondary" className={styles.columnTitle}>{I18n.t('threesixty.name_label')}</Text>
           )}
           key="title"
           render={renderRequirementCell}
@@ -196,17 +198,23 @@ export const RequirementTable = (props) => {
           key="status"
         />
         <Column
-          title={isMobile ? '' : <Text type="secondary" className={styles.columnTitle}>Action</Text>}
+          title={isMobile ? '' : (
+            <Text type="secondary" className={styles.columnTitle}>
+              {I18n.t('threesixty.action')}
+            </Text>
+          )}
           width="5%"
           render={(value) => {
-            if (!value.canRemove || !value.evaluator || !canNominate) { return { props: { colSpan: 0 } } }
+            if (!value.canRemove || !value.evaluator || !canNominate) { return null }
             return (
-              <Popconfirm
-                title={I18n.t('threesixty.confirmation_for_nomination_removal')}
-                onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
-              >
-                <DeleteOutlined />
-              </Popconfirm>
+              <div className="ta-e">
+                <Popconfirm
+                  title={I18n.t('threesixty.confirmation_for_nomination_removal')}
+                  onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
+                >
+                  <DeleteOutlined />
+                </Popconfirm>
+              </div>
             )
           }}
         />

@@ -170,7 +170,8 @@ module DataMigration
 
         user_assessment = UserAssessment.new(
           assign_with_result.slice(
-            :status, :started_at, :completed_at, :reset_count, :expiry_date, :selected_locale, :additional_time
+            :status, :started_at, :completed_at, :reset_count, :expiry_date, :selected_locale, :additional_time,
+            :last_activity_at
           ).merge(
             campaign_id: subject.id,
             subject_id: assign.membership.user_id,
@@ -195,7 +196,6 @@ module DataMigration
           occupations innovation_styles
           embedded_data scoring step current_element
           current_page seedrandom meta_data external_results
-          last_activity_at
         ]
         attributes = assign_with_result.attributes.slice(*attrs)
         attributes['answers'] = assign_with_result.results

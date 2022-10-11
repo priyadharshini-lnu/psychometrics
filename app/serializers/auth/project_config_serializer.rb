@@ -49,7 +49,7 @@ module Auth
     end
 
     def fallback_background
-      instance_options[:background] unless object.background_color
+      instance_options[:background] unless background_color
     end
   end
 end

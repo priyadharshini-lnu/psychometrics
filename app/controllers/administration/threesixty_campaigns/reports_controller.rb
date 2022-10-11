@@ -24,11 +24,12 @@ module Administration
         respond_to do |format|
           format.html do
             audit! :view_report, @user_report, campaign: threesixty_campaign.campaign,
-              payload: { user_email: @user_report.user.email }
+              payload: permit!.merge(@user_report.details_to_log)
           end
           format.pdf do
+            @pdf_export = true
             audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign,
-              payload: { user_email: @user_report.user.email }
+              payload: permit!.merge(@user_report.details_to_log)
             render :export, formats: :html, layout: 'pdf', content_type: 'text/html'
           end
         end
@@ -46,6 +47,8 @@ module Administration
           async: true,
           skip_logic: params[:skip_logic]
         }
+        audit! :download_report_pdf, user_report, campaign: threesixty_campaign.campaign,
+              payload: params.permit!.merge(user_report.details_to_log)
         respond_to do |format|
           format.json do
             ::Threesixty::Reports::DownloadJob.perform_later(
@@ -54,8 +57,6 @@ module Administration
             render json: { success: true }
           end
           format.pdf do
-            audit! :download_report_pdf, user_report, campaign: threesixty_campaign.campaign,
-              payload: { user_email: user_report.user.email }
             add_cookie_for_file_download
             data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
             send_file data[:file_path], type: 'application/pdf'

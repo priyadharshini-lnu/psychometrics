@@ -36,7 +36,7 @@ module EndUser
               report: dashboard_report.report, results: results,
               piped_text_context: piped_text_context).to_hash(include: '**')
           end
-          user_reports = @campaign.user_reports.where(user_id: current_user)
+          user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true)
 
           render json: {
             user_dashboard: user_dashboard,

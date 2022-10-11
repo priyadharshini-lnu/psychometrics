@@ -9,6 +9,7 @@ import {
 import { PageSider } from 'glint'
 import { CampaignIcon } from 'glint/icons'
 
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
 import { history } from 'modules/user/store'
 import { RootState } from 'modules/user/core/rootReducers'
 import {
@@ -41,7 +42,7 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
   children: showInsights !== false ? [
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
-  ] : [{ label: 'Tasks', key: 'tasks' }],
+  ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
 }] : [], {
   key: 'profile',
   label: I18n.t('campaign.dashboard_menu.profile'),
@@ -57,10 +58,13 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
+  const isThreesixty = pathname.includes('/threesixty_campaigns/')
+  const siderLogo = logo || lighthouseLogo
 
   const handleMenuSelect = (menu) => {
     if (menu.key === 'tasks') {
-      return history.push(`/campaigns/${campaignIdRef.current}`)
+      const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'
+      return history.push(`/${routePrefix}/${campaignIdRef.current}`)
     }
     if (menu.key === 'insights') {
       return history.push(`/campaigns/${campaignIdRef.current}/${menu.key}`)
@@ -68,7 +72,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     history.push(`/${menu.key}`)
   }
 
-  if (pathname.includes('/campaigns/') || pathname.includes('/threesixty_campaigns/')) {
+  if (pathname.includes('/campaigns/') || isThreesixty) {
     const [,, campaignId] = location.pathname.split('/')
     campaignIdRef.current = campaignId
     menuItems = getMenuItems(true, pathname.includes('/threesixty_campaigns/') ? false : showInsights)
@@ -85,7 +89,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   return (
     !isAnonym ? (
       <PageSider
-        logo={logo}
+        logo={siderLogo}
         logoAltText={projectName}
         activeKey={activeItem}
         onMenuSelect={handleMenuSelect}

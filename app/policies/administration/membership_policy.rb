@@ -24,7 +24,8 @@ module Administration
       registration_codes: [],
       datasheets: [],
       dashboards: [],
-      messages: []
+      messages: [],
+      audit_logs: []
     ]].freeze
 
     def create?

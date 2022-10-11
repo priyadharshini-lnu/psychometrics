@@ -8,13 +8,14 @@ import {
 import { ArrowLeftOutlined, ArrowRightOutlined, ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
+import { Language } from 'modules/endUser/modules/campaigns/components/Language'
 import { PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext } from 'glint'
+import { Notification } from 'glint/components/CountdownTimer'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { isInsideIframe } from 'utils/isInsideIframe'
 import store from 'modules/user/store'
 import { ResourcesTabs } from 'modules/endUser/modules/campaigns/components/ResourcesTabs'
-import LangDropdown from 'components/LangDropdown'
 import { PageContentSkeleton } from 'modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import {
@@ -46,8 +47,6 @@ type UserAssessmentProps = PropsFromRedux & RouteComponentProps<Params>
 
 const { Content } = Layout
 const { I18n } = window
-const locales = I18n.availableLocales
-const current = I18n.locale
 
 const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   userAssessment: {
@@ -86,12 +85,20 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
 
   const enableBackButton = !isInsideIframe() || proctoringEnabled
+  const notificationDurations: Notification[] = [
+    { completionPercentage: 50, type: 'info' },
+    { completionPercentage: 75, type: 'warning' },
+    { completionPercentage: 90, type: 'error' },
+  ]
+  const notificationMessage = (minutes: number, seconds: number) => (
+    I18n.t('campaign.timer.notification', { minutes, seconds })
+  )
 
   const rtl = isRtl(I18n.uiLocale)
   return (
     <>
       <GlintPageHeader>
-        <Col flex="auto" className="ta-e">
+        <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
             {remainingCampaignTime && (
             <CountdownTimer
@@ -102,6 +109,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <ClockCircleOutlined />
                 </>
               )}
+              notificationPoints={notificationDurations}
+              notificationTemplate={notificationMessage}
               seconds={remainingCampaignTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
@@ -115,15 +124,24 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <ClockCircleOutlined />
                 </>
             )}
+              notificationPoints={notificationDurations}
+              notificationTemplate={notificationMessage}
               seconds={remainingAssessmentTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
             )}
-            {availableTranslations
-              && availableTranslations.length > 1
-              && <LangDropdown locales={locales} current={current} />
-            }
           </Space>
+        </Col>
+        <Col span={4} className="ta-e">
+          {availableTranslations
+              && availableTranslations.length > 1
+              && (
+              <Language
+                selectedLanguage={selectedLanguage}
+                availableTranslations={availableTranslations || []}
+              />
+              )
+            }
         </Col>
       </GlintPageHeader>
       <Content className={styles.pageContent}>

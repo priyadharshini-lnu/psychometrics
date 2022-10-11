@@ -1,11 +1,12 @@
 import React, {
-  FC, useEffect, useState, useContext,
+  FC, useEffect, useContext,
 } from 'react'
 import {
   Row, Col, Button, Typography, Space,
 } from 'antd'
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons'
 
+import { useLocalStorage } from 'hooks/useLocalStorage'
 import { MediaQueryContext } from 'glint'
 
 import styles from './styles.less'
@@ -22,12 +23,13 @@ type ViewsContainerProps = {
   onViewChange?: (activeView: string) => void
   children: (view: string) => React.ReactElement | React.ReactNode
   defaultView?: 'list' | 'grid'
+  viewTypeStorageKey?: string
 }
 
 export const ViewsContainer: FC<ViewsContainerProps> = ({
-  onViewChange, title, children, defaultView = 'list',
+  onViewChange, title, children, defaultView = 'list', viewTypeStorageKey = 'listType',
 }) => {
-  const [view, setView] = useState<string>(defaultView)
+  const [view, setView] = useLocalStorage<string>(viewTypeStorageKey, defaultView)
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
 
   useEffect(() => {

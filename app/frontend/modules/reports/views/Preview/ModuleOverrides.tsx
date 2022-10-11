@@ -66,13 +66,13 @@ const OverrideComponent: FC<Props> = ({
   const [content, setContent] = useState<string>()
 
   useEffect(() => {
-    const el = document.querySelector(`[name=Module_${module.id}]`)
-    const parent = el?.parentElement?.getBoundingClientRect()
+    const el = document.querySelector(`[name=Module_${module.id}]`) as HTMLElement
+    const page = el?.parentElement?.parentElement?.parentElement
     const rect = el?.getBoundingClientRect()
     if (!rect || !parent) { return }
     setBox({
-      left: rect?.left - parent?.left,
-      top: rect?.top - parent?.top,
+      left: rect?.left - (page?.getBoundingClientRect()?.left || 0),
+      top: el?.offsetTop + (page?.offsetTop || 0),
       width: rect?.width,
       height: rect?.height,
     })

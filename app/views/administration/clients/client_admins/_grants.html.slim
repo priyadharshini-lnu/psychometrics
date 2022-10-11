@@ -37,6 +37,7 @@
 - reports_manage_id = dom_id(u, :reports_manage)
 
 - results_view_report_id = dom_id(u, :results_view_report)
+- results_download_report_id = dom_id(u, :results_view_report)
 - results_report_data_id = dom_id(u, :results_report_data)
 - results_raw_responses_id = dom_id(u, :results_raw_responses)
 - results_scores_id = dom_id(u, :results_scores)
@@ -67,6 +68,8 @@
 
 - datasheet_view_id = dom_id(u, :datasheet_view)
 - datasheet_manage_id = dom_id(u, :datasheet_manage)
+
+- audit_log_view_id = dom_id(u, :audit_log_view)
 
 = hidden_field_tag 'resource[grants_attributes][data]{}'
 table.table.grants-table
@@ -368,6 +371,11 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][results][]',
                         'view_report', resource.has_grant?(:results, :view_report), id: results_view_report_id
                 | View Report
+            - if policy(:membership).manage_grants_for_action?('results', 'download_report', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][results][]',
+                        'download_report', resource.has_grant?(:results, :download_report), id: results_download_report_id
+                | Download Report
             - if policy(:membership).manage_grants_for_action?('results', 'report_data', client: client)
               label.text-nowrap
                 = check_box_tag 'resource[grants_attributes][data][results][]',
@@ -451,6 +459,18 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][datasheets][]',
                         'manage', resource.has_grant?(:datasheets, :manage), id: datasheet_manage_id, data: { turn_on: [datasheet_view_id] }
                 | Manage
+
+      - if policy(:membership).manage_grants_for_actions?('audit_logs', ['view'], client: client)
+        tr
+          td Audit Logs
+          td
+            div.grants-grid
+              - if policy(:membership).manage_grants_for_action?('audit_logs', 'view', client: client)
+                label.text-nowrap
+                  = check_box_tag 'resource[grants_attributes][data][audit_logs][]',
+                          'view', resource.has_grant?(:audit_logs, :view), id: audit_log_view_id
+                  | View
+
 hr
 |Notes
 br

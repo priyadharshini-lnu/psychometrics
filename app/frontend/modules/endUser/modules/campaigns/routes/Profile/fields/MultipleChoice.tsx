@@ -1,7 +1,6 @@
 
 import React, { FC } from 'react'
 import { Select, Radio, Checkbox } from 'antd'
-import cs from 'classnames'
 import _ from 'lodash'
 import styles from './styles.less'
 
@@ -15,15 +14,15 @@ interface Props {
     }
   }
   value: string | string[]
+  locked: boolean
   defaultValue?: string
   onChange: (value:string | string[]) => void
 }
 
 const MultipleOptions = ({
-  field, value, onChange, defaultValue,
+  field, value, onChange, defaultValue, locked,
 }) => {
   const {
-    id,
     props: { choices },
   } = field
 
@@ -40,10 +39,9 @@ const MultipleOptions = ({
         const choice = _.includes((value ?? defaultValue), choiceId.toString())
         return (
           <label className={`${styles.label}`}>
-            <span className={cs('fa fa-check', styles.checkIcon)} />
             <Checkbox
               type="checkbox"
-              name={`${id}`}
+              disabled={locked}
               value={choiceId}
               checked={choice}
               onChange={change}
@@ -59,7 +57,7 @@ const MultipleOptions = ({
 }
 
 export const MultipleChoice: FC<Props> = ({
-  field, value, onChange, defaultValue,
+  field, value, onChange, defaultValue, locked,
 }) => {
   const {
     id,
@@ -76,8 +74,8 @@ export const MultipleChoice: FC<Props> = ({
           const choice = +(value ?? defaultValue) === choiceId
           return (
             <label className={`${styles.label}`}>
-              <span className={cs('fa fa-check', styles.checkIcon)} />
               <Radio
+                disabled={locked}
                 type="radio"
                 name={`${id}`}
                 value={choiceId}
@@ -95,13 +93,22 @@ export const MultipleChoice: FC<Props> = ({
   }
 
   if (field.props.type === 'MultipleAnswer') {
-    return <MultipleOptions field={field} value={value} onChange={onChange} defaultValue={defaultValue} />
+    return (
+      <MultipleOptions
+        locked={locked}
+        field={field}
+        value={value}
+        onChange={onChange}
+        defaultValue={defaultValue}
+      />
+    )
   }
 
   if (field.props.type === 'Dropdown') {
     return (
       <Select
         size="large"
+        disabled={locked}
         onChange={value => onChange(value)}
         value={`${value ?? defaultValue ?? ''}`}
       >

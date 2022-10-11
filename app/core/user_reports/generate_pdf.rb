@@ -55,7 +55,8 @@ module UserReports
           campaign_id: campaign.id,
           report_id: report.id,
           user_id: user.id
-        }
+        },
+        pdf_password: campaign.pdf_password
       )
       Rails.logger.info(
         log_type: 'UserReports::GeneratePdf',

@@ -1,16 +1,13 @@
 import React, { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import {
-  ArrowLeftOutlined, DownOutlined,
-} from '@ant-design/icons'
+import { DownOutlined } from '@ant-design/icons'
 import {
   Row, Col, PageHeader, Dropdown, Menu, Tag,
 } from 'antd'
 
-import {
-  fetchCampaigns,
-} from 'modules/user/modules/campaigns/core/campaigns'
+import { DirectionalNavigateBackIcon } from 'glint'
+import { fetchCampaigns } from 'modules/user/modules/campaigns/core/campaigns'
 import { RootState } from 'modules/user/core/rootReducers'
 import styles from './styles.less'
 
@@ -107,7 +104,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
     <PageHeader
       className={styles.campaignHeader}
       onBack={handleNavigation}
-      backIcon={<ArrowLeftOutlined className={styles.backIcon} />}
+      backIcon={<DirectionalNavigateBackIcon className={styles.backIcon} />}
       ghost={false}
       title={titleElement}
       extra={extra}
