@@ -6,7 +6,8 @@ module AdminJobs
 
     def call
       file = Roo::Excelx.new(record.file.url)
-      form = ::Sheets::SheetForm.new(file: file).with_context(sheet_type: 'Accesssheet')
+      current_sheet = campaign.sheets.find_by(type: 'Accesssheet')
+      form = ::Sheets::SheetForm.new(file: file).with_context(sheet_type: 'Accesssheet', sheet: current_sheet)
 
       ::Sheets::ParseFile.call(form, campaign, 'Accesssheet')
 

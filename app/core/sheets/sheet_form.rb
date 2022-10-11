@@ -35,7 +35,7 @@ module Sheets
     def validate_column_types_matching
       sheet.columns.each do |column|
         type = columns[column['name']]
-        if type != column['type']
+        if type && type != column['type']
           errors.add(:file, :column_type_mismatch, col: column['name'], type: column['type'], got: type)
         end
       end
@@ -49,7 +49,7 @@ module Sheets
           next if data[column].blank?
 
           unless data[column].is_a?(String)
-            next errors.add(:file, :invalid_string_value, { column: column, index: 3 + index })
+            next errors.add(:file, :invalid_string_value, column: column, index: 3 + index)
 
           end
 
@@ -86,14 +86,14 @@ module Sheets
     end
 
     def check_columns_names_and_length
+      existing_columns = sheet ? sheet.columns.map { |c| c['name'] } : []
       column_names.each do |name|
         if name && name.size > Sheet::MAX_COLUMN_NAME_SIZE
           errors.add(:file, :invalid_column_name_size, column: name)
         end
+        next if existing_columns.include?(name)
 
-        unless RegexConstants::SHEET_COLUMN_REGEX.match?(name)
-          errors.add(:file, :invalid_column_name, column: name)
-        end
+        errors.add(:file, :invalid_column_name, column: name) unless RegexConstants::SHEET_COLUMN_REGEX.match?(name)
       end
     end
 

@@ -14,7 +14,7 @@ module Administration
     end
 
     def add_column
-      form = form_class.from_params(params[:column]).with_context(sheet: sheet)
+      form = form_class.from_params(params[:column]).with_context(sheet: sheet, form_type: :add)
       if form.valid?
         sheet.update!(columns: sheet.columns + [form.attributes])
         render json: sheet.columns
@@ -24,7 +24,7 @@ module Administration
     end
 
     def update_column
-      form = form_class.from_params(params[:column])
+      form = form_class.from_params(params[:column]).with_context(sheet: sheet)
       if form.valid?
         sheet.update!(columns: sheet.columns.map do |col|
           col['name'] == params[:column][:name] ? form.attributes : col
@@ -36,7 +36,7 @@ module Administration
     end
 
     def update_columns_order
-      forms = params[:columns].map { |column| form_class.from_params(column) }
+      forms = params[:columns].map { |column| form_class.from_params(column).with_context(sheet: sheet) }
       if forms.all?(&:valid?)
         sheet.update!(columns: forms.map(&:attributes))
         render json: sheet.columns
