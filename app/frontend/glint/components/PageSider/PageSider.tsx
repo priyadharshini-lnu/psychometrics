@@ -119,9 +119,11 @@ export const PageSider: FC<PageSiderProps> = ({
             onClose={handleDrawerVisibility}
             className={styles['sider-drawer']}
           >
-            {logoEle}
-            {menu}
-            <div className={styles.sidebarFooter}>{siderFooter && siderFooter(menuCollapsed)}</div>
+            <div className={styles.drawerItemsContainer}>
+              {logoEle}
+              {menu}
+              <div className={styles.sidebarFooter}>{siderFooter && siderFooter(menuCollapsed)}</div>
+            </div>
           </Drawer>
         </>
       ) : (
@@ -129,6 +131,7 @@ export const PageSider: FC<PageSiderProps> = ({
           {siderTrigger}
           <div
             className={cs({
+              [styles.siderItemsContainer]: true,
               [styles['page-sider--expanded']]: !menuCollapsed,
               [styles['page-sider--collapsed']]: menuCollapsed,
             })}

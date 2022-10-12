@@ -5,13 +5,19 @@
 .sidebarFooter {
   padding-inline: @space-4;
 }
-.page-sider--expanded,
-.page-sider--collapsed {
-  height: 100vh;
-  position: fixed;
-  z-index: 1;
+
+.siderItemsContainer, .drawerItemsContainer {
   width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.siderItemsContainer {
+  min-height: 100vh;
   border: 1px solid @border-color-base;
+}
+.drawerItemsContainer {
+  min-height: calc(100vh - 34px - @drawer-body-padding);
+  width: 100%;
 }
 
 .sider-trigger {
@@ -39,15 +45,17 @@
   &:global(.ant-menu) {
     border-inline-end: none;
   }
-  & :global(.ant-menu-item-selected), :global(.ant-menu-submenu-selected) {
+  & :global(.ant-menu-item-selected),
+  :global(.ant-menu-submenu-selected) {
     color: @text-color;
   }
 }
 .page-sider--expanded {
-  & :global(.ant-menu-item), & :global(.ant-menu-submenu-title) {
+  & :global(.ant-menu-item),
+  & :global(.ant-menu-submenu-title) {
     padding-left: @space-4 !important;
   }
-  & :global(.ant-menu-item-only-child){
+  & :global(.ant-menu-item-only-child) {
     padding-left: @space-11 !important;
   }
 }
@@ -62,8 +70,8 @@
 }
 .sidebarFooter {
   display: flex;
-  position: absolute;
-  bottom: 0px;
+  flex:1;
+  align-items: flex-end;
   padding-bottom: @space-4;
 }
 .profileName {
@@ -75,6 +83,7 @@
   }
   & :global(.ant-drawer-body) {
     padding-inline: 0px;
+    padding-bottom: 0px;
   }
   & .sidebarLogo {
     padding-block: @space-4;
