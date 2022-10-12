@@ -16,7 +16,8 @@ export const Flash: React.FC<Props> = ({
   if (!flash.length) { return null }
   return (
     <div className={styles.flash}>
-      {flash.map((item, i) => <Alert message={item.value} type={FLASH_TYPES[item.type]} key={i} />)}
+      {flash.map((item, i) => (
+        FLASH_TYPES['item.type'] && <Alert message={item.value} type={FLASH_TYPES[item.type]} key={i} />))}
     </div>
   )
 }
