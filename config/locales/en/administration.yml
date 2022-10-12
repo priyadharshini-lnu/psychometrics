@@ -3424,6 +3424,7 @@ en:
     sheets:
       column:
         add_column: Add Column
+        not_allowed_for_dashboard_use: For column to be used in dashboard it should be less than 64 characters
         reorder: Reorder
         save_order: Save order
       drawers:

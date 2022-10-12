@@ -43,14 +43,26 @@ RSpec.describe Administration::Campaigns::SheetsController, type: :controller do
       get :add_column, params: {
         new_campaign_id: campaign.id,
         column: {
-          name: 'Nam\\e', type: 'WrongType', accessor_access: true, dashboard_use: true, visible_in_list: true
+          name: 'E' * 65, type: 'WrongType', accessor_access: true, dashboard_use: true, visible_in_list: true
         },
         type: 'Datasheet'
       }, format: :json
 
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response).to eq({ 'errors' => { 'name' => ['is invalid'],
+      expect(parsed_response).to eq({ 'errors' => { 'name' => ['is too long (maximum is 64 characters)'],
                                                     'type' => ['is not included in the list'] } })
+    end
+
+    it 'allows for more than 64 characters if dashboard_use is false' do
+      get :add_column, params: {
+        new_campaign_id: campaign.id,
+        column: {
+          name: 'E' * 65, type: 'String', accessor_access: true, dashboard_use: false, visible_in_list: true
+        },
+        type: 'Datasheet'
+      }, format: :json
+
+      expect(response.status).to eq(200)
     end
   end
 

@@ -9,7 +9,7 @@ module Sheets
                                                   'application/xlsx'], message: :invalid_format }
     validate :has_email_column, if: :file
     validate :check_column_types, if: :file
-    validate :check_columns_names_and_length, if: :file
+    validate :check_columns_names_and_length, if: -> { file && accesssheet? }
     validate :check_emails_are_present, if: :file
     validate :no_duplicates, if: -> { file && sheet_type == 'Datasheet' }
     validate :validate_string_values, if: :file
@@ -30,6 +30,10 @@ module Sheets
 
     def sheet_type
       context.sheet_type
+    end
+
+    def accesssheet?
+      sheet_type == 'Accesssheet'
     end
 
     def validate_column_types_matching
@@ -86,12 +90,10 @@ module Sheets
     end
 
     def check_columns_names_and_length
-      existing_columns = sheet ? sheet.columns.map { |c| c['name'] } : []
       column_names.each do |name|
         if name && name.size > Sheet::MAX_COLUMN_NAME_SIZE
           errors.add(:file, :invalid_column_name_size, column: name)
         end
-        next if existing_columns.include?(name)
 
         errors.add(:file, :invalid_column_name, column: name) unless RegexConstants::SHEET_COLUMN_REGEX.match?(name)
       end

@@ -31,15 +31,15 @@ module Sheets
 
     def flat_rows_query
       valid_columns = sheet.columns.select do |column|
-        column['dashboard_use'] && column['name'] != 'Email' && column.length < Sheet::MAX_COLUMN_NAME_SIZE &&
-          RegexConstants::SHEET_COLUMN_REGEX.match?(column['name'])
+        column['dashboard_use'] && column['name'] != 'Email' && column['name'].length <= Sheet::MAX_COLUMN_NAME_SIZE
       end
       return if valid_columns.empty?
 
       columns_query = valid_columns.filter_map do |column|
         type = column['type'] == 'Number' ? 'float' : 'text'
         column_name = column['name']
-        "(data->>'#{column_name}')::#{type} as \"#{column_name}\""
+        quote_escaped_column = ActiveRecord::Base.connection.quote_string(column_name)
+        "(data->>'#{quote_escaped_column}')::#{type} as \"#{column_name.gsub('"', '""')}\""
       end.join(", \n")
 
       <<-SQL.squish

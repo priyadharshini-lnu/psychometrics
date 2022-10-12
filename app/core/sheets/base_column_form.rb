@@ -6,9 +6,6 @@ module Sheets
     attribute :type, String
     attribute :visible_in_list, Boolean
 
-    validates :name, :type, presence: true, format: { with: RegexConstants::SHEET_COLUMN_REGEX },
-              unless: :existing_column
-    validates_length_of :name, maximum: Sheet::MAX_COLUMN_NAME_SIZE
     validates_inclusion_of :type, in: Sheet::ALL_COLUMN_TYPES
     validate :uniqueness_field_name, if: :sheet
 
