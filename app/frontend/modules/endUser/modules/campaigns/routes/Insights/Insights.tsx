@@ -7,10 +7,10 @@ import { RouteComponentProps } from 'react-router-dom'
 
 import LangDropdown from 'components/LangDropdown'
 import { MediaQueryContext, PageHeader } from 'glint'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import {
   fetchInsights,
-} from 'modules/user/modules/campaigns/core/campaign'
+} from 'modules/endUser/modules/campaigns/core/campaign'
 import Report from 'modules/reports/report'
 import { InsightsHeader } from './InsightsHeader'
 import { ReportList } from './ReportList'

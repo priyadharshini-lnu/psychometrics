@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import _ from 'lodash'
 import round from 'lodash/round'
 
-import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/endUser/modules/campaigns/common/assessments'
 
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { DetailsCard, ViewMoreText } from 'glint'

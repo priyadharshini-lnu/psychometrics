@@ -10,12 +10,12 @@ import { PageHeader } from 'glint'
 import { ProfileCompletion } from 'modules/endUser/modules/campaigns/components/ProfileCompletion'
 import { ProfileCardTitle } from 'modules/endUser/modules/campaigns/components/ProfileCardTitle'
 import LangDropdown from 'components/LangDropdown'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import {
   fetchCampaigns,
   loginHogan,
   acceptPolicy,
-} from 'modules/user/modules/campaigns/core/campaigns'
+} from 'modules/endUser/modules/campaigns/core/campaigns'
 
 import Campaigns from './Campaigns'
 

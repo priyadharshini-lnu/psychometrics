@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import preview from 'modules/survey/core/preview'
 import flowMiddleware from 'modules/survey/core/preview/FlowProcessor/middleware'
-import rootSagas from 'modules/user/core/rootSagas'
+import rootSagas from 'modules/endUser/core/rootSagas'
 import connection from 'core/connection'
 import evaluation from '../modules/AssessorApp/core/evaluation'
 

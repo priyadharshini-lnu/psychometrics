@@ -4,11 +4,11 @@ import round from 'lodash/round'
 import { Col } from 'antd'
 import { useHistory } from 'react-router-dom'
 
-import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/endUser/modules/campaigns/common/assessments'
 
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { DetailsCard } from 'glint'
-import { getTotalProgress } from 'modules/user/modules/campaigns/core/campaign/selectors'
+import { getTotalProgress } from 'modules/endUser/modules/campaigns/core/campaign/selectors'
 import styles from './styles.less'
 
 const { I18n } = window

@@ -5,8 +5,8 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { preSignUrl } from 'modules/user/modules/campaigns/core/checkingWizard'
-import { RootState } from 'modules/user/core/rootReducers'
+import { preSignUrl } from 'modules/endUser/modules/campaigns/core/checkingWizard'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import { BROWSER_NAME } from 'utils/uaParser'
 import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
 import { RECORDER_STATES } from 'modules/survey/constants/media'

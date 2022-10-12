@@ -6,11 +6,11 @@ import { DetailsCard } from 'glint'
 import { useHistory } from 'react-router-dom'
 
 import routeUtils from 'utils/route'
-import WizardIsRequired from 'modules/user/core/WizardIsRequired'
+import WizardIsRequired from 'modules/endUser/core/WizardIsRequired'
 
-import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+import { UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 
-import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
+import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/endUser/modules/campaigns/common/assessments'
 import { secondsLeftFromNow } from 'utils/time'
 import { shortify } from 'utils/string'
 

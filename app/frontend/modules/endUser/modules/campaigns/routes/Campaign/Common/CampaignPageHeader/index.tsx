@@ -7,8 +7,8 @@ import {
 } from 'antd'
 
 import { DirectionalNavigateBackIcon } from 'glint'
-import { fetchCampaigns } from 'modules/user/modules/campaigns/core/campaigns'
-import { RootState } from 'modules/user/core/rootReducers'
+import { fetchCampaigns } from 'modules/endUser/modules/campaigns/core/campaigns'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import styles from './styles.less'
 
 const { Item } = Menu

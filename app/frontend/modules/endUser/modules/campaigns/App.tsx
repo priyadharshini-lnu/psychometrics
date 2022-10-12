@@ -4,7 +4,7 @@ import {
   ConfigProvider, notification,
 } from 'antd'
 import { Route } from 'react-router-dom'
-import store, { history } from 'modules/user/store'
+import store, { history } from 'modules/endUser/store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import _ from 'lodash'
@@ -16,7 +16,7 @@ import { GlintProvider } from 'glint'
 
 import { connected, disconnected } from 'core/connection'
 
-import { useWindowInnerSize } from 'modules/user/rootHooks'
+import { useWindowInnerSize } from 'modules/endUser/rootHooks'
 import routes from './routes'
 import styles from './styles.less'
 

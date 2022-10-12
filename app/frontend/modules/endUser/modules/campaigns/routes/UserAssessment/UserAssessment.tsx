@@ -14,16 +14,16 @@ import { Notification } from 'glint/components/CountdownTimer'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { isInsideIframe } from 'utils/isInsideIframe'
-import store from 'modules/user/store'
+import store from 'modules/endUser/store'
 import { ResourcesTabs } from 'modules/endUser/modules/campaigns/components/ResourcesTabs'
 import { PageContentSkeleton } from 'modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import {
   fetchAssessment,
-} from 'modules/user/modules/campaigns/core/userAssessment'
+} from 'modules/endUser/modules/campaigns/core/userAssessment'
 import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
 import { getProgress } from 'core/preview/FlowProcessor/selectors'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 
 import styles from './UserAssessment.less'
 

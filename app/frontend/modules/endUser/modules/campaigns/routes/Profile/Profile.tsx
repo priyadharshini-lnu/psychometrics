@@ -6,7 +6,7 @@ import {
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import { PageHeader } from 'glint'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import LangDropdown from 'components/LangDropdown'

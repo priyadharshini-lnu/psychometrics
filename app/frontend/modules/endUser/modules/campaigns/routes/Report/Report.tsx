@@ -10,7 +10,7 @@ import { isRtl } from 'utils/locales'
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import ReportPreview from 'modules/reports/report'
-import { fetchReport, updateStatus, downloadReport } from 'modules/user/modules/campaigns/core/report'
+import { fetchReport, updateStatus, downloadReport } from 'modules/endUser/modules/campaigns/core/report'
 import styles from './Report.less'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

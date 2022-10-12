@@ -11,14 +11,14 @@ import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { isRtl } from 'utils/locales'
 import { secondsLeftFromNow } from 'utils/time'
 import { Language } from 'modules/endUser/modules/campaigns/components/Language'
-import store from 'modules/user/store'
+import store from 'modules/endUser/store'
 import { CountdownTimer, PageHeader as GlintPageHeader } from 'glint'
 
 import { connect } from 'react-redux'
 import {
   fetchEvaluation, fetchAssessment, clearEvaluation,
   updateStatus,
-} from 'modules/user/modules/campaigns/core/evaluation'
+} from 'modules/endUser/modules/campaigns/core/evaluation'
 import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
 import { getProgress } from 'core/preview/FlowProcessor/selectors'
 import { ResourcesTabs } from '../../components/ResourcesTabs'

@@ -20,12 +20,12 @@ import {
   requestApproval,
   sendEvaluatorReminder,
   updateAllNominationStatus,
-} from 'modules/user/modules/campaigns/core/nomination'
-import { get as getAutocomplete, searchEvaluators } from 'modules/user/core/ui/autocomplete'
+} from 'modules/endUser/modules/campaigns/core/nomination'
+import { get as getAutocomplete, searchEvaluators } from 'modules/endUser/core/ui/autocomplete'
 import {
   requirementsSelector,
   allowedRelationshipsForNewNominations,
-} from 'modules/user/modules/campaigns/core/nomination/selectors'
+} from 'modules/endUser/modules/campaigns/core/nomination/selectors'
 import { NominationForm } from './NominationForm/NominationForm'
 import { NominationTable } from './NominationTable/NominationTable'
 import { NameModal } from './NominationForm/NameModal'
