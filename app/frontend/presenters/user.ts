@@ -7,7 +7,7 @@ interface User {
 const { I18n } = window
 
 const userPresenter = {
-  getFullName ({ firstName, lastName }: { firstName: string, lastName: string }) {
+  getFullName ({ firstName, lastName }: { firstName: string | null, lastName: string | null }) {
     if (lastName && firstName) return `${firstName} ${lastName}`
     return firstName || lastName
   },

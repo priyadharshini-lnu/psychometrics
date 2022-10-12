@@ -10,6 +10,7 @@ import connection from 'core/connection'
 import { reducer as adminsReducer } from 'modules/admin/modules/Admins/core'
 import { reducer as projectAssessorsReducers } from 'modules/admin/modules/client/core/assessors'
 import { reducer as projectParticipantsReducer } from 'modules/admin/modules/client/core/participants'
+import { reducer as individualDashboardReducer } from 'modules/admin/modules/IndividualDashboard/core'
 import campaignReducers from '../modules/campaigns/core'
 import { reducer as smtpSettingReducer } from '../modules/client/core/smtpSetting'
 import { reducer as samlSettingReducer } from '../modules/client/core/samlSetting'
@@ -88,6 +89,7 @@ const createRootReducer = history => combineReducers({
   preview,
   connection,
   auditLogs,
+  individualDashboard: individualDashboardReducer,
 })
 
 export type RootState = ReturnType<ReturnType<typeof createRootReducer>>
