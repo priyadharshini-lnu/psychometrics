@@ -2,7 +2,7 @@
 
 class UserReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
-             :approved, :permissions
+             :approved, :report_data, :permissions
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
@@ -31,6 +31,10 @@ class UserReportSerializer < ActiveModel::Serializer
 
   def results
     @results ||= instance_options[:results]
+  end
+
+  def report_data
+    UserReports::PrepareUserReportData.call!(object)
   end
 
   def options

@@ -23,7 +23,7 @@ module Reports
       # Fetchs and sorts occupations
       #
       def get_occupation(user_result)
-        sorted_occupations = (user_result.occupations || []).sort_by { |occupation| occupation['value'] }
+        sorted_occupations = (user_result&.occupations || []).sort_by { |occupation| occupation['value'] }
         sorted_occupations.reverse! if data['order'] == 'desc'
 
         sorted_occupations.at(data['position'] - 1) || {}

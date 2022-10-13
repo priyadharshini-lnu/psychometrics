@@ -25,6 +25,7 @@ class PreviewContainer extends Component {
     }
     const { user, campaign } = parent.dataset
     const parsedData = JSON.parse(data)
+    const userReportData = humps.camelizeKeys(JSON.parse(parent.dataset.userReportData))
     parsedData.pdfExport = pdfExport === 'true'
     if (_.isEmpty(I18nStore.locales) && parsedData.locales) {
       I18nStore.locales = parsedData.locales
@@ -35,7 +36,7 @@ class PreviewContainer extends Component {
     }
 
     const normalizedData = normalize(parsedData, schema)
-    store.init(parsedData, results ? JSON.parse(results) : null, user, campaign)
+    store.init(parsedData, results ? JSON.parse(results) : null, user, campaign, userReportData)
     rstore.dispatch(init(normalizedData))
   }
 

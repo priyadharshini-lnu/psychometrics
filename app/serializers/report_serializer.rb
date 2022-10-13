@@ -150,9 +150,7 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Returns YAML rules for exporting data.
   #
-  def data_configuration
-    object.data_configuration.to_yaml
-  end
+  delegate :data_configuration, to: :object
 
   def relationships
     if connected_campaign && object.category_threesixty?

@@ -16,6 +16,8 @@ import InnovationStyleConditionCollection from './InnovationStyleConditionCollec
 import ModulesTranslates from './ModulesTranslates'
 
 export const DATA_SHEET = 'DataSheet'
+export const REPORT_DATA = 'ReportData'
+export const ASSESSMENT_DATA = 'AssessmentData'
 const ALL_FACTORS = 'All Factors'
 
 const Module = function (attrs = {}, page) {
@@ -104,6 +106,9 @@ _.extend(Module.prototype, {
 
   getSourceType () {
     const assessment = AppStore.getAssessmentById(this.assessment_id)
+    if (_.result(this.props, 'source.type') === 'AssessmentData') {
+      return null
+    }
     if (_.result(this.props, 'source.type') === 'DataSheet') {
       return 'DataSheet'
     }
@@ -142,6 +147,8 @@ _.extend(Module.prototype, {
         return getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
       case 'DataSheet':
         return this.props.source.columns
+      case 'ReportData':
+        return (this.props.source.reportDataColumns || []).map(c => c.value)
       case 'EmbeddedData':
         return {
           name: this.props.source.name,
@@ -285,12 +292,16 @@ _.extend(Module.prototype, {
     return _.min([this.props.position.width, this.props.position.height])
   },
 
-  isBasedOnAssessment () {
-    return !this.props.source || this.props.source.type !== DATA_SHEET
-  },
-
   isBasedOnDataSheet () {
     return this.props.source && this.props.source.type === DATA_SHEET
+  },
+
+  isBasedOnReportData () {
+    return this.props.source && this.props.source.type === REPORT_DATA
+  },
+
+  isBasedOnAssessment () {
+    return !this.isBasedOnDataSheet() && !this.isBasedOnReportData()
   },
 
   shift () {

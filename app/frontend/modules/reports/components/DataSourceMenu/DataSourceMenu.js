@@ -34,6 +34,11 @@ class ChartsMenu extends Component {
     return _.filter(SOURCE_TYPES[category], type => !!model.canShowDataSet(type.value, category))
   }
 
+  getDataConfigurationOptions () {
+    const { dataConfiguration } = this.props
+    return dataConfiguration.map(d => ({ label: d.label || d.id, value: d.id }))
+  }
+
   questionSelect = (questions) => {
     const { model } = this.props
     if (_.isArray(questions)) {
@@ -61,6 +66,13 @@ class ChartsMenu extends Component {
     this.onSelect()
   }
 
+  changeReportDataColumns = (value) => {
+    const { model } = this.props
+    model.props.source.reportDataColumns = Array.isArray(value) ? value : [value]
+
+    this.onSelect()
+  }
+
   renderSettingsBasedOnAssessment () {
     const { model } = this.props
     if (!model.isBasedOnAssessment()) return null
@@ -81,6 +93,27 @@ class ChartsMenu extends Component {
     )
   }
 
+  renderSettingsBasedOnReportData () {
+    const { model } = this.props
+    if (!model.isBasedOnReportData()) return null
+
+    return (
+      <div>
+        <span className={styles.label}>Data Configuration</span>
+        <Select
+          name="form-field-name"
+          value={_.result(model, 'props.source.reportDataColumns', 'Choose')}
+          isMulti={model.type === 'Graph'}
+          getOptionValue={opt => opt.value}
+          options={this.getDataConfigurationOptions()}
+          isClearable={false}
+          autoFocus={false}
+          onChange={this.changeReportDataColumns}
+        />
+      </div>
+    )
+  }
+
   render () {
     const {
       model, onSelect, singleChoice, onlyNumbers,
@@ -95,6 +128,7 @@ class ChartsMenu extends Component {
         <hr className={panelStyles.divider} />
         <BaseTypeProperties model={model} onSelect={this.onSelect} />
         {this.renderSettingsBasedOnAssessment()}
+        {this.renderSettingsBasedOnReportData()}
         <div className="margin-top-10">
           {TypeComponent && (
             <TypeComponent

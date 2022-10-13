@@ -18,6 +18,7 @@ import {
   OccupationFactor,
   QuestionScoringWithoutFactorsObject,
   TopFactorType,
+  UserReportData,
 } from './Results/interfaces'
 
 import {
@@ -26,6 +27,7 @@ import {
   GetQuestionScoringWithoutFactors,
   GetTopFactors,
   SetDataSheet,
+  SetReportData,
   SetEmbeddedData,
   SetExternalScoring,
   SetGroupedDataSheet,
@@ -50,6 +52,8 @@ export default class Result<ExternalScoring = unknown> {
 
   rawResults: RawResult[]
 
+  userReportData: UserReportData | null
+
   notFilteredResults: RawResult[]
 
   mediaResponses: MediaResponse[]
@@ -64,6 +68,8 @@ export default class Result<ExternalScoring = unknown> {
   externalScoring: ExternalScoring
 
   dataSheet: object
+
+  reportData: object
 
   questions: QuestionScoringObject
 
@@ -83,13 +89,18 @@ export default class Result<ExternalScoring = unknown> {
     this.resultsByFilter = {}
     this.embeddedData = {}
     this.dataSheet = {}
+    this.reportData = {}
     this.groupedDataSheet = []
   }
 
   // toJSON = () => ({ name: this.name, filters: this.filters })
 
   init = (
-    results: RawResult[], user: object, filters: Filter[] | null, notFilteredResults: RawResult[] = [],
+    results: RawResult[],
+    user: object,
+    filters: Filter[] | null,
+    notFilteredResults: RawResult[] = [],
+    userReportData: UserReportData | null = null,
   ): Result => {
     filters = this.addIndividualFilter(filters)
     _.each(filters, (filter: Filter) => {
@@ -97,6 +108,7 @@ export default class Result<ExternalScoring = unknown> {
     })
     this.user = user
     this.rawResults = results
+    this.userReportData = userReportData
     this.notFilteredResults = notFilteredResults
     this.scoring = SetScoring.run(this.rawResults, this.dimensionId)
     this.questionScoring = SetScoringByQuestion.run(this.rawResults, this.dimensionId)
@@ -105,6 +117,7 @@ export default class Result<ExternalScoring = unknown> {
     this.usersScoring = SetUsersScoring.run(this.rawResults)
     this.externalScoring = SetExternalScoring.run(this.rawResults)
     this.dataSheet = SetDataSheet.run(this.rawResults)
+    this.reportData = SetReportData.run(this.userReportData)
     this.groupedDataSheet = SetGroupedDataSheet.run(this.rawResults)
     this.mediaResponses = SetMediaResponses.run(this.rawResults)
 
@@ -125,7 +138,13 @@ export default class Result<ExternalScoring = unknown> {
     if (rawResults.length < filter.minRequiredResponses) {
       filteredResults = []
     }
-    this.resultsByFilter[filter.id] = (new Result(this.assessmentId)).init(filteredResults, this.user, null, rawResults)
+    this.resultsByFilter[filter.id] = (new Result(this.assessmentId)).init(
+      filteredResults,
+      this.user,
+      null,
+      rawResults,
+      this.userReportData,
+    )
   }
 
   sortOccupations = (): void => {

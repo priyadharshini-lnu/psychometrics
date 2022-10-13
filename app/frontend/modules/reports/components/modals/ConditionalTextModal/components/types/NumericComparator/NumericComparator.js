@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { getEmbeddedData } from 'modules/reports/core/builder/selectors'
 import styles from '../../Condition.less'
-import embeddedStyles from './EmbeddedData.less'
+import comparatorStyles from './NumericComparator.less'
 
-export class EmbeddedData extends Component {
+export default class NumericComparator extends Component {
   static propTypes = {
     condition: PropTypes.object.isRequired,
   }
@@ -35,23 +33,23 @@ export class EmbeddedData extends Component {
   }
 
   render () {
-    const { condition, embeddedData } = this.props
+    const { condition, data } = this.props
     return (
       <div className={styles.questionDock}>
         <select
           value={condition.props.key}
-          className={`form-control ${embeddedStyles.keyInput}`}
+          className={`form-control ${comparatorStyles.keyInput}`}
           onChange={this.changeKey}
         >
           {!condition.props.key && <option />}
-          {_.map(embeddedData, embeddedData => (
-            <option key={embeddedData.value} value={embeddedData.value}>{embeddedData.value}</option>
+          {_.map(data, item => (
+            <option key={item.value} value={item.value}>{item.label || item.value}</option>
           ))}
         </select>
         <span>Is</span>
         <select
           value={condition.props.predicate}
-          className={`form-control ${embeddedStyles.predicateSelect}`}
+          className={`form-control ${comparatorStyles.predicateSelect}`}
           onChange={this.changePredicate}
         >
           {!condition.props.predicate && <option />}
@@ -63,7 +61,7 @@ export class EmbeddedData extends Component {
           <option value="LessThenOrEqual">Less Than Or Equal To</option>
         </select>
         <input
-          className={`form-control ${embeddedStyles.valueInput}`}
+          className={`form-control ${comparatorStyles.valueInput}`}
           value={condition.props.count || ''}
           onChange={this.changeCount}
         />
@@ -71,7 +69,3 @@ export class EmbeddedData extends Component {
     )
   }
 }
-
-export default connect((state, { model }) => ({
-  embeddedData: getEmbeddedData(state.report, model.module.assessment_id),
-}), {})(EmbeddedData)

@@ -38,7 +38,7 @@ class Properties extends Component {
 
   renderDataFormat () {
     const { model, questions } = this.props
-    if (!model.props.source) {
+    if (!model.props.source || !model.getSourceType()) {
       return null
     }
     let question

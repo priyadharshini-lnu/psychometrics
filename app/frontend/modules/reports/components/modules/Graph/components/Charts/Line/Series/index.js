@@ -10,6 +10,7 @@ import Factor from './Factor'
 import ExternalFactor from './ExternalFactor'
 import TextEntry from '../../Base/Series/TextEntry'
 import DataSheet from './DataSheet'
+import ReportData from './ReportData'
 import SavilleFactor from './SavilleFactor'
 
 export default {
@@ -29,4 +30,5 @@ export default {
   TextEntry,
   DataSheet,
   SavilleFactor,
+  ReportData,
 }
