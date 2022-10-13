@@ -36,6 +36,7 @@ class Client < ApplicationRecord
   has_one :security_setting, dependent: :destroy, foreign_key: :project_id
   has_one :design_setting, dependent: :destroy, foreign_key: :project_id
   has_one :profile_setting, dependent: :destroy, foreign_key: :project_id
+  has_many :profile_fields, through: :profile_setting
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy

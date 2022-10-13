@@ -10,7 +10,9 @@ import {
   Select,
   Switch,
   message,
+  Tooltip,
 } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -18,6 +20,7 @@ import { ParentResourceType } from 'modules/admin/modules/SheetManagement/interf
 import {
   saveColumn,
   get as getColumns,
+  MAX_LENGTH_FOR_DASHBOARD_USE,
 } from 'modules/admin/modules/SheetManagement/core/columnDefinitions'
 import { Column, SheetType } from 'modules/admin/modules/SheetManagement/core/list'
 import {
@@ -60,6 +63,8 @@ const AddFieldDrawerComponent: FC<Props> = ({
 }) => {
   const [form] = Form.useForm()
   const [errors, setErrors] = useState<{name?: string}>({})
+  const [name, setName] = useState('')
+  const allowedForDashboardUse = name.length <= MAX_LENGTH_FOR_DASHBOARD_USE
 
   const handleFormSubmit = async (
     values: Column,
@@ -128,7 +133,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
           help={errors.name}
           validateStatus={errors.name ? 'error' : 'success'}
         >
-          <Input />
+          <Input onChange={({ target: { value } }) => setName(value)} />
         </Form.Item>
         <Form.Item label="Type" name="type" key="type">
           <Select placeholder="Select type...">
@@ -156,7 +161,12 @@ const AddFieldDrawerComponent: FC<Props> = ({
                 name="dashboardUse"
                 key="dashboardUse"
               >
-                <Switch />
+                <Switch disabled={!allowedForDashboardUse} checked={allowedForDashboardUse} />
+                {!allowedForDashboardUse && (
+                  <Tooltip placement="top" title={I18n.t('administration.sheets.column.not_allowed_for_dashboard_use')}>
+                    <InfoCircleOutlined className="ms-2" />
+                  </Tooltip>
+                )}
               </Form.Item>
             </>
           )}

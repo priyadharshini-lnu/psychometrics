@@ -255,9 +255,10 @@ function ProfileComponent ({
                       {I18n.t('profile.change_password')}
                     </Checkbox>
                     {changePassword && (
-                      <>
+                      <div>
                         <Form.Item
                           hasFeedback
+                          className="mtl"
                           help={errors?.password}
                           validateStatus={errors?.password ? 'error' : ''}
                           name="password"
@@ -273,7 +274,7 @@ function ProfileComponent ({
                         >
                           <Input type="password" />
                         </Form.Item>
-                      </>
+                      </div>
                     )}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (

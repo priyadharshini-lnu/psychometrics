@@ -41,11 +41,11 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
     it 'renders error if column is invalid' do
       get :add_column, params: {
         project_id: project.id,
-        column: { name: 'Nam\\e', type: 'WrongType', accessor_access: true, dashboard_use: true, visible_in_list: true }
+        column: { name: 'E' * 65, type: 'WrongType', accessor_access: true, dashboard_use: true, visible_in_list: true }
       }, format: :json
 
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response).to eq({ 'errors' => { 'name' => ['is invalid'],
+      expect(parsed_response).to eq({ 'errors' => { 'name' => ['is too long (maximum is 64 characters)'],
                                                     'type' => ['is not included in the list'] } })
     end
   end

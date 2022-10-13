@@ -1,6 +1,7 @@
 
 export const shortify = (str: string) => {
-  const text = str.replace(/[^a-z0-9\s]/gi, '').toUpperCase().split(' ')
+  const text = str.replace(/[^a-z0-9\s]/gi, '')
+    .toUpperCase().split(' ').filter(x => x.length)
   if (text.length === 0) return ''
   if (text.length === 1 && text[0].length === 0) return ''
   if (text.length > 1) return `${text[0][0]}${text[1][0]}`

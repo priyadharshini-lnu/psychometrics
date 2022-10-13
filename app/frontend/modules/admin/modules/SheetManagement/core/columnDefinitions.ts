@@ -25,6 +25,8 @@ export const getVisibleColumnNames = (state: RootState) => (
 )
 export const getColumns = (state: RootState) => get(state)
 
+export const MAX_LENGTH_FOR_DASHBOARD_USE = 64
+
 export const FETCH_COLUMNS = 'sheetManagement/FETCH_COLUMNS'
 export const CHANGE_COLUMN_ATTRS = 'sheetManagement/CHANGE_COLUMN_ATTRS'
 export const REMOVE_COLUMNS = 'sheetManagement/REMOVE_COLUMNS'

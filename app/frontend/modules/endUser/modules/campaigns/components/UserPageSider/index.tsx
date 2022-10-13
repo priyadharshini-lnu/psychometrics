@@ -1,4 +1,6 @@
-import React, { useRef, FC } from 'react'
+import React, {
+  useRef, FC, useState, useEffect,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import {
@@ -60,7 +62,13 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   const isAnonym = pathname.includes('/anonym/')
   const isThreesixty = pathname.includes('/threesixty_campaigns/')
   const siderLogo = logo || lighthouseLogo
+  const [openKey, setOpenKey] = useState<string[]>([])
 
+  useEffect(() => {
+    if (pathname.includes('/campaigns/')) {
+      !openKey.length && setOpenKey(['campaign'])
+    }
+  }, [])
   const handleMenuSelect = (menu) => {
     if (menu.key === 'tasks') {
       const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'
@@ -70,6 +78,10 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
       return history.push(`/campaigns/${campaignIdRef.current}/${menu.key}`)
     }
     history.push(`/${menu.key}`)
+  }
+
+  const handleOpenChange = (openKeys: string[]) => {
+    setOpenKey(openKeys)
   }
 
   if (pathname.includes('/campaigns/') || isThreesixty) {
@@ -95,6 +107,8 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
         onMenuSelect={handleMenuSelect}
         items={menuItems}
         siderFooter={siderFooter}
+        openKeys={openKey}
+        onOpenChange={handleOpenChange}
       />
     ) : null
   )

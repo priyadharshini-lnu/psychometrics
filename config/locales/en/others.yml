@@ -2140,7 +2140,7 @@ en:
       submit: Reset Password
       title: Forgot Password?
     terms_conditions_privacy: Privacy Statement
-    tte_terms_and_condition: TTE - Terms, Conditions and Privacy Statement
+    tte_terms_and_condition: Terms & Privacy
   sheet:
     import_modal:
       alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.

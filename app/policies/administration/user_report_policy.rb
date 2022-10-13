@@ -61,5 +61,9 @@ module Administration
         :results, :view_report, project_id: project_id, campaign_id: campaign_id
       )
     end
+
+    def dashboard?
+      has_permission?(:dashboards, :view)
+    end
   end
 end

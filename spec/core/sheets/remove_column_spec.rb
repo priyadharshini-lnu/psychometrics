@@ -28,4 +28,15 @@ describe Sheets::RemoveColumns do
 
     expect(row.reload.data.keys).to eq(%w[])
   end
+
+  it 'should remove columns with single and double quote' do
+    sheet = create(:sheet, columns: [{ name: 'Email', type: 'String' },
+                                     { name: 'Profile', type: 'Text' },
+                                     { name: 'Quote"', type: 'Number' }])
+    row = create(:sheet_row, sheet: sheet, email: 'james@cc.com',
+      data: { 'Profile' => 'carpenter', 'Quote"' => nil })
+    described_class.call!(sheet, ['Quote"'])
+
+    expect(row.reload.data.keys).to eq(%w[Profile])
+  end
 end

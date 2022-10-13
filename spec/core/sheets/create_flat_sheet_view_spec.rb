@@ -10,7 +10,8 @@ describe Sheets::CreateFlatSheetView do
       { name: '1st.Name', type: 'String', dashboard_use: true },
       { name: 'EmployeeId', type: 'Number', dashboard_use: true },
       { name: 'Profile', type: 'HTML', dashboard_use: true },
-      { name: 'Experience', type: 'Number', dashboard_use: false }
+      { name: 'Experience', type: 'Number', dashboard_use: false },
+      { name: 'E' * 65, type: 'String', dashboard_use: true }
     ])
   end
   let!(:sheet_row1) do
@@ -35,6 +36,8 @@ describe Sheets::CreateFlatSheetView do
       expect(sheet_row_flat['1st.Name']).to eq(row.data['1st.Name'])
       expect(sheet_row_flat.EmployeeId).to eq(row.data['EmployeeId'])
       expect(sheet_row_flat.Profile).to eq(row.data['Profile'])
+      expect(sheet_row_flat.respond_to?('E' * 65)).to eq(false)
+      expect(sheet_row_flat.respond_to?('E' * 64)).to eq(false)
     end
   end
 
