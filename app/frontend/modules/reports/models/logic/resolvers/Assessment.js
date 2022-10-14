@@ -41,6 +41,14 @@ export default class AssessmentResolver extends BaseResolver {
     const assessment = _.find(this.assessments, { id })
     if (!assessment) { return false }
 
-    return _.some(this.results[id])
+    return _.some(this.results[id].rawResults)
+  }
+
+  ScoringAvailable () {
+    const id = +this.condition.subject
+    const assessment = _.find(this.assessments, { id })
+    if (!assessment) { return false }
+
+    return _.some(this.results[id] && (this.results[id].scoring || this.results[id].externalScoring))
   }
 }
