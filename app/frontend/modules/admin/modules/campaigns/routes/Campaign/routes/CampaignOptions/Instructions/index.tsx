@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import Editor from 'components/Editor'
-import NotificationDispatcher from 'libs/library/dispatchers/NotificationDispatcher'
 import {
-  Row, Col, Button, Select,
+  Row, Col, Button, Select, message,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import find from 'lodash/find'
@@ -70,7 +69,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
       projectId, campaignId, { ...options, ...selectedLeftLocale }, leftLocale,
     ).then(() => {
       setSavingInProgress(false)
-      NotificationDispatcher.notify({ message: I18n.t('administration.campaigns.options.instructions.actions.saved') })
+      message.success(I18n.t('administration.campaigns.options.instructions.actions.saved'))
     })
   }
 
