@@ -1,4 +1,5 @@
 import ResultStore from 'modules/reports/store/ResultStore'
+import _ from 'lodash'
 import ResultManager from './ResultManager'
 import BaseResolver from './BaseResolver'
 
@@ -41,7 +42,7 @@ export default class AssessmentResolver extends BaseResolver {
     const assessment = _.find(this.assessments, { id })
     if (!assessment) { return false }
 
-    return _.some(this.results[id].rawResults)
+    return _.some(this.results[id]?.rawResults)
   }
 
   ScoringAvailable () {
