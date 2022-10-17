@@ -11,11 +11,11 @@ module Users
     private
 
     def after_sign_out_path_for(_)
-      @after_signout_path
+      @after_signout_path || compute_after_signout_path
     end
 
     def compute_after_signout_path
-      @after_signout_path = if session[:saml_login] && @current_project.saml_setting.after_signout_url
+      @after_signout_path = if session[:saml_login] && @current_project&.saml_setting&.after_signout_url
                               @current_project.saml_setting.after_signout_url
                             else
                               new_user_session_path
