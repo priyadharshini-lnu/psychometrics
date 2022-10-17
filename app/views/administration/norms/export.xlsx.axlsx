@@ -5,7 +5,7 @@ wb = xlsx_package.workbook
 styles = wb.styles
 text_center_bold = styles.add_style alignment: { horizontal: :center, vertical: :center }, b: true
 
-wb.add_worksheet(name: resource.name) do |sheet|
+wb.add_worksheet(name: resource.name[0...31]) do |sheet|
   sheet.add_row [resource.dimension.name]
   sheet.add_row
   sheet.add_row [nil, nil] + resource.decorate.xls_levels_row, style: text_center_bold
