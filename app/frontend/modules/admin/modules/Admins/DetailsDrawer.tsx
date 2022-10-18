@@ -17,7 +17,7 @@ import {
   getCurrent as getCurrentAdmin,
   Admin,
 } from 'modules/admin/modules/Admins/core'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { ParentResourceType } from './constants'
 

@@ -9,7 +9,7 @@ import {
   fetchReport, getCurrent, clearUseReportDetails, FETCH_REPORT,
 } from 'modules/admin/modules/IndividualDashboard/core/userReport'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import userPresenter from 'presenters/user'
 
 const { I18n } = window

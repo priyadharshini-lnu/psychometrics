@@ -12,7 +12,7 @@ import {
   get as getAssessorAssessments, fetch, reset, selectRecords, getSelectedIds, bulkDelete, BULK_DELETE,
 } from 'modules/admin/modules/campaigns/core/assessorAssessments'
 import { getCurrent } from 'modules/admin/modules/campaigns/core/assessors'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 import settings from 'modules/admin/settings'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable/'

@@ -49,6 +49,7 @@ const ReportListComponent: FC<ComponentProps> = ({ userReports }) => {
             md={{ span: 8 }}
             xl={{ span: 4 }}
             xxl={{ span: 4 }}
+            key={report.id}
           >
             <div className={styles.cover}>
               <img src={report.posterUrl || bg} />

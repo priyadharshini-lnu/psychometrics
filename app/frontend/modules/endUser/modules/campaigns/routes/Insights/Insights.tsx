@@ -9,13 +9,16 @@ import LangDropdown from 'components/LangDropdown'
 import { MediaQueryContext, PageHeader } from 'glint'
 import { RootState } from 'modules/user/core/rootReducers'
 import {
-  fetchInsights,
+  fetchInsights, getReports, getUserDashboard, FETCH_INSIGHTS,
 } from 'modules/user/modules/campaigns/core/campaign'
 import Report from 'modules/reports/report'
+import _ from 'lodash'
+import { isRequestInProgress } from 'core/request'
 import { InsightsHeader } from './InsightsHeader'
 import { ReportList } from './ReportList'
 
 import styles from './styles.less'
+import { PageContentSkeleton } from '../../components/PageContentSkeleton'
 
 const { I18n } = window
 const current = I18n.locale
@@ -24,7 +27,9 @@ const { Content } = Layout
 
 const connector = connect(
   (state: RootState) => ({
-    userReport: state.campaigns.campaign.userReport,
+    userDashboard: getUserDashboard(state),
+    isUserReportAvailable: !_.isEmpty(getReports(state)),
+    isInsightLoading: isRequestInProgress(state, FETCH_INSIGHTS),
   }),
   {
     fetchInsights,
@@ -35,48 +40,41 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Params = {
   url: string
 }
+type Props = RouteComponentProps<Params> & PropsFromRedux
 
-type ComponentProps = RouteComponentProps<Params> & PropsFromRedux
-
-const InsightsMobileView = ({ report }) => (
-  <Content className={styles.pageContent}>
-    <div className={styles.content}>
-      <Tabs defaultActiveKey="Dashboard">
-        <Tabs.TabPane key="Dashboard" tab={I18n.t('campaign.panels.dashboard')} style={{ margin: '0 -24px' }}>
-          {report}
-        </Tabs.TabPane>
-        <Tabs.TabPane tab={I18n.t('campaign.panels.reports')}>
-          <ReportList />
-        </Tabs.TabPane>
-      </Tabs>
-    </div>
-  </Content>
-)
-
-const InsightsDesktopView = ({ userReport, report }) => (
-  <Content className={styles.pageContent}>
-    <div className={styles.content}>
-      <Typography.Title level={4} className={styles.title}>
-        {I18n.t('campaign.panels.reports')}
-      </Typography.Title>
-      <ReportList />
-      {userReport && (
-      <Typography.Title level={4} className={styles.title}>
-        {I18n.t('campaign.panels.dashboard')}
-      </Typography.Title>
-      )}
-    </div>
-    {report}
-  </Content>
-)
-
-const InsightsComponent: FC<ComponentProps> = ({
-  match, userReport, fetchInsights,
+const InsightsComponent: FC<Props> = ({
+  match, userDashboard, fetchInsights, isUserReportAvailable, isInsightLoading,
 }) => {
   useEffect(() => {
     fetchInsights(match.url)
   }, [match.url])
 
+  return (
+    <>
+      <PageHeader>
+        <Col flex="auto" span={24} className="ta-e">
+          <LangDropdown locales={locales} current={current} />
+        </Col>
+      </PageHeader>
+      <Content className={styles.pageContent}>
+        {isInsightLoading ? <PageContentSkeleton /> : (
+          <>
+            <InsightsHeader />
+            <InsightsBody userDashboard={userDashboard} isUserReportAvailable={isUserReportAvailable} />
+          </>
+        )}
+      </Content>
+    </>
+  )
+}
+export const Insights = connector(InsightsComponent)
+
+interface InsightBodyProps {
+  userDashboard: Props['userDashboard']
+  isUserReportAvailable: boolean
+}
+
+const InsightsBody: FC<InsightBodyProps> = ({ userDashboard, isUserReportAvailable }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const width = isMobile ? window.innerWidth : window.innerWidth - 200
   const MAX = 1000
@@ -87,39 +85,69 @@ const InsightsComponent: FC<ComponentProps> = ({
     ? `translate(-${offsetLeft}%, -${offsetTop}%) scale(${scale})`
     : `translate(0, ${Math.abs(offsetTop)}%) scale(${scale})`
 
-
-  const report = userReport && (
+  const report = userDashboard && (
     <Row gutter={[0, 16]} justify="center">
       <Col className={styles.report} style={{ transform }}>
         <Report
-          data={userReport.report}
-          results={userReport.results}
+          data={userDashboard.report}
+          results={userDashboard.results}
           campaign={JSON.stringify({})}
-          user={JSON.stringify(userReport.user)}
-          locales={userReport.report.locales}
-          selectedLocale={userReport.report.defaultLanguage}
-          userReport={userReport}
+          user={JSON.stringify(userDashboard.user)}
+          locales={userDashboard.report.locales}
+          selectedLocale={userDashboard.report.defaultLanguage}
+          userReport={userDashboard}
           dashboard
         />
       </Col>
     </Row>
   )
 
-  return (
-    <>
-      <PageHeader>
-        <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown locales={locales} current={current} />
-        </Col>
-      </PageHeader>
-      <InsightsHeader />
-      {isMobile
-        ? <InsightsMobileView report={report} />
-        : (
-          <InsightsDesktopView report={report} userReport={userReport} />
-        )}
-    </>
-  )
+  if (isMobile) {
+    return <InsightsMobileView userDashboardReport={report} isUserReportAvailable={isUserReportAvailable} />
+  }
+
+  return <InsightsDesktopView userDashboardReport={report} isUserReportAvailable={isUserReportAvailable} />
 }
 
-export const Insights = connector(InsightsComponent)
+interface InsightViewProps {
+  userDashboardReport: React.ReactNode
+  isUserReportAvailable: boolean
+}
+
+const InsightsMobileView: FC<InsightViewProps> = ({ userDashboardReport, isUserReportAvailable }) => (
+  <div className={styles.content}>
+    <Tabs defaultActiveKey="Dashboard">
+      {userDashboardReport && (
+        <Tabs.TabPane key="Dashboard" tab={I18n.t('campaign.panels.dashboard')} style={{ margin: '0 -24px' }}>
+          {userDashboardReport}
+        </Tabs.TabPane>
+      )}
+      {isUserReportAvailable && (
+        <Tabs.TabPane tab={I18n.t('campaign.panels.reports')}>
+          <ReportList />
+        </Tabs.TabPane>
+      )}
+    </Tabs>
+  </div>
+)
+
+const InsightsDesktopView: FC<InsightViewProps> = ({ userDashboardReport, isUserReportAvailable }) => (
+  <div className={styles.content}>
+    {isUserReportAvailable && (
+      <>
+        <Typography.Title level={4} className={styles.title}>
+          {I18n.t('campaign.panels.reports')}
+        </Typography.Title>
+        <ReportList />
+      </>
+    )}
+    {userDashboardReport && (
+      <>
+        <Typography.Title level={4} className={styles.title}>
+          {I18n.t('campaign.panels.dashboard')}
+        </Typography.Title>
+        {userDashboardReport}
+      </>
+    )}
+  </div>
+)

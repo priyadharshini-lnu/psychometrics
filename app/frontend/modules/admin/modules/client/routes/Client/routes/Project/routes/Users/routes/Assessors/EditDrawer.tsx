@@ -21,7 +21,7 @@ import {
   getCurrent as getCurrentAssessor,
   UPDATE as UPDATE_PROJECT_ASSESSOR,
 } from 'modules/admin/modules/client/core/assessors'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 
 import ResourceForm from 'components/ResourceForm'

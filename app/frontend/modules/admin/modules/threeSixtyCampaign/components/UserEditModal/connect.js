@@ -5,7 +5,7 @@ import {
 } from 'modules/admin/modules/threeSixtyCampaign/core/users'
 import _ from 'lodash'
 import { get as getCurrentUser } from 'core/currentUser'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 export default connect(
   state => ({

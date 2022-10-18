@@ -10,7 +10,7 @@ import {
   BULK_DOWNLOAD,
   get as getReports,
 } from 'modules/admin/modules/campaigns/core/reports'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 const connecter = connect(
   (state: RootState) => ({

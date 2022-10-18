@@ -20,7 +20,7 @@ import {
   FETCH_SINGLE,
   SheetDetail,
 } from 'modules/admin/modules/SheetManagement/core/current'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 import { DetailsSection, HeaderSection } from './Sections'
 import { SheetType } from '../../core/list'
