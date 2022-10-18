@@ -7,7 +7,7 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
     - else
       = resource.decorate.status
   td
-    - if policy(resource, { project_id: resource.owner_id }).edit?
+    - if policy(resource, { project_id: resource.owner_id }).edit? && resource.provider_internal?
       = link_to resource.name, administration_report_path(resource)
     - else
       = resource.name

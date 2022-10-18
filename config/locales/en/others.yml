@@ -1960,7 +1960,7 @@ en:
     first_name: First Name
     gender: Gender
     last_name: Last Name
-    locale: Locale
+    locale: Preferred Language
     male: Male
     not_disclosed: Prefer not to disclose
     password: Password

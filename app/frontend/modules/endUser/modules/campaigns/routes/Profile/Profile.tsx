@@ -172,6 +172,7 @@ function ProfileComponent ({
                           hasFeedback
                           help={errors?.first_name}
                           validateStatus={errors?.first_name ? 'error' : ''}
+                          required
                         >
                           <Input size="large" disabled={lockedFields.first_name} />
                         </Form.Item>
@@ -183,6 +184,7 @@ function ProfileComponent ({
                           hasFeedback
                           help={errors?.last_name}
                           validateStatus={errors?.last_name ? 'error' : ''}
+                          required
                         >
                           <Input size="large" disabled={lockedFields.last_name} />
                         </Form.Item>
@@ -228,7 +230,7 @@ function ProfileComponent ({
                       </Select>
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                       name="timezone"
                       label={I18n.t('profile.timezone')}
                       hasFeedback
@@ -248,7 +250,7 @@ function ProfileComponent ({
                           </Select.Option>
                         ))}
                       </Select>
-                    </Form.Item>
+                    </Form.Item> */}
                     <Checkbox
                       checked={changePassword}
                       onChange={({ target }) => setChangePassword(target.checked)}
