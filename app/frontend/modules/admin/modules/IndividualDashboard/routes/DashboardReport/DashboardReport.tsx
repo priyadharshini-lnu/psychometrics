@@ -63,7 +63,6 @@ export const DashboardReportComponent: React.FC<Props> = ({
           <Descriptions.Item label={I18n.t('profile.age')}>{user.age}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.gender')}>{user.gender}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.locale')}>{user.locale}</Descriptions.Item>
-          <Descriptions.Item label={I18n.t('profile.timezone')}>{user.timezone}</Descriptions.Item>
           {user.custom_fields.map(field => (
             <Descriptions.Item label={field.name}>{field.value}</Descriptions.Item>
           ))}
