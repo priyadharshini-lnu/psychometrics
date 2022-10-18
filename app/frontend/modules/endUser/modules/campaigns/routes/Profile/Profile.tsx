@@ -12,6 +12,7 @@ import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import LangDropdown from 'components/LangDropdown'
 import Utils from 'modules/reports/utils/Utils'
 import _ from 'lodash'
+import array from 'utils/array'
 
 import {
   sync,
@@ -281,7 +282,9 @@ function ProfileComponent ({
                         <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
                           <Form.Item
                             hasFeedback
-                            help={errors?.[field.name]}
+                            help={Array.isArray(errors?.[field.name])
+                              ? array.joinJSXElements(errors?.[field.name], <br />)
+                              : errors?.[field.name]}
                             validateStatus={errors?.[field.name] ? 'error' : ''}
                             name={`field_${field.question_id}`}
                             label={Utils.stripHTML(field.question.props.questionText)}
