@@ -27,10 +27,9 @@ const { I18n } = window
 
 interface Props {
   model: PropertiesModel
-  restricted: boolean
 }
 
-export const Properties: FC<Props> = ({ model, restricted }) => {
+export const Properties: FC<Props> = ({ model }) => {
   const forceUpdate = useForceUpdate()
 
   const {
@@ -106,7 +105,7 @@ export const Properties: FC<Props> = ({ model, restricted }) => {
       {type === 'Email' && <EmailPropertyPanel model={model} />}
 
       <RequiredValidations model={model} update={forceUpdate} />
-      <ValidationTypes restricted={restricted} model={model} update={forceUpdate} />
+      <ValidationTypes model={model} update={() => forceUpdate()} />
     </>
   )
 }

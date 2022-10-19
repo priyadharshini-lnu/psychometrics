@@ -1,18 +1,25 @@
 import lodashGet from 'lodash/get'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-
 export const LOADING = 'request/LOADING'
 export const LOADING_COMPLETE = 'request/LOADING_COMPLETE'
 export const RESPONSE_DATA_MISMATCHED = 'request/RESPONSE_DATA_MISMATCHED'
 export const CLEAR_RESPONSE_DATA_MISMATCHED = 'request/CLEAR_RESPONSE_DATA_MISMATCHED'
 
-export const get = (state: RootState): RequestState => lodashGet(state, ['request'])
 
 type Request = {
   name: string,
   loading: boolean
 }
+
+type RequestState = {
+  requests: Request[]
+  responseDataMismatchRequest: ResponseDataMismatchRequest
+}
+
+interface RootState {
+  request: RequestState
+}
+export const get = (state: RootState): RequestState => lodashGet(state, ['request'])
 
 type ResponseDataMismatchRequest = {
   requestName: string,
@@ -20,10 +27,6 @@ type ResponseDataMismatchRequest = {
   data: unknown
 }
 
-type RequestState = {
-  requests: Request[]
-  responseDataMismatchRequest: ResponseDataMismatchRequest
-}
 
 export const isRequestInProgress = (state: RootState, name: string) => {
   const request = get(state).requests.find((request: Request) => request.name === name)

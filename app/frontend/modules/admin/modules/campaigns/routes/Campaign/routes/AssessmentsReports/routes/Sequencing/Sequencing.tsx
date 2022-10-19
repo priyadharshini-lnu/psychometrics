@@ -39,7 +39,7 @@ import {
   UpdateAssessmentPositionRequest,
   CampaignAssessmentGroup,
 } from 'modules/admin/modules/campaigns/core/assessmentGroups'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 import { UngroupedAssessmentContainer } from './UngroupedAssessmentContainer'
 import { GroupSortable } from './GroupSortable'

@@ -5,7 +5,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import {
   CREATE,
 } from 'modules/admin/modules/campaigns/core/assessmentGroups'

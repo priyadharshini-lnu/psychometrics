@@ -10,7 +10,7 @@ import {
 } from 'modules/admin/modules/client/core/samlSetting'
 import { useParams } from 'react-router-dom'
 import ResourceForm from 'components/ResourceForm'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { ConfigurationInfo } from './ConfigurationInfo'
 

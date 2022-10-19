@@ -11,7 +11,7 @@ import {
 } from 'modules/admin/modules/client/core/securitySetting'
 import { useParams } from 'react-router-dom'
 import ResourceForm from 'components/ResourceForm'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 const connector = connect(
   (state: RootState) => ({

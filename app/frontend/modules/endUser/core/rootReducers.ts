@@ -4,6 +4,7 @@ import preview from 'modules/survey/core/preview'
 import reportBuilder from 'modules/reports/core/builder'
 import currentUser from 'core/currentUser'
 import connection from 'core/connection'
+import request from 'core/request'
 import campaign from '../modules/campaigns/core/campaign'
 import campaigns from '../modules/campaigns/core/campaigns'
 import nomination from '../modules/campaigns/core/nomination'
@@ -31,6 +32,7 @@ const rootReducer = history => combineReducers({
   ui: combineReducers({
     autocomplete,
   }),
+  request,
   anonym,
   project,
   currentUser,

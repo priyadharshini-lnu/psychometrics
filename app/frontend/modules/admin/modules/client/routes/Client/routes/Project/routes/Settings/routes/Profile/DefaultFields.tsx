@@ -45,9 +45,6 @@ export const DefaultFields: React.FC<Props> = ({
   }, {
     name: I18n.t('profile.locale'),
     index: 'locale',
-  }, {
-    name: I18n.t('profile.timezone'),
-    index: 'timezone',
   }]
 
   const fields = defaultFields.map(f => ({ ...f, required: requiredFields[f.index], locked: lockedFields[f.index] }))

@@ -17,7 +17,7 @@ import {
 import { useParams } from 'react-router-dom'
 import { useUpdateEffect } from 'hooks/useUpdateEffect'
 import ResourceForm from 'components/ResourceForm'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import Modals from 'modules/admin/components/Modals'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { TestSettingModal } from './TestSettingModal'

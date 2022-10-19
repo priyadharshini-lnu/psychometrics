@@ -10,7 +10,7 @@ import {
   fetchExternalReportDetails, FETCH_EXTERNAL_REPORT_DETAILS, getExternalReport,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { getFeatures } from 'core/config'
 import { PDFViewer } from 'components/PDFViewer'
 

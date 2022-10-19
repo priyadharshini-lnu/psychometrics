@@ -9,7 +9,7 @@ import {
   fetchReport, getCurrent, clearUseReportDetails, FETCH_REPORT,
 } from 'modules/admin/modules/IndividualDashboard/core/userReport'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import userPresenter from 'presenters/user'
 
 const { I18n } = window
@@ -63,7 +63,6 @@ export const DashboardReportComponent: React.FC<Props> = ({
           <Descriptions.Item label={I18n.t('profile.age')}>{user.age}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.gender')}>{user.gender}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.locale')}>{user.locale}</Descriptions.Item>
-          <Descriptions.Item label={I18n.t('profile.timezone')}>{user.timezone}</Descriptions.Item>
           {user.custom_fields.map(field => (
             <Descriptions.Item label={field.name}>{field.value}</Descriptions.Item>
           ))}

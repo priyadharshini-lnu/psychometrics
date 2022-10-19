@@ -1,9 +1,11 @@
 @import 'styles/ant.variable.less';
 @import 'styles/spacing.less';
 
+@headerHeight: 48px;
+
 .pageHeader {
-  height: 48px;
-  line-height: 48px;
+  height: @headerHeight;
+  line-height: @headerHeight;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -26,5 +28,6 @@
 @media (max-width: @screen-xs) {
   .pageHeader:global(.ant-layout-header) {
     height: auto;
+    min-height: @headerHeight;
   }
 }

@@ -12,7 +12,7 @@ import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
 import { Schema } from 'libs/jsonApi/schema'
-import { setResponseDataMismatched } from 'modules/admin/core/request'
+import { setResponseDataMismatched } from 'core/request'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'

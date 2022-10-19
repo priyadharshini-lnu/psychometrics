@@ -3,7 +3,7 @@ import {
   fetchSingle as fetchReport, getCurrent, download, DOWNLOAD, asyncDownload, clearUseReportDetails,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { getFeatures } from 'core/config'
 
 const connecter = connect((state: RootState) => ({

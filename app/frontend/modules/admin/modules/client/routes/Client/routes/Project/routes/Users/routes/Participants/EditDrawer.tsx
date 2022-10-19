@@ -11,7 +11,7 @@ import {
   getCurrent as getCurrentParticipant,
   UPDATE as UPDATE_PROJECT_PARTICIPANT,
 } from 'modules/admin/modules/client/core/participants'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 
 import ResourceForm from 'components/ResourceForm'
