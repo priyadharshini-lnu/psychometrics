@@ -14,7 +14,6 @@ import cs from 'classnames'
 import { ProgressStatus, DirectionalArrowIcon } from 'glint'
 import { RootState } from 'modules/user/core/rootReducers'
 import {
-  fetchCampaign,
   continueCampaign,
   beginCampaign,
   reset as resetCampaign,
@@ -37,7 +36,6 @@ const connector = connect(
     currentUser: state.currentUser,
   }),
   {
-    fetchCampaign,
     beginCampaign,
     continueCampaign,
     resetCampaign,

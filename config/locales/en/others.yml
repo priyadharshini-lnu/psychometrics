@@ -1001,6 +1001,7 @@ en:
     in_progress: In Progress
     inactive_campaign_message: Currently, you have not been assigned any activities.
     ineligible: Ineligible
+    insights_reports: Insights & Reports
     instructions:
       collapse_link_text: Show less
       expand_link_text: Show more

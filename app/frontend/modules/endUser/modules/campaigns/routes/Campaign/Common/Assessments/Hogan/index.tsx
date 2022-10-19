@@ -8,6 +8,7 @@ import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessme
 import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
+import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { DetailsCard } from 'glint'
 import { PrivacyModal } from '../PrivacyModal'
 
@@ -91,9 +92,6 @@ export const Hogan: React.FC<Props> = ({
       {userAssessment.assessmentName.substring(0, 2)}
     </Avatar>
   )
-  const assessmentTitle = view === 'list'
-    ? userAssessment.assessmentName
-    : userAssessment.assessmentName.slice(0, ASSESSMENT_TITLE_MAX_LENGTH)
 
   if (userAssessment.completionPercent === 100) {
     taskStatus = 'completed'
@@ -102,10 +100,17 @@ export const Hogan: React.FC<Props> = ({
   const titleElement = (
     <Row gutter={[4, 0]} wrap={false}>
       <Col>{assessmentIcon}</Col>
-      <Col className={styles.assessmentLabel}><span>{assessmentTitle}</span></Col>
+      <Col className={styles.assessmentLabel}>
+        <span>
+          <TruncatedTitle
+            title={userAssessment.assessmentName}
+            maxLength={ASSESSMENT_TITLE_MAX_LENGTH}
+            view={view}
+          />
+        </span>
+      </Col>
     </Row>
   )
-
 
   return (
     <>
@@ -118,7 +123,7 @@ export const Hogan: React.FC<Props> = ({
         actionDisabled={disabled}
         actionLoading={loading}
         actionDisabledText={I18n.t('campaign.complete_prev')}
-        handleButtonClick={showPolicyConfirm}
+        onButtonClick={showPolicyConfirm}
       />
       {userAssessment.needConfirm
         && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
