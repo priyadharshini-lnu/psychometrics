@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   STATUSES, SEARCH, search, get as getSmsInvites,
 } from 'modules/admin/modules/campaigns/core/smsInvites'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import {
   Form, Input, DatePicker, Select, Spin,
 } from 'antd'

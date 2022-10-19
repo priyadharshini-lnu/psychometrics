@@ -31,7 +31,7 @@ import {
   get as getColumns,
   getVisibleColumnNames,
 } from 'modules/admin/modules/SheetManagement/core/columnDefinitions'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 import { RootState } from 'modules/admin/core/rootReducers'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'

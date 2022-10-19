@@ -5,13 +5,16 @@ import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/survey/core/rootReducers'
 
 export default connect(
-  ({ survey }: RootState) => ({
-    loaded: survey.builder.questionCenter.loaded,
-    disabled: survey.builder.questionCenter.disabled,
-    socketInitialized: survey.ui.socket.initialized,
-    question: survey.builder.questionCenter.question,
-    offset: 20,
-  }),
+  (state: RootState) => {
+    const { survey } = state
+    return {
+      loaded: survey.builder.questionCenter.loaded,
+      disabled: survey.builder.questionCenter.disabled,
+      socketInitialized: survey.ui.socket.initialized,
+      question: survey.builder.questions[survey.builder.questionCenter.id],
+      offset: 20,
+    }
+  },
   {
     openPreview: data => openModal('preview', data),
     changeType,

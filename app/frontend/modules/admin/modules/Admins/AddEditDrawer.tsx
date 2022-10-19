@@ -28,7 +28,7 @@ import {
   create as createAdmin,
   CREATE as CREATE_ADMIN,
 } from 'modules/admin/modules/Admins/core'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { GrantType, ParentResourceType } from './constants'
 

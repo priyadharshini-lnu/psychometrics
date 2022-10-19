@@ -4,7 +4,7 @@ import humps from 'humps'
 
 const BEGIN = 'campaign/BEGIN'
 const FETCH = 'campaign/FETCH'
-const FETCH_INSIGHTS = 'campaign/FETCH_INSIGHTS'
+export const FETCH_INSIGHTS = 'campaign/FETCH_INSIGHTS'
 const FETCH_OPTIONS = 'campaign/FETCH_OPTIONS'
 const CONTINUE = 'campaign/CONTINUE'
 const DECLINE_EVALUATION = 'campaign/DECLINE_EVALUATION'
@@ -22,6 +22,7 @@ export const fetchInsights = url => ({
   request: {
     url,
     camelize: false,
+    loader: true,
   },
 })
 
@@ -80,10 +81,15 @@ export const defaultState = {
   },
 }
 
+export const getReports = state => _.get(state, ['campaigns', 'campaign', 'userReports'])
+export const getUserDashboard = state => _.get(state, ['campaigns', 'campaign', 'userDashboard'])
+
 const HANDLERS = {
   [FETCH]: (state, action) => ({ ...state, ...action.response, loaded: true }),
   [FETCH_INSIGHTS]: (state, action) => ({
-    ...state, userReport: action.response.user_dashboard, userReports: humps.camelizeKeys(action.response.user_reports),
+    ...state,
+    userDashboard: action.response.user_dashboard,
+    userReports: humps.camelizeKeys(action.response.user_reports),
   }),
   [FETCH_OPTIONS]: (state, { response }) => setIn(state, 'options', response),
   [BEGIN]: (state, { response }) => {

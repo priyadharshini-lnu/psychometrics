@@ -13,9 +13,11 @@ import {
 } from '../block/actions'
 import { INIT, EMPTY_TRASH } from '../actions'
 import { questionsWithoutDeleted } from '../selectors'
+import { INIT_QUESTION_CENTER } from '../../questionCenter'
 
 const HANDLERS = {
   [INIT]: (_, { data }) => (data.entities.questions || {}),
+  [INIT_QUESTION_CENTER]: (_, { data }) => ({ [data.id]: data }),
   [ADD_QUESTION]: (state, { question }) => setIn(state, [question.id], QuestionSerializer.toJSON(question)),
   [ADD_QUESTIONS]: (state, { questions }) => {
     const newState = _.clone(state)

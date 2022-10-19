@@ -27,7 +27,7 @@ import {
   resetPassword as resetAdminPassword,
   Admin,
 } from 'modules/admin/modules/Admins/core'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import { RootState } from 'modules/admin/core/rootReducers'
 

@@ -68,7 +68,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     if (pathname.includes('/campaigns/')) {
       !openKey.length && setOpenKey(['campaign'])
     }
-  }, [])
+  }, [pathname])
   const handleMenuSelect = (menu) => {
     if (menu.key === 'tasks') {
       const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'

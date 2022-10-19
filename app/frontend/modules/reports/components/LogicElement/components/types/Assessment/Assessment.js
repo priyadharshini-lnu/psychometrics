@@ -62,6 +62,7 @@ export default class Assessment extends Component {
             <option value="Completed">Completed</option>
             <option value="NotCompleted">Not Completed</option>
             <option value="ResultAvailable">Result Available</option>
+            <option value="ScoringAvailable">Scoring Available</option>
           </select>
         </div>
       </div>

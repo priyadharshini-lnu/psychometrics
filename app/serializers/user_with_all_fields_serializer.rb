@@ -1,12 +1,24 @@
 # frozen_string_literal: true
 
 class UserWithAllFieldsSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :age, :gender, :timezone, :locale, :custom_fields
+  attributes :id, :first_name, :last_name, :email, :age, :gender, :locale, :custom_fields
 
-  delegate :age, :gender, :timezone, :locale, to: :user_profile
+  delegate :age, :gender, :locale, to: :user_profile
 
   def custom_fields
     Users::GetCustomProfileFields.call!(object)
+  end
+
+  def locale
+    return if user_profile.locale.nil?
+
+    I18n.t("languages_localized.#{user_profile.locale}")
+  end
+
+  def gender
+    return if user_profile.gender.nil?
+
+    I18n.t("profile.#{user_profile.gender}")
   end
 
   private

@@ -32,7 +32,7 @@ import {
   fetchSingle,
   FETCH_SINGLE,
 } from 'modules/admin/modules/SheetManagement/core/current'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 import { COLUMN_ID_EMAIL } from 'modules/admin/modules/SheetManagement/constants'
 

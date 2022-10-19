@@ -9,7 +9,7 @@ import {
   UPDATE_AVAILABLE_LOCALES,
 } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 const connecter = connect(
   (state: RootState) => ({

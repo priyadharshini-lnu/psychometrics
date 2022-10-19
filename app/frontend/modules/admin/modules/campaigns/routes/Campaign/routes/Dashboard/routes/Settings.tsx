@@ -19,7 +19,7 @@ import ResourceForm from 'components/ResourceForm'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import _ from 'lodash'
 
 const { I18n } = window

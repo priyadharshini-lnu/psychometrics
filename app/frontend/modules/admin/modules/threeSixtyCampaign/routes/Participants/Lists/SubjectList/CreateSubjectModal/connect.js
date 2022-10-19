@@ -4,7 +4,7 @@ import { search, get as getAutocomplete } from 'modules/admin/core/ui/autocomple
 import {
   createAll, fillSubjects, clearForm, CREATE_ALL, getForm,
 } from 'modules/admin/modules/threeSixtyCampaign/core/subjects'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 export default connect(
   (state) => {

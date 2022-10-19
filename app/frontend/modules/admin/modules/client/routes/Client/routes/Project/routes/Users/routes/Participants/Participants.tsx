@@ -17,7 +17,7 @@ import {
   remove as removeParticipant,
   resetPassword as resetParticipantPassword,
 } from 'modules/admin/modules/client/core/participants'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import settings from 'modules/admin/settings'

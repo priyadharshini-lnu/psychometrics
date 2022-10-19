@@ -11,7 +11,7 @@ import { get as getProctoringSessions } from 'modules/admin/modules/campaigns/co
 import { regenerateReports, getSelectedIds, REGENERATE_REPORTS } from 'modules/admin/modules/campaigns/core/userReports'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 const connecter = connect(
   (state: RootState) => ({
