@@ -952,7 +952,7 @@ en:
       submit: Submit
       title: Create Password
     sign_in: Sign In
-    sign_out: Sign Out
+    sign_out: Login as different user
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
   browsers:
