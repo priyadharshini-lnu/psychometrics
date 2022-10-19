@@ -81,10 +81,10 @@ const InsightsBody: FC<InsightBodyProps> = ({ userDashboard, isUserReportAvailab
   const scale = Math.max(Math.min(width / MAX, 2), 1)
   const offsetTop = (1 - scale) / 2 * 100
   const offsetLeft = isMobile ? ((1 - scale) / 3) * 105 : ((1 - scale) * (200 / window.innerWidth)) * 100
-  const transform = scale < 1
+  let transform = scale < 1
     ? `translate(-${offsetLeft}%, -${offsetTop}%) scale(${scale})`
     : `translate(0, ${Math.abs(offsetTop)}%) scale(${scale})`
-
+  transform = ''
   const report = userDashboard && (
     <Row gutter={[0, 16]} justify="center">
       <Col className={styles.report} style={{ transform }}>
