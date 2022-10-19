@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Modal } from 'antd'
+import {
+  Modal, Row, Col, Button,
+} from 'antd'
 import { FixedCropperRef, FixedCropper, ImageRestriction } from 'react-advanced-cropper'
+import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons'
 import 'react-advanced-cropper/dist/style.css'
 
 export function CropperModal ({
@@ -45,6 +48,24 @@ export function CropperModal ({
         src={image && image.src}
         imageRestriction={ImageRestriction.stencil}
       />
+      <Row>
+        <Col style={{ padding: 4 }}>
+          <Button
+            type="ghost"
+            onClick={() => cropperRef.current?.zoomImage(0.9)}
+          >
+            <ZoomOutOutlined />
+          </Button>
+        </Col>
+        <Col style={{ padding: 4 }}>
+          <Button
+            type="ghost"
+            onClick={() => cropperRef.current?.zoomImage(1.1)}
+          >
+            <ZoomInOutlined />
+          </Button>
+        </Col>
+      </Row>
     </Modal>
 
   )

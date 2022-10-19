@@ -97,6 +97,11 @@ function ProfileComponent ({
   }
 
   const onChangeFile = ({ file }) => {
+    if (file.type === 'image/svg+xml') {
+      const form = new FormData()
+      form.append('photo', file, file.name)
+      return uploadPhoto(form)
+    }
     const blob = URL.createObjectURL(file)
 
     setImage({
@@ -135,7 +140,7 @@ function ProfileComponent ({
                   <Form.Item>
                     <Upload
                       listType="picture-card"
-                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
                       showUploadList={false}
                       maxCount={1}
                       className={styles.upload}
