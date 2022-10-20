@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Layout, Skeleton, Button,
+  Row, Col, Layout, Skeleton, Button, Tooltip,
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { RootState } from 'modules/user/core/rootReducers'
@@ -54,7 +54,9 @@ const ReportListComponent: FC<ComponentProps> = ({ userReports }) => {
             <div className={styles.cover}>
               <img src={report.posterUrl || bg} />
               <div className={styles.title}>
-                <div className={styles.name}>{report.reportName}</div>
+                <div className={styles.name}>
+                  <Tooltip title={report.reportName}>{report.reportName}</Tooltip>
+                </div>
                 <div className={cs(styles.status, styles[report.status])}>
                   {isMobile
                     ? I18n.t(`user_reports.statuses.${report.status}`)

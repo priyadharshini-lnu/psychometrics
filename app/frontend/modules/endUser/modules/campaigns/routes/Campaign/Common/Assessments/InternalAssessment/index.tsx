@@ -8,7 +8,6 @@ import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 
-import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
 import { secondsLeftFromNow } from 'utils/time'
 import { shortify } from 'utils/string'
 
@@ -151,7 +150,7 @@ export const InternalAssessment: React.FC<Props> = ({
       <Col>{assessmentIcon}</Col>
       <Col className={styles.assessmentLabel}>
         <span>
-          <TruncatedTitle title={assessmentName} maxLength={ASSESSMENT_TITLE_MAX_LENGTH} view={view} />
+          <TruncatedTitle title={assessmentName} />
         </span>
       </Col>
     </Row>

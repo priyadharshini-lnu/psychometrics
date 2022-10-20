@@ -183,7 +183,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
               <InstructionsPanel
                 description={<SafeHTML html={instructions} config="adminRichText" />}
                 title={I18n.t('campaign.instructions.heading')}
-                heightLimit={100}
+                heightLimit={200}
               />
               )
             )}

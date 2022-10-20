@@ -1,21 +1,14 @@
 import React from 'react'
 import { Tooltip } from 'antd'
+import styles from './styles.less'
 
 type Props = {
   title: string,
-  maxLength: number,
-  view: string,
+  lines?: number,
 }
 
-export const TruncatedTitle: React.FC<Props> = ({ title, maxLength, view }) => {
-  let truncatedTitle: React.ReactElement = <>{title}</>
-  if (view !== 'list' && title.length > maxLength) {
-    truncatedTitle = (
-      <Tooltip title={title}>
-        {title.slice(0, maxLength)}
-        ...
-      </Tooltip>
-    )
-  }
-  return truncatedTitle
-}
+export const TruncatedTitle: React.FC<Props> = ({ title, lines = 2 }) => (
+  <Tooltip title={title}>
+    <div className={styles.title} style={{ WebkitLineClamp: lines }}>{title}</div>
+  </Tooltip>
+)

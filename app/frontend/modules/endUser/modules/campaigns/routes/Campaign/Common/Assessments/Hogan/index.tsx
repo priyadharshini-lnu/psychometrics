@@ -5,8 +5,6 @@ import {
 
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 
-import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/user/modules/campaigns/common/assessments'
-
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
 import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { DetailsCard } from 'glint'
@@ -104,8 +102,6 @@ export const Hogan: React.FC<Props> = ({
         <span>
           <TruncatedTitle
             title={userAssessment.assessmentName}
-            maxLength={ASSESSMENT_TITLE_MAX_LENGTH}
-            view={view}
           />
         </span>
       </Col>

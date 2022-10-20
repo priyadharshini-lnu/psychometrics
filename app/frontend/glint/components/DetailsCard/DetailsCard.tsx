@@ -60,8 +60,8 @@ export const DetailsCard: FC<DetailsCardProps> = ({
     <Card className={styles.detailsCard}>
       {showStatusAtTop && (
       <Row>
-        <Col xs={18} sm={12}>{titleElement}</Col>
-        <Col xs={6} sm={12} className="ta-e">
+        <Col xs={18}>{titleElement}</Col>
+        <Col xs={6} className="ta-e">
           {status}
         </Col>
       </Row>
