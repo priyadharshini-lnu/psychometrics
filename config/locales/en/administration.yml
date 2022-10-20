@@ -257,11 +257,15 @@ en:
       assessments:
         actions:
           add_subject: Add Subject
+          rescore: Rescore
           reset: Reset Evaluation
+          reset_progress: Reset Progress
         assessment_name: Assessment Name
         bulk_delete_confirmation: Are you sure you wan to delete selected records?
         bulk_delete_successful: Assessor assessments deleted successfully
         reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
+        reset_progress_confirmation: Are you sure you want to reset progress for subject with email %{subjectEmail}?
+        reset_progress_successfully: Reset progress successful for for subject with email %{subjectEmail}
         reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
         subject_email: Subject Email
         subject_name: Subject Name
@@ -576,6 +580,9 @@ en:
       url: Url
     campaigns:
       actions: Manage
+      assessors:
+        spoof:
+          successfully: You was successfully login as %{name}
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name

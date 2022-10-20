@@ -227,6 +227,8 @@ Rails.application.routes.draw do
             resources :user_assessments, only: %i[index create] do
               member do
                 put :reset
+                put :rescore
+                put :reset_progress
               end
               collection do
                 delete :bulk_delete

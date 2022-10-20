@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     module Assessors
       class UserAssessmentsController < Administration::Campaigns::BaseController
-        before_action :set_resource, only: %i[reset]
+        before_action :set_resource, only: %i[reset reset_progress rescore]
 
         def index
           user_assessments = assessor.user_assessments.where(campaign_id: assessor.campaign_id).
@@ -38,8 +38,24 @@ module Administration
           head :ok
         end
 
+        def rescore
+          user_result = resource.users_result
+          AdminJob.call(:rescore_user_assessment, {
+            user_result_id: user_result.id,
+            campaign_id: campaign.id
+          }, current_user)
+          audit! :rescore_results, resource, campaign: resource.campaign
+          render json: :ok
+        end
+
         def reset
           ::UsersResults::Reset.call!(resource)
+
+          head :ok
+        end
+
+        def reset_progress
+          ::UserAssessments::ResetProgress.call!(resource, reset_flag: true)
 
           head :ok
         end

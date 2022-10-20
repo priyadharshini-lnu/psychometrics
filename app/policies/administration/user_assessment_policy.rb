@@ -35,9 +35,7 @@ module Administration
     end
 
     def rescore_response?
-      (!record&.assessment&.external? && @user.is?(:superadmin)) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      !record&.assessment&.external? && has_permission?(:results, :rescore_responses)
     end
 
     def reset?
@@ -48,7 +46,7 @@ module Administration
 
     def reset_progress?
       !record.assessment.external? && !record.assessment.agile? && !record.not_started? &&
-        (@user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_users))
+        (@user.is?(:superadmin) || has_permission?(:results, :reset_progress))
     end
 
     private

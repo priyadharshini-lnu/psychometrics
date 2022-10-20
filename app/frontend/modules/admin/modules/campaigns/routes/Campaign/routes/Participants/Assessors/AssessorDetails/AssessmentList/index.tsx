@@ -9,7 +9,8 @@ import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
-  get as getAssessorAssessments, fetch, reset, selectRecords, getSelectedIds, bulkDelete, BULK_DELETE,
+  get as getAssessorAssessments, fetch, reset, resetProgress, selectRecords, getSelectedIds, bulkDelete, BULK_DELETE,
+  rescore,
 } from 'modules/admin/modules/campaigns/core/assessorAssessments'
 import { getCurrent } from 'modules/admin/modules/campaigns/core/assessors'
 import { isRequestInProgress } from 'core/request'
@@ -37,9 +38,11 @@ const connecter = connect(
   {
     fetch,
     reset,
+    resetProgress,
     selectRecords,
     bulkDelete,
     openModal,
+    rescore,
   },
 )
 
@@ -53,6 +56,7 @@ const AssessmentList: React.FC<Props> = ({
   assessor,
   fetch,
   reset,
+  resetProgress,
   selectRecords,
   selectedIds,
   bulkDelete,
@@ -64,6 +68,7 @@ const AssessmentList: React.FC<Props> = ({
   getSortOrder,
   changePage,
   openModal,
+  rescore,
 }) => {
   const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -179,6 +184,8 @@ const AssessmentList: React.FC<Props> = ({
                     ActionsMenu({
                       subjectEmail,
                       reset: () => reset(parsedCampaignId, parsedAssessorId, id),
+                      resetProgress: () => resetProgress(parsedCampaignId, parsedAssessorId, id),
+                      rescore: () => rescore(parsedCampaignId, parsedAssessorId, id),
                       permissions,
                     }) as React.ReactElement
                   }
@@ -210,12 +217,16 @@ const AssessmentList: React.FC<Props> = ({
 interface ActionsMenuProps {
   subjectEmail: string
   reset(): Promise<{ response: unknown}>
+  rescore(): Promise<{ response: unknown}>
+  resetProgress(): Promise<{ response: unknown}>
   permissions: {
     resetEvaluation: boolean
   }
 }
 
-const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset, permissions }) => {
+const ActionsMenu: React.FC<ActionsMenuProps> = ({
+  subjectEmail, reset, resetProgress, permissions, rescore,
+}) => {
   const handleReset = () => {
     Modal.confirm({
       title: I18n.t('common.text.confirm'),
@@ -232,18 +243,54 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset, permissi
     })
   }
 
+  const handleResetProgress = () => {
+    Modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('administration.assessor.assessments.reset_progress_confirmation', { subjectEmail }),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        resetProgress()
+        message.success(I18n.t('administration.assessor.assessments.reset_progress_successfully', { subjectEmail }))
+      },
+    })
+  }
+
   return (
     <Menu>
       {permissions.resetEvaluation && (
-        <Menu.Item key="reset">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleReset}
-          >
-            {I18n.t('administration.assessor.assessments.actions.reset')}
-          </div>
-        </Menu.Item>
+        <>
+          <Menu.Item key="reset">
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={handleReset}
+            >
+              {I18n.t('administration.assessor.assessments.actions.reset')}
+            </div>
+          </Menu.Item>
+          <Menu.Item key="resetProgress">
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={handleResetProgress}
+            >
+              {I18n.t('administration.assessor.assessments.actions.reset_progress')}
+            </div>
+          </Menu.Item>
+          <Menu.Item key="rescore">
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={rescore}
+            >
+              {I18n.t('administration.assessor.assessments.actions.rescore')}
+            </div>
+          </Menu.Item>
+        </>
       )}
     </Menu>
   )

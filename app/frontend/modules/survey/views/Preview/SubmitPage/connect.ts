@@ -19,6 +19,10 @@ export const connecter = connect(
       page: initialized && getCurrentPage(preview),
       I18n: getI18n(preview),
       isDisconnected: !isConnected(state),
+      scoring: preview.scoring,
+      factors: preview.factors,
+      showScoringOnEndPage: preview.showScoringOnEndPage,
+      dbResult: preview.dbResult,
     }
   },
   {

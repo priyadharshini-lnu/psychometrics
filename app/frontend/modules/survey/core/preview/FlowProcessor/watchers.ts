@@ -164,6 +164,10 @@ function* getShowSubmitPage () {
     state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
   )
 
+  if (showScoringOnEndPage) {
+    yield put(showSubmitPage())
+  }
+
   if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
     yield put(showSubmitPage())
   }

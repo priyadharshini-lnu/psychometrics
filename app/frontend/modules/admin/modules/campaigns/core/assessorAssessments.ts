@@ -10,6 +10,8 @@ import { AnyAction } from 'redux'
 
 export const FETCH = 'campaigns/assessorAssessments/FETCH'
 export const RESET = 'campaigns/assessorAssessments/RESET'
+export const RESCORE = 'campaigns/assessorAssessments/RESCORE'
+export const RESET_PROGRESS = 'campaigns/assessorAssessments/RESET_PROGRESS'
 export const SELECT_RECORDS = 'campaigns/assessorAssessments/SELECT_RECORDS'
 export const BULK_DELETE = 'campaigns/assessorAssessments/BULK_DELETE'
 export const CREATE = 'resource/assessorAssessment/subject/CREATE'
@@ -54,6 +56,24 @@ export const reset = (campaignId: number, assessorId: number, id: number) => ({
   request: {
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/assessors/${assessorId}/user_assessments/${id}/reset`,
+  },
+})
+
+
+export const rescore = (campaignId: number, assessorId: number, id: number) => ({
+  type: RESCORE,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessors/${assessorId}/user_assessments/${id}/rescore`,
+  },
+})
+
+
+export const resetProgress = (campaignId: number, assessorId: number, id: number) => ({
+  type: RESET_PROGRESS,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessors/${assessorId}/user_assessments/${id}/reset_progress`,
   },
 })
 

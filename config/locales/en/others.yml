@@ -706,6 +706,7 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       rescore: Rescore
+      submit_evaluation: Submit Evaluation
     audio_response:
       pause: Pause
       permission_denied_message: Please enable microphone permission in your browser to record the answer
