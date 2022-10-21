@@ -16,6 +16,7 @@ module Sheets
       sha = Digest::SHA2.hexdigest(create_view_query)
       return broadcast :ok if sha == sheet.flat_view_sha
 
+      ActiveRecord::Base.connection.execute("CREATE SCHEMA IF NOT EXISTS #{schema_name}")
       ActiveRecord::Base.connection.execute("DROP VIEW IF EXISTS #{flat_row_view_name}")
       ActiveRecord::Base.connection.execute(create_view_query)
       sheet.update!(flat_view_sha: sha)
@@ -25,8 +26,12 @@ module Sheets
 
     private
 
+    def schema_name
+      "c_#{sheet.campaign_id}"
+    end
+
     def flat_row_view_name
-      "c_#{sheet.campaign_id}_#{sheet.type.downcase}"
+      "\"#{schema_name}\".#{sheet.type.downcase}"
     end
 
     def flat_rows_query

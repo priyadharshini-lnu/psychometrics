@@ -218,7 +218,7 @@ const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
       <Form layout="vertical" className="clear-float">
         <Form.Item
           label={I18n.t('administration.dashboard.settings.datasheet_view_name')}
-          initialValue={`c_${campaignId}_datasheet`}
+          initialValue={`c_${campaignId}.datasheet`}
           name="datasheetView"
         >
           <Input
@@ -238,7 +238,7 @@ const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
 
         <Form.Item
           label={I18n.t('administration.dashboard.settings.accesssheet_view_name')}
-          initialValue={`c_${campaignId}_accesssheet`}
+          initialValue={`c_${campaignId}.accesssheet`}
           name="accesssheetView"
         >
           <Input
