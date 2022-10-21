@@ -24,7 +24,7 @@ module CampaignUsers
     private
 
     def compute_completion_status
-      statuses = campaign_user.campaign_user_assessments.map(&:status)
+      statuses = campaign_user.campaign_user_assessments.self_assessment.map(&:status)
 
       return 'not_started' if statuses.empty?
 
