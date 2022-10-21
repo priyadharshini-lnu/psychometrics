@@ -10,6 +10,7 @@
   overflow: hidden;
   border: 1px solid @light-gray;
   position: relative;
+  column-gap: 30px;
 }
 
 .listItem {
@@ -26,10 +27,7 @@
     background-color: @white;
   }
   .optionDescription {
-    padding-inline-start: 10px;
-    padding-inline-end: 20px;
     display: inline-block;
-    width: calc(100% - 44px);
     vertical-align: middle;
   }
 }
@@ -40,6 +38,7 @@
 }
 
 .label {
+  display: flex;
   font-weight: normal;
   width: 100%;
 }
