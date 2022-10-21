@@ -125,7 +125,7 @@ const Evaluation = ({
                     dataIndex: 'value',
                     key: 'value',
                     render (value, row) {
-                      const type = userInfo.datasheet_columns[row.key]
+                      const type = userInfo.datasheet_columns.find(({ name }) => name === row.key)?.type
                       switch (type) {
                         case 'Markdown':
                           return <ReactMarkdown>{value}</ReactMarkdown>
