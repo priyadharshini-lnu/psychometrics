@@ -10,9 +10,10 @@ import settings from 'modules/admin/modules/campaigns/settings'
 import RouteList from 'components/RouteList'
 import _ from 'lodash'
 
-import { get as getCurrentCampaign } from 'modules/admin/modules/campaigns/core/current'
+import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from 'modules/admin/modules/campaigns/core/current'
 import { get as getCurrentUser } from 'core/currentUser'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { isRequestInProgress } from 'core/request'
 import { Menu } from './Menu'
 import routes from './routes'
 
@@ -20,13 +21,14 @@ const connecter = connect(
   (state: RootState) => ({
     campaignPermissions: getCurrentCampaign(state).permissions,
     currentUser: getCurrentUser(state),
+    campaignLoading: isRequestInProgress(state, FETCHING_CAMPAIGN),
   }),
   {},
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props =PropsFromRedux
 
-const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser }) => {
+const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser, campaignLoading }) => {
   const history = useHistory()
   const { campaignId, projectId } = useParams<{ campaignId: string, projectId: string }>()
   const stateManager = useDashboardStore()
@@ -38,6 +40,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser 
   const dashboardPreviewAvailable = !_.isEmpty(data[0]?.reportId) && !_.isEmpty(data[0]?.datasetId)
   const dashboardInitialized = fetchSuccessful && data.length === 1
   const canManageDashboard = currentUser.role === 'Users::SuperAdmin'
+  const loadingInProgress = !fetchSuccessful || campaignLoading
 
   useEffect(() => {
     fetch({
@@ -48,7 +51,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser 
   }, [])
 
   useEffect(() => {
-    if (!fetchSuccessful) { return }
+    if (loadingInProgress) { return }
 
     let accessiblePaths: string[] = []
     if (!dashboardInitialized && canManageDashboard) {
@@ -69,9 +72,9 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser 
 
     if (accessiblePaths.includes(history.location.pathname)) { return }
     if (accessiblePaths[0]) history.push(accessiblePaths[0])
-  }, [data, fetchSuccessful, campaignPermissions])
+  }, [data, fetchSuccessful, campaignPermissions, campaignLoading])
 
-  if (!fetchSuccessful) return <Skeleton active />
+  if (loadingInProgress) return <Skeleton active />
 
   return (
     <>

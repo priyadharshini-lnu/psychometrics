@@ -36,7 +36,8 @@ module Sheets
 
     def flat_rows_query
       valid_columns = sheet.columns.select do |column|
-        column['dashboard_use'] && column['name'] != 'Email' && column['name'].length <= Sheet::MAX_COLUMN_NAME_SIZE
+        (sheet.accesssheet? || column['dashboard_use']) && column['name'] != 'Email' &&
+          column['name'].length <= Sheet::MAX_COLUMN_NAME_SIZE
       end
       return if valid_columns.empty?
 
