@@ -657,6 +657,17 @@ const AddEditDrawerComponent: FC<Props> = ({
                   </Checkbox>
                 </Form.Item>
                 <Form.Item
+                  name={`results-${GrantType.download_report}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.can_download_report',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item
                   name={`results-${GrantType.report_data}`}
                   valuePropName="checked"
                   noStyle
