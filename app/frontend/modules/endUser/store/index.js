@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import logger from 'redux-logger'
 import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import { routerMiddleware } from 'connected-react-router'
@@ -20,9 +19,6 @@ const middleware = [api, sagaMiddleware, flowMiddleware, thunk, routerMiddleware
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ name: 'User store' })
-  }
-  if (!__DISABLE_LOGGER_) {
-    middleware.push(logger)
   }
 }
 

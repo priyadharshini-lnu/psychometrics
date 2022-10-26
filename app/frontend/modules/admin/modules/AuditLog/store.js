@@ -3,7 +3,6 @@ import {
 } from 'redux'
 import { all } from 'redux-saga/effects'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
-import logger from 'redux-logger'
 import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
@@ -35,7 +34,7 @@ const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 const store = createStore(
   createRootReducer(history),
   __INITIAL_STATE__,
-  composeEnhancers(applyMiddleware(api, sagaMiddleware, logger, routerMiddleware(history), thunk)),
+  composeEnhancers(applyMiddleware(api, sagaMiddleware, routerMiddleware(history), thunk)),
 )
 
 

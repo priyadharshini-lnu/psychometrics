@@ -87,7 +87,6 @@ const vendors = [
   'node_modules/react-select',
   'node_modules/axios',
   'node_modules/lodash',
-  'node_modules/redux-logger',
   'node_modules/action-cable-react',
   'node_modules/moment',
   'frontend/libs/conditions',
@@ -224,8 +223,8 @@ environment.config.merge({
       aggregateTimeout: 600,
       ignored: [
         /node_modules([\\]+|\/)+(?!@thetalententerprise\/jsonapi-react)/,
-        /\jsonapi-react([\\]+|\/)node_modules/
-      ]
+        /\jsonapi-react([\\]+|\/)node_modules/,
+      ],
     },
   },
 })
