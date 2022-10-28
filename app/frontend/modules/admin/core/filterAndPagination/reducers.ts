@@ -31,14 +31,17 @@ export const defaultTableConfig: TableConfig = {
 }
 
 const HANDLERS = {
-  [INIT_TABLE]: (state: State, { payload: { tableName, maintainHistory } }: InitTableReturnType) => (
-    { ...state, [tableName]: { ...defaultTableConfig, maintainHistory, initialized: !maintainHistory } }
+  [INIT_TABLE]: (state: State, { payload: { tableName, maintainHistory, pageSize } }: InitTableReturnType) => (
+    {
+      ...state,
+      [tableName]: {
+        ...defaultTableConfig, maintainHistory, initialized: !maintainHistory, pageSize,
+      },
+    }
   ),
   [SET_TABLE_CONFIG]: (state: State, { payload: { tableConfig } }: SetTableConfigFromUrlType) => (
     _.transform(state, (result: State, config: TableConfig, tableName: string) => {
-      if (config.maintainHistory) {
-        result[tableName] = { ...config, ...tableConfig, initialized: true }
-      }
+      result[tableName] = { ...config, ...tableConfig, initialized: true }
     })
   ),
   [CHANGE_FILTER]: (state: State,

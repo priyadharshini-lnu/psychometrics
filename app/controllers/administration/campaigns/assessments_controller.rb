@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class AssessmentsController < Administration::Projects::BaseController
-      before_action :set_resource
+      before_action :set_resource, except: [:other]
       before_action :pundit_authorize
 
       def export_raw_results
@@ -55,6 +55,26 @@ module Administration
         )
 
         head :ok
+      end
+
+      def other
+        excluded_assessment_ids = campaign.campaign_assessments.map(&:assessment_id)
+        user_assessments = campaign.user_assessments.where.not(assessment_id: excluded_assessment_ids).
+                           preload(:assessment).
+                           select(:assessment_id).
+                           distinct(:assessment_id).
+                           order(assessment_id: :desc)
+
+        list = ActiveModelSerializers::SerializableResource.new(
+          user_assessments.page(params[:page]).per(params[:size]).map(&:assessment),
+          each_serializer: Campaigns::OtherAssessmentSerializer,
+          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+        )
+
+        render json: {
+          list: list,
+          total: user_assessments.count
+        }
       end
 
       def rescore_responses

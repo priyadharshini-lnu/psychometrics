@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, message,
+  Table, Row, Col,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import _ from 'lodash'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import { ActionsMenu } from './ActionsMenu'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -22,7 +22,7 @@ interface OwnProps {
   }
 }
 
-type Props = RouteComponentProps & OwnProps & PropsFromRedux
+export type Props = RouteComponentProps & OwnProps & PropsFromRedux
 
 const AssessmentList: React.FC<Props> = ({
   assessments: {
@@ -98,9 +98,9 @@ const AssessmentList: React.FC<Props> = ({
                 permissions.updateAssessorForm ? (
                   <a
                     onClick={
-                        () => openModal('UpdateAssessorFormModal',
-                          { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                      }
+                      () => openModal('UpdateAssessorFormModal',
+                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                    }
                   >
                     {assessorFormName || I18n.t('common.text.na')}
                   </a>
@@ -124,15 +124,15 @@ const AssessmentList: React.FC<Props> = ({
               return (
                 <a
                   onClick={
-                  () => openModal('UpdateLocalesModal',
-                    {
-                      projectId: parsedProjectId,
-                      campaignId: parsedCampaignId,
-                      campaignAssessmentId: id,
-                      availableLocales,
-                      allLocales,
-                    })
-                }
+                    () => openModal('UpdateLocalesModal',
+                      {
+                        projectId: parsedProjectId,
+                        campaignId: parsedCampaignId,
+                        campaignAssessmentId: id,
+                        availableLocales,
+                        allLocales,
+                      })
+                  }
                 >
                   {_.isEmpty(availableLocales) ? I18n.t('frontend.manage') : _.join(availableLocales, ', ')}
                 </a>
@@ -150,15 +150,15 @@ const AssessmentList: React.FC<Props> = ({
                 return (
                   <a
                     onClick={
-                        () => openModal('UniversalLinkModal',
-                          {
-                            projectId: parsedProjectId,
-                            campaignId: parsedCampaignId,
-                            campaignAssessmentId: id,
-                            universalLink,
-                            manageUniversalLink: permissions.enableUniversalLink,
-                          })
-                      }
+                      () => openModal('UniversalLinkModal',
+                        {
+                          projectId: parsedProjectId,
+                          campaignId: parsedCampaignId,
+                          campaignAssessmentId: id,
+                          universalLink,
+                          manageUniversalLink: permissions.enableUniversalLink,
+                        })
+                    }
                   >
                     {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
                   </a>
@@ -202,191 +202,6 @@ const AssessmentList: React.FC<Props> = ({
         </Table>
       </Col>
     </Row>
-  )
-}
-
-interface ActionMenuProps {
-  campaignId: number
-  assessment: Assessment
-  openModal(name: string, data?: { projectId?: number, assessment?: Assessment, update?: Assessment,
-    updateExternalConfig?: Props['updateExternalConfig'],
-    campaignId: number, campaignAssessmentId?: number }): void
-  rescoreResponses(): void
-  exportRawResults: Props['exportRawResults']
-  exportScoringResults: Props['exportScoringResults']
-  exportNormedResults: Props['exportNormedResults']
-  exportRawFactorScores: Props['exportRawFactorScores']
-  exportExternalResults: Props['exportExternalResults']
-  updateExternalConfig: Props['updateExternalConfig']
-}
-
-const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses, exportRawResults,
-  exportScoringResults, exportNormedResults, exportRawFactorScores,
-  exportExternalResults, updateExternalConfig,
-}) => {
-  const { id, name, permissions } = assessment
-
-  const handleRescoreResponse = () => {
-    rescoreResponses()
-    message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
-  }
-
-  const handleRawExport = (with_labels: boolean) => {
-    exportRawResults(campaignId, id, with_labels).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.raw_results_export_scheduled'))
-    })
-  }
-
-  const handleScoringExport = () => {
-    exportScoringResults(campaignId, id).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.scoring_results_export_scheduled'))
-    })
-  }
-
-  const handleNormedResultExport = () => {
-    exportNormedResults(campaignId, id).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.norm_results_export_scheduled'))
-    })
-  }
-
-  const handleRawFactorExport = () => {
-    exportRawFactorScores(campaignId, id).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.raw_factor_export_scheduled'))
-    })
-  }
-
-  const handleExternalResultExport = () => {
-    exportExternalResults(campaignId, id).then(() => {
-      message.success(I18n.t('campaign_assessment.messages.external_results_export_scheduled'))
-    })
-  }
-
-  return (
-    <Menu>
-      <Menu.ItemGroup key="export" title="Export">
-        {permissions.exportRawResults && (
-        <Menu.Item key="export_raw_labels">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => handleRawExport(true)}
-          >
-            Raw (with labels)
-          </div>
-        </Menu.Item>
-        )}
-        {permissions.exportRawResults && (
-        <Menu.Item key="export_raw">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => handleRawExport(false)}
-          >
-            Raw (without labels)
-          </div>
-        </Menu.Item>
-        )}
-        {permissions.exportScoringResults && (
-        <Menu.Item key="export_scoring">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => handleScoringExport()}
-          >
-            Scoring
-          </div>
-        </Menu.Item>
-        )}
-        {permissions.exportNormedResults && (
-        <Menu.Item key="export_normed">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => handleNormedResultExport()}
-          >
-            Normed Factor Scores
-          </div>
-        </Menu.Item>
-        )}
-        {permissions.exportRawFactorScores && (
-        <Menu.Item key="export_raw_scores">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => handleRawFactorExport()}
-          >
-            Raw Factor Scores
-          </div>
-        </Menu.Item>
-        )}
-        {permissions.exportExternalResults && (
-          <Menu.Item key="export_external">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={() => handleExternalResultExport()}
-            >
-              External
-            </div>
-          </Menu.Item>
-        )}
-      </Menu.ItemGroup>
-
-      {permissions.importResults && (
-        <Menu.ItemGroup key="import" title="Import">
-          <Menu.Item key="import_raw">
-            <a
-              onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
-            >
-              Raw
-            </a>
-          </Menu.Item>
-          <Menu.Item key="import_scoring">
-            <a
-              onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
-            >
-              Scoring
-            </a>
-          </Menu.Item>
-        </Menu.ItemGroup>
-      )}
-      <Menu.Divider />
-      {permissions.rescoreResponses && (
-        <Menu.Item key="rescoring">
-          <a
-            onClick={handleRescoreResponse}
-          >
-            {I18n.t('campaign_assessment.modals.rescore_response.title')}
-          </a>
-        </Menu.Item>
-      )}
-      <Menu.Divider />
-      {permissions.remove && (
-        <Menu.Item key="remove">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
-          >
-            {I18n.t('common.actions.remove')}
-          </div>
-        </Menu.Item>
-      )}
-
-      <Menu.Divider />
-      {permissions.updateExternalConfig && (
-        <Menu.Item key="updateExternalConfig">
-          <a
-            onClick={() => {
-              openModal('UpdateExternalConfigModal', { campaignId, assessment, updateExternalConfig })
-            }}
-          >
-            {I18n.t('campaign_assessment.modals.update_external_config.title')}
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
   )
 }
 

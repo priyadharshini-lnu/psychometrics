@@ -81,11 +81,32 @@ module Administration
         )
 
         render json: {
-          assessments: assessments, reports: reports, assessor_assessments: assessor_assessments,
+          assessments: assessments,
+          reports: reports,
+          assessor_assessments: assessor_assessments,
           permissions: {
             assessment_permissions: aseessment_permissions,
             report_permissions: report_permissions
           }
+        }
+      end
+
+      def other
+        excluded_report_ids = campaign.campaign_reports.map(&:report_id)
+        user_reports = campaign.user_reports.where.not(report_id: excluded_report_ids).
+                       preload(:report).
+                       select(:report_id).
+                       distinct(:report_id).
+                       order(report_id: :desc)
+        list = ActiveModelSerializers::SerializableResource.new(
+          user_reports.page(params[:page]).per(params[:size]).map(&:report),
+          each_serializer: Campaigns::OtherReportSerializer,
+          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+        )
+
+        render json: {
+          list: list,
+          total: user_reports.count
         }
       end
 

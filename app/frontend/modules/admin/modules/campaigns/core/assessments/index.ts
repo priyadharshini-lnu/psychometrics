@@ -1,13 +1,16 @@
 import _ from 'lodash'
+import * as t from 'io-ts'
 import { createReducer } from 'utils/redux'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import { OtherAssessment, OtherAssessmentTR } from 'modules/admin/modules/campaigns/interfaces/OtherAssessment'
 import Norm from 'modules/admin/modules/campaigns/interfaces/Norm'
 import { updateIn, setIn } from 'utils/immutable'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import ApiAction from 'interfaces/ApiAction'
 import { CREATE as CREATE_REPORT } from '../reports'
-import {
-  FETCH_ASSESSMENTS_AND_REPORTS,
-} from '../current'
+import { FETCH_ASSESSMENTS_AND_REPORTS } from '../current'
+
 import {
   ACTIVATE_UNIVERSAL_LINK,
   REGENERATE_UNIVERSAL_LINK,
@@ -20,6 +23,10 @@ import {
 
 const defaultState: State = {
   list: [],
+  other: {
+    list: [],
+    total: 0,
+  },
   selectedId: [],
   permissions: {
     enableUniversalLink: false,
@@ -29,7 +36,10 @@ const defaultState: State = {
   },
 }
 
+export const FETCH_OTHER_ASSESSMENTS = 'campaigns/FETCH_OTHER_ASSESSMENTS'
+
 export const get = (state): State => _.get(state, ['campaigns', 'assessments'])
+export const getOther = (state): State['other'] => _.get(state, ['campaigns', 'assessments', 'other'])
 export const getSingle = (state, id): Assessment | null => state.campaigns.assessments.list
   .find(assessment => assessment.id === id)
 
@@ -39,7 +49,11 @@ export interface ActivateUniversalLinkAction {
 }
 
 export interface State {
-  list: Assessment[]
+  list: Assessment[],
+  other: {
+    list: OtherAssessment[],
+    total: number
+  },
   selectedId: number[],
   permissions: {
     enableUniversalLink: boolean
@@ -50,7 +64,11 @@ export interface State {
 }
 
 type ActivateUniversalLinkType = ApiActionResponse<Assessment>
-type FetchType = ApiActionResponse<{assessments: Assessment[], permissions: { assessmentPermissions: {} }}>
+type FetchType = ApiActionResponse<{
+  assessments: Assessment[],
+  permissions: { assessmentPermissions: {} }
+}>
+
 type FetchNormsType = ApiActionResponse<Norm[]>
 type UpdateNormType = ApiActionResponse<{normName: string}>
 type UpdateAssessorForm = ApiActionResponse<{assessorFormName: string, assessorFormId: number | undefined}>
@@ -61,9 +79,36 @@ const updateAssessment = (state: State, { response }: ActivateUniversalLinkType)
   updateIn(state, 'list', list => list.map(a => (a.id === response.id ? response : a)))
 )
 
+const FetchOtherAssessmentsResponseTR = t.type({
+  total: t.number,
+  list: t.array(OtherAssessmentTR),
+})
+
+type FetcOtherAssessmentsResponse = t.TypeOf<typeof FetchOtherAssessmentsResponseTR>
+
+export type FetchOtherAssessmentsAction = ApiActionResponse<FetcOtherAssessmentsResponse>
+export const fetchOtherAssessments = (
+  campaignId: string, tableConfig: TableConfig,
+): ApiAction<FetcOtherAssessmentsResponse> => ({
+  type: FETCH_OTHER_ASSESSMENTS,
+  request: {
+    tableConfig,
+    typedResponse: FetchOtherAssessmentsResponseTR,
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessments/other`,
+  },
+})
+
+
 const HANDLERS = {
   [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => ({
-    ...state, list: response.assessments, permissions: response.permissions.assessmentPermissions,
+    ...state,
+    list: response.assessments,
+    permissions: response.permissions.assessmentPermissions,
+  }),
+  [FETCH_OTHER_ASSESSMENTS]: (state: State, { response }: FetchOtherAssessmentsAction) => ({
+    ...state,
+    other: response,
   }),
   [CREATE_REPORT]: (state, { response }: FetchType) => ({ ...state, list: response.assessments }),
   [ACTIVATE_UNIVERSAL_LINK]: updateAssessment,

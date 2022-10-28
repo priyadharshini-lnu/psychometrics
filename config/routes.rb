@@ -170,6 +170,7 @@ Rails.application.routes.draw do
           collection do
             get :report_families
             get :assessments_and_reports
+            get :other
             post :regenerate
             post :bulk_download
           end
@@ -255,6 +256,9 @@ Rails.application.routes.draw do
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
+          end
+          collection do
+            get :other
           end
         end
         resources :user_assessments, only: [:destroy] do

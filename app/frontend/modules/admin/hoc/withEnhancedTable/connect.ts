@@ -20,6 +20,8 @@ export default connect(
       dispatch(changeSort(tableName, columnName, order))
     ),
     removeSort: (tableName: string) => dispatch(removeSort(tableName)),
-    initTable: (tableName: string, maintainHistory: boolean) => dispatch(initTable(tableName, maintainHistory)),
+    initTable: (tableName: string, maintainHistory: boolean, pageSize) => (
+      dispatch(initTable(tableName, maintainHistory, pageSize))
+    ),
   }),
 )
