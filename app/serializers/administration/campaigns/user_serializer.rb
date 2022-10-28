@@ -44,7 +44,7 @@ module Administration
       end
 
       def created_by
-        object.creator&.email
+        object.creator&.decorate&.full_name
       end
 
       def updated_at
@@ -52,7 +52,7 @@ module Administration
       end
 
       def updated_by
-        object.modifier&.email
+        object.modifier&.decorate&.full_name
       end
 
       def full_name
