@@ -73,7 +73,7 @@ module Api
       end
 
       def search
-        render json: API::UserSearchQuery.new(project, search_params).query
+        render json: Api::UserSearchQuery.new(project, search_params).query
       end
 
       private
