@@ -55,7 +55,7 @@ const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
   && AVAILABLE_QUESTIONS[question.type].includes(question.props.type)
 
 function ProfileComponent ({
-  user, uploadPhoto, sync, fields, lockedFields,
+  user, uploadPhoto, sync, fields, lockedFields, requiredFields,
 }) {
   const [changePassword, setChangePassword] = useState(false)
   const [showCropper, setShowCropper] = useState(false)
@@ -205,13 +205,19 @@ function ProfileComponent ({
                           label={I18n.t('profile.age')}
                           hasFeedback
                           help={errors?.age}
+                          required={requiredFields.age}
                           validateStatus={errors?.age ? 'error' : ''}
                         >
                           <InputNumber className={styles.numberInput} size="large" disabled={lockedFields.age} />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
-                        <Form.Item name="gender" label={I18n.t('profile.gender')} hasFeedback>
+                        <Form.Item
+                          name="gender"
+                          label={I18n.t('profile.gender')}
+                          hasFeedback
+                          required={requiredFields.gender}
+                        >
                           <Select size="large" disabled={lockedFields.gender}>
                             <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
                             <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
@@ -227,6 +233,7 @@ function ProfileComponent ({
                       hasFeedback
                       help={errors?.locale}
                       validateStatus={errors?.locale ? 'error' : ''}
+                      required={requiredFields.locale}
                     >
                       <Select size="large" disabled={lockedFields.locale}>
                         {_.map(locales, locale => (
@@ -295,6 +302,7 @@ function ProfileComponent ({
                             validateStatus={errors?.[field.name] ? 'error' : ''}
                             name={`field_${field.question_id}`}
                             label={Utils.stripHTML(field.question.props.questionText)}
+                            required={field.required}
                           >
                             <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />
                           </Form.Item>
@@ -329,6 +337,7 @@ const connector = connect((state: RootState) => ({
   user: getUser(state),
   fields: state.config.profile.fields,
   lockedFields: state.config.profile.lockedFields,
+  requiredFields: state.config.profile.requiredFields,
 }), {
   sync,
   uploadPhoto,
