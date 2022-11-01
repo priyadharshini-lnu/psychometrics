@@ -3,8 +3,6 @@ import { ConfigProvider } from 'antd'
 import { Locale } from 'antd/lib/locale-provider'
 import { ConnectedRouter } from 'connected-react-router'
 
-import { MAX_PAGE_LOAD_WAIT_TIME } from 'constants/time'
-import { withLoadingSpinner } from 'glint'
 import { AuthLayout } from './Layout'
 
 const { antdLocale, I18n } = window
@@ -21,4 +19,4 @@ export const App = ({ history }) => {
   )
 }
 
-export default withLoadingSpinner(App, MAX_PAGE_LOAD_WAIT_TIME)
+export default App
