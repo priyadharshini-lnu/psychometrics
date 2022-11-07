@@ -2,17 +2,16 @@ import React, { useEffect } from 'react'
 import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
 } from 'antd'
-import { DownOutlined, ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
+import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { isRtl } from 'utils/locales'
 import { secondsLeftFromNow } from 'utils/time'
 import { Language } from 'modules/endUser/modules/campaigns/components/Language'
 import store from 'modules/endUser/store'
-import { CountdownTimer, PageHeader as GlintPageHeader } from 'glint'
+import { CountdownTimer, PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from 'glint'
 
 import { connect } from 'react-redux'
 import {
@@ -161,7 +160,6 @@ const EvaluationComponent = ({
   }
 
   if (!loaded || error) { return null }
-  const rtl = isRtl(I18n.uiLocale)
   return (
     <>
       <GlintPageHeader>
@@ -183,11 +181,9 @@ const EvaluationComponent = ({
           className={styles.campaignHeader}
           backIcon={(
             <Space>
-              {rtl ? (
-                <ArrowRightOutlined
-                  className={styles.backIcon}
-                />
-              ) : <ArrowLeftOutlined className={styles.backIcon} />}
+              <DirectionalNavigateBackIcon
+                className={styles.backIcon}
+              />
               <CountdownTimer
                 notificationPoints={[{ completionPercentage: 30, type: 'info' },
                   { completionPercentage: 15, type: 'warning' },

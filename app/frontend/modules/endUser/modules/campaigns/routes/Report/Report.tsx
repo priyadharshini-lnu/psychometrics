@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import {
   Layout, Button, PageHeader, message, Row, Col, Typography,
 } from 'antd'
-import { DownloadOutlined, ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons'
+import { DownloadOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 
-import { PageHeader as GlintPageHeader } from 'glint'
-import { isRtl } from 'utils/locales'
+import { PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from 'glint'
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import ReportPreview from 'modules/reports/report'
@@ -25,7 +24,6 @@ const connector = connect((state: any) => ({
 })
 const { Content } = Layout
 const { I18n } = window
-const rtl = isRtl(I18n.uiLocale)
 const { Text } = Typography
 
 const ReportComponent = ({
@@ -63,12 +61,11 @@ const ReportComponent = ({
       <Content className={styles.pageContent}>
         <PageHeader
           className={styles.campaignHeader}
-          backIcon={
-              rtl ? (
-                <ArrowRightOutlined
-                  className={styles.backIcon}
-                />
-              ) : <ArrowLeftOutlined className={styles.backIcon} />}
+          backIcon={(
+            <DirectionalNavigateBackIcon
+              className={styles.backIcon}
+            />
+          )}
           title={(
             <Text className={styles.campaignDropdown}>
               {`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}
@@ -79,7 +76,7 @@ const ReportComponent = ({
                 handleStatusClick={handleStatusClick}
               />
             </Text>
-        )}
+          )}
           ghost={false}
           onBack={() => history.push(`/threesixty_campaigns/${params.campaignId}`)}
           extra={!disableDownloadReport && [
