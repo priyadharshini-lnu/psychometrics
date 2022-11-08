@@ -254,11 +254,11 @@ table.table.grants-table
               = check_box_tag 'resource[grants_attributes][data][results][]',
                       'approve_report', resource.has_grant?(:results, :approve_report), id: results_approve_report_id
               | Approve Report
-    - if policy(:membership).manage_grants_for_action?('results', 'rescore_responses', client: client)
-            label.text-nowrap
-              = check_box_tag 'resource[grants_attributes][data][results][]',
-                      'rescore_responses', resource.has_grant?(:results, :rescore_responses), id: results_rescore_responses_id
-              | Rescore Response
+          - if policy(:membership).manage_grants_for_action?('results', 'rescore_responses', client: client)
+                  label.text-nowrap
+                    = check_box_tag 'resource[grants_attributes][data][results][]',
+                            'rescore_responses', resource.has_grant?(:results, :rescore_responses), id: results_rescore_responses_id
+                    | Rescore Response
           - if policy(:membership).manage_grants_for_action?('results', 'reset_progress', client: client)
             label.text-nowrap
               = check_box_tag 'resource[grants_attributes][data][results][]',
