@@ -4,6 +4,7 @@ import ResultStore from 'modules/reports/store/ResultStore'
 import AppStore from 'modules/reports/store/AppStore'
 import Factors from 'modules/reports/commands/Factors'
 import ReactMarkdown from 'react-markdown'
+import { SafeHTML } from 'components/SafeHTML'
 import GetSavilleScore from './GetSavilleScore'
 
 const LookupResultTextValue = {
@@ -19,6 +20,10 @@ const LookupResultTextValue = {
           if (field.type === 'Markdown') {
             return <ReactMarkdown>{text}</ReactMarkdown>
           }
+          if (field.type === 'HTML') {
+            return <SafeHTML config="report" html={text} />
+          }
+
           return text
         }
         break

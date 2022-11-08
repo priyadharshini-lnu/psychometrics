@@ -19,6 +19,7 @@ interface SanitizeConfig {
   adminRichText: Config
   label: Config
   error: Config
+  report: Config
 }
 
 const sanitizeConfig: SanitizeConfig = {
@@ -34,6 +35,10 @@ const sanitizeConfig: SanitizeConfig = {
   error: {
     ALLOWED_TAGS: ['span', 'br', 'nobr', 'small', 'strong', 'em'],
     ALLOWED_ATTR: ['dir'],
+  },
+  report: {
+    ALLOWED_TAGS: ['img'],
+    ALLOWED_ATTR: ['src', 'width', 'height'],
   },
 }
 
