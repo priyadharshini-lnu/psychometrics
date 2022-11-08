@@ -1,12 +1,13 @@
-import find from 'lodash/find'
 import times from 'lodash/times'
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Slider as AntSlider, InputNumber, Row, Col, Button,
 } from 'antd'
+import cs from 'classnames'
 
 import LabelEditor from 'components/LabelEditor'
-import Utils from 'utils'
+import Utils from 'modules/survey/utils'
+import { scaleNumber } from 'utils/number'
 
 import styles from './Slider.less'
 
@@ -21,6 +22,18 @@ export const SliderQuestion = ({
   } = props
   const labelWidth = `${100 / labels}%`
   const questionChoices = preview ? choicesIds : times(choices, i => i)
+
+  const [values, setValue] = useState(result.answers || {})
+
+  const scaledValue = value => _.round(scaleNumber(value, 1, 100, minValue, maxValue), numberOfDecimals)
+  const unscaledValue = value => scaleNumber(value, minValue, maxValue, 1, 100)
+
+  const onChangeSlider = (choiceId, value, update) => {
+    setValue({ ...values, [choiceId]: update ? unscaledValue(scaledValue(value)) : value })
+    if (update) {
+      changeValue(choiceId, scaledValue(value))
+    }
+  }
 
   const labelsColspan = () => {
     if (hideChoiceText && hideValue) {
@@ -85,45 +98,46 @@ export const SliderQuestion = ({
 
   const questionRows = (
     <div className={styles.responseRowContainer}>
-      {questionChoices.map((choiceId) => {
-        const currentChoice = find(result.answers, { index: choiceId }) || {}
-        return (
-          <Row key={choiceId} className={`${styles.gridRow} ${styles.responseRow}`}>
-            {!hideChoiceText && (
-              <Col span={8}>
-                {preview ? (
-                  <span>
-                    {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, { choice: choiceId })
+      {questionChoices.map(choiceId => (
+        <Row key={choiceId} className={`${styles.gridRow} ${styles.responseRow}`}>
+          {!hideChoiceText && (
+          <Col span={8}>
+            {preview ? (
+              <span>
+                {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, { choice: choiceId })
                     || moduleConfig.defaultChoiceText(choiceId + 1)}
-                  </span>
-                ) : (
-                  <LabelEditor
-                    onChange={e => changeLabel('choicesTexts', choiceId, e)}
-                    maxWidth={150}
-                    value={props.choicesTexts[choiceId] || moduleConfig.defaultChoiceText(choiceId + 1)}
-                  />
-                )}
-              </Col>
+              </span>
+            ) : (
+              <LabelEditor
+                onChange={e => changeLabel('choicesTexts', choiceId, e)}
+                maxWidth={150}
+                value={props.choicesTexts[choiceId] || moduleConfig.defaultChoiceText(choiceId + 1)}
+              />
             )}
-            <Col span={hideValue ? 24 : 20} className={styles.responseLabelRowMobile}>
-              <Row>{labelRow}</Row>
-            </Col>
-            <Col span={hideChoiceText ? 24 : 16}>
-              <Row className={styles.responseControlsRow}>
-                <Col className={styles.sliderContainer} span={hideValue ? 24 : 21}>
-                  <AntSlider
-                    onChange={value => changeValue(choiceId, value)}
-                    value={preview ? currentChoice.value : props.fakeResults[choiceId]}
-                    min={minValue}
-                    max={maxValue}
-                    className="ms-0 me-0"
-                  />
-                </Col>
-                {!hideValue && (
+          </Col>
+          )}
+          <Col span={hideValue ? 24 : 20} className={styles.responseLabelRowMobile}>
+            <Row>{labelRow}</Row>
+          </Col>
+          <Col span={hideChoiceText ? 24 : 16}>
+            <Row className={styles.responseControlsRow}>
+              <Col className={styles.sliderContainer} span={hideValue ? 24 : 21}>
+                <AntSlider
+                  onAfterChange={value => onChangeSlider(choiceId, value, true)}
+                  onChange={value => onChangeSlider(choiceId, value)}
+                  value={preview ? values[choiceId] : props.fakeResults[choiceId]}
+                  min={1}
+                  max={100}
+                  className={cs(styles.slider, 'ms-0 me-0')}
+                    // Widthout this extra span with key, the tooltip doesn't move properly
+                  tipFormatter={value => <span key={value}>{scaledValue(value)}</span>}
+                />
+              </Col>
+              {!hideValue && (
                 <Col className={`ps-4 ${styles.inputContainer}`} span={3}>
                   <InputNumber
-                    onChange={value => changeValue(choiceId, value)}
-                    value={preview ? currentChoice.value : props.fakeResults[choiceId]}
+                    onChange={value => onChangeSlider(choiceId, unscaledValue(value), true)}
+                    value={preview ? values[choiceId] && scaledValue(values[choiceId]) : props.fakeResults[choiceId]}
                     style={{ maxWidth: '100%' }}
                     min={minValue}
                     max={maxValue}
@@ -137,12 +151,11 @@ export const SliderQuestion = ({
                     Clear
                   </Button>
                 </Col>
-                )}
-              </Row>
-            </Col>
-          </Row>
-        )
-      })}
+              )}
+            </Row>
+          </Col>
+        </Row>
+      ))}
     </div>
   )
 
