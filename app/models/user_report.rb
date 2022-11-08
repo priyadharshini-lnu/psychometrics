@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserReport < ApplicationRecord
+  include WorkflowActiverecord
+
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
   belongs_to :norm
@@ -24,6 +26,31 @@ class UserReport < ApplicationRecord
   after_commit :publish_to_webhook,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
+
+  workflow_column :approval_status
+
+  workflow do
+    state :not_ready do
+      event :ready, transitions_to: :pending_qc
+    end
+    state :pending_qc do
+      event :start_qc, transitions_to: :qc_in_progress
+    end
+    state :qc_in_progress do
+      event :abort_qc, transitions_to: :pending_qc
+      event :send_for_approval, transitions_to: :qc_completed
+    end
+    state :qc_completed do
+      event :approve, transitions_to: :approved
+      event :request_changes, transitions_to: :change_requested
+    end
+    state :change_requested do
+      event :start_qc, transitions_to: :qc_in_progress
+    end
+    state :approved do
+      event :remove_approval, transitions_to: :change_requested
+    end
+  end
 
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)
