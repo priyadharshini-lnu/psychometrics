@@ -36,7 +36,9 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions, history, r
     <div>
       <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
         <Menu.Item key="/participants/subjects">{I18n.t('administration.participants.tabs.subjects')}</Menu.Item>
-        <Menu.Item key="/participants/assessors">{I18n.t('administration.participants.tabs.assessors')}</Menu.Item>
+        {campaignPermissions.viewAssessors && (
+          <Menu.Item key="/participants/assessors">{I18n.t('administration.participants.tabs.assessors')}</Menu.Item>
+        )}
         {campaignPermissions.viewSmsInvites && (
           <Menu.Item key="/participants/sms_invites">
             {I18n.t('administration.participants.tabs.sms_invites')}
