@@ -496,4 +496,3 @@ workflows:
             branches:
               only:
                 - master
-                - review
