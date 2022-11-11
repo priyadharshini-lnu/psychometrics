@@ -26,6 +26,7 @@ export default interface Campaign {
     viewAccesssheet: boolean
     viewAccesssheetSettings: boolean
     viewSmsInvites: boolean
+    viewAssessors: boolean
   }
 }
 

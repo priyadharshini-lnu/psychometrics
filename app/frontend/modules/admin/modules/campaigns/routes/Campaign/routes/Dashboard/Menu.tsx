@@ -26,39 +26,36 @@ export const Menu: React.FC<Props> = ({
   }
 
   return (
-    <div className="position-relative">
-      <AntMenu
-        className="mbm"
-        onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
-        mode="horizontal"
-      >
-        {!dashboardInitialized && campaignPermissions.viewDashboard && (
-        <AntMenu.Item key="/initialize">
-          {I18n.t('administration.dashboard.tabs.dashboard')}
-        </AntMenu.Item>
-        )}
-        {dashboardPreviewAvailable && campaignPermissions.viewDashboard && (
-        <AntMenu.Item key="/preview">
-          {I18n.t('administration.dashboard.tabs.dashboard')}
-        </AntMenu.Item>
-        )}
-        {dashboardInitialized && canManageDashboard && (
-        <AntMenu.Item key="/settings">
-          {I18n.t('administration.dashboard.tabs.settings')}
-        </AntMenu.Item>
-        )}
-        {campaignPermissions.viewAccesssheet && (
-        <AntMenu.Item key="/accesssheets">
-          {I18n.t('administration.dashboard.tabs.accesssheet')}
-        </AntMenu.Item>
-        )}
-        {campaignPermissions.viewAccesssheetSettings && (
-        <AntMenu.Item key="/accesssheet_settings">
-          {I18n.t('administration.dashboard.tabs.accesssheet_setting')}
-        </AntMenu.Item>
-        )}
-      </AntMenu>
-    </div>
+    <AntMenu
+      onSelect={onSelect}
+      selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+      mode="horizontal"
+    >
+      {!dashboardInitialized && campaignPermissions.viewDashboard && (
+      <AntMenu.Item key="/initialize">
+        {I18n.t('administration.dashboard.tabs.dashboard')}
+      </AntMenu.Item>
+      )}
+      {dashboardPreviewAvailable && campaignPermissions.viewDashboard && (
+      <AntMenu.Item key="/preview">
+        {I18n.t('administration.dashboard.tabs.dashboard')}
+      </AntMenu.Item>
+      )}
+      {dashboardInitialized && canManageDashboard && (
+      <AntMenu.Item key="/settings">
+        {I18n.t('administration.dashboard.tabs.settings')}
+      </AntMenu.Item>
+      )}
+      {campaignPermissions.viewAccesssheet && (
+      <AntMenu.Item key="/accesssheets">
+        {I18n.t('administration.dashboard.tabs.accesssheet')}
+      </AntMenu.Item>
+      )}
+      {campaignPermissions.viewAccesssheetSettings && (
+      <AntMenu.Item key="/accesssheet_settings">
+        {I18n.t('administration.dashboard.tabs.accesssheet_setting')}
+      </AntMenu.Item>
+      )}
+    </AntMenu>
   )
 }

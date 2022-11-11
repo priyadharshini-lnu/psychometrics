@@ -15,6 +15,7 @@ export enum GrantType {
   manage_users = 'manage_users',
   manage_options = 'manage_options',
   view_report = 'view_report',
+  download_report = 'download_report',
   report_data = 'report_data',
   raw_responses = 'raw_responses',
   scores = 'scores',

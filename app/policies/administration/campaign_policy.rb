@@ -157,6 +157,10 @@ module Administration
       has_permission?(:dashboards, :view)
     end
 
+    def view_assessors?
+      has_permission?(:assessors, :view)
+    end
+
     def view_accesssheet?
       has_permission?(:dashboards, :accesssheet_view)
     end

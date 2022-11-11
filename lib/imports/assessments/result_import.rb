@@ -68,7 +68,9 @@ module Imports
           data = header.zip(row).to_h
           # Try to find assign by encoded id
           begin
-            assign = Assign.includes(:membership).find_by(encoded_id: data['result_id']) if data['result_id'].present?
+            # rubocop:disable Rails/DynamicFindBy
+            assign = Assign.includes(:membership).find_by_encoded_id(data['result_id']) if data['result_id'].present?
+            # rubocop:enable Rails/DynamicFindBy
           rescue ActiveRecord::RecordNotFound
             errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + SKIP_ROWS))
             return [nil]

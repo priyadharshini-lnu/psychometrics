@@ -14,7 +14,6 @@ import cs from 'classnames'
 import { ProgressStatus, DirectionalArrowIcon } from 'glint'
 import { RootState } from 'modules/endUser/core/rootReducers'
 import {
-  fetchCampaign,
   continueCampaign,
   beginCampaign,
   reset as resetCampaign,
@@ -37,7 +36,6 @@ const connector = connect(
     currentUser: state.currentUser,
   }),
   {
-    fetchCampaign,
     beginCampaign,
     continueCampaign,
     resetCampaign,
@@ -185,7 +183,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
               <InstructionsPanel
                 description={<SafeHTML html={instructions} config="adminRichText" />}
                 title={I18n.t('campaign.instructions.heading')}
-                heightLimit={100}
+                heightLimit={200}
               />
               )
             )}

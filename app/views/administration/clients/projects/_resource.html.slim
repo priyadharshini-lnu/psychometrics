@@ -3,7 +3,7 @@
     td = resource.id
     td.nowrap
       - if resource.migrated?
-        = link_to resource.decorate.display_name, administration_project_new_campaigns_path(resource)
+        = link_to resource.decorate.display_name, administration_project_new_campaigns_path(resource, { filters: { statusEq: 'active' } }), class: 'text-success'
       - elsif resource.project_level?
         = link_to resource.decorate.display_name, administration_client_users_path(resource)
       - else

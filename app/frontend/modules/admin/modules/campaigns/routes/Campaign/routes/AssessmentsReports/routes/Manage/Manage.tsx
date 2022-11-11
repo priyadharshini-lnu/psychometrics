@@ -60,6 +60,7 @@ const Manage: React.FC<Props> = ({
   regenerateInProgress,
   bulkDownload,
   bulkDownloadInProgress,
+  campaignPermissions,
 }) => {
   useEffect(() => {
     fetchAssessmentAndReports(campaignId)
@@ -130,9 +131,13 @@ const Manage: React.FC<Props> = ({
         <h3>Assessments</h3>
         <AssessmentList />
 
-        <div className={styles.tableDivider} />
-        <h3>{I18n.t('campaigns.assessments_and_reports.assessor_assessments')}</h3>
-        <AssessorAssessmentList />
+        {campaignPermissions.viewAssessors && (
+          <>
+            <div className={styles.tableDivider} />
+            <h3>{I18n.t('campaigns.assessments_and_reports.assessor_assessments')}</h3>
+            <AssessorAssessmentList />
+          </>
+        )}
 
         <div className={styles.tableDivider} />
         <h3>{I18n.t('campaigns.assessments_and_reports.other_reports')}</h3>

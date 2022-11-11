@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import {
-  Avatar, Row, Col,
-} from 'antd'
+import { Avatar, Row, Col } from 'antd'
 import { DetailsCard } from 'glint'
 import { useHistory } from 'react-router-dom'
 
@@ -10,12 +8,12 @@ import WizardIsRequired from 'modules/endUser/core/WizardIsRequired'
 
 import { UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 
-import { ASSESSMENT_TITLE_MAX_LENGTH } from 'modules/endUser/modules/campaigns/common/assessments'
 import { secondsLeftFromNow } from 'utils/time'
 import { shortify } from 'utils/string'
 
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
+import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { PrivacyModal } from '../PrivacyModal'
 import { TimingModal } from '../TimingModal'
 import { LanguageModal } from '../LanguageModal'
@@ -142,9 +140,6 @@ export const InternalAssessment: React.FC<Props> = ({
       {shortify(assessmentName)}
     </Avatar>
   )
-  const assessmentTitle = view === 'list'
-    ? assessmentName
-    : assessmentName.slice(0, ASSESSMENT_TITLE_MAX_LENGTH)
 
   if (completionPercent === 100) {
     taskStatus = 'completed'
@@ -153,7 +148,11 @@ export const InternalAssessment: React.FC<Props> = ({
   const titleElement = (
     <Row wrap={false}>
       <Col>{assessmentIcon}</Col>
-      <Col className={styles.assessmentLabel}><span>{assessmentTitle}</span></Col>
+      <Col className={styles.assessmentLabel}>
+        <span>
+          <TruncatedTitle title={assessmentName} />
+        </span>
+      </Col>
     </Row>
   )
 
@@ -168,7 +167,7 @@ export const InternalAssessment: React.FC<Props> = ({
         actionDisabled={disabled}
         actionLoading={loading}
         actionDisabledText={actionDisabledText}
-        handleButtonClick={status === 'not_started' ? handleBeginAssessment : handleContinueAssessment}
+        onButtonClick={status === 'not_started' ? handleBeginAssessment : handleContinueAssessment}
         subtitle={(
           <>
             {timing && <TimerText text={timing} />}

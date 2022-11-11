@@ -19,7 +19,7 @@ module Services
       private
 
       def generate_csv(data)
-        CSV.generate(@csv_options) do |csv|
+        CSV.generate(**@csv_options) do |csv|
           csv << HEADERS
           data.each do |info|
             csv << info
