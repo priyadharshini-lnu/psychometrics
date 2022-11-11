@@ -1,9 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { PageHeader, Result } from 'antd'
+import React, {
+  useEffect, useRef, useState,
+} from 'react'
+import {
+  Button,
+  PageHeader, Result, Skeleton,
+} from 'antd'
+import { ColumnWidthOutlined, FullscreenOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router-dom'
 import _ from 'lodash'
 import * as pbi from 'powerbi-client'
-import { FullscreenOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import styles from './EmbeddedDashboard.less'
 
@@ -22,6 +27,11 @@ export const EmbeddedDashboard: React.FC<Props> = ({
   const history = useHistory()
   const embedContainer = useRef<HTMLDivElement>(null)
   const [isFullScreenMode, setIsFullScreenMode] = useState(alwaysFullScreen)
+  const [fitToWidth, setFitToWidth] = useState(false)
+  const [powerBiLoaded, setPowerBiLoaded] = useState(false)
+  const powerBiServiceRef = useRef<pbi.Embed>()
+  const powerBiService = powerBiServiceRef.current
+  const fitToWidthButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (embedToken) {
@@ -29,21 +39,27 @@ export const EmbeddedDashboard: React.FC<Props> = ({
     }
   }, [embedToken])
 
-  const embedPowerBiDashboard = () => {
-    if (!embedToken) return
+  useEffect(() => {
+    if (powerBiService) {
+      fitToWidthButtonRef.current?.blur()
+      powerBiService.config = embedConfig()
+      powerBiService.reload()
+    }
+  }, [fitToWidth])
 
+  const embedConfig = () => {
     const embedUrl = `https://app.powerbi.com/reportEmbed?reportId=${reportId}`
-
-    const embedConfig = {
+    const displayOption = pbi.models.DisplayOption
+    return {
       type: 'report',
       tokenType: pbi.models.TokenType.Embed,
-      accessToken: embedToken,
+      accessToken: embedToken as string,
       embedUrl,
       id: reportId,
       settings: {
         layoutType: pbi.models.LayoutType.Custom,
         customLayout: {
-          displayOption: pbi.models.DisplayOption.FitToPage,
+          displayOption: fitToWidth ? displayOption.FitToWidth : displayOption.FitToPage,
         },
         visualSettings: {
           visualHeaders: [
@@ -64,18 +80,25 @@ export const EmbeddedDashboard: React.FC<Props> = ({
         },
       },
     }
+  }
+
+  const embedPowerBiDashboard = () => {
+    if (!embedToken) return
 
     const { hpmFactory, wpmpFactory, routerFactory } = pbi.factories
     if (embedContainer.current) {
-      new pbi.service.Service(hpmFactory, wpmpFactory, routerFactory).embed(
+      const powerBiService = new pbi.service.Service(hpmFactory, wpmpFactory, routerFactory).embed(
         embedContainer.current,
-        embedConfig,
+        embedConfig(),
       )
+      powerBiService.on('loaded', () => setPowerBiLoaded(true))
+      powerBiServiceRef.current = powerBiService
     }
   }
 
   return (
     <div className={cs({ [styles.normalMode]: !isFullScreenMode, [styles.fullScreenMode]: isFullScreenMode })}>
+      {!powerBiLoaded && <div className={styles.skeletonContainer}><Skeleton active /></div>}
       {isFullScreenMode ? (
         <PageHeader
           className={styles.pageHeader}
@@ -87,6 +110,15 @@ export const EmbeddedDashboard: React.FC<Props> = ({
             }
           }}
           title={dashboardName}
+          extra={[
+            <Button
+              ref={fitToWidthButtonRef}
+              type={fitToWidth ? 'primary' : 'default'}
+              ghost={fitToWidth}
+              onClick={() => setFitToWidth(!fitToWidth)}
+              icon={<ColumnWidthOutlined />}
+            />,
+          ]}
         />
       ) : (
         <div className={styles.fullScreenIcon} onClick={() => setIsFullScreenMode(true)}>

@@ -29,6 +29,7 @@ export default class AssessmentResolver extends BaseResolver {
     const id = +this.condition.subject
     const assessment = _.find(this.assessments, { id })
     if (!assessment) { return false }
+    if (!this.results[id].rawResults) { return false }
 
     return _.every(this.results[id].rawResults[id], ({ status }) => status === 'completed')
   }

@@ -11,8 +11,9 @@ module Administration
 
       def index
         @filter_term = params.dig(:q, :filterable_fields)
-        @_filter_form = policy_scope(resource_class).
+        @_filter_form = Client.
                         projects_of(client.id).
+                        where(id: policy_scope(resource_class).pluck(:id)).
                         includes(
                           :creator,
                           :modifier,

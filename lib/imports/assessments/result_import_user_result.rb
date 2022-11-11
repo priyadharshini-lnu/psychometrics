@@ -67,7 +67,9 @@ module Imports
           data = header.zip(row).to_h
           # Try to find user_result by encoded id
           begin
-            user_result = UsersResult.find_by(encoded_id: data['result_id']) if data['result_id'].present?
+            # rubocop:disable Rails/DynamicFindBy
+            user_result = UsersResult.find_by_encoded_id(data['result_id']) if data['result_id'].present?
+            # rubocop:enable Rails/DynamicFindBy
           rescue ActiveRecord::RecordNotFound
             errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + SKIP_ROWS))
             next

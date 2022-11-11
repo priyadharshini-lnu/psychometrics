@@ -1,9 +1,12 @@
-import React, { FC, useEffect, useContext } from 'react'
+import React, {
+  FC, useEffect, useContext, useRef,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Layout, Typography, Tabs,
 } from 'antd'
-import { RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps, useHistory } from 'react-router-dom'
+import useDimensions from 'react-use-dimensions'
 
 import LangDropdown from 'components/LangDropdown'
 import { MediaQueryContext, PageHeader } from 'glint'
@@ -14,7 +17,7 @@ import {
 import Report from 'modules/reports/report'
 import _ from 'lodash'
 import { isRequestInProgress } from 'core/request'
-import { InsightsHeader } from './InsightsHeader'
+import { SubHeader } from 'modules/endUser/modules/campaigns/components/SubHeader'
 import { ReportList } from './ReportList'
 
 import styles from './styles.less'
@@ -45,6 +48,8 @@ type Props = RouteComponentProps<Params> & PropsFromRedux
 const InsightsComponent: FC<Props> = ({
   match, userDashboard, fetchInsights, isUserReportAvailable, isInsightLoading,
 }) => {
+  const history = useHistory()
+
   useEffect(() => {
     fetchInsights(match.url)
   }, [match.url])
@@ -59,7 +64,10 @@ const InsightsComponent: FC<Props> = ({
       <Content className={styles.pageContent}>
         {isInsightLoading ? <PageContentSkeleton /> : (
           <>
-            <InsightsHeader />
+            <SubHeader
+              title={I18n.t('campaign.dashboard_menu.insights')}
+              onBack={() => history.push('/dashboard')}
+            />
             <InsightsBody userDashboard={userDashboard} isUserReportAvailable={isUserReportAvailable} />
           </>
         )}
@@ -76,28 +84,28 @@ interface InsightBodyProps {
 
 const InsightsBody: FC<InsightBodyProps> = ({ userDashboard, isUserReportAvailable }) => {
   const { isMobile } = useContext(MediaQueryContext)
-  const width = isMobile ? window.innerWidth : window.innerWidth - 200
-  const MAX = 1000
-  const scale = Math.max(Math.min(width / MAX, 2), 1)
-  const offsetTop = (1 - scale) / 2 * 100
-  const offsetLeft = isMobile ? ((1 - scale) / 3) * 105 : ((1 - scale) * (200 / window.innerWidth)) * 100
-  let transform = scale < 1
-    ? `translate(-${offsetLeft}%, -${offsetTop}%) scale(${scale})`
-    : `translate(0, ${Math.abs(offsetTop)}%) scale(${scale})`
-  transform = ''
+  const [containerRef, containerSize] = useDimensions()
+  const [reportRef, reportSize] = useDimensions()
+  const reportSizeRef = useRef(null)
+  if (reportSizeRef.current == null && reportSize.width) {
+    reportSizeRef.current = reportSize.width
+  }
+  const scale = containerSize.width && reportSizeRef.current ? (containerSize.width / reportSizeRef.current) : 1
   const report = userDashboard && (
-    <Row gutter={[0, 16]} justify="center">
-      <Col className={styles.report} style={{ transform }}>
-        <Report
-          data={userDashboard.report}
-          results={userDashboard.results}
-          campaign={JSON.stringify({})}
-          user={JSON.stringify(userDashboard.user)}
-          locales={userDashboard.report.locales}
-          selectedLocale={userDashboard.report.defaultLanguage}
-          userReport={userDashboard}
-          dashboard
-        />
+    <Row justify="center">
+      <Col xs={24} ref={containerRef} className={styles.reportOuter} style={{ height: reportSize.height || 'auto' }}>
+        <div ref={reportRef} className={styles.reportInner} style={{ transform: `scale(${scale})` }}>
+          <Report
+            data={userDashboard.report}
+            results={userDashboard.results}
+            campaign={JSON.stringify({})}
+            user={JSON.stringify(userDashboard.user)}
+            locales={userDashboard.report.locales}
+            selectedLocale={userDashboard.report.defaultLanguage}
+            userReport={userDashboard}
+            dashboard
+          />
+        </div>
       </Col>
     </Row>
   )

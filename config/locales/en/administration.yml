@@ -39,6 +39,7 @@ en:
     administrators:
       drawers:
         edit:
+          can_download_report: Download Report
           can_manage: Manage
           can_manage_messages: Manage messages
           can_manage_options: Manage options

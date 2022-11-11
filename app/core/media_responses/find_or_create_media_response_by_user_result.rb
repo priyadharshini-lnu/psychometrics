@@ -16,7 +16,7 @@ module  MediaResponses
                elsif media_belongs_to_same_project?
                  new_media_record = media_record.dup
                  new_media_record.question_id = question.id
-                 new_media_record.user_result_id = user_result.id
+                 new_media_record.users_result_id = user_result.id
                  new_media_record.save!
                  new_media_record
                end
