@@ -1997,6 +1997,11 @@ en:
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
+  report_approvals:
+    tabs:
+      all: All
+      approved: Approved
+      my_tasks: My Tasks
   reports:
     actions:
       add: Add Report

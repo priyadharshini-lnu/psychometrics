@@ -742,6 +742,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
+    get 'report_approvals/*all', to: 'report_approvals#app', constraints: { all: /.*/, format: :html }
+
     resources :report_families, except: [:show] do
       member do
         get :sidebar
