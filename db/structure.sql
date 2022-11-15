@@ -3123,11 +3123,11 @@ CREATE TABLE public.report_approval_settings (
     id bigint NOT NULL,
     campaign_id bigint,
     report_id bigint,
-    qc_user_ids character varying[] DEFAULT '{}'::character varying[],
-    approver_user_ids character varying[] DEFAULT '{}'::character varying[],
-    approval_notification_user_ids character varying[] DEFAULT '{}'::character varying[],
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    qc_user_ids bigint[] DEFAULT '{}'::bigint[],
+    approver_user_ids bigint[] DEFAULT '{}'::bigint[],
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[]
 );
 
 
@@ -7752,13 +7752,6 @@ CREATE INDEX index_relationships_on_campaign_id ON public.relationships USING bt
 
 
 --
--- Name: index_report_approval_settings_on_approver_user_ids; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_report_approval_settings_on_approver_user_ids ON public.report_approval_settings USING gin (approver_user_ids);
-
-
---
 -- Name: index_report_approval_settings_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7770,13 +7763,6 @@ CREATE INDEX index_report_approval_settings_on_campaign_id ON public.report_appr
 --
 
 CREATE UNIQUE INDEX index_report_approval_settings_on_campaign_id_and_report_id ON public.report_approval_settings USING btree (campaign_id, report_id);
-
-
---
--- Name: index_report_approval_settings_on_qc_user_ids; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_report_approval_settings_on_qc_user_ids ON public.report_approval_settings USING gin (qc_user_ids);
 
 
 --
@@ -8477,13 +8463,6 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 --
 
 CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
-
-
---
--- Name: ur_approval_notification_user_ids_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX ur_approval_notification_user_ids_index ON public.report_approval_settings USING gin (approval_notification_user_ids);
 
 
 --
@@ -10473,6 +10452,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220929190534'),
 ('20221102140423'),
 ('20221102141534'),
-('20221102142001');
+('20221102142001'),
+('20221108082420');
 
 

@@ -18,4 +18,24 @@ RSpec.describe User, type: :model do
       expect(SendTwoFactorCodeJob).to have_received(:perform_later)
     end
   end
+
+  describe '.with_access_to_campaign' do
+    it 'returns only admins that have access to a campaign' do
+      campaign = create(:campaign)
+      super_admin = create(:superadmin)
+      client_admin_without_access = create(:client_admin)
+      project_admin_without_access = create(:project_admin)
+      client_admin_with_access = create(:client_admin)
+      create(:membership, client: campaign.client, user: client_admin_with_access, role: :client_admin)
+      project_admin_with_access = create(:project_admin)
+      create(:membership, client: campaign.project, user: project_admin_with_access)
+
+      results = User.with_access_to_campaign(campaign.id)
+      expect(results).to include(super_admin)
+      expect(results).to include(client_admin_with_access)
+      expect(results).to include(project_admin_with_access)
+      expect(results).not_to include(client_admin_without_access)
+      expect(results).not_to include(project_admin_without_access)
+    end
+  end
 end

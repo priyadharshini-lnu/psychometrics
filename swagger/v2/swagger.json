@@ -575,6 +575,337 @@
           "required": true
         }
       }
+    },
+    "/report_approval_settings/": {
+      "get": {
+        "summary": "ReportApprovalSetting List",
+        "operationId": "ReportApprovalSettingList",
+        "description": "Fetch ReportApprovalSetting List\n\n**Supported Filter Query Parameter**\n\n| Filter        | Description   |\n| ------------- |:-------------:|\n| filter[campaign_id_eq]     | Returns report approval setting for specific campaign |\n",
+        "tags": [
+          "ReportApprovalSetting"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ReportApprovalSetting list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "report_approval_settings",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "qc_user_ids": [
+                          1,
+                          2
+                        ],
+                        "approver_user_ids": [
+                          3,
+                          4
+                        ],
+                        "approval_notification_user_ids": [
+                          4,
+                          5
+                        ]
+                      },
+                      "relationships": {
+                        "campaign": {
+                          "data": {
+                            "id": "1",
+                            "type": "campaigns"
+                          }
+                        },
+                        "report": {
+                          "data": {
+                            "id": "2",
+                            "type": "reports"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/ReportApprovalSettingListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a report_approval_settings",
+        "operationId": "CreateReportApprovalSetting",
+        "description": "Create new ReportApprovalSetting",
+        "tags": [
+          "ReportApprovalSetting"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "ReportApprovalSetting Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "report_approval_settings",
+                  "data": {
+                    "attributes": {
+                      "qc_user_ids": [
+                        1,
+                        2
+                      ],
+                      "approver_user_ids": [
+                        3,
+                        4
+                      ],
+                      "approval_notification_user_ids": [
+                        4,
+                        5
+                      ]
+                    },
+                    "relationships": {
+                      "campaign": {
+                        "data": {
+                          "id": "1",
+                          "type": "campaigns"
+                        }
+                      },
+                      "report": {
+                        "data": {
+                          "id": "2",
+                          "type": "reports"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ReportApprovalSettingResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportApprovalSettingCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/report_approval_settings/{report_approval_setting_id}": {
+      "patch": {
+        "summary": "Update a report_approval_settings",
+        "operationId": "UpdateReportApprovalSetting",
+        "description": "Update ReportApprovalSetting",
+        "tags": [
+          "ReportApprovalSetting"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_approval_setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ReportApprovalSetting Updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "report_approval_settings",
+                  "data": {
+                    "attributes": {
+                      "qc_user_ids": [
+                        1,
+                        2
+                      ],
+                      "approver_user_ids": [
+                        3,
+                        4
+                      ],
+                      "approval_notification_user_ids": [
+                        4,
+                        5
+                      ]
+                    },
+                    "relationships": {
+                      "campaign": {
+                        "data": {
+                          "id": "1",
+                          "type": "campaigns"
+                        }
+                      },
+                      "report": {
+                        "data": {
+                          "id": "2",
+                          "type": "reports"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ReportApprovalSettingResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportApprovalSettingUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete a report_approval_setting",
+        "operationId": "DeleteReportApprovalSetting",
+        "description": "Delete a ReportApprovalSetting",
+        "tags": [
+          "ReportApprovalSetting"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_approval_setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "ReportApprovalSetting Deleted"
+          }
+        }
+      }
+    },
+    "/reports/": {
+      "get": {
+        "summary": "Report List",
+        "operationId": "ReportList",
+        "description": "Fetch Report List\n\n**Supported Filter Query Parameter**\n\n| Filter        | Description   |\n| ------------- |:-------------:|\n| filter[name_cont]     | Returns report whose name matches the passed filter value |\n",
+        "tags": [
+          "Report"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Report list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "reports",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "name": "Report Name"
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/ReportListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "summary": "User List",
+        "operationId": "UserList",
+        "description": "Fetch User List\n\n**Supported Filter Query Parameter**\n\n| Filter        | Description   |\n| ------------- |:-------------:|\n| filter[with_access_to_campaign]     | Returns admins who have access to the specific campaign_id passed as filter value |\n",
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "users",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "name": "User Name",
+                        "email": "user@cc.com"
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/UserListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "security": {
@@ -1907,6 +2238,877 @@
         },
         "required": [
           "data"
+        ]
+      },
+      "ReportApprovalSettingListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to report_approval_settings",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "campaign": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaigns",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    },
+                    "report": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to reports",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "qcs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "nullable": false
+                          },
+                          "email": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "email"
+                        ],
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
+                    "approvers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "nullable": false
+                          },
+                          "email": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "email"
+                        ],
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
+                    "approval_notification_users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "nullable": false
+                          },
+                          "email": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "email"
+                        ],
+                        "nullable": false
+                      },
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "qcs",
+                    "approvers",
+                    "approval_notification_users"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ReportApprovalSettingCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to report_approval_settings",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "qc_user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "approver_user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "approval_notification_user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "qc_user_ids",
+                  "approver_user_ids",
+                  "approval_notification_user_ids"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "report": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to reports",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "campaign",
+                  "report"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ReportApprovalSettingUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to report_approval_settings",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "qc_user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "approver_user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "approval_notification_user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "report": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to reports",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ReportApprovalSettingResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to report_approval_settings",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "report": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to reports",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "qcs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "nullable": false
+                        },
+                        "email": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "email"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "approvers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "nullable": false
+                        },
+                        "email": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "email"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "approval_notification_users": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "nullable": false
+                        },
+                        "email": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "email"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "qcs",
+                  "approvers",
+                  "approval_notification_users"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ReportListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to reports",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "UserListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to users",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "email": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "email"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
         ]
       }
     }

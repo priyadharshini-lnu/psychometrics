@@ -113,6 +113,8 @@ const AddEditDrawerComponent: FC<Props> = ({
             admin?.grants?.data?.campaigns?.includes(GrantType.manage),
           [`campaigns-${GrantType.manage_users}`]:
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
+          [`campaigns-${GrantType.manage_report_approvals}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.manage_report_approvals),
           [`campaigns-${GrantType.manage_options}`]:
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_options),
           [`smsInvites-${GrantType.view}`]:
@@ -494,6 +496,17 @@ const AddEditDrawerComponent: FC<Props> = ({
                   <Checkbox>
                     {I18n.t(
                       'administration.administrators.drawers.edit.can_manage_options',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item
+                  name={`campaigns-${GrantType.manage_report_approvals}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.manage_report_approvals',
                     )}
                   </Checkbox>
                 </Form.Item>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/MutableConstant
+# rubocop:disable Style/MutableConstant, Metrics/ModuleLength
 
 Dir["#{__dir__}/definitions/**/*.rb"].each { |file| require file }
 
@@ -116,6 +116,24 @@ module Swagger
           ),
           DesignSettingUpdateResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::DesignSetting::Schema.single_resource_response
+          ),
+          ReportApprovalSettingListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportApprovalSetting::Schema.multiple_resource_response
+          ),
+          ReportApprovalSettingCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportApprovalSetting::Schema.create_request
+          ),
+          ReportApprovalSettingUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportApprovalSetting::Schema.update_request
+          ),
+          ReportApprovalSettingResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportApprovalSetting::Schema.single_resource_response
+          ),
+          ReportListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Report::Schema.multiple_resource_response
+          ),
+          UserListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.multiple_resource_response
           )
         }
       }
@@ -123,4 +141,4 @@ module Swagger
   end
 end
 
-# rubocop:enable Style/MutableConstant
+# rubocop:enable Style/MutableConstant, Metrics/ModuleLength

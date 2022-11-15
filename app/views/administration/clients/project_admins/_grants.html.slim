@@ -105,7 +105,7 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][project_settings][]',
                         'security', resource.has_grant?(:project_settings, :security), id: project_settings_security_id, data: { turn_on: [project_settings_security_id] }
                 | Security settings
-    - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'manage_messages', 'participant_options', 'reset_nominations', 'report_options'], project: project)
+    - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'manage_messages', 'participant_options', 'reset_nominations', 'report_options', 'manage_report_approvals'], project: project)
       tr
         td Campaigns
         td
@@ -165,6 +165,11 @@ table.table.grants-table
               | Report Options
               sup
                 a href='#sup-note-1' 1
+          - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_report_approvals', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                        'manage_report_approvals', resource.has_grant?(:campaigns, :manage_report_approvals)
+                | Manage Report Approvals
 
     - if policy(:membership).manage_grants_for_actions?('messages', ['email', 'instructions', 'options'], project: project)
       tr

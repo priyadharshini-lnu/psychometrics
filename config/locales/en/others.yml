@@ -1506,6 +1506,8 @@ en:
       filled?: can't be blank
       key?: can't be blank
       missed?: can't be blank
+      report_approval_settings:
+        validates_admins: Admins don't have access to the campaign
   ecommerce:
     carts:
       show:

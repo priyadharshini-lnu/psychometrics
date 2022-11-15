@@ -1127,6 +1127,9 @@ Rails.application.routes.draw do
             patch :upload_image
             post :refresh
           end
+
+          jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
+          jsonapi_resources :reports, only: [:index]
         end
       end
     end

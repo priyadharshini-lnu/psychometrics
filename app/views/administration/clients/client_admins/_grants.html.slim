@@ -166,7 +166,7 @@ table.table.grants-table
                         'manage', resource.has_grant?(:sms_invites, :manage), id: sms_invites_manage_id, data: { turn_on: [sms_invites_view_id] }
                 | Manage
 
-    - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'manage_messages'], client: client)
+    - if policy(:membership).manage_grants_for_actions?('campaigns', ['view', 'manage', 'manage_users', 'manage_options', 'manage_messages', 'manage_report_approvals'], client: client)
       tr
         td Campaigns
         td
@@ -222,6 +222,11 @@ table.table.grants-table
                 | Report Options
                 sup
                   a href='#sup-note-1' 1
+            - if policy(:membership).manage_grants_for_action?('campaigns', 'manage_report_approvals', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                        'manage_report_approvals', resource.has_grant?(:campaigns, :manage_report_approvals)
+                | Manage Report Approvals
 
     - if policy(:membership).manage_grants_for_actions?('messages', ['email', 'instructions', 'options'], client: client)
       tr

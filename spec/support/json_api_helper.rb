@@ -15,7 +15,8 @@ module JsonApiHelper
   def jsonapi_merge_attributes(data, attributes)
     attributes = data.dig(:data, :attributes).deep_merge(attributes)
     data = data.deep_dup
-    data[:data][:attributes] = attributes
+    data[:data][:id] = attributes[:id] if attributes[:id]
+    data[:data][:attributes] = attributes.except(:id)
     data
   end
 
