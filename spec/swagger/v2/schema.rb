@@ -134,6 +134,9 @@ module Swagger
           ),
           UserListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.multiple_resource_response
+          ),
+          ReportApprovalListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportApproval::Schema.multiple_resource_response
           )
         }
       }

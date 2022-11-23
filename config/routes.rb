@@ -1130,6 +1130,13 @@ Rails.application.routes.draw do
 
           jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
           jsonapi_resources :reports, only: [:index]
+          jsonapi_resources :report_approvals, only: %i[index] do
+            collection do
+              get :search_campaign
+              get :search_report
+              get :search_user
+            end
+          end
         end
       end
     end

@@ -47,6 +47,8 @@ class Report < ApplicationRecord
                                               before_remove: :remove_factor_aliases
   has_many :assessments_default_order, through: :assessments_reports, source: :assessment
   has_many :dimensions, -> { distinct }, through: :assessments_default_order
+  has_many :report_approval_settings, dependent: :destroy
+  has_many :report_approvals, dependent: :destroy
 
   scope :dimensions_with_occupations, -> { includes(dimensions: [:occupations]) } do
     def with_occupations_since(timestamp)

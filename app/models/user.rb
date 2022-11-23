@@ -116,6 +116,7 @@ class User < ApplicationRecord
   has_many :campaigns, through: :campaign_users
   has_many :assessors, dependent: :destroy
   has_many :assessors_campaings, through: :assessors, source: :campaign
+  has_many :report_approvals, dependent: :destroy
 
   has_one :security_setting, through: :project
   has_one :privacy_consent
