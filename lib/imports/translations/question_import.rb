@@ -2,10 +2,10 @@
 
 module Imports
   module Translations
-    class AssessmentImport < TranslationImport
-      TRANSLATABLE_BRANCHES = %w[block question instructions].freeze
+    class QuestionImport < TranslationImport
+      TRANSLATABLE_BRANCHES = %w[question].freeze
 
-      attr_accessor :resource_id
+      attr_accessor :question_id, :resource_id
 
       validates :resource_id, presence: true
 
@@ -19,13 +19,14 @@ module Imports
                                                     'text/plain'] }
 
       def process!
-        # Return error if form not valid
         return false unless valid?
 
         imported_items = load_imported_items.compact
 
-        extract = imported_items.map(&:locale) & Translation.available_translation_for_assessment(resource_id)
-        Translation.for_assessment(resource_id).where.not(locale: extract).destroy_all
+        extract = imported_items.map(&:locale) & Translation.where(translateable_type: resource_type,
+                                                                   translateable_id: resource_id)
+        Translation.where(translateable_type: resource_type, translateable_id: resource_id).
+          where.not(locale: extract).destroy_all
 
         if imported_items.map(&:valid?).all?
           imported_items.each(&:save!)
@@ -42,11 +43,11 @@ module Imports
       end
 
       def resource_type
-        Assessment::TYPES[:common]
+        'Question'
       end
 
       def assessment
-        Assessment.find(resource_id)
+        nil
       end
     end
   end

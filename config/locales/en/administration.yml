@@ -3855,6 +3855,9 @@ en:
           header: Import Translations
       import:
         successfully: Translations was successfully imported
+      questions:
+        new:
+          header: Import Translations
       reports:
         new:
           header: Import Translations

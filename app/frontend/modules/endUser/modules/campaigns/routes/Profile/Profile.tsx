@@ -301,7 +301,8 @@ function ProfileComponent ({
                               : errors?.[field.name]}
                             validateStatus={errors?.[field.name] ? 'error' : ''}
                             name={`field_${field.question_id}`}
-                            label={Utils.stripHTML(field.question.props.questionText)}
+                            label={Utils.stripHTML(field.translations.questionText
+                              || field.question.props.questionText)}
                             required={field.required}
                           >
                             <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />

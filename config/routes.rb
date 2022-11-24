@@ -789,6 +789,10 @@ Rails.application.routes.draw do
         get :new
         post :import
       end
+      resources :questions, only: [] do
+        post :export
+        post :import
+      end
       resources :reports, only: [] do
         post :export
         get :new
