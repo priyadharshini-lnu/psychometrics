@@ -7,6 +7,9 @@ class Api::V2::Administration::DashboardResource < Api::V2::Administration::Base
 
   ransack_filters %i[campaign_id_eq preview_available]
 
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+
   def fetchable_fields
     return super if context[:embed_token]
 

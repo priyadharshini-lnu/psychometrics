@@ -62,6 +62,7 @@ const AuditLogList: React.FC<Props> = (
   }
   const [range, setRange] = useState<RangeValue<Moment> | null | undefined>(initialRange || null)
 
+
   const filterProps = (type: string, value = '') => ({
     filterDropdown: ({
       selectedKeys, confirm, setSelectedKeys,
@@ -70,7 +71,9 @@ const AuditLogList: React.FC<Props> = (
         <Input
           placeholder={I18n.t(`administration.audit_log.search_${type}`)}
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          value={selectedKeys[0] || value}
+          defaultValue={value}
+          value={selectedKeys[0]}
+          onPressEnter={() => changeFilter(`${type}_search`, selectedKeys[0])}
           style={{ marginBottom: 8, display: 'block' }}
         />
         <Space>
@@ -81,7 +84,7 @@ const AuditLogList: React.FC<Props> = (
             style={{ width: 90 }}
             onClick={() => {
               confirm({ closeDropdown: false })
-              changeFilter(`${type}_search`, `${selectedKeys[0]}`)
+              changeFilter(`${type}_search`, selectedKeys[0])
             }}
           >
             {I18n.t('administration.audit_log.search')}
@@ -113,6 +116,11 @@ const AuditLogList: React.FC<Props> = (
       <Row>
         <Col span={24}>
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+            <Column
+              title={I18n.t('administration.audit_log.record_id')}
+              key="recordId"
+              dataIndex="recordId"
+            />
             <Column
               title={I18n.t('administration.audit_log.type')}
               key="recordType"
@@ -178,9 +186,19 @@ const AuditLogList: React.FC<Props> = (
               filterIcon={() => <SearchOutlined style={{ color: range ? '#1BAF99' : undefined }} />}
             />
             <Column
+              title={I18n.t('administration.audit_log.user')}
+              key="user"
+              {...filterProps('user', tableConfig.filters.user_search)}
+              render={({ user, userId }) => {
+                if (!userId) return null
+
+                return user ? user.email : `${userId} - deleted`
+              }}
+            />
+            <Column
               title={I18n.t('administration.audit_log.client')}
               key="client"
-              {...filterProps('client', tableConfig.filters.client)}
+              {...filterProps('client', tableConfig.filters.client_search)}
               render={({ client, clientId }) => (
                 client
                   ? <a href={`/administration/clients/${client.id}/projects`}>{client.name}</a>
@@ -190,7 +208,7 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.project')}
               key="project"
-              {...filterProps('project', tableConfig.filters.project)}
+              {...filterProps('project', tableConfig.filters.project_search)}
               render={({ project, projectId }) => (
                 project
                   ? <a href={`/administration/projects/${project.id}/new_campaigns`}>{project.name}</a>
@@ -200,7 +218,7 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.campaign')}
               key="campaign"
-              {...filterProps('campaign', tableConfig.filters.campaign)}
+              {...filterProps('campaign', tableConfig.filters.campaign_search)}
               render={({ projectId, campaignId, campaign }) => (
                 campaign ? (
                   <a href={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>

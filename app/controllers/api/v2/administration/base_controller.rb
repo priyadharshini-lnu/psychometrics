@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::BaseController < ActionController::Base
+    include AuditLogModule::ControllerHelper
     include JSONAPI::Utils
     include V2::Administration::Concerns::ApiController
     include Pundit
@@ -98,7 +99,12 @@ module Api
     end
 
     def context
-      { user: current_user, namespace: %i[api administration] }
+      {
+        user: current_user,
+        namespace: %i[api administration],
+        params: params,
+        request_details: request_details_to_log
+      }
     end
   end
 end
