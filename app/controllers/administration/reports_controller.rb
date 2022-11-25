@@ -53,7 +53,7 @@ module Administration
       resource.created_by = current_user
       resource.updated_by = current_user
 
-      if should_have_external_settings?
+      if resource.should_have_external_settings?
         @external_settings = Administration::Reports::GetExternalSettingsForm.
                              call(resource, resource_params[:external_settings])[:ok]
 
@@ -95,7 +95,7 @@ module Administration
     def update
       resource.updated_by = current_user
 
-      if should_have_external_settings?
+      if resource.should_have_external_settings?
         @external_settings = Administration::Reports::GetExternalSettingsForm.
                              call(resource, resource_params[:external_settings])[:ok]
 
