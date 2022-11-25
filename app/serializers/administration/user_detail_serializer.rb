@@ -51,7 +51,7 @@ module Administration
         :norm,
         :pearson_user_assessment,
         :saville_user_assessment,
-        assessment: %i[pearson_assessment_setting saville_assessment_setting dimension norms]
+        assessment: %i[dimension norms]
       )
       if current_user.has_permission?(:assessors, :view, campaign_id: campaign.id)
         query

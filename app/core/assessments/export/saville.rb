@@ -85,7 +85,7 @@ module Assessments
 
       def savile_factors
         @savile_factors ||=
-          SavilleFactor.where(assessment_id: assessment.saville_assessment_id).
+          SavilleFactor.where(assessment_id: assessment.external_settings[:assessment_id]).
           group_by(&:score_type).
           transform_values do |factors|
             factors.group_by(&:factor_id).transform_values { |f| f.uniq(&:value_type) }
@@ -93,7 +93,7 @@ module Assessments
       end
 
       def factor_id_and_name
-        @factor_id_and_name ||= SavilleFactor.where(assessment_id: assessment.saville_assessment_id).
+        @factor_id_and_name ||= SavilleFactor.where(assessment_id: assessment.external_settings[:assessment_id]).
                                 pluck(:factor_id, :name).to_h
       end
     end

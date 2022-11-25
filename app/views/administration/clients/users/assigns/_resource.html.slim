@@ -52,7 +52,7 @@ tr id=dom_id(resource)
             - if report.mindmill?
               = link_to resource.assign_with_result.mindmill_report.url, link_options
                 span.fa.fa-pie-chart
-            - elsif report.assessment.hogan? && report.hogan_report_setting
+            - elsif report.assessment.hogan? && report.external_settings.present?
               - url = resource.assigns_reports.find_by(report: report).external_report.url
               - if url
                 = link_to url, link_options

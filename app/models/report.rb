@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 class Report < ApplicationRecord
   include Copyable
   include RansackSearchableFields
@@ -72,30 +71,27 @@ class Report < ApplicationRecord
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
   has_many :campaign_templates, dependent: :destroy
 
-  has_one :hogan_report_setting
-  has_one :saville_report_setting
-  accepts_nested_attributes_for :hogan_report_setting, allow_destroy: true
-  accepts_nested_attributes_for :saville_report_setting, allow_destroy: true
-
   #   VALIDATIONS
   #
   validates :assessment, presence: true, unless: :data_only
   validates :owner, presence: true, allow_nil: true
   validate :max_assessments_count
   validate :min_assessments_count, unless: :data_only?
-  validate :all_assessments_hogan, if: :hogan_report_setting
-  validate :all_assessments_saville, if: :saville_report_setting
+  validates :external_settings, presence: true, if: :provider_hogan? || :provider_saville?
+  validate :all_assessments_hogan, if: :provider_hogan?
+  validate :all_assessments_saville, if: :provider_saville?
 
   #   CALLBACKS
   #
   before_validation :set_assessment, unless: :data_only?
-  before_save :delete_hogan_report_setting, :delete_saville_report_setting, :set_provider
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
   after_save :delete_assessments_reports, if: :data_only?
 
   enum category: { common: 0, threesixty: 1 }, _prefix: :category
   enum provider: PROVIDERS, _prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
+
+  serialize :external_settings, PsyJsonbSerializer
 
   mount_uploader :icon, ImageUploader
   mount_uploader :poster, ImageUploader
@@ -108,7 +104,6 @@ class Report < ApplicationRecord
     self.icon_color = Settings.default_colors.sample
   end
 
-  delegate :saville_report_id, to: :saville_report_setting, allow_nil: true
   #   SCOPES
   #
   scope :enabled, -> { where.not(disabled: true) }
@@ -145,7 +140,7 @@ class Report < ApplicationRecord
   # Copy report with nested resources
   def clone
     @cloned_item = deep_clone(
-      include: %i[assessments hogan_report_setting saville_report_setting]
+      include: %i[assessments]
     )
     @cloned_item.gen_uniq_name
     @cloned_item
@@ -187,6 +182,14 @@ class Report < ApplicationRecord
     provider_hogan?
   end
 
+  def external_report_id
+    external_settings[:report_id]
+  end
+
+  def should_have_external_settings?
+    provider_hogan? || provider_saville?
+  end
+
   def has_data_configuration_occupations?
     return false if data_configuration.blank?
 
@@ -221,6 +224,10 @@ class Report < ApplicationRecord
     slice(:name, :owner_id)
   end
 
+  def external_settings?
+    provider_hogan? || provider_saville?
+  end
+
   private
 
   def max_assessments_count
@@ -239,14 +246,6 @@ class Report < ApplicationRecord
 
   def set_assessment
     self.assessment = assessments.sort_by(&:name)&.first
-  end
-
-  def delete_hogan_report_setting
-    hogan_report_setting.destroy if hogan_report_setting && !assessments.all?(&:hogan?)
-  end
-
-  def delete_saville_report_setting
-    saville_report_setting.destroy if saville_report_setting && !assessments.all?(&:saville?)
   end
 
   def add_factors_aliases(assessment)
@@ -268,19 +267,4 @@ class Report < ApplicationRecord
   def all_assessments_saville
     errors.add(:base, :assessments_not_saville) unless assessments.all?(&:saville?)
   end
-
-  def set_provider
-    self.provider = if hogan_report_setting.present?
-                      PROVIDERS[:hogan]
-                    elsif saville_report_setting.present?
-                      PROVIDERS[:saville]
-                    elsif mindmill?
-                      PROVIDERS[:mindmill]
-                    elsif provider == 'pearson'
-                      PROVIDERS[:pearson]
-                    else
-                      PROVIDERS[:internal]
-                    end
-  end
 end
-# rubocop:enable Metrics/ClassLength

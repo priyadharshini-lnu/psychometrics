@@ -8,8 +8,8 @@ describe Saville::AssessmentOrderRequest do
   before(:all) { savon.mock!   }
   after(:all)  { savon.unmock! }
 
-  let(:assessment) { create(:assessment, :saville) }
-  let(:report) { create(:report, :saville, assessments: [assessment], provider: 'saville') }
+  let(:assessment) { create(:assessment, :saville, external_settings: { norm_id: 'norm_id' }) }
+  let(:report) { create(:report, :saville, assessments: [assessment]) }
   let(:user_assessment) { create(:user_assessment, assessment: assessment) }
   let(:saville_user_assessment) do
     create(:saville_user_assessment, user_assessment: user_assessment, norm_id: 'norm_id')
@@ -65,9 +65,9 @@ describe Saville::AssessmentOrderRequest do
           <IdValue name="ClientCode">saville_client_code</IdValue>
         </ClientId>
         <PackageId idOwner="Saville Consulting">
-          <IdValue name="Instrument">#{assessment.saville_assessment_id}</IdValue>
-          <IdValue name="XmlScores">#{report.saville_report_id}</IdValue>
-          <IdValue name="PdfReport">#{report.saville_report_id}</IdValue>
+          <IdValue name="Instrument">#{assessment.external_settings[:assessment_id]}</IdValue>
+          <IdValue name="XmlScores">#{report.external_settings[:report_id]}</IdValue>
+          <IdValue name="PdfReport">#{report.external_settings[:report_id]}</IdValue>
         </PackageId>
         <ProviderId idOwner="The Talent Enterprise">
           <IdValue>Saville Consulting</IdValue>

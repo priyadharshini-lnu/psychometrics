@@ -3243,7 +3243,8 @@ CREATE TABLE public.reports (
     require_approval boolean DEFAULT false,
     created_by_id bigint,
     updated_by_id bigint,
-    data_only boolean DEFAULT false
+    data_only boolean DEFAULT false,
+    external_settings jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -10453,6 +10454,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221102140423'),
 ('20221102141534'),
 ('20221102142001'),
-('20221108082420');
+('20221108082420'),
+('20221122172755'),
+('20221122172756');
 
 

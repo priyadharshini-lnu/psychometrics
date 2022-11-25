@@ -5,21 +5,26 @@ require 'rails_helper'
 RSpec.describe Report, type: :model do
   let(:report) { build(:report) }
 
-  it 'deletes saville_report_setting if any assessment is not of type saville' do
-    saville_assessment = create(:assessment, :saville)
-    report = create(:report, :saville, assessments: [saville_assessment])
-    expect(report.saville_report_setting).to_not eq(nil)
+  context 'validation Internal report' do
+    let(:report) { build(:report, provider: 'internal') }
 
-    common_assessment = create(:assessment)
-    create(:assessments_report, report: report, assessment: common_assessment)
-    report.reload.update_attribute(:name, 'New Name')
-    expect(report.reload.saville_report_setting).to eq(nil)
+    let(:common_assessment) { create(:assessment) }
+    let(:saville_assessment) { create(:assessment, :saville) }
+    let(:hogan_assessment) { create(:assessment, :hogan) }
+
+    subject { report.valid? }
+
+    it 'valid' do
+      report.assessment_ids = [common_assessment.id, saville_assessment.id, saville_assessment.id]
+      subject
+      expect(report.errors.details[:base]).not_to include(error: :assessments_not_saville)
+      expect(report.errors.details[:base]).not_to include(error: :assessments_not_hogan)
+    end
   end
 
   context 'validation Saville report' do
     context '#all_assessments_saville' do
-      let(:saville_report_setting) { build(:saville_report_setting) }
-      let(:report) { build(:report, saville_report_setting: saville_report_setting) }
+      let(:report) { build(:report, provider: 'saville', external_settings: { report_id: 'reportId' }) }
 
       let(:common_assessment) { create(:assessment) }
       let(:saville_assessment) { create(:assessment, :saville) }
@@ -64,8 +69,7 @@ RSpec.describe Report, type: :model do
 
   context 'validation Hogan report' do
     context '#all_assessments_hogan' do
-      let(:hogan_report_setting) { build(:hogan_report_setting) }
-      let(:report) { build(:report, hogan_report_setting: hogan_report_setting) }
+      let(:report) { build(:report, provider: 'hogan', external_settings: { report_id: 'reportId' }) }
 
       let(:common_assessment) { create(:assessment) }
       let(:hogan_assessment) { create(:assessment_hogan) }

@@ -9,13 +9,11 @@ class UserReport < ApplicationRecord
   belongs_to :campaign
   belongs_to :report_family
 
-  has_one :saville_report_setting, through: :report
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
   has_many :text_module_overrides, dependent: :destroy
 
   delegate :client, to: :campaign
-  delegate :saville_report_id, to: :report
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, to: :report
 
@@ -104,8 +102,8 @@ class UserReport < ApplicationRecord
     @report_families_report ||= report.report_families_reports.find_by(report_family_id: report_family_id)
   end
 
-  def hogan_report_id
-    report.hogan_report_setting.hogan_report_id
+  def external_report_id
+    report.external_settings[:report_id]
   end
 
   def details_to_log

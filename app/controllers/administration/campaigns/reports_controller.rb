@@ -68,7 +68,7 @@ module Administration
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(
-            :norm, :assessor_form, assessment: %i[pearson_assessment_setting saville_assessment_setting norms]
+            :norm, :assessor_form, assessment: %i[norms]
           ),
           each_serializer: Administration::CampaignAssessmentSerializer,
           current_user: current_user, project_id: campaign.project_id,

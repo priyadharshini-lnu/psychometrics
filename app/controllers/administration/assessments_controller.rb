@@ -25,10 +25,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def new
     @_resource = resource_class.new
-    @_resource.build_hogan_assessment_setting
-    @_resource.build_saville_assessment_setting
-    @_resource.build_pearson_assessment_setting
-    @_resource.build_iiht_assessment_setting
+    @external_settings = Administration::Assessments::ExternalSettings::BaseForm.new
     @_resource.set_default_color
   end
 
@@ -36,14 +33,20 @@ class Administration::AssessmentsController < Administration::BaseController
     @_resource = resource_class.new(resource_params)
     resource.created_by = current_user
     resource.updated_by = current_user
-    @_resource.build_iiht_assessment_setting if @_resource.iiht? && @_resource.iiht_assessment_setting.blank?
+
+    unless resource.common?
+      @external_settings = Administration::Assessments::GetExternalSettingsForm.
+                           call(resource, resource_params[:external_settings])[:ok]
+
+      resource.external_settings = @external_settings.attributes.compact_blank
+    end
 
     if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
       resource.owner_id = current_user.client_admin_client_ids.first
     end
 
     respond_to do |format|
-      if resource.save
+      if (resource.common? || @external_settings&.valid?) && resource.save
         audit! :create, resource, payload: params.permit!
         format.js
       else
@@ -77,22 +80,26 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def edit
-    @_resource.build_hogan_assessment_setting if @_resource.hogan_assessment_setting.blank?
-    @_resource.build_saville_assessment_setting if @_resource.saville_assessment_setting.blank?
-    @_resource.build_pearson_assessment_setting if @_resource.pearson_assessment_setting.blank?
-    @_resource.build_iiht_assessment_setting if @_resource.iiht_assessment_setting.blank?
+    @external_settings = Administration::Assessments::ExternalSettings::BaseForm.new(@_resource.external_settings)
     add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
   end
 
   def update
     resource.updated_by = current_user
+
+    unless resource.common?
+      @external_settings = Administration::Assessments::GetExternalSettingsForm.
+                           call(resource, resource_params[:external_settings])[:ok]
+
+      resource.external_settings = @external_settings.attributes.compact_blank if @external_settings.valid?
+    end
+
     respond_to do |format|
-      if resource.update(resource_params)
+      if (resource.common? || @external_settings&.valid?) && resource.update(resource_params.except(:external_settings))
         audit! :update, resource, payload: params.permit!
         format.js
         format.json { render json: :ok }
       else
-        resource.build_iiht_assessment_setting if resource.iiht? && resource.iiht_assessment_setting.blank?
         format.js { render :edit }
         format.json { render json: :fail }
       end
@@ -224,11 +231,8 @@ class Administration::AssessmentsController < Administration::BaseController
       :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
       :status, :icon, :icon_color, :remove_icon, :poster, :remove_poster,
       :enable_video_check, :enable_audio_check, :enable_network_check,
-      :owner_id, :project_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
-      saville_assessment_setting_attributes:
-      %i[id saville_assessment_id saville_norm_id],
-      pearson_assessment_setting_attributes: %i[id pearson_assessment_id pearson_norm_id],
-      iiht_assessment_setting_attributes: %i[id iiht_assessment_id_number iiht_schedule_config],
+      :owner_id, :project_id,
+      external_settings: %i[assessment_id norm_id schedule_config],
       resources: %i[assessmentId questionId], options: {}
     )
   end

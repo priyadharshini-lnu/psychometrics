@@ -25,7 +25,7 @@ describe Iiht::AddAssessment do
     stub_request(:post, "#{Settings.iiht.base_api_url}/GetAssessmentURLAsync").
       with(body: {
         tenantId: config['tenant_id'],
-        assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+        assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
         userEmailAddress: user.email,
         firstName: user.first_name,
         lastName: user.last_name,
@@ -41,11 +41,13 @@ describe Iiht::AddAssessment do
 
   it 'uses assessment schedule_config' do
     iiht_schedule_config = { 'duration' => 40, 'passPercentage' => 40 }
-    allow(user_assessment.assessment).to receive(:iiht_schedule_config).and_return(iiht_schedule_config)
+    allow(user_assessment.assessment).to receive(:external_settings).and_return(
+      { schedule_config: iiht_schedule_config }
+    )
     stub = stub_request(:post, "#{Settings.iiht.base_api_url}/GetAssessmentURLAsync").
            with(body: {
              tenantId: config['tenant_id'],
-             assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+             assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
              userEmailAddress: user.email,
              firstName: user.first_name,
              lastName: user.last_name,
@@ -64,7 +66,7 @@ describe Iiht::AddAssessment do
     stub = stub_request(:post, "#{Settings.iiht.base_api_url}/GetAssessmentURLAsync").
            with(body: {
              tenantId: config['tenant_id'],
-             assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+             assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
              userEmailAddress: user.email,
              firstName: user.first_name,
              lastName: user.last_name,
@@ -79,7 +81,9 @@ describe Iiht::AddAssessment do
 
   it 'merges assessment schedule_config and campaign_assessment exxternal_config' do
     iiht_schedule_config = { 'duration' => 50, 'passPercentage' => 40 }
-    allow(user_assessment.assessment).to receive(:iiht_schedule_config).and_return(iiht_schedule_config)
+    allow(user_assessment.assessment).to receive(:external_settings).and_return(
+      { schedule_config: iiht_schedule_config }
+    )
     external_config = { 'duration' => 60, 'totalAttempts' => 3 }
     allow(user_assessment).to receive_message_chain(:campaign_assessment, :external_config).and_return(external_config)
     schedule_config = base_schedule_config(user_assessment).merge(
@@ -89,7 +93,7 @@ describe Iiht::AddAssessment do
     stub = stub_request(:post, "#{Settings.iiht.base_api_url}/GetAssessmentURLAsync").
            with(body: {
              tenantId: config['tenant_id'],
-             assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+             assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
              userEmailAddress: user.email,
              firstName: user.first_name,
              lastName: user.last_name,

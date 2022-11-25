@@ -2,6 +2,7 @@
   = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
     .modal-body
       = render_error_notification(resource)
+      = render_error_notification(@external_settings) if @external_settings
       .form-inputs.clearfix
         = f.input :name
         = f.input :description, as: :text
@@ -24,49 +25,45 @@
                                       data: { live_search: true,
                                               max_options: Report::MAX_ASSESSMENT_COUNT,
                                               max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
-                                              dynamic_selectable_url: url_for(action: :external_reports, assessment_ids: '__id__', external_report_id: f.object.hogan_report_setting&.hogan_report_id || f.object.saville_report_setting&.saville_report_id),
+                                              dynamic_selectable_url: url_for(action: :external_reports, assessment_ids: '__id__', external_report_id: f.object&.external_settings&.dig(:report_id)),
                                               dynamic_selectable_target: 'select.external_reports_setting',
                                               include_blank: t('.none_external') }}
+
         - if (resource.assigns_reports.any? || resource.clients_reports.any?) && resource.errors[:assessments].blank?
           span.help-block.text-danger.margin-top-minus-10
             = I18n.t('activerecord.errors.models.report.has_already_assigned')
 
-        = f.input :mindmill, as: :select,
-                             collection: [[t('.none_external'), false], [t('.load_mindmill_report'), true]],
-                             wrapper_html: { class: 'hidden' },
-                             input_html: {disabled: true},
-                             include_blank: false
-
         = f.input :provider, as: :select,
-                      collection: [[t('.none_external'), 'internal'], [t('.load_from_pearson'), 'pearson']],
-                      wrapper_html: { class: 'resource_pearson hidden' },
-                      input_html: { disabled: true },
+                      collection: [ \
+                        [t('.none_external'), 'internal'],
+                        [t('.load_from_pearson'), 'pearson', ],
+                        ['hogan', 'hogan', {class: 'hidden'}],
+                        ['saville', 'saville', {class: 'hidden'}] \
+                      ],
+                      wrapper_html: { class: 'resource_pearson' },
+                      input_html: { id: 'provider_input' },
                       include_blank: false
 
-        = f.simple_fields_for :hogan_report_setting do |hogan|
-          = hogan.input :hogan_report_id,
+        = f.simple_fields_for :external_settings do |hogan|
+          = hogan.input :report_id,
+                        label: 'Hogan report ID',
                         as: :select,
                         collection: [],
                         input_html: { multiple: false, class: 'external_reports_setting' },
-                        wrapper_html: { class: 'resource_hogan hidden' },
+                        wrapper_html: { class: 'resource_hogan hidden', id: 'hogan_report_id' },
                         disabled: true,
                         include_hidden: false
-          = hogan.input :_destroy,
-                        as: :hidden,
-                        wrapper_html: { class: 'resource_hogan destroy' },
-                        :input_html => { :value => 1 }
-        = f.simple_fields_for :saville_report_setting do |saville|
-          = saville.input :saville_report_id,
+
+        = f.simple_fields_for :external_settings do |saville|
+          = saville.input :report_id,
+                        label: 'Saville report ID',
                         as: :select,
                         collection: [],
                         input_html: { multiple: false, class: 'external_reports_setting' },
-                        wrapper_html: { class: 'resource_saville hidden' },
+                        wrapper_html: { class: 'resource_saville hidden', id: 'saville_report_id' },
                         disabled: true,
                         include_hidden: false
-          = saville.input :_destroy,
-                        as: :hidden,
-                        wrapper_html: { class: 'resource_saville destroy' },
-                        :input_html => { :value => 1 }
+
         = f.input :default_language,
                   collection: I18n.available_locales.map { |locale| [t("languages.#{locale}"), locale] },
                   include_blank: false
