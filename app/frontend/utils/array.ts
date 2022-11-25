@@ -30,6 +30,18 @@ const joinJSXElements = (arr: any[], sep: string | JSX.Element) => {
   return arr.slice(1).reduce((xs, x) => xs.concat([sep, x]), [arr[0]])
 }
 
+export const getMenuItems = (arr: object[],
+  label: string,
+  key: string,
+  title?: string) => {
+  if (arr.length <= 0 || !arr) {
+    return []
+  }
+  return arr.map(eachItem => (
+    { label: eachItem[label], key: eachItem[key], title: title ? eachItem[title] : '' }
+  ))
+}
+
 export default {
   shuffle,
   joinJSXElements,

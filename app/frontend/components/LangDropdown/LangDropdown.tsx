@@ -22,16 +22,14 @@ const LangDropdown: React.FC<Props> = ({ locales, current, changeLocale }) => {
     changeLocale(key).then(() => { location.reload() })
   }
 
+  const menuItems = _.map(locales, locale => (
+    locale !== current ? (
+      { key: locale, label: I18n.t(`languages_localized.${locale}`) }
+    ) : null
+  ))
+
   const menu = (
-    <Menu onClick={onSelect}>
-      {_.map(locales, locale => (
-        locale !== current ? (
-          <Menu.Item key={locale}>
-            {I18n.t(`languages_localized.${locale}`)}
-          </Menu.Item>
-        ) : null
-      ))}
-    </Menu>
+    <Menu items={menuItems} onClick={onSelect} />
   )
   if (locales?.length <= 1) return null
 

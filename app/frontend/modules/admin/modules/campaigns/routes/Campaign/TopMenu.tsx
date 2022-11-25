@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import { Menu } from 'antd'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import {
   UserOutlined,
   SettingOutlined,
@@ -55,48 +56,47 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
     return undefined
   }
 
+  const menuItems: ItemType[] = [{ key: 'participants', label: 'Participants', icon: <UserOutlined /> }]
+  campaignPermissions.manageCampaigns && menuItems.push({
+    key: 'assessments_reports',
+    label: 'Assessments & Reports',
+    icon: <PieChartOutlined />,
+  })
+  campaignPermissions.viewRegistrationCodes && menuItems.push({
+    key: 'registration_codes',
+    label: 'Registration codes',
+    icon: <QrcodeOutlined />,
+  })
+  if (campaignPermissions.viewDashboard || campaignPermissions.viewAccesssheet
+    || campaignPermissions.viewAccesssheetSettings) {
+    menuItems.push({
+      key: 'dashboard',
+      label: I18n.t('administration.dashboard.tabs.dashboard'),
+      icon: <DashboardOutlined />,
+    })
+  }
+  campaignPermissions.viewDatasheets && menuItems.push({
+    key: 'datasheet',
+    label: I18n.t('common.model.datasheet'),
+    icon: <DatabaseOutlined />,
+  })
+  campaignPermissions.viewDatasheets && menuItems.push({
+    key: 'admins',
+    label: I18n.t('common.model.admins'),
+    icon: <SolutionOutlined />,
+  })
+  campaignPermissions.manageOptions && menuItems.push({
+    key: 'options',
+    label: 'Options',
+    icon: <SettingOutlined />,
+  })
   return (
     <Menu
       onSelect={handleOnSelect}
       selectedKeys={getActiveMenuKey(pathname)}
-      // data-testid="top-level-navigation"
       mode="horizontal"
-    >
-      <Menu.Item key="participants" icon={<UserOutlined />}>
-        Participants
-      </Menu.Item>
-      {campaignPermissions.manageCampaigns && (
-        <Menu.Item key="assessments_reports" icon={<PieChartOutlined />}>
-          Assessments & Reports
-        </Menu.Item>
-      )}
-      {campaignPermissions.viewRegistrationCodes && (
-        <Menu.Item key="registration_codes" icon={<QrcodeOutlined />}>
-          Registration codes
-        </Menu.Item>
-      )}
-      {(campaignPermissions.viewDashboard || campaignPermissions.viewAccesssheet
-        || campaignPermissions.viewAccesssheetSettings) && (
-        <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
-          {I18n.t('administration.dashboard.tabs.dashboard')}
-        </Menu.Item>
-      )}
-      {campaignPermissions.viewDatasheets && (
-        <Menu.Item key="datasheet" icon={<DatabaseOutlined />}>
-          {I18n.t('common.model.datasheet')}
-        </Menu.Item>
-      )}
-      {campaignPermissions.manageCampaignAdmins && (
-        <Menu.Item key="admins" icon={<SolutionOutlined />}>
-          {I18n.t('common.model.admins')}
-        </Menu.Item>
-      )}
-      {campaignPermissions.manageOptions && (
-        <Menu.Item key="options" icon={<SettingOutlined />}>
-          Options
-        </Menu.Item>
-      )}
-    </Menu>
+      items={menuItems}
+    />
   )
 }
 

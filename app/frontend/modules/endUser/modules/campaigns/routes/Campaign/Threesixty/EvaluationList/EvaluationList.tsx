@@ -52,37 +52,24 @@ const EvaluationListComponent = ({
   }
 
   const menu = item => (
-    <Menu>
-      {!isEvaluationCompleted(item)
-        && (
-        <Menu.Item
-          key="0"
-          onClick={({ domEvent }) => {
-            domEvent.stopPropagation()
-            declineEvaluation(item.campaignId, item.id)
-          }}
-        >
-          {I18n.t('threesixty.decline_invite')}
-        </Menu.Item>
-        )
-      }
-    </Menu>
+    <Menu
+      onClick={() => declineEvaluation(item.campaignId, item.id)}
+      items={!isEvaluationCompleted(item)
+        ? [{ key: 'decline_invite', label: I18n.t('threesixty.decline_invite') }] : []}
+    />
   )
 
   const evaluatorsList = subject => (
-    <Menu>
-      {subject.evaluators.map(evaluator => (
-        <Menu.Item
-          key={evaluator.id}
-          onClick={() => {
-            // eslint-disable-next-line max-len
-            history.push(`/threesixty_campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approve_evaluation=true&read=true`)
-          }}
-        >
-          {userPresenter.getFullNameWithEmail(evaluator.user)}
-        </Menu.Item>
-      ))}
-    </Menu>
+    <Menu
+      onClick={({ key }) => {
+        // eslint-disable-next-line max-len
+        history.push(`/threesixty_campaigns/${subject.campaignId}/evaluations/${key}?approve_evaluation=true&read=true`)
+      }}
+      items={subject.evaluators.map(evaluator => ({
+        key: evaluator.id,
+        label: userPresenter.getFullNameWithEmail(evaluator.user),
+      }))}
+    />
   )
 
   const showDeclineEvaluationDropdown = item => (

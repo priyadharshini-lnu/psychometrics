@@ -17,24 +17,20 @@ export const ReportApprovals: React.FC<OwnProps> = ({ routes }) => {
 
   const onSelect = ({ key }) => routeUtils.moveTo(history, settings.urlPrefix, key)
   const activeMenu = ['/my_tasks', '/approved', '/all'].find(val => pathname.includes(val))
+  const menuItems = [
+    { key: '/my_tasks', label: I18n.t('report_approvals.tabs.my_tasks') },
+    { key: '/approved', label: I18n.t('report_approvals.tabs.approved') },
+    { key: '/all', label: I18n.t('report_approvals.tabs.all') },
+  ]
 
   return (
     <div className="p4">
       <Menu
+        items={menuItems}
         onSelect={onSelect}
         selectedKeys={activeMenu ? [activeMenu] : undefined}
         mode="horizontal"
-      >
-        <Menu.Item key="/my_tasks">
-          {I18n.t('report_approvals.tabs.my_tasks')}
-        </Menu.Item>
-        <Menu.Item key="/approved">
-          {I18n.t('report_approvals.tabs.approved')}
-        </Menu.Item>
-        <Menu.Item key="/all">
-          {I18n.t('report_approvals.tabs.all')}
-        </Menu.Item>
-      </Menu>
+      />
       <div>
         <RouteList
           routes={routes}

@@ -190,31 +190,31 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   client, meta, updateResource, removeResource, openModal,
 }) => {
   const { id, name } = client
-
-  return (
-    <Menu>
-      <Menu.Item key="edit">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => openModal('ClientFormModal', {
-            updateClient: updateResource, types: meta.types, countries: meta.countries, client,
-          })}
-        >
-          {I18n.t('common.actions.edit')}
-        </div>
-      </Menu.Item>
-      <Menu.Item key="remove">
-        <div role="button" tabIndex={-1} onClick={() => openModal('RemoveClientModal', { id, name, removeResource })}>
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
-      <Menu.Item key="licenses">
+  const menuItems = [
+    { key: 'edit', label: I18n.t('common.actions.edit') },
+    { key: 'remove', label: I18n.t('common.actions.remove') },
+    {
+      key: 'licenses',
+      label: (
         <a href={`/administration/clients/${id}/licenses`}>
           {I18n.t('frontend.clients.actions.menus.view_licenses')}
         </a>
-      </Menu.Item>
-    </Menu>
+      ),
+    },
+  ]
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      return openModal('ClientFormModal', {
+        updateClient: updateResource, types: meta.types, countries: meta.countries, client,
+      })
+    }
+    if (key === 'remove') {
+      return openModal('RemoveClientModal', { id, name, removeResource })
+    }
+  }
+
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
 

@@ -6,6 +6,7 @@ import RouteList from 'components/RouteList'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { connect, ConnectedProps } from 'react-redux'
 import { get as getCurrentCampaign } from 'modules/admin/modules/campaigns/core/current'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import settings from '../../../../settings'
 
 export { default as Subjects } from './Subjects'
@@ -31,20 +32,27 @@ type Props = PropsFromRedux & OwnProps
 const ParticipantComponent: React.FC<Props> = ({ campaignPermissions, history, routes }) => {
   const prefix = `${settings.urlPrefix}/:campaignId`
   const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
+  const menuItems: ItemType[] = [{
+    key: '/participants/subjects',
+    label: I18n.t('administration.participants.tabs.subjects'),
+  }]
+  campaignPermissions.viewAssessors && menuItems.push({
+    key: '/participants/assessors',
+    label: I18n.t('administration.participants.tabs.assessors'),
+  })
+  campaignPermissions.viewSmsInvites && menuItems.push({
+    key: '/participants/sms_invites',
+    label: I18n.t('administration.participants.tabs.sms_invites'),
+  })
 
   return (
     <div>
-      <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
-        <Menu.Item key="/participants/subjects">{I18n.t('administration.participants.tabs.subjects')}</Menu.Item>
-        {campaignPermissions.viewAssessors && (
-          <Menu.Item key="/participants/assessors">{I18n.t('administration.participants.tabs.assessors')}</Menu.Item>
-        )}
-        {campaignPermissions.viewSmsInvites && (
-          <Menu.Item key="/participants/sms_invites">
-            {I18n.t('administration.participants.tabs.sms_invites')}
-          </Menu.Item>
-        )}
-      </Menu>
+      <Menu
+        items={menuItems}
+        onSelect={onSelect}
+        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        mode="horizontal"
+      />
       <RouteList routes={routes} urlPrefix={prefix} />
     </div>
   )

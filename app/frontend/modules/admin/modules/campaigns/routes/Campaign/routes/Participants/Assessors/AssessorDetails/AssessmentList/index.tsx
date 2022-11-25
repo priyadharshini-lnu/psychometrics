@@ -21,6 +21,7 @@ import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import { useParams } from 'react-router-dom'
 import Modals from 'modules/admin/components/Modals/'
 import { openModal } from 'modules/admin/core/ui/modals'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import styles from './styles.less'
 import AddAssessmentModal from './AddAssessmentModal'
 
@@ -259,42 +260,28 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
     })
   }
 
+  const menuItems: ItemType[] = []
+  const resetEvaluationMenuItems = [
+    { key: 'reset', label: I18n.t('administration.assessor.assessments.actions.reset') },
+    { key: 'resetProgress', label: I18n.t('administration.assessor.assessments.actions.reset_progress') },
+    { key: 'rescore', label: I18n.t('administration.assessor.assessments.actions.rescore') },
+  ]
+  permissions.resetEvaluation && menuItems.push(...resetEvaluationMenuItems)
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'reset') {
+      return handleReset()
+    }
+    if (key === 'resetProgress') {
+      return handleResetProgress()
+    }
+    if (key === 'rescore') {
+      return rescore()
+    }
+  }
   return (
-    <Menu>
-      {permissions.resetEvaluation && (
-        <>
-          <Menu.Item key="reset">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={handleReset}
-            >
-              {I18n.t('administration.assessor.assessments.actions.reset')}
-            </div>
-          </Menu.Item>
-          <Menu.Item key="resetProgress">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={handleResetProgress}
-            >
-              {I18n.t('administration.assessor.assessments.actions.reset_progress')}
-            </div>
-          </Menu.Item>
-          <Menu.Item key="rescore">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={rescore}
-            >
-              {I18n.t('administration.assessor.assessments.actions.rescore')}
-            </div>
-          </Menu.Item>
-        </>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
-
 
 export default connecter(withEnhancedTable<{}>(AssessmentList, 'assessorAssessmentsList', { maintainHistory: true }))

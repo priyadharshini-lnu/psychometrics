@@ -5,13 +5,20 @@ import {
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
 const CreateSubjectsDropdown = ({ openModal }) => {
+  const menuItems = [
+    { key: 'add', label: 'Add Subjects...' },
+    { key: 'import', label: 'Import Subjects...' },
+  ]
+  const handleMenuClick = ({ key }) => {
+    if (key === 'add') {
+      openModal('CreateSubjectModal')
+    }
+    if (key === 'import') {
+      openModal('SubjectImportModal')
+    }
+  }
   const menu = (
-    <Menu>
-      <Menu.Item onClick={() => openModal('CreateSubjectModal')} key="1">
-        Add Subjects...
-      </Menu.Item>
-      <Menu.Item key="2" onClick={() => openModal('SubjectImportModal')}>Import Subjects...</Menu.Item>
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 
   return (

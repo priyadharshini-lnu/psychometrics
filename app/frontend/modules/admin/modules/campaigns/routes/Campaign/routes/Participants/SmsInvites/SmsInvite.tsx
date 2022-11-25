@@ -22,6 +22,7 @@ import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import ConditionalDropdown from 'components/ConditionalDropdown'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { ImportModal as ImportSmsInvites } from './ImportModal'
 import { ToolsDropdown } from './ToolsDropdown'
 import styles from './styles.less'
@@ -241,33 +242,30 @@ interface ActionsMenu {
   permissions: Props['smsInvites']['permissions']
 }
 
-const ActionsMenu = ({ onEdit, onRemove, permissions }) => (
-  <Menu>
-    {permissions.update && (
-    <Menu.Item key="edit">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={onEdit}
-      >
-        {I18n.t('common.actions.edit')}
-      </div>
-    </Menu.Item>
-    )}
+const ActionsMenu = ({ onEdit, onRemove, permissions }) => {
+  const menuItems:ItemType[] = []
+  permissions.update && menuItems.push({
+    key: 'edit',
+    label: I18n.t('common.actions.edit'),
+  })
+  permissions.destroy && menuItems.push({
+    key: 'remove',
+    label: I18n.t('common.actions.remove'),
+  })
 
-    {permissions.destroy && (
-    <Menu.Item key="delete">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={onRemove}
-      >
-        {I18n.t('common.actions.remove')}
-      </div>
-    </Menu.Item>
-    )}
-  </Menu>
-)
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      return onEdit()
+    }
+    if (key === 'remove') {
+      return onRemove()
+    }
+  }
+
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
+  )
+}
 export const SmsInvites = connecter(
   withEnhancedTable<{}>(SmsInvitesComponent, 'smsInvites', { maintainHistory: true }),
 )

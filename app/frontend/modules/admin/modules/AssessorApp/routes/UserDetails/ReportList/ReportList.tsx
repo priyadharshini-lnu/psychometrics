@@ -89,13 +89,18 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   return (
-    <Menu>
-      <Menu.Item key="viewReport" disabled={!reportUrl}>
-        <Link to={previewUrl()}>
-          {I18n.t('reports.actions.view')}
-        </Link>
-      </Menu.Item>
-    </Menu>
+    <Menu
+      items={
+        [{
+          key: 'viewReport',
+          label: (
+            <Link to={previewUrl()}>
+              {I18n.t('reports.actions.view')}
+            </Link>),
+          disabled: !reportUrl,
+        }]
+      }
+    />
   )
 }
 

@@ -6,6 +6,7 @@ import routeUtils from 'utils/route'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { History } from 'history'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { routes } from './routes'
 
 const { I18n } = window
@@ -24,16 +25,16 @@ type Props = PropsFromRedux & OwnProps
 
 export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
   const prefix = `${settings.urlPrefix}/:projectId/settings`
-
+  const { permissions } = currentUser
   const modifiedRoutes = () => {
     let firstRoute = ''
-    if (currentUser.permissions.manageProjectSmtpSettings) {
+    if (permissions.manageProjectSmtpSettings) {
       firstRoute = '/smtp'
-    } else if (currentUser.permissions.manageProjectSamlSetting) {
+    } else if (permissions.manageProjectSamlSetting) {
       firstRoute = '/saml'
-    } else if (currentUser.permissions.manageProjectIntegrations) {
+    } else if (permissions.manageProjectIntegrations) {
       firstRoute = '/integrations'
-    } else if (currentUser.permissions.manageProjectSecuritySettings) {
+    } else if (permissions.manageProjectSecuritySettings) {
       firstRoute = '/security'
     }
     return [{ redirect: true, from: '', to: firstRoute }, ...routes]
@@ -42,35 +43,40 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
   const onSelect = ({ key }) => {
     routeUtils.moveTo(history, prefix, key)
   }
+  const menuItems:ItemType[] = []
+  permissions.manageProjectSmtpSettings && menuItems.push({
+    key: '/smtp',
+    label: I18n.t('administration.smtp_settings.smtp'),
+  })
+  permissions.manageProjectSamlSetting && menuItems.push({
+    key: '/saml',
+    label: I18n.t('administration.smtp_settings.saml'),
+  })
+  permissions.manageProjectIntegrations && menuItems.push({
+    key: '/integrations',
+    label: I18n.t('administration.integrations.integrations'),
+  })
+  permissions.manageProjectSecuritySettings && menuItems.push({
+    key: '/security',
+    label: I18n.t('administration.security_setting.security'),
+  })
+  permissions.manageDesignSettings && menuItems.push({
+    key: '/design',
+    label: I18n.t('administration.project_tabs.design'),
+  })
+  permissions.manageProfileSettings && menuItems.push({
+    key: '/profile',
+    label: I18n.t('administration.project_tabs.profile'),
+  })
 
   return (
     <div>
-      <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
-        {currentUser.permissions.manageProjectSmtpSettings && (
-          <Menu.Item key="/smtp">{I18n.t('administration.smtp_settings.smtp')}</Menu.Item>)
-        }
-        {currentUser.permissions.manageProjectSamlSetting && (
-          <Menu.Item key="/saml">{I18n.t('administration.saml_settings.saml')}</Menu.Item>)
-        }
-        {currentUser.permissions.manageProjectIntegrations && (
-          <Menu.Item key="/integrations">{I18n.t('administration.integrations.integrations')}</Menu.Item>)
-        }
-        {currentUser.permissions.manageProjectSecuritySettings && (
-          <Menu.Item key="/security">{I18n.t('administration.security_setting.security')}</Menu.Item>)
-        }
-        {/* {currentUser.permissions.manageProjectGeneralSetting && (
-          <Menu.Item key="/general">{I18n.t('administration.project_tabs.general')}</Menu.Item>)
-        }
-        {currentUser.permissions.manageProjectWebhooksSetting && (
-          <Menu.Item key="/webhooks">{I18n.t('administration.project_tabs.webhooks')}</Menu.Item>)
-        } */}
-        {currentUser.permissions.manageDesignSettings && (
-          <Menu.Item key="/design">{I18n.t('administration.project_tabs.design')}</Menu.Item>)
-        }
-        {currentUser.permissions.manageProfileSettings && (
-          <Menu.Item key="/profile">{I18n.t('administration.project_tabs.profile')}</Menu.Item>)
-        }
-      </Menu>
+      <Menu
+        items={menuItems}
+        onSelect={onSelect}
+        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        mode="horizontal"
+      />
       <RouteList routes={modifiedRoutes()} urlPrefix={prefix} />
     </div>
   )

@@ -86,12 +86,13 @@ export default function ReportPreview ({
   }
 
   const actions = () => {
+    const menuItems = [
+      { key: 'subject', label: I18n.t('common.text.subject') },
+      { key: 'all', label: I18n.t('common.text.all_pages') },
+    ]
     const actionList = [
       <Dropdown overlay={(
-        <Menu onClick={onChangeView}>
-          <Menu.Item key="subject">{I18n.t('common.text.subject')}</Menu.Item>
-          <Menu.Item key="all">{I18n.t('common.text.all_pages')}</Menu.Item>
-        </Menu>
+        <Menu items={menuItems} onClick={onChangeView} />
         )}
       >
         <Button>

@@ -8,6 +8,7 @@ import qs from 'qs'
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
+import { statusMenuItems } from 'modules/endUser/modules/campaigns/common/menuItems'
 import { secondsLeftFromNow } from 'utils/time'
 import { Language } from 'modules/endUser/modules/campaigns/components/Language'
 import store from 'modules/endUser/store'
@@ -89,20 +90,12 @@ const EvaluationComponent = ({
   }
 
   const StatusMenu = () => (
-    <Menu onClick={(e) => {
-      handleStatusClick(e.key)
-    }}
-    >
-      <Menu.Item key="approved">
-        {I18n.t('threesixty.approved')}
-      </Menu.Item>
-      <Menu.Item key="waiting">
-        {I18n.t('threesixty.waiting')}
-      </Menu.Item>
-      <Menu.Item key="denied">
-        {I18n.t('threesixty.denied')}
-      </Menu.Item>
-    </Menu>
+    <Menu
+      onClick={(e) => {
+        handleStatusClick(e.key)
+      }}
+      items={statusMenuItems}
+    />
   )
 
   const StatusDropdown = () => {

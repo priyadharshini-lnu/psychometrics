@@ -14,6 +14,7 @@ import Modals from 'modules/admin/components/Modals/'
 
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { Link } from 'react-router-dom'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import styles from './styles.less'
 import UserFormModal from './UserFormModal'
 import ImportUsersModal from './ImportUsersModal'
@@ -339,45 +340,49 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
+  const menuItems:ItemType[] = []
+  permissions.edit && menuItems.push({
+    key: 'edit',
+    label: I18n.t('frontend.edit'),
+  })
+  permissions.loginAs && menuItems.push({
+    key: 'loginAs',
+    label: (
+      <a
+        href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userId}/spoof`}
+      >
+        {I18n.t('frontend.login')}
+      </a>
+    ),
+  })
+  permissions.resetPassword && menuItems.push({
+    key: 'changePassword',
+    label: I18n.t('frontend.change_password'),
+  })
+  permissions.remove && menuItems.push({
+    key: 'remove',
+    label: I18n.t('common.actions.remove'),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      return onEdit()
+    }
+    if (key === 'changePassword') {
+      return handleChangePassword()
+    }
+    if (key === 'remove') {
+      return handleDelete()
+    }
+  }
+
   return (
     <Menu
+      items={menuItems}
+      onClick={handleMenuClick}
       id={`menu_campaign-subjects-${email}`}
       aria-labelledby={`menu-button_campaign-subjects-${email}`}
-    >
-      {permissions.edit && (
-        <Menu.Item
-          key="edit"
-          onClick={onEdit}
-        >
-          {I18n.t('frontend.edit')}
-        </Menu.Item>
-      )}
-      {permissions.loginAs && (
-        <Menu.Item key="loginAs">
-          <a
-            href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userId}/spoof`}
-          >
-            {I18n.t('frontend.login')}
-          </a>
-        </Menu.Item>
-      )}
-      {permissions.resetPassword && (
-        <Menu.Item
-          key="changePassword"
-          onClick={handleChangePassword}
-        >
-          {I18n.t('frontend.change_password')}
-        </Menu.Item>
-      )}
-      {permissions.remove && (
-        <Menu.Item
-          key="delete"
-          onClick={handleDelete}
-        >
-          {I18n.t('common.actions.remove')}
-        </Menu.Item>
-      )}
-    </Menu>
+    />
   )
 }
 

@@ -5,6 +5,7 @@ import {
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { State as SmsInvites } from 'modules/admin/modules/campaigns/core/smsInvites'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
 const { I18n } = window
 
@@ -37,28 +38,35 @@ const menu: React.FC<Props> = ({
   campaignId,
   openModal,
   permissions,
-}) => (
-  <Menu>
-    {permissions.export && (
-      <Menu.Item key="export">
-        <a href={`/administration/new_campaigns/${campaignId}/sms_invites.csv`}>
-          {I18n.t('administration.sms_invites.tools.export')}
-        </a>
-      </Menu.Item>
-    )}
-    {permissions.import && (
-      <Menu.Item key="import">
-        <a onClick={() => openModal('ImportSmsInvites', { campaignId })}>
-          {I18n.t('administration.sms_invites.tools.import')}
-        </a>
-      </Menu.Item>
-    )}
-    {permissions.sendSms && (
-      <Menu.Item key="sendSms">
-        <a onClick={() => openModal('SendSmsModal', { campaignId })}>
-          {I18n.t('administration.sms_invites.tools.send_sms')}
-        </a>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+}) => {
+  const menuItems:ItemType[] = []
+  permissions.export && menuItems.push({
+    key: 'export',
+    label: (
+      <a href={`/administration/new_campaigns/${campaignId}/sms_invites.csv`}>
+        {I18n.t('administration.sms_invites.tools.export')}
+      </a>
+    ),
+  })
+  permissions.import && menuItems.push({
+    key: 'import',
+    label: I18n.t('administration.sms_invites.tools.import'),
+  })
+  permissions.sendSms && menuItems.push({
+    key: 'sendSms',
+    label: I18n.t('administration.sms_invites.tools.send_sms'),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'import') {
+      openModal('ImportSmsInvites', { campaignId })
+    }
+    if (key === 'sendSms') {
+      openModal('SendSmsModal', { campaignId })
+    }
+  }
+
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
+  )
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Table, Menu, Row, Col, Switch, Modal, message,
 } from 'antd'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
@@ -148,32 +149,31 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
+  const menuItems: ItemType[] = []
+  permissions.viewReport && menuItems.push({
+    key: 'viewReport',
+    label: (
+      <Link to={previewUrl()}>
+        {I18n.t('reports.actions.view')}
+      </Link>),
+  })
+  reportUrl && permissions.downloadReport && menuItems.push({
+    key: 'downloadReport',
+    label: <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>,
+  })
+  permissions.remove && menuItems.push({
+    key: 'remove',
+    label: I18n.t('common.actions.remove'),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'remove') {
+      handleDelete()
+    }
+  }
+
   return (
-    <Menu>
-      {permissions.viewReport && (
-        <Menu.Item key="viewReport">
-          <Link to={previewUrl()}>
-            {I18n.t('reports.actions.view')}
-          </Link>
-        </Menu.Item>
-      )}
-      {reportUrl && permissions.downloadReport && (
-        <Menu.Item key="downloadReport">
-          <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
-        </Menu.Item>
-      )}
-      {permissions.remove && (
-        <Menu.Item key="remove">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleDelete}
-          >
-            {I18n.t('common.actions.remove')}
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
 

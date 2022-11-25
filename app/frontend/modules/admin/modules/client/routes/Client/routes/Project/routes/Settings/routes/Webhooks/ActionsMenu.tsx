@@ -32,13 +32,13 @@ interface MenuProps {
     // Props here
   }
 
-const MenuDropdown: FC<MenuProps> = () => (
-  <Menu id="dummy-id" aria-labelledby="dummy">
-    <Menu.Item key="edit" onClick={() => null}>
-      {I18n.t('administration.projects.webhook_settings.edit')}
-    </Menu.Item>
-    <Menu.Item key="remove" onClick={() => null}>
-      {I18n.t('administration.projects.webhook_settings.delete')}
-    </Menu.Item>
-  </Menu>
-)
+const MenuDropdown: FC<MenuProps> = () => {
+  const menuItems = [
+    { key: 'edit', label: I18n.t('administration.projects.webhook_settings.edit') },
+    { key: 'remove', label: I18n.t('administration.projects.webhook_settings.delete') },
+  ]
+  const handleMenuClick = () => null
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} id="dummy-id" aria-labelledby="dummy" />
+  )
+}

@@ -3,6 +3,8 @@ import {
   Table, Menu, Row, Col, message,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
+import { MenuItemType } from 'rc-menu/lib/interface'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { useParams } from 'react-router-dom'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
@@ -152,107 +154,85 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
+  const exportGroupItems: MenuItemType[] = []
+  permissions.exportRawResults && exportGroupItems.push({
+    key: 'export_raw_labels',
+    label: 'Raw (with labels)',
+  })
+  permissions.exportRawResults && exportGroupItems.push({
+    key: 'export_raw',
+    label: 'Raw (without labels)',
+  })
+  permissions.exportScoringResults && exportGroupItems.push({
+    key: 'export_scoring',
+    label: 'Scoring',
+  })
+  permissions.exportNormedResults && exportGroupItems.push({
+    key: 'export_normed',
+    label: 'Normed Factor Scores',
+  })
+  permissions.exportRawFactorScores && exportGroupItems.push({
+    key: 'export_raw_scores',
+    label: 'Raw Factor Scores',
+  })
+  permissions.exportExternalResults && exportGroupItems.push({
+    key: 'export_external',
+    label: 'External',
+  })
+
+  const importGroupItems: MenuItemType[] = [
+    { key: 'import_raw', label: 'Raw' },
+    { key: 'import_scoring', label: 'Scoring' },
+  ]
+
+  const rescoreMenuItems:ItemType[] = [
+    { type: 'divider' },
+    { key: 'rescoring', label: I18n.t('campaign_assessment.modals.rescore_response.title') },
+  ]
+
+  const menuItems: ItemType[] = [{
+    type: 'group', key: 'export', label: 'Export', children: exportGroupItems,
+  }]
+  permissions.importResults && menuItems.push({
+    type: 'group',
+    key: 'import',
+    label: 'Import',
+    children: importGroupItems,
+  })
+  permissions.rescoreResponses && menuItems.push(...rescoreMenuItems)
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'export_raw_labels') {
+      return handleRawExport(true)
+    }
+    if (key === 'export_raw') {
+      return handleRawExport(false)
+    }
+    if (key === 'export_scoring') {
+      return handleScoringExport()
+    }
+    if (key === 'export_normed') {
+      return handleNormedResultExport()
+    }
+    if (key === 'export_raw_scores') {
+      return handleRawFactorExport()
+    }
+    if (key === 'export_external') {
+      return handleExternalResultExport()
+    }
+    if (key === 'import_raw') {
+      return openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })
+    }
+    if (key === 'import_scoring') {
+      return openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })
+    }
+    if (key === 'rescoring') {
+      return handleRescoreResponse()
+    }
+  }
+
   return (
-    <Menu>
-      <Menu.ItemGroup key="export" title="Export">
-        {permissions.exportRawResults && (
-          <Menu.Item key="export_raw_labels">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={() => handleRawExport(true)}
-            >
-              Raw (with labels)
-            </div>
-          </Menu.Item>
-        )}
-        {permissions.exportRawResults && (
-          <Menu.Item key="export_raw">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={() => handleRawExport(false)}
-            >
-              Raw (without labels)
-            </div>
-          </Menu.Item>
-        )}
-        {permissions.exportScoringResults && (
-          <Menu.Item key="export_scoring">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={() => handleScoringExport()}
-            >
-              Scoring
-            </div>
-          </Menu.Item>
-        )}
-        {permissions.exportNormedResults && (
-          <Menu.Item key="export_normed">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={() => handleNormedResultExport()}
-            >
-              Normed Factor Scores
-            </div>
-          </Menu.Item>
-        )}
-        {permissions.exportRawFactorScores && (
-          <Menu.Item key="export_raw_scores">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={() => handleRawFactorExport()}
-            >
-              Raw Factor Scores
-            </div>
-          </Menu.Item>
-        )}
-        {permissions.exportExternalResults && (
-          <Menu.Item key="export_external">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={() => handleExternalResultExport()}
-            >
-              External
-            </div>
-          </Menu.Item>
-        )}
-      </Menu.ItemGroup>
-      <Menu.ItemGroup key="import" title="Import">
-        {permissions.importResults && (
-          <Menu.Item key="import_raw">
-            <a
-              onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
-            >
-              Raw
-            </a>
-          </Menu.Item>
-        )}
-        {permissions.importResults && (
-          <Menu.Item key="import_scoring">
-            <a
-              onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
-            >
-              Scoring
-            </a>
-          </Menu.Item>
-        )}
-      </Menu.ItemGroup>
-      <Menu.Divider />
-      {permissions.rescoreResponses && (
-        <Menu.Item key="rescoring">
-          <a
-            onClick={handleRescoreResponse}
-          >
-            {I18n.t('campaign_assessment.modals.rescore_response.title')}
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
 

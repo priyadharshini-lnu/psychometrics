@@ -15,11 +15,16 @@ export default function Reports ({
 
   return (
     <div>
-      <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
-        <Menu.Item key="/reports/options">
-          {I18n.t('administration.threesixty_campaigns.menu.report.menu.report_options.title')}
-        </Menu.Item>
-      </Menu>
+      <Menu
+        onSelect={onSelect}
+        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        mode="horizontal"
+        items={[
+          {
+            key: '/reports/options',
+            label: I18n.t('administration.threesixty_campaigns.menu.report.menu.report_options.title'),
+          }]}
+      />
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
     </div>
   )

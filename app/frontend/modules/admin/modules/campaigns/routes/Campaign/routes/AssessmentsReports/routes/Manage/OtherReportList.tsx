@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { MoreOutlined } from '@ant-design/icons'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import {
@@ -138,26 +139,26 @@ interface ActionMenuProps {
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, id, permissions, exportData,
-}) => (
-  <Menu>
-    {permissions.export && (
-      <Menu.Item key="export">
-        <div
-          role="button"
-          tabIndex={-1}
-        >
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => exportData(campaignId, id)}
-          >
-            {I18n.t('campaign_report.actions.export_data')}
-          </div>
-        </div>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+}) => {
+  const menuItems: ItemType[] = []
+  permissions.export && menuItems.push({
+    key: 'export',
+    label: I18n.t('campaign_report.actions.export_data'),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'export') {
+      exportData(campaignId, id)
+    }
+  }
+
+  return (
+    <Menu
+      items={menuItems}
+      onClick={handleMenuClick}
+    />
+  )
+}
 
 
 export const OtherReportList = withEnhancedTable<OwnProps>(
