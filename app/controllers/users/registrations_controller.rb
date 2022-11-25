@@ -30,7 +30,6 @@ module Users
           end
         end
       else
-        @form.errors.add(:base, I18n.t('administration.clients.registration_codes.errors.review'))
         respond_with @form
       end
     end

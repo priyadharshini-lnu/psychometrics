@@ -325,6 +325,7 @@ ar:
       edit:
         password_label: كلمه السر
     registrations:
+      communication_not_setup_error: لم يتم إعداد مراسلة البريد الإلكتروني للتسجيل ، يرجى الاتصال بمسؤول هذا المشروع.
       new:
         email: البريد الإلكتروني
         first_name: الاسم الاول

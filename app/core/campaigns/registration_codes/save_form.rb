@@ -16,7 +16,7 @@ module Campaigns
       validates :code, length: { in: 4..32 },
         format: { with: /\A[a-zA-Z0-9\-_]+\z/,
                   message: I18n.t('administration.clients.registration_codes.errors.criteria') }
-      validate :validate_code_uniqueness, if: :new_registration_code_form?
+      validate :validate_code_uniqueness
       validate :validate_usage_count, unless: :new_registration_code_form?
       validate :validate_date_range
       validate :validate_restricted_domains
@@ -42,7 +42,9 @@ module Campaigns
       end
 
       def validate_code_uniqueness
-        if RegistrationCode.exists?(code: code, campaign_id: campaign_id)
+        project_id = Campaign.find(campaign_id).project_id
+        existing_record = RegistrationCode.find_by(code: code, project_id: project_id)
+        if existing_record&.id != context.try(:registration_code)&.id
           errors.add(:code, I18n.t('administration.clients.registration_codes.errors.duplicate_code'))
         end
       end

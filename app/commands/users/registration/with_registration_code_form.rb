@@ -7,6 +7,7 @@ module Users
       validates :registration_code, presence: true
       validate :validate_registration_code
       validate :validate_restricted_domains
+      validate :validate_communication_email
 
       def registration_code=(code)
         super code&.strip
@@ -32,6 +33,10 @@ module Users
       def registration_code_record
         @registration_code_record ||= Administration::Clients::RegistrationCodes::VerificationQuery.
                                       new(context.project, registration_code).query
+      end
+
+      def campaign
+        registration_code_record&.first&.campaign
       end
     end
   end

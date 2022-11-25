@@ -1630,7 +1630,7 @@ en:
         errors:
           count_invalid: cannot be less than the used_count = %{use_count}
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
-          duplicate_code: is in use. Try another one.
+          duplicate_code: is in use in this Project. Try another one.
           in_use: "%{attribute} is already in use"
           incorrect_domain: Incorrect domain format.
           invalid_attribute: "%{attribute} is invalid"
