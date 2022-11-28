@@ -50,7 +50,10 @@ class ApplicationController < ::BaseController
 
   def inside_examus_iframe?
     return true if session[:examus_origin]
-    return false if params['examus-client-origin'].nil? || !params['examus-client-origin'].end_with?('examus.net')
+    if params['examus-client-origin'].nil? || !params['examus-client-origin'].end_with?('examus.net') ||
+       !params['examus-client-origin'].end_with?('alemira.com')
+      return false
+    end
 
     session[:examus_origin] = params['examus-client-origin']
   end
