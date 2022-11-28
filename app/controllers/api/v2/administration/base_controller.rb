@@ -11,17 +11,19 @@ module Api
       create: :create_request, update: :update_request, create_relationship:
       :create_relationship_request, update_relationship: :update_relationship_request
     }.freeze
-    JSON_API_ACTIONS = %i[index show create update destroy get_related_resource show_relationship
-                          create_relationship update_relationship destroy_relationship].freeze
 
     protect_from_forgery with: :null_session
     class_attribute :_crud_schema_class, :_request_schemas
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
-    append_after_action :verify_authorized, except: JSON_API_ACTIONS
+    before_action :ensure_project
+    before_action :ensure_campaign
+    append_before_action :pundit_authorize
+    append_after_action :verify_authorized
 
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
+    rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     def self.validate_crud_requests(schema_class)
@@ -64,7 +66,7 @@ module Api
     end
 
     def context_for_schema_validation
-      { current_user: current_user }
+      { current_user: current_user, project: project, campaign: campaign }
     end
 
     def rescue_json_api_error(error)
@@ -103,8 +105,80 @@ module Api
         user: current_user,
         namespace: %i[api administration],
         params: params,
-        request_details: request_details_to_log
+        request_details: request_details_to_log,
+        project: project,
+        campaign: campaign
       }
+    end
+
+    def rescue_record_not_found(error)
+      jsonapi_render_errors JSONAPI::Exceptions::RecordNotFound.new(error.id)
+    end
+
+    def campaign_id
+      params[:campaign_id] || campaign&.id
+    end
+
+    def project_id
+      params[:project_id] || params[:client_id] || project&.id
+    end
+
+    def campaign
+      return unless params[:campaign_id]
+
+      @campaign ||= Api::Administration::CampaignPolicy::Scope.new(
+        current_user,
+        Campaign
+      ).resolve.find(params[:campaign_id])
+    end
+
+    def project
+      return unless params[:project_id]
+
+      @project ||= ::Administration::ClientPolicy::Scope.new(
+        current_user,
+        Client
+      ).resolve.find(params[:project_id])
+    end
+
+    def ensure_project
+      project if params[:project_id]
+    end
+
+    def ensure_campaign
+      campaign if params[:campaign_id]
+    end
+
+    def pundit_authorize
+      authorize(
+        model || model_class,
+        nil,
+        policy_class: policy_class,
+        project_id: project_id,
+        campaign_id: campaign_id
+      )
+    end
+
+    def model_class_name
+      @model_class_name ||= self.class.name.underscore.sub(/_controller$/, '').split('/').last.singularize.camelize
+    end
+
+    def model_class
+      @model_class ||= model_class_name.safe_constantize
+    end
+
+    def model_id
+      @model_id ||= params[:id] || params["#{model_class.name.underscore}_id"]
+    end
+
+    def model
+      return if model_class.nil? || model_id.nil?
+
+      @model ||= policy_class::Scope.new(current_user, model_class).resolve.find(model_id)
+    end
+
+    def policy_class
+      @policy_class ||= "Api::Administration::#{model_class}Policy".safe_constantize
     end
   end
 end

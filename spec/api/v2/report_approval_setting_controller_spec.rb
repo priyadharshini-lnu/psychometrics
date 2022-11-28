@@ -5,25 +5,21 @@ require 'swagger_helper'
 
 describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:superadmin) { create(:superadmin) }
+  let(:campaign) { create(:campaign) }
+  let!(:campaign_id) { campaign.id }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
 
-  path '/report_approval_settings/' do
+  path '/campaigns/{campaign_id}/report_approval_settings/' do
     get 'ReportApprovalSetting List' do
       operationId 'ReportApprovalSettingList'
-      description <<~HEREDOC
-        Fetch ReportApprovalSetting List
+      description 'Fetch ReportApprovalSetting List'
 
-        **Supported Filter Query Parameter**
-
-        | Filter        | Description   |
-        | ------------- |:-------------:|
-        | filter[campaign_id_eq]     | Returns report approval setting for specific campaign |
-      HEREDOC
       tags 'ReportApprovalSetting'
       consumes 'application/json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
 
       response '200', 'ReportApprovalSetting list' do
         let(:admins) { create_list(:client_admin, 4) }
@@ -85,8 +81,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
     end
   end
 
-  path '/report_approval_settings/' do
-    let(:campaign) { create(:campaign) }
+  path '/campaigns/{campaign_id}/report_approval_settings/' do
     let(:report) { create(:report) }
     let(:admins) do
       admins = create_list(:client_admin, 4)
@@ -101,6 +96,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
       tags 'ReportApprovalSetting'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ReportApprovalSettingCreateRequest' },
                 required: true
 
@@ -140,7 +136,6 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
               approval_notification_user_ids: [admins[2].id, admins[3].id]
             },
             {
-              campaign: { id: campaign.id.to_s, type: 'campaigns' },
               report: { id: report.id.to_s, type: 'reports' }
             }
           )
@@ -168,7 +163,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
     end
   end
 
-  path '/report_approval_settings/{report_approval_setting_id}' do
+  path '/campaigns/{campaign_id}/report_approval_settings/{report_approval_setting_id}' do
     let(:campaign) { create(:campaign) }
     let(:report) { create(:report) }
     let(:admin) do
@@ -186,6 +181,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :report_approval_setting_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ReportApprovalSettingUpdateRequest' },
                 required: true
 
@@ -245,6 +241,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
       tags 'ReportApprovalSetting'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
       parameter name: :report_approval_setting_id, in: :path, type: :string
 
       response '204', 'ReportApprovalSetting Deleted' do

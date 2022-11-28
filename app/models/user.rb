@@ -150,6 +150,16 @@ class User < ApplicationRecord
     recoverable.send_reset_password_instructions if recoverable.persisted?
   end
 
+  def accessible_records(resource_class, permissions)
+    return resource_class.all if is?(:superadmin)
+
+    permissions = Array.wrap(permissions).map { |p| p.split('.') }
+    campaign_ids = ::Administration::CampaignPolicy::Scope.new(self, Campaign).resolve.select do |campaign|
+      permissions.any? { |resource, permission| has_permission?(resource, permission, campaign_id: campaign.id) }
+    end
+    resource_class.joins(:campaign).where(campaigns: { id: campaign_ids })
+  end
+
   def password_length
     config = super # 8..128
 

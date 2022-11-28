@@ -34,11 +34,10 @@ module Api
           end
         end
 
-        def self.relationships(_)
-          [
-            { name: :campaign, resource: :campaigns, relationship: :one },
-            { name: :report, resource: :reports, relationship: :one }
-          ]
+        def self.relationships(type)
+          relations = [{ name: :report, resource: :reports, relationship: :one }]
+          relations << { name: :campaign, resource: :campaigns, relationship: :one } if type == :multiple_response
+          relations
         end
       end
     end

@@ -17,9 +17,9 @@ module DummyTables
   end
 
   def self.drop
-    conn.drop_table :posts, if_exists: true
-    conn.drop_table :authors, if_exists: true
-    conn.drop_table :comments, if_exists: true
+    conn.drop_table :posts, if_exists: true, force: :cascade
+    conn.drop_table :authors, if_exists: true,  force: :cascade
+    conn.drop_table :comments, if_exists: true, force: :cascade
   end
 
   def self.conn

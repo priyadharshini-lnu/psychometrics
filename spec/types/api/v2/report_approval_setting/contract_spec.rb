@@ -10,7 +10,7 @@ RSpec.describe Api::V2::ReportApprovalSetting::Contract do
     create(:membership, user_id: admin.id, client_id: accessible_campaign.client.id, role: :client_admin)
     admin
   end
-  let(:valid_data) do
+  let(:data) do
     jsonapi_resource_request(
       'report_approval_settings',
       {
@@ -19,20 +19,13 @@ RSpec.describe Api::V2::ReportApprovalSetting::Contract do
         approver_user_ids: [admin.id],
         approval_notification_user_ids: [admin.id]
       },
-      { report: { id: '1', type: 'reports' }, campaign: { id: accessible_campaign.id.to_s, type: 'campaigns' } }
-    )
-  end
-
-  let(:invalid_data) do
-    jsonapi_merge_relationships(
-      valid_data,
-      campaign: { id: non_accessible_campaign.id.to_s }
+      { report: { id: '1', type: 'reports' } }
     )
   end
 
   shared_examples 'contract_common' do |contract_class|
     it "shows error is passed admins doesn't have access to campaign" do
-      schema = contract_class.new.call(invalid_data, {})
+      schema = contract_class.new.call(data, { campaign: non_accessible_campaign })
 
       expect(schema.failure?).to eq(true)
       expect(schema).to have_jsonapi_attr_error(
@@ -43,7 +36,7 @@ RSpec.describe Api::V2::ReportApprovalSetting::Contract do
     end
 
     it 'schema passes for valid params' do
-      schema = contract_class.new.call(valid_data, {})
+      schema = contract_class.new.call(data, { campaign: accessible_campaign })
 
       expect(schema.failure?).to eq(false)
     end
@@ -55,20 +48,5 @@ RSpec.describe Api::V2::ReportApprovalSetting::Contract do
 
   describe 'UpdateContract' do
     include_examples 'contract_common', Api::V2::ReportApprovalSetting::UpdateContract
-
-    it 'picks campaign from report_approval_setting record if campaign_id is not passed' do
-      report_approval_setting = create(:report_approval_setting, campaign: non_accessible_campaign)
-
-      data = jsonapi_merge_attributes(
-        jsonapi_remove_relationships(valid_data, :campaign),
-        { id: report_approval_setting.id.to_s }
-      )
-      schema = Api::V2::ReportApprovalSetting::UpdateContract.new.call(data, {})
-      expect(schema).to have_jsonapi_attr_error(
-        qc_user_ids: ["Admins don't have access to the campaign"],
-        approver_user_ids: ["Admins don't have access to the campaign"],
-        approval_notification_user_ids: ["Admins don't have access to the campaign"]
-      )
-    end
   end
 end

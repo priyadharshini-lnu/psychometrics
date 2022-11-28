@@ -19,10 +19,6 @@ module Api
         user.is?(:superadmin)
       end
 
-      def create_with_campaign?(_)
-        user.is?(:superadmin)
-      end
-
       class Scope < Scope
         def resolve
           return Dashboard.all if user.is?(:superadmin)

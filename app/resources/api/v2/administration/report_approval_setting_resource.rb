@@ -7,18 +7,26 @@ class Api::V2::Administration::ReportApprovalSettingResource < Api::V2::Administ
   has_one :campaign
   has_one :report
 
-  ransack_filters %i[campaign_id_eq]
+  before_create -> { @model.campaign = context[:campaign] }
+
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, record) { record.slice(:report_id, :campaign_id) }
 
   def fetchable_fields
     super - %i[qc_user_ids approver_user_ids approval_notification_user_ids]
   end
 
   def self.creatable_fields(_)
-    super - %i[qcs approvers approval_notification_users]
+    super - %i[qcs approvers approval_notification_users campaign]
   end
 
   def self.updatable_fields(values)
     creatable_fields(values)
+  end
+
+  def self.record(opts)
+    super.where(campaign_id: opts.dig(:context, :campaign).id)
   end
 
   def qcs

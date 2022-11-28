@@ -20,6 +20,8 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
         | Filter        | Description   |
         | ------------- |:-------------:|
         | filter[with_access_to_campaign]     | Returns admins who have access to the specific campaign_id passed as filter value |
+        | filter[search_query]     | Returns user who have name or email matches passed as filter value |
+        | filter[admin]     | Returns only admin users |
       HEREDOC
       tags 'User'
       consumes 'application/json'

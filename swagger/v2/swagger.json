@@ -576,11 +576,73 @@
         }
       }
     },
-    "/report_approval_settings/": {
+    "/report_approvals/": {
+      "get": {
+        "summary": "ReportApprovalSetting List",
+        "operationId": "ReportApprovals",
+        "description": "Fetch ReportApprovals List\n\n  **Supported Filter Query Parameter**\n\n  | Filter        | Description   |\n  | ------------- |:-------------:|\n  | filter[campaign_id_eq]     | Returns report approval for specific campaign |\n  | filter[report_id_eq]     | Returns report approval for specific report |\n  | filter[user_id_eq]     | Returns report approval for specific user |\n  | filter[approval_status_eq]     | Returns report approval for specific approval_status |\n  | filter[my_tasks]     | Pass true to returns report approval which are pending action from user  |\n",
+        "tags": [
+          "ReportApprovals"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ReportApprovals list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "report_approval",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "approval_status": "pending qc",
+                        "qc_user_ids": [
+                          1,
+                          2
+                        ],
+                        "approver_user_ids": [
+                          3,
+                          4
+                        ]
+                      },
+                      "relationships": {
+                        "campaign": {
+                          "data": {
+                            "id": "1",
+                            "type": "campaigns"
+                          }
+                        },
+                        "report": {
+                          "data": {
+                            "id": "2",
+                            "type": "reports"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/ReportApprovalListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/report_approval_settings/": {
       "get": {
         "summary": "ReportApprovalSetting List",
         "operationId": "ReportApprovalSettingList",
-        "description": "Fetch ReportApprovalSetting List\n\n**Supported Filter Query Parameter**\n\n| Filter        | Description   |\n| ------------- |:-------------:|\n| filter[campaign_id_eq]     | Returns report approval setting for specific campaign |\n",
+        "description": "Fetch ReportApprovalSetting List",
         "tags": [
           "ReportApprovalSetting"
         ],
@@ -589,6 +651,16 @@
             "basic": [
 
             ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -655,7 +727,14 @@
           }
         ],
         "parameters": [
-
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "201": {
@@ -714,7 +793,7 @@
         }
       }
     },
-    "/report_approval_settings/{report_approval_setting_id}": {
+    "/campaigns/{campaign_id}/report_approval_settings/{report_approval_setting_id}": {
       "patch": {
         "summary": "Update a report_approval_settings",
         "operationId": "UpdateReportApprovalSetting",
@@ -732,6 +811,14 @@
         "parameters": [
           {
             "name": "report_approval_setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "campaign_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -811,6 +898,14 @@
         ],
         "parameters": [
           {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "report_approval_setting_id",
             "in": "path",
             "required": true,
@@ -866,11 +961,275 @@
         }
       }
     },
+    "/user_reports/{user_report_id}/user_report_comments/": {
+      "get": {
+        "summary": "UserReportComment List",
+        "operationId": "UserReportCommentList",
+        "description": "Fetch UserReportComment List",
+        "tags": [
+          "UserReportComment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UserReportComment list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "user_report_comments",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "text": "Hi"
+                      },
+                      "relationships": {
+                        "reports_module": {
+                          "data": {
+                            "id": "1",
+                            "type": "modules"
+                          }
+                        },
+                        "parent": {
+                          "data": {
+                            "id": "2",
+                            "type": "user_report_comments"
+                          }
+                        },
+                        "replies": {
+                          "data": [
+                            {
+                              "id": "3",
+                              "type": "user_report_comments"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/UserReportCommentListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a user_report_comments",
+        "operationId": "CreateUserReportComment",
+        "description": "Create new UserReportComment",
+        "tags": [
+          "UserReportComment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "UserReportComment Created",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "user_report_comments",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "text": "Hi"
+                      },
+                      "relationships": {
+                        "reports_module": {
+                          "data": {
+                            "id": "1",
+                            "type": "modules"
+                          }
+                        },
+                        "parent": {
+                          "data": {
+                            "id": "2",
+                            "type": "user_report_comments"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/UserReportCommentResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserReportCommentCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/user_reports/{user_report_id}/user_report_comments/{user_report_comment_id}": {
+      "patch": {
+        "summary": "Update a user_report_comments",
+        "operationId": "UpdateUserReportComment",
+        "description": "Update UserReportComment",
+        "tags": [
+          "UserReportComment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_report_comment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UserReportComment Updated",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "user_report_comments",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "text": "Hi"
+                      },
+                      "relationships": {
+                        "reports_module": {
+                          "data": {
+                            "id": "1",
+                            "type": "modules"
+                          }
+                        },
+                        "parent": {
+                          "data": {
+                            "id": "2",
+                            "type": "user_report_comments"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/UserReportCommentResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserReportCommentUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete a user_report_comment",
+        "operationId": "DeleteUserReportComment",
+        "description": "Delete a UserReportComment",
+        "tags": [
+          "UserReportComment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_report_comment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "UserReportComment Deleted"
+          }
+        }
+      }
+    },
     "/users/": {
       "get": {
         "summary": "User List",
         "operationId": "UserList",
-        "description": "Fetch User List\n\n**Supported Filter Query Parameter**\n\n| Filter        | Description   |\n| ------------- |:-------------:|\n| filter[with_access_to_campaign]     | Returns admins who have access to the specific campaign_id passed as filter value |\n",
+        "description": "Fetch User List\n\n**Supported Filter Query Parameter**\n\n| Filter        | Description   |\n| ------------- |:-------------:|\n| filter[with_access_to_campaign]     | Returns admins who have access to the specific campaign_id passed as filter value |\n| filter[search_query]     | Returns user who have name or email matches passed as filter value |\n| filter[admin]     | Returns only admin users |\n",
         "tags": [
           "User"
         ],
@@ -1004,7 +1363,7 @@
                         }
                       },
                       "required": [
-                        "data"
+
                       ],
                       "nullable": false
                     }
@@ -1182,7 +1541,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   }
@@ -1447,7 +1806,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   }
@@ -1531,7 +1890,7 @@
                         }
                       },
                       "required": [
-                        "data"
+
                       ],
                       "nullable": false
                     }
@@ -1683,7 +2042,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   }
@@ -1928,7 +2287,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   }
@@ -2012,7 +2371,7 @@
                         }
                       },
                       "required": [
-                        "data"
+
                       ],
                       "nullable": false
                     }
@@ -2166,7 +2525,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   }
@@ -2260,51 +2619,6 @@
                 "relationships": {
                   "type": "object",
                   "properties": {
-                    "campaign": {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "description": "Must be equal to campaigns",
-                              "nullable": false
-                            },
-                            "id": {
-                              "type": "string",
-                              "nullable": false
-                            }
-                          },
-                          "required": [
-                            "type",
-                            "id"
-                          ],
-                          "nullable": false
-                        },
-                        "links": {
-                          "type": "object",
-                          "properties": {
-                          },
-                          "required": [
-
-                          ],
-                          "nullable": false
-                        },
-                        "self": {
-                          "type": "string",
-                          "nullable": false
-                        },
-                        "related": {
-                          "type": "string",
-                          "nullable": false
-                        }
-                      },
-                      "required": [
-                        "data"
-                      ],
-                      "nullable": false
-                    },
                     "report": {
                       "type": "object",
                       "properties": {
@@ -2346,7 +2660,52 @@
                         }
                       },
                       "required": [
-                        "data"
+
+                      ],
+                      "nullable": false
+                    },
+                    "campaign": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaigns",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
                       ],
                       "nullable": false
                     }
@@ -2530,34 +2889,6 @@
               "relationships": {
                 "type": "object",
                 "properties": {
-                  "campaign": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "description": "Must be equal to campaigns",
-                            "nullable": false
-                          },
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          }
-                        },
-                        "required": [
-                          "type",
-                          "id"
-                        ],
-                        "nullable": false
-                      }
-                    },
-                    "required": [
-                      "data"
-                    ],
-                    "nullable": false
-                  },
                   "report": {
                     "type": "object",
                     "properties": {
@@ -2588,7 +2919,6 @@
                   }
                 },
                 "required": [
-                  "campaign",
                   "report"
                 ],
                 "nullable": false
@@ -2657,34 +2987,6 @@
               "relationships": {
                 "type": "object",
                 "properties": {
-                  "campaign": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "description": "Must be equal to campaigns",
-                            "nullable": false
-                          },
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          }
-                        },
-                        "required": [
-                          "type",
-                          "id"
-                        ],
-                        "nullable": false
-                      }
-                    },
-                    "required": [
-                      "data"
-                    ],
-                    "nullable": false
-                  },
                   "report": {
                     "type": "object",
                     "properties": {
@@ -2709,7 +3011,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   }
@@ -2750,51 +3052,6 @@
               "relationships": {
                 "type": "object",
                 "properties": {
-                  "campaign": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "description": "Must be equal to campaigns",
-                            "nullable": false
-                          },
-                          "id": {
-                            "type": "string",
-                            "nullable": false
-                          }
-                        },
-                        "required": [
-                          "type",
-                          "id"
-                        ],
-                        "nullable": false
-                      },
-                      "links": {
-                        "type": "object",
-                        "properties": {
-                        },
-                        "required": [
-
-                        ],
-                        "nullable": false
-                      },
-                      "self": {
-                        "type": "string",
-                        "nullable": false
-                      },
-                      "related": {
-                        "type": "string",
-                        "nullable": false
-                      }
-                    },
-                    "required": [
-                      "data"
-                    ],
-                    "nullable": false
-                  },
                   "report": {
                     "type": "object",
                     "properties": {
@@ -2836,7 +3093,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   }
@@ -3109,6 +3366,784 @@
         "required": [
           "data",
           "meta"
+        ]
+      },
+      "ReportApprovalListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to report_approvals",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "campaign": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaigns",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "report": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to reports",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "approval_status": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "qc_user_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
+                    "approver_user_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "nullable": false
+                      },
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "approval_status",
+                    "qc_user_ids",
+                    "approver_user_ids"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "UserReportCommentListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to user_report_comments",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "reports_module": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to modules",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "parent": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to user_report_comments",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "replies": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to user_report_comments",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [
+
+                            ],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "UserReportCommentCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to user_report_comments",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "reports_module": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to modules",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "parent": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to user_report_comments",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "reports_module"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "UserReportCommentUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to user_report_comments",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "reports_module": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to modules",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "parent": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to user_report_comments",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "UserReportCommentResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to user_report_comments",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "reports_module": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to modules",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "parent": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to user_report_comments",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
         ]
       }
     }

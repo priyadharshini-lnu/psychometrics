@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module JsonApi
-  class AuditLogProcessor < JSONAPI::Authorization::AuthorizingProcessor
+  class AuditLogProcessor < JSONAPI::Processor
     attr_reader :log_config
 
     set_callback :find, :after, :audit_log_find
@@ -196,6 +196,17 @@ module JsonApi
 
         hash[parent_type.to_sym] = parent_type.capitalize.safe_constantize.find(parent_id)
         break hash
+      end
+    end
+
+    def operation_resource_id
+      case operation_type
+        when :show
+          params[:id]
+        when :show_related_resources
+          params[:source_id]
+        else
+          params[:resource_id]
       end
     end
 

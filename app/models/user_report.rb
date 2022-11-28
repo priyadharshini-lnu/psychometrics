@@ -12,6 +12,7 @@ class UserReport < ApplicationRecord
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
   has_many :text_module_overrides, dependent: :destroy
+  has_many :user_report_comments
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true

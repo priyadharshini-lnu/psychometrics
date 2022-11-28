@@ -137,6 +137,18 @@ module Swagger
           ),
           ReportApprovalListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::ReportApproval::Schema.multiple_resource_response
+          ),
+          UserReportCommentListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserReportComment::Schema.multiple_resource_response
+          ),
+          UserReportCommentCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserReportComment::Schema.create_request
+          ),
+          UserReportCommentUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserReportComment::Schema.update_request
+          ),
+          UserReportCommentResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserReportComment::Schema.single_resource_response
           )
         }
       }

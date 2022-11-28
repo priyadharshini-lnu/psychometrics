@@ -23,22 +23,6 @@ module Api
         can_manage_report_approval?
       end
 
-      def create_with_campaign?(_)
-        can_manage_report_approval?
-      end
-
-      def create_with_report?(_)
-        can_manage_report_approval?
-      end
-
-      def replace_campaign?(_)
-        can_manage_report_approval?
-      end
-
-      def replace_report?(_)
-        can_manage_report_approval?
-      end
-
       private
 
       def can_manage_report_approval?

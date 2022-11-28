@@ -13,17 +13,17 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
     get 'ReportApprovalSetting List' do
       operationId 'ReportApprovals'
       description <<~HEREDOC
-            Fetch ReportApprovals List
+        Fetch ReportApprovals List
 
-            **Supported Filter Query Parameter**
+          **Supported Filter Query Parameter**
 
-            | Filter        | Description   |
-            | ------------- |:-------------:|
-            | filter[campaign_id_eq]     | Returns report approval for specific campaign |
-        | filter[report_id_eq]     | Returns report approval for specific report |
-        | filter[user_id_eq]     | Returns report approval for specific user |
-        | filter[approval_status_eq]     | Returns report approval for specific approval_status |
-        | filter[my_tasks]     | Pass true to returns report approval which are pending action from user  |
+          | Filter        | Description   |
+          | ------------- |:-------------:|
+          | filter[campaign_id_eq]     | Returns report approval for specific campaign |
+          | filter[report_id_eq]     | Returns report approval for specific report |
+          | filter[user_id_eq]     | Returns report approval for specific user |
+          | filter[approval_status_eq]     | Returns report approval for specific approval_status |
+          | filter[my_tasks]     | Pass true to returns report approval which are pending action from user  |
       HEREDOC
       tags 'ReportApprovals'
       consumes 'application/json'
