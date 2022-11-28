@@ -2230,7 +2230,8 @@ en:
         all: All
         body_mustache: |
           {{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users
-          {{{user_url}}} - Same as {{{user_link}}} but only the URL instead of a hyperlink
+          {{{user_url}}} - Same as user_link but only the URL instead of a hyperlink
+          {{{user_link_qrcode}}} - Embed QR Code generated from user_link
           {{first_name}} - Recipient First Name
           {{last_name}} - Recipient Last Name
           {{email}} - Recipient Email
