@@ -11,6 +11,7 @@ module Api
         def self.attributes(attribute, _)
           proc do
             attribute[:name].filled(:string)
+            optional(:capacity_id).maybe(:string)
             optional(:dataset_id).maybe(:string)
             optional(:report_id).maybe(:string)
             optional(:enabled).filled(:bool)

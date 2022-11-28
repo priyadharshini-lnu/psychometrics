@@ -98,7 +98,7 @@ export const Profile: React.FC<{}> = () => {
         .map((d, i) => ({ ...d, position: i + 1 })),
     }])
   }
-  const isSaving = isLoading('update')
+  const isSaving = isLoading(`update@${data[0]?.id}`)
 
   if (!profileSettings) { return null }
 

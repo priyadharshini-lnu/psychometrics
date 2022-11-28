@@ -17,5 +17,20 @@ module PowerBi
       })
       JSON.parse(response.body)['access_token']
     end
+
+    def post(path, body = nil)
+      Faraday.post("#{BASE_API_URL}/#{path}", body&.to_json, auth_headers)
+    end
+
+    def get(path, body = nil)
+      Faraday.get("#{BASE_API_URL}/#{path}", body, auth_headers)
+    end
+
+    def auth_headers
+      {
+        Authorization: "Bearer #{get_access_token}",
+        'Content-Type': 'application/json'
+      }
+    end
   end
 end

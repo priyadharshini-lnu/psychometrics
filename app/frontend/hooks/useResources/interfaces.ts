@@ -10,7 +10,7 @@ export enum RequestStatus {
 export type HttpAction = 'get' | 'post' | 'put' | 'patch' | 'delete'
 
 export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${string}` | `fetch@${string}`
-  | `${string}/${HttpAction}@${string}` | `${string}/${HttpAction}`
+  | `${HttpAction}/${string}@${string}` | `${HttpAction}/${string}`
 
 export type Requests = {
   [key in RequestType]?: {

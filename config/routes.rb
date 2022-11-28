@@ -1130,6 +1130,9 @@ Rails.application.routes.draw do
           jsonapi_resources :dashboards, only: %i[index show create update] do
             patch :upload_image
             post :refresh
+            collection do
+              get :powerbi_capacities
+            end
           end
 
           resources :campaigns, only: [] do

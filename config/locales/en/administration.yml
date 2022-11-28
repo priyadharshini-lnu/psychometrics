@@ -2343,6 +2343,7 @@ en:
     created: Successfully created
     created_by: Created By
     dashboard:
+      capacity_name: Capacity Name
       dashboards: Dashboards
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
@@ -2351,9 +2352,11 @@ en:
         embed_token_error_title: Unable to generate Embed token.
       settings:
         accesssheet_view_name: Accesssheet View Name
+        capacity_id: Capacity Id
         datasheet_view_name: Datasheet View Name
+        details: Details
         refresh: Refresh
-        view_names: View Names
+        workspace_id: Workspace id
       tabs:
         accesssheet: Accesssheet
         accesssheet_setting: Accesssheet Settings

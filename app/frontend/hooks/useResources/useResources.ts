@@ -127,7 +127,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       id, action, apiConfig, updateStore,
     } = args
-    const requestKey: RequestType = `${action}/delete@${id}`
+    const requestKey: RequestType = `delete/${action}@${id}`
 
     return new Promise(async (resolve, reject) => {
       const { error, errors } = await client.delete([resourceName, id, action, apiConfig || {}])
@@ -153,7 +153,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       id, action, method, body, apiConfig, updateStore,
     } = { apiConfig: options.apiConfig, ...args }
     const memberResponseType = options.responseType || responseType
-    const requestKey: RequestType = `${action}/${method}@${id}`
+    const requestKey: RequestType = `${method}/${action}@${id}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
 
     if (method === 'delete') {
@@ -195,8 +195,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       action, method, body, apiConfig,
     } = { apiConfig: options.apiConfig, ...args }
-    const memberResponseType = options.responseType || responseType
-    const requestKey: RequestType = `${action}/${method}`
+    const memberResponseType = args.responseType || responseType
+    const requestKey: RequestType = `${method}/${action}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
 
     return new Promise(async (resolve, reject) => {
@@ -212,8 +212,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       }
       const { data, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
-      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
-        const camelizedData = humps.camelizeKeys(data)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
+        const camelizedData = humps.camelizeKeys(data || response)
         resolve(camelizedData)
         responseTypeValidation(memberResponseType, camelizedData)
       } else {
@@ -402,20 +402,20 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return undefined
   }
 
-  const getErrors = (action: string, resource_id: null | string = null) => {
-    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+  const getErrors = (action: RequestType) => {
+    const request = requests[action]
 
     return request ? request.errors : null
   }
 
-  const isLoading = (action: string, resource_id: null | string = null): boolean => {
-    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+  const isLoading = (action: RequestType): boolean => {
+    const request = requests[action]
 
     return request ? request.status === RequestStatus.Loading : false
   }
 
-  const isRequestSuccessful = (action: string, resource_id: null | string = null): boolean => {
-    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+  const isRequestSuccessful = (action: RequestType): boolean => {
+    const request = requests[action]
 
     return request ? request.status === RequestStatus.Success : false
   }

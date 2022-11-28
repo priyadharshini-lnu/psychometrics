@@ -178,6 +178,8 @@ export const SettingsComponent: React.FC<Props> = ({
           canBeRefreshed={canBeRefreshed}
           handleRefresh={handleRefresh}
           refreshRequestInProgress={refreshRequestInProgress}
+          capacityId={dashboard.capacityId}
+          workspaceId={dashboard.workspaceId}
         />
       </Col>
     </Row>
@@ -191,15 +193,17 @@ interface ViewNameInfoProps {
   canBeRefreshed: boolean
   refreshRequestInProgress: boolean
   handleRefresh: () => void
+  capacityId?: string | null
+  workspaceId?: string | null
 }
 
 const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
-  campaignId, canBeRefreshed, handleRefresh, refreshRequestInProgress,
+  campaignId, capacityId, workspaceId, canBeRefreshed, handleRefresh, refreshRequestInProgress,
 }) => (
   <Alert
     message={(
       <>
-        {I18n.t('administration.dashboard.settings.view_names')}
+        {I18n.t('administration.dashboard.settings.details')}
         {canBeRefreshed
           && (
           <Button
@@ -255,6 +259,52 @@ const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
             )}
           />
         </Form.Item>
+
+        {capacityId && (
+        <Form.Item
+          label={
+            `${I18n.t('administration.dashboard.settings.capacity_id')}`
+          }
+          initialValue={capacityId}
+          name="capacityId"
+        >
+          <Input
+            readOnly
+            suffix={(
+              <CopyToClipboard
+                text={capacityId}
+                onCopy={() => {
+                  message.info(I18n.t('common.text.copied'))
+                }}
+              >
+                <CopyOutlined />
+              </CopyToClipboard>
+            )}
+          />
+        </Form.Item>
+        )}
+
+        {workspaceId && (
+        <Form.Item
+          label={I18n.t('administration.dashboard.settings.workspace_id')}
+          initialValue={workspaceId}
+          name="workspaceId"
+        >
+          <Input
+            readOnly
+            suffix={(
+              <CopyToClipboard
+                text={workspaceId}
+                onCopy={() => {
+                  message.info(I18n.t('common.text.copied'))
+                }}
+              >
+                <CopyOutlined />
+              </CopyToClipboard>
+            )}
+          />
+        </Form.Item>
+        )}
       </Form>
 )}
     type="info"
