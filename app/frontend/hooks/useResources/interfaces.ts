@@ -57,6 +57,7 @@ export interface Options<R, M> {
   stateManager?: StateManager<R, M>,
   responseType?: ResponseType,
   trackUrl?: boolean,
+  basePath?: string,
 }
 
 export interface BaseMeta {

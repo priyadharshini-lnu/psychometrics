@@ -26,7 +26,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
-    apiConfig, stateManager, responseType, trackUrl,
+    apiConfig, stateManager, responseType, trackUrl, basePath,
   } = options
   const client = useClient()
   const dispatch = useDispatch()
@@ -34,6 +34,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const history = useHistory()
   const queryString = qs.parse(location.search.substring(1))
   const schema = Schema[resourceName]
+  const resourcePath = basePath ? `${basePath}/${resourceName}` : resourceName
 
   let state: ResourceState<R[], M>
   let setState
@@ -103,7 +104,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const {
         data: response, meta, error, errors,
-      } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
+      } = await client.fetch<R[]>([resourcePath, newApiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
@@ -130,7 +131,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const requestKey: RequestType = `delete/${action}@${id}`
 
     return new Promise(async (resolve, reject) => {
-      const { error, errors } = await client.delete([resourceName, id, action, apiConfig || {}])
+      const { error, errors } = await client.delete([resourcePath, id, action, apiConfig || {}])
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === 'success') {
         if (updateStore) setData(data.filter(r => r.id !== id))
@@ -165,10 +166,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<R> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([resourceName, id, action, apiConfig || {}])
+        response = await client.fetch<R>([resourcePath, id, action, apiConfig || {}])
       } else {
         response = await client.mutate<R>(
-          [resourceName, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+          [resourcePath, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
         )
       }
       const { data, error, errors } = response
@@ -202,12 +203,12 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<Record<string, string> | Record<string, string>[]> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([resourceName, action, apiConfig || {}])
+        response = await client.fetch<R>([resourcePath, action, apiConfig || {}])
       } else if (method === 'delete') {
-        response = await client.delete([resourceName, action, apiConfig || {}])
+        response = await client.delete([resourcePath, action, apiConfig || {}])
       } else {
         response = await client.mutate<R>(
-          [resourceName, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+          [resourcePath, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
         )
       }
       const { data, error, errors } = response
@@ -254,7 +255,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const {
         data: response, error, errors,
-      } = await client.fetch<R>([resourceName, id, apiConfig || {}])
+      } = await client.fetch<R>([resourcePath, id, apiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
@@ -280,7 +281,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, apiConfig || {}], humps.decamelizeKeys(body),
+        [resourcePath, apiConfig || {}], humps.decamelizeKeys(body),
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
@@ -303,7 +304,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, id, apiConfig || {}], humps.decamelizeKeys(body),
+        [resourcePath, id, apiConfig || {}], humps.decamelizeKeys(body),
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
@@ -322,7 +323,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const removeResource: RemoveResource = async (id: string) => {
     const requestKey: RequestType = `delete@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
-    const { error, errors } = await client.delete([resourceName, id, apiConfig || {}])
+    const { error, errors } = await client.delete([resourcePath, id, apiConfig || {}])
 
     return new Promise(async (resolve, reject) => {
       const formattedErrors = formatErrors(errors || error, schema)
