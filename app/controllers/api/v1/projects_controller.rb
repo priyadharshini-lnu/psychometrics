@@ -41,6 +41,10 @@ module Api
 
       private
 
+      def project_id
+        params[:id]
+      end
+
       def pundit_authorize
         if project_params[:client_id].present? && !Client.exists?(id: project_params[:client_id])
           raise Api::Errors::ResourceNotFound, "Client with id=#{params[:client_id]} is not found"
