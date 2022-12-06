@@ -36,6 +36,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const schema = Schema[resourceName]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const resourceUrl = basePath ? `${(client as any).config.url}/${basePath}` : (client as any).config.url
+  const fetchResourceName = basePath ? `${basePath}/${resourceName}` : resourceName
   let state: ResourceState<R[], M>
   let setState
   if (stateManager) {
@@ -104,7 +105,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const {
         data: response, meta, error, errors,
-      } = await client.fetch<R[]>([resourceName, newApiConfig || {}], { url: resourceUrl })
+      } = await client.fetch<R[]>([fetchResourceName, newApiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
@@ -166,7 +167,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<R> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([resourceName, id, action, apiConfig || {}], { url: resourceUrl })
+        response = await client.fetch<R>([fetchResourceName, id, action, apiConfig || {}])
       } else {
         response = await client.mutate<R>(
           [resourceName, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
@@ -204,7 +205,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<Record<string, string> | Record<string, string>[]> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([resourceName, action, apiConfig || {}], { url: resourceUrl })
+        response = await client.fetch<R>([fetchResourceName, action, apiConfig || {}])
       } else if (method === 'delete') {
         response = await client.delete([resourceName, action, apiConfig || {}], { url: resourceUrl })
       } else {
@@ -257,7 +258,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const {
         data: response, error, errors,
-      } = await client.fetch<R>([resourceName, id, apiConfig || {}], { url: resourceUrl })
+      } = await client.fetch<R>([fetchResourceName, id, apiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
