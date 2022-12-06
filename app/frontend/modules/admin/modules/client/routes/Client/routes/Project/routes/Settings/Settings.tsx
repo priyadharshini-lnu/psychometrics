@@ -50,7 +50,7 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
   })
   permissions.manageProjectSamlSetting && menuItems.push({
     key: '/saml',
-    label: I18n.t('administration.smtp_settings.saml'),
+    label: I18n.t('administration.saml_settings.saml'),
   })
   permissions.manageProjectIntegrations && menuItems.push({
     key: '/integrations',
