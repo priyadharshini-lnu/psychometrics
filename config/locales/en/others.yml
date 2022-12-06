@@ -1392,12 +1392,15 @@ en:
       confirmation_instructions:
         subject: Confirmation instructions
       invitation_instructions:
-        accept: Accept invitation
-        accept_until: This invitation will be due in %{due_date}.
-        hello: Hello %{email}
-        ignore: If you don't want to accept the invitation, please ignore this email.<br />\nYour account won't be created until you access the link above and set your password.
-        someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
-        subject: The Talent Enterprise – Your Link to Thriving Index
+        body: |
+          Hello %{name},
+          You have been added to Lighthouse as Admin for the following section
+        login: Sign In to Lighthouse
+        sections:
+          campaign: 'Campaign: %{section_name}'
+          client: 'Client Tenancy: %{section_name}'
+          project: 'Project: %{section_name}'
+        subject: Invitation to Lighthouse
       password_change:
         body: |
           Hello %{name}!

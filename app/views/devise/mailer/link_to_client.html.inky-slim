@@ -1,3 +1,12 @@
-p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
-p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
-p = link_to(t("devise.mailer.invitation_instructions.accept"), url_for([:root, { domain: Settings.domain, subdomain: @project.subdomain }]))
+p = simple_format(t("devise.mailer.invitation_instructions.body", url: root_url, email: @resource.email, name: @resource.decorate.display_name))
+
+p
+  strong = t("devise.mailer.invitation_instructions.sections.#{@section}", section_name: @section_name)
+
+spacer[size="16"]
+
+row
+  columns
+    .radius.small
+      button href= url_for([:root, { domain: Settings.domain, subdomain: Settings.subdomain, protocol: Settings.protocol, port: Settings.port }])
+        = t("devise.mailer.invitation_instructions.login")

@@ -44,7 +44,7 @@ module Campaigns
       def validate_code_uniqueness
         project_id = Campaign.find(campaign_id).project_id
         existing_record = RegistrationCode.find_by(code: code, project_id: project_id)
-        if existing_record&.id != context.try(:registration_code)&.id
+        if existing_record && existing_record.id != context.try(:registration_code)&.id
           errors.add(:code, I18n.t('administration.clients.registration_codes.errors.duplicate_code'))
         end
       end
