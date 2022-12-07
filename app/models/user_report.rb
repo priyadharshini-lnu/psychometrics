@@ -49,6 +49,11 @@ class UserReport < ApplicationRecord
     state :approved do
       event :remove_approval, transitions_to: :change_requested
     end
+    on_transition do |_from, to, _event, *_|
+      ::UserReports::NotifyQc.call!(self) if to == :change_requested
+      ::UserReports::NotifyApprovals.call!(self) if to == :approved
+      ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
+    end
   end
 
   def threesixty_subject

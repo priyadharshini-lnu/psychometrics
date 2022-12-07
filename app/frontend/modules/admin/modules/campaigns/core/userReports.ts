@@ -26,6 +26,7 @@ export type ModuleOverride = t.TypeOf<typeof ModuleOverrideTR>
 interface UserReportDetails {
   id?: number
   loaded?: boolean
+  approvalStatus: 'not_ready' | 'pending_qc' | 'qc_in_progress' | 'qc_completed' | 'change_requested' | 'approved'
   user: {
     id?: number
     email?: string
@@ -63,6 +64,7 @@ const defaultState: State = {
   selectedIds: [],
   externalReport: {} as ExternalReportDetails,
   current: {
+    approvalStatus: 'not_ready',
     user: { },
     options: { reports: { approval: {} } },
     report: {
@@ -96,6 +98,11 @@ export const REMOVE_MODULE_OVERRIDE = 'campaigns/userReports/REMOVE_MODULE_OVERR
 export const APPROVE_REPORT = 'campaigns/userReports/APPROVE_REPORT'
 export const OPEN_RICH_EDITOR = 'report/OPEN_RICH_EDITOR'
 export const CLOSE_RICH_EDITOR = 'report/CLOSE_RICH_EDITOR'
+export const START_QC = 'campaigns/userReports/START_QC'
+export const ABORT_QC = 'campaigns/userReports/ABORT_QC'
+export const SEND_TO_APPROVE = 'campaigns/userReports/SEND_TO_APPROVE'
+export const REQUEST_CHANGES = 'campaigns/userReports/REQUEST_CHANGES'
+export const REMOVE_APPROVAL = 'campaigns/userReports/REMOVE_APPROVAL'
 
 export const fetchSingle = (campaignId: number, id: number, params = {}) => ({
   type: FETCH_SINGLE,
@@ -148,12 +155,58 @@ export const removeTextOverride = (campaignId: number, id: number, userReportId:
   },
 })
 
+export const startQC = (campaignId?: number, id?: number) => ({
+  type: START_QC,
+  id,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/start_qc`,
+  },
+})
+
+
+export const sendToReview = (campaignId?: number, id?: number) => ({
+  type: SEND_TO_APPROVE,
+  id,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/send_for_approval`,
+  },
+})
+
+export const abortQC = (campaignId?: number, id?: number) => ({
+  type: ABORT_QC,
+  id,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/abort_qc`,
+  },
+})
+
 export const approveReport = (campaignId?: number, id?: number) => ({
   type: APPROVE_REPORT,
   id,
   request: {
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/approve`,
+  },
+})
+
+export const requestChanges = (campaignId?: number, id?: number) => ({
+  type: REQUEST_CHANGES,
+  id,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/request_changes`,
+  },
+})
+
+export const removeApproval = (campaignId?: number, id?: number) => ({
+  type: REMOVE_APPROVAL,
+  id,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/remove_approval`,
   },
 })
 
@@ -224,6 +277,12 @@ type ToggleUserAccessType = ApiActionResponse<{id: number}>
 type CreateModuleOverride = ApiActionResponse<ModuleOverride>
 type ApproveModuleOverride = ApiActionResponse<ModuleOverride>
 type RemoveModuleOverride = ApiActionResponse<{}>
+type StartQC = ApiActionResponse<{status: string}>
+type AbortQC = ApiActionResponse<{status: string}>
+type ApproveReport = ApiActionResponse<{status: string}>
+type RequestChanges = ApiActionResponse<{status: string}>
+type SendToApprove = ApiActionResponse<{status: string}>
+type RemoveApproval = ApiActionResponse<{status: string}>
 
 const ExternalReportDetailsTR = t.type({
   id: t.number,
@@ -300,6 +359,20 @@ const HANDLERS = {
   [OPEN_RICH_EDITOR]: (state: State) => setIn(state, ['current', 'richEditorOpened'], true),
   [CLOSE_RICH_EDITOR]: (state: State) => setIn(state, ['current', 'richEditorOpened'], false),
   [APPROVE_REPORT]: (state: State) => setIn(state, ['current', 'approved'], true),
+  [START_QC]: (state: State, { response }: StartQC) => setIn(state, ['current', 'approvalStatus'], response.status),
+  [ABORT_QC]: (state: State, { response }: AbortQC) => setIn(state, ['current', 'approvalStatus'], response.status),
+  [APPROVE_REPORT]: (state: State, { response }: ApproveReport) => setIn(
+    state, ['current', 'approvalStatus'], response.status,
+  ),
+  [SEND_TO_APPROVE]: (state: State, { response }: SendToApprove) => setIn(
+    state, ['current', 'approvalStatus'], response.status,
+  ),
+  [REQUEST_CHANGES]: (state: State, { response }: RequestChanges) => setIn(
+    state, ['current', 'approvalStatus'], response.status,
+  ),
+  [REMOVE_APPROVAL]: (state: State, { response }: RemoveApproval) => setIn(
+    state, ['current', 'approvalStatus'], response.status,
+  ),
 }
 
 function* genSetUserReports ({ response }: FetchType) {

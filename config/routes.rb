@@ -186,6 +186,11 @@ Rails.application.routes.draw do
             get :pdf_preview
             get :download
             put :approve
+            put :start_qc
+            put :abort_qc
+            put :send_for_approval
+            put :request_changes
+            put :remove_approval
             patch :toggle_user_access
           end
           collection do

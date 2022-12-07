@@ -3289,6 +3289,20 @@ en:
         view: View Report Bundle
       update:
         successfully: Report Bundle %{name} was successfully updated.
+    report_review:
+      abort_qc: Abort QC
+      approve: Approve
+      remove_approval: Remove Approval
+      request_changes: Request Changes
+      review: Review
+      send_for_approve: Send for Approval
+      statuses:
+        approved: Approved
+        change_requested: Changes Requested
+        not_ready: Not Ready
+        pending_qc: Pending QC
+        qc_completed: QC Completed
+        qc_in_progress: QC in Progress
     reports:
       copy:
         error: 'Report #%{id} was not copied.'

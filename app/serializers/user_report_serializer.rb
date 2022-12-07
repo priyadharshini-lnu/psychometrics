@@ -19,10 +19,6 @@ class UserReportSerializer < ActiveModel::Serializer
     object.user_id == current_user.id
   end
 
-  def approval_status
-    object.threesixty_subject&.report_approval_status
-  end
-
   def campaign
     Threesixty::CampaignDetailsSerializer.new(
       instance_options[:threesixty_campaign], user_report: object

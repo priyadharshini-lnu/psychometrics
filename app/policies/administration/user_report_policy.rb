@@ -28,6 +28,36 @@ module Administration
       )
     end
 
+    def start_qc?
+      @user.has_permission?(
+        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def abort_qc?
+      @user.has_permission?(
+        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def send_for_approval?
+      @user.has_permission?(
+        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def request_changes?
+      @user.has_permission?(
+        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def remove_approval?
+      @user.has_permission?(
+        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     def regenerate?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id

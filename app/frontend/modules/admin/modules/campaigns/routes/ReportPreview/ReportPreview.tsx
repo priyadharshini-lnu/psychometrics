@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu, Tag,
 } from 'antd'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import Report from 'modules/reports/report'
@@ -14,6 +14,14 @@ import styles from './styles.less'
 const { Content } = Layout
 const { I18n } = window
 
+const TAG_COLORS = {
+  not_ready: 'default',
+  pending_qc: 'warning',
+  qc_in_progress: 'processing',
+  qc_completed: 'processing',
+  change_requested: 'warning',
+  approved: 'success',
+}
 interface Params {
   projectId: string
   campaignId: string
@@ -25,7 +33,8 @@ type Props = PropsFromRedux & RouteComponentProps<Params>
 export default function ReportPreview ({
   userReport,
   match: { params: { campaignId, id } }, fetchReport, download, downloadInProgress,
-  features, asyncDownload, clearUseReportDetails,
+  features, asyncDownload, clearUseReportDetails, startQC,
+  sendToReview, abortQC, approveReport, requestChanges, removeApproval,
 }: Props) {
   const location = useLocation()
   const history = useHistory()
@@ -105,9 +114,50 @@ export default function ReportPreview ({
       </Dropdown>,
     ]
 
+    if (userReport.approvalStatus === 'pending_qc' || userReport.approvalStatus === 'change_requested') {
+      actionList.unshift(
+        <Button
+          type="primary"
+          onClick={() => startQC(userReport.campaignId, userReport.id)}
+        >
+          {I18n.t('administration.report_review.review')}
+        </Button>,
+      )
+    }
+    if (userReport.approvalStatus === 'qc_in_progress') {
+      actionList.unshift(...[
+        <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
+          {I18n.t('administration.report_review.send_for_approve')}
+        </Button>,
+        <Button type="default" onClick={() => abortQC(userReport.campaignId, userReport.id)}>
+          {I18n.t('administration.report_review.abort_qc')}
+        </Button>,
+      ])
+    }
+    if (userReport.approvalStatus === 'qc_completed') {
+      actionList.unshift(...[
+        <Button type="primary" onClick={() => approveReport(userReport.campaignId, userReport.id)}>
+          {I18n.t('administration.report_review.approve')}
+        </Button>,
+        <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
+          {I18n.t('administration.report_review.request_changes')}
+        </Button>,
+      ])
+    }
+    if (userReport.approvalStatus === 'approved') {
+      actionList.unshift(
+        <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
+          {I18n.t('administration.report_review.remove_approval')}
+        </Button>,
+      )
+    }
+
     if (!userReport.permissions.download) return actionList
 
     return [
+      <Tag color={TAG_COLORS[userReport.approvalStatus]}>
+        {I18n.t(`administration.report_review.statuses.${userReport.approvalStatus}`)}
+      </Tag>,
       ...actionList,
       <Button
         onClick={onReportDownloadClick}
