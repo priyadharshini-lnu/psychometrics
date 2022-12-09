@@ -25,6 +25,7 @@ const Menu: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = 
   const menuItems = [
     { key: '/manage', label: I18n.t('assessments_reports.menu.manage') },
     { key: '/sequencing', label: I18n.t('assessments_reports.menu.sequencing') },
+    { key: '/report_approval', label: I18n.t('assessments_reports.menu.report_approval') },
   ]
 
   return (

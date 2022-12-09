@@ -583,6 +583,11 @@ en:
       url: Url
     campaigns:
       actions: Manage
+      assessment_reports:
+        report_approval:
+          modal_title: Report Approval Settings
+          remove_modal_success: 'Successfully deleted approval setting for report id: %{reportId}'
+          remove_modal_text: 'Are you sure you want to delete this setting for report id: %{reportId}?'
       assessors:
         spoof:
           successfully: You was successfully login as %{name}

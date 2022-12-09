@@ -1,0 +1,219 @@
+import React, { useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import { useResources } from 'hooks/useResources'
+import {
+  Table, Space, Pagination, Button, Menu,
+} from 'antd'
+import {
+  ReportApprovalSettings,
+  ReportApprovalSettingsTR,
+} from 'modules/admin/modules/campaigns/core/reportApprovalSettings'
+import Modals from 'modules/admin/components/Modals'
+import { PlusOutlined } from '@ant-design/icons'
+import { openModal } from 'modules/admin/core/ui/modals'
+import { connect, ConnectedProps } from 'react-redux'
+import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
+import ConditionalDropdown from 'components/ConditionalDropdown'
+import { TableLayout } from 'modules/admin/components/TableLayout'
+import { get as getCurrentUser } from 'core/currentUser'
+import { RootState } from 'modules/admin/core/rootReducers'
+import { RemoveReportApprovalSettingModal } from './RemoveReportApprovalModal'
+import { ReportApprovalFormModal } from './ReportApprovalFormModal'
+
+const { Column } = Table
+const { I18n } = window
+
+const MODALS = {
+  ReportApprovalFormModal,
+  RemoveReportApprovalSettingModal,
+}
+
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+  {
+    openModal,
+  },
+)
+type PropsFromRedux = ConnectedProps<typeof connecter>
+type Params = {
+  campaignId: string
+}
+type Props = PropsFromRedux & RouteComponentProps<Params>
+
+const ReportApprovalSettingComponent: React.FC<Props> = ({
+  openModal,
+  currentUser,
+  match: { params: { campaignId } },
+}) => {
+  const {
+    data, meta, createResource, fetch, isLoading, changePage,
+    currentPage, pageSize, updateResource, removeResource, requests,
+  } = useResources<ReportApprovalSettings, BaseMeta>(
+    'report_approval_settings',
+    {
+      basePath: `campaigns/${campaignId}/`,
+      responseType: ReportApprovalSettingsTR,
+    },
+  )
+  useEffect(() => {
+    fetch()
+  }, [])
+  const tableLoading = isLoading('fetch')
+
+  const ClientTable = (
+    <>
+      <Table
+        rowKey={row => row?.id ?? -1}
+        dataSource={data}
+        pagination={false}
+        loading={tableLoading}
+      >
+        <Column
+          title={I18n.t('common.column.report_id')}
+          key="id"
+          render={({ report }) => (
+            <a href={`/administration/reports/${report.id}`}>
+              {report.id}
+            </a>
+          )}
+        />
+        <Column
+          key="qc_user_list"
+          title={I18n.t('common.column.qc_user_list')}
+          render={({ qcs }) => (
+            <Space
+              direction="vertical"
+            >
+              {qcs.map(qc => <div key={`qcs_${qc.id}`}>{qc.email}</div>)}
+            </Space>
+          )}
+        />
+        <Column
+          key="approvers_list"
+          title={I18n.t('common.column.approvers_list')}
+          render={({ approvers }) => (
+            <Space direction="vertical">
+              {approvers.map(approver => (
+                <div key={`approvers_${approver.id}`}>
+                  {approver.email}
+                </div>
+              ))}
+            </Space>
+          )}
+        />
+        <Column
+          key="approval_notification_list"
+          title={I18n.t('common.column.approval_notification_list')}
+          render={({ approvalNotificationUsers }) => (
+            <Space direction="vertical">
+              {approvalNotificationUsers.map(
+                user => <div key={`an_${user.id}`}>{user.email}</div>,
+              )}
+            </Space>
+          )}
+        />
+        {currentUser.role === 'Users::SuperAdmin'
+          && (
+          <Column
+            title={I18n.t('common.column.action')}
+            key="action"
+            render={reportApprovalSettings => (
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({
+                    reportApprovalSettings,
+                    updateResource,
+                    removeResource,
+                    openModal,
+                    campaignId,
+                  }) as React.ReactElement
+                }
+              />
+            )}
+          />
+          )}
+      </Table>
+      <Pagination
+        current={currentPage}
+        pageSize={pageSize}
+        total={meta.recordCount}
+        onChange={changePage}
+        className="pl"
+      />
+    </>
+  )
+
+  const filter = (
+    <Button
+      type="primary"
+      disabled={tableLoading}
+      onClick={() => {
+        openModal(
+          'ReportApprovalFormModal', {
+            addReportApprovalSetting: createResource,
+            campaignId,
+          },
+        )
+      }}
+    >
+      <PlusOutlined />
+      {' '}
+      {I18n.t('assessments_reports.report_approval.add_settings')}
+    </Button>
+  )
+
+  return (
+    <>
+      <TableLayout
+        table={ClientTable}
+        filters={filter}
+        recordCount={meta.recordCount}
+        loading={tableLoading}
+        requestStatus={requests.fetch?.status}
+      />
+      <Modals modals={MODALS} />
+    </>
+  )
+}
+interface ActionMenuProps {
+  reportApprovalSettings: ReportApprovalSettings
+  updateResource: UpdateResource<ReportApprovalSettings>
+  removeResource: RemoveResource
+  campaignId: string,
+  openModal: (modalName: string, modalProps: unknown) => void
+}
+
+const ActionsMenu: React.FC<ActionMenuProps> = ({
+  reportApprovalSettings, updateResource, removeResource, openModal, campaignId,
+}) => {
+  const { id } = reportApprovalSettings
+  const reportId = reportApprovalSettings.report.id
+  const menuItems = [
+    { key: 'edit', label: I18n.t('common.actions.edit') },
+    { key: 'remove', label: I18n.t('common.actions.remove') },
+  ]
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      return openModal(
+        'ReportApprovalFormModal', {
+          reportApprovalSettings,
+          updateReportApprovalSetting: updateResource,
+          campaignId,
+        },
+      )
+    }
+    if (key === 'remove') {
+      return openModal('RemoveReportApprovalSettingModal', {
+        id, reportId, removeResource,
+      })
+    }
+  }
+
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
+  )
+}
+
+export const ReportApprovalSetting = connecter(ReportApprovalSettingComponent)

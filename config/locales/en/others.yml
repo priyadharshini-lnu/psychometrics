@@ -828,7 +828,10 @@ en:
       title: Assessment group
     menu:
       manage: Manage
+      report_approval: Report Approval Settings
       sequencing: Sequencing
+    report_approval:
+      add_settings: Add Setting
     sequencing:
       add_group: Add group
       assessments: Assessments
@@ -1269,12 +1272,16 @@ en:
       upload: Upload
     column:
       action: Action
+      approval_notification_list: Approval Notification Users List
+      approvers_list: Approvers List
       category: Category
       completion_count: Completion Count
       completion_status: Completion Status
       created_at: Created at
       id: Id
       name: Name
+      qc_user_list: QC Users List
+      report_id: Report Id
       status: Status
     model:
       admins: Admins
