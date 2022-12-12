@@ -1,48 +1,71 @@
 import React, { FC, useEffect } from 'react'
-import _ from 'lodash'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   Drawer,
   Skeleton,
   Descriptions,
-  Space,
   List,
+  Space,
   Button,
   Typography,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import { useResources } from 'hooks/useResources'
-import { AdminPermissions, ProjectAdminViewDetails } from 'modules/admin/modules/client/core/admin'
+
+import {
+  fetchSingle as fetchAdmin,
+  FETCH_SINGLE as FETCH_CAMPAIGN_SINGLE_ADMINS,
+  getCurrent as getCurrentAdmin,
+  Admin,
+} from 'modules/admin/modules/Admins/core'
+import { isRequestInProgress } from 'core/request'
+import { RootState } from 'modules/admin/core/rootReducers'
+import { ParentResourceType } from './constants'
 
 const { I18n } = window
 
-interface Props {
+const connector = connect(
+  (state: RootState) => ({
+    admin: getCurrentAdmin(state),
+    isFetching: isRequestInProgress(state, FETCH_CAMPAIGN_SINGLE_ADMINS),
+  }),
+  {
+    fetchAdmin,
+  },
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+interface OwnProps {
   isVisible: boolean
+  parentResourceType: ParentResourceType
+  parentResourceId: number
   adminId: string
-  permissions: AdminPermissions
-  handleEdit: (id: string | undefined) => void
+  projectId: number
+  campaignId: number
+  handleEdit: (id: Admin['id']) => void
   handleClose: () => void
 }
 
+type Props = OwnProps & PropsFromRedux
+
 const DetailsDrawerComponent: FC<Props> = ({
   isVisible,
+  parentResourceType,
+  parentResourceId,
   adminId,
-  permissions,
+  projectId,
+  campaignId,
   handleClose,
   handleEdit,
+  admin,
+  isFetching,
+  fetchAdmin,
 }) => {
-  const {
-    fetchSingle, getResource, isLoading: isAdminLoading,
-  } = useResources<ProjectAdminViewDetails>('memberships')
-
-  const admin = getResource(adminId)
-
   useEffect(() => {
-    if (isVisible) {
-      fetchSingle({
-        id: adminId,
-      })
+    if (isVisible && adminId && adminId.length !== 0) {
+      fetchAdmin(parentResourceType, parentResourceId, parseInt(adminId, 10))
     }
-  }, [adminId])
+  }, [adminId, campaignId])
 
   return (
     <Drawer
@@ -54,7 +77,7 @@ const DetailsDrawerComponent: FC<Props> = ({
       width="50%"
       zIndex={1001}
     >
-      <Skeleton loading={isAdminLoading(`fetch@${adminId}`)} active>
+      <Skeleton loading={isFetching} active>
         <Descriptions
           layout="horizontal"
           className="w-100"
@@ -62,8 +85,8 @@ const DetailsDrawerComponent: FC<Props> = ({
           column={1}
           extra={(
             <Space>
-              {permissions?.edit && (
-                <Button type="primary" onClick={() => handleEdit(admin?.id)}>
+              {admin?.permissions?.edit && (
+                <Button type="primary" onClick={() => handleEdit(admin?.id ?? 0)}>
                   {I18n.t('administration.administrators.list.actions.edit')}
                 </Button>
               )}
@@ -94,42 +117,7 @@ const DetailsDrawerComponent: FC<Props> = ({
               {admin.email}
             </Descriptions.Item>
           )}
-          {admin?.projects && (
-            <Descriptions.Item
-              label={I18n.t(
-                'administration.administrators.list.columns.projects_list',
-              )}
-              key="projects_list"
-              className="va-t"
-            >
-              <List
-                itemLayout="horizontal"
-                dataSource={admin.projects}
-                renderItem={(permissionRole, index) => (
-                  <List.Item
-                    extra={(
-                      <Typography.Text>
-                        {_.startCase(permissionRole.role)}
-                      </Typography.Text>
-                    )}
-                    className={index === 0 ? 'pt-0' : ''}
-                  >
-                    <List.Item.Meta
-                      title={(
-                        <Link
-                          to={`/administration/projects/${permissionRole.id}/new_campaigns`}
-                          className="ant-typography"
-                        >
-                          {permissionRole.name}
-                        </Link>
-                      )}
-                    />
-                  </List.Item>
-                )}
-              />
-            </Descriptions.Item>
-          )}
-          {admin?.campaigns.length && (
+          {admin?.campaigns && (
             <Descriptions.Item
               label={I18n.t(
                 'administration.administrators.list.columns.campaigns_list',
@@ -144,7 +132,7 @@ const DetailsDrawerComponent: FC<Props> = ({
                   <List.Item
                     extra={(
                       <Typography.Text>
-                        {_.startCase(permissionRole.role)}
+                        {I18n.t('administration.administrators.drawers.view.role')}
                       </Typography.Text>
                     )}
                     className={index === 0 ? 'pt-0' : ''}
@@ -152,7 +140,7 @@ const DetailsDrawerComponent: FC<Props> = ({
                     <List.Item.Meta
                       title={(
                         <Link
-                          to={`new_campaigns/${permissionRole.id}`}
+                          to={`/administration/projects/${projectId}/new_campaigns/${permissionRole.id}`}
                           className="ant-typography"
                         >
                           {permissionRole.name}
@@ -170,4 +158,4 @@ const DetailsDrawerComponent: FC<Props> = ({
   )
 }
 
-export const DetailsDrawer = DetailsDrawerComponent
+export const DetailsDrawer = connector(DetailsDrawerComponent)

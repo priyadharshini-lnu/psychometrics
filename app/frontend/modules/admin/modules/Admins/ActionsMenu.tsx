@@ -3,9 +3,8 @@ import { Button, Menu, Tooltip } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined } from '@ant-design/icons'
 
-import {
-  Admin, AdminPermissions,
-} from 'modules/admin/modules/client/core/admin'
+import { Admin } from 'modules/admin/modules/Admins/core'
+
 import ConditionalDropdown from 'components/ConditionalDropdown'
 
 const { I18n } = window
@@ -13,29 +12,32 @@ const { I18n } = window
 interface Props {
   id: Admin['id']
   email: Admin['email']
-  permissions: AdminPermissions
+  campaignId: number
+  permissions: Admin['permissions']
+  handleEdit(id: Admin['id']): void
   handleDelete(id: Admin['id']): void
   handleResetPassword(id: Admin['id']): void
-  handleEdit(id: Admin['id']): void
 }
 
 export const ActionsMenu: FC<Props> = ({
   id,
   email,
+  campaignId,
   permissions,
-  handleResetPassword,
   handleEdit,
   handleDelete,
+  handleResetPassword,
 }) => (
   <ConditionalDropdown
     menu={
       MenuDropdown({
         id,
         email,
+        campaignId,
         permissions,
         handleEdit,
-        handleResetPassword,
         handleDelete,
+        handleResetPassword,
       }) as ReactElement<MenuProps>
     }
     innerElement={(
@@ -58,20 +60,22 @@ export const ActionsMenu: FC<Props> = ({
 
 interface MenuProps {
   id: Admin['id']
+  campaignId: number
   email: Admin['email']
-  permissions: AdminPermissions
-  handleResetPassword: Props['handleResetPassword']
-  handleDelete: Props['handleDelete']
+  permissions: Admin['permissions']
   handleEdit: Props['handleEdit']
+  handleDelete: Props['handleDelete']
+  handleResetPassword: Props['handleResetPassword']
 }
 
 const MenuDropdown: FC<MenuProps> = ({
   id,
   email,
+  campaignId,
   permissions,
-  handleResetPassword,
-  handleDelete,
   handleEdit,
+  handleDelete,
+  handleResetPassword,
 }) => {
   const menuItems:ItemType[] = []
   permissions.loginAs && menuItems.push(
@@ -79,7 +83,7 @@ const MenuDropdown: FC<MenuProps> = ({
       key: 'loginAs',
       label: (
         <a
-          href={`/api/v2/administration/memberships/${id}/spoof`}
+          href={`/administration/new_campaigns/${campaignId}/admins/${id}/spoof`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -113,7 +117,7 @@ const MenuDropdown: FC<MenuProps> = ({
   permissions.remove && menuItems.push(
     {
       key: 'remove',
-      label: I18n.t('common.actions.remove'),
+      label: I18n.t('administration.administrators.list.actions.delete'),
     },
   )
 
