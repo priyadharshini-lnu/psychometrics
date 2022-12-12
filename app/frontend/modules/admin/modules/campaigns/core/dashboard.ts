@@ -10,7 +10,7 @@ export const DashboardTR = t.type({
   embedToken: t.union([t.string, t.undefined, t.null]),
   imageUrl: t.union([t.string, t.undefined, t.null]),
   imageName: t.union([t.string, t.undefined, t.null]),
-  refreshInterval: t.union([t.number, t.undefined]),
+  refreshInterval: t.union([t.number, t.undefined, t.null]),
   capacityId: t.union([t.undefined, t.null, t.string]),
   workspaceId: t.union([t.undefined, t.null, t.string]),
   campaign: t.union([
