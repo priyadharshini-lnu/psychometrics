@@ -55,6 +55,12 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
     {
       basePath: `campaigns/${campaignId}/`,
       responseType: ReportApprovalSettingsTR,
+      apiConfig: {
+        include: ['report'],
+        fields: {
+          reports: ['name'],
+        },
+      },
     },
   )
   useEffect(() => {
@@ -62,7 +68,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
   }, [])
   const tableLoading = isLoading('fetch')
 
-  const ClientTable = (
+  const ApprovalSettingsTable = (
     <>
       <Table
         rowKey={row => row?.id ?? -1}
@@ -77,6 +83,13 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
             <a href={`/administration/reports/${report.id}`}>
               {report.id}
             </a>
+          )}
+        />
+        <Column
+          title={I18n.t('common.column.name')}
+          key="report_name"
+          render={({ report }) => (
+            <>{report.name}</>
           )}
         />
         <Column
@@ -167,7 +180,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
   return (
     <>
       <TableLayout
-        table={ClientTable}
+        table={ApprovalSettingsTable}
         filters={filter}
         recordCount={meta.recordCount}
         loading={tableLoading}

@@ -18,7 +18,7 @@ export const ReportApprovalSettingsTR = t.intersection([
     }),
     report: t.type({
       id: t.string,
-      type: t.string,
+      name: t.string,
     }),
   }),
 ])
