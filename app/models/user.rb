@@ -335,6 +335,16 @@ class User < ApplicationRecord
     false
   end
 
+  ransacker :full_name do |parent|
+    Arel::Nodes::InfixOperation.new(
+      '||',
+      Arel::Nodes::InfixOperation.new(
+        '||', parent.table[:first_name], Arel::Nodes.build_quoted(' ')
+      ),
+      parent.table[:last_name]
+    )
+  end
+
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)

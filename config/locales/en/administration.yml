@@ -3230,6 +3230,18 @@ en:
             title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Successfully updated.
+    report_approval:
+      campagin_search: Campaign search
+      columns:
+        actions: Actions
+        approval_status: Approval Status
+        campaign_name: Campaign Name
+        report_name: Report Name
+        user_email: User Email
+        user_name: User Name
+      report_search: Report search
+      review: Review
+      user_search: User search
     report_families:
       copy:
         error: 'Report Bundle #%{id} was not copied.'
