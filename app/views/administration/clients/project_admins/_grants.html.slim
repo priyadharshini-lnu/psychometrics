@@ -178,7 +178,7 @@ table.table.grants-table
           - if policy(:membership).manage_grants_for_action?('messages', 'email', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][messages][]',
-                      'email', resource.has_grant?(:messages, :view), id: messages_email_id
+                      'email', resource.has_grant?(:messages, :email), id: messages_email_id
               | Email
               sup
                 a href='#sup-note-1' 1
