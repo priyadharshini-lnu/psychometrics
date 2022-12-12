@@ -34,11 +34,7 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation()
 
   const handleOnSelect = ({ key }) => {
-    if (key === 'admins') {
-      window.location.pathname = `/administration/clients/${projectId}/project_admins`
-    } else {
-      history.push(`${settings.urlPrefix}/${projectId}/${key}`)
-    }
+    history.push(`${settings.urlPrefix}/${projectId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {

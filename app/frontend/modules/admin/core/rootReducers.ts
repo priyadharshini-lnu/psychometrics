@@ -7,7 +7,6 @@ import config from 'core/config'
 import tables from 'modules/admin/core/filterAndPagination/reducers'
 import preview from 'modules/survey/core/preview'
 import connection from 'core/connection'
-import { reducer as adminsReducer } from 'modules/admin/modules/Admins/core'
 import { reducer as projectAssessorsReducers } from 'modules/admin/modules/client/core/assessors'
 import { reducer as projectParticipantsReducer } from 'modules/admin/modules/client/core/participants'
 import { reducer as individualDashboardReducer } from 'modules/admin/modules/IndividualDashboard/core'
@@ -45,7 +44,6 @@ import auditLogs from '../modules/AuditLog/core'
 
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
-  admins: adminsReducer,
   socket,
   threeSixtyCampaign: combineReducers({
     subjects,
