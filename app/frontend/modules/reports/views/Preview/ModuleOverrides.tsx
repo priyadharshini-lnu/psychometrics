@@ -13,6 +13,7 @@ import htmldiff from 'libs/htmldiff'
 import { openRichEditor, closeRichEditor } from 'modules/reports/core/builder/actions'
 import {
   createTextOverride, updateTextOverride, approveTextOverride, removeTextOverride,
+  selectModule,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { SafeHTML } from 'components/SafeHTML'
@@ -39,6 +40,7 @@ const connector = connect(
     closeReviewEditor: () => rstore.dispatch(closeRichEditor()),
     createTextOverride: (...args:[number, {}]) => rstore.dispatch(createTextOverride(...args)),
     updateTextOverride: (...args:[number, number, {}]) => rstore.dispatch(updateTextOverride(...args)),
+    selectModule: (...args:[number]) => rstore.dispatch(selectModule(...args)),
   }),
 )
 
@@ -59,6 +61,7 @@ const OverrideComponent: FC<Props> = ({
   override, userReport, module,
   openReviewEditor, approveTextOverride, closeReviewEditor,
   removeTextOverride, updateTextOverride, createTextOverride,
+  selectModule,
 }) => {
   const [box, setBox] = useState<{}>({})
   const [edit, setEdit] = useState(false)
@@ -126,6 +129,7 @@ const OverrideComponent: FC<Props> = ({
     <div
       className={styles.editable}
       style={box}
+      onClick={() => selectModule(module.id)}
     >
       {edit && (
         <FroalaEditor

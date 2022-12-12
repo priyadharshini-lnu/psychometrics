@@ -2,7 +2,7 @@
 
 class UserReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
-             :approved, :report_data, :permissions
+             :approved, :report_data, :permissions, :comments
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
@@ -10,6 +10,11 @@ class UserReportSerializer < ActiveModel::Serializer
   has_one :report, serializer: ReportSerializer
   has_one :options, serializer: Threesixty::CampaignOptionsSerializer
   has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
+  has_many :comments, each_serializer: UserReportCommentSerializer
+
+  def comments
+    object.user_report_comments
+  end
 
   def campaign_id
     object.campaign.threesixty_campaign&.id || object.campaign_id

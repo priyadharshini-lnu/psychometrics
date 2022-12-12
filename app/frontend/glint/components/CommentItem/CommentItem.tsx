@@ -2,9 +2,12 @@ import React, { FC, useState } from 'react'
 import {
   Row, Col, Avatar, Dropdown, Menu, Typography, Space, Input, Button, Modal,
 } from 'antd'
-import { MoreOutlined, UserOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-
+import {
+  MoreOutlined, UserOutlined, ExclamationCircleOutlined, CheckOutlined,
+} from '@ant-design/icons'
+import cs from 'classnames'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import moment from 'moment'
 import styles from './CommentItem.less'
 
 type Props = {
@@ -13,16 +16,19 @@ type Props = {
   canResolve?: boolean,
   comment: {
     id: string
-    text: string,
-    createdAt: string,
+    text: string
+    createdAt: string
+    resolved: boolean
+    isNew?: boolean
+    creator: {
+      fullName: string,
+      avatarUrl?: string | null,
+    }
   }
-  userData: {
-    fullName: string,
-    avatarUrl?: string | null,
-  }
-  onCommentRemove?:(commentId: string) => null
-  onCommentResolve?: (commentId: string) => null
+  onCommentRemove?:(commentId: string) => void
+  onCommentResolve?: (commentId: string) => void
   onCommentEditSave?: (comment: {commentText: string, commentId: string}) => Promise<unknown>
+  onRead?: (commentId: string) => void
 }
 
 const { Text } = Typography
@@ -31,7 +37,8 @@ const { TextArea } = Input
 const { I18n } = window
 
 export const CommentItem: FC<Props> = ({
-  canEdit, canRemove, canResolve, comment, userData, onCommentRemove, onCommentEditSave, onCommentResolve,
+  canEdit, canRemove, canResolve, comment, comment: { creator },
+  onCommentRemove, onCommentEditSave, onCommentResolve, onRead,
 }) => {
   const [commentText, setCommentText] = useState(comment.text)
   const [editComment, setEditComment] = useState(false)
@@ -48,6 +55,7 @@ export const CommentItem: FC<Props> = ({
       onOk () {
         onCommentRemove && onCommentRemove(comment.id)
       },
+      zIndex: 9999,
     })
   }
 
@@ -63,7 +71,7 @@ export const CommentItem: FC<Props> = ({
     }
   }
   const menu = <Menu items={menuItems} onClick={handleMenuClick} />
-  const avatarIcon = userData.avatarUrl ? null : <UserOutlined />
+  const avatarIcon = creator.avatarUrl ? null : <UserOutlined />
   const handleSave = () => {
     onCommentEditSave && onCommentEditSave({ commentText, commentId: comment.id }).then(() => {
       setEditComment(false)
@@ -76,15 +84,24 @@ export const CommentItem: FC<Props> = ({
     setCommentText(target.value)
   }
   return (
-    <div className={styles.topRow}>
-      <Row wrap={false} gutter={[6, 0]} justify="center">
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+    <div
+      onMouseOver={() => comment.isNew && onRead && onRead(comment.id)}
+      className={cs(styles.topRow, { [styles.new]: comment.isNew })}
+    >
+      <Row wrap={false} gutter={[6, 0]} justify="center" align="middle">
         <Col>
-          <Avatar size={40} icon={avatarIcon} src={userData.avatarUrl} />
+          <Avatar size={40} icon={avatarIcon} src={creator.avatarUrl} />
         </Col>
         <Col flex={1}>
-          <Text className={styles.timestamp} type="secondary">{comment.createdAt}</Text>
-          <div className={styles.name}>{userData.fullName}</div>
+          <Text className={styles.timestamp} type="secondary">{moment(comment.createdAt).fromNow()}</Text>
+          <div className={styles.name}>{creator.fullName}</div>
         </Col>
+        {comment.resolved && (
+          <Col>
+            <CheckOutlined className={styles.resolved} />
+          </Col>
+        )}
         <div className={styles.actionMenu}>
           <Dropdown
             trigger={['click']}

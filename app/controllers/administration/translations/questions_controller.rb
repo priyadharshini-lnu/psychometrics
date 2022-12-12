@@ -16,7 +16,8 @@ module Administration
         AdminJob.call(
           :import_question_translations,
           import_params.merge(resource_id: @question.id),
-          current_user
+          current_user,
+          params[:file]
         )
         head :ok
       end

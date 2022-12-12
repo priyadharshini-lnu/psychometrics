@@ -15,10 +15,10 @@ const { Content } = Layout
 const { I18n } = window
 
 const TAG_COLORS = {
-  not_ready: 'default',
-  pending_qc: 'warning',
-  qc_in_progress: 'processing',
-  qc_completed: 'processing',
+  not_ready: 'warning',
+  pending_qc: 'default',
+  qc_in_progress: 'warning',
+  qc_completed: 'warning',
   change_requested: 'warning',
   approved: 'success',
 }
@@ -236,7 +236,7 @@ export default function ReportPreview ({
             {userReport.report.require_approval
               && (
               <Col>
-                <Affix style={{ maxHeight: '100vh', overflow: 'scroll' }}>
+                <Affix style={{ maxHeight: '100vh' }}>
                   <Sidebar />
                 </Affix>
               </Col>

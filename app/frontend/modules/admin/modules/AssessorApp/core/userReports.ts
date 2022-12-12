@@ -26,9 +26,10 @@ export const UserReportDetailTR = t.type({
   results: t.UnknownRecord,
 })
 
-interface UserReportDetail extends t.TypeOf<typeof UserReportDetailTR> {
+export interface UserReportDetail extends t.TypeOf<typeof UserReportDetailTR> {
   loaded: boolean
 }
+
 
 export type State = {
   list: UserReport[],

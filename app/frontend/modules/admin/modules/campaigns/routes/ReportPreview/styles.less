@@ -1,3 +1,6 @@
+@import 'styles/spacing.less';
+@import 'styles/ant.variable.less';
+
 :global {
   .reportContainer {
     .fe-page-container {
@@ -8,12 +11,83 @@
   }
 }
 
+.tabs {
+  overflow: hidden;
+  height: 100%;
+  :global {
+    .ant-tabs-tab {
+      min-width: 33.3%;
+      justify-content: center;
+    }
+
+    .ant-tabs-nav {
+      margin-bottom: 0 !important;
+    }
+
+    .ant-tabs-nav-list {
+      padding: 0 @space-3;
+    }
+    .ant-tabs-content-holder {
+      overflow: scroll;
+    }
+  }
+}
+
+.comments {
+
+  .thread {
+    border-left: 3px solid transparent;
+    padding: @space-4;
+    &.highlighted {
+      border-left: 3px solid @base-primary;
+      background-color:#E9F7F6;
+    }
+  }
+
+  .module {
+    padding-bottom: @space-4;
+    cursor: pointer;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    color: @disabled-color;
+    text-overflow: ellipsis;
+    .title {
+      color: @text-color;
+      font-weight: bold;
+      margin-right: @space-2;
+    }
+  }
+}
+
 .affix {
   :global {
     .ant-affix {
       z-index: 9999;
     }
   }
+}
+
+.compose {
+  padding: @space-4;
+
+  .hint {
+    padding-bottom: @space-4;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    text-overflow: ellipsis;
+  }
+
+  .send {
+    font-size: 18px;
+    cursor: pointer;
+    color: #ccc;
+  }
+}
+.reply {
+  margin-top: @space-4;
 }
 
 .toolbar {

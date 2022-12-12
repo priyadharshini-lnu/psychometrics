@@ -22,6 +22,33 @@ const ModuleOverrideTR = t.type({
   updatedAt: t.string,
 })
 
+export interface Comment {
+  id: string
+  text: string,
+  createdAt: string
+  parentId: string
+  moduleId: string
+  resolved: boolean
+  creator: {
+    avatarUrl: string
+    fullName: string
+  }
+  reportsModule: {id: string}
+  parent: {id: string}
+}
+
+export const CommentSchema = {
+  type: 'user_report_comments',
+  relationships: {
+    parent: {
+      type: 'user_report_comments',
+    },
+    reportsModule: {
+      type: 'modules',
+    },
+  },
+}
+
 export type ModuleOverride = t.TypeOf<typeof ModuleOverrideTR>
 interface UserReportDetails {
   id?: number
@@ -44,6 +71,7 @@ interface UserReportDetails {
   results: object[],
   campaign?: object,
   moduleOverrides: ModuleOverride[]
+  comments: Comment[]
   richEditorOpened: boolean
   approved: boolean
   campaignId?: number
@@ -57,6 +85,7 @@ export interface State {
   externalReport: ExternalReportDetails,
   current: UserReportDetails,
   selectedIds: number[]
+  selectedModule: null | number,
 }
 
 const defaultState: State = {
@@ -73,15 +102,38 @@ const defaultState: State = {
     },
     results: [],
     moduleOverrides: [],
+    comments: [],
     approved: false,
     richEditorOpened: false,
     permissions: { download: false },
   },
+  selectedModule: null,
+}
+
+interface Module {
+  id: number
+  props: {
+    text: string
+  }
 }
 
 export const get = (state: RootState): State => state.campaigns.userReports
 export const getCurrent = (state: RootState): UserReportDetails => _.get(get(state), ['current'])
 export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedIds')
+
+export const getCommentThreads = (state: RootState) => (
+  _.get(get(state), ['current', 'comments']).filter((c => !c.parentId)).reverse()
+)
+
+export const getModules = (state: RootState):Module[] => (
+  _.flatten(_.get(get(state), ['current', 'report', 'pages']).map(p => p.modules))
+)
+
+export const getSelectedModule = (state: RootState): Module | null => {
+  const id = _.get(get(state), ['selectedModule'])
+  return getModules(state).find(m => m.id === id) || null
+}
+
 
 export const FETCH_SINGLE = 'campaigns/userReports/FETCH_SINGLE'
 export const DOWNLOAD = 'campaigns/userReports/DOWNLOAD'
@@ -103,6 +155,12 @@ export const ABORT_QC = 'campaigns/userReports/ABORT_QC'
 export const SEND_TO_APPROVE = 'campaigns/userReports/SEND_TO_APPROVE'
 export const REQUEST_CHANGES = 'campaigns/userReports/REQUEST_CHANGES'
 export const REMOVE_APPROVAL = 'campaigns/userReports/REMOVE_APPROVAL'
+export const SELECT_MODULE = 'campaigns/userReports/SELECT_MODULE'
+export const NEW_COMMENT = 'campaigns/userReports/NEW_COMMENT'
+export const UPDATE_COMMENT = 'campaigns/userReports/UPDATE_COMMENT'
+export const READ_COMMENT = 'campaigns/userReports/READ_COMMENT'
+
+export const selectModule = (id: number) => ({ type: SELECT_MODULE, id })
 
 export const fetchSingle = (campaignId: number, id: number, params = {}) => ({
   type: FETCH_SINGLE,
@@ -266,6 +324,12 @@ export const setUserReports = (userReports: UserReport[]) => ({
   userReports,
 })
 
+export const readComment = (id: string) => ({
+  type: READ_COMMENT,
+  id,
+})
+
+
 export const CLEAR_USER_REPORT_DETAILS = 'campaigns/userReports/CLEAR_USER_REPORT_DETAILS'
 export const clearUseReportDetails = () => ({ type: CLEAR_USER_REPORT_DETAILS })
 
@@ -356,6 +420,19 @@ const HANDLERS = {
     setIn(setIn(state, ['current', 'moduleOverrides'], state.current.moduleOverrides
       .filter(m => m.id !== requestAction.id)), ['current', 'approved'], false)
   ),
+  [NEW_COMMENT]: (state, { data: { comment } }: RemoveModuleOverride) => (
+    setIn(state, ['current', 'comments'], [...state.current.comments, { ...comment, isNew: true }])
+  ),
+  [UPDATE_COMMENT]: (state, { data: { comment } }: RemoveModuleOverride) => (
+    setIn(state, ['current', 'comments'], state.current.comments.map(
+      c => (c.id === comment.id ? { ...comment, isNew: true } : c),
+    ))
+  ),
+  [READ_COMMENT]: (state, { id }: RemoveModuleOverride) => (
+    setIn(state, ['current', 'comments'], state.current.comments.map(
+      c => (c.id === id ? _.omit(c, 'isNew') : c),
+    ))
+  ),
   [OPEN_RICH_EDITOR]: (state: State) => setIn(state, ['current', 'richEditorOpened'], true),
   [CLOSE_RICH_EDITOR]: (state: State) => setIn(state, ['current', 'richEditorOpened'], false),
   [APPROVE_REPORT]: (state: State) => setIn(state, ['current', 'approved'], true),
@@ -372,6 +449,9 @@ const HANDLERS = {
   ),
   [REMOVE_APPROVAL]: (state: State, { response }: RemoveApproval) => setIn(
     state, ['current', 'approvalStatus'], response.status,
+  ),
+  [SELECT_MODULE]: (state: State, { id }: ReturnType<typeof selectModule>) => setIn(
+    state, ['selectedModule'], id,
   ),
 }
 

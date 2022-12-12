@@ -12,6 +12,8 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
 
   before_create -> { @model.user_report = context[:user_report] }
   before_create -> { @model.creator = context[:user] }
+  after_create :broadcast_create
+  after_update :broadcast_update
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
@@ -32,5 +34,15 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
   def remove
     @model.soft_delete!(context[:user])
     :completed
+  end
+
+  def broadcast_create
+    Comments::Channel.broadcast_to context[:user_report], action: 'new_comment',
+      comment: UserReportCommentSerializer.new(@model)
+  end
+
+  def broadcast_update
+    Comments::Channel.broadcast_to context[:user_report], action: 'update_comment',
+      comment: UserReportCommentSerializer.new(@model)
   end
 end

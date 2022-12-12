@@ -30,27 +30,30 @@ export const CommentReply: FC<Props> = ({
 
   const handleSend = () => {
     hasValidText && onSendReply(commentText)
+    setCommentText('')
   }
 
   return (
     <div>
-      <Row wrap={false}>
+      <Row gutter={[6, 0]} wrap={false} align="middle">
         <Col>
           <Avatar size={40} icon={avatarIcon} className={styles.avatar} />
         </Col>
-        <Input
-          onPressEnter={handleSend}
-          value={commentText}
-          onChange={handleTextChange}
-          suffix={inputLoading ? <LoadingOutlined />
-            : (
-              <SendOutlined
-                className={cs({ [styles.sendIcon]: true, [styles.disable]: !hasValidText })}
-                onClick={handleSend}
-              />
-            )}
-          disabled={inputLoading}
-        />
+        <Col flex="1">
+          <Input
+            onPressEnter={handleSend}
+            value={commentText}
+            onChange={handleTextChange}
+            suffix={inputLoading ? <LoadingOutlined />
+              : (
+                <SendOutlined
+                  className={cs({ [styles.sendIcon]: true, [styles.disable]: !hasValidText })}
+                  onClick={handleSend}
+                />
+              )}
+            disabled={inputLoading}
+          />
+        </Col>
       </Row>
     </div>
   )
