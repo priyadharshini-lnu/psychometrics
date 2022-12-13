@@ -45,13 +45,17 @@ const HANDLERS = {
     })
   ),
   [CHANGE_FILTER]: (state: State,
-    { payload: { tableName, filterName, filterValue } }: ChangeFilterReturnType) => (
-    updateIn(
-      state,
-      [tableName, 'filters'],
-      filters => ({ ...filters, [filterName]: filterValue }),
-    )
-  ),
+    { payload: { tableName, filterName, filterValue } }: ChangeFilterReturnType) => {
+    const config = state[tableName]
+    return {
+      ...state,
+      [tableName]: {
+        ...config,
+        filters: ({ ...config.filters, [filterName]: filterValue }),
+        page: 1,
+      },
+    }
+  },
   [CHANGE_PAGE]: (state: State, { payload: { tableName, pageNumber, pageSize } }: ChangePageReturnType) => (
     {
       ...state,
