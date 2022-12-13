@@ -46,7 +46,7 @@ module UserScopes
     scope :with_access_to_campaign, lambda { |campaign_id|
       campaign = Campaign.find(campaign_id)
       client_ids = [campaign.client.id, campaign.project_id]
-      joins(:memberships).where(
+      left_joins(:memberships).where(
         %{
           (memberships.client_id IN (:client_ids) AND memberships.campaign_id IS NULL)
           OR memberships.campaign_id = :campaign_id OR users.role = :role

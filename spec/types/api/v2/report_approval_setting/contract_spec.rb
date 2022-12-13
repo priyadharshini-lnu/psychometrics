@@ -29,9 +29,9 @@ RSpec.describe Api::V2::ReportApprovalSetting::Contract do
 
       expect(schema.failure?).to eq(true)
       expect(schema).to have_jsonapi_attr_error(
-        qc_user_ids: ["Admins don't have access to the campaign"],
-        approver_user_ids: ["Admins don't have access to the campaign"],
-        approval_notification_user_ids: ["Admins don't have access to the campaign"]
+        qc_user_ids: ["Admins don't have access to the campaign."],
+        approver_user_ids: ["Admins don't have access to the campaign."],
+        approval_notification_user_ids: ["Admins don't have access to the campaign."]
       )
     end
 
