@@ -1126,11 +1126,7 @@ Rails.application.routes.draw do
           jsonapi_resources :clients do
             jsonapi_relationships
           end
-          jsonapi_resources :memberships, only: %i[index create update show destroy] do
-            get :spoof
-            get :reset_password
-          end
-          jsonapi_resources :users, only: %i[index show]
+          jsonapi_resources :users
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
             resource :uploads, only: %i[update]

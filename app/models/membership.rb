@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
@@ -33,6 +32,7 @@ class Membership < ApplicationRecord
   accepts_nested_attributes_for :user
 
   has_and_belongs_to_many :communications, join_table: :communications_memberships
+
   has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns
@@ -72,7 +72,6 @@ class Membership < ApplicationRecord
   scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
   scope :campaign_admin_role, -> { where(role: CAMPAIGN_ADMIN_ROLE) }
   scope :with_client, ->(client_id) { where(client_id: client_id) }
-  scope :with_role, ->(role) { where(role: role) }
   scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
   scope :member_or_manager, -> { where(role: %i[member manager]) }
   scope :filterable_fields, lambda { |query|
@@ -242,8 +241,7 @@ class Membership < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq filterable_fields with_role]
+      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq filterable_fields]
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
