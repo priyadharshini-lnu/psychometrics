@@ -373,7 +373,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       return removeFilter(name)
     }
     let newUrlQuery = queryState || {}
-    newUrlQuery = { ...queryState, filter: { [name]: value } }
+    newUrlQuery = { ...queryState, filter: { [name]: value }, page: { number: 1, size: queryState.page?.size } }
     changeUrlQuery(newUrlQuery)
   }
 
