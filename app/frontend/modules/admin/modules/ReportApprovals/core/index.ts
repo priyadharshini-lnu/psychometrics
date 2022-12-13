@@ -7,6 +7,7 @@ export const TaskTR = t.type({
   qcUserIds: t.array(t.number),
   approverUserIds: t.array(t.number),
   projectId: t.number,
+  pdfUrl: t.union([t.string, t.null]),
   campaign: t.type({
     id: t.string,
   }),

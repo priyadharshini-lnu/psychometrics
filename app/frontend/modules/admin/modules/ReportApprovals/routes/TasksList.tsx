@@ -121,11 +121,18 @@ const TasksListComponent: React.FC<Props> = ({
           title={I18n.t('administration.report_approval.columns.actions')}
           key="link"
           render={({
-            id, campaign, projectId,
+            id, campaign, projectId, pdfUrl, approvalStatus,
           }) => (
-            <a href={`/administration/projects/${projectId}/new_campaigns/${campaign.id}/user_reports/${id}`}>
-              {I18n.t('administration.report_approval.review')}
-            </a>
+            <Space>
+              <a href={`/administration/projects/${projectId}/new_campaigns/${campaign.id}/user_reports/${id}`}>
+                {I18n.t('administration.report_approval.review')}
+              </a>
+              {approvalStatus === 'approved' && pdfUrl && (
+                <a href={pdfUrl}>
+                  {I18n.t('administration.report_approval.download')}
+                </a>
+              )}
+            </Space>
           )}
         />
       </Table>
