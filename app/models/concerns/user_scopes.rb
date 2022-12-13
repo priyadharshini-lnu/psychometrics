@@ -52,7 +52,7 @@ module UserScopes
           OR memberships.campaign_id = :campaign_id OR users.role = :role
         },
         client_ids: client_ids, campaign_id: campaign.id, role: User::SUPER_ADMIN_ROLE
-      )
+      ).distinct
     }
 
     # Fileter by role

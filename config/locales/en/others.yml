@@ -1522,7 +1522,8 @@ en:
       key?: can't be blank
       missed?: can't be blank
       report_approval_settings:
-        validates_admins: Admins don't have access to the campaign
+        report_exists: Report approval setting for this report already exists.
+        validates_admins: Admins don't have access to the campaign.
   ecommerce:
     carts:
       show:
