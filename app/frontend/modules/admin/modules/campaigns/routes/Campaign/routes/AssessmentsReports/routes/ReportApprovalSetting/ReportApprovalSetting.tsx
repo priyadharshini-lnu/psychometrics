@@ -79,11 +79,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
         <Column
           title={I18n.t('common.column.report_id')}
           key="id"
-          render={({ report }) => (
-            <a href={`/administration/reports/${report.id}`}>
-              {report.id}
-            </a>
-          )}
+          render={({ report }) => report.id}
         />
         <Column
           title={I18n.t('common.column.name')}
