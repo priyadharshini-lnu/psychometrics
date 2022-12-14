@@ -6124,10 +6124,10 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@thetalententerprise/interactive-assessments@1.6.3":
-  version "1.6.3"
-  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.6.3/a92458518498ded837c8189ac506c67f912473a7#a92458518498ded837c8189ac506c67f912473a7"
-  integrity sha512-IeW/e1hq1a81zpLdsGIGCYw679EliW3O29ZASSe50CZcI2A6BUWu0dR2LdbpD+MxD6pqO7pcySoJwg8JwvKd2Q==
+"@thetalententerprise/interactive-assessments@1.6.4":
+  version "1.6.4"
+  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.6.4/faf9e181d2b5ea20776f64c7df7a26a5f9af5265#faf9e181d2b5ea20776f64c7df7a26a5f9af5265"
+  integrity sha512-Nz6xEljx134gPXbSwyG6ocpzUaQQrS1/Irlk3CosW3ktBzMJq+2IsGMA96nZhVpwlQNMIC9IBLmrCcH7YLQFaw==
 
 "@thetalententerprise/jsonapi-react@0.0.27":
   version "0.0.27"
