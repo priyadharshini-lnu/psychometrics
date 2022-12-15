@@ -50,10 +50,20 @@ export const CommentSchema = {
 }
 
 export type ModuleOverride = t.TypeOf<typeof ModuleOverrideTR>
+
+export enum Statuses {
+  NotRead = 'not_ready',
+  PendingQC = 'pending_qc',
+  QCInProgress = 'qc_in_progress',
+  QCCompleted = 'qc_completed',
+  ChangeRequested = 'change_requested',
+  Approved = 'approved'
+}
+
 interface UserReportDetails {
   id?: number
   loaded?: boolean
-  approvalStatus: 'not_ready' | 'pending_qc' | 'qc_in_progress' | 'qc_completed' | 'change_requested' | 'approved'
+  approvalStatus: Statuses
   user: {
     id?: number
     email?: string
@@ -94,7 +104,7 @@ const defaultState: State = {
   selectedIds: [],
   externalReport: {} as ExternalReportDetails,
   current: {
-    approvalStatus: 'not_ready',
+    approvalStatus: Statuses.NotRead,
     user: { },
     options: { reports: { approval: {} } },
     report: {

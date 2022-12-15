@@ -10,20 +10,20 @@ module Administration
     def create?
       return true if @user.is?(:superadmin)
 
-      ReportApprovalSetting.qc(@user.id, @user_report.campaign.id).exists?(report_id: @user_report.report_id)
+      ReportApprovalSetting.qcs(@user.id, @user_report.campaign.id).exists?(report_id: @user_report.report_id)
     end
 
     def update?
       return true if @user.is?(:superadmin)
 
-      ReportApprovalSetting.qc(@user.id, @record.user_report.campaign.id).
+      ReportApprovalSetting.qcs(@user.id, @record.user_report.campaign.id).
         exists?(report_id: @record.user_report.report_id)
     end
 
     def approve?
       return true if @user.is?(:superadmin)
 
-      ReportApprovalSetting.approver(@user.id, @user_report.campaign.id).exists?(report_id: @user_report.report_id)
+      ReportApprovalSetting.approvers(@user.id, @user_report.campaign.id).exists?(report_id: @user_report.report_id)
     end
   end
 end

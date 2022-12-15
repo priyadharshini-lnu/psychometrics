@@ -8,6 +8,7 @@ import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
 import _ from 'lodash'
+import { Statuses } from 'modules/admin/modules/campaigns/core/userReports'
 import { PropsFromRedux } from './connect'
 import Sidebar, { lookUpModules } from './Sidebar'
 import styles from './styles.less'
@@ -76,8 +77,8 @@ export default function ReportPreview ({
         selectedLocale={defaultLanguage}
         userReport={userReport}
         showOverrides={userReport.requireApproval}
-        allowEdit={userReport.approvalStatus === 'qc_in_progress' && userReport.permissions.manageQc}
-        allowApprove={userReport.approvalStatus === 'qc_completed' && userReport.permissions.manageApprover}
+        allowEdit={userReport.approvalStatus === Statuses.QCInProgress && userReport.permissions.manageQc}
+        allowApprove={userReport.approvalStatus === Statuses.QCCompleted && userReport.permissions.manageApprover}
         skipLogic={skipLogic}
       />
     )
@@ -117,7 +118,7 @@ export default function ReportPreview ({
       </Dropdown>,
     ]
 
-    if ((userReport.approvalStatus === 'pending_qc' || userReport.approvalStatus === 'change_requested')
+    if ((userReport.approvalStatus === Statuses.PendingQC || userReport.approvalStatus === Statuses.ChangeRequested)
         && userReport.permissions.manageQc) {
       actionList.unshift(
         <Button
@@ -128,7 +129,7 @@ export default function ReportPreview ({
         </Button>,
       )
     }
-    if (userReport.approvalStatus === 'qc_in_progress' && userReport.permissions.manageQc) {
+    if (userReport.approvalStatus === Statuses.QCInProgress && userReport.permissions.manageQc) {
       actionList.unshift(...[
         <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
           {I18n.t('administration.report_review.send_for_approve')}
@@ -138,7 +139,7 @@ export default function ReportPreview ({
         </Button>,
       ])
     }
-    if (userReport.approvalStatus === 'qc_completed' && userReport.permissions.manageApprover) {
+    if (userReport.approvalStatus === Statuses.QCCompleted && userReport.permissions.manageApprover) {
       const pageModules = lookUpModules(userReport.report)
       const approved = userReport.moduleOverrides.filter(m => m.approved).length
       const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
@@ -156,7 +157,7 @@ export default function ReportPreview ({
         </Button>,
       ])
     }
-    if (userReport.approvalStatus === 'approved' && userReport.permissions.manageApprover) {
+    if (userReport.approvalStatus === Statuses.Approved && userReport.permissions.manageApprover) {
       actionList.unshift(
         <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
           {I18n.t('administration.report_review.remove_approval')}

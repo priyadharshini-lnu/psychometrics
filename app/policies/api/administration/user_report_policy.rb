@@ -5,7 +5,7 @@ module Api
     class UserReportPolicy < BasePolicy
       class Scope < BasePolicy::Scope
         def resolve
-          UserReport
+          user.accessible_records(UserReport, 'results.view_report')
         end
       end
     end

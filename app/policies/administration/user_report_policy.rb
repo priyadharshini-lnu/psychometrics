@@ -23,7 +23,7 @@ module Administration
     end
 
     def approve?
-      manage_approver?
+      manage_approval?
     end
 
     def start_qc?
@@ -39,11 +39,11 @@ module Administration
     end
 
     def request_changes?
-      manage_approver?
+      manage_approval?
     end
 
     def remove_approval?
-      manage_approver?
+      manage_approval?
     end
 
     def regenerate?
@@ -87,13 +87,13 @@ module Administration
     def manage_qc?
       return true if @user.is?(:superadmin)
 
-      ReportApprovalSetting.qc(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
+      ReportApprovalSetting.qcs(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
     end
 
-    def manage_approver?
+    def manage_approval?
       return true if @user.is?(:superadmin)
 
-      ReportApprovalSetting.approver(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
+      ReportApprovalSetting.approvers(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
     end
   end
 end

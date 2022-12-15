@@ -16,5 +16,16 @@ module Api
     def context
       super.merge(user_report: user_report)
     end
+
+    def pundit_authorize
+      authorize(
+        model || model_class,
+        nil,
+        policy_class: policy_class,
+        project_id: project_id,
+        campaign_id: campaign_id,
+        user_report_id: params[:user_report_id]
+      )
+    end
   end
 end
