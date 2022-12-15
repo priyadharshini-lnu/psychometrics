@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
-import { Tag, Button, Tabs } from 'antd'
+import { Tag, Tabs } from 'antd'
 import {
   getCurrent,
   approveReport,
@@ -20,7 +20,7 @@ const { I18n } = window
 
 type Props = PropsFromRedux
 
-const lookUpModules = report => _.reduce(report.pages, (res, page) => {
+export const lookUpModules = report => _.reduce(report.pages, (res, page) => {
   const modules = _.reduce(page.modules, (modules, module) => (
     module.type === 'Text' && module.props.editable ? [...modules, module] : modules
   ), [])
@@ -28,7 +28,7 @@ const lookUpModules = report => _.reduce(report.pages, (res, page) => {
 }, [])
 
 function ReportPreview ({
-  userReport, approveReport, permissions, subscribeSocket,
+  userReport, subscribeSocket,
 }: Props) {
   useEffect(() => {
     subscribeSocket('Comments::Channel', { id: userReport.id })
@@ -50,12 +50,12 @@ function ReportPreview ({
       : <Tag color="orange">Edited</Tag>
   }
 
-  const pgaeModules = lookUpModules(userReport.report)
+  const pageModules = lookUpModules(userReport.report)
   const approved = userReport.moduleOverrides.filter(m => m.approved).length
-  const modulesCount = _.reduce(pgaeModules, (sum, { modules }) => (sum + modules.length), 0)
+  const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
   let number = 0
 
-  const showItems = userReport.approvalStatus === 'qc_in_progress'
+  const showItems = userReport.approvalStatus === 'qc_in_progress' || userReport.approvalStatus === 'qc_completed'
 
   return (
     <div className={styles.sidebar}>
@@ -74,17 +74,9 @@ function ReportPreview ({
                 /
                 {modulesCount}
               </div>
-              {permissions.approveReport && (
-              <Button
-                disabled={userReport.approved || approved !== modulesCount}
-                onClick={() => approveReport(userReport.campaignId, userReport.id)}
-                key="download"
-              >
-                {userReport.approved ? I18n.t('common.text.approved') : I18n.t('common.text.approve')}
-              </Button>
-              )}
+
             </div>
-            {pgaeModules.map(({ page, modules }, i) => (
+            {pageModules.map(({ page, modules }, i) => (
               <div key={i}>
                 <div className={cs(styles.override, styles.pageTitle)} onClick={() => scrollTo(`Page#${page.id}`)}>
                   {page.name}
@@ -146,7 +138,6 @@ function ReportPreview ({
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
-  permissions: state.currentUser.permissions,
 }), {
   approveReport,
   subscribeSocket,

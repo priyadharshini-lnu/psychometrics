@@ -19,6 +19,7 @@ import { SendOutlined } from '@ant-design/icons'
 import { CommentItem } from 'glint/components/CommentItem'
 import { CommentReply } from 'glint'
 import { useResources } from 'hooks/useResources'
+import Utils from 'modules/survey/utils'
 import styles from './styles.less'
 
 const connecter = connect((state: RootState) => ({
@@ -55,7 +56,7 @@ const Compose = ({ selected, disabled, onSend }) => {
   return (
     <div className={styles.compose}>
       <div className={styles.hint}>
-        {selected ? selected.props.text : 'Select a text module to comment'}
+        {selected ? Utils.stripHTML(selected.props.text) : 'Select a text module to comment'}
       </div>
       <Input
         disabled={disabled}
@@ -130,10 +131,10 @@ function Comments ({
               cs(styles.thread, { [styles.highlighted]: selectedModuleId?.toString() === thread.moduleId.toString() })}
             >
               <div className={styles.module}>
-                <Tooltip title={module?.props?.text}>
+                <Tooltip title={Utils.stripHTML(module?.props?.text)}>
                   <span className={styles.title}>Text</span>
                   {'| '}
-                  {module?.props?.text}
+                  {Utils.stripHTML(module?.props?.text)}
                 </Tooltip>
               </div>
               <CommentItem

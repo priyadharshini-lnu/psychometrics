@@ -26,7 +26,7 @@ class UserReportPolicy < BasePolicy
                       query.
                       include?(@record)
     # rubocop:enable all
-    return can_view_report unless @record.report.require_approval?
+    return can_view_report unless @record.has_approval_workflow?
 
     @record.approved? && can_view_report
   end

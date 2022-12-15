@@ -10,7 +10,7 @@ module EndUser
     end
 
     def pdf_url
-      return nil if require_approval && !object.approved
+      return nil if require_approval && !object.approved?
 
       object.pdf.url
     end
@@ -20,7 +20,7 @@ module EndUser
     end
 
     def require_approval
-      object.report.require_approval?
+      object.has_approval_workflow?
     end
   end
 end

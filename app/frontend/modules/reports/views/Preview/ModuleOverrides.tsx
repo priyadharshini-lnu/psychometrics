@@ -55,10 +55,12 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {
   override: Override
   module: ModuleInterface
+  allowEdit: boolean
+  allowApprove: boolean
 }
 
 const OverrideComponent: FC<Props> = ({
-  override, userReport, module,
+  override, userReport, module, allowEdit, allowApprove,
   openReviewEditor, approveTextOverride, closeReviewEditor,
   removeTextOverride, updateTextOverride, createTextOverride,
   selectModule,
@@ -180,15 +182,17 @@ const OverrideComponent: FC<Props> = ({
                 Show diff
               </Checkbox>
               )}
-              <Button
-                type="primary"
-                size="small"
-                onClick={() => openEditor(override)}
-                className={cs(styles.edit)}
-              >
-                <EditOutlined />
-              </Button>
-              {override?.approved
+              {allowEdit && (
+                <Button
+                  type="primary"
+                  size="small"
+                  onClick={() => openEditor(override)}
+                  className={cs(styles.edit)}
+                >
+                  <EditOutlined />
+                </Button>
+              )}
+              {allowApprove && (override?.approved
                 ? (
                   <Button
                     type="primary"
@@ -213,8 +217,8 @@ const OverrideComponent: FC<Props> = ({
                   >
                     <CheckOutlined />
                   </Button>
-                )}
-              {override && (
+                ))}
+              {allowEdit && override && (
                 <Popconfirm
                   overlayStyle={{ zIndex: 9999 }}
                   title="Are you sure to discard this text?"
@@ -236,7 +240,9 @@ const OverrideComponent: FC<Props> = ({
 
 export const Override = connector(OverrideComponent)
 
-export const ModuleOverrides = ({ moduleOverrides, rstore, pages }) => {
+export const ModuleOverrides = ({
+  moduleOverrides, rstore, pages, allowEdit, allowApprove,
+}) => {
   const modules = _.reduce(pages, (list, page) => [...list, ..._.reduce(page.modules.list, (mlist, module) => {
     if (module.type === 'Text' && module.props.editable) {
       return [...mlist, module]
@@ -246,6 +252,14 @@ export const ModuleOverrides = ({ moduleOverrides, rstore, pages }) => {
 
   return modules.map((module) => {
     const override = _.find(moduleOverrides, override => override.moduleId === module.id)
-    return <Override module={module} override={override} rstore={rstore} />
+    return (
+      <Override
+        module={module}
+        override={override}
+        rstore={rstore}
+        allowEdit={allowEdit}
+        allowApprove={allowApprove}
+      />
+    )
   })
 }

@@ -63,17 +63,16 @@ interface UserReportDetails {
     name?: string,
     locales?: object,
     loaded: boolean
-    require_approval: boolean
   }
   options: {
     reports: {approval: {}}
   }
+  requireApproval: boolean
   results: object[],
   campaign?: object,
   moduleOverrides: ModuleOverride[]
   comments: Comment[]
   richEditorOpened: boolean
-  approved: boolean
   campaignId?: number
   permissions: {
     download: boolean
@@ -98,12 +97,11 @@ const defaultState: State = {
     options: { reports: { approval: {} } },
     report: {
       loaded: false,
-      require_approval: false,
     },
+    requireApproval: false,
     results: [],
     moduleOverrides: [],
     comments: [],
-    approved: false,
     richEditorOpened: false,
     permissions: { download: false },
   },

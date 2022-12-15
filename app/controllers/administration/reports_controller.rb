@@ -196,7 +196,7 @@ module Administration
     def resource_params
       report_params = params.require(:resource).permit(
         :name, :description, :provider, :owner_id, :mindmill, :icon, :icon_color, :props,
-        :remove_icon, :default_language, :poster, :remove_poster, :require_approval, :data_only,
+        :remove_icon, :default_language, :poster, :remove_poster, :data_only,
         report_family_ids: [], assessment_ids: [],
         external_settings: %i[report_id norm_id language_id suitability_id report_type]
       )

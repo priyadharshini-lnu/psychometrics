@@ -56,6 +56,14 @@ class UserReport < ApplicationRecord
     end
   end
 
+  def start_approval!
+    return ready! if not_ready? && has_approval_workflow?
+  end
+
+  def has_approval_workflow?
+    campaign.report_approval_settings.exists?(report_id: report_id)
+  end
+
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)
   end
@@ -81,7 +89,7 @@ class UserReport < ApplicationRecord
 
   def generatable?
     generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
-    generate &&= approved? if report.require_approval?
+    generate &&= approved? if has_approval_workflow?
     generate
   end
 

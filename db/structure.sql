@@ -3093,7 +3093,6 @@ CREATE TABLE public.reports (
     deleted_by_id bigint,
     description character varying,
     poster character varying,
-    require_approval boolean DEFAULT false,
     created_by_id bigint,
     updated_by_id bigint,
     data_only boolean DEFAULT false,
@@ -4463,7 +4462,6 @@ CREATE TABLE public.user_reports (
     user_access boolean DEFAULT false,
     report_family_id bigint,
     pdf_path character varying,
-    approved boolean DEFAULT false,
     external_added boolean DEFAULT false,
     approval_status character varying DEFAULT 'not_ready'::character varying,
     approval_status_updated_at timestamp without time zone,
@@ -10509,6 +10507,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221122133505'),
 ('20221122172755'),
 ('20221122172756'),
-('20221205213642');
+('20221205213642'),
+('20221213173037'),
+('20221214083458');
 
 

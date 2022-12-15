@@ -7,8 +7,9 @@ import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
+import _ from 'lodash'
 import { PropsFromRedux } from './connect'
-import Sidebar from './Sidebar'
+import Sidebar, { lookUpModules } from './Sidebar'
 import styles from './styles.less'
 
 const { Content } = Layout
@@ -74,7 +75,9 @@ export default function ReportPreview ({
         locales={locales}
         selectedLocale={defaultLanguage}
         userReport={userReport}
-        showOverrides={report.require_approval}
+        showOverrides={userReport.requireApproval}
+        allowEdit={userReport.approvalStatus === 'qc_in_progress'}
+        allowApprove={userReport.approvalStatus === 'qc_completed'}
         skipLogic={skipLogic}
       />
     )
@@ -135,8 +138,16 @@ export default function ReportPreview ({
       ])
     }
     if (userReport.approvalStatus === 'qc_completed') {
+      const pageModules = lookUpModules(userReport.report)
+      const approved = userReport.moduleOverrides.filter(m => m.approved).length
+      const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
+
       actionList.unshift(...[
-        <Button type="primary" onClick={() => approveReport(userReport.campaignId, userReport.id)}>
+        <Button
+          type="primary"
+          disabled={approved !== modulesCount}
+          onClick={() => approveReport(userReport.campaignId, userReport.id)}
+        >
           {I18n.t('administration.report_review.approve')}
         </Button>,
         <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
@@ -233,7 +244,7 @@ export default function ReportPreview ({
                 </Col>
               </Row>
             </Col>
-            {userReport.report.require_approval
+            {userReport.requireApproval
               && (
               <Col>
                 <Affix style={{ maxHeight: '100vh' }}>
