@@ -44,7 +44,7 @@ class Api::V2::Administration::ReportApprovalSettingResource < Api::V2::Administ
   private
 
   def user_details(_user_ids)
-    qc_user_ids.filter_map do |id|
+    _user_ids.filter_map do |id|
       user = users[id]
       next unless user
 

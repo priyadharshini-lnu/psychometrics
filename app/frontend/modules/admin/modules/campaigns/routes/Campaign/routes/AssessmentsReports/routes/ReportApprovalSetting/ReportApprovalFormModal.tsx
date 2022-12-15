@@ -132,9 +132,13 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               notFoundContent={isQcUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {qcUserOpts.map(({ id, email }) => (
+              {qcUserOpts.map(({ id, name, email }) => (
                 <Option key={id} value={id}>
+                  {name}
+                  {' '}
+                  (
                   {email}
+                  )
                 </Option>
               ))}
             </Select>
@@ -155,9 +159,13 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {approversOpts.map(({ id, email }) => (
+              {approversOpts.map(({ id, name, email }) => (
                 <Option key={`approvers_${id}`} value={id}>
+                  {name}
+                  {' '}
+                  (
                   {email}
+                  )
                 </Option>
               ))}
             </Select>
@@ -178,9 +186,13 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               notFoundContent={isNotificationUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {notificationUserOpts.map(({ id, email }) => (
+              {notificationUserOpts.map(({ id, name, email }) => (
                 <Option key={`notiification_user_${id}`} value={id}>
+                  {name}
+                  {' '}
+                  (
                   {email}
+                  )
                 </Option>
               ))}
             </Select>
