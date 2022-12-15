@@ -21,9 +21,11 @@
   right: 0;
   display: flex;
   background-color: @background;
-  padding: @space-1/2 @space-1;
   opacity: 0;
   transition: 0.4s;
+  &:has(span) {
+    padding: @space-1/2 @space-1;
+  }
 
   label {
     color: #fff;

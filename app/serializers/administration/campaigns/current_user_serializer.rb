@@ -9,7 +9,7 @@ module Administration
         instance_options[:current_membership]&.grants&.data || {}
       end
 
-      def permissions # rubocop:disable Metrics/AbcSize
+      def permissions
         permissions = GetPermissionsHash.call!(
           Administration::ProjectPolicy,
           object,
@@ -39,10 +39,6 @@ module Administration
         permissions['manage_profile_settings'] = Administration::ClientPolicy.new(
           object, ProfileSetting, project_id: instance_options[:project_id]
         ).profile?
-        permissions['approve_report'] = Administration::UserReportPolicy.new(
-          object, nil, project_id: instance_options[:project_id],
-        campaign_id: instance_options[:campaign_id]
-        ).approve?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
     end

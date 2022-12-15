@@ -76,6 +76,8 @@ interface UserReportDetails {
   campaignId?: number
   permissions: {
     download: boolean
+    manageQc: boolean
+    manageApprover: boolean
   }
 }
 
@@ -103,7 +105,11 @@ const defaultState: State = {
     moduleOverrides: [],
     comments: [],
     richEditorOpened: false,
-    permissions: { download: false },
+    permissions: {
+      download: false,
+      manageQc: false,
+      manageApprover: false,
+    },
   },
   selectedModule: null,
 }

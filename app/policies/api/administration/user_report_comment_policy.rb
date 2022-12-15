@@ -22,12 +22,12 @@ module Api
       private
 
       def can_manage_comments?
-        has_permission?(:reports, :view)
+        has_permission?(:campaigns, :manage_report_approvals)
       end
 
       class Scope < Scope
         def resolve
-          user.accessible_records(UserReportComment, 'reports.view').not_deleted
+          user.accessible_records(UserReportComment, 'campaigns.manage_report_approvals').not_deleted
         end
       end
     end

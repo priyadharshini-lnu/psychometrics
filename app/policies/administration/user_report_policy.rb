@@ -23,39 +23,27 @@ module Administration
     end
 
     def approve?
-      @user.has_permission?(
-        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
-      )
+      manage_approver?
     end
 
     def start_qc?
-      @user.has_permission?(
-        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
-      )
+      manage_qc?
     end
 
     def abort_qc?
-      @user.has_permission?(
-        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
-      )
+      manage_qc?
     end
 
     def send_for_approval?
-      @user.has_permission?(
-        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
-      )
+      manage_qc?
     end
 
     def request_changes?
-      @user.has_permission?(
-        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
-      )
+      manage_approver?
     end
 
     def remove_approval?
-      @user.has_permission?(
-        :results, :approve_report, project_id: project_id, campaign_id: campaign_id
-      )
+      manage_approver?
     end
 
     def regenerate?
@@ -94,6 +82,18 @@ module Administration
 
     def dashboard?
       has_permission?(:dashboards, :view)
+    end
+
+    def manage_qc?
+      return true if @user.is?(:superadmin)
+
+      ReportApprovalSetting.qc(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
+    end
+
+    def manage_approver?
+      return true if @user.is?(:superadmin)
+
+      ReportApprovalSetting.approver(@user.id, @record.campaign.id).exists?(report_id: @record.report_id)
     end
   end
 end

@@ -76,8 +76,8 @@ export default function ReportPreview ({
         selectedLocale={defaultLanguage}
         userReport={userReport}
         showOverrides={userReport.requireApproval}
-        allowEdit={userReport.approvalStatus === 'qc_in_progress'}
-        allowApprove={userReport.approvalStatus === 'qc_completed'}
+        allowEdit={userReport.approvalStatus === 'qc_in_progress' && userReport.permissions.manageQc}
+        allowApprove={userReport.approvalStatus === 'qc_completed' && userReport.permissions.manageApprover}
         skipLogic={skipLogic}
       />
     )
@@ -117,7 +117,8 @@ export default function ReportPreview ({
       </Dropdown>,
     ]
 
-    if (userReport.approvalStatus === 'pending_qc' || userReport.approvalStatus === 'change_requested') {
+    if ((userReport.approvalStatus === 'pending_qc' || userReport.approvalStatus === 'change_requested')
+        && userReport.permissions.manageQc) {
       actionList.unshift(
         <Button
           type="primary"
@@ -127,7 +128,7 @@ export default function ReportPreview ({
         </Button>,
       )
     }
-    if (userReport.approvalStatus === 'qc_in_progress') {
+    if (userReport.approvalStatus === 'qc_in_progress' && userReport.permissions.manageQc) {
       actionList.unshift(...[
         <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
           {I18n.t('administration.report_review.send_for_approve')}
@@ -137,7 +138,7 @@ export default function ReportPreview ({
         </Button>,
       ])
     }
-    if (userReport.approvalStatus === 'qc_completed') {
+    if (userReport.approvalStatus === 'qc_completed' && userReport.permissions.manageApprover) {
       const pageModules = lookUpModules(userReport.report)
       const approved = userReport.moduleOverrides.filter(m => m.approved).length
       const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
@@ -155,7 +156,7 @@ export default function ReportPreview ({
         </Button>,
       ])
     }
-    if (userReport.approvalStatus === 'approved') {
+    if (userReport.approvalStatus === 'approved' && userReport.permissions.manageApprover) {
       actionList.unshift(
         <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
           {I18n.t('administration.report_review.remove_approval')}
@@ -163,21 +164,24 @@ export default function ReportPreview ({
       )
     }
 
-    if (!userReport.permissions.download) return actionList
+    if (userReport.permissions.download) {
+      actionList.push(
+        <Button
+          onClick={onReportDownloadClick}
+          loading={downloadInProgress}
+          disabled={downloadInProgress}
+          key="download"
+        >
+          {I18n.t('common.text.download')}
+        </Button>,
+      )
+    }
 
     return [
       <Tag color={TAG_COLORS[userReport.approvalStatus]}>
         {I18n.t(`administration.report_review.statuses.${userReport.approvalStatus}`)}
       </Tag>,
       ...actionList,
-      <Button
-        onClick={onReportDownloadClick}
-        loading={downloadInProgress}
-        disabled={downloadInProgress}
-        key="download"
-      >
-        {I18n.t('common.text.download')}
-      </Button>,
     ]
   }
 
