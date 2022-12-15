@@ -25,7 +25,7 @@ class Api::V2::Administration::ReportApprovalSettingResource < Api::V2::Administ
     creatable_fields(values)
   end
 
-  def self.record(opts)
+  def self.records(opts)
     super.where(campaign_id: opts.dig(:context, :campaign).id)
   end
 
