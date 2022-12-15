@@ -68,7 +68,7 @@ class ChartsMenu extends Component {
 
   changeReportDataColumns = (value) => {
     const { model } = this.props
-    model.props.source.reportDataColumns = Array.isArray(value) ? value : [value]
+    model.props.source.reportDataColumns = value || []
 
     this.onSelect()
   }

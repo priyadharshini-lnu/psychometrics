@@ -10,7 +10,7 @@ export default {
 
     return results.map((res, i) => {
       const data = (model.props.source.reportDataColumns || []).map(column => ({
-        name: column.value,
+        name: column.label,
         y: parseFloat(res.results.reportData[column.value]),
       }))
       return {

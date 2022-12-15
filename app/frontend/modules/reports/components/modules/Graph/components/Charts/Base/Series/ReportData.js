@@ -6,7 +6,7 @@ export const Functions = {
 export default {
   series (results, factors, model) {
     const data = (model.props.source.reportDataColumns || []).map(column => ({
-      name: column.value,
+      name: column.label,
       y: parseFloat(results.reportData[column.value]),
     }))
 

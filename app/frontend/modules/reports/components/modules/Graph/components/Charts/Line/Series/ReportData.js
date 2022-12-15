@@ -7,9 +7,10 @@ export default {
     return [{ data }]
   },
 
-  xAxis (columns) {
+  xAxis (columns, module) {
+    const configData = module.props.source.reportDataColumns
     return {
-      categories: columns,
+      categories: columns.map(c => (configData.find(d => d.value === c) || {}).label),
     }
   },
 
