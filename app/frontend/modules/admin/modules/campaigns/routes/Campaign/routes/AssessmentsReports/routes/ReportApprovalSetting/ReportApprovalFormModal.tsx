@@ -26,6 +26,12 @@ type FormValueObj = {
   reportId: string,
 }
 
+const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetchedData) => (
+  reportApprovalSettings?.[dataKey] ? fetchedData.concat(reportApprovalSettings[dataKey]) : fetchedData
+)
+
+const getUserIds = users => users.map(user => parseInt(user.id, 10))
+
 export const ReportApprovalFormModal: React.FC<Props> = ({
   reportApprovalSettings,
   addReportApprovalSetting,
@@ -46,10 +52,25 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     data: notificationUsers, fetch: fetchNotificationUsers, isLoading: isNotificationUsersLoading,
   } = useResources<User>('users', { responseType: UserTR })
 
+  const reportApprovalSettingsFormData = reportApprovalSettings ? {
+    ...reportApprovalSettings,
+    qcUserIds: getUserIds(reportApprovalSettings.qcs),
+    approverUserIds: getUserIds(reportApprovalSettings.approvers),
+    approvalNotificationUserIds: getUserIds(reportApprovalSettings.approvalNotificationUsers),
+  } : reportApprovalSettings
+
+  const reportOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'report', reports)
+  const qcUserOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'qcs', qcUsers)
+  const approversOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'approvers', approverUsers)
+  const notificationUserOpts = getOptionsFromApprovalSettings(
+    reportApprovalSettings, 'approvalNotificationUsers', notificationUsers,
+  )
+
+
   return (
     <ResourceFormModal
       resourceName="report_approval_settings"
-      resource={reportApprovalSettings}
+      resource={reportApprovalSettingsFormData}
       readableResourceName="Report Approval Settings"
       showSuccessMessages
       close={close}
@@ -88,7 +109,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               notFoundContent={isReportsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {reports.map(({ id, name }) => (
+              {reportOpts.map(({ id, name }) => (
                 <Option key={id} value={id}>
                   {name}
                 </Option>
@@ -111,8 +132,8 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               notFoundContent={isQcUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {qcUsers.map(({ id, name, email }) => (
-                <Option key={`qc_user_${id}`} value={id}>
+              {qcUserOpts.map(({ id, name, email }) => (
+                <Option key={id} value={id}>
                   {name}
                   {' '}
                   (
@@ -138,7 +159,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {approverUsers.map(({ id, name, email }) => (
+              {approversOpts.map(({ id, name, email }) => (
                 <Option key={`approvers_${id}`} value={id}>
                   {name}
                   {' '}
@@ -165,7 +186,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
               notFoundContent={isNotificationUsersLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {notificationUsers.map(({ id, name, email }) => (
+              {notificationUserOpts.map(({ id, name, email }) => (
                 <Option key={`notiification_user_${id}`} value={id}>
                   {name}
                   {' '}
