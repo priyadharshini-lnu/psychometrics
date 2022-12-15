@@ -30,18 +30,27 @@ class Api::V2::Administration::ReportApprovalSettingResource < Api::V2::Administ
   end
 
   def qcs
-    qc_user_ids.filter_map { |id| users[id]&.slice(:id, :email) }
+    user_details(qc_user_ids)
   end
 
   def approvers
-    approver_user_ids.filter_map { |id| users[id]&.slice(:id, :email) }
+    user_details(approver_user_ids)
   end
 
   def approval_notification_users
-    approval_notification_user_ids.filter_map { |id| users[id.to_i]&.slice(:id, :email) }
+    user_details(approval_notification_user_ids)
   end
 
   private
+
+  def user_details(_user_ids)
+    qc_user_ids.filter_map do |id|
+      user = users[id]
+      next unless user
+
+      user.slice(:id, :email).merge(name: user.decorate.display_name)
+    end
+  end
 
   def users
     @users ||= User.where(id: qc_user_ids + approver_user_ids + approval_notification_user_ids).index_by(&:id)
