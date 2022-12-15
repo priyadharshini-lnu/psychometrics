@@ -11,7 +11,7 @@ class InnovationStyle < ApplicationRecord
 
   validates :position, numericality: { only_integer: true }, allow_nil: true
 
-  mount_uploader :icon, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
 
   def log_attribute_for_delete
     slice(:name, :dimension_id)

@@ -8,7 +8,7 @@ class UserProfile < ApplicationRecord
   before_save :set_age_updated_at, if: :age_changed?
 
   belongs_to :user
-  mount_uploader :photo, ImageUploader
+  mount_uploader :photo, Public::ImageUploader
 
   def set_age_updated_at
     self.age_updated_at = Time.current

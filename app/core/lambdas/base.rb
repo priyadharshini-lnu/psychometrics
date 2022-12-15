@@ -23,8 +23,8 @@ module Lambdas
     def send_message_to_sqs
       Aws::SQS::Client.new(
         credentials: Aws::Credentials.new(
-          Rails.application.secrets.access_key_id,
-          Rails.application.secrets.secret_access_key
+          Rails.application.secrets.s3_compatible_storage[:access_key_id],
+          Rails.application.secrets.s3_compatible_storage[:secret_access_key]
         )
       ).send_message({
         queue_url: sqs_url,

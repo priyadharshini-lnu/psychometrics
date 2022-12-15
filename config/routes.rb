@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  get '/oracle_proxy/*all' => 'oracle_proxy#all'
+  options '/oracle_proxy/*all' => 'oracle_proxy#all'
+  post '/oracle_proxy/*all' => 'oracle_proxy#all'
+  put '/oracle_proxy/*all' => 'oracle_proxy#all'
+
   get '/s/:id' => 'shortener/shortened_urls#show', as: :shortened
   post '/lambda_notifications/url_to_pdf'
   post '/lambda_notifications/zip_s3_files'

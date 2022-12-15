@@ -139,9 +139,9 @@ class Client < ApplicationRecord
   enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
-  mount_base64_uploader :logo, ImageUploader
-  mount_base64_uploader :background, BackgroundUploader
-  mount_base64_uploader :secondary_logo, ImageUploader
+  mount_base64_uploader :logo, Public::ImageUploader
+  mount_base64_uploader :background, Public::BackgroundUploader
+  mount_base64_uploader :secondary_logo, Public::ImageUploader
 
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting

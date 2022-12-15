@@ -26,7 +26,7 @@ module Lambdas
       content_disposition = "attachment; filename=\"#{File.basename(options[:output_file_path])}\""
       presigner = Aws::S3::Presigner.new
       presigner.presigned_url(:get_object,
-                              bucket: Rails.application.secrets.directory,
+                              bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket],
                               key: options[:output_file_path],
                               expires_in: 10.minutes.to_i,
                               response_content_disposition: content_disposition).to_s
@@ -56,7 +56,7 @@ module Lambdas
     def get_presigned_url
       Aws::S3::Presigner.new.presigned_url(
         :put_object,
-        bucket: Rails.application.secrets.directory,
+        bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket],
         key: options[:output_file_path],
         expires_in: expiry_time.to_i
       )

@@ -10,14 +10,14 @@ module Transcribe
 
     def call
       signer = Aws::Sigv4::Signer.new(
-        access_key_id: Rails.application.secrets.access_key_id,
-        secret_access_key: Rails.application.secrets.secret_access_key,
-        region: Rails.application.secrets.region,
+        access_key_id: Rails.application.secrets.s3_compatible_storage[:access_key_id],
+        secret_access_key: Rails.application.secrets.s3_compatible_storage[:secret_access_key],
+        region: Rails.application.secrets.s3_compatible_storage[:region],
         service: 'transcribe'
       )
 
       sample_rate = 8000
-      url = "wss://transcribestreaming.#{Rails.application.secrets.region}.amazonaws.com:8443/\
+      url = "wss://transcribestreaming.#{Rails.application.secrets.s3_compatible_storage[:region]}.amazonaws.com:8443/\
 stream-transcription-websocket?language-code=#{get_locale}&media-encoding=pcm&sample-rate=#{sample_rate}"
 
       url = signer.presign_url(

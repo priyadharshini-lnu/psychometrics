@@ -5,7 +5,7 @@ class BulkReport < ApplicationRecord
 
   belongs_to :user
 
-  mount_uploaders :files, BulkReportUploader
+  mount_uploaders :files, Private::BulkReportUploader
 
   def store_dir
     "uploads/#{self.class.to_s.underscore}/files/#{id}"

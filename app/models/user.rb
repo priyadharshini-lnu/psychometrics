@@ -142,7 +142,7 @@ class User < ApplicationRecord
 
   after_create :create_user_profile
 
-  mount_uploader :photo, ImageUploader
+  mount_uploader :photo, Public::ImageUploader
 
   has_one_time_password(encrypted: true)
 

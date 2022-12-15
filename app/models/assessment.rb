@@ -109,8 +109,8 @@ class Assessment < ApplicationRecord
   store :extra, accessors: %i[timer icon_color enable_video_check enable_audio_check enable_network_check],
     coder: JsonSerializer
 
-  mount_uploader :icon, ImageUploader
-  mount_uploader :poster, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
+  mount_uploader :poster, Public::ImageUploader
 
   delegate :config, :translations, to: :agile, prefix: true
 

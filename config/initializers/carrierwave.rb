@@ -4,28 +4,33 @@ silence_warnings do
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 end
 
-fog_credentials = if ENV['MINIO_ENDPOINT'].present?
-                    Aws.config.update(
-                      endpoint: ENV['MINIO_ENDPOINT'],
-                      credentials: Aws::Credentials.new(
-                        Rails.application.secrets.minio[:access_key_id],
-                        Rails.application.secrets.minio[:secret_access_key]
-                      )
-                    )
+s3_compatible_storage = Rails.application.secrets.s3_compatible_storage
+Aws.config.update(
+  region: s3_compatible_storage[:region],
+  credentials: Aws::Credentials.new(
+    s3_compatible_storage[:access_key_id],
+    s3_compatible_storage[:secret_access_key]
+  )
+)
+
+fog_credentials = if s3_compatible_storage[:provider] == 'aws'
+                    {
+                      provider: 'AWS',
+                      aws_access_key_id: s3_compatible_storage[:access_key_id],
+                      aws_secret_access_key: s3_compatible_storage[:secret_access_key],
+                      region: s3_compatible_storage[:region]
+                    }
+                  else
+                    Aws.config.update(endpoint: s3_compatible_storage[:endpoint])
                     Aws.config[:s3] = { force_path_style: true }
                     {
                       provider: 'AWS',
-                      endpoint: ENV['MINIO_ENDPOINT'],
+                      endpoint: s3_compatible_storage[:endpoint],
+                      region: s3_compatible_storage[:region],
                       path_style: true,
-                      aws_access_key_id: Rails.application.secrets.minio[:access_key_id],
-                      aws_secret_access_key: Rails.application.secrets.minio[:secret_access_key]
-                    }
-                  else
-                    {
-                      provider: 'AWS',
-                      aws_access_key_id: Rails.application.secrets.access_key_id,
-                      aws_secret_access_key: Rails.application.secrets.secret_access_key,
-                      region: Rails.application.secrets.region
+                      aws_access_key_id: s3_compatible_storage[:access_key_id],
+                      aws_secret_access_key: s3_compatible_storage[:secret_access_key],
+                      enable_signature_v4_streaming: s3_compatible_storage[:provider] != 'oracle'
                     }
                   end
 
@@ -38,14 +43,14 @@ else
   CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
     config.fog_credentials = fog_credentials
-    config.fog_directory = Rails.application.secrets.directory
+    config.fog_directory = s3_compatible_storage[:public_bucket]
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.days.to_i}" } # optional, defaults to {}
     config.storage = :fog
     config.use_action_status = true
     config.validate_unique_filename = false
     config.fog_aws_accelerate = Settings.aws.s3.accelerated
     config.asset_host =
-      if ENV['MINIO_ENDPOINT'].present?
+      if s3_compatible_storage[:provider] != 'aws'
         nil
       elsif Settings.file_host.present?
         "https://#{Settings.file_host}"
@@ -56,7 +61,7 @@ else
           else
             "s3.dualstack.#{Rails.application.secrets.region}"
           end
-        domain = "#{Rails.application.secrets.directory}.#{s3_endpoint}.amazonaws.com"
+        domain = "#{s3_compatible_storage[:public_bucket]}.#{s3_endpoint}.amazonaws.com"
         "https://#{domain}"
       end
   end

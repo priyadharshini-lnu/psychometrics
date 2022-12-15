@@ -38,7 +38,7 @@ class Factor < ApplicationRecord
     external_score: 6
   }, _suffix: :strategy
 
-  mount_uploader :icon, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
 
   accepts_nested_attributes_for :factors_sub_factors, allow_destroy: true
 

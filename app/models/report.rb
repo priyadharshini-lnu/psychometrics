@@ -93,8 +93,8 @@ class Report < ApplicationRecord
 
   serialize :external_settings, PsyJsonbSerializer
 
-  mount_uploader :icon, ImageUploader
-  mount_uploader :poster, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
+  mount_uploader :poster, Private::ImageUploader
 
   def delete_assessments_reports
     assessments_reports.destroy_all
