@@ -59,7 +59,7 @@ else
           if Settings.aws.s3.accelerated
             's3-accelerate.dualstack'
           else
-            "s3.dualstack.#{Rails.application.secrets.region}"
+            "s3.dualstack.#{s3_compatible_storage[:region]}"
           end
         domain = "#{s3_compatible_storage[:public_bucket]}.#{s3_endpoint}.amazonaws.com"
         "https://#{domain}"
