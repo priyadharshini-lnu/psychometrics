@@ -5,7 +5,7 @@ import { Tag, Tabs } from 'antd'
 import {
   getCurrent,
   approveReport,
-  Statuses,
+  ApprovalStatuses as Statuses,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { subscribeSocket } from 'core/socket'
 import Utils from 'modules/reports/utils/Utils'

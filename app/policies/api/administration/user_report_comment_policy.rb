@@ -5,7 +5,7 @@ module Api
     class UserReportCommentPolicy < BasePolicy
       def initialize(_, _, data)
         super
-        @user_report = UserReport.find(data[:user_report_id]) if data[:user_report_id]
+        @user_report = data[:user_report]
       end
 
       def index?
@@ -29,7 +29,7 @@ module Api
       def can_manage_comments?
         return true if @user.is?(:superadmin)
 
-        ReportApprovalSetting.for_any(@user.id, @user_report.campaign.id).
+        ReportApprovalSetting.where_participate(@user.id, @user_report.campaign.id).
           exists?(report_id: @user_report.report_id)
       end
 

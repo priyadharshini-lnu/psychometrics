@@ -8,7 +8,7 @@ import Report from 'modules/reports/report'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
 import _ from 'lodash'
-import { Statuses } from 'modules/admin/modules/campaigns/core/userReports'
+import { ApprovalStatuses as Statuses } from 'modules/admin/modules/campaigns/core/userReports'
 import { PropsFromRedux } from './connect'
 import Sidebar, { lookUpModules } from './Sidebar'
 import styles from './styles.less'
@@ -78,7 +78,7 @@ export default function ReportPreview ({
         userReport={userReport}
         showOverrides={userReport.requireApproval}
         allowEdit={userReport.approvalStatus === Statuses.QCInProgress && userReport.permissions.manageQc}
-        allowApprove={userReport.approvalStatus === Statuses.QCCompleted && userReport.permissions.manageApprover}
+        allowApprove={userReport.approvalStatus === Statuses.QCCompleted && userReport.permissions.manageApproval}
         skipLogic={skipLogic}
       />
     )
@@ -139,7 +139,7 @@ export default function ReportPreview ({
         </Button>,
       ])
     }
-    if (userReport.approvalStatus === Statuses.QCCompleted && userReport.permissions.manageApprover) {
+    if (userReport.approvalStatus === Statuses.QCCompleted && userReport.permissions.manageApproval) {
       const pageModules = lookUpModules(userReport.report)
       const approved = userReport.moduleOverrides.filter(m => m.approved).length
       const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
@@ -157,7 +157,7 @@ export default function ReportPreview ({
         </Button>,
       ])
     }
-    if (userReport.approvalStatus === Statuses.Approved && userReport.permissions.manageApprover) {
+    if (userReport.approvalStatus === Statuses.Approved && userReport.permissions.manageApproval) {
       actionList.unshift(
         <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
           {I18n.t('administration.report_review.remove_approval')}
