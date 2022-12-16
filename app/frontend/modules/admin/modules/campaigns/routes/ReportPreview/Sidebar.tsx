@@ -5,7 +5,7 @@ import { Tag, Tabs } from 'antd'
 import {
   getCurrent,
   approveReport,
-  ApprovalStatuses as Statuses,
+  ApprovalStatuses,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { subscribeSocket } from 'core/socket'
 import Utils from 'modules/reports/utils/Utils'
@@ -56,8 +56,8 @@ function ReportPreview ({
   const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
   let number = 0
 
-  const showItems = userReport.approvalStatus === Statuses.QCInProgress
-    || userReport.approvalStatus === Statuses.QCCompleted
+  const showItems = userReport.approvalStatus === ApprovalStatuses.QCInProgress
+    || userReport.approvalStatus === ApprovalStatuses.QCCompleted
 
   return (
     <div className={styles.sidebar}>

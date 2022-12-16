@@ -24,7 +24,7 @@ module Api
         policy_class: policy_class,
         project_id: project_id,
         campaign_id: campaign_id,
-        user_report: UserReport.find_by(id: params[:user_report_id])
+        user_report: user_report
       )
     end
   end

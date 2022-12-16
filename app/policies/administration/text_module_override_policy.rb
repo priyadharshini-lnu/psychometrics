@@ -8,16 +8,17 @@ module Administration
     end
 
     def create?
-      return true if @user.is?(:superadmin)
-
-      ReportApprovalSetting.qcs(@user.id, @user_report.campaign.id).exists?(report_id: @user_report.report_id)
+      manage_qc?
     end
 
     def update?
+      manage_qc?
+    end
+
+    def manage_qc?
       return true if @user.is?(:superadmin)
 
-      ReportApprovalSetting.qcs(@user.id, @record.user_report.campaign.id).
-        exists?(report_id: @record.user_report.report_id)
+      ReportApprovalSetting.qcs(@user.id, @user_report.campaign.id).exists?(report_id: @user_report.report_id)
     end
 
     def approve?
