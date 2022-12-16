@@ -13,8 +13,7 @@ import {
 } from 'modules/endUser/modules/campaigns/core/project'
 import { isInsideIframe } from 'utils/isInsideIframe'
 
-import lighthouseLogo from 'modules/endUser/assets/images/lighthouseLogoTall.svg'
-import tteLogo from 'modules/endUser/assets/images/tteLogo.svg'
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoTall.png'
 import styles from './styles.less'
 
 const { I18n } = window
@@ -55,7 +54,7 @@ const FooterComponent: FC<PropsFromRedux> = ({
 }
 
 const TTELogo: FC = () => (
-  <img src={tteLogo} alt="The Talent Enterprise" className={styles['footer-logo']} />
+  <img src={lighthouseLogo} alt="The Talent Enterprise" className={styles.footerLighthouseLogo} />
 )
 
 type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
@@ -99,7 +98,7 @@ const PartnerLogo: FC<PartnerLogsProps> = ({
     )
   }
 
-  return <img src={lighthouseLogo} alt="Lighthouse" className={styles['footer-logo']} />
+  return <img src={lighthouseLogo} alt="Lighthouse" className={styles.footerLighthouseLogo} />
 }
 
 export const Footer = connector(FooterComponent)

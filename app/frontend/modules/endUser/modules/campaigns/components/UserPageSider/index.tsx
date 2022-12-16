@@ -11,9 +11,9 @@ import {
 import { PageSider } from 'glint'
 import { CampaignIcon } from 'glint/icons'
 
-import lighthouseLogo from 'modules/endUser/assets/images/lighthouseLogoWide.svg'
-import { history } from 'modules/endUser/store'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.png'
+import { history } from 'modules/user/store'
+import { RootState } from 'modules/user/core/rootReducers'
 import {
   getProjectLogo,
   getName as getProjectName,
