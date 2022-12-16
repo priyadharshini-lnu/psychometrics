@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Layout } from 'antd'
 import { SelectEventHandler } from 'rc-menu/lib/interface'
 
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.png'
 
 import { PageSider, SiderMenuItem } from '../PageSider'
 import { PageHeader } from '../PageHeader'

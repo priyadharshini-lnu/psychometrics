@@ -11,7 +11,7 @@ import {
 import { PageSider } from 'glint'
 import { CampaignIcon } from 'glint/icons'
 
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.png'
 import { history } from 'modules/user/store'
 import { RootState } from 'modules/user/core/rootReducers'
 import {
