@@ -12,7 +12,6 @@ module Administration
         if form.valid?
           result = TextModuleOverride.create!(form.attributes)
           audit! :create, result, payload: params.permit!, campaign: campaign
-          @user_report.update!(approved: false)
           render json: result
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -25,7 +24,6 @@ module Administration
           override = TextModuleOverride.find(params[:id])
           override.update!(form.attributes.merge(approved: false))
           audit! :update, override, payload: params.permit!, campaign: campaign
-          @user_report.update!(approved: false)
           render json: override
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -41,7 +39,6 @@ module Administration
       def destroy
         text_overrider = TextModuleOverride.find(params[:id])
         text_overrider.destroy!
-        @user_report.update!(approved: false)
         head :ok
       end
 
@@ -51,7 +48,8 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          user_report_id: params[:user_report_id]
         )
       end
 

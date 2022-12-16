@@ -8,6 +8,19 @@ class ReportApprovalSetting < ApplicationRecord
     where('qc_user_ids @> :user_id OR approver_user_ids @> :user_id', user_id: "{#{user_id}}")
   }
 
+  scope :where_participate, lambda { |user_id, campaign_id|
+    where('qc_user_ids @> :user_id OR approver_user_ids @> :user_id OR approval_notification_user_ids @> :user_id',
+          user_id: "{#{user_id}}", campaign_id: campaign_id)
+  }
+
+  scope :approvers, lambda { |user_id, campaign_id|
+    where('approver_user_ids @> :user_id', user_id: "{#{user_id}}", campaign_id: campaign_id)
+  }
+
+  scope :qcs, lambda { |user_id, campaign_id|
+    where('qc_user_ids @> :user_id', user_id: "{#{user_id}}", campaign_id: campaign_id)
+  }
+
   def self.report_approvals(user)
     scope = ReportApproval.joins(
       %(

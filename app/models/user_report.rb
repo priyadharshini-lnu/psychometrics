@@ -61,7 +61,11 @@ class UserReport < ApplicationRecord
   end
 
   def has_approval_workflow?
-    campaign.report_approval_settings.exists?(report_id: report_id)
+    approval_settings.exists?
+  end
+
+  def approval_settings
+    campaign.report_approval_settings.where(report_id: report_id)
   end
 
   def threesixty_subject
