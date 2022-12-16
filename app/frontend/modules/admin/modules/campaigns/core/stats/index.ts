@@ -1,0 +1,87 @@
+import _ from 'lodash'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { RootState } from 'modules/reports/core/rootReducers'
+import { Moment } from 'moment'
+
+interface UserStats {
+  total: number
+  not_started: number
+  in_progress: number
+  completed: number
+  interrupted: number
+  timed_out: number
+}
+
+
+export interface AssesmentStats {
+  id: number
+  name: string
+  not_started: number
+  in_progress: number
+  completed: number
+  ineligible: number
+  interrupted: number
+  timed_out: number
+  status: string
+  total: number
+}
+
+interface Timeseries {
+  dt: string
+  started: number
+  completed: number
+}
+
+export interface Stats {
+  users: Partial<UserStats>
+  timeseries: Timeseries[]
+  assessments: AssesmentStats[]
+}
+
+const defaultState: Stats = {
+  users: {},
+  timeseries: [],
+  assessments: [],
+}
+
+export const get = (state: RootState): Stats => _.get(state, ['campaigns', 'stats'])
+export const getTimeseries = (state): Stats['timeseries'] => get(state).timeseries
+export const getUsers = (state): Stats['users'] => get(state).users
+export const getAssessments = (state): Stats['assessments'] => get(state).assessments
+
+export const FETCH = 'campaigns/stats/FETCH'
+export const FETCH_TIMESERIES = 'campaigns/stats/FETCH_TIMESERIES'
+
+export const fetch = (campaignId: string) => ({
+  type: FETCH,
+  request: {
+    method: 'get',
+    debounce: 500,
+    camelize: false,
+    url: `/administration/new_campaigns/${campaignId}/stats`,
+  },
+})
+
+export const fetchTimeseries = (campaignId: string, range: [Moment, Moment]) => ({
+  type: FETCH_TIMESERIES,
+  request: {
+    method: 'post',
+    debounce: 500,
+    camelize: false,
+    url: `/administration/new_campaigns/${campaignId}/stats/timeseries`,
+    body: {
+      range: range.map(r => r.toISOString()),
+    },
+  },
+})
+
+type FetchType = ApiActionResponse<{ users: Stats['users'], assessments: Stats['assessments'] }>
+type FetchTimeseriesType = ApiActionResponse<Stats['timeseries']>
+
+const HANDLERS = {
+  [FETCH]: (state: Stats, { response }: FetchType) => ({ ...state, ...response }),
+  [FETCH_TIMESERIES]: (state: Stats, { response }: FetchTimeseriesType) => ({ ...state, timeseries: response }),
+}
+
+export default createReducer(HANDLERS, defaultState)

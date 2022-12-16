@@ -150,6 +150,12 @@ Rails.application.routes.draw do
         resources :sheets, concerns: :sheet_management
         resources :sheet_rows, concerns: :sheet_row_management
 
+        resources :stats, only: %i[index] do
+          collection do
+            post :timeseries
+          end
+        end
+
         resources :registration_codes do
           member do
             get :download_qrcode

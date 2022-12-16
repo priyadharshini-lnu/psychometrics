@@ -10,6 +10,7 @@ import {
   DatabaseOutlined,
   SolutionOutlined,
   DashboardOutlined,
+  LineChartOutlined,
 } from '@ant-design/icons'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from 'utils/route'
@@ -44,6 +45,9 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
     if (pathname.includes('/registration_codes')) {
       return ['registration_codes']
     }
+    if (pathname.includes('/stats')) {
+      return ['stats']
+    }
     if (pathname.includes('/datasheet')) {
       return ['datasheet']
     }
@@ -66,6 +70,11 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
     key: 'registration_codes',
     label: 'Registration codes',
     icon: <QrcodeOutlined />,
+  })
+  campaignPermissions.stats && menuItems.push({
+    key: 'stats',
+    label: I18n.t('administration.stats.title'),
+    icon: <LineChartOutlined />,
   })
   if (campaignPermissions.viewDashboard || campaignPermissions.viewAccesssheet
     || campaignPermissions.viewAccesssheetSettings) {
