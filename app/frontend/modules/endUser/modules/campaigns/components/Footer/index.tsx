@@ -13,7 +13,7 @@ import {
 } from 'modules/endUser/modules/campaigns/core/project'
 import { isInsideIframe } from 'utils/isInsideIframe'
 
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoTall.png'
+import lighthouseLogo from 'modules/endUser/assets/images/lighthouseLogoTall.png'
 import styles from './styles.less'
 
 const { I18n } = window
