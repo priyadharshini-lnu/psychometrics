@@ -5,59 +5,59 @@ import {
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 
-const menu = ({
+const CustomMenu = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment,
-}) => (
-  <Menu>
-    {permissions.exportResults && (
-      <Menu.Item key="export_results">
+}) => {
+  const handleMenuClick = ({ key }) => {
+    if (key === 'export_completion_status') {
+      return onExport()
+    }
+    if (key === 'reset_participant') {
+      return resetCampaignWithConfirmation(campaignId)
+    }
+    if (key === 'reset_all_nominations') {
+      return resetAllNominationsWithConfirmation(campaignId)
+    }
+    if (key === 'rescore_assessment') {
+      return handleRescoreAssessment(campaignId)
+    }
+  }
+
+  const menuItems = [
+    permissions.exportResults && {
+      key: 'export_result',
+      label: (
         <a
           href={`/administration/threesixty_campaigns/${campaignId}/export_results.xlsx`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Export Result
-        </a>
-      </Menu.Item>
-    )}
-    {permissions.exportCompletionStatus && (
-      <Menu.Item key="export_completion_status" onClick={() => onExport()}>
-        Export Completion Status
-      </Menu.Item>
-    )}
-    <Menu.Divider />
-    {permissions.resetAllParticipants && (
-      <Menu.Item key="reset_participant">
-        <div onClick={() => resetCampaignWithConfirmation(campaignId)} role="button" tabIndex={-1}>
-          Reset All Participants...
-        </div>
-      </Menu.Item>
-    )}
-    {permissions.resetAllNominations && (
-      <Menu.Item key="reset_all_nominations">
-        <div
-          onClick={() => resetAllNominationsWithConfirmation(campaignId)}
-          role="button"
-          tabIndex={-1}
-        >
-          Reset All Nominations...
-        </div>
-      </Menu.Item>
-    )}
-    {permissions.rescoreAssessment && (
-      <Menu.Item key="rescore_assessment">
-        <div
-          onClick={() => handleRescoreAssessment(campaignId)}
-          role="button"
-          tabIndex={-1}
-        >
-          {I18n.t('campaign_assessment.actions.rescore')}
-        </div>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+          {I18n.t('campaign_assessment.actions.export_result')}
+        </a>),
+    },
+    permissions.exportCompletionStatus && {
+      key: 'export_completion_status',
+      label: I18n.t('campaign_assessment.actions.export_completion_status'),
+    },
+    { type: 'divider' },
+    permissions.resetAllParticipants && {
+      key: 'reset_participant',
+      label: I18n.t('campaign_assessment.actions.reset_participant'),
+    },
+    permissions.resetAllNominations && {
+      key: 'reset_all_nominations',
+      label: I18n.t('campaign_assessment.actions.reset_all_nominations'),
+    },
+    permissions.rescoreAssessment && {
+      key: 'rescore_assessment',
+      label: I18n.t('campaign_assessment.actions.rescore'),
+    },
+  ]
+  return (
+    <Menu onClick={handleMenuClick} items={menuItems} />
+  )
+}
 
 export default function ToolsDropdown ({
   resetCampaign, resetAllNominations, openModal, rescoreAssessment,
@@ -106,16 +106,18 @@ export default function ToolsDropdown ({
 
   return (
     <ConditionalDropdown
-      menu={menu({
-        projectId,
-        campaignId,
-        resetCampaignWithConfirmation,
-        resetAllNominationsWithConfirmation,
-        handleRescoreAssessment,
-        openModal,
-        permissions,
-        onExport,
-      })}
+      menu={(
+        <CustomMenu
+          projectId={projectId}
+          campaignId={campaignId}
+          resetCampaignWithConfirmation={resetCampaignWithConfirmation}
+          resetAllNominationsWithConfirmation={resetAllNominationsWithConfirmation}
+          handleRescoreAssessment={handleRescoreAssessment}
+          openModal={openModal}
+          permissions={permissions}
+          onExport={onExport}
+        />
+      )}
       className="mrm"
       hideForEmptyMenu
       innerElement={(

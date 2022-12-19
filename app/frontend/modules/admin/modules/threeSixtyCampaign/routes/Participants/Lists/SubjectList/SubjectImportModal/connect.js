@@ -6,7 +6,7 @@ import {
   clearImportData,
   get as getImport,
 } from 'modules/admin/modules/threeSixtyCampaign/core/subjects/import'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 export default connect(
   (state) => {

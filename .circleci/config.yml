@@ -349,7 +349,7 @@ jobs:
               cp config/database.yml.sample config/database.yml
               cp config/application.yml.sample  config/application.yml
               (find tmp/cache/webpacker -type f -mtime +30 -delete) || echo "No old cache files to prune"
-              (bundle exec rails webpacker:compile || bundle exec rails webpacker:compile)
+              (bundle exec rails webpacker:compile || bundle exec rails webpacker:compile || bundle exec rails webpacker:compile)
             else
               echo "Compiled files exist"
             fi
@@ -496,4 +496,3 @@ workflows:
             branches:
               only:
                 - master
-                - review

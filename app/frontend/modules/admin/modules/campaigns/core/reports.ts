@@ -1,14 +1,22 @@
 import _ from 'lodash'
+import * as t from 'io-ts'
 import { Action } from 'redux'
 import { createReducer } from 'utils/redux'
 import Report from 'modules/admin/modules/campaigns/interfaces/Report'
+import { OtherReport, OtherReportTR } from 'modules/admin/modules/campaigns/interfaces/OtherReport'
 import { updateIn } from 'utils/immutable'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import ApiAction from 'interfaces/ApiAction'
 import { FETCH_ASSESSMENTS_AND_REPORTS } from './current'
 
 const defaultState = {
   list: [],
+  other: {
+    list: [],
+    total: 0,
+  },
   selectedIds: [],
   reportPermissions: {
     toggleUserAccess: false,
@@ -21,6 +29,7 @@ const defaultState = {
 }
 
 export const get = (state): State => _.get(state, ['campaigns', 'reports'])
+export const getOther = (state): State['other'] => _.get(state, ['campaigns', 'reports', 'other'])
 export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedIds')
 export const CREATE = 'resource/campaigns/report/CREATE'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
@@ -33,6 +42,7 @@ export const REGENERATE_REPORTS = 'campaigns/reports/REGENERATE_REPORTS'
 export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
 export const BULK_DOWNLOAD = 'campaigns/reports/BULK_DOWNLOAD'
 export const EXPORT_DATA = 'campaigns/reports/EXPORT_DATA'
+export const FETCH_OTHER_REPORTS = 'campaigns/FETCH_OTHER_REPORTS'
 
 export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
   type: REMOVE,
@@ -110,18 +120,21 @@ export const exportData = (campaignId: number, reportId: number) => ({
 
 type RemoveResponse = number
 
-type FetchType = ApiActionResponse<{reports: Report[], permissions: {
-  reportPermissions: {},
-}}>
-type CreateType = ApiActionResponse<{reports: Report[]}>
+type FetchType = ApiActionResponse<{
+  reports: Report[], otherReports: OtherReport[], permissions: {
+    reportPermissions: {},
+  }
+}>
+type CreateType = ApiActionResponse<{ reports: Report[] }>
 type ToggleUserAccessType = ApiActionResponse<Report>
 type RemoveType = ApiActionResponse<RemoveResponse>
-interface ToggleAssessorAccessType extends Action{
+interface ToggleAssessorAccessType extends Action {
   id: number
 }
 
 export interface State {
   list: Report[],
+  other: { list: OtherReport[], total: number },
   selectedIds: number[]
   reportPermissions: {
     toggleUserAccess: boolean
@@ -133,6 +146,27 @@ export interface State {
   }
 }
 
+const FetchOtherReporsResponseTR = t.type({
+  total: t.number,
+  list: t.array(OtherReportTR),
+})
+
+type FetcOtherReportsResponse = t.TypeOf<typeof FetchOtherReporsResponseTR>
+export type FetchOtherReportsAction = ApiActionResponse<FetcOtherReportsResponse>
+
+export const fetchOtherReports = (
+  campaignId: string, tableConfig: TableConfig,
+): ApiAction<FetcOtherReportsResponse> => ({
+  type: FETCH_OTHER_REPORTS,
+  request: {
+    tableConfig,
+    typedResponse: FetchOtherReporsResponseTR,
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/reports/other`,
+  },
+})
+
+
 const HANDLERS = {
   [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => (
     {
@@ -141,6 +175,7 @@ const HANDLERS = {
       reportPermissions: response.permissions.reportPermissions,
     }
   ),
+  [FETCH_OTHER_REPORTS]: (state: State, { response }: FetchOtherReportsAction) => ({ ...state, other: response }),
   [CREATE]: (state: State, { response }: CreateType) => ({ ...state, list: response.reports }),
   [REMOVE]: (state: State, { response }: RemoveType) => (
     updateIn(state, ['list'], (reports: Report[]) => _.filter(

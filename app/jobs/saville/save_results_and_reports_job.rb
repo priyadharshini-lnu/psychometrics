@@ -19,12 +19,14 @@ module Saville
       save_results(user_assessment, results)
       generate_internal_reports(user_assessment)
       results.each do |result|
-        report_id = result.dig('SupportingMaterials', 'Id', 'IdValue', 'content')&.downcase
+        report_id = result.dig('SupportingMaterials', 'Id', 'IdValue', 'content')
         base64_report = result.dig('SupportingMaterials', 'EmbeddedData', 'EncodedContent', 'content')
         next if report_id.nil? || base64_report.nil?
 
-        user_report = saville_user_assessment.external_user_reports(:saville).joins(:saville_report_setting).
-                      find_by(saville_report_settings: { saville_report_id: report_id.downcase })
+        user_report = UserReport.
+                      joins(:report).
+                      where(report: { provider: 'saville' }).
+                      find_by('report.external_settings @> ?', { report_id: report_id }.to_json)
 
         next unless user_report
 

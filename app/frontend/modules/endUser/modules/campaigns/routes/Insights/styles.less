@@ -12,6 +12,7 @@
   background-color: @white;
   border-inline-start: 1px solid @border-color-base;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .content {
@@ -29,6 +30,13 @@
   }
 }
 
-.report {
+.reportOuter {
   transform-box: view-box;
+  text-align: start;
+  margin: 15px;
+}
+
+.reportInner {
+  display: inline-block;
+  transform-origin: left top;
 }

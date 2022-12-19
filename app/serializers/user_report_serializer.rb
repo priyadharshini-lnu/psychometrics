@@ -2,7 +2,7 @@
 
 class UserReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
-             :approved, :permissions
+             :report_data, :permissions, :comments, :require_approval
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
@@ -10,6 +10,15 @@ class UserReportSerializer < ActiveModel::Serializer
   has_one :report, serializer: ReportSerializer
   has_one :options, serializer: Threesixty::CampaignOptionsSerializer
   has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
+  has_many :comments, each_serializer: UserReportCommentSerializer
+
+  def require_approval
+    object.has_approval_workflow?
+  end
+
+  def comments
+    object.user_report_comments
+  end
 
   def campaign_id
     object.campaign.threesixty_campaign&.id || object.campaign_id
@@ -17,10 +26,6 @@ class UserReportSerializer < ActiveModel::Serializer
 
   def is_self
     object.user_id == current_user.id
-  end
-
-  def approval_status
-    object.threesixty_subject&.report_approval_status
   end
 
   def campaign
@@ -31,6 +36,10 @@ class UserReportSerializer < ActiveModel::Serializer
 
   def results
     @results ||= instance_options[:results]
+  end
+
+  def report_data
+    UserReports::PrepareUserReportData.call!(object)
   end
 
   def options
@@ -50,7 +59,7 @@ class UserReportSerializer < ActiveModel::Serializer
       Administration::UserReportPolicy,
       current_user,
       object,
-      ['download'],
+      %w[download manage_qc manage_approval],
       {
         project_id: object.campaign.project_id,
         campaign_id: object.campaign_id

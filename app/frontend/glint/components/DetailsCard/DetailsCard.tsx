@@ -12,7 +12,9 @@ type DetailsCardProps = {
   title: string | React.ReactElement
   description?: string | React.ReactElement
   buttonText?: string
-  handleButtonClick?: () => void
+  secondaryBtnText?: string
+  onButtonClick?: () => void
+  onSecondaryBtnClick?: () => void
   progressPercentage?: number
   status?: string | React.ReactElement
   subtitle?: string | React.ReactElement
@@ -25,7 +27,9 @@ type DetailsCardProps = {
 export const DetailsCard: FC<DetailsCardProps> = ({
   title,
   buttonText,
-  handleButtonClick,
+  secondaryBtnText,
+  onButtonClick,
+  onSecondaryBtnClick,
   progressPercentage,
   description,
   status,
@@ -36,7 +40,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   actionDisabledText,
 }) => {
   const handleClick = () => {
-    handleButtonClick && handleButtonClick()
+    onButtonClick && onButtonClick()
   }
 
   const titleElement = (
@@ -45,14 +49,19 @@ export const DetailsCard: FC<DetailsCardProps> = ({
     </Title>
   )
 
-  const progressBarSpan = showStatusAtTop ? 6 : 12
+  let progressBarSpanLg = showStatusAtTop ? 6 : 12
+  let progressBarSpanXs = 12
+  if (secondaryBtnText && buttonText) {
+    progressBarSpanLg = 4
+    progressBarSpanXs = 6
+  }
 
   return (
     <Card className={styles.detailsCard}>
       {showStatusAtTop && (
       <Row>
-        <Col xs={18} sm={12}>{titleElement}</Col>
-        <Col xs={6} sm={12} className="ta-e">
+        <Col xs={18}>{titleElement}</Col>
+        <Col xs={6} className="ta-e">
           {status}
         </Col>
       </Row>
@@ -72,24 +81,32 @@ export const DetailsCard: FC<DetailsCardProps> = ({
         </div>
       </Space>
       <Row className={styles.cardFooter}>
-        <Col lg={progressBarSpan} md={8} xs={12}>
-          <Progress percent={progressPercentage} />
+        <Col lg={progressBarSpanLg} md={8} xs={progressBarSpanXs}>
+          {progressPercentage !== undefined && <Progress percent={progressPercentage} />}
         </Col>
         {buttonText && (
-          <Col lg={24 - progressBarSpan} md={16} xs={12} className={styles.buttonCol}>
-            <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
-              <Button
-                loading={actionLoading}
-                type="primary"
-                disabled={actionDisabled}
-                size="small"
-                onClick={handleClick}
-                className={styles.actionButton}
-              >
-                {buttonText}
+          <Col lg={24 - progressBarSpanLg} md={16} xs={24 - progressBarSpanXs} className={styles.buttonCol}>
+            <Space>
+              {secondaryBtnText && (
+              <Button size="small" type="primary" ghost onClick={onSecondaryBtnClick} className={styles.actionButton}>
+                {secondaryBtnText}
                 <DirectionalArrowIcon className={styles.buttonIcon} />
               </Button>
-            </ButtonWrapper>
+              )}
+              <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
+                <Button
+                  loading={actionLoading}
+                  type="primary"
+                  disabled={actionDisabled}
+                  size="small"
+                  onClick={handleClick}
+                  className={styles.actionButton}
+                >
+                  {buttonText}
+                  <DirectionalArrowIcon className={styles.buttonIcon} />
+                </Button>
+              </ButtonWrapper>
+            </Space>
           </Col>
         )}
       </Row>

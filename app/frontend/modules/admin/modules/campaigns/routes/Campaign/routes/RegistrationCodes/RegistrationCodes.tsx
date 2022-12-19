@@ -16,6 +16,7 @@ import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { formatedDate } from 'utils/time'
 import { SafeHTML } from 'components/SafeHTML'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import CodeModal from './CodeModal'
 
 const MODALS = {
@@ -209,28 +210,39 @@ interface QRCodeMenuProps {
 const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
   code: { id },
   campaignId,
-}) => (
-  <Menu>
-    <Menu.Item key="png" icon={<DownloadOutlined />}>
-      <a
-        download
+}) => {
+  const menuItems = [
+    {
+      key: 'png',
+      icon: <DownloadOutlined />,
+      label: (
+        <a
+          download
         // eslint-disable-next-line max-len
-        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
-      >
-        PNG
-      </a>
-    </Menu.Item>
-    <Menu.Item key="svg" icon={<DownloadOutlined />}>
-      <a
-        download
+          href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
+        >
+          PNG
+        </a>
+      ),
+    },
+    {
+      key: 'svg',
+      icon: <DownloadOutlined />,
+      label: (
+        <a
+          download
         // eslint-disable-next-line max-len
-        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.svg`}
-      >
-        SVG
-      </a>
-    </Menu.Item>
-  </Menu>
-)
+          href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.svg`}
+        >
+          SVG
+        </a>
+      ),
+    },
+  ]
+  return (
+    <Menu items={menuItems} />
+  )
+}
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   onEdit, onCancelConfirm, permissions, code: { code },
@@ -251,31 +263,27 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
+  const menuItems: ItemType[] = []
+  permissions.edit && menuItems.push({
+    key: 'edit',
+    label: 'Edit',
+  })
+  permissions.remove && menuItems.push({
+    key: 'remove',
+    label: 'Remove',
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      onEdit()
+    }
+    if (key === 'remove') {
+      handleRemove()
+    }
+  }
+
   return (
-    <Menu>
-      {permissions.edit && (
-        <Menu.Item key="edit">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={onEdit}
-          >
-            Edit
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.remove && (
-        <Menu.Item key="remove">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleRemove}
-          >
-            Remove
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
 

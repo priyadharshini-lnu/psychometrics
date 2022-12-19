@@ -3,7 +3,7 @@ import { RootState } from 'modules/admin/core/rootReducers'
 import {
   getResponseDataMismatchRequest,
   clearResponseDataMismatched,
-} from 'modules/admin/core/request'
+} from 'core/request'
 
 const connector = connect(
   (state: RootState) => ({

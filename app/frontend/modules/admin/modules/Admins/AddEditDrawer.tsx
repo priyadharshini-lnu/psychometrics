@@ -28,7 +28,7 @@ import {
   create as createAdmin,
   CREATE as CREATE_ADMIN,
 } from 'modules/admin/modules/Admins/core'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { GrantType, ParentResourceType } from './constants'
 
@@ -113,8 +113,12 @@ const AddEditDrawerComponent: FC<Props> = ({
             admin?.grants?.data?.campaigns?.includes(GrantType.manage),
           [`campaigns-${GrantType.manage_users}`]:
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
+          [`campaigns-${GrantType.manage_report_approvals}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.manage_report_approvals),
           [`campaigns-${GrantType.manage_options}`]:
             admin?.grants?.data?.campaigns?.includes(GrantType.manage_options),
+          [`campaigns-${GrantType.stats}`]:
+            admin?.grants?.data?.campaigns?.includes(GrantType.stats),
           [`smsInvites-${GrantType.view}`]:
             admin?.grants?.data?.smsInvites?.includes(GrantType.view),
           [`smsInvites-${GrantType.manage}`]:
@@ -497,6 +501,28 @@ const AddEditDrawerComponent: FC<Props> = ({
                     )}
                   </Checkbox>
                 </Form.Item>
+                <Form.Item
+                  name={`campaigns-${GrantType.manage_report_approvals}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.manage_report_approvals',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item
+                  name={`campaigns-${GrantType.stats}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.stats',
+                    )}
+                  </Checkbox>
+                </Form.Item>
               </Col>
             </Row>
             <Divider />
@@ -653,6 +679,17 @@ const AddEditDrawerComponent: FC<Props> = ({
                   <Checkbox>
                     {I18n.t(
                       'administration.administrators.drawers.edit.can_view_report',
+                    )}
+                  </Checkbox>
+                </Form.Item>
+                <Form.Item
+                  name={`results-${GrantType.download_report}`}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>
+                    {I18n.t(
+                      'administration.administrators.drawers.edit.can_download_report',
                     )}
                   </Checkbox>
                 </Form.Item>

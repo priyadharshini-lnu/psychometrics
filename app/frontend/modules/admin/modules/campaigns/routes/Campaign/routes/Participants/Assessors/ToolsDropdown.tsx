@@ -5,6 +5,7 @@ import {
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
 const { I18n } = window
 
@@ -12,24 +13,30 @@ const menu = ({
   campaignId,
   openModal,
   permissions,
-}) => (
-  <Menu>
-    {permissions.import && (
-      <Menu.Item key="import">
-        <a onClick={() => openModal('ImportAssessorsModal', { campaignId })}>
-          {I18n.t('administration.assessor.toolbar.import')}
-        </a>
-      </Menu.Item>
-    )}
-    {permissions.export && (
-      <Menu.Item key="export">
-        <a href={`/administration/new_campaigns/${campaignId}/assessors.csv`}>
-          {I18n.t('administration.assessor.toolbar.export')}
-        </a>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+}) => {
+  const menuItems: ItemType[] = []
+  permissions.import && menuItems.push({
+    key: 'import',
+    label: I18n.t('administration.assessor.toolbar.import'),
+  })
+  permissions.export && menuItems.push({
+    key: 'export',
+    label: (
+      <a href={`/administration/new_campaigns/${campaignId}/assessors.csv`}>
+        {I18n.t('administration.assessor.toolbar.export')}
+      </a>
+    ),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'import') {
+      openModal('ImportAssessorsModal', { campaignId })
+    }
+  }
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
+  )
+}
 
 interface Props {
   campaignId: number

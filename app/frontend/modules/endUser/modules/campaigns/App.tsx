@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import {
-  Spin,
-  ConfigProvider, notification,
-} from 'antd'
+import React, { useEffect } from 'react'
+import { ConfigProvider, notification } from 'antd'
 import { Route } from 'react-router-dom'
-import store, { history } from 'modules/user/store'
+import store, { history } from 'modules/endUser/store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import _ from 'lodash'
@@ -12,36 +9,19 @@ import humps from 'humps'
 
 import ConnectionCheck from 'components/ConnectionCheck'
 import { UserPageLayout } from 'modules/endUser/modules/campaigns/components/UserPageLayout'
-import { GlintProvider } from 'glint'
+import { GlintProvider, withLoadingSpinner } from 'glint'
 
 import { connected, disconnected } from 'core/connection'
 
-import { useWindowInnerSize } from 'modules/user/rootHooks'
+import { useWindowInnerSize } from 'modules/endUser/rootHooks'
+import { MAX_PAGE_LOAD_WAIT_TIME } from 'constants/time'
 import routes from './routes'
-import styles from './styles.less'
+import './styles.less'
 
 const { antdLocale, I18n } = window
-const PAGE_LOAD_WAIT_TIME = 4000
 
-export default function App () {
-  const [pageLoading, setPageLoading] = useState(true)
-
-  const pageLoadHandler = () => {
-    setPageLoading(false)
-  }
-
+function App () {
   useWindowInnerSize(document.documentElement)
-
-  useEffect(() => {
-    window.addEventListener('load', pageLoadHandler)
-    const pageLoadTimeout = setTimeout(() => {
-      setPageLoading && setPageLoading(false)
-    }, PAGE_LOAD_WAIT_TIME)
-    return () => {
-      window.removeEventListener('load', pageLoadHandler)
-      clearTimeout(pageLoadTimeout)
-    }
-  }, [])
 
   useEffect(() => {
     const { config: { maintenance: { remainingTime }, design } } = store.getState()
@@ -64,14 +44,6 @@ export default function App () {
     })
   }, [])
 
-  if (pageLoading) {
-    return (
-      <div className={styles.spinLoader}>
-        <Spin size="large" />
-      </div>
-    )
-  }
-
   return (
     <Provider store={store}>
       <ConfigProvider locale={antdLocale} direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}>
@@ -92,3 +64,5 @@ export default function App () {
     </Provider>
   )
 }
+
+export default withLoadingSpinner(App, MAX_PAGE_LOAD_WAIT_TIME)

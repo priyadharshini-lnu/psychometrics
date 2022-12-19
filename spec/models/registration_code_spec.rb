@@ -51,13 +51,13 @@ RSpec.describe RegistrationCode, type: :model do
       expect(new_form.errors.messages[:code].present?).to be_truthy
     end
 
-    it 'needs the code to be uniquely scoped to the end_level' do
+    it 'needs the code to be uniquely scoped to the project' do
       new_form = @form
       new_form.code = registration_code.code
       new_form.end_level_id = registration_code.end_level_id
       expect(new_form.valid?).to be_falsy
       expect(new_form.errors.messages[:code].present?).to be_truthy
-      expect(new_form.errors.messages[:code][0]).to eql('is in use. Try another one.')
+      expect(new_form.errors.messages[:code][0]).to eql('is in use in this Project. Try another one.')
     end
 
     it 'needs a total_count greater than use_count' do

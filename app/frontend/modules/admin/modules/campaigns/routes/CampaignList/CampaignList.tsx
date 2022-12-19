@@ -12,6 +12,7 @@ import {
   Tooltip,
   Space,
 } from 'antd'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import capitalize from 'lodash/capitalize'
@@ -28,7 +29,7 @@ import { get as getTotal } from 'modules/admin/modules/campaigns/core/total'
 import { get as getPermissions } from 'modules/admin/modules/campaigns/core/permissions'
 import { get as getCurrentUser } from 'core/currentUser'
 import { isProjectMigrated } from 'core/config'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { RootState } from 'modules/admin/core/rootReducers'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
@@ -332,24 +333,31 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 }) => {
   const { permissions } = campaign
 
+  const menuItems: ItemType[] = []
+  permissions.edit && menuItems.push({
+    key: 'edit',
+    label: 'Edit',
+  })
+  permissions.copy && menuItems.push({
+    key: 'copy',
+    label: 'Copy',
+  })
+  permissions.delete && menuItems.push({
+    key: 'delete',
+    label: 'Delete',
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      return onEdit()
+    }
+    if (key === 'delete') {
+      return onDelete()
+    }
+  }
+
   return (
-    <Menu>
-      {permissions.edit && (
-        <Menu.Item key="edit">
-          <div role="button" tabIndex={-1} onClick={onEdit}>
-            Edit
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.copy && <Menu.Item key="copy">Copy</Menu.Item>}
-      {permissions.delete && (
-        <Menu.Item key="delete">
-          <div role="button" tabIndex={-1} onClick={onDelete}>
-            Delete
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
 

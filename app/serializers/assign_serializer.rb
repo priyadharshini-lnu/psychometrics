@@ -6,7 +6,7 @@ class AssignSerializer < ActiveModel::Serializer
              :relationship, :available_translations, :selected_locale, :translations,
              :type, :occupations, :innovation_styles, :meta_data,
              :current_element, :current_page, :seedrandom, :reset_count, :highlights,
-             :subject_datasheet, :prev_pages, :remaining_assessment_time
+             :subject_datasheet, :prev_pages, :remaining_assessment_time, :report_data
 
   has_one :user, serializer: UserSerializer
   has_many :media_responses, serializer: MediaResponseSerializer
@@ -103,6 +103,10 @@ class AssignSerializer < ActiveModel::Serializer
       end
     end
     {}
+  end
+
+  def report_data
+    []
   end
 
   def data_sheet

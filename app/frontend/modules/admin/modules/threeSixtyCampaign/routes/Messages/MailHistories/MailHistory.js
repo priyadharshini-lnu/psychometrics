@@ -99,42 +99,38 @@ const ActionMenu = ({
     remove(campaignId, emailSchedulId).then(() => message.info(I18n.t('threesixty.email_schedules.delete_successful')))
   }
 
-  const menu = (
-    <Menu>
-      {!unDelivered && (
-      <Menu.Item key="0">
+  const menuItems = [
+    !unDelivered && {
+      key: 'download',
+      label: (
         <a
           href={`/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailSchedulId}/download.csv`}
         >
           Download Details
         </a>
-      </Menu.Item>
-      )}
-      {unDelivered && (
-        <Menu.Item key="1">
-          <div
-            className="pll prl"
-            onClick={() => { openModal('EmailScheduleModal', { selectedEmailScheduleId: emailSchedulId }) }}
-            role="button"
-            tabIndex={-1}
-          >
-            Edit
-          </div>
-        </Menu.Item>
-      )}
-      {unDelivered && (
-        <Menu.Item key="2">
-          <div
-            className="pll prl"
-            onClick={onRemove}
-            role="button"
-            tabIndex={-1}
-          >
-            Delete
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+      ),
+    },
+    unDelivered && {
+      key: 'edit',
+      label: 'Edit',
+    },
+    unDelivered && {
+      key: 'delete',
+      label: 'Delete',
+    },
+  ]
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      openModal('EmailScheduleModal', { selectedEmailScheduleId: emailSchedulId })
+    }
+    if (key === 'delete') {
+      onRemove()
+    }
+  }
+
+  const menu = (
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 
   return (

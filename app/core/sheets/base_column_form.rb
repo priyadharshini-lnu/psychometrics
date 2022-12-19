@@ -6,13 +6,15 @@ module Sheets
     attribute :type, String
     attribute :visible_in_list, Boolean
 
-    validates :name, :type, presence: true, format: { with: RegexConstants::SHEET_COLUMN_REGEX }
-    validates_length_of :name, maximum: Sheet::MAX_COLUMN_NAME_SIZE
     validates_inclusion_of :type, in: Sheet::ALL_COLUMN_TYPES
     validate :uniqueness_field_name, if: :sheet
 
     def uniqueness_field_name
-      errors.add(:name, :not_unique) if sheet.columns.find { |f| f['name'] == name }
+      errors.add(:name, :not_unique) if context.form_type == :add && existing_column
+    end
+
+    def existing_column
+      sheet&.columns&.find { |f| f['name'] == name }
     end
 
     def sheet

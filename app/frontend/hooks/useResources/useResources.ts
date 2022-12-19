@@ -1,5 +1,6 @@
 import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
 import React, { useState } from 'react'
+import _ from 'lodash'
 import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
@@ -11,7 +12,7 @@ import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
 import { Schema } from 'libs/jsonApi/schema'
-import { setResponseDataMismatched } from 'modules/admin/core/request'
+import { setResponseDataMismatched } from 'core/request'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
@@ -25,7 +26,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
-    apiConfig, stateManager, responseType, trackUrl,
+    apiConfig, stateManager, responseType, trackUrl, basePath,
   } = options
   const client = useClient()
   const dispatch = useDispatch()
@@ -33,7 +34,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const history = useHistory()
   const queryString = qs.parse(location.search.substring(1))
   const schema = Schema[resourceName]
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const resourceUrl = basePath ? `${(client as any).config.url}/${basePath}` : (client as any).config.url
+  const fetchResourceName = basePath ? `${basePath}/${resourceName}` : resourceName
   let state: ResourceState<R[], M>
   let setState
   if (stateManager) {
@@ -97,12 +100,12 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = apiConfig
 
-    if (queryState) { newApiConfig = { ...apiConfig, ...queryState } }
+    if (queryState) { newApiConfig = _.merge(newApiConfig, queryState) }
 
     return new Promise(async (resolve, reject) => {
       const {
         data: response, meta, error, errors,
-      } = await client.fetch<R[]>([resourceName, newApiConfig || {}])
+      } = await client.fetch<R[]>([fetchResourceName, newApiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
@@ -126,10 +129,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       id, action, apiConfig, updateStore,
     } = args
-    const requestKey: RequestType = `${action}/delete@${id}`
+    const requestKey: RequestType = `delete/${action}@${id}`
 
     return new Promise(async (resolve, reject) => {
-      const { error, errors } = await client.delete([resourceName, id, action, apiConfig || {}])
+      const { error, errors } = await client.delete([resourceName, id, action, apiConfig || {}], { url: resourceUrl })
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === 'success') {
         if (updateStore) setData(data.filter(r => r.id !== id))
@@ -152,7 +155,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       id, action, method, body, apiConfig, updateStore,
     } = { apiConfig: options.apiConfig, ...args }
     const memberResponseType = options.responseType || responseType
-    const requestKey: RequestType = `${action}/${method}@${id}`
+    const requestKey: RequestType = `${method}/${action}@${id}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
 
     if (method === 'delete') {
@@ -164,10 +167,11 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<R> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([resourceName, id, action, apiConfig || {}])
+        response = await client.fetch<R>([fetchResourceName, id, action, apiConfig || {}])
       } else {
         response = await client.mutate<R>(
           [resourceName, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+          { url: resourceUrl },
         )
       }
       const { data, error, errors } = response
@@ -194,25 +198,26 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       action, method, body, apiConfig,
     } = { apiConfig: options.apiConfig, ...args }
-    const memberResponseType = options.responseType || responseType
-    const requestKey: RequestType = `${action}/${method}`
+    const memberResponseType = args.responseType || responseType
+    const requestKey: RequestType = `${method}/${action}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
 
     return new Promise(async (resolve, reject) => {
       let response: IResult<Record<string, string> | Record<string, string>[]> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([resourceName, action, apiConfig || {}])
+        response = await client.fetch<R>([fetchResourceName, action, apiConfig || {}])
       } else if (method === 'delete') {
-        response = await client.delete([resourceName, action, apiConfig || {}])
+        response = await client.delete([resourceName, action, apiConfig || {}], { url: resourceUrl })
       } else {
         response = await client.mutate<R>(
           [resourceName, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
+          { url: resourceUrl },
         )
       }
       const { data, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
-      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
-        const camelizedData = humps.camelizeKeys(data)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
+        const camelizedData = humps.camelizeKeys(data || response)
         resolve(camelizedData)
         responseTypeValidation(memberResponseType, camelizedData)
       } else {
@@ -253,7 +258,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const {
         data: response, error, errors,
-      } = await client.fetch<R>([resourceName, id, apiConfig || {}])
+      } = await client.fetch<R>([fetchResourceName, id, apiConfig || {}])
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
@@ -280,6 +285,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
         [resourceName, apiConfig || {}], humps.decamelizeKeys(body),
+        { url: resourceUrl },
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
@@ -303,6 +309,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
         [resourceName, id, apiConfig || {}], humps.decamelizeKeys(body),
+        { url: resourceUrl },
       )
 
       const formattedErrors = formatErrors(errors || error, schema)
@@ -321,7 +328,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const removeResource: RemoveResource = async (id: string) => {
     const requestKey: RequestType = `delete@${id}`
     setRequests({ ...requests, [requestKey]: { status: 'loading' } })
-    const { error, errors } = await client.delete([resourceName, id, apiConfig || {}])
+    const { error, errors } = await client.delete([resourceName, id, apiConfig || {}], { url: resourceUrl })
 
     return new Promise(async (resolve, reject) => {
       const formattedErrors = formatErrors(errors || error, schema)
@@ -366,7 +373,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       return removeFilter(name)
     }
     let newUrlQuery = queryState || {}
-    newUrlQuery = { ...queryState, filter: { [name]: value } }
+    newUrlQuery = { ...queryState, filter: { [name]: value }, page: { number: 1, size: queryState.page?.size } }
     changeUrlQuery(newUrlQuery)
   }
 
@@ -401,20 +408,20 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return undefined
   }
 
-  const getErrors = (action: string, resource_id: null | string = null) => {
-    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+  const getErrors = (action: RequestType) => {
+    const request = requests[action]
 
     return request ? request.errors : null
   }
 
-  const isLoading = (action: string, resource_id: null | string = null): boolean => {
-    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+  const isLoading = (action: RequestType): boolean => {
+    const request = requests[action]
 
     return request ? request.status === RequestStatus.Loading : false
   }
 
-  const isRequestSuccessful = (action: string, resource_id: null | string = null): boolean => {
-    const request = resource_id ? requests[`${action}@${resource_id}`] : requests[action]
+  const isRequestSuccessful = (action: RequestType): boolean => {
+    const request = requests[action]
 
     return request ? request.status === RequestStatus.Success : false
   }

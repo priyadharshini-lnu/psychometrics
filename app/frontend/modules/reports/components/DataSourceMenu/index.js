@@ -1,3 +1,4 @@
 import DataSourceMenu from './DataSourceMenu'
+import connect from './connect'
 
-export default DataSourceMenu
+export default connect(DataSourceMenu)

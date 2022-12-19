@@ -2,11 +2,11 @@
   .modal-body
     = f.error_notification
     p Refer to the Export functionality to extract a template that can be used to Import here.
-    = f.input :assessment_id, as: :hidden
+    = f.input :resource_id, as: :hidden
     = f.input :file, as: :file, error: false
     - if f.object.errors.any?
       - f.object.errors.to_a.each do |error|
-        .text-danger = error    
+        .text-danger = error
   .modal-footer
     .btn-group
       = f.button :button, t('administration.import'), class: 'btn-info', type: :button

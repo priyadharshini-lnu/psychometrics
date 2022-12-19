@@ -31,13 +31,12 @@ export const Language: FC<Props> = ({ selectedLanguage, availableTranslations })
   }
 
   const LangMenu = () => (
-    <Menu onClick={handleLanguageChange}>
-      {availableTranslations.map(lang => (
-        <Menu.Item key={lang}>
-          {I18n.t(`languages.${lang}`)}
-        </Menu.Item>
+    <Menu
+      onClick={handleLanguageChange}
+      items={availableTranslations.map(lang => (
+        { key: lang, label: I18n.t(`languages.${lang}`) }
       ))}
-    </Menu>
+    />
   )
 
   return (

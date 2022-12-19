@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   fetchResult,
-} from 'modules/user/modules/campaigns/core/anonym'
-import { RootState } from 'modules/user/core/rootReducers'
+} from 'modules/endUser/modules/campaigns/core/anonym'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
-import AgileUserAssessment from 'modules/user/modules/campaigns/routes/AgileUserAssessment'
+import { AgileUserAssessment } from 'modules/endUser/modules/campaigns/routes/AgileUserAssessment'
 import { Common as CommonAssessment } from './Assessments/Common'
 
 const connector = connect(

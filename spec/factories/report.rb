@@ -7,14 +7,18 @@ FactoryBot.define do
     extra { { icon_color: '#845EC2' } }
     report_families { [association(:report_family)] }
     assessments { build_list(:assessment, 1) }
+    provider { 'internal' }
 
     trait :saville do
       provider { 'saville' }
+      assessments { build_list(:assessment, 1, :saville) }
+      external_settings { { report_id: 'reportId' } }
+    end
 
-      after(:create) do |report|
-        create(:saville_report_setting, report: report)
-        report.update_column(:provider, :saville)
-      end
+    trait :hogan do
+      provider { 'hogan' }
+      assessments { build_list(:assessment, 1, :hogan) }
+      external_settings { { report_id: 'reportId' } }
     end
   end
 end

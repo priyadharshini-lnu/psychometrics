@@ -21,6 +21,8 @@ module Users
     validate :validate_project_fields, if: :project?
     validate :validate_default_fields, if: :project?
 
+    validate :question_custom_validations, if: :project?
+
     def password_length
       return unless password
 
@@ -31,8 +33,7 @@ module Users
 
     def validate_project_fields
       project.profile_setting.profile_fields.includes(:question).each do |field|
-        if (field.required || field.question.required_validation['enabled']) &&
-           custom_fields[field.question_id.to_s.to_sym].blank?
+        if field.required && custom_fields[field.question_id.to_s.to_sym].blank?
           errors.add(field.question.name, 'required')
         end
       end
@@ -42,6 +43,19 @@ module Users
       project.profile_setting.required_default_fields.each do |field, value|
         if value && !project.profile_setting.locked_default_fields[field] && send(field).blank?
           errors.add(field, 'required')
+        end
+      end
+    end
+
+    def question_custom_validations
+      project.profile_setting.profile_fields.includes(:question).each do |field|
+        question = field.question
+        validation_errors = Questions::Validation.call!(question, custom_fields[field.question_id.to_s.to_sym],
+                                                        I18n.locale)
+        next unless validation_errors
+
+        validation_errors.each do |error|
+          errors.add(question.name, error)
         end
       end
     end

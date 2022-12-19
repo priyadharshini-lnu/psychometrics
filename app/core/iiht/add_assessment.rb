@@ -39,7 +39,7 @@ module Iiht
       user = user_assessment.user
       {
         tenantId: config['tenant_id'],
-        assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+        assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
         userEmailAddress: user.email,
         firstName: user.first_name,
         lastName: user.last_name,
@@ -50,7 +50,7 @@ module Iiht
 
     def schedule_config
       schedule_config = DEFAULT_SCHEDULE_CONFIG.merge(
-        user_assessment.assessment.iiht_schedule_config || {},
+        user_assessment.assessment.external_settings[:schedule_config] || {},
         user_assessment.campaign_assessment&.external_config || {}
       )
       schedule_config.merge(

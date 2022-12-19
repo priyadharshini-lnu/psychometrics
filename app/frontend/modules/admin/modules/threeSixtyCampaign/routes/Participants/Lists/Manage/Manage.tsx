@@ -64,37 +64,44 @@ export const ManageComponent: React.FC<Props> = ({
 
 const menu = ({
   dimensionId, reportId, assessmentId, openModal, currentUser,
-}) => (
-  <Menu>
-    {currentUser.permissions.editDimension && (
-      <Menu.Item key="dimension">
-        <a href={`/administration/dimensions/${dimensionId}/factors`} role="button" tabIndex={-1}>
+}) => {
+  const menuItems = [
+    currentUser.permissions.editDimension && {
+      key: 'dimension',
+      label: (
+        <a href={`/administration/dimensions/${dimensionId}/factors`}>
           {I18n.t('administration.threesixty_campaigns.manage.dimension')}
-        </a>
-      </Menu.Item>
-    )}
-    {currentUser.permissions.editReport && (
-      <Menu.Item key="report">
-        <a href={`/administration/reports/${reportId}`} role="button" tabIndex={-1}>
+        </a>),
+    },
+    currentUser.permissions.editReport && {
+      key: 'report',
+      label: (
+        <a href={`/administration/reports/${reportId}`}>
           {I18n.t('administration.threesixty_campaigns.manage.report')}
-        </a>
-      </Menu.Item>
-    )}
-    {currentUser.permissions.editAssessment && (
-      <Menu.Item key="assessment">
-        <a href={`/administration/assessments/${assessmentId}`} role="button" tabIndex={-1}>
+        </a>),
+    },
+    currentUser.permissions.editAssessment && {
+      key: 'assessment',
+      label: (
+        <a href={`/administration/assessments/${assessmentId}`}>
           {I18n.t('administration.threesixty_campaigns.manage.assessment')}
-        </a>
-      </Menu.Item>
-    )}
-    {currentUser.permissions.manageRelationships && (
-      <Menu.Item key="manage_relationship">
-        <a onClick={() => openModal('ManageRelationshipsModal')} role="button" tabIndex={-1}>
-          {I18n.t('administration.threesixty_campaigns.manage.manage_relationships')}
-        </a>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+        </a>),
+    },
+    currentUser.permissions.manageRelationships && {
+      key: 'manage_relationship',
+      label: I18n.t('administration.threesixty_campaigns.manage.manage_relationships'),
+    },
+  ]
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'manage_relationship') {
+      openModal('ManageRelationshipsModal')
+    }
+  }
+
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
+  )
+}
 
 export const Manage = connector(ManageComponent)

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Layout } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 
 import { UserPageSider } from '../UserPageSider'
 import { Profile } from '../Profile'

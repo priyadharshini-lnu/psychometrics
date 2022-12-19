@@ -8,6 +8,8 @@ class Api::V2::Administration::DesignSettingResource < Api::V2::Administration::
 
   ransack_filters %i[project_id_eq]
 
+  audit_log_for :update, payload: '*'
+
   def logo
     @model.logo&.url
   end

@@ -34,7 +34,7 @@ module Threesixty::InitialState
         },
         profile: {
           fields: @current_project.profile_setting&.profile_fields&.map do |q|
-            ProfileFieldSerializer.new(q).to_h
+            ProfileFieldSerializer.new(q, selected_locale: I18n.locale).to_h
           end,
           requiredFields: @current_project.profile_setting&.required_default_fields || {},
           lockedFields: @current_project.profile_setting&.locked_default_fields || {}

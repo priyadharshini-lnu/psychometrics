@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Skeleton, Row, Col, PageHeader, Descriptions,
+  Skeleton, Row, Col, PageHeader, Descriptions, InputNumber, Button,
 } from 'antd'
 import Report from 'modules/reports/report'
 import { useLocation, useParams } from 'react-router-dom'
@@ -9,8 +9,9 @@ import {
   fetchReport, getCurrent, clearUseReportDetails, FETCH_REPORT,
 } from 'modules/admin/modules/IndividualDashboard/core/userReport'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import userPresenter from 'presenters/user'
+import styles from './styles.less'
 
 const { I18n } = window
 
@@ -28,11 +29,14 @@ type Props = PropsFromRedux
 export const DashboardReportComponent: React.FC<Props> = ({
   fetchReport, userReport, clearUseReportDetails,
 }) => {
+  const INITIAL_SCALE = Math.max(Math.min(window.innerWidth / 1024, 1.5), 1)
+  const SCALE_STEP = INITIAL_SCALE / 10
   const { campaignId } = useParams<{ campaignId: string }>()
   const location = useLocation()
 
   const params = new URLSearchParams(location.search)
   const parsedCampaignId = parseInt(campaignId, 10)
+  const [scale, setScale] = useState(INITIAL_SCALE)
 
   useEffect(() => {
     fetchReport(parsedCampaignId, params.get('email') as string)
@@ -51,6 +55,16 @@ export const DashboardReportComponent: React.FC<Props> = ({
     }, report, results, user,
   } = userReport
 
+
+  const incrementScale = () => {
+    setScale(scale => scale + SCALE_STEP)
+  }
+
+  const decrementScale = () => {
+    setScale(scale => scale - SCALE_STEP)
+  }
+  const percentage = Math.round(scale * (1 / INITIAL_SCALE * 100))
+
   return (
     <div className="p6">
       <PageHeader
@@ -63,7 +77,6 @@ export const DashboardReportComponent: React.FC<Props> = ({
           <Descriptions.Item label={I18n.t('profile.age')}>{user.age}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.gender')}>{user.gender}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('profile.locale')}>{user.locale}</Descriptions.Item>
-          <Descriptions.Item label={I18n.t('profile.timezone')}>{user.timezone}</Descriptions.Item>
           {user.custom_fields.map(field => (
             <Descriptions.Item label={field.name}>{field.value}</Descriptions.Item>
           ))}
@@ -71,16 +84,33 @@ export const DashboardReportComponent: React.FC<Props> = ({
       </PageHeader>
       <Row gutter={[0, 16]} justify="center">
         <Col>
-          <Report
-            data={report}
-            results={results}
-            campaign={JSON.stringify({})}
-            user={JSON.stringify(user)}
-            locales={locales}
-            selectedLocale={defaultLanguage}
-            userReport={userReport}
-            dashboard
-          />
+          <div className={styles.reportContainer}>
+            <InputNumber
+              value={`${percentage} %`}
+              readOnly
+              width={40}
+              className={styles.scaleChanger}
+              addonBefore={
+                <Button type="text" size="small" disabled={percentage <= 80} onClick={decrementScale}>-</Button>
+              }
+              addonAfter={
+                <Button type="text" size="small" disabled={percentage >= 180} onClick={incrementScale}>+</Button>
+              }
+            />
+
+            <div style={{ zoom: scale }} className="mt-4">
+              <Report
+                data={report}
+                results={results}
+                campaign={JSON.stringify({})}
+                user={JSON.stringify(user)}
+                locales={locales}
+                selectedLocale={defaultLanguage}
+                userReport={userReport}
+                dashboard
+              />
+            </div>
+          </div>
         </Col>
       </Row>
     </div>

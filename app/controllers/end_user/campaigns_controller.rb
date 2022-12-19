@@ -23,25 +23,28 @@ module EndUser
       respond_to do |format|
         format.html { render 'campaigns/show' }
         format.json do
-          dashboard = @campaign.campaign_reports.find_by(user_dashboard: true)
-          if dashboard
-            dashboard_report = @campaign.user_reports.find_by(user_id: current_user, report_id: dashboard.report_id)
-            piped_text_context = { subject: dashboard_report.user }
+          campaign_dashboard_report = @campaign.campaign_reports.find_by(user_dashboard: true)
+          if campaign_dashboard_report
+            user_dashboard_report = @campaign.user_reports.find_by(
+              user_id: current_user, report_id: campaign_dashboard_report.report_id, user_access: true
+            )
+          end
+          if user_dashboard_report
+            piped_text_context = { subject: user_dashboard_report.user }
 
-            results = dashboard_report.user_results.map do |result|
+            results = user_dashboard_report.user_results.map do |result|
               ::Reports::ResultSerializer.new(result, campaign: @campaign).to_h
             end.group_by { |result| result[:assessment_id] }
 
-            user_dashboard = ::UserDashboardSerializer.new(dashboard_report, scope: current_user,
-              report: dashboard_report.report, results: results,
+            user_dashboard = ::UserDashboardSerializer.new(user_dashboard_report, scope: current_user,
+              report: user_dashboard_report.report, results: results,
               piped_text_context: piped_text_context).to_hash(include: '**')
           end
-          user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true)
+          user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true).filter_map do |ur|
+            EndUser::UserReportSerializer.new(ur) unless ur == user_dashboard_report
+          end
 
-          render json: {
-            user_dashboard: user_dashboard,
-            user_reports: user_reports.map { |user_repot| EndUser::UserReportSerializer.new(user_repot) }
-          }
+          render json: { user_dashboard: user_dashboard, user_reports: user_reports }
         end
       end
     end

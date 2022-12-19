@@ -16,6 +16,7 @@ module UserReports
       broadcast :ok,
                 user: Reports::UserSerializer.new(user_report.user).to_json,
                 results: UserReports::GroupedResultsByAssessment.call!(user_report).to_json,
+                user_report_data: UserReports::PrepareUserReportData.call!(user_report).to_json,
                 data: ReportSerializer.new(
                   report,
                   user_results: user_report.user_results,

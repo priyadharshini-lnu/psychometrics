@@ -6,17 +6,26 @@ import ConditionalDropdown from 'components/ConditionalDropdown'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
 const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
+  const menuItems = []
+  permissions.addEvaluator && menuItems.push({
+    key: 'add',
+    label: 'Add Evaluators...',
+  })
+  permissions.importEvaluator && menuItems.push({
+    key: 'import',
+    label: 'Import Evaluators...',
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'add') {
+      openModal('CreateEvaluatorModal')
+    }
+    if (key === 'import') {
+      openModal('EvaluatorImportModal')
+    }
+  }
   const menu = (
-    <Menu>
-      {permissions.addEvaluator && (
-        <Menu.Item onClick={() => openModal('CreateEvaluatorModal')} key="1">
-          Add Evaluators...
-        </Menu.Item>
-      )}
-      {permissions.importEvaluator && (
-        <Menu.Item key="2" onClick={() => openModal('EvaluatorImportModal')}>Import Evaluators...</Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 
   return (

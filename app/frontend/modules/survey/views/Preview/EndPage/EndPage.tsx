@@ -1,8 +1,6 @@
 import React, { FC, useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Button, Space, Result } from 'antd'
 
-import { DirectionalArrowIcon } from 'glint'
 import { RootState } from 'modules/survey/core/rootReducers'
 import { getI18n } from 'core/preview/FlowProcessor/selectors'
 import { useLocation, useHistory } from 'react-router-dom'
@@ -57,19 +55,11 @@ const EndPage: FC<Props> = ({
   }
   const textDirection = message.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? 'ltr' : 'rtl'
 
-  const handleReevaluateModal = (e) => {
-    e.preventDefault()
-    setEditModal(true)
-  }
-
   return (
     <div className={styles.page}>
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>
       <div className={styles.end} style={{ direction: textDirection }}>
-        <Result
-          status="success"
-          subTitle={message}
-        />
+        {message}
         <UniqueID endOfAssessmentElementProps={endOfAssessmentElementProps} dbResult={dbResult} />
       </div>
       <ScoringTable
@@ -81,25 +71,17 @@ const EndPage: FC<Props> = ({
       />
       {!showScoringOnEndPage && !isAnonymousAssessment && (
         <div className={styles.end}>
-          <Button href={dashboardUrl} type="primary">
-            <Space>
-              {I18n.t('assessments.actions.goto_dashboard')}
-              <DirectionalArrowIcon />
-            </Space>
-          </Button>
+          <a href={dashboardUrl}>
+            {I18n.t('assessments.actions.goto_dashboard')}
+          </a>
         </div>
       )}
       {showScoringOnEndPage && (
         <>
           <div className={styles.links}>
-            <a href="?edit=true" onClick={handleReevaluateModal}>{I18n.t('assessments.actions.re_evaluate')}</a>
-            {' | '}
-            <Button href={dashboardUrl} type="primary">
-              <Space>
-                {I18n.t('assessments.actions.back_to_campaign')}
-                <DirectionalArrowIcon />
-              </Space>
-            </Button>
+            <a href={dashboardUrl}>
+              {I18n.t('assessments.actions.back_to_campaign')}
+            </a>
           </div>
           <EditEvaluationModal
             show={editModal}

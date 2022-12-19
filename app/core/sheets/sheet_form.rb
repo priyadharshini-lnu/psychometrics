@@ -9,7 +9,7 @@ module Sheets
                                                   'application/xlsx'], message: :invalid_format }
     validate :has_email_column, if: :file
     validate :check_column_types, if: :file
-    validate :check_columns_names_and_length, if: :file
+    validate :check_columns_names_and_length, if: -> { file && accesssheet? }
     validate :check_emails_are_present, if: :file
     validate :no_duplicates, if: -> { file && sheet_type == 'Datasheet' }
     validate :validate_string_values, if: :file
@@ -32,10 +32,14 @@ module Sheets
       context.sheet_type
     end
 
+    def accesssheet?
+      sheet_type == 'Accesssheet'
+    end
+
     def validate_column_types_matching
       sheet.columns.each do |column|
         type = columns[column['name']]
-        if type != column['type']
+        if type && type != column['type']
           errors.add(:file, :column_type_mismatch, col: column['name'], type: column['type'], got: type)
         end
       end
@@ -49,7 +53,7 @@ module Sheets
           next if data[column].blank?
 
           unless data[column].is_a?(String)
-            next errors.add(:file, :invalid_string_value, { column: column, index: 3 + index })
+            next errors.add(:file, :invalid_string_value, column: column, index: 3 + index)
 
           end
 
@@ -91,9 +95,7 @@ module Sheets
           errors.add(:file, :invalid_column_name_size, column: name)
         end
 
-        unless RegexConstants::SHEET_COLUMN_REGEX.match?(name)
-          errors.add(:file, :invalid_column_name, { column: name })
-        end
+        errors.add(:file, :invalid_column_name, column: name) unless RegexConstants::SHEET_COLUMN_REGEX.match?(name)
       end
     end
 

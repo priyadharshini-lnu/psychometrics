@@ -4,6 +4,7 @@ class Dashboard < ApplicationRecord
   mount_base64_uploader :image, ImageUploader
 
   belongs_to :campaign
+  has_one :project, through: :campaign
 
   after_commit :create_flat_datasheet_view, on: [:create]
 

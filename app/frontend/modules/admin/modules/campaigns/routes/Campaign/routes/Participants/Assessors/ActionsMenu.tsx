@@ -1,6 +1,7 @@
 import React from 'react'
 import { Menu, Modal, message } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
 const { I18n } = window
 
@@ -34,30 +35,29 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
+  const menuItems: ItemType[] = []
+  permissions.remove && menuItems.push({
+    key: 'remove',
+    label: I18n.t('common.actions.remove'),
+  })
+  permissions.loginAs && menuItems.push({
+    key: 'loginAs',
+    label: (
+      <a
+        href={`/administration/new_campaigns/${campaignId}/assessors/${id}/spoof`}
+      >
+        {I18n.t('frontend.login')}
+      </a>
+    ),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'remove') {
+      handleDelete()
+    }
+  }
+
   return (
-    <Menu>
-      {permissions.remove && (
-        <Menu.Item
-          key="delete"
-        >
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => handleDelete()}
-          >
-            {I18n.t('common.actions.remove')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.loginAs && (
-        <Menu.Item key="loginAs">
-          <a
-            href={`/administration/new_campaigns/${campaignId}/assessors/${id}/spoof`}
-          >
-            {I18n.t('frontend.login')}
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }

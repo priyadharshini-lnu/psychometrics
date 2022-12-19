@@ -24,6 +24,18 @@ module Api
       end
     end
 
+    def powerbi_capacities
+      authorize Dashboard, :create?, policy_class: Api::Administration::DashboardPolicy
+
+      capacities = PowerBi::GetCapacities.call!.filter_map do |c|
+        next unless c['sku'].starts_with?('A')
+
+        { id: c['id'], name: c['displayName'] }
+      end
+
+      render json: capacities
+    end
+
     def context
       super.merge(
         embed_token: params.dig(:query, :embed_token)

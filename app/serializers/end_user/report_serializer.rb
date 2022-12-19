@@ -3,7 +3,7 @@
 module EndUser
   class ReportSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :id, :name, :mindmill, :hogan, :results_hogan_url, :hogan_report_setting,
+    attributes :id, :name, :mindmill, :hogan, :results_hogan_url,
                :has_external_report, :generating, :pdf_url, :mindmill_report_url
 
     attribute :external_report_url, if: -> { !!assigns_report&.external_report }
@@ -19,8 +19,6 @@ module EndUser
     def hogan
       object.assessment.hogan?
     end
-
-    delegate :hogan_report_setting, to: :object
 
     def has_external_report
       !!assigns_report&.external_report

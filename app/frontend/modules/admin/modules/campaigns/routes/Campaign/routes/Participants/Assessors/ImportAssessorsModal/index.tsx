@@ -4,7 +4,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 
 import { importAssessors, IMPORT } from 'modules/admin/modules/campaigns/core/assessors'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Input,

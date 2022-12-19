@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserProfile < ApplicationRecord
-  PROFILE_FIELDS = %i[age photo gender timezone locale custom_fields].freeze
+  PROFILE_FIELDS = %i[age photo gender locale custom_fields].freeze
 
   enum gender: { male: 0, female: 1, not_disclosed: 2 }
 

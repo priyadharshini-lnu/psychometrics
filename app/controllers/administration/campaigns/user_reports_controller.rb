@@ -5,7 +5,8 @@ module Administration
     class UserReportsController < Administration::Campaigns::BaseController
       include UserReports::PdfGeneration
 
-      before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access]
+      before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access
+                                            start_qc abort_qc send_for_approval request_changes remove_approval]
       before_action :pundit_authorize
 
       def create
@@ -31,11 +32,41 @@ module Administration
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
 
+      def start_qc
+        audit! :start_qc, resource, campaign: resource.campaign
+        resource.start_qc!
+        render json: { status: resource.approval_status }
+      end
+
+      def abort_qc
+        audit! :abort_qc, resource, campaign: resource.campaign
+        resource.abort_qc!
+        render json: { status: resource.approval_status }
+      end
+
+      def send_for_approval
+        audit! :send_for_approval, resource, campaign: resource.campaign
+        resource.send_for_approval!
+        render json: { status: resource.approval_status }
+      end
+
+      def request_changes
+        audit! :request_changes, resource, campaign: resource.campaign
+        resource.request_changes!
+        render json: { status: resource.approval_status }
+      end
+
       def approve
         audit! :approve, resource, campaign: resource.campaign
-        resource.update!(approved: true)
+        resource.approve!
         generate_report(resource) if resource.generatable?
-        head :ok
+        render json: { status: resource.approval_status }
+      end
+
+      def remove_approval
+        audit! :remove_approval, resource, campaign: resource.campaign
+        resource.remove_approval!
+        render json: { status: resource.approval_status }
       end
 
       def regenerate

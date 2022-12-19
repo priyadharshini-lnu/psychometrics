@@ -19,6 +19,7 @@ export class Preview extends Component {
   render () {
     const {
       localeDirection, loaded, showOverrides, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
+      allowEdit, allowApprove,
     } = this.props
     if (!loaded) { return null }
     const visiblePages = skipLogic
@@ -39,7 +40,15 @@ export class Preview extends Component {
             dashboard={dashboard}
           />
         ))}
-        {showOverrides && <ModuleOverrides pages={visiblePages} rstore={rstore} moduleOverrides={moduleOverrides} />}
+        {showOverrides && (
+          <ModuleOverrides
+            allowEdit={allowEdit}
+            allowApprove={allowApprove}
+            pages={visiblePages}
+            rstore={rstore}
+            moduleOverrides={moduleOverrides}
+          />
+        )}
       </div>
     )
   }

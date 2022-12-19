@@ -166,7 +166,10 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       }
       parsed_response = JSON.parse(response.body)
 
-      expect(parsed_response['errors']).to eq(['File does not contain Email column'])
+      expect(parsed_response['errors']).to include('File does not contain Email column')
+      expect(parsed_response['errors']).to include(
+        'Column <b>Profile</b> is expected to be of type Markdown but got <b>Text</b>'
+      )
     end
 
     it 'create AdminJobRecord for import_sheet job if file is valid' do

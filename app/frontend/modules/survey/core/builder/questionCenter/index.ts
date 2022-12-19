@@ -13,6 +13,7 @@ import { QuestionSerializer } from '../assessment/SerializeAssessment'
 
 export const INIT_QUESTION_CENTER = 'survey/question_center/INIT_QUESTION_CENTER'
 const SAVE = 'survey/question_center/SAVE'
+const IMPORT_TRANSLATIONS = 'survey/question_center/IMPORT_TRANSLATIONS'
 
 export const save = (q: QuestionInerface) => {
   const question = QuestionSerializer(new Question(q))
@@ -28,6 +29,17 @@ export const save = (q: QuestionInerface) => {
     },
   }
 }
+
+export const importTranslations = (id, data: FormData) => ({
+  type: IMPORT_TRANSLATIONS,
+  request: {
+    method: 'POST',
+    url: `/administration/translations/questions/${id}/import`,
+    body: data,
+    camelize: false,
+    decamelize: false,
+  },
+})
 
 interface State {
   loaded: boolean,

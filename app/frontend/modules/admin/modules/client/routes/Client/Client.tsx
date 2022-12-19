@@ -51,6 +51,10 @@ export const Client: FC<Props> = () => {
         return ''
     }
   }
+  const menuItems = [
+    { key: 'projects', icon: <ShopOutlined />, label: I18n.t('administration.breadcrumbs.projects') },
+    { key: 'client_admins', icon: <ShopOutlined />, label: I18n.t('administration.breadcrumbs.clientAdmins') },
+  ]
 
   return (
     <div>
@@ -76,17 +80,11 @@ export const Client: FC<Props> = () => {
         ]}
       />
       <Menu
+        items={menuItems}
         onSelect={handleOnSelect}
         selectedKeys={getActiveMenuKey(pathname)}
         mode="horizontal"
-      >
-        <Menu.Item key="projects" icon={<ShopOutlined />}>
-          {I18n.t('administration.breadcrumbs.projects')}
-        </Menu.Item>
-        <Menu.Item key="client_admins" icon={<ShopOutlined />}>
-          {I18n.t('administration.breadcrumbs.clientAdmins')}
-        </Menu.Item>
-      </Menu>
+      />
       <RouteList
         routes={routes}
         urlPrefix={`${settings.urlPrefix}`}

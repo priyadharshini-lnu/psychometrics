@@ -174,7 +174,6 @@ gem 'enum_help', '~> 0.0.17'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'encryptor', '~> 3.0.0'
-gem 'jsonapi-authorization', git: 'https://github.com/TheTalentEnterprise/jsonapi-authorization', branch: 'namespace'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils', ref: '3634294'
 gem 'js-routes', '~> 1.4.4'
 gem 'rswag-api', '~> 2.5.1'
@@ -189,6 +188,7 @@ gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 0.8.2'
 gem 'twilio-ruby', '~>  5.58.1'
 gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'master'
+gem 'workflow-activerecord', '~> 4.1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

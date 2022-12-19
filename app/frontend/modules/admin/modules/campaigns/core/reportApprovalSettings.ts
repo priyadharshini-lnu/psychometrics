@@ -1,0 +1,38 @@
+import * as t from 'io-ts'
+import { ResourceIdentifierTR } from './resource'
+
+const UserDataTR = t.type({
+  id: t.number,
+  email: t.string,
+})
+
+export const ReportApprovalSettingsTR = t.intersection([
+  ResourceIdentifierTR,
+  t.type({
+    qcs: t.array(UserDataTR),
+    approvers: t.array(UserDataTR),
+    approvalNotificationUsers: t.array(UserDataTR),
+    campaign: t.type({
+      id: t.string,
+      type: t.string,
+    }),
+    report: t.type({
+      id: t.string,
+      name: t.string,
+    }),
+  }),
+])
+
+export type ReportApprovalSettings = t.TypeOf<typeof ReportApprovalSettingsTR>
+
+export const Schema = {
+  type: 'report_approval_settings',
+  relationships: {
+    campaign: {
+      type: 'campaigns',
+    },
+    report: {
+      type: 'reports',
+    },
+  },
+}

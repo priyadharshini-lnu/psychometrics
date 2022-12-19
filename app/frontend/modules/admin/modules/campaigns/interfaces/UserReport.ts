@@ -4,6 +4,7 @@ export default interface UserReport {
   reportId: number
   userAccess: boolean
   reportFamilyName: string
+  approvalStatus: 'not_ready' | 'pending_qc' | 'qc_in_progress' | 'qc_completed' | 'change_requested' | 'approved'
   permissions: {
     downloadReport: boolean
     remove: boolean

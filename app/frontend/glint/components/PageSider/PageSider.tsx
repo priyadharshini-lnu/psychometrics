@@ -8,7 +8,6 @@ import { MenuTriggerIcon } from 'glint/icons'
 import styles from './styles.less'
 
 const { Sider } = Layout
-const { Item, SubMenu } = Menu
 
 type MenuItem = {
   key: string
@@ -27,7 +26,8 @@ type PageSiderProps = {
   onMenuSelect?: (info: SelectInfo) => void
   siderFooter?: (collapsed: boolean) => React.ReactElement
   activeKey?: string
-  openKey?: string
+  onOpenChange?: (openKeys: string[]) => void
+  openKeys?: string[]
   onSiderCollapse?: (collapsed: boolean) => void
 }
 
@@ -38,8 +38,9 @@ export const PageSider: FC<PageSiderProps> = ({
   siderFooter,
   onMenuSelect,
   activeKey = '',
-  openKey = '',
+  openKeys = [],
   onSiderCollapse,
+  onOpenChange,
 }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false)
   const [drawerVisible, setDrawerVisible] = useState(false)
@@ -64,28 +65,11 @@ export const PageSider: FC<PageSiderProps> = ({
       selectedKeys={[activeKey]}
       className={styles['sider-menu']}
       mode="inline"
-      defaultOpenKeys={[openKey]}
+      openKeys={openKeys}
       onClick={handleClick}
-    >
-      {items.map((eachItem) => {
-        if (eachItem.children) {
-          return (
-            <SubMenu key={eachItem.key} icon={eachItem.icon} title={eachItem.label}>
-              {eachItem.children.map(menuItem => (
-                <Item key={menuItem.key} icon={menuItem.icon}>
-                  {menuItem.label}
-                </Item>
-              ))}
-            </SubMenu>
-          )
-        }
-        return (
-          <Item key={eachItem.key} icon={eachItem.icon}>
-            {eachItem.label}
-          </Item>
-        )
-      })}
-    </Menu>
+      onOpenChange={onOpenChange}
+      items={items}
+    />
   )
 
   const logoEle = (
@@ -119,9 +103,11 @@ export const PageSider: FC<PageSiderProps> = ({
             onClose={handleDrawerVisibility}
             className={styles['sider-drawer']}
           >
-            {logoEle}
-            {menu}
-            <div className={styles.sidebarFooter}>{siderFooter && siderFooter(menuCollapsed)}</div>
+            <div className={styles.drawerItemsContainer}>
+              {logoEle}
+              {menu}
+              <div className={styles.sidebarFooter}>{siderFooter && siderFooter(menuCollapsed)}</div>
+            </div>
           </Drawer>
         </>
       ) : (
@@ -129,6 +115,7 @@ export const PageSider: FC<PageSiderProps> = ({
           {siderTrigger}
           <div
             className={cs({
+              [styles.siderItemsContainer]: true,
               [styles['page-sider--expanded']]: !menuCollapsed,
               [styles['page-sider--collapsed']]: menuCollapsed,
             })}

@@ -15,11 +15,14 @@ export enum GrantType {
   manage_users = 'manage_users',
   manage_options = 'manage_options',
   view_report = 'view_report',
+  download_report = 'download_report',
   report_data = 'report_data',
   raw_responses = 'raw_responses',
   scores = 'scores',
   reset_responses = 'reset_responses',
   rescrore_responses = 'rescore_responses',
+  manage_report_approvals = 'manage_report_approvals',
+  stats = 'stats'
 }
 
 export enum ParentResourceType {

@@ -12,15 +12,14 @@ import { STATUSES } from 'constants/campaign'
 import cs from 'classnames'
 
 import { ProgressStatus, DirectionalArrowIcon } from 'glint'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import {
-  fetchCampaign,
   continueCampaign,
   beginCampaign,
   reset as resetCampaign,
-} from 'modules/user/modules/campaigns/core/campaign'
-import { loginHogan } from 'modules/user/modules/campaigns/core/campaigns'
-import { acceptPolicy } from 'modules/user/modules/campaigns/core/project'
+} from 'modules/endUser/modules/campaigns/core/campaign'
+import { loginHogan } from 'modules/endUser/modules/campaigns/core/campaigns'
+import { acceptPolicy } from 'modules/endUser/modules/campaigns/core/project'
 
 import { isInsideIframe } from 'utils/isInsideIframe'
 import { SafeHTML } from 'components/SafeHTML'
@@ -37,7 +36,6 @@ const connector = connect(
     currentUser: state.currentUser,
   }),
   {
-    fetchCampaign,
     beginCampaign,
     continueCampaign,
     resetCampaign,
@@ -69,6 +67,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignUser: { expiryDate },
     campaignOptions: { instructionsEnabled, instructions, proctoringEnabled },
   } = campaign
+
   const needsProctoring = proctoringEnabled && !isInsideIframe()
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
@@ -185,7 +184,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
               <InstructionsPanel
                 description={<SafeHTML html={instructions} config="adminRichText" />}
                 title={I18n.t('campaign.instructions.heading')}
-                heightLimit={100}
+                heightLimit={200}
               />
               )
             )}
@@ -206,7 +205,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                         size="small"
                         type="primary"
                         onClick={handleBeginCampign}
-                        disabled={proctoringEnabled && !showError}
+                        disabled={proctoringEnabled && showError}
                       >
                         {I18n.t('campaign.begin')}
                         {' '}
@@ -215,7 +214,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                     </>
                   )}
                   {proctoringEnabled
-                      && !showError
+                      && showError
                       && <Alert message={I18n.t('licenses.not_enough_proctoring_credits')} type="error" />
                   }
                   {canContinueCampaign && (
@@ -228,7 +227,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                         size="small"
                         type="primary"
                         onClick={handleContinueCampaign}
-                        disabled={proctoringEnabled && !showError}
+                        disabled={proctoringEnabled && showError}
                       >
                         {I18n.t('campaign.continue')}
                         {' '}

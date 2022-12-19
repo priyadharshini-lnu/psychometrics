@@ -101,6 +101,68 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     end
   end
 
+  describe 'PATCH start_qc' do
+    it 'change approval status to start_qc' do
+      user_report.ready!
+      patch :start_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['status']).to eq('qc_in_progress')
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'workflow' do
+    describe 'PATCH send_for_approval' do
+      it 'change approval status to qc_completed' do
+        user_report.update(approval_status: 'qc_in_progress')
+        patch :send_for_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('qc_completed')
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'PATCH abort_qc' do
+      it 'change approval status to pending_qc' do
+        user_report.update(approval_status: 'qc_in_progress')
+        patch :abort_qc, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('pending_qc')
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'PATCH approve' do
+      it 'change approval status to appove' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :approve, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('approved')
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'PATCH remove_approval' do
+      it 'change approval status to change_requested' do
+        user_report.update(approval_status: 'approved')
+        patch :remove_approval, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('change_requested')
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'PATCH request_change' do
+      it 'change approval status to change_requested' do
+        user_report.update(approval_status: 'qc_completed')
+        patch :request_changes, params: { new_campaign_id: campaign.id, id: user_report.id }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['status']).to eq('change_requested')
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
   describe 'GET dashboard' do
     it 'returns 404 if user with the email is not present' do
       campaign_report = create(:campaign_report,  user_dashboard: true)

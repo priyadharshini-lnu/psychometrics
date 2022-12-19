@@ -30,7 +30,7 @@ module Hogan
                 first_name: current_user.first_name,
                 last_name: current_user.last_name,
                 language_id: 'en',
-                direct_assessment_id: @assign.assessment.hogan_assessment_setting.hogan_assessment_id,
+                direct_assessment_id: @assign.assessment.external_settings[:assessment_id],
                 display_informed_consent: 'YES',
                 return_url: redirect_hogan_assign_url(@assign, email: 'CandID',
                                 participant_id: 'HASUserID', status: 'AssessmentStatus',

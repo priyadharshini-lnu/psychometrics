@@ -6,6 +6,7 @@ import { MenuProps } from 'antd/lib/menu'
 import { DownOutlined } from '@ant-design/icons'
 
 import { DateFormat } from 'modules/survey/interfaces/questions/TextEntry'
+import { getMenuItems } from 'utils/array'
 
 import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
 
@@ -34,23 +35,14 @@ export const DateEntry: React.FC<Props> = ({
       onClick={handleMenuItemClick}
       triggerSubMenuAction="click"
       selectedKeys={allSelectedOptions}
-    >
-      <Menu.SubMenu
-        key="date-format"
-        title={I18n.t(
+      items={[{
+        key: 'date-format',
+        label: I18n.t(
           'administration.survey_builder.property_panel.date_format',
-        )}
-      >
-        {DATE_FORMAT_OPTIONS.map(dateFormatOption => (
-          <Menu.Item
-            key={dateFormatOption.value}
-            title={dateFormatOption.label}
-          >
-            {dateFormatOption.label}
-          </Menu.Item>
-        ))}
-      </Menu.SubMenu>
-    </Menu>
+        ),
+        children: getMenuItems(DATE_FORMAT_OPTIONS, 'label', 'value', 'label'),
+      }]}
+    />
   )
 
   const pickerMode = DATE_FORMAT_OPTIONS.find(

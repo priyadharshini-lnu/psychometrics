@@ -22,6 +22,12 @@ const Menu: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = 
 }) => {
   const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
 
+  const menuItems = [
+    { key: '/manage', label: I18n.t('assessments_reports.menu.manage') },
+    { key: '/sequencing', label: I18n.t('assessments_reports.menu.sequencing') },
+    { key: '/report_approval', label: I18n.t('assessments_reports.menu.report_approval') },
+  ]
+
   return (
     <div className="position-relative">
       <AntMenu
@@ -29,14 +35,8 @@ const Menu: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = 
         onSelect={onSelect}
         selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
         mode="horizontal"
-      >
-        <AntMenu.Item key="/manage">
-          {I18n.t('assessments_reports.menu.manage')}
-        </AntMenu.Item>
-        <AntMenu.Item key="/sequencing">
-          {I18n.t('assessments_reports.menu.sequencing')}
-        </AntMenu.Item>
-      </AntMenu>
+        items={menuItems}
+      />
     </div>
   )
 }

@@ -9,34 +9,19 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
   const handleScheduleDateChange = ({ key }) => {
     updateScheduleDate(moment().add(...key.split(',')).format())
   }
+  const menuItems = [
+    { key: [0, 'hours'], label: 'Send Now' },
+    { key: [1, 'hours'], label: 'Send in 1 hour' },
+    { key: [8, 'hours'], label: 'Send in 8 hour' },
+    { key: [1, 'days'], label: 'Send in 1 day' },
+    { key: [3, 'days'], label: 'Send in 3 days' },
+    { key: [7, 'days'], label: 'Send in 7 days' },
+    { key: [14, 'days'], label: 'Send in 14 days' },
+    { key: [28, 'days'], label: 'Send in 28 days' },
+  ]
 
   const menu = (
-    <Menu onClick={handleScheduleDateChange}>
-      <Menu.Item key={[0, 'hours']}>
-        Send Now
-      </Menu.Item>
-      <Menu.Item key={[1, 'hours']}>
-        Send in 1 hour
-      </Menu.Item>
-      <Menu.Item key={[8, 'hours']}>
-        Send in 8 hour
-      </Menu.Item>
-      <Menu.Item key={[1, 'days']}>
-        Send in 1 day
-      </Menu.Item>
-      <Menu.Item key={[3, 'days']}>
-        Send in 3 days
-      </Menu.Item>
-      <Menu.Item key={[7, 'days']}>
-        Send in 7 days
-      </Menu.Item>
-      <Menu.Item key={[14, 'days']}>
-        Send in 14 days
-      </Menu.Item>
-      <Menu.Item key={[28, 'days']}>
-        Send in 28 days
-      </Menu.Item>
-    </Menu>
+    <Menu items={menuItems} onClick={handleScheduleDateChange} />
   )
 
   const date = scheduledDate ? moment(scheduledDate) : undefined

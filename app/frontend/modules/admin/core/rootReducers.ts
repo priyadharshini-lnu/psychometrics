@@ -11,6 +11,8 @@ import { reducer as adminsReducer } from 'modules/admin/modules/Admins/core'
 import { reducer as projectAssessorsReducers } from 'modules/admin/modules/client/core/assessors'
 import { reducer as projectParticipantsReducer } from 'modules/admin/modules/client/core/participants'
 import { reducer as individualDashboardReducer } from 'modules/admin/modules/IndividualDashboard/core'
+import request from 'core/request'
+import socket from 'core/socket'
 import campaignReducers from '../modules/campaigns/core'
 import { reducer as smtpSettingReducer } from '../modules/client/core/smtpSetting'
 import { reducer as samlSettingReducer } from '../modules/client/core/samlSetting'
@@ -24,7 +26,6 @@ import reportOptions from '../modules/threeSixtyCampaign/core/reportOptions/redu
 import modals from './ui/modals'
 import autocomplete from './ui/autocomplete'
 import breadcrumbs from './ui/breadcrumbs'
-import request from './request'
 import datasheetFields from '../modules/threeSixtyCampaign/core/datasheetFields'
 import participants from '../modules/threeSixtyCampaign/core/participants'
 import relationships from '../modules/threeSixtyCampaign/core/relationships'
@@ -45,6 +46,7 @@ import auditLogs from '../modules/AuditLog/core'
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
   admins: adminsReducer,
+  socket,
   threeSixtyCampaign: combineReducers({
     subjects,
     evaluators,

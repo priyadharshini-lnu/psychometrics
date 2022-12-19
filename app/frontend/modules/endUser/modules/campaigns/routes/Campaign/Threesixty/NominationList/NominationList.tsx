@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { CollapseItem } from 'glint'
-import { getApprovalNominations } from 'modules/user/modules/campaigns/core/campaign/selectors'
+import { getApprovalNominations } from 'modules/endUser/modules/campaigns/core/campaign/selectors'
 import { SafeHTML } from 'components/SafeHTML'
 import userPresenter from 'presenters/user'
 import { ThreesixtyCard } from '../ThreesixtyCard'

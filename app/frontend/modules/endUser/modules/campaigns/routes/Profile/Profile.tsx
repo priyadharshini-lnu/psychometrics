@@ -6,12 +6,13 @@ import {
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import { PageHeader } from 'glint'
 import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
 import LangDropdown from 'components/LangDropdown'
 import Utils from 'modules/reports/utils/Utils'
 import _ from 'lodash'
+import array from 'utils/array'
 
 import {
   sync,
@@ -54,7 +55,7 @@ const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
   && AVAILABLE_QUESTIONS[question.type].includes(question.props.type)
 
 function ProfileComponent ({
-  user, uploadPhoto, sync, fields, lockedFields,
+  user, uploadPhoto, sync, fields, lockedFields, requiredFields,
 }) {
   const [changePassword, setChangePassword] = useState(false)
   const [showCropper, setShowCropper] = useState(false)
@@ -97,6 +98,11 @@ function ProfileComponent ({
   }
 
   const onChangeFile = ({ file }) => {
+    if (file.type === 'image/svg+xml') {
+      const form = new FormData()
+      form.append('photo', file, file.name)
+      return uploadPhoto(form)
+    }
     const blob = URL.createObjectURL(file)
 
     setImage({
@@ -135,7 +141,7 @@ function ProfileComponent ({
                   <Form.Item>
                     <Upload
                       listType="picture-card"
-                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
                       showUploadList={false}
                       maxCount={1}
                       className={styles.upload}
@@ -171,6 +177,7 @@ function ProfileComponent ({
                           hasFeedback
                           help={errors?.first_name}
                           validateStatus={errors?.first_name ? 'error' : ''}
+                          required
                         >
                           <Input size="large" disabled={lockedFields.first_name} />
                         </Form.Item>
@@ -182,6 +189,7 @@ function ProfileComponent ({
                           hasFeedback
                           help={errors?.last_name}
                           validateStatus={errors?.last_name ? 'error' : ''}
+                          required
                         >
                           <Input size="large" disabled={lockedFields.last_name} />
                         </Form.Item>
@@ -197,13 +205,19 @@ function ProfileComponent ({
                           label={I18n.t('profile.age')}
                           hasFeedback
                           help={errors?.age}
+                          required={requiredFields.age}
                           validateStatus={errors?.age ? 'error' : ''}
                         >
                           <InputNumber className={styles.numberInput} size="large" disabled={lockedFields.age} />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
-                        <Form.Item name="gender" label={I18n.t('profile.gender')} hasFeedback>
+                        <Form.Item
+                          name="gender"
+                          label={I18n.t('profile.gender')}
+                          hasFeedback
+                          required={requiredFields.gender}
+                        >
                           <Select size="large" disabled={lockedFields.gender}>
                             <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
                             <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
@@ -219,6 +233,7 @@ function ProfileComponent ({
                       hasFeedback
                       help={errors?.locale}
                       validateStatus={errors?.locale ? 'error' : ''}
+                      required={requiredFields.locale}
                     >
                       <Select size="large" disabled={lockedFields.locale}>
                         {_.map(locales, locale => (
@@ -227,7 +242,7 @@ function ProfileComponent ({
                       </Select>
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                       name="timezone"
                       label={I18n.t('profile.timezone')}
                       hasFeedback
@@ -247,7 +262,7 @@ function ProfileComponent ({
                           </Select.Option>
                         ))}
                       </Select>
-                    </Form.Item>
+                    </Form.Item> */}
                     <Checkbox
                       checked={changePassword}
                       onChange={({ target }) => setChangePassword(target.checked)}
@@ -255,9 +270,10 @@ function ProfileComponent ({
                       {I18n.t('profile.change_password')}
                     </Checkbox>
                     {changePassword && (
-                      <>
+                      <div>
                         <Form.Item
                           hasFeedback
+                          className="mtl"
                           help={errors?.password}
                           validateStatus={errors?.password ? 'error' : ''}
                           name="password"
@@ -273,17 +289,21 @@ function ProfileComponent ({
                         >
                           <Input type="password" />
                         </Form.Item>
-                      </>
+                      </div>
                     )}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
                         <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
                           <Form.Item
                             hasFeedback
-                            help={errors?.[field.name]}
+                            help={Array.isArray(errors?.[field.name])
+                              ? array.joinJSXElements(errors?.[field.name], <br />)
+                              : errors?.[field.name]}
                             validateStatus={errors?.[field.name] ? 'error' : ''}
                             name={`field_${field.question_id}`}
-                            label={Utils.stripHTML(field.question.props.questionText)}
+                            label={Utils.stripHTML(field.translations.questionText
+                              || field.question.props.questionText)}
+                            required={field.required}
                           >
                             <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />
                           </Form.Item>
@@ -318,6 +338,7 @@ const connector = connect((state: RootState) => ({
   user: getUser(state),
   fields: state.config.profile.fields,
   lockedFields: state.config.profile.lockedFields,
+  requiredFields: state.config.profile.requiredFields,
 }), {
   sync,
   uploadPhoto,

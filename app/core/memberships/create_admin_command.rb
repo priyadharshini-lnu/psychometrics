@@ -31,7 +31,7 @@ module Memberships
         end
       end
       if membership.save!
-        membership.reload.user.invite!(creator, client.id)
+        membership.reload.user.invite!(creator, membership)
         broadcast :ok, membership
       else
         broadcast :invalid

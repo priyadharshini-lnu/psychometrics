@@ -3,18 +3,17 @@ import { connect, ConnectedProps } from 'react-redux'
 
 import { PageFooter } from 'glint'
 
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 
 import {
   getPrivacyText,
   privacyPageLink,
   getSecondaryLogo,
   getName,
-} from 'modules/user/modules/campaigns/core/project'
+} from 'modules/endUser/modules/campaigns/core/project'
 import { isInsideIframe } from 'utils/isInsideIframe'
 
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoTall.svg'
-import tteLogo from 'modules/user/assets/images/tteLogo.svg'
+import lighthouseLogo from 'modules/endUser/assets/images/lighthouseLogoTall.png'
 import styles from './styles.less'
 
 const { I18n } = window
@@ -55,7 +54,7 @@ const FooterComponent: FC<PropsFromRedux> = ({
 }
 
 const TTELogo: FC = () => (
-  <img src={tteLogo} alt="The Talent Enterprise" className={styles['footer-logo']} />
+  <img src={lighthouseLogo} alt="The Talent Enterprise" className={styles.footerLighthouseLogo} />
 )
 
 type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
@@ -99,7 +98,7 @@ const PartnerLogo: FC<PartnerLogsProps> = ({
     )
   }
 
-  return <img src={lighthouseLogo} alt="Lighthouse" className={styles['footer-logo']} />
+  return <img src={lighthouseLogo} alt="Lighthouse" className={styles.footerLighthouseLogo} />
 }
 
 export const Footer = connector(FooterComponent)

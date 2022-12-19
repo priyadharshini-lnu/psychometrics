@@ -46,7 +46,7 @@ class HomeController < ApplicationController
     @browser_detections = helpers.detect_browser(request.user_agent)
     redirect_to root_path and return if @browser_detections.supported_browser?
 
-    render layout: 'devise'
+    render layout: 'upgrade'
   end
 
   private

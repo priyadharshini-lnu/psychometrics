@@ -36,7 +36,13 @@ describe Users::Registration::WithRegistrationCodeForm do
   end
 
   it 'valid? returns true if passed registration_code exsits in the database' do
-    create(:registration_code, project: project, code: 'abc', start_date: 1.day.ago, end_date: 2.days.from_now)
+    reg_code = create(
+      :registration_code, project: project, campaign: create(:campaign), code: 'abc',
+      start_date: 1.day.ago, end_date: 2.days.from_now
+    )
+    create(
+      :communication, kind: :invitation, recipients: :new_users, project_campaign: reg_code.campaign
+    )
     form = described_class.new(valid_attrs.merge(registration_code: 'abc')).with_context(project: project)
 
     expect(form.valid?).to eq(true)

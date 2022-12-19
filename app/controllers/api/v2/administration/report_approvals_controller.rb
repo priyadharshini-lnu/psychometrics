@@ -1,0 +1,32 @@
+# frozen_string_literal: true
+
+module Api
+  class V2::Administration::ReportApprovalsController < Api::V2::Administration::BaseController
+    def search_campaign
+      authorize ReportApproval, :search_campaign?, policy_class: ::Api::Administration::ReportApprovalPolicy
+      campaings = Campaign.joins(:report_approvals).merge(
+        ::ReportApprovalSetting.report_approvals(current_user)
+      ).distinct.limit(10).ransack(params[:filter]).result
+
+      render json: campaings.map { |c| c.slice(:id, :name) }
+    end
+
+    def search_report
+      authorize ReportApproval, :search_report?, policy_class: ::Api::Administration::ReportApprovalPolicy
+      reports = Report.joins(:report_approvals).merge(
+        ::ReportApprovalSetting.report_approvals(current_user)
+      ).distinct.limit(10).ransack(params[:filter]).result
+
+      render json: reports.map { |r| r.slice(:id, :name) }
+    end
+
+    def search_user
+      authorize ReportApproval, :search_user?, policy_class: ::Api::Administration::ReportApprovalPolicy
+      users = User.joins(:report_approvals).merge(
+        ::ReportApprovalSetting.report_approvals(current_user)
+      ).distinct.limit(10).ransack(params[:filter]).result
+
+      render json: users.map { |u| u.slice(:id, :email).merge(name: u.decorate.display_name) }
+    end
+  end
+end

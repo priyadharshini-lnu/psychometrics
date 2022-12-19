@@ -32,6 +32,7 @@ RSpec.describe UserAssessment, type: :model do
   describe '#applicable_external_norm_id' do
     it 'returns external_norm_id of campaign_assessment if present' do
       campaign_assessment = create(:campaign_assessment, external_norm_id: 'abc')
+      campaign_assessment.assessment.update(external_settings: { norm_id: 'abc' })
       user_assessment = create(:user_assessment, campaign_id: campaign_assessment.campaign_id,
         assessment_id: campaign_assessment.assessment_id)
 
@@ -42,14 +43,14 @@ RSpec.describe UserAssessment, type: :model do
       assessment = create(:assessment, :saville)
       user_assessment = create(:user_assessment, assessment: assessment)
 
-      expect(user_assessment.applicable_external_norm_id).to eq(assessment.saville_norm_id)
+      expect(user_assessment.applicable_external_norm_id).to eq(assessment.external_settings[:norm_id])
     end
 
     it 'returns pearson_norm_id of assessment if campaign_assessment is not present' do
       assessment = create(:assessment, :pearson)
       user_assessment = create(:user_assessment, assessment: assessment)
 
-      expect(user_assessment.applicable_external_norm_id).to eq(assessment.pearson_norm_id)
+      expect(user_assessment.applicable_external_norm_id).to eq(assessment.external_settings[:norm_id])
     end
   end
 

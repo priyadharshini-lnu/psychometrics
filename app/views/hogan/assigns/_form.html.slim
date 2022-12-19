@@ -5,7 +5,7 @@
   = hidden_field_tag :FirstName, current_user.first_name
   = hidden_field_tag :LastName, current_user.last_name
   = hidden_field_tag :LanguageID, 'en'
-  = hidden_field_tag :DirectAssessmentID, assign.assessment.hogan_assessment_setting.hogan_assessment_id
+  = hidden_field_tag :DirectAssessmentID, assign.assessment.external_settings[:assessment_id]
   = hidden_field_tag :DisplayInformedConsent, 'YES'
   = hidden_field_tag :ReturnURL, redirect_hogan_assign_url(assign, email: 'CandID',
     participant_id: 'HASUserID', status: 'AssessmentStatus', assessment_id: 'AssessmentID')

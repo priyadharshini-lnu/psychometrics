@@ -13,3 +13,10 @@
     transform: translateY(if(@height=100%, -50%, @translateY));
   }
 }
+
+.lines(@length) {
+  display: -webkit-box;
+  -webkit-line-clamp: @length;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

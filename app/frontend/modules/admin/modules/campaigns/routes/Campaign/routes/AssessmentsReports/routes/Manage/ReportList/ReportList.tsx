@@ -5,6 +5,7 @@ import {
 import { MoreOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -146,36 +147,29 @@ interface ActionMenuProps {
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData,
-}) => (
-  <Menu>
-    {permissions.export && (
-      <Menu.Item key="export">
-        <div
-          role="button"
-          tabIndex={-1}
-        >
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => exportData(campaignId, reportId)}
-          >
-            {I18n.t('campaign_report.actions.export_data')}
-          </div>
-        </div>
-      </Menu.Item>
-    )}
-    {permissions.remove && (
-      <Menu.Item key="delete">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId, reportName })}
-        >
-          {I18n.t('common.actions.remove')}
-        </div>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+}) => {
+  const menuItems: ItemType[] = []
+  permissions.export && menuItems.push({
+    key: 'export',
+    label: I18n.t('campaign_report.actions.export_data'),
+  })
+  permissions.remove && menuItems.push({
+    key: 'remove',
+    label: I18n.t('common.actions.remove'),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'export') {
+      exportData(campaignId, reportId)
+    }
+    if (key === 'remove') {
+      openModal('RemoveReportModal', { campaignId, campaignReportId, reportName })
+    }
+  }
+
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
+  )
+}
 
 export default withRouter(ReportList)

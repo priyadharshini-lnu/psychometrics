@@ -12,9 +12,9 @@ module Threesixty
           private
 
           def subject_table
-            file_path = File.join(File.dirname(__FILE__), 'subject_relationship_table.html.erb')
-
-            ActionController::Base.render file: file_path, assigns: { participants: participants }
+            ActionController::Base.render(
+              template: '_templates/subject_relationship_table.html.erb', assigns: { participants: participants }
+            )
           end
 
           def participants

@@ -7,28 +7,29 @@ import { withRouter } from 'react-router-dom'
 
 function TemplateMenu ({ history, emailTemplates, selectedId }) {
   const groupedTemplate = _.groupBy(emailTemplates, 'category')
+  const menuItems = [..._.map(groupedTemplate, (emailTemplates, category) => (
+    {
+      key: category,
+      type: 'group',
+      label: I18n.t(`administration.threesixty_campaigns.email_templates.categories.${category}`),
+      children: [..._.map(emailTemplates, emailTemplate => (
+        {
+          key: emailTemplate.id,
+          label: I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.name`),
+        }
+      ))],
+    }
+  )),
+  ]
 
   return (
     <Menu
+      items={menuItems}
       selectedKeys={[selectedId.toString()]}
       onClick={({ key }) => routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${key}`)}
       style={{ height: 700 }}
       mode="inline"
-    >
-      {_.map(groupedTemplate, (emailTemplates, category) => (
-        <Menu.ItemGroup
-          key={category}
-          title={I18n.t(`administration.threesixty_campaigns.email_templates.categories.${category}`)}
-        >
-          {_.map(emailTemplates, emailTemplate => (
-            <Menu.Item key={emailTemplate.id}>
-              {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.name`)}
-            </Menu.Item>
-          ))}
-        </Menu.ItemGroup>
-      ))}
-    </Menu>
+    />
   )
 }
-
 export default withRouter(TemplateMenu)

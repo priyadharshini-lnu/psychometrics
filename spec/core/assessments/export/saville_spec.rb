@@ -13,13 +13,13 @@ describe Assessments::Export::Saville do
     factor1_name = 'factor1'
     factor2_name = 'factor2'
     @nipsitive_factor1 = create(:saville_factor, score_type: 'Nipsitive', factor_id: factor1_id,
-      name: factor1_name, value_type: 'percentile', assessment_id: assessment.saville_assessment_id)
+      name: factor1_name, value_type: 'percentile', assessment_id: assessment.external_settings[:assessment_id])
     @nipsitive_factor2 = create(:saville_factor, score_type: 'Nipsitive', factor_id: factor1_id,
-      name: factor1_name, value_type: 'sten', assessment_id: assessment.saville_assessment_id)
+      name: factor1_name, value_type: 'sten', assessment_id: assessment.external_settings[:assessment_id])
     @ipsitive_factor1 = create(:saville_factor, score_type: 'Ipsitive', factor_id: factor1_id,
-      name: factor1_name, value_type: 'percentile', assessment_id: assessment.saville_assessment_id)
+      name: factor1_name, value_type: 'percentile', assessment_id: assessment.external_settings[:assessment_id])
     @ipsitive_factor2 = create(:saville_factor, score_type: 'Ipsitive', factor_id: factor2_id,
-     name: factor2_name, value_type: 'sten', assessment_id: assessment.saville_assessment_id)
+     name: factor2_name, value_type: 'sten', assessment_id: assessment.external_settings[:assessment_id])
   end
 
   it 'export data for all saville factor' do

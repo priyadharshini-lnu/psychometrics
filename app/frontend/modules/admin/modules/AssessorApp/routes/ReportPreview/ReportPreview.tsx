@@ -112,11 +112,17 @@ const ReportPreview: FC<Props> = ({
             </div>
           )}
           extra={[
-            <Dropdown overlay={(
-              <Menu onClick={onChangeView}>
-                <Menu.Item key="subject">{I18n.t('common.text.subject')}</Menu.Item>
-                <Menu.Item key="all">{I18n.t('common.text.all_pages')}</Menu.Item>
-              </Menu>
+            <Dropdown
+              overlay={(
+                <Menu
+                  items={
+                  [
+                    { key: 'subject', label: I18n.t('common.text.subject') },
+                    { key: 'all', label: I18n.t('common.text.all_pages') },
+                  ]
+                }
+                  onClick={onChangeView}
+                />
               )}
             >
               <Button>

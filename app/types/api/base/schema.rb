@@ -161,6 +161,10 @@ module Api
           instance_eval(&this.extra_index_meta_schema) if this.respond_to?(:extra_index_meta_schema)
         end
       end
+
+      def self.relationships(_)
+        []
+      end
     end
   end
 end

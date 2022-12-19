@@ -3,8 +3,8 @@ import { Layout, Col } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 
-import { fetchCampaign, reset as resetCampaign } from 'modules/user/modules/campaigns/core/campaign'
-import { RootState } from 'modules/user/core/rootReducers'
+import { fetchCampaign, reset as resetCampaign } from 'modules/endUser/modules/campaigns/core/campaign'
+import { RootState } from 'modules/endUser/core/rootReducers'
 
 import { PageHeader } from 'glint'
 import LangDropdown from 'components/LangDropdown'

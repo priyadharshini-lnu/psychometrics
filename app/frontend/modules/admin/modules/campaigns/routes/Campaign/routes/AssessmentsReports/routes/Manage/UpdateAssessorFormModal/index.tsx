@@ -6,7 +6,7 @@ import {
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 
 import { updateAssessorForm, UPDATE_ASSESSOR_FORM } from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { getSingle } from 'modules/admin/modules/campaigns/core/assessments'
 import { fetchAvailableAssessments, getAvailableAssessments } from 'modules/admin/modules/campaigns/core/assessors'
 import { RootState } from 'modules/admin/core/rootReducers'

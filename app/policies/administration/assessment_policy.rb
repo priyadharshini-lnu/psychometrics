@@ -24,6 +24,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: project_id)
     end
 
+    def other?
+      has_permission?(:campaigns, :view)
+    end
+
     def copy?
       @user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: project_id)
     end

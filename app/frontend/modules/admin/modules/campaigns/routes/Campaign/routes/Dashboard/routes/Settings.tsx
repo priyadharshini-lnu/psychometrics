@@ -19,7 +19,7 @@ import ResourceForm from 'components/ResourceForm'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import _ from 'lodash'
 
 const { I18n } = window
@@ -178,6 +178,8 @@ export const SettingsComponent: React.FC<Props> = ({
           canBeRefreshed={canBeRefreshed}
           handleRefresh={handleRefresh}
           refreshRequestInProgress={refreshRequestInProgress}
+          capacityId={dashboard.capacityId}
+          workspaceId={dashboard.workspaceId}
         />
       </Col>
     </Row>
@@ -191,15 +193,17 @@ interface ViewNameInfoProps {
   canBeRefreshed: boolean
   refreshRequestInProgress: boolean
   handleRefresh: () => void
+  capacityId?: string | null
+  workspaceId?: string | null
 }
 
 const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
-  campaignId, canBeRefreshed, handleRefresh, refreshRequestInProgress,
+  campaignId, capacityId, workspaceId, canBeRefreshed, handleRefresh, refreshRequestInProgress,
 }) => (
   <Alert
     message={(
       <>
-        {I18n.t('administration.dashboard.settings.view_names')}
+        {I18n.t('administration.dashboard.settings.details')}
         {canBeRefreshed
           && (
           <Button
@@ -218,7 +222,7 @@ const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
       <Form layout="vertical" className="clear-float">
         <Form.Item
           label={I18n.t('administration.dashboard.settings.datasheet_view_name')}
-          initialValue={`c_${campaignId}_datasheet`}
+          initialValue={`c_${campaignId}.datasheet`}
           name="datasheetView"
         >
           <Input
@@ -238,7 +242,7 @@ const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
 
         <Form.Item
           label={I18n.t('administration.dashboard.settings.accesssheet_view_name')}
-          initialValue={`c_${campaignId}_accesssheet`}
+          initialValue={`c_${campaignId}.accesssheet`}
           name="accesssheetView"
         >
           <Input
@@ -255,6 +259,52 @@ const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
             )}
           />
         </Form.Item>
+
+        {capacityId && (
+        <Form.Item
+          label={
+            `${I18n.t('administration.dashboard.settings.capacity_id')}`
+          }
+          initialValue={capacityId}
+          name="capacityId"
+        >
+          <Input
+            readOnly
+            suffix={(
+              <CopyToClipboard
+                text={capacityId}
+                onCopy={() => {
+                  message.info(I18n.t('common.text.copied'))
+                }}
+              >
+                <CopyOutlined />
+              </CopyToClipboard>
+            )}
+          />
+        </Form.Item>
+        )}
+
+        {workspaceId && (
+        <Form.Item
+          label={I18n.t('administration.dashboard.settings.workspace_id')}
+          initialValue={workspaceId}
+          name="workspaceId"
+        >
+          <Input
+            readOnly
+            suffix={(
+              <CopyToClipboard
+                text={workspaceId}
+                onCopy={() => {
+                  message.info(I18n.t('common.text.copied'))
+                }}
+              >
+                <CopyOutlined />
+              </CopyToClipboard>
+            )}
+          />
+        </Form.Item>
+        )}
       </Form>
 )}
     type="info"

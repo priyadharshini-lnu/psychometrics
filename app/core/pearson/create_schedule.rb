@@ -27,9 +27,9 @@ module Pearson
       {
         products: [
           {
-            productId: user_assessment.pearson_assessment_id,
-            norms: [user_assessment.pearson_norm_id],
-            languageCode: user_assessment.pearson_assessment_language,
+            productId: user_assessment.assessment.external_settings[:assessment_id],
+            norms: [user_assessment.assessment.external_settings[:norm_id]],
+            languageCode: user_assessment.assessment.external_settings[:assessment_language],
             canOverrideLanguage: true
           }
         ],

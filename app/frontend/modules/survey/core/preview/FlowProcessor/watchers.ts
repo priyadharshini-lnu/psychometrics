@@ -43,6 +43,7 @@ const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 function* genInitPageProcessing () {
   const state = yield select()
   if (!state.preview.started) { return }
+  if (state.preview.end) { return }
 
   if (state.preview.assessmentTimedOut) {
     yield genSimulatePassingAssessment()
@@ -163,6 +164,10 @@ function* getShowSubmitPage () {
   const canNotEdit = _.get(
     state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
   )
+
+  if (showScoringOnEndPage) {
+    yield put(showSubmitPage())
+  }
 
   if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
     yield put(showSubmitPage())

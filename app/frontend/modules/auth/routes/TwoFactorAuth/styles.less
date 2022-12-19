@@ -10,12 +10,19 @@
   color: @text-color-secondary;
 }
 
-.submit {
-  margin-top: @space-9;
+.resendBtn {
+  text-align: start;
+  padding-inline-start: 0px;
 }
 
-.resend {
+.submit {
+  margin-top: @space-4;
+}
+
+.signoutBtn {
   text-align: center;
-  margin-top: @space-5;
-  margin-bottom: @space-5;
+  margin-top: @space-2;
+  & > span, span:hover {
+    text-decoration: underline;
+  }
 }

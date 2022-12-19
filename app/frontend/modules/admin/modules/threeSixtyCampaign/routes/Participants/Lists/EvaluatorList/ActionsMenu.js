@@ -18,42 +18,40 @@ const ActionsMenu = ({
     })
   }
 
+  const menuItems = [
+    permissions.login && {
+      key: 'login',
+      label: (
+        <a
+          href={`/administration/threesixty_campaigns/${campaignId}/participants/${
+            user.id
+          }/spoof`}
+        >
+          {I18n.t('threesixty.participant_list.actions.login')}
+        </a>
+      ),
+    },
+    permissions.edit && {
+      key: 'edit',
+      label: I18n.t('threesixty.participant_list.actions.edit'),
+    },
+    permissions.removeFromCampaign && {
+      key: 'removeFromCampaign',
+      label: I18n.t('threesixty.participant_list.actions.remove_campaign'),
+    },
+  ]
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      return openUserEditModal()
+    }
+    if (key === 'removeFromCampaign') {
+      return removeUserWithConfirmation()
+    }
+  }
+
   return (
-    <Menu>
-      {permissions.login && (
-        <Menu.Item key="0">
-          <a
-            href={`/administration/threesixty_campaigns/${campaignId}/participants/${
-              user.id
-            }/spoof`}
-          >
-            {I18n.t('threesixty.participant_list.actions.login')}
-          </a>
-        </Menu.Item>
-      )}
-      {permissions.edit && (
-        <Menu.Item key="2">
-          <div
-            onClick={openUserEditModal}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.edit')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.removeFromCampaign && (
-        <Menu.Item key="11">
-          <div
-            onClick={removeUserWithConfirmation}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.remove_campaign')}
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
 

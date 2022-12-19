@@ -32,14 +32,25 @@ class InvitationMailer < ApplicationMailer
     end
   end
 
-  def link_to_client(user_id, invited_to_id)
+  def link_to_client(user_id, membership)
     @resource = User.find(user_id)
-    @project = Client.find(invited_to_id).project
+    if membership.campaign
+      @section = 'campaign'
+      @section_name = membership.campaign.name
+    elsif membership.client.project?
+      @section = 'project'
+      @section_name = membership.client.name
+    else
+      @section = 'client'
+      @section_name = membership.client.name
+    end
+
     mail(
+      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       to: @resource.email,
-      subject: I18n.t('devise.mailer.invitation_instructions.subject'),
-      template_path: '/devise/mailer',
-      template_name: 'link_to_client'
-    )
+      subject: I18n.t('devise.mailer.invitation_instructions.subject')
+    ) do |format|
+      format.html { render(template: '/devise/mailer/link_to_client', layout: 'admin_email') }
+    end
   end
 end

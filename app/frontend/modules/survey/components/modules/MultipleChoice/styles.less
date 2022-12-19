@@ -1,5 +1,5 @@
 @import 'modules/survey/styles/theme.less';
-@import 'modules/user/styles/variables.less';
+@import 'modules/survey/styles/variables.less';
 
 .list {
   list-style: none;
@@ -10,6 +10,7 @@
   overflow: hidden;
   border: 1px solid @light-gray;
   position: relative;
+  column-gap: 30px;
 }
 
 .listItem {
@@ -26,9 +27,8 @@
     background-color: @white;
   }
   .optionDescription {
-    padding-inline-start: 10px;
-    padding-inline-end: 20px;
     display: inline-block;
+    vertical-align: middle;
   }
 }
 
@@ -38,6 +38,7 @@
 }
 
 .label {
+  display: flex;
   font-weight: normal;
   width: 100%;
 }
@@ -56,7 +57,7 @@
 
 .buttonActive {
   .checkIcon {
-    background-color: @success-color;
+    background-color: var(--ant-primary-color);
   }
 }
 .multipleAnswer {

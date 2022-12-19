@@ -5,6 +5,7 @@ import {
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
 const { I18n } = window
 
@@ -15,31 +16,47 @@ const menu = ({
   onExport,
   onUserExport,
   onCompactExport,
-}) => (
-  <Menu>
-    {permissions.exportCompletionStatus && (
-      <Menu.ItemGroup title="Export Completion Status">
-        <Menu.Item key="export_completion" onClick={() => onExport()}>
-          {I18n.t('user.toolbar.export_detailed_completion_status')}
-        </Menu.Item>
-        <Menu.Item key="export_completion" onClick={() => onCompactExport()}>
-          {I18n.t('user.toolbar.export_compact_completion_status')}
-        </Menu.Item>
-      </Menu.ItemGroup>
-    )}
-    <Menu.Divider />
-    {permissions.exportUsers && (
-      <Menu.Item key="export" onClick={() => onUserExport()}>
-        {I18n.t('user.toolbar.export')}
-      </Menu.Item>
-    )}
-    {permissions.import && (
-      <Menu.Item key="import">
-        <a onClick={() => openModal('ImportUsersModal', { campaignId })}>{I18n.t('user.toolbar.import')}</a>
-      </Menu.Item>
-    )}
-  </Menu>
-)
+}) => {
+  const menuItems: ItemType[] = []
+  const exportMenuItems = [
+    { key: 'export_completion', label: I18n.t('user.toolbar.export_detailed_completion_status') },
+    { key: 'export_compact_completion', label: I18n.t('user.toolbar.export_compact_completion_status') },
+  ]
+  permissions.exportCompletionStatus && menuItems.push({
+    type: 'group',
+    key: 'completion_group',
+    label: 'Export Completion Status',
+    children: exportMenuItems,
+  })
+  menuItems.push({ type: 'divider' })
+  permissions.exportUsers && menuItems.push({
+    key: 'export',
+    label: I18n.t('user.toolbar.export'),
+  })
+  permissions.import && menuItems.push({
+    key: 'import',
+    label: I18n.t('user.toolbar.import'),
+  })
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'export_completion') {
+      return onExport()
+    }
+    if (key === 'export_compact_completion') {
+      return onCompactExport()
+    }
+    if (key === 'export') {
+      return onUserExport()
+    }
+    if (key === 'import') {
+      return openModal('ImportUsersModal', { campaignId })
+    }
+  }
+
+  return (
+    <Menu items={menuItems} onClick={handleMenuClick} />
+  )
+}
 
 interface Props {
   campaignId: number

@@ -79,7 +79,7 @@ module EndUser
                               to_hash(include: '**')
 
       serialized_results = UsersResultSerializer.new(
-        @user_result, participant: @participant,
+        @user_result, participant: @user_assessment,
         campaign: @campaign_assessment.campaign,
         current_user: @current_user,
         locale: @selected_locale

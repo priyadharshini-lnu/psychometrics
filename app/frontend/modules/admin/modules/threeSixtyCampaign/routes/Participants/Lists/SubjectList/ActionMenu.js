@@ -115,161 +115,122 @@ const ActionsMenu = ({
     })
   }
 
+  const menuItems = [
+    permissions.login && {
+      key: 'login',
+      label: (
+        <a
+          href={`/administration/threesixty_campaigns/${campaignId}/participants/${
+            user.id
+          }/spoof`}
+        >
+          {I18n.t('threesixty.participant_list.actions.login')}
+        </a>),
+    },
+    permissions.editUser && {
+      key: 'edit_user',
+      label: I18n.t('threesixty.participant_list.actions.edit'),
+    },
+    { type: 'divider' },
+    permissions.viewReport && {
+      key: 'view_report',
+      label: (
+        <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
+          {I18n.t('threesixty.participant_list.actions.view_report')}
+        </a>),
+    },
+    permissions.downloadReport && {
+      key: 'download_report',
+      label: I18n.t('threesixty.participant_list.actions.download_report'),
+    },
+    { type: 'divider' },
+    permissions.viewResponses && {
+      key: 'view_responses',
+      label: I18n.t('threesixty.participant_list.actions.view_responses'),
+    },
+    { type: 'divider' },
+    permissions.approveReport && {
+      key: 'approve_report',
+      label: I18n.t('threesixty.participant_list.actions.approve_report'),
+    },
+    permissions.removeReportApproval && {
+      key: 'remove_report_approval',
+      label: I18n.t('threesixty.participant_list.actions.remove_report_approval'),
+    },
+    { type: 'divider' },
+    permissions.releaseReport && {
+      key: 'release_report',
+      label: I18n.t('threesixty.participant_list.actions.release_report'),
+    },
+    permissions.holdReport && {
+      key: 'hold_report',
+      label: I18n.t('threesixty.participant_list.actions.hold_report'),
+    },
+    permissions.removeReportHoldRelease && {
+      key: 'remove_report_hold_release_report',
+      label: I18n.t('threesixty.participant_list.actions.remove_report_hold_release_report'),
+    },
+    { type: 'divider' },
+    permissions.markAsDone && {
+      key: 'mark_as_done',
+      label: I18n.t('threesixty.participant_list.actions.mark_as_done'),
+    },
+    permissions.unmarkAsDone && {
+      key: 'unmark_as_done',
+      label: I18n.t('threesixty.participant_list.actions.unmark_as_done'),
+    },
+    { type: 'divider' },
+    permissions.removeSubject && {
+      key: 'remove_subject',
+      label: I18n.t('threesixty.participant_list.actions.remove_subject'),
+    },
+    permissions.removeFromCampaign && {
+      key: 'remove_campaign',
+      label: I18n.t('threesixty.participant_list.actions.remove_campaign'),
+    },
+  ]
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit_user') {
+      return openUserEditModal()
+    }
+    if (key === 'download_report') {
+      return requestDownloadReport(campaignId, subjectId)
+    }
+    if (key === 'view_responses') {
+      return openResultsModal()
+    }
+    if (key === 'approve_report') {
+      return approveReport(subjectId)
+    }
+    if (key === 'remove_report_approval') {
+      return removeReportApprove(subjectId)
+    }
+    if (key === 'release_report') {
+      return releaseReport(subjectId)
+    }
+    if (key === 'hold_report') {
+      return holdReport(subjectId)
+    }
+    if (key === 'remove_report_hold_release_report') {
+      return removeReleasedHoldStatus(subjectId)
+    }
+    if (key === 'mark_as_done') {
+      return markEvaluationAsComplete(subjectId)
+    }
+    if (key === 'unmark_as_done') {
+      return unmarkEvaluationAsComplete(subjectId)
+    }
+    if (key === 'remove_subject') {
+      return removeSubject(subjectId)
+    }
+    if (key === 'remove_campaign') {
+      return removeUserWithConfirmation()
+    }
+  }
+
   return (
-    <Menu>
-      {permissions.login && (
-        <Menu.Item key="0">
-          <a
-            href={`/administration/threesixty_campaigns/${campaignId}/participants/${
-              user.id
-            }/spoof`}
-          >
-            {I18n.t('threesixty.participant_list.actions.login')}
-          </a>
-        </Menu.Item>
-      )}
-      {permissions.editUser && (
-        <Menu.Item key="1">
-          <div
-            onClick={openUserEditModal}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.edit')}
-          </div>
-        </Menu.Item>
-      )}
-      <Menu.Divider />
-      {permissions.viewReport && (
-        <Menu.Item key="1.5">
-          <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
-            {I18n.t('threesixty.participant_list.actions.view_report')}
-          </a>
-        </Menu.Item>
-      )}
-      {permissions.downloadReport && (
-        <Menu.Item key="2">
-          <div
-            onClick={() => requestDownloadReport(campaignId, subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.download_report')}
-          </div>
-        </Menu.Item>
-      )}
-      <Menu.Divider />
-      {permissions.viewResponses && (
-        <Menu.Item key="2.5">
-          <div
-            onClick={() => openResultsModal()}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.view_responses')}
-          </div>
-        </Menu.Item>
-      )}
-      <Menu.Divider />
-      {permissions.approveReport && (
-        <Menu.Item key="3">
-          <div
-            onClick={() => approveReport(subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.approve_report')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.removeReportApproval && (
-        <Menu.Item key="4">
-          <div
-            onClick={() => removeReportApprove(subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.remove_report_approval')}
-          </div>
-        </Menu.Item>
-      )}
-      <Menu.Divider />
-      {permissions.releaseReport && (
-        <Menu.Item key="5">
-          <div
-            onClick={() => releaseReport(subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.release_report')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.holdReport && (
-        <Menu.Item key="6">
-          <div onClick={() => holdReport(subjectId)} role="button" tabIndex={-1}>
-            {I18n.t('threesixty.participant_list.actions.hold_report')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.removeReportHoldRelease && (
-        <Menu.Item key="7">
-          <div
-            onClick={() => removeReleasedHoldStatus(subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.remove_report_hold_release_report')}
-          </div>
-        </Menu.Item>
-      )}
-      <Menu.Divider />
-      {permissions.markAsDone && (
-        <Menu.Item key="8">
-          <div
-            onClick={() => markEvaluationAsComplete(subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.mark_as_done')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.unmarkAsDone && (
-        <Menu.Item key="9">
-          <div
-            onClick={() => unmarkEvaluationAsComplete(subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.unmark_as_done')}
-          </div>
-        </Menu.Item>
-      )}
-      <Menu.Divider />
-      {permissions.removeSubject && (
-        <Menu.Item key="10">
-          <div
-            onClick={() => removeSubject(subjectId)}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.remove_subject')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.removeFromCampaign && (
-        <Menu.Item key="11">
-          <div
-            onClick={removeUserWithConfirmation}
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('threesixty.participant_list.actions.remove_campaign')}
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu onClick={handleMenuClick} items={menuItems} />
   )
 }
 

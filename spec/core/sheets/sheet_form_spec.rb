@@ -27,15 +27,6 @@ describe ::Sheets::SheetForm do
         }])
       end
 
-      it '#check_columns_names_length' do
-        allow(form).to receive(:column_types).and_return([])
-        is_expected.to be_invalid
-        expect(form.errors.details[:file]).to include({
-          error: :invalid_column_name_size,
-          column: 'AaZaQZz1vpRFU2oURobncb_hsdz8hS1xbssPJws_w1eqE6_yWtVWgm4AwGLJoZyjC'
-        })
-      end
-
       it 'validates column type' do
         parsed_file = [{ 'Email' => nil }, { 'Email' => 'String1' }, { 'Email' => 'test@email.com' }]
         allow(form).to receive(:parsed_file).and_return(parsed_file)

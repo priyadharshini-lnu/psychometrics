@@ -6,7 +6,7 @@ module Imports
       def initialize(file, importer, owner_id)
         @importer = importer
         @file     = file
-        @owner    = Client.find(owner_id)
+        @owner    = Client.find_by(id: owner_id)
         @cursor_x = 0
         @cursor_y = 0
       end
@@ -50,12 +50,13 @@ module Imports
         unless @dimension
           raise Errors::ImportError, I18n.t('administration.imports.errors.norm.dimension_not_found',
                                             dimension_name: dimension_name,
-                                            client_name: @owner.name)
+                                            client_name: @owner&.name || 'TTE')
         end
 
         unless @norm
           @norm = Norm.new(
-            name: sheet_name_arr.join(' '), dimension_id: @dimension.id, updated_by: @importer.id, owner: @owner
+            name: sheet_name_arr.join(' '), dimension_id: @dimension.id,
+            created_by: @importer, updated_by: @importer, owner: @owner
           )
           @norm.gen_uniq_name if Norm.exists?(name: @norm.name)
           @norm.save!

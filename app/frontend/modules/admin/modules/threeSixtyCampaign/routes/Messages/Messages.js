@@ -9,31 +9,33 @@ import settings from '../../settings'
 
 function Messages ({ history, routes, currentUser }) {
   const onSelect = ({ key }) => routeUtils.moveTo(history, settings.urlPrefix, key)
+  const menuItems = [
+    currentUser.permissions.accessEmailMessages && {
+      key: '/messages/email',
+      label: I18n.t('administration.threesixty_campaigns.messages.email_messages'),
+    },
+    currentUser.permissions.accessInstructionMessages && {
+      key: '/messages/instructions',
+      label: I18n.t('administration.threesixty_campaigns.messages.instruction_messages'),
+    },
+    currentUser.permissions.accessEmailMessages && {
+      key: '/messages/mail_histories',
+      label: I18n.t('administration.threesixty_campaigns.messages.mail_history'),
+    },
+    currentUser.permissions.accessMessagesOptions && {
+      key: '/messages/options',
+      label: I18n.t('administration.threesixty_campaigns.messages.options'),
+    },
+  ]
 
   return (
     <div>
-      <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
-        {currentUser.permissions.accessEmailMessages && (
-          <Menu.Item key="/messages/email">
-            {I18n.t('administration.threesixty_campaigns.messages.email_messages')}
-          </Menu.Item>
-        )}
-        {currentUser.permissions.accessInstructionMessages && (
-          <Menu.Item key="/messages/instructions">
-            {I18n.t('administration.threesixty_campaigns.messages.instruction_messages')}
-          </Menu.Item>
-        )}
-        {currentUser.permissions.accessEmailMessages && (
-          <Menu.Item key="/messages/mail_histories">
-            {I18n.t('administration.threesixty_campaigns.messages.mail_history')}
-          </Menu.Item>
-        )}
-        {currentUser.permissions.accessMessagesOptions && (
-          <Menu.Item key="/messages/options">
-            {I18n.t('administration.threesixty_campaigns.messages.options')}
-          </Menu.Item>
-        )}
-      </Menu>
+      <Menu
+        items={menuItems}
+        onSelect={onSelect}
+        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        mode="horizontal"
+      />
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
       <PipedTextModal />
     </div>

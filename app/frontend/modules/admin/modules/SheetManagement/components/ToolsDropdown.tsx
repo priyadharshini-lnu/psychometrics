@@ -7,6 +7,7 @@ import { openModal } from 'modules/admin/core/ui/modals'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import pluralize from 'pluralize'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { ParentResourceType } from '../interfaces'
 import { SheetType } from '../core/list'
 
@@ -42,30 +43,32 @@ const ToolsDropdown: FC<Props> = ({
       e.preventDefault()
     }
   }
+  const menuItems:ItemType[] = []
+  permissions.import && menuItems.push({
+    key: 'import',
+    label: I18n.t('sheet.menu.import'),
+  })
+  permissions.export && menuItems.push({
+    key: 'export',
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleExport}
+        href={`/administration/${pluralize(parentType)}/${parentId}/sheet_rows/export.xlsx?type=${sheetType}`}
+      >
+        {I18n.t('sheet.menu.export')}
+      </a>
+    ),
+  })
+  const handleMenuClick = ({ key }) => {
+    if (key === 'import') {
+      openModal('ImportSheetModal', { parentType, parentId, sheetType })
+    }
+  }
 
   const toolsMenu = (
-    <Menu>
-      {permissions.import && (
-        <Menu.Item
-          key="import"
-          onClick={() => openModal('ImportSheetModal', { parentType, parentId, sheetType })}
-        >
-          {I18n.t('sheet.menu.import')}
-        </Menu.Item>
-      )}
-      {permissions.export && (
-        <Menu.Item key="export">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleExport}
-            href={`/administration/${pluralize(parentType)}/${parentId}/sheet_rows/export.xlsx?type=${sheetType}`}
-          >
-            {I18n.t('sheet.menu.export')}
-          </a>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 
   return (

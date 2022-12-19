@@ -207,7 +207,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
       response '204', 'Client Deleted' do
         run_test! do |response|
           expect(response.body).to be_empty
-          expect(UserAssessment.find_by(id: client_id)).to eq(nil)
+          expect(Client.find_by(id: client_id)).to eq(nil)
         end
       end
     end

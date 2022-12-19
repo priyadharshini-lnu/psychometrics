@@ -34,11 +34,21 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
       <Input type="hidden" name="authenticity_token" value={csrfToken} />
       <Input type="hidden" name="user[reset_password_token]" value={user.reset_password_token} />
       <InputField
+        label={I18n.t('auth.email')}
+        name="user[email]"
+        placeholder={I18n.t('auth.email_placeholder')}
+        defaultValue={user.email}
+        disabled
+      />
+      <InputField
         label={I18n.t('auth.otp.code')}
         name="code"
         placeholder={I18n.t('auth.otp.code_placeholder')}
         errors={errors.otp}
       />
+      <ButtonAnt href="/users/two_factor_authentication/resend_code" type="link" className={styles.resendBtn} block>
+        {I18n.t('auth.otp.resend')}
+      </ButtonAnt>
       <ButtonWithArrow
         label={I18n.t('auth.otp.submit')}
         type="primary"
@@ -47,14 +57,9 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
         className={styles.submit}
         block
       />
-      <ButtonAnt href="/users/two_factor_authentication/resend_code" type="link" className={styles.resend} block>
-        {I18n.t('auth.otp.resend')}
+      <ButtonAnt href="/users/sign_out" type="link" className={styles.signoutBtn} block>
+        {I18n.t('auth.sign_out')}
       </ButtonAnt>
-      <div>
-        <a href="/users/sign_out">
-          {I18n.t('auth.sign_out')}
-        </a>
-      </div>
     </Form>
   </div>
 )

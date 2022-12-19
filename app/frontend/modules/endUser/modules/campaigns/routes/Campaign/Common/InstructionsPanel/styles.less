@@ -7,6 +7,9 @@
   padding-top: @space-7;
   width: 100%;
   overflow: hidden;
+  &.animate {
+    transition: height .7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
 }
 .instructionsContent {
   max-width: 1200px;
@@ -24,7 +27,7 @@
   padding-bottom: @space-4;
   & .container-button {
     position: absolute;
-    background: var(--ant-primary-1);
+    background: linear-gradient(0deg, var(--ant-primary-1) 0%, transparent 100%);
     opacity: 0.95;
     bottom: 0px;
     left: 0px;
@@ -33,6 +36,12 @@
 
 @media screen and (max-width: @screen-xs) {
   .container {
+    padding-inline: @space-3;
+  }
+}
+
+@media screen and (max-width: @screen-xxl) {
+  .instructionsContent {
     padding-inline: @space-3;
   }
 }

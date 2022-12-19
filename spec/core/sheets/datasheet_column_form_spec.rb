@@ -22,11 +22,11 @@ describe ::Sheets::DatasheetColumnForm do
 
     context 'invalid column' do
       it 'should be invalid name' do
-        form = described_class.new({ name: 'Na\\me', type: 'String',
+        form = described_class.new({ name: 'E' * 65, type: 'String',
                                      accessor_access: true, dashboard_use: true, visible_in_list: true })
 
         expect(form).to be_invalid
-        expect(form.errors[:name]).to include('is invalid')
+        expect(form.errors[:name]).to include('is too long (maximum is 64 characters)')
       end
 
       it 'should be invalid type' do
@@ -41,7 +41,7 @@ describe ::Sheets::DatasheetColumnForm do
         form = described_class.new(
           name: 'Uniq', type: 'String',
           accessor_access: true, dashboard_use: true, visible_in_list: true
-        ).with_context(sheet: sheet)
+        ).with_context(sheet: sheet, form_type: :add)
 
         expect(form).to be_invalid
         expect(form.errors[:name]).to include('This field is already present')

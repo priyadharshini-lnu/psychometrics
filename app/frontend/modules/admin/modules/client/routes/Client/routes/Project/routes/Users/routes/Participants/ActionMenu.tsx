@@ -5,6 +5,7 @@ import { MoreOutlined } from '@ant-design/icons'
 import { Participant } from 'modules/admin/modules/client/core/participants'
 
 import ConditionalDropdown from 'components/ConditionalDropdown'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
 const { I18n } = window
 
@@ -69,32 +70,46 @@ const MenuDropdown: FC<MenuProps> = ({
   handleEdit,
   handleResetPassword,
   handleDelete,
-}) => (
-  <Menu
-    id={`menu_projects-assessors-${id}`}
-    aria-labelledby={`menu-button_projects-assessors-${id}`}
-  >
-    {permissions.edit && (
-      <Menu.Item key="edit" onClick={() => handleEdit(id)}>
-        {I18n.t('administration.project_participants.edit')}
-      </Menu.Item>
-    )}
-    {permissions.resetPassword && (
-      <Menu.Item key="resetPassword" onClick={() => handleResetPassword(id)}>
-        {I18n.t('administration.project_participants.reset_password')}
-      </Menu.Item>
-    )}
-    {permissions.sendMail && (
-      <Menu.Item key="sendMail">
-        <a href={`mailto:${email}`} target="_blank" rel="noreferrer noopener">
-          {I18n.t('administration.project_participants.send_email')}
-        </a>
-      </Menu.Item>
-    )}
-    {permissions.remove && (
-      <Menu.Item key="remove" onClick={() => handleDelete(id)}>
-        {I18n.t('administration.project_participants.delete')}
-      </Menu.Item>
-    )}
-  </Menu>
-)
+}) => {
+  const menuItems: ItemType[] = []
+  permissions.edit && menuItems.push({
+    key: 'edit',
+    label: I18n.t('administration.project_participants.edit'),
+  })
+  permissions.resetPassword && menuItems.push({
+    key: 'resetPassword',
+    label: I18n.t('administration.project_participants.reset_password'),
+  })
+  permissions.sendMail && menuItems.push({
+    key: 'sendMail',
+    label: (
+      <a href={`mailto:${email}`} target="_blank" rel="noreferrer noopener">
+        {I18n.t('administration.project_participants.send_email')}
+      </a>
+    ),
+  })
+  permissions.remove && menuItems.push({
+    key: 'remove',
+    label: I18n.t('administration.project_participants.delete'),
+  })
+  const handleMenuClick = ({ key }) => {
+    if (key === 'edit') {
+      handleEdit(id)
+    }
+    if (key === 'resetPassword') {
+      handleResetPassword(id)
+    }
+    if (key === 'remove') {
+      handleDelete(id)
+    }
+  }
+
+  return (
+    <Menu
+      items={menuItems}
+      onClick={handleMenuClick}
+      id={`menu_projects-assessors-${id}`}
+      aria-labelledby={`menu-button_projects-assessors-${id}`}
+    />
+  )
+}

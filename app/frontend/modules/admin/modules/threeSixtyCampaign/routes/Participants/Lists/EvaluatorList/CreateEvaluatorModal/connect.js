@@ -4,7 +4,7 @@ import {
   fillEvaluators,
   createAllEvaluators, clearForm, CREATE_ALL_EVALUATORS, getForm,
 } from 'modules/admin/modules/threeSixtyCampaign/core/evaluators'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 import { getRelationships } from 'modules/admin/modules/threeSixtyCampaign/core/relationships'
 import { get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
 

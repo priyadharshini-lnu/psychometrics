@@ -11,6 +11,7 @@ import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import conditionPresenter from 'presenters/condition'
 import { EVALUATOR_NOMINATION_STATUSES } from 'constants/participantStatuses'
+import { statusMenuItems } from 'modules/endUser/modules/campaigns/common/menuItems'
 import { MediaQueryContext } from 'glint'
 import styles from './RequirementTable.less'
 import { InlineInput } from '../InlineInput'
@@ -32,22 +33,14 @@ export const RequirementTable = (props) => {
   const [showForm, setShowForm] = useState(false)
 
   const StatusMenu = evaluator => (
-    <Menu onClick={(e) => {
-      updateStatus({
-        campaignId, nominationId, evaluatorId: evaluator.id, status: e.key,
-      })
-    }}
-    >
-      <Menu.Item key="approved">
-        {I18n.t('threesixty.approved')}
-      </Menu.Item>
-      <Menu.Item key="waiting">
-        {I18n.t('threesixty.waiting')}
-      </Menu.Item>
-      <Menu.Item key="denied">
-        {I18n.t('threesixty.denied')}
-      </Menu.Item>
-    </Menu>
+    <Menu
+      onClick={(e) => {
+        updateStatus({
+          campaignId, nominationId, evaluatorId: evaluator.id, status: e.key,
+        })
+      }}
+      items={statusMenuItems}
+    />
   )
 
   const renderRequirementCell = (value) => {

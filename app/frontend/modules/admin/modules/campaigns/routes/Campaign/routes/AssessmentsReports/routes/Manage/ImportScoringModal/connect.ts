@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 
 import { importScoringResults, IMPORT_SCORING_RESULTS } from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 export default connect(
   (state: RootState) => ({

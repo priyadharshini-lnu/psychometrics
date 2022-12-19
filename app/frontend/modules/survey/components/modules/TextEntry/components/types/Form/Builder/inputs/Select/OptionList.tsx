@@ -1,13 +1,16 @@
 import React, {
   useState, useEffect, useRef,
 } from 'react'
-import { Menu, Input, InputRef } from 'antd'
+import {
+  Menu, Input, InputRef, Row,
+} from 'antd'
 
 import Utils from 'modules/survey/utils/Utils'
 import { DnDElement } from 'components/DnD'
 import { useInputFocus } from 'hooks/useInputFocus'
 import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
 
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import styles from '../../../FormStyle.less'
 import Option from './Option'
 
@@ -21,7 +24,6 @@ interface OptionListState {
   id: string
   text: string
 }
-const { Item, Divider } = Menu
 
 const OptionList: React.FC<Props> = ({
   type, type: { optionList = [] }, index, model,
@@ -86,15 +88,14 @@ const OptionList: React.FC<Props> = ({
       val: { ...type, optionList: options.map(o => o.text) },
     }, false)
   }
-
-  return (
-    <Menu className={styles.optionList}>
-      {options.map((option, i) => (
+  let menuItems: ItemType[] = options.map((option, i) => (
+    {
+      key: option.id,
+      label: (
         <DnDElement
           key={option.id}
           uniqField="id"
           strategy="index"
-          wrapper={Item}
           onDrag={setOptions}
           list={options}
           element={option}
@@ -107,20 +108,31 @@ const OptionList: React.FC<Props> = ({
             removeOption={removeOption}
           />
         </DnDElement>
-      ))}
-      <Divider />
-      <div className={styles.menuInputContainer}>
-        <Input
-          ref={inputRef}
-          value={text}
-          onChange={({ target: { value } }): void => setText(value)}
-          className={styles.menuInput}
-          onPressEnter={addOptionEventHandler}
-          onPaste={onPasteEventHandler}
-        />
-        <a className="ant-dropdown-link" onClick={addOptionEventHandler}>Add</a>
-      </div>
-    </Menu>
+      ),
+    }
+  ))
+  menuItems = [
+    ...menuItems,
+    { type: 'divider' },
+    {
+      key: 'input',
+      label: (
+        <Row wrap={false}>
+          <Input
+            ref={inputRef}
+            value={text}
+            onChange={({ target: { value } }): void => setText(value)}
+            className={styles.menuInput}
+            onPressEnter={addOptionEventHandler}
+            onPaste={onPasteEventHandler}
+          />
+          <a className="ant-dropdown-link" onClick={addOptionEventHandler}>Add</a>
+        </Row>),
+    },
+  ]
+
+  return (
+    <Menu items={menuItems} className={styles.optionList} />
   )
 }
 export default OptionList

@@ -24,7 +24,6 @@ export const UserTR = t.type({
   age: t.union([t.number, t.null]),
   gender: t.union([t.string, t.null]),
   locale: t.union([t.string, t.null]),
-  timezone: t.union([t.string, t.null]),
   custom_fields: CustomFieldsTR,
 })
 export const UserReportDetailTR = t.type({

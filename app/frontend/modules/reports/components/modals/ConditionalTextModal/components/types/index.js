@@ -1,5 +1,6 @@
 import Scoring from './Scoring'
 import EmbeddedData from './EmbeddedData'
+import ReportData from './ReportData'
 import { SavilleScoring } from './Scoring/SavilleScoring'
 
 export default {
@@ -12,6 +13,7 @@ export default {
   Stability: Scoring,
   EmbeddedData,
   DataSheet: Scoring,
+  ReportData,
   'Saville#Ipsative': SavilleScoring,
   'Saville#Nipsative': SavilleScoring,
   'Saville#Normative': SavilleScoring,

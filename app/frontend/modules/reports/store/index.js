@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import logger from 'redux-logger'
 import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
@@ -23,9 +22,6 @@ if (__TEST__) {
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ name: `Report#${location.pathname}` })
-  }
-  if (!__DISABLE_LOGGER_) {
-    middleware.push(logger)
   }
 }
 

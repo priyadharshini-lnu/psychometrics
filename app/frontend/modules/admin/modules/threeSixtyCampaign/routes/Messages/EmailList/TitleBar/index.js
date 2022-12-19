@@ -6,15 +6,12 @@ import { ScheduleOutlined, CaretDownOutlined } from '@ant-design/icons'
 import styles from './styles.less'
 
 export default function TitleBar ({ emailTemplate, openModal }) {
+  const menuItems = [
+    { key: 'EmailScheduleModal', label: I18n.t('administration.threesixty_campaigns.email_templates.schedule_email') },
+    { key: 'SendTestEmailModal', label: I18n.t('administration.threesixty_campaigns.email_templates.send_test_email') },
+  ]
   const menu = (
-    <Menu onClick={({ key }) => openModal(key, { selectedEmailTemplateId: emailTemplate.id })}>
-      <Menu.Item key="EmailScheduleModal">
-        {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
-      </Menu.Item>
-      <Menu.Item key="SendTestEmailModal">
-        {I18n.t('administration.threesixty_campaigns.email_templates.send_test_email')}
-      </Menu.Item>
-    </Menu>
+    <Menu items={menuItems} onClick={({ key }) => openModal(key, { selectedEmailTemplateId: emailTemplate.id })} />
   )
 
   return (

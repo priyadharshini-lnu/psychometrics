@@ -73,7 +73,7 @@ let Item = class extends Component {
     return (
       connectDragSource(connectDropTarget(
         <div className={styles.item} style={{ opacity }}>
-          <span className={`fa fa-bars ${styles.icon}`} />
+          <span className={`fa fa-arrows-v ${styles.icon}`} />
           <div className={styles.number}>{number}</div>
           <div>
             <div className={styles.text}>{text}</div>

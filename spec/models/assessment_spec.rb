@@ -19,12 +19,4 @@ RSpec.describe Assessment, type: :model do
       expect(assessment.saville?).to eq(false)
     end
   end
-
-  it 'deletes saville_assessment_setting if assessment type is changes' do
-    assessment = create(:assessment, :saville)
-    expect(assessment.saville_assessment_setting).to_not eq(nil)
-
-    assessment.update(type: Assessment::TYPES[:common], dimension: build(:dimension))
-    expect(assessment.reload.saville_assessment_setting).to eq(nil)
-  end
 end

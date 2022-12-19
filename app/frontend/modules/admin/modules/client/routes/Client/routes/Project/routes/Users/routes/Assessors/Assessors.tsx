@@ -18,7 +18,7 @@ import {
   remove as removeAssessor,
   clearSingle as clearCurrentAssessor,
 } from 'modules/admin/modules/client/core/assessors'
-import { isRequestInProgress } from 'modules/admin/core/request'
+import { isRequestInProgress } from 'core/request'
 
 import { useDocumentTitle } from 'hooks/useDocumentTitle'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'

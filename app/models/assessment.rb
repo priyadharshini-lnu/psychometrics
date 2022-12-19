@@ -92,22 +92,16 @@ class Assessment < ApplicationRecord
   # HABTM Clients
   has_many :clients, through: :reports
 
-  has_one :hogan_assessment_setting, dependent: :destroy
-  has_one :saville_assessment_setting, dependent: :destroy
-  has_one :pearson_assessment_setting, dependent: :destroy
-  has_one :iiht_assessment_setting, dependent: :destroy
   has_one :agile
 
-  accepts_nested_attributes_for :hogan_assessment_setting, :saville_assessment_setting, :pearson_assessment_setting,
-                                :iiht_assessment_setting
-  before_save :delete_hogan_assessment_setting, :delete_saville_assessment_setting, :delete_pearson_assessment_setting,
-              :delete_iiht_assessment_setting
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
   #
   ### END ASSOCIATIONS
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
   validates :dimension, presence: true, if: :common?
+
+  serialize :external_settings, PsyJsonbSerializer
 
   enum category: CATEGORIES
   enum status: STATUSES
@@ -119,19 +113,12 @@ class Assessment < ApplicationRecord
   mount_uploader :poster, ImageUploader
 
   delegate :config, :translations, to: :agile, prefix: true
-  delegate :saville_norm_id, :saville_assessment_id, :saville_norms,
-           to: :saville_assessment_setting, allow_nil: true
-  delegate :pearson_norm_id, :pearson_assessment_id, :pearson_norms, :pearson_assessment_language,
-           to: :pearson_assessment_setting, allow_nil: true
-  delegate :iiht_assessment_id_number, :iiht_schedule_config, to: :iiht_assessment_setting, allow_nil: true
-  delegate :hogan_assessment_id, to: :hogan_assessment_setting, allow_nil: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
   # Creating scope :hogan. Overwriting existing method Assessment.hogan.
   #
   scope :common, -> { where(type: TYPES[:common]) }
-  scope :mindmill, -> { where(type: TYPES[:mindmill]) }
   scope :hogan, -> { where(type: TYPES[:hogan]) }
   scope :saville, -> { where(type: TYPES[:saville]) }
   scope :pearson, -> { where(type: TYPES[:pearson]) }
@@ -151,25 +138,25 @@ class Assessment < ApplicationRecord
   end
 
   def external_norms
-    return pearson_norms if pearson?
-    return saville_norms if saville?
-  end
+    return unless pearson? || saville?
 
-  def external_norm_id
-    return pearson_norm_id if pearson?
-    return saville_norm_id if saville?
+    if saville?
+      saville_norms = Settings.providers.saville.assessments.find do |a|
+        a.id == external_settings[:assessment_id].upcase
+      end
+      Settings.providers.saville.norms.select { |norm| saville_norms.norm_ids.include?(norm[:id]) }.map(&:to_h)
+    elsif pearson?
+      PearsonAssessmentSetting.pearson_norms(external_settings[:norm_id])
+    end
   end
 
   def external_assessment_id
-    return hogan_assessment_id if hogan?
-    return saville_assessment_id if saville?
-    return pearson_assessment_id if pearson?
-    return iiht_assessment_id_number if iiht?
+    external_settings[:assessment_id]
   end
 
-  # Copy assessment with nested resources
+  # Copy assessment
   def clone
-    @cloned_item = deep_clone include: %i[hogan_assessment_setting saville_assessment_setting]
+    @cloned_item = dup
     @cloned_item.gen_uniq_name
     @cloned_item
   end
@@ -239,23 +226,5 @@ class Assessment < ApplicationRecord
 
   def log_attribute_for_delete
     slice(:name)
-  end
-
-  private
-
-  def delete_hogan_assessment_setting
-    hogan_assessment_setting.destroy if hogan_assessment_setting && !hogan?
-  end
-
-  def delete_saville_assessment_setting
-    saville_assessment_setting.destroy if saville_assessment_setting && !saville?
-  end
-
-  def delete_pearson_assessment_setting
-    saville_assessment_setting.destroy if pearson_assessment_setting && !pearson?
-  end
-
-  def delete_iiht_assessment_setting
-    iiht_assessment_setting.destroy if iiht_assessment_setting && !iiht?
   end
 end

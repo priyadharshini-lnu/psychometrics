@@ -5,24 +5,26 @@ import { push } from 'connected-react-router'
 import {
   Layout, PageHeader, Col, Progress, Space, ProgressProps,
 } from 'antd'
-import { ArrowLeftOutlined, ArrowRightOutlined, ClockCircleOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
 import { Language } from 'modules/endUser/modules/campaigns/components/Language'
-import { PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext } from 'glint'
+import {
+  PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon,
+} from 'glint'
+import { Notification } from 'glint/components/CountdownTimer'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { isRtl } from 'utils/locales'
 import { isInsideIframe } from 'utils/isInsideIframe'
-import store from 'modules/user/store'
+import store from 'modules/endUser/store'
 import { ResourcesTabs } from 'modules/endUser/modules/campaigns/components/ResourcesTabs'
 import { PageContentSkeleton } from 'modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import {
   fetchAssessment,
-} from 'modules/user/modules/campaigns/core/userAssessment'
+} from 'modules/endUser/modules/campaigns/core/userAssessment'
 import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
 import { getProgress } from 'core/preview/FlowProcessor/selectors'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 
 import styles from './UserAssessment.less'
 
@@ -84,8 +86,15 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
 
   const enableBackButton = !isInsideIframe() || proctoringEnabled
+  const notificationDurations: Notification[] = [
+    { completionPercentage: 50, type: 'info' },
+    { completionPercentage: 75, type: 'warning' },
+    { completionPercentage: 90, type: 'error' },
+  ]
+  const notificationMessage = (minutes: number, seconds: number) => (
+    I18n.t('campaign.timer.notification', { minutes, seconds })
+  )
 
-  const rtl = isRtl(I18n.uiLocale)
   return (
     <>
       <GlintPageHeader>
@@ -100,6 +109,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <ClockCircleOutlined />
                 </>
               )}
+              notificationPoints={notificationDurations}
+              notificationTemplate={notificationMessage}
               seconds={remainingCampaignTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
@@ -113,6 +124,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   <ClockCircleOutlined />
                 </>
             )}
+              notificationPoints={notificationDurations}
+              notificationTemplate={notificationMessage}
               seconds={remainingAssessmentTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
@@ -138,14 +151,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               className={styles.campaignHeader}
               onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
               backIcon={enableBackButton
-            && (rtl ? <ArrowRightOutlined className={styles.backIcon} />
-              : <ArrowLeftOutlined className={styles.backIcon} />)}
+              && <DirectionalNavigateBackIcon className={styles.backIcon} />
+              }
               ghost={false}
               title={(
                 <div className={styles.campaignDropdown}>
                   {assessment.name}
                 </div>
-          )}
+              )}
               extra={type !== 'preview_block' && enableProgress && started && (
               <Progress
                 strokeColor="#fff"

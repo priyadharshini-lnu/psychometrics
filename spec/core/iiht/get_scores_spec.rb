@@ -12,7 +12,7 @@ describe Iiht::GetScores do
     expected_response = { 'isSuccess' => true, 'attempts' => [{ 'number' => 1, 'score' => 1 }] }
     stub_request(:get, "#{Settings.iiht.base_api_url}/GetUserAssessmentResult").
       with(query: {
-        assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+        assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
         userEmailAddress: user_assessment.user.email,
         tenantId: config['tenant_id']
       }).

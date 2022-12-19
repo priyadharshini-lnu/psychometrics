@@ -1,4 +1,6 @@
-import React, { useRef, FC } from 'react'
+import React, {
+  useRef, FC, useState, useEffect,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import {
@@ -9,13 +11,13 @@ import {
 import { PageSider } from 'glint'
 import { CampaignIcon } from 'glint/icons'
 
-import lighthouseLogo from 'modules/user/assets/images/lighthouseLogoWide.svg'
-import { history } from 'modules/user/store'
-import { RootState } from 'modules/user/core/rootReducers'
+import lighthouseLogo from 'modules/endUser/assets/images/lighthouseLogoWide.png'
+import { history } from 'modules/endUser/store'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import {
   getProjectLogo,
   getName as getProjectName,
-} from 'modules/user/modules/campaigns/core/project'
+} from 'modules/endUser/modules/campaigns/core/project'
 import styles from './styles.less'
 
 const connector = connect((state: RootState) => ({
@@ -60,7 +62,13 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   const isAnonym = pathname.includes('/anonym/')
   const isThreesixty = pathname.includes('/threesixty_campaigns/')
   const siderLogo = logo || lighthouseLogo
+  const [openKey, setOpenKey] = useState<string[]>([])
 
+  useEffect(() => {
+    if (pathname.includes('/campaigns/')) {
+      !openKey.length && setOpenKey(['campaign'])
+    }
+  }, [pathname])
   const handleMenuSelect = (menu) => {
     if (menu.key === 'tasks') {
       const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'
@@ -70,6 +78,10 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
       return history.push(`/campaigns/${campaignIdRef.current}/${menu.key}`)
     }
     history.push(`/${menu.key}`)
+  }
+
+  const handleOpenChange = (openKeys: string[]) => {
+    setOpenKey(openKeys)
   }
 
   if (pathname.includes('/campaigns/') || isThreesixty) {
@@ -95,6 +107,8 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
         onMenuSelect={handleMenuSelect}
         items={menuItems}
         siderFooter={siderFooter}
+        openKeys={openKey}
+        onOpenChange={handleOpenChange}
       />
     ) : null
   )

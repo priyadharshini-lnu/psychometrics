@@ -3,6 +3,7 @@ import Scoring from './Scoring'
 import ExternalScoring from './ExternalScoring'
 import { SavilleScoring } from './SavilleScoring'
 import DataSheet from './DataSheet'
+import ReportData from './ReportData'
 
 export default {
   EmbeddedData,
@@ -15,6 +16,7 @@ export default {
   Score: ExternalScoring,
   Stability: ExternalScoring,
   DataSheet,
+  ReportData,
   'Saville#Ipsative': SavilleScoring,
   'Saville#Nipsative': SavilleScoring,
   'Saville#Normative': SavilleScoring,

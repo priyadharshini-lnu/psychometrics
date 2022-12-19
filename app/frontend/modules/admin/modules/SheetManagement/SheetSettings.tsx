@@ -2,17 +2,17 @@ import React, { FC, useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
-  Row, Col, Table, Switch, Space, Button, Divider, Empty,
+  Row, Col, Table, Switch, Space, Button, Divider, Empty, Tooltip,
 } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
-import { PlusOutlined, MenuOutlined } from '@ant-design/icons'
+import { PlusOutlined, MenuOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import {
   SortableContainerProps, SortEnd, SortableContainer, SortableElement, SortableHandle,
 } from 'react-sortable-hoc'
 import { arrayMove } from '@dnd-kit/sortable'
 import { RemoveColumns } from './components/RemoveColumns'
 import {
-  get as getColumns, updateColumn, updateSorting, fetch,
+  get as getColumns, updateColumn, updateSorting, fetch, MAX_LENGTH_FOR_DASHBOARD_USE,
 } from './core/columnDefinitions'
 import { AddFieldDrawer } from './components/AddFieldDrawer'
 import { ParentResourceType } from './interfaces'
@@ -95,34 +95,45 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
     },
     {
       title: 'Action',
-      render: (title, data) => (
-        <Space>
-          {sheetType === SheetType.Datasheet
-            && (
-              <>
-                <Switch
-                  disabled={sort}
-                  checked={data.accessorAccess}
-                  onChange={value => changeColumn(data, 'accessorAccess', value)}
-                />
-                {I18n.t('activemodel.attributes.sheet_column.accessor_access')}
-                <Switch
-                  disabled={sort || data.name === EMAIL}
-                  checked={data.dashboardUse}
-                  onChange={value => changeColumn(data, 'dashboardUse', value)}
-                />
-                {I18n.t('activemodel.attributes.sheet_column.dashboard_use')}
-              </>
-            )
-          }
-          <Switch
-            disabled={sort || data.name === EMAIL}
-            checked={data.visibleInList}
-            onChange={value => changeColumn(data, 'visibleInList', value)}
-          />
-          {I18n.t('activemodel.attributes.sheet_column.visible_in_list')}
-        </Space>
-      ),
+      render: (title, data) => {
+        const notAllowedForDashboardUse = data.name.length > MAX_LENGTH_FOR_DASHBOARD_USE
+        return (
+          <Space>
+            {sheetType === SheetType.Datasheet
+               && (
+                 <>
+                   <Switch
+                     disabled={sort}
+                     checked={data.accessorAccess}
+                     onChange={value => changeColumn(data, 'accessorAccess', value)}
+                   />
+                   {I18n.t('activemodel.attributes.sheet_column.accessor_access')}
+                   <Switch
+                     disabled={sort || data.name === EMAIL || notAllowedForDashboardUse}
+                     checked={data.dashboardUse}
+                     onChange={value => changeColumn(data, 'dashboardUse', value)}
+                   />
+                   {I18n.t('activemodel.attributes.sheet_column.dashboard_use')}
+                   {notAllowedForDashboardUse && (
+                     <Tooltip
+                       placement="top"
+                       title={I18n.t('administration.sheets.column.not_allowed_for_dashboard_use')}
+                     >
+                       <InfoCircleOutlined />
+                     </Tooltip>
+                   )}
+                 </>
+               )
+             }
+            <Switch
+              disabled={sort || data.name === EMAIL}
+              checked={data.visibleInList}
+              onChange={value => changeColumn(data, 'visibleInList', value)}
+            />
+            {I18n.t('activemodel.attributes.sheet_column.visible_in_list')}
+          </Space>
+        )
+      },
     },
   ]
   if (sort) {

@@ -75,7 +75,8 @@ module Administration
     end
 
     def import
-      form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: params[:type])
+      current_sheet = parent_resource.sheets.find_by(type: params[:type])
+      form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: params[:type], sheet: current_sheet)
       if form.valid?
         if params[:type] == 'Accesssheet'
           AdminJob.call(:import_accesssheet, { campaign_id: parent_resource.id }, current_user, params[:file])

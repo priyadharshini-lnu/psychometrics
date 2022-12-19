@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Warden::Manager.after_authentication do |user, _env, _opts|
-  AuditLogModule.audit! :sign_in_success, user, payload: { email: user.email }
+  AuditLogModule.audit! :sign_in_success, user, user: user, payload: { email: user.email }
 end
 
 Warden::Manager.after_set_user do |user, auth, opts|

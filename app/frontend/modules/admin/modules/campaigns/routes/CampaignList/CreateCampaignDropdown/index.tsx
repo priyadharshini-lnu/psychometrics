@@ -10,15 +10,20 @@ interface Props {
 }
 
 const CreateCampaignDropdown: React.FC<Props> = ({ openModal, projectId }) => {
+  const menuItems = [
+    { key: 'add_normal_campaign', label: 'Add Normal Campaign' },
+    { key: 'add_360_campaign', label: 'Add 360 Campaign' },
+  ]
+  const handleMenuClick = ({ key }) => {
+    if (key === 'add_normal_campaign') {
+      openModal('CommonCampaignFormModal', { projectId })
+    }
+    if (key === 'add_360_campaign') {
+      openModal('ThreesixtyCampaignFormModal', { projectId })
+    }
+  }
   const menu = (
-    <Menu>
-      <Menu.Item onClick={() => openModal('CommonCampaignFormModal', { projectId })} key="1">
-        Add Normal Campaign
-      </Menu.Item>
-      <Menu.Item key="2" onClick={() => openModal('ThreesixtyCampaignFormModal', { projectId })}>
-        Add 360 Campaign
-      </Menu.Item>
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 
   return (

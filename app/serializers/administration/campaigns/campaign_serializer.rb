@@ -48,7 +48,9 @@ module Administration
             'view_sms_invites',
             'view_dashboard',
             'view_accesssheet',
-            'view_accesssheet_settings'
+            'view_accesssheet_settings',
+            'view_assessors',
+            'stats'
           ],
           {
             project_id: project.id,

@@ -4,12 +4,7 @@ require 'rails_helper'
 
 describe Hogan::AddReports do
   let(:assessment) { create(:hogan_assessment) }
-  let(:report) do
-    create(:report,
-           assessments: [assessment],
-           hogan_report_setting: build(:hogan_report_setting),
-           provider: :hogan)
-  end
+  let(:report) { create(:report, :hogan, assessments: [assessment]) }
   let(:report_family) { create(:report_family) }
   let!(:report_families_report) do
     create(:report_families_report,
@@ -37,9 +32,7 @@ describe Hogan::AddReports do
     expect(user.hogan_credential).to be_truthy
   end
   context 'when we have 2 reports with same package' do
-    let(:extra_report) do
-      create(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting), provider: :hogan)
-    end
+    let(:extra_report) { create(:report, :hogan, assessments: [assessment]) }
     let!(:extra_report_families_report) do
       create(:report_families_report,
              report: extra_report,
@@ -70,7 +63,7 @@ describe Hogan::AddReports do
     let(:extra_report) do
       create(:report,
              assessments: [assessment],
-             hogan_report_setting: build(:hogan_report_setting, hogan_report_id: 'something_new'),
+             external_settings: { report_id: 'something_new' },
              provider: :hogan)
     end
     let(:extra_user_report) { create(:user_report, report: extra_report) }

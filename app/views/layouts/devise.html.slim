@@ -17,7 +17,6 @@ html.body-full-height
     - if show_maintenance_alert?
       div style="color: #fff;width: 100%;padding: 10px;font-size: 14px;background: #fa8c16; text-align: center;"
         = t('maintenance_message', **maintenance_time_frame)
-    = render 'devise/shared/video'
     = render 'devise/shared/locales'
 
     javascript:
@@ -27,8 +26,17 @@ html.body-full-height
         projectConfig: #{::Auth::ProjectConfigSerializer.new(@current_project || Client.new, background: image_url(randomized_background_image)).to_json.html_safe},
         flash: #{flash_json_messages.to_json.html_safe}
       }
-
+    - action = "#{controller_name}/#{action_name}"
+    - if ["registrations/new", "registrations/create"].include?(action)
+        javascript:
+          #{@form ? ("__INITIAL_STATE__['user'] = " + @form.attributes.to_json).html_safe : ''}
+          #{@form ? ("__INITIAL_STATE__['errors'] = " + @form.errors.messages.to_json).html_safe : ''}
+    - if ["invitations/update", "passwords/edit", "passwords/update"].include?(action)
+        javascript:
+          #{resource.persisted? && resource.invalid? ? ("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe : ''}
+    - if ["password_expired/show", "password_expired/update"].include?(action)
+        javascript:
+          #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}
     .main#devise
-      = yield
 
     = javascript_pack_tag 'user/login'

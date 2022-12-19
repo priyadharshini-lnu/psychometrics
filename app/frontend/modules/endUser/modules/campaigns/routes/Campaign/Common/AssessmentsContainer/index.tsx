@@ -5,7 +5,7 @@ import { Col, Row, Typography } from 'antd'
 import { ViewsContainer } from 'glint'
 import Assessments from 'modules/endUser/modules/campaigns/routes/Campaign/Common/Assessments'
 
-import { Statuses, UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+import { Statuses, UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import styles from './AssessmentsContainer.less'
 
 const { Title } = Typography
@@ -16,7 +16,7 @@ const prevAssessmentsCompleted = (userAssessments: UserAssessment[], userAssessm
     return true
   }
   const prevs = _.take(userAssessments, _.findIndex(userAssessments, userAssessment))
-  return !!prevs.length && _.some(prevs, ua => ua.status !== 'completed')
+  return (prevs.length === 0) || _.every(prevs, ua => ua.status === 'completed')
 }
 
 const prevGroupIsCompleted = (campaign, group) => {

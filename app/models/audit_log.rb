@@ -19,6 +19,16 @@ class AuditLog < ApplicationRecord
   add_searchable_assoc_scope :project
   add_searchable_assoc_scope :campaign
 
+  scope :user_search, lambda {  |search_term|
+    if (search_term !~ /\D/) && search_term.present?
+      where(
+        'user_id = ? OR users.email ILIKE ?', search_term, "%#{search_term}%"
+      )
+    else
+      where('users.email ILIKE ?', "%#{search_term}%")
+    end
+  }
+
   def initialize_payload_request
     self.payload = {} if payload.nil?
     self.request = {} if request.nil?
@@ -30,6 +40,6 @@ class AuditLog < ApplicationRecord
 
   def self.ransackable_scopes(_auth_object = nil)
     # returns an array of whitelisted scopes that can be used by ransack gem
-    %i[client_search project_search campaign_search]
+    %i[client_search project_search campaign_search user_search]
   end
 end

@@ -1,0 +1,49 @@
+import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
+import preview from 'modules/survey/core/preview'
+import reportBuilder from 'modules/reports/core/builder'
+import currentUser from 'core/currentUser'
+import connection from 'core/connection'
+import request from 'core/request'
+import campaign from '../modules/campaigns/core/campaign'
+import campaigns from '../modules/campaigns/core/campaigns'
+import nomination from '../modules/campaigns/core/nomination'
+import evaluation from '../modules/campaigns/core/evaluation'
+import assign from '../modules/campaigns/core/assign'
+import userAssessment from '../modules/campaigns/core/userAssessment'
+import report from '../modules/campaigns/core/report'
+import checkingWizard from '../modules/campaigns/core/checkingWizard'
+import autocomplete from './ui/autocomplete'
+import project from '../modules/campaigns/core/project'
+import anonym from '../modules/campaigns/core/anonym'
+import config from './config'
+
+const rootReducer = history => combineReducers({
+  campaigns: combineReducers({
+    campaign,
+    nomination,
+    evaluation,
+    report,
+    campaigns,
+    assign,
+    project,
+    userAssessment,
+  }),
+  ui: combineReducers({
+    autocomplete,
+  }),
+  request,
+  anonym,
+  project,
+  currentUser,
+  config,
+  preview,
+  report: combineReducers({ builder: reportBuilder }),
+  checkingWizard,
+  connection,
+  router: connectRouter(history),
+})
+
+export type RootState = ReturnType<ReturnType<typeof rootReducer>>
+
+export default rootReducer
