@@ -9,6 +9,7 @@ class CommunicationEmailMailer < ApplicationMailer
     data = recipient.slice(:first_name, :last_name, :email)
     data[:user_link] = accept_invitation_link
     data[:user_url] = accept_invitation_url
+    data[:user_link_qrcode] = accept_invitation_qrcode
     @body = Mustache.render(@communication_email.communication.body, data)
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
     smtp_setting = recipient.project.smtp_setting
@@ -16,7 +17,6 @@ class CommunicationEmailMailer < ApplicationMailer
       from: smtp_setting.from_name_and_email,
       to: recipient.email,
       subject: @communication_email.communication.subject,
-      content_type: 'text/html',
       template_path: '/mailer/communication_email',
       delivery_method_options: smtp_setting.settings_for_email
     )
@@ -38,19 +38,28 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   def accept_invitation_link
-    "<a href=#{accept_invitation_url}> #{I18n.t('devise.mailer.invitation_instructions.accept')} </a>"
+    "<a href=\"#{accept_invitation_url}\"> #{I18n.t('devise.mailer.invitation_instructions.accept')} </a>"
   end
 
   def accept_invitation_url
-    if recipient.invitation_accepted?
-      options = { domain: Settings.domain, subdomain: entity.project.subdomain }
-      url_for([:root, options])
-    else
-      token = create_raw_invitation_token
-      options = { id: @recipient_id, invitation_token: token, domain: Settings.domain,
-                  subdomain: entity.project.subdomain }
-      url_for([:accept, recipient.role_scope, :invitation, options])
-    end
+    @accept_invitation_url ||=
+      if recipient.invitation_accepted?
+        options = { domain: Settings.domain, subdomain: entity.project.subdomain }
+        url_for([:root, options])
+      else
+        token = create_raw_invitation_token
+        options = { id: @recipient_id, invitation_token: token, domain: Settings.domain,
+                    subdomain: entity.project.subdomain }
+        url_for([:accept, recipient.role_scope, :invitation, options])
+      end
+  end
+
+  def accept_invitation_qrcode
+    return unless @communication_email.communication.body.include?('{{{user_link_qrcode}}}')
+
+    png_file = RQRCode::QRCode.new(accept_invitation_url).as_png(:size => 600)
+    attachments.inline['activation-qrcode.png'] = png_file.to_blob
+    "<img src=\"#{attachments['activation-qrcode.png'].url}\" width=\"300\" height=\"300\"></img>"
   end
 
   def create_raw_invitation_token

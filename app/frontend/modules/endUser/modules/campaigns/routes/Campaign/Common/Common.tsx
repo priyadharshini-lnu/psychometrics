@@ -67,6 +67,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignUser: { expiryDate },
     campaignOptions: { instructionsEnabled, instructions, proctoringEnabled },
   } = campaign
+
   const needsProctoring = proctoringEnabled && !isInsideIframe()
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
@@ -204,7 +205,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                         size="small"
                         type="primary"
                         onClick={handleBeginCampign}
-                        disabled={proctoringEnabled && !showError}
+                        disabled={proctoringEnabled && showError}
                       >
                         {I18n.t('campaign.begin')}
                         {' '}
@@ -213,7 +214,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                     </>
                   )}
                   {proctoringEnabled
-                      && !showError
+                      && showError
                       && <Alert message={I18n.t('licenses.not_enough_proctoring_credits')} type="error" />
                   }
                   {canContinueCampaign && (
@@ -226,7 +227,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                         size="small"
                         type="primary"
                         onClick={handleContinueCampaign}
-                        disabled={proctoringEnabled && !showError}
+                        disabled={proctoringEnabled && showError}
                       >
                         {I18n.t('campaign.continue')}
                         {' '}

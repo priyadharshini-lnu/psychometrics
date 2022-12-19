@@ -24,8 +24,8 @@ describe Campaigns::BuildStats do
 
       expect(stats[:users]['completed']).to eq 1
       expect(stats[:users]['total']).to eq 1
-      expect(stats[:assessments]).to eq [{ 'id' => 2,
-                                           'name' => 'Super Assessment', 'not_started' => 0, 'in_progress' => 0,
+      expect(stats[:assessments]).to eq [{ 'id' => assessment.id,
+                                           'name' => assessment.name, 'not_started' => 0, 'in_progress' => 0,
                                            'completed' => 1, 'interrupted' => 0, 'timed_out' => 0, 'ineligible' => 0 }]
     end
   end
