@@ -37,10 +37,11 @@ class ReportApprovalSetting < ApplicationRecord
   def self.user_tasks(user)
     report_approvals(user).where(
       %{
-        (qc_user_ids @> :user_id AND approval_status = 'pending_qc') OR
+        (qc_user_ids @> :user_id AND approval_status IN (:qc_statuses)) OR
         (approver_user_ids @> :user_id AND approval_status = 'qc_completed')
       },
-      user_id: "{#{user.id}}"
+      user_id: "{#{user.id}}",
+      qc_statuses: %i[pending_qc qc_in_progress change_requested]
     )
   end
 end
