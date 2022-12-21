@@ -1,94 +1,96 @@
-import React, { ChangeEvent, FC, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
+import * as t from 'io-ts'
+import { get as getCurrentUser } from 'core/currentUser'
 import {
-  Row,
-  Col,
-  Space,
-  Input,
-  Button,
-  Pagination,
+  Row, Col,
   Table,
+  Space,
+  Button,
+  Input,
   Modal,
   message,
+  Pagination,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import {
-  Link, useHistory, useLocation, useParams,
+  Link, useParams, useLocation, useHistory,
 } from 'react-router-dom'
-
-import {
-  FETCH as FETCH_CAMPAIGN_ADMINS,
-  fetch as fetchAdmins,
-  clearSingle as clearSingleAdmin,
-  getPermissions as getAdminPermissions,
-  getList as getCampaignAdmins,
-  getTotal as getTotalCampaignAdmins,
-  remove as removeAdmin,
-  resetPassword as resetAdminPassword,
-  Admin,
-} from 'modules/admin/modules/Admins/core'
-import { isRequestInProgress } from 'core/request'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import { openModal } from 'modules/admin/core/ui/modals'
+import { useResources } from 'hooks/useResources'
+import { BaseMeta } from 'hooks/useResources/interfaces'
 import { RootState } from 'modules/admin/core/rootReducers'
-
 import { CountDisplay } from 'components/CountDisplay'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import settings from 'modules/admin/settings'
+import {
+  ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
+} from 'modules/admin/modules/client/core/admin'
 import { DetailsDrawer } from './DetailsDrawer'
 import { AddEditDrawer } from './AddEditDrawer'
 import { ActionsMenu } from './ActionsMenu'
-import { DrawerMode, DRAWER_SEARCH_PARAMS, ParentResourceType } from './constants'
+import {
+  DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes,
+} from './constants'
 
-const { I18n } = window
-
-const connector = connect(
+const connecter = connect(
   (state: RootState) => ({
-    adminList: getCampaignAdmins(state),
-    isAdminListLoading: isRequestInProgress(state, FETCH_CAMPAIGN_ADMINS),
-    totalAdmins: getTotalCampaignAdmins(state),
-    adminPermissions: getAdminPermissions(state),
+    currentUser: getCurrentUser(state),
   }),
   {
-    fetchAdmins,
-    clearSingleAdmin,
-    removeAdmin,
-    resetAdminPassword,
+    openModal,
   },
 )
 
-type PropsFromRedux = ConnectedProps<typeof connector>
+type PropsFromRedux = ConnectedProps<typeof connecter>
 
 interface OwnProps {
-  parentResourceType: ParentResourceType
+  adminType: string
 }
 
-type Props = PropsFromRedux & TableProps & OwnProps
+type Props = PropsFromRedux & OwnProps
 
-const AdminsComponent: FC<Props> = ({
-  parentResourceType,
-  tableConfig: { filters, page },
-  tableConfig,
-  changeFilter,
-  getSortOrder,
-  changePage,
-  onTableChange,
-  fetchAdmins,
-  clearSingleAdmin,
-  adminList,
-  isAdminListLoading,
-  totalAdmins,
-  adminPermissions,
-  removeAdmin,
-  resetAdminPassword,
-}) => {
+const { I18n } = window
+
+interface Meta extends BaseMeta {
+  permissions: AdminPermissions
+  usersGrants: CurrentUserPermissions
+}
+
+const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
   const params = useParams<{ campaignId: string; projectId: string }>()
-  const campaignId = parseInt(params.campaignId, 10)
-  const projectId = parseInt(params.projectId, 10)
+  const { campaignId } = params
+  const { projectId } = params
 
-  let parentResourceId = projectId
-  if (parentResourceType === ParentResourceType.Campaign) {
-    parentResourceId = campaignId
+  const filterHash = {
+    with_role: adminType,
+    client_id_eq: projectId,
   }
+
+  if (adminType === AdminTypes.CampaignAdmin) {
+    _.merge(filterHash, { campaign_id_eq: campaignId })
+  }
+
+  const {
+    data, meta, fetch, isLoading, getSortOrder, handleTableChange, createResource, updateResource,
+    removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter, memberAction,
+  } = useResources<ProjectAdmin, Meta>(
+    'memberships',
+    {
+      trackUrl: true,
+      responseType: AdminListingTR,
+      apiConfig: {
+        filter: filterHash,
+        fields: {
+          memberships: ['first_name', 'last_name', 'email', 'created_at', 'user_id'],
+        },
+      },
+    },
+  )
+  useEffect(() => {
+    fetch()
+  }, [])
+
+  const tableLoading = isLoading('fetch')
 
   const { pathname, search } = useLocation()
   const searchParams = new URLSearchParams(search)
@@ -114,36 +116,34 @@ const AdminsComponent: FC<Props> = ({
     return `${pathname}?${params.toString()}`
   }
 
-  useEffect(() => {
-    fetchAdmins(parentResourceType, parentResourceId, tableConfig)
-    clearSingleAdmin()
-  }, [tableConfig])
-
-  const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { value },
-    } = event
-    changeFilter('filterableFields', value)
-  }
-
   const handleEditAdminClick = (id: Admin['id']) => {
-    clearSingleAdmin()
-
     const editUrl = getIndividualAdminUrl(DrawerMode.Edit, id)
     history.push(editUrl)
   }
 
-  const handleAddAdminClick = () => {
-    clearSingleAdmin()
+  const ResetPasswordTR = t.literal('ok')
 
-    const addUrl = getIndividualAdminUrl(DrawerMode.Add)
-    history.push(addUrl)
+  const handlePasswordResetClick = (id) => {
+    Modal.confirm({
+      title: I18n.t('administration.administrators.modals.resetPassword.title'),
+      content: 'reset password?',
+      okText: I18n.t(
+        'administration.administrators.modals.resetPassword.okText',
+      ),
+      cancelText: I18n.t(
+        'administration.administrators.modals.resetPassword.cancelText',
+      ),
+      onOk: async () => {
+        memberAction(
+          {
+            id, action: 'reset_password', method: 'get', updateStore: false, responseType: ResetPasswordTR,
+          },
+        )
+      },
+    })
   }
 
   const handleDeleteAdminClick = (id: Admin['id']) => {
-    const admin = adminList.find(admin => admin.id === id)
-    const name = `${admin?.firstName ?? ''} ${admin?.lastName ?? ''}`
-
     Modal.confirm({
       title: I18n.t('administration.administrators.modals.delete.title'),
       content: I18n.t('administration.administrators.modals.delete.content', {
@@ -154,66 +154,17 @@ const AdminsComponent: FC<Props> = ({
         'administration.administrators.modals.delete.cancelText',
       ),
       onOk: async () => {
-        try {
-          await removeAdmin(parentResourceType, parentResourceId, id)
-
-          message.success(
-            I18n.t('administration.administrators.modals.delete.onSuccess', {
-              name,
-            }),
-          )
-        } catch (error) {
-          message.error(
-            I18n.t('administration.administrators.modals.delete.onFailed', {
-              name,
-            }),
-          )
-        }
-      },
-    })
-  }
-
-  const handlePasswordResetClick = (id: Admin['id']) => {
-    const admin = adminList.find(admin => admin.id === id)
-    const email = admin?.email ?? ''
-
-    Modal.confirm({
-      title: I18n.t('administration.administrators.modals.resetPassword.title'),
-      content: I18n.t(
-        'administration.administrators.modals.resetPassword.content',
-        { email },
-      ),
-      okText: I18n.t(
-        'administration.administrators.modals.resetPassword.okText',
-      ),
-      cancelText: I18n.t(
-        'administration.administrators.modals.resetPassword.cancelText',
-      ),
-      onOk: async () => {
-        try {
-          await resetAdminPassword(parentResourceType, parentResourceId, id)
-
-          message.success(
-            I18n.t(
-              'administration.administrators.modals.resetPassword.onSuccess',
-              { email },
-            ),
-          )
-        } catch (error) {
-          message.error(
-            I18n.t(
-              'administration.administrators.modals.resetPassword.onFailed',
-              { email },
-            ),
-          )
-        }
+        removeResource(`${id}`).then(() => {
+          message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: name }))
+          close()
+        }).catch((error) => {
+          message.error(error)
+        })
       },
     })
   }
 
   const handleDrawerClose = () => {
-    clearSingleAdmin()
-
     const searchParams = new URLSearchParams(search)
     searchParams.delete(DRAWER_SEARCH_PARAMS.MODE)
     searchParams.delete(DRAWER_SEARCH_PARAMS.ADMIN_ID)
@@ -221,13 +172,10 @@ const AdminsComponent: FC<Props> = ({
     history.push(`${pathname}?${searchParams.toString()}`)
   }
 
-  useEffect(
-    () => () => {
-      clearSingleAdmin()
-      Modal.destroyAll()
-    },
-    [],
-  )
+  const handleAddAdminClick = () => {
+    const addUrl = getIndividualAdminUrl(DrawerMode.Add)
+    history.push(addUrl)
+  }
 
   return (
     <>
@@ -239,8 +187,8 @@ const AdminsComponent: FC<Props> = ({
         <Col>
           <CountDisplay
             selectedCount={0}
-            totalCount={totalAdmins}
-            isLoading={isAdminListLoading}
+            totalCount={meta.recordCount}
+            isLoading={tableLoading}
           />
         </Col>
         <Col>
@@ -249,19 +197,17 @@ const AdminsComponent: FC<Props> = ({
               placeholder={I18n.t(
                 'administration.administrators.list.header.search_admins',
               )}
-              value={filters.filterableFields}
-              onChange={handleSearchInput}
+              value={getFilteredValue('filterable_fields')}
+              onChange={e => changeFilter('filterable_fields', e.target.value)}
             />
-            {adminPermissions.create && (
-              <Button
-                type="primary"
-                disabled={isAdminListLoading}
-                onClick={handleAddAdminClick}
-              >
-                <PlusOutlined />
-                {I18n.t('administration.administrators.list.header.add_admin')}
-              </Button>
-            )}
+            <Button
+              type="primary"
+              disabled={tableLoading}
+              onClick={handleAddAdminClick}
+            >
+              <PlusOutlined />
+              {I18n.t('administration.administrators.list.header.add_admin')}
+            </Button>
           </Space>
         </Col>
       </Row>
@@ -270,23 +216,21 @@ const AdminsComponent: FC<Props> = ({
           <Table
             rowKey={row => row?.id ?? -1}
             pagination={false}
-            loading={isAdminListLoading}
-            dataSource={adminList}
-            onChange={onTableChange}
+            loading={tableLoading}
+            dataSource={data}
+            onChange={handleTableChange}
           >
             <Table.Column
-              key="userId"
+              key="user_id"
               dataIndex="userId"
               title={I18n.t('administration.administrators.list.columns.id')}
               sorter
-              sortOrder={getSortOrder('userId')}
+              sortOrder={getSortOrder('user_id')}
             />
             <Table.Column
               key="name"
               dataIndex="name"
               title={I18n.t('administration.administrators.list.columns.name')}
-              sorter
-              sortOrder={getSortOrder('name')}
               render={(_, { id, firstName, lastName }) => (
                 <Link to={getIndividualAdminUrl(DrawerMode.View, id)}>
                   <Button type="link" className="ps-0">
@@ -296,20 +240,20 @@ const AdminsComponent: FC<Props> = ({
               )}
             />
             <Table.Column
-              key="email"
+              key="user.email"
               dataIndex="email"
               title={I18n.t('administration.administrators.list.columns.email')}
               sorter
-              sortOrder={getSortOrder('email')}
+              sortOrder={getSortOrder('user.email')}
             />
             <Table.Column
-              key="createdAt"
+              key="created_at"
               dataIndex="createdAt"
               title={I18n.t(
                 'administration.administrators.list.columns.created_at',
               )}
               sorter
-              sortOrder={getSortOrder('createdAt')}
+              sortOrder={getSortOrder('created_at')}
             />
             <Table.Column
               key="actions"
@@ -317,12 +261,11 @@ const AdminsComponent: FC<Props> = ({
               title={I18n.t(
                 'administration.administrators.list.columns.actions',
               )}
-              render={(_, { id, email, permissions }) => (
+              render={(_, { id, email }) => (
                 <ActionsMenu
                   id={id}
                   email={email}
-                  campaignId={campaignId}
-                  permissions={permissions}
+                  permissions={meta.permissions}
                   handleEdit={handleEditAdminClick}
                   handleDelete={handleDeleteAdminClick}
                   handleResetPassword={handlePasswordResetClick}
@@ -330,26 +273,19 @@ const AdminsComponent: FC<Props> = ({
               )}
             />
           </Table>
-        </Col>
-      </Row>
-      <Row className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
           <Pagination
-            hideOnSinglePage
-            current={page}
-            pageSize={settings.pagination.defaultPageSize}
-            total={totalAdmins}
+            current={currentPage}
+            pageSize={pageSize}
+            total={meta.recordCount}
             onChange={changePage}
+            className="pl"
           />
         </Col>
       </Row>
       <DetailsDrawer
         isVisible={drawerMode === DrawerMode.View}
-        parentResourceType={parentResourceType}
-        parentResourceId={parentResourceId}
-        projectId={projectId}
-        campaignId={campaignId}
         adminId={drawerAdminId}
+        permissions={meta.permissions}
         handleClose={handleDrawerClose}
         handleEdit={handleEditAdminClick}
       />
@@ -357,21 +293,18 @@ const AdminsComponent: FC<Props> = ({
         isVisible={
           drawerMode === DrawerMode.Add || drawerMode === DrawerMode.Edit
         }
-        parentResourceType={parentResourceType}
-        parentResourceId={parentResourceId}
         isEditMode={drawerMode === DrawerMode.Edit}
-        isAddMode={drawerMode === DrawerMode.Add}
-        adminId={drawerAdminId}
         handleClose={handleDrawerClose}
+        updateAdmin={updateResource}
+        createAdmin={createResource}
+        isSuperAdmin={currentUser.role === 'Users::SuperAdmin'}
+        permissions={meta.permissions}
+        currentUserGrants={meta.usersGrants}
+        adminId={drawerAdminId}
+        adminType={adminType}
       />
     </>
   )
 }
 
-export const Admins = withEnhancedTable<OwnProps>(
-  connector(AdminsComponent),
-  'admins',
-  {
-    maintainHistory: true,
-  },
-)
+export const Admins = connecter(AdminsComponent)

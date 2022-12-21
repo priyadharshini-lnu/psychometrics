@@ -96,9 +96,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
-    const { apiConfig } = args
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
-    let newApiConfig = apiConfig
+    let newApiConfig = args.apiConfig || apiConfig
 
     if (queryState) { newApiConfig = _.merge(newApiConfig, queryState) }
 
@@ -280,11 +279,12 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const createResource: CreateResource<R> = async (
     body, args = { apiConfig },
   ) => {
+    const newApiConfig = args.apiConfig || apiConfig
     setRequests({ ...requests, add: { status: RequestStatus.Loading } })
 
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, apiConfig || {}], humps.decamelizeKeys(body),
+        [resourceName, newApiConfig || {}], humps.decamelizeKeys(body),
         { url: resourceUrl },
       )
 
