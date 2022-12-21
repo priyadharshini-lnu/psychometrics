@@ -17,7 +17,7 @@ class UserReportSerializer < ActiveModel::Serializer
   end
 
   def comments
-    object.user_report_comments
+    object.user_report_comments.not_deleted
   end
 
   def campaign_id

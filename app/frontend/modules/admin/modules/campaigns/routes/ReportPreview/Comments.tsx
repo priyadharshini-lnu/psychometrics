@@ -37,7 +37,9 @@ const connecter = connect((state: RootState) => ({
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
-type Props = PropsFromRedux
+type Props = PropsFromRedux & {
+  scrollTo: (id:string) => void
+}
 
 const Compose = ({ selected, disabled, onSend }) => {
   const [value, setValue] = useState('')
@@ -76,11 +78,11 @@ const Compose = ({ selected, disabled, onSend }) => {
 }
 
 function Comments ({
-  threads, comments, selectedModule, selectedModuleId, modules, userReport,
-  readComment,
+  comments, selectedModule, selectedModuleId, modules, userReport,
+  readComment, scrollTo,
 }: Props) {
   const {
-    createResource, updateResource, setData,
+    data, createResource, updateResource, setData, removeResource,
   } = useResources<Comment>('user_report_comments',
     { basePath: `user_reports/${userReport.id}` })
 
@@ -89,9 +91,10 @@ function Comments ({
   }, [])
 
   const getThreadReplies = (id: string) => (
-    comments.filter(c => (c.parentId === id))
+    data.filter(c => (c.parentId === id))
   )
 
+  const threads = data.filter((c => !c.parentId)).reverse()
   const createComment = (text: string, parent?: Comment) => {
     const data: {text: string, parent?: {id: string}, reportsModule?: {id: string}} = {
       text,
@@ -112,11 +115,15 @@ function Comments ({
     }).then(resolve)
   })
 
-  const resolveComment = (id) => {
+  const resolveComment = (id: string) => {
     updateResource({
       id,
       resolved: true,
     })
+  }
+
+  const removeComment = (id:string) => {
+    removeResource(id)
   }
 
   return (
@@ -130,7 +137,7 @@ function Comments ({
             <div className={
               cs(styles.thread, { [styles.highlighted]: selectedModuleId?.toString() === thread.moduleId.toString() })}
             >
-              <div className={styles.module}>
+              <div className={styles.module} onClick={() => scrollTo(thread.moduleId)}>
                 <Tooltip title={Utils.stripHTML(module?.props?.text)}>
                   <span className={styles.title}>Text</span>
                   {'| '}
@@ -144,6 +151,7 @@ function Comments ({
                 comment={thread}
                 onCommentEditSave={comment => updateComment(comment)}
                 onCommentResolve={commentId => resolveComment(commentId)}
+                onCommentRemove={commentId => removeComment(commentId)}
                 onRead={readComment}
               />
               <Divider style={{ margin: '10px 0' }} />
@@ -153,6 +161,7 @@ function Comments ({
                   canRemove
                   comment={comment}
                   onCommentEditSave={comment => updateComment(comment)}
+                  onCommentRemove={commentId => removeComment(commentId)}
                   onRead={readComment}
                 />
               ))}

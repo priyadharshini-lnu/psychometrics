@@ -32,6 +32,7 @@ const connector = connect(
   (state: RootState, { rstore }: {rstore: Store}) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
     userReport: rstore?.getState().campaigns.userReports.current,
+    rstore,
   }),
   (dispatch, { rstore }: {rstore: Store}) => ({
     approveTextOverride: (...args:[number, {}]) => rstore.dispatch(approveTextOverride(...args)),
@@ -63,12 +64,13 @@ const OverrideComponent: FC<Props> = ({
   override, userReport, module, allowEdit, allowApprove,
   openReviewEditor, approveTextOverride, closeReviewEditor,
   removeTextOverride, updateTextOverride, createTextOverride,
-  selectModule,
+  selectModule, rstore,
 }) => {
   const [box, setBox] = useState<{}>({})
   const [edit, setEdit] = useState(false)
   const [showDiff, setShowDiff] = useState(false)
   const [content, setContent] = useState<string>()
+  const [selectedModule, setSelectedModule] = useState<number>()
 
   useEffect(() => {
     const el = document.querySelector(`[name=Module_${module.id}]`) as HTMLElement
@@ -80,6 +82,9 @@ const OverrideComponent: FC<Props> = ({
       top: el?.offsetTop + (page?.offsetTop || 0),
       width: rect?.width,
       height: rect?.height,
+    })
+    rstore.subscribe(() => {
+      setSelectedModule(rstore.getState().campaigns.userReports.selectedModule)
     })
   }, [])
 
@@ -129,7 +134,7 @@ const OverrideComponent: FC<Props> = ({
 
   return (
     <div
-      className={styles.editable}
+      className={cs(styles.editable, { [styles.selected]: selectedModule === module.id })}
       style={box}
       onClick={() => selectModule(module.id)}
     >

@@ -6,6 +6,7 @@ import {
   getCurrent,
   approveReport,
   ApprovalStatuses,
+  selectModule,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { subscribeSocket } from 'core/socket'
 import Utils from 'modules/reports/utils/Utils'
@@ -29,7 +30,7 @@ export const lookUpModules = report => _.reduce(report.pages, (res, page) => {
 }, [])
 
 function ReportPreview ({
-  userReport, subscribeSocket,
+  userReport, subscribeSocket, selectModule,
 }: Props) {
   useEffect(() => {
     subscribeSocket('Comments::Channel', { id: userReport.id })
@@ -37,6 +38,11 @@ function ReportPreview ({
 
   const scrollTo = (id) => {
     ScrollDispatcher.scroll(id)
+  }
+
+  const scrollToModule = (id) => {
+    selectModule(id)
+    scrollTo(`Module_${module.id}`)
   }
 
   const tag = (override) => {
@@ -92,7 +98,7 @@ function ReportPreview ({
                       <div
                         key={j}
                         className={cs(styles.override, styles.selected)}
-                        onClick={() => scrollTo(`Module_${module.id}`)}
+                        onClick={() => scrollToModule(module.id)}
                       >
                         <div className={styles.number}>
                           {number}
@@ -128,7 +134,7 @@ function ReportPreview ({
           </Tabs.TabPane>
         )}
         <Tabs.TabPane tab="Comments" key="comments">
-          <Comments />
+          <Comments scrollTo={id => scrollTo(`Module_${id}`)} />
         </Tabs.TabPane>
         <Tabs.TabPane tab="History" key="history">
           History
@@ -140,9 +146,11 @@ function ReportPreview ({
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
+
 }), {
   approveReport,
   subscribeSocket,
+  selectModule,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
