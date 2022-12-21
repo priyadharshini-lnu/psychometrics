@@ -75,15 +75,23 @@ const UpdateNormModal: React.FC<Props> = ({
           />
         ) : null}
         <Form.Item name="normId">
-          <Select style={{ width: '100%' }} placeholder={I18n.t('campaign_assessment.modals.update_norm.select_norm')}>
+          <Select
+            style={{ width: '100%' }}
+            placeholder={I18n.t('campaign_assessment.modals.update_norm.select_norm')}
+            showSearch
+            optionFilterProp="label"
+            filterOption
+          >
             <Option
               key="default"
               value=""
+              label="Default"
             >
               {I18n.t('common.text.default')}
             </Option>
             {_.map(assessment.norms || [], (norm: Norm) => (
               <Option
+                label={norm.name}
                 key={norm.id}
                 value={norm.id}
               >
