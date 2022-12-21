@@ -213,7 +213,9 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     key: 'rescore',
     label: I18n.t('assessments.actions.rescore'),
   })
-  const menuItems: ItemType[] = [{
+  const menuItems: ItemType[] = [
+  ...responseGroupItems,
+  {
     type: 'group',
     key: 'response',
     label: I18n.t('common.text.response'),
