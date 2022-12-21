@@ -94,9 +94,14 @@ const DescriptionComponent: React.FC<Props> = ({
           </Select>
           <div>
             <span className="mr8">{I18n.t('common.text.reference_language')}</span>
-            <Select className="mb8 width150px" placeholder={I18n.t('select')} onChange={updateRightLocale}>
+            <Select
+              className="mb8 width150px"
+              placeholder={I18n.t('select')}
+              onChange={updateRightLocale}
+              defaultValue=""
+            >
               <Select.Option value="">
-                {I18n.t('empty')}
+                {I18n.t('common.text.none')}
               </Select.Option>
               {(options.availableDescriptionLocales || []).map(locale => (
                 <Select.Option key={locale} value={locale}>
