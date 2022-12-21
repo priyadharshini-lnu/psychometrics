@@ -214,14 +214,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     label: I18n.t('assessments.actions.rescore'),
   })
   const menuItems: ItemType[] = [
-  ...responseGroupItems,
-  {
-    type: 'group',
-    key: 'response',
-    label: I18n.t('common.text.response'),
-    children: [],
-  },
-  { type: 'divider' },
+    {
+      type: 'group',
+      key: 'response',
+      label: I18n.t('common.text.response'),
+      children: responseGroupItems,
+    },
+    { type: 'divider' },
   ]
   permissions.remove && menuItems.push({
     key: 'remove',
