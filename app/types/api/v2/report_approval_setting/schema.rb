@@ -10,7 +10,7 @@ module Api
 
         def self.attributes(attribute, type)
           admin_schema = Dry::Schema.define do
-            required(:id).filled(:integer)
+            required(:id).filled(:string)
             required(:email).filled(:string)
           end
 
@@ -24,13 +24,6 @@ module Api
               attribute[:approvers].array(admin_schema)
               attribute[:approval_notification_users].array(admin_schema)
             end
-          end
-        end
-
-        def self.users_definition(_type)
-          Dry::Schema.define do
-            required(:id).filled(:integer)
-            required(:email).filled(:string)
           end
         end
 

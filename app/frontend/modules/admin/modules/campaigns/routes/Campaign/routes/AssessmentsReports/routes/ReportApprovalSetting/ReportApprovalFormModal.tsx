@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Select, Spin } from 'antd'
-
+import _ from 'lodash'
 import { Report, ReportTR } from 'modules/admin/modules/campaigns/core/reportList'
 import { User, UserTR } from 'modules/admin/modules/campaigns/core/user'
 import { CreateResource, UpdateResource } from 'hooks/useResources/interfaces'
@@ -27,10 +27,12 @@ type FormValueObj = {
 }
 
 const getOptionsFromApprovalSettings = (reportApprovalSettings, dataKey, fetchedData) => (
-  reportApprovalSettings?.[dataKey] ? fetchedData.concat(reportApprovalSettings[dataKey]) : fetchedData
+  reportApprovalSettings?.[dataKey]
+    ? _.uniqBy(fetchedData.concat(reportApprovalSettings[dataKey]), ({ id }: { id: string}) => id.toString())
+    : fetchedData
 )
 
-const getUserIds = users => users.map(user => parseInt(user.id, 10))
+const getUserIds = users => users.map(user => user.id)
 
 export const ReportApprovalFormModal: React.FC<Props> = ({
   reportApprovalSettings,
@@ -65,7 +67,6 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
   const notificationUserOpts = getOptionsFromApprovalSettings(
     reportApprovalSettings, 'approvalNotificationUsers', notificationUsers,
   )
-
 
   return (
     <ResourceFormModal
