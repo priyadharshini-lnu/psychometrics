@@ -121,7 +121,7 @@ function ReportPreview ({
                             ) : 'Waiting for action'}
                           </div>
                           <div className={styles.text}>
-                            {Utils.stripHTML(content)}
+                            {Utils.removeTags(content)}
                           </div>
                         </div>
                       </div>
