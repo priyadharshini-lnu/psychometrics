@@ -88,7 +88,7 @@ function Comments ({
 
   useEffect(() => {
     setData(comments)
-  }, [])
+  }, [comments])
 
   const getThreadReplies = (id: string) => (
     data.filter(c => (c.parentId === id))
@@ -131,11 +131,16 @@ function Comments ({
       <Compose selected={selectedModule} disabled={!selectedModuleId} onSend={createComment} />
       <Divider style={{ margin: 0 }} />
       {threads.map((thread) => {
-        const module = modules.find(m => m.id.toString() === thread.moduleId.toString())
+        const module = modules.find(
+          m => m.id.toString() === (thread.moduleId?.toString() || thread.reportsModule?.id),
+        )
         return (
           <>
             <div className={
-              cs(styles.thread, { [styles.highlighted]: selectedModuleId?.toString() === thread.moduleId.toString() })}
+              cs(styles.thread, {
+                [styles.highlighted]: selectedModuleId?.toString()
+                  === thread.moduleId?.toString() || thread.reportsModule?.id,
+              })}
             >
               <div className={styles.module} onClick={() => scrollTo(thread.moduleId)}>
                 <Tooltip title={Utils.stripHTML(module?.props?.text)}>
