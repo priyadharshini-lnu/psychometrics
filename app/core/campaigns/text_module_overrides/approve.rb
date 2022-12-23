@@ -18,7 +18,8 @@ module Campaigns
           form = ::Campaigns::TextModuleOverrides::CreateForm.from_params(
             params.merge(editor_id: editor.id, approved: true)
           )
-          @result = TextModuleOverride.create!(form.attributes)
+          @result = TextModuleOverride.find_by(module_id: form.module_id, user_report_id: form.user_report_id)
+          @result ||= TextModuleOverride.create!(form.attributes)
         end
         broadcast :ok, @result
       end

@@ -35,7 +35,8 @@ const connector = connect(
     rstore,
   }),
   (dispatch, { rstore }: {rstore: Store}) => ({
-    approveTextOverride: (...args:[number, {}]) => rstore.dispatch(approveTextOverride(...args)),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    approveTextOverride: (...args:[number, {}]): any => rstore.dispatch(approveTextOverride(...args)),
     removeTextOverride: (...args:[number, number, number]) => rstore.dispatch(removeTextOverride(...args)),
     openReviewEditor: () => rstore.dispatch(openRichEditor()),
     closeReviewEditor: () => rstore.dispatch(closeRichEditor()),
@@ -71,6 +72,7 @@ const OverrideComponent: FC<Props> = ({
   const [showDiff, setShowDiff] = useState(false)
   const [content, setContent] = useState<string>()
   const [selectedModule, setSelectedModule] = useState<number>()
+  const [approvingInProgress, setApprovingInProgress] = useState<boolean>(false)
 
   useEffect(() => {
     const el = document.querySelector(`[name=Module_${module.id}]`) as HTMLElement
@@ -97,6 +99,17 @@ const OverrideComponent: FC<Props> = ({
   const closeEditor = () => {
     closeReviewEditor()
     setEdit(false)
+  }
+
+  const approve = (module, override) => {
+    setApprovingInProgress(true)
+    approveTextOverride(userReport.campaignId, {
+      id: override?.id,
+      moduleId: module.id,
+      userReportId: userReport.id,
+    }).then(() => {
+      setApprovingInProgress(false)
+    })
   }
 
   const saveReview = (override) => {
@@ -214,11 +227,8 @@ const OverrideComponent: FC<Props> = ({
                     type="primary"
                     size="small"
                     className={cs(styles.approve)}
-                    onClick={() => approveTextOverride(userReport.campaignId, {
-                      id: override?.id,
-                      moduleId: module.id,
-                      userReportId: userReport.id,
-                    })}
+                    disabled={approvingInProgress}
+                    onClick={() => approve(module, override)}
                   >
                     <CheckOutlined />
                   </Button>
