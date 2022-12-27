@@ -72,6 +72,7 @@ export const fetchSingle = (campaignId: number, id: number) => ({
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/users/${id}`,
+    loader: true,
   },
 })
 

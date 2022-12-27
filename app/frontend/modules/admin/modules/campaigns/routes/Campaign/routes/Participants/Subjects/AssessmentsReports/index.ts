@@ -1,4 +1,6 @@
+import withSkeleton from 'modules/admin/hoc/withSkeleton'
+import { FETCH_SINGLE } from 'modules/admin/modules/campaigns/core/users'
 import AssessmentsReports from './AssessmentsReports'
 import connect from './connect'
 
-export default connect(AssessmentsReports)
+export default withSkeleton(connect(AssessmentsReports), FETCH_SINGLE)
