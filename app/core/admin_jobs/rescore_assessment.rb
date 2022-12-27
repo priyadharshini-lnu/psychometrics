@@ -16,7 +16,9 @@ module AdminJobs
           nullifly_norm: true
         }
       end
+      record.update(total_tasks: results.count)
       results.find_each do |res|
+        record.increment_completed_tasks!
         ::UsersResults::Recompute.call!(res, owner, norm_data || {})
       end
       remove_report_pdf if campaign.threesixty?
