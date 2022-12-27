@@ -76,8 +76,11 @@ class Campaign < ApplicationRecord
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
 
-  def proctoring_license
-    client.active_licenses.where(type: :proctoring).first
+  def proctoring_license_with_enough_credits
+    credits = Campaigns::Proctoring::GetProctoringCredits.call!(self)
+    client.active_licenses.where(type: :proctoring).order(end_date: :asc).find do |license|
+      license.enough_license_credits?(credits)
+    end
   end
 
   def real_status

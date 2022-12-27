@@ -4,7 +4,7 @@ class EndUser::CampaignUsersController < ApplicationController
   before_action :set_campaign_user
 
   def begin_campaign
-    if Licenses::IsEnoughLicenseCredits.call!(@campaign_user)
+    if @campaign_user.campaign.proctoring_license_with_enough_credits.present?
       data = CampaignUsers::BeginCampaign.call!(@campaign_user)
       render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
     else
