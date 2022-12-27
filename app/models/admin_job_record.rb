@@ -55,10 +55,10 @@ class AdminJobRecord < ApplicationRecord
     end
   end
 
-  def complete!(error_messages = [])
+  def complete!(error_messages = [], exception = nil)
     return if completed?
 
-    update!(status: :completed, completed_tasks: total_tasks, error_messages: error_messages)
+    update!(status: :completed, completed_tasks: total_tasks, error_messages: error_messages, exception: exception)
   end
 
   def broadcast(action)

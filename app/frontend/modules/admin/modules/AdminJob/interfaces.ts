@@ -2,6 +2,7 @@
 export interface AdminJob {
   id: number
   errorMessages: string[]
+  exception: string
   details: string[][]
   content: string
   isValid: boolean
