@@ -55,6 +55,7 @@ class Assessment < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
 
+  has_one :pearson_assessment_setting
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign
 
@@ -146,7 +147,7 @@ class Assessment < ApplicationRecord
       end
       Settings.providers.saville.norms.select { |norm| saville_norms.norm_ids.include?(norm[:id]) }.map(&:to_h)
     elsif pearson?
-      PearsonAssessmentSetting.pearson_norms(external_settings[:norm_id])
+      PearsonAssessmentSetting.pearson_norms(external_settings[:assessment_id])
     end
   end
 
