@@ -208,6 +208,9 @@ Rails.application.routes.draw do
           collection do
             post :approve
           end
+          member do
+            delete :disapprove
+          end
         end
         resources :users do
           resources :user_reports

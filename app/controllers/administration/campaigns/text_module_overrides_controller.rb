@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class TextModuleOverridesController < Administration::Campaigns::BaseController
-      before_action :set_resource, only: %i[show destroy download pdf_preview toggle_user_access]
+      before_action :set_resource, only: %i[show destroy download pdf_preview toggle_user_access disapprove]
       before_action :find_user_report, only: %i[create update destroy]
       before_action :pundit_authorize
 
@@ -34,6 +34,13 @@ module Administration
         result = ::Campaigns::TextModuleOverrides::Approve.call!(params, current_user)
         audit! :approve, result, payload: params.permit!, campaign: campaign
         render json: result
+      end
+
+      def disapprove
+        text_overrider = TextModuleOverride.find(params[:id])
+        text_overrider.update(approved: false)
+        audit! :disapprove, text_overrider, payload: params.permit!, campaign: campaign
+        render json: text_overrider
       end
 
       def destroy

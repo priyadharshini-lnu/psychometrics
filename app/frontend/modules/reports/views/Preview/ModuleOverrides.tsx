@@ -13,7 +13,7 @@ import htmldiff from 'libs/htmldiff'
 import { openRichEditor, closeRichEditor } from 'modules/reports/core/builder/actions'
 import {
   createTextOverride, updateTextOverride, approveTextOverride, removeTextOverride,
-  selectModule,
+  selectModule, disapproveTextOverride,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { SafeHTML } from 'components/SafeHTML'
@@ -37,6 +37,7 @@ const connector = connect(
   (dispatch, { rstore }: {rstore: Store}) => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
     approveTextOverride: (...args:[number, {}]): any => rstore.dispatch(approveTextOverride(...args)),
+    disapproveTextOverride: (...args:[number, number]) => rstore.dispatch(disapproveTextOverride(...args)),
     removeTextOverride: (...args:[number, number, number]) => rstore.dispatch(removeTextOverride(...args)),
     openReviewEditor: () => rstore.dispatch(openRichEditor()),
     closeReviewEditor: () => rstore.dispatch(closeRichEditor()),
@@ -65,7 +66,7 @@ const OverrideComponent: FC<Props> = ({
   override, userReport, module, allowEdit, allowApprove,
   openReviewEditor, approveTextOverride, closeReviewEditor,
   removeTextOverride, updateTextOverride, createTextOverride,
-  selectModule, rstore,
+  selectModule, rstore, disapproveTextOverride,
 }) => {
   const [box, setBox] = useState<{}>({})
   const [edit, setEdit] = useState(false)
@@ -212,15 +213,28 @@ const OverrideComponent: FC<Props> = ({
               )}
               {allowApprove && (override?.approved
                 ? (
-                  <Button
-                    type="primary"
-                    size="small"
-                    className={cs(styles.approved)}
-                  >
-                    <CheckOutlined />
-                    {' '}
-                    Accepted
-                  </Button>
+                  <>
+                    <Button
+                      type="primary"
+                      size="small"
+                      className={cs(styles.approved)}
+                    >
+                      <CheckOutlined />
+                      {' '}
+                      Accepted
+                    </Button>
+                    <Popconfirm
+                      overlayStyle={{ zIndex: 9999 }}
+                      title="Are you sure to remove approval for this text?"
+                      onConfirm={() => disapproveTextOverride(userReport.campaignId, override.id)}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Button type="primary" size="small" className={cs(styles.discard)}>
+                        <CloseOutlined />
+                      </Button>
+                    </Popconfirm>
+                  </>
                 )
                 : (
                   <Button

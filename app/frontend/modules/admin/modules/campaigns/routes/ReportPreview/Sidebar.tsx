@@ -136,9 +136,9 @@ function ReportPreview ({
         <Tabs.TabPane tab="Comments" key="comments">
           <Comments scrollTo={id => scrollTo(`Module_${id}`)} />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="History" key="history">
+        {/* <Tabs.TabPane tab="History" key="history">
           History
-        </Tabs.TabPane>
+        </Tabs.TabPane> */}
       </Tabs>
     </div>
   )

@@ -160,6 +160,7 @@ export const SET_USER_REPORTS = 'campaigns/userReports/SET_USER_REPORTS'
 export const CREATE_MODULE_OVERRIDE = 'campaigns/userReports/CREATE_MODULE_OVERRIDE'
 export const UPDATE_MODULE_OVERRIDE = 'campaigns/userReports/UPDATE_MODULE_OVERRIDE'
 export const APPROVE_MODULE_OVERRIDE = 'campaigns/userReports/APPROVE_MODULE_OVERRIDE'
+export const DISAPPROVE_MODULE_OVERRIDE = 'campaigns/userReports/DISAPPROVE_MODULE_OVERRIDE'
 export const REMOVE_MODULE_OVERRIDE = 'campaigns/userReports/REMOVE_MODULE_OVERRIDE'
 export const APPROVE_REPORT = 'campaigns/userReports/APPROVE_REPORT'
 export const OPEN_RICH_EDITOR = 'report/OPEN_RICH_EDITOR'
@@ -214,6 +215,16 @@ export const approveTextOverride = (campaignId: number, body: {}) => ({
     body,
   },
 })
+
+export const disapproveTextOverride = (campaignId: number, id: number) => ({
+  type: DISAPPROVE_MODULE_OVERRIDE,
+  request: {
+    typedResponse: ModuleOverrideTR,
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/text_module_overrides/${id}/disapprove`,
+  },
+})
+
 
 export const removeTextOverride = (campaignId: number, id: number, userReportId: number) => ({
   type: REMOVE_MODULE_OVERRIDE,
@@ -421,6 +432,12 @@ const HANDLERS = {
     setIn(state, ['current', 'moduleOverrides'], [...state.current.moduleOverrides, response])
   ),
   [APPROVE_MODULE_OVERRIDE]: (state, { response }: ApproveModuleOverride) => {
+    const exists = _.find(state.current.moduleOverrides, { id: response.id })
+    return setIn(setIn(state, ['current', 'moduleOverrides'], exists
+      ? state.current.moduleOverrides.map(m => (m.id === response.id ? response : m))
+      : [...state.current.moduleOverrides, response]), ['current', 'approved'], false)
+  },
+  [DISAPPROVE_MODULE_OVERRIDE]: (state, { response }: ApproveModuleOverride) => {
     const exists = _.find(state.current.moduleOverrides, { id: response.id })
     return setIn(setIn(state, ['current', 'moduleOverrides'], exists
       ? state.current.moduleOverrides.map(m => (m.id === response.id ? response : m))
