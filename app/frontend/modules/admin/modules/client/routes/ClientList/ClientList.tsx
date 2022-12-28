@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import _ from 'lodash'
 import { useResources } from 'hooks/useResources'
 import {
   Table, Input, Space, Pagination, Button, Menu,
@@ -41,6 +42,7 @@ interface Meta extends BaseMeta{
 }
 
 const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
+  const baseApiConfig = { include: ['project_manager'], fields: { users: ['name', 'email'] } }
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource,
@@ -51,14 +53,11 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     {
       trackUrl: true,
       responseType: ClientTR,
-      apiConfig: {
-        include: ['project_manager'],
-        fields: { users: ['name', 'email'] },
-      },
+      apiConfig: baseApiConfig,
     },
   )
   useEffect(() => {
-    fetch()
+    fetch({ apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }) })
   }, [])
   const tableLoading = isLoading('fetch')
 

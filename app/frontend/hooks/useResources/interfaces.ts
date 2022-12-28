@@ -39,6 +39,7 @@ export interface UrlQuery {
 
 export interface ApiConfig extends UrlQuery {
   include?: string[]
+  include_meta?: string[]
   query?: {
     [key:string]: unknown
   }
