@@ -170,6 +170,7 @@
     "seedrandom": "^3.0.5",
     "sms-segments-calculator": "^1.1.1",
     "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^4.2.3",
     "thread-loader": "^3.0.4",
     "type-fest": "^2.12.2",
     "ua-parser-js": "^1.0.1",
