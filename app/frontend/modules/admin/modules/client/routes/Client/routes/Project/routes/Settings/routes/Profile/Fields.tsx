@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Table, Checkbox, Button, Select,
+  Table, Checkbox, Button, Select, Space,
 } from 'antd'
 import { MenuOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -97,20 +97,22 @@ export const Fields: React.FC<Props> = ({
       }}
       footer={() => (
         <div className={styles.tableFooter}>
-          <Select
-            showSearch
-            className={styles.select}
-            value={question}
-            filterOption={(input, option) => (option?.children as unknown as string).toLowerCase()
-              .includes(input.toLowerCase())
-            }
-            onChange={value => setQuestion(value)}
-          >
-            {questionsFields.map(q => (
-              <Select.Option value={q.id}>{q.name}</Select.Option>
-            ))}
-          </Select>
-          <Button onClick={addField}>{I18n.t('profile.add_field')}</Button>
+          <Space>
+            <Select
+              showSearch
+              className={styles.select}
+              value={question}
+              filterOption={(input, option) => (option?.children as unknown as string).toLowerCase()
+                .includes(input.toLowerCase())
+              }
+              onChange={value => setQuestion(value)}
+            >
+              {questionsFields.map(q => (
+                <Select.Option value={q.id}>{q.name}</Select.Option>
+              ))}
+            </Select>
+            <Button onClick={addField}>{I18n.t('profile.add_field')}</Button>
+          </Space>
         </div>
       )}
     >
