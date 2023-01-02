@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
 import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { DetailsCard } from 'glint'
-import { getTotalProgress } from 'modules/user/modules/campaigns/core/campaign/selectors'
+import { getTotalProgress } from 'modules/endUser/modules/campaigns/core/campaign/selectors'
 import styles from './styles.less'
 
 const { I18n } = window

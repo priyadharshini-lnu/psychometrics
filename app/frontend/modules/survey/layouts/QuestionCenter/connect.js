@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { subscribeSocket } from 'modules/survey/core/temp/socket'
+import { importTranslations } from 'modules/survey/core/builder/questionCenter/index.ts'
 
 export default connect(
   ({ survey }) => ({
@@ -10,5 +11,6 @@ export default connect(
   }),
   {
     subscribeSocket,
+    importTranslations,
   },
 )

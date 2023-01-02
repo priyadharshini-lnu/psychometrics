@@ -13,16 +13,17 @@ const ResultStore = function () {
 ResultStore.prototype = new EventEmitter()
 
 _.extend(ResultStore.prototype, {
-  setResults (resultGroups, user, assessmentIds, campaign = {}) {
+  setResults (resultGroups, user, assessmentIds, campaign = {}, userReportData = []) {
     _.each(assessmentIds, (id) => {
       this.results[id] = new Result(id)
     })
 
     this.user = JSON.parse(user)
+    this.userReportData = userReportData
     this.campaignDetails = JSON.parse(campaign)
 
     _.each(resultGroups, (results, assessmentId) => {
-      this.results[assessmentId].init(results, this.user, AppStore.report.filters)
+      this.results[assessmentId].init(results, this.user, AppStore.report.filters, [], this.userReportData)
     })
     this.realResults = true
   },
@@ -72,6 +73,13 @@ _.extend(ResultStore.prototype, {
           return res
         }, {})
         this.results[assessmentId].groupedDataSheet = [this.results[assessmentId].dataSheet]
+        break
+      case 'ReportData':
+        this.results[assessmentId].reportData = (sourceModel || []).reduce((res, field, index) => {
+          const mockResults = MockResults[sourceType]
+          res[field] = mockResults[index % mockResults.length]
+          return res
+        }, {})
         break
       default:
         if (!this.results[assessmentId].questions) {

@@ -25,9 +25,7 @@ class UserAssessment < ApplicationRecord
 
   has_one :threesixty_campaign, through: :campaign
 
-  delegate :saville_assessment_id, :saville?, :pearson_assessment_id,
-           :pearson_assessment_language, :pearson?, :iiht?,
-           to: :assessment
+  delegate :saville?, :iiht?, :pearson?, to: :assessment
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -61,7 +59,9 @@ class UserAssessment < ApplicationRecord
   end
 
   def pearson_assessment_language
-    PearsonAssessmentSetting.pearson_assessment_language(pearson_assessment_id, pearson_norm_id)
+    PearsonAssessmentSetting.pearson_assessment_language(
+      assessment.external_settings[:assessment_id], assessment.external_settings[:norm_id]
+    )
   end
 
   def external_user_reports(type)
@@ -135,15 +135,11 @@ class UserAssessment < ApplicationRecord
   end
 
   def applicable_external_norm_id
-    campaign_assessment&.external_norm_id || assessment.external_norm_id
-  end
-
-  def saville_norm_id
-    saville_user_assessment.norm_id
-  end
-
-  def pearson_norm_id
-    pearson_user_assessment.norm_id
+    if campaign_assessment&.assessment
+      campaign_assessment.assessment.external_settings[:norm_id]
+    else
+      assessment.external_settings[:norm_id]
+    end
   end
 
   def user_reports
@@ -188,7 +184,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def pearson_norm_name
-    PearsonAssessmentSetting.pearson_norms(assessment.pearson_assessment_id).
+    PearsonAssessmentSetting.pearson_norms(assessment.external_settings[:assessment_id]).
       find { |norm| norm[:id] == pearson_user_assessment.norm_id }&.dig(:name)
   end
 end

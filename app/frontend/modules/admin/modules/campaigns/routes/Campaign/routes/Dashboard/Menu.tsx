@@ -4,6 +4,7 @@ import { Menu as AntMenu } from 'antd'
 import routeUtils from 'utils/route'
 import settings from 'modules/admin/modules/campaigns/settings'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import routes from './routes'
 
 const { I18n } = window
@@ -24,38 +25,34 @@ export const Menu: React.FC<Props> = ({
   const onSelect = ({ key }) => {
     routeUtils.moveTo(history, `${settings.urlPrefix}/${campaignId}/dashboard`, key)
   }
+  const menuItems: ItemType[] = []
+  !dashboardInitialized && campaignPermissions.viewDashboard && menuItems.push({
+    key: '/initialize',
+    label: I18n.t('administration.dashboard.tabs.dashboard'),
+  })
+  dashboardPreviewAvailable && campaignPermissions.viewDashboard && menuItems.push({
+    key: '/preview',
+    label: I18n.t('administration.dashboard.tabs.dashboard'),
+  })
+  dashboardInitialized && canManageDashboard && menuItems.push({
+    key: '/settings',
+    label: I18n.t('administration.dashboard.tabs.settings'),
+  })
+  campaignPermissions.viewAccesssheet && menuItems.push({
+    key: '/accesssheets',
+    label: I18n.t('administration.dashboard.tabs.accesssheet'),
+  })
+  campaignPermissions.viewAccesssheetSettings && menuItems.push({
+    key: '/accesssheet_settings',
+    label: I18n.t('administration.dashboard.tabs.accesssheet_setting'),
+  })
 
   return (
     <AntMenu
+      items={menuItems}
       onSelect={onSelect}
       selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
       mode="horizontal"
-    >
-      {!dashboardInitialized && campaignPermissions.viewDashboard && (
-      <AntMenu.Item key="/initialize">
-        {I18n.t('administration.dashboard.tabs.dashboard')}
-      </AntMenu.Item>
-      )}
-      {dashboardPreviewAvailable && campaignPermissions.viewDashboard && (
-      <AntMenu.Item key="/preview">
-        {I18n.t('administration.dashboard.tabs.dashboard')}
-      </AntMenu.Item>
-      )}
-      {dashboardInitialized && canManageDashboard && (
-      <AntMenu.Item key="/settings">
-        {I18n.t('administration.dashboard.tabs.settings')}
-      </AntMenu.Item>
-      )}
-      {campaignPermissions.viewAccesssheet && (
-      <AntMenu.Item key="/accesssheets">
-        {I18n.t('administration.dashboard.tabs.accesssheet')}
-      </AntMenu.Item>
-      )}
-      {campaignPermissions.viewAccesssheetSettings && (
-      <AntMenu.Item key="/accesssheet_settings">
-        {I18n.t('administration.dashboard.tabs.accesssheet_setting')}
-      </AntMenu.Item>
-      )}
-    </AntMenu>
+    />
   )
 }

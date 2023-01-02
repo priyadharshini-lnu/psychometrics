@@ -94,7 +94,7 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
     update()
   }
 
-  if (!model.props.source) {
+  if (!model.props.source || !model.getSourceType()) {
     return null
   }
   let question

@@ -50,7 +50,8 @@ module Users
     def question_custom_validations
       project.profile_setting.profile_fields.includes(:question).each do |field|
         question = field.question
-        validation_errors = Questions::Validation.call!(question, custom_fields[field.question_id.to_s.to_sym])
+        validation_errors = Questions::Validation.call!(question, custom_fields[field.question_id.to_s.to_sym],
+                                                        I18n.locale)
         next unless validation_errors
 
         validation_errors.each do |error|

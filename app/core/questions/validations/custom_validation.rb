@@ -8,9 +8,11 @@ module Questions::Validations
       MatchesRegexp: Questions::Validations::MatchRegexp
     }.with_indifferent_access.freeze
 
-    def initialize(validations, value)
-      @conditions = validations.first['conditions']
-      @message = validations.first['message']
+    def initialize(question, value, locale)
+      validation = question.validation['customValidations'].first
+      locales = Translation.to_hash_for_question(question.id, locale) || {}
+      @conditions = validation['conditions']
+      @message = locales["customValidationText_#{validation['uuid']}"] || validation['message']
       @value = value
     end
 

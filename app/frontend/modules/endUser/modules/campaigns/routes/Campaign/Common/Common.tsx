@@ -12,14 +12,14 @@ import { STATUSES } from 'constants/campaign'
 import cs from 'classnames'
 
 import { ProgressStatus, DirectionalArrowIcon } from 'glint'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import {
   continueCampaign,
   beginCampaign,
   reset as resetCampaign,
-} from 'modules/user/modules/campaigns/core/campaign'
-import { loginHogan } from 'modules/user/modules/campaigns/core/campaigns'
-import { acceptPolicy } from 'modules/user/modules/campaigns/core/project'
+} from 'modules/endUser/modules/campaigns/core/campaign'
+import { loginHogan } from 'modules/endUser/modules/campaigns/core/campaigns'
+import { acceptPolicy } from 'modules/endUser/modules/campaigns/core/project'
 
 import { isInsideIframe } from 'utils/isInsideIframe'
 import { SafeHTML } from 'components/SafeHTML'

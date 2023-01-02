@@ -12,14 +12,28 @@ module Api
       end
 
       def create?
-        user.is?(:superadmin)
+        can_manage_dashboard?
       end
 
       def update?
-        user.is?(:superadmin)
+        can_manage_dashboard?
       end
 
-      def create_with_campaign?(_)
+      def upload_image?
+        can_manage_dashboard?
+      end
+
+      def powerbi_capacities?
+        can_manage_dashboard?
+      end
+
+      def refresh?
+        can_manage_dashboard?
+      end
+
+      private
+
+      def can_manage_dashboard?
         user.is?(:superadmin)
       end
 

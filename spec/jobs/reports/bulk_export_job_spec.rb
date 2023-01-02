@@ -9,7 +9,7 @@ describe Reports::BulkExportJob do
   let(:assign)          { create(:assign, membership: membership, status: :completed) }
   let(:membership)      { create(:membership, client: client) }
   let!(:assigns_report) { create(:assigns_report, :licensed, report: report, assign: assign) }
-  let(:current_user) { create(:user) }
+  let(:current_user)    { create(:user) }
 
   subject { described_class.perform_now(report_ids, current_user, client) }
 

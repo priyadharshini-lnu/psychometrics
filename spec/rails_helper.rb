@@ -72,6 +72,15 @@ RSpec.configure do |config|
     WebMock.allow_net_connect!
   end
 
+  config.before(:suite) do
+    DummyTables.drop
+    DummyTables.create
+  end
+
+  config.after(:suite) do
+    DummyTables.drop
+  end
+
   config.after(:suite) do
     DownloadHelpers.clear_downloads unless ENV.key? 'TEST_ENV_NUMBER'
   end

@@ -3,13 +3,14 @@
 module Api
   module V1
     class ReportsController < Api::V1::BaseController
+      before_action :ensure_campaign, except: %i[dimensions]
       before_action :set_user_report, only: %i[update results pdf]
       before_action :pundit_authorize
       skip_before_action :ensure_project, :pundit_authorize, only: [:dimensions]
 
       def index
-        user_reports = UserReport.where(user: user, campaign: campaign_id).includes(:report)
-        user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
+        user_reports = UserReport.where(user: user, campaign: @campaign.id).includes(:report)
+        user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: @campaign.id).
                            joins(:users_result, :assessment).
                            index_by(&:assessment_id)
 
@@ -20,7 +21,7 @@ module Api
       def results
         unless @user_report
           raise Api::Errors::ResourceNotFound,
-                "Report ID: #{params[:id]} not found for user in Campaign: #{campaign_id}."
+                "Report ID: #{params[:id]} not found for user in Campaign: #{@campaign.id}."
         end
 
         unless @user_report.all_assessments_are_completed?
@@ -105,11 +106,15 @@ module Api
       end
 
       def set_user_report
-        @user_report = UserReport.find_by!(user: user, campaign_id: campaign_id, report_id: params[:id])
+        @user_report = UserReport.find_by(user: user, campaign_id: campaign_id, report_id: params[:id])
+        unless @user_report
+          raise Api::Errors::ResourceNotFound,
+                "Report with id=#{params[:id]} was not found for User id=#{user.id}"
+        end
       end
 
       def campaign_id
-        @campaign_id ||= params[:campaign_id] || user.campaigns.last.id
+        @campaign.id
       end
 
       def serialization_params

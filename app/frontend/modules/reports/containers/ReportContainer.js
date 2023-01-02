@@ -27,7 +27,7 @@ class ReportContainer extends Component {
     }
     data.skipLogic = skipLogic
     const normalizedData = normalize(data, schema)
-    store.init(data, results, user, campaign)
+    store.init(data, results, user, campaign, userReport.reportData || [])
     rstore.dispatch(init(normalizedData, userReport))
     this.setState({ selectedLocale })
   }
@@ -40,13 +40,17 @@ class ReportContainer extends Component {
   }
 
   render () {
-    const { showOverrides = false, userReport: { moduleOverrides }, dashboard } = this.props
+    const {
+      showOverrides = false, userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
+    } = this.props
     return (
       <Provider store={rstore}>
         <div className="row">
           <Preview
             rstore={globalStore}
             localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
+            allowEdit={allowEdit}
+            allowApprove={allowApprove}
             showOverrides={showOverrides}
             moduleOverrides={moduleOverrides}
             dashboard={dashboard}

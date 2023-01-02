@@ -6,8 +6,8 @@ module Administration
     before_action :set_log, only: %i[show destroy]
 
     def index
-      @q = policy_scope(::AuditLog).ransack(params[:filters])
-      @logs = @q.result.order('id desc').includes(:user)
+      @q = policy_scope(::AuditLog).eager_load(:user).ransack(params[:filters])
+      @logs = @q.result.order('audit_logs.id desc')
       respond_to do |format|
         format.html
         format.json do

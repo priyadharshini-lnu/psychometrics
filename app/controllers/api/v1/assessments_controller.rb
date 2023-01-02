@@ -3,6 +3,7 @@
 module Api
   module V1
     class AssessmentsController < Api::V1::BaseController
+      before_action :ensure_campaign
       before_action :set_user_assessment, only: %i[update]
       before_action :pundit_authorize
 
@@ -35,7 +36,7 @@ module Api
       end
 
       def campaign_id
-        @campaign_id ||= params[:campaign_id] || user.campaigns.last.id
+        @campaign.id
       end
 
       def pundit_authorize

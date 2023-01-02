@@ -2,11 +2,12 @@
   = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
     .modal-body
       = render_error_notification(resource)
+      = render_error_notification(@external_settings)
       .form-inputs.clearfix
         - root_clients = policy_scope(Client).roots
-        = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
+        = f.input :type, as: :select, collection: Assessment::TYPES.except(:mindmill).map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
                          include_blank: false,
-                         wrapper_html: { class: 'common mindmill hogan saville pearson iiht' },
+                         wrapper_html: { class: 'common hogan saville pearson iiht' },
                          input_html: { data: { live_search: true,
                                                 dynamic_selectable_url: url_for(action: :external_assessments, type: '__id__', external_assessment_id: f.object.external_assessment_id),
                                                 dynamic_selectable_target: 'select#pearson_assessment_id',
@@ -25,42 +26,44 @@
                                                 dynamic_selectable_target: 'select.external_assessments_setting',
                                               }, id: 'projects'},
                           wrapper_html: { class: 'iiht' }
-        = f.simple_fields_for :iiht_assessment_setting do |iiht|
-          = iiht.input :iiht_assessment_id_number, collection: [[1, 20]],
-                                              include_blank: false,
-                                              input_html: { class: 'external_assessments_setting',  data: { live_search: true } },
-                                              wrapper_html: { class: 'iiht' }
-          - schedule_config = iiht.object.iiht_schedule_config && iiht.object.errors[:iiht_schedule_config].blank? ? JSON.pretty_generate(iiht.object.iiht_schedule_config) : iiht.object.iiht_schedule_config
-          = iiht.input :iiht_schedule_config, as: :text, wrapper_html: { class: 'iiht' },
-                        input_html: { value: schedule_config }
-        = f.input :mindmill_id, collection: Settings.providers.mindmill.assessments.map { |m| [m[:name], m[:id]] },
-                                include_blank: false,
-                                wrapper_html: { class: 'mindmill' }
-        = f.simple_fields_for :hogan_assessment_setting do |hogan|
-          = hogan.input :hogan_assessment_id, collection: Settings.providers.hogan.assessments.map { |h| [h[:name], h[:id]] },
-                                              include_blank: false,
-                                              wrapper_html: { class: 'hogan' }
-        = f.simple_fields_for :saville_assessment_setting do |saville|
-          = saville.input :saville_assessment_id,
+        = f.simple_fields_for :external_settings do |iiht|
+          = iiht.input :assessment_id,
+                       label: 'IIHT assessment ID',
+                       collection: [[1, 20]],
+                       include_blank: false,
+                       input_html: { class: 'external_assessments_setting', data: { live_search: true } },
+                       wrapper_html: { class: 'iiht' }
+          = iiht.input :schedule_config, as: :text, wrapper_html: { class: 'iiht' }
+        = f.simple_fields_for :external_settings do |hogan|
+          = hogan.input :assessment_id,
+                        label: 'Hogan assessment ID',
+                        collection: Settings.providers.hogan.assessments.pluck(:name, :id),
+                        include_blank: false,
+                        wrapper_html: { class: 'hogan' }
+        = f.simple_fields_for :external_settings do |saville|
+          = saville.input :assessment_id,
+                          label: 'Saville assessment ID',
                           collection: Settings.providers.saville.assessments.sort_by {|a| a[:name] }.map { |h| [h[:name], h[:id].downcase] },
                           include_blank: false,
                           wrapper_html: { class: 'saville' },
                           input_html: { data: { live_search: true } }
-        = f.simple_fields_for :pearson_assessment_setting do |pearson|
-          = pearson.input :pearson_assessment_id,
+        = f.simple_fields_for :external_settings do |pearson|
+          = pearson.input :assessment_id,
+                          label: 'Pearson assessment ID',
                           collection: [],
                           include_blank: true,
                           wrapper_html: { class: 'pearson' },
                           input_html: { data: { live_search: true,
-                                                dynamic_selectable_url: url_for(action: :pearson_norms, pearson_assessment_id: '__id__', pearson_norm_id: f.object.pearson_assessment_setting&.pearson_norm_id),
+                                                dynamic_selectable_url: url_for(action: :pearson_norms, pearson_assessment_id: '__id__', pearson_norm_id: f.object.external_settings[:norm_id]),
                                                 dynamic_selectable_target: 'select.pearson_norm_id' }, id: 'pearson_assessment_id' }
-          = pearson.input :pearson_norm_id,
+          = pearson.input :norm_id,
+                          lable: 'Pearson norm ID',
                           collection: [],
                           include_blank: false,
                           wrapper_html: { class: 'pearson' },
                           input_html: { data: { live_search: true }, class: 'pearson_norm_id' },
                           include_hidden: false
-        = f.input :name, wrapper_html: { class: 'common mindmill hogan saville pearson iiht' }
+        = f.input :name, wrapper_html: { class: 'common hogan saville pearson iiht' }
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: root_clients.order(name: :asc),
                                   include_blank: t('administration.tte'),
@@ -75,15 +78,15 @@
                              wrapper_html: { class: 'common' }
         = f.input :status, as: :select, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] },
                            include_blank: false,
-                           wrapper_html: { class: 'common mindmill hogan saville pearson' }
+                           wrapper_html: { class: 'common hogan saville pearson' }
         = f.association :dimension, collection: policy_scope(Dimension).all.sorted_by('name_asc'),
                                     include_blank: true,
                                     input_html: { data: { live_search: true } },
-                                    wrapper_html: { class: 'common mindmill hogan saville pearson iiht' }
+                                    wrapper_html: { class: 'common hogan saville pearson iiht' }
         = f.input :timing, as: :text,
                            hint: t('.timing.hint'),
-                           wrapper_html: { class: 'common mindmill hogan saville pearson' }
-        = f.input :description, as: :text, wrapper_html: { class: 'common mindmill hogan saville' }
+                           wrapper_html: { class: 'common hogan saville pearson' }
+        = f.input :description, as: :text, wrapper_html: { class: 'common hogan saville' }
         .clearfix
           = f.input :enable_video_check, as: :boolean
           = f.input :enable_audio_check, as: :boolean

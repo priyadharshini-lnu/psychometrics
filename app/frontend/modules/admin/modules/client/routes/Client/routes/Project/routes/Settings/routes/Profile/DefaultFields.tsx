@@ -11,6 +11,7 @@ interface Field {
   name: string
   required: boolean
   locked: boolean
+  default: boolean
 }
 
 interface Props {
@@ -33,9 +34,11 @@ export const DefaultFields: React.FC<Props> = ({
   const defaultFields = [{
     name: I18n.t('profile.first_name'),
     index: 'first_name',
+    default: true,
   }, {
     name: I18n.t('profile.last_name'),
     index: 'last_name',
+    default: true,
   }, {
     name: I18n.t('profile.age'),
     index: 'age',
@@ -60,7 +63,11 @@ export const DefaultFields: React.FC<Props> = ({
         title="Required"
         dataIndex="required"
         render={(_, row:Field) => (
-          <Checkbox onChange={() => changeRequired(row)} checked={requiredFields[row.index]} />
+          <Checkbox
+            disabled={row.default}
+            onChange={() => changeRequired(row)}
+            checked={row.default ? true : requiredFields[row.index]}
+          />
         )}
       />
       <Column

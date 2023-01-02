@@ -29,9 +29,9 @@ module Saville
 
     def attributes
       {
-        assessment_guid: user_assessment.saville_assessment_id,
-        report_guids: user_assessment.external_user_reports(:saville).includes(:report).map(&:saville_report_id),
-        norm_id: user_assessment.saville_norm_id,
+        assessment_guid: user_assessment.assessment.external_settings[:assessment_id],
+        report_guids: user_assessment.external_user_reports(:saville).includes(:report).map(&:external_report_id),
+        norm_id: user_assessment.assessment.external_settings[:norm_id],
         data_seprator: user_assessment.campaign.uniq_code,
         return_url: campaign_url,
         webhook_url: webhook_url,

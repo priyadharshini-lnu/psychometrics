@@ -22,42 +22,6 @@ feature 'CRUD Assessment' do
       end
     end
 
-    scenario 'When change type of Assessment to Mindmill
-              Then should not see fields for Common type
-              And should see fields for Mindmill type' do
-      visit '/administration/assessments'
-      click_link(t('administration.assessments.index.new'), href: '/administration/assessments/new')
-      find('.modal-header').click
-      within '#assessments_form' do
-        expect(page).not_to have_select('resource_mindmill_id', visible: false)
-        select t('activerecord.attributes.assessment.types.mindmill'), from: 'resource_type', visible: false
-
-        expect(page).not_to have_select('resource_category', visible: false)
-        expect(page).not_to have_select('resource_owner_id', visible: false)
-        expect(page).to have_select('resource_dimension_id', visible: false)
-        expect(page).to have_select('resource_mindmill_id', visible: false)
-      end
-    end
-
-    scenario 'When create Mindmill Assessment
-              Then should see in the table' do
-      visit '/administration/assessments'
-      click_link(t('administration.assessments.index.new'), href: '/administration/assessments/new')
-      wait_for_ajax
-      find('.modal-header').click
-      within '#assessments_form' do
-        select t('activerecord.attributes.assessment.types.mindmill'), from: 'resource_type', visible: false
-        sleep 1
-        fill_in t('activerecord.attributes.assessment.name'), with: 'New Mindmill Assessment'
-        click_button t('administration.create')
-      end
-      wait_for_ajax(no_of_ajax_request: 2)
-      expect(page).to have_content t('administration.assessments.create.successfully', name: 'New Mindmill Assessment')
-      expect(page).not_to have_css('#assessments_list td a', text: 'New Mindmill Assessment')
-      expect(page).to have_css('#assessments_list td', text: 'New Mindmill Assessment')
-      expect(page).to have_content(t('activerecord.attributes.assessment.types.mindmill'))
-    end
-
     scenario 'Create Assessment' do
       create_assessment(name: 'My assessment', dimension_name: 'Agile')
       wait_for_ajax(no_of_ajax_request: 2)

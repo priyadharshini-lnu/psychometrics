@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import logger from 'redux-logger'
 import api from 'middleware/api'
 import rootReducers from './core/rootReducers'
 
@@ -15,7 +14,7 @@ if (__DEV__) {
 const store = createStore(
   rootReducers,
   {},
-  composeEnhancers(applyMiddleware(api, logger)),
+  composeEnhancers(applyMiddleware(api)),
 )
 
 export default store

@@ -36,6 +36,7 @@ class BaseController < ActionController::Base
         session.delete(:spoofed) unless found_by == :spoofed
 
         sign_in(user)
+        redirect_to(url_without_spoof) if found_by == :spoof
       end
       on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
     end
@@ -43,6 +44,10 @@ class BaseController < ActionController::Base
   end
 
   private
+
+  def url_without_spoof
+    Utility::Url.remove_query_params(request.url, [Users::AuthenticateUser::SPOOF_KEY.to_s])
+  end
 
   def feature_flags
     # Some values can be null

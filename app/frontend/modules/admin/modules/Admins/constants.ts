@@ -21,6 +21,8 @@ export enum GrantType {
   scores = 'scores',
   reset_responses = 'reset_responses',
   rescrore_responses = 'rescore_responses',
+  manage_report_approvals = 'manage_report_approvals',
+  stats = 'stats'
 }
 
 export enum ParentResourceType {

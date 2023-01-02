@@ -57,6 +57,7 @@ en:
           first_name_required: First name is required
           last_name: Last name
           last_name_required: Last name is required
+          manage_report_approvals: Manage Report Approvals
           next: Next
           no_edit_permission: You do not have permission to edit admin '%{name}'
           permission_assessment: Assessments
@@ -77,6 +78,7 @@ en:
           permissions: Permissions
           save: Save
           search_placeholder: Enter email to edit an existing admin or add a new one
+          stats: View Stats
           update: Update
           update_failed: Admin '%{name}' update failed
           update_success: Admin '%{name}' was updated successfully
@@ -258,11 +260,15 @@ en:
       assessments:
         actions:
           add_subject: Add Subject
+          rescore: Rescore
           reset: Reset Evaluation
+          reset_progress: Reset Progress
         assessment_name: Assessment Name
         bulk_delete_confirmation: Are you sure you wan to delete selected records?
         bulk_delete_successful: Assessor assessments deleted successfully
         reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
+        reset_progress_confirmation: Are you sure you want to reset progress for subject with email %{subjectEmail}?
+        reset_progress_successfully: Reset progress successful for for subject with email %{subjectEmail}
         reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
         subject_email: Subject Email
         subject_name: Subject Name
@@ -342,6 +348,7 @@ en:
       search_campaign: Search by Campaign
       search_client: Search by Client
       search_project: Search by Proejct
+      search_user: Search by User
       title: Audit Log Info
       type: Record Type
       user: User
@@ -577,6 +584,14 @@ en:
       url: Url
     campaigns:
       actions: Manage
+      assessment_reports:
+        report_approval:
+          modal_title: Report Approval Settings
+          remove_modal_success: 'Successfully deleted approval setting for report id: %{reportId}'
+          remove_modal_text: 'Are you sure you want to delete this setting for report id: %{reportId}?'
+      assessors:
+        spoof:
+          successfully: You was successfully login as %{name}
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name
@@ -1621,7 +1636,7 @@ en:
         errors:
           count_invalid: cannot be less than the used_count = %{use_count}
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
-          duplicate_code: is in use. Try another one.
+          duplicate_code: is in use in this Project. Try another one.
           in_use: "%{attribute} is already in use"
           incorrect_domain: Incorrect domain format.
           invalid_attribute: "%{attribute} is invalid"
@@ -2335,6 +2350,7 @@ en:
     created: Successfully created
     created_by: Created By
     dashboard:
+      capacity_name: Capacity Name
       dashboards: Dashboards
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
@@ -2343,9 +2359,11 @@ en:
         embed_token_error_title: Unable to generate Embed token.
       settings:
         accesssheet_view_name: Accesssheet View Name
+        capacity_id: Capacity Id
         datasheet_view_name: Datasheet View Name
+        details: Details
         refresh: Refresh
-        view_names: View Names
+        workspace_id: Workspace id
       tabs:
         accesssheet: Accesssheet
         accesssheet_setting: Accesssheet Settings
@@ -2843,6 +2861,7 @@ en:
       psychometrics: Psychometrics
       question_center: Question Center
       registration_codes: Registration Codes
+      report_approvals: Report Approvals
       report_families: Report Bundles
       reports: Reports
       statistics: Statistics
@@ -3213,6 +3232,18 @@ en:
             title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
         successfully: Successfully updated.
+    report_approval:
+      campagin_search: Campaign search
+      columns:
+        actions: Actions
+        approval_status: Approval Status
+        campaign_name: Campaign Name
+        report_name: Report Name
+        user_email: User Email
+        user_name: User Name
+      report_search: Report search
+      review: Review
+      user_search: User search
     report_families:
       copy:
         error: 'Report Bundle #%{id} was not copied.'
@@ -3277,6 +3308,20 @@ en:
         view: View Report Bundle
       update:
         successfully: Report Bundle %{name} was successfully updated.
+    report_review:
+      abort_qc: Abort QC
+      approve: Approve
+      remove_approval: Remove Approval
+      request_changes: Request Changes
+      review: Review
+      send_for_approve: Send for Approval
+      statuses:
+        approved: Approved
+        change_requested: Changes Requested
+        not_ready: Not Ready
+        pending_qc: Pending QC
+        qc_completed: QC Completed
+        qc_in_progress: QC in Progress
     reports:
       copy:
         error: 'Report #%{id} was not copied.'
@@ -3565,6 +3610,38 @@ en:
         title: Test SMTP setting
       update_success_msg: SMTP setting updated successfully.
       user_name: User Name
+    stats:
+      assessments:
+        columns:
+          assessment_name: Assessment Name
+          completed: Completed
+          id: ID
+          in_progress: In Progress
+          ineligible: Ineligible
+          interrupted: Interrupted
+          not_started: Not Started
+          timed_out: Timed Out
+        title: Assessments
+      title: Stats
+      top_metrics:
+        completed: Completed
+        in_progress: In Progress
+        ineligible: Ineligible
+        interrupted: Interrupted
+        not_started: Not started
+        timed_out: Timed Out
+        users: Users
+      users:
+        completed: Completed
+        date_presets:
+          last_30_days: Last 30 days
+          last_7_days: Last 7 days
+          last_month: Last month
+          last_week: Last week
+          today: Today
+          yesterday: Yesterday
+        started: Started
+        y_title: Number of Users
     sub_factors:
       copy:
         error: 'Sub-Factor #%{id} was not copied.'
@@ -3847,6 +3924,9 @@ en:
           header: Import Translations
       import:
         successfully: Translations was successfully imported
+      questions:
+        new:
+          header: Import Translations
       reports:
         new:
           header: Import Translations

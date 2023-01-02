@@ -114,6 +114,7 @@ class Condition extends Component {
           Select Data Source...
         </option>
         <option value="DataSheet">Data Sheet</option>
+        <option value="ReportData">Report Data</option>
         {options.map(option => (
           <option key={option.value} value={option.value}>
             {option.label}

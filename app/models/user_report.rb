@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 class UserReport < ApplicationRecord
+  include WorkflowActiverecord
+
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
   belongs_to :norm
   belongs_to :campaign
   belongs_to :report_family
 
-  has_one :saville_report_setting, through: :report
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
   has_many :text_module_overrides, dependent: :destroy
+  has_many :user_report_comments
 
   delegate :client, to: :campaign
-  delegate :saville_report_id, to: :report
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, to: :report
 
@@ -24,6 +25,48 @@ class UserReport < ApplicationRecord
   after_commit :publish_to_webhook,
                if: proc { status_previously_changed? && status == 'prepared' },
                on: [:update]
+
+  workflow_column :approval_status
+
+  workflow do
+    state :not_ready do
+      event :ready, transitions_to: :pending_qc
+    end
+    state :pending_qc do
+      event :start_qc, transitions_to: :qc_in_progress
+    end
+    state :qc_in_progress do
+      event :abort_qc, transitions_to: :pending_qc
+      event :send_for_approval, transitions_to: :qc_completed
+    end
+    state :qc_completed do
+      event :approve, transitions_to: :approved
+      event :request_changes, transitions_to: :change_requested
+    end
+    state :change_requested do
+      event :start_qc, transitions_to: :qc_in_progress
+    end
+    state :approved do
+      event :remove_approval, transitions_to: :change_requested
+    end
+    on_transition do |_from, to, _event, *_|
+      ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
+      ::UserReports::NotifyApprovals.call!(self) if to == :approved
+      ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
+    end
+  end
+
+  def start_approval!
+    return ready! if not_ready? && has_approval_workflow?
+  end
+
+  def has_approval_workflow?
+    approval_settings.exists?
+  end
+
+  def approval_settings
+    campaign.report_approval_settings.where(report_id: report_id)
+  end
 
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)
@@ -50,7 +93,7 @@ class UserReport < ApplicationRecord
 
   def generatable?
     generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
-    generate &&= approved? if report.require_approval?
+    generate &&= approved? if has_approval_workflow?
     generate
   end
 
@@ -77,8 +120,8 @@ class UserReport < ApplicationRecord
     @report_families_report ||= report.report_families_reports.find_by(report_family_id: report_family_id)
   end
 
-  def hogan_report_id
-    report.hogan_report_setting.hogan_report_id
+  def external_report_id
+    report.external_settings[:report_id]
   end
 
   def details_to_log

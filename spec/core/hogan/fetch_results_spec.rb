@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Hogan::FetchResults do
   let(:assessment) { create(:hogan_assessment) }
-  let(:report) { create(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting)) }
+  let(:report) { create(:report, :hogan, assessments: [assessment]) }
   let(:user) { create(:user, hogan_credential: build(:hogan_credential)) }
   let(:project) { create(:project) }
   let(:users_result) { create(:users_result) }
@@ -36,7 +36,7 @@ describe Hogan::FetchResults do
   end
 
   it 'calls Hogan::AddReports if external_added is false for any report' do
-    report2 = create(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting))
+    report2 = create(:report, :hogan, assessments: [assessment])
     user_report2 = create(:user_report, external_added: false, report: report2)
     allow(users_result).to receive(:external_user_reports).with(:hogan).and_return([user_report, user_report2])
     expect(Services::Hogan::Api::Json::ParticipantReport).to receive(:call!).twice.
@@ -54,7 +54,7 @@ describe Hogan::FetchResults do
   end
 
   it "returns failed_to_add_report_in_hogan if report didn't got added to hogan" do
-    report2 = create(:report, assessments: [assessment], hogan_report_setting: build(:hogan_report_setting))
+    report2 = create(:report, :hogan, assessments: [assessment])
     user_report2 = create(:user_report, external_added: false, report: report2)
     allow(users_result).to receive(:external_user_reports).with(:hogan).and_return([user_report, user_report2])
     expect(Hogan::AddReports).to receive(:call!).with(

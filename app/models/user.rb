@@ -10,7 +10,7 @@ class User < ApplicationRecord
   DEFAULT_ADMIN_GRANTS = {
     clients: %w[view],
     projects: %w[view manage manage_admins manage_users],
-    campaigns: %w[view manage manage_users manage_options manage_messages],
+    campaigns: %w[view manage manage_users manage_options manage_messages stats],
     communications: %w[view manage],
     results: %w[view_report report_data raw_responses scores]
   }.with_indifferent_access.freeze
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     clients: %w[view],
     projects: %w[view],
-    campaigns: %w[view manage manage_users manage_options manage_messages manage_admins],
+    campaigns: %w[view manage manage_users manage_options manage_messages manage_admins stats],
     communications: %w[view manage],
     assessors: %w[view manage],
     results: %w[view_report report_data raw_responses scores]
@@ -28,7 +28,7 @@ class User < ApplicationRecord
     clients: %w[view],
     projects: %w[view],
     communications: %w[view manage],
-    campaigns: %w[view manage manage_users manage_options show manage_messages],
+    campaigns: %w[view manage manage_users manage_options show manage_messages stats],
     results: %w[view_report report_data raw_responses scores]
   }.with_indifferent_access.freeze
 
@@ -43,7 +43,7 @@ class User < ApplicationRecord
     communications: %w[view manage],
     reports: %w[view manage],
     results: %w[view_report report_data raw_responses scores],
-    campaign: %w[view show manage manage_users manage_options manage_messages manage_admins],
+    campaign: %w[view show manage manage_users manage_options manage_messages manage_admins stats],
     assessors: %w[view manage],
     registration_codes: %w[view manage],
     sms_invites: %w[view manage],
@@ -116,6 +116,7 @@ class User < ApplicationRecord
   has_many :campaigns, through: :campaign_users
   has_many :assessors, dependent: :destroy
   has_many :assessors_campaings, through: :assessors, source: :campaign
+  has_many :report_approvals, dependent: :destroy
 
   has_one :security_setting, through: :project
   has_one :privacy_consent
@@ -147,6 +148,16 @@ class User < ApplicationRecord
 
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
+  end
+
+  def accessible_records(resource_class, permissions)
+    return resource_class.all if is?(:superadmin)
+
+    permissions = Array.wrap(permissions).map { |p| p.split('.') }
+    campaign_ids = ::Administration::CampaignPolicy::Scope.new(self, Campaign).resolve.select do |campaign|
+      permissions.any? { |resource, permission| has_permission?(resource, permission, campaign_id: campaign.id) }
+    end
+    resource_class.joins(:campaign).where(campaigns: { id: campaign_ids })
   end
 
   def password_length
@@ -219,9 +230,11 @@ class User < ApplicationRecord
   # If user was already created and was invited by mail (with link to set password)
   #   Then we just send him mail with link to new Client
   # Else we send him mail with link to set password
-  def invite!(invited_by = nil, invited_to_id = nil, options = {})
-    if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin, :member)
-      return InvitationMailer.link_to_client(id, invited_to_id).deliver_later
+  def invite!(invited_by = nil, membership = nil, options = {})
+    return unless is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
+
+    if accepted_or_not_invited? && !sign_in_count.zero?
+      return InvitationMailer.link_to_client(id, membership).deliver_later
     end
 
     # Customizing default mail of devise_inviteable
@@ -231,11 +244,7 @@ class User < ApplicationRecord
     self.skip_invitation = true
     super(invited_by, options)
 
-    if is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
-      InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
-    else
-      InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
-    end
+    InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
   end
 
   def tenancy
@@ -326,10 +335,20 @@ class User < ApplicationRecord
     false
   end
 
+  ransacker :full_name do |parent|
+    Arel::Nodes::InfixOperation.new(
+      '||',
+      Arel::Nodes::InfixOperation.new(
+        '||', parent.table[:first_name], Arel::Nodes.build_quoted(' ')
+      ),
+      parent.table[:last_name]
+    )
+  end
+
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      %i[hris_data_cont role_scope_in filterable_fields admins search_query]
+      %i[hris_data_cont role_scope_in filterable_fields admins search_query with_access_to_campaign]
     end
 
     # Available role for the filter form

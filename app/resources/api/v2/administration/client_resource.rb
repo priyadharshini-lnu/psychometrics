@@ -6,4 +6,8 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
   has_one :project_manager
 
   ransack_filters %i[name_cont name_eq]
+
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, client) { client.attributes.slice('id', 'name') }
 end

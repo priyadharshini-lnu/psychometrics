@@ -10,10 +10,10 @@ import useDimensions from 'react-use-dimensions'
 
 import LangDropdown from 'components/LangDropdown'
 import { MediaQueryContext, PageHeader } from 'glint'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import {
   fetchInsights, getReports, getUserDashboard, FETCH_INSIGHTS,
-} from 'modules/user/modules/campaigns/core/campaign'
+} from 'modules/endUser/modules/campaigns/core/campaign'
 import Report from 'modules/reports/report'
 import _ from 'lodash'
 import { isRequestInProgress } from 'core/request'

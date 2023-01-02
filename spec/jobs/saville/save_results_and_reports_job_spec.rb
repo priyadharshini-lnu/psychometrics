@@ -45,7 +45,7 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
           </ReceiptId>
           <Results>
             <SupportingMaterials>
-              <Id><IdValue>#{report.saville_report_id}</IdValue></Id>
+              <Id><IdValue>#{report.external_report_id}</IdValue></Id>
               <EmbeddedData>
                 <EncodedContent>#{file_fixture('base64pdf.txt').read}</EncodedContent>
               </EmbeddedData>
@@ -71,7 +71,7 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
           </ReceiptId>
           <Results>
             <SupportingMaterials>
-              <Id><IdValue>#{report.saville_report_id}</IdValue></Id>
+              <Id><IdValue>#{report.external_report_id}</IdValue></Id>
               <EmbeddedData>
                 <EncodedContent>#{file_fixture('base64pdf.txt').read}</EncodedContent>
               </EmbeddedData>

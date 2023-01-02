@@ -44,6 +44,8 @@ module Reports
     end
 
     def datasheet_value(column_name)
+      return nil if users_results.empty?
+
       @datasheet_data ||= users_results.first.campaign.datasheet_data(users_results.first.subject.email)
       @datasheet_data[column_name]
     end

@@ -7,7 +7,9 @@ import Modals from 'modules/admin/components/Modals/'
 import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import ReportList from './ReportList'
+import { OtherReportList } from './OtherReportList'
 import AssessmentList from './AssessmentList'
+import { OtherAssessmentList } from './OtherAssessmentList'
 import AssessorAssessmentList from './AssessorAssessmentList'
 import AddReportModal from './AddReportModal'
 import { Strategies } from './AddReportModal/interfaces'
@@ -128,6 +130,7 @@ const Manage: React.FC<Props> = ({
         <div className={styles.tableDivider} />
         <h3>Assessments</h3>
         <AssessmentList />
+
         {campaignPermissions.viewAssessors && (
           <>
             <div className={styles.tableDivider} />
@@ -135,6 +138,14 @@ const Manage: React.FC<Props> = ({
             <AssessorAssessmentList />
           </>
         )}
+
+        <div className={styles.tableDivider} />
+        <h3>{I18n.t('campaigns.assessments_and_reports.other_reports')}</h3>
+        <OtherReportList />
+
+        <div className={styles.tableDivider} />
+        <h3>{I18n.t('campaigns.assessments_and_reports.other_assessments')}</h3>
+        <OtherAssessmentList />
       </div>
       <Modals modals={MODALS} />
     </div>

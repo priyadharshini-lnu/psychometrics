@@ -7,6 +7,9 @@ module.exports = {
         flexbox: 'no-2009',
       },
       stage: 2,
+      features: {
+        'logical-properties-and-values': false
+      }
     }),
   ],
 }

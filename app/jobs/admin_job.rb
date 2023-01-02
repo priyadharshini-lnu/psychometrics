@@ -33,7 +33,8 @@ class AdminJob < ApplicationJob
     compact_completion_status_export: AdminJobs::CompactCompletionStatusExport,
     threesixty_campaign_export_completion_status: AdminJobs::ThreesixtyCampaignExportCompletionStatus,
     export_users: AdminJobs::ExportUsers,
-    import_accesssheet: AdminJobs::ImportAccesssheet
+    import_accesssheet: AdminJobs::ImportAccesssheet,
+    import_question_translations: AdminJobs::ImportQuestionTranslations
   }.freeze
 
   def perform(record)

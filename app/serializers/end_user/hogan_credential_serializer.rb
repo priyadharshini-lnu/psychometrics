@@ -31,7 +31,7 @@ module EndUser
     end
 
     def direct_assessment_id
-      object.assessment.hogan_assessment_setting.hogan_assessment_id
+      object.assessment.external_settings[:assessment_id]
     end
 
     def display_informed_consent

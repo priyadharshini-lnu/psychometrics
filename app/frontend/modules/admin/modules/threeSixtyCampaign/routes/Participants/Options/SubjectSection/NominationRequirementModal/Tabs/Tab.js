@@ -50,23 +50,16 @@ export default function Tab ({
   })
 
   const menu = index => (
-    <Menu onClick={handleMenuClick(index)}>
-      <Menu.Item key="moveUp">
-        Move Up
-      </Menu.Item>
-      <Menu.Item key="moveDown">
-        Move down
-      </Menu.Item>
-      <Menu.Item key="rename">
-        Rename
-      </Menu.Item>
-      <Menu.Item key="copy">
-        Copy
-      </Menu.Item>
-      <Menu.Item key="delete">
-        Delete
-      </Menu.Item>
-    </Menu>
+    <Menu
+      onClick={handleMenuClick(index)}
+      items={[
+        { label: 'Move Up', key: 'moveUp' },
+        { label: 'Move down', key: 'moveDown' },
+        { label: 'Rename', key: 'rename' },
+        { label: 'Copy', key: 'copy' },
+        { label: 'Delete', key: 'delete' },
+      ]}
+    />
   )
 
   const renameWithValidation = () => {

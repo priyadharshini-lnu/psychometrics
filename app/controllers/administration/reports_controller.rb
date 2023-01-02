@@ -20,11 +20,7 @@ module Administration
       # TODO: (atanych): do we really need distinct?
       @filter_term = params.dig(:q, :filterable_fields)
       scope = policy_scope(resource_class).
-              includes(
-                :assessments,
-                :report_families,
-                :hogan_report_setting
-              ).
+              includes(:assessments, :report_families).
               order(:name)
 
       @_filter_form = scope.ransack(params[:q])
@@ -47,39 +43,36 @@ module Administration
 
     def new
       @_resource = resource_class.new
-      @_resource.build_hogan_report_setting
-      @_resource.build_saville_report_setting
+      @external_settings = Administration::Reports::ExternalSettings::BaseForm.new
       @_resource.set_default_color
     end
 
-    # rubocop:disable Metrics/PerceivedComplexity
-    # rubocop:disable Metrics/AbcSize
     def create
       @_resource = resource_class.new(resource_params)
 
       resource.created_by = current_user
       resource.updated_by = current_user
 
+      if resource.should_have_external_settings?
+        @external_settings = Administration::Reports::GetExternalSettingsForm.
+                             call(resource, resource_params[:external_settings])[:ok]
+
+        resource.external_settings = @external_settings.attributes.compact_blank
+      end
+
       if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
         resource.owner_id = current_user.client_admin_client_ids.first
       end
 
-      # TODO: (ivan) Move creating and updating to Command and Form
-      resource.reload_hogan_report_setting if resource.hogan_report_setting&.hogan_report_id.blank?
-      resource.reload_saville_report_setting if resource.saville_report_setting&.saville_report_id.blank?
-
       respond_to do |format|
-        if resource.save
+        if (!resource.external_settings? || @external_settings.valid?) && resource.save
           audit! :create, resource, payload: params.permit!
           format.js
         else
-          resource.build_hogan_report_setting if resource.hogan_report_setting.blank?
-          resource.build_saville_report_setting if resource.saville_report_setting.blank?
           format.js { render :new }
         end
       end
     end
-    # rubocop:enable all
 
     def external_reports
       assessment_ids = params[:assessment_ids].to_s.split(',').compact
@@ -94,21 +87,27 @@ module Administration
 
     # GET /administration/resources/1/edit
     def edit
-      @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
-      @_resource.build_saville_report_setting if @_resource.saville_report_setting.blank?
+      @external_settings = Administration::Reports::ExternalSettings::BaseForm.new(@_resource.external_settings)
       add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
     end
 
     # PATCH/PUT /administration/resources/1
     def update
       resource.updated_by = current_user
+
+      if resource.should_have_external_settings?
+        @external_settings = Administration::Reports::GetExternalSettingsForm.
+                             call(resource, resource_params[:external_settings])[:ok]
+
+        resource.external_settings = @external_settings.attributes.compact_blank if @external_settings.valid?
+      end
+
       respond_to do |format|
-        if resource.update(resource_params)
+        if (!resource.external_settings? || @external_settings.valid?) &&
+           resource.update(resource_params.except(:external_settings))
           audit! :update, resource, payload: params.permit!
           format.js
         else
-          @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
-          @_resource.build_saville_report_setting if @_resource.saville_report_setting.blank?
           format.js { render :edit }
         end
       end
@@ -197,11 +196,9 @@ module Administration
     def resource_params
       report_params = params.require(:resource).permit(
         :name, :description, :provider, :owner_id, :mindmill, :icon, :icon_color, :props,
-        :remove_icon, :default_language,
-        :poster, :remove_poster, :require_approval, :data_only,
+        :remove_icon, :default_language, :poster, :remove_poster, :data_only,
         report_family_ids: [], assessment_ids: [],
-        hogan_report_setting_attributes: %i[id hogan_report_id _destroy],
-        saville_report_setting_attributes: %i[id saville_report_id _destroy]
+        external_settings: %i[report_id norm_id language_id suitability_id report_type]
       )
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids
       # are empty and causes errors
@@ -220,8 +217,9 @@ module Administration
     end
 
     def hogan_reports(assessment_ids)
-      hogan_assessment_ids = HoganAssessmentSetting.where(assessment_id: assessment_ids).
-                             pluck(:hogan_assessment_id).uniq
+      hogan_assessment_ids = Assessment.where(id: assessment_ids, type: Assessment::TYPES[:hogan]).map do |assessment|
+        assessment.external_settings['assessment_id']
+      end.uniq
       return [] unless hogan_assessment_ids.count.positive? && hogan_assessment_ids.count == assessment_ids.count
 
       Settings.providers.hogan.reports.select do |report|
@@ -232,8 +230,9 @@ module Administration
     def saville_reports(assessment_ids)
       return [] unless assessment_ids.count == 1
 
-      saville_assessment_ids = SavilleAssessmentSetting.where(assessment_id: assessment_ids).
-                               pluck(:saville_assessment_id).uniq
+      saville_assessment_ids = Assessment.where(id: assessment_ids, type: Assessment::TYPES[:saville]).map do |a|
+        a.external_settings['assessment_id']
+      end.uniq
       assessment = Settings.providers.saville.assessments.find { |a| saville_assessment_ids.include?(a[:id].downcase) }
 
       return [] unless assessment

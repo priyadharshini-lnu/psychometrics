@@ -9,9 +9,12 @@ export default connect(
     tables: getTables(state),
   }),
   dispatch => ({
-    changeFilter: (tableName: string, filterName: string, filterValue: string) => (
-      dispatch(changeFilter(tableName, filterName, filterValue))
-    ),
+    changeFilter: (tableName: string, filterName: string, filterValue: string) => {
+      if (filterValue === '' || filterValue === null || filterValue === undefined) {
+        return dispatch(removeFilter(tableName, filterName))
+      }
+      return dispatch(changeFilter(tableName, filterName, filterValue))
+    },
     changePage: (tableName: string, pageNumber: number, pageSize?: number) => (
       dispatch(changePage(tableName, pageNumber, pageSize))
     ),
@@ -20,6 +23,8 @@ export default connect(
       dispatch(changeSort(tableName, columnName, order))
     ),
     removeSort: (tableName: string) => dispatch(removeSort(tableName)),
-    initTable: (tableName: string, maintainHistory: boolean) => dispatch(initTable(tableName, maintainHistory)),
+    initTable: (tableName: string, maintainHistory: boolean, pageSize) => (
+      dispatch(initTable(tableName, maintainHistory, pageSize))
+    ),
   }),
 )

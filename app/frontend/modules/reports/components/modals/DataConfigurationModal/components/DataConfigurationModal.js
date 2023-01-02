@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import yaml from 'js-yaml'
 import { Modal } from 'react-bootstrap'
 import AppStore from 'modules/reports/store/AppStore'
 
@@ -11,7 +12,7 @@ export default class DataConfigurationModal extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      dataConfiguration: AppStore.report.data_configuration,
+      dataConfiguration: yaml.dump(AppStore.report.data_configuration),
     }
   }
 

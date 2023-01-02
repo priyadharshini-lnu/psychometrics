@@ -22,7 +22,7 @@ module Iiht
 
     def request_body
       {
-        assessmentIdNumber: user_assessment.assessment.iiht_assessment_id_number,
+        assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
         userEmailAddress: user_assessment.user.email,
         tenantId: config['tenant_id']
       }

@@ -14,6 +14,7 @@ import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from 'modules/admin/modules/client/routes/Client/routes/Project/settings'
 import RouteList from 'components/RouteList'
 import { connect, ConnectedProps } from 'react-redux'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { routes } from './routes'
 
 const { I18n } = window
@@ -99,6 +100,21 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
     return some(permissions, permission => currentUser.permissions[permission])
   }
 
+  const menuItems: ItemType[] = [
+    { key: 'new_campaigns', icon: <ShopOutlined />, label: I18n.t('common.model.campaigns') },
+    { key: 'datasheet', icon: <DatabaseOutlined />, label: I18n.t('common.model.datasheet') },
+  ]
+  currentUser.permissions.manageProjectAdmins && menuItems.push({
+    key: 'admins',
+    icon: <SolutionOutlined />,
+    label: I18n.t('administration.breadcrumbs.project_admins'),
+  })
+  canShowSettingsTab() && menuItems.push({
+    key: 'settings',
+    icon: <SettingOutlined />,
+    label: I18n.t('administration.breadcrumbs.settings'),
+  })
+
   return (
     <div>
       <Breadcrumb
@@ -127,31 +143,11 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
         ]}
       />
       <Menu
+        items={menuItems}
         onSelect={handleOnSelect}
         selectedKeys={getActiveMenuKey(pathname)}
         mode="horizontal"
-      >
-        <Menu.Item key="new_campaigns" icon={<ShopOutlined />}>
-          {I18n.t('common.model.campaigns')}
-        </Menu.Item>
-        {/* Uncomment tabs when API changes are available */}
-        {/* <Menu.Item key="users" icon={<UserOutlined />}>
-          {I18n.t('administration.breadcrumbs.users')}
-        </Menu.Item> */}
-        <Menu.Item key="datasheet" icon={<DatabaseOutlined />}>
-          {I18n.t('common.model.datasheet')}
-        </Menu.Item>
-        {currentUser.permissions.manageProjectAdmins && (
-          <Menu.Item key="admins" icon={<SolutionOutlined />}>
-            {I18n.t('administration.breadcrumbs.project_admins')}
-          </Menu.Item>
-        )}
-        {canShowSettingsTab() && (
-          <Menu.Item key="settings" icon={<SettingOutlined />}>
-            {I18n.t('administration.breadcrumbs.settings')}
-          </Menu.Item>
-        )}
-      </Menu>
+      />
       <RouteList
         routes={routes}
         urlPrefix={`${settings.urlPrefix}/:projectId`}

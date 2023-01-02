@@ -7,11 +7,10 @@ import {
 } from 'antd'
 
 import { DirectionalNavigateBackIcon } from 'glint'
-import { fetchCampaigns } from 'modules/user/modules/campaigns/core/campaigns'
-import { RootState } from 'modules/user/core/rootReducers'
+import { fetchCampaigns } from 'modules/endUser/modules/campaigns/core/campaigns'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import styles from './styles.less'
 
-const { Item } = Menu
 const { I18n } = window
 
 const connector = connect((state: RootState) => ({
@@ -54,6 +53,28 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   const handleCampaignSelect = (menu) => {
     history.push(menu.key)
   }
+  const menuItems = campaigns.map((campaign) => {
+    const campaignName = campaign.type === 'threesixty' ? campaign.assessmentName : campaign.name
+    const routePath = campaign.type === 'threesixty'
+      ? `/threesixty_campaigns/${campaign.id}` : `/campaigns/${campaign.id}`
+    return (
+      {
+        key: routePath,
+        label: (
+          <Row gutter={[8, 0]} wrap={false} className={styles.campaignItem}>
+            <Col>{campaignName}</Col>
+            <Col flex="auto" className="ta-e">
+              {campaign.progressStatus && (
+              <Tag color={STATUSES[campaign.progressStatus].color}>
+                {STATUSES[campaign.progressStatus].text}
+              </Tag>
+              )}
+            </Col>
+          </Row>
+        ),
+      }
+    )
+  })
 
   const menu = (
     <Menu
@@ -61,27 +82,8 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       selectedKeys={activeCampaign && [`${activeCampaign.id}`]}
       onClick={handleCampaignSelect}
       className={styles.dropdownMenu}
-    >
-      {campaigns.map((campaign) => {
-        const campaignName = campaign.type === 'threesixty' ? campaign.assessmentName : campaign.name
-        const routePath = campaign.type === 'threesixty'
-          ? `/threesixty_campaigns/${campaign.id}` : `/campaigns/${campaign.id}`
-        return (
-          <Item key={routePath} className={styles.campaignItem}>
-            <Row gutter={[8, 0]} wrap={false}>
-              <Col>{campaignName}</Col>
-              <Col flex="auto" className="ta-e">
-                {campaign.progressStatus && (
-                <Tag color={STATUSES[campaign.progressStatus].color}>
-                  {STATUSES[campaign.progressStatus].text}
-                </Tag>
-                )}
-              </Col>
-            </Row>
-          </Item>
-        )
-      })}
-    </Menu>
+      items={menuItems}
+    />
   )
 
   const titleElement = campaigns.length > 1 ? (

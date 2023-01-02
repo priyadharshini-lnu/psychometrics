@@ -10,7 +10,14 @@ import { setIn } from 'utils/immutable'
 const LogTR = t.type({
   id: t.number,
   action: t.string,
-  userName: t.union([t.string, t.undefined, t.null]),
+  user: t.union([
+    t.type({
+      fullName: t.string,
+      email: t.string,
+    }),
+    t.undefined,
+    t.null,
+  ]),
   payload: t.any,
   client: t.any,
   project: t.any,

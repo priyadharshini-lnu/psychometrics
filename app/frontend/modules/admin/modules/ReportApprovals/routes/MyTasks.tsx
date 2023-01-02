@@ -1,0 +1,34 @@
+import React, { useEffect } from 'react'
+import { useResources } from 'hooks/useResources'
+import { Task, TaskTR } from '../core'
+import { TasksList } from './TasksList'
+
+export const MyTasks: React.FC = () => {
+  const {
+    fetch, ...args
+  } = useResources<Task>('report_approvals', {
+    responseType: TaskTR,
+  })
+
+  useEffect(() => {
+    fetch({
+      apiConfig: {
+        include: ['campaign', 'report', 'user'],
+        fields: {
+          users: ['name', 'email'],
+          campaigns: ['name'],
+          reports: ['name'],
+        },
+        filter: {
+          my_tasks: 'true',
+        },
+      },
+    })
+  }, [])
+
+  return (
+    <div>
+      <TasksList {...args} />
+    </div>
+  )
+}

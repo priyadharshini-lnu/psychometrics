@@ -52,8 +52,8 @@ module Hogan
       Services::Hogan::Api::Json::AddParticipantAssessment.call!(
         participant_id: credentials.participant_id,
         group: group,
-        assessment_id: assessment.hogan_assessment_setting.hogan_assessment_id,
-        form_id: assessment.hogan_assessment_setting.hogan_form_id,
+        assessment_id: assessment.external_settings[:assessment_id],
+        form_id: assessment.external_settings[:form_id],
         provider: credentials&.provider
       )
     end
@@ -86,13 +86,13 @@ module Hogan
 
       Services::Hogan::Api::Json::AddParticipantReport.call({
         group: group,
-        norm_id: report.hogan_report_setting.hogan_norm_id,
-        language_id: report.hogan_report_setting.hogan_language_id,
-        assessment_id: assessment.hogan_assessment_setting.hogan_assessment_id,
+        norm_id: report.external_settings[:norm_id],
+        language_id: report.external_settings[:language_id],
+        assessment_id: assessment.external_settings[:assessment_id],
         participant_id: credentials.participant_id,
         provider: credentials&.provider,
-        report_id: package_id || user_report.hogan_report_id,
-        suitability_id: report.hogan_report_setting.hogan_suitability_id.presence || ''
+        report_id: package_id || user_report.external_report_id,
+        suitability_id: report.external_settings[:suitability_id]&.to_s
       }, &)
     end
 

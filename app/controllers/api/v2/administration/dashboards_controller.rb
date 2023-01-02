@@ -6,7 +6,6 @@ module Api
     validate_crud_requests Api::V2::Dashboard::Schema
 
     def upload_image
-      authorize Dashboard, :update?, policy_class: ::Api::Administration::DashboardPolicy
       if dashboard.update(image_upload_params)
         render json: { image: dashboard.image&.url }
       else
@@ -15,13 +14,22 @@ module Api
     end
 
     def refresh
-      authorize Dashboard, :update?, policy_class: ::Api::Administration::DashboardPolicy
       Dashboards::RefreshData.call(dashboard) do
         on(:ok) { head :ok }
         on(:error) do |message|
           render json: { errors: message }, status: 422
         end
       end
+    end
+
+    def powerbi_capacities
+      capacities = PowerBi::GetCapacities.call!.filter_map do |c|
+        next unless c['sku'].starts_with?('A')
+
+        { id: c['id'], name: c['displayName'] }
+      end
+
+      render json: capacities
     end
 
     def context

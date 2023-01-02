@@ -13,7 +13,20 @@ import {
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 
 const VERTICAL_SPACE_BETWEEN_PAGES = 95
+const DATA_CONFIFURATION_REF = 'ref'
+const SUPPORTED_DATA_CONFIFURATION = ['formula', 'mapped_value']
 
+interface DataConfigurationItem {
+  key: string,
+  type: string
+  label: string,
+  ref?: string,
+  ref_id?: string
+}
+interface DataConfigurationSection {
+  label: string,
+  data: DataConfigurationItem
+}
 interface State {
   id: number | null,
   loaded: boolean,
@@ -32,7 +45,10 @@ interface State {
   },
   dimension_ids: [],
   completed_assessments: [],
-  data_configuration: string,
+  data_configuration: {
+    refs: DataConfigurationItem[],
+    sections: DataConfigurationSection[]
+  },
   data_sheet_columns: [],
   relationships: [],
   pages: number[],
@@ -75,7 +91,7 @@ export const defaultState: State = {
   },
   dimension_ids: [],
   completed_assessments: [],
-  data_configuration: '',
+  data_configuration: { refs: [], sections: [] },
   data_sheet_columns: [],
   relationships: [],
   pages: [],
@@ -100,6 +116,23 @@ export const defaultState: State = {
   pdfExport: false,
 }
 
+
+export const getSupportedDataConfiguration = (state) => {
+  const { data_configuration } = state.report.builder
+  if (!data_configuration || !data_configuration.sections) return []
+  const items = _.flatten(data_configuration.sections.map(section => section.data))
+    .map((item: DataConfigurationItem) => {
+      if (SUPPORTED_DATA_CONFIFURATION.includes(item.type)) return item
+      if (item.type !== DATA_CONFIFURATION_REF) return null
+
+      return _.find(
+        data_configuration.refs,
+        ref => (SUPPORTED_DATA_CONFIFURATION.includes(ref.type) && ref.ref_id === item.ref),
+      )
+    })
+
+  return _.compact(items)
+}
 
 const HANDLERS = {
   [INIT]: (state: State, { data, campaignId }: InitType) => {

@@ -89,8 +89,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -279,7 +277,8 @@ CREATE TABLE public.assessments (
     poster character varying,
     project_id bigint,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    external_settings jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -429,16 +428,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -588,7 +587,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -2480,6 +2480,37 @@ ALTER SEQUENCE public.pearson_user_assessments_id_seq OWNED BY public.pearson_us
 
 
 --
+-- Name: power_bi_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.power_bi_settings (
+    id bigint NOT NULL,
+    capacity_id character varying,
+    workspace_id character varying,
+    project_id bigint
+);
+
+
+--
+-- Name: power_bi_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.power_bi_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: power_bi_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.power_bi_settings_id_seq OWNED BY public.power_bi_settings.id;
+
+
+--
 -- Name: privacy_consents; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2938,6 +2969,41 @@ ALTER SEQUENCE public.relationships_id_seq OWNED BY public.relationships.id;
 
 
 --
+-- Name: report_approval_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.report_approval_settings (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    report_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    qc_user_ids bigint[] DEFAULT '{}'::bigint[],
+    approver_user_ids bigint[] DEFAULT '{}'::bigint[],
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[]
+);
+
+
+--
+-- Name: report_approval_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.report_approval_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: report_approval_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.report_approval_settings_id_seq OWNED BY public.report_approval_settings.id;
+
+
+--
 -- Name: report_families; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3016,21 +3082,21 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
     description character varying,
     poster character varying,
-    require_approval boolean DEFAULT false,
     created_by_id bigint,
     updated_by_id bigint,
-    data_only boolean DEFAULT false
+    data_only boolean DEFAULT false,
+    external_settings jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3955,8 +4021,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -4310,6 +4375,78 @@ ALTER SEQUENCE public.user_profiles_id_seq OWNED BY public.user_profiles.id;
 
 
 --
+-- Name: user_report_comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_report_comments (
+    id bigint NOT NULL,
+    user_report_id bigint,
+    reports_module_id bigint,
+    creator_id bigint,
+    text character varying,
+    resolved boolean DEFAULT false,
+    deleted_at timestamp without time zone,
+    deleted_by_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    parent_id bigint
+);
+
+
+--
+-- Name: user_report_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_report_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_report_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_report_comments_id_seq OWNED BY public.user_report_comments.id;
+
+
+--
+-- Name: user_report_events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_report_events (
+    id bigint NOT NULL,
+    user_report_id bigint,
+    event_type character varying,
+    initiator_id bigint,
+    details jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_report_events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_report_events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_report_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_report_events_id_seq OWNED BY public.user_report_events.id;
+
+
+--
 -- Name: user_reports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4325,8 +4462,10 @@ CREATE TABLE public.user_reports (
     user_access boolean DEFAULT false,
     report_family_id bigint,
     pdf_path character varying,
-    approved boolean DEFAULT false,
-    external_added boolean DEFAULT false
+    external_added boolean DEFAULT false,
+    approval_status character varying DEFAULT 'not_ready'::character varying,
+    approval_status_updated_at timestamp without time zone,
+    approval_status_owner_id bigint
 );
 
 
@@ -4439,10 +4578,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -5013,6 +5152,13 @@ ALTER TABLE ONLY public.pearson_user_assessments ALTER COLUMN id SET DEFAULT nex
 
 
 --
+-- Name: power_bi_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.power_bi_settings ALTER COLUMN id SET DEFAULT nextval('public.power_bi_settings_id_seq'::regclass);
+
+
+--
 -- Name: privacy_consents id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5101,6 +5247,13 @@ ALTER TABLE ONLY public.registration_codes ALTER COLUMN id SET DEFAULT nextval('
 --
 
 ALTER TABLE ONLY public.relationships ALTER COLUMN id SET DEFAULT nextval('public.relationships_id_seq'::regclass);
+
+
+--
+-- Name: report_approval_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_approval_settings ALTER COLUMN id SET DEFAULT nextval('public.report_approval_settings_id_seq'::regclass);
 
 
 --
@@ -5360,6 +5513,20 @@ ALTER TABLE ONLY public.user_assessments ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.user_profiles ALTER COLUMN id SET DEFAULT nextval('public.user_profiles_id_seq'::regclass);
+
+
+--
+-- Name: user_report_comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments ALTER COLUMN id SET DEFAULT nextval('public.user_report_comments_id_seq'::regclass);
+
+
+--
+-- Name: user_report_events id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_events ALTER COLUMN id SET DEFAULT nextval('public.user_report_events_id_seq'::regclass);
 
 
 --
@@ -5925,6 +6092,14 @@ ALTER TABLE ONLY public.pearson_user_assessments
 
 
 --
+-- Name: power_bi_settings power_bi_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.power_bi_settings
+    ADD CONSTRAINT power_bi_settings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: privacy_consents privacy_consents_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6026,6 +6201,14 @@ ALTER TABLE ONLY public.registration_codes
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT relationships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: report_approval_settings report_approval_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_approval_settings
+    ADD CONSTRAINT report_approval_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6330,6 +6513,22 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.user_profiles
     ADD CONSTRAINT user_profiles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_report_comments user_report_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments
+    ADD CONSTRAINT user_report_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_report_events user_report_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_events
+    ADD CONSTRAINT user_report_events_pkey PRIMARY KEY (id);
 
 
 --
@@ -7375,6 +7574,13 @@ CREATE INDEX index_pearson_user_assessments_on_user_assessment_id ON public.pear
 
 
 --
+-- Name: index_power_bi_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_power_bi_settings_on_project_id ON public.power_bi_settings USING btree (project_id);
+
+
+--
 -- Name: index_privacy_consents_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7519,6 +7725,27 @@ CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.re
 --
 
 CREATE INDEX index_relationships_on_campaign_id ON public.relationships USING btree (campaign_id);
+
+
+--
+-- Name: index_report_approval_settings_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_report_approval_settings_on_campaign_id ON public.report_approval_settings USING btree (campaign_id);
+
+
+--
+-- Name: index_report_approval_settings_on_campaign_id_and_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_report_approval_settings_on_campaign_id_and_report_id ON public.report_approval_settings USING btree (campaign_id, report_id);
+
+
+--
+-- Name: index_report_approval_settings_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_report_approval_settings_on_report_id ON public.report_approval_settings USING btree (report_id);
 
 
 --
@@ -7984,6 +8211,62 @@ CREATE INDEX index_user_profiles_on_user_id ON public.user_profiles USING btree 
 
 
 --
+-- Name: index_user_report_comments_on_creator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_comments_on_creator_id ON public.user_report_comments USING btree (creator_id);
+
+
+--
+-- Name: index_user_report_comments_on_deleted_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_comments_on_deleted_by_id ON public.user_report_comments USING btree (deleted_by_id);
+
+
+--
+-- Name: index_user_report_comments_on_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_comments_on_parent_id ON public.user_report_comments USING btree (parent_id);
+
+
+--
+-- Name: index_user_report_comments_on_reports_module_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_comments_on_reports_module_id ON public.user_report_comments USING btree (reports_module_id);
+
+
+--
+-- Name: index_user_report_comments_on_user_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_comments_on_user_report_id ON public.user_report_comments USING btree (user_report_id);
+
+
+--
+-- Name: index_user_report_events_on_initiator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_events_on_initiator_id ON public.user_report_events USING btree (initiator_id);
+
+
+--
+-- Name: index_user_report_events_on_user_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_events_on_user_report_id ON public.user_report_events USING btree (user_report_id);
+
+
+--
+-- Name: index_user_reports_on_approval_status_owner_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_reports_on_approval_status_owner_id ON public.user_reports USING btree (approval_status_owner_id);
+
+
+--
 -- Name: index_user_reports_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8222,6 +8505,14 @@ ALTER TABLE ONLY public.sms_records
 
 ALTER TABLE ONLY public.profile_settings
     ADD CONSTRAINT fk_rails_008694ea3f FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: report_approval_settings fk_rails_0338cad702; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_approval_settings
+    ADD CONSTRAINT fk_rails_0338cad702 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -8481,6 +8772,14 @@ ALTER TABLE ONLY public.campaign_reports
 
 
 --
+-- Name: power_bi_settings fk_rails_2c58befa94; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.power_bi_settings
+    ADD CONSTRAINT fk_rails_2c58befa94 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: innovation_styles_factors fk_rails_2d436cbfdb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8494,6 +8793,14 @@ ALTER TABLE ONLY public.innovation_styles_factors
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_2f45aa472a FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: report_approval_settings fk_rails_2f5e81c8e9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_approval_settings
+    ADD CONSTRAINT fk_rails_2f5e81c8e9 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -8665,6 +8972,14 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 
 
 --
+-- Name: user_report_comments fk_rails_4a3b56dde9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments
+    ADD CONSTRAINT fk_rails_4a3b56dde9 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: dashboards fk_rails_4d4d1beb84; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8726,6 +9041,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 ALTER TABLE ONLY public.saville_user_assessments
     ADD CONSTRAINT fk_rails_60f7c22dd4 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_reports fk_rails_6280270170; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reports
+    ADD CONSTRAINT fk_rails_6280270170 FOREIGN KEY (approval_status_owner_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -8945,6 +9268,14 @@ ALTER TABLE ONLY public.user_assessments
 
 
 --
+-- Name: user_report_events fk_rails_899d2b3ded; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_events
+    ADD CONSTRAINT fk_rails_899d2b3ded FOREIGN KEY (initiator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: privacy_consents fk_rails_8a77231dc4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9065,6 +9396,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: user_report_comments fk_rails_9a8fd863c2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments
+    ADD CONSTRAINT fk_rails_9a8fd863c2 FOREIGN KEY (parent_id) REFERENCES public.user_report_comments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports fk_rails_9c1b8d7e35; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9094,6 +9433,14 @@ ALTER TABLE ONLY public.saville_report_settings
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_a0f5b5ec09 FOREIGN KEY (relationship_id) REFERENCES public.relationships(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: user_report_comments fk_rails_a10e238eba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments
+    ADD CONSTRAINT fk_rails_a10e238eba FOREIGN KEY (reports_module_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
 
 
 --
@@ -9441,6 +9788,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: user_report_comments fk_rails_dc18fe0d04; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments
+    ADD CONSTRAINT fk_rails_dc18fe0d04 FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_histories fk_rails_dee061b324; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9481,6 +9836,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: user_report_comments fk_rails_e471e365a3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments
+    ADD CONSTRAINT fk_rails_e471e365a3 FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: threesixty_evaluators fk_rails_e96676a310; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9502,6 +9865,14 @@ ALTER TABLE ONLY public.bulk_reports
 
 ALTER TABLE ONLY public.assigns_reports
     ADD CONSTRAINT fk_rails_eb27834cf2 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: user_report_events fk_rails_eb9cac4a43; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_events
+    ADD CONSTRAINT fk_rails_eb9cac4a43 FOREIGN KEY (user_report_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -10124,9 +10495,20 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220829100916'),
 ('20220908094242'),
 ('20220909080050'),
+('20220920101241'),
 ('20220927143437'),
 ('20220927180013'),
 ('20220929123807'),
-('20220929190534');
+('20220929190534'),
+('20221102140423'),
+('20221102141534'),
+('20221102142001'),
+('20221108082420'),
+('20221122133505'),
+('20221122172755'),
+('20221122172756'),
+('20221205213642'),
+('20221213173037'),
+('20221214083458');
 
 

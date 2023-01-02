@@ -25,7 +25,11 @@ module Reports
     end
 
     def factors
-      return SavilleFactor.get_factors(object.saville_assessment_id.downcase) if object.saville?
+      if object.saville?
+        return SavilleFactor.get_factors(
+          object.external_settings[:assessment_id].upcase
+        )
+      end
 
       if object.mindmill?
         external_assessment = Settings.providers.mindmill.assessments.detect { |a| a.id == object.mindmill_id }
@@ -33,7 +37,7 @@ module Reports
       end
       if object.hogan?
         external_assessment = Settings.providers.hogan.assessments.
-                              detect { |a| a.id == object.hogan_assessment_setting.hogan_assessment_id }
+                              detect { |a| a.id == object.external_settings[:assessment_id] }
         return external_assessment.factors.flatten.map(&:to_h)
       end
       []

@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import logger from 'redux-logger'
 import api from 'middleware/api'
 
 let composeEnhancers = compose
@@ -14,7 +13,7 @@ if (__DEV__) {
 const store = createStore(
   () => ({}),
   {},
-  composeEnhancers(applyMiddleware(api, logger)),
+  composeEnhancers(applyMiddleware(api)),
 )
 
 export default store

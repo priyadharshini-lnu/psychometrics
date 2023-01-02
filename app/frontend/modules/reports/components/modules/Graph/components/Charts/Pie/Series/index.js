@@ -11,6 +11,7 @@ import GraphicSlider from '../../Base/Series/GraphicSlider'
 import Timing from '../../Base/Series/Timing'
 import TextEntry from '../../Base/Series/TextEntry'
 import DataSheet from '../../Base/Series/DataSheet'
+import ReportData from '../../Base/Series/ReportData'
 
 import PickGroupRank from './PickGroupRank'
 import HotSpot from './HotSpot'
@@ -33,4 +34,5 @@ export default {
   ExternalFactor,
   SavilleFactor,
   DataSheet,
+  ReportData,
 }

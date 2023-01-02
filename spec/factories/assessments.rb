@@ -17,33 +17,34 @@ FactoryBot.define do
       category { Assessment::CATEGORIES[:hogan] }
       type { ::Assessments::Hogan }
       dimension { nil }
-
-      after(:create) { |assessment| create(:hogan_assessment_setting, assessment: assessment) }
+      external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :iiht do
       category { Assessment::CATEGORIES[:iiht] }
       type { ::Assessments::Iiht }
       dimension { nil }
-      after(:create) { |assessment| create(:iiht_assessment_setting, assessment: assessment) }
+      external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :saville do
       category { Assessment::CATEGORIES[:saville] }
       type { ::Assessments::Saville }
       dimension { nil }
-      after(:create) { |assessment| create(:saville_assessment_setting, assessment: assessment) }
+      external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :pearson do
       category { Assessment::CATEGORIES[:pearson] }
       type { ::Assessments::Pearson }
       dimension { nil }
-      after(:create) { |assessment| create(:pearson_assessment_setting, assessment: assessment) }
+      external_settings { { assessment_id: 'assessmentId' } }
     end
   end
+
   factory :assessment_hogan, class: ::Assessments::Hogan do
     sequence(:name) { |i| "hogan assessment #{i}" }
     extra { { icon_color: '#845EC2' } }
+    external_settings { { assessment_id: 'assessmentId' } }
   end
 end

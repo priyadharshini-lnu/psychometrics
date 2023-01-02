@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class TextModuleOverridesController < Administration::Campaigns::BaseController
-      before_action :set_resource, only: %i[show destroy download pdf_preview toggle_user_access]
+      before_action :set_resource, only: %i[show destroy download pdf_preview toggle_user_access disapprove]
       before_action :find_user_report, only: %i[create update destroy]
       before_action :pundit_authorize
 
@@ -12,7 +12,6 @@ module Administration
         if form.valid?
           result = TextModuleOverride.create!(form.attributes)
           audit! :create, result, payload: params.permit!, campaign: campaign
-          @user_report.update!(approved: false)
           render json: result
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -25,7 +24,6 @@ module Administration
           override = TextModuleOverride.find(params[:id])
           override.update!(form.attributes.merge(approved: false))
           audit! :update, override, payload: params.permit!, campaign: campaign
-          @user_report.update!(approved: false)
           render json: override
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -38,10 +36,16 @@ module Administration
         render json: result
       end
 
+      def disapprove
+        text_overrider = TextModuleOverride.find(params[:id])
+        text_overrider.update(approved: false)
+        audit! :disapprove, text_overrider, payload: params.permit!, campaign: campaign
+        render json: text_overrider
+      end
+
       def destroy
         text_overrider = TextModuleOverride.find(params[:id])
         text_overrider.destroy!
-        @user_report.update!(approved: false)
         head :ok
       end
 
@@ -51,7 +55,8 @@ module Administration
         authorize(
           resource || resource_class,
           nil,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          user_report_id: params[:user_report_id]
         )
       end
 

@@ -27,20 +27,19 @@ export const Users = () => {
     return [pathname]
   }
 
+  const menuItems = [
+    { key: 'participants', label: I18n.t('administration.breadcrumbs.participants') },
+    { key: 'assessors', label: I18n.t('administration.breadcrumbs.assessors') },
+  ]
+
   return (
     <div>
       <Menu
+        items={menuItems}
         onSelect={handleOnSelect}
         selectedKeys={handleSelectedKeys()}
         mode="horizontal"
-      >
-        <Menu.Item key="participants">
-          {I18n.t('administration.breadcrumbs.participants')}
-        </Menu.Item>
-        <Menu.Item key="assessors">
-          {I18n.t('administration.breadcrumbs.assessors')}
-        </Menu.Item>
-      </Menu>
+      />
       <RouteList
         routes={routes}
         urlPrefix={`${settings.urlPrefix}/:projectId/users`}

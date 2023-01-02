@@ -8,9 +8,9 @@ export const CHANGE_SORT = 'modules/admin/CHANGE_SORT'
 export const REMOVE_SORT = 'modules/admin/REMOVE_SORT'
 export const SET_TABLE_CONFIG = 'modules/admin/SET_TABLE_CONFIG'
 
-export const initTable = (tableName: string, maintainHistory = false) => ({
+export const initTable = (tableName: string, maintainHistory = false, pageSize: number) => ({
   type: INIT_TABLE,
-  payload: { tableName, maintainHistory },
+  payload: { tableName, maintainHistory, pageSize },
 })
 
 export const changeFilter = (tableName: string, filterName: string, filterValue: string) => ({

@@ -12,9 +12,9 @@ module Hogan
 
       # Hogan settings
       @hogan_group_name = project.hogan_group_name
-      @hogan_assessment_id = assign.assessment.hogan_assessment_setting.hogan_assessment_id
-      @hogan_report_id = report.hogan_report_setting.hogan_report_id
-      @hogan_norm_id = report.hogan_report_setting.hogan_norm_id
+      @hogan_assessment_id = assign.assessment.external_settings[:assessment_id]
+      @hogan_report_id = report.external_settings[:report_id]
+      @hogan_norm_id = report.external_settings[:norm_id]
       @credentials = membership.hogan_credential
       @hogan_participant_id = membership.hogan_credential.participant_id
     end

@@ -46,8 +46,8 @@ module Services
         Services::Hogan::Api::Json::AddParticipantAssessment.call!(
           participant_id: context.membership.hogan_credential.participant_id,
           group: context.group,
-          assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
-          form_id: context.assessment.hogan_assessment_setting.hogan_form_id,
+          assessment_id: context.assessment.external_settings[:assessment_id],
+          form_id: context.assessment.external_settings[:form_id],
           provider: context.credentials&.provider
         )
       end
@@ -58,10 +58,10 @@ module Services
 
           Services::Hogan::Api::Json::AddParticipantReport.call!(
             group: context.group,
-            norm_id: report.hogan_report_setting.hogan_norm_id,
-            language_id: report.hogan_report_setting.hogan_language_id,
-            assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
-            report_id: report.hogan_report_setting.hogan_report_id,
+            norm_id: report.external_settings[:norm_id],
+            language_id: report.external_settings[:language_id],
+            assessment_id: context.assessment.external_settings[:assessment_id],
+            report_id: report.external_settings[:report_id],
             participant_id: context.membership.hogan_credential.participant_id,
             provider: context.credentials&.provider
           )

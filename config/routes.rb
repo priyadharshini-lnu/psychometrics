@@ -150,6 +150,12 @@ Rails.application.routes.draw do
         resources :sheets, concerns: :sheet_management
         resources :sheet_rows, concerns: :sheet_row_management
 
+        resources :stats, only: %i[index] do
+          collection do
+            post :timeseries
+          end
+        end
+
         resources :registration_codes do
           member do
             get :download_qrcode
@@ -170,6 +176,7 @@ Rails.application.routes.draw do
           collection do
             get :report_families
             get :assessments_and_reports
+            get :other
             post :regenerate
             post :bulk_download
           end
@@ -185,6 +192,11 @@ Rails.application.routes.draw do
             get :pdf_preview
             get :download
             put :approve
+            put :start_qc
+            put :abort_qc
+            put :send_for_approval
+            put :request_changes
+            put :remove_approval
             patch :toggle_user_access
           end
           collection do
@@ -195,6 +207,9 @@ Rails.application.routes.draw do
         resources :text_module_overrides do
           collection do
             post :approve
+          end
+          member do
+            delete :disapprove
           end
         end
         resources :users do
@@ -227,6 +242,8 @@ Rails.application.routes.draw do
             resources :user_assessments, only: %i[index create] do
               member do
                 put :reset
+                put :rescore
+                put :reset_progress
               end
               collection do
                 delete :bulk_delete
@@ -253,6 +270,9 @@ Rails.application.routes.draw do
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
+          end
+          collection do
+            get :other
           end
         end
         resources :user_assessments, only: [:destroy] do
@@ -736,6 +756,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
+    get 'report_approvals/*all', to: 'report_approvals#app', constraints: { all: /.*/, format: :html }
+
     resources :report_families, except: [:show] do
       member do
         get :sidebar
@@ -778,6 +801,10 @@ Rails.application.routes.draw do
       resources :assessments, only: [] do
         post :export
         get :new
+        post :import
+      end
+      resources :questions, only: [] do
+        post :export
         post :import
       end
       resources :reports, only: [] do
@@ -1114,6 +1141,24 @@ Rails.application.routes.draw do
           jsonapi_resources :dashboards, only: %i[index show create update] do
             patch :upload_image
             post :refresh
+            collection do
+              get :powerbi_capacities
+            end
+          end
+
+          resources :campaigns, only: [] do
+            jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
+          end
+          jsonapi_resources :reports, only: [:index]
+          resources :user_reports, only: [] do
+            jsonapi_resources :user_report_comments, only: %i[index create update destroy]
+          end
+          jsonapi_resources :report_approvals, only: %i[index] do
+            collection do
+              get :search_campaign
+              get :search_report
+              get :search_user
+            end
           end
         end
       end

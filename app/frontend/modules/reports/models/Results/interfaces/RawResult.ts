@@ -6,6 +6,10 @@ export default interface RawResult {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any
   }
+  report_data: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any
+  }
   results: {
     [questionId: string]: QuestionsResult
   }

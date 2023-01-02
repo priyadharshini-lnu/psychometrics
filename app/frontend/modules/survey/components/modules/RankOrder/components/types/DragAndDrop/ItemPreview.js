@@ -92,7 +92,7 @@ class ItemPreview extends Component {
 
     return (
       <div className={styles.item} style={getItemStyles(currentOffset, parentOffset, initialOffset)}>
-        <span className={`fa fa-bars ${styles.icon}`} />
+        <span className={`fa fa-arrows-v ${styles.icon}`} />
         <div className={styles.number}>{number}</div>
         <div>
           <div className={styles.text}>{text}</div>

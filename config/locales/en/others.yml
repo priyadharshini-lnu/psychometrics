@@ -651,6 +651,7 @@ en:
         import_accesssheet: Import Accessheet
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
+        import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
         import_sms_invites: Import SMS Invite
@@ -706,6 +707,7 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       rescore: Rescore
+      submit_evaluation: Submit Evaluation
     audio_response:
       pause: Pause
       permission_denied_message: Please enable microphone permission in your browser to record the answer
@@ -826,7 +828,10 @@ en:
       title: Assessment group
     menu:
       manage: Manage
+      report_approval: Report Approval Settings
       sequencing: Sequencing
+    report_approval:
+      add_settings: Add Setting
     sequencing:
       add_group: Add group
       assessments: Assessments
@@ -952,7 +957,7 @@ en:
       submit: Submit
       title: Create Password
     sign_in: Sign In
-    sign_out: Sign Out
+    sign_out: Login as different user
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
   browsers:
@@ -1043,6 +1048,14 @@ en:
     welcome: Welcome
   campaign_assessment:
     actions:
+      export_external: External
+      export_normed: Normed Factor Scores
+      export_raw_labels: Raw (with labels)
+      export_raw_scores: Raw Factor Scores
+      export_raw_without_labels: Raw (without labels)
+      export_scoring: Scoring
+      import_raw: Raw
+      import_scoring: Scoring
       rescore: Rescore Assessment
     assessments_heading: Your Tasks
     column:
@@ -1183,6 +1196,8 @@ en:
   campaigns:
     assessments_and_reports:
       assessor_assessments: Assessor Assessments
+      other_assessments: Other Assessments
+      other_reports: Other Reports
   checking_wizard:
     audio_check:
       access: Access
@@ -1249,18 +1264,24 @@ en:
       import: Import
       remove: Remove
       reset: Reset
+      resolve: Resolve
+      save: Save
       search: Search
       send: Send
       update: Update
       upload: Upload
     column:
       action: Action
+      approval_notification_list: Approval Notification Users List
+      approvers_list: Approvers List
       category: Category
       completion_count: Completion Count
       completion_status: Completion Status
       created_at: Created at
       id: Id
       name: Name
+      qc_user_list: QC Users List
+      report_id: Report Id
       status: Status
     model:
       admins: Admins
@@ -1295,6 +1316,7 @@ en:
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
+    delete_comment: Are you sure you want to delete this comment?
   currencies:
     AED: AED
     BHD: BHD
@@ -1377,12 +1399,15 @@ en:
       confirmation_instructions:
         subject: Confirmation instructions
       invitation_instructions:
-        accept: Accept invitation
-        accept_until: This invitation will be due in %{due_date}.
-        hello: Hello %{email}
-        ignore: If you don't want to accept the invitation, please ignore this email.<br />\nYour account won't be created until you access the link above and set your password.
-        someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
-        subject: The Talent Enterprise – Your Link to Thriving Index
+        body: |
+          Hello %{name},
+          You have been added to Lighthouse as Admin for the following section
+        login: Sign In to Lighthouse
+        sections:
+          campaign: 'Campaign: %{section_name}'
+          client: 'Client Tenancy: %{section_name}'
+          project: 'Project: %{section_name}'
+        subject: Invitation to Lighthouse
       password_change:
         body: |
           Hello %{name}!
@@ -1432,6 +1457,7 @@ en:
       updated: Your password has been changed successfully. You are now signed in.
       updated_not_active: Your password has been changed successfully.
     registrations:
+      communication_not_setup_error: Registration email communication is not setup, please contact the administrator of this project.
       destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
       new:
         email: Email Address
@@ -1495,6 +1521,9 @@ en:
       filled?: can't be blank
       key?: can't be blank
       missed?: can't be blank
+      report_approval_settings:
+        report_exists: Report approval setting for this report already exists.
+        validates_admins: Admins don't have access to the campaign.
   ecommerce:
     carts:
       show:
@@ -1986,6 +2015,11 @@ en:
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
+  report_approvals:
+    tabs:
+      all: All
+      approved: Approved
+      my_tasks: My Tasks
   reports:
     actions:
       add: Add Report

@@ -78,6 +78,10 @@ module Api
 
       private
 
+      def user_id
+        params[:id]
+      end
+
       def pundit_authorize
         authorize(
           User,

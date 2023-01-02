@@ -18,6 +18,19 @@ module Users
                      I18n.t('activemodel.errors.models.register.attributes.email.in_use'))
         end
       end
+
+      def validate_communication_email
+        return if errors.messages.present?
+
+        unless Communication.new_users_recipients.exists?(campaign: campaign)
+          errors.add(:base,
+                     I18n.t('devise.registrations.communication_not_setup_error'))
+        end
+      end
+
+      def campaign
+        raise NotImplementedError
+      end
     end
   end
 end

@@ -50,7 +50,7 @@ describe Campaigns::Reports::Add do
     form = Campaigns::Reports::Form.new(report_ids: report.id, report_access: { report.id.to_s => true })
     described_class.call!(form, campaign)
 
-    expect(assessment.campaign_assessments.first.external_norm_id).to eq(assessment.saville_norm_id)
+    expect(assessment.campaign_assessments.first.external_norm_id).to eq(assessment.external_settings[:norm_id])
   end
 
   it "doesn't call Campaigns::Users::AddReport record for campaign_user if operation is 'skip_existing'" do

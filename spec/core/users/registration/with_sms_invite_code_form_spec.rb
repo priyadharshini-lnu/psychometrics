@@ -48,6 +48,9 @@ describe Users::Registration::WithSmsInviteCodeForm do
   it 'valid? returns true is sms_invite_code is present and is not expired' do
     campaign = create(:campaign, project: project)
     create(:sms_invite, campaign: campaign, code: 'abc', expiry: 5.days.from_now)
+    create(
+      :communication, kind: :invitation, recipients: :new_users, project_campaign: campaign
+    )
     form = described_class.new(valid_attrs.merge(sms_invite_code: 'abc')).with_context(project: project)
 
     expect(form.valid?).to eq(true)

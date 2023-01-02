@@ -3,7 +3,7 @@ import {
   Row, Col, Avatar, Input, message,
 } from 'antd'
 
-import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+import { UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
 import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'

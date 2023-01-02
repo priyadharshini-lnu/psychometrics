@@ -49,7 +49,8 @@ module Administration
             'view_dashboard',
             'view_accesssheet',
             'view_accesssheet_settings',
-            'view_assessors'
+            'view_assessors',
+            'stats'
           ],
           {
             project_id: project.id,

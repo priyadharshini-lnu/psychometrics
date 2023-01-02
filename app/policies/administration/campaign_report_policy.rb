@@ -26,6 +26,10 @@ module Administration
       )
     end
 
+    def other?
+      assessments_and_reports?
+    end
+
     def export?
       @user.is?(:superadmin) || @user.has_permission?(
         :results, :report_data, project_id: project_id, campaign_id: campaign_id

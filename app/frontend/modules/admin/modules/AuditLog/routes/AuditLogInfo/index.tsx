@@ -47,7 +47,9 @@ const AuditLogList: React.FC<Props> = ({
         <Descriptions.Item label={I18n.t('administration.audit_log.action')}>{record.action}</Descriptions.Item>
         <Descriptions.Item label={I18n.t('administration.audit_log.type')}>{record.recordType}</Descriptions.Item>
         <Descriptions.Item label={I18n.t('administration.audit_log.record_id')}>{record.recordId}</Descriptions.Item>
-        <Descriptions.Item label={I18n.t('administration.audit_log.user')}>{record.userName}</Descriptions.Item>
+        <Descriptions.Item label={I18n.t('administration.audit_log.user')}>
+          {record.user ? `${record.user.fullName} (${record.user.email})` : record.userId}
+        </Descriptions.Item>
         {record.client && (
           <Descriptions.Item label="Client">
             <a href={`/administration/clients/${record.client.id}/projects`}>
@@ -80,12 +82,14 @@ const AuditLogList: React.FC<Props> = ({
         )}
         <Descriptions.Item label={I18n.t('administration.audit_log.payload')}>
           <CodeMirror
-            value={JSON.stringify(record.payload)}
+            value={JSON.stringify(record.payload, null, 2)}
+            className={styles.payload}
             options={{
               mode: {
                 name: 'javascript',
                 json: true,
               },
+              readOnly: true,
               lineWrapping: true,
             }}
           />

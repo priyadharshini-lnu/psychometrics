@@ -4,7 +4,7 @@ import {
   Row, Col, Layout, Skeleton, Button, Tooltip,
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
-import { RootState } from 'modules/user/core/rootReducers'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import { MediaQueryContext } from 'glint'
 import _ from 'lodash'
 import cs from 'classnames'

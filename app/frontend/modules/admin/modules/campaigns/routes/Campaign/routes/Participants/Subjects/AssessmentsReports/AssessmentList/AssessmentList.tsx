@@ -6,6 +6,8 @@ import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MenuItemType } from 'rc-menu/lib/interface'
 import _ from 'lodash'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { PropsFromRedux } from './connect'
@@ -202,67 +204,58 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
+  const responseGroupItems: MenuItemType[] = []
+  permissions.resetResults && responseGroupItems.push({
+    key: 'reset',
+    label: I18n.t('common.actions.reset'),
+  })
+  permissions.rescoreResponse && responseGroupItems.push({
+    key: 'rescore',
+    label: I18n.t('assessments.actions.rescore'),
+  })
+  const menuItems: ItemType[] = [
+    {
+      type: 'group',
+      key: 'response',
+      label: I18n.t('common.text.response'),
+      children: responseGroupItems,
+    },
+    { type: 'divider' },
+  ]
+  permissions.remove && menuItems.push({
+    key: 'remove',
+    label: I18n.t('common.actions.remove'),
+  })
+  permissions.updateAdditionalTime && menuItems.push({
+    key: 'extend',
+    label: I18n.t('assessments.actions.extend_time'),
+  })
+  permissions.resetProgress && menuItems.push({
+    key: 'resetProgress',
+    label: I18n.t('user_assessments.modals.actions.reset_progress.name'),
+  })
+
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'reset') {
+      return handleReset()
+    }
+    if (key === 'rescore') {
+      return handleRescoreResponse()
+    }
+    if (key === 'remove') {
+      return handleDelete()
+    }
+    if (key === 'extend') {
+      return openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })
+    }
+    if (key === 'resetProgress') {
+      return handleResetProgress()
+    }
+  }
+
   return (
-    <Menu>
-      <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-        {permissions.resetResults && (
-          <Menu.Item key="reset">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={handleReset}
-            >
-              {I18n.t('common.actions.reset')}
-            </div>
-          </Menu.Item>
-        )}
-        {permissions.rescoreResponse && (
-          <Menu.Item key="rescore">
-            <div
-              role="button"
-              tabIndex={-1}
-              onClick={handleRescoreResponse}
-            >
-              {I18n.t('assessments.actions.rescore')}
-            </div>
-          </Menu.Item>
-        )}
-      </Menu.ItemGroup>
-      <Menu.Divider />
-      {permissions.remove && (
-        <Menu.Item key="remove">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleDelete}
-          >
-            {I18n.t('common.actions.remove')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.updateAdditionalTime && (
-        <Menu.Item key="extend">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={() => openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })}
-          >
-            {I18n.t('assessments.actions.extend_time')}
-          </div>
-        </Menu.Item>
-      )}
-      {permissions.resetProgress && (
-        <Menu.Item key="resetProgress">
-          <div
-            role="button"
-            tabIndex={-1}
-            onClick={handleResetProgress}
-          >
-            {I18n.t('user_assessments.modals.actions.reset_progress.name')}
-          </div>
-        </Menu.Item>
-      )}
-    </Menu>
+    <Menu items={menuItems} onClick={handleMenuClick} />
   )
 }
 

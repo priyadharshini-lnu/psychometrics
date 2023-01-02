@@ -13,6 +13,7 @@ interface Props {
       choicesTexts: string[]
     }
   }
+  translations: {}
   value: string | string[]
   locked: boolean
   defaultValue?: string
@@ -20,7 +21,7 @@ interface Props {
 }
 
 const MultipleOptions = ({
-  field, value, onChange, defaultValue, locked,
+  field, value, onChange, defaultValue, locked, translations,
 }) => {
   const {
     props: { choices },
@@ -47,7 +48,7 @@ const MultipleOptions = ({
               onChange={change}
             />
             <span className={styles.option}>
-              {field.props.choicesTexts[choiceId]}
+              {translations[`choicesTexts${choiceId + 1}`] || field.props.choicesTexts[choiceId]}
             </span>
           </label>
         )
@@ -57,7 +58,7 @@ const MultipleOptions = ({
 }
 
 export const MultipleChoice: FC<Props> = ({
-  field, value, onChange, defaultValue, locked,
+  field, value, onChange, defaultValue, locked, translations,
 }) => {
   const {
     id,
@@ -83,7 +84,7 @@ export const MultipleChoice: FC<Props> = ({
                 onChange={change}
               />
               <span className={styles.option}>
-                {field.props.choicesTexts[choiceId]}
+                {translations[`choicesTexts${choiceId + 1}`] || field.props.choicesTexts[choiceId]}
               </span>
             </label>
           )
@@ -100,6 +101,7 @@ export const MultipleChoice: FC<Props> = ({
         value={value}
         onChange={onChange}
         defaultValue={defaultValue}
+        translations={translations}
       />
     )
   }
@@ -115,7 +117,7 @@ export const MultipleChoice: FC<Props> = ({
         <Select.Option value="">Select...</Select.Option>
         {_.times(choices, choiceId => (
           <Select.Option key={choiceId} value={field.props.choicesTexts[choiceId]}>
-            {field.props.choicesTexts[choiceId]}
+            {translations[`choicesTexts${choiceId + 1}`] || field.props.choicesTexts[choiceId]}
           </Select.Option>
         ))}
       </Select>

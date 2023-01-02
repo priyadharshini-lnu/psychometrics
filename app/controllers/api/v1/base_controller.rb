@@ -26,8 +26,7 @@ module Api
       def user
         @user ||=
           begin
-            user_id = params[:user_id] || params[:id]
-            u       = ::Users::Regular.find_by(project_id: project.id, id: user_id)
+            u = ::Users::Regular.find_by(project_id: project_id, id: user_id)
             raise Api::Errors::ResourceNotFound, "User with id=#{user_id} was not found" unless u
 
             u
@@ -44,8 +43,28 @@ module Api
         project || raise(Api::Errors::ResourceNotFound, "Project with id=#{project_id} was not found")
       end
 
+      def ensure_campaign
+        if params[:campaign_id]
+          @campaign = policy_scope(
+            Campaign,
+            policy_scope_class: ::Administration::CampaignPolicy::Scope
+          ).find_by(id: params[:campaign_id])
+          unless @campaign
+            raise(Api::Errors::ResourceNotFound,
+                  "Campaign with id=#{params[:campaign_id]} was not found")
+          end
+        else
+          @campaign = user.campaigns.last
+          raise(Api::Errors::ResourceNotFound, 'User does not belong to any campaign') unless @campaign
+        end
+      end
+
       def project_id
-        params[:project_id] || params[:id]
+        params[:project_id]
+      end
+
+      def user_id
+        params[:user_id]
       end
 
       delegate :project_membership, to: :user

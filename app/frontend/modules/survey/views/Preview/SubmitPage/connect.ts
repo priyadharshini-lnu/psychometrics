@@ -6,7 +6,7 @@ import {
   nextPage, prevPage,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from 'modules/survey/core/rootReducers'
-import { fetchCampaignOptions } from 'modules/user/modules/campaigns/core/campaign'
+import { fetchCampaignOptions } from 'modules/endUser/modules/campaigns/core/campaign'
 import { isConnected } from 'core/connection'
 
 export const connecter = connect(
@@ -19,6 +19,10 @@ export const connecter = connect(
       page: initialized && getCurrentPage(preview),
       I18n: getI18n(preview),
       isDisconnected: !isConnected(state),
+      scoring: preview.scoring,
+      factors: preview.factors,
+      showScoringOnEndPage: preview.showScoringOnEndPage,
+      dbResult: preview.dbResult,
     }
   },
   {

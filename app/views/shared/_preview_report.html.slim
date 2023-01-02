@@ -4,7 +4,8 @@
   data-locales=@data[:locales]
   data-pdf-export="#{@pdf_export}"
   data-skip-logic=params[:skip_logic]
-  data-campaign="#{@data[:campaign] || {}}"]
+  data-campaign="#{@data[:campaign] || {}}"
+  data-user-report-data="#{@data[:user_report_data] || []}"]
 
 = javascript_pack_tag 'vendors2'
 = stylesheet_pack_tag 'vendors2'

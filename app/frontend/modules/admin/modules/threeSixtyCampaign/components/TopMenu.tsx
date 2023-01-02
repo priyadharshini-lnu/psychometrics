@@ -13,6 +13,7 @@ import { get as getCurrentUser } from 'core/currentUser'
 import { RootState } from 'modules/admin/core/rootReducers'
 
 import routeUtils from 'utils/route'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import settings from '../settings'
 
 const { I18n } = window
@@ -53,36 +54,38 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     }
     return undefined
   }
+  const menuItems: ItemType[] = [{
+    key: 'participants',
+    icon: <UserOutlined />,
+    label: I18n.t('administration.threesixty_campaigns.menu.participants.title'),
+  }]
+  if (currentUser.permissions.accessEmailMessages
+    || currentUser.permissions.accessMessagesOptions
+    || currentUser.permissions.accessInstructionMessages) {
+    menuItems.push({
+      key: 'messages/options',
+      icon: <MessageOutlined />,
+      label: I18n.t('administration.threesixty_campaigns.menu.messages.title'),
+    })
+  }
+  currentUser.permissions.editReportOptions && menuItems.push({
+    key: 'reports/options',
+    icon: <PieChartOutlined />,
+    label: I18n.t('administration.threesixty_campaigns.menu.report.title'),
+  })
+  menuItems.push({
+    key: 'datasheets',
+    icon: <DatabaseOutlined />,
+    label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
+  })
 
   return (
     <Menu
+      items={menuItems}
       onSelect={handleOnSelect}
       selectedKeys={getActiveMenuKey(pathname)}
       mode="horizontal"
-    >
-      <Menu.Item key="participants" icon={<UserOutlined />}>
-        {I18n.t('administration.threesixty_campaigns.menu.participants.title')}
-      </Menu.Item>
-      {/* <Menu.Item key="admins">
-        <SolutionOutlined />
-        {I18n.t('common.model.admins')}
-      </Menu.Item> */}
-      {(currentUser.permissions.accessEmailMessages
-        || currentUser.permissions.accessMessagesOptions
-        || currentUser.permissions.accessInstructionMessages) && (
-        <Menu.Item key="messages/options" icon={<MessageOutlined />}>
-          {I18n.t('administration.threesixty_campaigns.menu.messages.title')}
-        </Menu.Item>
-      )}
-      {currentUser.permissions.editReportOptions && (
-        <Menu.Item key="reports/options" icon={<PieChartOutlined />}>
-          {I18n.t('administration.threesixty_campaigns.menu.report.title')}
-        </Menu.Item>
-      )}
-      <Menu.Item key="datasheets" icon={<DatabaseOutlined />}>
-        {I18n.t('administration.threesixty_campaigns.menu.datasheet.title')}
-      </Menu.Item>
-    </Menu>
+    />
   )
 }
 

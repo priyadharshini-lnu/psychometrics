@@ -8,11 +8,11 @@ import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
 
 import { SubHeader } from 'modules/endUser/modules/campaigns/components/SubHeader'
-import { get as getConfig } from 'modules/user/core/config'
-import { RootState } from 'modules/user/core/rootReducers'
+import { get as getConfig } from 'modules/endUser/core/config'
+import { RootState } from 'modules/endUser/core/rootReducers'
 import { get as getCurrentUser } from 'core/currentUser'
-import { get as getCampaign } from 'modules/user/modules/campaigns/core/campaign/selectors'
-import { fetchAssessment } from 'modules/user/modules/campaigns/core/userAssessment'
+import { get as getCampaign } from 'modules/endUser/modules/campaigns/core/campaign/selectors'
+import { fetchAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment'
 
 import styles from './styles.less'
 

@@ -8,7 +8,6 @@ import { MenuTriggerIcon } from 'glint/icons'
 import styles from './styles.less'
 
 const { Sider } = Layout
-const { Item, SubMenu } = Menu
 
 type MenuItem = {
   key: string
@@ -69,26 +68,8 @@ export const PageSider: FC<PageSiderProps> = ({
       openKeys={openKeys}
       onClick={handleClick}
       onOpenChange={onOpenChange}
-    >
-      {items.map((eachItem) => {
-        if (eachItem.children) {
-          return (
-            <SubMenu key={eachItem.key} icon={eachItem.icon} title={eachItem.label}>
-              {eachItem.children.map(menuItem => (
-                <Item key={menuItem.key} icon={menuItem.icon}>
-                  {menuItem.label}
-                </Item>
-              ))}
-            </SubMenu>
-          )
-        }
-        return (
-          <Item key={eachItem.key} icon={eachItem.icon}>
-            {eachItem.label}
-          </Item>
-        )
-      })}
-    </Menu>
+      items={items}
+    />
   )
 
   const logoEle = (
@@ -122,9 +103,11 @@ export const PageSider: FC<PageSiderProps> = ({
             onClose={handleDrawerVisibility}
             className={styles['sider-drawer']}
           >
-            {logoEle}
-            {menu}
-            <div className={styles.sidebarFooter}>{siderFooter && siderFooter(menuCollapsed)}</div>
+            <div className={styles.drawerItemsContainer}>
+              {logoEle}
+              {menu}
+              <div className={styles.sidebarFooter}>{siderFooter && siderFooter(menuCollapsed)}</div>
+            </div>
           </Drawer>
         </>
       ) : (
@@ -132,6 +115,7 @@ export const PageSider: FC<PageSiderProps> = ({
           {siderTrigger}
           <div
             className={cs({
+              [styles.siderItemsContainer]: true,
               [styles['page-sider--expanded']]: !menuCollapsed,
               [styles['page-sider--collapsed']]: menuCollapsed,
             })}

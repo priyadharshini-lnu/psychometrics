@@ -4,6 +4,7 @@ import reduce from 'lodash/reduce'
 import curry from 'lodash/curry'
 import forEach from 'lodash/forEach'
 import { FilterValue } from 'antd/lib/table/interface'
+import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
 
 import { State as TableConfigs } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
@@ -43,6 +44,7 @@ interface SorterProps {
 
 export interface Options {
   maintainHistory: boolean
+  pageSize?: number
   filterPredicates?: Record<string, string>
 }
 
@@ -52,12 +54,12 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
       tables, initTable, changeSort, removeSort, changeFilter, removeFilter,
     } = props
 
-    const { maintainHistory, filterPredicates } = options
+    const { maintainHistory, filterPredicates, pageSize } = options
 
     const tableConfig = tables[tableName]
 
     useEffect(() => {
-      initTable(tableName, maintainHistory)
+      initTable(tableName, maintainHistory, pageSize || DEFAULT_PAGE_SIZE)
     }, [])
 
     if (!tableConfig) {

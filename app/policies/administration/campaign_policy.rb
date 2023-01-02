@@ -8,6 +8,10 @@ module Administration
       )
     end
 
+    def timeseries?
+      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :stats, project_id: project_id)
+    end
+
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :view, campaign_id: record.id
@@ -151,6 +155,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(
         :registration_codes, :view, project_id: project_id, campaign_id: campaign_id
       )
+    end
+
+    def stats?
+      @user.is?(:superadmin) || has_permission?(:campaign, :stats)
     end
 
     def view_dashboard?

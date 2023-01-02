@@ -14,6 +14,7 @@ import TextEntry from './TextEntry'
 import MatrixTable from './MatrixTable'
 import DataSheet from './DataSheet'
 import SavilleFactor from './SavilleFactor'
+import ReportData from './ReportData'
 
 export default {
   Slider,
@@ -32,4 +33,5 @@ export default {
   MatrixTable,
   DataSheet,
   SavilleFactor,
+  ReportData,
 }

@@ -2,23 +2,23 @@ import React, { useEffect } from 'react'
 import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
 } from 'antd'
-import { DownOutlined, ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
+import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { isRtl } from 'utils/locales'
+import { statusMenuItems } from 'modules/endUser/modules/campaigns/common/menuItems'
 import { secondsLeftFromNow } from 'utils/time'
 import { Language } from 'modules/endUser/modules/campaigns/components/Language'
-import store from 'modules/user/store'
-import { CountdownTimer, PageHeader as GlintPageHeader } from 'glint'
+import store from 'modules/endUser/store'
+import { CountdownTimer, PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from 'glint'
 
 import { connect } from 'react-redux'
 import {
   fetchEvaluation, fetchAssessment, clearEvaluation,
   updateStatus,
-} from 'modules/user/modules/campaigns/core/evaluation'
+} from 'modules/endUser/modules/campaigns/core/evaluation'
 import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
 import { getProgress } from 'core/preview/FlowProcessor/selectors'
 import { ResourcesTabs } from '../../components/ResourcesTabs'
@@ -90,20 +90,12 @@ const EvaluationComponent = ({
   }
 
   const StatusMenu = () => (
-    <Menu onClick={(e) => {
-      handleStatusClick(e.key)
-    }}
-    >
-      <Menu.Item key="approved">
-        {I18n.t('threesixty.approved')}
-      </Menu.Item>
-      <Menu.Item key="waiting">
-        {I18n.t('threesixty.waiting')}
-      </Menu.Item>
-      <Menu.Item key="denied">
-        {I18n.t('threesixty.denied')}
-      </Menu.Item>
-    </Menu>
+    <Menu
+      onClick={(e) => {
+        handleStatusClick(e.key)
+      }}
+      items={statusMenuItems}
+    />
   )
 
   const StatusDropdown = () => {
@@ -161,7 +153,6 @@ const EvaluationComponent = ({
   }
 
   if (!loaded || error) { return null }
-  const rtl = isRtl(I18n.uiLocale)
   return (
     <>
       <GlintPageHeader>
@@ -183,11 +174,9 @@ const EvaluationComponent = ({
           className={styles.campaignHeader}
           backIcon={(
             <Space>
-              {rtl ? (
-                <ArrowRightOutlined
-                  className={styles.backIcon}
-                />
-              ) : <ArrowLeftOutlined className={styles.backIcon} />}
+              <DirectionalNavigateBackIcon
+                className={styles.backIcon}
+              />
               <CountdownTimer
                 notificationPoints={[{ completionPercentage: 30, type: 'info' },
                   { completionPercentage: 15, type: 'warning' },

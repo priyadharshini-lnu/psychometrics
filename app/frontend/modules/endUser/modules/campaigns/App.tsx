@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { ConfigProvider, notification } from 'antd'
 import { Route } from 'react-router-dom'
-import store, { history } from 'modules/user/store'
+import store, { history } from 'modules/endUser/store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import _ from 'lodash'
@@ -13,7 +13,7 @@ import { GlintProvider, withLoadingSpinner } from 'glint'
 
 import { connected, disconnected } from 'core/connection'
 
-import { useWindowInnerSize } from 'modules/user/rootHooks'
+import { useWindowInnerSize } from 'modules/endUser/rootHooks'
 import { MAX_PAGE_LOAD_WAIT_TIME } from 'constants/time'
 import routes from './routes'
 import './styles.less'

@@ -1,0 +1,42 @@
+@import 'styles/spacing.less';
+@import 'styles/ant.variable.less';
+
+.textRow {
+  padding-top: @space-2;
+  font-size: 16px;
+  font-weight: 500;
+}
+.timestamp {
+  font-size: 12px;
+}
+.actionMenu {
+  display: flex;
+  align-items: center;
+}
+.triggerIcon {
+  font-size: 18px;
+  color: @text-color;
+}
+.btnContainer {
+  display: inline-flex;
+  padding-top: @space-1;
+}
+.resolved {
+  font-size: 18px;
+  color: @success-color !important;
+}
+.new {
+  animation: highlight 1000ms ease-out forwards;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: yellow;
+  }
+}

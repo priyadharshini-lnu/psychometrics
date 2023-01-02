@@ -44,7 +44,7 @@ module UserAssessments
         report_id: user_assessment.assessment.report_ids,
         user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
-      ).update(remove_pdf: true, status: :not_prepared)
+      ).update(remove_pdf: true, status: :not_prepared, approval_status: :not_ready)
     end
 
     def set_answers_as_dirty

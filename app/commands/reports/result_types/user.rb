@@ -15,6 +15,7 @@ module Reports
 
       def user_data
         return nil unless ALLOWED_FIELDS.include?(data['key'])
+        return nil if context.users_results.empty?
 
         context.users_results.first.subject.try(data['key'])
       end

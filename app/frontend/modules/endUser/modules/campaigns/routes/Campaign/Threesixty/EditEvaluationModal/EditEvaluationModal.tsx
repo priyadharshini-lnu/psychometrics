@@ -3,8 +3,8 @@ import {
   Button, Modal,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import WizardIsRequired from 'modules/user/core/WizardIsRequired'
-import { AssessmentExtra } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+import WizardIsRequired from 'modules/endUser/core/WizardIsRequired'
+import { AssessmentExtra } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 
 const { I18n } = window
 

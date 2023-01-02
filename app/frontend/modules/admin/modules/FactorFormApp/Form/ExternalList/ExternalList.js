@@ -56,7 +56,11 @@ export default function ExternalList ({
                   </Select>
                 </td>
                 <td className={styles.td}>
-                  <Input value={row.jsonpath} onChange={e => onUpdate(i, { jsonpath: e.target.value })} />
+                  <Input.TextArea
+                    rows={2}
+                    value={row.jsonpath}
+                    onChange={e => onUpdate(i, { jsonpath: e.target.value })}
+                  />
                 </td>
                 <td className={styles.td} style={{ width: 50 }}>
                   <Button

@@ -8,15 +8,19 @@ import settings from '../../settings'
 
 function Participants ({ history, routes, currentUser }) {
   const onSelect = ({ key }) => routeUtils.moveTo(history, settings.urlPrefix, key)
-
+  const menuItems = [{ key: '/participants', label: 'Participants' }]
+  currentUser.permissions.editParticipantOptions && menuItems.push({
+    key: '/participants/options',
+    label: 'Options',
+  })
   return (
     <div>
-      <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
-        <Menu.Item key="/participants">Participants</Menu.Item>
-        {currentUser.permissions.editParticipantOptions && (
-          <Menu.Item key="/participants/options">Options</Menu.Item>
-        )}
-      </Menu>
+      <Menu
+        items={menuItems}
+        onSelect={onSelect}
+        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        mode="horizontal"
+      />
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
     </div>
   )
