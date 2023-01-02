@@ -10,7 +10,7 @@ class User < ApplicationRecord
   DEFAULT_ADMIN_GRANTS = {
     clients: %w[view],
     projects: %w[view manage manage_admins manage_users],
-    campaigns: %w[view manage manage_users manage_options manage_messages],
+    campaigns: %w[view manage manage_users manage_options manage_messages stats],
     communications: %w[view manage],
     results: %w[view_report report_data raw_responses scores]
   }.with_indifferent_access.freeze
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   DEFAULT_PROJECT_ADMIN_GRANTS = {
     clients: %w[view],
     projects: %w[view],
-    campaigns: %w[view manage manage_users manage_options manage_messages manage_admins],
+    campaigns: %w[view manage manage_users manage_options manage_messages manage_admins stats],
     communications: %w[view manage],
     assessors: %w[view manage],
     results: %w[view_report report_data raw_responses scores]
@@ -28,7 +28,7 @@ class User < ApplicationRecord
     clients: %w[view],
     projects: %w[view],
     communications: %w[view manage],
-    campaigns: %w[view manage manage_users manage_options show manage_messages],
+    campaigns: %w[view manage manage_users manage_options show manage_messages stats],
     results: %w[view_report report_data raw_responses scores]
   }.with_indifferent_access.freeze
 
@@ -43,7 +43,7 @@ class User < ApplicationRecord
     communications: %w[view manage],
     reports: %w[view manage],
     results: %w[view_report report_data raw_responses scores],
-    campaign: %w[view show manage manage_users manage_options manage_messages manage_admins],
+    campaign: %w[view show manage manage_users manage_options manage_messages manage_admins stats],
     assessors: %w[view manage],
     registration_codes: %w[view manage],
     sms_invites: %w[view manage],

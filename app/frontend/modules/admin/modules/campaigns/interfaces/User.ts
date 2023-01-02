@@ -19,5 +19,6 @@ export default interface User {
     viewRegistrationCodes: boolean
     viewSmsInvites: boolean
     viewDatasheets: boolean
+    stats: boolean
   }
 }

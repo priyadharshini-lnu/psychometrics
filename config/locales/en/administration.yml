@@ -78,6 +78,7 @@ en:
           permissions: Permissions
           save: Save
           search_placeholder: Enter email to edit an existing admin or add a new one
+          stats: View Stats
           update: Update
           update_failed: Admin '%{name}' update failed
           update_success: Admin '%{name}' was updated successfully
@@ -2244,7 +2245,8 @@ en:
         all: All
         body_mustache: |
           {{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users
-          {{{user_url}}} - Same as {{{user_link}}} but only the URL instead of a hyperlink
+          {{{user_url}}} - Same as user_link but only the URL instead of a hyperlink
+          {{{user_link_qrcode}}} - Embed QR Code generated from user_link
           {{first_name}} - Recipient First Name
           {{last_name}} - Recipient Last Name
           {{email}} - Recipient Email
@@ -3608,6 +3610,38 @@ en:
         title: Test SMTP setting
       update_success_msg: SMTP setting updated successfully.
       user_name: User Name
+    stats:
+      assessments:
+        columns:
+          assessment_name: Assessment Name
+          completed: Completed
+          id: ID
+          in_progress: In Progress
+          ineligible: Ineligible
+          interrupted: Interrupted
+          not_started: Not Started
+          timed_out: Timed Out
+        title: Assessments
+      title: Stats
+      top_metrics:
+        completed: Completed
+        in_progress: In Progress
+        ineligible: Ineligible
+        interrupted: Interrupted
+        not_started: Not started
+        timed_out: Timed Out
+        users: Users
+      users:
+        completed: Completed
+        date_presets:
+          last_30_days: Last 30 days
+          last_7_days: Last 7 days
+          last_month: Last month
+          last_week: Last week
+          today: Today
+          yesterday: Yesterday
+        started: Started
+        y_title: Number of Users
     sub_factors:
       copy:
         error: 'Sub-Factor #%{id} was not copied.'

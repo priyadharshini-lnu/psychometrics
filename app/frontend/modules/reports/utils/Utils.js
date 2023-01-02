@@ -45,6 +45,12 @@ export default {
     return _.trim(dirtyString)
   },
 
+  removeTags (html) {
+    const div = document.createElement('div')
+    div.innerHTML = html.replace(/<br>|(<\/(?:p|li|div|ul|ol)>)/g, '$1 ')
+    return div.innerText
+  },
+
   toSnakeCase (str) {
     return str.replace(/\.?([A-Z])/g, (x, y) => `_${y.toLowerCase()}`).replace(/^_/, '')
   },

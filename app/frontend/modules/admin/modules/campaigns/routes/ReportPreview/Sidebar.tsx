@@ -5,6 +5,8 @@ import { Tag, Tabs } from 'antd'
 import {
   getCurrent,
   approveReport,
+  ApprovalStatuses,
+  selectModule,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { subscribeSocket } from 'core/socket'
 import Utils from 'modules/reports/utils/Utils'
@@ -28,7 +30,7 @@ export const lookUpModules = report => _.reduce(report.pages, (res, page) => {
 }, [])
 
 function ReportPreview ({
-  userReport, subscribeSocket,
+  userReport, subscribeSocket, selectModule,
 }: Props) {
   useEffect(() => {
     subscribeSocket('Comments::Channel', { id: userReport.id })
@@ -36,6 +38,11 @@ function ReportPreview ({
 
   const scrollTo = (id) => {
     ScrollDispatcher.scroll(id)
+  }
+
+  const scrollToModule = (id) => {
+    selectModule(id)
+    scrollTo(`Module_${module.id}`)
   }
 
   const tag = (override) => {
@@ -55,7 +62,8 @@ function ReportPreview ({
   const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
   let number = 0
 
-  const showItems = userReport.approvalStatus === 'qc_in_progress' || userReport.approvalStatus === 'qc_completed'
+  const showItems = userReport.approvalStatus === ApprovalStatuses.QCInProgress
+    || userReport.approvalStatus === ApprovalStatuses.QCCompleted
 
   return (
     <div className={styles.sidebar}>
@@ -90,7 +98,7 @@ function ReportPreview ({
                       <div
                         key={j}
                         className={cs(styles.override, styles.selected)}
-                        onClick={() => scrollTo(`Module_${module.id}`)}
+                        onClick={() => scrollToModule(module.id)}
                       >
                         <div className={styles.number}>
                           {number}
@@ -113,7 +121,7 @@ function ReportPreview ({
                             ) : 'Waiting for action'}
                           </div>
                           <div className={styles.text}>
-                            {Utils.stripHTML(content)}
+                            {Utils.removeTags(content)}
                           </div>
                         </div>
                       </div>
@@ -126,11 +134,11 @@ function ReportPreview ({
           </Tabs.TabPane>
         )}
         <Tabs.TabPane tab="Comments" key="comments">
-          <Comments />
+          <Comments scrollTo={id => scrollTo(`Module_${id}`)} />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="History" key="history">
+        {/* <Tabs.TabPane tab="History" key="history">
           History
-        </Tabs.TabPane>
+        </Tabs.TabPane> */}
       </Tabs>
     </div>
   )
@@ -138,9 +146,11 @@ function ReportPreview ({
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
+
 }), {
   approveReport,
   subscribeSocket,
+  selectModule,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>

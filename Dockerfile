@@ -27,7 +27,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
 
 
 RUN apt-get update -qq &&  apt-get install -yq --no-install-recommends build-essential git ruby-dev libpq-dev \
-    postgresql-client-11 nodejs shared-mime-info imagemagick \
+    postgresql-client-11 nodejs shared-mime-info imagemagick libjemalloc2 \
     && apt-get install -yq yarn --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -39,7 +39,6 @@ RUN apt-get update -qq &&  apt-get install -yq --no-install-recommends build-ess
 #       && rm /etc/apt/sources.list.d/google-chrome.list \
 #       && apt-get clean \
 #       && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 
 RUN gem update --system && gem install bundler -v $BUNDLER_VERSION
 
@@ -146,6 +145,11 @@ ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT 'development test'
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+COPY --from=ruby-base /usr/lib/x86_64-linux-gnu/libjemalloc.so.2 /usr/local/lib/
+ENV LD_PRELOAD=/usr/local/lib/libjemalloc.so.2
+
+RUN MALLOC_CONF=stats_print:true ruby -e "exit"
 
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release \
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \

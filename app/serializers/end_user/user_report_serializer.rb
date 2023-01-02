@@ -9,6 +9,10 @@ module EndUser
       object.report.poster&.url
     end
 
+    def approved
+      object.approved?
+    end
+
     def pdf_url
       return nil if require_approval && !object.approved?
 

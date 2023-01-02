@@ -50,10 +50,20 @@ export const CommentSchema = {
 }
 
 export type ModuleOverride = t.TypeOf<typeof ModuleOverrideTR>
+
+export enum ApprovalStatuses {
+  NotRead = 'not_ready',
+  PendingQC = 'pending_qc',
+  QCInProgress = 'qc_in_progress',
+  QCCompleted = 'qc_completed',
+  ChangeRequested = 'change_requested',
+  Approved = 'approved'
+}
+
 interface UserReportDetails {
   id?: number
   loaded?: boolean
-  approvalStatus: 'not_ready' | 'pending_qc' | 'qc_in_progress' | 'qc_completed' | 'change_requested' | 'approved'
+  approvalStatus: ApprovalStatuses
   user: {
     id?: number
     email?: string
@@ -76,6 +86,8 @@ interface UserReportDetails {
   campaignId?: number
   permissions: {
     download: boolean
+    manageQc: boolean
+    manageApproval: boolean
   }
 }
 
@@ -92,7 +104,7 @@ const defaultState: State = {
   selectedIds: [],
   externalReport: {} as ExternalReportDetails,
   current: {
-    approvalStatus: 'not_ready',
+    approvalStatus: ApprovalStatuses.NotRead,
     user: { },
     options: { reports: { approval: {} } },
     report: {
@@ -103,7 +115,11 @@ const defaultState: State = {
     moduleOverrides: [],
     comments: [],
     richEditorOpened: false,
-    permissions: { download: false },
+    permissions: {
+      download: false,
+      manageQc: false,
+      manageApproval: false,
+    },
   },
   selectedModule: null,
 }
@@ -144,6 +160,7 @@ export const SET_USER_REPORTS = 'campaigns/userReports/SET_USER_REPORTS'
 export const CREATE_MODULE_OVERRIDE = 'campaigns/userReports/CREATE_MODULE_OVERRIDE'
 export const UPDATE_MODULE_OVERRIDE = 'campaigns/userReports/UPDATE_MODULE_OVERRIDE'
 export const APPROVE_MODULE_OVERRIDE = 'campaigns/userReports/APPROVE_MODULE_OVERRIDE'
+export const DISAPPROVE_MODULE_OVERRIDE = 'campaigns/userReports/DISAPPROVE_MODULE_OVERRIDE'
 export const REMOVE_MODULE_OVERRIDE = 'campaigns/userReports/REMOVE_MODULE_OVERRIDE'
 export const APPROVE_REPORT = 'campaigns/userReports/APPROVE_REPORT'
 export const OPEN_RICH_EDITOR = 'report/OPEN_RICH_EDITOR'
@@ -198,6 +215,16 @@ export const approveTextOverride = (campaignId: number, body: {}) => ({
     body,
   },
 })
+
+export const disapproveTextOverride = (campaignId: number, id: number) => ({
+  type: DISAPPROVE_MODULE_OVERRIDE,
+  request: {
+    typedResponse: ModuleOverrideTR,
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/text_module_overrides/${id}/disapprove`,
+  },
+})
+
 
 export const removeTextOverride = (campaignId: number, id: number, userReportId: number) => ({
   type: REMOVE_MODULE_OVERRIDE,
@@ -405,6 +432,12 @@ const HANDLERS = {
     setIn(state, ['current', 'moduleOverrides'], [...state.current.moduleOverrides, response])
   ),
   [APPROVE_MODULE_OVERRIDE]: (state, { response }: ApproveModuleOverride) => {
+    const exists = _.find(state.current.moduleOverrides, { id: response.id })
+    return setIn(setIn(state, ['current', 'moduleOverrides'], exists
+      ? state.current.moduleOverrides.map(m => (m.id === response.id ? response : m))
+      : [...state.current.moduleOverrides, response]), ['current', 'approved'], false)
+  },
+  [DISAPPROVE_MODULE_OVERRIDE]: (state, { response }: ApproveModuleOverride) => {
     const exists = _.find(state.current.moduleOverrides, { id: response.id })
     return setIn(setIn(state, ['current', 'moduleOverrides'], exists
       ? state.current.moduleOverrides.map(m => (m.id === response.id ? response : m))

@@ -155,6 +155,12 @@ Rails.application.routes.draw do
         resources :sheets, concerns: :sheet_management
         resources :sheet_rows, concerns: :sheet_row_management
 
+        resources :stats, only: %i[index] do
+          collection do
+            post :timeseries
+          end
+        end
+
         resources :registration_codes do
           member do
             get :download_qrcode
@@ -206,6 +212,9 @@ Rails.application.routes.draw do
         resources :text_module_overrides do
           collection do
             post :approve
+          end
+          member do
+            delete :disapprove
           end
         end
         resources :users do
@@ -1075,15 +1084,12 @@ Rails.application.routes.draw do
   get 'media_players/video', to: 'media_players#video'
 
   if Rails.env.production?
-    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-      # Protect against timing attacks: (https://codahale.com/a-lesson-in-timing-attacks/)
-      # - Use & (do not use &&) so that it doesn't short circuit.
-      # - Use `secure_compare` to stop length information leaking
-      ActiveSupport::SecurityUtils.secure_compare(username, 'staging') &
-        ActiveSupport::SecurityUtils.secure_compare(password, 'tte')
+    authenticate :user, ->(u) { u.is?(:superadmin) } do
+      mount Sidekiq::Web => '/sidekiq'
     end
+  else
+    mount Sidekiq::Web, at: '/sidekiq'
   end
-  mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new', as: :admin_root
 

@@ -2,7 +2,7 @@ import * as t from 'io-ts'
 import { ResourceIdentifierTR } from './resource'
 
 const UserDataTR = t.type({
-  id: t.number,
+  id: t.string,
   email: t.string,
 })
 
