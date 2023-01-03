@@ -7,34 +7,26 @@ import { UPLOAD_STATES } from './constants'
 const { $ } = window
 
 const FileUploader = {
-  run: context => $.get(context.urls.mediaUploadUrl,
-    (data) => {
-      uploadFile(data, context)
-    }, 'json'),
+  run: (context) => {
+    const { file, fileName } = context
+    $.get(`${context.urls.mediaUploadUrl}?file_name=${fileName || file.name}`,
+      (data) => {
+        uploadFile(data, context)
+      }, 'json')
+  },
 }
 
 export default FileUploader
 
 const uploadFile = (data, context) => {
   const { file, fileName, dispatch } = context
-  const fd = new FormData()
-  fd.append('Content-Type', mime.lookup(fileName || file.name))
-  fd.append('key', data.key)
-  fd.append('acl', data.acl)
-  fd.append('success_action_status', data.success_action_status)
-  fd.append('policy', data.policy)
-  fd.append('x-amz-algorithm', data['x-amz-algorithm'])
-  fd.append('x-amz-credential', data['x-amz-credential'])
-  fd.append('x-amz-date', data['x-amz-date'])
-  fd.append('x-amz-signature', data['x-amz-signature'])
-  fd.append('file', file, fileName || sanitize(file.name))
 
   $.ajax({
-    method: 'POST',
+    method: 'PUT',
     url: data.url,
-    data: fd,
+    data: file,
     processData: false,
-    contentType: false,
+    contentType: mime.lookup(fileName || file.name),
     xhr: () => {
       const xhr = new XMLHttpRequest()
       xhr.upload.addEventListener('progress', e => onUploadProgress(e, dispatch), false)
