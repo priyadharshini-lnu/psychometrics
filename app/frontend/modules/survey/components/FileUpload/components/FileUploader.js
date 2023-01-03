@@ -1,5 +1,4 @@
 import mime from 'mime-types'
-import sanitize from 'utils/sanitizeFileName'
 import humps from 'humps'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
@@ -8,8 +7,7 @@ const { $ } = window
 
 const FileUploader = {
   run: (context) => {
-    const { file, fileName } = context
-    $.get(`${context.urls.mediaUploadUrl}?file_name=${fileName || file.name}`,
+    $.get(context.urls.mediaUploadUrl,
       (data) => {
         uploadFile(data, context)
       }, 'json')
@@ -41,14 +39,12 @@ const uploadFile = (data, context) => {
 
 const onUploadDone = (media, data, context) => {
   const {
-    urls, file, fileName, dispatch, onSuccessUpload,
+    urls, dispatch, onSuccessUpload,
   } = context
-  const mediaId = data.media_id
-  const assetKey = data.key.replace('${filename}', fileName || sanitize(file.name))
   $.ajax({
     method: 'PUT',
     url: urls.callbackUrl,
-    data: { media_id: mediaId, asset_key: assetKey },
+    data: { media_id: data.media_id, asset_key: data.asset_key },
     headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
   }).done((data) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
