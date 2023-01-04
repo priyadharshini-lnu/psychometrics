@@ -151,7 +151,9 @@ function Comments ({
         )
         return (
           <>
-            <div className={
+            <div
+              key={thread.id}
+              className={
               cs(styles.thread, {
                 [styles.highlighted]: selectedModuleId && (selectedModuleId.toString()
                   === (thread.moduleId?.toString() || thread.reportsModule?.id?.toString())),
@@ -167,7 +169,7 @@ function Comments ({
               <CommentItem
                 canEdit={thread.creator.id.toString() === currentUser.id.toString()}
                 canRemove={thread.creator.id.toString() === currentUser.id.toString()}
-                canResolve
+                canResolve={false} // temporary disabled
                 comment={thread}
                 onCommentEditSave={comment => updateComment(comment)}
                 onCommentResolve={commentId => resolveComment(commentId)}
@@ -177,6 +179,7 @@ function Comments ({
               <Divider style={{ margin: '10px 0' }} />
               {getThreadReplies(thread.id.toString()).map(comment => (
                 <CommentItem
+                  key={comment.id}
                   canEdit={thread.creator.id.toString() === currentUser.id.toString()}
                   canRemove={thread.creator.id.toString() === currentUser.id.toString()}
                   comment={comment}
