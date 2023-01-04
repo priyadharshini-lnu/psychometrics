@@ -30,6 +30,7 @@ export interface Comment {
   moduleId: string
   resolved: boolean
   creator: {
+    id: number,
     avatarUrl: string
     fullName: string
   }
@@ -453,7 +454,9 @@ const HANDLERS = {
       .filter(m => m.id !== requestAction.id)), ['current', 'approved'], false)
   ),
   [NEW_COMMENT]: (state, { data: { comment } }: RemoveModuleOverride) => (
-    setIn(state, ['current', 'comments'], [...state.current.comments, { ...comment, isNew: true }])
+    _.find(state.current.comments, { id: comment.id })
+      ? state
+      : setIn(state, ['current', 'comments'], [...state.current.comments, { ...comment, isNew: true }])
   ),
   [UPDATE_COMMENT]: (state, { data: { comment } }: RemoveModuleOverride) => (
     setIn(state, ['current', 'comments'], state.current.comments.map(

@@ -32,6 +32,7 @@ const connecter = connect((state: RootState) => ({
   selectedModule: getSelectedModule(state),
   modules: getModules(state),
   permissions: state.currentUser.permissions,
+  currentUser: state.currentUser,
 }), {
   approveReport,
   readComment,
@@ -81,7 +82,7 @@ const Compose = ({ selected, disabled, onSend }) => {
 }
 
 function Comments ({
-  comments, selectedModule, selectedModuleId, modules, userReport,
+  comments, selectedModule, selectedModuleId, modules, userReport, currentUser,
   pageModules, readComment, scrollTo,
 }: Props) {
   const {
@@ -91,20 +92,24 @@ function Comments ({
 
   useEffect(() => {
     setData(comments)
-  }, [comments])
+  }, [])
 
   const getThreadReplies = (id: string) => (
     _.sortBy(data.filter(c => ((c.parentId || c.parent?.id)?.toString() === id.toString())), 'id')
   )
   const orderedModules = _.flatten(pageModules.map(p => p.modules))
-  const orderedThreads = orderedModules.map(module => data.filter((c => (
-    c.reportsModule && !c.parent?.id
-      ? c
-      : !(c.parentId) && (c.moduleId?.toString() === module.id.toString())
-  ))))
 
-  const threads = _.flatten(orderedThreads)
+  const orderedThreads = orderedModules.reduce((threads, module) => {
+    const comments = data.filter((c => (
+      c.reportsModule && !c.parent
+        ? c
+        : !(c.parentId) && (c.moduleId?.toString() === module.id.toString())
+    )))
 
+    return [...threads, ...comments.filter(c => !_.find(threads, { id: c.id }))]
+  }, [])
+
+  const threads = orderedThreads
   const createComment = (text: string, parent?: Comment) => {
     const data: {text: string, parent?: {id: string}, reportsModule?: {id: string}} = {
       text,
@@ -160,8 +165,8 @@ function Comments ({
                 </Tooltip>
               </div>
               <CommentItem
-                canEdit
-                canRemove
+                canEdit={thread.creator.id.toString() === currentUser.id.toString()}
+                canRemove={thread.creator.id.toString() === currentUser.id.toString()}
                 canResolve
                 comment={thread}
                 onCommentEditSave={comment => updateComment(comment)}
@@ -170,10 +175,10 @@ function Comments ({
                 onRead={readComment}
               />
               <Divider style={{ margin: '10px 0' }} />
-              {getThreadReplies(thread.id).map(comment => (
+              {getThreadReplies(thread.id.toString()).map(comment => (
                 <CommentItem
-                  canEdit
-                  canRemove
+                  canEdit={thread.creator.id.toString() === currentUser.id.toString()}
+                  canRemove={thread.creator.id.toString() === currentUser.id.toString()}
                   comment={comment}
                   onCommentEditSave={comment => updateComment(comment)}
                   onCommentRemove={commentId => removeComment(commentId)}
