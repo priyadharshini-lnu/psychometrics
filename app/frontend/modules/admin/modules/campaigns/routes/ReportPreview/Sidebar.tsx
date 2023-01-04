@@ -41,8 +41,8 @@ function ReportPreview ({
   }
 
   const scrollToModule = (id) => {
+    scrollTo(`Module_${id}`)
     selectModule(id)
-    scrollTo(`Module_${module.id}`)
   }
 
   const tag = (override) => {
@@ -134,7 +134,7 @@ function ReportPreview ({
           </Tabs.TabPane>
         )}
         <Tabs.TabPane tab="Comments" key="comments">
-          <Comments scrollTo={id => scrollTo(`Module_${id}`)} />
+          <Comments pageModules={pageModules} scrollTo={id => scrollTo(`Module_${id}`)} />
         </Tabs.TabPane>
         {/* <Tabs.TabPane tab="History" key="history">
           History

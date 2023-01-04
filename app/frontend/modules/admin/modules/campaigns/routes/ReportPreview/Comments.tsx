@@ -13,6 +13,7 @@ import {
   readComment,
   getSelectedModule,
   Comment,
+  Module,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { SendOutlined } from '@ant-design/icons'
@@ -20,6 +21,7 @@ import { CommentItem } from 'glint/components/CommentItem'
 import { CommentReply } from 'glint'
 import { useResources } from 'hooks/useResources'
 import Utils from 'modules/survey/utils'
+import _ from 'lodash'
 import styles from './styles.less'
 
 const connecter = connect((state: RootState) => ({
@@ -38,7 +40,8 @@ const connecter = connect((state: RootState) => ({
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 type Props = PropsFromRedux & {
-  scrollTo: (id:string) => void
+  scrollTo: (id:string) => void,
+  pageModules: {page: {}, modules: Module[]}[]
 }
 
 const Compose = ({ selected, disabled, onSend }) => {
@@ -79,7 +82,7 @@ const Compose = ({ selected, disabled, onSend }) => {
 
 function Comments ({
   comments, selectedModule, selectedModuleId, modules, userReport,
-  readComment, scrollTo,
+  pageModules, readComment, scrollTo,
 }: Props) {
   const {
     data, createResource, updateResource, setData, removeResource,
@@ -91,16 +94,23 @@ function Comments ({
   }, [comments])
 
   const getThreadReplies = (id: string) => (
-    data.filter(c => (c.parentId === id))
+    _.sortBy(data.filter(c => ((c.parentId || c.parent?.id)?.toString() === id.toString())), 'id')
   )
+  const orderedModules = _.flatten(pageModules.map(p => p.modules))
+  const orderedThreads = orderedModules.map(module => data.filter((c => (
+    c.reportsModule && !c.parent?.id
+      ? c
+      : !(c.parentId) && (c.moduleId?.toString() === module.id.toString())
+  ))))
 
-  const threads = data.filter((c => !c.parentId)).reverse()
+  const threads = _.flatten(orderedThreads)
+
   const createComment = (text: string, parent?: Comment) => {
     const data: {text: string, parent?: {id: string}, reportsModule?: {id: string}} = {
       text,
     }
     if (parent) {
-      data.reportsModule = { id: parent.moduleId }
+      data.reportsModule = { id: parent.moduleId || parent.reportsModule?.id }
       data.parent = { id: parent?.id }
     } else if (selectedModuleId) {
       data.reportsModule = { id: selectedModuleId.toString() }
@@ -138,11 +148,11 @@ function Comments ({
           <>
             <div className={
               cs(styles.thread, {
-                [styles.highlighted]: selectedModuleId?.toString()
-                  === thread.moduleId?.toString() || thread.reportsModule?.id,
+                [styles.highlighted]: selectedModuleId && (selectedModuleId.toString()
+                  === (thread.moduleId?.toString() || thread.reportsModule?.id?.toString())),
               })}
             >
-              <div className={styles.module} onClick={() => scrollTo(thread.moduleId)}>
+              <div className={styles.module} onClick={() => scrollTo(thread.moduleId || thread.reportsModule?.id)}>
                 <Tooltip title={Utils.stripHTML(module?.props?.text)}>
                   <span className={styles.title}>Text</span>
                   {'| '}

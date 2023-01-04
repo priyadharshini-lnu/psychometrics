@@ -124,8 +124,9 @@ const defaultState: State = {
   selectedModule: null,
 }
 
-interface Module {
+export interface Module {
   id: number
+  type: string
   props: {
     text: string
   }
