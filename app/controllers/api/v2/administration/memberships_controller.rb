@@ -29,9 +29,9 @@ module Api
     private
 
     def set_resource
-      @_resource = Api::Administration::Projects::AdminPolicy::Scope.new(
+      @_resource = Api::Administration::MembershipPolicy::Scope.new(
         current_user, Membership
-      ).resolve.find(params[:admin_id])
+      ).resolve.find(params[:membership_id])
     end
 
     def base_response_meta
