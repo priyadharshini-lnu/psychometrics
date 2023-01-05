@@ -147,8 +147,12 @@ class Assessment < ApplicationRecord
       end
       Settings.providers.saville.norms.select { |norm| saville_norms.norm_ids.include?(norm[:id]) }.map(&:to_h)
     elsif pearson?
-      PearsonAssessmentSetting.pearson_norms(external_settings[:assessment_id])
+      pearson_norms
     end
+  end
+
+  def pearson_norms
+    PearsonAssessmentSetting.pearson_norms(external_settings[:assessment_id])
   end
 
   def external_assessment_id
