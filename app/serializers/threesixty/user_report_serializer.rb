@@ -3,7 +3,7 @@
 module Threesixty
   class UserReportSerializer < ActiveModel::Serializer
     attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status,
-               :evalaution_completed_for_subject, :approved, :report_data, :permissions
+               :evalaution_completed_for_subject, :report_data, :permissions
 
     attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 

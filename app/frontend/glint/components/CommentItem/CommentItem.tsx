@@ -8,6 +8,7 @@ import {
 import cs from 'classnames'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import moment from 'moment'
+import _ from 'lodash'
 import styles from './CommentItem.less'
 
 type Props = {
@@ -102,16 +103,18 @@ export const CommentItem: FC<Props> = ({
             <CheckOutlined className={styles.resolved} />
           </Col>
         )}
-        <div className={styles.actionMenu}>
-          <Dropdown
-            trigger={['click']}
-            overlay={menu}
-          >
-            <a>
-              <MoreOutlined className={styles.triggerIcon} />
-            </a>
-          </Dropdown>
-        </div>
+        {_.some(menuItems) && (
+          <div className={styles.actionMenu}>
+            <Dropdown
+              trigger={['click']}
+              overlay={menu}
+            >
+              <a>
+                <MoreOutlined className={styles.triggerIcon} />
+              </a>
+            </Dropdown>
+          </div>
+        )}
       </Row>
       <div className={styles.textRow}>
         {editComment ? (

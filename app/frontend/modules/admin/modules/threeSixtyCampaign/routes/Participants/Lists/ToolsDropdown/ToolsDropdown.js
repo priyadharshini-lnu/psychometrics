@@ -106,18 +106,18 @@ export default function ToolsDropdown ({
 
   return (
     <ConditionalDropdown
-      menu={(
-        <CustomMenu
-          projectId={projectId}
-          campaignId={campaignId}
-          resetCampaignWithConfirmation={resetCampaignWithConfirmation}
-          resetAllNominationsWithConfirmation={resetAllNominationsWithConfirmation}
-          handleRescoreAssessment={handleRescoreAssessment}
-          openModal={openModal}
-          permissions={permissions}
-          onExport={onExport}
-        />
-      )}
+      menu={
+        CustomMenu({
+          projectId,
+          campaignId,
+          resetCampaignWithConfirmation,
+          resetAllNominationsWithConfirmation,
+          handleRescoreAssessment,
+          openModal,
+          permissions,
+          onExport,
+        })
+      }
       className="mrm"
       hideForEmptyMenu
       innerElement={(
