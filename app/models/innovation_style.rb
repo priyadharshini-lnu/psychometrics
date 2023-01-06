@@ -3,7 +3,7 @@
 class InnovationStyle < ApplicationRecord
   include RansackSearchableFields
 
-  has_many :innovation_styles_factors
+  has_many :innovation_styles_factors, dependent: :destroy
   belongs_to :dimension
 
   validates :name, presence: true

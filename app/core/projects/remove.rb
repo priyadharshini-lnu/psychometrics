@@ -11,6 +11,7 @@ module Projects
     def call
       ::Projects::RemoveOldCampaigns.call!(project)
       ::Projects::RemoveNewCampaigns.call!(project)
+      project.end_users.destroy_all
       project.destroy!
 
       broadcast :ok

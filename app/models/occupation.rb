@@ -3,7 +3,7 @@
 class Occupation < ApplicationRecord
   include RansackSearchableFields
 
-  has_many :occupations_factors
+  has_many :occupations_factors, dependent: :destroy
   belongs_to :dimension
 
   validates :name, presence: true
