@@ -18,9 +18,22 @@ module Projects
           campaign.destroy!
           if threesixty_campaign
             dimension = threesixty_campaign.dimension
-            threesixty_campaign.report.destroy!
-            threesixty_campaign.assessment.destroy!
-            dimension.destroy!
+            report = threesixty_campaign.report
+            assessment = threesixty_campaign.assessment
+
+            # Below conditions checks before deleting assessment, report and dimension is due to
+            # some of this resource referenced outside 360 campaign
+            unless CampaignReport.exists?(report_id: report.id) || UserReport.exists?(report_id: report.id)
+              report.destroy!
+            end
+            unless CampaignAssessment.exists?(assessment_id: assessment.id) ||
+                   UserAssessment.exists?(assessment_id: assessment.id) ||
+                   AssessmentsReport.exists?(assessment_id: assessment.id)
+              assessment.destroy!
+            end
+            unless Assessment.exists?(dimension_id: dimension.id)
+              dimension.destroy!
+            end
           end
         end
       end

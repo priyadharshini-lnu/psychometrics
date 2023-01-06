@@ -50,8 +50,8 @@ class Campaign < ApplicationRecord
   has_many :users, through: :campaign_users
   has_many :registration_codes, dependent: :destroy
   has_many :assessors, dependent: :destroy
-  has_many :sms_invites
-  has_many :sms_records
+  has_many :sms_invites, dependent: :destroy
+  has_many :sms_records, dependent: :destroy
   has_many :memberships
   has_many :relationships, dependent: :destroy
   has_many :report_approval_settings, dependent: :destroy
