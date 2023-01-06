@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserDashboardSerializer < ActiveModel::Serializer
-  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approved
+  attributes :id, :status, :campaign_id, :pdf, :is_self, :results
 
   has_one :user, serializer: UserSerializer
   has_one :report, serializer: ReportSerializer

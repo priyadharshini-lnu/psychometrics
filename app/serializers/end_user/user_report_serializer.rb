@@ -3,7 +3,7 @@
 module EndUser
   class UserReportSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :id, :report_name, :status, :user_access, :user_id, :pdf_url, :require_approval, :approved, :poster_url
+    attributes :id, :report_name, :status, :user_access, :user_id, :pdf_url, :require_approval, :poster_url
 
     def poster_url
       object.report.poster&.url
