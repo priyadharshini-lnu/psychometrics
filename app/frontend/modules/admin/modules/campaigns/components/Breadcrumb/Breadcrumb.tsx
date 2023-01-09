@@ -11,7 +11,7 @@ interface Crumb {
 
 interface Props {
   fetch: (request: Request) => void
-  request: Request
+  request?: Request
   crumbs: Crumb[]
   state: State
 }
@@ -22,7 +22,7 @@ const Breadcrumb: React.FC<Props> = ({
   request, crumbs, fetch, state,
 }) => {
   useEffect(() => {
-    fetch(request)
+    if (request) fetch(request)
   }, [JSON.stringify(request)])
 
   const crumbsForTitle = crumbs.slice(-2).map(({ label }) => label(state)).reverse()

@@ -28,7 +28,9 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
   const { permissions } = currentUser
   const modifiedRoutes = () => {
     let firstRoute = ''
-    if (permissions.manageProjectSmtpSettings) {
+    if (permissions.manageProjectGeneralSettings) {
+      firstRoute = '/general'
+    } else if (permissions.manageProjectSmtpSettings) {
       firstRoute = '/smtp'
     } else if (permissions.manageProjectSamlSetting) {
       firstRoute = '/saml'
@@ -44,6 +46,11 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
     routeUtils.moveTo(history, prefix, key)
   }
   const menuItems:ItemType[] = []
+
+  permissions.manageProjectGeneralSettings && menuItems.push({
+    key: '/general',
+    label: I18n.t('administration.project_tabs.general'),
+  })
   permissions.manageProjectSmtpSettings && menuItems.push({
     key: '/smtp',
     label: I18n.t('administration.smtp_settings.smtp'),

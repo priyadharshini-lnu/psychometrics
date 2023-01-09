@@ -32,15 +32,6 @@ feature 'CRUD Client' do
         merge!(projects: %w[manage view], campaigns: ['manage']))
       end
 
-      scenario 'I can create any client within tte' do
-        create_project(tenancy,
-                       name: 'New Project',
-                       subdomain: 'newproject',
-                       number: 2,
-                       reports: [report.name],
-                       privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
-      end
-
       scenario 'I cant create root' do
         visit administration_clients_path
         expect(page).not_to have_css('#manage_first_level')

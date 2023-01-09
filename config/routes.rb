@@ -1128,7 +1128,9 @@ Rails.application.routes.draw do
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :projects, only: %i[index create update]
           end
+          jsonapi_resources :projects, only: :show
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
             get :reset_password

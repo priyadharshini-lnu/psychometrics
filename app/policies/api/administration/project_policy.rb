@@ -3,6 +3,23 @@
 module Api
   module Administration
     class ProjectPolicy < ::Administration::ClientPolicy
+      def index?
+        has_permission?(:projects, :view, project_id: project_id)
+      end
+
+      def show?
+        has_permission?(:projects, :view, project_id: project_id)
+      end
+
+      def create?
+        has_permission?(:projects, :manage, project_id: project_id)
+      end
+
+      class Scope < Scope
+        def resolve
+          ::Administration::ClientPolicy::Scope.new(user, Client).resolve
+        end
+      end
     end
   end
 end

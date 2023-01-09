@@ -118,11 +118,6 @@ module Administration
         )
       end
 
-      def init_breadcrumbs
-        client_root_breadcrumb
-        add_breadcrumb client.decorate.display_name, action: :index
-      end
-
       def resource_params
         params.
           require(:resource).

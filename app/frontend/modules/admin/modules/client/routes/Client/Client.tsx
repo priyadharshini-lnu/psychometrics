@@ -23,7 +23,7 @@ export const Client: FC<Props> = () => {
     if (key === 'client_admins') {
       window.location.pathname = `/administration/clients/${clientId}/client_admins`
     } else {
-      history.push(`${settings.urlPrefix}/clients/374/${key}`)
+      history.push(`${settings.urlPrefix}/clients/${clientId}/${key}`)
     }
   }
 
@@ -60,9 +60,9 @@ export const Client: FC<Props> = () => {
     <div>
       <Breadcrumb
         request={{
-          fields: ['project', 'client'],
+          fields: ['client'],
           data: {
-            projectId: parseInt(clientId, 10),
+            clientId: parseInt(clientId, 10),
           },
         }}
         crumbs={[

@@ -1257,6 +1257,7 @@ en:
   common:
     actions:
       add: Add
+      archive: Archive
       cancel: Cancel
       close: Close
       delete: Delete
@@ -1278,7 +1279,10 @@ en:
       completion_count: Completion Count
       completion_status: Completion Status
       created_at: Created at
+      created_date: Created Date
+      details: Details
       id: Id
+      modified_date: Modified Date
       name: Name
       qc_user_list: QC Users List
       report_id: Report Id
@@ -1651,6 +1655,11 @@ en:
         remove:
           confirmation: Enter current client name given below in text box to remove client
           success: Client with name '%{clientName}' removed successfully
+      projects:
+        actions:
+          remove:
+            confirmation: Enter current project name given below in text box to remove project
+            success: Project with name '%{projectName}' removed successfully
     delete: Delete
     edit: Edit
     error_warning: Oops, something went wrong with your assessment. Please contact the support.

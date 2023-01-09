@@ -148,6 +148,7 @@ class Client < ApplicationRecord
   delegate :tfa_enabled?, to: :security_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
+  scope :resource_disabled, ->(value) { where(disabled: value) }
   scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
@@ -157,7 +158,7 @@ class Client < ApplicationRecord
                                       }
   scope :end_level, -> { where(end_level: true) }
   scope :projects_of, lambda { |client_id|
-                        find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:project])
+                        find_by(id: client_id)&.descendants&.at_depth(Client::HIERARCHY_LEVEL[:project]) || all
                       }
   scope :campaigns_of, lambda { |client_id|
                          find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign])
@@ -173,6 +174,10 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields projects_of resource_disabled]
+  end
 
   def iiht_config
     integrations.iiht.first.iiht_config

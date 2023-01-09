@@ -14,6 +14,8 @@ import ConditionalDropdown from 'components/ConditionalDropdown'
 import { TableLayout } from 'modules/admin/components/TableLayout'
 import { get as getCurrentUser } from 'core/currentUser'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { Link } from 'react-router-dom'
+import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RemoveClientModal } from './RemoveClientModal'
 import { ClientFormModal } from './ClientFormModal'
 
@@ -84,7 +86,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           sorter
           sortOrder={getSortOrder('name')}
           render={({ name, id }) => (
-            <a href={`/administration/clients/${id}/projects`}>{name}</a>
+            <Link to={`/administration/clients/${id}/projects`}>{name}</Link>
           )}
         />
         <Column
@@ -145,8 +147,8 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     <Space>
       <Search
         placeholder={I18n.t('common.actions.search')}
-        value={getFilteredValue('name_cont')}
-        onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
+        value={getFilteredValue('filterable_fields')}
+        onChange={({ target: { value } }) => { changeFilter('filterable_fields', value) }}
       />
       {currentUser.role === 'Users::SuperAdmin'
           && (
@@ -166,6 +168,14 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
 
   return (
     <>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/administration',
+            label: () => I18n.t('administration.clients.tenancies'),
+          },
+        ]}
+      />
       <TableLayout
         table={ClientTable}
         filters={Filter}

@@ -1,52 +1,8 @@
-- if Settings.features[:react_project_list]
-  div id='client-container'
+div id='client-container'
 
-  javascript:
-    window.__INITIAL_STATE__ = {"currentUser":{"id":25511,"grants":{},"role":"Users::SuperAdmin","permissions":{"create":true,"manageProjectAdmins":true,"manageCampaignAdmins":true,"manageOptions":true,"manageCampaigns":true,"viewRegistrationCodes":true,"viewDatasheets":true,"manageProjectSmtpSettings":true,"viewSmsInvites":true,"manageProjectSamlSetting":true,"stats":true}},"project":{"smtpSetting":{"id":142,"fromName":null,"fromEmail":null,"host":null,"encryption":"none","port":null,"userName":null,"authenticationType":"plain","enabled":false},"samlSetting":{"id":142,"enabled":false,"enforced":false,"entityId":null,"ssoServiceUrl":null,"cert":null,"afterSignoutUrl":null,"assertionConsumerServiceUrl":"https://ccd.ttedev.me:3030/users/saml/auth","issuer":"https://ccd.ttedev.me:3030/users/saml/metadata"}},"config":{"availableLocales":["en","ar","bg","bs","ca","cn","cs","cy","da","de","el","en-GB","eo","es","es-ES","et","fa","fr","gu","he","hi","hr","hu","id","it","ja","km","ko","lt","lv","mk","mn","ms","my","nl","no","pl","pt-BR","pt","ro","ru","sk","sl","sr-Cyrl","sr-Latn","sv","sw","ta","th","tl","tr","uk","ur","vi","zh","zh-TW"],"features":{"two_factor_enabled":false,"new_campaign":false,"proctoring":true,"url_to_pdf_lambda":false,"zip_s3_files_lambda":false,"smtp_enabled":false,"webhooks_enabled":false,"react_project_list":true},"isProjectMigrated":true}}
-
-  = javascript_pack_tag 'vendors2'
-  = stylesheet_pack_tag 'vendors2'
-  = javascript_pack_tag 'vendors'
-  = stylesheet_pack_tag 'vendors'
-  = stylesheet_packs_with_chunks_tag 'admin/client'
-  = javascript_packs_with_chunks_tag 'admin/client'
-
-- else
-  .row
-  .col-md-12
-    .page-title
-      h2.mrl = client.decorate.display_name
-      = render 'clients_menu'
-    .panel.panel-default
-      .panel-heading
-        h3.panel-title = t '.title'
-        .pull-right
-          - if policy(resource_class).export?
-            = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
-              span.fa.fa-upload
-              = t('.export')
-          - if policy(resource, { project_id: client.id }).manage_project?
-            = link_to [:new, :administration, client, :project],
-                      remote: true,
-                      class: 'btn btn-default'
-              span.fa.fa-plus
-              = t('.new')
-        = search_form_for(filter_form,
-                          url: { action: :index },
-                          html: { id: 'filter', class: 'list-filter' },
-                          builder: SimpleForm::FormBuilder) do |f|
-          = f.input :filterable_fields,
-                    as: :string,
-                    required: false,
-                    placeholder: t('administration.search'),
-                    label: false,
-                    input_html: { class: 'has_clear periodically-observed', value: @filter_term }
-          .form-group.form-group-long
-            .btn-group data-toggle="buttons"
-              - [['Active', false], ['Archived', true]].each do |item|
-                label class="btn btn-default #{'active' if f.object.disabled_true == item.last}"
-                  = f.input_field :disabled_true, type: :radio, checked: f.object.disabled_true == item.last, value: item.last
-                  = item.first
-      .panel-body
-        #filter_results
-          = render partial: 'list'
+= javascript_pack_tag 'vendors2'
+= stylesheet_pack_tag 'vendors2'
+= javascript_pack_tag 'vendors'
+= stylesheet_pack_tag 'vendors'
+= stylesheet_packs_with_chunks_tag 'admin/client'
+= javascript_packs_with_chunks_tag 'admin/client'

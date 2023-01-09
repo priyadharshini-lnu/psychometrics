@@ -1328,8 +1328,13 @@ en:
           successfully: User %{name} was successfully updated.
         user: User
       projects:
+        actions:
+          archive: Archive
+          unarchive: Unarchive
         archive:
+          content: Archive
           successfully: Project %{name} was successfully archived.
+          title: Archive Project
         assign_assessments:
           add_assessment: Add Assessment
           assessments: Assessments
@@ -1593,6 +1598,9 @@ en:
           new: New Project
           title: Project's options
           view_licenses: View Licenses
+        status:
+          active: Active
+          archived: Archived
         threesixty_campaigns:
           base:
             active: Active
@@ -1694,6 +1702,9 @@ en:
           url: Url
         toggle_status:
           successfully: Project %{name} was successfully updated.
+        unarchive:
+          content: Unarchive
+          title: Unarchive Project
         update:
           successfully: Project %{name} was successfully updated.
       registration_codes:
@@ -3226,6 +3237,8 @@ en:
       send_email: Send email
     projects:
       addProject: Add Project
+      columns:
+        project_number: Project Number
       design_settings:
         background_color: Background Color
         background_label: Background
