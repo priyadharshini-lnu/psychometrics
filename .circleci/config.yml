@@ -497,4 +497,3 @@ workflows:
               only:
                 - master
                 - review
-                - oracle
