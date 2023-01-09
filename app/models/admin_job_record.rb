@@ -5,7 +5,7 @@ class AdminJobRecord < ApplicationRecord
 
   belongs_to :owner, class_name: 'User'
 
-  mount_uploader :file, FileUploader
+  mount_uploader :file, Private::FileUploader
 
   enum operation: {
     import_users: 0,

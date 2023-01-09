@@ -56,7 +56,7 @@ class Properties extends Component {
           <ChoicesInput
             value={radarMax}
             onChange={e => this.changeProperty('radarMax', e)}
-            minValue={5}
+            minValue={2}
             maxValue={30}
           />
         </div>

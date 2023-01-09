@@ -6,6 +6,7 @@ module Threesixty
     belongs_to :assessment
     belongs_to :report
 
+    has_one :dimension, through: :assessment
     has_one :project, through: :campaign
     has_one :option, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_one :project_datasheet, through: :campaign

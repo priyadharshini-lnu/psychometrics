@@ -129,7 +129,7 @@ export const AudioRecorder: React.FC<Props> = ({
   const uploadFile = (id: number): void => {
     const { file } = state
     const urls = {
-      mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}`,
+      mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}&file_name=audio.wav`,
       callbackUrl: `${mediaUrl}/upload_callback`,
     }
     markQuestionInProgress(id, UPLOAD_STATES.SAVING)

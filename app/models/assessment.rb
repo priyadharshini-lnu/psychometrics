@@ -110,8 +110,8 @@ class Assessment < ApplicationRecord
   store :extra, accessors: %i[timer icon_color enable_video_check enable_audio_check enable_network_check],
     coder: JsonSerializer
 
-  mount_uploader :icon, ImageUploader
-  mount_uploader :poster, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
+  mount_uploader :poster, Public::ImageUploader
 
   delegate :config, :translations, to: :agile, prefix: true
 
@@ -147,8 +147,12 @@ class Assessment < ApplicationRecord
       end
       Settings.providers.saville.norms.select { |norm| saville_norms.norm_ids.include?(norm[:id]) }.map(&:to_h)
     elsif pearson?
-      PearsonAssessmentSetting.pearson_norms(external_settings[:assessment_id])
+      pearson_norms
     end
+  end
+
+  def pearson_norms
+    PearsonAssessmentSetting.pearson_norms(external_settings[:assessment_id])
   end
 
   def external_assessment_id

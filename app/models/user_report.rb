@@ -18,7 +18,7 @@ class UserReport < ApplicationRecord
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, to: :report
 
-  mount_base64_uploader :pdf, PdfUploader, file_name: proc { 'report' }
+  mount_base64_uploader :pdf, Private::PdfUploader, file_name: proc { 'report' }
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 

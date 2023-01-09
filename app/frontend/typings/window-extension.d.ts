@@ -10,7 +10,7 @@ declare global {
     __DISABLE_LOGGER_: boolean
     antdLocale: Locale
     PsyGlobalState: {
-      realEnv: 'development' | 'review' | 'staging' | 'production'
+      realEnv: string,
       sentryUrl: string,
       currentUser: {
         id: string

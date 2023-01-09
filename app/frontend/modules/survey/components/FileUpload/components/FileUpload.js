@@ -68,7 +68,7 @@ export default function FileUpload ({
 
   const uploadFile = (id, file) => {
     const urls = {
-      mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}`,
+      mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}&file_name=${file.name}`,
       callbackUrl: `${mediaUrl}/upload_callback`,
     }
     markQuestionInProgress(id, UPLOAD_STATES.SAVING)
