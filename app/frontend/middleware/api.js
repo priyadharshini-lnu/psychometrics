@@ -94,7 +94,7 @@ const apiMiddleware = () => next => (action) => {
     .then(({ data, headers }) => {
       if (responseType === 'blob') { downloadFile(data, headers) }
       const transformedData = camelize ? camelizeKeys(data, { except: camelizeExcept, only: camelizeOnly }) : data
-      if (window.PsyGlobalState.realEnv !== 'production' && !validResponseData({
+      if (!window.PsyGlobalState.realEnv.startsWith('production') && !validResponseData({
         typedResponse, transformedData, requestName: SUCCESS, next,
       })) {
         return next({ type: FAILURE, errors: {} })

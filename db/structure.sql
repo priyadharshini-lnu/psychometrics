@@ -92,6 +92,23 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+
+
+--
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10491,6 +10508,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220729103746'),
 ('20220809130239'),
 ('20220810132037'),
+('20220817094010'),
 ('20220817165939'),
 ('20220818101822'),
 ('20220820184329'),

@@ -16,19 +16,24 @@ module MediaResponses
       signer = Aws::S3::Presigner.new
       key = media.video_file_path
       multipart_request = Aws::S3::Client.new.create_multipart_upload(
-        bucket: Rails.application.secrets.directory, key: key, acl: media.asset.acl
+        bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket], key: key, acl: media.asset.acl
       )
+      storage_config = Rails.application.secrets.s3_compatible_storage
       number_of_urls.times do |time|
         part_number = (time + 1).to_s
-        urls << signer.presigned_url(
+        url = signer.presigned_url(
           :upload_part,
-          bucket: Rails.application.secrets.directory,
+          bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket],
           key: key,
           upload_id: multipart_request.upload_id,
           part_number: part_number,
           expires_in: 1800,
           use_accelerate_endpoint: Settings.aws.s3.accelerated
         )
+        if storage_config[:proxy_endpoint]
+          url = url.gsub(storage_config[:endpoint], storage_config[:proxy_endpoint])
+        end
+        urls << url
       end
 
       broadcast(:ok, {

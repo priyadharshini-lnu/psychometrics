@@ -63,14 +63,14 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
           report_approval_settings_response = data.find { |d| d['id'] == report_approval_setting.id.to_s }
           expect(report_approval_settings_response).to have_key('id')
           expect(report_approval_settings_response).to have_attribute(:qcs).with_value([
-            { 'id' => admins[0].id, 'email' => admins[0].email, 'name' => admins[0].name }
+            { 'id' => admins[0].id.to_s, 'email' => admins[0].email, 'name' => admins[0].name }
           ])
           expect(report_approval_settings_response).to have_attribute(:approvers).with_value([
-            { 'id' => admins[1].id, 'email' => admins[1].email, 'name' => admins[1].name }
+            { 'id' => admins[1].id.to_s, 'email' => admins[1].email, 'name' => admins[1].name }
           ])
           expect(report_approval_settings_response).to have_attribute(:approval_notification_users).with_value([
-            { 'id' => admins[2].id, 'email' => admins[2].email, 'name' => admins[2].name },
-            { 'id' => admins[3].id, 'email' => admins[3].email, 'name' => admins[3].name }
+            { 'id' => admins[2].id.to_s, 'email' => admins[2].email, 'name' => admins[2].name },
+            { 'id' => admins[3].id.to_s, 'email' => admins[3].email, 'name' => admins[3].name }
           ])
           expect(report_approval_settings_response).to have_relationship(:campaign).
             with_data({ 'id' => report_approval_setting.campaign_id.to_s, 'type' => 'campaigns' })
@@ -145,14 +145,14 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
           data = JSON.parse(response.body)['data']
           expect(data).to have_key('id')
           expect(data).to have_attribute(:qcs).with_value([
-            { 'id' => admins[0].id, 'email' => admins[0].email, 'name' => admins[0].name }
+            { 'id' => admins[0].id.to_s, 'email' => admins[0].email, 'name' => admins[0].name }
           ])
           expect(data).to have_attribute(:approvers).with_value([
-            { 'id' => admins[1].id, 'email' => admins[1].email, 'name' => admins[1].name }
+            { 'id' => admins[1].id.to_s, 'email' => admins[1].email, 'name' => admins[1].name }
           ])
           expect(data).to have_attribute(:approval_notification_users).with_value([
-            { 'id' => admins[2].id, 'email' => admins[2].email, 'name' => admins[2].name },
-            { 'id' => admins[3].id, 'email' => admins[3].email, 'name' => admins[3].name }
+            { 'id' => admins[2].id.to_s, 'email' => admins[2].email, 'name' => admins[2].name },
+            { 'id' => admins[3].id.to_s, 'email' => admins[3].email, 'name' => admins[3].name }
           ])
           expect(data).to have_relationship(:campaign).
             with_data({ 'id' => campaign.id.to_s, 'type' => 'campaigns' })
@@ -227,7 +227,7 @@ describe Api::V2::Administration::ReportApprovalSettingsController, swagger_doc:
           data = JSON.parse(response.body)['data']
           expect(data).to have_key('id')
           expect(data).to have_attribute(:qcs).with_value([
-            { 'id' => admin.id, 'email' => admin.email, 'name' => admin.name }
+            { 'id' => admin.id.to_s, 'email' => admin.email, 'name' => admin.name }
           ])
           expect(data).to have_relationship(:report).
             with_data({ 'id' => report.id.to_s, 'type' => 'reports' })

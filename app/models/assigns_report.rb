@@ -21,8 +21,8 @@ class AssignsReport < ApplicationRecord
   # TODO: seems that this callback is redundant. Investigate
   after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 
-  mount_base64_uploader :external_report, PrivateFileUploader, file_name: proc { 'external_report' }
-  mount_uploader :pdf, PdfUploader
+  mount_base64_uploader :external_report, Private::FileUploader, file_name: proc { 'external_report' }
+  mount_uploader :pdf, Private::PdfUploader
 
   # TODO: (atanych): temp hack
   def status

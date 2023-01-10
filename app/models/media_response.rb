@@ -5,7 +5,7 @@ require 'carrierwave/storage/fog'
 class MediaResponse < ApplicationRecord
   include EncodableId
 
-  mount_uploader :asset, MediaResponseUploader
+  mount_uploader :asset, Private::MediaResponseUploader
 
   belongs_to :users_assessment
   belongs_to :question

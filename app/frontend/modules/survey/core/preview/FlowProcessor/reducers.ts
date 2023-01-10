@@ -12,13 +12,13 @@ import {
   CHANGE_ELEMENT, SHOW_END, HIDE_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
-  RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
+  RESET, SAVE_RESULTS, SAVE_RESULTS_FAILURE, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING,
   ACTIVE_DICTATION_ON_QUESTION, NEXT_BUTTON_PRESSED, BACK_BUTTON_PRESSED,
-  SHOW_ERROR_WARNING,
+  SHOW_ERROR_WARNING, PREV_PAGE_REQUEST, PREV_PAGE_FAILURE,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -223,6 +223,8 @@ const HANDLERS = {
   [RESET]: (state: State) => ({
     ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
+  [PREV_PAGE_REQUEST]: state => ({ ...state, submissionInProgress: true }),
+  [PREV_PAGE_FAILURE]: state => ({ ...state, submissionInProgress: false, submissionFailed: true }),
   [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
       expired, current_block: currentBlock, factors, scoring, translations,
@@ -246,14 +248,17 @@ const HANDLERS = {
       currentPage: null,
       factors,
       scoring,
+      submissionInProgress: false,
     } : {
       ...state,
       end,
       blocks,
       locales: translations,
       questions: newQuestions,
+      submissionInProgress: false,
     }
   },
+  [SAVE_RESULTS_FAILURE]: state => ({ ...state, submissionFailed: true, submissionInProgress: false }),
   [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {
     if (_.get(state, ['highlights', payload.id])) return setIn(state, ['highlights', payload.id], payload)
 
@@ -298,8 +303,12 @@ const HANDLERS = {
   [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
-  [NEXT_BUTTON_PRESSED]: (state: State) => ({ ...state, backButtonPressed: false, nextButtonPressed: true }),
-  [BACK_BUTTON_PRESSED]: (state: State) => ({ ...state, backButtonPressed: true, nextButtonPressed: false }),
+  [NEXT_BUTTON_PRESSED]: (state: State) => ({
+    ...state, backButtonPressed: false, nextButtonPressed: true, submissionInProgress: true,
+  }),
+  [BACK_BUTTON_PRESSED]: (state: State) => ({
+    ...state, backButtonPressed: true, nextButtonPressed: false, submissionInProgress: true,
+  }),
   [FETCH_QUESTION_SCORING]: (state: State, { response }: FetchQuestionScoring) => ({
     ...state, scoring: response,
   }),

@@ -17,7 +17,7 @@ class Communication < ApplicationRecord
   has_and_belongs_to_many :copy_memberships, join_table: :communications_copy_memberships, class_name: 'Membership'
 
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'
-  has_many :communications_users
+  has_many :communications_users, dependent: :destroy
   has_many :users, through: :communications_users
 
   belongs_to :assessment

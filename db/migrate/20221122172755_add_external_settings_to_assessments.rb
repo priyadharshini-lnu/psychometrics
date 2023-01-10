@@ -4,7 +4,7 @@ class AddExternalSettingsToAssessments < ActiveRecord::Migration[6.1]
 
     ActiveRecord::Migration[6.1].execute(migrate_hogan_settings)
     ActiveRecord::Migration[6.1].execute(migrate_iiht_settings)
-    ActiveRecord::Migration[6.1].execute(migrate_pearson_settings)
+    migrate_pearson_settings
     ActiveRecord::Migration[6.1].execute(migrate_saville_settings)
   end
 
@@ -33,15 +33,13 @@ class AddExternalSettingsToAssessments < ActiveRecord::Migration[6.1]
   end
 
   def migrate_pearson_settings
-    <<-SQL.squish
-      UPDATE assessments
-      SET external_settings = json_build_object(
-        'assessment_id', pearson.pearson_assessment_id,
-        'norm_id', pearson.pearson_norm_id
-      )
-      FROM (SELECT * FROM assessments INNER JOIN pearson_assessment_settings ON assessments.id = pearson_assessment_settings.assessment_id) AS pearson
-      WHERE assessments.id = pearson.assessment_id
-    SQL
+    Assessment.pearson.includes(:pearson_assessment_setting).each do |assessment|
+      assessment.update(external_settings: {
+        assessment_id: assessment.pearson_assessment_setting.pearson_assessment_id,
+        norm_id: assessment.pearson_assessment_setting.pearson_norm_id,
+        assessment_language: assessment.pearson_assessment_setting.pearson_assessment_language
+      })
+    end
   end
 
   def migrate_saville_settings

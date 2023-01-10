@@ -108,7 +108,7 @@ module DataMigration
         log('updating hogan credentials...', logger.level + 1)
         return unless membership.hogan_credential
 
-        membership.hogan_credential.update_attribute(:user_id, membership.user_id)
+        membership.hogan_credential.update_attribute(:user_id, membership.user_id, membership_id: nil)
       end
 
       def update_privacy_consents(membership)

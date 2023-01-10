@@ -13,6 +13,7 @@ import {
   readComment,
   getSelectedModule,
   Comment,
+  Module,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { SendOutlined } from '@ant-design/icons'
@@ -20,6 +21,7 @@ import { CommentItem } from 'glint/components/CommentItem'
 import { CommentReply } from 'glint'
 import { useResources } from 'hooks/useResources'
 import Utils from 'modules/survey/utils'
+import _ from 'lodash'
 import styles from './styles.less'
 
 const connecter = connect((state: RootState) => ({
@@ -30,6 +32,7 @@ const connecter = connect((state: RootState) => ({
   selectedModule: getSelectedModule(state),
   modules: getModules(state),
   permissions: state.currentUser.permissions,
+  currentUser: state.currentUser,
 }), {
   approveReport,
   readComment,
@@ -37,7 +40,10 @@ const connecter = connect((state: RootState) => ({
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
-type Props = PropsFromRedux
+type Props = PropsFromRedux & {
+  scrollTo: (id:string) => void,
+  pageModules: {page: {}, modules: Module[]}[]
+}
 
 const Compose = ({ selected, disabled, onSend }) => {
   const [value, setValue] = useState('')
@@ -76,11 +82,11 @@ const Compose = ({ selected, disabled, onSend }) => {
 }
 
 function Comments ({
-  threads, comments, selectedModule, selectedModuleId, modules, userReport,
-  readComment,
+  comments, selectedModule, selectedModuleId, modules, userReport, currentUser,
+  pageModules, readComment, scrollTo,
 }: Props) {
   const {
-    createResource, updateResource, setData,
+    data, createResource, updateResource, setData, removeResource,
   } = useResources<Comment>('user_report_comments',
     { basePath: `user_reports/${userReport.id}` })
 
@@ -89,15 +95,27 @@ function Comments ({
   }, [])
 
   const getThreadReplies = (id: string) => (
-    comments.filter(c => (c.parentId === id))
+    _.sortBy(data.filter(c => ((c.parentId || c.parent?.id)?.toString() === id.toString())), 'id')
   )
+  const orderedModules = _.flatten(pageModules.map(p => p.modules))
 
+  const orderedThreads = orderedModules.reduce((threads, module) => {
+    const comments = data.filter((c => (
+      c.reportsModule && !c.parent
+        ? c
+        : !(c.parentId) && (c.moduleId?.toString() === module.id.toString())
+    )))
+
+    return [...threads, ...comments.filter(c => !_.find(threads, { id: c.id }))]
+  }, [])
+
+  const threads = orderedThreads
   const createComment = (text: string, parent?: Comment) => {
     const data: {text: string, parent?: {id: string}, reportsModule?: {id: string}} = {
       text,
     }
     if (parent) {
-      data.reportsModule = { id: parent.moduleId }
+      data.reportsModule = { id: parent.moduleId || parent.reportsModule?.id }
       data.parent = { id: parent?.id }
     } else if (selectedModuleId) {
       data.reportsModule = { id: selectedModuleId.toString() }
@@ -112,11 +130,15 @@ function Comments ({
     }).then(resolve)
   })
 
-  const resolveComment = (id) => {
+  const resolveComment = (id: string) => {
     updateResource({
       id,
       resolved: true,
     })
+  }
+
+  const removeComment = (id:string) => {
+    removeResource(id)
   }
 
   return (
@@ -124,13 +146,20 @@ function Comments ({
       <Compose selected={selectedModule} disabled={!selectedModuleId} onSend={createComment} />
       <Divider style={{ margin: 0 }} />
       {threads.map((thread) => {
-        const module = modules.find(m => m.id.toString() === thread.moduleId.toString())
+        const module = modules.find(
+          m => m.id.toString() === (thread.moduleId?.toString() || thread.reportsModule?.id),
+        )
         return (
           <>
-            <div className={
-              cs(styles.thread, { [styles.highlighted]: selectedModuleId?.toString() === thread.moduleId.toString() })}
+            <div
+              key={thread.id}
+              className={
+              cs(styles.thread, {
+                [styles.highlighted]: selectedModuleId && (selectedModuleId.toString()
+                  === (thread.moduleId?.toString() || thread.reportsModule?.id?.toString())),
+              })}
             >
-              <div className={styles.module}>
+              <div className={styles.module} onClick={() => scrollTo(thread.moduleId || thread.reportsModule?.id)}>
                 <Tooltip title={Utils.stripHTML(module?.props?.text)}>
                   <span className={styles.title}>Text</span>
                   {'| '}
@@ -138,21 +167,24 @@ function Comments ({
                 </Tooltip>
               </div>
               <CommentItem
-                canEdit
-                canRemove
-                canResolve
+                canEdit={thread.creator.id.toString() === currentUser.id.toString()}
+                canRemove={thread.creator.id.toString() === currentUser.id.toString()}
+                canResolve={false} // temporary disabled
                 comment={thread}
                 onCommentEditSave={comment => updateComment(comment)}
                 onCommentResolve={commentId => resolveComment(commentId)}
+                onCommentRemove={commentId => removeComment(commentId)}
                 onRead={readComment}
               />
               <Divider style={{ margin: '10px 0' }} />
-              {getThreadReplies(thread.id).map(comment => (
+              {getThreadReplies(thread.id.toString()).map(comment => (
                 <CommentItem
-                  canEdit
-                  canRemove
+                  key={comment.id}
+                  canEdit={thread.creator.id.toString() === currentUser.id.toString()}
+                  canRemove={thread.creator.id.toString() === currentUser.id.toString()}
                   comment={comment}
                   onCommentEditSave={comment => updateComment(comment)}
+                  onCommentRemove={commentId => removeComment(commentId)}
                   onRead={readComment}
                 />
               ))}

@@ -129,19 +129,18 @@ gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', br
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.0.0'
 
+gem 'ancestry', '~> 3.0.0'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
+gem 'browser', '~> 5.3.1'
 gem 'carrierwave', '~> 1.3.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct', '~> 2.1.0'
-gem 'fog-aws', '~> 2.0.1'
+gem 'fog-aws', '~> 3.5.2'
 gem 'inky-rb', '~> 1.3.8', require: 'inky'
 gem 'mini_magick', '~> 4.11.0'
 gem 'remotipart', '~> 1.3.1'
-
-gem 'ancestry', '~> 3.0.0'
-gem 'browser', '~> 5.3.1'
 
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
@@ -172,7 +171,7 @@ gem 'interactor', '~> 3.1.2'
 gem 'enum_help', '~> 0.0.17'
 # A simple date validator for Rails
 gem 'attr_encrypted', '~> 3.1.0'
-gem 'date_validator', '~> 0.9.0'
+gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils', ref: '3634294'
 gem 'js-routes', '~> 1.4.4'

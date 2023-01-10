@@ -30,6 +30,7 @@ export interface Comment {
   moduleId: string
   resolved: boolean
   creator: {
+    id: number,
     avatarUrl: string
     fullName: string
   }
@@ -124,8 +125,9 @@ const defaultState: State = {
   selectedModule: null,
 }
 
-interface Module {
+export interface Module {
   id: number
+  type: string
   props: {
     text: string
   }
@@ -160,6 +162,7 @@ export const SET_USER_REPORTS = 'campaigns/userReports/SET_USER_REPORTS'
 export const CREATE_MODULE_OVERRIDE = 'campaigns/userReports/CREATE_MODULE_OVERRIDE'
 export const UPDATE_MODULE_OVERRIDE = 'campaigns/userReports/UPDATE_MODULE_OVERRIDE'
 export const APPROVE_MODULE_OVERRIDE = 'campaigns/userReports/APPROVE_MODULE_OVERRIDE'
+export const DISAPPROVE_MODULE_OVERRIDE = 'campaigns/userReports/DISAPPROVE_MODULE_OVERRIDE'
 export const REMOVE_MODULE_OVERRIDE = 'campaigns/userReports/REMOVE_MODULE_OVERRIDE'
 export const APPROVE_REPORT = 'campaigns/userReports/APPROVE_REPORT'
 export const OPEN_RICH_EDITOR = 'report/OPEN_RICH_EDITOR'
@@ -214,6 +217,16 @@ export const approveTextOverride = (campaignId: number, body: {}) => ({
     body,
   },
 })
+
+export const disapproveTextOverride = (campaignId: number, id: number) => ({
+  type: DISAPPROVE_MODULE_OVERRIDE,
+  request: {
+    typedResponse: ModuleOverrideTR,
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/text_module_overrides/${id}/disapprove`,
+  },
+})
+
 
 export const removeTextOverride = (campaignId: number, id: number, userReportId: number) => ({
   type: REMOVE_MODULE_OVERRIDE,
@@ -426,6 +439,12 @@ const HANDLERS = {
       ? state.current.moduleOverrides.map(m => (m.id === response.id ? response : m))
       : [...state.current.moduleOverrides, response]), ['current', 'approved'], false)
   },
+  [DISAPPROVE_MODULE_OVERRIDE]: (state, { response }: ApproveModuleOverride) => {
+    const exists = _.find(state.current.moduleOverrides, { id: response.id })
+    return setIn(setIn(state, ['current', 'moduleOverrides'], exists
+      ? state.current.moduleOverrides.map(m => (m.id === response.id ? response : m))
+      : [...state.current.moduleOverrides, response]), ['current', 'approved'], false)
+  },
   [UPDATE_MODULE_OVERRIDE]: (state, { response }: ApproveModuleOverride) => (
     setIn(setIn(state, ['current', 'moduleOverrides'], state.current.moduleOverrides
       .map(m => (m.id === response.id ? response : m))), ['current', 'approved'], false)
@@ -435,7 +454,9 @@ const HANDLERS = {
       .filter(m => m.id !== requestAction.id)), ['current', 'approved'], false)
   ),
   [NEW_COMMENT]: (state, { data: { comment } }: RemoveModuleOverride) => (
-    setIn(state, ['current', 'comments'], [...state.current.comments, { ...comment, isNew: true }])
+    _.find(state.current.comments, { id: comment.id })
+      ? state
+      : setIn(state, ['current', 'comments'], [...state.current.comments, { ...comment, isNew: true }])
   ),
   [UPDATE_COMMENT]: (state, { data: { comment } }: RemoveModuleOverride) => (
     setIn(state, ['current', 'comments'], state.current.comments.map(

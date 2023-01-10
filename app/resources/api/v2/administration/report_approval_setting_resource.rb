@@ -48,7 +48,7 @@ class Api::V2::Administration::ReportApprovalSettingResource < Api::V2::Administ
       user = users[id]
       next unless user
 
-      user.slice(:id, :email).merge(name: user.decorate.display_name)
+      user.slice(:email).merge(name: user.decorate.display_name, id: user.id.to_s)
     end
   end
 
