@@ -60,6 +60,7 @@ const TimeseriesComponent: React.FC<Props> = ({ timeseries, fetchTimeseries, cam
         <Row justify="end" gutter={[0, 16]}>
           <Col span={4}>
             <RangePicker
+              clearIcon={false}
               disabledDate={disabledDate}
               onChange={(val: [Moment, Moment]) => setRange(val)}
               value={range}
