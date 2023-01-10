@@ -97,7 +97,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
-    let newApiConfig = args.apiConfig || apiConfig
+    let newApiConfig = _.merge({}, apiConfig, args.apiConfig)
 
     if (queryState) { newApiConfig = _.merge(newApiConfig, queryState) }
 
@@ -373,7 +373,11 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       return removeFilter(name)
     }
     let newUrlQuery = queryState || {}
-    newUrlQuery = { ...queryState, filter: { [name]: value }, page: { number: 1, size: queryState.page?.size } }
+    newUrlQuery = {
+      ...queryState,
+      filter: { ...queryState.filter, [name]: value },
+      page: { number: 1, size: queryState.page?.size },
+    }
     changeUrlQuery(newUrlQuery)
   }
 

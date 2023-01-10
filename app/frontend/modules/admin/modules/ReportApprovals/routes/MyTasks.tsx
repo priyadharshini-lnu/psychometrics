@@ -8,17 +8,19 @@ export const MyTasks: React.FC = () => {
     fetch, ...args
   } = useResources<Task>('report_approvals', {
     responseType: TaskTR,
+    apiConfig: {
+      include: ['campaign', 'report', 'user'],
+      fields: {
+        users: ['name', 'email'],
+        campaigns: ['name'],
+        reports: ['name'],
+      },
+    },
   })
 
   useEffect(() => {
     fetch({
       apiConfig: {
-        include: ['campaign', 'report', 'user'],
-        fields: {
-          users: ['name', 'email'],
-          campaigns: ['name'],
-          reports: ['name'],
-        },
         filter: {
           my_tasks: 'true',
         },

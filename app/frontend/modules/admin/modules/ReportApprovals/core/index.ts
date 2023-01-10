@@ -19,6 +19,25 @@ export const TaskTR = t.type({
   }),
 })
 
+
+export const CampaignTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+export const ReportTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+export const UserTR = t.type({
+  id: t.string,
+  name: t.string,
+  email: t.string,
+})
+
+
+export type Campaign = t.TypeOf<typeof CampaignTR>
+export type Report = t.TypeOf<typeof ReportTR>
+export type User = t.TypeOf<typeof UserTR>
 export type Task = t.TypeOf<typeof TaskTR>
 
 export const Schema = {

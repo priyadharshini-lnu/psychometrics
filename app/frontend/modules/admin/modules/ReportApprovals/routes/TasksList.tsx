@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  Table, Input, Space, Pagination, Button,
+  Table, Space, Pagination, Button, AutoComplete,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { TableLayout } from 'modules/admin/components/TableLayout'
@@ -8,6 +8,7 @@ import { get as getCurrentUser } from 'core/currentUser'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { useResources } from 'hooks/useResources'
 import { SearchOutlined } from '@ant-design/icons'
+import { Campaign, User } from '../core'
 
 const { Column } = Table
 const { I18n } = window
@@ -27,46 +28,70 @@ const TasksListComponent: React.FC<Props> = ({
 }) => {
   const tableLoading = isLoading('fetch')
 
-  const filterProps = (filter: string, value = '') => ({
-    filterDropdown: ({
-      selectedKeys, confirm, setSelectedKeys,
-    }) => (
-      <div style={{ padding: 8 }}>
-        <Input
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          defaultValue={value}
-          value={selectedKeys[0]}
-          onPressEnter={() => changeFilter(filter, selectedKeys[0])}
-          style={{ marginBottom: 8, display: 'block' }}
-        />
-        <Space>
-          <Button
-            type="primary"
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90 }}
-            onClick={() => {
-              confirm({ closeDropdown: false })
-              changeFilter(filter, selectedKeys[0])
-            }}
-          >
-            {I18n.t('common.actions.search')}
-          </Button>
-          <Button
-            onClick={() => {
-              changeFilter(filter, null)
-              setSelectedKeys([])
-            }}
-            size="small"
-            style={{ width: 90 }}
-          >
-            {I18n.t('common.actions.reset')}
-          </Button>
-        </Space>
-      </div>
-    ),
-    filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
-  })
+  const { collectionAction: search } = useResources<Campaign>('report_approvals')
+
+  const filterProps = (resource:string, query:string, filter: string, val = '') => {
+    const [value, setValue] = useState(val)
+    const [options, setOptions] = useState<{ value: string }[]>([])
+
+    const searchResource = (value) => {
+      search({
+        action: `search_${resource}`,
+        method: 'get',
+        apiConfig: {
+          filter: {
+            [query]: value,
+          },
+        },
+      }).then((data: Campaign[] | User[]) => {
+        setOptions((data).map(
+          c => ({ id: c.id, value: query === 'email_cont' ? c.email : c.name }),
+        ))
+      })
+    }
+
+    const onChange = (v) => {
+      setValue(v)
+      searchResource(v)
+    }
+
+    return ({
+      filterDropdown: ({ confirm }) => (
+        <div style={{ padding: 8 }}>
+          <AutoComplete
+            options={options}
+            onChange={onChange}
+            value={value}
+            style={{ marginBottom: 8, display: 'block' }}
+          />
+          <Space>
+            <Button
+              type="primary"
+              icon={<SearchOutlined />}
+              size="small"
+              style={{ width: 90 }}
+              onClick={() => {
+                confirm({ closeDropdown: false })
+                changeFilter(filter, value)
+              }}
+            >
+              {I18n.t('common.actions.search')}
+            </Button>
+            <Button
+              onClick={() => {
+                changeFilter(filter, null)
+              }}
+              size="small"
+              style={{ width: 90 }}
+            >
+              {I18n.t('common.actions.reset')}
+            </Button>
+          </Space>
+        </div>
+      ),
+      filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
+    })
+  }
 
   const TasksTable = (
     <>
@@ -88,28 +113,28 @@ const TasksListComponent: React.FC<Props> = ({
           title={I18n.t('administration.report_approval.columns.campaign_name')}
           dataIndex={['campaign', 'name']}
           key="campaign_name"
-          {...filterProps('campaign_name_cont', getFilteredValue('campaign_name_cont'))}
+          {...filterProps('campaign', 'name_cont', 'campaign_name_cont', getFilteredValue('campaign_name_cont'))}
           width={300}
         />
         <Column
           title={I18n.t('administration.report_approval.columns.report_name')}
           dataIndex={['report', 'name']}
           key="report_name"
-          {...filterProps('report_name_cont', getFilteredValue('report_name_cont'))}
+          {...filterProps('report', 'name_cont', 'report_name_cont', getFilteredValue('report_name_cont'))}
           width={300}
         />
         <Column
           title={I18n.t('administration.report_approval.columns.user_name')}
           dataIndex={['user', 'name']}
           key="user_name"
-          {...filterProps('user_full_name_cont', getFilteredValue('user_full_name_cont'))}
+          {...filterProps('user', 'full_name_cont', 'user_full_name_cont', getFilteredValue('user_full_name_cont'))}
           width={200}
         />
         <Column
           title={I18n.t('administration.report_approval.columns.user_email')}
           dataIndex={['user', 'email']}
           key="user_email"
-          {...filterProps('user_email_cont', getFilteredValue('user_email_cont'))}
+          {...filterProps('user', 'email_cont', 'user_email_cont', getFilteredValue('user_email_cont'))}
           width={300}
         />
         <Column
