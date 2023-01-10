@@ -14,18 +14,18 @@ module Threesixty
 
           def call
             media_response = context[:result].media_responses.find_by(question_id: path.second)
-            file_path = media_response&.asset&.url
+            file_url = media_response&.asset&.url
 
-            return broadcast :ok, nil unless file_path && valid_file_path?(file_path)
+            return broadcast :ok, nil unless file_url && valid_file_url?(file_url)
 
-            file_ext = get_extname(file_path)
+            file_ext = get_extname(file_url)
 
             if file_ext.in?(PDF_EXTENSIONS)
-              broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_path}\" type=\"application/pdf\"></object>"
+              broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_url}\" type=\"application/pdf\"></object>"
             elsif file_ext.in?(IMAGE_EXTENSIONS)
-              broadcast :ok, "<img src=\"#{file_path}\" class=\"user-upload-image\" />"
+              broadcast :ok, "<img src=\"#{file_url}\" class=\"user-upload-image\" />"
             else
-              broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(file_path)}\"></iframe>"
+              broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(file_url)}\"></iframe>"
             end
           end
 
@@ -37,16 +37,17 @@ module Threesixty
             "width: #{width}; height: #{height}; background: black; border: none;"
           end
 
-          def src(file_path)
-            "https://view.officeapps.live.com/op/embed.aspx?src=#{file_path}"
+          def src(file_url)
+            "https://view.officeapps.live.com/op/embed.aspx?src=#{file_url}"
           end
 
-          def valid_file_path?(file_path)
-            get_extname(file_path).in?(VALID_EXTENSIONS)
+          def valid_file_url?(file_url)
+            get_extname(file_url).in?(VALID_EXTENSIONS)
           end
 
-          def get_extname(file_path)
-            Pathname(file_path).extname.downcase
+          def get_extname(file_url)
+            # Remove query string from file_url
+            Pathname(file_url.split('?')[0]).extname.downcase
           end
         end
       end

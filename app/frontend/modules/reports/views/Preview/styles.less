@@ -5,10 +5,16 @@
 .editable {
   position: absolute;
   border: 1px dashed #ccc;
-  z-index: 5000;
+  z-index: 7000;
   cursor: pointer;
 
   &:hover {
+    .buttons {
+      opacity: 1;
+    }
+  }
+
+  &.selected {
     .buttons {
       opacity: 1;
     }

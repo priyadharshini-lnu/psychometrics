@@ -5,7 +5,7 @@ class DesignSetting < ApplicationRecord
 
   belongs_to :project
 
-  mount_base64_uploader :logo, ImageUploader
-  mount_base64_uploader :background, BackgroundUploader
-  mount_base64_uploader :secondary_logo, ImageUploader
+  mount_base64_uploader :logo, Public::ImageUploader
+  mount_base64_uploader :background, Public::BackgroundUploader
+  mount_base64_uploader :secondary_logo, Public::ImageUploader
 end

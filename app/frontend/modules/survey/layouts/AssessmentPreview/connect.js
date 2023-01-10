@@ -13,6 +13,8 @@ export default connect(
     fixedTimed: preview.fixedTimed,
     instructions: preview.instructions,
     isAnonymousAssessment: preview.isAnonymousAssessment,
+    submissionInProgress: preview.submissionInProgress,
+    submissionFailed: preview.submissionFailed,
   }),
   {
   },

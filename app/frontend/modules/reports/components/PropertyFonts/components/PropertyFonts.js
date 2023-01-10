@@ -19,6 +19,7 @@ export const FONTS = {
   Unifont: 'unifont, sans-serif',
 }
 
+const FONT_STEP_SIZE = 5
 export const FONT_MIN_SIZE = 30
 export const FONT_MAX_SIZE = 500
 
@@ -62,9 +63,9 @@ class PropertyFilter extends Component {
     const { model } = this.props
     return (
       <select className="form-control" value={model.props.style.fontSize} onChange={this.changeFontSize}>
-        {_.times(1 + (FONT_MAX_SIZE - FONT_MIN_SIZE) / 10, i => (
-          <option key={i} value={`${i * 10 + FONT_MIN_SIZE}%`}>
-            {i * 10 + FONT_MIN_SIZE}
+        {_.times(1 + (FONT_MAX_SIZE - FONT_MIN_SIZE) / FONT_STEP_SIZE, i => (
+          <option key={i} value={`${i * FONT_STEP_SIZE + FONT_MIN_SIZE}%`}>
+            {i * FONT_STEP_SIZE + FONT_MIN_SIZE}
             %
           </option>
         ))}

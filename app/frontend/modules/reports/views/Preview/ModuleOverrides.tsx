@@ -13,7 +13,7 @@ import htmldiff from 'libs/htmldiff'
 import { openRichEditor, closeRichEditor } from 'modules/reports/core/builder/actions'
 import {
   createTextOverride, updateTextOverride, approveTextOverride, removeTextOverride,
-  selectModule,
+  selectModule, disapproveTextOverride,
 } from 'modules/admin/modules/campaigns/core/userReports'
 import I18nStore from 'modules/reports/store/I18nStore'
 import { SafeHTML } from 'components/SafeHTML'
@@ -32,9 +32,12 @@ const connector = connect(
   (state: RootState, { rstore }: {rstore: Store}) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
     userReport: rstore?.getState().campaigns.userReports.current,
+    rstore,
   }),
   (dispatch, { rstore }: {rstore: Store}) => ({
-    approveTextOverride: (...args:[number, {}]) => rstore.dispatch(approveTextOverride(...args)),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    approveTextOverride: (...args:[number, {}]): any => rstore.dispatch(approveTextOverride(...args)),
+    disapproveTextOverride: (...args:[number, number]) => rstore.dispatch(disapproveTextOverride(...args)),
     removeTextOverride: (...args:[number, number, number]) => rstore.dispatch(removeTextOverride(...args)),
     openReviewEditor: () => rstore.dispatch(openRichEditor()),
     closeReviewEditor: () => rstore.dispatch(closeRichEditor()),
@@ -63,12 +66,14 @@ const OverrideComponent: FC<Props> = ({
   override, userReport, module, allowEdit, allowApprove,
   openReviewEditor, approveTextOverride, closeReviewEditor,
   removeTextOverride, updateTextOverride, createTextOverride,
-  selectModule,
+  selectModule, rstore, disapproveTextOverride,
 }) => {
   const [box, setBox] = useState<{}>({})
   const [edit, setEdit] = useState(false)
   const [showDiff, setShowDiff] = useState(false)
   const [content, setContent] = useState<string>()
+  const [selectedModule, setSelectedModule] = useState<number>()
+  const [approvingInProgress, setApprovingInProgress] = useState<boolean>(false)
 
   useEffect(() => {
     const el = document.querySelector(`[name=Module_${module.id}]`) as HTMLElement
@@ -81,6 +86,9 @@ const OverrideComponent: FC<Props> = ({
       width: rect?.width,
       height: rect?.height,
     })
+    rstore.subscribe(() => {
+      setSelectedModule(rstore.getState().campaigns.userReports.selectedModule)
+    })
   }, [])
 
   const openEditor = (override) => {
@@ -92,6 +100,17 @@ const OverrideComponent: FC<Props> = ({
   const closeEditor = () => {
     closeReviewEditor()
     setEdit(false)
+  }
+
+  const approve = (module, override) => {
+    setApprovingInProgress(true)
+    approveTextOverride(userReport.campaignId, {
+      id: override?.id,
+      moduleId: module.id,
+      userReportId: userReport.id,
+    }).then(() => {
+      setApprovingInProgress(false)
+    })
   }
 
   const saveReview = (override) => {
@@ -129,7 +148,7 @@ const OverrideComponent: FC<Props> = ({
 
   return (
     <div
-      className={styles.editable}
+      className={cs(styles.editable, { [styles.selected]: selectedModule === module.id })}
       style={box}
       onClick={() => selectModule(module.id)}
     >
@@ -194,26 +213,36 @@ const OverrideComponent: FC<Props> = ({
               )}
               {allowApprove && (override?.approved
                 ? (
-                  <Button
-                    type="primary"
-                    size="small"
-                    className={cs(styles.approved)}
-                  >
-                    <CheckOutlined />
-                    {' '}
-                    Accepted
-                  </Button>
+                  <>
+                    <Button
+                      type="primary"
+                      size="small"
+                      className={cs(styles.approved)}
+                    >
+                      <CheckOutlined />
+                      {' '}
+                      Accepted
+                    </Button>
+                    <Popconfirm
+                      overlayStyle={{ zIndex: 9999 }}
+                      title="Are you sure to remove approval for this text?"
+                      onConfirm={() => disapproveTextOverride(userReport.campaignId, override.id)}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Button type="primary" size="small" className={cs(styles.discard)}>
+                        <CloseOutlined />
+                      </Button>
+                    </Popconfirm>
+                  </>
                 )
                 : (
                   <Button
                     type="primary"
                     size="small"
                     className={cs(styles.approve)}
-                    onClick={() => approveTextOverride(userReport.campaignId, {
-                      id: override?.id,
-                      moduleId: module.id,
-                      userReportId: userReport.id,
-                    })}
+                    disabled={approvingInProgress}
+                    onClick={() => approve(module, override)}
                   >
                     <CheckOutlined />
                   </Button>

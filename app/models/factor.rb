@@ -6,7 +6,7 @@ class Factor < ApplicationRecord
 
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
-  has_many :factors_sub_factors
+  has_many :factors_sub_factors, dependent: :destroy
   has_many :parent_factor_sub_factors, foreign_key: :sub_factor_id, class_name: 'FactorsSubFactor'
   has_many :sub_factors, through: :factors_sub_factors
   has_many :parent_factors, through: :parent_factor_sub_factors, source: :factor
@@ -38,7 +38,7 @@ class Factor < ApplicationRecord
     external_score: 6
   }, _suffix: :strategy
 
-  mount_uploader :icon, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
 
   accepts_nested_attributes_for :factors_sub_factors, allow_destroy: true
 

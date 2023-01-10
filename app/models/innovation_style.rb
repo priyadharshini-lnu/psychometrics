@@ -3,7 +3,7 @@
 class InnovationStyle < ApplicationRecord
   include RansackSearchableFields
 
-  has_many :innovation_styles_factors
+  has_many :innovation_styles_factors, dependent: :destroy
   belongs_to :dimension
 
   validates :name, presence: true
@@ -11,7 +11,7 @@ class InnovationStyle < ApplicationRecord
 
   validates :position, numericality: { only_integer: true }, allow_nil: true
 
-  mount_uploader :icon, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
 
   def log_attribute_for_delete
     slice(:name, :dimension_id)

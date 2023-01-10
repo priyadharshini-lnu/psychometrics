@@ -18,7 +18,7 @@ class UserReport < ApplicationRecord
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, to: :report
 
-  mount_base64_uploader :pdf, PdfUploader, file_name: proc { 'report' }
+  mount_base64_uploader :pdf, Private::PdfUploader, file_name: proc { 'report' }
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
@@ -50,7 +50,7 @@ class UserReport < ApplicationRecord
       event :remove_approval, transitions_to: :change_requested
     end
     on_transition do |_from, to, _event, *_|
-      ::UserReports::NotifyQc.call!(self) if to == :change_requested
+      ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
       ::UserReports::NotifyApprovals.call!(self) if to == :approved
       ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
     end

@@ -96,7 +96,7 @@ const Evaluation = ({
         },
         ]}
       />
-      <Row>
+      <Row className={styles.container}>
         <Col span={subjectAssessments.length ? 12 : 24}>
           <Tabs
             activeKey={currentAssessorFormId || 'overview'}

@@ -103,7 +103,7 @@ class UserDecorator < BaseDecorator
     object.assessors.map do |assessor|
       "&#187; #{h.link_to(
         assessor.campaign.decorate.html_escaped_display_name, h.administration_project_new_campaign_path(
-                                                                assessor.campaign.project, assessor.campaign.project
+                                                                assessor.campaign.project, assessor.campaign
                                                               )
       )}"
     end

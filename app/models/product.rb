@@ -11,7 +11,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, Public::ImageUploader
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :with_price, lambda { |currency|

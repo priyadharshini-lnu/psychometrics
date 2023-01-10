@@ -105,7 +105,7 @@ class Assign < ApplicationRecord
     self.agile_scoring ||= {} if respond_to? :agile_scoring
   end
 
-  mount_base64_uploader :mindmill_report, PrivateFileUploader, file_name: proc { 'mindmill_report' }
+  mount_base64_uploader :mindmill_report, Private::FileUploader, file_name: proc { 'mindmill_report' }
 
   def notification_handler
     if will_save_change_to_status?

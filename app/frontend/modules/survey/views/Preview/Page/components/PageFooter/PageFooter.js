@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import cs from 'classnames'
-import { Button, Popconfirm } from 'antd'
+import { Button, Popconfirm, Alert } from 'antd'
 import { isRtl } from 'utils/locales'
 import { getQuestion } from 'modules/survey/core/preview/FlowProcessor/selectors'
 import styles from './styles.less'
@@ -62,14 +62,32 @@ class PageFooter extends Component {
 
   render () {
     const {
-      page, preview, preview: { enableBack }, hasPrevPage, isDisconnected, showSubmit,
+      page, preview,
+      preview: {
+        enableBack, submissionInProgress, submissionFailed, nextButtonPressed, backButtonPressed,
+      },
+      hasPrevPage, isDisconnected, showSubmit,
     } = this.props
     const { popConfirmVisibleFor } = this.state
     const rtl = isRtl(I18n.uiLocale)
+    const disableActionableButtons = isDisconnected || submissionInProgress || submissionFailed
 
     return (
-      <div className={cs(styles.footer, rtl ? 'rtl' : 'ltr')}>
-        {enableBack && hasPrevPage && (
+      <>
+        {submissionFailed
+        && (
+        <div>
+          <Alert
+            message={I18n.t('assessments.page.submissionFailedAlert.title')}
+            description={I18n.t('assessments.page.submissionFailedAlert.description')}
+            type="error"
+            showIcon
+          />
+        </div>
+        )
+      }
+        <div className={cs(styles.footer, rtl ? 'rtl' : 'ltr')}>
+          {enableBack && hasPrevPage && (
           <QuestionInProgressPopConfirm
             preview={preview}
             visible={popConfirmVisibleFor === BACK}
@@ -79,7 +97,8 @@ class PageFooter extends Component {
             <Button
               size="large"
               type="default"
-              disabled={isDisconnected}
+              disabled={disableActionableButtons}
+              loading={submissionInProgress && backButtonPressed}
               onClick={this.handlePreviousClick}
               className="mrs"
             >
@@ -87,37 +106,40 @@ class PageFooter extends Component {
               { page.prevBtn || I18n.t('assessments.page.back', { locale: I18n.uiLocale }) }
             </Button>
           </QuestionInProgressPopConfirm>
-        )}
-        <QuestionInProgressPopConfirm
-          preview={preview}
-          visible={popConfirmVisibleFor === NEXT}
-          hidePopConfirm={this.hidePopConfirm}
-          onConfirm={this.moveToNextPage}
-        >
-          {showSubmit ? (
-            <Button
-              size="large"
-              type="primary"
-              disabled={isDisconnected}
-              className={styles.next}
-              onClick={this.handleNextClick}
-            >
-              {I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
-            </Button>
-          ) : (
-            <Button
-              size="large"
-              type="primary"
-              disabled={isDisconnected}
-              onClick={this.handleNextClick}
-              className={styles.next}
-            >
-              {page.nextBtn || I18n.t('assessments.page.next', { locale: I18n.uiLocale })}
-              <span className="mls mrs fa fa-chevron-right rtl-flip" />
-            </Button>
           )}
-        </QuestionInProgressPopConfirm>
-      </div>
+          <QuestionInProgressPopConfirm
+            preview={preview}
+            visible={popConfirmVisibleFor === NEXT}
+            hidePopConfirm={this.hidePopConfirm}
+            onConfirm={this.moveToNextPage}
+          >
+            {showSubmit ? (
+              <Button
+                size="large"
+                type="primary"
+                disabled={disableActionableButtons}
+                loading={submissionInProgress}
+                className={styles.next}
+                onClick={this.handleNextClick}
+              >
+                {I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
+              </Button>
+            ) : (
+              <Button
+                size="large"
+                type="primary"
+                disabled={disableActionableButtons}
+                loading={submissionInProgress && nextButtonPressed}
+                onClick={this.handleNextClick}
+                className={styles.next}
+              >
+                {page.nextBtn || I18n.t('assessments.page.next', { locale: I18n.uiLocale })}
+                <span className="mls mrs fa fa-chevron-right rtl-flip" />
+              </Button>
+            )}
+          </QuestionInProgressPopConfirm>
+        </div>
+      </>
     )
   }
 }

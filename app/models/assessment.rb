@@ -55,6 +55,7 @@ class Assessment < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
 
+  has_one :pearson_assessment_setting
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign
 
@@ -109,8 +110,8 @@ class Assessment < ApplicationRecord
   store :extra, accessors: %i[timer icon_color enable_video_check enable_audio_check enable_network_check],
     coder: JsonSerializer
 
-  mount_uploader :icon, ImageUploader
-  mount_uploader :poster, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
+  mount_uploader :poster, Public::ImageUploader
 
   delegate :config, :translations, to: :agile, prefix: true
 
@@ -146,8 +147,12 @@ class Assessment < ApplicationRecord
       end
       Settings.providers.saville.norms.select { |norm| saville_norms.norm_ids.include?(norm[:id]) }.map(&:to_h)
     elsif pearson?
-      PearsonAssessmentSetting.pearson_norms(external_settings[:norm_id])
+      pearson_norms
     end
+  end
+
+  def pearson_norms
+    PearsonAssessmentSetting.pearson_norms(external_settings[:assessment_id])
   end
 
   def external_assessment_id

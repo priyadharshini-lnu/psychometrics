@@ -26,5 +26,12 @@ module Administration
 
       ReportApprovalSetting.approvers(@user.id, @user_report.campaign.id).exists?(report_id: @user_report.report_id)
     end
+
+    def disapprove?
+      return true if @user.is?(:superadmin)
+
+      ReportApprovalSetting.approvers(@user.id, @record.user_report.campaign.id).
+        exists?(report_id: @record.user_report.report_id)
+    end
   end
 end

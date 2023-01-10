@@ -10,7 +10,7 @@ class Library < ApplicationRecord
 
   enum type: { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
 
-  mount_uploader :file, FileUploader
+  mount_uploader :file, Public::FileUploader
 
   validates :name, presence: true, if: proc { folder? }
   validates :file, presence: true, unless: proc { folder? }
