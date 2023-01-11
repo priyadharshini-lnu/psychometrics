@@ -155,6 +155,7 @@ function* genPassAssessmentIfTimedOut () {
 function* getShowSubmitPage () {
   const state = yield select()
   if (state.preview.assessmentTimedOut) { return }
+  if (state.preview.readOnly) { return }
   if (state.preview.showSubmitPage) {
     yield put(hideSubmitPage())
     return
