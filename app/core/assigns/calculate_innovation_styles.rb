@@ -22,6 +22,8 @@ module Assigns
              each_with_object([]) do |innovation_style, mem|
         # Fetchs a valid factor ids
         valid_factors = []
+        next if innovation_style.innovation_styles_factors.empty?
+
         innovation_style.innovation_styles_factors.each do |innovation_styles_factor|
           # Calculates AVG of scoring
           avg_scoring = AverageScoring.call!(assign.scoring, innovation_styles_factor.factor)

@@ -22,6 +22,8 @@ module Assigns
              each_with_object([]) do |occupation, mem|
         # Fetchs a valid factor ids
         valid_factors = []
+        next if occupation.occupations_factors.empty?
+
         occupation.occupations_factors.each do |occupations_factor|
           # Calculates AVG of scoring
           avg_scoring = AverageScoring.call!(assign.scoring, occupations_factor.factor)
