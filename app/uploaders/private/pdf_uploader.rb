@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Private
-  class PdfUploader < CarrierWave::Uploader::Base
+  class PdfUploader < BaseUploader
     include PrivatableUploader
 
     def store_dir
@@ -12,10 +12,6 @@ module Private
 
     def extension_whitelist
       %w[pdf]
-    end
-
-    def download_url
-      url(query: { 'response-content-disposition' => 'attachment' })
     end
   end
 end

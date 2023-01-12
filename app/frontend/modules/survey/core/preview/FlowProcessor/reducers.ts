@@ -223,7 +223,7 @@ const HANDLERS = {
   [RESET]: (state: State) => ({
     ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
-  [PREV_PAGE_REQUEST]: state => ({ ...state, submissionInProgress: true }),
+  [PREV_PAGE_REQUEST]: state => ({ ...state, submissionInProgress: state.type === 'pass_assessment' }),
   [PREV_PAGE_FAILURE]: state => ({ ...state, submissionInProgress: false, submissionFailed: true }),
   [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
@@ -304,10 +304,10 @@ const HANDLERS = {
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
   [NEXT_BUTTON_PRESSED]: (state: State) => ({
-    ...state, backButtonPressed: false, nextButtonPressed: true, submissionInProgress: true,
+    ...state, backButtonPressed: false, nextButtonPressed: true, submissionInProgress: state.type === 'pass_assessment',
   }),
   [BACK_BUTTON_PRESSED]: (state: State) => ({
-    ...state, backButtonPressed: true, nextButtonPressed: false, submissionInProgress: true,
+    ...state, backButtonPressed: true, nextButtonPressed: false, submissionInProgress: state.type === 'pass_assessment',
   }),
   [FETCH_QUESTION_SCORING]: (state: State, { response }: FetchQuestionScoring) => ({
     ...state, scoring: response,
