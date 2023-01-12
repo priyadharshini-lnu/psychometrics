@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react'
+import React, { useEffect, FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {
@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import moment from 'moment'
 
-import { PageHeader } from 'glint'
+import { PageHeader, MediaQueryContext } from 'glint'
 import { ProfileCompletion } from 'modules/endUser/modules/campaigns/components/ProfileCompletion'
 import { ProfileCardTitle } from 'modules/endUser/modules/campaigns/components/ProfileCardTitle'
 import LangDropdown from 'components/LangDropdown'
@@ -52,6 +52,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   profileLastUpdatedAt,
 }) => {
   const history = useHistory()
+  const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
 
   useEffect(() => {
     fetchCampaigns()
@@ -89,6 +90,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                   subTitle={profileCardSubHeading}
                   completionPercent={profileCompletionPercentage}
                   handleComplete={handleProfileCompletion}
+                  isMobile={isMobile}
                 />
               </Card>
             </Col>
