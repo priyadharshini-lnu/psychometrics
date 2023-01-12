@@ -4,12 +4,12 @@ class EndUser::CampaignUsersController < ApplicationController
   before_action :set_campaign_user
 
   def begin_campaign
-    if @campaign_user.campaign.proctoring_license_with_enough_credits.present?
-      data = CampaignUsers::BeginCampaign.call!(@campaign_user)
-      render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
-    else
-      render json: { errors: I18n.t('licenses.not_enough_proctoring_credits') }, status: 422
+    if @campaign_user.proctoring_enabled? && @campaign_user.campaign.proctoring_license_with_enough_credits.blank?
+      return render json: { errors: I18n.t('licenses.not_enough_proctoring_credits') }, status: 422
     end
+
+    data = CampaignUsers::BeginCampaign.call!(@campaign_user)
+    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
   end
 
   def continue_campaign
