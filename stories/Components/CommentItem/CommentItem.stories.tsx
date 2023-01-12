@@ -32,13 +32,15 @@ Simple.args = {
   canRemove: true,
   canEdit: true,
   canResolve: true,
-  userData: {
-    fullName: 'Shivaraja',
-  },
   comment: {
     id: '1',
     text: 'This is a comment',
     createdAt: '10:40 AM',
+    resolved: true,
+    creator: {
+      fullName: 'Shivaraja',
+      avatarUrl: 'avatar',
+    },
   },
   onCommentRemove: handleRemoveComment,
   onCommentEditSave: null,
