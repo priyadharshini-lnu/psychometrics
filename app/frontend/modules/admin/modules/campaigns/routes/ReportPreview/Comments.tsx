@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
 import {
-  Input, Tooltip, Divider,
+  Input, Tooltip, Divider, Switch, Space,
 } from 'antd'
+import { useTransition, animated as a } from 'react-spring'
 import {
   get,
   getCurrent,
@@ -90,6 +91,8 @@ function Comments ({
   } = useResources<Comment>('user_report_comments',
     { basePath: `user_reports/${userReport.id}` })
 
+  const [hideResolved, setHideResolved] = useState(true)
+
   useEffect(() => {
     setData(comments)
   }, [])
@@ -109,7 +112,7 @@ function Comments ({
     return [...threads, ...comments.filter(c => !_.find(threads, { id: c.id }))]
   }, [])
 
-  const threads = orderedThreads
+  const threads = hideResolved ? orderedThreads.filter(thread => !thread.resolved) : orderedThreads
   const createComment = (text: string, parent?: Comment) => {
     const data: {text: string, parent?: {id: string}, reportsModule?: {id: string}} = {
       text,
@@ -141,16 +144,30 @@ function Comments ({
     removeResource(id)
   }
 
+  const transition = useTransition(threads, {
+    from: { opacity: 0 },
+    enter: { opacity: 1, delay: 200 },
+    leave: { opacity: 0 },
+    key: c => c.id,
+  })
+
   return (
     <div className={styles.comments}>
+      <div className={styles.filters}>
+        <Space>
+          <span>Hide Resolved</span>
+          <Switch checked={hideResolved} onChange={() => setHideResolved(!hideResolved)} />
+        </Space>
+      </div>
       <Compose selected={selectedModule} disabled={!selectedModuleId} onSend={createComment} />
       <Divider style={{ margin: 0 }} />
-      {threads.map((thread) => {
+
+      {transition((style, thread) => {
         const module = modules.find(
           m => m.id.toString() === (thread.moduleId?.toString() || thread.reportsModule?.id),
         )
         return (
-          <>
+          <a.div style={{ ...style }} key={thread.id}>
             <div
               key={thread.id}
               className={
@@ -197,7 +214,7 @@ function Comments ({
               </div>
             </div>
             <Divider style={{ margin: '0' }} />
-          </>
+          </a.div>
         )
       })}
     </div>
