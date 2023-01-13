@@ -921,7 +921,7 @@ en:
       not_member: Not a member?
       or: OR
       sso_btn: Login with Single Sign-On
-      title: Welcome Back!
+      title: Welcome!
     new_password: New Password
     otp:
       code: Code
@@ -1032,7 +1032,7 @@ en:
       last_login_text: 'Last login on :'
       last_updated_text: 'Profile was last updated on:'
       sub_heading: Complete your full profile information
-      welcome_text: Welcome Back,
+      welcome_text: Welcome,
     thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel
