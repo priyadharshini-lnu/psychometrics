@@ -80,6 +80,7 @@ const TasksListComponent: React.FC<Props> = ({
             <Button
               onClick={() => {
                 changeFilter(filter, null)
+                setValue('')
               }}
               size="small"
               style={{ width: 90 }}
