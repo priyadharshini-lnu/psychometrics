@@ -47,6 +47,13 @@ executors:
       AWS_REGION: 'dummy'
       AWS_S3_BUCKET: 'dummy'
       AWS_SECRET_ACCESS_KEY: 'dummy'
+      S3_COMPATIBLE_STORAGE_ENDPOINT: 'dummy'
+      S3_COMPATIBLE_STORAGE_ACCESS_KEY_ID: 'dummy'
+      S3_COMPATIBLE_STORAGE_SECRET_ACCESS_KEY: 'dummy'
+      S3_COMPATIBLE_STORAGE_REGION: 'dummy'
+      S3_COMPATIBLE_STORAGE_PUBLIC_BUCKET: 'dummy'
+      S3_COMPATIBLE_STORAGE_PRIVATE_BUCKET: 'dummy'
+      S3_COMPATIBLE_STORAGE_PROVIDER: 'aws'
       REDIS_HOST: localhost
       REDIS_URL: 'redis://localhost:6379/1'
       DISABLE_COVERAGE: '1'
@@ -496,3 +503,4 @@ workflows:
             branches:
               only:
                 - master
+                - review

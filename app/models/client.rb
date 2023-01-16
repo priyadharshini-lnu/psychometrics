@@ -57,7 +57,7 @@ class Client < ApplicationRecord
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) },
            through: :memberships, source: :user
   # Licenses
-  has_many :license_usages
+  has_many :license_usages, dependent: :destroy
   has_many :licenses, inverse_of: :client, dependent: :destroy
   has_many :active_licenses, -> { active }, class_name: 'License'
   # Reports
@@ -69,6 +69,12 @@ class Client < ApplicationRecord
   # Assessments
   has_many :assessments_clients, -> { order(:position) } # on delete cascade
   has_many :assessments, through: :assessments_clients, source: :assessment
+  has_many :owned_assessments, foreign_key: :owner_id, class_name: 'Assessment', dependent: :destroy
+  has_many :owned_reports, foreign_key: :owner_id, class_name: 'Report', dependent: :destroy
+  has_many :owned_norms, foreign_key: :owner_id, class_name: 'Norm', dependent: :destroy
+  has_many :owned_dimensions, foreign_key: :owner_id, class_name: 'Dimension', dependent: :destroy
+  has_many :owned_questions, foreign_key: :owner_id, class_name: 'Question', dependent: :destroy
+  has_many :owned_libraries, foreign_key: :owner_id, class_name: 'Library', dependent: :destroy
 
   # Self association
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) },
@@ -80,9 +86,6 @@ class Client < ApplicationRecord
   has_many :project_campaigns, class_name: 'Campaign', foreign_key: :project_id, dependent: :destroy
   has_many :sms_invites, through: :project_campaigns, dependent: :destroy
 
-  has_many :norms
-  has_many :dimensions
-
   has_one :webhook_subscription, class_name: 'WebhookSystem::Subscription', foreign_key: :project_id,
           dependent: :destroy
   has_many :registration_codes, class_name: 'RegistrationCode', foreign_key: :end_level_id, inverse_of: :end_level,
@@ -91,6 +94,7 @@ class Client < ApplicationRecord
            dependent: :destroy
   has_many :project_users, class_name: 'User', foreign_key: 'project_id', dependent: :destroy
   has_many :integrations, dependent: :destroy, foreign_key: :project_id
+  has_many :communications, dependent: :destroy, foreign_key: :sub_campaign_id
 
   # TODO: use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
@@ -139,9 +143,9 @@ class Client < ApplicationRecord
   enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
-  mount_base64_uploader :logo, ImageUploader
-  mount_base64_uploader :background, BackgroundUploader
-  mount_base64_uploader :secondary_logo, ImageUploader
+  mount_base64_uploader :logo, Public::ImageUploader
+  mount_base64_uploader :background, Public::BackgroundUploader
+  mount_base64_uploader :secondary_logo, Public::ImageUploader
 
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting

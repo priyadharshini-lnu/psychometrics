@@ -84,6 +84,7 @@ class User < ApplicationRecord
            through: :memberships, source: 'client'
   has_many :project_admin_clients_ttes, through: :project_admin_clients, source: 'tte', class_name: 'Client'
   has_many :communications, foreign_key: 'creator_id'
+  has_many :communications_users, dependent: :destroy
   has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE, disabled: false }) },
            through: :memberships, source: 'client'
   has_many :campaign_admin_campaigns, lambda {
@@ -108,7 +109,7 @@ class User < ApplicationRecord
   has_many :evaluation_results, through: :evaluation_assessments, source: :users_result
   has_many :campaign_users, dependent: :destroy
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
-  has_one :hogan_credential
+  has_one :hogan_credential, dependent: :destroy
   has_many  :available_client_admin_reports,
             through: :client_admin_clients,
             source: :available_reports,
@@ -117,6 +118,7 @@ class User < ApplicationRecord
   has_many :assessors, dependent: :destroy
   has_many :assessors_campaings, through: :assessors, source: :campaign
   has_many :report_approvals, dependent: :destroy
+  has_many :highlights, dependent: :destroy
 
   has_one :security_setting, through: :project
   has_one :privacy_consent
@@ -142,7 +144,7 @@ class User < ApplicationRecord
 
   after_create :create_user_profile
 
-  mount_uploader :photo, ImageUploader
+  mount_uploader :photo, Public::ImageUploader
 
   has_one_time_password(encrypted: true)
 

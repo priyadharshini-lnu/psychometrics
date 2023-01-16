@@ -7,11 +7,11 @@ class Dimension < ApplicationRecord
 
   belongs_to :owner, class_name: 'Client'
   has_many :factors, -> { roots.order(id: :asc) }
-  has_many :occupations
-  has_many :all_factors, class_name: 'Factor'
+  has_many :occupations, dependent: :destroy
+  has_many :all_factors, class_name: 'Factor', dependent: :destroy
   has_many :assessments
-  has_many :norms
-  has_many :innovation_styles
+  has_many :norms, dependent: :destroy
+  has_many :innovation_styles, dependent: :destroy
 
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'

@@ -2,9 +2,12 @@
 
 module MediaResponses
   class GetUploadUrl < BaseCommand
-    def initialize(result, question_id)
+    private_attr_reader :question_id, :result, :file_name
+
+    def initialize(result, question_id, file_name = nil)
       @question_id = question_id
       @result = result
+      @file_name = file_name
     end
 
     def call
@@ -13,16 +16,12 @@ module MediaResponses
         data = if question.type == 'VideoResponse'
                  MediaResponses::GetMultipartUploadUrls.call!(result, question_id)
                else
-                 MediaResponses::GetSinglePresignedUploadUrl.call!(result, question_id)
+                 MediaResponses::GetSinglePresignedUploadUrl.call!(result, question_id, file_name)
                end
         broadcast(:ok, data)
       rescue StandardError => e
         broadcast(:error, e)
       end
     end
-
-    private
-
-    attr_reader :question_id, :result
   end
 end

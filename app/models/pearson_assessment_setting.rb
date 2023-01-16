@@ -8,6 +8,8 @@ class PearsonAssessmentSetting < ApplicationRecord
   def self.pearson_norms(pearson_assessment_id, selected_norm = nil)
     assessments = Pearson::GetAssessments.call!
     assessment = assessments.find { |a| a['productId'] == pearson_assessment_id }
+    return [] unless assessment
+
     assessment.dig('norms', 'items').map do |norm|
       name = if norm['supportedLanguage']
                "(#{norm['supportedLanguage']}) #{norm['label']}"

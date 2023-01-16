@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Dashboard < ApplicationRecord
-  mount_base64_uploader :image, ImageUploader
+  mount_base64_uploader :image, Private::ImageUploader
 
   belongs_to :campaign
   has_one :project, through: :campaign

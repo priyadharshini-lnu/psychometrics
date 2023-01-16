@@ -25,8 +25,7 @@ class Report < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
   belongs_to :owner, class_name: 'Client'
-
-  has_many :report_families_reports
+  has_many :report_families_reports, dependent: :destroy
   has_many :report_families, through: :report_families_reports, source: :report_family
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :modules, through: :pages, dependent: :destroy
@@ -71,6 +70,9 @@ class Report < ApplicationRecord
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
   has_many :campaign_templates, dependent: :destroy
 
+  has_one :hogan_report_setting, dependent: :destroy
+  has_one :saville_report_setting, dependent: :destroy
+
   #   VALIDATIONS
   #
   validates :assessment, presence: true, unless: :data_only
@@ -93,8 +95,8 @@ class Report < ApplicationRecord
 
   serialize :external_settings, PsyJsonbSerializer
 
-  mount_uploader :icon, ImageUploader
-  mount_uploader :poster, ImageUploader
+  mount_uploader :icon, Public::ImageUploader
+  mount_uploader :poster, Public::ImageUploader
 
   def delete_assessments_reports
     assessments_reports.destroy_all

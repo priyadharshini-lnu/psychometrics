@@ -12,9 +12,10 @@ module UsersResults
       filename = "#{SecureRandom.uuid}/#{media_response.filename}"
 
       begin
+        bucket = Rails.application.secrets.s3_compatible_storage[:private_bucket]
         Aws::S3::Client.new.copy_object(
-          bucket: Rails.application.secrets.directory,
-          copy_source: "#{Rails.application.secrets.directory}/#{media_response.asset.path}",
+          bucket: bucket,
+          copy_source: "#{bucket}/#{media_response.asset.path}",
           key: "uploads/media_response/asset/#{filename}",
           acl: media_response.asset.acl
         )
