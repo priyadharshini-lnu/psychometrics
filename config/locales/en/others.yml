@@ -2033,6 +2033,13 @@ en:
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
   report_approvals:
+    events:
+      approved_text: approved text
+      created_text: added text
+      disapproved_text: dissaproved text
+      removed_text: removed text
+      status_changed: changed status from <i>%{from}</i> to <i>%{to}</i>
+      updated_text: updated text
     tabs:
       all: All
       approved: Approved
@@ -2832,6 +2839,13 @@ en:
   user_reports:
     actions:
       regenerate: Regenerate
+    approval_statuses:
+      approved: Approved
+      change_requested: Change Requested
+      not_ready: Not Ready
+      pending_qc: Pending QC
+      qc_completed: QC Completed
+      qc_in_progress: QC in Progress
     messages:
       async_generation: Report generation in progress. You would be notified once report is generated.
       regenerate_successful: Report regeneration job scheduled successfully

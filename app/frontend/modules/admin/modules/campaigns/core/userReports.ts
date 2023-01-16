@@ -38,6 +38,23 @@ export interface Comment {
   parent: {id: string}
 }
 
+interface Details {
+  module?:string
+  from?:string
+  to?:string
+}
+
+export interface UserReportEvent {
+  id: string
+  eventType: string
+  details: Details
+  createdAt: string
+  initiator: {
+    avatarUrl: string
+    fullName: string
+  }
+}
+
 export const CommentSchema = {
   type: 'user_report_comments',
   relationships: {
@@ -83,6 +100,7 @@ interface UserReportDetails {
   campaign?: object,
   moduleOverrides: ModuleOverride[]
   comments: Comment[]
+  userReportEvents: UserReportEvent[]
   richEditorOpened: boolean
   campaignId?: number
   permissions: {
@@ -115,6 +133,7 @@ const defaultState: State = {
     results: [],
     moduleOverrides: [],
     comments: [],
+    userReportEvents: [],
     richEditorOpened: false,
     permissions: {
       download: false,
