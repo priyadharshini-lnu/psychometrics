@@ -920,12 +920,9 @@ CREATE TABLE public.clients (
     id integer NOT NULL,
     name character varying,
     subdomain character varying,
-    logo character varying,
-    design json,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    background character varying,
     type integer DEFAULT 0,
     licenses_count integer DEFAULT 0,
     number character varying,
@@ -942,12 +939,10 @@ CREATE TABLE public.clients (
     end_level boolean DEFAULT false,
     hogan_group_name character varying,
     privacy_consent boolean,
-    secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
     locales json DEFAULT '[]'::json,
-    live_chat_token character varying,
-    design_migrated boolean DEFAULT false
+    live_chat_token character varying
 );
 
 
@@ -10513,6 +10508,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221213173037'),
 ('20221214083458'),
 ('20221227102943'),
-('20230110201437');
-
-
+('20230110201437'),
+('20230112110725');

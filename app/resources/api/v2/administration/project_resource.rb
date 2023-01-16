@@ -19,7 +19,7 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
   end
 
   def logo
-    @model.logo&.url
+    @model.design_setting.logo&.url
   end
 
   def privacy_link

@@ -16,8 +16,8 @@ module Threesixty::InitialState
       campaigns: {
         project: {
           name: @current_project.name,
-          logo: @current_project.logo.url,
-          secondaryLogo: @current_project.secondary_logo.url,
+          logo: @current_project.design_setting&.logo&.url,
+          secondaryLogo: @current_project.design_setting&.secondary_logo&.url,
           privacyText: @current_project.privacy_link&.text,
           privacyPageLink: @current_project.privacy_link&.link
         }

@@ -7,13 +7,7 @@ module Api
                  :background_color, :login_box_position, :created_at, :updated_at, :project_logo_url, :partner_logo_url,
                  :background_image_url, :data_processing_consent, :client_id, :webhook
 
-      def background_color
-        object.design_migrated? ? design_setting.background_color : object.design['background_color']
-      end
-
-      def login_box_position
-        object.design_migrated? ? design_setting.login_box_position : object.design['login_box_position']
-      end
+      delegate :background_color, :login_box_position, to: :design_setting
 
       def client_reference
         object.number
@@ -51,8 +45,10 @@ module Api
         object.webhook_subscription&.url
       end
 
+      private
+
       def design_setting
-        object.design_migrated ? object.design_setting : object
+        object.design_setting
       end
     end
   end

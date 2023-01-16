@@ -19,7 +19,6 @@ class Client < ApplicationRecord
   }.freeze
 
   has_ancestry cache_depth: true
-  store :design, accessors: %i[background_color login_box_position]
 
   # Disables single column inheritance
   self.inheritance_column = :_type_disabled
@@ -128,7 +127,6 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   before_create lambda {
     self.migrated = true
-    self.design_migrated = true
   }, if: :project?
   after_create :set_hogan_group_name, if: :project?
   after_create :create_smtp_setting, if: :project?
@@ -142,10 +140,6 @@ class Client < ApplicationRecord
   # Retail - is client who bought some product
   enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
-
-  mount_base64_uploader :logo, Public::ImageUploader
-  mount_base64_uploader :background, Public::BackgroundUploader
-  mount_base64_uploader :secondary_logo, Public::ImageUploader
 
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
