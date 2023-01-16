@@ -55,6 +55,10 @@ class Library < ApplicationRecord
   #
   self.inheritance_column = :_type_disabled
 
+  def log_attribute_for_delete
+    slice(:name, :owner_id)
+  end
+
   protected
 
   def detected_type
@@ -68,9 +72,5 @@ class Library < ApplicationRecord
 
   def set_name
     self.name = file.filename if name.blank?
-  end
-
-  def log_attribute_for_delete
-    slice(:name, :owner_id)
   end
 end
