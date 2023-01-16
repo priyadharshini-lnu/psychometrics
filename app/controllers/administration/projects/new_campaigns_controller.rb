@@ -132,7 +132,7 @@ module Administration
         form = ::Campaigns::CampaignOptions::Form.from_params(attributes)
 
         if form.valid?
-          audit! :update_campaign_options, campaign, payload: campaign_options_params, campaign: @campaign
+          audit! :update_campaign_options, @campaign, payload: campaign_options_params, campaign: @campaign
           Mobility.with_locale(params[:locale]) do
             campaign_options.update(campaign_options_params)
           end
