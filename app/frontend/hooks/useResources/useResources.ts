@@ -95,7 +95,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
   }
 
-  const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
+  const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }):
+    Promise<{ data: R, meta: M }> => {
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = _.merge({}, apiConfig, args.apiConfig)
 
@@ -109,9 +110,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedMeta = humps.camelizeKeys(meta)
         setState((previousState: ResourceState<R[], M>) => (
-          { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
-        resolve(camelizedResponse)
+          { ...previousState, data: camelizedResponse, meta: camelizedMeta }))
+        resolve({ data: camelizedResponse, meta: camelizedMeta })
         if (responseType || args.responseType) {
           responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
         }

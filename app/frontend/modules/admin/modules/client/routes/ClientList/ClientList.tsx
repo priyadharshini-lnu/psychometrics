@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import { useResources } from 'hooks/useResources'
 import {
@@ -44,6 +44,8 @@ interface Meta extends BaseMeta{
 }
 
 const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
+  const [countries, setCoutries] = useState<Meta['countries']>([])
+  const [types, setTypes] = useState<Meta['types']>([])
   const baseApiConfig = { include: ['project_manager'], fields: { users: ['name', 'email'] } }
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
@@ -59,7 +61,10 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     },
   )
   useEffect(() => {
-    fetch({ apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }) })
+    fetch({ apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }) }).then(({ meta }) => {
+      setCoutries(meta.countries)
+      setTypes(meta.types)
+    })
   }, [])
   const tableLoading = isLoading('fetch')
 
@@ -125,7 +130,8 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                     updateResource,
                     removeResource,
                     openModal,
-                    meta,
+                    countries,
+                    types,
                   }) as React.ReactElement
                 }
               />
@@ -189,14 +195,15 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
 }
 interface ActionMenuProps {
   client: Client
-  meta: Meta,
+  countries: Meta['countries'],
+  types: Meta['types'],
   updateResource: UpdateResource<Client>
   removeResource: RemoveResource
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  client, meta, updateResource, removeResource, openModal,
+  client, countries, types, updateResource, removeResource, openModal,
 }) => {
   const { id, name } = client
   const menuItems = [
@@ -214,7 +221,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return openModal('ClientFormModal', {
-        updateClient: updateResource, types: meta.types, countries: meta.countries, client,
+        updateClient: updateResource, types, countries, client,
       })
     }
     if (key === 'remove') {
