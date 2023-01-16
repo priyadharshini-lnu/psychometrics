@@ -10,25 +10,9 @@ module Administration
       append_before_action :pundit_authorize, except: %i[index sidebar]
 
       def index
-        @filter_term = params.dig(:q, :filterable_fields)
-        @_filter_form = Client.
-                        projects_of(client.id).
-                        where(id: policy_scope(resource_class).pluck(:id)).
-                        includes(
-                          :creator,
-                          :modifier,
-                          :project_admin_memberships
-                        ).
-                        order('name asc').
-                        ransack(params[:q])
-
-        filter_form.disabled_true ||= false
-        @_resources = filter_form.result.page(params[:page])
-
-        respond_to do |format|
-          format.html
-          format.js { render :index, formats: [:js] }
-        end
+        @init_state = {
+          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
+        }
       end
 
       def new
