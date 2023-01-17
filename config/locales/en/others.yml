@@ -924,7 +924,7 @@ en:
       not_member: Not a member?
       or: OR
       sso_btn: Login with Single Sign-On
-      title: Welcome Back!
+      title: Welcome!
     new_password: New Password
     otp:
       code: Code
@@ -1004,7 +1004,7 @@ en:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
       edit: Re-evaluate
       title: Confirm
-      view: View
+      view: View Assessment
     goto_dashboard: Go to the Dashboard
     in_progress: In Progress
     inactive_campaign_message: Currently, you have not been assigned any activities.
@@ -1035,7 +1035,7 @@ en:
       last_login_text: 'Last login on :'
       last_updated_text: 'Profile was last updated on:'
       sub_heading: Complete your full profile information
-      welcome_text: Welcome Back,
+      welcome_text: Welcome,
     thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel
