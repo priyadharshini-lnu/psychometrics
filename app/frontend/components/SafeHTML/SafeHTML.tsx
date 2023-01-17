@@ -25,8 +25,8 @@ interface SanitizeConfig {
 const sanitizeConfig: SanitizeConfig = {
   default: { ADD_ATTR: ['target'] },
   adminRichText: {
-    ADD_TAGS: ['iframe', 'ins', 'del'],
-    ADD_ATTR: ['target'],
+    ADD_TAGS: ['iframe', 'ins', 'del', 'object'],
+    ADD_ATTR: ['target', 'data'],
   },
   label: {
     ALLOWED_TAGS: ['span', 'br', 'nobr', 'small', 'strong', 'em'],

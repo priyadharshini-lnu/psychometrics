@@ -23,10 +23,8 @@ module Saville
         base64_report = result.dig('SupportingMaterials', 'EmbeddedData', 'EncodedContent', 'content')
         next if report_id.nil? || base64_report.nil?
 
-        user_report = UserReport.
-                      joins(:report).
-                      where(report: { provider: 'saville' }).
-                      find_by('report.external_settings @> ?', { report_id: report_id }.to_json)
+        user_report = saville_user_assessment.external_user_reports(:saville).joins(:report).
+                      find_by('reports.external_settings @> ?', { report_id: report_id }.to_json)
 
         next unless user_report
 
