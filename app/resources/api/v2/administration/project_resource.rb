@@ -35,8 +35,8 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
   end
 
   def self.records(opts = {})
-    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, Project]).projects_of(
-      opts[:context][:client].id
+    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, Project]).where(
+      ancestry: opts[:context][:client].id
     )
   end
 
