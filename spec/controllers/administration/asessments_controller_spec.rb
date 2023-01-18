@@ -68,23 +68,19 @@ RSpec.describe Administration::AssessmentsController, type: :controller do
 
     it 'gets pearson assessment details' do
       project = create(:project)
-      create(:integration, name: :iiht, active: true, project: project)
-      expect(Pearson::GetAssessments).to receive(:call!).and_return(
-        [
-          { 'productId' => '1', 'title' => 'title1' },
-          { 'productId' => '2', 'title' => 'title2' }
-        ]
-      )
+      pearson_assessment1  = create(:pearson_assessment)
+      pearson_assessment2  = create(:pearson_assessment)
 
       get :external_assessments, params: {
-        project_id: project.id, type: Assessment::TYPES[:pearson], external_assessment_id: '1'
+        project_id: project.id, type: Assessment::TYPES[:pearson],
+        external_assessment_id: pearson_assessment1.product_id
       }
 
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response).to eq(
+      expect(parsed_response).to match_array(
         [
-          { 'id' => '1', 'name' => 'title1', 'selected' => true },
-          { 'id' => '2', 'name' => 'title2', 'selected' => false }
+          { 'id' => pearson_assessment1.product_id, 'name' => pearson_assessment1.title, 'selected' => true },
+          { 'id' => pearson_assessment2.product_id, 'name' => pearson_assessment2.title, 'selected' => false }
         ]
       )
     end
@@ -93,23 +89,22 @@ RSpec.describe Administration::AssessmentsController, type: :controller do
   describe 'GET pearson_norms' do
     it 'gets pearson norm id and name for particulat assessment' do
       pearson_assessment_id = '123'
-      expect(Pearson::GetAssessments).to receive(:call!).and_return(
-        [{
-          'productId' => pearson_assessment_id,
-          'norms' => {
-            'items' => [{
-              'normId' => 'n1',
-              'label' => 'norm1',
-              'supportedLanguage' => 'fr'
-            },
-                        {
-                          'normId' => 'n2',
-                          'label' => 'norm2',
-                          'supportedLanguage' => 'no'
-                        }]
-          }
-        }]
-      )
+      create(:pearson_assessment,
+             product_id: pearson_assessment_id,
+             norms: {
+               'items' => [
+                 {
+                   'normId' => 'n1',
+                   'label' => 'norm1',
+                   'supportedLanguage' => 'fr'
+                 },
+                 {
+                   'normId' => 'n2',
+                   'label' => 'norm2',
+                   'supportedLanguage' => 'no'
+                 }
+               ]
+             })
       get :pearson_norms, params: { pearson_assessment_id: pearson_assessment_id, pearson_norm_id: 'n1' }
 
       parsed_response = JSON.parse(response.body)

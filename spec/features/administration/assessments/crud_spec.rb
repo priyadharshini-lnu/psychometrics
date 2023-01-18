@@ -4,10 +4,6 @@ require 'rails_helper'
 include Features::Helpers::Assessments
 
 feature 'CRUD Assessment' do
-  before do
-    allow(Pearson::GetAssessments).to receive(:call!).and_return([])
-  end
-
   given!(:dimension) { create :dimension, name: 'Agile' }
 
   context 'As Super Admin' do

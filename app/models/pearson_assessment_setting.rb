@@ -6,11 +6,10 @@ class PearsonAssessmentSetting < ApplicationRecord
   validates :pearson_assessment_id, presence: true
 
   def self.pearson_norms(pearson_assessment_id, selected_norm = nil)
-    assessments = Pearson::GetAssessments.call!
-    assessment = assessments.find { |a| a['productId'] == pearson_assessment_id }
+    assessment = pearson_assessment(pearson_assessment_id)
     return [] unless assessment
 
-    assessment.dig('norms', 'items').map do |norm|
+    assessment.norms['items'].map do |norm|
       name = if norm['supportedLanguage']
                "(#{norm['supportedLanguage']}) #{norm['label']}"
              else
@@ -23,13 +22,15 @@ class PearsonAssessmentSetting < ApplicationRecord
     end.sort_by { |norm| norm[:name] }
   end
 
-  def self.assessment_setting(pearson_assessment_id)
-    Pearson::GetAssessments.call!.find { |a| a['productId'] == pearson_assessment_id }
+  def self.pearson_assessment(pearson_assessment_id)
+    PearsonAssessment.find_by(product_id: pearson_assessment_id)
   end
 
   def self.pearson_assessment_language(pearson_assessment_id, pearson_norm_id)
-    assessment_setting = assessment_setting(pearson_assessment_id)
-    assessment_setting.dig('norms', 'items').find { |n| n['normId'] == pearson_norm_id }['supportedLanguage']
+    pearson_assessment = pearson_assessment(pearson_assessment_id)
+    return unless pearson_assessment
+
+    pearson_assessment.norms['items'].find { |n| n['normId'] == pearson_norm_id }['supportedLanguage']
   end
 
   def pearson_norms
@@ -42,7 +43,7 @@ class PearsonAssessmentSetting < ApplicationRecord
 
   private
 
-  def assessment_setting
-    self.class.assessment_setting(pearson_assessment_id)
+  def pearson_assessment
+    self.class.pearson_assessment(pearson_assessment_id)
   end
 end
