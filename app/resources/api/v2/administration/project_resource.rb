@@ -4,7 +4,7 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
   model_name 'Client'
 
   attributes :name, :number, :subdomain, :logo, :created_at, :updated_at,
-             :locales, :disabled, :privacy_consent, :ancestry
+             :locales, :disabled, :privacy_consent, :ancestry, :client_id
 
   has_one :privacy_link, foreign_key: :client_id
 
@@ -16,6 +16,10 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   def set_ancestry
     @model.ancestry = context[:client].id
+  end
+
+  def client_id
+    @model.ancestry
   end
 
   def logo

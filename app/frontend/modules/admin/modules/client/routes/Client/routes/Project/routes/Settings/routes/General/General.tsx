@@ -83,9 +83,15 @@ export const General: React.FC = () => {
 
               <Form.Item name="locales" label={I18n.t('administration.projects.general_settings.locales_label')}>
                 <Select mode="multiple">
-                  <Option value="">English</Option>
-                  <Option value="">Arabic</Option>
-                  <Option value="">Deutsch</Option>
+                  <Option value="en">
+                    {I18n.t('languages.en')}
+                  </Option>
+                  <Option value="ar">
+                    {I18n.t('languages.ar')}
+                  </Option>
+                  <Option value="de">
+                    {I18n.t('languages.de')}
+                  </Option>
                 </Select>
               </Form.Item>
 
