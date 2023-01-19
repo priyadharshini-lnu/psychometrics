@@ -130,8 +130,8 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
             label: state => state.client.name,
           },
           {
-            link: state => `/administration/projects/${state.project.id}/new_campaigns`,
-            label: state => state.project.name,
+            link: state => `/administration/projects/${state.project?.id}/new_campaigns`,
+            label: state => state.project?.name,
           },
           {
             label: () => getPageTitle(pathname),
