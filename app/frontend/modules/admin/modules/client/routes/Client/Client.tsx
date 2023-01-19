@@ -1,9 +1,13 @@
 import React, { FC } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
   ShopOutlined,
 } from '@ant-design/icons'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { connect, ConnectedProps } from 'react-redux'
+import { get as getCurrentUser } from 'core/currentUser'
 
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from 'modules/admin/modules/client/settings'
@@ -12,9 +16,16 @@ import { routes } from './routes'
 
 const { I18n } = window
 
-type Props = {}
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+)
 
-export const Client: FC<Props> = () => {
+type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux
+
+export const ClientComponent: FC<Props> = ({ currentUser }) => {
   const { clientId } = useParams<{ clientId: string }>()
   const history = useHistory()
   const { pathname } = useLocation()
@@ -51,10 +62,15 @@ export const Client: FC<Props> = () => {
         return ''
     }
   }
-  const menuItems = [
+  const menuItems: ItemType[] = [
     { key: 'projects', icon: <ShopOutlined />, label: I18n.t('administration.breadcrumbs.projects') },
-    { key: 'client_admins', icon: <ShopOutlined />, label: I18n.t('administration.breadcrumbs.clientAdmins') },
   ]
+
+  currentUser.isSuperAdmin && menuItems.push({
+    key: 'client_admins',
+    icon: <ShopOutlined />,
+    label: I18n.t('administration.breadcrumbs.clientAdmins'),
+  })
 
   return (
     <div>
@@ -92,3 +108,5 @@ export const Client: FC<Props> = () => {
     </div>
   )
 }
+
+export const Client = connecter(ClientComponent)
