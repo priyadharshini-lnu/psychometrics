@@ -2,8 +2,8 @@
 
 module Threesixty
   class CurrentUserSerializer < ActiveModel::Serializer
-    attributes :id, :is_manager, :email, :first_name, :last_name, :full_name,
-               :is_super_admin, :is_anonym, :permissions, :photo, :timezone, :custom_fields,
+    attributes :id, :is_manager, :email, :first_name, :last_name, :full_name, :role,
+               :is_anonym, :permissions, :photo, :timezone, :custom_fields,
                :age, :gender, :locale, :profile_completion_percentage, :last_sign_in_at, :updated_at
 
     def updated_at
@@ -22,10 +22,6 @@ module Threesixty
 
     def photo
       object.user_profile.photo&.url
-    end
-
-    def is_super_admin
-      object.superadmin?
     end
 
     def full_name

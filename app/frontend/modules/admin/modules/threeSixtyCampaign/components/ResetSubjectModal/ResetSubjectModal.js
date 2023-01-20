@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ConfirmationModal } from 'glint'
 import { Checkbox } from 'antd'
+import { isSuperAdmin } from 'core/currentUser'
 
 export default function ResetSubjectModal ({
   data: { onConfirm },
@@ -23,7 +24,7 @@ export default function ResetSubjectModal ({
       onConfirm={handleOnConfirm}
       onCancel={closeModal}
     >
-      { currentUser.isSuperAdmin && (
+      { isSuperAdmin(currentUser) && (
       <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>
         Mark license as deactivated
       </Checkbox>

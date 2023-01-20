@@ -11,7 +11,7 @@ import RouteList from 'components/RouteList'
 import _ from 'lodash'
 
 import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from 'modules/admin/modules/campaigns/core/current'
-import { get as getCurrentUser } from 'core/currentUser'
+import { get as getCurrentUser, isSuperAdmin } from 'core/currentUser'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { isRequestInProgress } from 'core/request'
 import { Menu } from './Menu'
@@ -39,7 +39,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
   const fetchSuccessful = isRequestSuccessful('fetch')
   const dashboardPreviewAvailable = !_.isEmpty(data[0]?.reportId) && !_.isEmpty(data[0]?.datasetId)
   const dashboardInitialized = fetchSuccessful && data.length === 1
-  const canManageDashboard = currentUser.role === 'Users::SuperAdmin'
+  const canManageDashboard = isSuperAdmin(currentUser)
   const loadingInProgress = !fetchSuccessful || campaignLoading
 
   useEffect(() => {

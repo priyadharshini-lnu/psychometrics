@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
 import * as t from 'io-ts'
-import { get as getCurrentUser } from 'core/currentUser'
+import { get as getCurrentUser, isSuperAdmin } from 'core/currentUser'
 import {
   Row, Col,
   Table,
@@ -297,7 +297,7 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
         handleClose={handleDrawerClose}
         updateAdmin={updateResource}
         createAdmin={createResource}
-        isSuperAdmin={currentUser.role === 'Users::SuperAdmin'}
+        isSuperAdmin={isSuperAdmin(currentUser)}
         permissions={meta.permissions}
         currentUserGrants={meta.usersGrants}
         adminId={drawerAdminId}

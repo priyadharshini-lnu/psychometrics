@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AnswerableConfirmationModal from 'components/AnswerableConfirmationModal'
 import { Checkbox } from 'antd'
+import { isSuperAdmin } from 'core/currentUser'
 
 export default function ResetCampaignModal ({
   campaignName,
@@ -24,7 +25,7 @@ export default function ResetCampaignModal ({
       onConfirm={handleOnConfirm}
       onCancel={() => closeModal('ResetCampaignModal')}
     >
-      { currentUser.isSuperAdmin && (
+      { isSuperAdmin(currentUser) && (
       <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>
         Mark licenses as deactivated
       </Checkbox>

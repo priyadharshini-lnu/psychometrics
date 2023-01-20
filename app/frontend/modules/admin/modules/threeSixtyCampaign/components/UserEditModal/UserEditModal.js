@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {
   Modal, Button, Form, Input,
 } from 'antd'
+import { isSuperAdmin } from 'core/currentUser'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import ErrorAlertBox from 'components/ErrorAlertBox'
 
@@ -71,7 +72,7 @@ export default function UserEditModal ({
       <ErrorAlertBox errors={errors} className="mtl mbl" />
       <Form>
         <Form.Item label="Email">
-          <Input value={email} name="email" disabled={!currentUser.isSuperAdmin} onChange={handleInputChange} />
+          <Input value={email} name="email" disabled={!isSuperAdmin(currentUser)} onChange={handleInputChange} />
         </Form.Item>
 
         <Form.Item label="First Name">

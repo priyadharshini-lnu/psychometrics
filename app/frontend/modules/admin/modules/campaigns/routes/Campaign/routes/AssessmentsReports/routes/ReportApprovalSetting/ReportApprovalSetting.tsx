@@ -15,7 +15,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { TableLayout } from 'modules/admin/components/TableLayout'
-import { get as getCurrentUser } from 'core/currentUser'
+import { get as getCurrentUser, isSuperAdmin } from 'core/currentUser'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { RemoveReportApprovalSettingModal } from './RemoveReportApprovalModal'
 import { ReportApprovalFormModal } from './ReportApprovalFormModal'
@@ -123,7 +123,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
             </Space>
           )}
         />
-        {currentUser.role === 'Users::SuperAdmin'
+        {isSuperAdmin(currentUser)
           && (
           <Column
             title={I18n.t('common.column.action')}

@@ -12,7 +12,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
 import ConditionalDropdown from 'components/ConditionalDropdown'
 import { TableLayout } from 'modules/admin/components/TableLayout'
-import { get as getCurrentUser } from 'core/currentUser'
+import { get as getCurrentUser, isSuperAdmin } from 'core/currentUser'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Link } from 'react-router-dom'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
@@ -117,7 +117,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           key="project_manager"
         />
 
-        {currentUser.role === 'Users::SuperAdmin'
+        {isSuperAdmin(currentUser)
           && (
           <Column
             title={I18n.t('common.column.action')}
@@ -156,7 +156,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         value={getFilteredValue('filterable_fields')}
         onChange={({ target: { value } }) => { changeFilter('filterable_fields', value) }}
       />
-      {currentUser.role === 'Users::SuperAdmin'
+      {isSuperAdmin(currentUser)
           && (
           <Button
             type="primary"

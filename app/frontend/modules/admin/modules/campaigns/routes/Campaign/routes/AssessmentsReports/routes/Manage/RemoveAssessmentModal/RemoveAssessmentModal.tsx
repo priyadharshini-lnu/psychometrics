@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   Modal, Checkbox, message, Typography,
 } from 'antd'
+import { isSuperAdmin } from 'core/currentUser'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import { SafeHTML } from 'components/SafeHTML'
 import { PropsFromRedux } from './connect'
@@ -44,7 +45,7 @@ const RemoveAssessmentModal: React.FC<Props> = ({
       <Paragraph>
         <SafeHTML html={I18n.t('campaign_assessment.modals.remove.msg_text', { name })} />
       </Paragraph>
-      {currentUser.role === 'Users::SuperAdmin' && (
+      {isSuperAdmin(currentUser) && (
         <Checkbox checked={removeUserAssessments} onChange={() => setRemoveUserAssessments(!removeUserAssessments)}>
           {I18n.t('campaign_report.modals.remove.apply')}
           <br />
