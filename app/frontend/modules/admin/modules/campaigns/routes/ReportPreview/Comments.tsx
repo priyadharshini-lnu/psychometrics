@@ -63,7 +63,7 @@ const Compose = ({ selected, disabled, onSend }) => {
   return (
     <div className={styles.compose}>
       <div className={styles.hint}>
-        {selected ? Utils.stripHTML(selected.props.text) : 'Select a text module to comment'}
+        {selected ? selected.name : 'Select a text module to comment'}
       </div>
       <Input
         disabled={disabled}

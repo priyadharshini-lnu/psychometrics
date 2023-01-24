@@ -48,25 +48,29 @@ const ICONS = {
 
 const ModuleIcon = ({ type }) => <span className={`${styles.icon} fa fa-${ICONS[type]}`} />
 
-const ModuleLabel = ({ module: { id, type, props } }) => {
+const ModuleLabel = ({
+  module: {
+    id, type, props, name,
+  },
+}) => {
   if (type === 'Text') {
-    return <>{`${utils.stripHTML(props.text).slice(0, 45)}...`}</>
+    return <>{name || `${utils.stripHTML(props.text).slice(0, 45)}...`}</>
   }
 
   if (type === 'Graph') {
     return (
       <>
-        {props.type
+        {(props.type
           ? <span className={`${iconStyles[props.type]} ${iconStyles.icon} ${styles.chartIcon}`} />
-          : 'Unselected '}
-        Chart
+          : 'Unselected ')}
+        {name}
       </>
     )
   }
 
   if (type === 'Table') {
     return (
-      <>{`${props.type || 'Unselected'}`}</>
+      <>{name || `${props.type || 'Unselected'}`}</>
     )
   }
 
@@ -74,7 +78,7 @@ const ModuleLabel = ({ module: { id, type, props } }) => {
     return (
       <>
         <img src={props.url} />
-        Image
+        {name || 'Image'}
       </>
     )
   }
@@ -101,7 +105,7 @@ const ModuleLabel = ({ module: { id, type, props } }) => {
           style={style}
         />
         {' '}
-        Shape
+        {name || 'Shape'}
       </>
     )
   }
@@ -155,7 +159,6 @@ const ModuleListComponent: FC<Props> = ({
               </Button>
             </div>
           </div>
-
         </div>
       ))}
     </Space>

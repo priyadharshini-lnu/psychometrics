@@ -4,6 +4,7 @@ import { RGBColor } from 'react-color'
 export default interface Module {
   id: number
   type: string
+  name: string
   removed: boolean
   toJSON: () => {}
   getScoreType(): string

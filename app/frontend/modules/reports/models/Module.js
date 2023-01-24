@@ -25,6 +25,7 @@ const Module = function (attrs = {}, page) {
   this.page = page
   this.id = attrs.id
   this.isNew = attrs.isNew
+  this.name = attrs.name
 
   if (!this.id) {
     this.id = Utils.genId()
@@ -69,6 +70,7 @@ _.extend(Module.prototype, {
     return {
       id: this.id,
       page_id: this.page.isNew ? undefined : this.page_id,
+      name: this.name,
       type: this.type,
       props,
       removed: this.removed,

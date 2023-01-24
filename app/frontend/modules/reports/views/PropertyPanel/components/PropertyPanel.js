@@ -4,7 +4,7 @@ import { Properties } from 'modules/reports/components/modules'
 import ModuleModel from 'modules/reports/models/Module'
 import LayoutManager from 'modules/reports/models/LayoutManager'
 import {
-  Slider, InputNumber, Row, Col, Collapse,
+  Slider, InputNumber, Row, Col, Collapse, Input,
 } from 'antd'
 import styles from './PropertyPanel.less'
 import ColorPickerModal from './ColorPickerModal'
@@ -33,6 +33,11 @@ class PropertyPanel extends Component {
     const position = { ...module.props.position, ...value }
     module.props.position = position
     this.forceUpdate()
+  }
+
+  onChangeName = (e) => {
+    const { module, updateModule } = this.props
+    updateModule({ ...module, name: e.currentTarget.value })
   }
 
   updateModule = () => {
@@ -73,6 +78,7 @@ class PropertyPanel extends Component {
     }
 
     const type = selected.type === 'Module' ? module.type : selected.type
+
     const View = Properties[`${type}Properties`]
     if (!View) { return }
 
@@ -216,7 +222,7 @@ class PropertyPanel extends Component {
   }
 
   render () {
-    const { selected } = this.props
+    const { selected, module } = this.props
     const { popupOpen } = this.state
     const inspectorClasses = [styles.inspector]
     let style = {}
@@ -232,6 +238,17 @@ class PropertyPanel extends Component {
       <>
         <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
           <div className={styles.main}>
+            {selected.type === 'Module' && (
+              <>
+                <div>
+                  <div className={styles.title}>Module Name:</div>
+                  <div>
+                    <Input key={module.id} value={module.name} onChange={this.onChangeName} />
+                  </div>
+                </div>
+                <hr className={styles.divider} />
+              </>
+            )}
             {this.renderCustomProperties()}
             {selected.type === 'Module' && this.renderLayout()}
           </div>
