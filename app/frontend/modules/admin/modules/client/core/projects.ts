@@ -9,6 +9,7 @@ export const ProjectTR = t.type({
   updatedAt: t.string,
   disabled: t.boolean,
   clientId: t.string,
+  url: t.string,
 })
 
 export type Project = t.TypeOf<typeof ProjectTR>

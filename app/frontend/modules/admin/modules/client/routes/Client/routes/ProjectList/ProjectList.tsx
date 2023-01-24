@@ -2,9 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import {
-  Table, Input, Pagination, Button, Space, Image, Typography, Menu, Modal, Radio,
+  Table,
+  Input,
+  Pagination,
+  Button,
+  Space,
+  Image,
+  Typography,
+  Menu,
+  Modal,
+  Radio,
+  Avatar,
+  Row,
+  Col,
 } from 'antd'
-import { PlusOutlined, FileImageOutlined } from '@ant-design/icons'
+import { PlusOutlined } from '@ant-design/icons'
 
 import { openModal } from 'modules/admin/core/ui/modals'
 import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
@@ -24,7 +36,6 @@ import { CreateProjectModal } from './CreateProjectModal'
 import styles from './styles.less'
 
 const { I18n } = window
-const { Text } = Typography
 
 const MODALS = {
   CreateProjectModal,
@@ -123,40 +134,54 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           title={I18n.t('common.column.details')}
           key="name"
           render={({
-            id, logo, name,
+            id, logo, name, url,
           }) => (
             <div>
-              {
-                logo ? (
-                  <Image
-                    src={logo}
-                    preview={false}
-                    width={60}
-                    height={60}
-                    className={styles.logoImageStyles}
-                    onClick={() => { history.push(`/administration/projects/${id}/new_campaigns`) }}
-                  />
-                )
-                  : (
-                    <FileImageOutlined className={styles.imageOutlined} />
-                  )
-              }
-              <Space
-                direction="vertical"
-                className={styles.spaceStyles}
-              >
-                <Link
-                  className={styles.campaignLink}
-                  to={`/administration/projects/${id}/new_campaigns`}
-                >
-                  {name}
-                </Link>
-                <div>
-                  <Text className={styles.campaignLinkText} copyable>
-                    {`${window.location.origin}/administration/projects/${id}/new_campaigns`}
-                  </Text>
-                </div>
-              </Space>
+              <Row>
+                <Col span="3">
+                  {
+                    logo ? (
+                      <Image
+                        src={logo}
+                        preview={false}
+                        width={60}
+                        height={60}
+                        className={styles.logoImageStyles}
+                        onClick={() => { history.push(`/administration/projects/${id}/new_campaigns`) }}
+                      />
+                    ) : (
+                      <Avatar
+                        size="large"
+                        className={styles.imageAvatarStyles}
+                      >
+                        {name.substring(0, 2)}
+                      </Avatar>
+                    )
+                  }
+                </Col>
+                <Col>
+                  <Space
+                    direction="vertical"
+                  >
+                    <Link
+                      className={styles.campaignLink}
+                      to={`/administration/projects/${id}/new_campaigns`}
+                    >
+                      {name}
+                    </Link>
+                    <div>
+                      <Typography.Link
+                        className={styles.subdomainLinkText}
+                        href={url}
+                        target="_blank"
+                        copyable
+                      >
+                        {url}
+                      </Typography.Link>
+                    </div>
+                  </Space>
+                </Col>
+              </Row>
             </div>
           )}
           sorter

@@ -4,7 +4,8 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
   model_name 'Client'
 
   attributes :name, :number, :subdomain, :logo, :created_at, :updated_at,
-             :locales, :disabled, :privacy_consent, :ancestry, :client_id
+             :locales, :disabled, :privacy_consent, :ancestry, :client_id,
+             :url
 
   has_one :privacy_link, foreign_key: :client_id
 
@@ -20,6 +21,10 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   def client_id
     @model.ancestry
+  end
+
+  def url
+    URI("#{Settings.protocol}://#{@model.subdomain}.#{Settings.domain}:#{Settings.port}").to_s
   end
 
   def logo
