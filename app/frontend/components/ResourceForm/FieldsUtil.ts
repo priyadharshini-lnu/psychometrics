@@ -2,7 +2,7 @@ import { FieldData } from 'rc-field-form/lib/interface'
 import _ from 'lodash'
 
 export default class FieldsUtil {
-  fields: FieldData[];
+  fields: FieldData[]
 
   constructor (fields: FieldData[]) {
     this.fields = fields

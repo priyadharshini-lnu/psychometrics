@@ -13,7 +13,6 @@ const { Option } = Select
 
 export interface OwnProps {
   close(): void
-  campaignAssessmentId: number,
   campaignId: number
   assessment: Assessment
   loading: boolean

@@ -6,6 +6,8 @@ import { SafeHTML } from 'components/SafeHTML'
 import styles from './TextEditor.less'
 
 export class TextEditor extends Component {
+  hover = false
+
   constructor (props) {
     super(props)
     this.state = {
@@ -26,8 +28,6 @@ export class TextEditor extends Component {
     const { onChange } = this.props
     onChange && onChange(data)
   }
-
-  hover = false
 
   edit = () => {
     const { value } = this.props

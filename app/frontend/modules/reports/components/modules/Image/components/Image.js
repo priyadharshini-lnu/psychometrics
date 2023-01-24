@@ -30,7 +30,6 @@ export class Image extends Component {
         <div
           className={styles.image}
           style={{ backgroundImage: `url("${model.props.url}")` }}
-          onLoad={this.load}
           onDoubleClick={this.openEditor}
         />
       )
@@ -39,7 +38,6 @@ export class Image extends Component {
         <div
           className={styles.image}
           style={{ backgroundImage: `url(${GetImageURL.run(model)})` }}
-          onLoad={this.load}
         />
       )
     }

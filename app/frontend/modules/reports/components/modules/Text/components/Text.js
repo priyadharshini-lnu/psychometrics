@@ -23,6 +23,10 @@ import GetStyles from './GetStyles'
 import PipedText from './PipedText'
 
 class Text extends Component {
+  editor = null
+
+  edit = false
+
   static propTypes = {
     module: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
@@ -93,10 +97,6 @@ class Text extends Component {
     }
     return I18nStore.tModule(model, 'text')
   }
-
-  editor = null
-
-  edit = false
 
   openEditor = () => {
     const {

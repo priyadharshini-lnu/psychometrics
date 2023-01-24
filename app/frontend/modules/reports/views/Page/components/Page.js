@@ -12,13 +12,13 @@ import DisplayLogic from './DisplayLogic/DisplayLogic'
 import Module from './Module'
 
 class Page extends Component {
+  storeListener = null
+
   static propTypes = {
     model: PropTypes.object.isRequired,
     last: PropTypes.bool,
     renderModules: PropTypes.bool,
   }
-
-  storeListener = null
 
   selectPage = (e) => {
     const { model, unselectModules, selectModule } = this.props

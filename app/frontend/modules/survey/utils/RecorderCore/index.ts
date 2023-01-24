@@ -32,37 +32,37 @@ interface ConfigObj {
 }
 
 export class RecorderCore {
-  config: ConfigObj;
+  config: ConfigObj
 
-  onUpdateRecordTime: (duration: number) => void;
+  onUpdateRecordTime: (duration: number) => void
 
-  state: string;
+  state: string
 
-  worker: Worker;
+  worker: Worker
 
-  startTime: number | null;
+  startTime: number | null
 
-  lastPauseTime: number | null;
+  lastPauseTime: number | null
 
-  totalPausedTime: number;
+  totalPausedTime: number
 
-  updateDurationTimer: number;
+  updateDurationTimer: number
 
-  stream: MediaStream;
+  stream: MediaStream
 
-  audioContext: AudioContext;
+  audioContext: AudioContext
 
-  scriptProcessorNode: ScriptProcessorNode;
+  scriptProcessorNode: ScriptProcessorNode
 
-  freqBufferLength: number;
+  freqBufferLength: number
 
-  freqDataArray: Uint8Array;
+  freqDataArray: Uint8Array
 
-  freqAnalyser: AnalyserNode;
+  freqAnalyser: AnalyserNode
 
-  sourceNode: MediaStreamAudioSourceNode;
+  sourceNode: MediaStreamAudioSourceNode
 
-  userMedia?: Promise<MediaStream | void>;
+  userMedia?: Promise<MediaStream | void>
 
   constructor ({ onUpdateRecordTime }) {
     this.config = {

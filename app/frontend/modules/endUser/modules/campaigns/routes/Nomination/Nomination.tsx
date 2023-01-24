@@ -60,8 +60,9 @@ const connector = connect((state: any) => ({
 const { Content } = Layout
 
 const NominationComponent = (props) => {
+  const { fetchNomination, match, history } = props
   useEffect(() => {
-    props.fetchNomination(props.match.params)
+    fetchNomination(match.params)
   }, [])
 
   const [showPrompt, setShowPrompt] = useState(false)
@@ -110,7 +111,7 @@ const NominationComponent = (props) => {
       <Content className={styles.pageContent}>
         <SubHeader
           title={I18n.t('threesixty.nomination')}
-          onBack={() => props.history.push(`/threesixty_campaigns/${props.match.params.campaignId}`)}
+          onBack={() => history.push(`/threesixty_campaigns/${match.params.campaignId}`)}
         />
         <Row justify="center">
           <Col xs={24} lg={22} xl={20} xxl={14}>

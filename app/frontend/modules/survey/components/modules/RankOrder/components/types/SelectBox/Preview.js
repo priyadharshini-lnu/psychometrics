@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import styles from './SelectBox.less'
 
 export default class extends Component {
+  selectedItemId = null
+
+  current = null
+
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -22,10 +26,6 @@ export default class extends Component {
       }
     })
   }
-
-  selectedItemId = null
-
-  current = null
 
   change = (e) => {
     const select = e.currentTarget

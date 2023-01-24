@@ -15,8 +15,12 @@ import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 
 const { I18n } = window
 
+type AssessmentIdProp = {
+  campaignAssessmentId: number,
+}
+
 const connecter = connect(
-  (state: RootState, props: OwnProps) => ({
+  (state: RootState, props: AssessmentIdProp) => ({
     loading: isRequestInProgress(state, UPDATE_ASSESSOR_FORM),
     assessment: getSingle(state, props.campaignAssessmentId),
     availableAssessments: getAvailableAssessments(state),
@@ -31,7 +35,6 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 export interface OwnProps {
   close(): void
-  campaignAssessmentId: number,
   campaignId: number
   assessment: Assessment
   loading: boolean

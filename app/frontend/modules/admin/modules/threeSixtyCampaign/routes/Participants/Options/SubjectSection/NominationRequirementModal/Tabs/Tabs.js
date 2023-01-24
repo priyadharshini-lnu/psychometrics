@@ -8,7 +8,7 @@ import ConditionsContainer from '../ConditionsContainer'
 const { TabPane } = Tabs
 
 export default function List (props) {
-  const { nominationRequirements: { list } } = props
+  const { changeSelectedIndex, nominationRequirements: { list } } = props
   if (_.isEmpty(list)) { return null }
 
   return (
@@ -16,7 +16,7 @@ export default function List (props) {
       defaultActiveKey="0"
       tabPosition="left"
       className={styles.tabs}
-      onChange={key => props.changeSelectedIndex(parseInt(key, 10))}
+      onChange={key => changeSelectedIndex(parseInt(key, 10))}
     >
       {list.map((_, index) => (
         <TabPane

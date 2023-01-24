@@ -36,8 +36,6 @@ export default class ResponseText extends Component {
     this.forceUpdate()
   }
 
-  onChangeTextEntryFormAnswerIndex = e => this.props.onChangeModelIn(['props', 'answerIndex'], e.currentTarget.value)
-
   // TODO (atanych): should be added memoization. e.g. https://github.com/reduxjs/reselect
   getFilteredQuestions () {
     const { questions } = this.props

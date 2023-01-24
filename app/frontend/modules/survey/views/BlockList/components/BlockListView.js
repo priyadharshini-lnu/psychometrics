@@ -4,6 +4,10 @@ import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
 import styles from './BlockListView.less'
 
 export class BlockListView extends Component {
+  undoListener = null
+
+  redoListener = null
+
   componentDidMount () {
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
     this.redoListener = UndoRedoDispatcher.addListener('redo', this.update)
@@ -13,10 +17,6 @@ export class BlockListView extends Component {
     this.undoListener.remove()
     this.redoListener.remove()
   }
-
-  undoListener = null
-
-  redoListener = null
 
   update = () => {
     this.forceUpdate()

@@ -6,6 +6,8 @@ import Page from './Page'
 import { ModuleOverrides } from './ModuleOverrides'
 
 export class Preview extends Component {
+  storeListener = null
+
   componentDidMount () {
     this.storeListener = store.addListener('change', () => this.forceUpdate())
   }
@@ -13,8 +15,6 @@ export class Preview extends Component {
   componentWillUnmount () {
     this.storeListener.remove()
   }
-
-  storeListener = null
 
   render () {
     const {

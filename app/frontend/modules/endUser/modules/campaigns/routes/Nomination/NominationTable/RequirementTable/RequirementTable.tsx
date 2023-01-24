@@ -32,11 +32,11 @@ export const RequirementTable = (props) => {
   const { isMobile } = useContext(MediaQueryContext)
   const [showForm, setShowForm] = useState(false)
 
-  const StatusMenu = evaluator => (
+  const StatusMenu = ({ id }) => (
     <Menu
       onClick={(e) => {
         updateStatus({
-          campaignId, nominationId, evaluatorId: evaluator.id, status: e.key,
+          campaignId, nominationId, evaluatorId: id, status: e.key,
         })
       }}
       items={statusMenuItems}

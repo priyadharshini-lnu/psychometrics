@@ -440,7 +440,7 @@ class VideoRecorder extends Component {
               className={cs(styles.control, styles.discard, styles[recordingState])}
               onClick={this.discardRecording}
             >
-              <span className="mrs mls fa fa-trash-o" area-hidden="true" />
+              <span className="mrs mls fa fa-trash-o" aria-hidden="true" />
               <span className="vjs-control-text" aria-live="polite">
                 { I18n.t('assessments.video_response.discard') }
               </span>

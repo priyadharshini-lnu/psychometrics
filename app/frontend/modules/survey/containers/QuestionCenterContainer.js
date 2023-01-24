@@ -7,6 +7,10 @@ import { Provider } from 'react-redux'
 import store from '../store'
 
 class AppContainer extends Component {
+  undoListener = null
+
+  redoListener = null
+
   componentDidMount () {
     setStore(store)
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
@@ -17,10 +21,6 @@ class AppContainer extends Component {
     this.undoListener.remove()
     this.redoListener.remove()
   }
-
-  undoListener= null
-
-  redoListener= null
 
   update = () => {
     this.forceUpdate()

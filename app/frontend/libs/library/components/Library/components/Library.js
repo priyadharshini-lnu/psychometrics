@@ -10,6 +10,14 @@ const { Footer } = Modal
 const { Title } = Modal
 
 export class Library extends React.Component {
+  origin = location.origin
+
+  // Filter items
+  filter = _.debounce(() => {
+    const { folderId, searchQuery } = this.state
+    this.loadFolder(folderId, searchQuery)
+  }, 500)
+
   constructor () {
     super()
     this.state = {
@@ -26,14 +34,6 @@ export class Library extends React.Component {
   componentWillUnmount () {
     this.storeListener.remove()
   }
-
-  origin = location.origin
-
-  // Filter items
-  filter = _.debounce(() => {
-    const { folderId, searchQuery } = this.state
-    this.loadFolder(folderId, searchQuery)
-  }, 500)
 
   updateList = () => {
     this.setState({ loading: false })

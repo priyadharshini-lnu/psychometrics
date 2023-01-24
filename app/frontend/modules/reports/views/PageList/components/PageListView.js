@@ -5,6 +5,8 @@ import LabelEditor from 'modules/reports/components/LabelEditor'
 import styles from './PageListView.less'
 
 export class PageListView extends Component {
+  storeListener = null
+
   componentDidMount () {
     this.storeListener = store.addListener('change', this.update)
   }
@@ -12,8 +14,6 @@ export class PageListView extends Component {
   componentWillUnmount () {
     this.storeListener.remove()
   }
-
-  storeListener = null
 
   update = () => {
     this.forceUpdate()

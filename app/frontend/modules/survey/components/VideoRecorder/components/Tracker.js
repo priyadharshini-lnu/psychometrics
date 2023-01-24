@@ -12,6 +12,17 @@ import styles from './Tracker.less'
 const FACE_TO_HEAD_RATIO = 0.3 // Assume Head is 30% bigger than the face
 
 class Tracker extends Component {
+  messages = {
+    frame: I18n().t('assessments.video_response.tracker.frame'),
+    ready: I18n().t('assessments.video_response.tracker.ready'),
+    forward: I18n().t('assessments.video_response.tracker.forward'),
+    backward: I18n().t('assessments.video_response.tracker.backward'),
+  }
+
+  trackingTimeout = null
+
+  isUnmounted = false
+
   constructor (props) {
     super(props)
 
@@ -73,17 +84,6 @@ class Tracker extends Component {
     context.rect(box.x, box.y, box.width, box.height)
     this.contextRef = context
   }
-
-  messages = {
-    frame: I18n().t('assessments.video_response.tracker.frame'),
-    ready: I18n().t('assessments.video_response.tracker.ready'),
-    forward: I18n().t('assessments.video_response.tracker.forward'),
-    backward: I18n().t('assessments.video_response.tracker.backward'),
-  }
-
-  trackingTimeout = null
-
-  isUnmounted = false
 
   closestDivisible = (n, m) => {
     const q = Math.floor(n / m)
