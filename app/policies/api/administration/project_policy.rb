@@ -4,7 +4,7 @@ module Api
   module Administration
     class ProjectPolicy < ::Administration::ClientPolicy
       def index?
-        @user.is?(:campaign_admin) || has_permission?(:projects, :view, project_id: project_id)
+        @user.is?(:campaign_admin, :project_admin) || has_permission?(:projects, :view, project_id: project_id)
       end
 
       def show?
