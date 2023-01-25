@@ -3237,10 +3237,12 @@ en:
       columns:
         actions: Actions
         approval_status: Approval Status
+        approved_by: Approved By
         campaign_name: Campaign Name
         report_name: Report Name
         user_email: User Email
         user_name: User Name
+      download: Download
       report_search: Report search
       review: Review
       user_search: User search

@@ -9,6 +9,7 @@ class Api::V2::Administration::ReportApprovalResource < Api::V2::Administration:
   has_one :campaign
   has_one :project
   has_one :user
+  has_one :approval_status_owner, class_name: 'User'
 
   ransack_filters %i[campaign_id_eq report_id_eq user_id_eq campaign_name_cont
                      report_name_cont user_email_cont user_full_name_cont

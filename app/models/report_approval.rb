@@ -6,6 +6,7 @@ class ReportApproval < ApplicationRecord
   belongs_to :user
   belongs_to :report
   belongs_to :campaign
+  belongs_to :approval_status_owner, class_name: 'User'
 
   def as_user_report
     becomes(UserReport)

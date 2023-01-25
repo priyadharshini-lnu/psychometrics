@@ -8,6 +8,7 @@ class UserReport < ApplicationRecord
   belongs_to :norm
   belongs_to :campaign
   belongs_to :report_family
+  belongs_to :approval_status_owner, class_name: 'User'
 
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign

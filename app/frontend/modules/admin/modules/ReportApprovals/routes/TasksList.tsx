@@ -19,11 +19,14 @@ const connecter = connect(
   {},
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = PropsFromRedux & Omit<ReturnType<typeof useResources>, 'fetch'>
+type Props = PropsFromRedux & Omit<ReturnType<typeof useResources>, 'fetch'> & {
+  showApprover?: boolean
+}
 
 const TasksListComponent: React.FC<Props> = ({
   data, meta, isLoading, getSortOrder, handleTableChange, changePage,
   currentPage, pageSize, changeFilter, getFilteredValue, requests,
+  showApprover,
 }) => {
   const tableLoading = isLoading('fetch')
 
@@ -117,6 +120,13 @@ const TasksListComponent: React.FC<Props> = ({
           key="approvalStatus"
           render={({ approvalStatus }) => I18n.t(`administration.report_review.statuses.${approvalStatus}`)}
         />
+        {showApprover && (
+          <Column
+            title={I18n.t('administration.report_approval.columns.approved_by')}
+            key="approvedBy"
+            render={({ approvalStatusOwner }) => approvalStatusOwner?.name}
+          />
+        )}
         <Column
           title={I18n.t('administration.report_approval.columns.actions')}
           key="link"

@@ -17,6 +17,9 @@ export const TaskTR = t.type({
   report: t.type({
     id: t.string,
   }),
+  approvalStatusOwner: t.union([t.type({
+    id: t.string,
+  }), t.undefined]),
 })
 
 export type Task = t.TypeOf<typeof TaskTR>
@@ -25,6 +28,9 @@ export const Schema = {
   type: 'report_approvals',
   relationships: {
     user: {
+      type: 'users',
+    },
+    approvalStatusOwner: {
       type: 'users',
     },
     report: {

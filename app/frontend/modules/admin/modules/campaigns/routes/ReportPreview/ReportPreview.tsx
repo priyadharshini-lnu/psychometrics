@@ -76,7 +76,7 @@ export default function ReportPreview ({
         locales={locales}
         selectedLocale={defaultLanguage}
         userReport={userReport}
-        showOverrides={userReport.requireApproval}
+        showOverrides={userReport.approvalStatus !== ApprovalStatuses.Approved && userReport.requireApproval}
         allowEdit={userReport.approvalStatus === ApprovalStatuses.QCInProgress
           && userReport.permissions.manageQc}
         allowApprove={userReport.approvalStatus === ApprovalStatuses.QCCompleted

@@ -13,7 +13,7 @@ export const Approved: React.FC = () => {
   useEffect(() => {
     fetch({
       apiConfig: {
-        include: ['campaign', 'report', 'user'],
+        include: ['campaign', 'report', 'user', 'approval_status_owner'],
         fields: {
           users: ['name', 'email'],
           campaigns: ['name'],
@@ -28,7 +28,7 @@ export const Approved: React.FC = () => {
 
   return (
     <div>
-      <TasksList {...args} />
+      <TasksList {...args} showApprover />
     </div>
   )
 }
