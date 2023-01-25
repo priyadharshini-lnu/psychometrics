@@ -173,7 +173,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "thread-loader": "^3.0.4",
     "type-fest": "^2.12.2",
-    "ua-parser-js": "^1.0.1",
+    "ua-parser-js": "^1.0.33",
     "use-debounce": "^3.0.0",
     "videojs-record": "^3.6.0",
     "wavesurfer.js": "^3.3.3",
