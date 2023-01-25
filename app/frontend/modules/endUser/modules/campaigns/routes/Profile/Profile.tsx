@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Checkbox, Layout, InputNumber,
+  Col, Row, Typography, Form, Upload, Input, Select, message, Checkbox, Layout, InputNumber, Space, Progress,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
@@ -24,7 +24,7 @@ import { CropperModal } from './CropperModal'
 
 import styles from './styles.less'
 
-const { Title } = Typography
+const { Text, Title } = Typography
 const { I18n } = window
 const locales = I18n.availableLocales
 const current = I18n.locale
@@ -67,12 +67,12 @@ function ProfileComponent ({
       const form = new FormData()
       canvas.toBlob((blob) => {
         if (blob) {
-          form.append('photo', blob, 'file.png')
+          form.append('photo', blob, 'file.jpg')
           uploadPhoto(form).then(() => {
             setShowCropper(false)
           })
         }
-      }, 'image/png')
+      }, 'image/jpg')
     }
   }
 
@@ -98,11 +98,6 @@ function ProfileComponent ({
   }
 
   const onChangeFile = ({ file }) => {
-    if (file.type === 'image/svg+xml') {
-      const form = new FormData()
-      form.append('photo', file, file.name)
-      return uploadPhoto(form)
-    }
     const blob = URL.createObjectURL(file)
 
     setImage({
@@ -133,6 +128,19 @@ function ProfileComponent ({
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         <div className={styles.container}>
+          {user.updateProfileRequired && (
+            <Row>
+              <Col span={18}>
+                <Title level={5}>{I18n.t('profile.update_required')}</Title>
+                <Space size="middle" direction="vertical">
+                  <Text>{user.updateProfileMessage}</Text>
+                </Space>
+              </Col>
+              <Col span={6} className={styles.progressCol}>
+                <Progress percent={user.profileCompletionPercentage} type="circle" />
+              </Col>
+            </Row>
+          )}
           <Row gutter={[32, 32]}>
             <Col span={24}>
               <Title level={3}>{I18n.t('profile.title')}</Title>
@@ -141,7 +149,7 @@ function ProfileComponent ({
                   <Form.Item>
                     <Upload
                       listType="picture-card"
-                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
+                      accept=".jpg, .jpeg, |image/*"
                       showUploadList={false}
                       maxCount={1}
                       className={styles.upload}

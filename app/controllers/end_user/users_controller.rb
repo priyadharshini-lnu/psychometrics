@@ -69,6 +69,7 @@ class EndUser::UsersController < ApplicationController
 
     if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
       current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
+      audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
       bypass_sign_in(current_user, scope: :user)
       render json: current_user, serializer: Threesixty::CurrentUserSerializer, project_id: @current_project.id
     else

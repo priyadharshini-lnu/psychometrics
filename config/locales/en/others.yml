@@ -2006,16 +2006,19 @@ en:
     female: Female
     first_name: First Name
     gender: Gender
+    incomplete: Your profile details is incomplete. Please complete your profile details
     last_name: Last Name
     locale: Preferred Language
     male: Male
     not_disclosed: Prefer not to disclose
+    old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
     password_confirmation: Password Confirmation
     success_update: Profile was saved successfully
     timezone: Timezone
     title: My Profile
     update: Update
+    update_required: Profile updates required
   profiles:
     edit:
       header: Profile Settings

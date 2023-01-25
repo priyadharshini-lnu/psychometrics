@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe EndUser::UserReportsController, type: :controller do
   # let(:current_user) { create(:superadmin) }
-  let(:user) { create(:user, :with_project_membership) }
+  let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:user_report) { create(:user_report, user: campaign_user.user) }

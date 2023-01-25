@@ -13,18 +13,21 @@ const connector = connect(
   (state: RootState) => ({
     loaded: state.campaigns.campaign.loaded,
     campaign: state.campaigns.campaign,
+    updateProfileRequired: state.currentUser.updateProfileRequired,
   }),
   {},
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-const UserPageLayoutComponent: FC<PropsFromRedux> = ({ campaign, children }) => (
+const UserPageLayoutComponent: FC<PropsFromRedux> = ({ campaign, updateProfileRequired, children }) => (
   <Layout className={styles.container}>
-    <UserPageSider
-      showInsights={campaign.userReportsAvailable}
-      siderFooter={collapsed => <Profile collapsed={collapsed} />}
-    />
+    {!updateProfileRequired && (
+      <UserPageSider
+        showInsights={campaign.userReportsAvailable}
+        siderFooter={collapsed => <Profile collapsed={collapsed} />}
+      />
+    )}
     <Layout className={styles.pageLayout}>
       {children}
       <Footer />

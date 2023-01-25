@@ -4,10 +4,30 @@ module Threesixty
   class CurrentUserSerializer < ActiveModel::Serializer
     attributes :id, :is_manager, :email, :first_name, :last_name, :full_name, :role,
                :is_anonym, :permissions, :photo, :timezone, :custom_fields,
-               :age, :gender, :locale, :profile_completion_percentage, :last_sign_in_at, :updated_at
+               :age, :gender, :locale, :profile_completion_percentage, :last_sign_in_at, :updated_at,
+               :update_profile_required, :update_profile_message
 
     def updated_at
       object.user_profile.updated_at
+    end
+
+    def update_profile_required
+      update_in = object.project.profile_setting.update_in
+      return true if Users::ProfileCompletion.call!(object) < 100
+      return false unless update_in
+
+      (Time.current - object.user_profile.updated_at) > update_in.month
+    end
+
+    def update_profile_message
+      return I18n.t('profile.incomplete') if Users::ProfileCompletion.call!(object) < 100
+
+      update_in = object.project.profile_setting.update_in
+      updated_at = object.user_profile.updated_at
+      if (Time.current - updated_at) > update_in.month
+        diff = (update_in.month - updated_at.month) + (12 * (update_in.year - updated_at.year))
+        I18n.t('profile.old_data', { month: diff })
+      end
     end
 
     def is_manager

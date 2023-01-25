@@ -123,7 +123,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               listType="picture"
               maxCount={1}
               onRemove={removeFile}
-              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
               fileList={logo && typeof logo === 'string' ? [{
                 uid: '1', name: 'logo', status: 'done', url: logo,
               }] : undefined}

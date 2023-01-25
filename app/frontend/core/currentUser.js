@@ -62,6 +62,8 @@ export default function reducer (state = defaultState, action) {
       return { ...state, photo: action.response.photo }
     case SET_USER:
       return action.payload.user
+    case SYNC:
+      return action.response
     default:
       return state
   }
