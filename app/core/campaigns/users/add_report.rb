@@ -24,6 +24,7 @@ module Campaigns
         user_assessments = options[:assessments].map do |assessment|
           find_or_create_assessment_to_user(assessment, user_report)
         end
+        set_approval_status_for_user_report(user_report)
         generate_report_pdf(user_report) unless user_report.report.hogan?
 
         broadcast :ok,
@@ -32,6 +33,12 @@ module Campaigns
       end
 
       private
+
+      def set_approval_status_for_user_report(user_report)
+        return user_report.update_attribute(:approval_status, :approved) unless user_report.has_approval_workflow?
+
+        return user_report.start_approval! if user_report.all_assessments_are_completed?
+      end
 
       def find_or_create_assessment_to_user(assessment, user_report)
         user_assessment = UserAssessment.find_by(
