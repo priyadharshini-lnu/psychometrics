@@ -20,21 +20,28 @@ import styles from './styles.less'
 
 const { I18n } = window
 
-type Props = PropsFromRedux
+type Props = PropsFromRedux & {
+  pages: {}[]
+}
 
-export const lookUpModules = report => _.reduce(report.pages, (res, page) => {
-  const modules = _.reduce(page.modules, (modules, module) => (
-    module.type === 'Text' && module.props.editable ? [...modules, module] : modules
-  ), [])
-  return modules.length ? [...res, { page, modules }] : res
-}, [])
+export const lookUpModules = (report, visiblePages) => {
+  const pages = report.pages.filter(p => _.find(visiblePages, { id: p.id }))
+  return _.reduce(pages, (res, page) => {
+    const modules = _.reduce(page.modules, (modules, module) => (
+      module.type === 'Text' && module.props.editable ? [...modules, module] : modules
+    ), [])
+    return modules.length ? [...res, { page, modules }] : res
+  }, [])
+}
 
-function ReportPreview ({
-  userReport, subscribeSocket, selectModule,
+function Sidebar ({
+  userReport, subscribeSocket, selectModule, pages,
 }: Props) {
   useEffect(() => {
     subscribeSocket('Comments::Channel', { id: userReport.id })
   }, [])
+
+  if (!(userReport && userReport.loaded)) { return null }
 
   const scrollTo = (id) => {
     ScrollDispatcher.scroll(id)
@@ -57,7 +64,7 @@ function ReportPreview ({
       : <Tag color="orange">Edited</Tag>
   }
 
-  const pageModules = lookUpModules(userReport.report)
+  const pageModules = lookUpModules(userReport.report, pages)
   const approved = userReport.moduleOverrides.filter(m => m.approved).length
   const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
   let number = 0
@@ -155,4 +162,4 @@ const connecter = connect((state: RootState) => ({
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
-export default connecter(ReportPreview)
+export default connecter(Sidebar)

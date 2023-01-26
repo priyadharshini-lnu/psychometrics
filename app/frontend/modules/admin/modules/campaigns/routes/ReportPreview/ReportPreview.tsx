@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import cs from 'classnames'
 import {
   Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu, Tag,
@@ -38,6 +38,7 @@ export default function ReportPreview ({
   features, asyncDownload, clearUseReportDetails, startQC,
   sendToReview, abortQC, approveReport, requestChanges, removeApproval,
 }: Props) {
+  const [pages, setPages] = useState([])
   const location = useLocation()
   const history = useHistory()
 
@@ -82,6 +83,7 @@ export default function ReportPreview ({
         allowApprove={userReport.approvalStatus === ApprovalStatuses.QCCompleted
           && userReport.permissions.manageApproval}
         skipLogic={skipLogic}
+        setPages={setPages}
       />
     )
   }
@@ -143,7 +145,7 @@ export default function ReportPreview ({
       ])
     }
     if (userReport.approvalStatus === ApprovalStatuses.QCCompleted && userReport.permissions.manageApproval) {
-      const pageModules = lookUpModules(userReport.report)
+      const pageModules = lookUpModules(userReport.report, pages)
       const approved = userReport.moduleOverrides.filter(m => m.approved).length
       const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
 
@@ -235,7 +237,7 @@ export default function ReportPreview ({
               <ArrowLeftOutlined />
             </div>
           )}
-          extra={actions()}
+          extra={reportIsLoaded() && actions()}
         >
           {userReport.richEditorOpened && (
             <Affix className={styles.affix}>
@@ -256,7 +258,7 @@ export default function ReportPreview ({
               && (
               <Col>
                 <Affix style={{ maxHeight: '100vh' }}>
-                  <Sidebar />
+                  <Sidebar pages={pages} />
                 </Affix>
               </Col>
               )
