@@ -6,6 +6,8 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   prepend_before_action :authenticate_scope!
   before_action :prepare_and_validate, :handle_two_factor_authentication
 
+  layout :select_layout
+
   def update
     render :show && return if params[:code].blank?
 
@@ -25,6 +27,10 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   end
 
   private
+
+  def select_layout
+    resource.project.present? ? 'devise' : 'administration/devise'
+  end
 
   def after_two_factor_success_for(resource)
     set_remember_two_factor_cookie(resource)
