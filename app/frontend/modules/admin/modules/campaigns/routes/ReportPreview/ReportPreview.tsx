@@ -243,7 +243,7 @@ export default function ReportPreview ({
               <div className={styles.toolbar} style={{ zIndex: 9999 }} key="editor" id="froala-editor-toolbar" />
             </Affix>
           )}
-          <Row justify="space-between" style={{ border: '1px solid #ccc' }}>
+          <Row justify="space-between" className={styles.reportPreviewBody} gutter={20}>
             <Col flex={1}>
               <Row justify="center">
                 <Col>
