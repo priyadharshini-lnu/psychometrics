@@ -39,13 +39,15 @@ export class Preview extends Component {
             dashboard={dashboard}
           />
         ))}
-        <ModuleOverrides
-          allowEdit={allowEdit}
-          allowApprove={allowApprove}
-          pages={visiblePages}
-          rstore={rstore}
-          moduleOverrides={moduleOverrides}
-        />
+        {!pdfExport && (
+          <ModuleOverrides
+            allowEdit={allowEdit}
+            allowApprove={allowApprove}
+            pages={visiblePages}
+            rstore={rstore}
+            moduleOverrides={moduleOverrides}
+          />
+        )}
       </div>
     )
   }
