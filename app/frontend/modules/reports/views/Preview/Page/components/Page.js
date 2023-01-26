@@ -15,7 +15,7 @@ class Page extends Component {
 
   renderModuleType = (module, i) => {
     const {
-      model, pageNumber, totalPages, rstore, showOverrides, moduleOverrides, pdfExport, dashboard,
+      model, pageNumber, totalPages, rstore, moduleOverrides, pdfExport, dashboard,
     } = this.props
     if (dashboard && module.props.hideOnDashboard) { return null }
     if (!module.type) { return }
@@ -29,7 +29,6 @@ class Page extends Component {
         pageNumber={pageNumber}
         totalPages={totalPages}
         rstore={rstore}
-        showOverrides={showOverrides}
         moduleOverrides={moduleOverrides}
         animation={!pdfExport}
       />

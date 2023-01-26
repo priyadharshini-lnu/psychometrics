@@ -45,7 +45,7 @@ class ReportContainer extends Component {
 
   render () {
     const {
-      showOverrides = false, userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
+      userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
     } = this.props
     return (
       <Provider store={rstore}>
@@ -55,7 +55,6 @@ class ReportContainer extends Component {
             localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
             allowEdit={allowEdit}
             allowApprove={allowApprove}
-            showOverrides={showOverrides}
             moduleOverrides={moduleOverrides}
             dashboard={dashboard}
           />

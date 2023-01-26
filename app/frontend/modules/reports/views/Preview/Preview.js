@@ -18,7 +18,7 @@ export class Preview extends Component {
 
   render () {
     const {
-      localeDirection, loaded, showOverrides, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
+      localeDirection, loaded, rstore, moduleOverrides, pdfExport, skipLogic, dashboard,
       allowEdit, allowApprove,
     } = this.props
     if (!loaded) { return null }
@@ -34,21 +34,18 @@ export class Preview extends Component {
             pageNumber={i + 1}
             totalPages={visiblePages.length}
             rstore={rstore}
-            showOverrides={showOverrides}
             moduleOverrides={moduleOverrides}
             pdfExport={pdfExport}
             dashboard={dashboard}
           />
         ))}
-        {showOverrides && (
-          <ModuleOverrides
-            allowEdit={allowEdit}
-            allowApprove={allowApprove}
-            pages={visiblePages}
-            rstore={rstore}
-            moduleOverrides={moduleOverrides}
-          />
-        )}
+        <ModuleOverrides
+          allowEdit={allowEdit}
+          allowApprove={allowApprove}
+          pages={visiblePages}
+          rstore={rstore}
+          moduleOverrides={moduleOverrides}
+        />
       </div>
     )
   }

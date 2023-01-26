@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
 import { Tag, Tabs } from 'antd'
 import {
+  get as getUserReport,
   getCurrent,
   approveReport,
   ApprovalStatuses,
@@ -35,7 +36,7 @@ export const lookUpModules = (report, visiblePages) => {
 }
 
 function Sidebar ({
-  userReport, subscribeSocket, selectModule, pages,
+  userReport, subscribeSocket, selectModule, selectedModuleId, pages,
 }: Props) {
   useEffect(() => {
     subscribeSocket('Comments::Channel', { id: userReport.id })
@@ -49,7 +50,7 @@ function Sidebar ({
 
   const scrollToModule = (id) => {
     scrollTo(`Module_${id}`)
-    selectModule(id)
+    selectModule(parseInt(id, 10))
   }
 
   const tag = (override) => {
@@ -104,7 +105,7 @@ function Sidebar ({
                     <>
                       <div
                         key={j}
-                        className={cs(styles.override, styles.selected)}
+                        className={cs([styles.override, { [styles.selected]: selectedModuleId === module.id }])}
                         onClick={() => scrollToModule(module.id)}
                       >
                         <div className={styles.number}>
@@ -141,7 +142,7 @@ function Sidebar ({
           </Tabs.TabPane>
         )}
         <Tabs.TabPane tab="Comments" key="comments">
-          <Comments pageModules={pageModules} scrollTo={id => scrollTo(`Module_${id}`)} />
+          <Comments pageModules={pageModules} scrollToModule={scrollToModule} />
         </Tabs.TabPane>
         {/* <Tabs.TabPane tab="History" key="history">
           History
@@ -153,7 +154,7 @@ function Sidebar ({
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
-
+  selectedModuleId: getUserReport(state).selectedModule,
 }), {
   approveReport,
   subscribeSocket,

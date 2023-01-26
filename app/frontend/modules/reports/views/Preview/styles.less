@@ -3,9 +3,12 @@
 
 @background: #589DA5;
 
+.bordered {
+  border: 1px dashed #ccc;
+}
+
 .editable {
   position: absolute;
-  border: 1px dashed #ccc;
   z-index: 7000;
   cursor: pointer;
 
@@ -16,7 +19,7 @@
   }
 
   &.selected {
-    box-shadow: 0 0 10px 7px @primary-color;
+    box-shadow: 0 0 10px 0px @primary-color;
     .buttons {
       opacity: 1;
     }

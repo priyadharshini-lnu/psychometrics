@@ -148,7 +148,12 @@ const OverrideComponent: FC<Props> = ({
 
   return (
     <div
-      className={cs(styles.editable, { [styles.selected]: selectedModule === module.id })}
+      className={
+        cs(
+          styles.editable,
+          { [styles.selected]: selectedModule === module.id, [styles.bordered]: allowEdit || allowApprove },
+        )
+      }
       style={box}
       onClick={() => selectModule(module.id)}
     >
@@ -161,7 +166,7 @@ const OverrideComponent: FC<Props> = ({
         />
       )}
 
-      {override && showDiff && (
+      {override && (allowEdit || allowApprove) && showDiff && (
         <SafeHTML
           html={htmldiff(getTypeContent(), override?.content)}
           className={cs(styles.editor, { [styles.diff]: showDiff })}
