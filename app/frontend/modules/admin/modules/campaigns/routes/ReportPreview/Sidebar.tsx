@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
 import { Tag, Tabs } from 'antd'
 import {
+  get as getUserReport,
   getCurrent,
   approveReport,
   ApprovalStatuses,
@@ -20,21 +21,28 @@ import styles from './styles.less'
 
 const { I18n } = window
 
-type Props = PropsFromRedux
+type Props = PropsFromRedux & {
+  pages: {}[]
+}
 
-export const lookUpModules = report => _.reduce(report.pages, (res, page) => {
-  const modules = _.reduce(page.modules, (modules, module) => (
-    module.type === 'Text' && module.props.editable ? [...modules, module] : modules
-  ), [])
-  return modules.length ? [...res, { page, modules }] : res
-}, [])
+export const lookUpModules = (report, visiblePages) => {
+  const pages = report.pages.filter(p => _.find(visiblePages, { id: p.id }))
+  return _.reduce(pages, (res, page) => {
+    const modules = _.reduce(page.modules, (modules, module) => (
+      module.type === 'Text' && module.props.editable ? [...modules, module] : modules
+    ), [])
+    return modules.length ? [...res, { page, modules }] : res
+  }, [])
+}
 
-function ReportPreview ({
-  userReport, subscribeSocket, selectModule,
+function Sidebar ({
+  userReport, subscribeSocket, selectModule, selectedModuleId, pages,
 }: Props) {
   useEffect(() => {
     subscribeSocket('Comments::Channel', { id: userReport.id })
   }, [])
+
+  if (!(userReport && userReport.loaded)) { return null }
 
   const scrollTo = (id) => {
     ScrollDispatcher.scroll(id)
@@ -42,7 +50,7 @@ function ReportPreview ({
 
   const scrollToModule = (id) => {
     scrollTo(`Module_${id}`)
-    selectModule(id)
+    selectModule(parseInt(id, 10))
   }
 
   const tag = (override) => {
@@ -57,7 +65,7 @@ function ReportPreview ({
       : <Tag color="orange">Edited</Tag>
   }
 
-  const pageModules = lookUpModules(userReport.report)
+  const pageModules = lookUpModules(userReport.report, pages)
   const approved = userReport.moduleOverrides.filter(m => m.approved).length
   const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
   let number = 0
@@ -97,7 +105,7 @@ function ReportPreview ({
                     <>
                       <div
                         key={j}
-                        className={cs(styles.override, styles.selected)}
+                        className={cs([styles.override, { [styles.selected]: selectedModuleId === module.id }])}
                         onClick={() => scrollToModule(module.id)}
                       >
                         <div className={styles.number}>
@@ -134,7 +142,7 @@ function ReportPreview ({
           </Tabs.TabPane>
         )}
         <Tabs.TabPane tab="Comments" key="comments">
-          <Comments pageModules={pageModules} scrollTo={id => scrollTo(`Module_${id}`)} />
+          <Comments pageModules={pageModules} scrollToModule={scrollToModule} />
         </Tabs.TabPane>
         {/* <Tabs.TabPane tab="History" key="history">
           History
@@ -146,7 +154,7 @@ function ReportPreview ({
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
-
+  selectedModuleId: getUserReport(state).selectedModule,
 }), {
   approveReport,
   subscribeSocket,
@@ -155,4 +163,4 @@ const connecter = connect((state: RootState) => ({
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
-export default connecter(ReportPreview)
+export default connecter(Sidebar)

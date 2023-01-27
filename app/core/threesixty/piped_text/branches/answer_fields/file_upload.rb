@@ -19,13 +19,13 @@ module Threesixty
             return broadcast :ok, nil unless file_url && valid_file_url?(file_url)
 
             file_ext = get_extname(file_url)
-
+            encoded_file_url = URI.encode_www_form_component(file_url)
             if file_ext.in?(PDF_EXTENSIONS)
               broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_url}\" type=\"application/pdf\"></object>"
             elsif file_ext.in?(IMAGE_EXTENSIONS)
               broadcast :ok, "<img src=\"#{file_url}\" class=\"user-upload-image\" />"
             else
-              broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(file_url)}\"></iframe>"
+              broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(encoded_file_url)}\"></iframe>"
             end
           end
 

@@ -27,8 +27,8 @@ describe Threesixty::PipedText::Branches::AnswerFields::FileUpload do
       response = described_class.call!(%w[FileUpload 826], {}, result: result)
       expect(response).to eq(
         '<iframe style="width: 100%; height: 400px; background: black; border: none;" ' \
-        'src="https://view.officeapps.live.com/op/embed.aspx?src=https://ttedev.me:3030/uploads/media_response/asset/' \
-        'prometeus.doc"></iframe>'
+        'src="https://view.officeapps.live.com/op/embed.aspx?src=https%3A%2F%2Fttedev.me%3A3030%2Fuploads' \
+        '%2Fmedia_response%2Fasset%2Fprometeus.doc"></iframe>'
       )
     end
 

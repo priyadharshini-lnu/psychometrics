@@ -24,6 +24,7 @@ module Campaigns
         user_assessments = options[:assessments].map do |assessment|
           find_or_create_assessment_to_user(assessment, user_report)
         end
+        set_approval_status_for_user_report(user_report)
         generate_report_pdf(user_report) unless user_report.report.hogan?
 
         broadcast :ok,
@@ -32,6 +33,12 @@ module Campaigns
       end
 
       private
+
+      def set_approval_status_for_user_report(user_report)
+        return user_report.update_attribute(:approval_status, :approved) unless user_report.has_approval_workflow?
+
+        return user_report.start_approval! if user_report.all_assessments_are_completed?
+      end
 
       def find_or_create_assessment_to_user(assessment, user_report)
         user_assessment = UserAssessment.find_by(
@@ -50,7 +57,7 @@ module Campaigns
         user_assessment
       end
 
-      def create_assessment_to_user(assessment) # rubocop:disable Metrics/PerceivedComplexity
+      def create_assessment_to_user(assessment)
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
         user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)
@@ -66,15 +73,28 @@ module Campaigns
           completed_at: existing_result&.completed_at,
           completion_reason: existing_result&.completion_reason
         )
+        create_external_user_assessment_record(user_assessment, assessment, existing_result)
 
+        user_assessment
+      end
+
+      def create_external_user_assessment_record(user_assessment, assessment, existing_result)
         if assessment.saville?
-          user_assessment.create_saville_user_assessment(norm_id: user_assessment.applicable_external_norm_id)
+          existing_saville_user_assessment = existing_result&.saville_user_assessment
+          user_assessment.create_saville_user_assessment(
+            norm_id: existing_saville_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
+            data_seprator: existing_saville_user_assessment&.data_seprator
+          )
         elsif assessment.pearson?
-          user_assessment.create_pearson_user_assessment(norm_id: user_assessment.applicable_external_norm_id)
+          existing_pearson_user_assessment = existing_result&.pearson_user_assessment
+          user_assessment.create_pearson_user_assessment(
+            norm_id: existing_pearson_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
+            schedule_id: existing_pearson_user_assessment&.schedule_id,
+            url: existing_pearson_user_assessment&.url
+          )
         elsif assessment.iiht?
           user_assessment.create_iiht_user_assessment
         end
-        user_assessment
       end
 
       def existing_user_result_to_copy(assessment)

@@ -36,8 +36,11 @@ module Public
       "#{secure_token}.#{file.extension}" if original_filename.present?
     end
 
-    def url(version = nil)
-      file && raster?(file) ? super(version) : super()
+    def url(*args)
+      version_absent = !args.first.respond_to?(:to_sym)
+      return super if version_absent || file.nil? || raster?(file)
+
+      super(*args[1..])
     end
 
     protected

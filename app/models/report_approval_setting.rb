@@ -5,7 +5,10 @@ class ReportApprovalSetting < ApplicationRecord
   belongs_to :report
 
   scope :for_user, lambda { |user_id|
-    where('qc_user_ids @> :user_id OR approver_user_ids @> :user_id', user_id: "{#{user_id}}")
+    where(
+      'qc_user_ids @> :user_id OR approver_user_ids @> :user_id OR approval_notification_user_ids @> :user_id',
+      user_id: "{#{user_id}}"
+    )
   }
 
   scope :where_participate, lambda { |user_id, campaign_id|

@@ -41,7 +41,7 @@ const connecter = connect((state: RootState) => ({
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 type Props = PropsFromRedux & {
-  scrollTo: (id:string) => void,
+  scrollToModule: (id:string) => void,
   pageModules: {page: {}, modules: Module[]}[]
 }
 
@@ -83,7 +83,7 @@ const Compose = ({ selected, disabled, onSend }) => {
 
 function Comments ({
   comments, selectedModule, selectedModuleId, modules, userReport, currentUser,
-  pageModules, readComment, scrollTo,
+  pageModules, readComment, scrollToModule,
 }: Props) {
   const {
     data, createResource, updateResource, setData, removeResource,
@@ -159,7 +159,10 @@ function Comments ({
                   === (thread.moduleId?.toString() || thread.reportsModule?.id?.toString())),
               })}
             >
-              <div className={styles.module} onClick={() => scrollTo(thread.moduleId || thread.reportsModule?.id)}>
+              <div
+                className={styles.module}
+                onClick={() => scrollToModule(thread.moduleId || thread.reportsModule?.id)}
+              >
                 <Tooltip title={Utils.stripHTML(module?.props?.text)}>
                   <span className={styles.title}>Text</span>
                   {'| '}

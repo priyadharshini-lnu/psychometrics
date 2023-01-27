@@ -1,11 +1,10 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { RootState } from 'modules/survey/core/rootReducers'
 import { getI18n } from 'core/preview/FlowProcessor/selectors'
 import { useLocation, useHistory } from 'react-router-dom'
 import { EndOfAssessmentElementProps } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import EditEvaluationModal from './components/EditEvaluationModal'
 
 import ScoringTable from './components/ScoringTable'
 
@@ -36,7 +35,6 @@ const EndPage: FC<Props> = ({
   showScoringOnEndPage,
   endOfAssessmentElementProps,
 }) => {
-  const [editModal, setEditModal] = useState(false)
   const location = useLocation()
   const history = useHistory()
 
@@ -54,6 +52,7 @@ const EndPage: FC<Props> = ({
     message = endOfAssessmentElementProps?.message
   }
   const textDirection = message.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? 'ltr' : 'rtl'
+  const getViewPath = () => `?tab=${user_assessment_id}&read=true`
 
   return (
     <div className={styles.page}>
@@ -79,15 +78,15 @@ const EndPage: FC<Props> = ({
       {showScoringOnEndPage && (
         <>
           <div className={styles.links}>
+
+            <a href={getViewPath()}>
+              {I18n.t('campaign.edit_evaluation.view')}
+            </a>
+            {' | '}
             <a href={dashboardUrl}>
               {I18n.t('assessments.actions.back_to_campaign')}
             </a>
           </div>
-          <EditEvaluationModal
-            show={editModal}
-            userAssessmentId={user_assessment_id}
-            close={() => setEditModal(false)}
-          />
         </>
       )}
     </div>

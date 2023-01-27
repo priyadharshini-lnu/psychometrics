@@ -59,6 +59,7 @@ module Administration
       def approve
         audit! :approve, resource, campaign: resource.campaign
         resource.approve!
+        resource.update!(approval_status_owner_id: current_user.id)
         generate_report(resource) if resource.generatable?
         render json: { status: resource.approval_status }
       end

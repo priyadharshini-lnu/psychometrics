@@ -8,6 +8,8 @@ import store from 'modules/reports/store/PreviewStore'
 import 'modules/reports/styles/globals.less'
 import { normalize } from 'normalizr'
 import globalStore from 'modules/admin/store'
+import PageList from 'modules/reports/store/PageList'
+import LogicResolver from 'modules/reports/models/logic/LogicResolver'
 import rstore from '../store'
 import { init, changeSkipLogic } from '../core/builder/actions'
 import schema from '../store/schema'
@@ -19,7 +21,7 @@ class ReportContainer extends Component {
 
   componentDidMount () {
     const {
-      data, results, locales, user, campaign, selectedLocale, userReport, skipLogic,
+      data, results, locales, user, campaign, selectedLocale, userReport, skipLogic, setPages,
     } = this.props
     if (locales) {
       I18nStore.setLocale(_.get(selectedLocale, 'code', document.body.dataset.locale))
@@ -30,6 +32,8 @@ class ReportContainer extends Component {
     store.init(data, results, user, campaign, userReport.reportData || [])
     rstore.dispatch(init(normalizedData, userReport))
     this.setState({ selectedLocale })
+    const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
+    setPages(visiblePages)
   }
 
   componentDidUpdate (prevProps) {
@@ -41,7 +45,7 @@ class ReportContainer extends Component {
 
   render () {
     const {
-      showOverrides = false, userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
+      userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
     } = this.props
     return (
       <Provider store={rstore}>
@@ -51,7 +55,6 @@ class ReportContainer extends Component {
             localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
             allowEdit={allowEdit}
             allowApprove={allowApprove}
-            showOverrides={showOverrides}
             moduleOverrides={moduleOverrides}
             dashboard={dashboard}
           />

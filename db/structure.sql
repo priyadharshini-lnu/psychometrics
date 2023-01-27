@@ -92,23 +92,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
-
-
---
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3428,7 +3411,8 @@ CREATE TABLE public.saville_user_assessments (
     url character varying,
     norm_id character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    data_seprator character varying
 );
 
 
@@ -3500,6 +3484,20 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -10515,6 +10513,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221122172756'),
 ('20221205213642'),
 ('20221213173037'),
-('20221214083458');
+('20221214083458'),
+('20230117130759');
 
 
