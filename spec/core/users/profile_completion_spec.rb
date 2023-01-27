@@ -8,10 +8,14 @@ describe Users::ProfileCompletion do
   let!(:user) { create(:user, project: project) }
   let!(:user_profile) { create(:user_profile, user: user) }
 
+  before do
+    project.profile_setting.required_default_fields = { age: true, gender: true }
+  end
+
   describe 'without customs' do
     it 'not finished' do
       user_profile.age = nil
-      expect(described_class.call!(user)).to eq(83)
+      expect(described_class.call!(user)).to eq(75)
     end
 
     it 'finished' do
@@ -28,7 +32,7 @@ describe Users::ProfileCompletion do
     end
 
     it 'not finished' do
-      expect(described_class.call!(user)).to eq(85)
+      expect(described_class.call!(user)).to eq(80)
     end
 
     it 'finished' do

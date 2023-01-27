@@ -10,11 +10,10 @@ module Users
 
     def call
       user_fields = %i[first_name last_name]
-      user_profile_fields = %i[age photo gender locale]
 
       filled = 0
-      total = (user_fields.length + user_profile_fields.length + required_custom_fields.length).to_f
-      user_profile_fields.each do |field|
+      total = (user_fields.length + required_default_fields.length + required_custom_fields.length).to_f
+      required_default_fields.each do |field|
         filled += 1 if user.user_profile.send(field).present?
       end
       user_fields.each do |field|
@@ -31,7 +30,15 @@ module Users
 
     private
 
+    def required_default_fields
+      return [] unless user.project
+
+      @required_default_fields ||= user.project.profile_setting.required_default_fields.select { |_, v| v }.keys
+    end
+
     def required_custom_fields
+      return [] unless user.project
+
       @required_custom_fields ||= user.project.profile_setting.profile_fields.where(required: true)
     end
   end

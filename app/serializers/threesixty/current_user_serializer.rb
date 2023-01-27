@@ -12,6 +12,8 @@ module Threesixty
     end
 
     def update_profile_required
+      return false unless object.project
+
       update_in = object.project.profile_setting.update_in
       return true if Users::ProfileCompletion.call!(object) < 100
       return false unless update_in
@@ -22,7 +24,7 @@ module Threesixty
     def update_profile_message
       return I18n.t('profile.incomplete') if Users::ProfileCompletion.call!(object) < 100
 
-      update_in = object.project.profile_setting.update_in
+      update_in = object.project.profile_setting.update_in || 9999
       updated_at = object.user_profile.updated_at
       if (Time.current - updated_at) > update_in.month
         diff = (update_in.month - updated_at.month) + (12 * (update_in.year - updated_at.year))
