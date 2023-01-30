@@ -1,10 +1,18 @@
 import React from 'react'
 import { render } from '@testing-library/react'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
 import {
   Properties,
   Props,
 } from 'modules/survey/components/modules/MultipleChoice/Properties'
+
+const testStore = (state=[], _) => {
+  return state
+}
+
+const store = createStore(testStore)
 
 describe('Assessment builder - MultipleChoice - Property panel', () => {
   const basicProps: Props = {
@@ -54,7 +62,7 @@ describe('Assessment builder - MultipleChoice - Property panel', () => {
   }
 
   test('Should match snapshot with Single Answer type', () => {
-    const { asFragment } = render(<Properties {...basicProps} />)
+    const { asFragment } = render(<Provider store={store}><Properties {...basicProps} /></Provider>)
     expect(asFragment()).toMatchSnapshot()
   })
 })
