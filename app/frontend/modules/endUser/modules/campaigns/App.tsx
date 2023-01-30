@@ -9,6 +9,7 @@ import humps from 'humps'
 
 import ConnectionCheck from 'components/ConnectionCheck'
 import { UserPageLayout } from 'modules/endUser/modules/campaigns/components/UserPageLayout'
+import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
 import { GlintProvider, withLoadingSpinner } from 'glint'
 
 import { connected, disconnected } from 'core/connection'
@@ -59,6 +60,7 @@ function App () {
               ))}
             </UserPageLayout>
           </ConnectedRouter>
+          <IncorrectResponseErrorModal />
         </GlintProvider>
       </ConfigProvider>
     </Provider>

@@ -7,25 +7,13 @@ import { UserAssessment } from 'modules/endUser/modules/campaigns/core/userAsses
 
 import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
 import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { HoganData } from 'modules/endUser/modules/campaigns/core/campaigns'
 import { DetailsCard } from 'glint'
 import { PrivacyModal } from '../PrivacyModal'
 
 import styles from './styles.less'
 
 const { I18n } = window
-
-interface HoganData {
-  url: string
-  userId: string
-  password: string
-  uniqueId: string
-  firstName: string
-  lastName: string
-  directAssessmentId: string
-  displayInformedConsent: string
-  returnUrl: string
-  languageId: string
-}
 
 interface Props {
   userAssessment: UserAssessment
