@@ -47,7 +47,7 @@ module Sheets
 
     def parse_file
       form.data_rows.each do |data|
-        email = ActionView::Base.full_sanitizer.sanitize(data[Sheet::EMAIL_COLUMN].strip)
+        email = data[Sheet::EMAIL_COLUMN].strip
         next if email.blank?
 
         row = accesssheet? ? sheet.rows.new(email: email) : sheet.rows.find_or_initialize_by(email: email)
