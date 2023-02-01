@@ -92,7 +92,7 @@
     "green-audio-player": "^1.1.2",
     "highcharts": "^4.2.7",
     "highcharts-3d": "0.1.2",
-    "highcharts-custom-events": "^2.0.0",
+    "highcharts-custom-events": "^3.0.10",
     "highcharts-v9": "npm::highcharts",
     "history": "^4.10.1",
     "humps": "^2.0.1",
@@ -230,7 +230,8 @@
     "webpack-dev-server": "^3.11.1"
   },
   "resolutions": {
-    "caniuse-lite": "^1.0.30001422"
+    "caniuse-lite": "^1.0.30001422",
+    "highcharts-custom-events/highcharts": "9.0.0"
   },
   "husky": {
     "hooks": {
