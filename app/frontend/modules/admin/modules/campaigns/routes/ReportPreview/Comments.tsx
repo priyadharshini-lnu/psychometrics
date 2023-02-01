@@ -133,10 +133,10 @@ function Comments ({
     }).then(resolve)
   })
 
-  const resolveComment = (id: string) => {
+  const resolveComment = (id: string, resolved: boolean) => {
     updateResource({
       id,
-      resolved: true,
+      resolved: !resolved,
     })
   }
 
@@ -186,10 +186,10 @@ function Comments ({
               <CommentItem
                 canEdit={thread.creator.id.toString() === currentUser.id.toString()}
                 canRemove={thread.creator.id.toString() === currentUser.id.toString()}
-                canResolve={false} // temporary disabled
+                canResolve
                 comment={thread}
                 onCommentEditSave={comment => updateComment(comment)}
-                onCommentResolve={commentId => resolveComment(commentId)}
+                onCommentResolve={(commentId, resolved) => resolveComment(commentId, resolved)}
                 onCommentRemove={commentId => removeComment(commentId)}
                 onRead={readComment}
               />
@@ -197,8 +197,8 @@ function Comments ({
               {getThreadReplies(thread.id.toString()).map(comment => (
                 <CommentItem
                   key={comment.id}
-                  canEdit={thread.creator.id.toString() === currentUser.id.toString()}
-                  canRemove={thread.creator.id.toString() === currentUser.id.toString()}
+                  canEdit={comment.creator.id.toString() === currentUser.id.toString()}
+                  canRemove={comment.creator.id.toString() === currentUser.id.toString()}
                   comment={comment}
                   onCommentEditSave={comment => updateComment(comment)}
                   onCommentRemove={commentId => removeComment(commentId)}

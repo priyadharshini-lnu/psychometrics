@@ -1276,6 +1276,7 @@ en:
       save: Save
       search: Search
       send: Send
+      unresolve: Unresolve
       update: Update
       upload: Upload
     column:
@@ -2038,6 +2039,11 @@ en:
   report_approvals:
     events:
       approved_text: approved text
+      comment_added: added comment <i>%{text}</i>
+      comment_removed: removed comment
+      comment_resolved: resolved comment
+      comment_unresolved: unresolved comment
+      comment_updated: changed comment <s>%{oldText}</s> to <i>%{newText}</i>
       created_text: added text
       disapproved_text: dissaproved text
       removed_text: removed text
