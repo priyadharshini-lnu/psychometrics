@@ -16,21 +16,21 @@ module Threesixty::InitialState
       campaigns: {
         project: {
           name: @current_project.name,
-          logo: @current_project.design_setting&.logo&.url,
-          secondaryLogo: @current_project.design_setting&.secondary_logo&.url,
+          logo: @current_project.design_setting.logo&.url,
+          secondaryLogo: @current_project.design_setting.secondary_logo&.url,
           privacyText: @current_project.privacy_link&.text,
           privacyPageLink: @current_project.privacy_link&.link
         }
       }.merge(campaign_intial_state),
       config: {
         design: {
-          logo: @current_project.design_setting&.logo&.url,
-          secondary_logo: @current_project.design_setting&.secondary_logo&.url,
-          primary_color: @current_project.design_setting&.primary_color,
-          error_color: @current_project.design_setting&.error_color,
-          warning_color: @current_project.design_setting&.warning_color,
-          success_color: @current_project.design_setting&.success_color,
-          info_color: @current_project.design_setting&.info_color
+          logo: @current_project.design_setting.logo&.url,
+          secondary_logo: @current_project.design_setting.secondary_logo&.url,
+          primary_color: @current_project.design_setting.primary_color,
+          error_color: @current_project.design_setting.error_color,
+          warning_color: @current_project.design_setting.warning_color,
+          success_color: @current_project.design_setting.success_color,
+          info_color: @current_project.design_setting.info_color
         },
         profile: {
           fields: @current_project.profile_setting&.profile_fields&.map do |q|
@@ -59,7 +59,7 @@ module Threesixty::InitialState
   end
 
   def serialized_current_user
-    ::Threesixty::CurrentUserSerializer.new(current_user, project_id: @current_project.id).
+    ::EndUser::CurrentUserSerializer.new(current_user, project_id: @current_project.id).
       as_json.
       deep_transform_keys! { |key| key.to_s.camelize(:lower) }
   end

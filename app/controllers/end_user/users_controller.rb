@@ -71,7 +71,7 @@ class EndUser::UsersController < ApplicationController
       current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
       audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
       bypass_sign_in(current_user, scope: :user)
-      render json: current_user, serializer: Threesixty::CurrentUserSerializer, project_id: @current_project.id
+      render json: current_user, serializer: EndUser::CurrentUserSerializer, project_id: @current_project.id
     else
       render json: { errors: current_user.errors.messages }, status: 400
     end
