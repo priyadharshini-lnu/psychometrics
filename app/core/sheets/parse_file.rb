@@ -52,7 +52,7 @@ module Sheets
 
         row = accesssheet? ? sheet.rows.new(email: email) : sheet.rows.find_or_initialize_by(email: email)
         data = data.reject { |k, _v| k == Sheet::EMAIL_COLUMN }
-        row.data = (row.data || {}).merge(data)
+        row.data = (row.data || {}).merge(data.transform_values { |v| v.is_a?(String) ? v.strip : v })
         row.save!
       end
     end

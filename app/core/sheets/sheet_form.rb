@@ -24,7 +24,7 @@ module Sheets
     end
 
     def parsed_file
-      @parsed_file ||= roo_excel.parse(headers: true, clean: true)
+      @parsed_file ||= roo_excel.parse(headers: true, clean: false)
     end
 
     def data_rows
@@ -111,7 +111,7 @@ module Sheets
         email = data[Sheet::EMAIL_COLUMN]
         next errors.add(:file, :email_blank, row_number: row_number(index)) if email.blank?
 
-        errors.add(:file, :email_invalid, row_number: row_number(index)) unless Devise.email_regexp.match?(email)
+        errors.add(:file, :email_invalid, row_number: row_number(index)) unless Devise.email_regexp.match?(email.strip)
       end
     end
 
