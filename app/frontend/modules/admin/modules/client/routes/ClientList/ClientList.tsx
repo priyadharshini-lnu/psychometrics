@@ -162,7 +162,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
             type="primary"
             disabled={tableLoading}
             onClick={() => {
-              openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })
+              openModal('ClientFormModal', { addClient: createResource, types, countries })
             }}
           >
             <PlusOutlined />
