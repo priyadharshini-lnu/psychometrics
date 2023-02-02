@@ -17,3 +17,10 @@
 .btnRow {
   margin-bottom: @space-2;
 }
+
+:global(.rtl) {
+  .titleRow:before {
+    left: initial;
+    right: 0;
+  }
+}

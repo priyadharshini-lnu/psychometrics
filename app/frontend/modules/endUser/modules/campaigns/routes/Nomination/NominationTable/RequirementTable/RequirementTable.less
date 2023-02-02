@@ -13,7 +13,7 @@
   & :global(.ant-card-head) {
     border-bottom: none;
     position: relative;
-    .highlighter(35%);
+    .highlighter(35%, @positionTop: 1.75rem);
   }
 }
 .dataTable {
@@ -34,4 +34,13 @@
 }
 .waitingIcon {
   color: var(--ant-warning-color);
+}
+
+:global(.rtl) {
+  .card {
+    & :global(.ant-card-head):before {
+      left: initial;
+      right: 0;
+    }
+  }
 }
