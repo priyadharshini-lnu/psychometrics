@@ -150,7 +150,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   const menuItems: ItemType[] = []
-  permissions.viewReport && menuItems.push({
+  permissions.viewReport && (internal || reportUrl) && menuItems.push({
     key: 'viewReport',
     label: (
       <Link to={previewUrl()}>
