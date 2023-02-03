@@ -3,9 +3,9 @@ import {
   Row, Col, Button, Space, message,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import Modals from 'modules/admin/components/Modals/'
 import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
+import Modals from '~/modules/admin/components/Modals/'
 import ReportList from './ReportList'
 import { OtherReportList } from './OtherReportList'
 import AssessmentList from './AssessmentList'

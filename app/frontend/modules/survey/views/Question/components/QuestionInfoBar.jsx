@@ -1,0 +1,170 @@
+import _ from 'lodash'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { DropdownButton, MenuItem } from 'react-bootstrap'
+import LogicElement from '~/modules/survey/models/logic/LogicElement'
+import InlineEditor from '~/modules/survey/components/InlineEditor'
+import styles from './Question.less'
+
+class Question extends Component {
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+  }
+
+  addNote = () => {
+    const { model, addNote } = this.props
+    addNote(model)
+  }
+
+  addSkipLogic = () => {
+    const { addSkipLogic, model } = this.props
+    addSkipLogic(model)
+  }
+
+  invokeAdvanced = (element) => {
+    const { model } = this.props
+    _.invoke(model, element.callback)
+  }
+
+  randomization = () => {
+    const { model, openRandomization } = this.props
+    openRandomization({ id: model.id, entityName: 'choice' })
+  }
+
+  saveAsTemplate = () => {
+    const { saveAsTemplate, model } = this.props
+    saveAsTemplate(model)
+  }
+
+  defaultValue = () => {
+    const { model, openDefaultValue } = this.props
+    openDefaultValue({ model })
+  }
+
+  displayLogic = () => {
+    const { model, openDisplayLogic } = this.props
+    openDisplayLogic({
+      question: model,
+      logicElement: model.display_logic || new LogicElement(),
+    })
+  }
+
+  changeName = (value) => {
+    const { renameQuestion, model } = this.props
+    renameQuestion(model, value)
+  }
+
+  hasDefaultValues (model) {
+    if (model.props.defaultValues.length > 0) {
+      return model.type !== 'TextEntry' || _.some(
+        model.props.defaultValues, object => object.value,
+      )
+    }
+    return false
+  }
+
+  renderRandomMenuItem () {
+    const { moduleConfig } = this.props
+    if (moduleConfig.randomization) {
+      return (
+        <MenuItem onSelect={this.randomization}>
+          <span className={`icon fa fa-random ${styles.menuicon}`} />
+          Randomization...
+        </MenuItem>
+      )
+    }
+    return null
+  }
+
+  renderAddToTemplate () {
+    const { model, block } = this.props
+    if (!model.templateId && !block.templateId) {
+      return (
+        <MenuItem onSelect={this.saveAsTemplate}>
+          <span className={`icon fa fa-floppy-o ${styles.menuicon}`} />
+          Save as a Template
+        </MenuItem>
+      )
+    }
+    return null
+  }
+
+  renderDefaultValueMenuItem () {
+    const { moduleConfig } = this.props
+    if (moduleConfig.defaultValue) {
+      return (
+        <MenuItem onSelect={this.defaultValue}>
+          <span className={`icon fa fa-dot-circle-o ${styles.menuicon}`} />
+          Add Default Choices...
+        </MenuItem>
+      )
+    }
+    return null
+  }
+
+  renderOptions () {
+    const { model } = this.props
+    return (
+      <DropdownButton
+        className={styles.dropdown}
+        bsStyle="default"
+        title={<span className="icon fa fa-gear" />}
+        id={`block_menu_${model.id}`}
+      >
+        <MenuItem onSelect={this.displayLogic}>
+          <span className={`icon fa fa-eye ${styles.menuicon}`} />
+          Add Display Logic...
+        </MenuItem>
+        <MenuItem onSelect={this.addSkipLogic}>
+          <span className={`icon fa fa-eye-slash  ${styles.menuicon}`} />
+          Add Skip Logic...
+        </MenuItem>
+        {this.renderDefaultValueMenuItem()}
+        <MenuItem onSelect={this.addNote}>
+          <span className={`icon fa fa-pencil-square-o ${styles.menuicon}`} />
+          Add Note...
+        </MenuItem>
+        {this.renderRandomMenuItem()}
+        {this.renderAddToTemplate()}
+      </DropdownButton>
+    )
+  }
+
+  renderRandomLabel () {
+    const { model, moduleConfig } = this.props
+    if (moduleConfig.randomization) {
+      return model.props.randomization.type !== 'No' && (
+        <div title="This question has randomization" className={styles.randomized}>
+          <span className="fa fa-random" />
+        </div>
+      )
+    }
+    return null
+  }
+
+  renderDefaultValue () {
+    const { model, moduleConfig } = this.props
+    if (moduleConfig.defaultValue) {
+      return this.hasDefaultValues(model) && (
+        <div title="This question has default choices" className={styles.randomized}>
+          <span className="fa fa-dot-circle-o" />
+        </div>
+      )
+    }
+    return null
+  }
+
+  render () {
+    const { model } = this.props
+    return (
+      <div className={styles.infobar}>
+        <InlineEditor styles={styles.editable} onChange={this.changeName} value={model.name} />
+        {this.renderOptions()}
+        {this.renderDefaultValue()}
+        {this.renderRandomLabel()}
+      </div>
+    )
+  }
+}
+
+export default Question

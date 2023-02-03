@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { setIn } from 'utils/immutable'
+import { setIn } from '~/utils/immutable'
 import AppStore from '../../store/AppStore'
 import Scoring from '../Scoring'
 import { RawResult, ResultScoring, Factor } from './interfaces'

@@ -1,8 +1,8 @@
 import {
   transcribe,
   stopTranscription,
-  OnTranscribe,
-  OnTranscribeError,
+  type OnTranscribe,
+  type OnTranscribeError,
 } from './main'
 
 export {

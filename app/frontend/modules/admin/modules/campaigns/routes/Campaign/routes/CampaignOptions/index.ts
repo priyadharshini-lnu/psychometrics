@@ -1,6 +1,6 @@
-import withSkeleton from 'modules/admin/hoc/withSkeleton'
+import withSkeleton from '~/modules/admin/hoc/withSkeleton'
 
-import { FETCH } from 'modules/admin/modules/campaigns/core/campaignOptions'
+import { FETCH } from '~/modules/admin/modules/campaigns/core/campaignOptions'
 
 import CampaignOptions from './CampaignOptions'
 

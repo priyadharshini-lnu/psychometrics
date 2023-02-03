@@ -2,7 +2,7 @@ import React, { FC, MouseEventHandler } from 'react'
 import {
   Button, Modal,
 } from 'antd'
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const { I18n } = window
 

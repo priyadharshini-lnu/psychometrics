@@ -4,8 +4,8 @@ import {
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table

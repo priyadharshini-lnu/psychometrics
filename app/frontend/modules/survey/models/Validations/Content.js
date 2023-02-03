@@ -2,7 +2,7 @@
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-escape */
 import _ from 'lodash'
-import { I18n } from 'modules/survey/store/StoreWatchman'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 
 const defaultPatterns = {
   // Matches any digit(s) (i.e. 0-9)

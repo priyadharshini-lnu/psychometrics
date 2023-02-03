@@ -3,12 +3,12 @@ import {
   Row, Col, Avatar, Input, message,
 } from 'antd'
 
-import { UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
+import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
+import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
+import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { DetailsCard } from '~/glint'
+import { HoganData } from '~/modules/endUser/modules/campaigns/core/campaigns'
 
-import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
-import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
-import { HoganData } from 'modules/endUser/modules/campaigns/core/campaigns'
-import { DetailsCard } from 'glint'
 import { PrivacyModal } from '../PrivacyModal'
 
 import styles from './styles.less'

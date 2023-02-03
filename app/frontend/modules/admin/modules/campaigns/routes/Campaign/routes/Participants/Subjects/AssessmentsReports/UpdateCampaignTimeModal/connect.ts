@@ -1,5 +1,5 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { getCurrent, extendTime } from 'modules/admin/modules/campaigns/core/users'
+import { getCurrent, extendTime } from '~/modules/admin/modules/campaigns/core/users'
 
 const connecter = connect(
   state => ({

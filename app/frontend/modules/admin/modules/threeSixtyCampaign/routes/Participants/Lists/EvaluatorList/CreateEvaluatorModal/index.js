@@ -1,4 +1,4 @@
-import manageModal from 'components/hocs/manageModal'
+import manageModal from '~/components/hocs/manageModal'
 import CreateEvaluatorModal from './CreateEvaluatorModal'
 import connect from './connect'
 

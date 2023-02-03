@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { I18n } from 'modules/survey/store/StoreWatchman'
-import { getAnswer, getValidationKey } from 'modules/survey/utils/question'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
+import { getAnswer, getValidationKey } from '~/modules/survey/utils/question'
 
 const CharacterRange = function ({ minLength, maxLength }, question) {
   this.minLength = +minLength

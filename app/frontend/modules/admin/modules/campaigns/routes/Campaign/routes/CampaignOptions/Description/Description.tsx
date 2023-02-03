@@ -10,8 +10,8 @@ import {
   update,
   updateDescriptions,
   get as getCampaignOptions,
-} from 'modules/admin/modules/campaigns/core/campaignOptions'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/campaigns/core/campaignOptions'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 import styles from './Description.less'
 

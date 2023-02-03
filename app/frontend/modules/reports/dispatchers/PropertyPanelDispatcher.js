@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import store from 'modules/reports/store/PropertyPanelStore'
+import store from '~/modules/reports/store/PropertyPanelStore'
 
 const Dispatcher = function () {}
 

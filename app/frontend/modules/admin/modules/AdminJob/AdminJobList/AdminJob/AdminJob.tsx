@@ -9,7 +9,7 @@ import {
   UpOutlined,
 } from '@ant-design/icons'
 
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
 
 import { AdminJob as AdminJobI } from '../../interfaces'
 

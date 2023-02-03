@@ -6,25 +6,25 @@ import {
   Layout, PageHeader, Col, Progress, Space, ProgressProps,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
-import qs from 'qs'
+import qs from 'query-string'
 
-import { Language } from 'modules/endUser/modules/campaigns/components/Language'
-import {
-  PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon,
-} from 'glint'
-import { Notification } from 'glint/components/CountdownTimer'
-import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { isInsideIframe } from 'utils/isInsideIframe'
-import store from 'modules/endUser/store'
-import { ResourcesTabs } from 'modules/endUser/modules/campaigns/components/ResourcesTabs'
-import { PageContentSkeleton } from 'modules/endUser/modules/campaigns/components/PageContentSkeleton'
+import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
+import store from '~/modules/endUser/store'
+import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
+import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import {
   fetchAssessment,
-} from 'modules/endUser/modules/campaigns/core/userAssessment'
-import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
-import { getProgress } from 'core/preview/FlowProcessor/selectors'
-import { RootState } from 'modules/endUser/core/rootReducers'
+} from '~/modules/endUser/modules/campaigns/core/userAssessment'
+import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
+import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { isInsideIframe } from '~/utils/isInsideIframe'
+import { Notification } from '~/glint/components/CountdownTimer'
+import {
+  PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon,
+} from '~/glint'
 
 import styles from './UserAssessment.less'
 

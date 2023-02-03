@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 
-import ResourceFormModal from 'components/ResourceFormModal'
+import ResourceFormModal from '~/components/ResourceFormModal'
 
 import { Strategies } from './interfaces'
 

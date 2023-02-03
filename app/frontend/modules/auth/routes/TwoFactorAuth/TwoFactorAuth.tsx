@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Typography, Input, Button as ButtonAnt, Form,
 } from 'antd'
-import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
+import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'

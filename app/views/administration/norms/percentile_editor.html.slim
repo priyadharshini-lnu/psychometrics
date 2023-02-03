@@ -1,10 +1,6 @@
-= javascript_pack_tag 'vendors2'
-= stylesheet_pack_tag 'vendors2'
-= javascript_pack_tag 'vendors'
-= stylesheet_pack_tag 'admin/normEditor'
 
 div id='norm-editor'
 
 javascript:
   window.__PROPS__ = #{{ normId: resource.id, factors: resources }.to_json.html_safe}
-= javascript_pack_tag 'admin/normEditor'
+= vite_javascript_tag 'entrypoints/admin/norm_editor.jsx'

@@ -8,13 +8,13 @@ Ruby [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/
 
 ## Requisites
 
-Ruby version: 2.7.4
+Ruby version: 3.1.3
 
-Rails version: 5.2.0
+Rails version: 6.1
 
-Bundler version: 2.2.31
+Bundler version: 2.3.17
 
-Node version: 14.17.3
+Node version: 14.18.3
 
 Database: PostgresSql@11
 
@@ -42,7 +42,7 @@ prevent bundle secure warnings with
 
     Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
 
-6. `$> npm install`
+6. `$> yarn install`
 
 7. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
@@ -78,25 +78,32 @@ $> Users::SuperAdmin.create(
 ```
 
 1. Setup a loopback address to `ttedev.me` or another preferred local domain
-2. Run the server `bundle exec rails s -p 3030`
-3. start redis server `brew services start redis` or `redis-server`
-4. start webpack server with command `./bin/webpack-dev-server`. Check more details [here](https://github.com/rails/webpacker)
+2. start redis server `brew services start redis` or `redis-server`
+3. Run the server `bundle exec rails s -p 3030`
+4. start vite server with command `./bin/vite dev`.
 5. Visit https://ttedev.me:3030
+
+or `./bin/dev` insted of points 3 and 4
 
 
 # SSL
-Add the following environment variables. Use appropriate local development domains if not using `ttedev.me`
+Add the following environment variables with your **file paths**. Use appropriate local development domains if not using `ttedev.me`
+
 
 ```
-WEBPACKER_DEV_SERVER_HTTPS="true"
-WEBPACKER_DEV_SERVER_HOST="ttedev.me"
-WEBPACKER_DEV_SERVER_PUBLIC="ttedev.me:3035"
+SSL="true"
+SSL_KEY="./support/dev-ssl/ttedev.me.key"
+SSL_CERT="./support/dev-ssl/ttedev.me.pem"
 ```
 
-1. Run the server
+1. Add to development section of `config/vite.json`
+
+    `"https": true`
+2. Run the server
 
    `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/ttedev.me.key&cert=support/dev-ssl/ttedev.me.pem"`
-2. Visit https://ttedev.me:3030
+3. Start Vite server with command `./bin/vite dev` or `SSL_KEY="./support/dev-ssl/ttedev.me.key" SSL_CERT="./support/dev-ssl/ttedev.me.pem" SSL=true ./bin/vite dev`
+3. Visit https://ttedev.me:3030
 
 ## Using other local domains with SSL
 Example of using `psy.loc`

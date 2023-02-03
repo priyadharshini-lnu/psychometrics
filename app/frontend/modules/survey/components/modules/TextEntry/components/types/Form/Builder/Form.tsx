@@ -2,12 +2,12 @@ import _ from 'lodash'
 import React from 'react'
 import { Select } from 'antd'
 
-import LabelEditor from 'modules/survey/components/LabelEditor'
-import { DateEntry } from 'modules/survey/components/modules/TextEntry/components/types/Form/Builder/inputs/DateEntry'
+import LabelEditor from '~/modules/survey/components/LabelEditor'
+import { DateEntry } from '~/modules/survey/components/modules/TextEntry/components/types/Form/Builder/inputs/DateEntry'
 
-import { BuilderModel, DateFormat } from 'modules/survey/interfaces/questions/TextEntry'
+import { BuilderModel, DateFormat } from '~/modules/survey/interfaces/questions/TextEntry'
 
-import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 
 import inputs from './inputs'
 

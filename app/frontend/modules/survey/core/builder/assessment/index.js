@@ -1,7 +1,7 @@
-import { createReducer } from 'utils/redux'
-import { updateIn, setIn } from 'utils/immutable'
-import Rule from 'models/Rule'
 import { get } from 'lodash'
+import { createReducer } from '~/utils/redux'
+import { updateIn, setIn } from '~/utils/immutable'
+import Rule from '~/modules/survey/models/Rule'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,

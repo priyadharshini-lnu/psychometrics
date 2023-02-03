@@ -6,16 +6,16 @@ import {
 } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
-import { getModules } from 'modules/reports/core/builder/selectors'
+import { getModules } from '~/modules/reports/core/builder/selectors'
 import {
   closeRichEditor, selectModule, unselectModules, SelectedTypes,
-} from 'modules/reports/core/builder/actions'
-import { updateModule } from 'modules/reports/core/builder/module/actions'
-import { RootState } from 'modules/reports/core/rootReducers'
-import panelStore from 'modules/reports/store/PropertyPanelStore'
-import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
-import utils from 'modules/reports/utils/Utils'
-import iconStyles from 'modules/reports/components/modules/Graph/components/ChartsMenu.less'
+} from '~/modules/reports/core/builder/actions'
+import { updateModule } from '~/modules/reports/core/builder/module/actions'
+import { RootState } from '~/modules/reports/core/rootReducers'
+import panelStore from '~/modules/reports/store/PropertyPanelStore'
+import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
+import utils from '~/modules/reports/utils/Utils'
+import iconStyles from '~/modules/reports/components/modules/Graph/components/ChartsMenu.less'
 
 import styles from './ModuleList.less'
 

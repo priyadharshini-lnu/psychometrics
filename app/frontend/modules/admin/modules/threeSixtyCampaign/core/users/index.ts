@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { createReducer } from '~/utils/redux'
 
 export const EDIT = 'threeSixty/user/EDIT'
 export const UPDATE_FIELD = 'threeSixty/user/UPDATE_FIELD'

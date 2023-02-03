@@ -2,7 +2,7 @@
 /* eslint-disable prefer-rest-params */
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import { getStore } from 'store/StoreWatchman'
+import { getStore } from '~/modules/survey/store/StoreWatchman'
 
 import ScoringModules from './ScoringModules'
 

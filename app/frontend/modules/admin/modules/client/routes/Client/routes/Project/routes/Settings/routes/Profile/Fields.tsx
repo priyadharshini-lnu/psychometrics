@@ -10,7 +10,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 import {
   ProfileField,
   QuestionField as QuestionFieldType,
-} from 'modules/admin/modules/client/core/profileSettings'
+} from '~/modules/admin/modules/client/core/profileSettings'
 import styles from './Profile.less'
 
 const { Column } = Table

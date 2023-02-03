@@ -1,5 +1,5 @@
 /* eslint-disable */
-var Tree = require('js-tree');
+import Tree from 'js-tree'
 var proto = Tree.prototype;
 
 proto.updateNodesPosition = function() {
@@ -71,4 +71,4 @@ proto.getNodeByTop = function(top) {
   }
 };
 
-module.exports = Tree;
+export default Tree

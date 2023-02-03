@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Form as AntForm, Select, Button } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
-import UserAutocomplete from 'components/UserAutocomplete'
+import UserAutocomplete from '~/components/UserAutocomplete'
 
 import {
   AssessorFormItem,
   getAvailableAssessments,
   fetchAvailableAssessments,
-} from 'modules/admin/modules/campaigns/core/assessors'
-import { get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/campaigns/core/assessors'
+import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import userPresenter from 'presenters/user'
+import userPresenter from '~/presenters/user'
 
 const formItemLayout = { labelCol: { span: 5 }, wrapperCol: { span: 12 } }
 

@@ -295,6 +295,90 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       class="ant-divider ant-divider-horizontal mt-4 mb-4"
       role="separator"
     />
+    <section
+      class="ms-4 me-4 mb-4"
+    >
+      <label
+        class="ant-checkbox-wrapper mt-2"
+      >
+        <span
+          class="ant-checkbox"
+        >
+          <input
+            class="ant-checkbox-input"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="ant-checkbox-inner"
+          />
+        </span>
+        <span>
+          Validation response type
+        </span>
+      </label>
+    </section>
+    <section
+      class="ms-4 me-4 mb-4"
+    >
+      <span
+        class="ant-typography"
+      >
+        <strong>
+          Validation type
+        </strong>
+      </span>
+      <div
+        class="ant-radio-group ant-radio-group-outline mt-2"
+      >
+        <label
+          class="ant-radio-wrapper"
+        >
+          <span
+            class="ant-radio"
+          >
+            <input
+              class="ant-radio-input"
+              type="radio"
+              value="None"
+            />
+            <span
+              class="ant-radio-inner"
+            />
+          </span>
+          <span>
+            None
+          </span>
+        </label>
+        <label
+          class="ant-radio-wrapper"
+        >
+          <span
+            class="ant-radio"
+          >
+            <input
+              class="ant-radio-input"
+              type="radio"
+              value="Custom"
+            />
+            <span
+              class="ant-radio-inner"
+            />
+          </span>
+          <span>
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center"
+            >
+              <div
+                class="ant-space-item"
+              >
+                Custom
+              </div>
+            </div>
+          </span>
+        </label>
+      </div>
+    </section>
   </div>
 </DocumentFragment>
 `;

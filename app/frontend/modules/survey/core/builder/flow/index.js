@@ -1,9 +1,9 @@
-import { createReducer } from 'utils/redux'
-import { getIn, setIn, updateIn } from 'utils/immutable'
-import schema from 'store/schema'
-import FlowElement from 'models/FlowElement'
 import { denormalize } from 'normalizr'
 import _ from 'lodash'
+import { createReducer } from '~/utils/redux'
+import { getIn, setIn, updateIn } from '~/utils/immutable'
+import schema from '~/modules/survey/store/schema'
+import FlowElement from '~/modules/survey/models/FlowElement'
 import {
   INIT, ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET, UPDATE_ELEMENT,
 } from './actions'

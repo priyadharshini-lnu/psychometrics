@@ -10,8 +10,8 @@ import {
   Typography,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import { useResources } from 'hooks/useResources'
-import { AdminPermissions, ProjectAdminViewDetails } from 'modules/admin/modules/client/core/admin'
+import { useResources } from '~/hooks/useResources'
+import { AdminPermissions, ProjectAdminViewDetails } from '~/modules/admin/modules/client/core/admin'
 
 const { I18n } = window
 

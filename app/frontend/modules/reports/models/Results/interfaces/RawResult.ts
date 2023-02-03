@@ -1,4 +1,4 @@
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 export default interface RawResult {
   scoring: RawResultScoring

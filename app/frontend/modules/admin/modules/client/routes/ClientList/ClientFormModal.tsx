@@ -2,12 +2,12 @@ import React from 'react'
 import {
   Form, Input, Select, Spin,
 } from 'antd'
-import { CreateResource, UpdateResource } from 'hooks/useResources/interfaces'
-import ResourceFormModal from 'components/ResourceFormModal'
-import { useResources } from 'hooks/useResources'
-import { User } from 'modules/admin/modules/client/core/users'
 import _ from 'lodash'
-import { AdditionRelationshipAttribute } from 'libs/jsonApi/interfaces'
+import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import { useResources } from '~/hooks/useResources'
+import { User } from '~/modules/admin/modules/client/core/users'
+import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { Client } from '../../core/clients'
 
 const { I18n } = window

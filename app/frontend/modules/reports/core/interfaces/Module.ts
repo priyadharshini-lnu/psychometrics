@@ -1,5 +1,5 @@
-import { Factor } from 'modules/reports/core/interfaces/Factor'
 import { RGBColor } from 'react-color'
+import { Factor } from '~/modules/reports/core/interfaces/Factor'
 
 export default interface Module {
   id: number

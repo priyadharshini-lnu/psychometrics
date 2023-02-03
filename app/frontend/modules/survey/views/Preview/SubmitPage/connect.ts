@@ -1,13 +1,13 @@
 import { connect, ConnectedProps } from 'react-redux'
 import {
   getCurrentPage, getPrevPage, getI18n,
-} from 'modules/survey/core/preview/FlowProcessor/selectors'
+} from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import {
   nextPage, prevPage,
-} from 'modules/survey/core/preview/FlowProcessor/actions'
-import { RootState } from 'modules/survey/core/rootReducers'
-import { fetchCampaignOptions } from 'modules/endUser/modules/campaigns/core/campaign'
-import { isConnected } from 'core/connection'
+} from '~/modules/survey/core/preview/FlowProcessor/actions'
+import { RootState } from '~/modules/survey/core/rootReducers'
+import { fetchCampaignOptions } from '~/modules/endUser/modules/campaigns/core/campaign'
+import { isConnected } from '~/core/connection'
 
 export const connecter = connect(
   (state: RootState) => {

@@ -4,10 +4,10 @@ import React, {
 import { Spin } from 'antd'
 import cs from 'classnames'
 
-import useForceUpdate from 'hooks/useUpdate'
+import useForceUpdate from '~/hooks/useUpdate'
 
-import { PreviewModel } from 'modules/survey/interfaces/questions/MultipleChoice'
-import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
+import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 import styles from '../../styles.less'
 

@@ -1,13 +1,13 @@
 import lodashGet from 'lodash/get'
 import * as t from 'io-ts'
 
-import { createReducer } from 'utils/redux'
 
 import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { ParentResourceType } from 'modules/admin/modules/SheetManagement/core/current'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/core/current'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import { createReducer } from '~/utils/redux'
 
 export enum SheetType {
   Datasheet = 'Datasheet',

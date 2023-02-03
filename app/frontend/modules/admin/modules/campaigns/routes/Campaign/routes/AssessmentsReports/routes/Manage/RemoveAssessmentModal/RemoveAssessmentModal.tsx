@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import {
   Modal, Checkbox, message, Typography,
 } from 'antd'
-import { isSuperAdmin } from 'core/currentUser'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
-import { SafeHTML } from 'components/SafeHTML'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
+import { SafeHTML } from '~/components/SafeHTML'
+import { isSuperAdmin } from '~/core/currentUser'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window

@@ -1,8 +1,8 @@
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
-import Question from 'models/Question'
-import Block from 'models/Block'
+import Question from '~/modules/survey/models/Question'
+import Block from '~/modules/survey/models/Block'
 import * as questionAction from '../question/actions'
 import * as assessmentActions from '../actions'
 import { questionsSelector } from '../selectors'

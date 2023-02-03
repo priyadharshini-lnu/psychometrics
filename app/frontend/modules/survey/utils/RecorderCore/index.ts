@@ -1,6 +1,5 @@
-/* eslint-disable import/no-webpack-loader-syntax */
-import { RECORDER_STATES } from 'modules/survey/constants/media'
-import recorderWorker from '!!raw-loader!./worker'
+import { RECORDER_STATES } from '~/modules/survey/constants/media'
+import recorderWorker from './worker?worker'
 
 declare global {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

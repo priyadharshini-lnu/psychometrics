@@ -3,9 +3,9 @@ import {
   Table, Menu, Row, Col, Switch, message,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table

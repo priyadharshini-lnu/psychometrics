@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/SideBySide'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/SideBySide'
 
-import useForceUpdate from 'hooks/useUpdate'
-import TextEditor from 'components/TextEditor'
+import useForceUpdate from '~/hooks/useUpdate'
+import TextEditor from '~/modules/survey/components/TextEditor'
 import TableHeader from './components/TableHeader'
 import TableBody from './components/TableBody'
 

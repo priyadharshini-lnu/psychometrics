@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp'
-import qs from 'qs'
+import qs from 'query-string'
 
 const routeUtils = {
   getBasePath (prefix) {

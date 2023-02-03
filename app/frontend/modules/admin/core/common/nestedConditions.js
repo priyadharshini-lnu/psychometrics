@@ -1,6 +1,6 @@
 
-import { getIn, updateIn } from 'utils/immutable'
 import _ from 'lodash'
+import { getIn, updateIn } from '~/utils/immutable'
 
 export default ({
   defaultCondition,

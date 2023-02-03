@@ -8,9 +8,9 @@ import {
   exportCompletionStatuses,
   exportCompactCompletionStatuses,
   exportUsers,
-} from 'modules/admin/modules/campaigns/core/users'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/campaigns/core/users'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const connecter = connect(
   (state: RootState) => ({

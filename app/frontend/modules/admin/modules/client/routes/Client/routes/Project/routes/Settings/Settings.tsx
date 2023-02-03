@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 import { Menu } from 'antd'
-import RouteList from 'components/RouteList'
-import settings from 'modules/admin/modules/client/routes/Client/routes/Project/settings'
-import routeUtils from 'utils/route'
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { History } from 'history'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import RouteList from '~/components/RouteList'
+import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
+import routeUtils from '~/utils/route'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { routes } from './routes'
 
 const { I18n } = window

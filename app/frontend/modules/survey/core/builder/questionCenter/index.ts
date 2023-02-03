@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { createReducer } from 'utils/redux'
 import _ from 'lodash'
-import { setIn } from 'utils/immutable'
-import Question from 'modules/survey/models/Question'
-import { Question as QuestionInerface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { createReducer } from '~/utils/redux'
+import { setIn } from '~/utils/immutable'
+import Question from '~/modules/survey/models/Question'
+import { Question as QuestionInerface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import {
   UPDATE_QUESTION, CHANGE_TYPE, ADD_NOTE, RENAME_QUESTION,
   changeType, renameQuestion,

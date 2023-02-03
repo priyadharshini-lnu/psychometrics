@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { RootState } from 'modules/reports/core/rootReducers'
+import { RootState } from '~/modules/reports/core/rootReducers'
 import { close, changeColor } from '../../../../core/temp/colorPicker'
 
 export default connect(

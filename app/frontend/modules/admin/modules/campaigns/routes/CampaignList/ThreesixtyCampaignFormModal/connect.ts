@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { fetchTemplatesAndAssessments } from 'modules/admin/modules/campaigns/core/list/index'
-import { fetchByAssessmentId } from 'modules/admin/modules/campaigns/core/factors'
+import { fetchTemplatesAndAssessments } from '~/modules/admin/modules/campaigns/core/list/index'
+import { fetchByAssessmentId } from '~/modules/admin/modules/campaigns/core/factors'
 
 const connecter = connect(
   () => ({

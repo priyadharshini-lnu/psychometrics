@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { Menu as AntMenu } from 'antd'
-import routeUtils from 'utils/route'
-import settings from 'modules/admin/modules/campaigns/settings'
-import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import settings from '~/modules/admin/modules/campaigns/settings'
+import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
+import routeUtils from '~/utils/route'
 import routes from './routes'
 
 const { I18n } = window

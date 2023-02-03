@@ -3,26 +3,26 @@ import {
   Table, Row, Col, Input, Select, Pagination, Button, Space, Menu, message, Modal,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import settings from 'modules/admin/settings'
-import Modals from 'modules/admin/components/Modals/'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { useParams } from 'react-router-dom'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import settings from '~/modules/admin/settings'
+import Modals from '~/modules/admin/components/Modals/'
+import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import {
   fetch,
   remove,
   get as getSmsInvites,
   STATUSES,
   SmsInvite,
-} from 'modules/admin/modules/campaigns/core/smsInvites'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+} from '~/modules/admin/modules/campaigns/core/smsInvites'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ImportModal as ImportSmsInvites } from './ImportModal'
 import { ToolsDropdown } from './ToolsDropdown'
 import styles from './styles.less'

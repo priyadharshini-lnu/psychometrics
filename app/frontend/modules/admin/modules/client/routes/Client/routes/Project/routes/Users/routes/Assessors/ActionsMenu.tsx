@@ -2,10 +2,10 @@ import React, { FC, ReactElement } from 'react'
 import { Button, Menu, Tooltip } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 
-import { Assessor } from 'modules/admin/modules/client/core/assessors'
-
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { Assessor } from '~/modules/admin/modules/client/core/assessors'
+
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 

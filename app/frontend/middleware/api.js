@@ -1,13 +1,13 @@
 import axios from 'axios'
-import queryString from 'qs'
-import { camelizeKeys } from 'utils/object'
+import queryString from 'query-string'
 import humps from 'humps'
-import { LOADING, LOADING_COMPLETE, setResponseDataMismatched } from 'core/request'
-import { setIn } from 'utils/immutable'
 import _ from 'lodash'
 import fileDownload from 'js-file-download'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
+import { LOADING, LOADING_COMPLETE, setResponseDataMismatched } from '~/core/request'
+import { setIn } from '~/utils/immutable'
+import { camelizeKeys } from '~/utils/object'
 
 const debounceTimers = {}
 const buildUrl = ({

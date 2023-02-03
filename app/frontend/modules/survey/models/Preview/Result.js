@@ -1,10 +1,10 @@
 /* eslint-disable prefer-spread */
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Validations from 'models/Validations'
-import { getStore, I18n } from 'store/StoreWatchman'
-import RequiredValidation from 'models/Validations/Required'
-import { isEmailTextEntryQuestion } from 'utils/question'
+import Validations from '../Validations'
+import { getStore, I18n } from '~/modules/survey/store/StoreWatchman'
+import RequiredValidation from '../Validations/Required'
+import { isEmailTextEntryQuestion } from '~/modules/survey/utils/question'
 import Results from './Results'
 
 const Result = function (question, answers = null, notApplicable = null) {

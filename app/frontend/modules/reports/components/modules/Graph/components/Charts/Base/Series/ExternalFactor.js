@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import AppStore from 'modules/reports/store/AppStore'
-import Factors from 'modules/reports/commands/Factors'
-import I18nStore from 'modules/reports/store/I18nStore'
+import AppStore from '~/modules/reports/store/AppStore'
+import Factors from '~/modules/reports/commands/Factors'
+import I18nStore from '~/modules/reports/store/I18nStore'
 
 export const Functions = {
 }

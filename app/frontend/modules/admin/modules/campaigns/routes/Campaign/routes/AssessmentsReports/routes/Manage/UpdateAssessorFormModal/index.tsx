@@ -5,13 +5,13 @@ import {
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 
-import { updateAssessorForm, UPDATE_ASSESSOR_FORM } from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { isRequestInProgress } from 'core/request'
-import { getSingle } from 'modules/admin/modules/campaigns/core/assessments'
-import { fetchAvailableAssessments, getAvailableAssessments } from 'modules/admin/modules/campaigns/core/assessors'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { updateAssessorForm, UPDATE_ASSESSOR_FORM } from '~/modules/admin/modules/campaigns/core/assessments/actions'
+import { getSingle } from '~/modules/admin/modules/campaigns/core/assessments'
+import { fetchAvailableAssessments, getAvailableAssessments } from '~/modules/admin/modules/campaigns/core/assessors'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
+import { isRequestInProgress } from '~/core/request'
 
 const { I18n } = window
 

@@ -1,5 +1,5 @@
-import FlowElement from 'models/FlowElement'
-import Flow from 'models/Flow'
+import FlowElement from '~/modules/survey/models/FlowElement'
+import Flow from '~/modules/survey/models/Flow'
 
 export const INIT = 'survey/assessment/INIT'
 export const ADD_ELEMENT = 'survey/flow/ADD_ELEMENT'

@@ -1,4 +1,4 @@
-import manageModal from 'components/hocs/manageModal'
+import manageModal from '~/components/hocs/manageModal'
 import ResetSubjectModal from './ResetSubjectModal'
 import connect from './connect'
 

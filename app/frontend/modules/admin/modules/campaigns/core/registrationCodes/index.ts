@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { setIn, updateIn } from 'utils/immutable'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import { createReducer } from '~/utils/redux'
+import { setIn, updateIn } from '~/utils/immutable'
 
 export interface RegistrationCode {
   id: number

@@ -1,6 +1,6 @@
 /* eslint-disable prefer-spread */
 import _ from 'lodash'
-import Utils from 'utils'
+import Utils from '~/modules/survey/utils'
 
 const ConstantSum = function (result) {
   this.result = result

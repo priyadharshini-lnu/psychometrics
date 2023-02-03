@@ -1,4 +1,4 @@
-import BaseResolver from 'models/logic/resolvers/BaseResolver'
+import BaseResolver from './BaseResolver'
 
 const FlowDatasheetResolver = {
   run (condition: {

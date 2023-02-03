@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { updateHighlight } from 'core/preview/FlowProcessor/actions'
-import { getCurrentBlock, getI18n, getHighlightByType } from 'core/preview/FlowProcessor/selectors'
+import { updateHighlight } from '~/modules/survey/core/preview/FlowProcessor/actions'
+import { getCurrentBlock, getI18n, getHighlightByType } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 export default connect(
   ({ preview, preview: { initialized } }) => {

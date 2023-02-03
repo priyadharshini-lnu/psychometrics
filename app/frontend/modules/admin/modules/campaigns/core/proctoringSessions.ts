@@ -1,7 +1,7 @@
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { createReducer } from 'utils/redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 import { FETCH_SINGLE as FETCH_SINGLE_USER } from './users'
 
 export interface ProctoringSession {

@@ -1,14 +1,14 @@
 import _ from 'lodash'
 import { takeLatest, put, select } from 'redux-saga/effects'
-import { createReducer } from 'utils/redux'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { setIn, updateIn } from 'utils/immutable'
-import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
-import { closeModal } from 'modules/admin/core/ui/modals'
 import ApiAction from 'interfaces/ApiAction'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import { getTables } from '~/modules/admin/core/filterAndPagination/selectors'
+import { closeModal } from '~/modules/admin/core/ui/modals'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { setIn, updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 
 const defaultState: State = {
   list: [],

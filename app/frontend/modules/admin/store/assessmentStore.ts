@@ -2,13 +2,13 @@
 import {
   createStore, applyMiddleware, compose, combineReducers,
 } from 'redux'
-import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
-import preview from 'modules/survey/core/preview'
-import flowMiddleware from 'modules/survey/core/preview/FlowProcessor/middleware'
-import rootSagas from 'modules/endUser/core/rootSagas'
-import connection from 'core/connection'
+import api from '~/middleware/api'
+import preview from '~/modules/survey/core/preview'
+import flowMiddleware from '~/modules/survey/core/preview/FlowProcessor/middleware'
+import rootSagas from '~/modules/endUser/core/rootSagas'
+import connection from '~/core/connection'
 import evaluation from '../modules/AssessorApp/core/evaluation'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -16,7 +16,6 @@ const sagaMiddleware = createSagaMiddleware()
 let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
-const { __DEV__ } = window
 const middleware = [api, sagaMiddleware, flowMiddleware, thunk]
 
 if (__DEV__) {

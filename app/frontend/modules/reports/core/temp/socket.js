@@ -1,11 +1,11 @@
-import { createReducer } from 'utils/redux'
 import {
   select, takeEvery, take, put, call,
 } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
-import { ENABLE, DISABLE } from 'modules/reports/core/builder/actions'
-import NotificationDispatcher from 'modules/reports/dispatchers/NotificationDispatcher'
-import { RequestsPool } from 'modules/reports/middleware/Socket'
+import { createReducer } from '~/utils/redux'
+import { ENABLE, DISABLE } from '~/modules/reports/core/builder/actions'
+import NotificationDispatcher from '~/modules/reports/dispatchers/NotificationDispatcher'
+import { RequestsPool } from '~/modules/reports/middleware/Socket'
 import Socket from '../../cable/socket'
 
 export const SUBSCRIBE_SOCKET = 'survey/temp/socket/SUBSCRIBE_SOCKET'

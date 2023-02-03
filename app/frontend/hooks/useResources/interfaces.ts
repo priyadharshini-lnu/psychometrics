@@ -1,5 +1,5 @@
 import { PartialDeep } from 'type-fest'
-import { AdditionRelationshipAttribute } from 'libs/jsonApi/interfaces'
+import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 
 export enum RequestStatus {
   Loading = 'loading',

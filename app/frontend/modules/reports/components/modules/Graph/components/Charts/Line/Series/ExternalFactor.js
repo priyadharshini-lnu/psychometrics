@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import Factors from 'modules/reports/commands/Factors'
-import AppStore from 'modules/reports/store/AppStore'
-import LookupSourceName from 'modules/reports/commands/LookupSourceName'
+import Factors from '~/modules/reports/commands/Factors'
+import AppStore from '~/modules/reports/store/AppStore'
+import LookupSourceName from '~/modules/reports/commands/LookupSourceName'
 import { Functions } from '../../Base/Series/Factor'
 
 export default {

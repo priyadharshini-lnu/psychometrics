@@ -5,14 +5,14 @@ import {
 import _ from 'lodash'
 import { connect } from 'react-redux'
 
-import { SafeHTML } from 'components/SafeHTML'
-import { fetchCampaign, reset as resetCampaign } from 'modules/endUser/modules/campaigns/core/campaign'
+import { fetchCampaign, reset as resetCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import {
   getNominations, getEvaluations, getManagedSubjects,
   getApprovalNominations, getSubjectReport, getTotalProgress,
-} from 'modules/endUser/modules/campaigns/core/campaign/selectors'
-import { STATUSES } from 'constants/campaign'
-import { MediaQueryContext } from 'glint'
+} from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
+import { STATUSES } from '~/constants/campaign'
+import { SafeHTML } from '~/components/SafeHTML'
+import { MediaQueryContext } from '~/glint'
 import { CampaignPageHeader } from '../Common/CampaignPageHeader'
 import { NominationList } from './NominationList'
 import { EvaluationList } from './EvaluationList'

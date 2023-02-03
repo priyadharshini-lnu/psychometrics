@@ -1,7 +1,7 @@
-import { getIn, setIn } from 'utils/immutable'
-import { createReducer } from 'utils/redux'
-import Question from 'models/Question'
-import QuestionSerializer from 'models/QuestionSerializer'
+import { getIn, setIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
+import Question from '~/modules/survey/models/Question'
+import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import {
   ADD_QUESTION, ADD_QUESTIONS, CHANGE_TYPE, UPDATE_POSITIONS, UPDATE_QUESTION,
   ADD_SKIP_LOGIC, REMOVE_SKIP_LOGIC, SAVE_DISPLAY_LOGIC, RENAME_QUESTION, PERMANENT_REMOVE,

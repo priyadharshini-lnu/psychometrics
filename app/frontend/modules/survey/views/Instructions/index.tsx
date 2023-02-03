@@ -1,7 +1,7 @@
 import React, { FC, useState, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { updateInstructionsContent } from 'modules/survey/core/builder/assessment/actions'
-import Editor from 'components/Editor'
+import { updateInstructionsContent } from '~/modules/survey/core/builder/assessment/actions'
+import Editor from '~/components/Editor'
 import styles from './Instructions.less'
 
 const { I18n } = window

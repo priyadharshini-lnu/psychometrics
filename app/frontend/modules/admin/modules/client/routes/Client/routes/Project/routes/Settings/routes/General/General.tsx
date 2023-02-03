@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom'
 import {
   Row, Col, Form, Checkbox, Input, Select, Button,
 } from 'antd'
+import _ from 'lodash'
 import {
   ProjectGeneralSettings as GeneralSettingsType,
-} from 'modules/admin/modules/client/core/projectGeneralSettings'
-import ResourceForm from 'components/ResourceForm'
-import { useResources } from 'hooks/useResources/useResources'
-import _ from 'lodash'
+} from '~/modules/admin/modules/client/core/projectGeneralSettings'
+import ResourceForm from '~/components/ResourceForm'
+import { useResources } from '~/hooks/useResources/useResources'
 
 const { Option } = Select
 const { I18n } = window

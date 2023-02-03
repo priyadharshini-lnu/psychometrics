@@ -6,8 +6,8 @@ import {
 } from 'antd'
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons'
 
-import { useLocalStorage } from 'hooks/useLocalStorage'
-import { MediaQueryContext } from 'glint'
+import { useLocalStorage } from '~/hooks/useLocalStorage'
+import { MediaQueryContext } from '~/glint'
 
 import styles from './styles.less'
 

@@ -1,0 +1,17 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import '~/styles/ant.less'
+import '~/modules/admin/styles/common.less'
+import '~/styles/utils.less'
+
+import initSentry from '~/libs/initSentry'
+
+import DatasheetManagementApp from '~/modules/admin/modules/SheetManagement/App'
+
+initSentry()
+
+ReactDOM.render(
+  <DatasheetManagementApp />,
+  document.getElementById('datasheet-management-container'),
+)

@@ -7,11 +7,11 @@ import {
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
-import { get as getCurrentUser, isSuperAdmin } from 'core/currentUser'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import settings from 'modules/admin/modules/client/settings'
-import RouteList from 'components/RouteList'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import settings from '~/modules/admin/modules/client/settings'
+import RouteList from '~/components/RouteList'
 import { routes } from './routes'
 
 const { I18n } = window

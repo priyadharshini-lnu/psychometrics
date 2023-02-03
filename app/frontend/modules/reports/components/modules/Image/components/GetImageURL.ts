@@ -1,4 +1,4 @@
-import ResultStore from 'modules/reports/store/ResultStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
 
 const GetImageURL = {
   run (module): string | null {

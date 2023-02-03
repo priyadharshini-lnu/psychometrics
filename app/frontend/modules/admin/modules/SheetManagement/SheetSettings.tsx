@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
 import {
   Row, Col, Table, Switch, Space, Button, Divider, Empty, Tooltip,
 } from 'antd'
@@ -10,6 +9,7 @@ import {
   SortableContainerProps, SortEnd, SortableContainer, SortableElement, SortableHandle,
 } from 'react-sortable-hoc'
 import { arrayMove } from '@dnd-kit/sortable'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { RemoveColumns } from './components/RemoveColumns'
 import {
   get as getColumns, updateColumn, updateSorting, fetch, MAX_LENGTH_FOR_DASHBOARD_USE,

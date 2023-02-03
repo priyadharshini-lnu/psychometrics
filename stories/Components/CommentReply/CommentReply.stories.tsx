@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import 'styles/ant.less'
-import { CommentReply } from 'glint'
+import '~/styles/ant.less'
+import { CommentReply } from '~/glint'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

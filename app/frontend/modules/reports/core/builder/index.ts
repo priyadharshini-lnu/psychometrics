@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
-import { setIn } from 'utils/immutable'
+import { createReducer } from '~/utils/redux'
+import { setIn } from '~/utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR, SELECT_MODULE, UNSELECT_MODULES,
   CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, CHANGE_SIZE,

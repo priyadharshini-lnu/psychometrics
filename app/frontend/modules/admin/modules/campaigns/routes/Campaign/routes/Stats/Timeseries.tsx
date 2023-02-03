@@ -4,12 +4,12 @@ import Highcharts3D from 'highcharts-v9/highcharts-3d'
 import CustomEvents from 'highcharts-custom-events'
 import { connect, ConnectedProps } from 'react-redux'
 import type { RangePickerProps } from 'antd/es/date-picker'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { getTimeseries, fetchTimeseries } from 'modules/admin/modules/campaigns/core/stats'
 import {
   Row, Col, Card, DatePicker,
 } from 'antd'
 import moment, { Moment } from 'moment'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { getTimeseries, fetchTimeseries } from '~/modules/admin/modules/campaigns/core/stats'
 import { buildHighchartOptions } from './options'
 
 Highcharts3D(Highcharts)

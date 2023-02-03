@@ -12,8 +12,8 @@ import {
   DashboardOutlined,
   LineChartOutlined,
 } from '@ant-design/icons'
-import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
-import routeUtils from 'utils/route'
+import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
+import routeUtils from '~/utils/route'
 
 const { I18n } = window
 

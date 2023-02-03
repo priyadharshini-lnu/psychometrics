@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/ui/modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   save, updateCurrentPage, unselectModules, copyModule, pasteModule, selectModule,
-} from 'modules/reports/core/builder/actions'
-import { addModule } from 'modules/reports/core/builder/page/actions'
-import { removeModule, updateModule } from 'modules/reports/core/builder/module/actions'
-import { getCurrentPage, getBufferedModule, getModule } from 'modules/reports/core/builder/selectors'
+} from '~/modules/reports/core/builder/actions'
+import { addModule } from '~/modules/reports/core/builder/page/actions'
+import { removeModule, updateModule } from '~/modules/reports/core/builder/module/actions'
+import { getCurrentPage, getBufferedModule, getModule } from '~/modules/reports/core/builder/selectors'
 
 export default connect(
   state => ({

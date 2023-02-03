@@ -1,4 +1,4 @@
-import Command from 'modules/reports/utils/Command'
+import Command from '~/modules/reports/utils/Command'
 import FieldsValidations from './FieldsValidations'
 
 // TODO: move to logic

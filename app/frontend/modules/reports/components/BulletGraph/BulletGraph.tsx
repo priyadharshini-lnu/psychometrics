@@ -1,9 +1,9 @@
 import React from 'react'
 import cs from 'classnames'
-import { rgba2hex } from 'utils/color'
 import { RGBColor } from 'react-color'
 import _ from 'lodash'
-import Utils from 'modules/reports/utils'
+import { rgba2hex } from '~/utils/color'
+import Utils from '~/modules/reports/utils'
 import styles from './styles.less'
 
 interface ScoreRange {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { allQuestions } from 'core/builder/assessment/selectors'
+import { allQuestions } from '~/modules/survey/core/builder/assessment/selectors'
 
 export default connect(
   ({ survey: { builder } }) => ({

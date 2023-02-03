@@ -5,7 +5,7 @@ import {
 import { DownOutlined } from '@ant-design/icons'
 import { useLocation } from 'react-router-dom'
 
-import { LanguageIcon } from 'glint/icons'
+import { LanguageIcon } from '~/glint/icons'
 
 import styles from './Language.less'
 

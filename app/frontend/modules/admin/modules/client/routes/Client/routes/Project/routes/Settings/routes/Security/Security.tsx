@@ -3,15 +3,15 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Form, Input, Button, Switch, Select,
 } from 'antd'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { useParams } from 'react-router-dom'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get as getPasswordSetting,
   saveSettings,
   SAVE_SETTINGS,
-} from 'modules/admin/modules/client/core/securitySetting'
-import { useParams } from 'react-router-dom'
-import ResourceForm from 'components/ResourceForm'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/client/core/securitySetting'
+import ResourceForm from '~/components/ResourceForm'
+import { isRequestInProgress } from '~/core/request'
 
 const connector = connect(
   (state: RootState) => ({

@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { getQuestions } from 'modules/reports/core/builder/selectors'
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import AppStore from '../store/AppStore'
 import Filter from './Filter'
 import store from '../store'

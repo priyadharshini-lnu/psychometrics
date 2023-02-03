@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select, Typography } from 'antd'
 
-import AppStore from 'modules/reports/store/AppStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 interface Props {
   assessmentId: number

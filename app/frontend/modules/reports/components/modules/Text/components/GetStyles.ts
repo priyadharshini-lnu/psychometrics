@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
-import ResultStore from 'modules/reports/store/ResultStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
 
 const GetStyles = {
   run (module: any): any {

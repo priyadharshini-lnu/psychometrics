@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { getIn } from 'utils/immutable'
 import { takeLatest, put } from 'redux-saga/effects'
+import { getIn } from '~/utils/immutable'
 
 const CHANGE_LOCALE = 'threeSixty/users/CHANGE_LOCALE'
 const SYNC = 'threeSixty/user/SYNC'

@@ -7,21 +7,21 @@ import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import {
   PropertiesModel,
   DateFormat,
-} from 'modules/survey/interfaces/questions/TextEntry'
+} from '~/modules/survey/interfaces/questions/TextEntry'
 
-import useForceUpdate from 'hooks/useUpdate'
-import ChoicesInput from 'modules/survey/components/ChoicesInput'
-import ValidationTypes from 'modules/survey/components/ValidationTypes'
-import RequiredValidations from 'modules/survey/components/RequiredValidations'
+import useForceUpdate from '~/hooks/useUpdate'
+import ChoicesInput from '~/modules/survey/components/ChoicesInput'
+import ValidationTypes from '~/modules/survey/components/ValidationTypes'
+import RequiredValidations from '~/modules/survey/components/RequiredValidations'
 import
 EmailPropertyPanel
-  from 'modules/survey/components/modules/TextEntry/components/types/Email/Builder/PropertyPanel'
+  from '~/modules/survey/components/modules/TextEntry/components/types/Email/Builder/PropertyPanel'
 
-import { TextEntryProps } from 'modules/survey/constants/DefaultProps'
+import { TextEntryProps } from '~/modules/survey/constants/DefaultProps'
 import {
   ANSWER_TYPE_OPTIONS,
   DATE_FORMAT_OPTIONS,
-} from 'modules/survey/components/modules/TextEntry/constant'
+} from '~/modules/survey/components/modules/TextEntry/constant'
 
 const { I18n } = window
 

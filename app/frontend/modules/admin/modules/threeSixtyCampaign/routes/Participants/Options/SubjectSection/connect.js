@@ -6,10 +6,10 @@ import {
   removeDatasheetCriteria,
   updateDatasheetCriteria,
   updateRelationship,
-} from 'modules/admin/modules/threeSixtyCampaign/core/participantOptions/actions'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/participantOptions/actions'
 // eslint-disable-next-line max-len
-import { getSubjectOption, getRelationships } from 'modules/admin/modules/threeSixtyCampaign/core/participantOptions/selectors'
-import { openModal } from 'modules/admin/core/ui/modals'
+import { getSubjectOption, getRelationships } from '~/modules/admin/modules/threeSixtyCampaign/core/participantOptions/selectors'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 export default connect(
   state => ({

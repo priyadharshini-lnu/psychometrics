@@ -3,14 +3,7 @@ div id="#{project.migrated ? 'project-container' : 'campaigns-container'}"
 javascript:
   window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
 
-= javascript_pack_tag 'vendors2'
-= stylesheet_pack_tag 'vendors2'
-= javascript_pack_tag 'vendors'
-= stylesheet_pack_tag 'vendors'
-
 - if project.migrated?
-  = stylesheet_packs_with_chunks_tag 'admin/project'
-  = javascript_packs_with_chunks_tag 'admin/project'
+  = vite_javascript_tag 'entrypoints/admin/project.jsx'
 - else
-  = stylesheet_packs_with_chunks_tag 'admin/campaign'
-  = javascript_packs_with_chunks_tag 'admin/campaign'
+  = vite_javascript_tag 'entrypoints/admin/campaign.jsx'

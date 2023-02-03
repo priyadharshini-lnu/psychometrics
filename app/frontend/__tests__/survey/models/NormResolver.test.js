@@ -1,5 +1,5 @@
 
-import NormResolver from 'modules/survey/models/NormResolver.js'
+import NormResolver from '~/modules/survey/models/NormResolver.js'
 
 test('normalize empty tree to empty list', () => {
   const results = {

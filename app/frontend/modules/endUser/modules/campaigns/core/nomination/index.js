@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { updateIn, setIn, getIn } from 'utils/immutable'
+import { updateIn, setIn, getIn } from '~/utils/immutable'
 
 const FETCH = 'threeSixty/nomination/FETCH'
 const REMOVE = 'threeSixty/nomination/REMOVE'

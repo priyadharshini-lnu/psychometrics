@@ -5,7 +5,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 
 
-import { CountDisplay } from 'components/CountDisplay'
+import { CountDisplay } from '~/components/CountDisplay'
 import { ActionsMenu } from './ActionsMenu'
 
 const { I18n } = window

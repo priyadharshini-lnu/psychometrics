@@ -1,6 +1,6 @@
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const FETCH = 'ui/breadcrumbs/FETCH'
 

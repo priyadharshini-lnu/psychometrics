@@ -1,19 +1,19 @@
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { get as getCampaigns, fetch } from 'modules/admin/modules/AssessorApp/core/campaigns'
 import {
   Table, Row, Col, Input, Select, Pagination,
 } from 'antd'
 import map from 'lodash/map'
 import capitalize from 'lodash/capitalize'
 import { AppstoreOutlined } from '@ant-design/icons'
-import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import { STATUSES, DEFAULT_PAGE_SIZE } from '~/constants/campaign'
+import { get as getCampaigns, fetch } from '~/modules/admin/modules/AssessorApp/core/campaigns'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import styles from './styles.less'
 
 const connecter = connect(

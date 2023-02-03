@@ -5,10 +5,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 
-import { SubHeader } from 'modules/endUser/modules/campaigns/components/SubHeader'
-import { PageHeader as GlintHeader } from 'glint'
-import LangDropdown from 'components/LangDropdown'
-import { SafeHTML } from 'components/SafeHTML'
+import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import {
   fetchNomination,
   removeNomination,
@@ -20,12 +17,15 @@ import {
   requestApproval,
   sendEvaluatorReminder,
   updateAllNominationStatus,
-} from 'modules/endUser/modules/campaigns/core/nomination'
-import { get as getAutocomplete, searchEvaluators } from 'modules/endUser/core/ui/autocomplete'
+} from '~/modules/endUser/modules/campaigns/core/nomination'
+import { get as getAutocomplete, searchEvaluators } from '~/modules/endUser/core/ui/autocomplete'
 import {
   requirementsSelector,
   allowedRelationshipsForNewNominations,
-} from 'modules/endUser/modules/campaigns/core/nomination/selectors'
+} from '~/modules/endUser/modules/campaigns/core/nomination/selectors'
+import { SafeHTML } from '~/components/SafeHTML'
+import LangDropdown from '~/components/LangDropdown'
+import { PageHeader as GlintHeader } from '~/glint'
 import { NominationForm } from './NominationForm/NominationForm'
 import { NominationTable } from './NominationTable/NominationTable'
 import { NameModal } from './NominationForm/NameModal'

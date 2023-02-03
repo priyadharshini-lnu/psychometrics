@@ -1,12 +1,12 @@
 import _ from 'lodash'
-import { createReducer, CustomAction } from 'utils/redux'
-import { setIn, updateIn } from 'utils/immutable'
-import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import humps from 'humps'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { put, takeEvery } from 'redux-saga/effects'
 import * as t from 'io-ts'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import UserReport from '~/modules/admin/modules/campaigns/interfaces/UserReport'
+import { setIn, updateIn } from '~/utils/immutable'
+import { createReducer, CustomAction } from '~/utils/redux'
 import { FETCH_SINGLE as FETCH_SINGLE_USER, CREATE_REPORT, REMOVE_REPORT } from './users'
 
 const ModuleOverrideTR = t.type({

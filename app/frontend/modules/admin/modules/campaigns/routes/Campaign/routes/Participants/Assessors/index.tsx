@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  fetch,
-  remove,
-  get as getAssessors,
-} from 'modules/admin/modules/campaigns/core/assessors'
-import { get as getCurrentUser } from 'core/currentUser'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { RootState } from 'modules/admin/core/rootReducers'
-import {
   Table, Row, Col, Input, Pagination, Button,
 } from 'antd'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined,
 } from '@ant-design/icons'
-import settings from 'modules/admin/settings'
-import Modals from 'modules/admin/components/Modals/'
 import { Link } from 'react-router-dom'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
+import {
+  fetch,
+  remove,
+  get as getAssessors,
+} from '~/modules/admin/modules/campaigns/core/assessors'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import settings from '~/modules/admin/settings'
+import Modals from '~/modules/admin/components/Modals/'
+import User from '~/modules/admin/modules/campaigns/interfaces/User'
+import { get as getCurrentUser } from '~/core/currentUser'
 import { ActionsMenu } from './ActionsMenu'
 import styles from './styles.less'
 import AssessorFormModal from './AssessorFormModal'

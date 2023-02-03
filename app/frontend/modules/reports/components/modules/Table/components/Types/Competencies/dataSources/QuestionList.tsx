@@ -3,12 +3,12 @@ import { connect, ConnectedProps } from 'react-redux'
 import { TreeSelect } from 'antd'
 import { DataNode as TreeDataNode } from 'rc-tree-select/lib/interface'
 
-import { RootState } from 'modules/reports/core/rootReducers'
-import Module from 'modules/reports/core/interfaces/Module'
-import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
-import { PropertiesModel as SideBySidePropertiesModel } from 'modules/survey/interfaces/questions/SideBySide'
-import { PropertiesModel as MatrixTablePropertiesModel } from 'modules/survey/interfaces/questions/MatrixTable'
-import { getQuestions } from 'modules/reports/core/builder/selectors'
+import { RootState } from '~/modules/reports/core/rootReducers'
+import Module from '~/modules/reports/core/interfaces/Module'
+import { BasePropertiesModel } from '~/modules/survey/interfaces/questions/Base'
+import { PropertiesModel as SideBySidePropertiesModel } from '~/modules/survey/interfaces/questions/SideBySide'
+import { PropertiesModel as MatrixTablePropertiesModel } from '~/modules/survey/interfaces/questions/MatrixTable'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
 const QUESTION_CHOICE_SEPERATOR = '_'

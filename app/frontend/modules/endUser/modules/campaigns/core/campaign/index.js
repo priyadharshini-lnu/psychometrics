@@ -1,6 +1,6 @@
-import { setIn } from 'utils/immutable'
 import _ from 'lodash'
 import humps from 'humps'
+import { setIn } from '~/utils/immutable'
 
 const BEGIN = 'campaign/BEGIN'
 const FETCH = 'campaign/FETCH'

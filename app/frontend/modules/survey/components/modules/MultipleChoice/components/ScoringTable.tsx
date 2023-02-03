@@ -3,10 +3,10 @@ import { Table } from 'antd'
 import map from 'lodash/map'
 import find from 'lodash/find'
 
-import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import {
   getQuestionScoring,
-} from 'modules/survey/core/preview/FlowProcessor/selectors'
+} from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 interface ScoringTableProps {
   scoring: ReturnType<typeof getQuestionScoring>

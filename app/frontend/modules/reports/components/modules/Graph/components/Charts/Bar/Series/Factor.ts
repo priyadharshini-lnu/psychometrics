@@ -1,9 +1,9 @@
 import result from 'lodash/result'
-import AppStore from 'modules/reports/store/AppStore'
-import I18nStore from 'modules/reports/store/I18nStore'
-import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
-import Result from 'modules/reports/models/Result'
 import _ from 'lodash'
+import AppStore from '~/modules/reports/store/AppStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
+import Result from '~/modules/reports/models/Result'
 
 type FactorResults = {
   desc: string,

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { createReducer } from '~/utils/redux'
 
 const CONNECTED = 'connection/CONNECTED'
 const DISCONNECTED = 'connection/DISCONNECTED'

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
 import * as t from 'io-ts'
-import { get as getCurrentUser, isSuperAdmin } from 'core/currentUser'
 import {
   Row, Col,
   Table,
@@ -17,14 +16,15 @@ import { PlusOutlined } from '@ant-design/icons'
 import {
   Link, useParams, useLocation, useHistory,
 } from 'react-router-dom'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { useResources } from 'hooks/useResources'
-import { BaseMeta } from 'hooks/useResources/interfaces'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { CountDisplay } from 'components/CountDisplay'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { useResources } from '~/hooks/useResources'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { CountDisplay } from '~/components/CountDisplay'
 import {
   ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
-} from 'modules/admin/modules/client/core/admin'
+} from '~/modules/admin/modules/client/core/admin'
 import { DetailsDrawer } from './DetailsDrawer'
 import { AddEditDrawer } from './AddEditDrawer'
 import { ActionsMenu } from './ActionsMenu'

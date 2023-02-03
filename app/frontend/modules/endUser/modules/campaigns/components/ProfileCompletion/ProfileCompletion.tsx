@@ -3,7 +3,7 @@ import {
   Row, Col, Progress, Typography, Button, Space,
 } from 'antd'
 
-import { DirectionalArrowIcon } from 'glint'
+import { DirectionalArrowIcon } from '~/glint'
 
 import styles from './ProfileCompletion.less'
 

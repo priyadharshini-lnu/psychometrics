@@ -4,8 +4,8 @@ import {
   Modal, Button, Form, Select, message,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
-import Norm from 'modules/admin/modules/campaigns/interfaces/Norm'
+import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
+import Norm from '~/modules/admin/modules/campaigns/interfaces/Norm'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window

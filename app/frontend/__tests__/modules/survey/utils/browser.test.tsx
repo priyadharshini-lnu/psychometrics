@@ -1,5 +1,5 @@
-import { convertToUserAgentBrowserName } from 'modules/survey/utils/browser'
-import { UA_BROWSERS } from 'modules/survey/constants/browser'
+import { convertToUserAgentBrowserName } from '~/modules/survey/utils/browser'
+import { UA_BROWSERS } from '~/modules/survey/constants/browser'
 
 test('Should return empty for unknown browser', () => {
   let uaBrowserName = convertToUserAgentBrowserName('QC browser', false)

@@ -2,10 +2,10 @@ import _ from 'lodash'
 import React from 'react'
 import { Col, Row, Typography } from 'antd'
 
-import { ViewsContainer } from 'glint'
-import Assessments from 'modules/endUser/modules/campaigns/routes/Campaign/Common/Assessments'
+import Assessments from '~/modules/endUser/modules/campaigns/routes/Campaign/Common/Assessments'
 
-import { Statuses, UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
+import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
+import { ViewsContainer } from '~/glint'
 import styles from './AssessmentsContainer.less'
 
 const { Title } = Typography

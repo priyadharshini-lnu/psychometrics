@@ -3,11 +3,11 @@ import {
   Table, Space, Pagination, Button, AutoComplete,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { TableLayout } from 'modules/admin/components/TableLayout'
-import { get as getCurrentUser } from 'core/currentUser'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { useResources } from 'hooks/useResources'
 import { SearchOutlined } from '@ant-design/icons'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { useResources } from '~/hooks/useResources'
+import { get as getCurrentUser } from '~/core/currentUser'
 import { Campaign, User } from '../core'
 
 const { Column } = Table

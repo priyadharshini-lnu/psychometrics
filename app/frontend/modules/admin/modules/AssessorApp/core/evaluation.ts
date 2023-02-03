@@ -1,8 +1,8 @@
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
 import _ from 'lodash'
-import { setIn } from 'utils/immutable'
+import { createReducer } from '~/utils/redux'
+import { setIn } from '~/utils/immutable'
 
 export const UserAssessmentTR = t.type({
   id: t.number,

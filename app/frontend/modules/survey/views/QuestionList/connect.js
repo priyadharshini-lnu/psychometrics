@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { questionsWithoutDeleted } from 'core/builder/assessment/selectors'
+import { questionsWithoutDeleted } from '~/modules/survey/core/builder/assessment/selectors'
 
 export default connect(
   (store, props) => ({

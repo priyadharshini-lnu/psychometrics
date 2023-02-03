@@ -1,4 +1,4 @@
-import InitPages from 'modules/survey/core/preview/FlowProcessor/commands/InitPages'
+import InitPages from '~/modules/survey/core/preview/FlowProcessor/commands/InitPages'
 import _ from 'lodash'
 
 const question = (id, data = {}) => ({ id, ...data })

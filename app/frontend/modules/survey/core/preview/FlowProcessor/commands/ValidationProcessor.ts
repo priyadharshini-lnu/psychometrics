@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import Result from 'modules/survey/models/Preview/Result'
-import { setIn } from 'utils/immutable'
-import { isMediaResponseQuestion } from 'modules/survey/utils/question'
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import Result from '~/modules/survey/models/Preview/Result'
+import { setIn } from '~/utils/immutable'
+import { isMediaResponseQuestion } from '~/modules/survey/utils/question'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { QuestionsInterface, ResultsInterface, QuestionError } from '../interfaces'
 import MediaResponseValidator from './MediaResponseValidator'
 

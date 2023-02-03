@@ -8,10 +8,6 @@ html.body-full-height
     = csrf_meta_tags
     = render 'layouts/pys_global_state'
     = javascript_include_tag 'administration'
-    = stylesheet_pack_tag 'vendors2'
-    = stylesheet_pack_tag 'vendors'
-    = javascript_pack_tag 'vendors2'
-    = javascript_pack_tag 'vendors'
     = render 'layouts/favicons'
   body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}"
     - if show_maintenance_alert?
@@ -29,4 +25,4 @@ html.body-full-height
 
     .main#devise
 
-    = javascript_pack_tag 'user/login'
+    = vite_javascript_tag 'entrypoints/user/login.jsx'

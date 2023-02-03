@@ -26,6 +26,7 @@
     "jest-dom"
   ],
   "rules": {
+    "import/no-named-as-default-member": 0,
     "camelcase": "off",
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": "error",
@@ -75,6 +76,7 @@
     "react/no-array-index-key": 0,
     "no-shadow": 0,
     "react/prop-types": 0,
+    "react/sort-comp": 0,
     "space-before-function-paren": [
       "error",
       "always"
@@ -166,6 +168,9 @@
         "paths": [
           "app/frontend"
         ]
+      },
+      "alias": {
+        "~/": ""
       }
     }
   }

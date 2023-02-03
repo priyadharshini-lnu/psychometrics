@@ -1,4 +1,4 @@
-import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
+import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import * as BlockActions from './BlockActions'
 import * as QuestionActions from './QuestionActions'
 import * as GapAnalysis from './GapAnalysis'

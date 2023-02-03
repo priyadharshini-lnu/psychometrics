@@ -3,13 +3,13 @@ import {
 } from 'redux'
 import { all } from 'redux-saga/effects'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
-import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
-import filterAndPaginationWatcher from 'modules/admin/core/filterAndPagination/watchers'
-
 import { createBrowserHistory } from 'history'
-import tables from 'modules/admin/core/filterAndPagination/reducers'
+import filterAndPaginationWatcher from '~/modules/admin/core/filterAndPagination/watchers'
+
+import api from '~/middleware/api'
+import tables from '~/modules/admin/core/filterAndPagination/reducers'
 import auditLogs from '../../modules/AuditLog/core'
 
 export const history = createBrowserHistory()

@@ -5,6 +5,8 @@ import {
   Input, Tooltip, Divider, Switch, Space,
 } from 'antd'
 import { useTransition, animated as a } from 'react-spring'
+import { SendOutlined } from '@ant-design/icons'
+import _ from 'lodash'
 import {
   get,
   getCurrent,
@@ -15,14 +17,12 @@ import {
   getSelectedModule,
   Comment,
   Module,
-} from 'modules/admin/modules/campaigns/core/userReports'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { SendOutlined } from '@ant-design/icons'
-import { CommentItem } from 'glint/components/CommentItem'
-import { CommentReply } from 'glint'
-import { useResources } from 'hooks/useResources'
-import Utils from 'modules/survey/utils'
-import _ from 'lodash'
+} from '~/modules/admin/modules/campaigns/core/userReports'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { useResources } from '~/hooks/useResources'
+import Utils from '~/modules/survey/utils'
+import { CommentReply } from '~/glint'
+import { CommentItem } from '~/glint/components/CommentItem'
 import styles from './styles.less'
 
 const connecter = connect((state: RootState) => ({

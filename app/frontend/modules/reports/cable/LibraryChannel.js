@@ -1,5 +1,5 @@
 import { Cable } from 'action-cable-react'
-import SocketDispatcher from 'modules/reports/dispatchers/SocketDispatcher'
+import SocketDispatcher from '~/modules/reports/dispatchers/SocketDispatcher'
 import actionCable from './Cable'
 import RequestsPool from './RequestsPool'
 

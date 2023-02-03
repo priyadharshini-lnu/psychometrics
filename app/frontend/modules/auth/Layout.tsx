@@ -5,9 +5,9 @@ import {
   Layout, Row, Col, Space, ConfigProvider,
 } from 'antd'
 import { connect } from 'react-redux'
-import LangDropdown from 'components/LangDropdown'
 import cs from 'classnames'
-import { isRtl } from 'utils/locales'
+import LangDropdown from '~/components/LangDropdown'
+import { isRtl } from '~/utils/locales'
 import routes from './routes'
 import styles from './styles.less'
 import logo from './media/TTE_Logo_Color_Light_Bg.png'

@@ -3,12 +3,12 @@ import {
   Divider, Typography, Select, Space,
 } from 'antd'
 
-import { PropertiesModel } from 'modules/survey/interfaces/questions/AudioResponse'
+import { PropertiesModel } from '~/modules/survey/interfaces/questions/AudioResponse'
 
-import useForceUpdate from 'hooks/useUpdate'
+import useForceUpdate from '~/hooks/useUpdate'
 
-import ValidationTypes from 'components/ValidationTypes'
-import RequiredValidations from 'components/RequiredValidations'
+import ValidationTypes from '~/modules/survey/components/ValidationTypes'
+import RequiredValidations from '~/modules/survey/components/RequiredValidations'
 
 const { I18n } = window
 

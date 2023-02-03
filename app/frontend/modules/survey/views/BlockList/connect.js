@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { blocksWithoutDeleted } from 'core/builder/assessment/selectors'
-import Block from 'models/BlockSerializer'
+import Block from '~/modules/survey/models/BlockSerializer'
+import { blocksWithoutDeleted } from '~/modules/survey/core/builder/assessment/selectors'
 
 export default connect(
   state => ({

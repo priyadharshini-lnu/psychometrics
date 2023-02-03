@@ -11,8 +11,8 @@ import {
 import { InfoCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
-import { PreviewModel, TextType } from 'modules/survey/interfaces/questions/SideBySide'
-import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { PreviewModel, TextType } from '~/modules/survey/interfaces/questions/SideBySide'
+import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 import styles from '../styles.less'
 

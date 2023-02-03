@@ -1,6 +1,6 @@
 import React from 'react'
 import { message } from 'antd'
-import AnswerableConfirmationModal from 'components/AnswerableConfirmationModal'
+import AnswerableConfirmationModal from '~/components/AnswerableConfirmationModal'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window

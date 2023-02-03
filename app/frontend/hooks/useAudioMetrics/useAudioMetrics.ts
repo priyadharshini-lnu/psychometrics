@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import filter from 'lodash/filter'
 
-import { RecorderCore } from 'modules/survey/utils/RecorderCore'
-import { RECORDER_STATES } from 'modules/survey/constants/media'
+import { RecorderCore } from '~/modules/survey/utils/RecorderCore'
+import { RECORDER_STATES } from '~/modules/survey/constants/media'
 
 import { AudioLevel, State, StateFunctions } from './interfaces'
 

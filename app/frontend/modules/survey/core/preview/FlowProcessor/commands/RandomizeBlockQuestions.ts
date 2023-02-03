@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import array from 'utils/array'
 import seedrandom from 'seedrandom'
+import array from '~/utils/array'
 import { PageInterface } from '../interfaces'
 
 const RandomizeBlockQuestions = {

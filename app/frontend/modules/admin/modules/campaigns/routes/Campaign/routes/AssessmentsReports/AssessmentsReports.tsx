@@ -1,5 +1,5 @@
 import React from 'react'
-import RouteList from 'components/RouteList'
+import RouteList from '~/components/RouteList'
 import Menu from './Menu'
 import routes from './routes'
 import settings from '../../../../settings'

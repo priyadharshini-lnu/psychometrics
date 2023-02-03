@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/ui/modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage, saveAssessment, updateExtra,
   toggleInstructions,
-} from 'modules/survey/core/builder/assessment/actions'
-import { createBlock } from 'modules/survey/core/builder/assessment/block/actions'
-import { trashItems, blocksWithQuestions } from 'core/builder/assessment/selectors'
+} from '~/modules/survey/core/builder/assessment/actions'
+import { createBlock } from '~/modules/survey/core/builder/assessment/block/actions'
+import { trashItems, blocksWithQuestions } from '~/modules/survey/core/builder/assessment/selectors'
 
 export default connect(
   state => ({

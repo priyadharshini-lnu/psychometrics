@@ -9,11 +9,11 @@ import {
   MessageOutlined,
 } from '@ant-design/icons'
 
-import { get as getCurrentUser } from 'core/currentUser'
-import { RootState } from 'modules/admin/core/rootReducers'
-
-import routeUtils from 'utils/route'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { get as getCurrentUser } from '~/core/currentUser'
+import { RootState } from '~/modules/admin/core/rootReducers'
+
+import routeUtils from '~/utils/route'
 import settings from '../settings'
 
 const { I18n } = window

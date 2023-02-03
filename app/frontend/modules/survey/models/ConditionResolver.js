@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Validations from 'models/Validations'
-import FlowDatasheetResolver from 'models/logic/resolvers/FlowDatasheetResolver'
+import Validations from './Validations'
+import FlowDatasheetResolver from './logic/resolvers/FlowDatasheetResolver'
 
 const ConditionResolver = function (conditions, {
   questions, results, dataSheet, subjectDataSheet,

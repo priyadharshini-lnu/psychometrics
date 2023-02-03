@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Breadcrumb as AntBreadcrumb } from 'antd'
-import { Request, State } from 'modules/admin/core/ui/breadcrumbs'
-import useTitle from 'hooks/useTitle'
+import { Request, State } from '~/modules/admin/core/ui/breadcrumbs'
+import useTitle from '~/hooks/useTitle'
 import styles from './styles.less'
 
 interface Crumb {

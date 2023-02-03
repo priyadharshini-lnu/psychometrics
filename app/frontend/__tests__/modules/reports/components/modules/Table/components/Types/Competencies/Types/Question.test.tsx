@@ -1,4 +1,6 @@
-import { questionChoicesToTableValues } from 'modules/reports/components/modules/Table/components/Types/Competencies/Types/Question.js'
+import {
+  questionChoicesToTableValues
+} from '~/modules/reports/components/modules/Table/components/Types/Competencies/Types/Question'
 
 jest.mock('modules/reports/store/I18nStore', () => ({
   tQuestion: jest.fn(() => 'Question'),

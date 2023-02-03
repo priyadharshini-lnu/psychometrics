@@ -2,10 +2,10 @@ import React from 'react'
 import {
   Button, Menu,
 } from 'antd'
-import User from 'modules/admin/modules/campaigns/interfaces/User'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import User from '~/modules/admin/modules/campaigns/interfaces/User'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { SafeHTML } from 'components/SafeHTML'
 
-import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
-import { Highlight } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import HighlightList from '~/modules/survey/views/Preview/StaticContent/HighlightList'
+import { Highlight } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import { SafeHTML } from '~/components/SafeHTML'
 
 interface Props {
   model: object

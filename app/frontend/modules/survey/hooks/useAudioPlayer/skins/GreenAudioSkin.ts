@@ -1,4 +1,4 @@
-import GreenAudioPlayer from 'green-audio-player'
+import GreenAudioPlayer from 'green-audio-player/index.js'
 import 'green-audio-player/dist/css/green-audio-player.css'
 
 import { AudioPlayerSkin } from '../interfaces'

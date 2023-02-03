@@ -1,5 +1,5 @@
 import { Cable } from 'action-cable-react'
-import SocketDispatcher from 'dispatchers/SocketDispatcher'
+import SocketDispatcher from '~/modules/survey/dispatchers/SocketDispatcher'
 import actionCable from './Cable'
 
 let cable

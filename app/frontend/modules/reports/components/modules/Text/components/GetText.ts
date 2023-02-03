@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
-import ResultStore from 'modules/reports/store/ResultStore'
-import I18nStore from 'modules/reports/store/I18nStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
 
 const GetText = {
   run (module): string | null {

@@ -6,16 +6,16 @@ import {
 } from 'antd'
 import moment from 'moment'
 
-import { PageHeader, MediaQueryContext } from 'glint'
-import { ProfileCompletion } from 'modules/endUser/modules/campaigns/components/ProfileCompletion'
-import { ProfileCardTitle } from 'modules/endUser/modules/campaigns/components/ProfileCardTitle'
-import LangDropdown from 'components/LangDropdown'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import { ProfileCompletion } from '~/modules/endUser/modules/campaigns/components/ProfileCompletion'
+import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components/ProfileCardTitle'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   fetchCampaigns,
   loginHogan,
   acceptPolicy,
-} from 'modules/endUser/modules/campaigns/core/campaigns'
+} from '~/modules/endUser/modules/campaigns/core/campaigns'
+import LangDropdown from '~/components/LangDropdown'
+import { PageHeader, MediaQueryContext } from '~/glint'
 
 import Campaigns from './Campaigns'
 

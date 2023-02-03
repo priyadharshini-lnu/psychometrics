@@ -1,11 +1,11 @@
-import { Project } from 'modules/admin/modules/client/routes/Client/routes/Project'
-import { Campaign } from 'modules/admin/modules/campaigns/routes/Campaign'
+import { Project } from '~/modules/admin/modules/client/routes/Client/routes/Project'
+import { Campaign } from '~/modules/admin/modules/campaigns/routes/Campaign'
 import UsersAssessmentsReports
-  from 'modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
+  from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
 import AssessorsDetails
-  from 'modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
-import ReportPreview from 'modules/admin/modules/campaigns/routes/ReportPreview'
-import { ExternalReportPreview } from 'modules/admin/modules/campaigns/routes/ExternalReportPreview'
+  from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
+import ReportPreview from '~/modules/admin/modules/campaigns/routes/ReportPreview'
+import { ExternalReportPreview } from '~/modules/admin/modules/campaigns/routes/ExternalReportPreview'
 import { Client } from './Client'
 import { ClientList } from './ClientList'
 

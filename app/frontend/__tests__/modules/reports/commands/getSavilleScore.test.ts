@@ -1,4 +1,4 @@
-import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
+import { getSavilleFactorsScore } from '~/modules/reports/commands/getSavilleFactorsScore'
 
 test('return empty array if there are no saville factor relation to particular score', () => {
   const result = getSavilleFactorsScore({

@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import Editor from 'components/Editor'
 import {
   Row, Col, Button, Select, message,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import find from 'lodash/find'
+import Editor from '~/components/Editor'
 import {
   fetchInstructions,
   update,
   updateInstructions,
   get as getCampaignOptions,
-} from 'modules/admin/modules/campaigns/core/campaignOptions'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/campaigns/core/campaignOptions'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
 
 import styles from './styles.less'
 

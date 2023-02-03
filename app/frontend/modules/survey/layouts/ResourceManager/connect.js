@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { subscribeSocket } from 'modules/survey/core/temp/socket'
+import { subscribeSocket } from '~/modules/survey/core/temp/socket'
 import {
   addResource, saveResources, loadAssessments, changeResource,
   reorderResources, removeResource,
-} from 'modules/survey/core/builder/resources'
+} from '~/modules/survey/core/builder/resources'
 
 export default connect(
   ({ survey }) => ({

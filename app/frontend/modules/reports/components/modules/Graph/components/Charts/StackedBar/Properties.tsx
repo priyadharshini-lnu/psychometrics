@@ -1,10 +1,10 @@
 import React from 'react'
 import { Checkbox, Typography, Space } from 'antd'
 
-import useUpdate from 'hooks/useUpdate'
-import { PropertiesModel } from 'modules/reports/interfaces/graphs/StackedBar'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
-import ChoicesInput from 'modules/reports/components/ChoicesInput'
+import useUpdate from '~/hooks/useUpdate'
+import { PropertiesModel } from '~/modules/reports/interfaces/graphs/StackedBar'
+import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphPropertyDropdown'
 
 const { I18n } = window

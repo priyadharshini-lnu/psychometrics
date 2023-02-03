@@ -2,9 +2,9 @@ import React from 'react'
 import {
   Form, Input,
 } from 'antd'
-import { CreateResource } from 'hooks/useResources/interfaces'
-import ResourceFormModal from 'components/ResourceFormModal'
-import { Project } from 'modules/admin/modules/client/core/projects'
+import { CreateResource } from '~/hooks/useResources/interfaces'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import { Project } from '~/modules/admin/modules/client/core/projects'
 
 interface Props {
   addProject: CreateResource<Project | {clientId: string }>

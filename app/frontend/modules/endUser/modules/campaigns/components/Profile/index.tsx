@@ -6,8 +6,8 @@ import {
 import { UserOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { get as getCurrentUser } from 'core/currentUser'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser } from '~/core/currentUser'
 
 import styles from './styles.less'
 

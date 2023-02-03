@@ -4,20 +4,20 @@ import cs from 'classnames'
 import {
   Tag, Tabs, Row, Col, Avatar, Typography, Space, Divider,
 } from 'antd'
+import moment from 'moment'
+import _ from 'lodash'
+import { CheckOutlined, UserOutlined } from '@ant-design/icons'
 import {
   getCurrent,
   approveReport,
   ApprovalStatuses,
   selectModule,
-} from 'modules/admin/modules/campaigns/core/userReports'
-import { subscribeSocket } from 'core/socket'
-import Utils from 'modules/reports/utils/Utils'
-import moment from 'moment'
-import { RootState } from 'modules/admin/core/rootReducers'
-import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
-import _ from 'lodash'
-import { CheckOutlined, UserOutlined } from '@ant-design/icons'
-import { SafeHTML } from 'components/SafeHTML'
+} from '~/modules/admin/modules/campaigns/core/userReports'
+import Utils from '~/modules/reports/utils/Utils'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
+import { SafeHTML } from '~/components/SafeHTML'
+import { subscribeSocket } from '~/core/socket'
 import Comments from './Comments'
 import styles from './styles.less'
 

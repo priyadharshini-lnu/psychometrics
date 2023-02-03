@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
-import { ASSIGN_TYPES } from 'constants/relationship'
-import { createReducer } from 'utils/redux'
-import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { ASSIGN_TYPES } from '~/constants/relationship'
+import { ApiActionResponse } from '~/interfaces/ApiActionResponse'
+import { createReducer } from '~/utils/redux'
 
 const FETCH_RELATIONSHIPS = 'threeSixty/relationships/FETCH_RELATIONSHIPS'
 const FETCH_WITH_USAGE = 'threeSixty/relationships/FETCH_WITH_USAGE'

@@ -2,14 +2,7 @@
 
 script src="https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js"
 
-= javascript_pack_tag 'vendors2'
-= stylesheet_pack_tag 'vendors2'
-= javascript_pack_tag 'vendors'
-= stylesheet_pack_tag 'vendors'
-= stylesheet_pack_tag 'survey'
-= javascript_pack_tag 'survey'
-= javascript_pack_tag 'assessment/builder'
-= stylesheet_pack_tag 'assessment/builder'
+= vite_javascript_tag 'entrypoints/assessment/builder.jsx'
 
 javascript:
   x_navigation_minimize('close');

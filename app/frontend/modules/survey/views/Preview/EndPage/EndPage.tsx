@@ -1,10 +1,11 @@
 import React, { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/survey/core/rootReducers'
-import { getI18n } from 'core/preview/FlowProcessor/selectors'
 import { useLocation, useHistory } from 'react-router-dom'
-import { EndOfAssessmentElementProps } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { RootState } from '~/modules/survey/core/rootReducers'
+
+import { EndOfAssessmentElementProps } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 import ScoringTable from './components/ScoringTable'
 

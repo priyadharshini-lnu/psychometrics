@@ -5,12 +5,12 @@ import {
   Menu, Input, InputRef, Row,
 } from 'antd'
 
-import Utils from 'modules/survey/utils/Utils'
-import { DnDElement } from 'components/DnD'
-import { useInputFocus } from 'hooks/useInputFocus'
-import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
-
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import Utils from '~/modules/survey/utils/Utils'
+import { useInputFocus } from '~/hooks/useInputFocus'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
+
+import { DnDElement } from '~/components/DnD'
 import styles from '../../../FormStyle.less'
 import Option from './Option'
 

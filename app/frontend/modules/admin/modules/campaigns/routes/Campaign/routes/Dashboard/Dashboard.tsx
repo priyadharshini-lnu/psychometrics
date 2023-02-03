@@ -1,19 +1,18 @@
 import { Skeleton } from 'antd'
 import React, { useEffect } from 'react'
-import { useResources } from 'hooks/useResources'
-import {
-  Dashboard as DashboardType, DashboardTR, useDashboardStore,
-} from 'modules/admin/modules/campaigns/core/dashboard'
 import { useHistory, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import settings from 'modules/admin/modules/campaigns/settings'
-import RouteList from 'components/RouteList'
 import _ from 'lodash'
-
-import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from 'modules/admin/modules/campaigns/core/current'
-import { get as getCurrentUser, isSuperAdmin } from 'core/currentUser'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
+import { useResources } from '~/hooks/useResources'
+import {
+  Dashboard as DashboardType, DashboardTR, useDashboardStore,
+} from '~/modules/admin/modules/campaigns/core/dashboard'
+import settings from '~/modules/admin/modules/campaigns/settings'
+import RouteList from '~/components/RouteList'
+import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from '~/modules/admin/modules/campaigns/core/current'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { isRequestInProgress } from '~/core/request'
 import { Menu } from './Menu'
 import routes from './routes'
 

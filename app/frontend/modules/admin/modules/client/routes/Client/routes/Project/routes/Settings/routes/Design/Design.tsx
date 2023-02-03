@@ -4,16 +4,16 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
-import { ColorPicker } from 'components/ColorPicker'
-import { useResources } from 'hooks/useResources/useResources'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import { UploadFile } from 'antd/lib/upload/interface'
+import type { Theme } from 'antd/lib/config-provider/context'
 import {
   Files, DesignSettings as DesignSettingsType,
   uploadFiles,
-} from 'modules/admin/modules/client/core/designSettings'
-import { UploadFile } from 'antd/lib/upload/interface'
-import type { Theme } from 'antd/lib/config-provider/context'
+} from '~/modules/admin/modules/client/core/designSettings'
+import { useResources } from '~/hooks/useResources/useResources'
+import { ColorPicker } from '~/components/ColorPicker'
 import { DesignPreview } from './DesignPreview'
 import styles from './styles.less'
 

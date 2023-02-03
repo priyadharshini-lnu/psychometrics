@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 
-import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
 import cs from 'classnames'
 import _ from 'lodash'
+import { PreviewModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
 
-import AppStore from 'modules/reports/store/AppStore'
-import ResultStore from 'modules/reports/store/ResultStore'
-import I18nStore from 'modules/reports/store/I18nStore'
+import AppStore from '~/modules/reports/store/AppStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
 
 import styles from './styles.less'
 

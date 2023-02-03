@@ -1,6 +1,6 @@
-import { createReducer } from 'utils/redux'
 import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { createReducer } from '~/utils/redux'
 import { AdminJob } from '../interfaces'
 
 interface State {

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Input, Select } from 'antd'
-import ResourceFormModal from 'components/ResourceFormModal'
 import { useHistory, useParams } from 'react-router-dom'
-import { formDataToResource } from 'libs/jsonApi/helpers'
-import { useResources } from 'hooks/useResources'
+import * as t from 'io-ts'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import { formDataToResource } from '~/libs/jsonApi/helpers'
+import { useResources } from '~/hooks/useResources'
 import {
   Dashboard as DashboardType, DashboardTR, useDashboardStore,
-} from 'modules/admin/modules/campaigns/core/dashboard'
-import * as t from 'io-ts'
+} from '~/modules/admin/modules/campaigns/core/dashboard'
 
 const { I18n } = window
 

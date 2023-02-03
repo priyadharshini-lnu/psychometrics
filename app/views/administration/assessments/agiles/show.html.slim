@@ -1,12 +1,6 @@
-= javascript_pack_tag 'vendors2'
-= stylesheet_pack_tag 'vendors2'
-= javascript_pack_tag 'vendors'
-= stylesheet_pack_tag 'admin/agileConfigBuilder'
-
 div style="background-color: white; margin: 5px 10px" id='agile-config-builder'
 
 javascript:
   window.__PROPS__ = #{{ assessmentId: resource.id, config: resource.agile_config, translations: resource.agile_translations }.to_json.html_safe}
 
-= javascript_pack_tag 'admin/agileConfigBuilder'
-= javascript_pack_tag 'interactiveAssessments'
+= vite_javascript_tag 'entrypoints/admin/agile_config_builder.jsx'

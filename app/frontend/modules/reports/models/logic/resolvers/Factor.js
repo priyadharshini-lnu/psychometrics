@@ -1,4 +1,4 @@
-import ResultStore from 'modules/reports/store/ResultStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
 import ResultManager from './ResultManager'
 import BaseResolver from './BaseResolver'
 

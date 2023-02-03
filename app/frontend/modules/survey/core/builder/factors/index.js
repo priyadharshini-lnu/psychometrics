@@ -1,10 +1,10 @@
-import { createReducer } from 'utils/redux'
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
-import { setIn } from 'utils/immutable'
-import Scoring from 'models/Scoring'
-import QuestionSerializer from 'models/QuestionSerializer'
+import { createReducer } from '~/utils/redux'
+import { setIn } from '~/utils/immutable'
+import Scoring from '~/modules/survey/models/Scoring'
+import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import * as assessmentActions from '../assessment/actions'
 import { allQuestions } from '../assessment/selectors'
 import { selectedFactor } from './selectors'

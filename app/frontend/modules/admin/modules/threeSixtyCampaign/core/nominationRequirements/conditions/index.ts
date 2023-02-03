@@ -1,6 +1,6 @@
-import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 
 export const ADD = 'threeSixty/nominationRequirement/conditions/ADD'
 export const UPDATE = 'threeSixty/nominationRequirement/conditions/UPDATE'

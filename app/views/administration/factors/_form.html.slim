@@ -1,10 +1,8 @@
 = simple_form_for(@form, as: :resource, html: {multipart: true}, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
   .modal-body
-    #factor-form-app
+    #factor-form-app data-react-class="FactorFormApp" data-react-props="#{@intial_state.to_json}"
 
   .modal-footer
     .btn-group
       = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'
-
-= javascript_pack_tag 'admin/factorFormApp'

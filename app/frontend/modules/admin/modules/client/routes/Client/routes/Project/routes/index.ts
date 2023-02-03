@@ -1,4 +1,4 @@
-import { CampaignList } from 'modules/admin/modules/campaigns/routes/CampaignList'
+import { CampaignList } from '~/modules/admin/modules/campaigns/routes/CampaignList'
 import { Users } from './Users'
 import { Settings } from './Settings'
 import { Datasheet } from './Datasheet'

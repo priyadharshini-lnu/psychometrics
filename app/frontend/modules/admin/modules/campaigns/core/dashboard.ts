@@ -1,5 +1,5 @@
 import * as t from 'io-ts'
-import { createZutandStoreForJsonApi } from 'hooks/useResources/utils'
+import { createZutandStoreForJsonApi } from '~/hooks/useResources/utils'
 
 export const DashboardTR = t.type({
   id: t.string,

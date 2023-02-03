@@ -2,7 +2,7 @@ import {
   questionsToTreeDataStructure,
   treeValuesToQuestionChoices,
   questionChoicesToTreeValues,
-} from 'modules/reports/components/modules/Table/components/Types/Competencies/dataSources/QuestionList'
+} from '~/modules/reports/components/modules/Table/components/Types/Competencies/dataSources/QuestionList'
 
 const defaultQuestion = {
   update: jest.fn(),

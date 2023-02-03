@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { updateIn } from 'utils/immutable'
 import * as t from 'io-ts'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 
 const { I18n } = window
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getResults, update, removeEvaluation } from 'modules/admin/modules/threeSixtyCampaign/core/participants'
+import { getResults, update, removeEvaluation } from '~/modules/admin/modules/threeSixtyCampaign/core/participants'
 
 export default connect(
   state => ({

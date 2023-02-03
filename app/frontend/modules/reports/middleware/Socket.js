@@ -1,8 +1,8 @@
-import AppStore from 'modules/reports/store/AppStore'
 import { normalize } from 'normalizr'
+import AppStore from '~/modules/reports/store/AppStore'
 import {
   SOCKET_MESSAGE,
-} from 'modules/reports/core/temp/socket'
+} from '~/modules/reports/core/temp/socket'
 import schema from '../store/schema'
 import { INIT } from '../core/builder/actions'
 import NotificationDispatcher from '../dispatchers/NotificationDispatcher'

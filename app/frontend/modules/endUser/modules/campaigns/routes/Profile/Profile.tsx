@@ -6,19 +6,19 @@ import {
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
-import { RootState } from 'modules/endUser/core/rootReducers'
-import { PageHeader } from 'glint'
-import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
-import LangDropdown from 'components/LangDropdown'
-import Utils from 'modules/reports/utils/Utils'
 import _ from 'lodash'
-import array from 'utils/array'
-
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import Utils from '~/modules/reports/utils/Utils'
+import LangDropdown from '~/components/LangDropdown'
 import {
   sync,
   get as getUser,
   uploadPhoto,
-} from 'core/currentUser'
+} from '~/core/currentUser'
+import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
+import { PageHeader } from '~/glint'
+import array from '~/utils/array'
+
 import { CustomField } from './fields/CustomField'
 import { CropperModal } from './CropperModal'
 

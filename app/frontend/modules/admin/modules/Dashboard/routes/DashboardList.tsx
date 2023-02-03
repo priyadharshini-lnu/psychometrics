@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { useResources } from 'hooks/useResources'
 import {
   Card, Col, Row, Skeleton,
 } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 import { useHistory } from 'react-router-dom'
+import { useResources } from '~/hooks/useResources'
 import styles from './Dashboard.less'
 import { DashboardTR, Dashboard as DashboardType } from '../../campaigns/core/dashboard'
 import { settings } from '../settings'

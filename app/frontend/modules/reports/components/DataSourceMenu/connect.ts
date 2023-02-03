@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getSupportedDataConfiguration } from 'modules/reports/core/builder'
+import { getSupportedDataConfiguration } from '~/modules/reports/core/builder'
 
 const mapStateToProps = state => ({
   dataConfiguration: getSupportedDataConfiguration(state),

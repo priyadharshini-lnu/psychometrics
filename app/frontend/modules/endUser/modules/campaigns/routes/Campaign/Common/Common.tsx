@@ -8,21 +8,21 @@ import {
 import {
   PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined,
 } from '@ant-design/icons'
-import { STATUSES } from 'constants/campaign'
 import cs from 'classnames'
+import { STATUSES } from '~/constants/campaign'
 
-import { ProgressStatus, DirectionalArrowIcon } from 'glint'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   continueCampaign,
   beginCampaign,
   reset as resetCampaign,
-} from 'modules/endUser/modules/campaigns/core/campaign'
-import { loginHogan } from 'modules/endUser/modules/campaigns/core/campaigns'
-import { acceptPolicy } from 'modules/endUser/modules/campaigns/core/project'
+} from '~/modules/endUser/modules/campaigns/core/campaign'
+import { loginHogan } from '~/modules/endUser/modules/campaigns/core/campaigns'
+import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
-import { isInsideIframe } from 'utils/isInsideIframe'
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
+import { isInsideIframe } from '~/utils/isInsideIframe'
+import { ProgressStatus, DirectionalArrowIcon } from '~/glint'
 import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
 import { InstructionsPanel } from './InstructionsPanel'

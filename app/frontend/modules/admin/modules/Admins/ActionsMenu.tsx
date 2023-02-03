@@ -5,8 +5,8 @@ import { MoreOutlined } from '@ant-design/icons'
 
 import {
   Admin, AdminPermissions,
-} from 'modules/admin/modules/client/core/admin'
-import ConditionalDropdown from 'components/ConditionalDropdown'
+} from '~/modules/admin/modules/client/core/admin'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 

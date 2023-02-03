@@ -1,8 +1,10 @@
 import { connect } from 'react-redux'
-import { emptyTrash } from 'core/builder/assessment/actions'
-import { permanentRemoveBlock, restoreBlock, restoreQuestion } from 'core/builder/assessment/block/actions'
-import { permanentRemoveQuestion } from 'core/builder/assessment/question/actions'
-import { trashItems } from 'core/builder/assessment/selectors'
+import { emptyTrash } from '~/modules/survey/core/builder/assessment/actions'
+import {
+  permanentRemoveBlock, restoreBlock, restoreQuestion,
+} from '~/modules/survey/core/builder/assessment/block/actions'
+import { permanentRemoveQuestion } from '~/modules/survey/core/builder/assessment/question/actions'
+import { trashItems } from '~/modules/survey/core/builder/assessment/selectors'
 
 export default connect(
   state => ({

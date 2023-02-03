@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
   SettingOutlined,
@@ -10,11 +9,12 @@ import {
   SolutionOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import settings from 'modules/admin/modules/client/routes/Client/routes/Project/settings'
-import RouteList from 'components/RouteList'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
+import RouteList from '~/components/RouteList'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { routes } from './routes'
 
 const { I18n } = window

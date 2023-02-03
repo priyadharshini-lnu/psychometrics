@@ -1,4 +1,4 @@
-import Utils from 'modules/survey/utils/Utils'
+import Utils from '~/modules/survey/utils/Utils'
 
 interface QuestionInterface {
     name: string

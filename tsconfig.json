@@ -29,8 +29,9 @@
       "*": [
         "app/frontend/*",
         "app/frontend/modules/survey*",
-        "app/frontend/modules/survey/*"
-      ]
+        "app/frontend/modules/survey/*",
+      ],
+      "~/*": ["app/frontend/*"]
     },
     "typeRoots": [
       "app/frontend/typings",

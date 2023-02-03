@@ -1,5 +1,5 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { fetch, create, update } from 'core/resource'
+import { fetch, create, update } from '~/core/resource'
 import { OwnProps } from './ResourceForm'
 
 const connecter = connect(
