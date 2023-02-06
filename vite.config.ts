@@ -83,6 +83,7 @@ export default defineConfig({
     sourcemap: __DEV__,
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
+    cssCodeSplit: true,
     rollupOptions: {
       plugins: [gzipPlugin({
         customCompression: content => brotliPromise(Buffer.from(content)),
@@ -90,7 +91,12 @@ export default defineConfig({
       })],
       output: {
         sourcemap: false,
-        chunkFileNames: 'chunks/[name]-[hash].js',
+        chunkFileNames: (info) => {
+          if (info.name === 'vendors') {
+            return 'chunks/vendors-[hash].js'
+          }
+          return 'chunks/chunk-[hash].js'
+        },
         manualChunks(id) {
           if (id.includes('node_modules')) {
             for(let i=0;i<IGNORE_VENDORS.length;i++) {
@@ -98,16 +104,12 @@ export default defineConfig({
                 return
               }
             }
-
             return 'vendors'
           }
 
           if (id.includes('/glint/')) {
             return 'glint'
           }
-          // if (id.includes('modules/survey/')) {
-          //   return 'survey'
-          // }
 
           // if (id.includes('modules/reports/')) {
           //   return 'survey'

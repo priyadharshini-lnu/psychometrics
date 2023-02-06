@@ -5,7 +5,6 @@ import {
   HomeOutlined, LockOutlined, QuestionCircleOutlined, MessageOutlined,
 } from '@ant-design/icons'
 
-import '~/styles/ant.less'
 import {
   PageSider, PageLayout, PageFooter, GlintProvider,
 } from '~/glint'

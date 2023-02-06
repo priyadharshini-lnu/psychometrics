@@ -7,9 +7,9 @@ html.body-full-height
     title = @current_project&.name || t('devise.administrators.meta_title')
     = csrf_meta_tags
     = vite_client_tag
-
     = render 'layouts/pys_global_state'
     = javascript_include_tag 'threesixty'
+    = vite_stylesheet_tag 'ant.less'
     = render 'layouts/favicons'
   body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}"
     - if show_maintenance_alert?

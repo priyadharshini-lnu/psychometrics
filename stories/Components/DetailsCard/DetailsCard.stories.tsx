@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import '~/styles/ant.less'
 import { DetailsCard } from '~/glint'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

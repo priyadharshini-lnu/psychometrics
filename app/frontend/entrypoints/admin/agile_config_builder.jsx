@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import AgileConfigBuilder from '~/modules/admin/modules/AgileConfigBuilder/App'
-import '~/styles/ant.less'
 import '~/modules/admin/styles/common.less'
 import initSentry from '~/libs/initSentry'
 

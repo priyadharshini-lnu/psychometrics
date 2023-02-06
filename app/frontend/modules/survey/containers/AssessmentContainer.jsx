@@ -12,7 +12,6 @@ import { INIT } from '~/modules/survey/core/preview/FlowProcessor/consts'
 import ConnectionCheck from '~/components/ConnectionCheck'
 import { connected, disconnected } from '~/core/connection'
 import containerStyles from './AssessmentContainer.less'
-import '~/styles/ant.less'
 import '~/modules/survey/styles/globals.less'
 import '~/modules/survey/utils/i18n'
 

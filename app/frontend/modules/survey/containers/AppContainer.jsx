@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import '~/styles/ant.less'
 import '~/modules/survey/styles/globals.less'
 import { BrowserRouter as Router } from 'react-router-dom'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'

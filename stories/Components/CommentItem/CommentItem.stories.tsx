@@ -1,7 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import '~/styles/ant.less'
 import { CommentItem } from '~/glint'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
