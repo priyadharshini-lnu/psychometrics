@@ -21,7 +21,8 @@ html dir=dir
 
     = stylesheet_link_tag 'threesixty_dependencies', media: 'all'
     = render 'layouts/favicons'
-
+    = vite_client_tag
+    = vite_react_refresh_tag
 
   body.end-user class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
     - if show_maintenance_alert?
