@@ -25,6 +25,8 @@ module Questions
     end
 
     def call
+      return broadcast(:ok, nil) unless question.validation
+
       type = question.validation['type']
 
       return broadcast(:ok, nil) if type == 'None'
