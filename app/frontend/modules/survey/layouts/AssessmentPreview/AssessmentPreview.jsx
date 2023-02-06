@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import qs from 'query-string'
-import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import Page from '~/modules/survey/views/Preview/Page'
 import EndPage from '~/modules/survey/views/Preview/EndPage'
 import SubmitPage from '~/modules/survey/views/Preview/SubmitPage'
 import SinglePage from '~/modules/survey/views/Preview/SinglePage'
 import Instructions from '~/modules/survey/views/Preview/Instructions'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
+
+const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
 const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
@@ -39,8 +40,9 @@ const AssessmentPreview = ({
         locale: lang,
       },
     }
-
-    InteractiveAssessments.init(appOptions)
+    InteractiveAssessmentsModule().then(({ InteractiveAssessments }) => {
+      InteractiveAssessments.init(appOptions)
+    })
   }
 
   if (!initialized) { return null }

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import {
   Layout,
 } from 'antd'
-import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { withRouter, RouteComponentProps, useHistory } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'query-string'
@@ -13,8 +12,9 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { get as getCampaign } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
 import { fetchAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment'
-
 import styles from './styles.less'
+
+const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
 const connector = connect(
   (state: RootState) => ({
@@ -71,8 +71,9 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
         locale: lang?.toString(),
       },
     }
-
-    InteractiveAssessments.init(appOptions)
+    InteractiveAssessmentsModule().then(({ InteractiveAssessments }) => {
+      InteractiveAssessments.init(appOptions)
+    })
   }
 
   useEffect(() => {

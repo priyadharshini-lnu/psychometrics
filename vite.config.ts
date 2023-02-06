@@ -2,7 +2,6 @@ import { brotliCompress } from 'zlib'
 import { promisify } from 'util'
 import { defineConfig } from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
-import StimulusHMR from 'vite-plugin-stimulus-hmr'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
 
@@ -37,6 +36,7 @@ const IGNORE_VENDORS = [
   'powerbi-client',
   'react-pdf',
   'moment-timezone',
+  '@thetalententerprise/interactive-assessments'
 ]
 const server = SSL ? {
   https: {
@@ -52,7 +52,6 @@ export default defineConfig({
   clearScreen: false,
   plugins: [
     RubyPlugin(),
-    StimulusHMR(),
     // visualizer({open: true}),
     ...devPlugins,
     loadCssModulePlugin.default({
@@ -93,11 +92,6 @@ export default defineConfig({
         sourcemap: false,
         chunkFileNames: 'chunks/[name]-[hash].js',
         manualChunks(id) {
-
-          if (id.includes('@thetalententerprise/interactive-assessments')) {
-            return 'interactive_assessments'
-          }
-
           if (id.includes('node_modules')) {
             for(let i=0;i<IGNORE_VENDORS.length;i++) {
               if (id.includes(IGNORE_VENDORS[i])) {
@@ -108,6 +102,9 @@ export default defineConfig({
             return 'vendors'
           }
 
+          if (id.includes('/glint/')) {
+            return 'glint'
+          }
           // if (id.includes('modules/survey/')) {
           //   return 'survey'
           // }

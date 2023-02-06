@@ -166,7 +166,6 @@
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-load-css-module": "^0.1.4",
     "vite-plugin-ruby": "^3.1.2",
-    "vite-plugin-stimulus-hmr": "^3.0.0",
     "wavesurfer.js": "^3.3.3",
     "web-highlighter": "^0.5.0",
     "words-count": "^2.0.2",
