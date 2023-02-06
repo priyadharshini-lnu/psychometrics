@@ -1,7 +1,11 @@
+import { brotliCompress } from 'zlib'
+import { promisify } from 'util'
 import { defineConfig } from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
 import StimulusHMR from 'vite-plugin-stimulus-hmr'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
+import gzipPlugin from 'rollup-plugin-gzip'
+
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
 import { env } from 'process'
@@ -41,6 +45,8 @@ const server = SSL ? {
   }
 } : {}
 
+const brotliPromise = promisify(brotliCompress)
+
 export default defineConfig({
   server,
   clearScreen: false,
@@ -79,6 +85,10 @@ export default defineConfig({
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
     rollupOptions: {
+      plugins: [gzipPlugin({
+        customCompression: content => brotliPromise(Buffer.from(content)),
+        fileName: '.br'
+      })],
       output: {
         sourcemap: false,
         chunkFileNames: 'chunks/[name]-[hash].js',
