@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import AppStore from '~/modules/reports/store/AppStore'

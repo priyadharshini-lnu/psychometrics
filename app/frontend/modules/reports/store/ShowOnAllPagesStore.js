@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import ModulesStore from './ModulesStore'
 
 export default class ShowOnAllPagesStore extends ModulesStore {

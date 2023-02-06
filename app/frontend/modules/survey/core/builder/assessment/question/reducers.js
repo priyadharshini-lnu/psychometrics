@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { getIn, setIn } from '~/utils/immutable'
 import { createReducer } from '~/utils/redux'
 import Question from '~/modules/survey/models/Question'

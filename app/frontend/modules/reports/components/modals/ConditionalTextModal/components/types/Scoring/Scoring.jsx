@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import { DATA_SHEET } from '~/modules/reports/models/Module'
 import localStyles from './Scoring.less'
 import styles from '../../Condition.less'

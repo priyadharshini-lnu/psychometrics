@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'

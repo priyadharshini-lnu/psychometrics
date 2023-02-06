@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import Select from 'react-select'
 import { DATA_SHEET, REPORT_DATA, ASSESSMENT_DATA } from '~/modules/reports/models/Module'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'

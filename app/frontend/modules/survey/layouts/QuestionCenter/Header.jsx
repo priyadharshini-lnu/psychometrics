@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import _ from 'lodash'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'

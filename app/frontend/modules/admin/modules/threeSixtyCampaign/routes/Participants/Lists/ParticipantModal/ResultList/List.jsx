@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react'
 import { Table } from 'antd'
+import moment from 'moment'
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons'
 import userPresenter from '~/presenters/user'
 import { ASSIGN_TYPES } from '~/constants/relationship'

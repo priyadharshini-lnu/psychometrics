@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import cs from 'classnames'
 import Utils from '~/modules/reports/utils/Utils'
 import ScoreRange from './ScoreRange'

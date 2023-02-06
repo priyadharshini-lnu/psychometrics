@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import store from '~/modules/reports/store/PageList'
 import Page from '~/modules/reports/views/Page'
 import LabelEditor from '~/modules/reports/components/LabelEditor'

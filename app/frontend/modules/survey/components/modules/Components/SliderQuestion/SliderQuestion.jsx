@@ -4,6 +4,7 @@ import {
   Slider as AntSlider, InputNumber, Row, Col, Button,
 } from 'antd'
 import cs from 'classnames'
+import _ from 'lodash'
 
 import Utils from '~/modules/survey/utils'
 import LabelEditor from '~/modules/survey/components/LabelEditor'

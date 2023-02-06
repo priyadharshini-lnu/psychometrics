@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { Modal } from 'react-bootstrap'
 import { setIn } from '~/utils/immutable'
 import { DATA_SHEET_COLUMN_TYPES } from './constants'

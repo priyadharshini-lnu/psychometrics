@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Table, Dropdown, Menu, Tag, message,
 } from 'antd'
+import moment from 'moment'
 import { MoreOutlined } from '@ant-design/icons'
 import { STATUSES } from '~/modules/admin/constants/mailHistory'
 import styles from './styles.less'

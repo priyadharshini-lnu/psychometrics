@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { DropTarget } from 'react-dnd'
+import _ from 'lodash'
 import throttle from 'lodash/throttle'
 import { Divider } from 'antd'
 import PageModel from '~/modules/reports/models/Page'

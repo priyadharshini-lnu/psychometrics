@@ -156,11 +156,9 @@
     "__TEST__": true,
     "__DISABLE_LOGGER_": true,
     "__PROD__": true,
-    "_": true,
     "location": true,
     "I18n": true,
-    "Utils": true,
-    "moment": true
+    "Utils": true
   },
   "settings": {
     "import/resolver": {

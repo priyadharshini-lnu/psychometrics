@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import PageModel from '~/modules/reports/models/Page'
 import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
 import styles from './Page.less'

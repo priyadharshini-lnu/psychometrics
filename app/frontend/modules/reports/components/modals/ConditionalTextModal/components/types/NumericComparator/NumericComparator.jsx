@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import styles from '../../Condition.less'
 import comparatorStyles from './NumericComparator.less'
 

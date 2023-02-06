@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import { Alert } from 'antd'
 import { connect } from 'react-redux'
 import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'

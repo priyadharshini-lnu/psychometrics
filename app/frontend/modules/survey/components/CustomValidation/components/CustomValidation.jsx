@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { Modal } from 'react-bootstrap'
 import uuid from 'uuid/v4'
 import ConditionList from './ConditionList'

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import store from '~/modules/reports/store/PropertyPanelStore'
 import Formats from './formats'

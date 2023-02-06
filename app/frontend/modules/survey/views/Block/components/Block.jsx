@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionList from '~/modules/survey/views/QuestionList'
 import BlockModel from '~/modules/survey/models/Block'

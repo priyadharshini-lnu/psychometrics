@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import FlowElement from '~/modules/survey/models/FlowElement'
 import Flow from '~/modules/survey/models/Flow'
 

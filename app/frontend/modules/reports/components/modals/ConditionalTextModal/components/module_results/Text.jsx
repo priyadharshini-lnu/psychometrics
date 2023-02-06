@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import ColorPicker from '~/modules/reports/components/ColorPicker'
 import {
   FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE,

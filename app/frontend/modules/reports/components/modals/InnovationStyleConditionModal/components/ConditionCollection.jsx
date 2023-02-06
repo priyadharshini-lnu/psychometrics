@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import AppStore from '~/modules/reports/store/AppStore'
 import styles from './InnovationStyleConditionModal.less'
 import ConditionList from './ConditionList'

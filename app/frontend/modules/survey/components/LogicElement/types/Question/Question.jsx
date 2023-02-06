@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import QuestionCondition from '~/libs/conditions'
 import { setIn, getIn } from '~/utils/immutable'
 

@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import moment from 'moment'
 import cs from 'classnames'
 import { CONSOLIDATED_EMAIL_NAMES, DAILY_DIGEST_EMAILS } from '~/modules/admin/constants/emailTemplate'
 import EmailEditor from '~/components/EmailEditor'

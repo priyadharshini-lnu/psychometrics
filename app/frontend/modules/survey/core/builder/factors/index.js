@@ -1,6 +1,7 @@
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
+import _ from 'lodash'
 import { createReducer } from '~/utils/redux'
 import { setIn } from '~/utils/immutable'
 import Scoring from '~/modules/survey/models/Scoring'

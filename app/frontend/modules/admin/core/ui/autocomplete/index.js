@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const SEARCH = 'users/SEARCH'
 export const defaultState = {
 }
