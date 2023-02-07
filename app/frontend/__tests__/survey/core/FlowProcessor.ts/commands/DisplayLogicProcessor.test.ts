@@ -67,11 +67,29 @@ const displayLogicWithNotApplicable = {
 }
 
 
+const displayLogicWithHiddenQuestion = {
+  conditions: [
+    {
+      prefix: 'And',
+      conditions: [
+        {
+          conditionType: 'Question',
+          type: 'bool',
+          subject: 2,
+          prefix: 'And',
+          answer: '0',
+          predicate: 'Selected',
+        },
+      ],
+    },
+  ],
+}
+
+
 const results = {
   1: { answers: [{ index: 0, value: true }]},
   2: { answers: [{ index: 1, value: true }] },
 }
-
 
 const results2 = {
   1: { answers: [{ index: 0, value: true }] },
@@ -81,6 +99,11 @@ const results2 = {
 const results3 = {
   1: { answers: [{ index: 0, value: true }], not_applicable: true },
   2: { answers: [{ index: 1, value: true }] },
+}
+
+const results4 = {
+  1: { answers: [{ index: 0, value: true }] },
+  2: { answers: [{ index: 0, value: true }] },
 }
 
 test('display logic should return false for empty results', () => {
@@ -112,4 +135,15 @@ test('display logic should work with not applicable', () => {
 
   expect(DisplayLogicProcessor.run(displayLogicWithNotApplicable, {questions, results: results2})).toBe(true)
   expect(DisplayLogicProcessor.run(displayLogicWithNotApplicable, {questions, results: results3})).toBe(false)
+})
+
+
+test('display logic should work with hidden question', () => {
+  const questions = {
+    1: question(1, { ...multipleChoice }),
+    2: question(2, { ...multipleChoice, hidden: true }),
+    3: question(3, { ...multipleChoice }),
+  }
+
+  expect(DisplayLogicProcessor.run(displayLogicWithHiddenQuestion, {questions, results: results4})).toBe(false)
 })
