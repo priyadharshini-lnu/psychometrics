@@ -68,7 +68,7 @@
     "conditional-wrap": "^1.0.2",
     "connected-react-router": "^6.9.2",
     "crypto-js": "^4.1.1",
-    "d3": "4.4.0",
+    "d3": "^7.8.2",
     "dompurify": "^2.3.6",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -104,7 +104,7 @@
     "microphone-stream": "^6.0.1",
     "mime-types": "^2.1.35",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.37",
+    "moment-timezone": "^0.5.40",
     "normalize.css": "^4.1.1",
     "normalizr": "^3.6.2",
     "noty": "^2.3.8",
@@ -212,7 +212,10 @@
     "buffer": "^6.0.3",
     "buffer-from": "^1.1.2",
     "readable-stream": "^4.3.0",
-    "highcharts-custom-events/highcharts": "9.0.0"
+    "highcharts-custom-events/highcharts": "9.0.0",
+    "moment-timezone/moment": ">=2.29.4",
+    "eslint-plugin-import/tsconfig-paths/json5": ">=1.0.2",
+    "eslint-plugin-node/minimatch": ">=3.0.5"
   },
   "husky": {
     "hooks": {
