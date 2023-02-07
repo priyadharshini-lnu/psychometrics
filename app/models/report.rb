@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class Report < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include SoftDelete
   include OwnerValidations
+  include ActiveStorageAttachable
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   PROVIDERS = {
     internal: 0,
@@ -97,6 +102,12 @@ class Report < ApplicationRecord
 
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader
+
+  has_one_image_attached :as_icon, variants: [:icon]
+  has_one_image_attached :as_poster, variants: [:icon]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :icon, :poster
 
   def delete_assessments_reports
     assessments_reports.destroy_all
@@ -270,3 +281,4 @@ class Report < ApplicationRecord
     errors.add(:base, :assessments_not_saville) unless assessments.all?(&:saville?)
   end
 end
+# rubocop:enable all

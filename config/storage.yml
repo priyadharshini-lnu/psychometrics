@@ -1,11 +1,3 @@
-test:
-  service: Disk
-  root: <%= Rails.root.join("tmp/storage") %>
-
-local:
-  service: Disk
-  root: <%= Rails.root.join("storage") %>
-
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
@@ -32,3 +24,29 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+test:
+  service: Disk
+  root: <%= Rails.root.join('tmp/storage') %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join('storage') %>
+
+s3_public_bucket:
+  service: S3
+  access_key_id: <%= Rails.application.secrets.s3_compatible_storage[:access_key_id] %>
+  secret_access_key: <%= Rails.application.secrets.s3_compatible_storage[:secret_access_key] %>
+  region: <%= Rails.application.secrets.s3_compatible_storage[:region] %>
+  bucket: <%= Rails.application.secrets.s3_compatible_storage[:public_bucket] %>
+  upload:
+    cache_control: <%= "public, max-age=#{365.days.to_i}" %>
+
+s3_private_bucket:
+  service: S3
+  access_key_id: <%= Rails.application.secrets.s3_compatible_storage[:access_key_id] %>
+  secret_access_key: <%= Rails.application.secrets.s3_compatible_storage[:secret_access_key] %>
+  region: <%= Rails.application.secrets.s3_compatible_storage[:region] %>
+  bucket: <%= Rails.application.secrets.s3_compatible_storage[:private_bucket] %>
+  upload:
+    cache_control: <%= "public, max-age=#{365.days.to_i}" %>
