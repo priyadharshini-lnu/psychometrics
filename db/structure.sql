@@ -92,6 +92,19 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+--
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3645,20 +3658,6 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4844,15 +4843,10 @@ CREATE TABLE public.webhook_subscriptions (
     encrypted boolean DEFAULT false NOT NULL,
     secret text,
     project_id bigint,
+    auth_enabled boolean DEFAULT false,
     username character varying,
     encrypted_password character varying,
-    encrypted_password_iv character varying,
-    description text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    deleted_at timestamp without time zone,
-    deleted_by_id bigint,
-    auth_type integer DEFAULT 0
+    encrypted_password_iv character varying
 );
 
 
@@ -8703,13 +8697,6 @@ CREATE INDEX index_webhook_subscriptions_on_active ON public.webhook_subscriptio
 
 
 --
--- Name: index_webhook_subscriptions_on_deleted_by_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_webhook_subscriptions_on_deleted_by_id ON public.webhook_subscriptions USING btree (deleted_by_id);
-
-
---
 -- Name: index_webhook_subscriptions_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9362,14 +9349,6 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.saville_assessment_settings
     ADD CONSTRAINT fk_rails_6847f23cff FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
--- Name: webhook_subscriptions fk_rails_68548bd5a8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.webhook_subscriptions
-    ADD CONSTRAINT fk_rails_68548bd5a8 FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
 
 
 --
@@ -10818,22 +10797,17 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221102141534'),
 ('20221102142001'),
 ('20221108082420'),
-('20221122132226'),
 ('20221122133505'),
 ('20221122172755'),
 ('20221122172756'),
 ('20221128115835'),
 ('20221205213642'),
-('20221207114653'),
 ('20221207122631'),
-('20221208114251'),
 ('20221213173037'),
 ('20221214083458'),
 ('20221227102943'),
 ('20230110201437'),
 ('20230112110725'),
-('20230112121853'),
-('20230113060633'),
 ('20230116123826'),
 ('20230117130759');
 
