@@ -33,7 +33,7 @@ class ReportContainer extends Component {
     rstore.dispatch(init(normalizedData, userReport))
     this.setState({ selectedLocale })
     const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
-    setPages(visiblePages)
+    setPages && setPages(visiblePages)
   }
 
   componentDidUpdate (prevProps) {

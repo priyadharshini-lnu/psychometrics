@@ -418,6 +418,7 @@ en:
       search_campaign: Search by Campaign
       search_client: Search by Client
       search_project: Search by Proejct
+      search_record: Search by Record ID
       search_user: Search by User
       title: Audit Log Info
       type: Record Type

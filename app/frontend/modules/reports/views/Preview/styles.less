@@ -12,13 +12,8 @@
   z-index: 7000;
   cursor: pointer;
 
-  &:hover {
-    .buttons {
-      opacity: 1;
-    }
-  }
-
   &.selected {
+    z-index: 99999;
     box-shadow: 0 0 10px 0px @primary-color;
     .buttons {
       opacity: 1;

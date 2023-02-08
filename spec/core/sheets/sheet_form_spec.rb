@@ -9,12 +9,18 @@ describe ::Sheets::SheetForm do
     let(:form) { described_class.new(file: file, parsed_file: parsed_file).with_context(sheet_type: 'Datasheet') }
     subject { form }
 
+    before do
+      allow(form).to receive(:roo_excel).and_return(double(first: []))
+    end
+
     context 'sheet is Accesssheet' do
       it 'allows duplicate email id' do
         parsed_file = [
           { 'Email' => nil }, { 'Email' => 'String' }, { 'Email' => 'test@email.com' }, { 'Email' => 'test@email.com' }
         ]
         form = described_class.new(file: file, parsed_file: parsed_file).with_context(sheet_type: 'Accesssheet')
+        allow(form).to receive(:roo_excel).and_return(double(first: []))
+
         allow(form).to receive(:parsed_file).and_return(parsed_file)
         expect(form.valid?).to eq(true)
       end
@@ -116,6 +122,14 @@ describe ::Sheets::SheetForm do
 
       is_expected.to be_invalid
       expect(form.errors.details[:file]).to include(error: :email_blank, row_number: 3)
+    end
+
+    it 'validates Email format' do
+      parsed_file = [{ 'Email' => nil }, { 'Email' => 'String' }, { 'Email' => 'invalid_email' }]
+      allow(form).to receive(:parsed_file).and_return(parsed_file)
+
+      is_expected.to be_invalid
+      expect(form.errors.details[:file]).to include(error: :email_invalid, row_number: 3)
     end
 
     it 'successfully flow' do
