@@ -29,9 +29,7 @@ namespace :carrierwave do
         WHERE model_name = '#{model.name}'
       SQL
 
-      start_with =
-        ActiveRecord::Base.connection.execute(last_processed_id)&.first&.dig('last_processed_id') ||
-        ENV.fetch('PK_ID_START').to_i
+      start_with = ActiveRecord::Base.connection.execute(last_processed_id)&.first&.dig('last_processed_id') || 0
 
       puts "Start migrating #{table} with id##{start_with}."
 
