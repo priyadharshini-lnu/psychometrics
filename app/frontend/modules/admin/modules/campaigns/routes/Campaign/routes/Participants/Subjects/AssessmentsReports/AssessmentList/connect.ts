@@ -1,9 +1,9 @@
 import { connect, ConnectedProps } from 'react-redux'
 import {
   get as getAssessments, rescoreResponse, reset, remove, resetProgress,
-} from 'modules/admin/modules/campaigns/core/userAssessments'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/campaigns/core/userAssessments'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const connecter = connect(
   (state: RootState) => ({

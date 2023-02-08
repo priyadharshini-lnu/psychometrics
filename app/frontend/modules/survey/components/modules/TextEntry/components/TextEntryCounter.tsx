@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty'
 import wordsCount from 'words-count'
 import { InfoCircleOutlined } from '@ant-design/icons'
 
-import { I18n } from 'modules/survey/store/StoreWatchman'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

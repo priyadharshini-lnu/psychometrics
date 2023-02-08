@@ -3,12 +3,12 @@ import { Layout, Col } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 
-import { fetchCampaign, reset as resetCampaign } from 'modules/endUser/modules/campaigns/core/campaign'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import { fetchCampaign, reset as resetCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 
-import { PageHeader } from 'glint'
-import LangDropdown from 'components/LangDropdown'
-import { PageContentSkeleton } from 'modules/endUser/modules/campaigns/components/PageContentSkeleton'
+import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
+import LangDropdown from '~/components/LangDropdown'
+import { PageHeader } from '~/glint'
 import { Common } from './Common'
 import { Threesixty } from './Threesixty'
 

@@ -1,8 +1,8 @@
 import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { createReducer } from 'utils/redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 
 export const get = (state: RootState) => _.get(state, ['project', 'smtpSetting'])
 

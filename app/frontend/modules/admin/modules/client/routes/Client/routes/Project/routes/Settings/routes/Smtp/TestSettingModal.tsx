@@ -4,14 +4,14 @@ import {
 } from 'antd'
 import { LoadingOutlined, CheckOutlined, MailOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import isEmpty from 'lodash/isEmpty'
 import {
   TEST_SETTINGS,
   sendTestEmail,
   State as SmtpSetting,
-} from 'modules/admin/modules/client/core/smtpSetting'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
-import isEmpty from 'lodash/isEmpty'
+} from '~/modules/admin/modules/client/core/smtpSetting'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { isRequestInProgress } from '~/core/request'
 
 
 const connecter = connect(

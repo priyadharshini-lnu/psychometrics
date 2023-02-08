@@ -2,10 +2,10 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable default-case */
 import _ from 'lodash'
-import DefaultProps from 'constants/DefaultProps'
-import ModuleConfigs from 'constants/ModuleConfigs'
 import seedrandom from 'seedrandom'
-import { shuffle } from 'utils/array'
+import DefaultProps from '~/modules/survey/constants/DefaultProps'
+import ModuleConfigs from '~/modules/survey/constants/ModuleConfigs'
+import { shuffle } from '~/utils/array'
 import Condition from './QuestionCondition'
 import Result from './Preview/Result'
 import LogicElement from './logic/LogicElement'

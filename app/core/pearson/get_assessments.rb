@@ -3,12 +3,9 @@
 module Pearson
   class GetAssessments < Base
     def call
-      data = Rails.cache.fetch('pearson/v1/products', expires_in: 1.day) do
-        response = client.get('v1/products')
-        ::JSON.parse(response.body)['data']
-      end
+      response = client.get('v1/products')
 
-      broadcast :ok, data
+      broadcast :ok, ::JSON.parse(response.body)['data']
     end
   end
 end

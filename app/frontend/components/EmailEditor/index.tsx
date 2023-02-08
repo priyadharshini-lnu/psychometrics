@@ -5,7 +5,7 @@ import 'codemirror/mode/xml/xml'
 import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 import FroalaEditor from 'react-froala-wysiwyg'
-import 'libs/Editor/commands/rtlLtr'
+import '~/libs/Editor/commands/rtlLtr'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import routeUtils from 'utils/route'
 import { Pagination as AntPagination } from 'antd'
+import routeUtils from '~/utils/route'
 import styles from './styles.less'
 import settings from '../../settings'
 

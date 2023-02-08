@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import { getUserId } from 'modules/admin/core/ui/modals'
-import { setIn } from 'utils/immutable'
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { getUserId } from '~/modules/admin/core/ui/modals'
+import { setIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 
 export const FETCH_ALL_BY_USER_ID = 'threeSixty/participants/FETCH_ALL_BY_USER_ID'
 export const UPDATE = 'threeSixty/participants/UPDATE'

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/ui/modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   createBlock, removeBlock, addQuestion, cloneBlock, renameBlock,
   saveAsTemplate, unlinkTemplate, updateBlockProps,
-} from 'modules/survey/core/builder/assessment/block/actions'
-import { unselectQuestion, moveBlockDown, moveBlockUp } from 'modules/survey/core/builder/assessment/actions'
+} from '~/modules/survey/core/builder/assessment/block/actions'
+import { unselectQuestion, moveBlockDown, moveBlockUp } from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
   () => ({}),

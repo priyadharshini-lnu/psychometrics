@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LibrarySerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
+
   attributes :id, :name, :description, :thumb, :file, :icon, :type, :parent_id, :created_at
 
   def thumb
@@ -8,7 +10,7 @@ class LibrarySerializer < ActiveModel::Serializer
   end
 
   def file
-    object.file.url
+    rails_blob_url(object.as_file, host: Settings.domain, port: Settings.port) || object.file.url
   end
 
   def icon

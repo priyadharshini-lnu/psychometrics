@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 
 export const get = (state: RootState) => _.get(state, ['config'])
 export const getMaintenanceDate = (state: RootState) => _.get(state, ['config', 'maintenance', 'startDate'])

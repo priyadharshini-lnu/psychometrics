@@ -4,11 +4,11 @@ import { render } from '@testing-library/react'
 import {
   getSupportedBrowsersForCurrentOS,
   UnsupportedBrowser,
-} from 'modules/survey/components/modules/VideoResponse/UnsupportedBrowser'
+} from '~/modules/survey/components/modules/VideoResponse/UnsupportedBrowser'
 import {
   NAMES_FROM_UA_BROWSERS,
   UA_OPERATING_SYSTEMS,
-} from 'modules/survey/constants/browser'
+} from '~/modules/survey/constants/browser'
 
 const BrowserSupportForMediaRecorder = {
   and_chr: 90,

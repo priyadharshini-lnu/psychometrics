@@ -6,21 +6,21 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   DrawerModes,
   ToggleDrawer,
   ParentResourceType,
   DrawerDataRecord,
-} from 'modules/admin/modules/SheetManagement/interfaces'
+} from '~/modules/admin/modules/SheetManagement/interfaces'
 
 import {
   getCurrent,
   fetchSingle,
   FETCH_SINGLE,
   SheetDetail,
-} from 'modules/admin/modules/SheetManagement/core/current'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/SheetManagement/core/current'
+import { isRequestInProgress } from '~/core/request'
 
 import { DetailsSection, HeaderSection } from './Sections'
 import { SheetType } from '../../core/list'

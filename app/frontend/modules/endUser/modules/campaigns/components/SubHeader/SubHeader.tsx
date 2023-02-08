@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 import { PageHeader } from 'antd'
 
-import { DirectionalNavigateBackIcon } from 'glint'
+import { DirectionalNavigateBackIcon } from '~/glint'
 import styles from './SubHeader.less'
 
 type Props = {

@@ -3,14 +3,14 @@ import {
   Layout, Button, Row, Col, PageHeader, Spin, Space,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { PDFViewer } from 'components/PDFViewer'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { PDFViewer } from '~/components/PDFViewer'
 import {
   fetchExternalReportDetails, getExternalReport,
-} from 'modules/admin/modules/AssessorApp/core/userReports'
+} from '~/modules/admin/modules/AssessorApp/core/userReports'
 
 const connecter = connect((state: RootState) => ({
   userReport: getExternalReport(state),

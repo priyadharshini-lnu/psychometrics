@@ -1,4 +1,4 @@
-import I18nStore from 'modules/reports/store/I18nStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
 
 const LookupSourceName = {
   call (sources, sourceKey, sourceType) {

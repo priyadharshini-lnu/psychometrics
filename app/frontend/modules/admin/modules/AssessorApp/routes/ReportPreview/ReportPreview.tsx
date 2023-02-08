@@ -5,13 +5,13 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
-import Report from 'modules/reports/report'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { useParams, useLocation, useHistory } from 'react-router-dom'
+import Report from '~/modules/reports/report'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import {
   fetchSingle as fetchReport, getCurrent,
-} from 'modules/admin/modules/AssessorApp/core/userReports'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/AssessorApp/core/userReports'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import styles from './styles.less'
 
 const { Content } = Layout

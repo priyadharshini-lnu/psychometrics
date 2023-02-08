@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-continue */
 import _ from 'lodash'
-import { setIn, merge } from 'utils/immutable'
+import { setIn, merge } from '~/utils/immutable'
 import { getNextElementId, getElement } from '../selectors'
 import BranchProcessor from './BranchProcessor'
 import { ElementInterface, EndOfAssessmentElementProps } from '../interfaces'

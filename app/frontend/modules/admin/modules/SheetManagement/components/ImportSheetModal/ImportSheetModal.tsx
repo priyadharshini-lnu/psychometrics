@@ -9,10 +9,10 @@ import Event from 'interfaces/Event'
 import each from 'lodash/each'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import { importSheet, IMPORT, SheetType } from 'modules/admin/modules/SheetManagement/core/list'
-import { isRequestInProgress } from 'core/request'
+import { importSheet, IMPORT, SheetType } from '~/modules/admin/modules/SheetManagement/core/list'
+import { isRequestInProgress } from '~/core/request'
 import { ParentResourceType } from '../../interfaces'
 import styles from './styles.less'
 

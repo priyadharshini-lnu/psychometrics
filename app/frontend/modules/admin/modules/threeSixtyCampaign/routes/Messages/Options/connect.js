@@ -3,7 +3,7 @@ import {
   fetch,
   update,
   getMessageOption,
-} from 'modules/admin/modules/threeSixtyCampaign/core/messageOptions'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/messageOptions'
 
 export default connect(
   state => ({ options: getMessageOption(state) }),

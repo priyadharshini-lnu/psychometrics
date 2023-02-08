@@ -1,5 +1,6 @@
 import moment from 'moment'
-import QuestionPresenter from 'modules/survey/presenters/question'
+import _ from 'lodash'
+import QuestionPresenter from '~/modules/survey/presenters/question'
 
 const DATE_FORMATS = [
   {

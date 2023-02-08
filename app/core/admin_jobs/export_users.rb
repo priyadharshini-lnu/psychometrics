@@ -15,10 +15,13 @@ module AdminJobs
     end
 
     def locals
+      profile_fields = campaign.project.profile_setting.profile_fields.includes(:question)
+
       {
         users: users,
         campaign: campaign,
-        headers: UserDecorator.export_headers
+        headers: UserDecorator.export_headers,
+        profile_fields: profile_fields
       }
     end
 

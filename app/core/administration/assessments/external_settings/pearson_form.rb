@@ -15,8 +15,8 @@ module Administration
         def assessment_language
           return unless assessment || norm_id
 
-          pearson_settings = Pearson::GetAssessments.call!.find { |a| a['productId'] == assessment_id }
-          pearson_settings.dig('norms', 'items').find { |n| n['normId'] == norm_id }&.dig('supportedLanguage')
+          pearson_settings = PearsonAssessment.find_by(product_id: assessment_id)
+          pearson_settings.norms['items'].find { |n| n['normId'] == norm_id }&.dig('supportedLanguage')
         end
       end
     end

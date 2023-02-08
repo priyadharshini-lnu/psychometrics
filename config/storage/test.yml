@@ -1,0 +1,11 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join('tmp/storage') %>
+
+s3_public_bucket:
+  service: Disk
+  root: <%= Rails.root.join('tmp/storage') %>
+
+s3_private_bucket:
+  service: Disk
+  root: <%= Rails.root.join('tmp/storage') %>

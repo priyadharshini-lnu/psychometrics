@@ -3,9 +3,9 @@ import { useMemo } from 'react'
 import { feature, features, StatsByAgentID } from 'caniuse-lite'
 import browserslist from 'browserslist'
 
-import { BROWSER_NAME, BROWSER_VERSION, IS_MOBILE } from 'utils/uaParser'
-import { BROWSER_FEATURES, UA_BROWSERS } from 'modules/survey/constants/browser'
-import { convertToUserAgentBrowserName } from 'modules/survey/utils/browser'
+import { BROWSER_NAME, BROWSER_VERSION, IS_MOBILE } from '~/utils/uaParser'
+import { BROWSER_FEATURES, UA_BROWSERS } from '~/modules/survey/constants/browser'
+import { convertToUserAgentBrowserName } from '~/modules/survey/utils/browser'
 
 /**
  * Currently unused in the project, will be considered for future use by adding caniuse-lite to package.json

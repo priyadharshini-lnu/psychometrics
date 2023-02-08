@@ -2,10 +2,10 @@ import React, { FC } from 'react'
 import { DatePicker } from 'antd'
 import moment, { Moment } from 'moment'
 
-import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
-import { getIn } from 'utils/immutable'
-import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { getIn } from '~/utils/immutable'
+import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 
 interface Props {
   model: PreviewModel

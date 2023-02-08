@@ -80,8 +80,9 @@ module UserScopes
         Membership.roles[role]
       end
 
-      joins(:memberships).where(users: { role: user_roles }).
-        or(User.joins(:memberships).where(memberships: { role: membership_roles_indexes }))
+      left_joins(:memberships).where(
+        'memberships.role IN (?) OR users.role IN (?)', membership_roles_indexes, user_roles
+      ).distinct
     }
 
     scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }

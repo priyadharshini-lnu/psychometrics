@@ -7,7 +7,8 @@ module Campaigns
 
       HEADER_IMPORT_KEYS = %i[active first_name last_name email locale password created_at].freeze
 
-      def initialize(import_data)
+      def initialize(import_data, campaign)
+        @campaign = campaign
         @records =
           if import_data.is_a?(ActionDispatch::Http::UploadedFile) || import_data.is_a?(Rack::Test::UploadedFile)
             Roo::CSV.new(import_data.path).to_a
@@ -20,11 +21,23 @@ module Campaigns
         header = records.shift
         rows = records.map do |record|
           record.each_with_object({}).with_index do |(value, attrs), index|
-            key = HEADER_IMPORT_KEYS[index]
+            key = keys[index]
+            next if keys.exclude?(key)
+
             attrs[key] = key == :active ? value.presence && value == 'Yes' : value
           end
         end
         broadcast :ok, [header] + rows
+      end
+
+      private
+
+      def keys
+        @keys ||= HEADER_IMPORT_KEYS + profile_fields.map { |pf| pf.question.name.to_sym }
+      end
+
+      def profile_fields
+        @profile_fields ||= @campaign.project.profile_setting.profile_fields.includes(:question)
       end
     end
   end

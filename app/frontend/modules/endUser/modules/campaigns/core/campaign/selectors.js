@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
-import { get as getCurrentUser } from 'core/currentUser'
+import { get as getCurrentUser } from '~/core/currentUser'
 
 export const get = state => _.get(state, ['campaigns', 'campaign'])
 

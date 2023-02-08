@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
 
-import { importSmsInvites, IMPORT } from 'modules/admin/modules/campaigns/core/smsInvites'
-import { isRequestInProgress } from 'core/request'
 import { LoadingOutlined, CheckOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Input,
 } from 'antd'
 import Event from 'interfaces/Event'
+import { importSmsInvites, IMPORT } from '~/modules/admin/modules/campaigns/core/smsInvites'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { isRequestInProgress } from '~/core/request'
 
 const connecter = connect(
   (state: RootState) => ({

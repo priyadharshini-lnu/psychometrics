@@ -1,4 +1,4 @@
-import { ProjectList } from 'modules/admin/modules/client/routes/Client/routes/ProjectList/ProjectList'
+import { ProjectList } from '~/modules/admin/modules/client/routes/Client/routes/ProjectList/ProjectList'
 
 export const routes = [
   {

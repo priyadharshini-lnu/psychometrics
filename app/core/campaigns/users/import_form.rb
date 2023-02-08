@@ -17,7 +17,7 @@ module Campaigns
       private
 
       def validate_header
-        errors.add(:import_data, :invalid_header) if import_data.first != UserDecorator.export_headers
+        errors.add(:import_data, :invalid_header) if (UserDecorator.export_headers - import_data.first).any?
       end
 
       def validate_body

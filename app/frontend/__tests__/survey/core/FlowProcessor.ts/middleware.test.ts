@@ -1,12 +1,12 @@
 import _ from 'lodash'
-import middleware from 'modules/survey/core/preview/FlowProcessor/middleware'
+import middleware from '~/modules/survey/core/preview/FlowProcessor/middleware'
 import { createStore } from 'redux'
-import reducers from 'modules/survey/core/rootReducers'
+import reducers from '~/modules/survey/core/rootReducers'
 import {
   INIT, NEXT_PAGE, ANSWER,
-} from 'modules/survey/core/preview/FlowProcessor/consts'
+} from '~/modules/survey/core/preview/FlowProcessor/consts'
 
-import { pageQuestions, pageQuestionsWithoutHidden } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import { pageQuestions, pageQuestionsWithoutHidden } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import assessment from './seeds/assessment'
 import assessmentWithDisplayLogic from './seeds/assessmentWithDisplayLogic'
 import assessmentWithSkipLogic from './seeds/assessmentWithSkipLogic'

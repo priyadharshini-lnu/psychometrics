@@ -1,34 +1,34 @@
 import React, { FC, lazy, Suspense } from 'react'
 import { Spin } from 'antd'
 
-import TextEditor from 'components/TextEditor'
-import useForceUpdate from 'hooks/useUpdate'
+import useForceUpdate from '~/hooks/useUpdate'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
+import TextEditor from '~/modules/survey/components/TextEditor'
 
 const SingleLineBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/SingleLine'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/SingleLine'),
 )
 const MultiLineBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/MultiLine'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/MultiLine'),
 )
 const FormBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/Form/Builder'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/Form/Builder'),
 )
 const DateEntryBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/DateEntry'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/DateEntry'),
 )
 const DateTimeEntryBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/DateTimeEntry'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/DateTimeEntry'),
 )
 const TimeEntryBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/TimeEntry'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/TimeEntry'),
 )
 const ChatBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/Chat/Builder'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/Chat/Builder'),
 )
 const EmailBuilder = lazy(
-  () => import('modules/survey/components/modules/TextEntry/components/types/Email/Builder'),
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/Email/Builder'),
 )
 
 interface Props {

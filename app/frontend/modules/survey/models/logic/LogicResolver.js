@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Validations from 'models/Validations'
+import Validations from '../Validations'
 import Resolvers from './resolvers'
 
 export default class LogicResolver {

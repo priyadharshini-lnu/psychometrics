@@ -4,16 +4,16 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
-import { ColorPicker } from 'components/ColorPicker'
-import { useResources } from 'hooks/useResources/useResources'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import { UploadFile } from 'antd/lib/upload/interface'
+import type { Theme } from 'antd/lib/config-provider/context'
 import {
   Files, DesignSettings as DesignSettingsType,
   uploadFiles,
-} from 'modules/admin/modules/client/core/designSettings'
-import { UploadFile } from 'antd/lib/upload/interface'
-import type { Theme } from 'antd/lib/config-provider/context'
+} from '~/modules/admin/modules/client/core/designSettings'
+import { useResources } from '~/hooks/useResources/useResources'
+import { ColorPicker } from '~/components/ColorPicker'
 import { DesignPreview } from './DesignPreview'
 import styles from './styles.less'
 
@@ -123,7 +123,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               listType="picture"
               maxCount={1}
               onRemove={removeFile}
-              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
               fileList={logo && typeof logo === 'string' ? [{
                 uid: '1', name: 'logo', status: 'done', url: logo,
               }] : undefined}

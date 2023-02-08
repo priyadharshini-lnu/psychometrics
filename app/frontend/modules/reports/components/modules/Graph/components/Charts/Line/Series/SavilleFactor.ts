@@ -1,8 +1,8 @@
-import AppStore from 'modules/reports/store/AppStore'
-import LookupSourceName from 'modules/reports/commands/LookupSourceName'
-import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
-import { SavilleScore } from 'modules/reports/models/Result'
-import Module from 'modules/reports/core/interfaces/Module'
+import AppStore from '~/modules/reports/store/AppStore'
+import LookupSourceName from '~/modules/reports/commands/LookupSourceName'
+import { getSavilleFactorsScore } from '~/modules/reports/commands/getSavilleFactorsScore'
+import { SavilleScore } from '~/modules/reports/models/Result'
+import Module from '~/modules/reports/core/interfaces/Module'
 import { Functions } from '../../Base/Series/Factor'
 
 type SavilleResults = {

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Command from 'modules/reports/utils/Command'
+import Command from '~/modules/reports/utils/Command'
 import Resolvers from './resolvers'
 
 export default class LogicResolver extends Command {

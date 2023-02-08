@@ -3,14 +3,14 @@ import {
   Row, Col, Form, Button, Select, message,
 } from 'antd'
 import humps from 'humps'
-import { useResources } from 'hooks/useResources/useResources'
-import { BaseMeta } from 'hooks/useResources/interfaces'
 import { useParams } from 'react-router-dom'
+import { useResources } from '~/hooks/useResources/useResources'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
 import {
   ProfileField,
   ProfileSettings as ProfileSettingsType,
   QuestionField as QuestionFieldType,
-} from 'modules/admin/modules/client/core/profileSettings'
+} from '~/modules/admin/modules/client/core/profileSettings'
 import { DefaultFields } from './DefaultFields'
 import { Fields } from './Fields'
 import styles from './Profile.less'

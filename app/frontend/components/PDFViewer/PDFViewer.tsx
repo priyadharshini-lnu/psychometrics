@@ -1,6 +1,6 @@
 import { Button, InputNumber } from 'antd'
 import React, { useState, FC } from 'react'
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
+import { Document, Page } from 'react-pdf/dist/esm/entry'
 import styles from './styles.less'
 
 interface Props {

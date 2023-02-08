@@ -14,6 +14,7 @@ export default interface User {
     manageOptions: boolean
     manageProjectAdmins: boolean
     manageProjectSmtpSettings: boolean
+    manageProjectGeneralSettings: boolean
     manageCampaignAdmins: boolean
     manageCampaigns: boolean
     viewRegistrationCodes: boolean

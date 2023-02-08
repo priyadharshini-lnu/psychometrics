@@ -1,9 +1,9 @@
 import React, { FC, lazy, Suspense } from 'react'
 import { Empty, Spin } from 'antd'
 
-import { PropertiesModel, GapType } from 'modules/reports/interfaces/tables/Gap'
+import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'
 
-import AppStore from 'modules/reports/store/AppStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 const FactorType = lazy(() => import('./types/Factor'))
 const QuestionType = lazy(() => import('./types/Question'))

@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 import { Row, Col } from 'antd'
 
-import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
-import useForceUpdate from 'hooks/useUpdate'
-import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/components/TextEntryCounter'
-import { SpeechToTextInput } from 'modules/survey/components/modules/TextEntry/components/SpeechToTextInput'
+import useForceUpdate from '~/hooks/useUpdate'
+import { TextEntryCounter } from '~/modules/survey/components/modules/TextEntry/components/TextEntryCounter'
+import { SpeechToTextInput } from '~/modules/survey/components/modules/TextEntry/components/SpeechToTextInput'
 
 interface Props {
   model: PreviewModel

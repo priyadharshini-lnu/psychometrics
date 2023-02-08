@@ -7,9 +7,9 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   updateAvailableLocales,
   UPDATE_AVAILABLE_LOCALES,
-} from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/campaigns/core/assessments/actions'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { isRequestInProgress } from '~/core/request'
 
 const connecter = connect(
   (state: RootState) => ({

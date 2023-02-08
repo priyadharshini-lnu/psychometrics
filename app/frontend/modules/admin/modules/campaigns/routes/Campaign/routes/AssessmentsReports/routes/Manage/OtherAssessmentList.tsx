@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchOtherAssessments, getOther } from 'modules/admin/modules/campaigns/core/assessments'
-import {
-  activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
-  exportNormedResults, exportRawFactorScores, exportExternalResults,
-} from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { RootState } from 'modules/admin/core/rootReducers'
 import {
   Table, Row, Col, Pagination,
 } from 'antd'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { MoreOutlined } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import _ from 'lodash'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
+import {
+  activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
+  exportNormedResults, exportRawFactorScores, exportExternalResults,
+} from '~/modules/admin/modules/campaigns/core/assessments/actions'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { ActionsMenu } from './AssessmentList/ActionsMenu'
 
 const { Column } = Table

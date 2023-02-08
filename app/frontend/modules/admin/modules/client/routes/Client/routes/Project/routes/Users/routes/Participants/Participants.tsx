@@ -5,8 +5,8 @@ import {
   Col, Input, Row, Space, Table, Modal, message, Pagination,
 } from 'antd'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import {
   Participant,
   FETCH,
@@ -16,15 +16,15 @@ import {
   getTotal as getTotalProjectParticipants,
   remove as removeParticipant,
   resetPassword as resetParticipantPassword,
-} from 'modules/admin/modules/client/core/participants'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/client/core/participants'
+import { isRequestInProgress } from '~/core/request'
 
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import settings from 'modules/admin/settings'
-import { useDocumentTitle } from 'hooks/useDocumentTitle'
-import { getProject as getCurrentProject } from 'modules/admin/core/ui/breadcrumbs'
-import { CountDisplay } from 'components/CountDisplay'
-import { TagListDisplay } from 'components/TagListDisplay'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import settings from '~/modules/admin/settings'
+import { useDocumentTitle } from '~/hooks/useDocumentTitle'
+import { getProject as getCurrentProject } from '~/modules/admin/core/ui/breadcrumbs'
+import { CountDisplay } from '~/components/CountDisplay'
+import { TagListDisplay } from '~/components/TagListDisplay'
 import { ActionsMenu } from './ActionMenu'
 import { EditDrawer } from './EditDrawer'
 import {

@@ -1,4 +1,5 @@
-import ResultStore from 'modules/reports/store/ResultStore'
+import _ from 'lodash'
+import ResultStore from '~/modules/reports/store/ResultStore'
 import ResultManager from './ResultManager'
 import BaseResolver from './BaseResolver'
 

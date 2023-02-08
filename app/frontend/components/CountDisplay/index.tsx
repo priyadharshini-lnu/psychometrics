@@ -6,7 +6,7 @@ const { I18n } = window
 
 interface Props {
   selectedCount?: number
-  totalCount: number
+  totalCount: number | undefined
   isLoading?: boolean
 }
 

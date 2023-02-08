@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 import * as t from 'io-ts'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 
 export interface Request<T> {
   method?: string

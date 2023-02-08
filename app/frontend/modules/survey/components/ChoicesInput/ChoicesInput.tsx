@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
 
-import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
+import { BasePropertiesModel } from '~/modules/survey/interfaces/questions/Base'
 
 const MIN_VALUE = 0
 const MAX_VALUE = 500

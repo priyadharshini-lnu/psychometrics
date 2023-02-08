@@ -5,17 +5,17 @@ import {
 import { MoreOutlined } from '@ant-design/icons'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { useParams } from 'react-router-dom'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import { connect, ConnectedProps } from 'react-redux'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import {
   rescoreResponses, exportRawResults, exportScoringResults, exportNormedResults,
   exportRawFactorScores, exportExternalResults,
-} from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { get as getAssessorAssessment } from 'modules/admin/modules/campaigns/core/campaignAssessorAssessments'
-import { openModal } from 'modules/admin/core/ui/modals'
+} from '~/modules/admin/modules/campaigns/core/assessments/actions'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getAssessorAssessment } from '~/modules/admin/modules/campaigns/core/campaignAssessorAssessments'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 const connecter = connect(
   (state: RootState) => ({

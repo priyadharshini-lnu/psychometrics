@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import {
   changeLocale,
-} from 'core/currentUser'
+} from '~/core/currentUser'
 
 const mapStateToProps = () => ({})
 

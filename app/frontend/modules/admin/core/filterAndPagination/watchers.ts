@@ -1,7 +1,7 @@
 import { push, getLocation, getSearch } from 'connected-react-router'
 import _ from 'lodash'
 import { put, select, takeLatest } from 'redux-saga/effects'
-import qs from 'qs'
+import qs from 'query-string'
 import { getTableConfigs } from './selectors'
 import { TableConfig } from './interfaces'
 

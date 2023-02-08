@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Form, Switch, Select } from 'antd'
 import { useParams } from 'react-router-dom'
-import { Integration, integrationNames } from 'modules/admin/modules/client/core/integrations'
 import { FieldData } from 'rc-field-form/lib/interface'
-import ResourceFormModal from 'components/ResourceFormModal'
+import { Integration, integrationNames } from '~/modules/admin/modules/client/core/integrations'
+import ResourceFormModal from '~/components/ResourceFormModal'
 import { IihtForm } from './IihtForm'
 
 const { Option } = Select

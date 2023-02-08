@@ -3,7 +3,7 @@ import {
   LeftOutlined, RightOutlined, ArrowLeftOutlined, ArrowRightOutlined,
 } from '@ant-design/icons'
 
-import { isRtl } from 'utils/locales'
+import { isRtl } from '~/utils/locales'
 
 const { I18n } = window
 const uiLocale = I18n && I18n.uiLocale

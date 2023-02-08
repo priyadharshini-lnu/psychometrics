@@ -7,7 +7,7 @@ import _ from 'lodash'
 
 import {
   PropertiesModel, SeriesDataIdPoint, ColorsFromPallet, Size,
-} from 'modules/reports/interfaces/graphs/Bubble'
+} from '~/modules/reports/interfaces/graphs/Bubble'
 
 import { getCorrectResults } from '../ResultManager'
 import { createFactorSeries, getFactorValue } from './series/factors'

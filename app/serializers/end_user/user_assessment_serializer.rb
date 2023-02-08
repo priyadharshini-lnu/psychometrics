@@ -48,7 +48,7 @@ module EndUser
       result = object.users_result
       return 100 if result.completed?
 
-      return result.progress if result.progress.present?
+      return result.progress == 100 ? 99 : result.progress if result.progress.present?
 
       answered = result.answers&.size || 0
       total = object.assessment.questions&.size

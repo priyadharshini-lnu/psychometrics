@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import AppStore from 'modules/reports/store/AppStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 export const Functions = {
 }

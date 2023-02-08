@@ -1,6 +1,6 @@
-import { setIn, updateIn } from 'utils/immutable'
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { setIn, updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 import {
   FETCH,
   ADD,

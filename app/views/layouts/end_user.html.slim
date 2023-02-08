@@ -16,19 +16,13 @@ html dir=dir
     = render 'layouts/custom_styles'
     = javascript_include_tag :threesixty
     = javascript_include_tag '//speedof.me/api/api.js'
+    = vite_client_tag
+    = vite_stylesheet_tag 'ant.less'
 
     = stylesheet_link_tag 'threesixty_dependencies', media: 'all'
-    = stylesheet_pack_tag 'vendors2'
-    = stylesheet_pack_tag 'vendors'
-    = stylesheet_pack_tag 'survey'
-    = javascript_pack_tag 'survey'
-    = stylesheet_pack_tag 'reports'
-    = javascript_pack_tag 'reports'
-    = javascript_pack_tag 'vendors2'
-    = javascript_pack_tag 'vendors'
-    = javascript_pack_tag 'interactiveAssessments'
     = render 'layouts/favicons'
-
+    = vite_client_tag
+    = vite_react_refresh_tag
 
   body.end-user class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
     - if show_maintenance_alert?
@@ -36,7 +30,7 @@ html dir=dir
         = t('maintenance_message', **maintenance_time_frame)
     = yield
     #notification-center-container
-    = javascript_pack_tag 'notificationCenter'
+    = vite_javascript_tag 'notification_center.jsx'
 
   - if @current_project&.enable_live_chat?
     javascript:

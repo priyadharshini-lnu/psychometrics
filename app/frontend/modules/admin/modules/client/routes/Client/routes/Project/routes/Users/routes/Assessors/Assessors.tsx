@@ -5,9 +5,9 @@ import {
   Col, Input, Pagination, Row, Table, Modal, message,
 } from 'antd'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { getProject as getCurrentProject } from 'modules/admin/core/ui/breadcrumbs'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { getProject as getCurrentProject } from '~/modules/admin/core/ui/breadcrumbs'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import {
   Assessor,
   getList,
@@ -17,14 +17,14 @@ import {
   resetPassword as resetAssessorPassword,
   remove as removeAssessor,
   clearSingle as clearCurrentAssessor,
-} from 'modules/admin/modules/client/core/assessors'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/client/core/assessors'
+import { isRequestInProgress } from '~/core/request'
 
-import { useDocumentTitle } from 'hooks/useDocumentTitle'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import settings from 'modules/admin/settings'
-import { CountDisplay } from 'components/CountDisplay'
-import { TagListDisplay } from 'components/TagListDisplay'
+import { useDocumentTitle } from '~/hooks/useDocumentTitle'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import settings from '~/modules/admin/settings'
+import { CountDisplay } from '~/components/CountDisplay'
+import { TagListDisplay } from '~/components/TagListDisplay'
 import { ActionsMenu } from './ActionsMenu'
 import { EditDrawer } from './EditDrawer'
 import {

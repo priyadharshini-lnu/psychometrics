@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import ResultStore from 'modules/reports/store/ResultStore'
-import I18nStore from 'modules/reports/store/I18nStore'
-import AppStore from 'modules/reports/store/AppStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 const PipedText = {
   run (module, params = {}): string | null {

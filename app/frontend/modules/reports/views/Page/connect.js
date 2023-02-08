@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/ui/modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   getModules, getModulesShowOnAll, getQuestions, getRenderModules,
-} from 'modules/reports/core/builder/selectors'
-import { addPage, unselectModules, selectModule } from 'modules/reports/core/builder/actions'
-import { renamePage, removeDisplayLogic } from 'modules/reports/core/builder/page/actions'
+} from '~/modules/reports/core/builder/selectors'
+import { addPage, unselectModules, selectModule } from '~/modules/reports/core/builder/actions'
+import { renamePage, removeDisplayLogic } from '~/modules/reports/core/builder/page/actions'
 
 export default connect(
   (state, props) => ({

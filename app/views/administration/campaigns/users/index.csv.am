@@ -1,5 +1,5 @@
 
-csv << headers
+csv << (headers + profile_fields.map {|f| f.question.name })
 
 users.each do |user|
   row = [
@@ -11,5 +11,10 @@ users.each do |user|
           nil,
           user.decorate.created_at,
          ]
+
+  profile_fields.each do |field|
+    row << (user.user_profile.custom_fields || {})[field.question_id.to_s]
+  end
+
   csv << row
 end

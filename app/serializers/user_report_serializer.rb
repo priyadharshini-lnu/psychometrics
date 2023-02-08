@@ -11,6 +11,11 @@ class UserReportSerializer < ActiveModel::Serializer
   has_one :options, serializer: Threesixty::CampaignOptionsSerializer
   has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
   has_many :comments, each_serializer: UserReportCommentSerializer
+  has_many :user_report_events, each_serializer: UserReportEventSerializer
+
+  def user_report_events
+    object.user_report_events.order(created_at: :desc)
+  end
 
   def require_approval
     object.has_approval_workflow?

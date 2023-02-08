@@ -6,12 +6,12 @@ import size from 'lodash/size'
 import {
   getI18n,
   getQuestionScoring,
-} from 'modules/survey/core/preview/FlowProcessor/selectors'
+} from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
-import { RootState } from 'modules/survey/core/rootReducers'
-import { PreviewModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+import { RootState } from '~/modules/survey/core/rootReducers'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
 import { ScoringTable } from './components/ScoringTable'
 
 const SingleAnswerPreview = lazy(

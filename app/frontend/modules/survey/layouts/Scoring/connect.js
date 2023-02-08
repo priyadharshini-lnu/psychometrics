@@ -1,8 +1,7 @@
 import { connect } from 'react-redux'
-import { subscribeSocket } from 'modules/survey/core/temp/socket'
-import { factorsSelector, selectedFactor } from 'modules/survey/core/builder/factors/selectors'
-import { selectFactor, saveScoring } from 'modules/survey/core/builder/factors'
-import { recodingSelector } from 'core/builder/factors/selectors'
+import { subscribeSocket } from '~/modules/survey/core/temp/socket'
+import { factorsSelector, selectedFactor, recodingSelector } from '~/modules/survey/core/builder/factors/selectors'
+import { selectFactor, saveScoring } from '~/modules/survey/core/builder/factors'
 
 export default connect(
   ({ survey }) => ({

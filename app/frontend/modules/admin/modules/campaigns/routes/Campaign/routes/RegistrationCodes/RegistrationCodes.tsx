@@ -6,17 +6,17 @@ import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { RegistrationCode } from 'modules/admin/modules/campaigns/core/registrationCodes'
-import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
-import Modals from 'modules/admin/components/Modals'
 import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { formatedDate } from 'utils/time'
-import { SafeHTML } from 'components/SafeHTML'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import { RegistrationCode } from '~/modules/admin/modules/campaigns/core/registrationCodes'
+import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
+import Modals from '~/modules/admin/components/Modals'
+import { SafeHTML } from '~/components/SafeHTML'
+import { formatedDate } from '~/utils/time'
 import CodeModal from './CodeModal'
 
 const MODALS = {

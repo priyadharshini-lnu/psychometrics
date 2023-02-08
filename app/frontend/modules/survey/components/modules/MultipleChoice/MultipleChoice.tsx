@@ -1,10 +1,10 @@
 import React, { FC, lazy, Suspense } from 'react'
 import { Spin } from 'antd'
 
-import TextEditor from 'components/TextEditor'
-import useForceUpdate from 'hooks/useUpdate'
+import useForceUpdate from '~/hooks/useUpdate'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
+import TextEditor from '~/modules/survey/components/TextEditor'
 
 const SingleAnswer = lazy(() => import('./components/types/SingleAnswer'))
 const MultipleAnswer = lazy(() => import('./components/types/MultipleAnswer'))

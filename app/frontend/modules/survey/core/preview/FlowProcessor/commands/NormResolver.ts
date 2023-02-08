@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import NormResolver from 'modules/survey/models/NormResolver'
 import _ from 'lodash'
-import QuestionSerializer from 'modules/survey/models/QuestionSerializer'
+import NormResolver from '~/modules/survey/models/NormResolver'
+import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { QuestionsInterface, ResultsInterface } from '../interfaces'
 
 const MapNorms = {

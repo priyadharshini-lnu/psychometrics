@@ -6,7 +6,7 @@ import { DeleteOutlined, MenuOutlined, BlockOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 
-import { CampaignAssessmentGroup } from 'modules/admin/modules/campaigns/core/assessmentGroups'
+import { CampaignAssessmentGroup } from '~/modules/admin/modules/campaigns/core/assessmentGroups'
 
 import styles from './styles.less'
 

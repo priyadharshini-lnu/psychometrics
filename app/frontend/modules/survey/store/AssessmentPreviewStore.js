@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import FlowProcessor from 'models/FlowProcessor'
-import Result from 'models/Preview/Result'
-import Question from 'models/Preview/Question'
-import LocalStorage from 'utils/LocalStorage'
+import FlowProcessor from '~/modules/survey/models/FlowProcessor'
+import Result from '~/modules/survey/models/Preview/Result'
+import Question from '~/modules/survey/models/Preview/Question'
+import LocalStorage from '~/utils/LocalStorage'
 
 // TODO (atanych): Replace current RandOrder with new one to lookup question was answered or not.
 // TODO (atanych): After it we might remove RankOrder from list below

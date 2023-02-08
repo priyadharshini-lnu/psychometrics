@@ -1,7 +1,7 @@
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/xml/xml'
-import events from 'components/Editor/events'
+import events from '~/components/Editor/events'
 
 export default {
   iconsTemplate: 'font_awesome',

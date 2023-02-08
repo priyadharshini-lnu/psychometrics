@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class AdminJobRecordSerializer < ActiveModel::Serializer
-  attributes :id, :operation, :progress, :data, :status, :error_messages, :content, :read, :created_at, :is_valid
+  attributes :id, :operation, :progress, :data, :status, :error_messages, :content, :read, :created_at, :is_valid,
+             :exception
   attribute :title_link, if: :is_valid
   attribute :details, if: :is_valid
 

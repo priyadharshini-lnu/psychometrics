@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Tabs } from 'antd'
-import { ParentResourceType } from 'modules/admin/modules/SheetManagement/interfaces'
 import { useParams } from 'react-router-dom'
+import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'
 import { Sheet } from './Sheet'
 import { SheetSettings } from './SheetSettings'
 import { SheetType } from './core/list'

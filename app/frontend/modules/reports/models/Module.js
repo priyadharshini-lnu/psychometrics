@@ -1,15 +1,15 @@
 /* eslint-disable no-case-declarations */
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import DefaultProps from 'modules/reports/consts/DefaultProps'
-import ModuleConfigs from 'modules/reports/consts/ModuleConfigs'
-import { getQuestions } from 'modules/reports/core/builder/selectors'
-import Presets from 'modules/reports/consts/Presets'
-import AppStore from 'modules/reports/store/AppStore'
-import { HOGAN, MINDMILL, SAVILLE } from 'modules/reports/models/Assessment'
-import rstore from 'modules/reports/store'
-import { UPDATE_MODULE } from 'modules/reports/core/builder/module/actions'
-import Utils from 'modules/reports/utils/Utils'
+import DefaultProps from '~/modules/reports/consts/DefaultProps'
+import ModuleConfigs from '~/modules/reports/consts/ModuleConfigs'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import Presets from '~/modules/reports/consts/Presets'
+import AppStore from '~/modules/reports/store/AppStore'
+import { HOGAN, MINDMILL, SAVILLE } from '~/modules/reports/models/Assessment'
+import rstore from '~/modules/reports/store'
+import { UPDATE_MODULE } from '~/modules/reports/core/builder/module/actions'
+import Utils from '~/modules/reports/utils/Utils'
 import TextConditionCollection from './TextConditionCollection'
 import CPIConditionCollection from './CPIConditionCollection'
 import InnovationStyleConditionCollection from './InnovationStyleConditionCollection'
@@ -25,6 +25,7 @@ const Module = function (attrs = {}, page) {
   this.page = page
   this.id = attrs.id
   this.isNew = attrs.isNew
+  this.name = attrs.name
 
   if (!this.id) {
     this.id = Utils.genId()
@@ -69,6 +70,7 @@ _.extend(Module.prototype, {
     return {
       id: this.id,
       page_id: this.page.isNew ? undefined : this.page_id,
+      name: this.name,
       type: this.type,
       props,
       removed: this.removed,

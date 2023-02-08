@@ -1,10 +1,10 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import { createReducer } from '~/utils/redux'
 
 const CampaignTR = t.type({
   id: t.number,

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 import Selectors from './Selectors'
 import Values from './Values'
 

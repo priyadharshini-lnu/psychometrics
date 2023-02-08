@@ -3,6 +3,10 @@
 class Factor < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  include ActiveStorageAttachable
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
@@ -39,6 +43,11 @@ class Factor < ApplicationRecord
   }, _suffix: :strategy
 
   mount_uploader :icon, Public::ImageUploader
+
+  has_one_image_attached :as_icon, variants: [:icon]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :icon
 
   accepts_nested_attributes_for :factors_sub_factors, allow_destroy: true
 

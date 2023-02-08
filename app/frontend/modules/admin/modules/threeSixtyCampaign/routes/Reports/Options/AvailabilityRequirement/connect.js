@@ -6,10 +6,10 @@ import {
   remove as removeAvailiblityCondition,
   addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
-} from 'modules/admin/modules/threeSixtyCampaign/core/reportOptions/availabilityConditions'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/reportOptions/availabilityConditions'
 
-import { getAvailabilityConditions } from 'modules/admin/modules/threeSixtyCampaign/core/reportOptions/selectors'
-import { getRelationships } from 'modules/admin/modules/threeSixtyCampaign/core/relationships'
+import { getAvailabilityConditions } from '~/modules/admin/modules/threeSixtyCampaign/core/reportOptions/selectors'
+import { getRelationships } from '~/modules/admin/modules/threeSixtyCampaign/core/relationships'
 
 export default connect(
   state => ({

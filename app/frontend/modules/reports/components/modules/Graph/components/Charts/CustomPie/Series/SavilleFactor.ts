@@ -1,8 +1,8 @@
 import round from 'lodash/round'
-import AppStore from 'modules/reports/store/AppStore'
-import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
-import Result, { SavilleScore } from 'modules/reports/models/Result'
-import Module from 'modules/reports/core/interfaces/Module'
+import AppStore from '~/modules/reports/store/AppStore'
+import { getSavilleFactorsScore } from '~/modules/reports/commands/getSavilleFactorsScore'
+import Result, { SavilleScore } from '~/modules/reports/models/Result'
+import Module from '~/modules/reports/core/interfaces/Module'
 
 type SavilleResults = {
   results: Result<SavilleScore[]>

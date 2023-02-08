@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import {
   Skeleton, Row, Col, PageHeader, Descriptions, InputNumber, Button,
 } from 'antd'
-import Report from 'modules/reports/report'
 import { useLocation, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import Report from '~/modules/reports/report'
 import {
   fetchReport, getCurrent, clearUseReportDetails, FETCH_REPORT,
-} from 'modules/admin/modules/IndividualDashboard/core/userReport'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
-import userPresenter from 'presenters/user'
+} from '~/modules/admin/modules/IndividualDashboard/core/userReport'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { isRequestInProgress } from '~/core/request'
+import userPresenter from '~/presenters/user'
 import styles from './styles.less'
 
 const { I18n } = window

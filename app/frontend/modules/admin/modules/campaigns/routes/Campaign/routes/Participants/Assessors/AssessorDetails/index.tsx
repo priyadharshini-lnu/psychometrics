@@ -2,9 +2,9 @@ import { connect, ConnectedProps } from 'react-redux'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { PageHeader } from 'antd'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import { getCurrent, fetchSingle } from 'modules/admin/modules/campaigns/core/assessors'
-import { RootState } from 'modules/admin/core/rootReducers'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { getCurrent, fetchSingle } from '~/modules/admin/modules/campaigns/core/assessors'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import AssessmentList from './AssessmentList'
 
 const { I18n } = window

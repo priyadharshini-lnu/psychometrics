@@ -1,6 +1,6 @@
 import humps from 'humps'
-import { SOCKET_MESSAGE } from 'core/socket'
-import { NEW_COMMENT, UPDATE_COMMENT } from 'modules/admin/modules/campaigns/core/userReports'
+import { SOCKET_MESSAGE } from '~/core/socket'
+import { NEW_COMMENT, UPDATE_COMMENT } from '~/modules/admin/modules/campaigns/core/userReports'
 
 export const RequestsPool = {}
 

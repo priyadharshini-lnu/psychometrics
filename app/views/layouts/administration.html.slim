@@ -12,6 +12,9 @@ html
       = stylesheet_link_tag 'test'
     = javascript_include_tag 'administration'
     = render 'layouts/favicons'
+    = vite_client_tag
+    = vite_react_refresh_tag
+    = vite_stylesheet_tag 'ant.less'
 
   body#administration data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
     .page-container
@@ -31,7 +34,7 @@ html
     #modal-container
     #confirm-container
     #notification-center-container
-    = javascript_pack_tag 'notificationCenter'
+    = vite_javascript_tag 'notification_center.jsx'
 
     #sidebar.sidebar.right style='right: -220px;'
       button.close type='button'

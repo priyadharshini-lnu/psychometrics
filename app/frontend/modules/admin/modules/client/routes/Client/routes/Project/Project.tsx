@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
   SettingOutlined,
@@ -10,11 +9,12 @@ import {
   SolutionOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
-import settings from 'modules/admin/modules/client/routes/Client/routes/Project/settings'
-import RouteList from 'components/RouteList'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
+import RouteList from '~/components/RouteList'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { routes } from './routes'
 
 const { I18n } = window
@@ -34,11 +34,7 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation()
 
   const handleOnSelect = ({ key }) => {
-    if (key === 'admins') {
-      window.location.pathname = `/administration/clients/${projectId}/project_admins`
-    } else {
-      history.push(`${settings.urlPrefix}/${projectId}/${key}`)
-    }
+    history.push(`${settings.urlPrefix}/${projectId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
@@ -134,8 +130,8 @@ export const ProjectComponent: FC<Props> = ({ currentUser }) => {
             label: state => state.client.name,
           },
           {
-            link: state => `/administration/projects/${state.project.id}/new_campaigns`,
-            label: state => state.project.name,
+            link: state => `/administration/projects/${state.project?.id}/new_campaigns`,
+            label: state => state.project?.name,
           },
           {
             label: () => getPageTitle(pathname),

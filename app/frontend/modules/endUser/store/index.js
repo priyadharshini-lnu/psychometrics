@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import createSagaMiddleware from 'redux-saga'
-import flowMiddleware from 'modules/survey/core/preview/FlowProcessor/middleware'
+import api from '~/middleware/api'
+import flowMiddleware from '~/modules/survey/core/preview/FlowProcessor/middleware'
 import rootReducers from '../core/rootReducers'
 import rootSagas from '../core/rootSagas'
 

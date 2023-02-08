@@ -1,4 +1,4 @@
-import nestedConditions from 'modules/admin/core/common/nestedConditions'
+import nestedConditions from '~/modules/admin/core/common/nestedConditions'
 
 export const ADD = 'threeSixty/nominationRequirement/subjectConditions/ADD'
 export const UPDATE = 'threeSixty/nominationRequirement/subjectConditions/UPDATE'

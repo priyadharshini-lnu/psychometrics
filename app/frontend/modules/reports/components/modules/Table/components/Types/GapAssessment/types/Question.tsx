@@ -7,15 +7,15 @@ import get from 'lodash/get'
 import find from 'lodash/find'
 import meanBy from 'lodash/meanBy'
 
-import { RootState } from 'modules/reports/core/rootReducers'
-import { getQuestions } from 'modules/reports/core/builder/selectors'
-import { GapType, PropertiesModel } from 'modules/reports/interfaces/tables/Gap'
-import { BasePropertiesModel as BaseQuestionModelInProperties } from 'modules/survey/interfaces/questions/Base'
+import { RootState } from '~/modules/reports/core/rootReducers'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import { GapType, PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
+import { BasePropertiesModel as BaseQuestionModelInProperties } from '~/modules/survey/interfaces/questions/Base'
 
-import ResultStore from 'modules/reports/store/ResultStore'
-import AppStore from 'modules/reports/store/AppStore'
-import I18nStore from 'modules/reports/store/I18nStore'
-import Utils from 'modules/reports/utils'
+import ResultStore from '~/modules/reports/store/ResultStore'
+import AppStore from '~/modules/reports/store/AppStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import Utils from '~/modules/reports/utils'
 
 import styles from './styles.less'
 

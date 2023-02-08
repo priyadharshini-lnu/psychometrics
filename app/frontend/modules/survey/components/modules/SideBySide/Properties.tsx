@@ -3,15 +3,15 @@ import { Checkbox, Divider } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import _ from 'lodash'
 
-import { PropertiesModel } from 'modules/survey/interfaces/questions/SideBySide'
+import { PropertiesModel } from '~/modules/survey/interfaces/questions/SideBySide'
 
-import ChoicesInput from 'components/ChoicesInput'
-import Utils from 'utils'
-import Action from 'undo'
-import ValidationTypes from 'components/ValidationTypes'
-import RequiredValidations from 'components/RequiredValidations'
+import Action from '~/modules/survey/undo'
+import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
+import ChoicesInput from '~/modules/survey/components/ChoicesInput'
+import Utils from '~/modules/survey/utils'
+import ValidationTypes from '~/modules/survey/components/ValidationTypes'
+import RequiredValidations from '~/modules/survey/components/RequiredValidations'
 
-import styles from 'views/PropertyPanel/components/PropertyPanel.less'
 
 interface Props {
   model: PropertiesModel

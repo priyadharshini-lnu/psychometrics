@@ -1,0 +1,97 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import _ from 'lodash'
+import { DATA_SHEET } from '~/modules/reports/models/Module'
+import localStyles from './Scoring.less'
+import styles from '../../Condition.less'
+
+export class Scoring extends Component {
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+    condition: PropTypes.object.isRequired,
+  }
+
+  getSubjects (assessment) {
+    const { condition, factors, dataSheetColumns } = this.props
+
+    if (condition.type === DATA_SHEET) {
+      return dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
+    }
+
+    return factors[assessment.dimension_id]
+  }
+
+  changeSubject = (e) => {
+    const { condition } = this.props
+    condition.props.subject = e.currentTarget.value
+    this.forceUpdate()
+  }
+
+  changeValue = (e) => {
+    const { condition } = this.props
+    condition.props.value = e.currentTarget.value
+    this.forceUpdate()
+  }
+
+  changePredicate = (e) => {
+    const { condition } = this.props
+    condition.props.predicate = e.currentTarget.value
+    this.forceUpdate()
+  }
+
+  changeOperation = (e) => {
+    const { condition } = this.props
+    condition.props.operation = e.currentTarget.value
+    this.forceUpdate()
+  }
+
+  render () {
+    const { model, condition, assessments } = this.props
+    const { value } = condition.props
+    const assessmentId = condition.props.assessmentId || model.module.assessment_id
+    const assessment = _.find(assessments, { id: +assessmentId })
+
+    if (condition.type === 'Factor' && !assessment) { return null }
+    const subjects = this.getSubjects(assessment)
+    return (
+      <div className={styles.questionDock}>
+        <select
+          value={condition.props.subject}
+          onChange={this.changeSubject}
+          className={`form-control ${localStyles.subjectSelect}`}
+        >
+          {!condition.props.subject && <option />}
+          {subjects?.map(factor => (
+            <option key={factor.id} value={factor.id}>{factor.alias || factor.name}</option>
+          ))}
+        </select>
+        <select
+          value={condition.props.operation}
+          onChange={this.changeOperation}
+          className={`form-control ${localStyles.predicateSelect}`}
+        >
+          {!condition.props.operation && <option />}
+          <option value="Mean">Mean</option>
+          <option value="Max">Max</option>
+          <option value="Min">Min</option>
+        </select>
+        <select
+          value={condition.props.predicate}
+          onChange={this.changePredicate}
+          className={`form-control ${localStyles.predicateSelect}`}
+        >
+          {!condition.props.predicate && <option />}
+          <option value="EqualTo">Equal To</option>
+          <option value="NotEqualTo">Not Equal To</option>
+          <option value="GreaterThen">Greater Than</option>
+          <option value="GreaterThenOrEqual">Greater Than Or Equal To</option>
+          <option value="LessThen">Less Than</option>
+          <option value="LessThenOrEqual">Less Than Or Equal To</option>
+        </select>
+        <input className={`form-control ${localStyles.subjectSelect}`} value={value} onChange={this.changeValue} />
+      </div>
+    )
+  }
+}
+
+export default Scoring

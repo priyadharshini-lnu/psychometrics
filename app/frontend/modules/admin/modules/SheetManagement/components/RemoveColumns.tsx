@@ -5,12 +5,12 @@ import {
 } from 'antd'
 import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 
-import settings from 'modules/admin/settings'
+import settings from '~/modules/admin/settings'
 import {
   ParentResourceType,
-} from 'modules/admin/modules/SheetManagement/interfaces'
-import { getTableConfigs } from 'modules/admin/core/filterAndPagination/selectors'
-import { RootState } from 'modules/reports/core/rootReducers'
+} from '~/modules/admin/modules/SheetManagement/interfaces'
+import { getTableConfigs } from '~/modules/admin/core/filterAndPagination/selectors'
+import { RootState } from '~/modules/reports/core/rootReducers'
 import { removeColumns } from '../core/columnDefinitions'
 import { SheetType } from '../core/list'
 

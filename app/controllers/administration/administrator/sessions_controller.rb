@@ -4,6 +4,7 @@ module Administration
   module Administrator
     class SessionsController < Devise::SessionsController
       helper_method :resource_nam, :devise_mapping
+      layout 'administration/devise'
 
       def resource_name
         :user

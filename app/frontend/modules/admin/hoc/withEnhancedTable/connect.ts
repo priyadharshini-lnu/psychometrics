@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import {
   changeFilter, changePage, removeFilter, changeSort, initTable, removeSort,
-} from 'modules/admin/core/filterAndPagination/actions'
-import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
+} from '~/modules/admin/core/filterAndPagination/actions'
+import { getTables } from '~/modules/admin/core/filterAndPagination/selectors'
 
 export default connect(
   state => ({

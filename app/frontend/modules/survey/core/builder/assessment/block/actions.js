@@ -1,4 +1,4 @@
-import Question from 'models/Question'
+import Question from '~/modules/survey/models/Question'
 
 export const CREATE = 'builder/assessment/block/CREATE'
 export const UPDATE_POSITIONS = 'builder/assessment/block/UPDATE_POSITIONS'

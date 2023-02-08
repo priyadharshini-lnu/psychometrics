@@ -2,8 +2,8 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
-import store from 'modules/admin/store'
+import store from '~/modules/admin/store'
+import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { SheetTabs } from './SheetTabs'
 import { ParentResourceType } from './interfaces/index'
 

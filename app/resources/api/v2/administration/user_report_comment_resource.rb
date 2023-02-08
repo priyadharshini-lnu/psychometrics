@@ -13,7 +13,7 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
   before_create -> { @model.user_report = context[:user_report] }
   before_create -> { @model.creator = context[:user] }
   after_create :broadcast_create
-  after_update :broadcast_update
+  around_update :broadcast_update
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
@@ -32,16 +32,56 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
   end
 
   def remove
+    UserReportEvent.create!(
+      user_report_id: context[:user_report].id,
+      initiator_id: context[:user].id,
+      event_type: 'comment_removed',
+      details: {
+        text: @model.text[0..80]
+      }
+    )
     @model.soft_delete!(context[:user])
     :completed
   end
 
   def broadcast_create
+    UserReportEvent.create!(
+      user_report_id: context[:user_report].id,
+      initiator_id: context[:user].id,
+      event_type: 'comment_added',
+      details: {
+        text: @model.text[0..80]
+      }
+    )
     Comments::Channel.broadcast_to context[:user_report], action: 'new_comment',
       comment: UserReportCommentSerializer.new(@model)
   end
 
   def broadcast_update
+    old_text = @model.text
+    old_resolved = @model.resolved
+    yield if block_given?
+
+    if old_resolved != @model.resolved
+      UserReportEvent.create!(
+        user_report_id: context[:user_report].id,
+        initiator_id: context[:user].id,
+        event_type: @model.resolved ? 'comment_resolved' : 'comment_unresolved'
+      )
+    end
+
+    if old_text != @model.text
+      UserReportEvent.create!(
+        user_report_id: context[:user_report].id,
+        initiator_id: context[:user].id,
+        event_type: 'comment_updated',
+        details: {
+          old_text: old_text,
+          new_text: @model.text
+        }
+      )
+    end
+
     Comments::Channel.broadcast_to context[:user_report], action: 'update_comment',
       comment: UserReportCommentSerializer.new(@model)
   end

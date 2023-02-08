@@ -4,8 +4,8 @@ import {
   BROWSER_FEATURES,
   UA_BROWSERS,
   MIN_BROWSER_FEATURE_SUPPORT,
-} from 'modules/survey/constants/browser'
-import { convertToUserAgentBrowserName } from 'modules/survey/utils/browser'
+} from '~/modules/survey/constants/browser'
+import { convertToUserAgentBrowserName } from '~/modules/survey/utils/browser'
 
 const uaParser = new UAParser()
 
@@ -48,12 +48,12 @@ export const checkBrowserSupportForFeature = (
   )}`
 
   // eslint-disable-next-line no-console
-  console.table({
-    actualBrowser: browserName,
-    parsedBrowser: browser,
-    actualVersion: browserVersion,
-    parsedVersion: version,
-  })
+  // console.table({
+  //   actualBrowser: browserName,
+  //   parsedBrowser: browser,
+  //   actualVersion: browserVersion,
+  //   parsedVersion: version,
+  // })
 
   if (
     browser.length === 0

@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 class Dashboard < ApplicationRecord
+  include ActiveStorageAttachable
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
+
   mount_base64_uploader :image, Private::ImageUploader
+
+  has_one_image_attached :as_image, variants: [:icon], service: Settings.storage.private_storage_service
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :image
 
   belongs_to :campaign
   has_one :project, through: :campaign

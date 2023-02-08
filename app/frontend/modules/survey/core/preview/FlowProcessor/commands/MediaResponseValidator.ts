@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { getValidationKey, isMandatory } from 'modules/survey/utils/question'
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { getValidationKey, isMandatory } from '~/modules/survey/utils/question'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { Question } from '../interfaces'
 
 const { I18n } = window

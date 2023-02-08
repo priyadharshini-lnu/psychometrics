@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash'
-import { camelizeKeys } from 'utils/object'
+import { camelizeKeys } from '~/utils/object'
 
 const data = {
   user_data: {

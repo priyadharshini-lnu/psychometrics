@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
-import { Tag, Tabs } from 'antd'
+import {
+  Tag, Tabs, Row, Col, Avatar, Typography, Space, Divider,
+} from 'antd'
+import moment from 'moment'
+import _ from 'lodash'
+import { CheckOutlined, UserOutlined } from '@ant-design/icons'
 import {
   get as getUserReport,
   getCurrent,
   approveReport,
   ApprovalStatuses,
   selectModule,
-} from 'modules/admin/modules/campaigns/core/userReports'
-import { subscribeSocket } from 'core/socket'
-import Utils from 'modules/reports/utils/Utils'
-import moment from 'moment'
-import { RootState } from 'modules/admin/core/rootReducers'
-import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
-import _ from 'lodash'
-import { CheckOutlined } from '@ant-design/icons'
+} from '~/modules/admin/modules/campaigns/core/userReports'
+import Utils from '~/modules/reports/utils/Utils'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
+import { SafeHTML } from '~/components/SafeHTML'
+import { subscribeSocket } from '~/core/socket'
 import Comments from './Comments'
 import styles from './styles.less'
 
 const { I18n } = window
+const { Text } = Typography
 
 type Props = PropsFromRedux & {
   pages: {}[]
@@ -90,7 +94,6 @@ function Sidebar ({
                 /
                 {modulesCount}
               </div>
-
             </div>
             {pageModules.map(({ page, modules }, i) => (
               <div key={i}>
@@ -144,9 +147,47 @@ function Sidebar ({
         <Tabs.TabPane tab="Comments" key="comments">
           <Comments pageModules={pageModules} scrollToModule={scrollToModule} />
         </Tabs.TabPane>
-        {/* <Tabs.TabPane tab="History" key="history">
-          History
-        </Tabs.TabPane> */}
+        <Tabs.TabPane tab="History" key="history">
+          <Space
+            direction="vertical"
+            className={styles.events}
+            split={
+              <Divider style={{ margin: 0 }} />
+          }
+          >
+            {userReport.userReportEvents.map((reportEvent) => {
+              const avatarIcon = reportEvent.initiator.avatarUrl ? null : <UserOutlined />
+              return (
+                <Row className={styles.event} wrap={false} gutter={[6, 0]} justify="center" align="middle">
+                  <Col>
+                    <Avatar size={40} icon={avatarIcon} src={reportEvent.initiator.avatarUrl} />
+                  </Col>
+                  <Col
+                    flex={1}
+                    className={cs({ [styles.clickable]: reportEvent.details.module })}
+                    onClick={
+                      (reportEvent.details.module)
+                        ? () => scrollTo(`Module_${(reportEvent.details as {module:string}).module}`)
+                        : undefined
+                      }
+                  >
+                    <Text className={styles.timestamp} type="secondary">
+                      {moment(reportEvent.createdAt).fromNow()}
+                    </Text>
+                    <div className={styles.name}>
+                      <b>{reportEvent.initiator.fullName}</b>
+                      {' '}
+                      <SafeHTML
+                        as="span"
+                        html={I18n.t(`report_approvals.events.${reportEvent.eventType}`, reportEvent.details)}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+              )
+            })}
+          </Space>
+        </Tabs.TabPane>
       </Tabs>
     </div>
   )

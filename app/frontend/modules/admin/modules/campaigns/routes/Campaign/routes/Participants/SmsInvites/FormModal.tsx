@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { Form, Input, Select } from 'antd'
-import ResourceFormModal from 'components/ResourceFormModal'
-import { availableLocales } from 'core/config'
-import { SmsInvite } from 'modules/admin/modules/campaigns/core/smsInvites'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import { SmsInvite } from '~/modules/admin/modules/campaigns/core/smsInvites'
+import { availableLocales } from '~/core/config'
 
 const connecter = connect(
   (state: RootState) => ({

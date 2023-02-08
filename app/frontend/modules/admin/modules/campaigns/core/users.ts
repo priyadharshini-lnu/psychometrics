@@ -1,12 +1,12 @@
 import _ from 'lodash'
-import { createReducer, CustomAction } from 'utils/redux'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { setIn, updateIn } from 'utils/immutable'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import ApiAction from 'interfaces/ApiAction'
-import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
-import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import { takeEvery, put } from 'redux-saga/effects'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
+import UserReport from '~/modules/admin/modules/campaigns/interfaces/UserReport'
+import { setIn, updateIn } from '~/utils/immutable'
+import { createReducer, CustomAction } from '~/utils/redux'
 
 export interface User {
   id: number
@@ -72,6 +72,7 @@ export const fetchSingle = (campaignId: number, id: number) => ({
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/users/${id}`,
+    loader: true,
   },
 })
 

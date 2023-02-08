@@ -1,9 +1,3 @@
-= javascript_pack_tag 'vendors2'
-= javascript_pack_tag 'vendors'
-= stylesheet_pack_tag 'vendors2'
-= stylesheet_pack_tag 'vendors'
-= stylesheet_pack_tag 'admin/adminJobs'
-
 /! START X-NAVIGATION VERTICAL
 ul.x-navigation.x-navigation-horizontal.x-navigation-panel
   /! TOGGLE NAVIGATION
@@ -26,4 +20,4 @@ ul.x-navigation.x-navigation-horizontal.x-navigation-panel
     - else
       = render_breadcrumbs tag: :li, separator: ''
 /! END BREADCRUMB
-= javascript_pack_tag 'admin/adminJobs'
+= vite_javascript_tag 'entrypoints/admin/admin_jobs.jsx'

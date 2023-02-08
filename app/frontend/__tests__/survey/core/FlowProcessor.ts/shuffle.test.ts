@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import array from 'utils/array'
+import array from '~/utils/array'
 import seedrandom from 'seedrandom'
 
 describe('seedrandom', () => {

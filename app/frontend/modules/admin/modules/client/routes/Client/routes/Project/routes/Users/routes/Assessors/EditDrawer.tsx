@@ -20,11 +20,11 @@ import {
   FETCH_SINGLE as FETCH_PROJECT_SINGLE_ASSESSOR,
   getCurrent as getCurrentAssessor,
   UPDATE as UPDATE_PROJECT_ASSESSOR,
-} from 'modules/admin/modules/client/core/assessors'
-import { isRequestInProgress } from 'core/request'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/client/core/assessors'
+import { isRequestInProgress } from '~/core/request'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import ResourceForm from 'components/ResourceForm'
+import ResourceForm from '~/components/ResourceForm'
 import { constructCampaignUrl } from '../commonUtils'
 
 const { I18n } = window

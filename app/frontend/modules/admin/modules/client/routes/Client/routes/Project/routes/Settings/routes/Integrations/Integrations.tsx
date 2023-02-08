@@ -7,14 +7,14 @@ import {
   DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined,
 } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
+import map from 'lodash/map'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get, fetch, remove, REMOVE,
-} from 'modules/admin/modules/client/core/integrations'
-import { openModal } from 'modules/admin/core/ui/modals'
-import Modals from 'modules/admin/components/Modals'
-import { isRequestInProgress } from 'core/request'
-import map from 'lodash/map'
+} from '~/modules/admin/modules/client/core/integrations'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import Modals from '~/modules/admin/components/Modals'
+import { isRequestInProgress } from '~/core/request'
 import { IntegrationFormModal } from './IntegrationFormModal'
 
 const { Column } = Table

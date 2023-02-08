@@ -4,9 +4,9 @@ import reduce from 'lodash/reduce'
 import curry from 'lodash/curry'
 import forEach from 'lodash/forEach'
 import { FilterValue } from 'antd/lib/table/interface'
-import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
+import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 
-import { State as TableConfigs } from 'modules/admin/core/filterAndPagination/interfaces'
+import { State as TableConfigs } from '~/modules/admin/core/filterAndPagination/interfaces'
 import {
   changeFilterType,
   removeFilterType,
@@ -14,7 +14,7 @@ import {
   changeSortType,
   removeSortType,
   initTableType,
-} from 'modules/admin/core/filterAndPagination/actions'
+} from '~/modules/admin/core/filterAndPagination/actions'
 
 const ORDER_MAPPING = {
   asc: 'ascend',

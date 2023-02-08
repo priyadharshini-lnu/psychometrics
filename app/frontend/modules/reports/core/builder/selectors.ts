@@ -4,9 +4,9 @@ import _ from 'lodash'
 import { denormalize } from 'normalizr'
 import {
   module, page, pages, blocks as blocksSchema,
-} from 'modules/reports/store/schema'
-import QuestionModel from 'modules/reports/models/Question'
-import { RootState } from 'modules/reports/core/rootReducers'
+} from '~/modules/reports/store/schema'
+import QuestionModel from '~/modules/reports/models/Question'
+import { RootState } from '~/modules/reports/core/rootReducers'
 import ModuleInterface from '../interfaces/Module'
 import PageInterface from '../interfaces/Page'
 

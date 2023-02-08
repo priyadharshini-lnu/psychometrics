@@ -13,7 +13,12 @@ export function CropperModal ({
   const [loading, setLoading] = useState(false)
   const cropImage = () => {
     setLoading(true)
-    onCrop(cropperRef.current?.getCanvas())
+    onCrop(cropperRef.current?.getCanvas({
+      minHeight: 0,
+      minWidth: 0,
+      maxHeight: 1000,
+      maxWidth: 1000,
+    }))
   }
 
   useEffect(() => {

@@ -14,13 +14,7 @@
  * @namespace customEvents
  * */
 
-(function (factory) {
-  if (typeof module === 'object' && module.exports) {
-    module.exports = factory
-  } else {
-    factory(Highcharts)
-  }
-}((HC) => {
+export default (HC) => {
   /* global Highcharts :true */
 
 
@@ -420,4 +414,4 @@
 
   customEvents = HC.Chart.prototype.customEvent
   customEvents.init()
-}))
+}

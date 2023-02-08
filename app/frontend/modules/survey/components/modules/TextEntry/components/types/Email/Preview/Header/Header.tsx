@@ -1,7 +1,7 @@
 import React from 'react'
-import { I18n } from 'store/StoreWatchman'
 import { EditOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 import styles from './styles.less'
 import commonStyles from '../../commonStyles.less'
 import { Question } from '../../interfaces'

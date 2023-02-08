@@ -1,6 +1,6 @@
 import { FilterValue } from 'antd/lib/table/interface'
 
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 
 export interface TableProps {
   tableConfig: TableConfig

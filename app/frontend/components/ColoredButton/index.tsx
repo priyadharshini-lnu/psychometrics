@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'antd'
-import ButtonColor from 'constants/buttonColor'
 import cs from 'classnames'
+import ButtonColor from '~/constants/buttonColor'
 import styles from './ColoredButtonStyle.less'
 
 interface ButtonProps {

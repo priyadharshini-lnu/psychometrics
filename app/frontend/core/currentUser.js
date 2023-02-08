@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { getIn } from 'utils/immutable'
 import { takeLatest, put } from 'redux-saga/effects'
+import { getIn } from '~/utils/immutable'
 
 const CHANGE_LOCALE = 'threeSixty/users/CHANGE_LOCALE'
 const SYNC = 'threeSixty/user/SYNC'
@@ -62,6 +62,8 @@ export default function reducer (state = defaultState, action) {
       return { ...state, photo: action.response.photo }
     case SET_USER:
       return action.payload.user
+    case SYNC:
+      return action.response
     default:
       return state
   }

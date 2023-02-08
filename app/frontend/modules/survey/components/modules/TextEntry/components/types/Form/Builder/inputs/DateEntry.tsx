@@ -5,10 +5,10 @@ import {
 import { MenuProps } from 'antd/lib/menu'
 import { DownOutlined } from '@ant-design/icons'
 
-import { DateFormat } from 'modules/survey/interfaces/questions/TextEntry'
-import { getMenuItems } from 'utils/array'
+import { DateFormat } from '~/modules/survey/interfaces/questions/TextEntry'
+import { getMenuItems } from '~/utils/array'
 
-import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 
 const { I18n } = window
 

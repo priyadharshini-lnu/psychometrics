@@ -1,7 +1,7 @@
-import { createReducer } from 'utils/redux'
-import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
-import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
+import { createReducer } from '~/utils/redux'
+import { updateIn } from '~/utils/immutable'
+import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import {
   InitTableReturnType,
   ChangeSortReturnType,

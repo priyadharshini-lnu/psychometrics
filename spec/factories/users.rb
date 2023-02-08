@@ -50,6 +50,19 @@ FactoryBot.define do
       to_create { |instance| instance.save(validate: false) }
     end
 
+    trait :with_photo do
+      after(:create) do |user|
+        user.user_profile.update(
+          updated_at: Time.current,
+          age: 1,
+          gender: 1,
+          timezone: 'MyString',
+          locale: 'MyString',
+          photo: Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/profile.png'))
+        )
+      end
+    end
+
     trait :assessor do
       role { User::ADMIN_ROLE }
       transient do

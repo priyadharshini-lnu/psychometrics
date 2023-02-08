@@ -2,7 +2,7 @@ import _ from 'lodash'
 import {
   setItem,
   getItem,
-} from 'utils/storage'
+} from '~/utils/storage'
 const realDateNow = Date.now
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 

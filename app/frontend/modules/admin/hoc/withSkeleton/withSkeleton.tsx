@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Skeleton } from 'antd'
 import cs from 'classnames'
 
-import { isRequestInProgress } from 'core/request'
+import { isRequestInProgress } from '~/core/request'
 
 export const connector = connect(
   state => ({ state }),

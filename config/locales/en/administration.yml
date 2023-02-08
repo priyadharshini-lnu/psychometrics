@@ -53,6 +53,7 @@ en:
           can_view_scores: View scores
           create_failed: Unable to create Admin '%{name}', please contact your administrator
           create_success: Admin '%{name}' created successfully
+          email: Email
           first_name: First name
           first_name_required: First name is required
           last_name: Last name
@@ -85,10 +86,14 @@ en:
         view:
           first_name: First name
           last_name: Last name
+          project_admin: Project Admin
+          project_list: Project List
           role: Campaign Admin
           title_campaign: Campaign admin
           title_campaign_add: Add campaign admin
           title_campaign_edit: Edit campaign admin
+          title_project_admin_add: Add Project Admin
+          title_project_admin_edit: Edit Project Admin
       list:
         actions:
           cancel_text: Cancel
@@ -98,6 +103,8 @@ en:
           login: Login as admin
           no_permission: Insufficient permissions
           send_email: Send email
+          spoof:
+            login_successful: Login successful.
         columns:
           actions: Actions
           campaigns_list: Campaigns list
@@ -105,6 +112,7 @@ en:
           email: Email
           id: Id
           name: Name
+          projects_list: Projects list
         header:
           add_admin: Add admin
           search_admins: Search admins
@@ -123,6 +131,68 @@ en:
           onFailed: Unable to send reset password link to '%{email}', please contact your administrator
           onSuccess: Reset password link successfully sent to '%{email}'
           title: Reset admin password
+      permissions:
+        labels:
+          assessors:
+            manage: Manage
+            view: View
+          campaigns:
+            manage: Manage
+            manage_admins: Manage Admins
+            manage_messages: Manage Messages
+            manage_options: Manage Options
+            manage_report_approvals: Manage Report Approvals
+            manage_users: Manage Users
+            participant_options: Participant Options
+            report_options: Report Options
+            reset_nominations: Reset Nominations
+            view: View
+          clients:
+            manage: Manage
+            view: View
+          communications:
+            manage: Manage
+            view: View
+          dashboards:
+            accesssheet_manage: Accesssheet Manage
+            accesssheet_settings: Accesssheet Settings
+            accesssheet_view: Accesssheet View
+            view: View
+          datasheets:
+            manage: Manage
+            view: View
+          messages:
+            email: Email
+            instructions: Instructions
+            options: Options
+          projectSettings:
+            design: Design
+            integrations: Integrations
+            saml: SAML
+            security: Security
+            smtp: SMTP
+          projects:
+            manage_users: Manage Users
+            view: View
+          registrationCodes:
+            manage: Manage
+            view: View
+          reports:
+            manage: Manage
+          results:
+            approve_report: Approve Report
+            download_report: Download Report
+            edit_report: Edit Report
+            raw_responses: Raw Responses
+            report_data: Report Data
+            rescore_responses: Rescore Responses
+            reset_progress: Reset Progress
+            reset_responses: Reset Responses
+            scores: Scores
+            view_report: View Report
+          smsInvites:
+            manage: Manage
+            view: View
     all: " - All - "
     any: " - Any - "
     assessments:
@@ -1258,8 +1328,13 @@ en:
           successfully: User %{name} was successfully updated.
         user: User
       projects:
+        actions:
+          archive: Archive
+          unarchive: Unarchive
         archive:
+          content: Archive
           successfully: Project %{name} was successfully archived.
+          title: Archive Project
         assign_assessments:
           add_assessment: Add Assessment
           assessments: Assessments
@@ -1523,6 +1598,9 @@ en:
           new: New Project
           title: Project's options
           view_licenses: View Licenses
+        status:
+          active: Active
+          archived: Archived
         threesixty_campaigns:
           base:
             active: Active
@@ -1624,6 +1702,9 @@ en:
           url: Url
         toggle_status:
           successfully: Project %{name} was successfully updated.
+        unarchive:
+          content: Unarchive
+          title: Unarchive Project
         update:
           successfully: Project %{name} was successfully updated.
       registration_codes:
@@ -3156,6 +3237,8 @@ en:
       send_email: Send email
     projects:
       addProject: Add Project
+      columns:
+        project_number: Project Number
       design_settings:
         background_color: Background Color
         background_label: Background

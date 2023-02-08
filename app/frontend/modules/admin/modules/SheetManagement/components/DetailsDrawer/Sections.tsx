@@ -8,11 +8,11 @@ import {
   DrawerDataRecord,
   DrawerModes,
   ToggleDrawer,
-} from 'modules/admin/modules/SheetManagement/interfaces'
+} from '~/modules/admin/modules/SheetManagement/interfaces'
 
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
 
-import { toReadableString } from 'modules/admin/modules/SheetManagement/utils'
+import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
 
 const { I18n } = window
 

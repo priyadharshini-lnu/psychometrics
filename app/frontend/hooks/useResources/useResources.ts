@@ -7,12 +7,12 @@ import { PathReporter } from 'io-ts/PathReporter'
 import { useDispatch } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
 import humps from 'humps'
-import qs from 'qs'
+import qs from 'query-string'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
-import { Schema } from 'libs/jsonApi/schema'
-import { setResponseDataMismatched } from 'core/request'
+import { Schema } from '~/libs/jsonApi/schema'
+import { setResponseDataMismatched } from '~/core/request'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
@@ -95,10 +95,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
   }
 
-  const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }) => {
-    const { apiConfig } = args
+  const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }):
+    Promise<{ data: R, meta: M }> => {
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
-    let newApiConfig = apiConfig
+    let newApiConfig = _.merge({}, apiConfig, args.apiConfig)
 
     if (queryState) { newApiConfig = _.merge(newApiConfig, queryState) }
 
@@ -110,9 +110,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedMeta = humps.camelizeKeys(meta)
         setState((previousState: ResourceState<R[], M>) => (
-          { ...previousState, data: camelizedResponse, meta: humps.camelizeKeys(meta) }))
-        resolve(camelizedResponse)
+          { ...previousState, data: camelizedResponse, meta: camelizedMeta }))
+        resolve({ data: camelizedResponse, meta: camelizedMeta })
         if (responseType || args.responseType) {
           responseTypeValidation(t.array(args.responseType || responseType), camelizedResponse)
         }
@@ -280,11 +281,12 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const createResource: CreateResource<R> = async (
     body, args = { apiConfig },
   ) => {
+    const newApiConfig = args.apiConfig || apiConfig
     setRequests({ ...requests, add: { status: RequestStatus.Loading } })
 
     return new Promise(async (resolve, reject) => {
       const { data: response, error, errors } = await client.mutate<R>(
-        [resourceName, apiConfig || {}], humps.decamelizeKeys(body),
+        [resourceName, newApiConfig || {}], humps.decamelizeKeys(body),
         { url: resourceUrl },
       )
 
@@ -373,7 +375,11 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       return removeFilter(name)
     }
     let newUrlQuery = queryState || {}
-    newUrlQuery = { ...queryState, filter: { [name]: value }, page: { number: 1, size: queryState.page?.size } }
+    newUrlQuery = {
+      ...queryState,
+      filter: { ...queryState.filter, [name]: value },
+      page: { number: 1, size: queryState.page?.size },
+    }
     changeUrlQuery(newUrlQuery)
   }
 

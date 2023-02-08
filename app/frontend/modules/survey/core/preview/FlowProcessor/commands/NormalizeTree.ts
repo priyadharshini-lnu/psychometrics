@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
-import array from 'utils/array'
 import seedrandom from 'seedrandom'
+import array from '~/utils/array'
 import { NormalizedTree, ElementInterface } from '../interfaces'
 /*
   Normalize flow tree to list

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import styles from 'views/PropertyPanel/components/PropertyPanel.less'
+import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
 
 import { ValidationFieldsProps } from '../interfaces'
 

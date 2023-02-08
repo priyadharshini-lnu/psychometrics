@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Skeleton } from 'antd'
-import { useResources } from 'hooks/useResources'
-import { Dashboard as DashboardType, DashboardTR } from 'modules/admin/modules/campaigns/core/dashboard'
-import { EmbeddedDashboard } from 'modules/admin/modules/Dashboard/components/EmbeddedDashboard'
 import { useParams } from 'react-router-dom'
+import { useResources } from '~/hooks/useResources'
+import { Dashboard as DashboardType, DashboardTR } from '~/modules/admin/modules/campaigns/core/dashboard'
+import { EmbeddedDashboard } from '~/modules/admin/modules/Dashboard/components/EmbeddedDashboard'
 
 export const Preview: React.FC = () => {
   const { campaignId } = useParams<{ campaignId: string }>()

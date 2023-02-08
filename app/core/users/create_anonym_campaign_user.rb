@@ -17,7 +17,6 @@ module Users
           email = "Anonym#{Time.now.to_i}#{rand(10_000)}@example.com"
           break email unless User.exists?(email: email)
         end
-
         # Build anonym user with membership
         @user = User.create(
           role: User::REGULAR_ROLE, is_anonym: true,

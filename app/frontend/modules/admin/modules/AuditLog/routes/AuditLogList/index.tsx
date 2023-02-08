@@ -1,18 +1,18 @@
 
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { get as getLogs, fetch, fetchActions } from 'modules/admin/modules/AuditLog/core'
 import {
   Table, Row, Col, Pagination, Input, Space, Button, DatePicker,
 } from 'antd'
 import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
-import { DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import { Link } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import moment, { Moment } from 'moment'
 import { RangeValue } from 'rc-picker/lib/interface'
+import { get as getLogs, fetch, fetchActions } from '~/modules/admin/modules/AuditLog/core'
+import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 
 export const FILTER_PREDICATES = {
   recordType: 'In',

@@ -1,6 +1,6 @@
 import merge from 'lodash/merge'
 
-import { PropertiesModel } from 'modules/reports/interfaces/graphs/StackedBar'
+import { PropertiesModel } from '~/modules/reports/interfaces/graphs/StackedBar'
 
 export default function ChartOptions (model: PropertiesModel, animation: boolean) {
   const { fontSize, fontColor: color, fontFamily } = model.props.style

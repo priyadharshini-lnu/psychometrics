@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
-import { CountDisplay } from 'components/CountDisplay'
 import {
   Row, Col, Button, Empty,
 } from 'antd'
 import { ReloadOutlined, IssuesCloseOutlined } from '@ant-design/icons'
+import { CountDisplay } from '~/components/CountDisplay'
 
 type Props = {
   recordCount?: number

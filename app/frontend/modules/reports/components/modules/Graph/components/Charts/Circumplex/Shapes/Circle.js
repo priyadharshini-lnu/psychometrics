@@ -1,4 +1,4 @@
-import I18nStore from 'modules/reports/store/I18nStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
 import { CIRCLE_FONT_SIZE_RATE } from './consts'
 
 class Circle {

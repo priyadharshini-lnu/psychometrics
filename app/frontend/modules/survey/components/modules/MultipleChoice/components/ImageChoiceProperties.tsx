@@ -9,7 +9,7 @@ import {
 } from 'antd'
 
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
-import { PropertiesModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+import { PropertiesModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 
 const { I18n } = window
 

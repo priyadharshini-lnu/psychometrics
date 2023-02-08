@@ -21,7 +21,7 @@ module Users
     validate :validate_project_fields, if: :project?
     validate :validate_default_fields, if: :project?
 
-    validate :question_custom_validations, if: :project?
+    validate :question_center_validations, if: :project?
 
     def password_length
       return unless password
@@ -47,7 +47,7 @@ module Users
       end
     end
 
-    def question_custom_validations
+    def question_center_validations
       project.profile_setting.profile_fields.includes(:question).each do |field|
         question = field.question
         validation_errors = Questions::Validation.call!(question, custom_fields[field.question_id.to_s.to_sym],

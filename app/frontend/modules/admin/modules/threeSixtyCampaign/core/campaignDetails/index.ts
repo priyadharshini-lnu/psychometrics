@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { createReducer } from '~/utils/redux'
 import { RootState } from '../../../../core/rootReducers'
 
 export const get = (state: RootState) => _.get(state, ['threeSixtyCampaign', 'campaignDetails'])

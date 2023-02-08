@@ -16,42 +16,42 @@ import {
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { toReadableString } from 'modules/admin/modules/SheetManagement/utils'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
 
 import {
   get,
   fetch,
   FETCH as FETCH_SHEET,
   SheetType,
-} from 'modules/admin/modules/SheetManagement/core/list'
-import { get as getTotal } from 'modules/admin/modules/SheetManagement/core/total'
-import { get as getPermissions } from 'modules/admin/modules/SheetManagement/core/permissions'
+} from '~/modules/admin/modules/SheetManagement/core/list'
+import { get as getTotal } from '~/modules/admin/modules/SheetManagement/core/total'
+import { get as getPermissions } from '~/modules/admin/modules/SheetManagement/core/permissions'
 import {
   get as getColumns,
   getVisibleColumnNames,
-} from 'modules/admin/modules/SheetManagement/core/columnDefinitions'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/SheetManagement/core/columnDefinitions'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import {
   DrawerModes,
   ParentResourceType,
-} from 'modules/admin/modules/SheetManagement/interfaces'
+} from '~/modules/admin/modules/SheetManagement/interfaces'
 
-import { COLUMN_ID_EMAIL } from 'modules/admin/modules/SheetManagement/constants'
-import settings from 'modules/admin/settings'
+import { COLUMN_ID_EMAIL } from '~/modules/admin/modules/SheetManagement/constants'
+import settings from '~/modules/admin/settings'
 
-import Modals from 'modules/admin/components/Modals/'
+import Modals from '~/modules/admin/components/Modals/'
 
-import { CountDisplay } from 'components/CountDisplay'
-import { SelectionActions } from 'modules/admin/modules/SheetManagement/components/SelectionActions'
-import ToolsDropdown from 'modules/admin/modules/SheetManagement/components/ToolsDropdown'
-import { DetailsDrawer } from 'modules/admin/modules/SheetManagement/components/DetailsDrawer'
-import { AddEditDrawer } from 'modules/admin/modules/SheetManagement/components/AddEditDrawer'
-import { ImportSheetModal } from 'modules/admin/modules/SheetManagement/components/ImportSheetModal'
-import { useDeepCompareEffect } from 'hooks/useDeepCompareEffect'
+import { SelectionActions } from '~/modules/admin/modules/SheetManagement/components/SelectionActions'
+import ToolsDropdown from '~/modules/admin/modules/SheetManagement/components/ToolsDropdown'
+import { DetailsDrawer } from '~/modules/admin/modules/SheetManagement/components/DetailsDrawer'
+import { AddEditDrawer } from '~/modules/admin/modules/SheetManagement/components/AddEditDrawer'
+import { ImportSheetModal } from '~/modules/admin/modules/SheetManagement/components/ImportSheetModal'
+import { useDeepCompareEffect } from '~/hooks/useDeepCompareEffect'
+import { CountDisplay } from '~/components/CountDisplay'
+import { isRequestInProgress } from '~/core/request'
 
 const { I18n } = window
 
