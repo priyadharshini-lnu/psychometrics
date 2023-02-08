@@ -96,7 +96,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
             <span className="mr8">{I18n.t('common.text.reference_language')}</span>
             <Select className="mb8 width150px" placeholder={I18n.t('select')} onChange={updateRightLocale}>
               <Select.Option value="">
-                {I18n.t('empty')}
+                {I18n.t('common.text.none')}
               </Select.Option>
               {(options.availableInstructionLocales || []).map(locale => (
                 <Select.Option key={locale} value={locale}>
