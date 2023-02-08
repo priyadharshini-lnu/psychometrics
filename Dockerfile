@@ -1,4 +1,4 @@
-FROM ruby:3.1.2-slim as ruby-base
+FROM ruby:3.1.3-slim as ruby-base
 
 # Default env vars (applies to containers made from this image)
 # Can be overriden at run-time with -e
@@ -15,7 +15,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Here are the dependencies we need to build our app (and install Rails)
 # This example installs the PostgreSQL and SQLite libraries (two commonly used databases in Rails apps).
 #
-# We're also installing the latest nodejs and yarn packages here for webpacker.
+# We're also installing the latest nodejs
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python \
     && curl -sL https://deb.nodesource.com/setup_14.x | bash \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -96,7 +96,7 @@ COPY package.json yarn.lock .npmrc ./
 RUN yarn install --pure-lockfile && modclean -r
 
 
-FROM ruby-base as webpacker
+FROM ruby-base as bundle-assets
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
@@ -133,12 +133,11 @@ ARG S3_COMPATIBLE_STORAGE_PROVIDER="dummy"
 
 COPY config/database.yml.sample config/database.yml
 
-RUN (DISABLE_COVERAGE=1 bundle exec rails webpacker:compile || DISABLE_COVERAGE=1 bundle exec rails webpacker:compile) \
-    && bundle exec rake i18n:js:export \
-    && WEBPACKER_PRECOMPILE=false DISABLE_COVERAGE=1 bundle exec rails assets:precompile \
+RUN bundle exec rake i18n:js:export \
+    && DISABLE_COVERAGE=1 bundle exec rails assets:precompile \
     && rm -rf tmp/ && rm -rf node_modules
 
-FROM ruby:3.1.2-slim
+FROM ruby:3.1.3-slim
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
@@ -169,8 +168,8 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
 RUN mkdir ${APP_DIR}
 WORKDIR ${APP_DIR}
 
-COPY --from=webpacker /app/public/packs /app/public/packs
-COPY --from=webpacker /app/public/assets /app/public/assets
+COPY --from=bundle-assets /app/public/vite /app/public/vite
+COPY --from=bundle-assets /app/public/assets /app/public/assets
 COPY --from=ruby-gems /usr/local/bundle /usr/local/bundle
 
 COPY . ./
