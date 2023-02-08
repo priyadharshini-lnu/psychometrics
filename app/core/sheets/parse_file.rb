@@ -47,12 +47,12 @@ module Sheets
 
     def parse_file
       form.data_rows.each do |data|
-        email = ActionView::Base.full_sanitizer.sanitize(data[Sheet::EMAIL_COLUMN].strip)
+        email = data[Sheet::EMAIL_COLUMN].strip
         next if email.blank?
 
         row = accesssheet? ? sheet.rows.new(email: email) : sheet.rows.find_or_initialize_by(email: email)
         data = data.reject { |k, _v| k == Sheet::EMAIL_COLUMN }
-        row.data = (row.data || {}).merge(data)
+        row.data = (row.data || {}).merge(data.transform_values { |v| v.is_a?(String) ? v.strip : v })
         row.save!
       end
     end

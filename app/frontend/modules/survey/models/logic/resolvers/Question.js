@@ -19,7 +19,8 @@ export default class QuestionResolver extends BaseResolver {
 
   resolve (results) {
     if (!this.question || !this.predicate) { return false }
-    this.result = results[this.question.id]
+
+    this.result = this.question.hidden ? null : results[this.question.id]
 
     return this[this.predicate]()
   }
