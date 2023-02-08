@@ -1,8 +1,8 @@
 import React from 'react'
-import ResourceFormModal from 'components/ResourceFormModal'
 import {
   Form, Input, Checkbox, DatePicker,
 } from 'antd'
+import ResourceFormModal from '~/components/ResourceFormModal'
 import styles from './styles.less'
 
 const { TextArea } = Input

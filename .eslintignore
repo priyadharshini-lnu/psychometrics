@@ -1,2 +1,3 @@
 app/frontend/__tests__
 jest-setup.js
+vite.config.ts

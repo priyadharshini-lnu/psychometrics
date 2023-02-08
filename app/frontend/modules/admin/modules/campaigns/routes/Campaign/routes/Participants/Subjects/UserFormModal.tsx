@@ -3,7 +3,7 @@ import {
   Form, Input, Radio, Space,
 } from 'antd'
 
-import ResourceFormModal from 'components/ResourceFormModal'
+import ResourceFormModal from '~/components/ResourceFormModal'
 
 const { I18n } = window
 

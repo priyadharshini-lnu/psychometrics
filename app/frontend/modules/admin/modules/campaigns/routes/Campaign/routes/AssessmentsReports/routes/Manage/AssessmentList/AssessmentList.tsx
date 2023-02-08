@@ -5,8 +5,8 @@ import {
 
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import _ from 'lodash'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ActionsMenu } from './ActionsMenu'
 import { PropsFromRedux } from './connect'
 

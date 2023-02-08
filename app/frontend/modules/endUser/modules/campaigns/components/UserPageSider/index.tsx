@@ -8,16 +8,16 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 
-import { PageSider } from 'glint'
-import { CampaignIcon } from 'glint/icons'
 
-import lighthouseLogo from 'modules/endUser/assets/images/lighthouseLogoWide.png'
-import { history } from 'modules/endUser/store'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import lighthouseLogo from '~/modules/endUser/assets/images/lighthouseLogoWide.png'
+import { history } from '~/modules/endUser/store'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   getProjectLogo,
   getName as getProjectName,
-} from 'modules/endUser/modules/campaigns/core/project'
+} from '~/modules/endUser/modules/campaigns/core/project'
+import { CampaignIcon } from '~/glint/icons'
+import { PageSider } from '~/glint'
 import styles from './styles.less'
 
 const connector = connect((state: RootState) => ({

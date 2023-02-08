@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, message } from 'antd'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { Props as AssessmentListProps } from './AssessmentList'
 
 const { I18n } = window

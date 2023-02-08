@@ -3,13 +3,13 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Card, Progress,
 } from 'antd'
-import AssessmentContainer from 'modules/survey/containers/AssessmentContainer'
-import { getProgress } from 'core/preview/FlowProcessor/selectors'
 import _ from 'lodash'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { useLocation } from 'react-router-dom'
-import { Language } from 'modules/endUser/modules/campaigns/components/Language'
 import cs from 'classnames'
+import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
+import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
 import styles from './styles.less'
 import { fetchAssessorAssessment, getAssessorForm, getCurrentAssessorForm } from '../../core/evaluation'
 

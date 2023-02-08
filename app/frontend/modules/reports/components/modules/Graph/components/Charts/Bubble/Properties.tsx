@@ -13,11 +13,11 @@ import {
 import { connect } from 'react-redux'
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 
-import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bubble'
+import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bubble'
 
-import { getAssessmentFactors } from 'modules/reports/core/builder/selectors'
-import I18nStore from 'modules/reports/store/I18nStore'
-import { RootState } from 'modules/reports/core/rootReducers'
+import { getAssessmentFactors } from '~/modules/reports/core/builder/selectors'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import { RootState } from '~/modules/reports/core/rootReducers'
 
 import styles from './styles.less'
 

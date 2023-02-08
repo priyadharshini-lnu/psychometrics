@@ -3,7 +3,7 @@ import {
   Card, Col, Button, Typography, Progress, Row, Tooltip, Space,
 } from 'antd'
 
-import { DirectionalArrowIcon } from 'glint'
+import { DirectionalArrowIcon } from '~/glint'
 
 import styles from './styles.less'
 

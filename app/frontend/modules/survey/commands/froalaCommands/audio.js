@@ -1,4 +1,4 @@
-
+import _ from 'lodash'
 import FE from 'froala-editor'
 
 const { $ } = window

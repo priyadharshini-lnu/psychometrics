@@ -1,7 +1,7 @@
 import lodashGet from 'lodash/get'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { createReducer } from 'utils/redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 
 import { FETCH, FetchAction } from './list'
 

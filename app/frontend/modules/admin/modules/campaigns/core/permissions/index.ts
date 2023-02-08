@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { createReducer } from '~/utils/redux'
 import { FETCH } from '../list'
 
 const defaultState: State = {

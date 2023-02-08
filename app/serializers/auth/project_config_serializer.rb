@@ -14,13 +14,7 @@ module Auth
       end
     end
 
-    def background_color
-      object.design_migrated? ? design_setting.background_color : object.design['background_color']
-    end
-
-    def login_box_position
-      object.design_migrated? ? design_setting.login_box_position : object.design['login_box_position']
-    end
+    delegate :background_color, :login_box_position, to: :design_setting
 
     def client_logo
       design_setting.logo&.url
@@ -45,7 +39,7 @@ module Auth
     private
 
     def design_setting
-      object.design_migrated ? object.design_setting : object
+      object.design_setting
     end
 
     def fallback_background

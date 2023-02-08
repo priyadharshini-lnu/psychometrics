@@ -1,4 +1,4 @@
-import nestedConditions from 'modules/admin/core/common/nestedConditions'
+import nestedConditions from '~/modules/admin/core/common/nestedConditions'
 
 export const ADD = 'threeSixty/reportOptions/availabilityConditions/ADD'
 export const REMOVE = 'threeSixty/reportOptions/availabilityConditions/REMOVE'

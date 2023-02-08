@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import { perform } from 'modules/reports/core/temp/socket'
-import I18nStore from 'modules/reports/store/I18nStore'
+import { perform } from '~/modules/reports/core/temp/socket'
+import I18nStore from '~/modules/reports/store/I18nStore'
 import {
   PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE, SAVILLE,
   ORG_SURVEYS, CASE_STUDIES,
-} from 'modules/reports/models/Assessment'
+} from '~/modules/reports/models/Assessment'
 import Filter from './Filter'
 
 export const PAGE_SIZES = [

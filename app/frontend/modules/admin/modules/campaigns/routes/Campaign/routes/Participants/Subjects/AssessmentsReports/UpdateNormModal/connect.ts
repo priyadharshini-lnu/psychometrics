@@ -1,9 +1,9 @@
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import { getSingle, updateNorm, UPDATE_NORM } from 'modules/admin/modules/campaigns/core/userAssessments'
-import { isRequestInProgress } from 'core/request'
+import { getSingle, updateNorm, UPDATE_NORM } from '~/modules/admin/modules/campaigns/core/userAssessments'
+import { isRequestInProgress } from '~/core/request'
 import { OwnProps } from './UpdateNormModal'
 
 const connecter = connect(

@@ -1,4 +1,4 @@
-import { DAILY_DIGEST_EMAILS, CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
+import { DAILY_DIGEST_EMAILS, CONSOLIDATED_EMAIL_NAMES } from '~/modules/admin/constants/emailTemplate'
 
 const FIELDS = [
   {

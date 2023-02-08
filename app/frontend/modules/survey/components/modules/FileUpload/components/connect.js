@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
-import { getI18n, getMediaResponseByQuestionId } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import { getI18n, getMediaResponseByQuestionId } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import {
   markQuestionInProgress,
   removeQuestionInProgress,
   addMediaResponse,
   removeMediaResponse,
-} from 'modules/survey/core/preview/FlowProcessor/actions'
+} from '~/modules/survey/core/preview/FlowProcessor/actions'
 
 export default connect(
   ({ preview }, { model }) => ({

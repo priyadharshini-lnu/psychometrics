@@ -3,24 +3,24 @@ import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-import qs from 'qs'
-
-import userPresenter from 'presenters/user'
-import statusPresenter from 'presenters/status'
-import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { statusMenuItems } from 'modules/endUser/modules/campaigns/common/menuItems'
-import { secondsLeftFromNow } from 'utils/time'
-import { Language } from 'modules/endUser/modules/campaigns/components/Language'
-import store from 'modules/endUser/store'
-import { CountdownTimer, PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from 'glint'
+import qs from 'query-string'
 
 import { connect } from 'react-redux'
+import userPresenter from '~/presenters/user'
+import statusPresenter from '~/presenters/status'
+import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
+import { statusMenuItems } from '~/modules/endUser/modules/campaigns/common/menuItems'
+import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import store from '~/modules/endUser/store'
+
 import {
   fetchEvaluation, fetchAssessment, clearEvaluation,
   updateStatus,
-} from 'modules/endUser/modules/campaigns/core/evaluation'
-import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
-import { getProgress } from 'core/preview/FlowProcessor/selectors'
+} from '~/modules/endUser/modules/campaigns/core/evaluation'
+import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
+import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
+import { CountdownTimer, PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from '~/glint'
+import { secondsLeftFromNow } from '~/utils/time'
 import { ResourcesTabs } from '../../components/ResourcesTabs'
 import styles from './Evaluation.less'
 

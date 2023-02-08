@@ -8,7 +8,7 @@ module AdminJobs
     def call
       # TODO: get rid of URI.open
       import_data = CSV.parse(URI.open(record.file.url)) # rubocop:disable Security/Open
-      import_data = ::Campaigns::Users::ParseImportData.call!(import_data)
+      import_data = ::Campaigns::Users::ParseImportData.call!(import_data, campaign)
       users_those_pwd_not_changed, imported_users = ::Campaigns::Users::ProcessImport.call!(
         campaign, record.owner, import_data[1..], record.data['operation'], record
       )

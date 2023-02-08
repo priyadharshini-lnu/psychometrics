@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { PageLoadSpinner } from 'glint'
+import { PageLoadSpinner } from '~/glint'
 
 export const withLoadingSpinner = (Component: (props:object) => React.ReactElement, maxWaitTime: number) => (
   props: object,

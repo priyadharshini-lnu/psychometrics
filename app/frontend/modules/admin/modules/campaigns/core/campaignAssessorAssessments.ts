@@ -1,7 +1,7 @@
-import { RootState } from 'modules/admin/core/rootReducers'
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 import { FETCH_ASSESSMENTS_AND_REPORTS } from './current'
 
 export const get = (state: RootState) => _.get(state, ['campaigns', 'campaignAssessorAssessments'])

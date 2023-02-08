@@ -1,5 +1,5 @@
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { createReducer } from '~/utils/redux'
 
 const FETCH_MANAGERS = 'threeSixty/managers/FETCH_MANAGERS'
 

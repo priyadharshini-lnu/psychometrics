@@ -1,4 +1,4 @@
-import NormFields from 'modules/admin/modules/NormEditor/interfaces/NormFields'
+import NormFields from '~/modules/admin/modules/NormEditor/interfaces/NormFields'
 
 export const SAVE_NORM = 'SAVE_NORM'
 

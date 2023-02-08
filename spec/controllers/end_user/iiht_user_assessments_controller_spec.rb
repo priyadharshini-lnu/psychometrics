@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe EndUser::IihtUserAssessmentsController, type: :controller do
-  let(:user) { create(:user, :with_project_membership) }
+  let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:user_assessment) do
     create(:user_assessment, evaluator: user, subject: user, iiht_user_assessment: build(:iiht_user_assessment))
   end
@@ -15,6 +15,8 @@ RSpec.describe EndUser::IihtUserAssessmentsController, type: :controller do
   describe 'GET pass' do
     it 'redirects to campaign_path if user_assessment is completed' do
       user_assessment.completed!
+      allow(user.user_profile).to receive(:photo) { 'test' }
+
       get :pass, params: { id: user_assessment.id }
 
       expect(response).to redirect_to(assessment_completed_path(campaign))

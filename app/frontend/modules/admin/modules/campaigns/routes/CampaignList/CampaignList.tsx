@@ -23,28 +23,26 @@ import {
   FETCH,
   get as getCampaign,
   remove,
-} from 'modules/admin/modules/campaigns/core/list'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { get as getTotal } from 'modules/admin/modules/campaigns/core/total'
-import { get as getPermissions } from 'modules/admin/modules/campaigns/core/permissions'
-import { get as getCurrentUser } from 'core/currentUser'
-import { isProjectMigrated } from 'core/config'
-import { isRequestInProgress } from 'core/request'
-import { RootState } from 'modules/admin/core/rootReducers'
-import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+} from '~/modules/admin/modules/campaigns/core/list'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { get as getTotal } from '~/modules/admin/modules/campaigns/core/total'
+import { get as getPermissions } from '~/modules/admin/modules/campaigns/core/permissions'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import {
   STATUSES,
   DEFAULT_PAGE_SIZE,
   TYPES,
   FILTER_PREDICATES,
-} from 'constants/campaign'
+} from '~/constants/campaign'
 
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import Modals from 'modules/admin/components/Modals/'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import { CountDisplay } from 'components/CountDisplay'
-import Breadcrumb from '../../components/Breadcrumb'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import Modals from '~/modules/admin/components/Modals/'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { CountDisplay } from '~/components/CountDisplay'
+import { isRequestInProgress } from '~/core/request'
+import { get as getCurrentUser } from '~/core/currentUser'
 import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
 import RemoveCampaignModal from './RemoveCampaignModal'
 import CommonCampaignFormModal from './CommonCampaignFormModal'
@@ -69,7 +67,6 @@ const connector = connect(
     total: getTotal(state),
     permissions: getPermissions(state),
     currentUser: getCurrentUser(state),
-    isProjectMigrated: isProjectMigrated(state),
   }),
   {
     fetch,
@@ -96,7 +93,6 @@ const CampaignListComponent: React.FC<Props> = ({
   getSortOrder,
   changePage,
   openModal,
-  isProjectMigrated,
 }) => {
   const params = useParams<{ projectId: string }>()
   const projectId = parseInt(params.projectId, 10)
@@ -107,29 +103,6 @@ const CampaignListComponent: React.FC<Props> = ({
 
   return (
     <div>
-      {!isProjectMigrated && (
-        <Breadcrumb
-          request={{
-            fields: ['project', 'client'],
-            data: {
-              projectId,
-            },
-          }}
-          crumbs={[
-            {
-              link: () => '/administration',
-              label: () => I18n.t('administration.clients.tenancies'),
-            },
-            {
-              link: state => `/administration/clients/${state.client.id}/projects`,
-              label: state => state.client.name,
-            },
-            {
-              label: state => state.project.name,
-            },
-          ]}
-        />
-      )}
       <Row
         justify="space-between"
         align="middle"

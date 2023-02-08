@@ -6,7 +6,6 @@ module Administration
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[show edit update destroy sidebar toggle_status copy archive]
     before_action :skip_authorization, only: [:sidebar]
-    append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
     append_before_action :init_collections, only: %i[new create edit update]
     before_action :skip_policy_scope, only: [:index]

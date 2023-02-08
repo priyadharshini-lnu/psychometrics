@@ -18,8 +18,8 @@ import {
   stopTranscription,
   OnTranscribe,
   OnTranscribeError,
-} from 'libs/amazon-transcribe-websocket-static'
-import { convertSecondsToMMSS } from 'utils/time'
+} from '~/libs/amazon-transcribe-websocket-static'
+import { convertSecondsToMMSS } from '~/utils/time'
 
 import styles from './styles.less'
 

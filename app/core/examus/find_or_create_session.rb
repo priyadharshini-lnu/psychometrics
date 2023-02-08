@@ -15,19 +15,18 @@ module Examus
       existing_session_can_be_used = %w[started ready_to_start].include?(status_response&.dig('status'))
 
       if proctoring_session.nil? || !existing_session_can_be_used
-        unless Licenses::IsEnoughLicenseCredits.call!(@campaign_user)
-          return broadcast :error, I18n.t('licenses.not_enough_proctoring_credits')
-        end
+        license = campaign_user.campaign.proctoring_license_with_enough_credits
+
+        return broadcast :error, I18n.t('licenses.not_enough_proctoring_credits') unless license
 
         proctoring_session = ProctoringSession.create(
           session_id: SecureRandom.uuid,
           campaign_user_id: campaign_user.id,
           started_at: Time.zone.now
         )
-        license = campaign_user.campaign.proctoring_license
-        credits = Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)
 
         if license
+          credits = Campaigns::Proctoring::GetProctoringCredits.call!(campaign_user.campaign)
           LicenseUsage.create(
             campaign_id: campaign_user.campaign_id,
             user_id: campaign_user.user_id,

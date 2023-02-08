@@ -2,10 +2,10 @@ import * as t from 'io-ts'
 
 import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import { appendToList, createReducer, removeFromList } from 'utils/redux'
+import { appendToList, createReducer, removeFromList } from '~/utils/redux'
 
 const AssessorInfoTR = {
   id: t.number,

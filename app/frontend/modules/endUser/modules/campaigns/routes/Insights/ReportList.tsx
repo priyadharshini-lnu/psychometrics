@@ -4,10 +4,10 @@ import {
   Row, Col, Layout, Skeleton, Button, Tooltip,
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
-import { RootState } from 'modules/endUser/core/rootReducers'
-import { MediaQueryContext } from 'glint'
 import _ from 'lodash'
 import cs from 'classnames'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { MediaQueryContext } from '~/glint'
 import bg from './media/Background2.png'
 import styles from './ReportList.less'
 

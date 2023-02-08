@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Menu as AntMenu } from 'antd'
-import routeUtils from 'utils/route'
+import routeUtils from '~/utils/route'
 import routes from '../routes'
 import { PropsFromRedux } from './connect'
 

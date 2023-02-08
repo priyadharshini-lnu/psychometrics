@@ -1,7 +1,7 @@
 import React from 'react'
 import cs from 'classnames'
-import { rgba2hex } from 'utils/color'
 import { RGBColor } from 'react-color'
+import { rgba2hex } from '~/utils/color'
 import styles from './styles.less'
 
 interface Props {

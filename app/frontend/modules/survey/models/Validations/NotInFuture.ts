@@ -1,6 +1,6 @@
-import { Question } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import { I18n } from 'modules/survey/store/StoreWatchman'
 import moment from 'moment'
+import { Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 
 class NotInFuture {
   question: Question

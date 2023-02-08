@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select as BaseSelect, Dropdown, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
 import styles from '../../../FormStyle.less'
 import OptionList from './OptionList'
 

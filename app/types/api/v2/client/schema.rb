@@ -26,8 +26,8 @@ module Api
 
         def self.extra_index_meta_schema
           proc do
-            required(:countries).array(:str?)
-            required(:types).array(:str?)
+            optional(:countries).array(:str?)
+            optional(:types).array(:str?)
           end
         end
       end

@@ -1,14 +1,17 @@
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import { updateNorm, UPDATE_NORM } from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { isRequestInProgress } from 'core/request'
-import { getSingle } from 'modules/admin/modules/campaigns/core/assessments'
-import { OwnProps } from './UpdateNormModal'
+import { updateNorm, UPDATE_NORM } from '~/modules/admin/modules/campaigns/core/assessments/actions'
+import { getSingle } from '~/modules/admin/modules/campaigns/core/assessments'
+import { isRequestInProgress } from '~/core/request'
+
+type AssessmentIdProp = {
+  campaignAssessmentId: number
+}
 
 const connecter = connect(
-  (state: RootState, props: OwnProps) => ({
+  (state: RootState, props: AssessmentIdProp) => ({
     loading: isRequestInProgress(state, UPDATE_NORM),
     assessment: getSingle(state, props.campaignAssessmentId),
   }),

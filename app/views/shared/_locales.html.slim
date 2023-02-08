@@ -1,4 +1,4 @@
-= javascript_pack_tag "locales/#{I18n.locale || 'en'}"
+= vite_javascript_tag "entrypoints/locales/#{I18n.locale || 'en'}.ts"
 
 javascript:
   I18n.availableLocales = #{(@current_project&.available_locales || Settings.enduser_locales).to_json.html_safe}

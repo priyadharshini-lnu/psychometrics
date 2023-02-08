@@ -1,9 +1,9 @@
 import React from 'react'
 import { Input, Button, Divider } from 'antd'
-import ChoicesInput from 'modules/survey/components/ChoicesInput'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
+import ChoicesInput from '~/modules/survey/components/ChoicesInput'
 
-import { PropertiesModel } from 'modules/survey/interfaces/questions/TextEntry'
+import { PropertiesModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
 import styles from './PropertyPanelStyle.less'
 

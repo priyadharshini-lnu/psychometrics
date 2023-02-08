@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
 import {
-  Input, Tooltip, Divider,
+  Input, Tooltip, Divider, Switch, Space,
 } from 'antd'
+import { useTransition, animated as a } from 'react-spring'
+import { SendOutlined } from '@ant-design/icons'
+import _ from 'lodash'
 import {
   get,
   getCurrent,
@@ -14,14 +17,12 @@ import {
   getSelectedModule,
   Comment,
   Module,
-} from 'modules/admin/modules/campaigns/core/userReports'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { SendOutlined } from '@ant-design/icons'
-import { CommentItem } from 'glint/components/CommentItem'
-import { CommentReply } from 'glint'
-import { useResources } from 'hooks/useResources'
-import Utils from 'modules/survey/utils'
-import _ from 'lodash'
+} from '~/modules/admin/modules/campaigns/core/userReports'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { useResources } from '~/hooks/useResources'
+import Utils from '~/modules/survey/utils'
+import { CommentReply } from '~/glint'
+import { CommentItem } from '~/glint/components/CommentItem'
 import styles from './styles.less'
 
 const connecter = connect((state: RootState) => ({
@@ -62,7 +63,7 @@ const Compose = ({ selected, disabled, onSend }) => {
   return (
     <div className={styles.compose}>
       <div className={styles.hint}>
-        {selected ? Utils.stripHTML(selected.props.text) : 'Select a text module to comment'}
+        {selected ? selected.name : 'Select a text module to comment'}
       </div>
       <Input
         disabled={disabled}
@@ -90,6 +91,8 @@ function Comments ({
   } = useResources<Comment>('user_report_comments',
     { basePath: `user_reports/${userReport.id}` })
 
+  const [hideResolved, setHideResolved] = useState(true)
+
   useEffect(() => {
     setData(comments)
   }, [])
@@ -109,7 +112,7 @@ function Comments ({
     return [...threads, ...comments.filter(c => !_.find(threads, { id: c.id }))]
   }, [])
 
-  const threads = orderedThreads
+  const threads = hideResolved ? orderedThreads.filter(thread => !thread.resolved) : orderedThreads
   const createComment = (text: string, parent?: Comment) => {
     const data: {text: string, parent?: {id: string}, reportsModule?: {id: string}} = {
       text,
@@ -130,10 +133,10 @@ function Comments ({
     }).then(resolve)
   })
 
-  const resolveComment = (id: string) => {
+  const resolveComment = (id: string, resolved: boolean) => {
     updateResource({
       id,
-      resolved: true,
+      resolved: !resolved,
     })
   }
 
@@ -141,16 +144,30 @@ function Comments ({
     removeResource(id)
   }
 
+  const transition = useTransition(threads, {
+    from: { opacity: 0 },
+    enter: { opacity: 1, delay: 200 },
+    leave: { opacity: 0 },
+    key: c => c.id,
+  })
+
   return (
     <div className={styles.comments}>
+      <div className={styles.filters}>
+        <Space>
+          <span>Hide Resolved</span>
+          <Switch checked={hideResolved} onChange={() => setHideResolved(!hideResolved)} />
+        </Space>
+      </div>
       <Compose selected={selectedModule} disabled={!selectedModuleId} onSend={createComment} />
       <Divider style={{ margin: 0 }} />
-      {threads.map((thread) => {
+
+      {transition((style, thread) => {
         const module = modules.find(
           m => m.id.toString() === (thread.moduleId?.toString() || thread.reportsModule?.id),
         )
         return (
-          <>
+          <a.div style={{ ...style }} key={thread.id}>
             <div
               key={thread.id}
               className={
@@ -172,10 +189,10 @@ function Comments ({
               <CommentItem
                 canEdit={thread.creator.id.toString() === currentUser.id.toString()}
                 canRemove={thread.creator.id.toString() === currentUser.id.toString()}
-                canResolve={false} // temporary disabled
+                canResolve
                 comment={thread}
                 onCommentEditSave={comment => updateComment(comment)}
-                onCommentResolve={commentId => resolveComment(commentId)}
+                onCommentResolve={(commentId, resolved) => resolveComment(commentId, resolved)}
                 onCommentRemove={commentId => removeComment(commentId)}
                 onRead={readComment}
               />
@@ -183,8 +200,8 @@ function Comments ({
               {getThreadReplies(thread.id.toString()).map(comment => (
                 <CommentItem
                   key={comment.id}
-                  canEdit={thread.creator.id.toString() === currentUser.id.toString()}
-                  canRemove={thread.creator.id.toString() === currentUser.id.toString()}
+                  canEdit={comment.creator.id.toString() === currentUser.id.toString()}
+                  canRemove={comment.creator.id.toString() === currentUser.id.toString()}
                   comment={comment}
                   onCommentEditSave={comment => updateComment(comment)}
                   onCommentRemove={commentId => removeComment(commentId)}
@@ -200,7 +217,7 @@ function Comments ({
               </div>
             </div>
             <Divider style={{ margin: '0' }} />
-          </>
+          </a.div>
         )
       })}
     </div>

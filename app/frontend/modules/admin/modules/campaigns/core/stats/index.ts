@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import { RootState } from 'modules/reports/core/rootReducers'
 import { Moment } from 'moment'
+import { RootState } from '~/modules/reports/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 
 interface UserStats {
   total: number

@@ -2,6 +2,9 @@
 
 class UserReport < ApplicationRecord
   include WorkflowActiverecord
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
@@ -14,12 +17,23 @@ class UserReport < ApplicationRecord
   has_one :threesixty_campaign, through: :campaign
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
+  has_many :user_report_events
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, to: :report
 
   mount_base64_uploader :pdf, Private::PdfUploader, file_name: proc { 'report' }
+
+  # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts
+  # when serializing user_reports; :pdf attribute already exists in schema
+  # TODO: will be removed after full ActiveStorage migration
+  has_one_attached :as_pdf_file, service: Settings.storage.private_storage_service
+  # TODO: add filename validation?
+  validates :as_pdf_file, content_type: %w[pdf]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :pdf
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 

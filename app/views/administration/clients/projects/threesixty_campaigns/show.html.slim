@@ -3,11 +3,4 @@ div#three-sixty-container
 javascript:
   window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
 
-= javascript_pack_tag 'vendors2'
-= stylesheet_pack_tag 'vendors2'
-= javascript_pack_tag 'vendors'
-= stylesheet_pack_tag 'vendors'
-= javascript_pack_tag 'survey'
-= javascript_pack_tag 'interactiveAssessments'
-= javascript_pack_tag 'admin/threeSixtyCampaign'
-= stylesheet_pack_tag 'admin/threeSixtyCampaign'
+= vite_javascript_tag 'entrypoints/admin/threesixty_campaign.jsx'

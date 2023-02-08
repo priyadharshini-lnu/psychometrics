@@ -5,8 +5,8 @@ import {
 } from 'antd'
 import { TeamOutlined, PlusOutlined, CloseOutlined } from '@ant-design/icons'
 
-import userPresenter from 'presenters/user'
-import { relationshipWithoutSelf } from 'core/relationship'
+import userPresenter from '~/presenters/user'
+import { relationshipWithoutSelf } from '~/core/relationship'
 import styles from './NominationForm.less'
 
 const { Title } = Typography

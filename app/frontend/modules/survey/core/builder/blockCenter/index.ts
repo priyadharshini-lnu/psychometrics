@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { createReducer } from 'utils/redux'
 import { denormalize } from 'normalizr'
 import _ from 'lodash'
-import { setIn } from 'utils/immutable'
-import { Block as BlockInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import QuestionWrapper from 'modules/survey/models/QuestionSerializer'
-import BlockWrapper from 'modules/survey/models/BlockSerializer'
-import { blocks } from 'modules/survey/store/schema'
+import { createReducer } from '~/utils/redux'
+import { setIn } from '~/utils/immutable'
+import { Block as BlockInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import QuestionWrapper from '~/modules/survey/models/QuestionSerializer'
+import BlockWrapper from '~/modules/survey/models/BlockSerializer'
+import { blocks } from '~/modules/survey/store/schema'
 import { QuestionSerializer, BlockSerializer } from '../assessment/SerializeAssessment'
 
 export const SAVE = 'survey/block_center/SAVE'

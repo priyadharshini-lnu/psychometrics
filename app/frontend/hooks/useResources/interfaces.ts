@@ -1,5 +1,5 @@
 import { PartialDeep } from 'type-fest'
-import { AdditionRelationshipAttribute } from 'libs/jsonApi/interfaces'
+import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 
 export enum RequestStatus {
   Loading = 'loading',
@@ -39,6 +39,7 @@ export interface UrlQuery {
 
 export interface ApiConfig extends UrlQuery {
   include?: string[]
+  include_meta?: string[]
   query?: {
     [key:string]: unknown
   }

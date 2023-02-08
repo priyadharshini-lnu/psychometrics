@@ -5,23 +5,23 @@ import {
 import {
   MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
 } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
+import { useParams } from 'react-router-dom'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
   get as getAssessorAssessments, fetch, reset, resetProgress, selectRecords, getSelectedIds, bulkDelete, BULK_DELETE,
   rescore,
-} from 'modules/admin/modules/campaigns/core/assessorAssessments'
-import { getCurrent } from 'modules/admin/modules/campaigns/core/assessors'
-import { isRequestInProgress } from 'core/request'
-import { RootState } from 'modules/admin/core/rootReducers'
-import settings from 'modules/admin/settings'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable/'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
-import { useParams } from 'react-router-dom'
-import Modals from 'modules/admin/components/Modals/'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
+} from '~/modules/admin/modules/campaigns/core/assessorAssessments'
+import { getCurrent } from '~/modules/admin/modules/campaigns/core/assessors'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import settings from '~/modules/admin/settings'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable/'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
+import Modals from '~/modules/admin/components/Modals/'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { isRequestInProgress } from '~/core/request'
 import styles from './styles.less'
 import AddAssessmentModal from './AddAssessmentModal'
 

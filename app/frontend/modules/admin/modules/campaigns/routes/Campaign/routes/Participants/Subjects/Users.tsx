@@ -2,19 +2,19 @@ import React, { useEffect } from 'react'
 import {
   Table, Menu, Row, Col, Input, Select, Pagination, Button, Modal, Switch, Tag, message, Tooltip,
 } from 'antd'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import settings from 'modules/admin/settings'
-import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
-import Modals from 'modules/admin/components/Modals/'
-
-import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { Link } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import settings from '~/modules/admin/settings'
+import { State as UserState } from '~/modules/admin/modules/campaigns/core/users'
+import Modals from '~/modules/admin/components/Modals/'
+
+import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import styles from './styles.less'
 import UserFormModal from './UserFormModal'
 import ImportUsersModal from './ImportUsersModal'

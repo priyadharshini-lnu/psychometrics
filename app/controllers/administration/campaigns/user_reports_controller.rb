@@ -34,39 +34,51 @@ module Administration
 
       def start_qc
         audit! :start_qc, resource, campaign: resource.campaign
+        old_user_report_status = resource.approval_status
         resource.start_qc!
+        create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
 
       def abort_qc
         audit! :abort_qc, resource, campaign: resource.campaign
+        old_user_report_status = resource.approval_status
         resource.abort_qc!
+        create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
 
       def send_for_approval
         audit! :send_for_approval, resource, campaign: resource.campaign
+        old_user_report_status = resource.approval_status
         resource.send_for_approval!
+        create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
 
       def request_changes
         audit! :request_changes, resource, campaign: resource.campaign
+        old_user_report_status = resource.approval_status
         resource.request_changes!
+        create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
 
       def approve
         audit! :approve, resource, campaign: resource.campaign
+        old_user_report_status = resource.approval_status
         resource.approve!
         resource.update!(approval_status_owner_id: current_user.id)
+        create_event(old_user_report_status)
         generate_report(resource) if resource.generatable?
         render json: { status: resource.approval_status }
       end
 
       def remove_approval
         audit! :remove_approval, resource, campaign: resource.campaign
+        old_user_report_status = resource.approval_status
         resource.remove_approval!
+        create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
 
@@ -106,6 +118,18 @@ module Administration
       end
 
       private
+
+      def create_event(from)
+        UserReportEvent.create!(
+          user_report_id: resource.id,
+          initiator_id: current_user.id,
+          event_type: 'status_changed',
+          details: {
+            from: I18n.t("user_reports.approval_statuses.#{from}"),
+            to: I18n.t("user_reports.approval_statuses.#{resource.approval_status}")
+          }
+        )
+      end
 
       def view_report_as
         :admin

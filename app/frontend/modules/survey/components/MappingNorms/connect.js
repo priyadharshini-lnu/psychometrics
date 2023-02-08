@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { closeModal, getData } from 'modules/admin/core/ui/modals'
-import { allQuestions } from 'core/builder/assessment/selectors'
-import { addNormRule, removeNormRule, changeDefaultNorm } from 'modules/survey/core/builder/assessment/actions'
+import { closeModal, getData } from '~/modules/admin/core/ui/modals'
+import { allQuestions } from '~/modules/survey/core/builder/assessment/selectors'
+import { addNormRule, removeNormRule, changeDefaultNorm } from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
   (state) => {

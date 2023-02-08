@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { Col, Row, Table } from 'antd'
-import { CSVLink } from 'react-csv'
+import { CSVLink } from 'react-csv/lib/index'
 import { LabelKeyObject } from 'react-csv/components/CommonPropTypes'
 import map from 'lodash/map'
 import find from 'lodash/find'
-import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 
 interface ScoringTableProps {

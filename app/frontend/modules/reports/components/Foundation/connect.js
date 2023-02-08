@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { closeRichEditor, selectModule, unselectModules } from 'modules/reports/core/builder/actions'
+import { closeRichEditor, selectModule, unselectModules } from '~/modules/reports/core/builder/actions'
 
 export default connect(
   state => ({

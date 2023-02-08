@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getI18n, getQuestionScoring } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import { getI18n, getQuestionScoring } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 export default connect(({ preview }, { model: { id } }) => ({
   showQuestionScoring: preview.showQuestionScoring,

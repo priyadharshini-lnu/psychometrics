@@ -1,5 +1,5 @@
 import { Options, AxisLabelsFormatterContextObject } from 'highcharts-v9'
-import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
+import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 
 type changeLabelFun = (labelObj: AxisLabelsFormatterContextObject<string>) => void
 

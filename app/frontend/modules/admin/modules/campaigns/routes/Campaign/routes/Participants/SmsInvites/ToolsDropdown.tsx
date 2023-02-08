@@ -3,9 +3,9 @@ import {
   Button, Menu,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import { State as SmsInvites } from 'modules/admin/modules/campaigns/core/smsInvites'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { State as SmsInvites } from '~/modules/admin/modules/campaigns/core/smsInvites'
 
 const { I18n } = window
 

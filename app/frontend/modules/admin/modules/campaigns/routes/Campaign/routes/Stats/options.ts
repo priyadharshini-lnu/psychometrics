@@ -1,5 +1,5 @@
 import { Options } from 'highcharts-v9'
-import { Stats } from 'modules/admin/modules/campaigns/core/stats'
+import { Stats } from '~/modules/admin/modules/campaigns/core/stats'
 
 const { I18n } = window
 

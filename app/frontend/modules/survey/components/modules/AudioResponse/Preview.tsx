@@ -1,22 +1,22 @@
 import React, { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/survey/core/rootReducers'
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import { PreviewModel } from 'modules/survey/interfaces/questions/AudioResponse'
+import { RootState } from '~/modules/survey/core/rootReducers'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/AudioResponse'
 import {
   markQuestionInProgress,
   removeQuestionInProgress,
   addMediaResponse,
   removeMediaResponse,
-} from 'modules/survey/core/preview/FlowProcessor/actions'
+} from '~/modules/survey/core/preview/FlowProcessor/actions'
 import {
   getI18n,
   getMediaResponseByQuestionId,
-} from 'modules/survey/core/preview/FlowProcessor/selectors'
+} from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
-import AudioRecorder from 'components/AudioRecorder'
-import { SafeHTML } from 'components/SafeHTML'
+import AudioRecorder from '~/modules/survey/components/AudioRecorder'
+import { SafeHTML } from '~/components/SafeHTML'
 
 interface OwnProps {
   model: PreviewModel

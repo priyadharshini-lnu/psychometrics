@@ -1,6 +1,6 @@
-import AppStore from 'modules/reports/store/AppStore'
 import isNil from 'lodash/isNil'
-import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
+import AppStore from '~/modules/reports/store/AppStore'
+import { getSavilleFactorsScore } from '~/modules/reports/commands/getSavilleFactorsScore'
 import BaseType from './BaseType'
 
 export class SavilleScoring extends BaseType {

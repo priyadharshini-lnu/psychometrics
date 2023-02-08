@@ -7,10 +7,10 @@ import axios from 'axios'
 import find from 'lodash/find'
 import findIndex from 'lodash/findIndex'
 
-import { InProgressQuestion, MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { InProgressQuestion, MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
-import { I18n } from 'modules/survey/store/StoreWatchman'
-import useMap from 'hooks/useMap'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
+import useMap from '~/hooks/useMap'
 import MultipleTakeButtons from './MultipleTakeButtons'
 
 import styles from './styles.less'

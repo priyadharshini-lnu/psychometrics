@@ -14,7 +14,7 @@ class ApplicationController < ::BaseController
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :redirect_to_ae_domain, if: :redirect_to_ae_enabled?
-
+  before_action :ensure_user_profile_completed
   DOMAIN_REGEXP = %r{^(https?://.+\.)com}
 
   # Sets particular layout in depends of conditions
@@ -80,6 +80,18 @@ class ApplicationController < ::BaseController
   end
 
   private
+
+  def ensure_user_profile_completed
+    return if request.method != 'GET' || request.path == '/profile'
+    return unless @current_project && current_user
+
+    update_in = @current_project.profile_setting.update_in || 9999
+
+    completion = Users::ProfileCompletion.call!(current_user)
+    if completion < 100 || (Time.current - current_user.user_profile.updated_at) > update_in.month
+      redirect_to '/profile'
+    end
+  end
 
   def set_mobility_locale(&)
     Mobility.with_locale(ui_locale, &)

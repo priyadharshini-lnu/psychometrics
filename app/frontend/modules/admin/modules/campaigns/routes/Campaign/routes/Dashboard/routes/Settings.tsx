@@ -1,5 +1,15 @@
-import { useResources } from 'hooks/useResources'
 import React from 'react'
+import {
+  Alert,
+  Button, Col, Form, Input, message, Row, Skeleton, Switch, Upload, Select,
+} from 'antd'
+import { UploadOutlined, CopyOutlined, RedoOutlined } from '@ant-design/icons'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { useParams } from 'react-router-dom'
+import { connect, ConnectedProps } from 'react-redux'
+import _ from 'lodash'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import ResourceForm from '~/components/ResourceForm'
 import {
   Dashboard as DashboardType,
   DashboardTR,
@@ -8,19 +18,9 @@ import {
   refresh,
   REFRESH,
   useDashboardStore,
-} from 'modules/admin/modules/campaigns/core/dashboard'
-import {
-  Alert,
-  Button, Col, Form, Input, message, Row, Skeleton, Switch, Upload, Select,
-} from 'antd'
-import { UploadOutlined, CopyOutlined, RedoOutlined } from '@ant-design/icons'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import ResourceForm from 'components/ResourceForm'
-import { useParams } from 'react-router-dom'
-import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
-import _ from 'lodash'
+} from '~/modules/admin/modules/campaigns/core/dashboard'
+import { useResources } from '~/hooks/useResources'
+import { isRequestInProgress } from '~/core/request'
 
 const { I18n } = window
 

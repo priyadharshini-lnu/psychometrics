@@ -1,6 +1,6 @@
 import React from 'react'
-import LabelEditor from 'modules/survey/components/LabelEditor'
 import _ from 'lodash'
+import LabelEditor from '~/modules/survey/components/LabelEditor'
 import styles from './RankOrder.less'
 import { Question } from '../interfaces'
 

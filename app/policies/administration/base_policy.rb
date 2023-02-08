@@ -63,7 +63,7 @@ module Administration
       Pundit.policy_scope!(user, record.class)
     end
 
-    def has_permission?(resource_type, permission)
+    def has_permission?(resource_type, permission, project_id: nil, campaign_id: nil)
       @user.has_permission?(
         resource_type, permission, project_id: project_id, campaign_id: campaign_id
       )

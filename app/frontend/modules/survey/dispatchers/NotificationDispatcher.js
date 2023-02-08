@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-const { EventEmitter } = require('fbemitter')
+import { EventEmitter } from 'fbemitter'
 
 const dispatcher = new EventEmitter()
 if (process.env.NODE_ENV === 'test') require('jquery')

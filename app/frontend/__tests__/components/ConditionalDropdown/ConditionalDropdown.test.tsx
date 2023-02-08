@@ -1,8 +1,9 @@
 import React from 'react'
-import { render, within, fireEvent } from '@testing-library/react'
+import { render, within, fireEvent, waitFor } from '@testing-library/react'
 import { Menu } from 'antd'
 
-import ConditionalDropdown from 'components/ConditionalDropdown'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { act } from 'react-dom/test-utils'
 
 const singleMenuItem = [{ key: 'export', label: <div>Raw</div> }]
 
@@ -79,60 +80,62 @@ test('it does not disables dropdown for menu with non empty item groups', () => 
   expect(element?.hasAttribute('disabled')).toBeFalsy()
 })
 
-test('checks count of valid itemGroups inside menu as it hides empty item group.', () => {
-  const { getByTestId, getAllByTestId, container } = render(
-    <ConditionalDropdown
-      menu={(
-        <Menu
-          data-testid="menu"
-          className="okay"
-          items={
-          [
-            { type: 'group', label: <div data-testid="item-group">Item 1</div>, children: singleMenuItem },
-            { type: 'group', label: <div data-testid="item-group">Item 2</div>, children: [] },
-          ]
-          }
-        />
-      )}
-    />,
-  )
+test('checks count of valid itemGroups inside menu as it hides empty item group.',async () => {
+    const { getByTestId, getAllByTestId, container } = render(
+      <ConditionalDropdown
+        menu={(
+          <Menu
+            data-testid="menu"
+            className="okay"
+            items={
+            [
+              { type: 'group', label: <div data-testid="item-group">Item 1</div>, children: singleMenuItem },
+              { type: 'group', label: <div data-testid="item-group">Item 2</div>, children: [] },
+            ]
+            }
+          />
+        )}
+      />,
+    )
 
-  const element = container.querySelector('.ant-dropdown-trigger')
+    await waitFor(() => {
+      const element = container.querySelector('.ant-dropdown-trigger')
+      element && fireEvent.click(element)
+    })
 
-  element && fireEvent.click(element)
+    const menuElement = getByTestId('menu')
+    const menuItemGroupElements = within(menuElement).getAllByTestId('item-group')
 
-  const menuElement = getByTestId('menu')
-  const menuItemGroupElements = within(menuElement).getAllByTestId('item-group')
-
-  expect(menuItemGroupElements.length).toBe(1)
+    expect(menuItemGroupElements.length).toBe(1)
 })
 
-test('checks count of valid subMenu inside menu as it hides empty subMenu.', () => {
-  const { getByTestId, getAllByTestId, container } = render(
-    <ConditionalDropdown
-      menu={(
-        <Menu
-          data-testid="menu"
-          className="okay"
-          items={
-            [
-              { key: 'SubMenu', label: <div data-testid="sub-menu">Navigation 1</div>, children: singleMenuItem },
-              { key: 'SubMenu', label: <div data-testid="sub-menu">Navigation 2</div>, children: [] },
-            ]
-          }
-        />
-      )}
-    />,
-  )
+test('checks count of valid subMenu inside menu as it hides empty subMenu.', async () => {
+    const { getByTestId, getAllByTestId, container } = render(
+      <ConditionalDropdown
+        menu={(
+          <Menu
+            data-testid="menu"
+            className="okay"
+            items={
+              [
+                { key: 'SubMenu', label: <div data-testid="sub-menu">Navigation 1</div>, children: singleMenuItem },
+                { key: 'SubMenu', label: <div data-testid="sub-menu">Navigation 2</div>, children: [] },
+              ]
+            }
+          />
+        )}
+      />,
+    )
 
-  const element = container.querySelector('.ant-dropdown-trigger')
+    await waitFor(() => {
+      const element = container.querySelector('.ant-dropdown-trigger')
+      element && fireEvent.click(element)
+    })
 
-  element && fireEvent.click(element)
+    const menuElement = getByTestId('menu')
+    const subMenuElements = within(menuElement).getAllByTestId('sub-menu')
 
-  const menuElement = getByTestId('menu')
-  const subMenuElements = within(menuElement).getAllByTestId('sub-menu')
-
-  expect(subMenuElements.length).toBe(1)
+    expect(subMenuElements.length).toBe(1)
 })
 
 test('it disables dropdown for menu with all empty sub menus', () => {
@@ -171,53 +174,59 @@ test('it does not disables dropdown for menu with non empty sub menus', () => {
   expect(element?.hasAttribute('disabled')).toBeFalsy()
 })
 
-test('it removes invalid divider', () => {
-  const { getByTestId, container } = render(
-    <ConditionalDropdown
-      menu={(
-        <Menu
-          data-testid="menu"
-          items={
+test('it removes invalid divider', async () => {
+    const { getByTestId, container } = render(
+      <ConditionalDropdown
+        menu={(
+          <Menu
+            data-testid="menu"
+            items={
+                  [
+                    { key: 'item1', label: <div data-testid="valid_item">Navigation 1</div> },
+                    { type: 'divider' },
+                    { type: 'divider' },
+                    { key: 'item2', label: <div data-testid="valid_item">Navigation 2</div> },
+                  ]
+                }
+          />
+            )}
+      />,
+    )
+    await waitFor(() => {
+      const element = container.querySelector('.ant-dropdown-trigger')
+      element && fireEvent.click(element)
+    })
+
+
+    const menuElement = getByTestId('menu')
+    const dividerElement = menuElement.querySelectorAll('.ant-dropdown-menu-item-divider')
+    expect(dividerElement && dividerElement.length).toEqual(1)
+
+})
+
+test('it does not remove valid divider', async () => {
+    const { getByTestId, container } = render(
+      <ConditionalDropdown
+        menu={(
+          <Menu
+            data-testid="menu"
+            items={
                 [
                   { key: 'item1', label: <div data-testid="valid_item">Navigation 1</div> },
-                  { type: 'divider' },
                   { type: 'divider' },
                   { key: 'item2', label: <div data-testid="valid_item">Navigation 2</div> },
                 ]
               }
-        />
+          />
           )}
-    />,
-  )
-  const element = container.querySelector('.ant-dropdown-trigger')
-  element && fireEvent.click(element)
+      />,
+    )
+    await waitFor(() => {
+      const element = container.querySelector('.ant-dropdown-trigger')
+      element && fireEvent.click(element)
+    })
 
-  const menuElement = getByTestId('menu')
-  const dividerElement = menuElement.querySelectorAll('.ant-dropdown-menu-item-divider')
-  expect(dividerElement && dividerElement.length).toEqual(1)
-})
-
-test('it does not remove valid divider', () => {
-  const { getByTestId, container } = render(
-    <ConditionalDropdown
-      menu={(
-        <Menu
-          data-testid="menu"
-          items={
-              [
-                { key: 'item1', label: <div data-testid="valid_item">Navigation 1</div> },
-                { type: 'divider' },
-                { key: 'item2', label: <div data-testid="valid_item">Navigation 2</div> },
-              ]
-            }
-        />
-        )}
-    />,
-  )
-  const element = container.querySelector('.ant-dropdown-trigger')
-  element && fireEvent.click(element)
-
-  const menuElement = getByTestId('menu')
-  const dividerElement = menuElement.querySelector('.ant-dropdown-menu-item-divider')
-  expect(dividerElement).toBeTruthy()
+    const menuElement = getByTestId('menu')
+    const dividerElement = menuElement.querySelector('.ant-dropdown-menu-item-divider')
+    expect(dividerElement).toBeTruthy()
 })

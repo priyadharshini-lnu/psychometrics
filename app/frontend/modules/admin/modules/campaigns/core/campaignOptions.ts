@@ -1,11 +1,11 @@
 import _ from 'lodash'
-import { updateIn } from 'utils/immutable'
-import { createReducer, Payload } from 'utils/redux'
-import {
-  CampaignOptions, DescriptionWithLocaleTR, DescriptionWithLocale, InstructionsWithLocale,
-} from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
+import {
+  CampaignOptions, DescriptionWithLocaleTR, DescriptionWithLocale, InstructionsWithLocale,
+} from '~/modules/admin/modules/campaigns/interfaces/Campaign'
+import { createReducer, Payload } from '~/utils/redux'
+import { updateIn } from '~/utils/immutable'
 
 export const FETCH = 'campaigns/campaignOptions/FETCH'
 export const FETCH_INSTRUCTIONS = 'campaigns/campaignOptions/FETCH_INSTRUCTIONS'

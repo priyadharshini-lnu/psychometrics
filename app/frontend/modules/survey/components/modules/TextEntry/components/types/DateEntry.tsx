@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { DatePicker } from 'antd'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/TextEntry'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
-import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 
 interface Props {
   format: BuilderModel['props']['dateFormat']

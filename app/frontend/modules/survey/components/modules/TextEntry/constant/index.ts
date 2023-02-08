@@ -1,6 +1,6 @@
 import { PickerMode as DatePickerModes } from 'rc-picker/lib/interface'
 
-import { DateFormat } from 'modules/survey/interfaces/questions/TextEntry'
+import { DateFormat } from '~/modules/survey/interfaces/questions/TextEntry'
 
 const { I18n } = window
 

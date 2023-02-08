@@ -1,4 +1,4 @@
-import { Question } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 interface Answer {
   message: string

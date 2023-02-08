@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import AppStore from 'modules/reports/store/AppStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 const TOP = 5000
 const BOTTOM = 2000

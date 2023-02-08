@@ -3,9 +3,19 @@
 class AdminJobRecord < ApplicationRecord
   self.table_name = 'admin_jobs'
 
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
+
   belongs_to :owner, class_name: 'User'
 
   mount_uploader :file, Private::FileUploader
+
+  has_one_attached :as_file, service: Settings.storage.private_storage_service
+  validates :as_file, content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :file
 
   enum operation: {
     import_users: 0,
@@ -55,10 +65,10 @@ class AdminJobRecord < ApplicationRecord
     end
   end
 
-  def complete!(error_messages = [])
+  def complete!(error_messages = [], exception = nil)
     return if completed?
 
-    update!(status: :completed, completed_tasks: total_tasks, error_messages: error_messages)
+    update!(status: :completed, completed_tasks: total_tasks, error_messages: error_messages, exception: exception)
   end
 
   def broadcast(action)

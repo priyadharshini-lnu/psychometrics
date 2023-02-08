@@ -41,7 +41,7 @@ module UsersResults
 
     def recompute_pearson_assessment
       set_pearson_norm
-      Pearson::SaveScoresAndReports.call!(user_assessment)
+      Pearson::SaveScoresAndReports.call!(user_assessment) if user_assessment.completed?
     end
 
     def set_pearson_norm

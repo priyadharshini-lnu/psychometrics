@@ -1,8 +1,8 @@
-import { createReducer } from 'utils/redux'
-import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
-import { RootState } from 'modules/admin/core/rootReducers'
+import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 
 export const FETCH = 'campaigns/current/FETCH'
 export const UPDATE = 'campaigns/current/UPDATE'

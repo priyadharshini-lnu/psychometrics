@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { blocksWithQuestions } from 'modules/survey/core/builder/assessment/selectors'
+import { blocksWithQuestions } from '~/modules/survey/core/builder/assessment/selectors'
 import {
   factorsSelector, selectedFactor, factorScoring, recodingSelector,
-} from 'modules/survey/core/builder/factors/selectors'
-import { } from 'modules/survey/core/builder/factors'
+} from '~/modules/survey/core/builder/factors/selectors'
+import { } from '~/modules/survey/core/builder/factors'
 
 export default connect(
   ({ survey: { builder } }) => ({

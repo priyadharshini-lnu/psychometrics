@@ -1,7 +1,5 @@
 head
-  = stylesheet_packs_with_chunks_tag 'medial_players/video'
-  = javascript_packs_with_chunks_tag 'medial_players/video'
-
+  = vite_client_tag
   css:
     .video-js .vjs-control-bar {
       display: flex;
@@ -12,6 +10,8 @@ body style="margin: 0"
     video id="my_video" class="video-js vjs-default-skin" controls=true preload="none"
       source src="#{params[:url]}"
 
+  = vite_javascript_tag "entrypoints/medial_players/video"
+
   javascript:
     var options = {
       sources: [{
@@ -21,5 +21,6 @@ body style="margin: 0"
       controls: true,
       fill: true
     }
-
-    window.videojs('my_video', options)
+    document.addEventListener('DOMContentLoaded', function () {
+      window.videojs('my_video', options)
+    })

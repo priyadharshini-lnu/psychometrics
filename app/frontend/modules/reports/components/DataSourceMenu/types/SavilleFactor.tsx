@@ -4,11 +4,11 @@ import get from 'lodash/get'
 import filter from 'lodash/filter'
 import find from 'lodash/find'
 import Select from 'react-select'
-import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
-import { Assessment } from 'modules/reports/core/interfaces/Assessment'
-import Module from 'modules/reports/core/interfaces/Module'
-import { Factor } from 'modules/reports/core/interfaces/Factor'
 import { Space } from 'antd'
+import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
+import { Assessment } from '~/modules/reports/core/interfaces/Assessment'
+import Module from '~/modules/reports/core/interfaces/Module'
+import { Factor } from '~/modules/reports/core/interfaces/Factor'
 
 interface Props {
   assessment: Assessment

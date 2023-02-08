@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import LogicResolver from 'modules/survey/models/logic/LogicResolver'
-import LogicElementModel from 'models/logic/LogicElement'
+import LogicResolver from './logic/LogicResolver'
+import LogicElementModel from './logic/LogicElement'
 
 const NormResolver = function (rules, hris, questions = null, results = null, defaultNorm = null) {
   this.questions = questions

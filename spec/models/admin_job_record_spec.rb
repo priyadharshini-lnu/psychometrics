@@ -37,5 +37,16 @@ RSpec.describe AdminJobRecord, type: :model do
       expect(admin_job_record.completed?).to eq(true)
       expect(admin_job_record.error_messages).to eq(errors)
     end
+
+    it 'saves exception if passed' do
+      admin_job_record = create(:admin_job_record)
+      errors = ['Something went wrong']
+      exception = 'Some exception'
+      admin_job_record.complete!(errors, exception)
+
+      expect(admin_job_record.completed?).to eq(true)
+      expect(admin_job_record.error_messages).to eq(errors)
+      expect(admin_job_record.exception).to eq(exception)
+    end
   end
 end

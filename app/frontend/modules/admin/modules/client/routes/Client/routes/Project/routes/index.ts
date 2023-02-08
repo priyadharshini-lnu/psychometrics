@@ -1,4 +1,4 @@
-import { CampaignList } from 'modules/admin/modules/campaigns/routes/CampaignList'
+import { CampaignList } from '~/modules/admin/modules/campaigns/routes/CampaignList'
 import { Users } from './Users'
 import { Settings } from './Settings'
 import { Datasheet } from './Datasheet'
@@ -10,16 +10,16 @@ export const routes = [
     component: CampaignList,
   },
   {
+    path: '/admins',
+    component: Admins,
+  },
+  {
     path: '/users',
     component: Users,
   },
   {
     path: '/users*',
     component: Users,
-  },
-  {
-    path: '/admins',
-    component: Admins,
   },
   {
     path: '/datasheet',

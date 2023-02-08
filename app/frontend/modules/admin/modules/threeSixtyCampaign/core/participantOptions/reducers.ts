@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import { setIn, updateIn } from 'utils/immutable'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { setIn, updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 import {
   FETCH_PARTICIPANT_OPTIONS,
   UPDATE_PARTICIPANT_OPTIONS,

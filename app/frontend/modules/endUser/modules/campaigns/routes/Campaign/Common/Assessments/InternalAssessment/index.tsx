@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 import { Avatar, Row, Col } from 'antd'
-import { DetailsCard } from 'glint'
 import { useHistory } from 'react-router-dom'
 
-import routeUtils from 'utils/route'
-import WizardIsRequired from 'modules/endUser/core/WizardIsRequired'
+import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
 
-import { UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
+import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 
-import { secondsLeftFromNow } from 'utils/time'
-import { shortify } from 'utils/string'
 
-import { TimerText } from 'modules/endUser/modules/campaigns/components/TimerText'
-import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
-import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
+import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
+import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { shortify } from '~/utils/string'
+import { secondsLeftFromNow } from '~/utils/time'
+import routeUtils from '~/utils/route'
+import { DetailsCard } from '~/glint'
 import { PrivacyModal } from '../PrivacyModal'
 import { TimingModal } from '../TimingModal'
 import { LanguageModal } from '../LanguageModal'

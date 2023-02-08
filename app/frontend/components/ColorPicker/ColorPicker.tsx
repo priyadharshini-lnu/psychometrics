@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import { ColorResult, SketchPicker } from 'react-color'
-import { rgba2hex } from 'utils/color'
 import cs from 'classnames'
+import { rgba2hex } from '~/utils/color'
 import styles from './styles.less'
 
 interface Props {

@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux'
 import { curry } from 'lodash'
-import NormFields from 'modules/admin/modules/NormEditor/interfaces/NormFields'
+import NormFields from '~/modules/admin/modules/NormEditor/interfaces/NormFields'
 import { savePercentileNorm } from './core/norm'
 import { OwnProps } from './interfaces'
 

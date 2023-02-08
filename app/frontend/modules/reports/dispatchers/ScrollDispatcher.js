@@ -1,4 +1,4 @@
-const { EventEmitter } = require('fbemitter')
+import { EventEmitter } from 'fbemitter'
 
 const dispatcher = new EventEmitter()
 const { $ } = window

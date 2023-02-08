@@ -1,6 +1,6 @@
-import BlockList from 'views/BlockList'
-import Scorring from 'layouts/Scoring'
-import ResourceManager from 'layouts/ResourceManager'
+import BlockList from '~/modules/survey/views/BlockList'
+import Scorring from '~/modules/survey/layouts/Scoring'
+import ResourceManager from '~/modules/survey/layouts/ResourceManager'
 
 const routes = [
   {

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Utils from 'modules/reports/utils/Utils'
+import Utils from '~/modules/reports/utils/Utils'
 import AppStore from '../../store/AppStore'
 import { ScoringData } from './interfaces/ResultScoring'
 import { ResultsByFilter, TopFactor, TopFactorType } from './interfaces'

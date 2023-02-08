@@ -1,9 +1,9 @@
 import { takeLatest, put } from 'redux-saga/effects'
-import { setIn } from 'utils/immutable'
-import { closeModal } from 'modules/admin/core/ui/modals'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
+import { closeModal } from '~/modules/admin/core/ui/modals'
+import { createReducer } from '~/utils/redux'
+import { setIn } from '~/utils/immutable'
 
 export const CLEAR_FORM = 'threeSixty/evaluators/CLEAR_FORM'
 export const CREATE_ALL_EVALUATORS = 'threeSixty/evaluators/CREATE_ALL_EVALUATORS'

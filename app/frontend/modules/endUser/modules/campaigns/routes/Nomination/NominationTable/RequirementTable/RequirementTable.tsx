@@ -7,12 +7,12 @@ import {
   DownOutlined, CheckOutlined, ReloadOutlined, DeleteOutlined, PlusOutlined,
 } from '@ant-design/icons'
 
-import userPresenter from 'presenters/user'
-import statusPresenter from 'presenters/status'
-import conditionPresenter from 'presenters/condition'
-import { EVALUATOR_NOMINATION_STATUSES } from 'constants/participantStatuses'
-import { statusMenuItems } from 'modules/endUser/modules/campaigns/common/menuItems'
-import { MediaQueryContext } from 'glint'
+import userPresenter from '~/presenters/user'
+import statusPresenter from '~/presenters/status'
+import conditionPresenter from '~/presenters/condition'
+import { EVALUATOR_NOMINATION_STATUSES } from '~/constants/participantStatuses'
+import { statusMenuItems } from '~/modules/endUser/modules/campaigns/common/menuItems'
+import { MediaQueryContext } from '~/glint'
 import styles from './RequirementTable.less'
 import { InlineInput } from '../InlineInput'
 
@@ -32,11 +32,11 @@ export const RequirementTable = (props) => {
   const { isMobile } = useContext(MediaQueryContext)
   const [showForm, setShowForm] = useState(false)
 
-  const StatusMenu = evaluator => (
+  const StatusMenu = ({ id }) => (
     <Menu
       onClick={(e) => {
         updateStatus({
-          campaignId, nominationId, evaluatorId: evaluator.id, status: e.key,
+          campaignId, nominationId, evaluatorId: id, status: e.key,
         })
       }}
       items={statusMenuItems}

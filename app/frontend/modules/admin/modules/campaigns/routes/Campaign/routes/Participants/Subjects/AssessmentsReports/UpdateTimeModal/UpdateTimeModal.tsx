@@ -11,7 +11,6 @@ export interface OwnProps {
   close(): void
   campaignAssessmentId: number
   campaignId: number
-  userId: number
   loading: boolean
 }
 

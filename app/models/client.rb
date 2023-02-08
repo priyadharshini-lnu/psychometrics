@@ -19,7 +19,6 @@ class Client < ApplicationRecord
   }.freeze
 
   has_ancestry cache_depth: true
-  store :design, accessors: %i[background_color login_box_position]
 
   # Disables single column inheritance
   self.inheritance_column = :_type_disabled
@@ -128,7 +127,6 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   before_create lambda {
     self.migrated = true
-    self.design_migrated = true
   }, if: :project?
   after_create :set_hogan_group_name, if: :project?
   after_create :create_smtp_setting, if: :project?
@@ -143,15 +141,12 @@ class Client < ApplicationRecord
   enum type: { partner: 0, corporate: 1, distributer: 2, associate: 3, tte: 4, retail: 5, other: 6 }
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
-  mount_base64_uploader :logo, Public::ImageUploader
-  mount_base64_uploader :background, Public::BackgroundUploader
-  mount_base64_uploader :secondary_logo, Public::ImageUploader
-
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
   delegate :tfa_enabled?, to: :security_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
+  scope :resource_disabled, ->(value) { where(disabled: value) }
   scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
@@ -161,7 +156,7 @@ class Client < ApplicationRecord
                                       }
   scope :end_level, -> { where(end_level: true) }
   scope :projects_of, lambda { |client_id|
-                        find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:project])
+                        find_by(id: client_id)&.descendants&.at_depth(Client::HIERARCHY_LEVEL[:project]) || all
                       }
   scope :campaigns_of, lambda { |client_id|
                          find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign])
@@ -177,6 +172,10 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields projects_of resource_disabled]
+  end
 
   def iiht_config
     integrations.iiht.first.iiht_config

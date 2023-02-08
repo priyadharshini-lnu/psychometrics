@@ -2,8 +2,8 @@ import React from 'react'
 import { useHistory, useLocation, useParams } from 'react-router'
 import { Menu } from 'antd'
 
-import settings from 'modules/admin/modules/client/routes/Client/routes/Project/settings'
-import RouteList from 'components/RouteList'
+import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
+import RouteList from '~/components/RouteList'
 import { routes } from './routes'
 
 const { I18n } = window

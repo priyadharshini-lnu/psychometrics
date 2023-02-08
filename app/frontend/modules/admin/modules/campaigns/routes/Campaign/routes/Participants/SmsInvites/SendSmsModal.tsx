@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  STATUSES, SEARCH, search, get as getSmsInvites,
-} from 'modules/admin/modules/campaigns/core/smsInvites'
-import { isRequestInProgress } from 'core/request'
-import {
   Form, Input, DatePicker, Select, Spin,
 } from 'antd'
-import { availableLocales } from 'core/config'
-import { RootState } from 'modules/admin/core/rootReducers'
 import debounce from 'lodash/debounce'
-import ResourceFormModal from 'components/ResourceFormModal'
-import { SafeHTML } from 'components/SafeHTML'
 import { SegmentedMessage } from 'sms-segments-calculator'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import forEach from 'lodash/forEach'
+import { SafeHTML } from '~/components/SafeHTML'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import {
+  STATUSES, SEARCH, search, get as getSmsInvites,
+} from '~/modules/admin/modules/campaigns/core/smsInvites'
+import { availableLocales } from '~/core/config'
+import { isRequestInProgress } from '~/core/request'
 
 const connecter = connect(
   (state: RootState) => ({

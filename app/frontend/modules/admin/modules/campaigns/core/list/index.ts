@@ -1,13 +1,13 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { put, select, takeEvery } from 'redux-saga/effects'
 import { AnyAction } from 'redux'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
-import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
+import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
+import { getTables } from '~/modules/admin/core/filterAndPagination/selectors'
+import { createReducer } from '~/utils/redux'
 
 const defaultState = []
 

@@ -1,6 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects'
-import { setIn } from 'utils/immutable'
 import humps from 'humps'
+import { setIn } from '~/utils/immutable'
 
 const FETCH = 'threeSixty/evaluation/FETCH'
 const FETCH_FAILURE = 'threeSixty/evaluation/FETCH_FAILURE'

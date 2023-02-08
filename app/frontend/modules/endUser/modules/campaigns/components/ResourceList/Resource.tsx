@@ -2,13 +2,13 @@ import _ from 'lodash'
 import React, { useRef, useState, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { SafeHTML } from 'components/SafeHTML'
-import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
-import { useCopyProtection } from 'modules/survey/hooks/useCopyProtection'
-import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
+import HighlightList from '~/modules/survey/views/Preview/StaticContent/HighlightList'
+import { useCopyProtection } from '~/modules/survey/hooks/useCopyProtection'
+import { useImageZoom } from '~/modules/survey/hooks/useImageZoom'
 
-import { getHighlightByType } from 'modules/survey/core/preview/FlowProcessor/selectors'
-import { updateHighlight } from 'modules/survey/core/preview/FlowProcessor/actions'
+import { getHighlightByType } from '~/modules/survey/core/preview/FlowProcessor/selectors'
+import { updateHighlight } from '~/modules/survey/core/preview/FlowProcessor/actions'
+import { SafeHTML } from '~/components/SafeHTML'
 import styles from './ResourceList.less'
 
 const connector = connect(

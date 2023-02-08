@@ -9,18 +9,18 @@ import {
   RadioChangeEvent,
 } from 'antd'
 
-import ChoicesInput from 'components/ChoicesInput'
-import ValidationTypes from 'components/ValidationTypes'
-import RequiredValidations from 'components/RequiredValidations'
+import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import {
   ImageChoiceProperties,
-} from 'modules/survey/components/modules/MultipleChoice/components/ImageChoiceProperties'
+} from '~/modules/survey/components/modules/MultipleChoice/components/ImageChoiceProperties'
 
-import { ANSWER_TYPE_OPTIONS } from 'modules/survey/components/modules/MultipleChoice/constants'
-import useForceUpdate from 'hooks/useUpdate'
+import { ANSWER_TYPE_OPTIONS } from '~/modules/survey/components/modules/MultipleChoice/constants'
+import useForceUpdate from '~/hooks/useUpdate'
 
-import { PropertiesModel } from 'modules/survey/interfaces/questions/MultipleChoice'
-import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { PropertiesModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
+import RequiredValidations from '~/modules/survey/components/RequiredValidations'
+import ValidationTypes from '~/modules/survey/components/ValidationTypes'
+import ChoicesInput from '~/modules/survey/components/ChoicesInput'
 
 const { I18n } = window
 

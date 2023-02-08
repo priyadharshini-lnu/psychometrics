@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { Space, Table, Tooltip } from 'antd'
-import { ProctoringSession } from 'modules/admin/modules/campaigns/core/proctoringSessions'
+import { ProctoringSession } from '~/modules/admin/modules/campaigns/core/proctoringSessions'
 
 const { I18n } = window
 const { Column } = Table

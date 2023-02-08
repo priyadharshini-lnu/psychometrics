@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const SEARCH_EVALUATORS = 'temp/users/SEARCH_EVALUATORS'
 
 export const get = state => _.get(state, ['ui', 'autocomplete'])

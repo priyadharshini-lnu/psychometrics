@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tag } from 'antd'
-import { I18n } from 'store/StoreWatchman'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 import styles from './styles.less'
 import { Question } from '../../interfaces'
 

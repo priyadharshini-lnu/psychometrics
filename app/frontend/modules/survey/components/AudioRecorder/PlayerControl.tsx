@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Progress, Space } from 'antd'
 
-import { UPLOAD_STATES } from 'modules/survey/constants/media'
+import { UPLOAD_STATES } from '~/modules/survey/constants/media'
 
 const { I18n } = window
 

@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Avatar } from 'antd'
 import { PictureOutlined, StopOutlined } from '@ant-design/icons'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 
 interface Props {
   src: BuilderModel['props']['choicesImages'][0] | null

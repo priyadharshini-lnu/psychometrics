@@ -5,6 +5,16 @@ module Questions
     attr_accessor :question, :value, :locale
 
     VALIDATIONS = {
+      MinLength: Questions::Validations::MinLength,
+      MaxLength: Questions::Validations::MaxLength,
+      CharacterRange: Questions::Validations::CharacterRange,
+      MinWords: Questions::Validations::MinWords,
+      MaxWords: Questions::Validations::MaxWords,
+      WordsRange: Questions::Validations::WordsRange,
+      Least: Questions::Validations::Least,
+      Most: Questions::Validations::Most,
+      Range: Questions::Validations::AnswerRange,
+      Exact: Questions::Validations::Exact,
       Custom: Questions::Validations::CustomValidation
     }.with_indifferent_access.freeze
 
@@ -15,13 +25,19 @@ module Questions
     end
 
     def call
+      return broadcast(:ok, nil) unless question.validation
+
       type = question.validation['type']
 
       return broadcast(:ok, nil) if type == 'None'
 
       return broadcast(:ok, nil) unless VALIDATIONS[type]
 
-      broadcast :ok, VALIDATIONS[type].call!(question, value, locale)
+      if question.validation['customValidations']
+        return broadcast :ok, VALIDATIONS[type].call!(question, value, locale)
+      end
+
+      broadcast :ok, VALIDATIONS[type].call!(question.validation, value, locale)
     end
   end
 end

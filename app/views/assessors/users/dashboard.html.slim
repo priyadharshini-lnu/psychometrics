@@ -3,10 +3,4 @@ div#assessor-app-container
 javascript:
   window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
 
-= javascript_pack_tag 'survey'
-= stylesheet_pack_tag 'survey'
-= javascript_pack_tag 'interactiveAssessments'
-= stylesheet_pack_tag 'reports'
-= javascript_pack_tag 'reports'
-= javascript_pack_tag 'admin/assessorApp'
-= stylesheet_pack_tag 'admin/assessorApp'
+= vite_javascript_tag 'entrypoints/admin/assessor_app.jsx'

@@ -6,6 +6,8 @@ module Campaigns
       private_attr_reader :campaign, :current_user, :rows, :operation, :job_record, :imported_users
       private_attr_accessor :users_those_pwd_not_changed
 
+      PROFILE_FIELDS = %i[age gender timezone locale].freeze
+
       def initialize(campaign, current_user, rows, operation, job_record)
         @campaign = campaign
         @current_user = current_user
@@ -16,20 +18,35 @@ module Campaigns
         @imported_users = []
       end
 
-      def call
-        transaction do
+      def call # rubocop:disable Metrics/AbcSize
+        profile_fields = @campaign.project.profile_setting.profile_fields.includes(:question)
+        custom_fields = profile_fields.map { |pf| pf.question.name.to_sym }
+
+        transaction do # rubocop:disable Metrics/BlockLength
           job_record.update!(total_tasks: rows.length)
-          rows.each do |attrs|
+          rows.each do |attrs| # rubocop:disable Metrics/BlockLength
             user = campaign.users.find_by(email: attrs[:email])
+            user_data = attrs.slice(*Users::ParseImportData::HEADER_IMPORT_KEYS)
+            profile_data = attrs.slice(*PROFILE_FIELDS)
+            custom_fields_data = attrs.slice(*custom_fields)
+
             if user
-              update_user!(user, attrs)
+              update_user!(user, user_data)
+              user.user_profile.update!(profile_data.merge(
+                                          custom_fields: (user.user_profile.custom_fields || {}).
+                                          merge(custom_fields_data)
+                                        ))
             else
-              form = ::Campaigns::Users::Import::CreateForm.new(attrs.merge(operation: operation))
+              form = ::Campaigns::Users::Import::CreateForm.new(user_data.merge(operation: operation))
               ::Campaigns::Users::Create.call(form, campaign, current_user) do
                 on(:error) do |error|
                   raise Licenses::NotEnoughError, error
                 end
                 on(:ok) do |u|
+                  u.user_profile.update!(profile_data.merge(
+                                           custom_fields: (u.user_profile.custom_fields || {}).
+                                           merge(custom_fields_data)
+                                         ))
                   imported_users << u
                 end
               end

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import ActionHistory from 'utils/History'
+import ActionHistory from '~/modules/survey/utils/History'
 
 let actionHistory = new ActionHistory()
 

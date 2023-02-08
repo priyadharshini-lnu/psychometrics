@@ -1,10 +1,10 @@
 import _ from 'lodash'
-import { updateIn } from 'utils/immutable'
 import { takeLatest, put, select } from 'redux-saga/effects'
-import { getCurrentCampaignId } from 'modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import moment from 'moment'
+import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { createReducer } from '~/utils/redux'
+import { updateIn } from '~/utils/immutable'
 import recipientCriteria from './recipientCriteria'
 
 interface Schedule {

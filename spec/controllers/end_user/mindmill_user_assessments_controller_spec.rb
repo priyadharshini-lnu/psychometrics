@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe EndUser::MindmillUserAssessmentsController, type: :controller do
-  let(:user) { create(:user, :with_project_membership) }
+  let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:user_assessment) { create(:user_assessment, evaluator: user) }
   let(:campaign) { user_assessment.campaign }
 

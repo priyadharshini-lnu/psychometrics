@@ -1,7 +1,7 @@
 import React from 'react'
-import { I18n } from 'store/StoreWatchman'
 import { Result } from 'antd'
 import TweenOne from 'rc-tween-one'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 import { ViewEnum } from '../constants'
 
 interface Props {

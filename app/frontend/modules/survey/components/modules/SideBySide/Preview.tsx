@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
-import { RootState } from 'modules/survey/core/rootReducers'
-import { PreviewModel } from 'modules/survey/interfaces/questions/SideBySide'
+import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
+import { RootState } from '~/modules/survey/core/rootReducers'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/SideBySide'
 
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
 import TableHeader from './components/TableHeaderPreview'
 import TableBody from './components/TableBodyPreview'
 

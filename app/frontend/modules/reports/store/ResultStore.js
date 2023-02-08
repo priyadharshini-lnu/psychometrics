@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Result from 'modules/reports/models/Result'
-import MockResults from 'modules/reports/consts/MockResults'
-import Scoring from 'modules/reports/models/Scoring'
+import Result from '~/modules/reports/models/Result'
+import MockResults from '~/modules/reports/consts/MockResults'
+import Scoring from '~/modules/reports/models/Scoring'
 import AppStore from './AppStore'
 
 const ResultStore = function () {

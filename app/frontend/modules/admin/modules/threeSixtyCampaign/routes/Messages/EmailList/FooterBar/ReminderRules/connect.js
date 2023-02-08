@@ -3,7 +3,7 @@ import {
   add,
   update,
   remove,
-} from 'modules/admin/modules/threeSixtyCampaign/core/emailTemplates/reminderRules'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/emailTemplates/reminderRules'
 
 export default connect(
   null,

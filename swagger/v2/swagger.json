@@ -576,6 +576,121 @@
         }
       }
     },
+    "/clients/{client_id}/projects/": {
+      "get": {
+        "summary": "Project List",
+        "operationId": "ProjectsList",
+        "description": "Fetch Projects list",
+        "tags": [
+          "Project"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "projects",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "name": "Project Name",
+                        "created_at": "01 Oct 2019 / 17:36",
+                        "updated_at": "02 Oct 2019 / 17:36",
+                        "locales": [
+                          "en"
+                        ],
+                        "number": "TTE-2022",
+                        "privacy_consent": false,
+                        "subdomain": "project-subdomain"
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectsListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a Project",
+        "operationId": "CreateProject",
+        "description": "Create new Project",
+        "tags": [
+          "Projects"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Project Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "projects",
+                    "attributes": {
+                      "name": "Project Name",
+                      "subdomain": "project-subdomain",
+                      "number": "123"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/report_approvals/": {
       "get": {
         "summary": "ReportApprovalSetting List",
@@ -1416,7 +1531,7 @@
                     },
                     "year": {
                       "type": "integer",
-                      "description": "Greater than or equal to 2020, Lower than or equal to 2032",
+                      "description": "Greater than or equal to 2021, Lower than or equal to 2033",
                       "nullable": false
                     }
                   },
@@ -1470,9 +1585,7 @@
             },
             "required": [
               "record_count",
-              "page_count",
-              "countries",
-              "types"
+              "page_count"
             ],
             "nullable": false
           }
@@ -1594,7 +1707,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2020, Lower than or equal to 2032",
+                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
                     "nullable": false
                   }
                 },
@@ -1662,7 +1775,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2020, Lower than or equal to 2032",
+                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
                     "nullable": false
                   }
                 },
@@ -1770,7 +1883,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2020, Lower than or equal to 2032",
+                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
                     "nullable": false
                   }
                 },
@@ -1919,6 +2032,10 @@
                     "name": {
                       "type": "string",
                       "nullable": false
+                    },
+                    "capacity_id": {
+                      "type": "string",
+                      "nullable": true
                     },
                     "dataset_id": {
                       "type": "string",
@@ -2072,6 +2189,10 @@
                     "type": "string",
                     "nullable": false
                   },
+                  "capacity_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
                   "dataset_id": {
                     "type": "string",
                     "nullable": true
@@ -2131,6 +2252,10 @@
                   "name": {
                     "type": "string",
                     "nullable": false
+                  },
+                  "capacity_id": {
+                    "type": "string",
+                    "nullable": true
                   },
                   "dataset_id": {
                     "type": "string",
@@ -2231,6 +2356,10 @@
                   "name": {
                     "type": "string",
                     "nullable": false
+                  },
+                  "capacity_id": {
+                    "type": "string",
+                    "nullable": true
                   },
                   "dataset_id": {
                     "type": "string",
@@ -4144,6 +4273,414 @@
         },
         "required": [
           "data"
+        ]
+      },
+      "ProjectResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to projects",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "subdomain": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "ancestry": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "logo": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "locales": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "enable_live_chat": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "text": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "link": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "number",
+                  "subdomain"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ProjectCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to projects",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "subdomain": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "ancestry": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "logo": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "locales": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "enable_live_chat": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "text": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "link": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "number",
+                  "subdomain"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ProjectUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to projects",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "subdomain": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "ancestry": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "logo": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "locales": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "enable_live_chat": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "text": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "link": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ProjectsListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to projects",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "disabled": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "number": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "subdomain": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "ancestry": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "client_id": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "logo": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "locales": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
+                    "privacy_consent": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "enable_live_chat": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "text": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "link": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "number",
+                    "subdomain"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
         ]
       }
     }

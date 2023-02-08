@@ -3,11 +3,11 @@ import {
   connect, ConnectedProps, Provider,
 } from 'react-redux'
 import { Layout, Card } from 'antd'
-import AssessmentContainer from 'modules/survey/containers/AssessmentContainer'
 import _ from 'lodash'
-import createAssessmentStore from 'modules/admin/store/assessmentStore'
 import moment from 'moment'
-import { RootState } from 'modules/admin/core/rootReducers'
+import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
+import createAssessmentStore from '~/modules/admin/store/assessmentStore'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import styles from './styles.less'
 import { fetchSubjectAssessment, getSubjectForm } from '../../core/evaluation'
 

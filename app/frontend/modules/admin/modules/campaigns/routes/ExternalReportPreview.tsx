@@ -3,16 +3,16 @@ import {
   Layout, Button, Row, Col, PageHeader, Spin, Space,
 } from 'antd'
 import { ArrowLeftOutlined, DownloadOutlined } from '@ant-design/icons'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import {
   fetchExternalReportDetails, FETCH_EXTERNAL_REPORT_DETAILS, getExternalReport,
-} from 'modules/admin/modules/campaigns/core/userReports'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
-import { getFeatures } from 'core/config'
-import { PDFViewer } from 'components/PDFViewer'
+} from '~/modules/admin/modules/campaigns/core/userReports'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { PDFViewer } from '~/components/PDFViewer'
+import { isRequestInProgress } from '~/core/request'
+import { getFeatures } from '~/core/config'
 
 const connecter = connect((state: RootState) => ({
   userReport: getExternalReport(state),

@@ -6,7 +6,7 @@ import {
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
 import * as faceapi from 'face-api.js'
 
-import { BROWSER_NAME } from 'utils/uaParser'
+import { BROWSER_NAME } from '~/utils/uaParser'
 import { InitVideo } from './InitVideo'
 import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'

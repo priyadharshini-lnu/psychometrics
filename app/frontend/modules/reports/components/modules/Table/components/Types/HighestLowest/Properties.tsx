@@ -3,10 +3,10 @@ import {
   Select, Space, Typography, Checkbox,
 } from 'antd'
 
-import { PropertiesModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
+import { PropertiesModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
 
-import PropertyFilter from 'modules/reports/components/PropertyFilter'
-import PropertyNumber from 'modules/reports/components/PropertyNumber'
+import PropertyFilter from '~/modules/reports/components/PropertyFilter'
+import PropertyNumber from '~/modules/reports/components/PropertyNumber'
 import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'

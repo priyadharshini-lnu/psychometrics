@@ -6,12 +6,10 @@ module Api
 
     private
 
-    def base_response_meta
-      return {} if params[:action] != 'index'
-
+    def meta_details
       {
-        countries: ::Datas::Geo.order(:country_name).select(:country_name).distinct.pluck(:country_name),
-        types: Client.types.keys
+        countries: -> { ::Datas::Geo.order(:country_name).select(:country_name).distinct.pluck(:country_name) },
+        types: -> { Client.types.keys }
       }
     end
   end

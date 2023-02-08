@@ -3,7 +3,7 @@ import {
   add,
   remove,
   update,
-} from 'modules/admin/modules/threeSixtyCampaign/core/nominationRequirements/conditions'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/nominationRequirements/conditions'
 
 export default connect(({
   project: { relationships },

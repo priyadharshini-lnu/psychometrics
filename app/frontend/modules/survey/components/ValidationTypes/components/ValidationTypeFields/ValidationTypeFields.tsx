@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC } from 'react'
 
-import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
+import { BasePropertiesModel } from '~/modules/survey/interfaces/questions/Base'
 
-import Utils from 'utils'
+import Utils from '~/modules/survey/utils'
 
 import Content from './components/Content'
 import Least from './components/Least'

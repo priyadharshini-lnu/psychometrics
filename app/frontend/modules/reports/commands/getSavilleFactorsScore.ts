@@ -1,8 +1,8 @@
 import find from 'lodash/find'
 import keyBy from 'lodash/keyBy'
 import compact from 'lodash/compact'
-import { SavilleScore } from 'modules/reports/models/Result'
-import { Factor } from 'modules/reports/core/interfaces/Factor'
+import { SavilleScore } from '~/modules/reports/models/Result'
+import { Factor } from '~/modules/reports/core/interfaces/Factor'
 import I18nStore from '../store/I18nStore'
 
 type ScoreKeys = 'score' | 'y'

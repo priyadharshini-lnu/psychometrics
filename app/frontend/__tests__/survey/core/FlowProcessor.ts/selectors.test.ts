@@ -3,7 +3,7 @@ import {
   getElementIdByBlockId, getBlockIds, getQuestionsCount,
   getPrevBlockIds, getPrevQuestionsCount, getProgress,
   lookForEndOfAssessment, getPossibleBlocks, getPossibleQuestionsCount
-} from 'modules/survey/core/preview/FlowProcessor/selectors'
+} from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 const state = {
   initialized: true,

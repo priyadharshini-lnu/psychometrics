@@ -1,5 +1,5 @@
-import { Schema } from 'libs/jsonApi/schema'
 import _ from 'lodash'
+import { Schema } from '~/libs/jsonApi/schema'
 import { RelationshipSchema } from './interfaces'
 
 type Resource = {

@@ -1,19 +1,18 @@
 import { Skeleton } from 'antd'
 import React, { useEffect } from 'react'
-import { useResources } from 'hooks/useResources'
-import {
-  Dashboard as DashboardType, DashboardTR, useDashboardStore,
-} from 'modules/admin/modules/campaigns/core/dashboard'
 import { useHistory, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import settings from 'modules/admin/modules/campaigns/settings'
-import RouteList from 'components/RouteList'
 import _ from 'lodash'
-
-import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from 'modules/admin/modules/campaigns/core/current'
-import { get as getCurrentUser } from 'core/currentUser'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
+import { useResources } from '~/hooks/useResources'
+import {
+  Dashboard as DashboardType, DashboardTR, useDashboardStore,
+} from '~/modules/admin/modules/campaigns/core/dashboard'
+import settings from '~/modules/admin/modules/campaigns/settings'
+import RouteList from '~/components/RouteList'
+import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from '~/modules/admin/modules/campaigns/core/current'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { isRequestInProgress } from '~/core/request'
 import { Menu } from './Menu'
 import routes from './routes'
 
@@ -39,7 +38,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
   const fetchSuccessful = isRequestSuccessful('fetch')
   const dashboardPreviewAvailable = !_.isEmpty(data[0]?.reportId) && !_.isEmpty(data[0]?.datasetId)
   const dashboardInitialized = fetchSuccessful && data.length === 1
-  const canManageDashboard = currentUser.role === 'Users::SuperAdmin'
+  const canManageDashboard = isSuperAdmin(currentUser)
   const loadingInProgress = !fetchSuccessful || campaignLoading
 
   useEffect(() => {

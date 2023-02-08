@@ -1,11 +1,11 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 import _ from 'lodash'
-import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
-import DefaultProps from 'constants/DefaultProps'
-import Action from 'undo'
-import { getStore } from 'store/StoreWatchman'
+import Utils from '~/modules/survey/utils'
+import DefaultProps from '~/modules/survey/constants/DefaultProps'
+import Action from '~/modules/survey/undo'
+import { getStore } from '~/modules/survey/store/StoreWatchman'
 import Condition from './QuestionCondition'
 import Comment from './Comment'
 import Result from './Preview/Result'

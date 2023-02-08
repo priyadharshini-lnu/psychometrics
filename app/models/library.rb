@@ -2,6 +2,9 @@
 
 class Library < ApplicationRecord
   include OwnerValidations
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   belongs_to :owner, class_name: 'Client'
   belongs_to :created_by, class_name: 'User'
@@ -11,6 +14,12 @@ class Library < ApplicationRecord
   enum type: { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
 
   mount_uploader :file, Public::FileUploader
+
+  has_one_attached :as_file
+  validates :as_file, content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :file
 
   validates :name, presence: true, if: proc { folder? }
   validates :file, presence: true, unless: proc { folder? }
@@ -55,6 +64,10 @@ class Library < ApplicationRecord
   #
   self.inheritance_column = :_type_disabled
 
+  def log_attribute_for_delete
+    slice(:name, :owner_id)
+  end
+
   protected
 
   def detected_type
@@ -68,9 +81,5 @@ class Library < ApplicationRecord
 
   def set_name
     self.name = file.filename if name.blank?
-  end
-
-  def log_attribute_for_delete
-    slice(:name, :owner_id)
   end
 end

@@ -79,7 +79,7 @@ module Administration
       end
 
       def import
-        import_data = ::Campaigns::Users::ParseImportData.call!(params[:import_data])
+        import_data = ::Campaigns::Users::ParseImportData.call!(params[:import_data], campaign)
         form = ::Campaigns::Users::ImportForm.new(import_data: import_data, operation: params[:operation]).
                with_context(campaign: campaign)
         if form.valid?

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
+import api from '~/middleware/api'
 import socket from '../middleware/Socket'
 import flow from '../core/preview/FlowProcessor/middleware'
 import rootReducers from '../core/rootReducers'

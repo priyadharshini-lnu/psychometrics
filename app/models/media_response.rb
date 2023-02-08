@@ -4,8 +4,32 @@ require 'carrierwave/storage/fog'
 
 class MediaResponse < ApplicationRecord
   include EncodableId
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   mount_uploader :asset, Private::MediaResponseUploader
+
+  has_one_attached :as_asset, service: Settings.storage.private_storage_service
+  # TODO: check filename_format validation?
+  validates :as_asset, content_type: proc { allowed_content_type }
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :asset
+
+  def allowed_content_type
+    return allowed_file_types_from_question if question.props['allowedFileTypes']
+
+    return %w[mp4] if question.type == 'VideoResponse'
+
+    return %w[wav] if question.type == 'AudioResponse'
+  end
+
+  def allowed_file_types_from_question
+    return question.props['allowedFileTypes'].concat(['jpeg']) if question.props['allowedFileTypes'].include?('jpg')
+
+    question.props['allowedFileTypes']
+  end
 
   belongs_to :users_assessment
   belongs_to :question

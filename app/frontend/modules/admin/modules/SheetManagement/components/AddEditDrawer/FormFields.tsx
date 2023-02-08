@@ -3,10 +3,10 @@ import {
   Col, Form, Input, InputNumber, Row,
 } from 'antd'
 
-import { ColumnType } from 'modules/admin/modules/SheetManagement/core/list'
+import { ColumnType } from '~/modules/admin/modules/SheetManagement/core/list'
 
-import { MarkdownEditor } from 'modules/admin/modules/SheetManagement/components/MarkdownEditor'
-import HTMLEditor from 'components/Editor'
+import { MarkdownEditor } from '~/modules/admin/modules/SheetManagement/components/MarkdownEditor'
+import HTMLEditor from '~/components/Editor'
 
 const { I18n } = window
 

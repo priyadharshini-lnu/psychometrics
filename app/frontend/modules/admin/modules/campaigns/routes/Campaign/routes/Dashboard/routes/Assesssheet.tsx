@@ -1,8 +1,8 @@
-import { SheetType } from 'modules/admin/modules/SheetManagement/core/list'
-import { Sheet } from 'modules/admin/modules/SheetManagement/Sheet'
-import { ParentResourceType } from 'modules/admin/modules/SheetManagement/interfaces'
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { SheetType } from '~/modules/admin/modules/SheetManagement/core/list'
+import { Sheet } from '~/modules/admin/modules/SheetManagement/Sheet'
+import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'
 
 export const Accesssheet = () => {
   const { campaignId } = useParams<{ campaignId: string }>()

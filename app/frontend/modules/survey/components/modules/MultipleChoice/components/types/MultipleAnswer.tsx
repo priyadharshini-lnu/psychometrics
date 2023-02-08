@@ -1,17 +1,17 @@
 import React, { FC, useEffect, useRef } from 'react'
 import { Checkbox, Space } from 'antd'
 
-import LabelEditor from 'components/LabelEditor'
 import {
   ImageChoiceBuilder,
   NotApplicableImageChoice,
-} from 'modules/survey/components/modules/MultipleChoice/components/ImageChoiceBuilder'
-import Socket from 'modules/survey/cable'
-import LibraryTransport from 'modules/survey/cable/LibraryChannel'
-import { LibraryStore } from 'libs/library'
-import useForceUpdate from 'hooks/useUpdate'
+} from '~/modules/survey/components/modules/MultipleChoice/components/ImageChoiceBuilder'
+import Socket from '~/modules/survey/cable'
+import LibraryTransport from '~/modules/survey/cable/LibraryChannel'
+import { LibraryStore } from '~/libs/library'
+import useForceUpdate from '~/hooks/useUpdate'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/MultipleChoice'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
+import LabelEditor from '~/modules/survey/components/LabelEditor'
 
 interface Props {
   model: BuilderModel

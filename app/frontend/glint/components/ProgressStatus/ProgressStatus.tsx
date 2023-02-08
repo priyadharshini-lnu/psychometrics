@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, useContext } from 'react'
 import { Col, Row, Typography } from 'antd'
 import cs from 'classnames'
 
-import { MediaQueryContext } from 'glint'
+import { MediaQueryContext } from '~/glint'
 import styles from './styles.less'
 
 const { Title, Text } = Typography

@@ -1,6 +1,6 @@
-import { factor } from 'store/schema'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
+import { factor } from '~/modules/survey/store/schema'
 
 export const factorsSelector = (state, ids) => denormalize(ids, [factor], state)
 export const recodingSelector = state => state.factors.recoding

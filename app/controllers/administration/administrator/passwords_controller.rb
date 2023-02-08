@@ -6,6 +6,7 @@ module Administration
       include PasswordReset
 
       helper_method :resource_name, :devise_mapping
+      layout 'administration/devise'
 
       def resource_name
         :user

@@ -2,8 +2,8 @@ import FroalaEditor from 'froala-editor'
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/xml/xml'
-import embedMedia from 'modules/survey/commands/froalaCommands/embedMedia'
-import events from 'components/Editor/events'
+import embedMedia from '~/modules/survey/commands/froalaCommands/embedMedia'
+import events from '~/components/Editor/events'
 
 FroalaEditor.PLUGINS.embedMedia = embedMedia
 

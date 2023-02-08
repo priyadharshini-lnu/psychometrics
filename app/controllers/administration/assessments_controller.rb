@@ -198,8 +198,8 @@ class Administration::AssessmentsController < Administration::BaseController
         { id: id, name: a['name'], selected: params[:external_assessment_id] == id }
       end
     elsif params[:type] == Assessment::TYPES[:pearson] && Rails.application.secrets.pearson[:base_api_url]
-      assessments = Pearson::GetAssessments.call!.sort_by { |a| a['title'] }.map do |a|
-        { id: a['productId'], name: a['title'], selected: params[:external_assessment_id] == a['productId'] }
+      assessments = PearsonAssessment.order(:title).map do |a|
+        { id: a.product_id, name: a.title, selected: params[:external_assessment_id] == a.product_id }
       end
     end
 

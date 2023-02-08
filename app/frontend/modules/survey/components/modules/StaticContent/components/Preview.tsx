@@ -1,12 +1,12 @@
 import React, { FC, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
-import { RootState } from 'modules/survey/core/rootReducers'
-import { I18nInterface, Question } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { RootState } from '~/modules/survey/core/rootReducers'
+import { I18nInterface, Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
-import { useImageZoom } from 'modules/survey/hooks/useImageZoom'
+import { useImageZoom } from '~/modules/survey/hooks/useImageZoom'
 
 import Previews from './Previews'
 import Text from './Text'

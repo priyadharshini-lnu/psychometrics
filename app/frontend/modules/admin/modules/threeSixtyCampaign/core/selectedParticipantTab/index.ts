@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { createReducer } from '~/utils/redux'
 
 const SET_SELECTED_TAB = 'threeSixty/SET_SELECTED_TAB'
 

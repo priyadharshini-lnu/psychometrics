@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import LogicResolver from 'modules/survey/models/logic/LogicResolver'
-import QuestionSerializer from 'modules/survey/models/QuestionSerializer'
+import LogicResolver from '~/modules/survey/models/logic/LogicResolver'
+import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { LogicInterface, QuestionsInterface, ResultsInterface } from '../interfaces'
 
 interface Context {

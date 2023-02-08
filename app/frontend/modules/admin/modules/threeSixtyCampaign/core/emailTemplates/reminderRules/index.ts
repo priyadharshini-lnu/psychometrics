@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { updateIn } from 'utils/immutable'
-import { createReducer } from 'utils/redux'
+import { updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 
 export const ADD = 'threeSixty/emailTemplates/reminderRules/ADD'
 export const UPDATE = 'threeSixty/emailTemplates/reminderRules/UPDATE'

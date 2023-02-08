@@ -1,10 +1,10 @@
 import lodashGet from 'lodash/get'
 import humps from 'humps'
-import { createReducer } from 'utils/redux'
-import { ParentResourceType } from 'modules/admin/modules/SheetManagement/core/current'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
+import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/core/current'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 import {
   FETCH, FetchAction, Column, ColumnTypeTR, SheetType,
 } from './list'

@@ -7,10 +7,10 @@ import {
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 
-import { ConfirmationModal, CollapseItem } from 'glint'
-import { SafeHTML } from 'components/SafeHTML'
-import userPresenter from 'presenters/user'
-import { getSubjectReport, getApprovalReports } from 'modules/endUser/modules/campaigns/core/campaign/selectors'
+import userPresenter from '~/presenters/user'
+import { getSubjectReport, getApprovalReports } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
+import { SafeHTML } from '~/components/SafeHTML'
+import { ConfirmationModal, CollapseItem } from '~/glint'
 import { ThreesixtyCard } from '../ThreesixtyCard'
 import styles from '../ListStyles.less'
 

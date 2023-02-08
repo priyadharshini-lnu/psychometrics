@@ -5,7 +5,7 @@ import {
   update,
   addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
-} from 'modules/admin/modules/threeSixtyCampaign/core/nominationRequirements/subjectConditions'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/nominationRequirements/subjectConditions'
 
 export default connect(({
   project: { datasheetFields },

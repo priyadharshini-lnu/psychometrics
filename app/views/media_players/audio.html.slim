@@ -1,6 +1,5 @@
 head
-  = stylesheet_pack_tag "medial_players/audio"
-  = javascript_pack_tag "medial_players/audio"
+  = vite_client_tag
   css:
     .green-audio-player {
       box-shadow: none;
@@ -16,5 +15,9 @@ body style="margin: 0; padding: 10px;"
     audio
       source src="#{params[:url]}"
 
+  = vite_javascript_tag "entrypoints/medial_players/audio"
+
   javascript:
-    new GreenAudioPlayer('.gap-example');
+    document.addEventListener('DOMContentLoaded', function () {
+      new GreenAudioPlayer('.gap-example');
+    })

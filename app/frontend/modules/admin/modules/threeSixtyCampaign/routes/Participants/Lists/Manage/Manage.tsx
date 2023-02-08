@@ -3,17 +3,17 @@ import {
   Button, Menu,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { openModal } from 'modules/admin/core/ui/modals'
+import { connect, ConnectedProps } from 'react-redux'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { openModal } from '~/modules/admin/core/ui/modals'
 import {
   reset as resetCampaign, resetAllNominations, exportCompletionStatuses, rescoreAssessment,
-} from 'modules/admin/modules/threeSixtyCampaign/core'
-import { get as getCurrentUser } from 'core/currentUser'
+} from '~/modules/admin/modules/threeSixtyCampaign/core'
+import { get as getCurrentUser } from '~/core/currentUser'
 import {
   getCurrentAssessmentId, getCurrentReportId, getCurrentDimensionId,
-} from 'modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
-import { connect, ConnectedProps } from 'react-redux'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 
 const { I18n } = window
 

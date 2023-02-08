@@ -5,19 +5,19 @@ import {
 import { useParams } from 'react-router-dom'
 import { MoreOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
   fetchOtherReports,
   getOther,
   toggleAssessorAccess,
   exportData,
   toggleUserDashboard,
-} from 'modules/admin/modules/campaigns/core/reports'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { openModal } from 'modules/admin/core/ui/modals'
+} from '~/modules/admin/modules/campaigns/core/reports'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 const { Column } = Table
 const { I18n } = window

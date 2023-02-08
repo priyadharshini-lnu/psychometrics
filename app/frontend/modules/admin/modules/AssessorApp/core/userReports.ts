@@ -1,10 +1,10 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
-import { RootState } from 'modules/admin/core/rootReducers'
 import humps from 'humps'
 import { AnyAction } from 'redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { createReducer } from '~/utils/redux'
 import { FetchSingle } from './users'
 
 export const UserReportTR = t.type({

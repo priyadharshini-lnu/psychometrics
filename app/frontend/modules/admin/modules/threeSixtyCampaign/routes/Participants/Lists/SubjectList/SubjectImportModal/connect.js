@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
-import { closeModal, getCurrent } from 'modules/admin/core/ui/modals'
+import { closeModal, getCurrent } from '~/modules/admin/core/ui/modals'
 import {
   IMPORT,
   importFile,
   clearImportData,
   get as getImport,
-} from 'modules/admin/modules/threeSixtyCampaign/core/subjects/import'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/threeSixtyCampaign/core/subjects/import'
+import { isRequestInProgress } from '~/core/request'
 
 export default connect(
   (state) => {

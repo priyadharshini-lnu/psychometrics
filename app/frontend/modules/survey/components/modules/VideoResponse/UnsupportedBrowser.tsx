@@ -2,18 +2,18 @@ import React, { FC } from 'react'
 import {
   Button, Card, Result, Space, Typography,
 } from 'antd'
-import { OS_NAME } from 'utils/uaParser'
+import { OS_NAME } from '~/utils/uaParser'
 
-import ChromeIcon from 'modules/survey/assets/icons/chrome.r.svg'
-import FirefoxIcon from 'modules/survey/assets/icons/firefox.r.svg'
-import EdgeIcon from 'modules/survey/assets/icons/edge.r.svg'
-import SafariIcon from 'modules/survey/assets/icons/safari.r.svg'
+import ChromeIcon from '~/modules/survey/assets/icons/chrome.r.svg'
+import FirefoxIcon from '~/modules/survey/assets/icons/firefox.r.svg'
+import EdgeIcon from '~/modules/survey/assets/icons/edge.r.svg'
+import SafariIcon from '~/modules/survey/assets/icons/safari.r.svg'
 
 import {
   BROWSERS_ON_OS_TYPES,
   BROWSER_DOWNLOAD_LINKS,
   NAMES_FROM_UA_BROWSERS,
-} from 'modules/survey/constants/browser'
+} from '~/modules/survey/constants/browser'
 import styles from './styles.less'
 
 const { I18n } = window

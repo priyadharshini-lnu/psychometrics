@@ -4,11 +4,11 @@ import { Button, Card, Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { isRequestInProgress } from 'core/request'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   CREATE,
-} from 'modules/admin/modules/campaigns/core/assessmentGroups'
+} from '~/modules/admin/modules/campaigns/core/assessmentGroups'
+import { isRequestInProgress } from '~/core/request'
 
 import styles from './styles.less'
 

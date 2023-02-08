@@ -1,6 +1,6 @@
 import React from 'react'
-import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
 import cs from 'classnames'
+import { AudioLevel } from '~/hooks/useAudioMetrics/interfaces'
 import RedMicrophone from './images/red-microphone.png'
 import GreenMicrophone from './images/green-microphone.png'
 import styles from './styles.less'

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { blocksWithoutDeleted } from 'core/builder/assessment/selectors'
 import {
   removeSkipLogic,
-} from 'modules/survey/core/builder/assessment/question/actions'
+} from '~/modules/survey/core/builder/assessment/question/actions'
+import { blocksWithoutDeleted } from '~/modules/survey/core/builder/assessment/selectors'
 
 export default connect(
   ({ survey: { builder } }) => ({

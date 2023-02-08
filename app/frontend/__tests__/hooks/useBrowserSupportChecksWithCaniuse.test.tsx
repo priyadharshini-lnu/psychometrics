@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import { useBrowserSupportChecksWithCaniuse } from 'hooks/useBrowserSupportChecksWithCaniuse'
-import { BROWSER_FEATURES, UA_BROWSERS } from 'modules/survey/constants/browser'
+import { useBrowserSupportChecksWithCaniuse } from '~/hooks/useBrowserSupportChecksWithCaniuse'
+import { BROWSER_FEATURES, UA_BROWSERS } from '~/modules/survey/constants/browser'
 
 test('It should return falsy when no browser is supplied', () => {
   const { result } = renderHook(() =>

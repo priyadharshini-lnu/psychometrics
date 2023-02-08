@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dropdown, Menu, Space } from 'antd'
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
-import { LanguageIcon } from 'glint/icons/LanguageIcon'
+import { LanguageIcon } from '~/glint/icons/LanguageIcon'
 import styles from './styles.less'
 
 const { I18n } = window

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { closeModal, getCurrent, getData } from 'modules/admin/core/ui/modals'
-import { get as getDatasheetField } from 'modules/admin/modules/threeSixtyCampaign/core/datasheetFields'
+import { closeModal, getCurrent, getData } from '~/modules/admin/core/ui/modals'
+import { get as getDatasheetField } from '~/modules/admin/modules/threeSixtyCampaign/core/datasheetFields'
 
 export default connect(
   state => ({

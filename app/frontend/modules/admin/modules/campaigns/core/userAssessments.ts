@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { createReducer, CustomAction } from 'utils/redux'
-import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { takeEvery, put } from 'redux-saga/effects'
+import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
+import { createReducer, CustomAction } from '~/utils/redux'
 import {
   FETCH_SINGLE as FETCH_SINGLE_USER,
   REMOVE_ASSESSMENT,

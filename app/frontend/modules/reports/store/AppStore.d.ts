@@ -1,4 +1,4 @@
-import { Assessment } from 'modules/reports/core/interfaces/Assessment'
+import { Assessment } from '~/modules/reports/core/interfaces/Assessment'
 
 declare class AppStore {
   constructor()

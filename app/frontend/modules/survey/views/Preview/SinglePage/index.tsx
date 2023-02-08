@@ -1,8 +1,8 @@
 import React from 'react'
 import cs from 'classnames'
-import { RootState } from 'modules/survey/core/rootReducers'
 import { connect, ConnectedProps } from 'react-redux'
-import { getAllAnsweredQuestions } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import { RootState } from '~/modules/survey/core/rootReducers'
+import { getAllAnsweredQuestions } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import QuestionList from '../QuestionList'
 import styles from './styles.less'
 

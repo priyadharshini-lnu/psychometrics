@@ -9,14 +9,14 @@ import round from 'lodash/round'
 import cs from 'classnames'
 import _ from 'lodash'
 
-import { RootState } from 'modules/reports/core/rootReducers'
-import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
-import { BasePreviewModel as BaseQuestionModelInPreview } from 'modules/survey/interfaces/questions/Base'
+import { RootState } from '~/modules/reports/core/rootReducers'
+import { PreviewModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
+import { BasePreviewModel as BaseQuestionModelInPreview } from '~/modules/survey/interfaces/questions/Base'
 
-import ResultStore from 'modules/reports/store/ResultStore'
-import I18nStore from 'modules/reports/store/I18nStore'
-import { getQuestions } from 'modules/reports/core/builder/selectors'
-import AppStore from 'modules/reports/store/AppStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import AppStore from '~/modules/reports/store/AppStore'
 
 import styles from './styles.less'
 

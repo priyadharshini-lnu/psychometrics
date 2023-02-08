@@ -7,19 +7,19 @@ import {
 import snakeCase from 'lodash/snakeCase'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { CampaignOptions as ICampaignOptions } from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import {
   fetch,
   update,
   get as getCampaignOptions,
-} from 'modules/admin/modules/campaigns/core/campaignOptions'
+} from '~/modules/admin/modules/campaigns/core/campaignOptions'
 
-import TimeZoneSelect from 'components/TimeZoneSelect'
-import InputDuration from 'components/InputDuration'
-import Section from 'modules/admin/components/Options/Section'
-import Option from 'modules/admin/components/Options/Expandable'
-import { getFeatures } from 'core/config'
+import TimeZoneSelect from '~/components/TimeZoneSelect'
+import InputDuration from '~/components/InputDuration'
+import Section from '~/modules/admin/components/Options/Section'
+import Option from '~/modules/admin/components/Options/Expandable'
+import { getFeatures } from '~/core/config'
 import Instructions from './Instructions'
 import { Description } from './Description'
 

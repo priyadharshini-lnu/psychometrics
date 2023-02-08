@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import connection from 'core/connection'
+import connection from '~/core/connection'
 import builder from './builder'
 import temp from './temp'
 import preview from './preview'

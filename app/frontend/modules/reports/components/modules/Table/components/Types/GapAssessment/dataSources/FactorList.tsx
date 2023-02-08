@@ -3,9 +3,9 @@ import {
   Typography, Select,
 } from 'antd'
 
-import { PropertiesModel } from 'modules/reports/interfaces/tables/Gap'
+import { PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
 
-import AppStore from 'modules/reports/store/AppStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 interface Props {
   assessmentId: PropertiesModel['assessment_id']

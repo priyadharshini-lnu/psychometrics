@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useResources } from 'hooks/useResources'
+import { useResources } from '~/hooks/useResources'
 import { Task, TaskTR } from '../core'
 import { TasksList } from './TasksList'
 

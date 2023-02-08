@@ -1,10 +1,10 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 import _ from 'lodash'
-import store from 'modules/reports/store'
-import { getQuestions } from 'modules/reports/core/builder/selectors'
-import PromptStore from 'modules/reports/store/PromptStore'
-import Utils from 'modules/reports/utils/Utils'
+import store from '~/modules/reports/store'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import PromptStore from '~/modules/reports/store/PromptStore'
+import Utils from '~/modules/reports/utils/Utils'
 
 export const DefaultBehaviour = (model, label, question, collectionName) => {
   const val = label

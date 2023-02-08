@@ -1,7 +1,7 @@
 import { InputRef } from 'antd'
 import React, { useRef } from 'react'
 
-import { useTimeout } from 'hooks/useTimeout'
+import { useTimeout } from '~/hooks/useTimeout'
 
 export function useInputFocus (ref: React.RefObject<InputRef>, delay = 200) {
   const focus = useRef(false)

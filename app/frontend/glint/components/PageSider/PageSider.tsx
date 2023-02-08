@@ -3,8 +3,8 @@ import { Layout, Menu, Drawer } from 'antd'
 import { SelectInfo } from 'rc-menu/lib/interface'
 import cs from 'classnames'
 
-import { MediaQueryContext } from 'glint'
-import { MenuTriggerIcon } from 'glint/icons'
+import { MediaQueryContext } from '~/glint'
+import { MenuTriggerIcon } from '~/glint/icons'
 import styles from './styles.less'
 
 const { Sider } = Layout

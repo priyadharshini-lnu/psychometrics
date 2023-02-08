@@ -2,9 +2,9 @@ import React, { ChangeEvent, Component } from 'react'
 import _ from 'lodash'
 import { Input } from 'antd'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/SideBySide'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/SideBySide'
 
-import LabelEditor from 'components/LabelEditor'
+import LabelEditor from '~/modules/survey/components/LabelEditor'
 
 import styles from '../styles.less'
 

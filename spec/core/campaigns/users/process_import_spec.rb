@@ -14,23 +14,29 @@ describe Campaigns::Users::ProcessImport do
         last_name: 'Tar',
         email: 'fedor@gmail.com',
         password: 'asdasd1234',
-        created_at: '11 Jul 2020 / 16:39'
+        created_at: '11 Jul 2020 / 16:39',
+        age: 32,
+        custom_field: '1111',
+        custom_field2: '1111'
       },
       {
         active: false,
         first_name: 'Vlad',
         last_name: 'Ata',
         email: 'vlad@gmail.com',
-        password: 'AAA1234',
-        created_at: '11 Jul 2020 / 17:25'
+        password: 'asdfd',
+        age: 35,
+        created_at: '11 Jul 2020 / 17:25',
+        custom_field: '1111'
       },
       {
         active: nil,
         first_name: 'Namu1234',
         last_name: 'Uki',
         email: 'namu@gmail.com',
-        password: 'CAMP',
-        created_at: '11 Jul 2020 / 17:25'
+        password: 'AAA',
+        created_at: '11 Jul 2020 / 17:25',
+        custom_field: '1111'
       }
     ]
   end
@@ -55,6 +61,8 @@ describe Campaigns::Users::ProcessImport do
     expect(imported_users.size).to eq(3)
     expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
     expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
+    expect(fedor_user.user_profile).to have_attributes(age: 32)
+    expect(fedor_user.user_profile).to have_attributes(custom_fields: {})
 
     expect(
       [
@@ -65,5 +73,31 @@ describe Campaigns::Users::ProcessImport do
     expect(vlad_campaign_user.active).to be_falsey
     expect(fedor_campaign_user.active).to be_truthy
     expect(nam_campaign_user.active).to be_truthy
+  end
+
+  describe 'with custom fields' do
+    let!(:question) do
+      create(:question, name: 'custom_field')
+    end
+    let!(:profile_field) do
+      create(:profile_field, required: true, profile_setting: campaign.project.profile_setting, question: question)
+    end
+
+    it do
+      campaign.users.create!(email: 'vlad@gmail.com', password: 'A!sdasd1234321')
+      campaign.users.create!(email: 'namu@gmail.com', password: 'A!namkhf123456')
+
+      _data, imported_users = described_class.call!(
+        campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+      )
+      fedor_user = campaign.users.find_by(email: 'fedor@gmail.com')
+      vlad_user = campaign.users.find_by(email: 'vlad@gmail.com')
+
+      expect(imported_users.size).to eq(3)
+      expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
+      expect(fedor_user.user_profile).to have_attributes(age: 32)
+      expect(fedor_user.user_profile).to have_attributes(custom_fields: { 'custom_field' => '1111' })
+      expect(vlad_user.user_profile).to have_attributes(age: 35)
+    end
   end
 end
