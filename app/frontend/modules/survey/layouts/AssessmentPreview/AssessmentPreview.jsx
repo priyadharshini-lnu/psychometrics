@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import qs from 'query-string'
+import qs from 'qs'
 import Page from '~/modules/survey/views/Preview/Page'
 import EndPage from '~/modules/survey/views/Preview/EndPage'
 import SubmitPage from '~/modules/survey/views/Preview/SubmitPage'

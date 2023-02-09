@@ -106,7 +106,7 @@ module Administration
       end
 
       def fetch_campaign_instructions
-        list = params[:locales].map do |locale|
+        list = params[:locales].values.map do |locale|
           Mobility.with_locale(locale) do
             CampaignOptionsLocaleSerializer.new(@campaign.campaign_options, locale: locale).to_h
           end
@@ -116,7 +116,7 @@ module Administration
       end
 
       def fetch_descriptions
-        list = params[:locales].map do |locale|
+        list = params[:locales].values.map do |locale|
           Mobility.with_locale(locale) do
             { description: @campaign.campaign_options.description, locale:  locale }
           end

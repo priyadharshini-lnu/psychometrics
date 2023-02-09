@@ -6,7 +6,7 @@ import {
   Layout, PageHeader, Col, Progress, Space, ProgressProps,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 
 import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'

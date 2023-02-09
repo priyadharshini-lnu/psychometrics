@@ -33,7 +33,7 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
         campaign_option.update(description: 'Fr Desc')
       end
       get :fetch_descriptions,
-          params: { id: campaign.id, project_id: campaign.project_id, locales: %w[en ar] }
+          params: { id: campaign.id, project_id: campaign.project_id, locales: { 0 => 'en', 1 => 'ar' } }
 
       parsed_body = JSON.parse(response.body)
 
