@@ -1,10 +1,10 @@
-import React from 'react'
+import { Component } from 'react'
 import { DatePicker } from 'antd'
 import moment from 'moment'
 import { getIn } from '~/utils/immutable'
 
 const FORMAT = 'YYYY-MM-DD HH:mm:ss'
-export default class DateTimeEntryPreview extends React.Component {
+export default class DateTimeEntryPreview extends Component {
   changeAnswer = (e) => {
     const { model } = this.props
     model.result.answer(e && e.format(FORMAT))

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import ResultStore from '~/modules/reports/store/ResultStore'

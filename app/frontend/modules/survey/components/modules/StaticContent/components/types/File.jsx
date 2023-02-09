@@ -1,5 +1,3 @@
-import React from 'react'
-
 const File = ({ model }) => {
   const { props: { graphicUrl } } = model
   if (graphicUrl) {

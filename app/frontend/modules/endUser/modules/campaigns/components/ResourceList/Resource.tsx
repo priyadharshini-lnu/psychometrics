@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useRef, useState, FC } from 'react'
+import { useRef, useState, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 import HighlightList from '~/modules/survey/views/Preview/StaticContent/HighlightList'

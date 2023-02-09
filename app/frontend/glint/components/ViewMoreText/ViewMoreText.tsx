@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import { useState, FC } from 'react'
 import { Button, Typography } from 'antd'
 import styles from './styles.less'
 

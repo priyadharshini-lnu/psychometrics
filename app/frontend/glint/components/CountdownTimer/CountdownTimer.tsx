@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Statistic, notification as antdNotification, StatisticProps } from 'antd'
 
 import styles from './styles.less'

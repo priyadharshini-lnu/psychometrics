@@ -1,4 +1,3 @@
-import React from 'react'
 import cs from 'classnames'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import styles from './ResourceManager.less'

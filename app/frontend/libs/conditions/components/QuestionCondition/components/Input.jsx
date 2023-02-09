@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './QuestionCondition.less'
 
@@ -19,7 +19,7 @@ const PREDICATE = {
   NotDisplayed: 'Not Displayed',
 }
 
-export class Input extends React.Component {
+export class Input extends Component {
   propTypes = {
     condition: PropTypes.object.isRequired,
     onChange: PropTypes.func,

@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-import React from 'react'
 import ThreeSixtyApp from '~/modules/admin/modules/threeSixtyCampaign/App'
 import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'

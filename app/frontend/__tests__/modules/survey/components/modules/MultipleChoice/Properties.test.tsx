@@ -8,6 +8,8 @@ import {
 import { Provider } from 'react-redux'
 import {createStore} from 'redux'
 
+global.React = React
+
 describe('Assessment builder - MultipleChoice - Property panel', () => {
   const basicProps: Props = {
     model: {

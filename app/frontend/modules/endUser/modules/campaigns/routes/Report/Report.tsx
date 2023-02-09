@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   Layout, Button, PageHeader, message, Row, Col, Typography,
 } from 'antd'

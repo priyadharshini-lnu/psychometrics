@@ -1,4 +1,4 @@
-import React, {
+import {
   FC, useEffect, useRef, useState,
 } from 'react'
 import Highcharts, { Chart } from 'highcharts-v9'

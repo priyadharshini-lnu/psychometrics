@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Select, Typography } from 'antd'
 
 const { Option } = Select

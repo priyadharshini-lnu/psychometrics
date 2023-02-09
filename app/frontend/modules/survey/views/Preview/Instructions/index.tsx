@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import { FC, useRef } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { Button } from 'antd'

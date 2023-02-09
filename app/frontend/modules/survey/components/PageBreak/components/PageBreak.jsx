@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Buttons from '~/modules/survey/views/Question/components/Buttons'
 import buttons from '~/modules/survey/views/Question/components/Buttons.less'

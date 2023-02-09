@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import {
   Slider, InputNumber, Row, Col, Collapse, Input,
 } from 'antd'

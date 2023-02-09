@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Checkbox, Divider } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import _ from 'lodash'

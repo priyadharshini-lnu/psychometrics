@@ -1,4 +1,3 @@
-import React from 'react'
 import { DnDElement } from '~/components/DnD'
 import styles from './styles.less'
 

@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-import React from 'react'
 import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'
 import initSentry from '~/libs/initSentry'

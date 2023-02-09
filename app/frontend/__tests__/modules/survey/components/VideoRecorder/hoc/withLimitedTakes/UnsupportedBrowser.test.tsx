@@ -10,6 +10,7 @@ import {
   UA_OPERATING_SYSTEMS,
 } from '~/modules/survey/constants/browser'
 
+global.React = React
 const BrowserSupportForMediaRecorder = {
   and_chr: 90,
   chrome: 49,

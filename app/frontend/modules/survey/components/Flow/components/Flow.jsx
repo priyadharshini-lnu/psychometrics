@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import Tree from '~/libs/ReactTree'
 import styles from './Flow.less'

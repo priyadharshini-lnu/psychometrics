@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Skeleton } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import { TimePicker } from 'antd'
 import _ from 'lodash'

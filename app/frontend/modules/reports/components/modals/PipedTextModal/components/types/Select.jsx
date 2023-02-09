@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Autocomplete = ({
   field: { name, formats, getValue }, insert,
 }) => {

@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import {
   Tabs, Button, message,
 } from 'antd'

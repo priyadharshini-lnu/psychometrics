@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import {
   Col, Row, Typography, Form, Upload, Input, Select, message, Checkbox, Layout, InputNumber, Space, Progress,

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-find-dom-node */
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import { ConfigProvider } from 'antd'
 import { DndProvider } from 'react-dnd'

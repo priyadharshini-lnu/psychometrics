@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 import store from '~/modules/reports/store/PreviewStore'
 import PageList from '~/modules/reports/store/PageList'

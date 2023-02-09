@@ -1,4 +1,3 @@
-import React from 'react'
 import cs from 'classnames'
 import ColorPicker from '~/modules/reports/components/ColorPicker'
 import styles from './styles.less'

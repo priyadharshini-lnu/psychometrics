@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import ScoringList from '~/modules/survey/views/ScoringList'
 import { SCORING } from '~/modules/survey/constants/scoring'
 import styles from './Scoring.less'

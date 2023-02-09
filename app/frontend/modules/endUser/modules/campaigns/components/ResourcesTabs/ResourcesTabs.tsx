@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Tabs } from 'antd'
 import styles from './ResourcesTabs.less'
 import { ResourceList } from '../ResourceList'

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { History } from 'history'

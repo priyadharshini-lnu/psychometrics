@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Flow.less'
 
 const ButtonNew = ({ onClick }) => (

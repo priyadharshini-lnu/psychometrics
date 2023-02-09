@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Menu, Button, Dropdown, Row, Col,
 } from 'antd'

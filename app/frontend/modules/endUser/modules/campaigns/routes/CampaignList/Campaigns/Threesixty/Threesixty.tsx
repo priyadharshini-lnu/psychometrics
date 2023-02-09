@@ -1,4 +1,3 @@
-import React from 'react'
 import round from 'lodash/round'
 import { Col } from 'antd'
 import { useHistory } from 'react-router-dom'

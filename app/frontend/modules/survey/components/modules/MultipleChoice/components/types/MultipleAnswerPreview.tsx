@@ -1,4 +1,4 @@
-import React, {
+import {
   ChangeEvent, FC, lazy, Suspense,
 } from 'react'
 import { Spin } from 'antd'

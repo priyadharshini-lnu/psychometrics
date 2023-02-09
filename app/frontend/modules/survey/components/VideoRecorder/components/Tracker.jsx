@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unused-state */
-import React, { Component } from 'react'
+import { createRef, Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { isEqual, debounce } from 'lodash'
@@ -26,7 +26,7 @@ class Tracker extends Component {
   constructor (props) {
     super(props)
 
-    this.canvasRef = React.createRef()
+    this.canvasRef = createRef()
     this.state = {
       showOverlay: true,
       visibleMessages: ['frame', 'ready'],

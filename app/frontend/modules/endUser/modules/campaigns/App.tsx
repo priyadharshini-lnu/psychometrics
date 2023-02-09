@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { ConfigProvider, notification } from 'antd'
 import { Route } from 'react-router-dom'
 import { Provider } from 'react-redux'

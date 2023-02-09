@@ -1,4 +1,3 @@
-import React from 'react'
 import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import RouteList from '~/components/RouteList'

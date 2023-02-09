@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { useMedia } from 'react-use-media'
 
 const defaultMediaQueryContext = {

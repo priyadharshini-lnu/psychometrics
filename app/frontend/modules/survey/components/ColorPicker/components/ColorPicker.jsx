@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { SketchPicker } from 'react-color'
 import _ from 'lodash'

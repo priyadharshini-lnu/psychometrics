@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useEffect, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import {
   Upload, Button, Progress,

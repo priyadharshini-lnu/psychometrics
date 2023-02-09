@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import Module from '~/modules/reports/core/interfaces/Module'
 

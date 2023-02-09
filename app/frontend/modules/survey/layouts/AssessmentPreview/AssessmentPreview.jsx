@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import qs from 'query-string'
 import Page from '~/modules/survey/views/Preview/Page'
 import EndPage from '~/modules/survey/views/Preview/EndPage'

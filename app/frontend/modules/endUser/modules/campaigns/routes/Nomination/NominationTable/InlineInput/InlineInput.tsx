@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Input, Button, Form, AutoComplete, Space,
 } from 'antd'

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { SliderQuestion } from '~/modules/survey/components/modules/Components/SliderQuestion/SliderQuestion'
 
 import connect from '../../../connect'

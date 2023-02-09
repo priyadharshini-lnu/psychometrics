@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import cs from 'classnames'
 import { RECODING, SCORING } from '~/modules/survey/constants/scoring'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'

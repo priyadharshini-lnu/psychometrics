@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import '~/modules/survey/styles/globals.less'
 import homeStyles from '~/modules/survey/views/Home/components/HomeView.less'
 import blockStyles from '~/modules/survey/views/BlockList/components/BlockListView.less'

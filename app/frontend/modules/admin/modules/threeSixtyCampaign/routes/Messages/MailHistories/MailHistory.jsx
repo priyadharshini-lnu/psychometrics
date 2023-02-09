@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   Table, Dropdown, Menu, Tag, message,
 } from 'antd'

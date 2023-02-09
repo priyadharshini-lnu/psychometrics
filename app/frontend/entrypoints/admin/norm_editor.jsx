@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-import React from 'react'
 import NormEditor from '~/modules/admin/modules/NormEditor/App'
 import '~/modules/admin/styles/common.less'
 import initSentry from '~/libs/initSentry'

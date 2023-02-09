@@ -5,6 +5,7 @@ import { Menu } from 'antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { act } from 'react-dom/test-utils'
 
+global.React = React
 const singleMenuItem = [{ key: 'export', label: <div>Raw</div> }]
 
 test('it should not disable dropdown for menu with child', () => {

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Switch } from 'antd'
 import { CATEGORIES } from '~/modules/admin/constants/emailTemplate'
 import styles from './styles.less'

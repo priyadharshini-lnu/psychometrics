@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { Modules } from '~/modules/survey/components/modules'

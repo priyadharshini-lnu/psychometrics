@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from 'react'
+import { FC, useState, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { updateInstructionsContent } from '~/modules/survey/core/builder/assessment/actions'
 import Editor from '~/components/Editor'

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import FillingScoring from '~/modules/survey/components/FillingScoring'
 import Utils from '~/modules/survey/utils'

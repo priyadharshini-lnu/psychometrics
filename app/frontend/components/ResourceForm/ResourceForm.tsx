@@ -30,6 +30,10 @@ interface JSONApiError {
   detail?: string
 }
 
+type ChildrenProps = {
+  form: FormInstance, status: string | null, isEdit: boolean, fieldsUtil: FieldsUtil
+}
+
 export type OwnProps = {
   resourceName: string
   resourceBaseUrl?: string,
@@ -49,9 +53,7 @@ export type OwnProps = {
     fields?: FieldData[],
     setFields?(fields: object): void
   }
-  children({
-    form: FormInstance, status: string, isEdit: boolean, fieldsUtil: FieldsUtil,
-  }): ReactElement
+  children(props: ChildrenProps): ReactElement
   scrollToFirstError?: boolean
   mockRequest?: boolean
   nullifyEmptyString?: boolean

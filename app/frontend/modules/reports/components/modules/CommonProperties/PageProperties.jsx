@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import Module from '~/modules/reports/models/Module'
 import connect from './connect'

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
 import headerStore from '~/modules/reports/store/HeaderStore'

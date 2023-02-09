@@ -1,6 +1,6 @@
 import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce/lib/index'
 import routeUtils from '~/utils/route'
 import styles from './styles.less'

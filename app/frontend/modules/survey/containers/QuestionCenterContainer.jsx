@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import '~/modules/survey/styles/globals.less'
 import { Provider } from 'react-redux'
 import QuestionCenter from '~/modules/survey/layouts/QuestionCenter'

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Col, Row } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'

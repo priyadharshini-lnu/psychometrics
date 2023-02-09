@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './styles.less'
 import SubjectConditions from './SubjectConditions'
 import Conditions from './Conditions'

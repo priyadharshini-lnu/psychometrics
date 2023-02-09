@@ -1,4 +1,3 @@
-import React from 'react'
 import { Input as AntInput } from 'antd'
 
 export default function TextArea ({ field: { value, name }, onChange }) {

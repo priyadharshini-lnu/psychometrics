@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { message } from 'antd'
 import { RemoveResource } from '~/hooks/useResources/interfaces'
 import { ConfirmationModal } from '~/glint'

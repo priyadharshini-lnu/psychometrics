@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import QuestionCondition from '~/libs/conditions'
 import styles from './CustomValidation.less'

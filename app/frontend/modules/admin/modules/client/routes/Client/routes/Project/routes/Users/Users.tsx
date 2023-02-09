@@ -1,4 +1,3 @@
-import React from 'react'
 import { useHistory, useLocation, useParams } from 'react-router'
 import { Menu } from 'antd'
 

@@ -1,6 +1,4 @@
-import React, {
-  FC, useMemo, useState,
-} from 'react'
+import { FC, useMemo, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {

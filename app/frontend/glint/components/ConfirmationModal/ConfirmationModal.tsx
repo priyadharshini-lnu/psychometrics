@@ -1,4 +1,4 @@
-import React, { ReactElement, FC } from 'react'
+import { ReactElement, FC } from 'react'
 import { Modal, Button } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 

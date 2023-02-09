@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import { Select, Button } from 'antd'
 import pluralize from 'pluralize'

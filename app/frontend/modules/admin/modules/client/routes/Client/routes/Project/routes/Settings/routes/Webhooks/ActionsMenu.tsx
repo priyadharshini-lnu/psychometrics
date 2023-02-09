@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Button, Menu, Tooltip } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 

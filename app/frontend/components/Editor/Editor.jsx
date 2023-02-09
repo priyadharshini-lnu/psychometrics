@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { createRef, useEffect } from 'react'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
 import 'codemirror/mode/xml/xml'
@@ -104,7 +104,7 @@ function Editor ({
 
   withPipedText && config.toolbarButtons.unshift('pipedText')
 
-  const ref = React.createRef()
+  const ref = createRef()
 
   useEffect(() => {
     ref.current.editor.opts.saveParams = { type, details }

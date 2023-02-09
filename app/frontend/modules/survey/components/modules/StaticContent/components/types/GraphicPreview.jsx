@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '../StaticContent.less'
 
 const GraphicPreview = ({ model: { props: { graphicUrl } } }) => (

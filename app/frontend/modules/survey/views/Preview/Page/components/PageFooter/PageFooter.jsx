@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import cs from 'classnames'
 import { Button, Popconfirm, Alert } from 'antd'
 import { isRtl } from '~/utils/locales'

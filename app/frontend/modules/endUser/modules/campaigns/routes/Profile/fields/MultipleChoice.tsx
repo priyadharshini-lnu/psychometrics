@@ -1,5 +1,5 @@
 
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Select, Radio, Checkbox } from 'antd'
 import _ from 'lodash'
 import styles from './styles.less'

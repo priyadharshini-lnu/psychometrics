@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import InnovationStyleConditionCollection from '~/modules/reports/models/InnovationStyleConditionCollection'
 import styles from './InnovationStyleConditionModal.less'

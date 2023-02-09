@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import LabelEditor from '~/modules/reports/components/LabelEditor'

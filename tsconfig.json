@@ -14,7 +14,7 @@
     "module":"commonjs",
     "moduleResolution":"node",
     "sourceMap":true,
-    "jsx":"react",
+    "jsx":"react-jsx",
     "allowJs": true,
     "resolveJsonModule":true,
     "allowSyntheticDefaultImports":true,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import utils from '~/modules/survey/utils'
 import DndElement from '~/components/DnD/DnDElement'
 import styles from './ResourceManager.less'

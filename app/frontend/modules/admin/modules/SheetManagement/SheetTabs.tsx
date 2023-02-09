@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Tabs } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'

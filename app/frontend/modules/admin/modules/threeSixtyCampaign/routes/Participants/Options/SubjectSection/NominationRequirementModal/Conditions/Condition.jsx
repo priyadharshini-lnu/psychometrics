@@ -1,4 +1,3 @@
-import React from 'react'
 import { Select, Input } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'

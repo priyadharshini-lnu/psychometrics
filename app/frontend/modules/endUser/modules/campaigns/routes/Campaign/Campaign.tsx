@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react'
+import { useEffect, FC } from 'react'
 import { Layout, Col } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'

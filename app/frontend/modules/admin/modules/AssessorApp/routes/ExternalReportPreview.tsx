@@ -1,4 +1,4 @@
-import React, { useEffect, FC, useState } from 'react'
+import { useEffect, FC, useState } from 'react'
 import {
   Layout, Button, Row, Col, PageHeader, Spin, Space,
 } from 'antd'

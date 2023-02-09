@@ -1,4 +1,4 @@
-import React, { FC, lazy, Suspense } from 'react'
+import { FC, lazy, Suspense } from 'react'
 import { Spin } from 'antd'
 
 import useForceUpdate from '~/hooks/useUpdate'

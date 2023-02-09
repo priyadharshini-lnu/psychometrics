@@ -1,5 +1,5 @@
 /* eslint-disable react/no-find-dom-node */
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Checkbox } from 'antd'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
@@ -123,17 +123,15 @@ export class Menu extends Component {
 
   renderLikertMenu () {
     const { data } = this.props
-    return (
-      LIKERT_TYPES.map((type, i) => {
-        const trimed = type.replace(/\s+/g, '')
-        return (
-          <MenuItem key={i} onSelect={e => this.changeLikertType(data, trimed, e)}>
-            <span className={`${trimed === data.likertType ? 'fa fa-check' : ''} ${styles.menuicon}`} />
-            {type}
-          </MenuItem>
-        )
-      })
-    )
+    return LIKERT_TYPES.map((type, i) => {
+      const trimed = type.replace(/\s+/g, '')
+      return (
+        <MenuItem key={i} onSelect={e => this.changeLikertType(data, trimed, e)}>
+          <span className={`${trimed === data.likertType ? 'fa fa-check' : ''} ${styles.menuicon}`} />
+          {type}
+        </MenuItem>
+      )
+    })
   }
 
   renderInputs () {

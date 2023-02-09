@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import TextConditionCollection from '~/modules/reports/models/TextConditionCollection'
 import AppStore from '~/modules/reports/store/AppStore'

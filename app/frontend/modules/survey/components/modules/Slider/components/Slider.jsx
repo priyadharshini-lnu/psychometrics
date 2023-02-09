@@ -1,10 +1,10 @@
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextEditor from '~/modules/survey/components/TextEditor'
 import styles from './Slider.less'
 import Templates from './Templates'
 
-class Slider extends React.Component {
+class Slider extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }

@@ -1,4 +1,3 @@
-import React from 'react'
 import { AutoComplete, Input } from 'antd'
 import userPresenter from '~/presenters/user'
 

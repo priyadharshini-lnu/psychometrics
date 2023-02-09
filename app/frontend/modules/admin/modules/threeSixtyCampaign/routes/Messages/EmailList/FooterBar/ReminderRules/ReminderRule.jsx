@@ -1,4 +1,3 @@
-import React from 'react'
 import { InputNumber } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import styles from './styles.less'

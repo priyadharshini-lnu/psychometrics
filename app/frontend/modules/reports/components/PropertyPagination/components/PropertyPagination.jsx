@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import store from '~/modules/reports/store/PropertyPanelStore'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import styles from '../../../views/PropertyPanel/components/PropertyPanel.less'

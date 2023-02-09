@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import {
   Layout, Row, Col, Progress, Alert, Card,
 } from 'antd'
