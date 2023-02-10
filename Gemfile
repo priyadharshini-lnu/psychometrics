@@ -51,10 +51,14 @@ gem 'devise',                     '~> 4.7.3'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
-gem 'devise-security',            '~> 0.17.0'
-gem 'pundit',                     '~> 2.1.1'
+
+# two_factor_authentication should be before devise-security, so that 2fa is required before changing expired password
+# rubocop:disable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
 gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
   branch: 'fix_deprecated_methods'
+# rubocop:enable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
+gem 'devise-security', '~> 0.17.0'
+gem 'pundit', '~> 2.1.1'
 
 ### Assets
 gem 'bh',                         '~> 1.3'

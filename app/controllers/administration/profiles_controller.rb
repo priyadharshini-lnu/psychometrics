@@ -12,12 +12,18 @@ module Administration
 
     def update
       authorize user, nil, policy_class: UserProfilePolicy
-      @form = ::Users::AdminProfileEditForm.from_params(profile_params)
+      @form = ::Users::AdminProfileEditForm.from_params(profile_params).with_context(current_user: current_user)
+      return render :edit unless @form.valid?
+
       @user = ::Users::AdminProfileUpdate.call!(@form, current_user)
       @form.errors.merge!(@user.errors)
-      if @user.valid?
+      if @form.errors.blank?
         audit! :update_profile, @user, payload: params.require(:user).permit(:first_name, :last_name, :email)
-        bypass_sign_in(@user)
+        if password_change?
+          sign_out(current_user)
+          return redirect_to root_path, notice: t('users.password_change_success')
+        end
+
         redirect_to edit_administration_profiles_path, notice: t('.edit.success')
       else
         render :edit
@@ -31,14 +37,18 @@ module Administration
     end
 
     def profile_params
-      if params[:user][:password].blank?
+      unless password_change?
         params[:user].delete(:password)
         params[:user].delete(:password_confirmation)
       end
       params.require(:user).permit(
         :first_name, :last_name, :email,
-        :password, :password_confirmation, :weekly_license_stats
+        :password, :password_confirmation, :weekly_license_stats, :change_password, :current_password
       ).merge(id: current_user.id)
+    end
+
+    def password_change?
+      params[:user][:change_password] == 'true'
     end
   end
 end

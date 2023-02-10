@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Checkbox, Layout, InputNumber, Space, Progress,
+  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
 import _ from 'lodash'
+import { Link } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import Utils from '~/modules/reports/utils/Utils'
 import LangDropdown from '~/components/LangDropdown'
@@ -18,7 +19,6 @@ import {
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import { PageHeader } from '~/glint'
 import array from '~/utils/array'
-
 import { CustomField } from './fields/CustomField'
 import { CropperModal } from './CropperModal'
 
@@ -57,7 +57,6 @@ const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
 function ProfileComponent ({
   user, uploadPhoto, sync, fields, lockedFields, requiredFields,
 }) {
-  const [changePassword, setChangePassword] = useState(false)
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
@@ -90,7 +89,6 @@ function ProfileComponent ({
     sync(data)
       .then(() => {
         message.success(I18n.t('profile.success_update'), 5)
-        setChangePassword(false)
         setErrors({})
       }).catch((errors) => {
         setErrors(errors)
@@ -271,34 +269,6 @@ function ProfileComponent ({
                         ))}
                       </Select>
                     </Form.Item> */}
-                    <Checkbox
-                      checked={changePassword}
-                      onChange={({ target }) => setChangePassword(target.checked)}
-                    >
-                      {I18n.t('profile.change_password')}
-                    </Checkbox>
-                    {changePassword && (
-                      <div>
-                        <Form.Item
-                          hasFeedback
-                          className="mtl"
-                          help={errors?.password}
-                          validateStatus={errors?.password ? 'error' : ''}
-                          name="password"
-                          label={I18n.t('profile.password')}
-                        >
-                          <Input type="password" />
-                        </Form.Item>
-                        <Form.Item
-                          name="passwordConfirmation"
-                          help={errors?.passwordConfirmation}
-                          validateStatus={errors?.passwordConfirmation ? 'error' : ''}
-                          label={I18n.t('profile.password_confirmation')}
-                        >
-                          <Input type="password" />
-                        </Form.Item>
-                      </div>
-                    )}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
                         <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
@@ -318,12 +288,14 @@ function ProfileComponent ({
                         </Col>
                       ))}
                     </Row>
-                    <ButtonWithArrow
-                      label={I18n.t('profile.update')}
-                      type="primary"
-                      htmlType="submit"
-                      className={styles.submit}
-                    />
+                    <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
+                      <Link to="/change_password">{I18n.t('change_password_page.title')}</Link>
+                      <ButtonWithArrow
+                        label={I18n.t('profile.update')}
+                        type="primary"
+                        htmlType="submit"
+                      />
+                    </Space>
                   </Form>
                   <CropperModal
                     show={showCropper}

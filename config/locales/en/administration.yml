@@ -3,6 +3,8 @@ en:
   administration:
     actions: Actions
     active: Active
+    admin_profile_edit:
+      old_password_doesnt_match: Old password didn't match
     administrator:
       invitations:
         edit:

@@ -604,6 +604,10 @@ en:
           has_dependent_relation: This report is assinged on users
           max_assessment_count: You have reached the limit of %{max} assessments
           min_assessment_count: The minimum number of assessments is %{min}
+        user:
+          attributes:
+            current_password:
+              invalid: Current password is incorrect
     models:
       administration/assessments/assign_form: Assigns Form
       assessment: Assessments
@@ -1207,6 +1211,12 @@ en:
       assessor_assessments: Assessor Assessments
       other_assessments: Other Assessments
       other_reports: Other Reports
+  change_password_page:
+    change_profile_details: Change Profile Details
+    old_password: Old Password
+    password: Password
+    password_confirmation: Password Confirmation
+    title: Change Password
   checking_wizard:
     audio_check:
       access: Access
@@ -2502,6 +2512,7 @@ en:
         manage_client_ids: Client Tenancy
         memberships: Client Tenancy
         name: Name
+        old_password: Old Password
         password: Password
         password_confirmation: Password confirmation
         role: Role
@@ -2873,6 +2884,8 @@ en:
       generating: Generating
       not_prepared: Not Available
       prepared: Available
+  users:
+    password_change_success: Password changed successfully. Please login with your new password.
   validations:
     AudioResponse:
       in_progress:
