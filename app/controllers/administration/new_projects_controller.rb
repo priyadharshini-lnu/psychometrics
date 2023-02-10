@@ -8,10 +8,12 @@ module Administration
 
     prepend_before_action :set_resource_class
     before_action :set_resource
+    before_action :set_project_init_state, only: :show
     append_before_action :pundit_authorize
-    initial_state_for %i[show]
 
-    def show; end
+    def show
+      render json: @init_state
+    end
 
     private
 
