@@ -498,4 +498,3 @@ workflows:
               only:
                 - master
                 - review
-                - dockerfile-ruby-3-1-3

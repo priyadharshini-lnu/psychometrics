@@ -101,7 +101,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
 
   return (
-    <Row justify="space-between" className="pl">
+    <Row justify="space-between" className="pl" gutter={16}>
       <Col sm={24} md={16} xl={12} xxl={10}>
         <Form
           name="design"
