@@ -21,7 +21,7 @@ export default {
       scoreForFactorIds: [factorId],
     })
 
-    return scores?.length ? scores[0].score : null
+    return { y: scores?.length ? scores[0].score : null }
   },
   functions: Object.keys(Functions),
 }
