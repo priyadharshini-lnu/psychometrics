@@ -11,7 +11,10 @@ module Administration
 
       def index
         @init_state = {
-          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
+          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(
+            current_user,
+            project_id: params[:client_id]
+          ).to_h
         }
       end
 
