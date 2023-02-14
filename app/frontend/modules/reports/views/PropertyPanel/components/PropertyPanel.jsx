@@ -238,7 +238,7 @@ class PropertyPanel extends Component {
       <>
         <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
           <div className={styles.main}>
-            {selected.type === 'Module' && (
+            {selected.type === 'Module' && module && (
               <>
                 <div>
                   <div className={styles.title}>Module Name:</div>
