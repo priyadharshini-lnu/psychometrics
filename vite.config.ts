@@ -28,7 +28,6 @@ const devPlugins = __DEV__ ? [
   dts({
     insertTypesEntry: true,
   }),
-  react(),
 ] : []
 
 // Ignore all the files from vendor if it is big and is required just for specific entry point
@@ -54,6 +53,8 @@ export default defineConfig({
   clearScreen: false,
   plugins: [
     RubyPlugin(),
+    react(),
+
     // visualizer({open: true}),
     ...devPlugins,
     loadCssModulePlugin.default({
@@ -80,9 +81,6 @@ export default defineConfig({
   },
   esbuild: {
     sourcemap: 'external',
-    jsxFactory: '_jsx',
-    jsxFragment: '_jsxFragment',
-    jsxInject: `import { createElement as _jsx, Fragment as _jsxFragment } from 'react'`,
   },
   build: {
     sourcemap: __DEV__,
