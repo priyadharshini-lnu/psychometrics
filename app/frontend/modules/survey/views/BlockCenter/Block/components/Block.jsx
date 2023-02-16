@@ -36,6 +36,7 @@ class Block extends Component {
     const { model } = this.props
     return (
       <DropdownButton
+        onClick={e => e.stopPropagation(e)}
         className={styles.dropdown}
         bsStyle="default"
         title={(

@@ -108,6 +108,7 @@ export class Condition extends Component {
     return (
       <div className={styles.control}>
         <DropdownButton
+          onClick={e => e.stopPropagation(e)}
           className={styles.dropdown}
           bsStyle="default"
           title="Options"

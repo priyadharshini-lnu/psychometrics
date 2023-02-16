@@ -180,6 +180,7 @@ export class Header extends Component {
               className={styles.dropdown}
               pullRight
               bsStyle="default"
+              onClick={e => e.stopPropagation(e)}
               title={(
                 <span>
                   <span className="icon fa fa-gear" />
