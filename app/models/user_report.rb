@@ -43,7 +43,7 @@ class UserReport < ApplicationRecord
 
   workflow_column :approval_status
 
-  workflow do
+  workflow do # rubocop:disable Metrics/BlockLength
     state :not_ready do
       event :ready, transitions_to: :pending_qc
     end
@@ -68,6 +68,9 @@ class UserReport < ApplicationRecord
       ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
       ::UserReports::NotifyApprovals.call!(self) if to == :approved
       ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
+      update(approval_status_updated_at: Time.current)
+
+      update(approver_user_id: nil, approved_at: nil) if to == :change_requested
     end
   end
 

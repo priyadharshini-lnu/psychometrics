@@ -36,6 +36,7 @@ module Administration
         audit! :start_qc, resource, campaign: resource.campaign
         old_user_report_status = resource.approval_status
         resource.start_qc!
+        resource.update!(qc_user_id: current_user.id)
         create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
@@ -52,6 +53,7 @@ module Administration
         audit! :send_for_approval, resource, campaign: resource.campaign
         old_user_report_status = resource.approval_status
         resource.send_for_approval!
+        resource.update!(qc_user_id: current_user.id, qc_at: Time.current)
         create_event(old_user_report_status)
         render json: { status: resource.approval_status }
       end
@@ -68,7 +70,7 @@ module Administration
         audit! :approve, resource, campaign: resource.campaign
         old_user_report_status = resource.approval_status
         resource.approve!
-        resource.update!(approval_status_owner_id: current_user.id)
+        resource.update!(approver_user_id: current_user.id, approved_at: Time.current)
         create_event(old_user_report_status)
         generate_report(resource) if resource.generatable?
         render json: { status: resource.approval_status }

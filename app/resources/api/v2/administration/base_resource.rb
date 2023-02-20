@@ -11,7 +11,11 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
 
   def self.ransack_filters(matchers)
     matchers.each do |matcher|
-      filter matcher, apply: ->(records, value, _) { records.ransack(matcher => value[0]).result }
+      filter matcher, apply: lambda { |records, value, _|
+        filter_value = matcher.ends_with?('_in') || matcher.ends_with?('not_in') ? value : value[0]
+
+        records.ransack(matcher => filter_value).result
+      }
     end
   end
 

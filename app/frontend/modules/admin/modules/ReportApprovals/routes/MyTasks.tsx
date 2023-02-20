@@ -10,7 +10,7 @@ export const MyTasks: React.FC = () => {
     responseType: TaskTR,
     trackUrl: true,
     apiConfig: {
-      include: ['campaign', 'report', 'user'],
+      include: ['campaign', 'report', 'user', 'approver_user', 'qc_user'],
       fields: {
         users: ['name', 'email'],
         campaigns: ['name'],

@@ -370,7 +370,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     changeUrlQuery(newUrlQuery)
   }
 
-  const changeFilter = (name: string, value: string | undefined | null) => {
+  const changeFilter = (name: string, value: string | undefined | null | string[]) => {
     if (value === '' || value === undefined || value == null) {
       return removeFilter(name)
     }

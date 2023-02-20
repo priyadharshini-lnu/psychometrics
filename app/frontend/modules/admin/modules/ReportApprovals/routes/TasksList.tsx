@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import {
-  Table, Space, Pagination, Button, AutoComplete,
+  Table, Space, Pagination, Button, Checkbox, List, AutoComplete,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { SearchOutlined } from '@ant-design/icons'
+import moment from 'moment'
+import _ from 'lodash'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
@@ -20,22 +22,25 @@ const connecter = connect(
   {},
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = PropsFromRedux & Omit<ReturnType<typeof useResources>, 'fetch'> & {
-  showApprover?: boolean
-}
+type Props = PropsFromRedux & Omit<ReturnType<typeof useResources>, 'fetch'>
 
 const TasksListComponent: React.FC<Props> = ({
   data, meta, isLoading, getSortOrder, handleTableChange, changePage,
   currentPage, pageSize, changeFilter, getFilteredValue, requests,
-  showApprover,
 }) => {
   const tableLoading = isLoading('fetch')
-
   const { collectionAction: search } = useResources<Campaign>('report_approvals')
 
-  const filterProps = (resource:string, query:string, filter: string, val = '') => {
-    const [value, setValue] = useState(val)
+  const filterProps = (
+    resource:string, query:string, filter: string, val: string | string[] = '', values?: string[],
+  ) => {
+    const [value, setValue] = useState<string|string[]>(val)
     const [options, setOptions] = useState<{ value: string }[]>([])
+
+    const onChange = (v) => {
+      setValue(v)
+      searchResource(v)
+    }
 
     const searchResource = (value) => {
       search({
@@ -52,21 +57,39 @@ const TasksListComponent: React.FC<Props> = ({
         ))
       })
     }
-
-    const onChange = (v) => {
-      setValue(v)
-      searchResource(v)
-    }
-
-    return ({
+    return {
       filterDropdown: ({ confirm }) => (
         <div style={{ padding: 8 }}>
-          <AutoComplete
-            options={options}
-            onChange={onChange}
-            value={value}
-            style={{ marginBottom: 8, display: 'block' }}
-          />
+          {values
+            ? (
+              <List
+                dataSource={values}
+                bordered={false}
+                renderItem={v => (
+                  <List.Item>
+                    <Space>
+                      <Checkbox
+                        onChange={({ target: { checked } }) => {
+                          const active = value || []
+                          setValue(checked ? [...active, v] : (active as []).filter(val => val !== v))
+                        }}
+                        checked={_.includes(value, v)}
+                      />
+                      {I18n.t(`administration.report_review.statuses.${v}`)}
+                    </Space>
+                  </List.Item>
+                )}
+              />
+            )
+            : (
+              <AutoComplete
+                options={options}
+                onChange={onChange}
+                value={value}
+                style={{ marginBottom: 8, display: 'block' }}
+              />
+            )
+            }
           <Space>
             <Button
               type="primary"
@@ -74,7 +97,7 @@ const TasksListComponent: React.FC<Props> = ({
               size="small"
               style={{ width: 90 }}
               onClick={() => {
-                confirm({ closeDropdown: false })
+                confirm({ closeDropdown: true })
                 changeFilter(filter, value)
               }}
             >
@@ -94,8 +117,9 @@ const TasksListComponent: React.FC<Props> = ({
         </div>
       ),
       filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
-    })
+    }
   }
+
 
   const TasksTable = (
     <>
@@ -144,15 +168,42 @@ const TasksListComponent: React.FC<Props> = ({
         <Column
           title={I18n.t('administration.report_approval.columns.approval_status')}
           key="approvalStatus"
+          {...filterProps('', 'approval_status_in', 'approval_status_in',
+            getFilteredValue('approval_status_in'), [
+              'not_ready', 'pending_qc', 'qc_in_progress', 'qc_completed', 'change_requested', 'approved',
+            ])}
           render={({ approvalStatus }) => I18n.t(`administration.report_review.statuses.${approvalStatus}`)}
         />
-        {showApprover && (
-          <Column
-            title={I18n.t('administration.report_approval.columns.approved_by')}
-            key="approvedBy"
-            render={({ approvalStatusOwner }) => approvalStatusOwner?.name}
-          />
-        )}
+        <Column
+          width={150}
+          title={I18n.t('administration.report_approval.columns.qc_by')}
+          key="qcBy"
+          render={({ qcUser, qcAt }) => (
+            <>
+              <div>{qcUser?.name}</div>
+              {qcAt && (
+              <div>
+                {moment(qcAt).format('DD MM YYYY / hh:mm')}
+              </div>
+              )}
+            </>
+          )}
+        />
+        <Column
+          width={150}
+          title={I18n.t('administration.report_approval.columns.approved_by')}
+          key="approvedBy"
+          render={({ approverUser, approvedAt }) => (
+            <>
+              <div>{approverUser?.name}</div>
+              {approvedAt && (
+              <div>
+                {moment(approvedAt).format('DD MM YYYY / hh:mm')}
+              </div>
+              )}
+            </>
+          )}
+        />
         <Column
           title={I18n.t('administration.report_approval.columns.actions')}
           key="link"
