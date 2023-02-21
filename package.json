@@ -207,6 +207,7 @@
     "typescript": "4.6.2"
   },
   "resolutions": {
+    "mime": "^3.0.0",
     "caniuse-lite": "^1.0.30001422",
     "has-symbols": "^1.0.3",
     "buffer": "^6.0.3",

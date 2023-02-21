@@ -1,4 +1,4 @@
-import mime from 'mime'
+import mime from 'mime/lite'
 import humps from 'humps'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
