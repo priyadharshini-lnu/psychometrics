@@ -3261,6 +3261,7 @@ en:
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
         success_color: Success Color
+        success_update: Design Settings were saved successfully
         warning_color: Warning Color
       general_settings:
         2fa: Enable Two factor authentication
