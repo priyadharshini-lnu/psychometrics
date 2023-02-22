@@ -27,10 +27,8 @@ class UserReport < ApplicationRecord
 
   # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts
   # when serializing user_reports; :pdf attribute already exists in schema
-  # TODO: will be removed after full ActiveStorage migration
   has_one_attached :as_pdf_file, service: Settings.storage.private_storage_service
-  # TODO: add filename validation?
-  validates :as_pdf_file, content_type: %w[pdf]
+  validates :as_pdf_file, content_type: %w[application/pdf]
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :pdf

@@ -6,7 +6,6 @@ namespace :carrierwave do
   task migrate_to_activestorage: :environment do
     tables_to_migrate_attributes = {
       'assessments' => Assessment,
-      'assigns' => Assign,
       'dashboards' => Dashboard,
       'design_settings' => DesignSetting,
       'factors' => Factor,
@@ -14,8 +13,6 @@ namespace :carrierwave do
       'libraries' => Library,
       'media_responses' => MediaResponse,
       'occupations' => Occupation,
-      'products' => Product,
-      'product_images' => ProductImage,
       'reports' => Report,
       'user_profiles' => UserProfile,
       'user_reports' => UserReport
