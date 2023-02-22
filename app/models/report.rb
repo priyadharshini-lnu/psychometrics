@@ -159,8 +159,7 @@ class Report < ApplicationRecord
     @cloned_item
   end
 
-  # Returns true if Report is external pdf from mindmill or hogan
-  #
+  # Returns true if Report is external
   def external_report?
     !provider_internal?
   end
