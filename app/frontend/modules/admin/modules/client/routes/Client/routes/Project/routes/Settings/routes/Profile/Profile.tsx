@@ -120,25 +120,31 @@ export const Profile: React.FC<{}> = () => {
           onFinish={onFinish}
           initialValues={profileSettings}
         >
-          <Form.Item name="update_in" label={I18n.t('administration.projects.profile_settings.update_in')}>
-            <Select>
-              <Select.Option>
-                {I18n.t('administration.projects.profile_settings.never')}
-              </Select.Option>
-              <Select.Option value="1">
-                {I18n.t('administration.projects.profile_settings.month', { count: 1 })}
-              </Select.Option>
-              <Select.Option value="3">
-                {I18n.t('administration.projects.profile_settings.month', { count: 3 })}
-              </Select.Option>
-              <Select.Option value="6">
-                {I18n.t('administration.projects.profile_settings.month', { count: 6 })}
-              </Select.Option>
-              <Select.Option value="12">
-                1
-                {I18n.t('administration.projects.profile_settings.year')}
-              </Select.Option>
-            </Select>
+          <Form.Item name="updateIn" label={I18n.t('administration.projects.profile_settings.update_in')}>
+            <Select
+              options={[
+                {
+                  value: '0',
+                  label: I18n.t('administration.projects.profile_settings.never'),
+                },
+                {
+                  value: '1',
+                  label: I18n.t('administration.projects.profile_settings.month', { count: 1 }),
+                },
+                {
+                  value: '3',
+                  label: I18n.t('administration.projects.profile_settings.month', { count: 3 }),
+                },
+                {
+                  value: '6',
+                  label: I18n.t('administration.projects.profile_settings.month', { count: 6 }),
+                },
+                {
+                  value: '12',
+                  label: `1 ${I18n.t('administration.projects.profile_settings.year')}`,
+                },
+              ]}
+            />
           </Form.Item>
           <DefaultFields
             requiredFields={humps.decamelizeKeys(profileSettings.requiredDefaultFields)}
