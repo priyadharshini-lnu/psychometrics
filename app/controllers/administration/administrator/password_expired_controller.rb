@@ -3,7 +3,7 @@
 module Administration
   module Administrator
     class PasswordExpiredController < Devise::PasswordExpiredController
-      layout 'devise'
+      layout 'administration/devise'
 
       def update
         resource.extend(Devise::Models::DatabaseAuthenticatablePatch)
