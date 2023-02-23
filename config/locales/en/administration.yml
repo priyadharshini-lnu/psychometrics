@@ -2808,7 +2808,7 @@ en:
         successfully: Factor was successfully updated.
     integrations:
       actions:
-        add: Add Integrations
+        add: Integrations
       columns:
         active: Active
         details: Details

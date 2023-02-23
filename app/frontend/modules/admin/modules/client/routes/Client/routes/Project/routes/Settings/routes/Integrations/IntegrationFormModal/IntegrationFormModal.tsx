@@ -32,7 +32,7 @@ export const IntegrationFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="integrations"
-      readableResourceName={I18n.t('administration.integrations.actions.add')}
+      readableResourceName={I18n.t('administration.integrations.integrations')}
       requestScope="campaigns"
       resourceBaseUrl={`/administration/projects/${projectId}/integrations`}
       resource={integration}
