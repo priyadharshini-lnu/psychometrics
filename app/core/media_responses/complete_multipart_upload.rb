@@ -16,7 +16,7 @@ module MediaResponses
       media_response.save!
       Aws::S3::Client.new.complete_multipart_upload({
         bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket],
-        key: media_response.video_file_path,
+        key: asset_key,
         multipart_upload: {
           parts: parts.map { |part| part.permit!.to_h }
         },
