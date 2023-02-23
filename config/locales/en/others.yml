@@ -1626,6 +1626,8 @@ en:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
     try_again: Please try again
+    webhooks:
+      multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
   evaluators:
     errors:
       can_not_processed: can not be processed
@@ -1693,6 +1695,8 @@ en:
       update_success: SMS Invite updated successfully
     sms_records:
       create_success: SMS job scheduled successfully
+    test_webhook:
+      create_success: Webhook test successful.
     update: Update
     upload: Upload
     'yes': 'Yes'

@@ -75,6 +75,10 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
     key: '/profile',
     label: I18n.t('administration.project_tabs.profile'),
   })
+  permissions.manageProjectWebhooks && menuItems.push({
+    key: '/webhooks',
+    label: I18n.t('administration.project_tabs.webhooks.title'),
+  })
 
   return (
     <div>

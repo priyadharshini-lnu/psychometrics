@@ -25,9 +25,6 @@ module Administration
       def edit
         @_resource.privacy_consent = false if @_resource.privacy_consent.nil?
         @_resource.privacy_link.present? || @_resource.build_privacy_link
-        @_resource.webhook = @_resource.webhook_subscription&.url
-        @_resource.webhook_auth_enabled = @_resource.webhook_subscription&.auth_enabled
-        @_resource.webhook_username = @_resource.webhook_subscription&.username
       end
 
       def export
@@ -48,13 +45,6 @@ module Administration
         respond_to do |format|
           if resource.save
             audit! :update, resource, payload: resource_params, project: resource
-            WebhookSubscriptions::Save.call!(
-              resource,
-              resource_params[:webhook],
-              resource_params[:webhook_auth_enabled],
-              resource_params[:webhook_username],
-              resource_params[:webhook_password]
-            )
             format.js
           else
             format.js { render :edit }
@@ -72,13 +62,6 @@ module Administration
         respond_to do |format|
           if resource.save
             audit! :create, resource, payload: resource_params, project: resource
-            WebhookSubscriptions::Save.call!(
-              resource,
-              resource_params[:webhook],
-              resource_params[:webhook_auth_enabled],
-              resource_params[:webhook_username],
-              resource_params[:webhook_password]
-            )
             format.js
           else
             format.js { render :new }

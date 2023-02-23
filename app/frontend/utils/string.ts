@@ -8,3 +8,10 @@ export const shortify = (str: string) => {
   if (text[0].length > 1) return text[0].substr(0, 2)
   return text[0][0]
 }
+
+export const truncateWithStartEndCharCount = (str: string, start_length: number, end_length: number) => {
+  if (str.length <= (start_length + end_length)) return str
+  return (
+    `${str.substr(0, start_length)}...${str.substr(str.length - end_length)}`
+  )
+}

@@ -12,7 +12,10 @@ module Administration
     append_before_action :pundit_authorize
 
     def show
-      render json: @init_state
+      respond_to do |format|
+        format.json { render json: @init_state }
+        format.html
+      end
     end
 
     private

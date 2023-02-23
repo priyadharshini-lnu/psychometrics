@@ -171,6 +171,7 @@ en:
             saml: SAML
             security: Security
             smtp: SMTP
+            webhooks: Webhooks
           projects:
             manage_users: Manage Users
             view: View
@@ -3205,7 +3206,52 @@ en:
       design: Design
       general: General
       profile: Profile
-      webhooks: Webhooks
+      webhooks:
+        actions:
+          delete:
+            key: delete
+            label: Delete
+          edit:
+            key: edit
+            label: Edit
+          send_test:
+            key: send_test
+            label: Send Test
+        form:
+          active:
+            label: Active
+            name: active
+          auth_type:
+            basic:
+              label: Basic
+              value: basic_auth
+            label: Auth Type
+            name: auth_type
+            no_auth:
+              label: None
+              value: no_auth
+          description:
+            label: Description
+            name: description
+          password:
+            label: Password
+            name: password
+          topics:
+            label: Topics
+            name: topics
+          url:
+            label: Url
+            name: url
+          username:
+            label: User Name
+            name: username
+        send_test:
+          copy_payload_success: Payload copied to clipboard successfully.
+          event_dropdown:
+            placeholder: Select event
+          submit_button: Send Test
+          title: Send Webhook Event Test
+        title: Webhooks
     project_users:
       cancel: Cancel
       change_password: Change password
@@ -3284,9 +3330,11 @@ en:
       webhook_settings:
         add: Add Webhook
         column_active: Active
+        column_created_date: Created Date
         column_description: Description
         column_manage: Manage
         column_status: Status
+        column_updated_date: Modified date
         column_url: URL
         delete: Delete
         edit: Edit
@@ -4123,3 +4171,7 @@ en:
       update:
         successfully: User %{name} was successfully updated.
       user: User
+    webhook:
+      connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
+      request_failure: Request failed with status code %{http_status_code}.
+      test_success: Webhook test successful.

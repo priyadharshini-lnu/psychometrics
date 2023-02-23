@@ -25,7 +25,7 @@ module Api
       end
 
       def update
-        form = Api::V1::Projects::UpdateForm.from_params(params)
+        form = Api::V1::Projects::UpdateForm.from_params(params).with_context(project: project)
         if form.valid?
           normalized_params = ::Projects::NormalizeApiRequest.call!(project_params)
           project.update!(normalized_params.except(*DESIGN_ATTRIBUTES, *SECURITY_SETTINGS))

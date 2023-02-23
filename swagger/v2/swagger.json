@@ -618,6 +618,7 @@
                         "locales": [
                           "en"
                         ],
+                        "logo": "https://dummy_bucket.s3.amazonaws.com/uploads/client/logo/1005/8845148b-2404-48b7-9cbc-9f90e088341c.png",
                         "number": "TTE-2022",
                         "privacy_consent": false,
                         "subdomain": "project-subdomain"
@@ -1378,6 +1379,185 @@
               }
             }
           }
+        }
+      }
+    },
+    "/projects/{project_id}/webhooks/": {
+      "get": {
+        "summary": "Webhook List",
+        "operationId": "WebhooksList",
+        "description": "Fetch Webhook list",
+        "tags": [
+          "Webhook"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "webhooks",
+                    "data": {
+                      "id": "1",
+                      "attributes": {
+                        "description": "webhook description",
+                        "url": "http://www.dummy_webhook.com",
+                        "active": false,
+                        "auth_type": "none",
+                        "username": "Jon"
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a Webhook",
+        "operationId": "CreateWebhhook",
+        "description": "Create new Webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Webhook Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "webhooks",
+                    "attributes": {
+                      "description": "webhook description",
+                      "url": "http://www.dummy_webhook.com",
+                      "active": false,
+                      "auth_type": "none",
+                      "username": "Jon"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/webhooks/{webhook_id}/": {
+      "patch": {
+        "summary": "Update a Webhook",
+        "operationId": "UpdateWebhook",
+        "description": "Update a webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "webhook_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook Updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "webhooks",
+                    "id": "20",
+                    "attributes": {
+                      "acttive": true
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookUpdateRequest"
+              }
+            }
+          },
+          "required": true
         }
       }
     }
@@ -2866,7 +3046,7 @@
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "integer",
+                            "type": "string",
                             "nullable": false
                           },
                           "email": {
@@ -2888,7 +3068,7 @@
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "integer",
+                            "type": "string",
                             "nullable": false
                           },
                           "email": {
@@ -2910,7 +3090,7 @@
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "integer",
+                            "type": "string",
                             "nullable": false
                           },
                           "email": {
@@ -3254,7 +3434,7 @@
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "integer",
+                          "type": "string",
                           "nullable": false
                         },
                         "email": {
@@ -3276,7 +3456,7 @@
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "integer",
+                          "type": "string",
                           "nullable": false
                         },
                         "email": {
@@ -3298,7 +3478,7 @@
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "integer",
+                          "type": "string",
                           "nullable": false
                         },
                         "email": {
@@ -4645,6 +4825,337 @@
                     "name",
                     "number",
                     "subdomain"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "WebhookResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to webhooks",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "auth_type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "url",
+                  "description",
+                  "auth_type",
+                  "active"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "WebhookCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to webhooks",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "auth_type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "url",
+                  "description",
+                  "auth_type",
+                  "active"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "WebhookUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to webhooks",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "auth_type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "WebhookListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to webhooks",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "password": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "url": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "topics": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
+                    "auth_type": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "description",
+                    "auth_type",
+                    "active"
                   ],
                   "nullable": false
                 }

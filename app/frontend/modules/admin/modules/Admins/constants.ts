@@ -22,7 +22,14 @@ export enum AdminTypes {
 export const ProjectAdminGrants = {
   clients: ['view'],
   projects: ['view', 'manage_users'],
-  projectSettings: ['design', 'smtp', 'saml', 'integrations', 'security'],
+  projectSettings: [
+    'design',
+    'smtp',
+    'saml',
+    'integrations',
+    'security',
+    'webhooks',
+  ],
   campaigns: [
     'view',
     'manage',

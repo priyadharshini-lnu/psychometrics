@@ -42,6 +42,7 @@ interface Request {
   fetchResource(): void
   createResource(values: object): void
   updateResource(values: object): void
+  submit(values: object): Promise<unknown>
 }
 
 const ResourceFormModal: React.FC<Props> = (props) => {

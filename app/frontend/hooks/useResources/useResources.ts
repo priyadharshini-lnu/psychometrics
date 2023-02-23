@@ -177,8 +177,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       }
       const { data, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
-      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
-        const camelizedData = humps.camelizeKeys(data)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success) {
+        const camelizedData = humps.camelizeKeys(data || {})
         if (updateStore) updateIndividualRecord(camelizedData)
         resolve(camelizedData)
         responseTypeValidation(memberResponseType, camelizedData)

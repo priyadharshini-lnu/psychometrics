@@ -11,6 +11,7 @@
 - project_settings_smtp_id = dom_id(u, :project_settings_smtp)
 - project_settings_saml_id = dom_id(u, :project_settings_saml)
 - project_settings_integrations_id = dom_id(u, :project_settings_integrations_id)
+- project_settings_webhooks_id = dom_id(u, :project_settings_webhooks_id)
 
 - sms_invites_view_id = dom_id(u, :sms_invites_view)
 - sms_invites_manage_id = dom_id(u, :sms_invites_manage)
@@ -146,6 +147,11 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][project_settings][]',
                         'integrations', resource.has_grant?(:project_settings, :integrations), id: project_settings_integrations_id, data: { turn_on: [project_settings_integrations_id] }
                 | Integrations
+            - if policy(:membership).manage_grants_for_action?('project_settings', 'webhooks', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][project_settings][]',
+                        'webhooks', resource.has_grant?(:project_settings, :webhooks), id: project_settings_webhooks_id, data: { turn_on: [project_settings_webhooks_id] }
+                | Webhooks
 
     = render 'shared/administration/grants/dashboards'
 

@@ -32,8 +32,8 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/webhook_system.git
-  revision: b57d68db73cdb0cf71adae42d78b73328170f115
-  branch: master
+  revision: fee320106bc516ad3571f0a3b373b80275ec0cee
+  ref: fee3201
   specs:
     webhook_system (2.2.0)
       activejob
@@ -1028,6 +1028,7 @@ PLATFORMS
   arm64-darwin-22
   x86_64-darwin-20
   x86_64-darwin-21
+  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES

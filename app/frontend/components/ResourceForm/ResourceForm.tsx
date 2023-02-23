@@ -22,7 +22,7 @@ interface Request {
   fetchResource(): void
   createResource(values: object): void
   updateResource(values: object): void
-  submit(values: object): void
+  submit(values: object): Promise<unknown>
 }
 
 interface JSONApiError {
@@ -42,6 +42,7 @@ export type OwnProps = {
   resource?: Resource
   resourceId?: number
   request?: Partial<Request>
+  submitRequest?: (values: object) => Promise<unknown>
   showSuccessMessages?: boolean
   onFailedSubmission?(values: object, errors: object): void
   formProps?: FormProps

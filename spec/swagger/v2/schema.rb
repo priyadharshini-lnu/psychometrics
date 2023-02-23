@@ -161,6 +161,18 @@ module Swagger
           ),
           ProjectsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Projects::Schema.multiple_resource_response
+          ),
+          WebhookResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.single_resource_response
+          ),
+          WebhookCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.create_request
+          ),
+          WebhookUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.update_request
+          ),
+          WebhookListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.multiple_resource_response
           )
         }
       }
