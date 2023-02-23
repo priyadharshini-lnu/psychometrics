@@ -40,7 +40,7 @@ executors:
     environment:
       RAILS_ENV: production
       NODE_ENV: production
-      # NODE_OPTIONS: '--max_old_space_size=8192'
+      NODE_OPTIONS: '--max_old_space_size=8192'
       BUNDLER_VERSION: 2.2.31
       DATABASE_URL: "postgres://postgres:postgres@localhost:5432/ci"
       AWS_ACCESS_KEY_ID: 'dummy'
