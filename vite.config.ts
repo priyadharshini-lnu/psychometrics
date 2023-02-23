@@ -5,8 +5,6 @@ import RubyPlugin from 'vite-plugin-ruby'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
-import nodePolyfills from 'rollup-plugin-polyfill-node';
-import NodeModulesPolyfills from '@esbuild-plugins/node-modules-polyfill';
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
 import { env } from 'process'
@@ -92,8 +90,7 @@ export default defineConfig({
         gzipPlugin({
           customCompression: content => brotliPromise(Buffer.from(content)),
           fileName: '.br'
-        }),
-        nodePolyfills()
+        })
       ],
       output: {
         sourcemap: false,
@@ -127,9 +124,6 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react-csv'],
     esbuildOptions: {
-      plugins: [
-        NodeModulesPolyfills.default(),
-      ],
       loader: {
         '.js': 'jsx',
       },
@@ -143,7 +137,6 @@ export default defineConfig({
       WaveSurfer: 'wavesurfer.js',
       RecordRTC: 'recordrtc',
       'window.RecordRTC': 'recordrtc',
-      buffer: 'rollup-plugin-node-polyfills/polyfills/buffer-es6',
     },
     extensions: ['.cjs', '.mjs', '.js', '.ts', '.jsx', '.tsx']
   },
