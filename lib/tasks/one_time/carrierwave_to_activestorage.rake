@@ -48,17 +48,22 @@ namespace :carrierwave do
             next
           end
 
-          ActiveStorageSyncJob.new.sync_activestorage(record, attribute)
+          begin
+            ActiveStorageSyncJob.new.sync_activestorage(record, attribute)
 
-          ActiveRecord::Base.connection.execute(
-            <<-SQL.squish
-              INSERT
-              INTO activesupport_tables_migrations (table_name, model_name, last_processed_id)
-              VALUES ('#{table}', '#{model.name}', #{record.id})
-              ON CONFLICT (table_name) DO UPDATE
-              SET last_processed_id = #{record.id}
-            SQL
-          )
+            ActiveRecord::Base.connection.execute(
+              <<-SQL.squish
+                INSERT
+                INTO activesupport_tables_migrations (table_name, model_name, last_processed_id)
+                VALUES ('#{table}', '#{model.name}', #{record.id})
+                ON CONFLICT (table_name) DO UPDATE
+                SET last_processed_id = #{record.id}
+              SQL
+            )
+          rescue Excon::Error::Forbidden
+            Rails.logger.info("Access forbidden for #{record.class}##{record.id} #{attribute} attribute")
+            next
+          end
         end
       end
 
