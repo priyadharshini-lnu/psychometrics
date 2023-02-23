@@ -64,6 +64,9 @@ export const CommentSchema = {
     reportsModule: {
       type: 'modules',
     },
+    creator: {
+      type: 'users',
+    },
   },
 }
 

@@ -89,10 +89,17 @@ function Comments ({
   const {
     data, createResource, updateResource, setData, removeResource,
   } = useResources<Comment>('user_report_comments',
-    { basePath: `user_reports/${userReport.id}` })
+    {
+      basePath: `user_reports/${userReport.id}`,
+      apiConfig: {
+        include: ['creator'],
+        fields: {
+          users: ['full_name'],
+        },
+      },
+    })
 
   const [hideResolved, setHideResolved] = useState(true)
-
   useEffect(() => {
     setData(comments)
   }, [])
