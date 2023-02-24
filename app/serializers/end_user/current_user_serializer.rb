@@ -28,8 +28,8 @@ module EndUser
       updated_at = object.user_profile.updated_at
       if (Time.current - updated_at) > update_in.month
         update_in_time = update_in.month.ago
-        diff = (update_in_time.month - (updated_at.month - 1)) + (12 * (update_in_time.year - updated_at.year))
-        I18n.t('profile.old_data', months: diff)
+        diff = (update_in_time.month - updated_at.month) + (12 * (update_in_time.year - updated_at.year))
+        I18n.t('profile.old_data', months: diff.positive? ? diff : 1)
       end
     end
 
