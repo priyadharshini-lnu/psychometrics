@@ -15,6 +15,7 @@ import {
   Avatar,
   Row,
   Col,
+  message,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
@@ -75,6 +76,8 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
       responseType: ProjectTR,
       apiConfig: {
         filter: { disabled_true: 'false' },
+        include: ['modifier', 'creator'],
+        fields: { users: ['name'] },
       },
     },
   )
@@ -85,18 +88,11 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const tableLoading = isLoading('fetch')
 
   const toggleDisableProject = (project) => {
-    let title
-    let content
-
     const { id, name, disabled } = project
 
-    if (disabled) {
-      title = I18n.t('administration.clients.projects.unarchive.title')
-      content = I18n.t('administration.clients.projects.unarchive.content')
-    } else {
-      title = I18n.t('administration.clients.projects.archive.title')
-      content = I18n.t('administration.clients.projects.archive.content')
-    }
+    const action = disabled ? 'unarchive' : 'archive'
+    const title = I18n.t(`administration.clients.projects.${action}.title`)
+    const content = I18n.t(`administration.clients.projects.${action}.content`)
     Modal.confirm({
       title,
       content: `${content} ${name} ?`,
@@ -112,7 +108,10 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
             id,
             disabled: !disabled,
           },
-        )
+        ).then(() => {
+          message.success(I18n.t(`administration.clients.projects.${action}.success`, { project_name: name }))
+          fetch()
+        })
       },
     })
   }
@@ -131,14 +130,22 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         pagination={false}
       >
         <Column
+          title={I18n.t('common.column.id')}
+          dataIndex="id"
+          key="id"
+          sorter
+          sortOrder={getSortOrder('id')}
+        />
+        <Column
           title={I18n.t('common.column.details')}
           key="name"
+          width={500}
           render={({
             id, logo, name, url,
           }) => (
             <div>
-              <Row>
-                <Col span="3">
+              <Row gutter={40}>
+                <Col span="4">
                   {
                     logo ? (
                       <Image
@@ -171,7 +178,6 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                     </Link>
                     <div>
                       <Typography.Link
-                        className={styles.subdomainLinkText}
                         href={url}
                         target="_blank"
                         copyable
@@ -197,11 +203,23 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         />
 
         <Column
+          title={I18n.t('common.column.created_by')}
+          key="created_by"
+          render={project => project.creator?.name}
+        />
+
+        <Column
           title={I18n.t('common.column.created_date')}
           key="created_at"
           dataIndex="createdAt"
           sorter
           sortOrder={getSortOrder('created_at')}
+        />
+
+        <Column
+          title={I18n.t('common.column.modified_by')}
+          key="modified_by"
+          render={project => project.modifier?.name}
         />
 
         <Column

@@ -1299,9 +1299,11 @@ en:
       completion_count: Completion Count
       completion_status: Completion Status
       created_at: Created at
+      created_by: Created By
       created_date: Created Date
       details: Details
       id: Id
+      modified_by: Modified By
       modified_date: Modified Date
       name: Name
       qc_user_list: QC Users List

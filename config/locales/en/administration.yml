@@ -1336,7 +1336,7 @@ en:
           unarchive: Unarchive
         archive:
           content: Archive
-          successfully: Project %{name} was successfully archived.
+          success: Project '%{project_name}' was successfully archived.
           title: Archive Project
         assign_assessments:
           add_assessment: Add Assessment
@@ -1707,6 +1707,7 @@ en:
           successfully: Project %{name} was successfully updated.
         unarchive:
           content: Unarchive
+          success: Project '%{project_name}'' was successfully unarchived.
           title: Unarchive Project
         update:
           successfully: Project %{name} was successfully updated.
