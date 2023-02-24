@@ -39,7 +39,7 @@ export class PipedTextModal extends Component {
                         insert={value => this.insert(value)}
                         key={field.name}
                         field={field}
-                        context={{ datasheetFields: dataSheetColumns, questions }}
+                        context={{ datasheetFields: dataSheetColumns || [], questions }}
                       />
                     )
                   })}
