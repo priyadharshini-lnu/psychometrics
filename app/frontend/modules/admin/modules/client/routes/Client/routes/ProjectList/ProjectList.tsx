@@ -91,17 +91,9 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     const { id, name, disabled } = project
 
     const action = disabled ? 'unarchive' : 'archive'
-    const title = I18n.t(`administration.clients.projects.${action}.title`)
-    const content = I18n.t(`administration.clients.projects.${action}.content`)
     Modal.confirm({
-      title,
-      content: `${content} ${name} ?`,
-      okText: I18n.t(
-        'administration.administrators.modals.resetPassword.okText',
-      ),
-      cancelText: I18n.t(
-        'administration.administrators.modals.resetPassword.cancelText',
-      ),
+      title: I18n.t(`administration.clients.projects.${action}.title`),
+      content: I18n.t(`administration.clients.projects.${action}.content`, { project_name: name }),
       onOk: () => {
         updateResource(
           {

@@ -1335,7 +1335,7 @@ en:
           archive: Archive
           unarchive: Unarchive
         archive:
-          content: Archive
+          content: Are you sure you want to archive '%{project_name}'?
           success: Project '%{project_name}' was successfully archived.
           title: Archive Project
         assign_assessments:
@@ -1706,7 +1706,7 @@ en:
         toggle_status:
           successfully: Project %{name} was successfully updated.
         unarchive:
-          content: Unarchive
+          content: Are you sure you want to unarchive '%{project_name}'?
           success: Project '%{project_name}'' was successfully unarchived.
           title: Unarchive Project
         update:
