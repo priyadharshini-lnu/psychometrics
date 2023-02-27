@@ -124,7 +124,7 @@ export const Profile: React.FC<{}> = () => {
             <Select
               options={[
                 {
-                  value: '0',
+                  value: null,
                   label: I18n.t('administration.projects.profile_settings.never'),
                 },
                 {
