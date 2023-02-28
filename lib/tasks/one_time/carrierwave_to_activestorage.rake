@@ -41,14 +41,14 @@ namespace :carrierwave do
           # with :pdf attribute for UserReport model
           as_attribute = attribute == 'pdf' ? 'pdf_file' : attribute
 
-          next if record.send(attribute).blank? || record.send("as_#{as_attribute}").attached?
-
-          unless record.send(attribute).file.exists?
-            Rails.logger.info("Missing :#{attribute} file for #{record.class}##{record.id}")
-            next
-          end
-
           begin
+            next if record.send(attribute).blank? || record.send("as_#{as_attribute}").attached?
+
+            unless record.send(attribute).file.exists?
+              Rails.logger.info("Missing :#{attribute} file for #{record.class}##{record.id}")
+              next
+            end
+
             ActiveStorageSyncJob.new.sync_activestorage(record, attribute)
 
             ActiveRecord::Base.connection.execute(
