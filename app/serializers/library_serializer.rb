@@ -10,7 +10,7 @@ class LibrarySerializer < ActiveModel::Serializer
   end
 
   def file
-    rails_blob_url(object.as_file, host: Settings.domain, port: Settings.port) || object.file.url
+    object.file.url
   end
 
   def icon
