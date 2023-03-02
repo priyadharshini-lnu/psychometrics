@@ -9,10 +9,10 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Store } from 'redux'
 import ReactMarkdown from 'react-markdown'
 import { renderToStaticMarkup } from 'react-dom/server'
-import '~/libs/htmldiff.cjs'
 import cs from 'classnames'
 import FroalaEditor from 'react-froala-wysiwyg'
 import _ from 'lodash'
+import htmldiff from '~/libs/htmldiff.cjs?raw'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import { openRichEditor, closeRichEditor } from '~/modules/reports/core/builder/actions'
 import {
@@ -148,7 +148,12 @@ const OverrideComponent: FC<Props> = ({
 
   return (
     <div
-      className={cs(styles.editable, { [styles.selected]: selectedModule === module.id })}
+      className={
+        cs(
+          styles.editable,
+          { [styles.selected]: selectedModule === module.id, [styles.bordered]: allowEdit || allowApprove },
+        )
+      }
       style={box}
       onClick={() => selectModule(module.id)}
     >
@@ -161,7 +166,7 @@ const OverrideComponent: FC<Props> = ({
         />
       )}
 
-      {override && showDiff && (
+      {override && (allowEdit || allowApprove) && showDiff && (
         <SafeHTML
           html={htmldiff(getTypeContent(), override?.content)}
           className={cs(styles.editor, { [styles.diff]: showDiff })}

@@ -14,7 +14,7 @@ module Api
       private
 
       def manage_design_settings?
-        @user.has_permission?(:project_settings, :design)
+        has_permission?(:project_settings, :design)
       end
     end
   end

@@ -12,7 +12,7 @@ describe Saville::AssessmentOrderRequest do
   let(:report) { create(:report, :saville, assessments: [assessment]) }
   let(:user_assessment) { create(:user_assessment, assessment: assessment) }
   let(:saville_user_assessment) do
-    create(:saville_user_assessment, user_assessment: user_assessment, norm_id: 'norm_id')
+    create(:saville_user_assessment, user_assessment: user_assessment, norm_id: 'norm_id', data_seprator: '12-13')
   end
   let(:user) { user_assessment.subject }
   let(:campaign) { user_assessment.campaign }
@@ -76,7 +76,7 @@ describe Saville::AssessmentOrderRequest do
           <IdValue name="">#{saville_user_assessment.norm_id}</IdValue>
         </ComparisonGroupId>
         <ClientOrderId>
-          <IdValue name="Company">#{user_assessment.project.id}-#{user_assessment.campaign_id}</IdValue>
+          <IdValue name="Company">#{saville_user_assessment.data_seprator}</IdValue>
           <IdValue name="AssessmentPushbackUrl">#{webhook_url}</IdValue>
           <IdValue name="AssessmentCompleteReturnUrl">#{saville_redirect_url}</IdValue>
         </ClientOrderId>

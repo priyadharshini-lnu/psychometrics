@@ -15,7 +15,7 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const TwoFactorAuthComponent: React.FC<Props> = ({
-  csrfToken, user, errors, flash,
+  csrfToken, user, errors, flash, projectConfig,
 }) => (
   <div className={styles.container}>
     <Typography.Title level={3}>{I18n.t('auth.otp.title')}</Typography.Title>
@@ -57,7 +57,12 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
         className={styles.submit}
         block
       />
-      <ButtonAnt href="/users/sign_out" type="link" className={styles.signoutBtn} block>
+      <ButtonAnt
+        href={projectConfig.id ? '/users/sign_out' : '/administration/sign_out'}
+        type="link"
+        className={styles.signoutBtn}
+        block
+      >
         {I18n.t('auth.sign_out')}
       </ButtonAnt>
     </Form>

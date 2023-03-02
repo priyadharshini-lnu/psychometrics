@@ -48,7 +48,14 @@ export default function PipedTextModal ({
             <Card title={item.branch}>
               {item.fields.map((field) => {
                 const Component = types[field.type]
-                return <Component insert={insert} key={field.name} field={field} context={{ datasheetFields }} />
+                return (
+                  <Component
+                    insert={insert}
+                    key={field.name}
+                    field={field}
+                    context={{ datasheetFields: datasheetFields || [] }}
+                  />
+                )
               })}
             </Card>
           </List.Item>

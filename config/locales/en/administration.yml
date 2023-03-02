@@ -3,6 +3,8 @@ en:
   administration:
     actions: Actions
     active: Active
+    admin_profile_edit:
+      old_password_doesnt_match: Old password didn't match
     administrator:
       invitations:
         edit:
@@ -419,6 +421,7 @@ en:
       search_campaign: Search by Campaign
       search_client: Search by Client
       search_project: Search by Proejct
+      search_record: Search by Record ID
       search_user: Search by User
       title: Audit Log Info
       type: Record Type
@@ -1333,8 +1336,8 @@ en:
           archive: Archive
           unarchive: Unarchive
         archive:
-          content: Archive
-          successfully: Project %{name} was successfully archived.
+          content: Are you sure you want to archive '%{project_name}'?
+          success: Project '%{project_name}' was successfully archived.
           title: Archive Project
         assign_assessments:
           add_assessment: Add Assessment
@@ -1704,7 +1707,8 @@ en:
         toggle_status:
           successfully: Project %{name} was successfully updated.
         unarchive:
-          content: Unarchive
+          content: Are you sure you want to unarchive '%{project_name}'?
+          success: Project '%{project_name}'' was successfully unarchived.
           title: Unarchive Project
         update:
           successfully: Project %{name} was successfully updated.
@@ -2806,7 +2810,7 @@ en:
         successfully: Factor was successfully updated.
     integrations:
       actions:
-        add: Add Integrations
+        add: Integrations
       columns:
         active: Active
         details: Details
@@ -3304,6 +3308,7 @@ en:
         sec_logo_label: Secondary Logo
         sec_logo_upload: Upload
         success_color: Success Color
+        success_update: Design Settings were saved successfully
         warning_color: Warning Color
       general_settings:
         2fa: Enable Two factor authentication
@@ -3368,10 +3373,13 @@ en:
       columns:
         actions: Actions
         approval_status: Approval Status
+        approved_by: Approved By
         campaign_name: Campaign Name
+        qc_by: QC By
         report_name: Report Name
         user_email: User Email
         user_name: User Name
+      download: Download
       report_search: Report search
       review: Review
       user_search: User search

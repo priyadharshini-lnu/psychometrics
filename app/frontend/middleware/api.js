@@ -1,5 +1,5 @@
 import axios from 'axios'
-import queryString from 'query-string'
+import qs from 'qs'
 import humps from 'humps'
 import _ from 'lodash'
 import fileDownload from 'js-file-download'
@@ -32,11 +32,11 @@ const buildUrl = ({
     ...bodyFromTableConfig(tableConfig),
     ...body,
   })
-  const query = queryString.stringify(normalizedBody, {
+  const query = qs.stringify(normalizedBody, {
     arrayFormat: 'bracket',
   })
   if (query.length !== 0) {
-    return `${url}?${queryString.stringify(normalizedBody, {
+    return `${url}?${qs.stringify(normalizedBody, {
       arrayFormat: 'bracket',
     })}`
   }

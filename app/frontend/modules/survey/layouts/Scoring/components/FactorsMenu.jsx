@@ -34,6 +34,7 @@ export class FactorsMenu extends Component {
 
     return (
       <DropdownButton
+        onClick={e => e.stopPropagation(e)}
         className={styles.dropdown}
         bsStyle="default"
         title={(

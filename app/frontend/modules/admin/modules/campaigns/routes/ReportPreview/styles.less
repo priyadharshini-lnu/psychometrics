@@ -114,6 +114,11 @@
 
 .container {
   background-color: white;
+
+  .reportPreviewBody {
+    border: 1px solid #ccc;
+    flex-wrap: nowrap;
+  }
 }
 
 .sidebar {
@@ -165,7 +170,7 @@
 
     }
 
-    &:hover {
+    &.selected, &:hover {
       border-left: 3px solid #477c82;
       background-color: #ecf7f6;
     }

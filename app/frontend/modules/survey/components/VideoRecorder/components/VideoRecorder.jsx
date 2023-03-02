@@ -21,11 +21,25 @@ import Tracker from './Tracker'
 
 import 'video.js/dist/video-js.css'
 import 'videojs-record/dist/css/videojs.record.css'
+import '~/modules/survey/utils/MediaRecorder'
 
 const { $ } = window
 const UPLOAD_CHUNK_SIZE = 5.5
 
 const axiosInstance = axiosWithRetry()
+
+function getMediaRecorderMimeType () {
+  const types = [
+    { mimeType: 'video/webm', extension: 'webm' },
+    { mimeType: 'video/mp4', extension: 'mp4' },
+    { mimeType: 'video/webm;codecs=h264', extension: 'webm' },
+    { mimeType: 'video/webm;codecs=vp8', extension: 'webm' },
+  ]
+  return types.find(type => MediaRecorder.isTypeSupported(type.mimeType))
+}
+
+const supportedMimeType = getMediaRecorderMimeType()
+
 class VideoRecorder extends Component {
   constructor (props) {
     super(props)
@@ -81,7 +95,9 @@ class VideoRecorder extends Component {
   getUploadUrl = async (id) => {
     const { mediaUrl } = this.props
     try {
-      const response = await axiosInstance.get(`${mediaUrl}/upload_media_url.json?question_id=${id}`)
+      const response = await axiosInstance.get(
+        `${mediaUrl}/upload_media_url.json?question_id=${id}&file_name=video.${supportedMimeType.extension}`,
+      )
       this.urlDetails = response.data
       this.removeError('uploadUrl')
     } catch (error) {
@@ -155,7 +171,7 @@ class VideoRecorder extends Component {
   uploadFile = (urlDetails, batchNumber) => {
     const batchForUpload = this.batches[batchNumber]
     const blob = new Blob(batchForUpload.batchedBlobs, {
-      type: 'video/webm',
+      type: supportedMimeType.mimeType,
     })
 
     const { percent } = this.state
@@ -191,7 +207,7 @@ class VideoRecorder extends Component {
     const options = {
       sources: [{
         src: mediaResponse ? mediaResponse.url : undefined,
-        type: 'video/mp4',
+        // type: 'video/mp4',
       }],
       preload: 'auto',
       controls: true,
@@ -250,11 +266,15 @@ class VideoRecorder extends Component {
           record: {
             pip: false,
             audio: true,
-            video: true,
             maxLength: maxDuration || 10,
             debug: true,
-            videoMimeType: 'video/webm;codecs=H264',
+            videoMimeType: supportedMimeType.mimeType,
             timeSlice: 10000,
+            video: {
+              // video media constraints: set resolution of camera
+              width: { min: 640, ideal: 640, max: 1280 },
+              height: { min: 480, ideal: 480, max: 920 },
+            },
           },
         },
       }

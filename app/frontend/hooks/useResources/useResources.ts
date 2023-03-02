@@ -7,7 +7,7 @@ import { PathReporter } from 'io-ts/PathReporter'
 import { useDispatch } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
 import humps from 'humps'
-import qs from 'query-string'
+import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
@@ -370,7 +370,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     changeUrlQuery(newUrlQuery)
   }
 
-  const changeFilter = (name: string, value: string | undefined | null) => {
+  const changeFilter = (name: string, value: string | undefined | null | string[]) => {
     if (value === '' || value === undefined || value == null) {
       return removeFilter(name)
     }

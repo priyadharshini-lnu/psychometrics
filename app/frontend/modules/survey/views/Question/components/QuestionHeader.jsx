@@ -33,6 +33,7 @@ class QuestionHeader extends Component {
         <div className={styles.displayHeader}>
           <div className={styles.title}>Display This Question:</div>
           <DropdownButton
+            onClick={e => e.stopPropagation(e)}
             id={`display_options_${model.id}`}
             className={styles.options}
             bsStyle="default"

@@ -17,7 +17,7 @@ module Api
       end
 
       def update?
-        can_manage_comments? && (user.is?(:superadmin) || record.creator_id == user.id)
+        can_manage_comments?
       end
 
       def destroy?

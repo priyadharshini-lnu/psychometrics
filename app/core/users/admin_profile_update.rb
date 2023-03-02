@@ -10,8 +10,13 @@ module Users
     end
 
     def call
-      params = add_weekly_license_stats(form.attributes)
-      user.update(params)
+      params = add_weekly_license_stats(form.attributes.except(:change_password))
+      if form.change_password
+        user.update_with_password(params)
+      else
+        user.update(params.except(:current_password, :password, :password_confirmation))
+      end
+
       broadcast :ok, user
     end
 

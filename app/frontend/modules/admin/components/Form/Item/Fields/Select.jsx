@@ -7,6 +7,7 @@ export default function Select ({
 }) {
   return (
     <AntSelect
+      dropdownStyle={{ zIndex: 9900 }}
       defaultValue={getOptions(context).key}
       name={name}
       value={value}

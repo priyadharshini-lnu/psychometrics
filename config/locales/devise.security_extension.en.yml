@@ -1,7 +1,7 @@
 en:
   errors:
     messages:
-      taken_in_past: 'The new password you entered is the same as your old password. Enter a different password.'
+      taken_in_past: 'must not be same as any previously used password.'
       equal_to_current_password: 'must be different than the current password.'
       equal_to_email: 'must be different than the email.'
       password_complexity:

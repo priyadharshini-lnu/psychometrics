@@ -112,6 +112,7 @@ class ApplicationController < ::BaseController
     return render_http_locked if @current_project&.disabled?
 
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
+    return if @current_project.nil? && request.controller_class.to_s == 'Devise::UnlocksController'
 
     return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}") unless @current_project
 

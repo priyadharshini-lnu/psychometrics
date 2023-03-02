@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Radio, Button, Upload, ConfigProvider,
+  Row, Col, Form, Radio, Button, Upload, ConfigProvider, message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
@@ -63,7 +63,9 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
         'successColor',
         'infoColor',
       ])
-      updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType)
+      updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType).then(() => {
+        message.success(I18n.t('profile.success_update'))
+      })
     }
     const files: Files = {
       ..._.pick(values, ['logo', 'background']),
@@ -101,7 +103,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
 
   return (
-    <Row justify="space-between" className="pl">
+    <Row justify="space-between" className="pl" gutter={16}>
       <Col sm={24} md={16} xl={12} xxl={10}>
         <Form
           name="design"

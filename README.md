@@ -10,7 +10,7 @@ Ruby [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/
 
 Ruby version: 3.1.3
 
-Rails version: 6.1
+Rails version: 6.1.6
 
 Bundler version: 2.3.17
 

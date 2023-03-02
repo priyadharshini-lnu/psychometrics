@@ -47,6 +47,7 @@ const Header = ({ save, question, importTranslations }) => {
       <ul className="panel-controls">
         <li>
           <DropdownButton
+            onClick={e => e.stopPropagation(e)}
             className={styles.dropdown}
             bsStyle="default"
             title={(

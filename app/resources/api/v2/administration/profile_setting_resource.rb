@@ -9,6 +9,10 @@ class Api::V2::Administration::ProfileSettingResource < Api::V2::Administration:
 
   audit_log_for :update, payload: '*'
 
+  def update_in
+    @model.update_in&.to_s
+  end
+
   def profile_fields
     @model.profile_fields.map { |q| ProfileFieldSerializer.new(q).to_h }
   end

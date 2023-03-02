@@ -13,8 +13,14 @@ const { I18n } = window
 interface Props {
   id: Admin['id']
   email: Admin['email']
+  firstName: Admin['firstName']
+  lastName: Admin['lastName']
   permissions: AdminPermissions
-  handleDelete(id: Admin['id']): void
+  handleDelete(
+    id: Admin['id'],
+    firstName: Admin['firstName'],
+    lastName: Admin['lastName'],
+  ): void
   handleResetPassword(id: Admin['id']): void
   handleEdit(id: Admin['id']): void
 }
@@ -22,6 +28,8 @@ interface Props {
 export const ActionsMenu: FC<Props> = ({
   id,
   email,
+  firstName,
+  lastName,
   permissions,
   handleResetPassword,
   handleEdit,
@@ -32,6 +40,8 @@ export const ActionsMenu: FC<Props> = ({
       MenuDropdown({
         id,
         email,
+        firstName,
+        lastName,
         permissions,
         handleEdit,
         handleResetPassword,
@@ -59,6 +69,8 @@ export const ActionsMenu: FC<Props> = ({
 interface MenuProps {
   id: Admin['id']
   email: Admin['email']
+  firstName: Admin['firstName']
+  lastName: Admin['lastName']
   permissions: AdminPermissions
   handleResetPassword: Props['handleResetPassword']
   handleDelete: Props['handleDelete']
@@ -68,6 +80,8 @@ interface MenuProps {
 const MenuDropdown: FC<MenuProps> = ({
   id,
   email,
+  firstName,
+  lastName,
   permissions,
   handleResetPassword,
   handleDelete,
@@ -125,7 +139,7 @@ const MenuDropdown: FC<MenuProps> = ({
       handleResetPassword(id)
     }
     if (key === 'remove') {
-      handleDelete(id)
+      handleDelete(id, firstName, lastName)
     }
   }
   return (

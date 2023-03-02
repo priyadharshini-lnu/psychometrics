@@ -4,7 +4,7 @@ let sampleRate
 let numChannels
 
 // Listen to incoming messages
-this.onmessage = function (e) {
+onmessage = function (e) {
   switch (e.data.command) {
     case 'init':
       init(e.data.config)
@@ -54,7 +54,7 @@ function exportWAV () {
   const dataview = encodeWAV(interleaved)
   const audioBlob = new Blob([dataview], { type: 'audio/wav' })
 
-  this.postMessage({
+  postMessage({
     command: 'wav-delivered',
     blob: audioBlob,
   })

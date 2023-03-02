@@ -8,6 +8,9 @@ export const TaskTR = t.type({
   approverUserIds: t.array(t.number),
   projectId: t.number,
   pdfUrl: t.union([t.string, t.null]),
+  approvalStatusUpdatedAt: t.union([t.string, t.null]),
+  qcAt: t.union([t.string, t.null]),
+  approvedAt: t.union([t.string, t.null]),
   campaign: t.type({
     id: t.string,
   }),
@@ -17,6 +20,12 @@ export const TaskTR = t.type({
   report: t.type({
     id: t.string,
   }),
+  approverUser: t.union([t.type({
+    id: t.string,
+  }), t.undefined]),
+  qcUser: t.union([t.type({
+    id: t.string,
+  }), t.undefined]),
 })
 
 
@@ -44,6 +53,12 @@ export const Schema = {
   type: 'report_approvals',
   relationships: {
     user: {
+      type: 'users',
+    },
+    approverUser: {
+      type: 'users',
+    },
+    qcUser: {
       type: 'users',
     },
     report: {

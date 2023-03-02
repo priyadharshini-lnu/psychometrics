@@ -11,6 +11,7 @@ class UserReport < ApplicationRecord
   belongs_to :norm
   belongs_to :campaign
   belongs_to :report_family
+  belongs_to :approval_status_owner, class_name: 'User'
 
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
@@ -26,10 +27,8 @@ class UserReport < ApplicationRecord
 
   # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts
   # when serializing user_reports; :pdf attribute already exists in schema
-  # TODO: will be removed after full ActiveStorage migration
   has_one_attached :as_pdf_file, service: Settings.storage.private_storage_service
-  # TODO: add filename validation?
-  validates :as_pdf_file, content_type: %w[pdf]
+  validates :as_pdf_file, content_type: %w[application/pdf]
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :pdf
@@ -42,7 +41,7 @@ class UserReport < ApplicationRecord
 
   workflow_column :approval_status
 
-  workflow do
+  workflow do # rubocop:disable Metrics/BlockLength
     state :not_ready do
       event :ready, transitions_to: :pending_qc
     end
@@ -67,6 +66,9 @@ class UserReport < ApplicationRecord
       ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
       ::UserReports::NotifyApprovals.call!(self) if to == :approved
       ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
+      update(approval_status_updated_at: Time.current)
+
+      update(approver_user_id: nil, approved_at: nil) if to == :change_requested
     end
   end
 

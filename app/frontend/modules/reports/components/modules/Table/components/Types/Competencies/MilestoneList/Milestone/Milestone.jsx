@@ -16,15 +16,22 @@ export default function Milestone ({ milestone, onRemove, onUpdate }) {
           placeholder="Name"
           value={milestone.name}
         />
-        <ColorPicker
-          color={milestone.color || '#cccccc'}
-          onChange={color => onUpdate(milestone.id, { color: color.hex })}
-        />
-        <i className={cs('fa', 'fa-minus', 'mls', styles.remove)} onClick={removeMilestone} />
       </div>
       <div className={styles.limitContainer}>
         <input onChange={updateMilestone} name="min" placeholder="Min" value={milestone.min} />
         <input onChange={updateMilestone} name="max" placeholder="Max" value={milestone.max} />
+      </div>
+      <div className={styles.icons}>
+        <ColorPicker
+          color={milestone.color || '#cccccc'}
+          onChange={color => onUpdate(milestone.id, { color: color.hex })}
+        />
+        <span className={styles.remove} onClick={removeMilestone}>
+          Remove
+          {' '}
+          <i className={cs('fa', 'fa-trash', 'mls')} />
+        </span>
+
       </div>
     </div>
   )

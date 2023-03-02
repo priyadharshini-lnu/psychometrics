@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { withRouter, RouteComponentProps, useHistory } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import qs from 'query-string'
+import qs from 'qs'
 
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { get as getConfig } from '~/modules/endUser/core/config'

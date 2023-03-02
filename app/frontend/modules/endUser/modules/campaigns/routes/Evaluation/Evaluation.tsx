@@ -3,7 +3,7 @@ import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 
 import { connect } from 'react-redux'
 import userPresenter from '~/presenters/user'

@@ -33,3 +33,11 @@
 .ant-menu-overflow {
   display: flex;
 }
+
+.modal-backdrop {
+  z-index: 9000;
+}
+
+.modal {
+  z-index: 9010;
+}

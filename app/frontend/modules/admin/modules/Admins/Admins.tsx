@@ -143,19 +143,27 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
     })
   }
 
-  const handleDeleteAdminClick = (id: Admin['id']) => {
+  const handleDeleteAdminClick = (
+    id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'],
+  ) => {
     Modal.confirm({
       title: I18n.t('administration.administrators.modals.delete.title'),
-      content: I18n.t('administration.administrators.modals.delete.content', {
-        name,
-      }),
+      content: I18n.t(
+        'administration.administrators.modals.delete.content',
+        { name: `${firstName} ${lastName}` },
+      ),
       okText: I18n.t('administration.administrators.modals.delete.okText'),
       cancelText: I18n.t(
         'administration.administrators.modals.delete.cancelText',
       ),
       onOk: async () => {
         removeResource(`${id}`).then(() => {
-          message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: name }))
+          message.info(
+            I18n.t(
+              'frontend.admins.actions.remove.success',
+              { adminName: `${firstName} ${lastName}` },
+            ),
+          )
           close()
         }).catch((error) => {
           message.error(error)
@@ -261,10 +269,17 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
               title={I18n.t(
                 'administration.administrators.list.columns.actions',
               )}
-              render={(_, { id, email }) => (
+              render={(
+                _,
+                {
+                  id, email, firstName, lastName,
+                },
+              ) => (
                 <ActionsMenu
                   id={id}
                   email={email}
+                  firstName={firstName}
+                  lastName={lastName}
                   permissions={meta.permissions}
                   handleEdit={handleEditAdminClick}
                   handleDelete={handleDeleteAdminClick}

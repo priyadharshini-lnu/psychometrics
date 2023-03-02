@@ -1,5 +1,5 @@
 import { RECORDER_STATES } from '~/modules/survey/constants/media'
-import recorderWorker from './worker?worker'
+import RecorderWorker from './worker?worker'
 
 declare global {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,9 +73,7 @@ export class RecorderCore {
     this.setInitialTimer()
     this.state = RECORDER_STATES.INACTIVE
 
-    const workerBlob = new Blob([recorderWorker], { type: 'text/javascript' })
-    this.worker = new Worker(URL.createObjectURL(workerBlob))
-
+    this.worker = new RecorderWorker()
     this.worker.onmessage = (e: MessageEvent): void => {
       this.trigger(e.data.command, e.data.blob)
     }

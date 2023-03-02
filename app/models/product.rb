@@ -2,9 +2,6 @@
 
 class Product < ApplicationRecord
   include Copyable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
   has_many :product_reports, dependent: :destroy
   has_many :reports, through: :product_reports
@@ -16,12 +13,6 @@ class Product < ApplicationRecord
   validates :name, presence: true
 
   mount_uploader :image, Public::ImageUploader
-
-  has_many_attached :as_image
-  validates :as_image, attached: true, content_type: %w[jpg jpeg gif png bmp svg]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :image
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :with_price, lambda { |currency|

@@ -18,6 +18,8 @@ module ActiveStorageCreateVariant
   private
 
   def not_a_variant?
+    return false unless variable?
+
     record_type != 'ActiveStorage::VariantRecord'
   end
 end

@@ -13,23 +13,9 @@ module Users
     attribute :custom_fields, Hash
 
     validates :first_name, :last_name, presence: true
-    validates :password, strong_password: true, if: :enable_strong_password?
-    validate :password_length, unless: -> { password.blank? }
-    validates :password_confirmation, presence: true, unless: -> { password.blank? }
-    validates_confirmation_of :password, unless: -> { password.blank? }
-
     validate :validate_project_fields, if: :project?
     validate :validate_default_fields, if: :project?
-
     validate :question_center_validations, if: :project?
-
-    def password_length
-      return unless password
-
-      if context.user.password_length.exclude?(password.size)
-        errors.add(:password, :too_short, count: context.user.password_length.min)
-      end
-    end
 
     def validate_project_fields
       project.profile_setting.profile_fields.includes(:question).each do |field|
@@ -61,10 +47,6 @@ module Users
     end
 
     private
-
-    def enable_strong_password?
-      context.user.enforce_strong_password?
-    end
 
     def project?
       project

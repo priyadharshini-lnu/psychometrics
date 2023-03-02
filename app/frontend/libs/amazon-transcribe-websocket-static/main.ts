@@ -1,6 +1,6 @@
 import { EventStreamMarshaller } from '@aws-sdk/eventstream-marshaller'
 import { toUtf8, fromUtf8 } from '@aws-sdk/util-utf8-node'
-import MicrophoneStream, { toRaw } from 'microphone-stream'
+import MicrophoneStream from 'microphone-stream'
 import { downsampleBuffer, pcmEncode, getAudioEventMessage } from './utils'
 
 interface MessageJsonAws {
@@ -134,7 +134,7 @@ function handleEventStreamMessage (
 }
 
 function convertAudioToBinaryMessage (audioChunk: Buffer): Uint8Array {
-  const raw = toRaw(audioChunk)
+  const raw = MicrophoneStream.toRaw(audioChunk)
 
   if (raw === null || raw.length === 0) {
     return new Uint8Array(0)
