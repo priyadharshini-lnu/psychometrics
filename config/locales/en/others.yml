@@ -345,7 +345,6 @@ en:
       dimension:
         active: Active
         created_at: Created Date
-        factors_count: No. of Factors
         id: ID
         name: Name
         updated_at: Modified Date
@@ -2407,7 +2406,6 @@ en:
       dimension:
         active: Active
         created_at: Created Date
-        factors_count: No. of Factors
         id: ID
         name: Name
         updated_at: Modified Date

@@ -2494,7 +2494,6 @@ en:
       list:
         active: Active
         created_at: Created date
-        factors_count: Factors count
         id: Id
         name: Name
         updated_at: Modified Date
