@@ -10,34 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -118,103 +90,6 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_with_oids = false;
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'full name'::text) AS "full name",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'roll number'::text) AS "roll number",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 61)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -866,82 +741,6 @@ CREATE SEQUENCE public.bulk_reports_id_seq
 --
 
 ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
-
-
---
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10313_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 72)
-  ORDER BY sheet_rows.id;
 
 
 --
@@ -3770,7 +3569,8 @@ CREATE TABLE public.saville_user_assessments (
     url character varying,
     norm_id character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    data_seprator character varying
 );
 
 
@@ -3842,6 +3642,20 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -4811,7 +4625,10 @@ CREATE TABLE public.user_reports (
     external_added boolean DEFAULT false,
     approval_status character varying DEFAULT 'not_ready'::character varying,
     approval_status_updated_at timestamp without time zone,
-    approval_status_owner_id bigint
+    approver_user_id bigint,
+    qc_user_id integer,
+    qc_at timestamp without time zone,
+    approved_at timestamp without time zone
 );
 
 
@@ -7930,6 +7747,13 @@ CREATE INDEX index_media_responses_on_question_id ON public.media_responses USIN
 
 
 --
+-- Name: index_media_responses_on_users_result_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_media_responses_on_users_result_id ON public.media_responses USING btree (users_result_id);
+
+
+--
 -- Name: index_membership_grants_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7958,6 +7782,13 @@ CREATE INDEX index_memberships_on_assigns_count ON public.memberships USING btre
 
 
 --
+-- Name: index_memberships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_campaign_id ON public.memberships USING btree (campaign_id);
+
+
+--
 -- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7969,6 +7800,20 @@ CREATE INDEX index_memberships_on_client_id ON public.memberships USING btree (c
 --
 
 CREATE INDEX index_memberships_on_hris ON public.memberships USING gin (hris);
+
+
+--
+-- Name: index_memberships_on_role; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_role ON public.memberships USING btree (role);
+
+
+--
+-- Name: index_memberships_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_user_id ON public.memberships USING btree (user_id);
 
 
 --
@@ -8532,6 +8377,27 @@ CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty
 
 
 --
+-- Name: index_threesixty_email_schedules_on_delivered_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_schedules_on_delivered_at ON public.threesixty_email_schedules USING btree (delivered_at);
+
+
+--
+-- Name: index_threesixty_email_schedules_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_schedules_on_name ON public.threesixty_email_schedules USING btree (name);
+
+
+--
+-- Name: index_threesixty_email_schedules_on_scheduled_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_schedules_on_scheduled_date ON public.threesixty_email_schedules USING btree (scheduled_date);
+
+
+--
 -- Name: index_threesixty_email_schedules_on_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8728,10 +8594,10 @@ CREATE INDEX index_user_report_events_on_user_report_id ON public.user_report_ev
 
 
 --
--- Name: index_user_reports_on_approval_status_owner_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_user_reports_on_approver_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_user_reports_on_approval_status_owner_id ON public.user_reports USING btree (approval_status_owner_id);
+CREATE INDEX index_user_reports_on_approver_user_id ON public.user_reports USING btree (approver_user_id);
 
 
 --
@@ -9523,7 +9389,7 @@ ALTER TABLE ONLY public.saville_user_assessments
 --
 
 ALTER TABLE ONLY public.user_reports
-    ADD CONSTRAINT fk_rails_6280270170 FOREIGN KEY (approval_status_owner_id) REFERENCES public.users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_6280270170 FOREIGN KEY (approver_user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -11019,6 +10885,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230112110725'),
 ('20230112121853'),
 ('20230113060633'),
-('20230116123826');
+('20230116123826'),
+('20230117130759'),
+('20230207074200'),
+('20230216143441'),
+('20230223085853');
 
 
