@@ -10,7 +10,7 @@ module Api
 
         def update
           @campaign_report.update!(campaign_report_params)
-          audit! :api_update, @campaign_report, payload: params.permit!, campaign: @campaign_report.campaign
+          audit! :api_update, @campaign_report, payload: params, campaign: @campaign_report.campaign
           render json: @campaign_report, serializer: Api::V1::CampaignReportSerializer
         end
 

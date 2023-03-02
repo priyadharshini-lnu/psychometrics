@@ -32,7 +32,9 @@ module UserReports
       file_path = make_path
       args = default_report_export_options.merge(
         output: file_path
-      ).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
+      ).to_a.map do |key, value|
+        "#{key}='#{key == :url ? value : Shellwords.escape(value)}'"
+      end.join(' ')
 
       Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
       Kernel.system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")

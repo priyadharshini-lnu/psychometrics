@@ -30,6 +30,7 @@ class AssessmentSerializer < ActiveModel::Serializer
     ids = object.resources&.map { |r| r['questionId'] }
     return [] unless ids
 
+    # Brakmen:ignore
     questions = Question.where(id: ids).order(Arel.sql("position(id::text in '#{ids.join(',')}')"))
     questions.map { |q| QuestionSerializer.new(q, piped_text_context: piped_text_context) }
   end

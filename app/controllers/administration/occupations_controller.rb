@@ -31,7 +31,7 @@ module Administration
 
       respond_to do |format|
         if resource.save
-          audit! :create, resource, payload: params.permit!
+          audit! :create, resource, payload: params
           format.js
         else
           format.js { render :new }
@@ -42,7 +42,7 @@ module Administration
     def update
       respond_to do |format|
         if resource.update(resource_params)
-          audit! :update, resource, payload: params.permit!
+          audit! :update, resource, payload: params
           format.js
         else
           format.js { render :edit }

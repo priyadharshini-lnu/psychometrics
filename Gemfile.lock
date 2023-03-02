@@ -255,6 +255,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    brakeman (5.4.0)
     breadcrumbs_on_rails (4.1.0)
       railties (>= 5.0)
     browser (5.3.1)
@@ -1053,6 +1054,7 @@ DEPENDENCIES
   bootsnap (>= 1.12.0)
   bootstrap-kaminari-views (~> 0.0.5)
   bootstrap-sass (~> 3.4.1)
+  brakeman
   breadcrumbs_on_rails (~> 4.1.0)
   browser (~> 5.3.1)
   bullet (~> 7.0.1)

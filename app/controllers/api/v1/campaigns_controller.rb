@@ -56,7 +56,7 @@ module Api
         if form.valid?
           normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           campaign = Campaign.create!(normalized_params.merge(project_id: project.id))
-          audit! :api_create, campaign, payload: params.permit!, campaign: campaign
+          audit! :api_create, campaign, payload: params, campaign: campaign
           render json: campaign, serializer: Api::V1::CampaignSerializer
         else
           render_validation_errors(form)
@@ -68,7 +68,7 @@ module Api
         if form.valid?
           normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           @campaign.update!(normalized_params)
-          audit! :api_update, @campaign, payload: params.permit!, campaign: @campaign
+          audit! :api_update, @campaign, payload: params, campaign: @campaign
           render json: @campaign, serializer: Api::V1::CampaignSerializer
         else
           render_validation_errors(form)
@@ -85,7 +85,7 @@ module Api
           ::Campaigns::Reports::Add.call(form, @campaign) do
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
-          audit! :api_add_assessment_reports, @campaign, payload: params.permit!, campaign: @campaign
+          audit! :api_add_assessment_reports, @campaign, payload: params, campaign: @campaign
           render json: @campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
         else
           render_validation_errors(form)

@@ -35,7 +35,7 @@ module Campaigns
 
     def column_names
       default_column_names.concat(assessment_names).map do |name|
-        "\"#{name}\" text"
+        "\"#{name.gsub('"', '""')}\" text"
       end.join(', ')
     end
 

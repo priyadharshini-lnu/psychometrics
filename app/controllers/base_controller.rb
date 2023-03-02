@@ -43,6 +43,14 @@ class BaseController < ActionController::Base
     super
   end
 
+  def send_tmp_file(file_path, options = {})
+    if file_path.start_with?(Rails.root.join('tmp').to_s)
+      send_file file_path, options
+    else
+      head :not_found
+    end
+  end
+
   private
 
   def url_without_spoof

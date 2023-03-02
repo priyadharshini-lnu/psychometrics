@@ -185,6 +185,17 @@ jobs:
           key: gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/.bundle
+
+  brakeman:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - bundle_restore
+      - run:
+          name: Brakeman
+          command: bundle exec brakeman
+
   yarn:
     executor: tte-executor
     resource_class: medium
@@ -423,6 +434,9 @@ workflows:
       - eslint:
           requires:
             - yarn
+      - brakeman:
+          requires:
+            - bundle
       - rubocop:
           requires:
             - bundle

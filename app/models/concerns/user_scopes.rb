@@ -9,29 +9,6 @@ module UserScopes
     scope :superadmins, -> { where(role: User::USER_ROLES[:superadmin]) }
     scope :enabled_super_admins, -> { superadmins.where(disabled: false) }
     scope :managers, -> { where(role: User::USER_ROLES[:manager]) }
-    # Sorting
-    scope :sorted_by, lambda { |sort_key|
-      # extract the sort direction from the param value.
-      direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-      case sort_key.to_s
-        when /^id_/
-          order("users.id #{direction}")
-        when /^active_/
-          order("users.disabled #{direction}")
-        when /^first_name_/
-          order("users.first_name #{direction}")
-        when /^last_name_/
-          order("users.last_name #{direction}")
-        when /^email_/
-          order("users.email #{direction}")
-        when /^role_/
-          order("users.role #{direction}")
-        when /^created_at_/
-          order("users.created_at #{direction}")
-        when /^updated_at_/
-          order("users.updated_at #{direction}")
-      end
-    }
 
     # Search entity by word
     scope :search_query, lambda { |query|

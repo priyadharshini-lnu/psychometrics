@@ -47,7 +47,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
     respond_to do |format|
       if (resource.common? || @external_settings&.valid?) && resource.save
-        audit! :create, resource, payload: params.permit!
+        audit! :create, resource, payload: params
         format.js
       else
         format.js { render :new }
@@ -96,7 +96,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
     respond_to do |format|
       if (resource.common? || @external_settings&.valid?) && resource.update(resource_params.except(:external_settings))
-        audit! :update, resource, payload: params.permit!
+        audit! :update, resource, payload: params
         format.js
         format.json { render json: :ok }
       else

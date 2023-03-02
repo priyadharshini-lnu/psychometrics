@@ -14,7 +14,7 @@ module Administration
         if form.valid?
           ::Campaigns::UserReports::Add.call(form, campaign_user) do
             on(:ok) do
-              audit! :create, campaign_user, payload: params.permit!, campaign: campaign
+              audit! :create, campaign_user, payload: params, campaign: campaign
               render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
                      campaign: campaign_user.campaign
             end
@@ -103,7 +103,7 @@ module Administration
         respond_to do |format|
           format.html do
             audit! :view_report, user_dashboard, campaign: user_dashboard.campaign,
-              payload: params.permit!.merge(user_dashboard.details_to_log)
+              payload: params.merge(user_dashboard.details_to_log)
           end
           format.json do
             render json: user_dashboard, report: user_dashboard.report,

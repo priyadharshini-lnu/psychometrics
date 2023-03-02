@@ -175,6 +175,7 @@ gem 'interactor', '~> 3.1.2'
 gem 'enum_help', '~> 0.0.17'
 # A simple date validator for Rails
 gem 'attr_encrypted', '~> 3.1.0'
+gem 'brakeman'
 gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils', ref: '3634294'

@@ -26,13 +26,6 @@ class Block < ApplicationRecord
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
   }
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-    column = sort_key.gsub("_#{direction}", '')
-    order("blocks.#{column} #{direction}") if column.in?(%w[id name created_at updated_at])
-  }
 
   def clone_with_params(params = {})
     cloned_block = deep_clone(include: [:questions])
