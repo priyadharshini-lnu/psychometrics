@@ -21,6 +21,7 @@ export default function Title ({ factors, factor, onAdd }) {
       </Col>
       <Col span={7} offset={5}>
         <Select
+          dropdownStyle={{ zIndex: 9900 }}
           showSearch
           style={{ width: 224 }}
           className="mls"
