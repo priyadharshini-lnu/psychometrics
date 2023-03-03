@@ -5,7 +5,6 @@ import QuestionCenter from '~/modules/survey/layouts/QuestionCenter'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import { setStore } from '~/modules/survey/store/StoreWatchman'
 import store from '../store'
-import '~/modules/survey/styles/globals.less'
 
 class AppContainer extends Component {
   componentDidMount () {
