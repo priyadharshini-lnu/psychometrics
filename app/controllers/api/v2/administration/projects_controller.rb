@@ -10,6 +10,10 @@ module Api
       )
     end
 
+    def project_id
+      params[:id]
+    end
+
     private
 
     def client
