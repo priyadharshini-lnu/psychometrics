@@ -184,6 +184,7 @@ en:
               column_type_mismatch: Column <b>%{col}</b> is expected to be of type %{type} but got <b>%{got}</b>
               email_blank: 'Row %{row_number}: Email field can''t be blank'
               email_duplicate: There are duplicates in Email column
+              email_invalid: 'Row %{row_number}: Email is invalid'
               invalid_column: Invalid column %{name}
               invalid_column_name: Column <b>"%{column}"</b> is invalid
               invalid_column_name_size: Column <b>"%{column}"</b> name too long (max 64)
@@ -193,6 +194,7 @@ en:
               invalid_string_value: <b>Row#%{index}</b> column <b>"%{column}"</b> is not a String
               invalid_string_value_size: <b>Row#%{index}</b> column <b>"%{column}"</b>  too long (max 256)
               no_email_column: File does not contain Email column
+              non_uniq_column: There are following non uniq column %{columns}
         sheet_row_form:
           attributes:
             email:
@@ -602,6 +604,10 @@ en:
           has_dependent_relation: This report is assinged on users
           max_assessment_count: You have reached the limit of %{max} assessments
           min_assessment_count: The minimum number of assessments is %{min}
+        user:
+          attributes:
+            current_password:
+              invalid: Current password is incorrect
     models:
       administration/assessments/assign_form: Assigns Form
       assessment: Assessments
@@ -1205,6 +1211,12 @@ en:
       assessor_assessments: Assessor Assessments
       other_assessments: Other Assessments
       other_reports: Other Reports
+  change_password_page:
+    change_profile_details: Change Profile Details
+    old_password: Old Password
+    password: Password
+    password_confirmation: Password Confirmation
+    title: Change Password
   checking_wizard:
     audio_check:
       access: Access
@@ -1287,9 +1299,11 @@ en:
       completion_count: Completion Count
       completion_status: Completion Status
       created_at: Created at
+      created_by: Created By
       created_date: Created Date
       details: Details
       id: Id
+      modified_by: Modified By
       modified_date: Modified Date
       name: Name
       qc_user_list: QC Users List
@@ -1635,6 +1649,10 @@ en:
       max_evaluators: you already have enough evaluators
   frontend:
     activate: Activate
+    admins:
+      actions:
+        remove:
+          success: Admin with name '%{adminName}' removed successfully.
     are_you_sure: Are you sure?
     assessment: Assessment
     assessment_groups:
@@ -2504,6 +2522,7 @@ en:
         manage_client_ids: Client Tenancy
         memberships: Client Tenancy
         name: Name
+        old_password: Old Password
         password: Password
         password_confirmation: Password confirmation
         role: Role
@@ -2875,6 +2894,8 @@ en:
       generating: Generating
       not_prepared: Not Available
       prepared: Available
+  users:
+    password_change_success: Password changed successfully. Please login with your new password.
   validations:
     AudioResponse:
       in_progress:

@@ -6,6 +6,7 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
+import { Buffer } from 'buffer'
 import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { AudioLevel } from '~/hooks/useAudioMetrics/interfaces'
@@ -23,6 +24,8 @@ import reducer, {
 } from './reducer'
 
 import styles from './AudioCheck.less'
+
+window.Buffer = Buffer
 
 const connector = connect(({ checkingWizard }: RootState) => ({
   preSignedUrl: checkingWizard.preSignedUrl,

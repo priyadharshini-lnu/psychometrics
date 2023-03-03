@@ -8,8 +8,9 @@ export const All: React.FC = () => {
     fetch, ...args
   } = useResources<Task>('report_approvals', {
     responseType: TaskTR,
+    trackUrl: true,
     apiConfig: {
-      include: ['campaign', 'report', 'user'],
+      include: ['campaign', 'report', 'user', 'approver_user', 'qc_user'],
       fields: {
         users: ['name', 'email'],
         campaigns: ['name'],

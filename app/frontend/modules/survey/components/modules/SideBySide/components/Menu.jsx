@@ -150,6 +150,7 @@ export class Menu extends Component {
     const { data, index } = this.props
     return (
       <DropdownButton
+        onClick={e => e.stopPropagation(e)}
         ref={(ref) => { this.dropdown = ref }}
         bsStyle="default"
         title={(

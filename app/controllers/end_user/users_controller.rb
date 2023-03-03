@@ -70,7 +70,6 @@ class EndUser::UsersController < ApplicationController
     if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
       current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
       audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
-      bypass_sign_in(current_user, scope: :user)
       render json: current_user, serializer: EndUser::CurrentUserSerializer, project_id: @current_project.id
     else
       render json: { errors: current_user.errors.messages }, status: 400
@@ -82,6 +81,19 @@ class EndUser::UsersController < ApplicationController
       render json: { photo: current_user.user_profile.photo&.url }
     else
       render json: { errors: current_user.user_profile.errors.messages }, status: 400
+    end
+  end
+
+  def change_password
+    form = Users::ChangePasswordForm.from_params(params)
+    return render json: { errors: form.errors.messages }, status: 422 unless form.valid?
+
+    if current_user.update_with_password(form.attributes)
+      sign_out(current_user)
+      flash[:notice] = t('users.password_change_success')
+      head :ok
+    else
+      render json: { errors: current_user.errors.messages }, status: 422
     end
   end
 

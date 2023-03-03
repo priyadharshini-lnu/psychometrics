@@ -1,9 +1,12 @@
 = simple_form_for(@form, as: :user, url: administration_profiles_url) do |f|
   = f.input :email
-  = f.input :password
-  = f.input :password_confirmation
   = f.input :first_name
   = f.input :last_name
+  = f.input :change_password, as: :boolean, checked_value: true, unchecked_value: false, input_html: { id: 'change_password' }
+  div#password_block.mbl class="#{@form.change_password ? '' : 'hidden'}"
+    = f.input :current_password, input_html: { disabled: !@form.change_password }
+    = f.input :password, input_html: { disabled: !@form.change_password }
+    = f.input :password_confirmation, input_html: { disabled: !@form.change_password }
   - if current_user.is?(:superadmin)
     = f.input :weekly_license_stats, as: :boolean, checked_value: true, unchecked_value: false
   = f.button :submit, t('administration.update'), class: 'btn-info'

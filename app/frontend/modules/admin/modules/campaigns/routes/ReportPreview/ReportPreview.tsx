@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import cs from 'classnames'
 import {
   Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu, Tag,
@@ -38,6 +38,7 @@ export default function ReportPreview ({
   features, asyncDownload, clearUseReportDetails, startQC,
   sendToReview, abortQC, approveReport, requestChanges, removeApproval,
 }: Props) {
+  const [pages, setPages] = useState([])
   const location = useLocation()
   const history = useHistory()
 
@@ -76,12 +77,12 @@ export default function ReportPreview ({
         locales={locales}
         selectedLocale={defaultLanguage}
         userReport={userReport}
-        showOverrides={userReport.requireApproval}
         allowEdit={userReport.approvalStatus === ApprovalStatuses.QCInProgress
           && userReport.permissions.manageQc}
         allowApprove={userReport.approvalStatus === ApprovalStatuses.QCCompleted
           && userReport.permissions.manageApproval}
         skipLogic={skipLogic}
+        setPages={setPages}
       />
     )
   }
@@ -120,52 +121,54 @@ export default function ReportPreview ({
       </Dropdown>,
     ]
 
-    if ((userReport.approvalStatus === ApprovalStatuses.PendingQC
-        || userReport.approvalStatus === ApprovalStatuses.ChangeRequested)
-        && userReport.permissions.manageQc) {
-      actionList.unshift(
-        <Button
-          type="primary"
-          onClick={() => startQC(userReport.campaignId, userReport.id)}
-        >
-          {I18n.t('administration.report_review.review')}
-        </Button>,
-      )
-    }
-    if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.manageQc) {
-      actionList.unshift(...[
-        <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.send_for_approve')}
-        </Button>,
-        <Button type="default" onClick={() => abortQC(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.abort_qc')}
-        </Button>,
-      ])
-    }
-    if (userReport.approvalStatus === ApprovalStatuses.QCCompleted && userReport.permissions.manageApproval) {
-      const pageModules = lookUpModules(userReport.report)
-      const approved = userReport.moduleOverrides.filter(m => m.approved).length
-      const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
+    if (userReport.requireApproval) {
+      if ((userReport.approvalStatus === ApprovalStatuses.PendingQC
+          || userReport.approvalStatus === ApprovalStatuses.ChangeRequested)
+          && userReport.permissions.manageQc) {
+        actionList.unshift(
+          <Button
+            type="primary"
+            onClick={() => startQC(userReport.campaignId, userReport.id)}
+          >
+            {I18n.t('administration.report_review.review')}
+          </Button>,
+        )
+      }
+      if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.manageQc) {
+        actionList.unshift(...[
+          <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.send_for_approve')}
+          </Button>,
+          <Button type="default" onClick={() => abortQC(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.abort_qc')}
+          </Button>,
+        ])
+      }
+      if (userReport.approvalStatus === ApprovalStatuses.QCCompleted && userReport.permissions.manageApproval) {
+        const pageModules = lookUpModules(userReport.report, pages)
+        const approved = userReport.moduleOverrides.filter(m => m.approved).length
+        const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
 
-      actionList.unshift(...[
-        <Button
-          type="primary"
-          disabled={approved !== modulesCount}
-          onClick={() => approveReport(userReport.campaignId, userReport.id)}
-        >
-          {I18n.t('administration.report_review.approve')}
-        </Button>,
-        <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.request_changes')}
-        </Button>,
-      ])
-    }
-    if (userReport.approvalStatus === ApprovalStatuses.Approved && userReport.permissions.manageApproval) {
-      actionList.unshift(
-        <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.remove_approval')}
-        </Button>,
-      )
+        actionList.unshift(...[
+          <Button
+            type="primary"
+            disabled={approved !== modulesCount}
+            onClick={() => approveReport(userReport.campaignId, userReport.id)}
+          >
+            {I18n.t('administration.report_review.approve')}
+          </Button>,
+          <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.request_changes')}
+          </Button>,
+        ])
+      }
+      if (userReport.approvalStatus === ApprovalStatuses.Approved && userReport.permissions.manageApproval) {
+        actionList.unshift(
+          <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.remove_approval')}
+          </Button>,
+        )
+      }
     }
 
     if (userReport.permissions.download) {
@@ -235,14 +238,14 @@ export default function ReportPreview ({
               <ArrowLeftOutlined />
             </div>
           )}
-          extra={actions()}
+          extra={reportIsLoaded() && actions()}
         >
           {userReport.richEditorOpened && (
             <Affix className={styles.affix}>
               <div className={styles.toolbar} style={{ zIndex: 9999 }} key="editor" id="froala-editor-toolbar" />
             </Affix>
           )}
-          <Row justify="space-between" style={{ border: '1px solid #ccc' }}>
+          <Row justify="space-between" className={styles.reportPreviewBody} gutter={20}>
             <Col flex={1}>
               <Row justify="center">
                 <Col>
@@ -256,7 +259,7 @@ export default function ReportPreview ({
               && (
               <Col>
                 <Affix style={{ maxHeight: '100vh' }}>
-                  <Sidebar />
+                  <Sidebar pages={pages} />
                 </Affix>
               </Col>
               )

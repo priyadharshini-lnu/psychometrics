@@ -6,7 +6,7 @@ function ReportsForm () {
   this.init = function() {
     this.startListening()
     $(document).on('change', '#reports_form #resource_assessment_ids', this.onResourceAssessmentChange);
-    $(document).on('change', '#reports_form #hogan_report_id', this.onResourceProviderChange);
+    $(document).on('change', '#reports_form .external_reports_setting', this.onResourceProviderChange);
     $(document).on('change', '#report_data_only_checkbox', function() {
       var checked = $(this).is(':checked')
       $(".resource_assessments").prop("disabled", checked);
@@ -57,14 +57,21 @@ function ReportsForm () {
   }
 
   this.onResourceProviderChange = function() {
-    var toggleProvider = function(name) {
+    var toggleProvider = function() {
+      var reportType;
+      if ($(`#hogan_report_id`).find('select').val().length > 0) {
+        reportType = 'hogan'
+      } else if (($(`#saville_report_id`).find('select').val().length > 0)) {
+        reportType = 'saville'
+      } else {
+        reportType = 'internal'
+      }
+
       $('#reports_form #provider_input').removeAttr('disabled')
-      $('#reports_form #provider_input').val(
-        $(`#${name}_report_id`).find('select').val().length > 0 ? name : 'internal'
-      )
+      $('#reports_form #provider_input').val(reportType)
     }
 
-    toggleProvider('hogan');
+    toggleProvider()
   }
 }
 

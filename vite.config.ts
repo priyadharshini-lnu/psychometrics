@@ -5,7 +5,6 @@ import RubyPlugin from 'vite-plugin-ruby'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
-
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
 import { env } from 'process'
@@ -61,6 +60,7 @@ export default defineConfig({
       include: (id) => {
         const path = id.split('?').slice(0, 1).join('')
         if (path.endsWith('/ant.less')) { return false }
+        if (path.endsWith('/globals.less')) { return false }
         if (path.endsWith('less') && !path.includes('node_modules')) {
           return true
         }
@@ -88,10 +88,12 @@ export default defineConfig({
     reportCompressedSize: false,
     cssCodeSplit: true,
     rollupOptions: {
-      plugins: [gzipPlugin({
-        customCompression: content => brotliPromise(Buffer.from(content)),
-        fileName: '.br'
-      })],
+      plugins: [
+        gzipPlugin({
+          customCompression: content => brotliPromise(Buffer.from(content)),
+          fileName: '.br'
+        })
+      ],
       output: {
         sourcemap: false,
         chunkFileNames: (info) => {

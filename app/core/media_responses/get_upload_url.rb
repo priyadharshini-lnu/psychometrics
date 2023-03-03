@@ -14,7 +14,7 @@ module MediaResponses
       question = Question.find(question_id)
       begin
         data = if question.type == 'VideoResponse'
-                 MediaResponses::GetMultipartUploadUrls.call!(result, question_id)
+                 MediaResponses::GetMultipartUploadUrls.call!(result, question_id, file_name)
                else
                  MediaResponses::GetSinglePresignedUploadUrl.call!(result, question_id, file_name)
                end

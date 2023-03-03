@@ -32,7 +32,7 @@ export interface UrlQuery {
     size?: number
   },
   filter?: {
-    [key: string]: string
+    [key: string]: string | string[]
   },
   sort?: string
 }

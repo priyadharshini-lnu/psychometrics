@@ -7,7 +7,7 @@ import { Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/
 import cardStyles from '../CardStyles.less'
 import styles from './NetworkCheck.less'
 import { CheckList } from '../CheckList'
-import { type CheckListStatus } from '../interfaces'
+import { CheckListStatus } from '../interfaces'
 import { Progress } from '../Progress'
 
 interface Props {

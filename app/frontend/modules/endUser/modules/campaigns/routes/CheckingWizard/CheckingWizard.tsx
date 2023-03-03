@@ -3,7 +3,7 @@ import _ from 'lodash'
 import {
   Row, Steps, Result, Button, Layout, Col,
 } from 'antd'
-import qs from 'query-string'
+import qs from 'qs'
 import Cookies from 'js-cookie'
 import { connect, ConnectedProps } from 'react-redux'
 

@@ -137,7 +137,7 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
         </Row>
 
         {/* Pagination */}
-        <Pagination showQuickJumper defaultCurrent={2} total={500} />
+        <Pagination showQuickJumper defaultCurrent={2} total={30} />
       </Space>
     </ConfigProvider>
   )

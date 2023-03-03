@@ -8,16 +8,25 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
              :url
 
   has_one :privacy_link, foreign_key: :client_id
+  has_one :creator, foreign_key: :created_by_id
+  has_one :modifier, foreign_key: :modified_by_id
 
   delegate :text, :link, :text=, :link=, to: :privacy_link, allow_nil: true
 
   ransack_filters %i[disabled_true filterable_fields]
 
-  before_create :set_ancestry
-
-  def set_ancestry
+  before_create do
     @model.ancestry = context[:client].id
+    @model.applicable_level = :campaign
+    @model.created_by_id = context[:user].id
   end
+  before_update do
+    @model.modified_by_id = context[:user].id
+  end
+
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, project) { project.attributes.slice('id', 'name') }
 
   def client_id
     @model.ancestry

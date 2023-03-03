@@ -45,8 +45,8 @@ class MediaResponse < ApplicationRecord
     asset&.filename&.split('/')&.last
   end
 
-  def video_file_path
-    asset.key.sub('${filename}', 'video.mp4')
+  def video_file_path(filename)
+    asset.key.sub('${filename}', filename)
   end
 
   def verify_multiple_take_limit

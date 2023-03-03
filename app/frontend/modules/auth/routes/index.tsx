@@ -84,6 +84,11 @@ const routes = [
     exact: true,
   },
   {
+    path: '/administration/password_expired',
+    main: PasswordExpired,
+    exact: true,
+  },
+  {
     path: '/administration/invitations*',
     main: Invitation,
   },

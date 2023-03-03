@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp'
-import qs from 'query-string'
+import qs from 'qs'
 import _ from 'lodash'
 
 const routeUtils = {

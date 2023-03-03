@@ -121,6 +121,8 @@ module Assessments
     end
 
     def update_id_in_json_config(json, value, mapping, key = 'subject')
+      return json unless mapping[value.to_i]
+
       json.gsub(/"#{key}":"?#{value}"?/, "\"#{key}\":#{mapping[value.to_i]}")
     end
   end

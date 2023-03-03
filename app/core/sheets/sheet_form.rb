@@ -2,6 +2,8 @@
 
 module Sheets
   class SheetForm < Rectify::Form
+    FIRST_DATA_ROW = 3
+
     attribute :file, Object
 
     validates :file, presence: true,
@@ -10,15 +12,18 @@ module Sheets
     validate :has_email_column, if: :file
     validate :check_column_types, if: :file
     validate :check_columns_names_and_length, if: -> { file && accesssheet? }
-    validate :check_emails_are_present, if: :file
+    validate :validates_emails, if: :file
     validate :no_duplicates, if: -> { file && sheet_type == 'Datasheet' }
     validate :validate_string_values, if: :file
     validate :validate_numeric_values, if: :file
     validate :validate_column_types_matching, if: -> { file && sheet }
+    validate :validate_column_names_uniqueness, if: :file
+
+    def roo_excel
+      @roo_excel ||= file.is_a?(Roo::Excelx) ? file : Roo::Excelx.new(file.path)
+    end
 
     def parsed_file
-      roo_excel = file.is_a?(Roo::Excelx) ? file : Roo::Excelx.new(file.path)
-
       @parsed_file ||= roo_excel.parse(headers: true, clean: false)
     end
 
@@ -53,12 +58,12 @@ module Sheets
           next if data[column].blank?
 
           unless data[column].is_a?(String)
-            next errors.add(:file, :invalid_string_value, column: column, index: 3 + index)
+            next errors.add(:file, :invalid_string_value, column: column, index: row_number(index))
 
           end
 
           if data[column].size > 256
-            errors.add(:file, :invalid_string_value_size, column: column, index: 3 + index)
+            errors.add(:file, :invalid_string_value_size, column: column, index: row_number(index))
           end
         end
       end
@@ -70,7 +75,7 @@ module Sheets
       data_rows.each.with_index do |data, index|
         numeric_columns.each do |column|
           if data[column].present? && !data[column].is_a?(Numeric)
-            errors.add(:file, :invalid_number_value, column: column, index: 3 + index)
+            errors.add(:file, :invalid_number_value, column: column, index: row_number(index))
           end
         end
       end
@@ -99,12 +104,27 @@ module Sheets
       end
     end
 
-    def check_emails_are_present
+    def validates_emails
       return if errors.present?
 
       data_rows.each.with_index do |data, index|
-        errors.add(:file, :email_blank, row_number: index + 3) if data[Sheet::EMAIL_COLUMN]&.strip.blank?
+        email = data[Sheet::EMAIL_COLUMN]
+        next errors.add(:file, :email_blank, row_number: row_number(index)) if email.blank?
+
+        errors.add(:file, :email_invalid, row_number: row_number(index)) unless Devise.email_regexp.match?(email.strip)
       end
+    end
+
+    def validate_column_names_uniqueness
+      column_names = roo_excel.first
+      non_uniq_columns = column_names.select { |c| column_names.count(c) > 1 }
+      return if non_uniq_columns.empty?
+
+      errors.add(:file, :non_uniq_column, columns: non_uniq_columns.uniq.join(', '))
+    end
+
+    def row_number(index)
+      FIRST_DATA_ROW + index
     end
 
     def columns

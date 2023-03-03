@@ -27,8 +27,9 @@ module EndUser
       update_in = object.project.profile_setting.update_in || 9999
       updated_at = object.user_profile.updated_at
       if (Time.current - updated_at) > update_in.month
-        diff = (update_in.month - updated_at.month) + (12 * (update_in.year - updated_at.year))
-        I18n.t('profile.old_data', { month: diff })
+        update_in_time = update_in.month.ago
+        diff = (update_in_time.month - updated_at.month) + (12 * (update_in_time.year - updated_at.year))
+        I18n.t('profile.old_data', months: diff.positive? ? diff : 1)
       end
     end
 

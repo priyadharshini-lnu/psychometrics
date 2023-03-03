@@ -6,7 +6,6 @@ namespace :carrierwave do
   task migrate_to_activestorage: :environment do
     tables_to_migrate_attributes = {
       'assessments' => Assessment,
-      'assigns' => Assign,
       'dashboards' => Dashboard,
       'design_settings' => DesignSetting,
       'factors' => Factor,
@@ -14,8 +13,6 @@ namespace :carrierwave do
       'libraries' => Library,
       'media_responses' => MediaResponse,
       'occupations' => Occupation,
-      'products' => Product,
-      'product_images' => ProductImage,
       'reports' => Report,
       'user_profiles' => UserProfile,
       'user_reports' => UserReport
@@ -44,19 +41,29 @@ namespace :carrierwave do
           # with :pdf attribute for UserReport model
           as_attribute = attribute == 'pdf' ? 'pdf_file' : attribute
 
-          next if record.send(attribute).blank? || record.send("as_#{as_attribute}").attached?
+          begin
+            next if record.send(attribute).blank? || record.send("as_#{as_attribute}").attached?
 
-          ActiveStorageSyncJob.new.sync_activestorage(record, attribute)
+            unless record.send(attribute).file.exists?
+              Rails.logger.info("Missing :#{attribute} file for #{record.class}##{record.id}")
+              next
+            end
 
-          ActiveRecord::Base.connection.execute(
-            <<-SQL.squish
-              INSERT
-              INTO activesupport_tables_migrations (table_name, model_name, last_processed_id)
-              VALUES ('#{table}', '#{model.name}', #{record.id})
-              ON CONFLICT (table_name) DO UPDATE
-              SET last_processed_id = #{record.id}
-            SQL
-          )
+            ActiveStorageSyncJob.new.sync_activestorage(record, attribute)
+
+            ActiveRecord::Base.connection.execute(
+              <<-SQL.squish
+                INSERT
+                INTO activesupport_tables_migrations (table_name, model_name, last_processed_id)
+                VALUES ('#{table}', '#{model.name}', #{record.id})
+                ON CONFLICT (table_name) DO UPDATE
+                SET last_processed_id = #{record.id}
+              SQL
+            )
+          rescue Excon::Error::Forbidden
+            Rails.logger.info("Access forbidden for #{record.class}##{record.id} #{attribute} attribute")
+            next
+          end
         end
       end
 

@@ -1,6 +1,7 @@
 import { CampaignList } from './CampaignList'
 import { Campaign } from './Campaign'
 import { Profile } from './Profile'
+import { ChangePassword } from './ChangePassword'
 import { Insights } from './Insights'
 import { UserAssessment } from './UserAssessment'
 import { AgileUserAssessment } from './AgileUserAssessment'
@@ -34,6 +35,11 @@ const routes = [
   {
     path: '/profile',
     main: Profile,
+    exact: true,
+  },
+  {
+    path: '/change_password',
+    main: ChangePassword,
     exact: true,
   },
   {

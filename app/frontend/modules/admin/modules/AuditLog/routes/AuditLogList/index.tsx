@@ -63,7 +63,7 @@ const AuditLogList: React.FC<Props> = (
   const [range, setRange] = useState<RangeValue<Moment> | null | undefined>(initialRange || null)
 
 
-  const filterProps = (type: string, value = '') => ({
+  const filterProps = (type: string, value = '', filter = '') => ({
     filterDropdown: ({
       selectedKeys, confirm, setSelectedKeys,
     }) => (
@@ -73,7 +73,7 @@ const AuditLogList: React.FC<Props> = (
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           defaultValue={value}
           value={selectedKeys[0]}
-          onPressEnter={() => changeFilter(`${type}_search`, selectedKeys[0])}
+          onPressEnter={() => changeFilter(filter || `${type}_search`, selectedKeys[0])}
           style={{ marginBottom: 8, display: 'block' }}
         />
         <Space>
@@ -84,14 +84,14 @@ const AuditLogList: React.FC<Props> = (
             style={{ width: 90 }}
             onClick={() => {
               confirm({ closeDropdown: false })
-              changeFilter(`${type}_search`, selectedKeys[0])
+              changeFilter(filter || `${type}_search`, selectedKeys[0])
             }}
           >
             {I18n.t('administration.audit_log.search')}
           </Button>
           <Button
             onClick={() => {
-              removeFilter(`${type}_search`)
+              removeFilter(filter || `${type}_search`)
               setSelectedKeys([])
             }}
             size="small"
@@ -120,6 +120,7 @@ const AuditLogList: React.FC<Props> = (
               title={I18n.t('administration.audit_log.record_id')}
               key="recordId"
               dataIndex="recordId"
+              {...filterProps('record', tableConfig.filters.record_id_eq, 'record_id_eq')}
             />
             <Column
               title={I18n.t('administration.audit_log.type')}

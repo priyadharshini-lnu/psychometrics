@@ -16,6 +16,8 @@ class ActiveStorageSyncJob < ApplicationJob
     end
   end
 
+  private
+
   def attach_attribute(record, attachment, attribute)
     attachment.cache_stored_file!
     # workaround for UserReport, as in future when migrated to ActiveStorage it will conflict
@@ -29,5 +31,11 @@ class ActiveStorageSyncJob < ApplicationJob
       filename: record.attributes[attribute.to_s]
     )
     record.save!
+  rescue StandardError => e
+    Rails.logger.info("Halted #{record.class} ##{record.id} :#{attribute} attribute migration")
+    Rails.logger.error("#{e.message}\n")
+    Rails.logger.error(e.backtrace.join("\n"))
+
+    raise
   end
 end

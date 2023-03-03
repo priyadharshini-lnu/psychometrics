@@ -21,8 +21,11 @@ const InitPages = {
 
         if (options.enable_single_question_page) {
           if (questions.length > 0) {
-            pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
+            const prev = _.find(b.questions, { id: questions[0] })
+            const skipLogic = prev?.skip_logic?.length ? { skipLogic: prev.skip_logic } : {}
+            pages[b.id] = [...pages[b.id], { questions, blockId: b.id, ...skipLogic }]
           }
+
           return [q.id]
         }
 

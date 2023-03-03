@@ -42,7 +42,7 @@ const connecter = connect((state: RootState) => ({
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 type Props = PropsFromRedux & {
-  scrollTo: (id:string) => void,
+  scrollToModule: (id:string) => void,
   pageModules: {page: {}, modules: Module[]}[]
 }
 
@@ -84,15 +84,22 @@ const Compose = ({ selected, disabled, onSend }) => {
 
 function Comments ({
   comments, selectedModule, selectedModuleId, modules, userReport, currentUser,
-  pageModules, readComment, scrollTo,
+  pageModules, readComment, scrollToModule,
 }: Props) {
   const {
     data, createResource, updateResource, setData, removeResource,
   } = useResources<Comment>('user_report_comments',
-    { basePath: `user_reports/${userReport.id}` })
+    {
+      basePath: `user_reports/${userReport.id}`,
+      apiConfig: {
+        include: ['creator'],
+        fields: {
+          users: ['full_name'],
+        },
+      },
+    })
 
   const [hideResolved, setHideResolved] = useState(true)
-
   useEffect(() => {
     setData(comments)
   }, [])
@@ -176,7 +183,10 @@ function Comments ({
                   === (thread.moduleId?.toString() || thread.reportsModule?.id?.toString())),
               })}
             >
-              <div className={styles.module} onClick={() => scrollTo(thread.moduleId || thread.reportsModule?.id)}>
+              <div
+                className={styles.module}
+                onClick={() => scrollToModule(thread.moduleId || thread.reportsModule?.id)}
+              >
                 <Tooltip title={Utils.stripHTML(module?.props?.text)}>
                   <span className={styles.title}>Text</span>
                   {'| '}

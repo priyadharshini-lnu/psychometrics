@@ -4,3 +4,8 @@ declare module '*?worker' {
   }
   export default workerConstructor
 }
+
+declare module '*?worker&url' {
+  const url:string
+  export default url
+}

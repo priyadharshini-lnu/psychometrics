@@ -1,5 +1,9 @@
 p Dear #{@user.decorate.full_name},
-p Approver of the following report has requested changes and requires your action.
+
+- if @user_report.change_requested?
+  p Approver of the following report has requested changes and requires your action.
+- else
+  p The following report is ready for QC.
 
 p Project: #{@user_report.project.name}
 p Campaign: #{@user_report.campaign.name}
