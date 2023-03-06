@@ -17,8 +17,9 @@ class Api::V2::Projects::Schema < Api::Base::Schema
       optional(:locales).array(:string)
       optional(:privacy_consent).maybe(:bool)
       optional(:enable_live_chat).maybe(:bool)
-      optional(:text).filled(:string)
-      optional(:link).filled(:string)
+      optional(:text).maybe(:string)
+      optional(:link).maybe(:string)
+      optional(:enable_privacy_link).maybe(:bool)
     end
   end
 end

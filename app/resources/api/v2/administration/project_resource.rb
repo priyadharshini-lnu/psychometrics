@@ -5,7 +5,7 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   attributes :name, :number, :subdomain, :logo, :created_at, :updated_at,
              :locales, :disabled, :privacy_consent, :ancestry, :client_id,
-             :url
+             :url, :text, :link, :enable_privacy_link, :enable_live_chat, :live_chat_token
 
   has_one :privacy_link, foreign_key: :client_id
   has_one :creator, foreign_key: :created_by_id
@@ -20,9 +20,16 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
     @model.applicable_level = :campaign
     @model.created_by_id = context[:user].id
   end
+
   before_update do
     @model.modified_by_id = context[:user].id
   end
+
+  after_update do
+    @model.privacy_link&.destroy unless @enable_privacy_link
+  end
+
+  attr_writer :enable_privacy_link
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
@@ -30,6 +37,10 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   def client_id
     @model.ancestry
+  end
+
+  def enable_privacy_link
+    @model.privacy_link.present?
   end
 
   def url
@@ -41,7 +52,9 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
   end
 
   def privacy_link
-    @model.privacy_link || @model.build_privacy_link
+    return @model.privacy_link || @model.build_privacy_link if @enable_privacy_link
+
+    @model.privacy_link
   end
 
   def created_at

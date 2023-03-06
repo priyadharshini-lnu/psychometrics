@@ -17,6 +17,7 @@ export const General: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>()
   const [form] = Form.useForm()
   const [privacyChecked, setPrivacyChecked] = useState(false)
+  const [enableLiveChatChecked, setEnableLiveChatChecked] = useState(false)
 
   const {
     data, fetchSingle,
@@ -30,6 +31,11 @@ export const General: React.FC = () => {
       basePath: `clients/${project?.clientId}`,
     },
   )
+
+  const transformValues = values => ({
+    ...values,
+    liveChatToken: values.enableLiveChat ? values.liveChatToken : null,
+  })
 
 
   useEffect(() => {
@@ -63,6 +69,7 @@ export const General: React.FC = () => {
           request={{
             updateResource,
           }}
+          transformValues={transformValues}
           scrollToFirstError
         >
           {({ form }) => (
@@ -101,7 +108,7 @@ export const General: React.FC = () => {
                 </Checkbox>
               </Form.Item>
 
-              <Form.Item valuePropName="checked">
+              <Form.Item name="enablePrivacyLink" valuePropName="checked">
                 <Checkbox
                   checked={privacyChecked}
                   onChange={(e) => {
@@ -110,15 +117,25 @@ export const General: React.FC = () => {
                 >
                   {I18n.t('administration.projects.general_settings.privacy_link')}
                 </Checkbox>
-                <Form.Item name="text" label="Privacy Text" hidden={!privacyChecked}>
-                  <Input />
-                </Form.Item>
-                <Form.Item name="link" label="Privacy Link" hidden={!privacyChecked}>
-                  <Input />
-                </Form.Item>
+              </Form.Item>
+              <Form.Item name="text" label="Privacy Text" hidden={!privacyChecked}>
+                <Input />
+              </Form.Item>
+              <Form.Item name="link" label="Privacy Link" hidden={!privacyChecked}>
+                <Input />
               </Form.Item>
               <Form.Item name="enableLiveChat" valuePropName="checked">
-                <Checkbox>{I18n.t('administration.projects.general_settings.live_chat')}</Checkbox>
+                <Checkbox
+                  checked={enableLiveChatChecked}
+                  onChange={(e) => {
+                    setEnableLiveChatChecked(e.target.checked)
+                  }}
+                >
+                  {I18n.t('administration.projects.general_settings.live_chat')}
+                </Checkbox>
+              </Form.Item>
+              <Form.Item name="liveChatToken" label="Live Chat Token" hidden={!enableLiveChatChecked}>
+                <Input />
               </Form.Item>
               <Button type="primary" htmlType="submit" className="mb-16" onClick={() => form.submit()}>
                 {I18n.t('administration.projects.general_settings.save_changes')}
