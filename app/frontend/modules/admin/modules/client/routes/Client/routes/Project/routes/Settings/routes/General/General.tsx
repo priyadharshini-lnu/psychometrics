@@ -72,7 +72,7 @@ export const General: React.FC = () => {
           transformValues={transformValues}
           scrollToFirstError
         >
-          {({ form }) => (
+          {() => (
             <>
               <Form.Item name="name" label={I18n.t('administration.projects.general_settings.name_label')} required>
                 <Input />
@@ -137,7 +137,7 @@ export const General: React.FC = () => {
               <Form.Item name="liveChatToken" label="Live Chat Token" hidden={!enableLiveChatChecked}>
                 <Input />
               </Form.Item>
-              <Button type="primary" htmlType="submit" className="mb-16" onClick={() => form.submit()}>
+              <Button type="primary" htmlType="submit" className="mb-16">
                 {I18n.t('administration.projects.general_settings.save_changes')}
               </Button>
             </>
