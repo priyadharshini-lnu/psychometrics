@@ -25,6 +25,7 @@ class ActiveStorageSyncJob < ApplicationJob
     as_attribute = attribute == 'pdf' ? 'pdf_file' : attribute
 
     record.skip_active_storage_sync = true
+    record.skip_attribute_validation = true if record.is_a?(MediaResponse)
     record.send("as_#{as_attribute}").attach(
       io: attachment.sanitized_file.file,
       content_type: attachment.content_type,
