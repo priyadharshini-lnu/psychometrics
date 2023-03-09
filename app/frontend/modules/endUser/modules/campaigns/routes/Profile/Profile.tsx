@@ -209,12 +209,16 @@ function ProfileComponent ({
                         <Form.Item
                           name="age"
                           label={I18n.t('profile.age')}
-                          hasFeedback
                           help={errors?.age}
                           required={requiredFields.age}
                           validateStatus={errors?.age ? 'error' : ''}
+                          rules={[{ pattern: /^\d*$/, message: I18n.t('common.validations.should_be_whole_number') }]}
                         >
-                          <InputNumber className={styles.numberInput} size="large" disabled={lockedFields.age} />
+                          <InputNumber
+                            className={styles.numberInput}
+                            size="large"
+                            disabled={lockedFields.age}
+                          />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>

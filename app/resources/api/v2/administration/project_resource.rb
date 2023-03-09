@@ -31,9 +31,10 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   attr_writer :enable_privacy_link
 
-  audit_log_for :create, payload: '*'
-  audit_log_for :update, payload: '*'
-  audit_log_for :destroy, payload: ->(_, project) { project.attributes.slice('id', 'name') }
+  audit_log_for :create, payload: '*', parent_resource: ->(_, record) { { project: record } }
+  audit_log_for :update, payload: '*', parent_resource: ->(_, record) { { project: record } }
+  audit_log_for :destroy, payload: ->(_, project) { project.attributes.slice('id', 'name') },
+    parent_resource: ->(_, record) { { project: record } }
 
   def client_id
     @model.ancestry

@@ -1117,7 +1117,7 @@ en:
         title: Rescore Responses
       reset:
         content: Are you sure you want to reset result?
-        successfully: Result data was successfully reseted.
+        successfully: The result data was successfully reset.
         title: Reset Result for assessment %{name}?
       update_assessor_form:
         select_assessor: Select Assessor Form
@@ -1347,6 +1347,8 @@ en:
       response: Response
       subject: Subject
       view_as: View as
+    validations:
+      should_be_whole_number: should be a whole number
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
