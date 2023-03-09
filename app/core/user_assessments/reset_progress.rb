@@ -18,7 +18,9 @@ module UserAssessments
           completed_at: nil,
           completion_reason: nil,
           norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil,
-          progress_reseted: @options[:reset_flag] || false
+          progress_reseted: @options[:reset_flag] || false,
+          manager_evaluation_status: :waiting,
+          evaluator_nomination_status: :waiting
         )
         user_result.update!(
           answers: set_answers_as_dirty,
