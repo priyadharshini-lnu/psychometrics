@@ -89,7 +89,6 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const admin = getResource(adminId)
 
-
   useEffect(() => {
     if (isEditMode) {
       fetchSingle({
@@ -114,8 +113,8 @@ const AddEditDrawerComponent: FC<Props> = ({
   }, [selectedUser])
 
   const drawerTitle = isEditMode
-    ? I18n.t('administration.administrators.drawers.view.title_project_admin_edit')
-    : I18n.t('administration.administrators.drawers.view.title_project_admin_add')
+    ? I18n.t(`administration.administrators.drawers.view.edit_${adminType}`)
+    : I18n.t(`administration.administrators.drawers.view.add_${adminType}`)
 
   const actionButtonText = isEditMode
     ? I18n.t('administration.administrators.drawers.edit.update')
