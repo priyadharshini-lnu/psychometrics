@@ -12,9 +12,9 @@ module Threesixty
           private
 
           def nomination_approval_table
-            file_path = File.join(File.dirname(__FILE__), 'nomination_approval_table.html.erb')
-
-            ActionController::Base.render file: file_path, assigns: { nominations: nominations }
+            ActionController::Base.render(
+              template: '_templates/nomination_approval_table.html.erb', assigns: { nominations: nominations }
+            )
           end
 
           def nominations

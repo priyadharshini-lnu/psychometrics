@@ -8,6 +8,8 @@ module Private
     include CarrierWaveDirect::Uploader
     include PrivatableUploader
 
+    delegate :question, to: :model
+
     def store_dir
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
     end
@@ -24,7 +26,9 @@ module Private
       question.props['maxFileSize']&.megabytes&.to_i || 200.megabytes
     end
 
-    delegate :question, to: :model
+    def fog_authenticated_url_expiration
+      1.week
+    end
 
     private
 
