@@ -1,5 +1,7 @@
 import React from 'react'
-import { Input as AntInput, Form } from 'antd'
+import {
+  Input as AntInput, InputNumber, Form,
+} from 'antd'
 import styles from './styles.less'
 
 interface Props {
@@ -10,12 +12,25 @@ interface Props {
   password?: boolean
   errors?: string[]
   disabled?:boolean
+  type?: string
 }
 
 export const InputField: React.FC<Props> = ({
-  label, name, defaultValue, placeholder, password, errors = [], disabled,
+  label, name, defaultValue, placeholder, password, errors = [], disabled, type,
 }) => {
-  const Input = password ? AntInput.Password : AntInput
+  const InputTag = () => {
+    if (password) {
+      return AntInput.Password
+    }
+    if (type === 'number') {
+      return InputNumber
+    }
+
+    return AntInput
+  }
+
+  const Input = InputTag()
+
   return (
     <Form.Item
       className={styles.input}
@@ -27,6 +42,7 @@ export const InputField: React.FC<Props> = ({
         : null}
     >
       <Input
+        className={styles.field}
         size="large"
         name={name}
         defaultValue={defaultValue}

@@ -41,6 +41,7 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
         disabled
       />
       <InputField
+        type="number"
         label={I18n.t('auth.otp.code')}
         name="code"
         placeholder={I18n.t('auth.otp.code_placeholder')}
