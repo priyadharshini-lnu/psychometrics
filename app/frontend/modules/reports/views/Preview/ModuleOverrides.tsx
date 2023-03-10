@@ -12,7 +12,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import cs from 'classnames'
 import FroalaEditor from 'react-froala-wysiwyg'
 import _ from 'lodash'
-import htmldiff from '~/libs/htmldiff.cjs?raw'
+import '~/libs/htmldiff.cjs'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import { openRichEditor, closeRichEditor } from '~/modules/reports/core/builder/actions'
 import {
