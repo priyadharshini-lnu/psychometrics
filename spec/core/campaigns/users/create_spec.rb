@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Campaigns::Users::Create do
   let(:form) do
     Campaigns::Users::CreateForm.new(
-      first_name: 'John', last_name: 'Doe', email: 'john@cc.com', operation: 'add_and_allow_new_response'
+      first_name: 'John', last_name: 'Doe', email: Faker::Internet.email, operation: 'add_and_allow_new_response'
     )
   end
   let!(:campaign) { create(:campaign) }
@@ -33,6 +33,55 @@ describe Campaigns::Users::Create do
     campaign_user = user.campaign_users.find_by(campaign: campaign)
 
     expect(campaign_user).to be_present
+  end
+
+  it 'adds audit log fro user, user_report and user_assessment' do
+    assessments = create_list(:assessment, 2)
+    reports = create_list(:report, 2, assessments: assessments)
+    campaign_report1 = create(:campaign_report, campaign: campaign, report: reports[0])
+    campaign_report2 = create(:campaign_report, campaign: campaign, report: reports[1])
+
+    described_class.call!(form, campaign, current_user)
+
+    user = User.find_by(email: form.email)
+    user_create_log = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create', record_id: user)
+    expect(user_create_log.payload.deep_symbolize_keys).to eq(form.attributes)
+
+    user_report1 = user.user_reports.find_by(report: reports[0])
+    user_report2 = user.user_reports.find_by(report: reports[1])
+    user_report_log1 = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create', record: user_report1)
+    user_report_log2 = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create', record: user_report2)
+    expect(user_report_log1.payload).to eq(
+      user_report1.slice(:campaign_id, :report_id, :user_id, :status).merge(
+        'operation' => form.operation,
+        'user_access' => campaign_report1.user_access,
+        'report_family_id' => campaign_report1.report_family_id
+      )
+    )
+    expect(user_report_log2.payload).to eq(
+      user_report2.slice(:campaign_id, :report_id, :user_id, :status).merge(
+        'operation' => form.operation,
+        'user_access' => campaign_report2.user_access,
+        'report_family_id' => campaign_report2.report_family_id
+      )
+    )
+
+    user_assessment1 = user.user_assessments.find_by(assessment: assessments[0])
+    user_assessment2 = user.user_assessments.find_by(assessment: assessments[1])
+    user_assessment_log1 = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create',
+                                            record: user_assessment1)
+    user_assessment_log2 = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create',
+                                            record: user_assessment2)
+    expect(user_assessment_log1.payload).to eq(
+      user_assessment1.slice(:campaign_id, :relationship_id, :subject_id, :evaluator_id, :status, :assessment_id).merge(
+        'operation' => form.operation
+      )
+    )
+    expect(user_assessment_log2.payload).to eq(
+      user_assessment2.slice(:campaign_id, :relationship_id, :subject_id, :evaluator_id, :status, :assessment_id).merge(
+        'operation' => form.operation
+      )
+    )
   end
 
   context 'add report and license usage' do

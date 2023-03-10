@@ -113,8 +113,8 @@ class UserReport < ApplicationRecord
     generate
   end
 
-  def log_attribute_for_delete
-    slice(:campaign_id, :report_id, :user_id)
+  def log_attributes
+    slice(:campaign_id, :report_id, :user_id, :status)
   end
 
   def publish_to_webhook

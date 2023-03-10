@@ -48,7 +48,7 @@ module Administration
           skip_logic: params[:skip_logic]
         }
         audit! :download_report_pdf, user_report, campaign: threesixty_campaign.campaign,
-              payload: params.merge(user_report.details_to_log)
+              payload: params.merge(user_report.log_attributes)
         respond_to do |format|
           format.json do
             ::Threesixty::Reports::DownloadJob.perform_later(

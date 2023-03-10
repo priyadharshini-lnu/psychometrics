@@ -85,7 +85,7 @@ module Administration
       def destroy
         remove_user_assessments = current_user.is?(:superadmin) && params[:remove_user_assessments]
         audit! :delete, campaign_assessment, campaign: campaign,
-          payload: { remove_user_assessments: remove_user_assessments }
+          payload: campaign_assessment.log_attributes.merge(remove_user_assessments: remove_user_assessments)
         CampaignAssessments::Remove.call!(
           campaign_assessment, campaign, remove_user_assessments: remove_user_assessments
         )

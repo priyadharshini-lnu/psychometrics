@@ -62,7 +62,7 @@ module Api
         form = Api::V1::Users::AssessmentsAndReportsForm.from_params(params).
                with_context(campaign_user: campaign_user, campaign: campaign)
         if form.valid?
-          ::Campaigns::UserReports::Add.call(form, campaign_user) do
+          ::Campaigns::UserReports::Add.call(form, campaign_user, current_user) do
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
           audit! :assessments_reports, campaign_user, payload: params, campaign: campaign_user.campaign

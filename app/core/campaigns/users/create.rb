@@ -40,8 +40,11 @@ module Campaigns
             modifier: current_user
           )
           @user = User.create!(user_attributes)
+          AuditLogModule.audit!(
+            :create, user, user: current_user, campaign: campaign, payload: form.attributes
+          )
         end
-        @campaign_user = campaign.campaign_users.create(user: user, active: form.active)
+        @campaign_user = campaign.campaign_users.create(user: user, active: form.attributes)
       end
 
       def add_reports_and_assessments
@@ -49,6 +52,7 @@ module Campaigns
           Campaigns::Users::AddReport.call!(
             campaign_user,
             campaign_report.report,
+            current_user: current_user || user,
             report_family_id: campaign_report.report_family_id,
             user_access: campaign_report.user_access,
             operation: form.operation,

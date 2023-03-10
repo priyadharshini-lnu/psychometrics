@@ -5,7 +5,7 @@ require 'kaminari'
 module AuditLogModule
   class << self
     def audit!(action, record, options = {}) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      campaign = options[:campaign]
+      campaign = options[:campaign] || record.try(:campaign)
       project = options[:project] || campaign&.project
       client = options[:client] || project&.client || campaign&.client
       payload = options[:payload]

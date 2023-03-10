@@ -153,7 +153,7 @@ class UserAssessment < ApplicationRecord
     norm&.name
   end
 
-  def log_attribute_for_delete
+  def log_attributes
     slice(:campaign_id, :relationship_id, :subject_id, :evaluator_id, :status, :assessment_id)
   end
 

@@ -59,8 +59,8 @@ class CampaignAssessment < ApplicationRecord
     UserAssessment.where(campaign_id: campaign_id, assessment_id: assessment_id)
   end
 
-  def log_attribute_for_delete
-    slice(:assessment_id, :campaign_id, :norm_id)
+  def log_attributes
+    slice(:campaign_id, :assessment_id, :norm_id)
   end
 
   private
