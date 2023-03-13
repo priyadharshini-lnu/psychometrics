@@ -7,6 +7,7 @@ export default connect(
   state => ({
     ...getData(state).ParticipantModal,
     current: getCurrent(state),
+    permissions: state.currentUser.permissions,
   }),
   { fetchParticipants, fetchRelationships, closeModal },
 )
