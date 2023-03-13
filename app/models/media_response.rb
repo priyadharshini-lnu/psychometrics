@@ -21,10 +21,7 @@ class MediaResponse < ApplicationRecord
   belongs_to :assign
   belongs_to :users_result
 
-  # TODO: remove this skip after ActiveStorage migration
-  attr_accessor :skip_attribute_validation
-
-  validates :asset, filename_format: true, unless: :skip_attribute_validation
+  validates :asset, filename_format: true
   validate :verify_multiple_take_limit, on: :create
 
   before_create :set_user_selected
