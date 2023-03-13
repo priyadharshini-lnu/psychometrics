@@ -38,6 +38,7 @@ const current = I18n.locale
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connector = connect((state: any) => ({
+  currentUser: state.currentUser,
   nomination: state.campaigns.nomination,
   instructions: state.campaigns.nomination.instructions,
   requirements: requirementsSelector(state.campaigns),
