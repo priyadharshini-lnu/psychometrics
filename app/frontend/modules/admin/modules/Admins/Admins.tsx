@@ -303,6 +303,7 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
         permissions={meta.permissions}
         handleClose={handleDrawerClose}
         handleEdit={handleEditAdminClick}
+        adminType={adminType}
       />
       <AddEditDrawer
         isVisible={

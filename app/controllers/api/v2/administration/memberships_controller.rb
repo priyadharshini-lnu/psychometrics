@@ -20,10 +20,18 @@ module Api
 
     def context
       super.merge(
-        project_id: params.dig(:filter, :client_id_eq),
-        campaign_id: params.dig(:filter, :campaign_id_eq),
+        project_id: project_id,
+        campaign_id: campaign_id,
         current_user: current_user
       )
+    end
+
+    def project_id
+      params.dig(:filter, :client_id_eq)
+    end
+
+    def campaign_id
+      params.dig(:filter, :campaign_id_eq)
     end
 
     private
@@ -34,12 +42,21 @@ module Api
       ).resolve.find(params[:membership_id])
     end
 
+    def policy_class
+      @policy_class ||= case params.dig(:filter, :with_role)
+                          when 'project_admin'
+                            Api::Administration::ProjectMembershipPolicy
+                          when 'campaign_admin'
+                            Api::Administration::CampaignMembershipPolicy
+                        end
+    end
+
     def base_response_meta
       return {} if params[:action] != 'index'
 
       {
         permissions: GetPermissionsHash.call!(
-          Api::Administration::MembershipPolicy,
+          policy_class,
           context[:user],
           @model,
           [
@@ -54,7 +71,7 @@ module Api
             campaign_id: context[:campaign_id]
           }
         ),
-        users_all_permissions: GetUserGrants.call!(
+        users_grants: GetUserGrants.call!(
           context[:user], context[:project_id]
         )
       }

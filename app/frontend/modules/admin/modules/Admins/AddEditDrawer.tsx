@@ -85,7 +85,18 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const {
     fetchSingle, getResource,
-  } = useResources<Admin>('memberships')
+  } = useResources<Admin>(
+    'memberships',
+    {
+      apiConfig: {
+        filter: {
+          with_role: adminType,
+          client_id_eq: projectId,
+          campaign_id_eq: campaignId,
+        },
+      },
+    },
+  )
 
   const admin = getResource(adminId)
 
