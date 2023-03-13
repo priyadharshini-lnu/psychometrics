@@ -21,7 +21,9 @@ class MediaResponse < ApplicationRecord
   belongs_to :assign
   belongs_to :users_result
 
-  validates :asset, filename_format: true
+  attr_accessor :skip_filename_validation
+
+  validates :asset, filename_format: true, unless: :skip_filename_validation
   validate :verify_multiple_take_limit, on: :create
 
   before_create :set_user_selected
