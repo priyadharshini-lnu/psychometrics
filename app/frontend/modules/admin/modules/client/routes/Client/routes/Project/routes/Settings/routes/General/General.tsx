@@ -49,6 +49,7 @@ export const General: React.FC = () => {
       form.setFieldsValue(project)
       const privacyDetailsPresent = !_.isNull(project.text || project.link)
       setPrivacyChecked(privacyDetailsPresent)
+      setEnableLiveChatChecked(project.enableLiveChat)
     }
   }, [project])
 

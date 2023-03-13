@@ -13,6 +13,8 @@ module Api
         rule(data: { attributes: :link }) do
           key.failure(:filled?) if values.dig(:data, :attributes, :enable_privacy_link) && value.blank?
         end
+
+        rule(data: { attributes: :link }).validate(:http_url_format)
       end
     end
   end
