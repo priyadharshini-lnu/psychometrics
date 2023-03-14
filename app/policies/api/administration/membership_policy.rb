@@ -8,6 +8,10 @@ module Api
           ::Administration::MembershipPolicy::Scope.new(user, Membership).resolve
         end
       end
+
+      def spoof?
+        @user.is?(:superadmin)
+      end
     end
   end
 end

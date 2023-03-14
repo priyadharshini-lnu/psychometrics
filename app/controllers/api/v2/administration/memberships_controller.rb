@@ -49,6 +49,8 @@ module Api
                             Api::Administration::ProjectMembershipPolicy
                           when 'campaign_admin'
                             Api::Administration::CampaignMembershipPolicy
+                          else
+                            super
                         end
     end
 
