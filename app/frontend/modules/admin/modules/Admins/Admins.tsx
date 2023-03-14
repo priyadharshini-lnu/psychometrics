@@ -71,7 +71,7 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
   }
 
   const {
-    data, meta, fetch, isLoading, getSortOrder, handleTableChange, createResource, updateResource,
+    data, meta, fetch, isLoading, getSortOrder, handleTableChange,
     removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter, memberAction,
   } = useResources<ProjectAdmin, Meta>(
     'memberships',
@@ -311,8 +311,6 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
         }
         isEditMode={drawerMode === DrawerMode.Edit}
         handleClose={handleDrawerClose}
-        updateAdmin={updateResource}
-        createAdmin={createResource}
         isSuperAdmin={isSuperAdmin(currentUser)}
         permissions={meta.permissions}
         currentUserGrants={meta.usersGrants}

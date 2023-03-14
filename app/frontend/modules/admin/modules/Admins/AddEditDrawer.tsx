@@ -18,9 +18,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useHistory, useParams } from 'react-router-dom'
-import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import { useResources } from '~/hooks/useResources'
-import { formDataToResource } from '~/libs/jsonApi/helpers'
 import ResourceForm from '~/components/ResourceForm'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import { Admin, AdminPermissions, CurrentUserPermissions } from '~/modules/admin/modules/client/core/admin'
@@ -31,8 +29,6 @@ const { I18n } = window
 const { Option } = Select
 
 interface Props {
-  updateAdmin?: UpdateResource<Admin>
-  createAdmin: CreateResource<Admin>
   permissions: AdminPermissions
   currentUserGrants: CurrentUserPermissions
   isSuperAdmin: boolean
@@ -47,8 +43,6 @@ const AddEditDrawerComponent: FC<Props> = ({
   isVisible,
   isEditMode,
   handleClose,
-  updateAdmin,
-  createAdmin,
   currentUserGrants,
   isSuperAdmin,
   permissions,
@@ -84,7 +78,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   } = useResources<UserDetails>('users')
 
   const {
-    fetchSingle, getResource,
+    fetchSingle, getResource, createResource, updateResource, getErrors,
   } = useResources<Admin>(
     'memberships',
     {
@@ -96,6 +90,15 @@ const AddEditDrawerComponent: FC<Props> = ({
         },
       },
     },
+  )
+
+  const requestErrors = getErrors('add')
+
+  const errors = _.compact(
+    [
+      requestErrors && _.get(requestErrors[0], ['email', 'title']),
+      requestErrors && _.get(requestErrors[0], ['userId', 'title']),
+    ],
   )
 
   const admin = getResource(adminId)
@@ -133,29 +136,20 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const onClose = () => {
     form.resetFields()
+    history.push(historyPath)
     handleClose()
   }
 
   const history = useHistory()
 
-  const handleAdminCreation = (values) => {
-    let resource = formDataToResource(
-      {
-        ...values, campaignId, clientId: projectId, role: adminType,
-      }, 'memberships',
-    )
-
-    if (notFromList) {
-      resource = {
-        ...resource, email: values.userId[0],
-      }
-      delete resource.userId
-    }
-
-    createAdmin(resource).then(() => {
-      history.push(historyPath)
-    })
-  }
+  const transformValues = values => ({
+    ...values,
+    campaignId,
+    clientId: projectId,
+    role: adminType,
+    email: notFromList ? values.userId[0] : undefined,
+    userId: notFromList ? [] : values.userId,
+  })
 
   const setRequiredStates = (value) => {
     setNotFromList(!(_.includes(_.map(users, 'id'), value[0])))
@@ -163,7 +157,6 @@ const AddEditDrawerComponent: FC<Props> = ({
     setSelected(value[0])
     setUserSelectOpen(false)
   }
-
 
   if (
     isEditMode
@@ -203,7 +196,9 @@ const AddEditDrawerComponent: FC<Props> = ({
                 key="submit"
                 form="add_edit_admin_form"
                 type="primary"
-                onClick={() => form.submit()}
+                onClick={() => {
+                  form.submit()
+                }}
               >
                 {actionButtonText}
               </Button>
@@ -232,10 +227,10 @@ const AddEditDrawerComponent: FC<Props> = ({
         }}
         scrollToFirstError
         request={{
-          createResource: handleAdminCreation,
-          updateResource: updateAdmin,
+          createResource,
+          updateResource,
         }}
-        transformValues={values => _.omit(values, ['email'])}
+        transformValues={transformValues}
       >
         {() => (
           <>
@@ -273,6 +268,8 @@ const AddEditDrawerComponent: FC<Props> = ({
                     'administration.administrators.drawers.edit.email',
                   )}
                   rules={[{ required: true }]}
+                  validateStatus={errors.length > 0 ? 'error' : 'success'}
+                  help={errors.length ? errors : null}
                 >
                   <Select
                     mode="tags"
