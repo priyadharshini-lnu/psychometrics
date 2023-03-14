@@ -294,7 +294,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                       })
                     }}
                     notFoundContent={isUserLoading('fetch') ? <Spin size="small" /> : null}
-                    filterOption={false}
+                    optionFilterProp="children"
                   >
                     {users.map(({ id, email }) => (
                       <Option key={id} value={id}>
