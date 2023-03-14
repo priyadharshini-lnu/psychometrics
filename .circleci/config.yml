@@ -293,6 +293,9 @@ jobs:
             (find tmp/cache/jest -type f -mtime +30 -delete) || echo "No old cache files to prune"
             yarn test --coverage --detectOpenHandles -w 2 && yarn run coveralls < coverage/lcov.info
             mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
+      - run:
+          name: Jest flag
+          command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
       - save_cache:
           key: jest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
           paths:

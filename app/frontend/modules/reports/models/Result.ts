@@ -1,6 +1,9 @@
 import _ from 'lodash'
+import SetInnovationStyles from '~/modules/reports/models/Results/SetInnovationStyles'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import { InnovationStyleResult, OccupationResult } from '~/modules/reports/models/Results/interfaces/RawResult'
+import SetOccupations from '~/modules/reports/models/Results/SetOccupations'
 import AppStore from '../store/AppStore'
 import Filter from './Filter'
 import store from '../store'
@@ -81,6 +84,10 @@ export default class Result<ExternalScoring = unknown> {
 
   questionScoring: ScoringByQuestion
 
+  occupations: OccupationResult[]
+
+  innovationStyles: InnovationStyleResult[]
+
   groupedDataSheet: object[]
 
   constructor (assessmentId: number) {
@@ -111,6 +118,8 @@ export default class Result<ExternalScoring = unknown> {
     this.userReportData = userReportData
     this.notFilteredResults = notFilteredResults
     this.scoring = SetScoring.run(this.rawResults, this.dimensionId)
+    this.occupations = SetOccupations.run(this.rawResults)
+    this.innovationStyles = SetInnovationStyles.run(this.rawResults)
     this.questionScoring = SetScoringByQuestion.run(this.rawResults, this.dimensionId)
     this.embeddedData = SetEmbeddedData.run(this.rawResults)
     this.questions = SetQuestions.run(this.rawResults)
@@ -153,19 +162,19 @@ export default class Result<ExternalScoring = unknown> {
     )
   }
 
-  // TODO (atanych): remove. Already is created the corresponding task
   calcOccupationsStars = (): void => {
+    const occupationResult = this.resultsByFilter.individual.occupations || []
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _.each(AppStore.occupations[this.dimensionId], (oc: any) => {
-      oc.stars = oc.getStars(this.resultsByFilter.individual.scoring)
+      oc.stars = occupationResult.find((or: OccupationResult) => or.id === oc.id)?.stars || 0
     })
   }
 
-  // TODO (atanych): remove. Already is created the corresponding task
   calcInnovationStylesScore = (): void => {
+    const innovationStyleResult = this.resultsByFilter.individual.innovationStyles || []
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _.each(AppStore.innovationStyles[this.dimensionId], (is: any) => {
-      is.calculateScore(this.resultsByFilter.individual.scoring)
+      is.score = innovationStyleResult.find((ir: InnovationStyleResult) => ir.id === is.id)?.value || 0
     })
   }
 

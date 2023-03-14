@@ -7,8 +7,6 @@ import {
   Properties,
   Props,
 } from '~/modules/survey/components/modules/MultipleChoice/Properties'
-import { Provider } from 'react-redux'
-import {createStore} from 'redux'
 
 const testStore = (state=[], _) => {
   return state

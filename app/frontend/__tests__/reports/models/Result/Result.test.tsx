@@ -328,13 +328,7 @@ test('occupations', () => {
 
     const [oc1, oc2] = AppStore.occupations[60]
     expect(oc1.name).toStrictEqual("Occupation2")
-    expect(oc1.stars).toStrictEqual(1)
-    expect(oc1.result).toStrictEqual(0.5)
-
     expect(oc2.name).toStrictEqual("Occupation1")
-    expect(oc2.stars).toStrictEqual(5)
-    expect(oc2.result).toStrictEqual(1)
-
     expect(res.getOccupations()).toStrictEqual([oc1, oc2])
 })
 
@@ -345,12 +339,8 @@ test('sortedOccupations', () => {
 
     const [oc1, oc2] = AppStore.sortedOccupations[60]
     expect(oc2.name).toStrictEqual("Occupation2")
-    expect(oc2.stars).toStrictEqual(1)
-    expect(oc2.result).toStrictEqual(0.5)
 
     expect(oc1.name).toStrictEqual("Occupation1")
-    expect(oc1.stars).toStrictEqual(5)
-    expect(oc1.result).toStrictEqual(1)
 })
 
 test('getOccupationByRank(rank)', () => {
@@ -375,8 +365,7 @@ test('getOccupationByRank(rank)', () => {
         ],
         "id": 109,
         "name": "Occupation1",
-        "result": 1,
-        "stars": 5
+        "stars": 0
     })
 })
 
@@ -384,8 +373,8 @@ test('getInnovationStyles()', () => {
     const res = new Result(190)
     res.init(results, user, filters)
     const [st1, st2] = res.getInnovationStyles()
-    expect(st1).toMatchObject({score: 50, name: 'st1', id: 110, description: 'desc for st1'})
-    expect(st2).toMatchObject({score: 100, name: 'st2', id: 109, description: 'desc for st2'})
+    expect(st1).toMatchObject({score: 0, name: 'st1', id: 110, description: 'desc for st1'})
+    expect(st2).toMatchObject({score: 0, name: 'st2', id: 109, description: 'desc for st2'})
 })
 
 test('getBranchData', () => {
