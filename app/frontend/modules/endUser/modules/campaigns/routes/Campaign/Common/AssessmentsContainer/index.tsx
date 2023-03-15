@@ -48,6 +48,7 @@ export const AssessmentsContainer = ({
   isTimedCampaign,
   expiryDate,
   campaignNotStarted,
+  privacyConsentRequired,
 }) => (
   <ViewsContainer
     title={I18n.t('campaign_assessment.assessments_heading')}
@@ -111,6 +112,7 @@ export const AssessmentsContainer = ({
                           campaignNotStarted={campaignNotStarted}
                           isPartOfTimedCampaign={isTimedCampaign}
                           campaignExpiryDate={expiryDate}
+                          privacyConsentRequired={privacyConsentRequired}
                         />
                       </Col>
                     )
@@ -140,6 +142,7 @@ export const AssessmentsContainer = ({
                       prevCompleted
                       isPartOfTimedCampaign={isTimedCampaign}
                       campaignExpiryDate={expiryDate}
+                      privacyConsentRequired={privacyConsentRequired}
                     />
                   </Col>
                 )

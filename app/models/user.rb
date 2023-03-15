@@ -120,9 +120,9 @@ class User < ApplicationRecord
   has_many :assessors_campaings, through: :assessors, source: :campaign
   has_many :report_approvals, dependent: :destroy
   has_many :highlights, dependent: :destroy
+  has_many :privacy_consents, dependent: :destroy
 
   has_one :security_setting, through: :project
-  has_one :privacy_consent
   has_one :user_profile
 
   accepts_nested_attributes_for :memberships

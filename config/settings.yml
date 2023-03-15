@@ -1,4 +1,5 @@
 project_name: Psychometrics
+privacy_policy_version: <%= ENV.fetch('PRIVACY_POLICY_VERSION', '2').to_i %>
 enduser_locales:
   - en
   - ar
