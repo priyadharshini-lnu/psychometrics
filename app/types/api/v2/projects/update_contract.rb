@@ -14,7 +14,7 @@ module Api
           key.failure(:filled?) if values.dig(:data, :attributes, :enable_privacy_link) && value.blank?
         end
 
-        rule(data: { attributes: :link }).validate(:http_url_format)
+        rule(data: { attributes: :link }).validate(http_url_format: { allow_blank: true })
       end
     end
   end
