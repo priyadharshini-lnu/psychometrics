@@ -18,6 +18,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useHistory, useParams } from 'react-router-dom'
+import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
@@ -29,6 +30,8 @@ const { I18n } = window
 const { Option } = Select
 
 interface Props {
+  updateAdmin?: UpdateResource<Admin>
+  createAdmin: CreateResource<Admin>
   permissions: AdminPermissions
   currentUserGrants: CurrentUserPermissions
   isSuperAdmin: boolean
@@ -43,6 +46,8 @@ const AddEditDrawerComponent: FC<Props> = ({
   isVisible,
   isEditMode,
   handleClose,
+  updateAdmin,
+  createAdmin,
   currentUserGrants,
   isSuperAdmin,
   permissions,
@@ -73,12 +78,29 @@ const AddEditDrawerComponent: FC<Props> = ({
     ? `/administration/projects/${projectId}/new_campaigns/${campaignId}/admins`
     : `/administration/projects/${projectId}/admins`
 
+  const showRequestSuccessMessage = (response) => {
+    if (isEditMode) {
+      message.success(
+        I18n.t('administration.administrators.drawers.edit.update_success', {
+          name: `${response.firstName} ${response.lastName}`,
+        }),
+      )
+    } else {
+      message.success(
+        I18n.t('administration.administrators.drawers.edit.create_success', {
+          name: `${response.firstName} ${response.lastName}`,
+        }),
+      )
+    }
+    onClose()
+  }
+
   const {
     data: users, fetch: fetchUsers, isLoading: isUserLoading,
   } = useResources<UserDetails>('users')
 
   const {
-    fetchSingle, getResource, createResource, updateResource, getErrors,
+    fetchSingle, getResource, getErrors,
   } = useResources<Admin>(
     'memberships',
     {
@@ -216,9 +238,7 @@ const AddEditDrawerComponent: FC<Props> = ({
       <ResourceForm
         resourceName="memberships"
         resource={admin}
-        readableResourceName="Membership"
-        showSuccessMessages
-        onSuccessfulSubmission={onClose}
+        readableResourceName="Admin"
         storeManager={{ form }}
         formProps={{
           labelAlign: 'left',
@@ -227,9 +247,10 @@ const AddEditDrawerComponent: FC<Props> = ({
         }}
         scrollToFirstError
         request={{
-          createResource,
-          updateResource,
+          createResource: createAdmin,
+          updateResource: updateAdmin,
         }}
+        onSuccessfulSubmission={showRequestSuccessMessage}
         transformValues={transformValues}
       >
         {() => (
