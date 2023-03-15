@@ -11,8 +11,8 @@ module Administration
         show update assessments_and_reports fetch_campaign_options fetch_campaign_instructions
         update_campaign_options destroy fetch_descriptions
       ]
+      before_action :set_project_init_state, only: %i[index show], if: -> { request.format.html? }
       append_before_action :pundit_authorize, except: [:index]
-      initial_state_for %i[index show]
 
       def index
         unless current_user.campaign_admin_campaigns.exists?(project_id: params[:project_id])

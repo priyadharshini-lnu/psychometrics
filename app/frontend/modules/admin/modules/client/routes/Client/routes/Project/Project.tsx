@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
@@ -11,6 +11,9 @@ import {
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import {
+  fetchSingle as fetchProject,
+} from '~/modules/admin/modules/client/core/projects'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
 import RouteList from '~/components/RouteList'
@@ -23,15 +26,24 @@ const connecter = connect(
   (state: RootState) => ({
     currentUser: state.currentUser,
   }),
+  {
+    fetchProject,
+  },
 )
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-export const ProjectComponent: FC<Props> = ({ currentUser }) => {
+export const ProjectComponent: FC<Props> = ({
+  currentUser, fetchProject,
+}) => {
   const { projectId } = useParams<{ projectId: string }>()
   const history = useHistory()
   const { pathname } = useLocation()
+
+  useEffect(() => {
+    fetchProject(parseInt(projectId, 10))
+  }, [])
 
   const handleOnSelect = ({ key }) => {
     history.push(`${settings.urlPrefix}/${projectId}/${key}`)

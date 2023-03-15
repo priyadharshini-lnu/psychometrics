@@ -2,7 +2,9 @@ import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import _ from 'lodash'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { FETCH_SINGLE as FETCH_PROJECT } from '~/modules/admin/modules/client/core/projects'
 import { createReducer } from '~/utils/redux'
+import { State as ProjectState } from './projects'
 
 export const get = (state: RootState) => _.get(state, ['project', 'smtpSetting'])
 
@@ -53,8 +55,13 @@ export const sendTestEmail = (projectId: number, smtpSetting: State, to_email: s
   },
 })
 
+type FetchProjectType = ApiActionResponse<ProjectState>
 
 const HANDLERS = {
   [SAVE_SETTINGS]: (_, { response }: ApiActionResponse<State>) => response,
+  [FETCH_PROJECT]: (state: State, { response: { project: { smtpSetting } } }: FetchProjectType) => ({
+    ...state,
+    ...smtpSetting,
+  }),
 }
 export const reducer = createReducer(HANDLERS, defaultState)
