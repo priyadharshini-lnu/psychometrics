@@ -39,7 +39,7 @@ const MultipleOptions = ({
       {_.times(choices, (choiceId) => {
         const choice = _.includes((value ?? defaultValue), choiceId.toString())
         return (
-          <label className={`${styles.label}`}>
+          <label key={choiceId} className={`${styles.label}`}>
             <Checkbox
               type="checkbox"
               disabled={locked}

@@ -243,7 +243,9 @@ function ProfileComponent ({
                     >
                       <Select size="large" disabled={lockedFields.locale}>
                         {_.map(locales, locale => (
-                          <Select.Option value={locale}>{I18n.t(`languages_localized.${locale}`)}</Select.Option>
+                          <Select.Option key={locale} value={locale}>
+                            {I18n.t(`languages_localized.${locale}`)}
+                          </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
@@ -271,7 +273,7 @@ function ProfileComponent ({
                     </Form.Item> */}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
-                        <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
+                        <Col key={field.question_id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
                           <Form.Item
                             hasFeedback
                             help={Array.isArray(errors?.[field.name])

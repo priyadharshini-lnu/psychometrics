@@ -160,7 +160,7 @@ const EvaluationListComponent = ({
       title={title}
       list={list}
     >
-      {item => <SubjectItem item={item} />}
+      {item => <SubjectItem key={item.id} item={item} />}
     </CollapseItem>
   )
 
@@ -191,7 +191,7 @@ const EvaluationListComponent = ({
           title={I18n.t('threesixty.evaluations')}
           list={evaluations}
         >
-          {item => <EvaluationItem item={item} />}
+          {item => <EvaluationItem key={item.id} item={item} />}
         </CollapseItem>
       )}
       {options.manager.canApprovesEvaluations && managedSubjects.length > 0

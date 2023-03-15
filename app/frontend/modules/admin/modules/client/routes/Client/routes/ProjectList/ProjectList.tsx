@@ -120,6 +120,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
+        rowKey={row => row.id}
       >
         <Column
           title={I18n.t('common.column.id')}
