@@ -164,14 +164,19 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const history = useHistory()
 
-  const transformValues = values => ({
-    ...values,
-    campaignId,
-    clientId: projectId,
-    role: adminType,
-    email: notFromList ? values.userId[0] : undefined,
-    userId: notFromList ? [] : values.userId,
-  })
+  const transformValues = (values) => {
+    if (isEditMode) {
+      return values
+    }
+    return {
+      ...values,
+      campaignId,
+      clientId: isEditMode ? undefined : projectId,
+      role: adminType,
+      email: notFromList ? (values?.userId && values?.userId[0]) : undefined,
+      userId: notFromList ? [] : values.userId,
+    }
+  }
 
   const setRequiredStates = (value) => {
     setNotFromList(!(_.includes(_.map(users, 'id'), value[0])))
