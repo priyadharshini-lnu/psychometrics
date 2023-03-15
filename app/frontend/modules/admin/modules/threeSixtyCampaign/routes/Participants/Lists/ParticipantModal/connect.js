@@ -7,7 +7,7 @@ export default connect(
   state => ({
     ...getData(state).ParticipantModal,
     current: getCurrent(state),
-    permissions: state.currentUser.permissions,
+    permissions: state.threeSixtyCampaign.subjects.permissions,
   }),
   { fetchParticipants, fetchRelationships, closeModal },
 )
