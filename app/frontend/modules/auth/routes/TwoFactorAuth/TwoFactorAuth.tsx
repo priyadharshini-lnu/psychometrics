@@ -46,6 +46,8 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
         name="code"
         placeholder={I18n.t('auth.otp.code_placeholder')}
         errors={errors.otp}
+        inputMode="numeric"
+        pattern="[0-9]*"
       />
       <ButtonAnt href="/users/two_factor_authentication/resend_code" type="link" className={styles.resendBtn} block>
         {I18n.t('auth.otp.resend')}

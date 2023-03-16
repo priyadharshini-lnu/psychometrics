@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-  Input as AntInput, InputNumber, Form,
+  Input as AntInput, InputNumber, Form, InputNumberProps,
 } from 'antd'
 import styles from './styles.less'
 
-interface Props {
+interface Props extends InputNumberProps {
   label: string
   name: string
   defaultValue?: string
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const InputField: React.FC<Props> = ({
-  label, name, defaultValue, placeholder, password, errors = [], disabled, type,
+  label, name, defaultValue, placeholder, password, errors = [], disabled, type, ...props
 }) => {
   const InputTag = () => {
     if (password) {
@@ -49,6 +49,7 @@ export const InputField: React.FC<Props> = ({
         placeholder={placeholder}
         status={errors.length > 0 ? 'error' : ''}
         disabled={disabled}
+        {...props}
       />
     </Form.Item>
   )
