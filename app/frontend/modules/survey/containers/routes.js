@@ -1,7 +1,7 @@
 
-import Dashboard from 'layouts/Dashboard'
-import Scorring from 'layouts/Scoring'
-import ResourceManager from 'layouts/ResourceManager'
+import Dashboard from '~/modules/survey/layouts/Dashboard'
+import Scorring from '~/modules/survey/layouts/Scoring'
+import ResourceManager from '~/modules/survey/layouts/ResourceManager'
 
 const routes = [
   {

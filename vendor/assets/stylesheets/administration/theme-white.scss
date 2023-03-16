@@ -2424,6 +2424,12 @@ label.valid {
   -moz-border-radius: 0px 0px 5px 5px;
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px;
+
+  .btn-group {
+    button, input[type="submit"] {
+      margin-right: 10px;
+    }
+  }
 }
 /* EOF MODAL */
 /* PORTLET */
@@ -4552,6 +4558,10 @@ td.dataTables_empty {
   width: 100%;
   float: left;
   padding: 10px 0px;
+
+  button {
+    margin-right: 10px;
+  }
 }
 .message-box.message-box-warning .mb-container {
   background: rgba(254, 162, 35, 0.9);

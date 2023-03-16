@@ -1,5 +1,5 @@
 import extend from 'lodash/extend'
-import { I18n } from 'modules/survey/store/StoreWatchman'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 
 const Exact = function ({ exactValue }) {
   this.exactValue = +exactValue

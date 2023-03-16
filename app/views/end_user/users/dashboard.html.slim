@@ -3,5 +3,4 @@ div#endUserContainer
 javascript:
   window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
 
-= javascript_pack_tag 'user/endUserV2'
-= stylesheet_pack_tag 'user/endUserV2'
+= vite_javascript_tag 'entrypoints/user/endUserV2.jsx'

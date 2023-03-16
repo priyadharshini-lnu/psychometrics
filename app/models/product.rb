@@ -2,6 +2,7 @@
 
 class Product < ApplicationRecord
   include Copyable
+
   has_many :product_reports, dependent: :destroy
   has_many :reports, through: :product_reports
   has_many :prices, inverse_of: :product, class_name: 'ProductPrice', dependent: :destroy # , autosave: true

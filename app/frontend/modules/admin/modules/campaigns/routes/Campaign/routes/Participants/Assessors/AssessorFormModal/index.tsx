@@ -5,15 +5,15 @@ import {
 import filter from 'lodash/filter'
 import { connect, ConnectedProps } from 'react-redux'
 import { CheckOutlined } from '@ant-design/icons'
-import SpreadSheet from 'components/SpreadSheet'
-import spreadSheetUtils from 'modules/admin/utils/spreadSheet'
-import { setIn } from 'utils/immutable'
+import SpreadSheet from '~/components/SpreadSheet'
+import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import {
   getForm, createAllAssessors, fillAssessors, AssessorFormItem, getAvailableAssessments, clearForm,
-} from 'modules/admin/modules/campaigns/core/assessors'
-import { get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
-import ErrorAlertBox from 'components/ErrorAlertBox'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/campaigns/core/assessors'
+import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
+import ErrorAlertBox from '~/components/ErrorAlertBox'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { setIn } from '~/utils/immutable'
 import Form from './Form'
 
 interface Props {

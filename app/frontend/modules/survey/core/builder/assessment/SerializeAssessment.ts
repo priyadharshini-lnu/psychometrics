@@ -3,10 +3,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
 import { denormalize } from 'normalizr'
-import QuestionWrapper from 'modules/survey/models/QuestionSerializer'
-import BlockWrapper from 'modules/survey/models/BlockSerializer'
-import AssessmentInterface from 'modules/survey/models/Assessment'
-import { blocks } from 'modules/survey/store/schema'
+import QuestionWrapper from '~/modules/survey/models/QuestionSerializer'
+import BlockWrapper from '~/modules/survey/models/BlockSerializer'
+import AssessmentInterface from '~/modules/survey/models/Assessment'
+import { blocks } from '~/modules/survey/store/schema'
 
 // Serialize Assessment
 // assessment: {

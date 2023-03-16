@@ -4,14 +4,14 @@ import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
-import store, { history } from 'modules/admin/store'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
-import RouteList from 'components/RouteList'
-import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
 import humps from 'humps'
-import { Schema } from 'libs/jsonApi/schema'
 import { routes } from './routes'
 import settings from './settings'
+import store, { history } from '~/modules/admin/store'
+import RouteList from '~/components/RouteList'
+import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
+import { Schema } from '~/libs/jsonApi/schema'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,

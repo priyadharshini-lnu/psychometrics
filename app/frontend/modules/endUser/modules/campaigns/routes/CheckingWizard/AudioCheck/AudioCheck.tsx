@@ -5,16 +5,17 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { preSignUrl } from 'modules/endUser/modules/campaigns/core/checkingWizard'
-import { RootState } from 'modules/endUser/core/rootReducers'
-import { BROWSER_NAME } from 'utils/uaParser'
-import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
-import { RECORDER_STATES } from 'modules/survey/constants/media'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
-import { stopTranscription, transcribe } from 'libs/amazon-transcribe-websocket-static'
-import useAudioMetrics from 'hooks/useAudioMetrics'
-import { RecorderCore } from 'modules/survey/utils/RecorderCore'
-import DynamicAudioIcon from 'components/DynamicAudioIcon'
+import { Buffer } from 'buffer'
+import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { AudioLevel } from '~/hooks/useAudioMetrics/interfaces'
+import { RECORDER_STATES } from '~/modules/survey/constants/media'
+import { stopTranscription, transcribe } from '~/libs/amazon-transcribe-websocket-static'
+import useAudioMetrics from '~/hooks/useAudioMetrics'
+import { RecorderCore } from '~/modules/survey/utils/RecorderCore'
+import { BROWSER_NAME } from '~/utils/uaParser'
+import DynamicAudioIcon from '~/components/DynamicAudioIcon'
 import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'
 import { CheckListStatus } from '../interfaces'
@@ -23,6 +24,8 @@ import reducer, {
 } from './reducer'
 
 import styles from './AudioCheck.less'
+
+window.Buffer = Buffer
 
 const connector = connect(({ checkingWizard }: RootState) => ({
   preSignedUrl: checkingWizard.preSignedUrl,

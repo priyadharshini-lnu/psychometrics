@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import {
   SpeechToTextInput,
   Props,
-} from 'modules/survey/components/modules/TextEntry/components/SpeechToTextInput/SpeechToTextInput'
+} from '~/modules/survey/components/modules/TextEntry/components/SpeechToTextInput/SpeechToTextInput'
 
 test('Should render a button for start dictation', () => {
   const props: Props = {

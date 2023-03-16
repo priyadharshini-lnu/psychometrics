@@ -1,4 +1,4 @@
-import { TYPES } from 'modules/admin/constants/emailCriteria'
+import { TYPES } from '~/modules/admin/constants/emailCriteria'
 import Datasheet from './Datasheet'
 import Invitation from './Invitation'
 import Relationship from './Relationship'

@@ -1,4 +1,4 @@
-import manageModal from 'components/hocs/manageModal'
+import manageModal from '~/components/hocs/manageModal'
 import ResetCampaignModal from './ResetCampaignModal'
 import connect from './connect'
 

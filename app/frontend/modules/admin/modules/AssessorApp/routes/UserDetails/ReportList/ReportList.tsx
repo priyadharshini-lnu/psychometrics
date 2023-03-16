@@ -1,13 +1,13 @@
 
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { get as getUserReports } from 'modules/admin/modules/AssessorApp/core/userReports'
 import {
   Table, Row, Col, Dropdown, Menu,
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import { MoreOutlined } from '@ant-design/icons'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { get as getUserReports } from '~/modules/admin/modules/AssessorApp/core/userReports'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const connecter = connect(
   (state: RootState) => ({

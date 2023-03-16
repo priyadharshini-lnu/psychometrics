@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useResources } from 'hooks/useResources'
+import { useResources } from '~/hooks/useResources'
 import { Task, TaskTR } from '../core'
 import { TasksList } from './TasksList'
 
@@ -10,7 +10,7 @@ export const All: React.FC = () => {
     responseType: TaskTR,
     trackUrl: true,
     apiConfig: {
-      include: ['campaign', 'report', 'user'],
+      include: ['campaign', 'report', 'user', 'approver_user', 'qc_user'],
       fields: {
         users: ['name', 'email'],
         campaigns: ['name'],

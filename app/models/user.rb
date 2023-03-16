@@ -6,6 +6,7 @@ class User < ApplicationRecord
   include UserRoles
   include UserValidations
   include TwoFactorAuthenticatable
+  include Users::SecuritySetting
 
   DEFAULT_ADMIN_GRANTS = {
     clients: %w[view],
@@ -119,9 +120,9 @@ class User < ApplicationRecord
   has_many :assessors_campaings, through: :assessors, source: :campaign
   has_many :report_approvals, dependent: :destroy
   has_many :highlights, dependent: :destroy
+  has_many :privacy_consents, dependent: :destroy
 
   has_one :security_setting, through: :project
-  has_one :privacy_consent
   has_one :user_profile
 
   accepts_nested_attributes_for :memberships
@@ -130,10 +131,6 @@ class User < ApplicationRecord
   # Rules are copy-pasted from lib/devise/models/validatable.rb
   validates :email, format: { with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email? }
   validates :email, presence: true
-  validates :password, presence: { if: :password_required? }
-  validates :password, confirmation: { if: :password_required? }
-  validates :password, length: { within: Devise.password_length, allow_blank: true }
-  validates :password, repeats_in_password: true, if: :restrict_sequences?
   validates :role, inclusion: { in: UserRoles::USER_ROLES.values }, presence: true, allow_nil: true
 
   before_save :ensure_authentication_token
@@ -162,67 +159,11 @@ class User < ApplicationRecord
     resource_class.joins(:campaign).where(campaigns: { id: campaign_ids })
   end
 
-  def password_length
-    config = super # 8..128
-
-    Range.new(security_setting ? security_setting.min_password_length || config.min : 12, config.max)
-  end
-
-  def expire_password_after
-    expire_in = security_setting&.password_expiration
-    expire_in ? expire_in.days : super
-  end
-
-  def deny_old_passwords
-    security_setting ? security_setting.disable_password_reuse : super
-  end
-
-  def enforce_password_policy_at_sign_in?
-    security_setting ? security_setting.enforce_password_policy : true
-  end
-
-  def restrict_sequences?
-    security_setting ? security_setting.restrict_sequences : true
-  end
-
-  def enforce_strong_password?
-    security_setting ? security_setting.enforce_strong_password : true
-  end
-
-  def password_complexity
-    return {} if security_setting && !enforce_strong_password?
-
-    super # { digit: 1, lower: 1, symbol: 1, upper: 1 }
-  end
-
-  # We won't set password, we will send inviting
-  def password_required?
-    return false if new_record? && create_by_invite
-
-    !persisted? || password || password_confirmation
-  end
-
   # Time to strong sign out
   def timeout_in
     return 1.year if is?(:superadmin) || is_anonym?
 
     super
-  end
-
-  def maximum_attempts_to_lock
-    security_setting&.attempts_to_lock || self.class.maximum_attempts
-  end
-
-  def send_unlock_email?
-    security_setting ? security_setting&.send_unlock_email : unlock_strategy_enabled?(:email)
-  end
-
-  def unlock_time
-    security_setting&.auto_unlock_time&.minutes || 15.minutes
-  end
-
-  def lock_account_enabled?
-    security_setting ? security_setting&.lock_account : true
   end
 
   def ensure_authentication_token
@@ -259,40 +200,8 @@ class User < ApplicationRecord
 
   # Overridden Devise class method
 
-  def lock_strategy_enabled?(type)
-    security_setting ? security_setting&.lock_account : super(type)
-  end
-
   def log_attribute_for_delete
     slice(:id, :email)
-  end
-
-  protected
-
-  def attempts_exceeded?
-    failed_attempts >= maximum_attempts_to_lock
-  end
-
-  def last_attempt?
-    failed_attempts == maximum_attempts_to_lock - 1
-  end
-
-  def lock_expired?
-    if unlock_strategy_enabled?(:time)
-      locked_at && locked_at < unlock_time.ago
-    else
-      false
-    end
-  end
-
-  def lock_access!(opts = {})
-    self.locked_at = Time.now.utc
-
-    if send_unlock_email? && opts.fetch(:send_instructions, true)
-      send_unlock_instructions
-    else
-      save(validate: false)
-    end
   end
 
   private

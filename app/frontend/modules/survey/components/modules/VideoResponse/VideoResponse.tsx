@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/VideoResponse'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/VideoResponse'
 import {
   MarkQuestionInProgress,
   RemoveQuestionInProgress,
-} from 'modules/survey/core/preview/FlowProcessor/interfaces'
+} from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
-import useForceUpdate from 'hooks/useUpdate'
-import TextEditor from 'components/TextEditor'
-import VideoRecorder from 'components/VideoRecorder'
+import useForceUpdate from '~/hooks/useUpdate'
+import TextEditor from '~/modules/survey/components/TextEditor'
+import VideoRecorder from '~/modules/survey/components/VideoRecorder'
 
 interface Props {
   model: BuilderModel

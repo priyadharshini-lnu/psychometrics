@@ -13,6 +13,13 @@ module Psychometrics
     config.load_defaults 6.1
     config.action_dispatch.cookies_same_site_protection = :none
     config.active_record.belongs_to_required_by_default = false
+    config.active_storage.service = ENV.fetch('PUBLIC_BUCKET_STORAGE_SERVICE_KEY', 's3_public_bucket')
+
+    # https://www.bigbinary.com/blog/rails-6-1-tracks-active-storage-variant-in-the-database
+    config.active_storage.track_variants = true
+    # NOTE: in rails 7 default image processor will be :vips
+    config.active_storage.variant_processor = :mini_magick
+
     config.time_zone = Settings.timezone
 
     # Load all translates inside folders
@@ -37,6 +44,11 @@ module Psychometrics
     ).to_s
 
     config.to_prepare do
+      ActiveStorage::Blob # rubocop:disable Lint/Void
+      ActiveStorage::Attachment.prepend ActiveStorageCreateVariant
+      ActiveStorage::Attachment.include ActiveStorageVariants
+      ActiveStorage::Blob.include ActiveStorageVariants
+
       Devise::Mailer.layout 'mailer/layouts/end_user_email'
 
       # lib/cron_jobs_loader

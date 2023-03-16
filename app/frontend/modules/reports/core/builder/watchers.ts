@@ -2,7 +2,7 @@
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
-import PageModel from 'modules/reports/models/Page'
+import PageModel from '~/modules/reports/models/Page'
 import {
   INIT,
   UPDATE_PAGE_POSITIONS,

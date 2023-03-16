@@ -11,8 +11,8 @@ module Administration
         show update assessments_and_reports fetch_campaign_options fetch_campaign_instructions
         update_campaign_options destroy fetch_descriptions
       ]
+      before_action :set_project_init_state, only: %i[index show], if: -> { request.format.html? }
       append_before_action :pundit_authorize, except: [:index]
-      initial_state_for %i[index show]
 
       def index
         unless current_user.campaign_admin_campaigns.exists?(project_id: params[:project_id])
@@ -132,7 +132,7 @@ module Administration
         form = ::Campaigns::CampaignOptions::Form.from_params(attributes)
 
         if form.valid?
-          audit! :update_campaign_options, campaign, payload: campaign_options_params, campaign: @campaign
+          audit! :update_campaign_options, @campaign, payload: campaign_options_params, campaign: @campaign
           Mobility.with_locale(params[:locale]) do
             campaign_options.update(campaign_options_params)
           end
@@ -178,7 +178,7 @@ module Administration
         form = ::Threesixty::Campaigns::CreateForm.from_params(resource_params)
         if form.valid?
           threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form, current_user)
-          audit! :create, threesixty_campaign, payload: resource_params, campaign: campaign
+          audit! :create, threesixty_campaign, payload: resource_params, campaign: threesixty_campaign.campaign
           render json: threesixty_campaign.campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422

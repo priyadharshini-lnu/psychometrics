@@ -3,14 +3,14 @@ import {
   Row, Col, Form, Button, Select, message,
 } from 'antd'
 import humps from 'humps'
-import { useResources } from 'hooks/useResources/useResources'
-import { BaseMeta } from 'hooks/useResources/interfaces'
 import { useParams } from 'react-router-dom'
+import { useResources } from '~/hooks/useResources/useResources'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
 import {
   ProfileField,
   ProfileSettings as ProfileSettingsType,
   QuestionField as QuestionFieldType,
-} from 'modules/admin/modules/client/core/profileSettings'
+} from '~/modules/admin/modules/client/core/profileSettings'
 import { DefaultFields } from './DefaultFields'
 import { Fields } from './Fields'
 import styles from './Profile.less'
@@ -120,25 +120,32 @@ export const Profile: React.FC<{}> = () => {
           onFinish={onFinish}
           initialValues={profileSettings}
         >
-          <Form.Item name="update_in" label={I18n.t('administration.projects.profile_settings.update_in')}>
-            <Select>
-              <Select.Option>
-                {I18n.t('administration.projects.profile_settings.never')}
-              </Select.Option>
-              <Select.Option value="1">
-                {I18n.t('administration.projects.profile_settings.month', { count: 1 })}
-              </Select.Option>
-              <Select.Option value="3">
-                {I18n.t('administration.projects.profile_settings.month', { count: 3 })}
-              </Select.Option>
-              <Select.Option value="6">
-                {I18n.t('administration.projects.profile_settings.month', { count: 6 })}
-              </Select.Option>
-              <Select.Option value="12">
-                1
-                {I18n.t('administration.projects.profile_settings.year')}
-              </Select.Option>
-            </Select>
+          <Form.Item name="updateIn" label={I18n.t('administration.projects.profile_settings.update_in')}>
+            <Select
+              onChange={(value:string) => (setData([{ ...profileSettings, updateIn: value }]))}
+              options={[
+                {
+                  value: null,
+                  label: I18n.t('administration.projects.profile_settings.never'),
+                },
+                {
+                  value: '1',
+                  label: I18n.t('administration.projects.profile_settings.month', { count: 1 }),
+                },
+                {
+                  value: '3',
+                  label: I18n.t('administration.projects.profile_settings.month', { count: 3 }),
+                },
+                {
+                  value: '6',
+                  label: I18n.t('administration.projects.profile_settings.month', { count: 6 }),
+                },
+                {
+                  value: '12',
+                  label: `1 ${I18n.t('administration.projects.profile_settings.year')}`,
+                },
+              ]}
+            />
           </Form.Item>
           <DefaultFields
             requiredFields={humps.decamelizeKeys(profileSettings.requiredDefaultFields)}

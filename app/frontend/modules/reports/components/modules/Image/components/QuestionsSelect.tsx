@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import React from 'react'
 import Select from 'react-select'
-import AssessmentProperties from 'modules/reports/components/modules/CommonProperties/AssessmentProperties'
-import panelStyles from 'modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import { getValue } from 'modules/reports/presenters/ReactSelectPresenter'
+import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
+import panelStyles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
+import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
 interface Question {
   id: number

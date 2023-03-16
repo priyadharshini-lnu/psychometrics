@@ -1,8 +1,8 @@
-import { checkBrowserSupportForFeature } from 'utils/uaParser'
+import { checkBrowserSupportForFeature } from '~/utils/uaParser'
 import {
   BROWSER_FEATURES,
   MIN_BROWSER_FEATURE_SUPPORT,
-} from 'modules/survey/constants/browser'
+} from '~/modules/survey/constants/browser'
 
 test('It should return falsy when in test environment', () => {
   const result = checkBrowserSupportForFeature(

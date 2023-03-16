@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'antd'
-import { ShortUser as User } from 'modules/admin/modules/campaigns/core/users'
+import { ShortUser as User } from '~/modules/admin/modules/campaigns/core/users'
 
 const { I18n } = window
 

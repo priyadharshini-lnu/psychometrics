@@ -3,12 +3,12 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Radio, Typography, Space } from 'antd'
 
 import { RadioChangeEvent } from 'antd/lib/radio'
-import { BasePropertiesModel } from 'modules/survey/interfaces/questions/Base'
+import { BasePropertiesModel } from '~/modules/survey/interfaces/questions/Base'
 
-import { openModal } from 'modules/admin/core/ui/modals'
-import { changeValidation } from 'modules/survey/core/builder/assessment/question/actions'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { changeValidation } from '~/modules/survey/core/builder/assessment/question/actions'
 
-import Condition from 'models/QuestionCondition'
+import Condition from '~/modules/survey/models/QuestionCondition'
 import ValidationTypeFields from './components/ValidationTypeFields'
 import { LABELS } from './constants'
 

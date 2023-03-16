@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Radio, Button, Upload, ConfigProvider,
+  Row, Col, Form, Radio, Button, Upload, ConfigProvider, message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
-import { ColorPicker } from 'components/ColorPicker'
-import { useResources } from 'hooks/useResources/useResources'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import { UploadFile } from 'antd/lib/upload/interface'
+import type { Theme } from 'antd/lib/config-provider/context'
 import {
   Files, DesignSettings as DesignSettingsType,
   uploadFiles,
-} from 'modules/admin/modules/client/core/designSettings'
-import { UploadFile } from 'antd/lib/upload/interface'
-import type { Theme } from 'antd/lib/config-provider/context'
+} from '~/modules/admin/modules/client/core/designSettings'
+import { useResources } from '~/hooks/useResources/useResources'
+import { ColorPicker } from '~/components/ColorPicker'
 import { DesignPreview } from './DesignPreview'
 import styles from './styles.less'
 
@@ -63,7 +63,9 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
         'successColor',
         'infoColor',
       ])
-      updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType)
+      updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType).then(() => {
+        message.success(I18n.t('profile.success_update'))
+      })
     }
     const files: Files = {
       ..._.pick(values, ['logo', 'background']),
@@ -101,7 +103,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
 
   return (
-    <Row justify="space-between" className="pl">
+    <Row justify="space-between" className="pl" gutter={16}>
       <Col sm={24} md={16} xl={12} xxl={10}>
         <Form
           name="design"
@@ -123,7 +125,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               listType="picture"
               maxCount={1}
               onRemove={removeFile}
-              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
               fileList={logo && typeof logo === 'string' ? [{
                 uid: '1', name: 'logo', status: 'done', url: logo,
               }] : undefined}

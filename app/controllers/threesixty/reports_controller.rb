@@ -38,6 +38,7 @@ module Threesixty
             locale: user_locale,
             current_user: current_user
           )
+          @pdf_export = true
           audit! :download_report_pdf, @user_report, campaign: @campaign,
             payload: { user_email: @user_report.user.email }
 

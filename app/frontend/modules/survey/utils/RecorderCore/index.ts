@@ -1,6 +1,5 @@
-/* eslint-disable import/no-webpack-loader-syntax */
-import { RECORDER_STATES } from 'modules/survey/constants/media'
-import recorderWorker from '!!raw-loader!./worker'
+import { RECORDER_STATES } from '~/modules/survey/constants/media'
+import RecorderWorker from './worker?worker'
 
 declare global {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,37 +31,37 @@ interface ConfigObj {
 }
 
 export class RecorderCore {
-  config: ConfigObj;
+  config: ConfigObj
 
-  onUpdateRecordTime: (duration: number) => void;
+  onUpdateRecordTime: (duration: number) => void
 
-  state: string;
+  state: string
 
-  worker: Worker;
+  worker: Worker
 
-  startTime: number | null;
+  startTime: number | null
 
-  lastPauseTime: number | null;
+  lastPauseTime: number | null
 
-  totalPausedTime: number;
+  totalPausedTime: number
 
-  updateDurationTimer: number;
+  updateDurationTimer: number
 
-  stream: MediaStream;
+  stream: MediaStream
 
-  audioContext: AudioContext;
+  audioContext: AudioContext
 
-  scriptProcessorNode: ScriptProcessorNode;
+  scriptProcessorNode: ScriptProcessorNode
 
-  freqBufferLength: number;
+  freqBufferLength: number
 
-  freqDataArray: Uint8Array;
+  freqDataArray: Uint8Array
 
-  freqAnalyser: AnalyserNode;
+  freqAnalyser: AnalyserNode
 
-  sourceNode: MediaStreamAudioSourceNode;
+  sourceNode: MediaStreamAudioSourceNode
 
-  userMedia?: Promise<MediaStream | void>;
+  userMedia?: Promise<MediaStream | void>
 
   constructor ({ onUpdateRecordTime }) {
     this.config = {
@@ -74,9 +73,7 @@ export class RecorderCore {
     this.setInitialTimer()
     this.state = RECORDER_STATES.INACTIVE
 
-    const workerBlob = new Blob([recorderWorker], { type: 'text/javascript' })
-    this.worker = new Worker(URL.createObjectURL(workerBlob))
-
+    this.worker = new RecorderWorker()
     this.worker.onmessage = (e: MessageEvent): void => {
       this.trigger(e.data.command, e.data.blob)
     }

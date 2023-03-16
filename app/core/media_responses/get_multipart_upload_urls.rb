@@ -2,11 +2,12 @@
 
 module MediaResponses
   class GetMultipartUploadUrls < BaseCommand
-    private_attr_reader :result, :question_id
+    private_attr_reader :result, :question_id, :file_name
 
-    def initialize(result, question_id)
+    def initialize(result, question_id, file_name)
       @question_id = question_id
       @result = result
+      @file_name = file_name
     end
 
     def call
@@ -14,7 +15,7 @@ module MediaResponses
 
       urls = []
       signer = Aws::S3::Presigner.new
-      key = media.video_file_path
+      key = media.video_file_path(file_name)
       multipart_request = Aws::S3::Client.new.create_multipart_upload(
         bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket], key: key, acl: media.asset.acl
       )

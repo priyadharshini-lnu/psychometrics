@@ -116,6 +116,7 @@ Rails.application.routes.draw do
       resource :invitations, only: [:update], as: :invitation do
         get 'accept', to: 'invitations#edit'
       end
+      resource :password_expired, only: %i[show update], controller: :password_expired
     end
 
     namespace :imports do
@@ -998,6 +999,7 @@ Rails.application.routes.draw do
           post :change_locale
           patch :update_details
           patch :upload_photo
+          patch :change_password
         end
       end
     end
@@ -1077,6 +1079,7 @@ Rails.application.routes.draw do
     get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed', as: :assessment_completed
     get 'upgrade', to: 'home#upgrade'
     get 'profile', to: 'end_user/users#dashboard'
+    get 'change_password', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 
@@ -1136,8 +1139,14 @@ Rails.application.routes.draw do
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :projects, only: %i[index create update]
           end
-          jsonapi_resources :users
+          jsonapi_resources :projects, only: :show
+          jsonapi_resources :memberships, only: %i[index create update show destroy] do
+            get :spoof
+            get :reset_password
+          end
+          jsonapi_resources :users, only: %i[index show]
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
             resource :uploads, only: %i[update]

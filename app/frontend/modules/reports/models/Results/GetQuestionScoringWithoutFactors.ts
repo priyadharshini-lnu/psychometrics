@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import { setIn } from 'utils/immutable'
+import { setIn } from '~/utils/immutable'
 
-import { ScoringData } from 'modules/reports/models/Results/interfaces/ResultScoring'
+import { ScoringData } from '~/modules/reports/models/Results/interfaces/ResultScoring'
 import AppStore from '../../store/AppStore'
 import ResultScoring from './interfaces/ResultScoring'
 import QuestionScoringWithoutFactorsObject, { QuestionScoring } from './interfaces/QuestionScoringWithoutFactorsObject'

@@ -10,25 +10,12 @@ module Administration
       append_before_action :pundit_authorize, except: %i[index sidebar]
 
       def index
-        @filter_term = params.dig(:q, :filterable_fields)
-        @_filter_form = Client.
-                        projects_of(client.id).
-                        where(id: policy_scope(resource_class).pluck(:id)).
-                        includes(
-                          :creator,
-                          :modifier,
-                          :project_admin_memberships
-                        ).
-                        order('name asc').
-                        ransack(params[:q])
-
-        filter_form.disabled_true ||= false
-        @_resources = filter_form.result.page(params[:page])
-
-        respond_to do |format|
-          format.html
-          format.js { render :index, formats: [:js] }
-        end
+        @init_state = {
+          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(
+            current_user,
+            project_id: params[:client_id]
+          ).to_h
+        }
       end
 
       def new
@@ -116,11 +103,6 @@ module Administration
             project_id: client.id
           }
         )
-      end
-
-      def init_breadcrumbs
-        client_root_breadcrumb
-        add_breadcrumb client.decorate.display_name, action: :index
       end
 
       def resource_params

@@ -1,5 +1,6 @@
 import pathToRegexp from 'path-to-regexp'
 import qs from 'qs'
+import _ from 'lodash'
 
 const routeUtils = {
   getBasePath (prefix) {

@@ -5,7 +5,19 @@ module Questions::Validations
     attr_accessor :conditions, :message, :value
 
     PREDICATERS = {
-      MatchesRegexp: Questions::Validations::MatchRegexp
+      EqualTo: Questions::Validations::Custom::EqualTo,
+      NotEqualTo: Questions::Validations::Custom::NotEqualTo,
+      GreaterThen: Questions::Validations::Custom::GreaterThan,
+      GreaterThenOrEqual: Questions::Validations::Custom::GreaterThanOrEqual,
+      LessThen: Questions::Validations::Custom::LessThan,
+      LessThenOrEqual: Questions::Validations::Custom::LessThanOrEqual,
+      Empty: Questions::Validations::Custom::Empty,
+      NotEmpty: Questions::Validations::Custom::NotEmpty,
+      Contains: Questions::Validations::Custom::Contains,
+      DoesNotContains: Questions::Validations::Custom::DoesNotContains,
+      Selected: Questions::Validations::Custom::Selected,
+      NotSelected: Questions::Validations::Custom::NotSelected,
+      MatchesRegexp: Questions::Validations::Custom::MatchRegexp
     }.with_indifferent_access.freeze
 
     def initialize(question, value, locale)
@@ -18,7 +30,7 @@ module Questions::Validations
 
     def call
       invalid = conditions.all? do |condition|
-        PREDICATERS[condition['predicate']].call!(condition['value'], value)
+        !PREDICATERS[condition['predicate']].call!(condition, value)
       end
 
       broadcast :ok, invalid ? [message] : nil

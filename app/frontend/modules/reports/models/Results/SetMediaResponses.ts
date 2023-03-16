@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { RawResult } from './interfaces'
 
 export default {

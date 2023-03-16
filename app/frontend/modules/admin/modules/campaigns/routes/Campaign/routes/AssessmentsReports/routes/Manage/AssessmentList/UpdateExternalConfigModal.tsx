@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Form } from 'antd'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
-import ResourceFormModal from 'components/ResourceFormModal'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
+import ResourceFormModal from '~/components/ResourceFormModal'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window

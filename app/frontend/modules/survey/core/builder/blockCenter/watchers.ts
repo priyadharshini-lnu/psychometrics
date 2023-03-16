@@ -4,7 +4,7 @@ import {
   takeEvery, put,
 } from 'redux-saga/effects'
 import { normalize } from 'normalizr'
-import schema from 'modules/survey/store/schema'
+import schema from '~/modules/survey/store/schema'
 import { INIT } from '../assessment/actions'
 import { SAVE } from './index'
 

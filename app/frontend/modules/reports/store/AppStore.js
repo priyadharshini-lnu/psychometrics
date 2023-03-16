@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Report from 'modules/reports/models/Report'
-import Occupation from 'modules/reports/models/Occupation'
-import PageList from 'modules/reports/store/PageList'
-import NotificationDispatcher from 'modules/reports/dispatchers/NotificationDispatcher'
-import PropertyPanelStore from 'modules/reports/store/PropertyPanelStore'
-import InnovationStyle from 'modules/reports/models/InnovationStyle'
+import Report from '~/modules/reports/models/Report'
+import Occupation from '~/modules/reports/models/Occupation'
+import PageList from '~/modules/reports/store/PageList'
+import NotificationDispatcher from '~/modules/reports/dispatchers/NotificationDispatcher'
+import PropertyPanelStore from '~/modules/reports/store/PropertyPanelStore'
+import InnovationStyle from '~/modules/reports/models/InnovationStyle'
 
 const { $ } = window
 const AppStore = function () {

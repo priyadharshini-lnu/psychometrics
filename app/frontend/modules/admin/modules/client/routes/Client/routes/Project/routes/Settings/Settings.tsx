@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 import { Menu } from 'antd'
-import RouteList from 'components/RouteList'
-import settings from 'modules/admin/modules/client/routes/Client/routes/Project/settings'
-import routeUtils from 'utils/route'
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { History } from 'history'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import RouteList from '~/components/RouteList'
+import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
+import routeUtils from '~/utils/route'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { routes } from './routes'
 
 const { I18n } = window
@@ -28,7 +28,9 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
   const { permissions } = currentUser
   const modifiedRoutes = () => {
     let firstRoute = ''
-    if (permissions.manageProjectSmtpSettings) {
+    if (permissions.manageProjectGeneralSettings) {
+      firstRoute = '/general'
+    } else if (permissions.manageProjectSmtpSettings) {
       firstRoute = '/smtp'
     } else if (permissions.manageProjectSamlSetting) {
       firstRoute = '/saml'
@@ -44,6 +46,11 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
     routeUtils.moveTo(history, prefix, key)
   }
   const menuItems:ItemType[] = []
+
+  permissions.manageProjectGeneralSettings && menuItems.push({
+    key: '/general',
+    label: I18n.t('administration.project_tabs.general'),
+  })
   permissions.manageProjectSmtpSettings && menuItems.push({
     key: '/smtp',
     label: I18n.t('administration.smtp_settings.smtp'),

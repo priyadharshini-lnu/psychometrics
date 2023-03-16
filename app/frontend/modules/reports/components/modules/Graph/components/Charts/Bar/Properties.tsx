@@ -5,10 +5,10 @@ import {
 } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 
-import { getQuestions } from 'modules/reports/core/builder/selectors'
-import useUpdate from 'hooks/useUpdate'
-import { PropertiesModel } from 'modules/reports/interfaces/graphs/Bar'
-import { RootState } from 'modules/reports/core/rootReducers'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
+import useUpdate from '~/hooks/useUpdate'
+import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
+import { RootState } from '~/modules/reports/core/rootReducers'
 import Series from './Series'
 import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphPropertyDropdown'
 

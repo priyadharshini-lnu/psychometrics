@@ -1,7 +1,7 @@
 import React from 'react'
 import { Divider } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import { I18n } from 'store/StoreWatchman'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 import styles from './ChatStyle.less'
 import commonStyles from '../ChatStyle.less'
 import { Question } from '../interfaces'

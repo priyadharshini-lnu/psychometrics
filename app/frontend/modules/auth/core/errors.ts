@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { createReducer } from '~/utils/redux'
 
 interface Errors {
   email: string[]

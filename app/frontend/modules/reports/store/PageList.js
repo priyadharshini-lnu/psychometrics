@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Page from 'modules/reports/models/Page'
-import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
-import panelStore from 'modules/reports/store/PropertyPanelStore'
-import ShowOnAllPagesStore from 'modules/reports/store/ShowOnAllPagesStore'
+import Page from '~/modules/reports/models/Page'
+import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
+import panelStore from '~/modules/reports/store/PropertyPanelStore'
+import ShowOnAllPagesStore from '~/modules/reports/store/ShowOnAllPagesStore'
 import RichEditorStore from './RichEditorStore'
 
 const PageList = function () {

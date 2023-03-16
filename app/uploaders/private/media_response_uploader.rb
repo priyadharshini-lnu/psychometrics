@@ -17,7 +17,7 @@ module Private
     def extension_whitelist
       return allowed_file_types_from_question if question.props['allowedFileTypes']
 
-      return %w[mp4] if question.type == 'VideoResponse'
+      return %w[mp4 webm] if question.type == 'VideoResponse'
 
       return %w[wav] if question.type == 'AudioResponse'
     end

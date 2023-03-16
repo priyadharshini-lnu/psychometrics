@@ -1,33 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`initializing base assessment init action should init assessment data: init_assessment 1`] = `
-Object {
-  "connection": Object {
+{
+  "connection": {
     "connected": true,
   },
-  "preview": Object {
+  "preview": {
     "activeDictationOnQuestion": 0,
     "agileAssetsUrl": undefined,
     "agileAssignUrl": undefined,
-    "allPages": Object {
-      "1": Array [
-        Object {
+    "allPages": {
+      "1": [
+        {
           "blockId": 1,
-          "questions": Array [
+          "questions": [
             1,
           ],
         },
-        Object {
+        {
           "blockId": 1,
-          "questions": Array [
+          "questions": [
             2,
           ],
         },
       ],
-      "2": Array [
-        Object {
+      "2": [
+        {
           "blockId": 2,
-          "questions": Array [
+          "questions": [
             3,
           ],
         },
@@ -36,41 +36,41 @@ Object {
     "assessmentCategory": undefined,
     "assessmentTimedOut": false,
     "backButtonPressed": false,
-    "blocks": Object {
-      "1": Object {
+    "blocks": {
+      "1": {
         "id": 1,
         "name": "Block1",
         "position": 1,
-        "props": Object {
-          "buttons": Object {
+        "props": {
+          "buttons": {
             "next_button": "Next",
             "prev_button": "Previous",
           },
-          "randomization": Object {
+          "randomization": {
             "type": "No",
           },
         },
-        "questions": Array [
+        "questions": [
           1,
           2,
         ],
         "save_as_template": false,
         "template_id": null,
       },
-      "2": Object {
+      "2": {
         "id": 2,
         "name": "Block2",
         "position": 2,
-        "props": Object {
-          "buttons": Object {
+        "props": {
+          "buttons": {
             "next_button": "Next",
             "prev_button": "Previous",
           },
-          "randomization": Object {
+          "randomization": {
             "type": "No",
           },
         },
-        "questions": Array [
+        "questions": [
           3,
         ],
         "save_as_template": false,
@@ -82,29 +82,29 @@ Object {
     "dashboardUrl": "/",
     "dataSheet": undefined,
     "dataSheetColumns": undefined,
-    "dbResult": Object {
+    "dbResult": {
       "id": 1,
     },
     "defaultNorm": undefined,
-    "elements": Array [
-      Object {
-        "elements": Array [],
-        "path": Array [
+    "elements": [
+      {
+        "elements": [],
+        "path": [
           0,
         ],
-        "props": Object {
+        "props": {
           "current": "2",
         },
         "type": "Block",
       },
-      Object {
-        "elements": Array [],
-        "path": Array [
+      {
+        "elements": [],
+        "path": [
           1,
         ],
-        "props": Object {
-          "storage": Array [
-            Object {
+        "props": {
+          "storage": [
+            {
               "key": "test",
               "value": "1",
             },
@@ -112,54 +112,54 @@ Object {
         },
         "type": "EmbeddedData",
       },
-      Object {
-        "elements": Array [
-          Object {
-            "elements": Array [],
-            "path": Array [
+      {
+        "elements": [
+          {
+            "elements": [],
+            "path": [
               3,
               0,
             ],
-            "props": Object {
+            "props": {
               "current": "1",
             },
             "type": "Block",
           },
-          Object {
-            "elements": Array [],
-            "path": Array [
+          {
+            "elements": [],
+            "path": [
               3,
               1,
             ],
-            "props": Object {
+            "props": {
               "current": "2",
             },
             "type": "Block",
           },
         ],
-        "path": Array [
+        "path": [
           3,
         ],
-        "props": Object {
+        "props": {
           "number": 2,
         },
         "type": "Randomizer",
       },
     ],
-    "embeddedData": Object {},
+    "embeddedData": {},
     "enableBack": false,
     "enableProgress": true,
     "enableSingleQuestionPage": undefined,
     "end": false,
-    "errors": Object {},
+    "errors": {},
     "expiryDate": undefined,
     "factors": undefined,
     "fixedTimed": undefined,
     "hideHiddenQuestions": true,
-    "highlights": Object {},
-    "hrisData": Object {},
+    "highlights": {},
+    "hrisData": {},
     "ignoreValidations": false,
-    "inProgressQuestions": Array [],
+    "inProgressQuestions": [],
     "initialized": true,
     "instructions": undefined,
     "isAnonymousAssessment": undefined,
@@ -169,26 +169,26 @@ Object {
     "locales": undefined,
     "mediaResponses": undefined,
     "mediaUrl": "/assigns/1",
-    "metaData": Object {},
+    "metaData": {},
     "nextButtonPressed": false,
-    "normRules": Array [],
-    "normalizedTree": Object {
-      "0": Object {
-        "path": Array [
+    "normRules": [],
+    "normalizedTree": {
+      "0": {
+        "path": [
           0,
         ],
-        "props": Object {
+        "props": {
           "current": "2",
         },
         "type": "Block",
       },
-      "1": Object {
-        "path": Array [
+      "1": {
+        "path": [
           1,
         ],
-        "props": Object {
-          "storage": Array [
-            Object {
+        "props": {
+          "storage": [
+            {
               "key": "test",
               "value": "1",
             },
@@ -196,81 +196,81 @@ Object {
         },
         "type": "EmbeddedData",
       },
-      "2": Object {
-        "path": Array [
+      "2": {
+        "path": [
           3,
         ],
-        "props": Object {
+        "props": {
           "number": 2,
         },
         "type": "Randomizer",
       },
-      "2/0": Object {
-        "path": Array [
+      "2/0": {
+        "path": [
           3,
           0,
         ],
-        "props": Object {
+        "props": {
           "current": "1",
         },
         "type": "Block",
       },
-      "2/1": Object {
-        "path": Array [
+      "2/1": {
+        "path": [
           3,
           1,
         ],
-        "props": Object {
+        "props": {
           "current": "2",
         },
         "type": "Block",
       },
     },
-    "options": Object {},
-    "prevPages": Array [],
-    "questions": Object {
-      "1": Object {
+    "options": {},
+    "prevPages": [],
+    "questions": {
+      "1": {
         "block_id": 1,
         "display_logic": null,
         "id": 1,
         "name": "Q1",
         "position": 1,
-        "props": Object {
+        "props": {
           "choices": 2,
-          "choicesTexts": Array [
+          "choicesTexts": [
             "Yes",
             "No",
           ],
-          "defaultValues": Array [],
+          "defaultValues": [],
           "notApplicable": false,
           "notApplicableLabel": "Not Applicable",
           "position": "Vertical",
           "questionText": "Have you taken part in any extra-curricular activities in university?",
-          "randomization": Object {
+          "randomization": {
             "type": "No",
           },
           "type": "SingleAnswer",
         },
-        "required_validation": Object {
+        "required_validation": {
           "enabled": false,
           "type": "Force",
         },
         "save_as_template": false,
-        "skip_logic": Array [],
+        "skip_logic": [],
         "template_id": null,
         "type": "MultipleChoice",
-        "validation": Object {
-          "args": Object {},
+        "validation": {
+          "args": {},
           "type": "None",
         },
       },
-      "2": Object {
+      "2": {
         "block_id": 1,
-        "display_logic": Object {
-          "conditions": Array [
-            Object {
-              "conditions": Array [
-                Object {
+        "display_logic": {
+          "conditions": [
+            {
+              "conditions": [
+                {
                   "answer": "0",
                   "conditionType": "Question",
                   "predicate": "Selected",
@@ -286,66 +286,66 @@ Object {
         "id": 2,
         "name": "Q3",
         "position": 2,
-        "props": Object {
+        "props": {
           "choices": 3,
-          "choicesTexts": Array [
+          "choicesTexts": [
             "Click to write Choice 1",
             "Click to write Choice 2",
             "Click to write Choice 3",
           ],
-          "defaultValues": Array [],
+          "defaultValues": [],
           "questionText": "Please specify",
-          "randomization": Object {
+          "randomization": {
             "type": "No",
           },
           "type": "DateEntry",
         },
-        "required_validation": Object {
+        "required_validation": {
           "enabled": false,
           "type": "Force",
         },
         "save_as_template": false,
-        "skip_logic": Array [],
+        "skip_logic": [],
         "template_id": null,
         "type": "TextEntry",
-        "validation": Object {
-          "args": Object {},
+        "validation": {
+          "args": {},
           "type": "None",
         },
       },
-      "3": Object {
+      "3": {
         "block_id": 2,
         "display_logic": null,
         "id": 3,
         "name": "Q2",
         "position": 1,
-        "props": Object {
+        "props": {
           "choices": 3,
-          "choicesTexts": Array [
+          "choicesTexts": [
             "Click to write Choice 1",
             "Click to write Choice 2",
             "Click to write Choice 3",
           ],
-          "defaultValues": Array [],
+          "defaultValues": [],
           "notApplicable": false,
           "notApplicableLabel": "Not Applicable",
           "position": "Vertical",
           "questionText": "Click to write the question text",
-          "randomization": Object {
+          "randomization": {
             "type": "No",
           },
           "type": "SingleAnswer",
         },
-        "required_validation": Object {
+        "required_validation": {
           "enabled": false,
           "type": "Force",
         },
         "save_as_template": false,
-        "skip_logic": Array [],
+        "skip_logic": [],
         "template_id": null,
         "type": "MultipleChoice",
-        "validation": Object {
-          "args": Object {},
+        "validation": {
+          "args": {},
           "type": "None",
         },
       },
@@ -354,7 +354,7 @@ Object {
     "readOnly": undefined,
     "relationship": undefined,
     "relationships": undefined,
-    "results": Object {},
+    "results": {},
     "resultsUrl": "/assigns/1",
     "scoring": undefined,
     "showErrorWarning": false,
@@ -366,64 +366,64 @@ Object {
     "timerDuration": undefined,
     "type": "preview_assessment",
   },
-  "survey": Object {
-    "builder": Object {
-      "assessment": Object {
-        "blocks": Array [],
+  "survey": {
+    "builder": {
+      "assessment": {
+        "blocks": [],
         "category": "",
         "default_norm_id": null,
         "disabled": false,
-        "factors": Array [],
+        "factors": [],
         "flow": null,
         "id": null,
-        "instructions": Object {},
+        "instructions": {},
         "loaded": false,
         "name": "",
-        "norm_rules": Array [],
-        "options": Object {},
-        "propPanel": Object {
+        "norm_rules": [],
+        "options": {},
+        "propPanel": {
           "offset": null,
           "question": null,
         },
-        "relationships": Array [],
+        "relationships": [],
         "saving": false,
-        "trash": Array [],
+        "trash": [],
       },
-      "blockCenter": Object {
+      "blockCenter": {
         "saving": false,
       },
-      "blocks": Object {},
-      "factors": Object {
+      "blocks": {},
+      "factors": {
         "current": null,
-        "factors": Object {},
-        "recoding": Array [],
+        "factors": {},
+        "recoding": [],
       },
-      "flow": Object {
-        "elements": Array [],
+      "flow": {
+        "elements": [],
       },
-      "questionCenter": Object {
+      "questionCenter": {
         "disabled": false,
         "loaded": false,
         "question": null,
         "saving": false,
       },
-      "questions": Object {},
-      "resources": Object {
-        "assessmentQuestions": Object {},
-        "assessments": Array [],
+      "questions": {},
+      "resources": {
+        "assessmentQuestions": {},
+        "assessments": [],
         "defaultAssessmen": null,
-        "resources": Array [],
+        "resources": [],
       },
     },
-    "ui": Object {
-      "hotSpot": Object {
+    "ui": {
+      "hotSpot": {
         "shapeIndex": null,
       },
-      "modals": Object {
-        "current": Array [],
-        "data": Object {},
+      "modals": {
+        "current": [],
+        "data": {},
       },
-      "socket": Object {
+      "socket": {
         "initialized": false,
       },
     },
@@ -432,37 +432,37 @@ Object {
 `;
 
 exports[`initializing base assessment middleware should call next if is not NEXT_PAGE: default_store 1`] = `
-Object {
-  "connection": Object {
+{
+  "connection": {
     "connected": true,
   },
-  "preview": Object {
+  "preview": {
     "activeDictationOnQuestion": 0,
-    "allPages": Object {},
+    "allPages": {},
     "assessmentTimedOut": false,
     "backButtonPressed": false,
-    "blocks": Object {},
+    "blocks": {},
     "currentElement": null,
     "currentPage": 0,
     "dashboardUrl": "/",
-    "dataSheet": Array [],
-    "dataSheetColumns": Array [],
-    "elements": Array [],
-    "embeddedData": Object {},
+    "dataSheet": [],
+    "dataSheetColumns": [],
+    "elements": [],
+    "embeddedData": {},
     "enableBack": false,
     "enableProgress": false,
     "enableSingleQuestionPage": false,
     "end": false,
-    "errors": Object {},
+    "errors": {},
     "expiryDate": null,
-    "factors": Array [],
+    "factors": [],
     "fixedTimed": false,
     "hideHiddenQuestions": true,
-    "highlights": Object {},
+    "highlights": {},
     "ignoreValidations": false,
-    "inProgressQuestions": Array [],
+    "inProgressQuestions": [],
     "initialized": false,
-    "instructions": Object {
+    "instructions": {
       "content": "",
       "enabled": false,
     },
@@ -470,85 +470,85 @@ Object {
     "isThreesixty": false,
     "linear": false,
     "locales": null,
-    "mediaResponses": Array [],
+    "mediaResponses": [],
     "mediaUrl": null,
     "nextButtonPressed": false,
-    "normalizedTree": Object {},
-    "options": Object {},
-    "prevPages": Array [],
-    "questions": Object {},
+    "normalizedTree": {},
+    "options": {},
+    "prevPages": [],
+    "questions": {},
     "readOnly": false,
     "relationship": null,
-    "relationships": Array [],
-    "results": Object {},
+    "relationships": [],
+    "results": {},
     "scoring": null,
     "showErrorWarning": false,
     "showQuestionScoring": false,
     "showScoringOnEndPage": false,
     "showSubmitPage": false,
     "started": false,
-    "subjectDataSheet": Array [],
+    "subjectDataSheet": [],
     "timerDuration": null,
     "type": "preview_assessment",
   },
-  "survey": Object {
-    "builder": Object {
-      "assessment": Object {
-        "blocks": Array [],
+  "survey": {
+    "builder": {
+      "assessment": {
+        "blocks": [],
         "category": "",
         "default_norm_id": null,
         "disabled": false,
-        "factors": Array [],
+        "factors": [],
         "flow": null,
         "id": null,
-        "instructions": Object {},
+        "instructions": {},
         "loaded": false,
         "name": "",
-        "norm_rules": Array [],
-        "options": Object {},
-        "propPanel": Object {
+        "norm_rules": [],
+        "options": {},
+        "propPanel": {
           "offset": null,
           "question": null,
         },
-        "relationships": Array [],
+        "relationships": [],
         "saving": false,
-        "trash": Array [],
+        "trash": [],
       },
-      "blockCenter": Object {
+      "blockCenter": {
         "saving": false,
       },
-      "blocks": Object {},
-      "factors": Object {
+      "blocks": {},
+      "factors": {
         "current": null,
-        "factors": Object {},
-        "recoding": Array [],
+        "factors": {},
+        "recoding": [],
       },
-      "flow": Object {
-        "elements": Array [],
+      "flow": {
+        "elements": [],
       },
-      "questionCenter": Object {
+      "questionCenter": {
         "disabled": false,
         "loaded": false,
         "question": null,
         "saving": false,
       },
-      "questions": Object {},
-      "resources": Object {
-        "assessmentQuestions": Object {},
-        "assessments": Array [],
+      "questions": {},
+      "resources": {
+        "assessmentQuestions": {},
+        "assessments": [],
         "defaultAssessmen": null,
-        "resources": Array [],
+        "resources": [],
       },
     },
-    "ui": Object {
-      "hotSpot": Object {
+    "ui": {
+      "hotSpot": {
         "shapeIndex": null,
       },
-      "modals": Object {
-        "current": Array [],
-        "data": Object {},
+      "modals": {
+        "current": [],
+        "data": {},
       },
-      "socket": Object {
+      "socket": {
         "initialized": false,
       },
     },

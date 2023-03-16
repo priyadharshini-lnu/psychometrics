@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import PageList from 'modules/reports/store/PageList'
-import AppStore from 'modules/reports/store/AppStore'
-import Utils from 'modules/reports/utils/Utils'
+import PageList from '~/modules/reports/store/PageList'
+import AppStore from '~/modules/reports/store/AppStore'
+import Utils from '~/modules/reports/utils/Utils'
 
 let { I18n } = window
 if (I18n) {

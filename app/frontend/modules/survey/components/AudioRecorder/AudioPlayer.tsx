@@ -4,8 +4,8 @@ import {
 } from 'antd'
 import { CaretRightOutlined, PauseOutlined } from '@ant-design/icons'
 
-import { getMinutesAndSeconds } from 'utils/time'
-import { PLAYER_STATE } from 'modules/survey/constants/media'
+import { getMinutesAndSeconds } from '~/utils/time'
+import { PLAYER_STATE } from '~/modules/survey/constants/media'
 
 interface Props {
   playerState: string

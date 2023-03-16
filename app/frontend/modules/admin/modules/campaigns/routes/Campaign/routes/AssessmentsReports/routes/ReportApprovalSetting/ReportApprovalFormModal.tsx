@@ -1,13 +1,13 @@
 import React from 'react'
 import { Form, Select, Spin } from 'antd'
 import _ from 'lodash'
-import { Report, ReportTR } from 'modules/admin/modules/campaigns/core/reportList'
-import { User, UserTR } from 'modules/admin/modules/campaigns/core/user'
-import { CreateResource, UpdateResource } from 'hooks/useResources/interfaces'
-import ResourceFormModal from 'components/ResourceFormModal'
-import { useResources } from 'hooks/useResources'
-import { AdditionRelationshipAttribute } from 'libs/jsonApi/interfaces'
-import { ReportApprovalSettings } from 'modules/admin/modules/campaigns/core/reportApprovalSettings'
+import { Report, ReportTR } from '~/modules/admin/modules/campaigns/core/reportList'
+import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
+import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import { useResources } from '~/hooks/useResources'
+import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
+import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 
 const { Option } = Select
 

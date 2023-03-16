@@ -1,5 +1,5 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { getSingle, updateAdditionalTime } from 'modules/admin/modules/campaigns/core/userAssessments'
+import { getSingle, updateAdditionalTime } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import { OwnProps } from './UpdateTimeModal'
 
 const connecter = connect(

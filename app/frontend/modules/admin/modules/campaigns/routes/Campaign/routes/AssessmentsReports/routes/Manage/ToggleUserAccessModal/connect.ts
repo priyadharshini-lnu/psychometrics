@@ -1,5 +1,5 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { toggleUserAccess } from 'modules/admin/modules/campaigns/core/reports'
+import { toggleUserAccess } from '~/modules/admin/modules/campaigns/core/reports'
 
 const connecter = connect(
   () => ({}), {

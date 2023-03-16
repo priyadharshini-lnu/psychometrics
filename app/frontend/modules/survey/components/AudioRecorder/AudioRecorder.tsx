@@ -3,22 +3,22 @@ import {
   Card, Row, Col, Space, Typography,
 } from 'antd'
 
-import { PreviewModel } from 'modules/survey/interfaces/questions/AudioResponse'
-import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
-import { RecorderCore } from 'modules/survey/utils/RecorderCore'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/AudioResponse'
+import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import { RecorderCore } from '~/modules/survey/utils/RecorderCore'
 import {
   RECORDER_STATES,
   UPLOAD_STATES,
   PLAYER_STATE,
   DEFAULT_MAX_DURATION,
-} from 'modules/survey/constants/media'
+} from '~/modules/survey/constants/media'
 
-import { getMinutesAndSeconds } from 'utils/time'
-import api from 'middleware/api'
-import useAudioMetrics from 'hooks/useAudioMetrics'
+import api from '~/middleware/api'
+import useAudioMetrics from '~/hooks/useAudioMetrics'
 
-import FileUploader from 'modules/survey/components/FileUpload/components/FileUploader'
-import DynamicAudioIcon from 'components/DynamicAudioIcon'
+import FileUploader from '~/modules/survey/components/FileUpload/components/FileUploader'
+import { getMinutesAndSeconds } from '~/utils/time'
+import DynamicAudioIcon from '~/components/DynamicAudioIcon'
 import reducer, {
   initialState,
   setRecordingState,

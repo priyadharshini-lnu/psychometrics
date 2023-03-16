@@ -3,12 +3,12 @@ import reduce from 'lodash/reduce'
 import meanBy from 'lodash/meanBy'
 import isEmpty from 'lodash/isEmpty'
 
-import { GapType, PropertiesModel } from 'modules/reports/interfaces/tables/Gap'
+import { GapType, PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
 
-import AppStore from 'modules/reports/store/AppStore'
-import I18nStore from 'modules/reports/store/I18nStore'
-import ResultStore from 'modules/reports/store/ResultStore'
-import Utils from 'modules/reports/utils'
+import AppStore from '~/modules/reports/store/AppStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
+import Utils from '~/modules/reports/utils'
 
 import styles from './styles.less'
 

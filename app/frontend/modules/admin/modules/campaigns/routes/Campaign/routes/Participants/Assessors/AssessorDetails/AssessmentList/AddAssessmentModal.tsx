@@ -3,15 +3,15 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import isEmpty from 'lodash/isEmpty'
 import { Form, Select, Input } from 'antd'
-import ResourceFormModal from 'components/ResourceFormModal'
-import UserAutocomplete from 'components/UserAutocomplete'
-import { get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
-import { RootState } from 'modules/admin/core/rootReducers'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import UserAutocomplete from '~/components/UserAutocomplete'
+import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   getAvailableAssessments,
   fetchAvailableAssessments,
-} from 'modules/admin/modules/campaigns/core/assessors'
-import userPresenter from 'presenters/user'
+} from '~/modules/admin/modules/campaigns/core/assessors'
+import userPresenter from '~/presenters/user'
 
 const { I18n } = window
 

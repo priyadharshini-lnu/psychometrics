@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
 
-import { importAssessors, IMPORT } from 'modules/admin/modules/campaigns/core/assessors'
-import { isRequestInProgress } from 'core/request'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import {
   Button, Modal, message, Alert, Form, Input,
 } from 'antd'
 import Event from 'interfaces/Event'
 import _ from 'lodash'
+import { importAssessors, IMPORT } from '~/modules/admin/modules/campaigns/core/assessors'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { isRequestInProgress } from '~/core/request'
 
 const connecter = connect(
   (state: RootState) => ({

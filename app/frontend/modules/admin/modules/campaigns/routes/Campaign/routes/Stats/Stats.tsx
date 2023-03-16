@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
-import {
-  getUsers, getAssessments, fetch, AssesmentStats,
-} from 'modules/admin/modules/campaigns/core/stats'
 import {
   Table, Row, Col, Progress, Card, Statistic, Radio, RadioChangeEvent, Typography,
 } from 'antd'
 import _ from 'lodash'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import {
+  getUsers, getAssessments, fetch, AssesmentStats,
+} from '~/modules/admin/modules/campaigns/core/stats'
 import styles from './styles.less'
 import { COLORS } from './options'
 import { Timeseries } from './Timeseries'

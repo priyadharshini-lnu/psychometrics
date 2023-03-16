@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { useResources } from 'hooks/useResources'
 import {
   Table, Space, Pagination, Button, Menu,
 } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import { connect, ConnectedProps } from 'react-redux'
+import { useResources } from '~/hooks/useResources'
 import {
   ReportApprovalSettings,
   ReportApprovalSettingsTR,
-} from 'modules/admin/modules/campaigns/core/reportApprovalSettings'
-import Modals from 'modules/admin/components/Modals'
-import { PlusOutlined } from '@ant-design/icons'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { connect, ConnectedProps } from 'react-redux'
-import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import { TableLayout } from 'modules/admin/components/TableLayout'
-import { get as getCurrentUser } from 'core/currentUser'
-import { RootState } from 'modules/admin/core/rootReducers'
+} from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
+import Modals from '~/modules/admin/components/Modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { BaseMeta, RemoveResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { RemoveReportApprovalSettingModal } from './RemoveReportApprovalModal'
 import { ReportApprovalFormModal } from './ReportApprovalFormModal'
 
@@ -123,7 +123,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
             </Space>
           )}
         />
-        {currentUser.role === 'Users::SuperAdmin'
+        {isSuperAdmin(currentUser)
           && (
           <Column
             title={I18n.t('common.column.action')}

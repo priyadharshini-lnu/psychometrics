@@ -14,7 +14,8 @@ module Api
         form = Api::V1::Projects::CreateForm.from_params(params)
         if form.valid?
           normalized_params = ::Projects::NormalizeApiRequest.call!(project_params)
-          project = ::Projects::Create.call!(normalized_params, current_user)
+          project = ::Projects::Create.call!(normalized_params.except(*DESIGN_ATTRIBUTES), current_user)
+          project.design_setting.update!(normalized_params.slice(*DESIGN_ATTRIBUTES))
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
           audit! :api_create, project, payload: params.permit!, project: project
           render json: project, serializer: Api::V1::ProjectSerializer
@@ -27,9 +28,8 @@ module Api
         form = Api::V1::Projects::UpdateForm.from_params(params)
         if form.valid?
           normalized_params = ::Projects::NormalizeApiRequest.call!(project_params)
-          design_attributes = project.design_migrated ? DESIGN_ATTRIBUTES : []
-          project.update!(normalized_params.except(*design_attributes, *SECURITY_SETTINGS))
-          project.design_setting.update!(normalized_params.slice(*design_attributes)) if project.design_migrated
+          project.update!(normalized_params.except(*DESIGN_ATTRIBUTES, *SECURITY_SETTINGS))
+          project.design_setting.update!(normalized_params.slice(*DESIGN_ATTRIBUTES))
           project.security_setting.update!(normalized_params.slice(SECURITY_SETTINGS))
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
           audit! :api_update, project, payload: params.permit!, project: project

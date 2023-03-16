@@ -3,11 +3,11 @@ import {
   Button, Menu, message,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
-import { openModal } from 'modules/admin/core/ui/modals'
-import ConditionalDropdown from 'components/ConditionalDropdown'
 import { connect, ConnectedProps } from 'react-redux'
 import pluralize from 'pluralize'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ParentResourceType } from '../interfaces'
 import { SheetType } from '../core/list'
 

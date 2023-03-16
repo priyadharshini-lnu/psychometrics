@@ -1,5 +1,6 @@
-import ResultStore from 'modules/reports/store/ResultStore'
-import AppStore from 'modules/reports/store/AppStore'
+import _ from 'lodash'
+import ResultStore from '~/modules/reports/store/ResultStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 export default {
   getResults (filterId) {

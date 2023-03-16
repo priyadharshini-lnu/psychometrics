@@ -1,5 +1,5 @@
 import humps from 'humps'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 
 const FETCH = 'anonym/FETCH'
 const FETCH_FAILURE = 'anonym/FETCH_FAILURE'

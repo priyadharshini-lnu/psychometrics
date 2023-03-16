@@ -20,7 +20,7 @@ export const ProfileSettingsTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
     id: t.string,
-    updateIn: t.union([t.number, t.null]),
+    updateIn: t.union([t.string, t.null]),
     fieldQuestions: t.array(ProfileQuestionTR),
     profileFields: t.array(ProfileFieldTR),
     project: t.union([

@@ -1,8 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import 'styles/ant.less'
-import { CommentItem } from 'glint'
+import { CommentItem } from '~/glint'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -32,13 +31,15 @@ Simple.args = {
   canRemove: true,
   canEdit: true,
   canResolve: true,
-  userData: {
-    fullName: 'Shivaraja',
-  },
   comment: {
     id: '1',
     text: 'This is a comment',
     createdAt: '10:40 AM',
+    resolved: true,
+    creator: {
+      fullName: 'Shivaraja',
+      avatarUrl: 'avatar',
+    },
   },
   onCommentRemove: handleRemoveComment,
   onCommentEditSave: null,

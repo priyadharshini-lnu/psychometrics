@@ -15,18 +15,18 @@ import {
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
-import { ParentResourceType } from 'modules/admin/modules/SheetManagement/interfaces'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'
 import {
   saveColumn,
   get as getColumns,
   MAX_LENGTH_FOR_DASHBOARD_USE,
-} from 'modules/admin/modules/SheetManagement/core/columnDefinitions'
-import { Column, SheetType } from 'modules/admin/modules/SheetManagement/core/list'
+} from '~/modules/admin/modules/SheetManagement/core/columnDefinitions'
+import { Column, SheetType } from '~/modules/admin/modules/SheetManagement/core/list'
 import {
   getCurrent,
   fetchSingle,
-} from 'modules/admin/modules/SheetManagement/core/current'
+} from '~/modules/admin/modules/SheetManagement/core/current'
 
 const { I18n } = window
 

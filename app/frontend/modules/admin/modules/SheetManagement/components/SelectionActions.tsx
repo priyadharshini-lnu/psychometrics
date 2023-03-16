@@ -13,14 +13,14 @@ import {
   fetch,
   bulkDelete,
   SheetType,
-} from 'modules/admin/modules/SheetManagement/core/list'
-import settings from 'modules/admin/settings'
+} from '~/modules/admin/modules/SheetManagement/core/list'
+import settings from '~/modules/admin/settings'
 import {
   DrawerModes,
   ParentResourceType,
-} from 'modules/admin/modules/SheetManagement/interfaces'
-import { getTableConfigs } from 'modules/admin/core/filterAndPagination/selectors'
-import { RootState } from 'modules/reports/core/rootReducers'
+} from '~/modules/admin/modules/SheetManagement/interfaces'
+import { getTableConfigs } from '~/modules/admin/core/filterAndPagination/selectors'
+import { RootState } from '~/modules/reports/core/rootReducers'
 
 const { I18n } = window
 

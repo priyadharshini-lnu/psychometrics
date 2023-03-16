@@ -1,5 +1,5 @@
-import ValidationProcessor from 'modules/survey/core/preview/FlowProcessor/commands/ValidationProcessor'
-import DefaultProps from 'modules/survey/constants/DefaultProps'
+import ValidationProcessor from '~/modules/survey/core/preview/FlowProcessor/commands/ValidationProcessor'
+import DefaultProps from '~/modules/survey/constants/DefaultProps'
 
 jest.mock('modules/survey/store/StoreWatchman', () => {
   return {

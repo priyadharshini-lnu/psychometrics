@@ -13,30 +13,30 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   ToggleDrawer,
   DrawerModes,
   ParentResourceType,
-} from 'modules/admin/modules/SheetManagement/interfaces'
+} from '~/modules/admin/modules/SheetManagement/interfaces'
 import {
   add,
   update,
   ADD,
   UPDATE,
   SheetType,
-} from 'modules/admin/modules/SheetManagement/core/list'
-import { get as getColumns } from 'modules/admin/modules/SheetManagement/core/columnDefinitions'
+} from '~/modules/admin/modules/SheetManagement/core/list'
+import { get as getColumns } from '~/modules/admin/modules/SheetManagement/core/columnDefinitions'
 import {
   getCurrent,
   fetchSingle,
   FETCH_SINGLE,
-} from 'modules/admin/modules/SheetManagement/core/current'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/SheetManagement/core/current'
+import { isRequestInProgress } from '~/core/request'
 
-import { COLUMN_ID_EMAIL } from 'modules/admin/modules/SheetManagement/constants'
+import { COLUMN_ID_EMAIL } from '~/modules/admin/modules/SheetManagement/constants'
 
-import { toReadableString } from 'modules/admin/modules/SheetManagement/utils'
+import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
 import { InputField, EmailField } from './FormFields'
 
 const { I18n } = window

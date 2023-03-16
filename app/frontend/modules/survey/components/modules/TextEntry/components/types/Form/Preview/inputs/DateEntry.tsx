@@ -2,7 +2,7 @@ import React from 'react'
 import { DatePicker } from 'antd'
 import moment, { Moment } from 'moment'
 
-import { DATE_FORMAT_OPTIONS } from 'modules/survey/components/modules/TextEntry/constant'
+import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 
 interface Props {
   value: string

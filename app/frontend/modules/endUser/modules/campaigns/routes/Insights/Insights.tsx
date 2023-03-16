@@ -8,16 +8,16 @@ import {
 import { RouteComponentProps, useHistory } from 'react-router-dom'
 import useDimensions from 'react-use-dimensions'
 
-import LangDropdown from 'components/LangDropdown'
-import { MediaQueryContext, PageHeader } from 'glint'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import _ from 'lodash'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   fetchInsights, getReports, getUserDashboard, FETCH_INSIGHTS,
-} from 'modules/endUser/modules/campaigns/core/campaign'
-import Report from 'modules/reports/report'
-import _ from 'lodash'
-import { isRequestInProgress } from 'core/request'
-import { SubHeader } from 'modules/endUser/modules/campaigns/components/SubHeader'
+} from '~/modules/endUser/modules/campaigns/core/campaign'
+import Report from '~/modules/reports/report'
+import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
+import { isRequestInProgress } from '~/core/request'
+import LangDropdown from '~/components/LangDropdown'
+import { MediaQueryContext, PageHeader } from '~/glint'
 import { ReportList } from './ReportList'
 
 import styles from './styles.less'

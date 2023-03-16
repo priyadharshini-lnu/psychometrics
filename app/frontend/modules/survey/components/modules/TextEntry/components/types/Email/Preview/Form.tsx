@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Form } from 'antd'
 import _ from 'lodash'
-import { I18n } from 'store/StoreWatchman'
-import { QuestionError } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
+import { QuestionError } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import styles from '../commonStyles.less'
 import ContactSelect from './ContactSelect'
 import {

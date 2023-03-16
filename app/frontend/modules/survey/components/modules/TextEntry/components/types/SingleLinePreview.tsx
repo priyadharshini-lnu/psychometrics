@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FC } from 'react'
 import { Input, Row, Col } from 'antd'
 
-import { PreviewModel } from 'modules/survey/interfaces/questions/TextEntry'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
-import useForceUpdate from 'hooks/useUpdate'
-import { TextEntryCounter } from 'modules/survey/components/modules/TextEntry/components/TextEntryCounter'
+import useForceUpdate from '~/hooks/useUpdate'
+import { TextEntryCounter } from '~/modules/survey/components/modules/TextEntry/components/TextEntryCounter'
 
 interface Props {
   model: PreviewModel

@@ -6,7 +6,7 @@ FactoryBot.define do
     age_updated_at { '2022-08-22 23:25:12' }
     gender { 1 }
     timezone { 'MyString' }
-    photo { 'MyString' }
+    photo { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/profile.png')) }
     locale { 'MyString' }
   end
 end

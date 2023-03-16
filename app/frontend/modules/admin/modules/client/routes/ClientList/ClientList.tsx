@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react'
-import { useResources } from 'hooks/useResources'
+import React, { useEffect, useState } from 'react'
+import _ from 'lodash'
 import {
   Table, Input, Space, Pagination, Button, Menu,
 } from 'antd'
-import { Client, ClientTR } from 'modules/admin/modules/client/core/clients'
-import Modals from 'modules/admin/components/Modals'
 import { PlusOutlined } from '@ant-design/icons'
-import { openModal } from 'modules/admin/core/ui/modals'
 import { connect, ConnectedProps } from 'react-redux'
-import { BaseMeta, RemoveResource, UpdateResource } from 'hooks/useResources/interfaces'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import { TableLayout } from 'modules/admin/components/TableLayout'
-import { get as getCurrentUser } from 'core/currentUser'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { Link } from 'react-router-dom'
+import { useResources } from '~/hooks/useResources'
+import { Client, ClientTR } from '~/modules/admin/modules/client/core/clients'
+import Modals from '~/modules/admin/components/Modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { BaseMeta, RemoveResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { RemoveClientModal } from './RemoveClientModal'
 import { ClientFormModal } from './ClientFormModal'
 
@@ -41,6 +44,9 @@ interface Meta extends BaseMeta{
 }
 
 const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
+  const [countries, setCoutries] = useState<Meta['countries']>([])
+  const [types, setTypes] = useState<Meta['types']>([])
+  const baseApiConfig = { include: ['project_manager'], fields: { users: ['name', 'email'] } }
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource,
@@ -51,14 +57,14 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     {
       trackUrl: true,
       responseType: ClientTR,
-      apiConfig: {
-        include: ['project_manager'],
-        fields: { users: ['name', 'email'] },
-      },
+      apiConfig: baseApiConfig,
     },
   )
   useEffect(() => {
-    fetch()
+    fetch({ apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }) }).then(({ meta }) => {
+      setCoutries(meta.countries)
+      setTypes(meta.types)
+    })
   }, [])
   const tableLoading = isLoading('fetch')
 
@@ -85,7 +91,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           sorter
           sortOrder={getSortOrder('name')}
           render={({ name, id }) => (
-            <a href={`/administration/clients/${id}/projects`}>{name}</a>
+            <Link to={`/administration/clients/${id}/projects`}>{name}</Link>
           )}
         />
         <Column
@@ -111,7 +117,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           key="project_manager"
         />
 
-        {currentUser.role === 'Users::SuperAdmin'
+        {isSuperAdmin(currentUser)
           && (
           <Column
             title={I18n.t('common.column.action')}
@@ -124,7 +130,8 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                     updateResource,
                     removeResource,
                     openModal,
-                    meta,
+                    countries,
+                    types,
                   }) as React.ReactElement
                 }
               />
@@ -146,16 +153,16 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     <Space>
       <Search
         placeholder={I18n.t('common.actions.search')}
-        value={getFilteredValue('name_cont')}
-        onChange={({ target: { value } }) => { changeFilter('name_cont', value) }}
+        value={getFilteredValue('filterable_fields')}
+        onChange={({ target: { value } }) => { changeFilter('filterable_fields', value) }}
       />
-      {currentUser.role === 'Users::SuperAdmin'
+      {isSuperAdmin(currentUser)
           && (
           <Button
             type="primary"
             disabled={tableLoading}
             onClick={() => {
-              openModal('ClientFormModal', { addClient: createResource, types: meta.types, countries: meta.countries })
+              openModal('ClientFormModal', { addClient: createResource, types, countries })
             }}
           >
             <PlusOutlined />
@@ -167,6 +174,14 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
 
   return (
     <>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/administration',
+            label: () => I18n.t('administration.clients.tenancies'),
+          },
+        ]}
+      />
       <TableLayout
         table={ClientTable}
         filters={Filter}
@@ -180,19 +195,20 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
 }
 interface ActionMenuProps {
   client: Client
-  meta: Meta,
+  countries: Meta['countries'],
+  types: Meta['types'],
   updateResource: UpdateResource<Client>
   removeResource: RemoveResource
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  client, meta, updateResource, removeResource, openModal,
+  client, countries, types, updateResource, removeResource, openModal,
 }) => {
   const { id, name } = client
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
-    { key: 'remove', label: I18n.t('common.actions.remove') },
+    // { key: 'remove', label: I18n.t('common.actions.remove') },
     {
       key: 'licenses',
       label: (
@@ -205,7 +221,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return openModal('ClientFormModal', {
-        updateClient: updateResource, types: meta.types, countries: meta.countries, client,
+        updateClient: updateResource, types, countries, client,
       })
     }
     if (key === 'remove') {

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe HomeController, type: :controller do
-  let(:user) { create(:user, :with_project_membership) }
+  let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:campaign_user) { create(:campaign_user, user: user) }
   let(:campaign) { campaign_user.campaign }
 

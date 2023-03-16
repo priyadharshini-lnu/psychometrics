@@ -14,10 +14,13 @@ gem 'jwt',                        '~> 2.2.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 gem 'pg',                         '~> 1.4'
 gem 'puma',                       '~> 5.6.2'
-gem 'rails',                      '~> 6.0'
+gem 'rails',                      '~> 6.1'
 gem 'rails-i18n',                 '~> 6.0'
 gem 'sassc-rails', '~> 2.1.2'
+gem 'sprockets-rails'
 gem 'terser', '~> 1.1.11' if ENV.fetch('DISABLE_TERSER', 'false') == 'false'
+gem 'vite_rails'
+gem 'vite_ruby'
 
 source 'https://rails-assets.org/' do
   gem 'rails-assets-bootstrap', '~> 3.3.7'
@@ -48,16 +51,19 @@ gem 'devise',                     '~> 4.7.3'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
-gem 'devise-security',            '~> 0.17.0'
-gem 'pundit',                     '~> 2.1.1'
+
+# two_factor_authentication should be before devise-security, so that 2fa is required before changing expired password
+# rubocop:disable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
 gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
   branch: 'fix_deprecated_methods'
+# rubocop:enable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
+gem 'devise-security', '~> 0.17.0'
+gem 'pundit', '~> 2.1.1'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
 gem 'bootstrap-sass',             '~> 3.4.1'
 gem 'font-awesome-rails',         '~> 4.7'
-gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
@@ -129,6 +135,7 @@ gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', br
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.0.0'
 
+gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
@@ -138,6 +145,7 @@ gem 'carrierwave', '~> 1.3.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct', '~> 2.1.0'
 gem 'fog-aws', '~> 3.5.2'
+gem 'image_processing', '~> 1.2'
 gem 'inky-rb', '~> 1.3.8', require: 'inky'
 gem 'mini_magick', '~> 4.11.0'
 gem 'remotipart', '~> 1.3.1'

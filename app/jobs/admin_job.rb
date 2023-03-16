@@ -4,8 +4,7 @@ class AdminJob < ApplicationJob
   queue_as :low_priority
 
   rescue_from Exception do |error|
-    errors = arguments.first.error_messages + [error.message]
-    arguments.first.complete!(errors)
+    arguments.first.complete!(arguments.first.error_messages, error.message)
     Sentry.capture_exception(error)
   end
 

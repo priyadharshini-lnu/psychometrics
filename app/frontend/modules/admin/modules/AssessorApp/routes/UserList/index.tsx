@@ -1,17 +1,17 @@
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { get as getUsers, fetch } from 'modules/admin/modules/AssessorApp/core/users'
 import {
   Table, Row, Col, Input, Pagination,
 } from 'antd'
-import settings from 'modules/admin/settings'
 import { AppstoreOutlined } from '@ant-design/icons'
 import { Link, useParams } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import settings from '~/modules/admin/settings'
+import { get as getUsers, fetch } from '~/modules/admin/modules/AssessorApp/core/users'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
+import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import styles from './styles.less'
 
 const connecter = connect(

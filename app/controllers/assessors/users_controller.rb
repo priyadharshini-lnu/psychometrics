@@ -6,9 +6,7 @@ class Assessors::UsersController < Administration::BaseController
   before_action :set_resource, only: [:show]
 
   def index
-    users = policy_scope([:assessors, User]).
-            where(user_assessments: { campaign_id: params[:campaign_id] }).
-            ransack(params[:filters]).result
+    users = user_scope.ransack(params[:filters]).result
     paginated_users = users.page(params[:page])
     serialized_users = ActiveModelSerializers::SerializableResource.new(
       paginated_users, each_serializer: Administration::Assessors::UserSerializer,
@@ -66,6 +64,10 @@ class Assessors::UsersController < Administration::BaseController
   private
 
   def set_resource
-    @user = policy_scope([:assessors, User]).find(params[:id])
+    @user = user_scope.find(params[:id])
+  end
+
+  def user_scope
+    User.where(id: current_user.evaluation_assessments.where(campaign_id: params[:campaign_id]).select('subject_id'))
   end
 end

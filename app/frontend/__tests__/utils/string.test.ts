@@ -1,5 +1,5 @@
 
-import {shortify} from 'utils/string'
+import {shortify} from '~/utils/string'
 
 test('shortify', () => {
   expect(shortify('Thriving Index')).toStrictEqual('TI')

@@ -5,6 +5,10 @@ class Assessment < ApplicationRecord
   include RansackSearchableFields
   include SoftDelete
   include OwnerValidations
+  include ActiveStorageAttachable
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [
@@ -113,6 +117,12 @@ class Assessment < ApplicationRecord
 
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader
+
+  has_one_image_attached :as_icon, variants: [:icon]
+  has_one_image_attached :as_poster, variants: [:icon]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :icon, :poster
 
   delegate :config, :translations, to: :agile, prefix: true
 

@@ -20,6 +20,10 @@ class ReportApprovalSetting < ApplicationRecord
     where('approver_user_ids @> :user_id', user_id: "{#{user_id}}", campaign_id: campaign_id)
   }
 
+  scope :notifications, lambda { |user_id, campaign_id|
+    where('approval_notification_user_ids @> :user_id', user_id: "{#{user_id}}", campaign_id: campaign_id)
+  }
+
   scope :qcs, lambda { |user_id, campaign_id|
     where('qc_user_ids @> :user_id', user_id: "{#{user_id}}", campaign_id: campaign_id)
   }

@@ -1,8 +1,8 @@
-import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import Cookies from 'js-cookie'
 import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { createReducer } from '~/utils/redux'
 import { Config, Checks } from './interfaces'
 
 interface State {

@@ -3,13 +3,13 @@ import {
   Table, Menu, Row, Col, message, Modal,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import ConditionalDropdown from 'components/ConditionalDropdown'
-import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import _ from 'lodash'
-import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
+import { State as UserAssessmentState } from '~/modules/admin/modules/campaigns/core/userAssessments'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table

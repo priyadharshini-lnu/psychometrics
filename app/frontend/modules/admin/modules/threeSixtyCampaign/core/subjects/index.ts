@@ -1,9 +1,9 @@
 import { takeLatest, put } from 'redux-saga/effects'
-import { setIn, updateIn } from 'utils/immutable'
-import { closeModal } from 'modules/admin/core/ui/modals'
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { closeModal } from '~/modules/admin/core/ui/modals'
+import { createReducer } from '~/utils/redux'
+import { setIn, updateIn } from '~/utils/immutable'
 import importReducer from './import'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'

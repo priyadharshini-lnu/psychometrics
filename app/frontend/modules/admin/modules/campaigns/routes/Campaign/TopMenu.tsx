@@ -12,8 +12,8 @@ import {
   DashboardOutlined,
   LineChartOutlined,
 } from '@ant-design/icons'
-import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
-import routeUtils from 'utils/route'
+import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
+import routeUtils from '~/utils/route'
 
 const { I18n } = window
 
@@ -89,7 +89,7 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
     label: I18n.t('common.model.datasheet'),
     icon: <DatabaseOutlined />,
   })
-  campaignPermissions.viewDatasheets && menuItems.push({
+  campaignPermissions.manageCampaignAdmins && menuItems.push({
     key: 'admins',
     label: I18n.t('common.model.admins'),
     icon: <SolutionOutlined />,

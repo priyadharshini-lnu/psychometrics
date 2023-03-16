@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Card, Col, Button } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 
-import { Config } from 'modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
+import { Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
 import cardStyles from '../CardStyles.less'
 import styles from './NetworkCheck.less'
 import { CheckList } from '../CheckList'

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import {
   Properties,
   Props,
-} from 'modules/survey/components/modules/MultipleChoice/Properties'
+} from '~/modules/survey/components/modules/MultipleChoice/Properties'
 
 const testStore = (state=[], _) => {
   return state

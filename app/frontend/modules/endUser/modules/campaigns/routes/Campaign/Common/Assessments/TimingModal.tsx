@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Button, Modal,
 } from 'antd'
-import { secondsLeftFromNow, secondsToHHMMSS } from 'utils/time'
+import { secondsLeftFromNow, secondsToHHMMSS } from '~/utils/time'
 
 const { I18n } = window
 

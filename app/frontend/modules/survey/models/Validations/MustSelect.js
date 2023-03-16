@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { I18n } from 'modules/survey/store/StoreWatchman'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
 
 const MustSelect = function ({ minValue, maxValue }, question) {
   this.question = question

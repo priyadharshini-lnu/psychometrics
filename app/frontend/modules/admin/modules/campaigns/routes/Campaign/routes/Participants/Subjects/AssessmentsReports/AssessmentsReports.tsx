@@ -4,10 +4,10 @@ import {
   Row, Col, Button, PageHeader, Descriptions, Switch, Tag, Modal, message, Space,
 } from 'antd'
 import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import Modals from 'modules/admin/components/Modals/'
 import _ from 'lodash'
-import array from 'utils/array'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import Modals from '~/modules/admin/components/Modals/'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import array from '~/utils/array'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from '../../../AssessmentsReports/routes/Manage/AddReportModal'

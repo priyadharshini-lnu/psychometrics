@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { subscribeSocket } from 'modules/reports/core/temp/socket'
+import { subscribeSocket } from '~/modules/reports/core/temp/socket'
 
 export default connect(
   ({ report }) => ({

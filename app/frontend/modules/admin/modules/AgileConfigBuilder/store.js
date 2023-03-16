@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import api from 'middleware/api'
+import api from '~/middleware/api'
 
 
 let composeEnhancers = compose

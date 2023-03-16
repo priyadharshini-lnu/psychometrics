@@ -4,8 +4,8 @@ import {
   select, takeEvery, takeLatest, put, debounce,
 } from 'redux-saga/effects'
 import { Modal } from 'antd'
-import { getItem, setItem } from 'utils/storage'
 import { AnyAction } from 'redux'
+import { getItem, setItem } from '~/utils/storage'
 import {
   nextPage,
   setDirtyResults,

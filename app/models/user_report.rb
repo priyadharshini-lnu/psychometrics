@@ -2,6 +2,9 @@
 
 class UserReport < ApplicationRecord
   include WorkflowActiverecord
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
@@ -14,12 +17,21 @@ class UserReport < ApplicationRecord
   has_one :threesixty_campaign, through: :campaign
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
+  has_many :user_report_events
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, to: :report
 
   mount_base64_uploader :pdf, Private::PdfUploader, file_name: proc { 'report' }
+
+  # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts
+  # when serializing user_reports; :pdf attribute already exists in schema
+  has_one_attached :as_pdf_file, service: Settings.storage.private_storage_service
+  validates :as_pdf_file, content_type: %w[application/pdf]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :pdf
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 
@@ -29,7 +41,7 @@ class UserReport < ApplicationRecord
 
   workflow_column :approval_status
 
-  workflow do
+  workflow do # rubocop:disable Metrics/BlockLength
     state :not_ready do
       event :ready, transitions_to: :pending_qc
     end
@@ -54,6 +66,9 @@ class UserReport < ApplicationRecord
       ::UserReports::NotifyQc.call!(self) if %i[change_requested pending_qc].include?(to)
       ::UserReports::NotifyApprovals.call!(self) if to == :approved
       ::UserReports::NotifyApprovers.call!(self) if to == :qc_completed
+      update(approval_status_updated_at: Time.current)
+
+      update(approver_user_id: nil, approved_at: nil) if to == :change_requested
     end
   end
 

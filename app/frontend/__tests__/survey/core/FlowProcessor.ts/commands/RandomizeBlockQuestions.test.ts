@@ -1,4 +1,4 @@
-import RandomizeBlockQuestions from 'modules/survey/core/preview/FlowProcessor/commands/RandomizeBlockQuestions'
+import RandomizeBlockQuestions from '~/modules/survey/core/preview/FlowProcessor/commands/RandomizeBlockQuestions'
 
 test('randomizeBlockQuestions should return valid resuls', () => {
   const pages = [

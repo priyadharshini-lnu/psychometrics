@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import ModulesStore from 'modules/reports/store/ModulesStore'
-import Utils from 'modules/reports/utils/Utils'
+import ModulesStore from '~/modules/reports/store/ModulesStore'
+import Utils from '~/modules/reports/utils/Utils'
 import LayoutManager from './LayoutManager'
 import LogicElement from './logic/LogicElement'
 

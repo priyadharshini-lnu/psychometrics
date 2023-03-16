@@ -1,12 +1,12 @@
 import * as t from 'io-ts'
 
-import { appendToList, createReducer, removeFromList } from 'utils/redux'
 
 import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { appendToList, createReducer, removeFromList } from '~/utils/redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 
 const ParticipantInfoTR = {
   id: t.number,

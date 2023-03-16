@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import ModuleConfigs from 'constants/ModuleConfigs'
+import ModuleConfigs from '~/modules/survey/constants/ModuleConfigs'
 
 export const selectQuestion = (state, id) => state.questions[id] || {}
 

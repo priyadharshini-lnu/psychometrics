@@ -353,7 +353,6 @@ en:
       dimension:
         active: Active
         created_at: Created Date
-        factors_count: No. of Factors
         id: ID
         name: Name
         updated_at: Modified Date
@@ -612,6 +611,10 @@ en:
           has_dependent_relation: This report is assinged on users
           max_assessment_count: You have reached the limit of %{max} assessments
           min_assessment_count: The minimum number of assessments is %{min}
+        user:
+          attributes:
+            current_password:
+              invalid: Current password is incorrect
     models:
       administration/assessments/assign_form: Assigns Form
       assessment: Assessments
@@ -1114,7 +1117,7 @@ en:
         title: Rescore Responses
       reset:
         content: Are you sure you want to reset result?
-        successfully: Result data was successfully reseted.
+        successfully: The result data was successfully reset.
         title: Reset Result for assessment %{name}?
       update_assessor_form:
         select_assessor: Select Assessor Form
@@ -1215,6 +1218,12 @@ en:
       assessor_assessments: Assessor Assessments
       other_assessments: Other Assessments
       other_reports: Other Reports
+  change_password_page:
+    change_profile_details: Change Profile Details
+    old_password: Old Password
+    password: Password
+    password_confirmation: Password Confirmation
+    title: Change Password
   checking_wizard:
     audio_check:
       access: Access
@@ -1274,6 +1283,7 @@ en:
   common:
     actions:
       add: Add
+      archive: Archive
       cancel: Cancel
       close: Close
       delete: Delete
@@ -1285,6 +1295,7 @@ en:
       save: Save
       search: Search
       send: Send
+      unresolve: Unresolve
       update: Update
       upload: Upload
     column:
@@ -1295,7 +1306,12 @@ en:
       completion_count: Completion Count
       completion_status: Completion Status
       created_at: Created at
+      created_by: Created By
+      created_date: Created Date
+      details: Details
       id: Id
+      modified_by: Modified By
+      modified_date: Modified Date
       name: Name
       qc_user_list: QC Users List
       report_id: Report Id
@@ -1325,11 +1341,14 @@ en:
       download: Download
       minutes: Minutes
       na: N/A
+      none: None
       ok: Ok
       reference_language: Reference Language
       response: Response
       subject: Subject
       view_as: View as
+    validations:
+      should_be_whole_number: should be a whole number
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
@@ -1527,7 +1546,7 @@ en:
       max_login_attempts_reached: You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP
       otp: Code
       submit: Verify
-      success: Login with Two Factor Authentication successful
+      success: Login with Two Factor Authentication was successful
       title: One-Time Password
     unlocks:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
@@ -1637,6 +1656,10 @@ en:
       max_evaluators: you already have enough evaluators
   frontend:
     activate: Activate
+    admins:
+      actions:
+        remove:
+          success: Admin with name '%{adminName}' removed successfully.
     are_you_sure: Are you sure?
     assessment: Assessment
     assessment_groups:
@@ -1667,6 +1690,11 @@ en:
         remove:
           confirmation: Enter current client name given below in text box to remove client
           success: Client with name '%{clientName}' removed successfully
+      projects:
+        actions:
+          remove:
+            confirmation: Enter current project name given below in text box to remove project
+            success: Project with name '%{projectName}' removed successfully
     delete: Delete
     edit: Edit
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
@@ -2006,16 +2034,19 @@ en:
     female: Female
     first_name: First Name
     gender: Gender
+    incomplete: Your profile details is incomplete. Please complete your profile details
     last_name: Last Name
     locale: Preferred Language
     male: Male
     not_disclosed: Prefer not to disclose
+    old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
     password_confirmation: Password Confirmation
     success_update: Profile was saved successfully
     timezone: Timezone
     title: My Profile
     update: Update
+    update_required: Profile updates required
   profiles:
     edit:
       header: Profile Settings
@@ -2033,6 +2064,18 @@ en:
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
   report_approvals:
+    events:
+      approved_text: approved text
+      comment_added: added comment <i>%{text}</i>
+      comment_removed: removed comment
+      comment_resolved: resolved comment
+      comment_unresolved: unresolved comment
+      comment_updated: changed comment <s>%{oldText}</s> to <i>%{newText}</i>
+      created_text: added text
+      disapproved_text: dissaproved text
+      removed_text: removed text
+      status_changed: changed status from <i>%{from}</i> to <i>%{to}</i>
+      updated_text: updated text
     tabs:
       all: All
       approved: Approved
@@ -2373,7 +2416,6 @@ en:
       dimension:
         active: Active
         created_at: Created Date
-        factors_count: No. of Factors
         id: ID
         name: Name
         updated_at: Modified Date
@@ -2484,6 +2526,7 @@ en:
         manage_client_ids: Client Tenancy
         memberships: Client Tenancy
         name: Name
+        old_password: Old Password
         password: Password
         password_confirmation: Password confirmation
         role: Role
@@ -2565,8 +2608,11 @@ en:
   threesixty:
     accept_privacy_modal:
       accept: Accept
+      policy_link: Click here to read the privacy policy.
       reject: Reject
-      text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
+      text: |
+        Prior to proceeding to completing the tasks below, I confirm that I have read and agree to
+        The Talent Enterprise’s Privacy Policy and related guidelines regarding the use of my personal information.
       title: Data processing consent
     action: Action
     add: Add
@@ -2832,6 +2878,13 @@ en:
   user_reports:
     actions:
       regenerate: Regenerate
+    approval_statuses:
+      approved: Approved
+      change_requested: Change Requested
+      not_ready: Not Ready
+      pending_qc: Pending QC
+      qc_completed: QC Completed
+      qc_in_progress: QC in Progress
     messages:
       async_generation: Report generation in progress. You would be notified once report is generated.
       regenerate_successful: Report regeneration job scheduled successfully
@@ -2848,6 +2901,8 @@ en:
       generating: Generating
       not_prepared: Not Available
       prepared: Available
+  users:
+    password_change_success: Password changed successfully. Please login with your new password.
   validations:
     AudioResponse:
       in_progress:

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { message } from 'antd'
-import { ConfirmationModal } from 'glint'
-import { RemoveResource } from 'hooks/useResources/interfaces'
+import { RemoveResource } from '~/hooks/useResources/interfaces'
+import { ConfirmationModal } from '~/glint'
 
 const { I18n } = window
 

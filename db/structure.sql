@@ -92,6 +92,136 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.active_storage_attachments (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    record_type character varying NOT NULL,
+    record_id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.active_storage_attachments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.active_storage_attachments_id_seq OWNED BY public.active_storage_attachments.id;
+
+
+--
+-- Name: active_storage_blobs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.active_storage_blobs (
+    id bigint NOT NULL,
+    key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying,
+    metadata text,
+    service_name character varying NOT NULL,
+    byte_size bigint NOT NULL,
+    checksum character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.active_storage_blobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.active_storage_blobs_id_seq OWNED BY public.active_storage_blobs.id;
+
+
+--
+-- Name: active_storage_variant_records; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.active_storage_variant_records (
+    id bigint NOT NULL,
+    blob_id bigint NOT NULL,
+    variation_digest character varying NOT NULL
+);
+
+
+--
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.active_storage_variant_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_storage_variant_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.active_storage_variant_records_id_seq OWNED BY public.active_storage_variant_records.id;
+
+
+--
+-- Name: activesupport_tables_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.activesupport_tables_migrations (
+    id bigint NOT NULL,
+    table_name character varying NOT NULL,
+    model_name character varying NOT NULL,
+    last_processed_id integer NOT NULL
+);
+
+
+--
+-- Name: activesupport_tables_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.activesupport_tables_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: activesupport_tables_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.activesupport_tables_migrations_id_seq OWNED BY public.activesupport_tables_migrations.id;
+
+
+--
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -108,7 +238,8 @@ CREATE TABLE public.admin_jobs (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     total_tasks integer DEFAULT 1,
-    completed_tasks integer DEFAULT 0
+    completed_tasks integer DEFAULT 0,
+    exception character varying
 );
 
 
@@ -430,16 +561,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -589,7 +720,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -920,12 +1052,9 @@ CREATE TABLE public.clients (
     id integer NOT NULL,
     name character varying,
     subdomain character varying,
-    logo character varying,
-    design json,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    background character varying,
     type integer DEFAULT 0,
     licenses_count integer DEFAULT 0,
     number character varying,
@@ -942,12 +1071,10 @@ CREATE TABLE public.clients (
     end_level boolean DEFAULT false,
     hogan_group_name character varying,
     privacy_consent boolean,
-    secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
     locales json DEFAULT '[]'::json,
-    live_chat_token character varying,
-    design_migrated boolean DEFAULT false
+    live_chat_token character varying
 );
 
 
@@ -2449,6 +2576,38 @@ ALTER SEQUENCE public.pearson_assessment_settings_id_seq OWNED BY public.pearson
 
 
 --
+-- Name: pearson_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.pearson_assessments (
+    id bigint NOT NULL,
+    product_id character varying NOT NULL,
+    title character varying NOT NULL,
+    norms jsonb,
+    languages jsonb
+);
+
+
+--
+-- Name: pearson_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.pearson_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pearson_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.pearson_assessments_id_seq OWNED BY public.pearson_assessments.id;
+
+
+--
 -- Name: pearson_user_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2520,7 +2679,8 @@ CREATE TABLE public.privacy_consents (
     membership_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    user_id bigint
+    user_id bigint,
+    version smallint DEFAULT 1 NOT NULL
 );
 
 
@@ -3083,12 +3243,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4023,8 +4183,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -4421,12 +4580,12 @@ ALTER SEQUENCE public.user_report_comments_id_seq OWNED BY public.user_report_co
 
 CREATE TABLE public.user_report_events (
     id bigint NOT NULL,
-    user_report_id bigint,
     event_type character varying,
     initiator_id bigint,
     details jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_report_id bigint
 );
 
 
@@ -4468,7 +4627,10 @@ CREATE TABLE public.user_reports (
     external_added boolean DEFAULT false,
     approval_status character varying DEFAULT 'not_ready'::character varying,
     approval_status_updated_at timestamp without time zone,
-    approval_status_owner_id bigint
+    approver_user_id bigint,
+    qc_user_id integer,
+    qc_at timestamp without time zone,
+    approved_at timestamp without time zone
 );
 
 
@@ -4581,10 +4743,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -4711,6 +4873,34 @@ CREATE SEQUENCE public.webhook_subscriptions_id_seq
 --
 
 ALTER SEQUENCE public.webhook_subscriptions_id_seq OWNED BY public.webhook_subscriptions.id;
+
+
+--
+-- Name: active_storage_attachments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('public.active_storage_attachments_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_blobs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('public.active_storage_blobs_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_variant_records id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records ALTER COLUMN id SET DEFAULT nextval('public.active_storage_variant_records_id_seq'::regclass);
+
+
+--
+-- Name: activesupport_tables_migrations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.activesupport_tables_migrations ALTER COLUMN id SET DEFAULT nextval('public.activesupport_tables_migrations_id_seq'::regclass);
 
 
 --
@@ -5148,6 +5338,13 @@ ALTER TABLE ONLY public.pearson_assessment_settings ALTER COLUMN id SET DEFAULT 
 
 
 --
+-- Name: pearson_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_assessments ALTER COLUMN id SET DEFAULT nextval('public.pearson_assessments_id_seq'::regclass);
+
+
+--
 -- Name: pearson_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5572,6 +5769,38 @@ ALTER TABLE ONLY public.webhook_subscription_topics ALTER COLUMN id SET DEFAULT 
 --
 
 ALTER TABLE ONLY public.webhook_subscriptions ALTER COLUMN id SET DEFAULT nextval('public.webhook_subscriptions_id_seq'::regclass);
+
+
+--
+-- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_blobs
+    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: active_storage_variant_records active_storage_variant_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records
+    ADD CONSTRAINT active_storage_variant_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: activesupport_tables_migrations activesupport_tables_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.activesupport_tables_migrations
+    ADD CONSTRAINT activesupport_tables_migrations_pkey PRIMARY KEY (id);
 
 
 --
@@ -6084,6 +6313,14 @@ ALTER TABLE ONLY public.old_passwords
 
 ALTER TABLE ONLY public.pearson_assessment_settings
     ADD CONSTRAINT pearson_assessment_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pearson_assessments pearson_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_assessments
+    ADD CONSTRAINT pearson_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -6615,6 +6852,48 @@ CREATE UNIQUE INDEX index_53a664e244a4bc3ce19609177c48692ee2fa83fa ON public.thr
 --
 
 CREATE UNIQUE INDEX index_887f45023887ef83411209851cdd913a49fb74dd ON public.threesixty_email_template_translations USING btree (threesixty_email_template_id, locale);
+
+
+--
+-- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_active_storage_attachments_on_blob_id ON public.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+
+
+--
+-- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
+
+
+--
+-- Name: index_active_storage_variant_records_uniqueness; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.active_storage_variant_records USING btree (blob_id, variation_digest);
+
+
+--
+-- Name: index_activesupport_tables_migrations_on_model_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_activesupport_tables_migrations_on_model_name ON public.activesupport_tables_migrations USING btree (model_name);
+
+
+--
+-- Name: index_activesupport_tables_migrations_on_table_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_activesupport_tables_migrations_on_table_name ON public.activesupport_tables_migrations USING btree (table_name);
 
 
 --
@@ -8263,10 +8542,10 @@ CREATE INDEX index_user_report_events_on_user_report_id ON public.user_report_ev
 
 
 --
--- Name: index_user_reports_on_approval_status_owner_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_user_reports_on_approver_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_user_reports_on_approval_status_owner_id ON public.user_reports USING btree (approval_status_owner_id);
+CREATE INDEX index_user_reports_on_approver_user_id ON public.user_reports USING btree (approver_user_id);
 
 
 --
@@ -9051,7 +9330,7 @@ ALTER TABLE ONLY public.saville_user_assessments
 --
 
 ALTER TABLE ONLY public.user_reports
-    ADD CONSTRAINT fk_rails_6280270170 FOREIGN KEY (approval_status_owner_id) REFERENCES public.users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_6280270170 FOREIGN KEY (approver_user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -9391,6 +9670,14 @@ ALTER TABLE ONLY public.memberships
 
 
 --
+-- Name: active_storage_variant_records fk_rails_993965df05; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_variant_records
+    ADD CONSTRAINT fk_rails_993965df05 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+--
 -- Name: campaign_assessments fk_rails_99631752e1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9588,6 +9875,14 @@ ALTER TABLE ONLY public.proctoring_sessions
 
 ALTER TABLE ONLY public.user_reports
     ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
 
 
 --
@@ -9875,7 +10170,7 @@ ALTER TABLE ONLY public.assigns_reports
 --
 
 ALTER TABLE ONLY public.user_report_events
-    ADD CONSTRAINT fk_rails_eb9cac4a43 FOREIGN KEY (user_report_id) REFERENCES public.users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_eb9cac4a43 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
 
 
 --
@@ -10511,9 +10806,18 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221122133505'),
 ('20221122172755'),
 ('20221122172756'),
+('20221128115835'),
 ('20221205213642'),
+('20221207122631'),
 ('20221213173037'),
 ('20221214083458'),
-('20230117130759');
+('20221227102943'),
+('20230110201437'),
+('20230112110725'),
+('20230116123826'),
+('20230117130759'),
+('20230207074200'),
+('20230216143441'),
+('20230315112437');
 
 

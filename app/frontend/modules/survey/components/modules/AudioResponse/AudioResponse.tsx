@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 
-import { BuilderModel } from 'modules/survey/interfaces/questions/AudioResponse'
-import useForceUpdate from 'hooks/useUpdate'
-import TextEditor from 'components/TextEditor'
-import AudioRecorder from 'components/AudioRecorder'
+import { BuilderModel } from '~/modules/survey/interfaces/questions/AudioResponse'
+import useForceUpdate from '~/hooks/useUpdate'
+import TextEditor from '~/modules/survey/components/TextEditor'
+import AudioRecorder from '~/modules/survey/components/AudioRecorder'
 
 interface Props {
   model: BuilderModel

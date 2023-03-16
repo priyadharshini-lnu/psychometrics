@@ -22,6 +22,7 @@ const serializeModule = (module) => {
   }
   return {
     id: module.isNew ? undefined : module.id,
+    name: module.name,
     page_id: module.page_id,
     type: module.type,
     props,

@@ -6,9 +6,9 @@ import {
   Row, Col, PageHeader, Dropdown, Menu, Tag,
 } from 'antd'
 
-import { DirectionalNavigateBackIcon } from 'glint'
-import { fetchCampaigns } from 'modules/endUser/modules/campaigns/core/campaigns'
-import { RootState } from 'modules/endUser/core/rootReducers'
+import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { DirectionalNavigateBackIcon } from '~/glint'
 import styles from './styles.less'
 
 const { I18n } = window

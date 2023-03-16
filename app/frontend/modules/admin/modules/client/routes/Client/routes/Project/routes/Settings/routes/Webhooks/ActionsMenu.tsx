@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Button, Menu, Tooltip } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 
-import ConditionalDropdown from 'components/ConditionalDropdown'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 

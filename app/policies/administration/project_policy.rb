@@ -28,11 +28,11 @@ module Administration
       )
     end
 
-    private
-
     def can_manage_project?
-      @user.has_permission?(:projects, :manage, project_id: project_id)
+      has_permission?(:projects, :manage, project_id: project_id)
     end
+
+    private
 
     def can_view_project?
       @user.has_permission?(:projects, :view, project_id: project_id)

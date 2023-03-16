@@ -1,9 +1,9 @@
 import { Button, Result } from 'antd'
 import React from 'react'
 import { DashboardOutlined } from '@ant-design/icons'
-import { openModal } from 'modules/admin/core/ui/modals'
 import { connect, ConnectedProps } from 'react-redux'
-import Modals from 'modules/admin/components/Modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import Modals from '~/modules/admin/components/Modals'
 import { DashboardFormModal } from '../DashboardFormModal'
 
 const { I18n } = window

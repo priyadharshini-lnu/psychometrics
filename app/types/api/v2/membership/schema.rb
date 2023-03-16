@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+
+module Api
+  module V2
+    module Membership
+      class Schema < Api::Base::Schema
+        def self.resource
+          'memberships'
+        end
+
+        def self.attributes(attribute, _)
+          proc do
+            optional(:user_id).array(:str?)
+            attribute[:client_id].filled(:string)
+            attribute[:role].filled(:string)
+            attribute[:grant_names].filled(:hash).schema do
+              %i[
+                clients projects project_settings campaigns dashboards
+                messages sms_invites results registration_codes communications
+                assessors reports datasheets
+              ].map do |grant_name_key|
+                optional(grant_name_key).array(:str?)
+              end
+            end
+            optional(:first_name).filled(:string)
+            optional(:last_name).filled(:string)
+            optional(:email).filled(:string)
+          end
+        end
+
+        def self.relationships(_)
+          []
+        end
+      end
+    end
+  end
+end

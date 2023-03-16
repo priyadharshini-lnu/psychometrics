@@ -6,16 +6,16 @@ import {
 } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
-import { getModules } from 'modules/reports/core/builder/selectors'
+import { getModules } from '~/modules/reports/core/builder/selectors'
 import {
   closeRichEditor, selectModule, unselectModules, SelectedTypes,
-} from 'modules/reports/core/builder/actions'
-import { updateModule } from 'modules/reports/core/builder/module/actions'
-import { RootState } from 'modules/reports/core/rootReducers'
-import panelStore from 'modules/reports/store/PropertyPanelStore'
-import ScrollDispatcher from 'modules/reports/dispatchers/ScrollDispatcher'
-import utils from 'modules/reports/utils/Utils'
-import iconStyles from 'modules/reports/components/modules/Graph/components/ChartsMenu.less'
+} from '~/modules/reports/core/builder/actions'
+import { updateModule } from '~/modules/reports/core/builder/module/actions'
+import { RootState } from '~/modules/reports/core/rootReducers'
+import panelStore from '~/modules/reports/store/PropertyPanelStore'
+import ScrollDispatcher from '~/modules/reports/dispatchers/ScrollDispatcher'
+import utils from '~/modules/reports/utils/Utils'
+import iconStyles from '~/modules/reports/components/modules/Graph/components/ChartsMenu.less'
 
 import styles from './ModuleList.less'
 
@@ -48,25 +48,29 @@ const ICONS = {
 
 const ModuleIcon = ({ type }) => <span className={`${styles.icon} fa fa-${ICONS[type]}`} />
 
-const ModuleLabel = ({ module: { id, type, props } }) => {
+const ModuleLabel = ({
+  module: {
+    id, type, props, name,
+  },
+}) => {
   if (type === 'Text') {
-    return <>{`${utils.stripHTML(props.text).slice(0, 45)}...`}</>
+    return <>{name || `${utils.stripHTML(props.text).slice(0, 45)}...`}</>
   }
 
   if (type === 'Graph') {
     return (
       <>
-        {props.type
+        {(props.type
           ? <span className={`${iconStyles[props.type]} ${iconStyles.icon} ${styles.chartIcon}`} />
-          : 'Unselected '}
-        Chart
+          : 'Unselected ')}
+        {name}
       </>
     )
   }
 
   if (type === 'Table') {
     return (
-      <>{`${props.type || 'Unselected'}`}</>
+      <>{name || `${props.type || 'Unselected'}`}</>
     )
   }
 
@@ -74,7 +78,7 @@ const ModuleLabel = ({ module: { id, type, props } }) => {
     return (
       <>
         <img src={props.url} />
-        Image
+        {name || 'Image'}
       </>
     )
   }
@@ -101,7 +105,7 @@ const ModuleLabel = ({ module: { id, type, props } }) => {
           style={style}
         />
         {' '}
-        Shape
+        {name || 'Shape'}
       </>
     )
   }
@@ -155,7 +159,6 @@ const ModuleListComponent: FC<Props> = ({
               </Button>
             </div>
           </div>
-
         </div>
       ))}
     </Space>

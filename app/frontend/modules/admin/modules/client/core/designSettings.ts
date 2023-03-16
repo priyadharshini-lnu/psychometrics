@@ -1,8 +1,8 @@
 import ApiAction from 'interfaces/ApiAction'
-import { createReducer } from 'utils/redux'
 
 import * as t from 'io-ts'
 import { UploadFile } from 'antd/lib/upload/interface'
+import { createReducer } from '~/utils/redux'
 
 export const DesignSettingsTR = t.type({
   id: t.string,

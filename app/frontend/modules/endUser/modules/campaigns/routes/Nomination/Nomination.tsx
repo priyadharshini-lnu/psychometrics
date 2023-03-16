@@ -5,10 +5,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 
-import { SubHeader } from 'modules/endUser/modules/campaigns/components/SubHeader'
-import { PageHeader as GlintHeader } from 'glint'
-import LangDropdown from 'components/LangDropdown'
-import { SafeHTML } from 'components/SafeHTML'
+import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import {
   fetchNomination,
   removeNomination,
@@ -20,12 +17,15 @@ import {
   requestApproval,
   sendEvaluatorReminder,
   updateAllNominationStatus,
-} from 'modules/endUser/modules/campaigns/core/nomination'
-import { get as getAutocomplete, searchEvaluators } from 'modules/endUser/core/ui/autocomplete'
+} from '~/modules/endUser/modules/campaigns/core/nomination'
+import { get as getAutocomplete, searchEvaluators } from '~/modules/endUser/core/ui/autocomplete'
 import {
   requirementsSelector,
   allowedRelationshipsForNewNominations,
-} from 'modules/endUser/modules/campaigns/core/nomination/selectors'
+} from '~/modules/endUser/modules/campaigns/core/nomination/selectors'
+import { SafeHTML } from '~/components/SafeHTML'
+import LangDropdown from '~/components/LangDropdown'
+import { PageHeader as GlintHeader } from '~/glint'
 import { NominationForm } from './NominationForm/NominationForm'
 import { NominationTable } from './NominationTable/NominationTable'
 import { NameModal } from './NominationForm/NameModal'
@@ -38,6 +38,7 @@ const current = I18n.locale
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connector = connect((state: any) => ({
+  currentUser: state.currentUser,
   nomination: state.campaigns.nomination,
   instructions: state.campaigns.nomination.instructions,
   requirements: requirementsSelector(state.campaigns),
@@ -60,8 +61,9 @@ const connector = connect((state: any) => ({
 const { Content } = Layout
 
 const NominationComponent = (props) => {
+  const { fetchNomination, match, history } = props
   useEffect(() => {
-    props.fetchNomination(props.match.params)
+    fetchNomination(match.params)
   }, [])
 
   const [showPrompt, setShowPrompt] = useState(false)
@@ -110,7 +112,7 @@ const NominationComponent = (props) => {
       <Content className={styles.pageContent}>
         <SubHeader
           title={I18n.t('threesixty.nomination')}
-          onBack={() => props.history.push(`/threesixty_campaigns/${props.match.params.campaignId}`)}
+          onBack={() => history.push(`/threesixty_campaigns/${match.params.campaignId}`)}
         />
         <Row justify="center">
           <Col xs={24} lg={22} xl={20} xxl={14}>

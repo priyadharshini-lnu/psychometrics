@@ -1,1 +1,1 @@
-export { CountdownTimer, Notification } from './CountdownTimer'
+export { CountdownTimer, type Notification } from './CountdownTimer'

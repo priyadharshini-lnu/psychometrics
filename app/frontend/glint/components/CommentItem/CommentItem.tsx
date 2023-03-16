@@ -27,7 +27,7 @@ type Props = {
     }
   }
   onCommentRemove?:(commentId: string) => void
-  onCommentResolve?: (commentId: string) => void
+  onCommentResolve?: (commentId: string, resolved: boolean) => void
   onCommentEditSave?: (comment: {commentText: string, commentId: string}) => Promise<unknown>
   onRead?: (commentId: string) => void
 }
@@ -46,7 +46,8 @@ export const CommentItem: FC<Props> = ({
   const menuItems: ItemType[] = [
     canEdit ? { key: 'edit', label: I18n.t('common.actions.edit') } : null,
     canRemove ? { key: 'remove', label: I18n.t('common.actions.remove') } : null,
-    canResolve ? { key: 'resolve', label: I18n.t('common.actions.resolve') } : null,
+    canResolve && comment.resolved ? { key: 'resolve', label: I18n.t('common.actions.unresolve') } : null,
+    canResolve && !comment.resolved ? { key: 'resolve', label: I18n.t('common.actions.resolve') } : null,
   ]
   const showConfirm = () => {
     confirm({
@@ -68,7 +69,7 @@ export const CommentItem: FC<Props> = ({
       showConfirm()
     }
     if (key === 'resolve') {
-      onCommentResolve && onCommentResolve(comment.id)
+      onCommentResolve && onCommentResolve(comment.id, comment.resolved)
     }
   }
   const menu = <Menu items={menuItems} onClick={handleMenuClick} />

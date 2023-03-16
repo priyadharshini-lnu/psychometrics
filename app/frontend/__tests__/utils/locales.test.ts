@@ -1,5 +1,4 @@
-
-import {isRtl} from 'utils/locales'
+import {isRtl} from '~/utils/locales'
 
 test('isRtl', () => {
   expect(isRtl('ar')).toStrictEqual(true)

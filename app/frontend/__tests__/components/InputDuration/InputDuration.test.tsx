@@ -3,7 +3,7 @@ import { render, cleanup, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import invert from 'lodash/invert'
 
-import InputDuration, { maskUp, convertToInt } from 'components/InputDuration'
+import InputDuration, { maskUp, convertToInt } from '~/components/InputDuration'
 
 test('should match snapshot', () => {
   const { asFragment } = render(

@@ -1,8 +1,8 @@
 import {
   takeLatest, put,
 } from 'redux-saga/effects'
-import { updateModal } from 'modules/admin/core/ui/modals'
 import { AnyAction } from 'redux'
+import { updateModal } from '~/modules/admin/core/ui/modals'
 import {
   ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK,
 } from './actions'

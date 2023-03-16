@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useResources } from 'hooks/useResources'
+import { useResources } from '~/hooks/useResources'
 import { Task, TaskTR } from '../core'
 import { TasksList } from './TasksList'
 
@@ -10,14 +10,14 @@ export const Approved: React.FC = () => {
     responseType: TaskTR,
     trackUrl: true,
     apiConfig: {
-      include: ['campaign', 'report', 'user', 'approval_status_owner'],
+      include: ['campaign', 'report', 'user', 'approver_user', 'qc_user'],
       fields: {
         users: ['name', 'email'],
         campaigns: ['name'],
         reports: ['name'],
       },
       filter: {
-        approval_status_eq: 'approved ',
+        approval_status_in: ['approved'],
       },
     },
   })
@@ -28,7 +28,7 @@ export const Approved: React.FC = () => {
 
   return (
     <div>
-      <TasksList {...args} showApprover />
+      <TasksList {...args} />
     </div>
   )
 }

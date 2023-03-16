@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Typography, Input, Form } from 'antd'
-import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
+import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from '../Registration/styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
@@ -13,7 +13,7 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const PasswordExpiredComponent: React.FC<Props> = ({
-  csrfToken, errors, flash,
+  projectConfig, csrfToken, errors, flash,
 }) => (
   <div className={styles.container}>
     <Typography.Title level={3}>{I18n.t('auth.expired_password.title')}</Typography.Title>
@@ -24,7 +24,7 @@ const PasswordExpiredComponent: React.FC<Props> = ({
     <Form
       id="form-login"
       layout="vertical"
-      action="/users/password_expired"
+      action={projectConfig.id ? '/users/password_expired' : '/administration/password_expired'}
       method="post"
       onFinish={() => (document.getElementById('form-login') as HTMLFormElement).submit()}
     >

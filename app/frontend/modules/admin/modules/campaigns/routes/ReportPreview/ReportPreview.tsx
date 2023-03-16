@@ -4,11 +4,11 @@ import {
   Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu, Tag,
 } from 'antd'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
-import Report from 'modules/reports/report'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
 import _ from 'lodash'
-import { ApprovalStatuses } from 'modules/admin/modules/campaigns/core/userReports'
+import Report from '~/modules/reports/report'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { ApprovalStatuses } from '~/modules/admin/modules/campaigns/core/userReports'
 import { PropsFromRedux } from './connect'
 import Sidebar, { lookUpModules } from './Sidebar'
 import styles from './styles.less'
@@ -121,52 +121,54 @@ export default function ReportPreview ({
       </Dropdown>,
     ]
 
-    if ((userReport.approvalStatus === ApprovalStatuses.PendingQC
-        || userReport.approvalStatus === ApprovalStatuses.ChangeRequested)
-        && userReport.permissions.manageQc) {
-      actionList.unshift(
-        <Button
-          type="primary"
-          onClick={() => startQC(userReport.campaignId, userReport.id)}
-        >
-          {I18n.t('administration.report_review.review')}
-        </Button>,
-      )
-    }
-    if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.manageQc) {
-      actionList.unshift(...[
-        <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.send_for_approve')}
-        </Button>,
-        <Button type="default" onClick={() => abortQC(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.abort_qc')}
-        </Button>,
-      ])
-    }
-    if (userReport.approvalStatus === ApprovalStatuses.QCCompleted && userReport.permissions.manageApproval) {
-      const pageModules = lookUpModules(userReport.report, pages)
-      const approved = userReport.moduleOverrides.filter(m => m.approved).length
-      const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
+    if (userReport.requireApproval) {
+      if ((userReport.approvalStatus === ApprovalStatuses.PendingQC
+          || userReport.approvalStatus === ApprovalStatuses.ChangeRequested)
+          && userReport.permissions.manageQc) {
+        actionList.unshift(
+          <Button
+            type="primary"
+            onClick={() => startQC(userReport.campaignId, userReport.id)}
+          >
+            {I18n.t('administration.report_review.review')}
+          </Button>,
+        )
+      }
+      if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.manageQc) {
+        actionList.unshift(...[
+          <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.send_for_approve')}
+          </Button>,
+          <Button type="default" onClick={() => abortQC(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.abort_qc')}
+          </Button>,
+        ])
+      }
+      if (userReport.approvalStatus === ApprovalStatuses.QCCompleted && userReport.permissions.manageApproval) {
+        const pageModules = lookUpModules(userReport.report, pages)
+        const approved = userReport.moduleOverrides.filter(m => m.approved).length
+        const modulesCount = _.reduce(pageModules, (sum, { modules }) => (sum + modules.length), 0)
 
-      actionList.unshift(...[
-        <Button
-          type="primary"
-          disabled={approved !== modulesCount}
-          onClick={() => approveReport(userReport.campaignId, userReport.id)}
-        >
-          {I18n.t('administration.report_review.approve')}
-        </Button>,
-        <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.request_changes')}
-        </Button>,
-      ])
-    }
-    if (userReport.approvalStatus === ApprovalStatuses.Approved && userReport.permissions.manageApproval) {
-      actionList.unshift(
-        <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
-          {I18n.t('administration.report_review.remove_approval')}
-        </Button>,
-      )
+        actionList.unshift(...[
+          <Button
+            type="primary"
+            disabled={approved !== modulesCount}
+            onClick={() => approveReport(userReport.campaignId, userReport.id)}
+          >
+            {I18n.t('administration.report_review.approve')}
+          </Button>,
+          <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.request_changes')}
+          </Button>,
+        ])
+      }
+      if (userReport.approvalStatus === ApprovalStatuses.Approved && userReport.permissions.manageApproval) {
+        actionList.unshift(
+          <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
+            {I18n.t('administration.report_review.remove_approval')}
+          </Button>,
+        )
+      }
     }
 
     if (userReport.permissions.download) {

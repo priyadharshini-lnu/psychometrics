@@ -1,6 +1,6 @@
-import { setIn } from 'utils/immutable'
-import { createReducer } from 'utils/redux'
 import _ from 'lodash'
+import { setIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 import { INIT, EMPTY_TRASH } from '../actions'
 import {
   CREATE, ADD_QUESTION, REMOVE_QUESTION, MOVE_QUESTION_UP,

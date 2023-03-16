@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import ResultStore from 'modules/reports/store/ResultStore'
+import ResultStore from '~/modules/reports/store/ResultStore'
 
 export const Functions = {}
 

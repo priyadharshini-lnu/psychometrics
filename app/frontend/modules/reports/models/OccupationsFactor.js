@@ -21,27 +21,6 @@ _.extend(OccupationsFactor.prototype, {
       weight: this.weight,
     }
   },
-
-  isValid (scoring) {
-    if (!scoring || !scoring.results || !scoring.results.length) { return false }
-    const { value } = scoring.results[0]
-    switch (this.predicate) {
-      case 'equal_to':
-        return value === this.value
-      case 'not_equal_to':
-        return value !== this.value
-      case 'greater_then':
-        return value > this.value
-      case 'greater_then_or_equal':
-        return value >= this.value
-      case 'less_then':
-        return value < this.value
-      case 'less_then_or_equal':
-        return value <= this.value
-      default:
-        throw new Error(`unknown predicate: ${this.predicate}`)
-    }
-  },
 })
 
 export default OccupationsFactor

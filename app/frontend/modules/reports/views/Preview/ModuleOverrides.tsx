@@ -9,23 +9,23 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Store } from 'redux'
 import ReactMarkdown from 'react-markdown'
 import { renderToStaticMarkup } from 'react-dom/server'
-import htmldiff from 'libs/htmldiff'
-import { openRichEditor, closeRichEditor } from 'modules/reports/core/builder/actions'
+import cs from 'classnames'
+import FroalaEditor from 'react-froala-wysiwyg'
+import _ from 'lodash'
+import '~/libs/htmldiff.cjs'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import { openRichEditor, closeRichEditor } from '~/modules/reports/core/builder/actions'
 import {
   createTextOverride, updateTextOverride, approveTextOverride, removeTextOverride,
   selectModule, disapproveTextOverride,
-} from 'modules/admin/modules/campaigns/core/userReports'
-import I18nStore from 'modules/reports/store/I18nStore'
-import { SafeHTML } from 'components/SafeHTML'
-import cs from 'classnames'
-import { RootState } from 'modules/reports/core/rootReducers'
-import FroalaEditor from 'react-froala-wysiwyg'
-import config from 'modules/reports/components/modules/Text/components/froalaConfig'
-import ModuleInterface from 'modules/reports/core/interfaces/Module'
-import GetText from 'modules/reports/components/modules/Text/components/GetText'
-import PipedText from 'modules/reports/components/modules/Text/components/PipedText'
-import LookupResultTextValue from 'modules/reports/components/modules/Text/components/LookupResultTextValue'
-import _ from 'lodash'
+} from '~/modules/admin/modules/campaigns/core/userReports'
+import { RootState } from '~/modules/reports/core/rootReducers'
+import config from '~/modules/reports/components/modules/Text/components/froalaConfig'
+import ModuleInterface from '~/modules/reports/core/interfaces/Module'
+import GetText from '~/modules/reports/components/modules/Text/components/GetText'
+import PipedText from '~/modules/reports/components/modules/Text/components/PipedText'
+import LookupResultTextValue from '~/modules/reports/components/modules/Text/components/LookupResultTextValue'
+import { SafeHTML } from '~/components/SafeHTML'
 import styles from './styles.less'
 
 const connector = connect(
@@ -197,7 +197,7 @@ const OverrideComponent: FC<Props> = ({
             </>
           ) : (
             <>
-              {override?.content && (
+              {override?.content && (allowEdit || allowApprove) && (
               <Checkbox
                 className={cs(styles.checkbox)}
                 checked={showDiff}

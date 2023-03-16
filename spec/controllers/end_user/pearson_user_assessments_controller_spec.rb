@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
-  let(:user) { create(:user, :with_project_membership) }
+  let(:user) { create(:user, :with_project_membership, :with_photo) }
   let(:user_assessment) do
     create(:user_assessment, evaluator: user, pearson_user_assessment: build(:pearson_user_assessment))
   end

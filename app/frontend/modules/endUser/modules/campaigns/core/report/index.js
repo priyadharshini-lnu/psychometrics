@@ -1,5 +1,5 @@
 import humps from 'humps'
-import { setIn } from 'utils/immutable'
+import { setIn } from '~/utils/immutable'
 
 const FETCH_REPORTS = 'threeSixty/report/FETCH_REPORTS'
 const UPDATE_STATUS = 'threeSixty/report/UPDATE_STATUS'

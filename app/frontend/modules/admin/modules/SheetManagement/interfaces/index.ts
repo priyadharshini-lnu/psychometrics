@@ -1,4 +1,4 @@
-import { ColumnType } from 'modules/admin/modules/SheetManagement/core/list'
+import { ColumnType } from '~/modules/admin/modules/SheetManagement/core/list'
 
 export enum ParentResourceType {
   Project = 'project',

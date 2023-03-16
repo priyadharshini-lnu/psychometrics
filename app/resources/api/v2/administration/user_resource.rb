@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResource
-  attributes :name, :email
+  attributes :name, :email, :first_name, :last_name, :full_name
 
   ransack_filters %i[admins search_query with_access_to_campaign]
+
+  def full_name
+    name
+  end
 
   def name
     @model.decorate.display_name

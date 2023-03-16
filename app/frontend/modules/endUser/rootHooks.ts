@@ -1,5 +1,5 @@
-import { useWindowSize } from 'hooks/useWindowSize'
 import { useMedia as baseUseMedia } from 'react-use-media'
+import { useWindowSize } from '~/hooks/useWindowSize'
 
 export const useMedia = (type: 'md' | 'sm' | 'max-sm' | 'max-md') => {
   if (type === 'max-sm') return baseUseMedia({ maxWidth: 768 })

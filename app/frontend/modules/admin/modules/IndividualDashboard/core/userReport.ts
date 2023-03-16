@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import * as t from 'io-ts'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { AnyAction } from 'redux'
+import { createReducer } from '~/utils/redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 export const UserReportTR = t.type({
   id: t.number,

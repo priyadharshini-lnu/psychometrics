@@ -5,7 +5,8 @@ import {
   Row, Col, Form, Input, Button, Switch, Radio, Space, message,
 } from 'antd'
 import { MailOutlined } from '@ant-design/icons'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { useParams } from 'react-router-dom'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get as getSmtpSetting,
   SAVE_SETTINGS,
@@ -13,13 +14,12 @@ import {
   saveSettings,
   validateSettings,
   State as SmtpSetting,
-} from 'modules/admin/modules/client/core/smtpSetting'
-import { useParams } from 'react-router-dom'
-import { useUpdateEffect } from 'hooks/useUpdateEffect'
-import ResourceForm from 'components/ResourceForm'
-import { isRequestInProgress } from 'core/request'
-import Modals from 'modules/admin/components/Modals'
-import { openModal } from 'modules/admin/core/ui/modals'
+} from '~/modules/admin/modules/client/core/smtpSetting'
+import { useUpdateEffect } from '~/hooks/useUpdateEffect'
+import ResourceForm from '~/components/ResourceForm'
+import { isRequestInProgress } from '~/core/request'
+import Modals from '~/modules/admin/components/Modals'
+import { openModal } from '~/modules/admin/core/ui/modals'
 import { TestSettingModal } from './TestSettingModal'
 
 const connector = connect(

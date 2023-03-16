@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Input, Button, Form, AutoComplete, Space,
 } from 'antd'
-import userPresenter from 'presenters/user'
+import userPresenter from '~/presenters/user'
 import styles from './InlineInput.less'
 
 const { I18n } = window

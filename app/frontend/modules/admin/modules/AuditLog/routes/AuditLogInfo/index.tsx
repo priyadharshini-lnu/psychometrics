@@ -1,11 +1,11 @@
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { getCurrent, fetchCurrent } from 'modules/admin/modules/AuditLog/core'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
 import { Descriptions } from 'antd'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { getCurrent, fetchCurrent } from '~/modules/admin/modules/AuditLog/core'
 import styles from './styles.less'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript'

@@ -2,8 +2,8 @@ import {
   takeLatest, put, select, delay,
 } from 'redux-saga/effects'
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { createReducer } from '~/utils/redux'
 import { getCurrentCampaignId } from '../campaignDetails'
 
 export const FETCH = 'threeSixty/messageOptions/messageFETCH'

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Empty } from 'antd'
 
-import { PreviewModel, TableSectionsType, TableStyleType } from 'modules/reports/interfaces/tables/HighestLowest'
+import { PreviewModel, TableSectionsType, TableStyleType } from '~/modules/reports/interfaces/tables/HighestLowest'
 
 import QuestionType from './types/Question'
 import FactorType from './types/Factor'

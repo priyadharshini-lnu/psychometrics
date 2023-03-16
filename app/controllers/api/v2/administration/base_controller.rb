@@ -120,7 +120,7 @@ module Api
     end
 
     def project_id
-      params[:project_id] || params[:client_id] || project&.id
+      params[:project_id] || project&.id
     end
 
     def campaign
@@ -154,7 +154,7 @@ module Api
         model || model_class,
         nil,
         policy_class: policy_class,
-        project_id: project_id,
+        project_id: project_id || params[:client_id],
         campaign_id: campaign_id
       )
     end
@@ -179,6 +179,19 @@ module Api
 
     def policy_class
       @policy_class ||= "Api::Administration::#{model_class}Policy".safe_constantize
+    end
+
+    def base_response_meta
+      return {} if params[:include_meta].blank?
+
+      meta_keys = params[:include_meta] == '*' ? meta_details.keys.map(&:to_s) : params[:include_meta].split(',')
+      meta_details.each_with_object({}) do |(key, value), hash|
+        hash[key] = value.call if meta_keys.include?(key.to_s)
+      end
+    end
+
+    def meta_details
+      {}
     end
   end
 end

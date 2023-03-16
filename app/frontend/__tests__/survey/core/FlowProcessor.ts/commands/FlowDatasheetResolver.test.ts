@@ -1,4 +1,4 @@
-import FlowDatasheetResolver from 'models/logic/resolvers/FlowDatasheetResolver'
+import FlowDatasheetResolver from '~/modules/survey/models/logic/resolvers/FlowDatasheetResolver'
 
 const validCondition = {
   field: 'Name',

@@ -1,62 +1,150 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import {
   Row, Col, Form, Checkbox, Input, Select, Button,
 } from 'antd'
+import _ from 'lodash'
+import {
+  ProjectGeneralSettings as GeneralSettingsType,
+} from '~/modules/admin/modules/client/core/projectGeneralSettings'
+import ResourceForm from '~/components/ResourceForm'
+import { useResources } from '~/hooks/useResources/useResources'
 
 const { Option } = Select
 const { I18n } = window
 
-export const General: React.FC = () => (
-  <Row justify="space-between" className="pl">
-    <Col sm={24} md={16} xl={12} xxl={10}>
-      <Form
-        layout="horizontal"
-        labelAlign="left"
-        labelCol={{
-          sm: 24, md: 10, lg: 8, xl: 8,
-        }}
-      >
-        <Form.Item name="name" label={I18n.t('administration.projects.general_settings.name_label')} required>
-          <Input />
-        </Form.Item>
-        <Form.Item name="subdomain" label={I18n.t('administration.projects.general_settings.sub_domain_label')}>
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="projectNumber"
-          label={I18n.t('administration.projects.general_settings.project_number_label')}
-          required
+export const General: React.FC = () => {
+  const { projectId } = useParams<{ projectId: string }>()
+  const [form] = Form.useForm()
+  const [privacyChecked, setPrivacyChecked] = useState(false)
+  const [enableLiveChatChecked, setEnableLiveChatChecked] = useState(false)
+
+  const {
+    data, fetchSingle,
+  } = useResources<GeneralSettingsType>('projects')
+
+  const [project] = data
+
+  const { updateResource } = useResources<GeneralSettingsType>(
+    'projects',
+    {
+      basePath: `clients/${project?.clientId}`,
+    },
+  )
+
+  const transformValues = values => ({
+    ...values,
+    liveChatToken: values.enableLiveChat ? values.liveChatToken : null,
+  })
+
+
+  useEffect(() => {
+    fetchSingle({
+      id: projectId,
+    })
+  }, [projectId])
+
+  useEffect(() => {
+    if (project) {
+      form.setFieldsValue(project)
+      const privacyDetailsPresent = !_.isNull(project.text || project.link)
+      setPrivacyChecked(privacyDetailsPresent)
+      setEnableLiveChatChecked(project.enableLiveChat)
+    }
+  }, [project])
+
+
+  return (
+    <Row justify="space-between" className="pl">
+      <Col sm={24} md={16} xl={12} xxl={10}>
+        <ResourceForm
+          resourceName="projects"
+          resource={project}
+          showSuccessMessages
+          storeManager={{ form }}
+          formProps={{
+            labelAlign: 'left',
+            id: 'edit_project_general_settings',
+            preserve: false,
+          }}
+          request={{
+            updateResource,
+          }}
+          transformValues={transformValues}
+          scrollToFirstError
         >
-          <Input />
-        </Form.Item>
+          {() => (
+            <>
+              <Form.Item name="name" label={I18n.t('administration.projects.general_settings.name_label')} required>
+                <Input />
+              </Form.Item>
+              <Form.Item name="subdomain" label={I18n.t('administration.projects.general_settings.sub_domain_label')}>
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="number"
+                label={I18n.t('administration.projects.general_settings.project_number_label')}
+                required
+              >
+                <Input />
+              </Form.Item>
 
-        <Form.Item name="locales" label={I18n.t('administration.projects.general_settings.locales_label')}>
-          <Select mode="multiple">
-            <Option value="">English</Option>
-            <Option value="">Arabic</Option>
-            <Option value="">Deutsch</Option>
-          </Select>
-        </Form.Item>
+              <Form.Item name="locales" label={I18n.t('administration.projects.general_settings.locales_label')}>
+                <Select mode="multiple">
+                  <Option value="en">
+                    {I18n.t('languages.en')}
+                  </Option>
+                  <Option value="ar">
+                    {I18n.t('languages.ar')}
+                  </Option>
+                  <Option value="de">
+                    {I18n.t('languages.de')}
+                  </Option>
+                </Select>
+              </Form.Item>
 
-        <Form.Item name="dpConsent">
-          <Checkbox>{I18n.t('administration.projects.general_settings.dp_consent')}</Checkbox>
-        </Form.Item>
-        <Form.Item name="strongPassword">
-          <Checkbox>{I18n.t('administration.projects.general_settings.password')}</Checkbox>
-        </Form.Item>
-        <Form.Item name="privacyLink">
-          <Checkbox>{I18n.t('administration.projects.general_settings.privacy_link')}</Checkbox>
-        </Form.Item>
-        <Form.Item name="2fa">
-          <Checkbox>{I18n.t('administration.projects.general_settings.2fa')}</Checkbox>
-        </Form.Item>
-        <Form.Item name="liveChat">
-          <Checkbox>{I18n.t('administration.projects.general_settings.live_chat')}</Checkbox>
-        </Form.Item>
-        <Button type="primary" htmlType="submit" className="mb-16">
-          {I18n.t('administration.projects.general_settings.save_changes')}
-        </Button>
-      </Form>
-    </Col>
-  </Row>
-)
+              <Form.Item name="privacyConsent" valuePropName="checked">
+                <Checkbox>
+                  {I18n.t('administration.projects.general_settings.dp_consent')}
+                </Checkbox>
+              </Form.Item>
+
+              <Form.Item name="enablePrivacyLink" valuePropName="checked">
+                <Checkbox
+                  checked={privacyChecked}
+                  onChange={(e) => {
+                    setPrivacyChecked(e.target.checked)
+                  }}
+                >
+                  {I18n.t('administration.projects.general_settings.privacy_link')}
+                </Checkbox>
+              </Form.Item>
+              <Form.Item name="text" label="Privacy Text" hidden={!privacyChecked}>
+                <Input />
+              </Form.Item>
+              <Form.Item name="link" label="Privacy Link" hidden={!privacyChecked}>
+                <Input />
+              </Form.Item>
+              <Form.Item name="enableLiveChat" valuePropName="checked">
+                <Checkbox
+                  checked={enableLiveChatChecked}
+                  onChange={(e) => {
+                    setEnableLiveChatChecked(e.target.checked)
+                  }}
+                >
+                  {I18n.t('administration.projects.general_settings.live_chat')}
+                </Checkbox>
+              </Form.Item>
+              <Form.Item name="liveChatToken" label="Live Chat Token" hidden={!enableLiveChatChecked}>
+                <Input />
+              </Form.Item>
+              <Button type="primary" htmlType="submit" className="mb-16">
+                {I18n.t('administration.projects.general_settings.save_changes')}
+              </Button>
+            </>
+          )}
+        </ResourceForm>
+      </Col>
+    </Row>
+  )
+}

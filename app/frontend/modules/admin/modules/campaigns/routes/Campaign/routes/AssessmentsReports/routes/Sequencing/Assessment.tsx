@@ -5,7 +5,7 @@ import {
 import { MenuOutlined } from '@ant-design/icons'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 
-import { CampaignAssessment } from 'modules/admin/modules/campaigns/core/assessmentGroups'
+import { CampaignAssessment } from '~/modules/admin/modules/campaigns/core/assessmentGroups'
 
 interface Props {
   assessment?: CampaignAssessment

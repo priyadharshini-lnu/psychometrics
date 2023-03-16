@@ -14,9 +14,11 @@ module Administration
           Administration::ProjectPolicy,
           object,
           nil,
-          %w[
-            manage_project_admins
-            manage_project_smtp_settings
+          [
+            'can_manage_project',
+            'manage_project_admins',
+            'manage_project_smtp_settings',
+            %w[manage_project_general_settings update]
           ],
           {
             project_id: instance_options[:project_id],

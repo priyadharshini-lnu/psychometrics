@@ -2,14 +2,14 @@
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { getCurrent, fetchSingle } from 'modules/admin/modules/AssessorApp/core/users'
-import { get as getUserAssessments } from 'modules/admin/modules/AssessorApp/core/userAssessments'
 import {
   Table, Row, Col, PageHeader, Button,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { RootState } from 'modules/admin/core/rootReducers'
-import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import { getCurrent, fetchSingle } from '~/modules/admin/modules/AssessorApp/core/users'
+import { get as getUserAssessments } from '~/modules/admin/modules/AssessorApp/core/userAssessments'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import ReportList from './ReportList'
 
 const connecter = connect(

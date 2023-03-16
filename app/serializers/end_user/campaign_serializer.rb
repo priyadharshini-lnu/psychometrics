@@ -5,13 +5,19 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
-               :is_timed_campaign, :campaigns_count, :user_reports_available
+               :is_timed_campaign, :campaigns_count, :user_reports_available,
+               :privacy_consent_required
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
     has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
     has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
+
+    def privacy_consent_required
+      object.project.privacy_consent &&
+        !current_user.privacy_consents.exists?(version: Settings.privacy_policy_version)
+    end
 
     def is_timed_campaign
       object.timed?

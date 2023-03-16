@@ -4,15 +4,26 @@ require 'carrierwave/storage/fog'
 
 class MediaResponse < ApplicationRecord
   include EncodableId
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   mount_uploader :asset, Private::MediaResponseUploader
+
+  has_one_attached :as_asset, service: Settings.storage.private_storage_service
+  # TODO: add :asset content_type validation after ActiveStorage migration
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :asset
 
   belongs_to :users_assessment
   belongs_to :question
   belongs_to :assign
   belongs_to :users_result
 
-  validates :asset, filename_format: true
+  attr_accessor :skip_filename_validation
+
+  validates :asset, filename_format: true, unless: :skip_filename_validation
   validate :verify_multiple_take_limit, on: :create
 
   before_create :set_user_selected
@@ -21,8 +32,8 @@ class MediaResponse < ApplicationRecord
     asset&.filename&.split('/')&.last
   end
 
-  def video_file_path
-    asset.key.sub('${filename}', 'video.mp4')
+  def video_file_path(filename)
+    asset.key.sub('${filename}', filename)
   end
 
   def verify_multiple_take_limit

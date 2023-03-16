@@ -1,5 +1,5 @@
 
-import DefaultProps from 'modules/survey/constants/DefaultProps'
+import DefaultProps from '~/modules/survey/constants/DefaultProps'
 
 let id = 0
 

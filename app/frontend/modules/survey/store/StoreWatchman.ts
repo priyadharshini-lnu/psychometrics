@@ -1,5 +1,5 @@
 import { Store } from 'redux'
-import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 let store: Store
 

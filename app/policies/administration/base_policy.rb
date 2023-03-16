@@ -63,9 +63,12 @@ module Administration
       Pundit.policy_scope!(user, record.class)
     end
 
-    def has_permission?(resource_type, permission)
+    def has_permission?(resource_type, permission, options = {})
       @user.has_permission?(
-        resource_type, permission, project_id: project_id, campaign_id: campaign_id
+        resource_type,
+        permission,
+        project_id: options[:project_id] || project_id,
+        campaign_id: options[:campaign_id] || campaign_id
       )
     end
 

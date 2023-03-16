@@ -15,6 +15,14 @@ class BaseController < ActionController::Base
   rescue_from Rack::Timeout::RequestTimeoutException, with: :timeout
   rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
 
+  def change_password_required_path_for(_)
+    if current_user.is?(:regular)
+      super
+    else
+      administration_password_expired_path
+    end
+  end
+
   def authenticate_user!
     return if @anonymous_user
 

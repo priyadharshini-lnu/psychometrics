@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LibrarySerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
+
   attributes :id, :name, :description, :thumb, :file, :icon, :type, :parent_id, :created_at
 
   def thumb

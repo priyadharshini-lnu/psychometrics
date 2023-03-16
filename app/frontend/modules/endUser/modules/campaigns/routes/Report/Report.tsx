@@ -5,11 +5,11 @@ import {
 import { DownloadOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 
-import { PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from 'glint'
-import userPresenter from 'presenters/user'
-import statusPresenter from 'presenters/status'
-import ReportPreview from 'modules/reports/report'
-import { fetchReport, updateStatus, downloadReport } from 'modules/endUser/modules/campaigns/core/report'
+import userPresenter from '~/presenters/user'
+import statusPresenter from '~/presenters/status'
+import ReportPreview from '~/modules/reports/report'
+import { fetchReport, updateStatus, downloadReport } from '~/modules/endUser/modules/campaigns/core/report'
+import { PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from '~/glint'
 import styles from './Report.less'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

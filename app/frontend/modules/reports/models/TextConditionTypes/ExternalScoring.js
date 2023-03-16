@@ -1,5 +1,5 @@
-import Factors from 'modules/reports/commands/Factors'
 import _ from 'lodash'
+import Factors from '~/modules/reports/commands/Factors'
 import BaseType from './BaseType'
 
 class ExternalScoring extends BaseType {

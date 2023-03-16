@@ -5,10 +5,10 @@ import { Button, Modal, Typography } from 'antd'
 import { ExpandOutlined, CheckOutlined, StopOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
-import { PreviewModel } from 'modules/survey/interfaces/questions/MultipleChoice'
-import { I18nInterface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { PreviewModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
+import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
-import { EMPTY_IMAGE_SRC } from 'constants/image'
+import { EMPTY_IMAGE_SRC } from '~/constants/image'
 
 import styles from './styles.less'
 

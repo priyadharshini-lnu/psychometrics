@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { I18n } from 'modules/survey/store/StoreWatchman'
-import { getAnswer, getValidationKey } from 'modules/survey/utils/question'
+import { I18n } from '~/modules/survey/store/StoreWatchman'
+import { getAnswer, getValidationKey } from '~/modules/survey/utils/question'
 
 const MinLength = function ({ minLength }, question) {
   this.minLength = +minLength

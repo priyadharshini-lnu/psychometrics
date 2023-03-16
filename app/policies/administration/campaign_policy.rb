@@ -128,17 +128,15 @@ module Administration
     end
 
     def fetch_campaign_instructions?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
+      has_permission?(:campaigns, :manage_options)
     end
 
     def fetch_descriptions?
-      can_manage_options?
+      has_permission?(:campaigns, :manage_options)
     end
 
     def update_campaign_options?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_options, project_id: project_id, campaign_id: campaign_id
-      )
+      has_permission?(:campaigns, :manage_options)
     end
 
     def manage_messages?
@@ -219,10 +217,6 @@ module Administration
       @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
-    end
-
-    def can_manage_options?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
     end
 
     class Scope < Scope

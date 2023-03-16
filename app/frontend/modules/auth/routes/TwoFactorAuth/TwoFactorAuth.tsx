@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Typography, Input, Button as ButtonAnt, Form,
 } from 'antd'
-import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
+import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
@@ -15,7 +15,7 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const TwoFactorAuthComponent: React.FC<Props> = ({
-  csrfToken, user, errors, flash,
+  csrfToken, user, errors, flash, projectConfig,
 }) => (
   <div className={styles.container}>
     <Typography.Title level={3}>{I18n.t('auth.otp.title')}</Typography.Title>
@@ -41,10 +41,13 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
         disabled
       />
       <InputField
+        type="number"
         label={I18n.t('auth.otp.code')}
         name="code"
         placeholder={I18n.t('auth.otp.code_placeholder')}
         errors={errors.otp}
+        inputMode="numeric"
+        pattern="[0-9]*"
       />
       <ButtonAnt href="/users/two_factor_authentication/resend_code" type="link" className={styles.resendBtn} block>
         {I18n.t('auth.otp.resend')}
@@ -57,7 +60,12 @@ const TwoFactorAuthComponent: React.FC<Props> = ({
         className={styles.submit}
         block
       />
-      <ButtonAnt href="/users/sign_out" type="link" className={styles.signoutBtn} block>
+      <ButtonAnt
+        href={projectConfig.id ? '/users/sign_out' : '/administration/sign_out'}
+        type="link"
+        className={styles.signoutBtn}
+        block
+      >
         {I18n.t('auth.sign_out')}
       </ButtonAnt>
     </Form>

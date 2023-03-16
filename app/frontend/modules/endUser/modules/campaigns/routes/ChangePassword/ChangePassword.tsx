@@ -1,0 +1,87 @@
+import React from 'react'
+import {
+  Form, Layout, Typography, Input, Row, Col, Space,
+} from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { ButtonWithArrow, PageHeader as GlintPageHeader } from '~/glint'
+import ResourceForm from '~/components/ResourceForm'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { changePassword, CHANGE_PASSWORD } from '~/core/currentUser'
+import { isRequestInProgress } from '~/core/request'
+import styles from './ChangePassword.less'
+
+const { I18n } = window
+
+const connecter = connect((state: RootState) => ({
+  saveInProgress: isRequestInProgress(state, CHANGE_PASSWORD),
+}),
+{
+  changePassword,
+})
+
+type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux
+
+export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveInProgress }) => {
+  const handleChangePassword = values => changePassword(values).then(() => {
+    window.location.href = '/users/sign_in'
+  })
+
+  return (
+    <>
+      <GlintPageHeader />
+      <Layout.Content className={styles.pageContent}>
+        <Typography.Title level={3}>{I18n.t('change_password_page.title')}</Typography.Title>
+        <Row>
+          <Col xs={24} lg={12} xl={6}>
+            <ResourceForm
+              resourceName="passwords"
+              readableResourceName="Password"
+              scrollToFirstError
+              request={{
+                submit: handleChangePassword,
+              }}
+            >
+              {() => (
+                <>
+                  <Form.Item
+                    name="currentPassword"
+                    label={I18n.t('change_password_page.old_password')}
+                  >
+                    <Input.Password />
+                  </Form.Item>
+                  <Form.Item
+                    name="password"
+                    label={I18n.t('change_password_page.password')}
+                  >
+                    <Input.Password />
+                  </Form.Item>
+                  <Form.Item
+                    name="passwordConfirmation"
+                    label={I18n.t('change_password_page.password_confirmation')}
+                  >
+                    <Input.Password />
+                  </Form.Item>
+                  <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
+                    <Link to="/profile">{I18n.t('change_password_page.change_profile_details')}</Link>
+                    <ButtonWithArrow
+                      label={I18n.t('common.actions.update')}
+                      type="primary"
+                      htmlType="submit"
+                      className={styles.updateBtn}
+                      loading={saveInProgress}
+                      disabled={saveInProgress}
+                    />
+                  </Space>
+                </>
+              )}
+            </ResourceForm>
+          </Col>
+        </Row>
+      </Layout.Content>
+    </>
+  )
+}
+
+export const ChangePassword = connecter(ChangePasswordComponent)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Space } from 'antd'
 
-import { RECORDER_STATES } from 'modules/survey/constants/media'
+import { RECORDER_STATES } from '~/modules/survey/constants/media'
 
 const { I18n } = window
 

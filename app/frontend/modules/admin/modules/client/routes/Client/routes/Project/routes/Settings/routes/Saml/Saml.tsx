@@ -3,15 +3,15 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Form, Input, Button, Switch, message,
 } from 'antd'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { useParams } from 'react-router-dom'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get as getSamlSetting,
   UPDATE_SETTINGS,
-} from 'modules/admin/modules/client/core/samlSetting'
-import { useParams } from 'react-router-dom'
-import ResourceForm from 'components/ResourceForm'
-import { isRequestInProgress } from 'core/request'
-import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+} from '~/modules/admin/modules/client/core/samlSetting'
+import ResourceForm from '~/components/ResourceForm'
+import { isRequestInProgress } from '~/core/request'
 import { ConfigurationInfo } from './ConfigurationInfo'
 
 const connector = connect(

@@ -1,7 +1,7 @@
-import { createReducer } from 'utils/redux'
-import { updateIn, setIn } from 'utils/immutable'
-import Rule from 'models/Rule'
-import { get } from 'lodash'
+import _ from 'lodash'
+import { createReducer } from '~/utils/redux'
+import { updateIn, setIn } from '~/utils/immutable'
+import Rule from '~/modules/survey/models/Rule'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
@@ -126,7 +126,7 @@ const HANDLERS = {
   [UPDATE_EXTRA]: (state, { extra }) => ({ ...state, extra }),
   [SAVE_DATA_SHEET]: (state, { data }) => setIn(state, ['data_sheet_columns'], data),
   [TOGGLE_INSTRUCTIONS]: state => setIn(
-    state, ['instructions', 'enabled'], !get(state, ['instructions', 'enabled']),
+    state, ['instructions', 'enabled'], !_.get(state, ['instructions', 'enabled']),
   ),
   [UPDATE_INSTRUCTIONS_CONTENT]: (state, { content }) => setIn(
     state, ['instructions', 'content'], content,

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/ui/modals'
-import { openRichEditor, closeRichEditor } from 'modules/reports/core/builder/actions'
-import { getQuestions } from 'modules/reports/core/builder/selectors'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import { openRichEditor, closeRichEditor } from '~/modules/reports/core/builder/actions'
+import { getQuestions } from '~/modules/reports/core/builder/selectors'
 
 export default connect(
   (state, { module, model }) => ({

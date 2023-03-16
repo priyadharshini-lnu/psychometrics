@@ -1,6 +1,6 @@
 import { EventEmitter } from 'fbemitter'
-import AppStore from 'modules/reports/store/AppStore'
-import RequestsPool from 'modules/reports/cable/RequestsPool'
+import AppStore from '~/modules/reports/store/AppStore'
+import RequestsPool from '~/modules/reports/cable/RequestsPool'
 import NotificationDispatcher from './NotificationDispatcher'
 
 const dispatcher = new EventEmitter()

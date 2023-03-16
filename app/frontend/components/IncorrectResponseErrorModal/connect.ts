@@ -1,9 +1,9 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   getResponseDataMismatchRequest,
   clearResponseDataMismatched,
-} from 'core/request'
+} from '~/core/request'
 
 const connector = connect(
   (state: RootState) => ({

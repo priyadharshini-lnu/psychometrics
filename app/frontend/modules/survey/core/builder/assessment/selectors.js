@@ -1,6 +1,7 @@
-import { block, blocks, question } from 'store/schema'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
+import _ from 'lodash'
+import { block, blocks, question } from '~/modules/survey/store/schema'
 
 export const blocksSelector = (state, ids) => denormalize(ids, [block], state)
 export const questionsSelector = (state, ids) => denormalize(ids, [question], state)

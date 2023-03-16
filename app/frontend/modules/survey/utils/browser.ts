@@ -1,4 +1,4 @@
-import { UA_BROWSERS } from 'modules/survey/constants/browser'
+import { UA_BROWSERS } from '~/modules/survey/constants/browser'
 
 export const convertToUserAgentBrowserName = (
   browserName: string,

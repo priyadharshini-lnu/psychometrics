@@ -3,10 +3,10 @@ import {
   Space, Typography, Select, Checkbox,
 } from 'antd'
 
-import { PropertiesModel, GapType } from 'modules/reports/interfaces/tables/Gap'
+import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'
 
-import PropertyFilter from 'modules/reports/components/PropertyFilter/components/PropertyFilter'
-import PropertyNumber from 'modules/reports/components/PropertyNumber'
+import PropertyFilter from '~/modules/reports/components/PropertyFilter/components/PropertyFilter'
+import PropertyNumber from '~/modules/reports/components/PropertyNumber'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 import { FactorsList } from './dataSources/FactorList'
 import { QuestionList } from './dataSources/QuestionList'

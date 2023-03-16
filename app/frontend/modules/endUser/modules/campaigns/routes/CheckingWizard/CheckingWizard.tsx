@@ -7,12 +7,12 @@ import qs from 'qs'
 import Cookies from 'js-cookie'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { MediaQueryContext, PageHeader as GlintPageHeader } from 'glint'
-import { RootState } from 'modules/endUser/core/rootReducers'
-import { fetch } from 'modules/endUser/modules/campaigns/core/checkingWizard'
-import LangDropdown from 'components/LangDropdown'
 import { RouteComponentProps, useLocation } from 'react-router-dom'
-import { Checks, Config } from 'modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { fetch } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
+import { Checks, Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
+import LangDropdown from '~/components/LangDropdown'
+import { MediaQueryContext, PageHeader as GlintPageHeader } from '~/glint'
 import styles from './styles.less'
 import { SystemCheck } from './SystemCheck'
 import { NetworkCheck } from './NetworkCheck'
@@ -166,9 +166,6 @@ const CheckingWizardComponent: React.FC<Props> = ({
   )
 }
 
-export default CheckingWizard
-
-
 interface FinishProps {
   onFinish: () => void
 }
@@ -193,3 +190,4 @@ const Finish: React.FC<FinishProps> = ({ onFinish }) => {
 }
 
 export const CheckingWizard = connector(CheckingWizardComponent)
+export default CheckingWizard

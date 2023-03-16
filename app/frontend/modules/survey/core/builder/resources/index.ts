@@ -1,10 +1,10 @@
-import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
-import { setIn } from 'utils/immutable'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { setIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 import { INIT } from '../assessment/actions'
 import { allQuestions } from '../assessment/selectors'
 

@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "user+#{n}.#{rand(1..100)}@example.com" }
-    password { 'Pass123$1234' }
+    password { 'Password@Strong@123' }
     role { User::REGULAR_ROLE }
     first_name { 'test' }
     last_name { 'test' }
@@ -48,6 +48,19 @@ FactoryBot.define do
 
     trait :skip_validate do
       to_create { |instance| instance.save(validate: false) }
+    end
+
+    trait :with_photo do
+      after(:create) do |user|
+        user.user_profile.update(
+          updated_at: Time.current,
+          age: 1,
+          gender: 1,
+          timezone: 'MyString',
+          locale: 'MyString',
+          photo: Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/profile.png'))
+        )
+      end
     end
 
     trait :assessor do

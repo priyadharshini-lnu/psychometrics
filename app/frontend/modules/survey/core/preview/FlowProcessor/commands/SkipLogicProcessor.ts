@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import ConditionResolver from 'modules/survey/models/ConditionResolver'
-import QuestionSerializer from 'modules/survey/models/QuestionSerializer'
+import ConditionResolver from '~/modules/survey/models/ConditionResolver'
+import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { QuestionsInterface, ResultsInterface } from '../interfaces'
 
 export const END_OF_ASSESSMENT = 'EndOfAssessment'

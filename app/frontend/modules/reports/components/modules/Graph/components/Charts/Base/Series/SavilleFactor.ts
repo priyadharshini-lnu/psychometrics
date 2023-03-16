@@ -1,7 +1,7 @@
-import AppStore from 'modules/reports/store/AppStore'
-import { getSavilleFactorsScore } from 'modules/reports/commands/getSavilleFactorsScore'
-import { SavilleScore } from 'modules/reports/models/Result'
-import Module from 'modules/reports/core/interfaces/Module'
+import AppStore from '~/modules/reports/store/AppStore'
+import { getSavilleFactorsScore } from '~/modules/reports/commands/getSavilleFactorsScore'
+import { SavilleScore } from '~/modules/reports/models/Result'
+import Module from '~/modules/reports/core/interfaces/Module'
 
 type SavilleResults = {
   externalScoring: SavilleScore[]

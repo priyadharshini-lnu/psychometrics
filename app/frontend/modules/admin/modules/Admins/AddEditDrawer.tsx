@@ -1,5 +1,6 @@
-import React, { FC, useEffect } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import React, {
+  FC, useState, useEffect,
+} from 'react'
 import {
   Drawer,
   Form,
@@ -8,156 +9,148 @@ import {
   Typography,
   Space,
   Button,
-  Skeleton,
-  Input,
   Checkbox,
+  Select,
+  Input,
+  Spin,
   message,
   Divider,
 } from 'antd'
-
-import {
-  fetchSingle as fetchAdmin,
-  FETCH_SINGLE as FETCH_CAMPAIGN_SINGLE_ADMINS,
-  getCurrent as getCurrentAdmin,
-  SEARCH as SEARCH_ADMIN,
-  search as searchAdmin,
-  UpdateRequest as UpdateAdminRequest,
-  update as updateAdmin,
-  UPDATE as UPDATE_ADMIN,
-  CreateRequest as CreateAdminRequest,
-  create as createAdmin,
-  CREATE as CREATE_ADMIN,
-} from 'modules/admin/modules/Admins/core'
-import { isRequestInProgress } from 'core/request'
-import { RootState } from 'modules/admin/core/rootReducers'
-import { GrantType, ParentResourceType } from './constants'
+import _ from 'lodash'
+import { useHistory, useParams } from 'react-router-dom'
+import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import { useResources } from '~/hooks/useResources'
+import ResourceForm from '~/components/ResourceForm'
+import { UserDetails } from '~/modules/admin/modules/client/core/users'
+import { Admin, AdminPermissions, CurrentUserPermissions } from '~/modules/admin/modules/client/core/admin'
+import styles from './styles.less'
+import { AdminTypes, CampaignAdminGrants, ProjectAdminGrants } from './constants'
 
 const { I18n } = window
+const { Option } = Select
 
-const connector = connect(
-  (state: RootState) => ({
-    admin: getCurrentAdmin(state),
-    isFetching: isRequestInProgress(state, FETCH_CAMPAIGN_SINGLE_ADMINS),
-    isSearching: isRequestInProgress(state, SEARCH_ADMIN),
-    isUpdating: isRequestInProgress(state, UPDATE_ADMIN),
-    isCreating: isRequestInProgress(state, CREATE_ADMIN),
-  }),
-  {
-    fetchAdmin,
-    searchAdmin,
-    updateAdmin,
-    createAdmin,
-  },
-)
-
-type PropsFromRedux = ConnectedProps<typeof connector>
-
-interface OwnProps {
+interface Props {
+  updateAdmin?: UpdateResource<Admin>
+  createAdmin: CreateResource<Admin>
+  permissions: AdminPermissions
+  currentUserGrants: CurrentUserPermissions
+  isSuperAdmin: boolean
   isVisible: boolean
-  parentResourceType: ParentResourceType
-  parentResourceId: number
   isEditMode: boolean
-  isAddMode: boolean
   adminId: string
+  adminType: string
   handleClose: () => void
 }
 
-type Props = PropsFromRedux & OwnProps
-
 const AddEditDrawerComponent: FC<Props> = ({
   isVisible,
-  parentResourceType,
-  parentResourceId,
   isEditMode,
-  isAddMode,
-  adminId,
   handleClose,
-  fetchAdmin,
-  isFetching,
-  isSearching,
-  searchAdmin,
   updateAdmin,
-  isUpdating,
   createAdmin,
-  isCreating,
-  admin,
+  currentUserGrants,
+  isSuperAdmin,
+  permissions,
+  adminId,
+  adminType,
 }) => {
-  type FormDataType = {
-    email: string
-    firstName: string
-    lastName: string
-  } & Record<string, string | boolean | undefined>
+  const [form] = Form.useForm()
 
-  const [form] = Form.useForm<FormDataType>()
+  const [selected, setSelected] = useState([])
+
+  const [notFromList, setNotFromList] = useState(true)
+
+  const [open, setUserSelectOpen] = useState(true)
+
+  const [selectedUser, setSelectedUser] = useState<UserDetails | null>(
+    {
+      firstName: '', lastName: '', name: '', email: '', id: '',
+    },
+  )
+
+  const grantsHash = adminType === AdminTypes.ProjectAdmin
+    ? ProjectAdminGrants : CampaignAdminGrants
+
+  const { projectId } = useParams<{ projectId: string }>()
+  const { campaignId } = useParams<{ campaignId: string }>()
+
+  const historyPath = (adminType === AdminTypes.CampaignAdmin)
+    ? `/administration/projects/${projectId}/new_campaigns/${campaignId}/admins`
+    : `/administration/projects/${projectId}/admins`
+
+  const showRequestSuccessMessage = (response) => {
+    if (isEditMode) {
+      message.success(
+        I18n.t('administration.administrators.drawers.edit.update_success', {
+          name: `${response.firstName} ${response.lastName}`,
+        }),
+      )
+    } else {
+      message.success(
+        I18n.t('administration.administrators.drawers.edit.create_success', {
+          name: `${response.firstName} ${response.lastName}`,
+        }),
+      )
+    }
+    onClose()
+  }
+
+  const {
+    data: users, fetch: fetchUsers, isLoading: isUserLoading,
+  } = useResources<UserDetails>('users')
+
+  const {
+    fetchSingle, getResource, getErrors,
+  } = useResources<Admin>(
+    'memberships',
+    {
+      apiConfig: {
+        filter: {
+          with_role: adminType,
+          client_id_eq: projectId,
+          campaign_id_eq: campaignId,
+        },
+      },
+    },
+  )
+
+  const requestErrors = getErrors('add')
+
+  const errors = _.compact(
+    [
+      requestErrors && _.get(requestErrors[0], ['email', 'title']),
+      requestErrors && _.get(requestErrors[0], ['userId', 'title']),
+    ],
+  )
+
+  const admin = getResource(adminId)
 
   useEffect(() => {
     if (isEditMode) {
-      fetchAdmin(parentResourceType, parentResourceId, parseInt(adminId, 10))
+      fetchSingle({
+        id: adminId,
+      })
     }
-  }, [adminId, parentResourceId, isEditMode])
+  }, [adminId, isEditMode])
 
   useEffect(() => {
-    form.resetFields()
-
-    if (isEditMode || isAddMode) {
-      if (admin && admin.email && admin.email.length !== 0) {
-        const formFieldsValues = {
-          email: admin.email,
-          firstName: admin?.firstName ?? '',
-          lastName: admin?.lastName ?? '',
-          [`assessors-${GrantType.manage}`]:
-            admin?.grants?.data?.assessors?.includes(GrantType.manage),
-          [`campaigns-${GrantType.view}`]:
-            admin?.grants?.data?.campaigns?.includes(GrantType.view),
-          [`campaigns-${GrantType.manage}`]:
-            admin?.grants?.data?.campaigns?.includes(GrantType.manage),
-          [`campaigns-${GrantType.manage_users}`]:
-            admin?.grants?.data?.campaigns?.includes(GrantType.manage_users),
-          [`campaigns-${GrantType.manage_report_approvals}`]:
-            admin?.grants?.data?.campaigns?.includes(GrantType.manage_report_approvals),
-          [`campaigns-${GrantType.manage_options}`]:
-            admin?.grants?.data?.campaigns?.includes(GrantType.manage_options),
-          [`campaigns-${GrantType.stats}`]:
-            admin?.grants?.data?.campaigns?.includes(GrantType.stats),
-          [`smsInvites-${GrantType.view}`]:
-            admin?.grants?.data?.smsInvites?.includes(GrantType.view),
-          [`smsInvites-${GrantType.manage}`]:
-            admin?.grants?.data?.smsInvites?.includes(GrantType.manage),
-          [`communications-${GrantType.view}`]:
-            admin?.grants?.data?.communications?.includes(GrantType.view),
-          [`communications-${GrantType.manage}`]:
-            admin?.grants?.data?.communications?.includes(GrantType.manage),
-          [`datasheets-${GrantType.view}`]:
-            admin?.grants?.data?.datasheets?.includes(GrantType.view),
-          [`datasheets-${GrantType.manage}`]:
-            admin?.grants?.data?.datasheets?.includes(GrantType.manage),
-          [`registrationCodes-${GrantType.view}`]:
-            admin?.grants?.data?.registrationCodes?.includes(GrantType.view),
-          [`registrationCodes-${GrantType.manage}`]:
-            admin?.grants?.data?.registrationCodes?.includes(GrantType.manage),
-          [`results-${GrantType.view_report}`]:
-            admin?.grants?.data?.results?.includes(GrantType.view_report),
-          [`results-${GrantType.report_data}`]:
-            admin?.grants?.data?.results?.includes(GrantType.report_data),
-          [`results-${GrantType.raw_responses}`]:
-            admin?.grants?.data?.results?.includes(GrantType.raw_responses),
-          [`results-${GrantType.scores}`]:
-            admin?.grants?.data?.results?.includes(GrantType.scores),
-          [`results-${GrantType.reset_responses}`]:
-            admin?.grants?.data?.results?.includes(GrantType.reset_responses),
-          [`results-${GrantType.rescrore_responses}`]:
-            admin?.grants?.data?.results?.includes(
-              GrantType.rescrore_responses,
-            ),
-        }
-        form.setFieldsValue(formFieldsValues)
-      }
+    if (isEditMode) {
+      form.setFieldsValue(({
+        email: admin?.email ?? '',
+        firstName: admin?.firstName ?? '',
+        lastName: admin?.lastName ?? '',
+        grantNames: admin?.grantNames ?? {},
+      }))
     }
-  }, [admin?.id])
+  }, [admin])
+
+  useEffect(() => {
+    form.setFieldsValue(({ firstName: selectedUser?.firstName, lastName: selectedUser?.lastName }))
+  }, [selectedUser])
 
   const drawerTitle = isEditMode
-    ? I18n.t('administration.administrators.drawers.view.title_campaign_edit')
-    : I18n.t('administration.administrators.drawers.view.title_campaign_add')
+    ? I18n.t(`administration.administrators.drawers.view.edit_${adminType}`)
+    : I18n.t(`administration.administrators.drawers.view.add_${adminType}`)
 
   const actionButtonText = isEditMode
     ? I18n.t('administration.administrators.drawers.edit.update')
@@ -165,137 +158,42 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const onClose = () => {
     form.resetFields()
+    history.push(historyPath)
     handleClose()
   }
 
-  const handleOnSearch = (email: string) => {
-    form.resetFields()
+  const history = useHistory()
 
-    if (email.trim().length !== 0) {
-      searchAdmin(parentResourceType, parentResourceId, email)
-    }
-  }
-
-  const handleOnSubmit = async (values: FormDataType) => {
-    const {
-      firstName, lastName, email, ...valuesWithGrants
-    } = values
-
-    if (admin === null) {
-      return
-    }
-
-    const selectedGrants = Object.entries(valuesWithGrants)
-      .filter(([, value]) => value === true)
-      .map(([key]) => key)
-
-    // combining grants of same parent
-    const grants: Partial<
-      UpdateAdminRequest['resource']['grantsAttributes']['data']
-    > = selectedGrants.reduce((prevValue, currentValue) => {
-      const [grantItem, grantType] = currentValue.split('-')
-
-      const prevGrantType = prevValue?.[grantItem] ?? []
-      const newGrantType = [...prevGrantType, grantType]
-
-      return { ...prevValue, [grantItem]: newGrantType }
-    }, {})
-
-    const grantsAttributesData: UpdateAdminRequest['resource']['grantsAttributes']['data'] = {
-      clients: grants?.clients ?? [],
-      projects: grants?.projects ?? [],
-      campaigns: grants?.campaigns ?? [],
-      communications: grants?.communications ?? [],
-      results: grants?.results ?? [],
-      assessors: grants?.assessors ?? [],
-      registrationCodes: grants?.registrationCodes ?? [],
-      smsInvites: grants?.smsInvites ?? [],
-      datasheets: grants?.datasheets ?? [],
-    }
-
-    let userAttributes:
-      | UpdateAdminRequest['resource']['userAttributes']
-      | CreateAdminRequest['resource']['userAttributes']
+  const transformValues = (values) => {
     if (isEditMode) {
-      userAttributes = {
-        id: admin?.userId,
-        email,
-        firstName,
-        lastName,
-      }
-    } else {
-      userAttributes = {
-        email: admin?.email ?? '',
-        firstName,
-        lastName,
-      }
+      return values
     }
-
-    const updateData: UpdateAdminRequest | CreateAdminRequest = {
-      resource: {
-        userAttributes,
-        grantsAttributes: {
-          data: grantsAttributesData,
-        },
-      },
-    }
-
-    try {
-      if (isEditMode) {
-        await updateAdmin(
-          parentResourceType,
-          parentResourceId,
-          admin?.id ?? 0,
-          updateData as UpdateAdminRequest,
-        )
-        message.success(
-          I18n.t('administration.administrators.drawers.edit.update_success', {
-            name: `${firstName} ${lastName}`,
-          }),
-        )
-      } else {
-        await createAdmin(
-          parentResourceType,
-          parentResourceId,
-          updateData as CreateAdminRequest,
-        )
-        message.success(
-          I18n.t('administration.administrators.drawers.edit.create_success', {
-            name: `${firstName} ${lastName}`,
-          }),
-        )
-      }
-
-      onClose()
-    } catch (error) {
-      console.error(error)
-
-      if (isEditMode) {
-        message.error(
-          I18n.t('administration.administrators.drawers.edit.update_failed', {
-            name: `${firstName} ${lastName}`,
-          }),
-        )
-      } else {
-        message.error(
-          I18n.t('administration.administrators.drawers.edit.create_failed', {
-            name: `${firstName} ${lastName}`,
-          }),
-        )
-      }
+    return {
+      ...values,
+      campaignId,
+      clientId: isEditMode ? undefined : projectId,
+      role: adminType,
+      email: notFromList ? (values?.userId && values?.userId[0]) : undefined,
+      userId: notFromList ? [] : values.userId,
     }
   }
 
-  // Redirect to admin list if permission to edit isnt granted
+  const setRequiredStates = (value) => {
+    setNotFromList(!(_.includes(_.map(users, 'id'), value[0])))
+    setSelectedUser(_.find(users, { id: value[0] }) || null)
+    setSelected(value[0])
+    setUserSelectOpen(false)
+  }
+
   if (
     isEditMode
     && admin
-    && admin.permissions
-    && admin.permissions.edit === false
+    && permissions
+    && permissions.edit === false
   ) {
     message.error(
       I18n.t('administration.administrators.drawers.edit.no_edit_permission', {
-        name: `${admin.firstName} ${admin.lastName}`,
+        name: `${admin?.firstName} ${admin?.lastName}`,
       }),
     )
     onClose()
@@ -319,13 +217,15 @@ const AddEditDrawerComponent: FC<Props> = ({
         </Col>
         <Col>
           <Space>
-            {admin && (
+            {true && (
               <Button
                 htmlType="submit"
+                key="submit"
                 form="add_edit_admin_form"
                 type="primary"
-                loading={isUpdating || isCreating}
-                disabled={isFetching || isUpdating || isCreating}
+                onClick={() => {
+                  form.submit()
+                }}
               >
                 {actionButtonText}
               </Button>
@@ -340,422 +240,168 @@ const AddEditDrawerComponent: FC<Props> = ({
           </Space>
         </Col>
       </Row>
-      {isAddMode && admin === null && (
-        <>
-          <Typography.Text strong>
-            {I18n.t('administration.administrators.list.columns.email')}
-          </Typography.Text>
-          <Input.Search
-            className="mb-4"
-            type="email"
-            placeholder={I18n.t(
-              'administration.administrators.drawers.edit.search_placeholder',
+      <ResourceForm
+        resourceName="memberships"
+        resource={admin}
+        readableResourceName="Admin"
+        storeManager={{ form }}
+        formProps={{
+          labelAlign: 'left',
+          id: 'edit_participant_form',
+          preserve: false,
+        }}
+        scrollToFirstError
+        request={{
+          createResource: createAdmin,
+          updateResource: updateAdmin,
+        }}
+        onSuccessfulSubmission={showRequestSuccessMessage}
+        transformValues={transformValues}
+      >
+        {() => (
+          <>
+            {isEditMode && (
+              <>
+                <Form.Item
+                  label={I18n.t('administration.administrators.list.columns.email')}
+                  name="email"
+                >
+                  <Input type="email" disabled />
+                </Form.Item>
+                <Form.Item
+                  label={I18n.t(
+                    'administration.administrators.drawers.edit.first_name',
+                  )}
+                  name="firstName"
+                >
+                  <Input disabled />
+                </Form.Item>
+                <Form.Item
+                  label={I18n.t(
+                    'administration.administrators.drawers.edit.last_name',
+                  )}
+                  name="lastName"
+                >
+                  <Input disabled />
+                </Form.Item>
+              </>
             )}
-            enterButton={I18n.t(
-              'administration.administrators.drawers.edit.next',
+            {!isEditMode && (
+              <>
+                <Form.Item
+                  name="userId"
+                  label={I18n.t(
+                    'administration.administrators.drawers.edit.email',
+                  )}
+                  rules={[{ required: true }]}
+                  validateStatus={errors.length > 0 ? 'error' : 'success'}
+                  help={errors.length ? errors : null}
+                >
+                  <Select
+                    mode="tags"
+                    open={open}
+                    value={selected}
+                    onChange={(value) => {
+                      if (value?.length > 1) {
+                        value.pop()
+                      }
+                      setRequiredStates(value)
+                    }}
+                    onFocus={() => setUserSelectOpen(true)}
+                    onBlur={() => setUserSelectOpen(false)}
+                    showSearch
+                    onSearch={(value) => {
+                      setUserSelectOpen(true)
+                      fetchUsers({
+                        apiConfig: {
+                          filter: { search_query: value, admins: 'true' },
+                          fields: { users: ['id', 'email', 'first_name', 'last_name'] },
+                        },
+                      })
+                    }}
+                    notFoundContent={isUserLoading('fetch') ? <Spin size="small" /> : null}
+                    optionFilterProp="children"
+                  >
+                    {users.map(({ id, email }) => (
+                      <Option key={id} value={id}>
+                        {email}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  label={I18n.t(
+                    'administration.administrators.drawers.edit.first_name',
+                  )}
+                  name="firstName"
+                  rules={[
+                    {
+                      required: true,
+                      message: I18n.t(
+                        'administration.administrators.drawers.edit.first_name_required',
+                      ),
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={I18n.t(
+                    'administration.administrators.drawers.edit.last_name',
+                  )}
+                  name="lastName"
+                  rules={[
+                    {
+                      required: true,
+                      message: I18n.t(
+                        'administration.administrators.drawers.edit.last_name_required',
+                      ),
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </>
             )}
-            allowClear={false}
-            loading={isSearching}
-            disabled={isSearching}
-            onSearch={handleOnSearch}
-          />
-        </>
-      )}
-      <Skeleton loading={isFetching || isSearching} active title>
-        {admin !== null && (
-          <Form
-            id="add_edit_admin_form"
-            form={form}
-            layout="vertical"
-            autoComplete="off"
-            scrollToFirstError
-            preserve={false}
-            onFinish={handleOnSubmit}
-          >
-            <Form.Item
-              label={I18n.t('administration.administrators.list.columns.email')}
-              name="email"
-            >
-              <Input type="email" disabled />
-            </Form.Item>
-            <Form.Item
-              label={I18n.t(
-                'administration.administrators.drawers.edit.first_name',
-              )}
-              name="firstName"
-              rules={[
-                {
-                  required: true,
-                  message: I18n.t(
-                    'administration.administrators.drawers.edit.first_name_required',
-                  ),
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={I18n.t(
-                'administration.administrators.drawers.edit.last_name',
-              )}
-              name="lastName"
-              rules={[
-                {
-                  required: true,
-                  message: I18n.t(
-                    'administration.administrators.drawers.edit.last_name_required',
-                  ),
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Typography.Title level={5}>
-              {I18n.t('administration.administrators.drawers.edit.permissions')}
-            </Typography.Title>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_assessors',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
+            {_.map(grantsHash, (grants, grantFor) => (
+              <>
                 <Form.Item
-                  name={`assessors-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
+                  name={['grantNames', `${grantFor}`]}
+                  label={_.startCase(grantFor)}
+                  initialValue={
+                    _.map(admin?.grantNames?.[grantFor], grantName => grantName)
+                  }
                 >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
+                  { isSuperAdmin ? (
+                    <Checkbox.Group className={styles.grants_checkbox_group}>
+                      {_.map(grants, grant => (
+                        <Checkbox value={grant}>
+                          {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
+                        </Checkbox>
+                      ))}
+                    </Checkbox.Group>
+                  )
+                    : (
+                      <Checkbox.Group className={styles.grants_checkbox_group}>
+                        {_.map(grants, grant => (
+                          _.get(currentUserGrants, grantFor, []).includes(grant) && (
+                          <Checkbox value={grant}>
+                            {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
+                          </Checkbox>
+                          )
+                        ))}
+                      </Checkbox.Group>
+                    )
+                  }
                 </Form.Item>
-                <Form.Item
-                  name={`assessors-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_campaigns',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`campaigns-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`campaigns-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`campaigns-${GrantType.manage_users}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage_users',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`campaigns-${GrantType.manage_options}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage_options',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`campaigns-${GrantType.manage_report_approvals}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.manage_report_approvals',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`campaigns-${GrantType.stats}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.stats',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_sms_invites',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`smsInvites-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`smsInvites-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_communication',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`communications-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`communications-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_datasheet',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`datasheets-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`datasheets-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_regcode',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`registrationCodes-${GrantType.view}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`registrationCodes-${GrantType.manage}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_manage',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-            <Row className="mb-4" gutter={24}>
-              <Col span={4}>
-                <Typography.Text strong>
-                  {I18n.t(
-                    'administration.administrators.drawers.edit.permission_results',
-                  )}
-                </Typography.Text>
-              </Col>
-              <Col>
-                <Form.Item
-                  name={`results-${GrantType.view_report}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view_report',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`results-${GrantType.download_report}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_download_report',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`results-${GrantType.report_data}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view_report_data',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`results-${GrantType.raw_responses}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view_raw_responses',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`results-${GrantType.scores}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_view_scores',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`results-${GrantType.reset_responses}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_reset_responses',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item
-                  name={`results-${GrantType.rescrore_responses}`}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>
-                    {I18n.t(
-                      'administration.administrators.drawers.edit.can_rescore_responses',
-                    )}
-                  </Checkbox>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Divider />
-          </Form>
+                <Divider />
+              </>
+            ))}
+          </>
         )}
-      </Skeleton>
+      </ResourceForm>
     </Drawer>
   )
 }
 
-export const AddEditDrawer = connector(AddEditDrawerComponent)
+export const AddEditDrawer = AddEditDrawerComponent

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import ResourceFormModal from 'components/ResourceFormModal'
 import { Form, Input, Select } from 'antd'
-import { STATUSES, TYPES as CAMPAIGN_TYPES } from 'constants/campaign'
-import { TYPES as THREESIXTY_TYPES } from 'modules/admin/constants/threesixtyCampaign'
-import { CampaignTemplate, Assessment } from 'modules/admin/modules/campaigns/core/list'
-import { Factor } from 'modules/admin/modules/campaigns/core/factors'
-
 import _ from 'lodash'
+import ResourceFormModal from '~/components/ResourceFormModal'
+import { STATUSES, TYPES as CAMPAIGN_TYPES } from '~/constants/campaign'
+import { TYPES as THREESIXTY_TYPES } from '~/modules/admin/constants/threesixtyCampaign'
+import { CampaignTemplate, Assessment } from '~/modules/admin/modules/campaigns/core/list'
+import { Factor } from '~/modules/admin/modules/campaigns/core/factors'
+
 import { PropsFromRedux } from './connect'
 
 const { Option } = Select

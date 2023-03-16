@@ -9,7 +9,7 @@ import {
   UpOutlined,
 } from '@ant-design/icons'
 
-import { SafeHTML } from 'components/SafeHTML'
+import { SafeHTML } from '~/components/SafeHTML'
 
 import { AdminJob as AdminJobI } from '../../interfaces'
 
@@ -22,7 +22,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
   const hasMore = job.isValid && (job.errorMessages.length || job.content || !!job.details.length)
 
   const getStatus = (job: AdminJobI) => {
-    if (job.errorMessages.length || job.status === 'failed') return 'exception'
+    if (job.errorMessages.length || job.exception || job.status === 'failed') return 'exception'
     if (job.status === 'completed') return 'success'
     return 'active'
   }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import ResourceFormModal from 'components/ResourceFormModal'
-import { STATUSES, TYPES } from 'constants/campaign'
 import {
   Form, Input, Select, DatePicker, Alert, Space,
 } from 'antd'
 import _ from 'lodash'
 import moment from 'moment'
+import { STATUSES, TYPES } from '~/constants/campaign'
+import ResourceFormModal from '~/components/ResourceFormModal'
 
 const { I18n } = window
 const { Option } = Select

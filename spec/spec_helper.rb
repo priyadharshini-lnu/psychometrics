@@ -7,6 +7,7 @@ require 'rails_helper'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'
 require 'support/mailer_macros'
+
 RSpec.configure do |config|
   config.color = true
   config.extend(WithModel)

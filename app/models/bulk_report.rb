@@ -2,11 +2,21 @@
 
 class BulkReport < ApplicationRecord
   include Rails.application.routes.url_helpers
+  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
+  # TODO: remove after migration to ActiveStorage
+  include ActiveStorageSync
 
   belongs_to :user
 
   mount_uploaders :files, Private::BulkReportUploader
 
+  has_many_attached :as_files, service: Settings.storage.private_storage_service
+  validates :as_files, content_type: %w[zip]
+  # TODO: remove after migration to ActStor
+  # list of CarrierWave attributes to be synced to ActiveStorage
+  sync_to_active_storage :files
+
+  # TODO: remove after ActiveStorage implementation?
   def store_dir
     "uploads/#{self.class.to_s.underscore}/files/#{id}"
   end

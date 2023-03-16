@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
-import BlockModel from 'modules/survey/models/Block'
-import QuestionModel from 'modules/survey/models/Question'
+import BlockModel from '~/modules/survey/models/Block'
+import QuestionModel from '~/modules/survey/models/Question'
 
 const SerializeTrash = {
   run (items: any): any {

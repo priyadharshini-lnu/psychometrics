@@ -1,30 +1,30 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Checkbox, Layout, InputNumber,
+  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
-import { RootState } from 'modules/endUser/core/rootReducers'
-import { PageHeader } from 'glint'
-import { ButtonWithArrow } from 'glint/components/ButtonWithArrow'
-import LangDropdown from 'components/LangDropdown'
-import Utils from 'modules/reports/utils/Utils'
 import _ from 'lodash'
-import array from 'utils/array'
-
+import { Link } from 'react-router-dom'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import Utils from '~/modules/reports/utils/Utils'
+import LangDropdown from '~/components/LangDropdown'
 import {
   sync,
   get as getUser,
   uploadPhoto,
-} from 'core/currentUser'
+} from '~/core/currentUser'
+import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
+import { PageHeader } from '~/glint'
+import array from '~/utils/array'
 import { CustomField } from './fields/CustomField'
 import { CropperModal } from './CropperModal'
 
 import styles from './styles.less'
 
-const { Title } = Typography
+const { Text, Title } = Typography
 const { I18n } = window
 const locales = I18n.availableLocales
 const current = I18n.locale
@@ -57,7 +57,6 @@ const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
 function ProfileComponent ({
   user, uploadPhoto, sync, fields, lockedFields, requiredFields,
 }) {
-  const [changePassword, setChangePassword] = useState(false)
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
@@ -67,12 +66,12 @@ function ProfileComponent ({
       const form = new FormData()
       canvas.toBlob((blob) => {
         if (blob) {
-          form.append('photo', blob, 'file.png')
+          form.append('photo', blob, 'file.jpg')
           uploadPhoto(form).then(() => {
             setShowCropper(false)
           })
         }
-      }, 'image/png')
+      }, 'image/jpg')
     }
   }
 
@@ -90,7 +89,6 @@ function ProfileComponent ({
     sync(data)
       .then(() => {
         message.success(I18n.t('profile.success_update'), 5)
-        setChangePassword(false)
         setErrors({})
       }).catch((errors) => {
         setErrors(errors)
@@ -98,11 +96,6 @@ function ProfileComponent ({
   }
 
   const onChangeFile = ({ file }) => {
-    if (file.type === 'image/svg+xml') {
-      const form = new FormData()
-      form.append('photo', file, file.name)
-      return uploadPhoto(form)
-    }
     const blob = URL.createObjectURL(file)
 
     setImage({
@@ -133,6 +126,19 @@ function ProfileComponent ({
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         <div className={styles.container}>
+          {user.updateProfileRequired && (
+            <Row>
+              <Col span={18}>
+                <Title level={5}>{I18n.t('profile.update_required')}</Title>
+                <Space size="middle" direction="vertical">
+                  <Text>{user.updateProfileMessage}</Text>
+                </Space>
+              </Col>
+              <Col span={6} className={styles.progressCol}>
+                <Progress percent={user.profileCompletionPercentage} type="circle" />
+              </Col>
+            </Row>
+          )}
           <Row gutter={[32, 32]}>
             <Col span={24}>
               <Title level={3}>{I18n.t('profile.title')}</Title>
@@ -141,7 +147,7 @@ function ProfileComponent ({
                   <Form.Item>
                     <Upload
                       listType="picture-card"
-                      accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
+                      accept=".jpg, .jpeg, |image/*"
                       showUploadList={false}
                       maxCount={1}
                       className={styles.upload}
@@ -203,12 +209,16 @@ function ProfileComponent ({
                         <Form.Item
                           name="age"
                           label={I18n.t('profile.age')}
-                          hasFeedback
                           help={errors?.age}
                           required={requiredFields.age}
                           validateStatus={errors?.age ? 'error' : ''}
+                          rules={[{ pattern: /^\d*$/, message: I18n.t('common.validations.should_be_whole_number') }]}
                         >
-                          <InputNumber className={styles.numberInput} size="large" disabled={lockedFields.age} />
+                          <InputNumber
+                            className={styles.numberInput}
+                            size="large"
+                            disabled={lockedFields.age}
+                          />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
@@ -263,34 +273,6 @@ function ProfileComponent ({
                         ))}
                       </Select>
                     </Form.Item> */}
-                    <Checkbox
-                      checked={changePassword}
-                      onChange={({ target }) => setChangePassword(target.checked)}
-                    >
-                      {I18n.t('profile.change_password')}
-                    </Checkbox>
-                    {changePassword && (
-                      <div>
-                        <Form.Item
-                          hasFeedback
-                          className="mtl"
-                          help={errors?.password}
-                          validateStatus={errors?.password ? 'error' : ''}
-                          name="password"
-                          label={I18n.t('profile.password')}
-                        >
-                          <Input type="password" />
-                        </Form.Item>
-                        <Form.Item
-                          name="passwordConfirmation"
-                          help={errors?.passwordConfirmation}
-                          validateStatus={errors?.passwordConfirmation ? 'error' : ''}
-                          label={I18n.t('profile.password_confirmation')}
-                        >
-                          <Input type="password" />
-                        </Form.Item>
-                      </div>
-                    )}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
                         <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
@@ -310,12 +292,14 @@ function ProfileComponent ({
                         </Col>
                       ))}
                     </Row>
-                    <ButtonWithArrow
-                      label={I18n.t('profile.update')}
-                      type="primary"
-                      htmlType="submit"
-                      className={styles.submit}
-                    />
+                    <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
+                      <Link to="/change_password">{I18n.t('change_password_page.title')}</Link>
+                      <ButtonWithArrow
+                        label={I18n.t('profile.update')}
+                        type="primary"
+                        htmlType="submit"
+                      />
+                    </Space>
                   </Form>
                   <CropperModal
                     show={showCropper}

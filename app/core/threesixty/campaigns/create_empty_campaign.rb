@@ -39,6 +39,7 @@ module Threesixty
                             category: Assessment::CATEGORIES[:threesixty])
         report.set_default_color
         report.assessments << assessment
+        report.provider = 'internal'
         report.save!
         threesixty_campaign.assessment_id = assessment.id
         threesixty_campaign.report_id = report.id

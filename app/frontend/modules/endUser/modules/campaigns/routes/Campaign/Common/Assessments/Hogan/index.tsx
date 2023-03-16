@@ -3,36 +3,25 @@ import {
   Row, Col, Avatar, Input, message,
 } from 'antd'
 
-import { UserAssessment } from 'modules/endUser/modules/campaigns/core/userAssessment/interfaces'
+import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
+import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
+import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { DetailsCard } from '~/glint'
+import { HoganData } from '~/modules/endUser/modules/campaigns/core/campaigns'
 
-import { StatusText } from 'modules/endUser/modules/campaigns/components/StatusText'
-import { TruncatedTitle } from 'modules/endUser/modules/campaigns/components/TruncatedTitle'
-import { DetailsCard } from 'glint'
 import { PrivacyModal } from '../PrivacyModal'
 
 import styles from './styles.less'
 
 const { I18n } = window
 
-interface HoganData {
-  url: string
-  userId: string
-  password: string
-  uniqueId: string
-  firstName: string
-  lastName: string
-  directAssessmentId: string
-  displayInformedConsent: string
-  returnUrl: string
-  languageId: string
-}
-
 interface Props {
   userAssessment: UserAssessment
-  acceptPolicy(): Promise<unknown>
+  acceptPolicy(version: number): Promise<unknown>
   view: string
   disabled: boolean
   loginHogan(url: string): Promise<{ response: HoganData }>
+  privacyConsentRequired: boolean
 }
 
 const ctaTextData = {
@@ -42,7 +31,7 @@ const ctaTextData = {
 }
 
 export const Hogan: React.FC<Props> = ({
-  userAssessment, acceptPolicy, loginHogan, view, disabled,
+  userAssessment, acceptPolicy, loginHogan, view, disabled, privacyConsentRequired,
 }) => {
   let taskStatus = userAssessment.status
   const [hoganData, setHoganData] = useState<HoganData| null>(null)
@@ -51,7 +40,7 @@ export const Hogan: React.FC<Props> = ({
   const { assessmentIconUrl: iconUrl } = userAssessment
 
   const showPolicyConfirm = () => {
-    if (userAssessment.needConfirm) return setShowConfirm(true)
+    if (privacyConsentRequired) return setShowConfirm(true)
     onLoginHogan()
   }
 
@@ -72,11 +61,11 @@ export const Hogan: React.FC<Props> = ({
   }, [hoganData])
 
 
-  const accept = () => {
+  const accept = (version: number) => {
     setShowConfirm(false)
     setLoading(true)
 
-    acceptPolicy().then(() => {
+    acceptPolicy(version).then(() => {
       onLoginHogan()
     })
   }
@@ -121,7 +110,7 @@ export const Hogan: React.FC<Props> = ({
         actionDisabledText={I18n.t('campaign.complete_prev')}
         onButtonClick={showPolicyConfirm}
       />
-      {userAssessment.needConfirm
+      {privacyConsentRequired
         && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
       {hoganData && (
         <form action={hoganData.url} method="post" ref={formRef} style={{ display: 'none' }}>

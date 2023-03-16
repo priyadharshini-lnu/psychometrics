@@ -1,6 +1,6 @@
-import { setIn, updateIn } from 'utils/immutable'
-import { createReducer } from 'utils/redux'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { setIn, updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 
 import { FETCH, UPDATE, UpdateType } from './actions'
 import availabilityConditionsReducer from './availabilityConditions'

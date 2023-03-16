@@ -1,5 +1,5 @@
 import { EventEmitter } from 'fbemitter'
-import RequestsPool from 'cable/RequestsPool'
+import RequestsPool from '~/modules/survey/cable/RequestsPool'
 import NotificationDispatcher from './NotificationDispatcher'
 
 const dispatcher = new EventEmitter()

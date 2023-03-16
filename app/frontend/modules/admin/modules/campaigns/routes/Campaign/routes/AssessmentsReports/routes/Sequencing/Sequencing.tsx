@@ -26,7 +26,7 @@ import {
   SortableContext, rectSortingStrategy, verticalListSortingStrategy, arrayMove,
 } from '@dnd-kit/sortable'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   fetch as fetchAssessmentGroups,
   FETCH,
@@ -38,8 +38,8 @@ import {
   updateAssessmentPosition,
   UpdateAssessmentPositionRequest,
   CampaignAssessmentGroup,
-} from 'modules/admin/modules/campaigns/core/assessmentGroups'
-import { isRequestInProgress } from 'core/request'
+} from '~/modules/admin/modules/campaigns/core/assessmentGroups'
+import { isRequestInProgress } from '~/core/request'
 
 import { UngroupedAssessmentContainer } from './UngroupedAssessmentContainer'
 import { GroupSortable } from './GroupSortable'

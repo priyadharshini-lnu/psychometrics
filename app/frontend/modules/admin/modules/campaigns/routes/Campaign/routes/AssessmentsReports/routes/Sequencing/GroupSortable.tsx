@@ -2,7 +2,7 @@ import React, { CSSProperties, FC } from 'react'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-import { CampaignAssessmentGroup } from 'modules/admin/modules/campaigns/core/assessmentGroups'
+import { CampaignAssessmentGroup } from '~/modules/admin/modules/campaigns/core/assessmentGroups'
 import { GroupedAssessmentContainer } from './GroupedAssessmentContainer'
 
 interface Props {

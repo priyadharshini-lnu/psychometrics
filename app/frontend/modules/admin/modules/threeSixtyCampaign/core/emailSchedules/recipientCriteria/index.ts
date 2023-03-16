@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import { updateIn } from 'utils/immutable'
 import { takeLatest } from 'redux-saga/effects'
-import { createReducer } from 'utils/redux'
+import { updateIn } from '~/utils/immutable'
+import { createReducer } from '~/utils/redux'
 import { genFecthRecipientsByCriteria } from '../index'
 
 export const ADD = 'threeSixty/emailSchedule/recipientCriteria/ADD'
