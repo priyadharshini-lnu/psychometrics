@@ -34,26 +34,6 @@ _.extend(Occupation.prototype, {
       description: this.description,
     }
   },
-
-  calcStars (result) {
-    if (_.inRange(result, 0, 0.55)) { return 1 }
-    if (_.inRange(result, 0.55, 0.65)) { return 2 }
-    if (_.inRange(result, 0.65, 0.75)) { return 3 }
-    if (_.inRange(result, 0.75, 0.85)) { return 4 }
-    if (result >= 0.85 && result <= 1.0) { return 5 }
-    return 0
-  },
-
-  getStars (scoring) {
-    let data = 0
-    _.each(this.factors, (factor) => {
-      if (factor.isValid(scoring[factor.id])) {
-        data += factor.weight
-      }
-    })
-    this.result = _.round((data / _.sumBy(this.factors, 'weight')) || 0, 2)
-    return this.calcStars(this.result)
-  },
 })
 
 export default Occupation

@@ -99,7 +99,7 @@ export default function List ({
           if (completedAt) { return moment(completedAt).format('YYYY-MM-DD HH:mm:ss') }
         }}
       />
-      {permissions.allowResultsDelete && (
+      {permissions?.allowResultsDelete && (
         <Table.Column
           key="actions"
           render={({

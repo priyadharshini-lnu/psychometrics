@@ -122,6 +122,7 @@ export const Profile: React.FC<{}> = () => {
         >
           <Form.Item name="updateIn" label={I18n.t('administration.projects.profile_settings.update_in')}>
             <Select
+              onChange={(value:string) => (setData([{ ...profileSettings, updateIn: value }]))}
               options={[
                 {
                   value: null,

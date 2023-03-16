@@ -11,15 +11,17 @@ module Administration
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :results, :view_report, project_id: project_id, campaign_id: campaign_id
-      )
+      ) || ReportApprovalSetting.where_participate(@user.id, campaign_id).exists?(report_id: record.report_id)
     end
 
     def pdf_preview?
-      has_permission?(:results, :download_report)
+      has_permission?(:results, :download_report) ||
+        ReportApprovalSetting.notifications(@user.id, campaign_id).exists?(report_id: record.report_id)
     end
 
     def download?
-      has_permission?(:results, :download_report)
+      has_permission?(:results, :download_report) ||
+        ReportApprovalSetting.notifications(@user.id, campaign_id).exists?(report_id: record.report_id)
     end
 
     def approve?

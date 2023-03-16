@@ -28,6 +28,7 @@ export const RequirementTable = (props) => {
     canNominate,
     requirement: { condition, title, evaluators },
     match: { params: { campaignId, id: nominationId } },
+    currentUser,
   } = props
   const { isMobile } = useContext(MediaQueryContext)
   const [showForm, setShowForm] = useState(false)
@@ -74,7 +75,8 @@ export const RequirementTable = (props) => {
     if (evaluator.evaluatorNominationStatus === EVALUATOR_NOMINATION_STATUSES.DECLINED) {
       return { children: 'Declined' }
     }
-    if (isSelf) {
+
+    if (isSelf || currentUser.id === evaluator.evaluator.id) {
       return { children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
     }
 

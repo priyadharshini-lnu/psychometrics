@@ -43,7 +43,9 @@ module Threesixty::InitialState
         features: feature_flags,
         maintenance: {
           remainingTime: remaining_maintenance_time
-        }
+        },
+        lighthousePrivacyUrl: Settings.privacy_url,
+        privacyPolicyVersion: Settings.privacy_policy_version
       },
       currentUser: serialized_current_user,
       liveChat: {

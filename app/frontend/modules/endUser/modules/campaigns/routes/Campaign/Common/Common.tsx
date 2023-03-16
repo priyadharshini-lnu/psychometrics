@@ -34,6 +34,7 @@ const connector = connect(
     campaign: state.campaigns.campaign,
     instructions: state.campaigns.campaign.instructions,
     currentUser: state.currentUser,
+    privacyConsentRequired: state.campaigns.campaign?.privacyConsentRequired,
   }),
   {
     beginCampaign,
@@ -59,6 +60,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   acceptPolicy,
   beginCampaign,
   continueCampaign,
+  privacyConsentRequired,
 }) => {
   const [showError, setShowError] = useState(false)
   const {
@@ -247,6 +249,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                 acceptPolicy={acceptPolicy}
                 isTimedCampaign={isTimedCampaign}
                 expiryDate={expiryDate}
+                privacyConsentRequired={privacyConsentRequired}
               />
             </div>
           </Col>

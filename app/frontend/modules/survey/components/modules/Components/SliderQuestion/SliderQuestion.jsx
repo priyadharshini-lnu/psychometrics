@@ -72,15 +72,16 @@ export const SliderQuestion = ({
 
   const gridLinesColspan = () => {
     if (hideChoiceText && hideValue) {
-      return 23
+      return 24
     }
     if (hideChoiceText) {
-      return 20
+      return 21
     }
     if (hideValue) {
-      return 15
+      return 16
     }
-    return 13
+
+    return 14
   }
 
   const gridMarkingRow = (
@@ -88,7 +89,7 @@ export const SliderQuestion = ({
       <Col span={gridLinesColspan()} offset={hideChoiceText ? 0 : 8}>
         <Row wrap={false} justify="space-between">
           {times(gridLines + 1, i => (
-            <Col key={i} flex="0 0" className="text-align-l">
+            <Col key={i} className="text-align-l">
               {minValue + Utils.round(((maxValue - minValue) * i) / gridLines, numberOfDecimals)}
             </Col>
           ))}
@@ -131,7 +132,9 @@ export const SliderQuestion = ({
                   max={100}
                   className={cs(styles.slider, 'ms-0 me-0')}
                     // Widthout this extra span with key, the tooltip doesn't move properly
-                  tipFormatter={value => <span key={value}>{scaledValue(value)}</span>}
+                  tipFormatter={
+                    hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>
+                  }
                 />
               </Col>
               {!hideValue && (

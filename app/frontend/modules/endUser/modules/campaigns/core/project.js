@@ -15,11 +15,12 @@ export const getProjectLogo = state => _.get(state, ['config', 'design', 'logo']
 export const getSecondaryLogo = state => _.get(state, ['config', 'design', 'secondary_logo'])
 export const getName = state => _.get(get(state), ['name'])
 
-export const acceptPolicy = () => ({
+export const acceptPolicy = version => ({
   type: ACCEPT_POLICY,
   request: {
     method: 'POST',
     url: '/accept_privacy',
+    body: { version },
   },
 })
 

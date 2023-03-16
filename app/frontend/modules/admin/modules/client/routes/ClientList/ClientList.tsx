@@ -208,7 +208,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const { id, name } = client
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
-    { key: 'remove', label: I18n.t('common.actions.remove') },
+    // { key: 'remove', label: I18n.t('common.actions.remove') },
     {
       key: 'licenses',
       label: (

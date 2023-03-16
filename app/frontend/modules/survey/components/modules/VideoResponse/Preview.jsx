@@ -121,8 +121,9 @@ class SupportedVideoRecorder extends Component {
     const { VideoRecorderComponent } = this
 
     if (readOnly) {
+      const mediaResponse = mediaResponses.filter(({ userSelected }) => userSelected)[0]
       return (
-        <VideoPlayer mediaResponse={mediaResponses[0]} mediaUrl={mediaUrl} />
+        <VideoPlayer mediaResponse={mediaResponse} mediaUrl={mediaUrl} />
       )
     }
 

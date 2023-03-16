@@ -20,6 +20,8 @@ export default interface RawResult {
   data_sheet: object
   subject_datasheet: object
   media_responses: MediaResponse[]
+  occupations: OccupationResult[]
+  innovation_styles: InnovationStyleResult[]
 }
 
 export interface ScoringResult {
@@ -29,6 +31,17 @@ export interface ScoringResult {
 
 export interface QuestionsResult {
   answers: object[]
+}
+
+export interface OccupationResult {
+  id: number
+  value: number
+  stars: number
+}
+
+export interface InnovationStyleResult {
+  id: number
+  value: number
 }
 
 interface RawResultScoring {

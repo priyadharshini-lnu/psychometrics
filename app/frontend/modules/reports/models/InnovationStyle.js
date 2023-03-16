@@ -25,16 +25,6 @@ _.extend(InnovationStyle.prototype, {
       description: this.description,
     }
   },
-  // TODO: Replace this with already calculated results from backend
-  calculateScore (scoring) {
-    let data = 0
-    _.each(this.factors, (factor) => {
-      if (factor.isValid(scoring[factor.id])) {
-        data += factor.weight
-      }
-    })
-    this.score = _.round(data * 100 / _.sumBy(this.factors, 'weight')) || 0
-  },
 })
 
 export default InnovationStyle

@@ -38,6 +38,7 @@ const getColumns = (onChange, onRemove, errors) => [
     scoringStrategies: ['sub_factors_conditional_average'],
     render: record => (
       <Select
+        dropdownStyle={{ zIndex: 9900 }}
         style={{ width: '60px' }}
         value={record?.predicate}
         size="small"

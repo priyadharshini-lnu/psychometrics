@@ -1,19 +1,35 @@
 import { FC, MouseEventHandler } from 'react'
 import {
   Button, Modal,
+  Typography,
 } from 'antd'
-import { SafeHTML } from '~/components/SafeHTML'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from 'modules/endUser/core/rootReducers'
+import { getlighthousePrivacyUrl, getprivacyPolicyVersion } from '~/modules/endUser/core/config'
 
 const { I18n } = window
+const { Paragraph } = Typography
 
-type PrivacyModalProps = {
+const connector = connect(
+  (state: RootState) => ({
+    lighthousePrivacyUrl: getlighthousePrivacyUrl(state),
+    privacyPolicyVersion: getprivacyPolicyVersion(state),
+  }),
+  {},
+)
+
+type OwnProps = {
   accept: MouseEventHandler<HTMLElement>,
   show: boolean,
   close: MouseEventHandler<HTMLElement>,
 }
 
-export const PrivacyModal: FC<PrivacyModalProps> = ({
-  accept, show, close,
+type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = OwnProps & PropsFromRedux
+
+
+export const PrivacyModalComponent: FC<Props> = ({
+  accept, show, close, lighthousePrivacyUrl, privacyPolicyVersion,
 }) => (
   <Modal
     title={(
@@ -25,7 +41,7 @@ export const PrivacyModal: FC<PrivacyModalProps> = ({
     onCancel={close}
     footer={(
       <div>
-        <Button type="primary" onClick={accept}>
+        <Button type="primary" onClick={() => accept(privacyPolicyVersion)}>
           {I18n.t('threesixty.accept_privacy_modal.accept')}
         </Button>
         <Button danger onClick={close}>
@@ -34,6 +50,15 @@ export const PrivacyModal: FC<PrivacyModalProps> = ({
       </div>
       )}
   >
-    <SafeHTML html={I18n.t('threesixty.accept_privacy_modal.text')} />
+    <Paragraph>
+      {I18n.t('threesixty.accept_privacy_modal.text')}
+    </Paragraph>
+    <Paragraph>
+      <a href={lighthousePrivacyUrl} target="_blank" rel="noreferrer">
+        {I18n.t('threesixty.accept_privacy_modal.policy_link')}
+      </a>
+    </Paragraph>
   </Modal>
 )
+
+export const PrivacyModal = connector(PrivacyModalComponent)

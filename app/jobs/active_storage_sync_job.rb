@@ -19,7 +19,7 @@ class ActiveStorageSyncJob < ApplicationJob
   private
 
   def attach_attribute(record, attachment, attribute)
-    attachment.cache_stored_file!
+    record.skip_filename_validation = true if record.is_a?(MediaResponse)
     # workaround for UserReport, as in future when migrated to ActiveStorage it will conflict
     # with :pdf attribute for UserReport model
     as_attribute = attribute == 'pdf' ? 'pdf_file' : attribute
