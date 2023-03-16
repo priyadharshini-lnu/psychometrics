@@ -24,6 +24,7 @@ module Api
             end
             optional(:first_name).filled(:string)
             optional(:last_name).filled(:string)
+            optional(:email).filled(:string)
           end
         end
 

@@ -24,14 +24,14 @@ const { I18n } = window
 
 interface Props {
   userAssessment: UserAssessment
-  acceptPolicy(): Promise<unknown>
+  acceptPolicy(version: number): Promise<unknown>
   isPartOfTimedCampaign: boolean
   campaignExpiryDate: string
   view: string
   disabled: boolean
   campaignNotStarted: boolean
   prevCompleted: boolean
-
+  privacyConsentRequired: boolean
 }
 
 export const InternalAssessment: React.FC<Props> = ({
@@ -43,10 +43,11 @@ export const InternalAssessment: React.FC<Props> = ({
   disabled,
   prevCompleted,
   campaignNotStarted,
+  privacyConsentRequired,
 }) => {
   const history = useHistory()
   const {
-    status, needConfirm, assessmentIconUrl, assessmentName, completionPercent, timing, assessmentExtra,
+    status, assessmentIconUrl, assessmentName, completionPercent, timing, assessmentExtra,
   } = userAssessment
   let taskStatus = status
   const [loading, setLoading] = useState(false)
@@ -77,7 +78,7 @@ export const InternalAssessment: React.FC<Props> = ({
       }
     }
 
-    if (needConfirm) return setShowConfirm(true)
+    if (privacyConsentRequired) return setShowConfirm(true)
 
     loadAssessmentOrCheckingWizard()
   }
@@ -106,11 +107,11 @@ export const InternalAssessment: React.FC<Props> = ({
     }
   }
 
-  const accept = () => {
+  const accept = (version: number) => {
     setShowConfirm(false)
     setLoading(true)
 
-    acceptPolicy().then(() => {
+    acceptPolicy(version).then(() => {
       loadAssessmentOrCheckingWizard()
     })
   }
@@ -121,7 +122,7 @@ export const InternalAssessment: React.FC<Props> = ({
   }
 
   const startAssessment = () => {
-    if (userAssessment.needConfirm) {
+    if (privacyConsentRequired) {
       setShowConfirm(true)
       setShowTimingConfirmation(false)
     } else {
@@ -174,7 +175,7 @@ export const InternalAssessment: React.FC<Props> = ({
           </>
       )}
       />
-      {needConfirm
+      {privacyConsentRequired
       && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
       <LanguageModal
         locales={userAssessment.availableLocales}

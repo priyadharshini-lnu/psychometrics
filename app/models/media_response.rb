@@ -11,32 +11,19 @@ class MediaResponse < ApplicationRecord
   mount_uploader :asset, Private::MediaResponseUploader
 
   has_one_attached :as_asset, service: Settings.storage.private_storage_service
-  # TODO: check filename_format validation?
-  validates :as_asset, content_type: proc { allowed_content_type }
+  # TODO: add :asset content_type validation after ActiveStorage migration
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :asset
-
-  def allowed_content_type
-    return allowed_file_types_from_question if question.props['allowedFileTypes']
-
-    return %w[mp4] if question.type == 'VideoResponse'
-
-    return %w[wav] if question.type == 'AudioResponse'
-  end
-
-  def allowed_file_types_from_question
-    return question.props['allowedFileTypes'].concat(['jpeg']) if question.props['allowedFileTypes'].include?('jpg')
-
-    question.props['allowedFileTypes']
-  end
 
   belongs_to :users_assessment
   belongs_to :question
   belongs_to :assign
   belongs_to :users_result
 
-  validates :asset, filename_format: true
+  attr_accessor :skip_filename_validation
+
+  validates :asset, filename_format: true, unless: :skip_filename_validation
   validate :verify_multiple_take_limit, on: :create
 
   before_create :set_user_selected

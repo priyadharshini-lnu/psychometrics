@@ -105,6 +105,7 @@ class Assessment < ApplicationRecord
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
   validates :dimension, presence: true, if: :common?
+  validates :name, presence: true
 
   serialize :external_settings, PsyJsonbSerializer
 

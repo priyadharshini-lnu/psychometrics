@@ -441,6 +441,8 @@
     "a": 2,
     "b": 2
   },
+  "occupations": [],
+  "innovation_styles": [],
   "media_responses": [],
   "is_self": false,
   "as_manager": true,

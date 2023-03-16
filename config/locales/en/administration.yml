@@ -86,16 +86,16 @@ en:
           update_failed: Admin '%{name}' update failed
           update_success: Admin '%{name}' was updated successfully
         view:
+          add_campaign_admin: Add Campaign Admin
+          add_project_admin: Add Project Admin
+          edit_campaign_admin: Edit Campaign Admin
+          edit_project_admin: Edit Project Admin
           first_name: First name
           last_name: Last name
           project_admin: Project Admin
           project_list: Project List
           role: Campaign Admin
           title_campaign: Campaign admin
-          title_campaign_add: Add campaign admin
-          title_campaign_edit: Edit campaign admin
-          title_project_admin_add: Add Project Admin
-          title_project_admin_edit: Edit Project Admin
       list:
         actions:
           cancel_text: Cancel
@@ -341,8 +341,8 @@ en:
         bulk_delete_successful: Assessor assessments deleted successfully
         reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
         reset_progress_confirmation: Are you sure you want to reset progress for subject with email %{subjectEmail}?
-        reset_progress_successfully: Reset progress successful for for subject with email %{subjectEmail}
-        reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
+        reset_progress_successfully: Reset progress for the subject with the email %{subjectEmail} was successful.
+        reset_successfully: Reset evaluation for the subject with the email %{subjectEmail} was successful.
         subject_email: Subject Email
         subject_name: Subject Name
       completed_at: Completed At
@@ -2495,7 +2495,6 @@ en:
       list:
         active: Active
         created_at: Created date
-        factors_count: Factors count
         id: Id
         name: Name
         updated_at: Modified Date

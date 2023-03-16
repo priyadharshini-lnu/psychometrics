@@ -26,10 +26,8 @@ class Factor < ApplicationRecord
   validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
   # TODO: remove allow_blank?
 
-  before_create :increment_factors
   after_create :create_aliases
   after_update ::Callbacks::Models::Factors::UpdateAliases.new
-  before_destroy :decrement_factors
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
 
   enum scoring_strategy: {
@@ -116,14 +114,6 @@ class Factor < ApplicationRecord
   end
 
   private
-
-  def increment_factors
-    dimension.increment!(:factors_count)
-  end
-
-  def decrement_factors
-    dimension.decrement!(:factors_count)
-  end
 
   def create_aliases
     existing_reports = Report.joins(:assessments).distinct.where(assessments: { dimension_id: dimension.id })

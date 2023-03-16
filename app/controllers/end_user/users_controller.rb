@@ -53,7 +53,9 @@ class EndUser::UsersController < ApplicationController
   # rubocop:enable Metrics/AbcSize
 
   def accept_privacy
-    current_user.create_privacy_consent!
+    raise "Invalid Privacy consent version '#{params[:version]}' passed" if params[:version].blank?
+
+    current_user.privacy_consents.create(version: params[:version])
     head :ok
   end
 

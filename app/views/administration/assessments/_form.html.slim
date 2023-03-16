@@ -2,7 +2,7 @@
   = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
     .modal-body
       = render_error_notification(resource)
-      = render_error_notification(@external_settings)
+      = render_error_notification(@external_settings) if @external_settings
       .form-inputs.clearfix
         - root_clients = policy_scope(Client).roots
         = f.input :type, as: :select, collection: Assessment::TYPES.except(:mindmill).map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
@@ -10,7 +10,7 @@
                          wrapper_html: { class: 'common hogan saville pearson iiht' },
                          input_html: { data: { live_search: true,
                                                 dynamic_selectable_url: url_for(action: :external_assessments, type: '__id__', external_assessment_id: f.object.external_assessment_id),
-                                                dynamic_selectable_target: 'select#pearson_assessment_id',
+                                                dynamic_selectable_target: 'select#pearson_assessment_id',  include_blank: 'true',
                                               }}
         = f.association :owner, collection: root_clients.order(name: :asc),
                                   include_blank: true,
@@ -23,37 +23,43 @@
                           include_blank: true,
                           input_html: { data: { live_search: true,
                                                 dynamic_selectable_url: url_for(action: :external_assessments, project_id: '__id__', type: '__select#resource_type->val__', external_assessment_id: f.object.external_assessment_id),
-                                                dynamic_selectable_target: 'select.external_assessments_setting',
+                                                dynamic_selectable_target: 'select.external_assessments_setting', include_blank: 'true',
                                               }, id: 'projects'},
                           wrapper_html: { class: 'iiht' }
         = f.simple_fields_for :external_settings do |iiht|
           = iiht.input :assessment_id,
                        label: 'IIHT assessment ID',
-                       collection: [[1, 20]],
-                       include_blank: false,
+                       collection: [],
+                       include_blank: true,
+                       selected: f.object.external_settings[:assessment_id],
                        input_html: { class: 'external_assessments_setting', data: { live_search: true } },
                        wrapper_html: { class: 'iiht' }
-          = iiht.input :schedule_config, as: :text, wrapper_html: { class: 'iiht' }
+          - schedule_config = f.object.external_settings[:schedule_config]
+          = iiht.input :schedule_config, as: :text, wrapper_html: { class: 'iiht' },
+            input_html: { value: schedule_config.is_a?(Hash) ? schedule_config.to_json : schedule_config }
         = f.simple_fields_for :external_settings do |hogan|
           = hogan.input :assessment_id,
                         label: 'Hogan assessment ID',
                         collection: Settings.providers.hogan.assessments.pluck(:name, :id),
-                        include_blank: false,
-                        wrapper_html: { class: 'hogan' }
+                        include_blank: true,
+                        wrapper_html: { class: 'hogan' },
+                        selected: f.object.external_settings[:assessment_id]
         = f.simple_fields_for :external_settings do |saville|
           = saville.input :assessment_id,
                           label: 'Saville assessment ID',
                           collection: Settings.providers.saville.assessments.sort_by {|a| a[:name] }.map { |h| [h[:name], h[:id].downcase] },
-                          include_blank: false,
+                          include_blank: true,
                           wrapper_html: { class: 'saville' },
-                          input_html: { data: { live_search: true } }
+                          input_html: { data: { live_search: true } },
+                          selected: f.object.external_settings[:assessment_id]
         = f.simple_fields_for :external_settings do |pearson|
           = pearson.input :assessment_id,
                           label: 'Pearson assessment ID',
                           collection: [],
                           include_blank: true,
                           wrapper_html: { class: 'pearson' },
-                          input_html: { data: { live_search: true,
+                          selected: f.object.external_settings[:norm_id],
+                          input_html: {data: { live_search: true,
                                                 dynamic_selectable_url: url_for(action: :pearson_norms, pearson_assessment_id: '__id__', pearson_norm_id: f.object.external_settings[:norm_id]),
                                                 dynamic_selectable_target: 'select.pearson_norm_id' }, id: 'pearson_assessment_id' }
           = pearson.input :norm_id,
@@ -62,7 +68,8 @@
                           include_blank: false,
                           wrapper_html: { class: 'pearson' },
                           input_html: { data: { live_search: true }, class: 'pearson_norm_id' },
-                          include_hidden: false
+                          include_hidden: false,
+                          selected: f.object.external_settings[:norm_id]
         = f.input :name, wrapper_html: { class: 'common hogan saville pearson iiht' }
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: root_clients.order(name: :asc),

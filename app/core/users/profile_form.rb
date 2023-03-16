@@ -16,6 +16,8 @@ module Users
     validate :validate_project_fields, if: :project?
     validate :validate_default_fields, if: :project?
     validate :question_center_validations, if: :project?
+    validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 4, less_than_or_equal_to: 150 },
+      allow_blank: true
 
     def validate_project_fields
       project.profile_setting.profile_fields.includes(:question).each do |field|

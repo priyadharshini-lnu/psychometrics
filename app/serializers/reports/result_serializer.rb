@@ -3,7 +3,8 @@
 module Reports
   class ResultSerializer < ActiveModel::Serializer
     attributes :id, :status, :answers, :results, :scoring, :user_id, :assessment_id, :data_sheet, :relationship,
-               :norm_id, :embedded_data, :manager_evaluation_status, :subject_datasheet, :external_scoring
+               :norm_id, :embedded_data, :manager_evaluation_status, :subject_datasheet, :external_scoring,
+               :occupations, :innovation_styles
 
     has_one :user, serializer: UserSerializer
     has_many :media_responses, serializer: MediaResponseSerializer
@@ -14,6 +15,20 @@ module Reports
 
     def results
       object.answers
+    end
+
+    def occupations
+      (object.occupations || []).map do |item|
+        {
+          id: item['id'],
+          value: item['value'],
+          stars: Occupations::CalculateStars.call!(item['value'])
+        }
+      end
+    end
+
+    def innovation_styles
+      (object.innovation_styles || []).map { |item| { id: item['id'], value: item['value'] } }
     end
 
     def user

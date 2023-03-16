@@ -6,8 +6,8 @@ p Campaign: #{@user_report.campaign.name}
 p Report: #{@user_report.report.name}
 p Candidate: #{@user_report.user.decorate.full_name}
 
-p You are receiving this email as you are added as a approver for above report which requires approval.
+p You are receiving this email as you have been added as an approver for the above report, which requires approval.
 
-p You can access the report via the following link.
+p You can access the report via the following link:
 
 = link_to 'Report', administration_project_new_campaign_url(@user_report.project, @user_report.campaign) + "/user_reports/#{@user_report.id}"

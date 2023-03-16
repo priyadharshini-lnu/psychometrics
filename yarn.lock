@@ -10344,9 +10344,9 @@ react-bootstrap@^0.33.1:
     uncontrollable "^7.0.2"
     warning "^3.0.0"
 
-"react-codemirror2@git+https://github.com/scniro/react-codemirror2.git#0f2bb13":
+"react-codemirror2@https://github.com/TheTalentEnterprise/react-codemirror2#0f2bb13":
   version "7.2.1"
-  resolved "git+https://github.com/scniro/react-codemirror2.git#0f2bb13cad2fb1364eb063cbd7ec9aae726a55eb"
+  resolved "https://github.com/TheTalentEnterprise/react-codemirror2#0f2bb13cad2fb1364eb063cbd7ec9aae726a55eb"
 
 react-color@^2.19.3:
   version "2.19.3"

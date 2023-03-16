@@ -120,7 +120,7 @@ module Api
     end
 
     def project_id
-      params[:project_id] || params[:client_id] || project&.id
+      params[:project_id] || project&.id
     end
 
     def campaign
@@ -154,7 +154,7 @@ module Api
         model || model_class,
         nil,
         policy_class: policy_class,
-        project_id: project_id,
+        project_id: project_id || params[:client_id],
         campaign_id: campaign_id
       )
     end

@@ -60,7 +60,7 @@ class Consultant extends Component {
     const seriesData = {
       type: 'column',
       data: _.map(sourceModel, (factor, i) => ({
-        y: data.series(getCorrectResults(model), factor, model, factors),
+        ...data.series(getCorrectResults(model), factor, model, factors),
         color: colors[i],
       })),
     }

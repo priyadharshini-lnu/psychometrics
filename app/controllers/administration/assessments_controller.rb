@@ -93,9 +93,9 @@ class Administration::AssessmentsController < Administration::BaseController
 
       resource.external_settings = @external_settings.attributes.compact_blank if @external_settings.valid?
     end
-
+    resource.attributes = resource_params.except(:external_settings)
     respond_to do |format|
-      if (resource.common? || @external_settings&.valid?) && resource.update(resource_params.except(:external_settings))
+      if (resource.common? || @external_settings&.valid?) && resource.save
         audit! :update, resource, payload: params
         format.js
         format.json { render json: :ok }

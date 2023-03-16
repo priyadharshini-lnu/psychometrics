@@ -33,7 +33,9 @@ module UsersResults
         expiry_date: nil,
         additional_time: nil,
         started_at: nil,
-        last_activity_at: nil
+        last_activity_at: nil,
+        manager_evaluation_status: :waiting,
+        evaluator_nomination_status: :waiting
       )
       users_result.update!(
         answers: {},

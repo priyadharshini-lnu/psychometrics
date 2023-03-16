@@ -9,7 +9,7 @@ import {
   Button,
   Typography,
 } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import { AdminPermissions, ProjectAdminViewDetails } from '~/modules/admin/modules/client/core/admin'
 
@@ -18,6 +18,7 @@ const { I18n } = window
 interface Props {
   isVisible: boolean
   adminId: string
+  adminType: string
   permissions: AdminPermissions
   handleEdit: (id: string | undefined) => void
   handleClose: () => void
@@ -26,13 +27,28 @@ interface Props {
 const DetailsDrawerComponent: FC<Props> = ({
   isVisible,
   adminId,
+  adminType,
   permissions,
   handleClose,
   handleEdit,
 }) => {
+  const { projectId } = useParams<{ projectId: string }>()
+  const { campaignId } = useParams<{ campaignId: string }>()
+
   const {
     fetchSingle, getResource, isLoading: isAdminLoading,
-  } = useResources<ProjectAdminViewDetails>('memberships')
+  } = useResources<ProjectAdminViewDetails>(
+    'memberships',
+    {
+      apiConfig: {
+        filter: {
+          with_role: adminType,
+          client_id_eq: projectId,
+          campaign_id_eq: campaignId,
+        },
+      },
+    },
+  )
 
   const admin = getResource(adminId)
 

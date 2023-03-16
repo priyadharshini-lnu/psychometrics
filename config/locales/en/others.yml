@@ -8,11 +8,19 @@ en:
         report_family_id: Report Bundle
       datasheet:
         file: File (.xlsx)
+      hogan:
+        assessment_id: Hogan assessment ID
+      iiht:
+        assessment_id: IIHT assessment ID
       new_assessments_client:
         assessment_ids: Assessments
         is_applying_to_existing_users: Apply these changes to existing users
+      pearson:
+        assessment_id: Pearson assessment ID
       regenerate_reports:
         report_ids: Reports
+      saville:
+        assessment_id: Saville assessment ID
       sheet_column:
         accessor_access: Accessor access
         dashboard_use: Dashboard use
@@ -345,7 +353,6 @@ en:
       dimension:
         active: Active
         created_at: Created Date
-        factors_count: No. of Factors
         id: ID
         name: Name
         updated_at: Modified Date
@@ -1110,7 +1117,7 @@ en:
         title: Rescore Responses
       reset:
         content: Are you sure you want to reset result?
-        successfully: Result data was successfully reseted.
+        successfully: The result data was successfully reset.
         title: Reset Result for assessment %{name}?
       update_assessor_form:
         select_assessor: Select Assessor Form
@@ -1340,6 +1347,8 @@ en:
       response: Response
       subject: Subject
       view_as: View as
+    validations:
+      should_be_whole_number: should be a whole number
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
@@ -2411,7 +2420,6 @@ en:
       dimension:
         active: Active
         created_at: Created Date
-        factors_count: No. of Factors
         id: ID
         name: Name
         updated_at: Modified Date
@@ -2604,8 +2612,11 @@ en:
   threesixty:
     accept_privacy_modal:
       accept: Accept
+      policy_link: Click here to read the privacy policy.
       reject: Reject
-      text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
+      text: |
+        Prior to proceeding to completing the tasks below, I confirm that I have read and agree to
+        The Talent Enterprise’s Privacy Policy and related guidelines regarding the use of my personal information.
       title: Data processing consent
     action: Action
     add: Add

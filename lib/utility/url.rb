@@ -2,12 +2,26 @@
 
 module Utility
   class Url
+    HOST_REGEX = /.+\.[a-z]{2,7}\z/ix
+    VALID_SCHEMES = %w[http https].freeze
+
     def self.remove_query_params(url, params_to_remove)
       params_to_remove = ::Array.wrap(params_to_remove)
       uri = Addressable::URI.parse(url)
       params = uri.query_values
       uri.query_values = params.except(*params_to_remove).presence if params
       uri.to_s
+    end
+
+    def self.valid?(url)
+      uri = URI.parse(url)
+      return false unless VALID_SCHEMES.include?(uri.scheme)
+
+      return false unless HOST_REGEX.match?(uri.host)
+
+      true
+    rescue URI::InvalidURIError
+      false
     end
 
     def self.get_params(options = {})
