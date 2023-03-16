@@ -89,7 +89,7 @@ const TopMenu: React.FC<Props> = ({ prefix, campaignPermissions }) => {
     label: I18n.t('common.model.datasheet'),
     icon: <DatabaseOutlined />,
   })
-  campaignPermissions.viewDatasheets && menuItems.push({
+  campaignPermissions.manageCampaignAdmins && menuItems.push({
     key: 'admins',
     label: I18n.t('common.model.admins'),
     icon: <SolutionOutlined />,

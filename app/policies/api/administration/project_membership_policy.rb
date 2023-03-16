@@ -31,10 +31,6 @@ module Api
         manage_admins?
       end
 
-      def spoof?
-        manage_admins?
-      end
-
       def send_mail?
         manage_admins?
       end
