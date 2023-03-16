@@ -34,7 +34,9 @@
                        selected: f.object.external_settings[:assessment_id],
                        input_html: { class: 'external_assessments_setting', data: { live_search: true } },
                        wrapper_html: { class: 'iiht' }
-          = iiht.input :schedule_config, as: :text, wrapper_html: { class: 'iiht' }
+          - schedule_config = f.object.external_settings[:schedule_config]
+          = iiht.input :schedule_config, as: :text, wrapper_html: { class: 'iiht' },
+            input_html: { value: schedule_config.is_a?(Hash) ? schedule_config.to_json : schedule_config }
         = f.simple_fields_for :external_settings do |hogan|
           = hogan.input :assessment_id,
                         label: 'Hogan assessment ID',

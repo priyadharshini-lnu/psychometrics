@@ -2,10 +2,17 @@
 
 module Iiht
   class GetAssessments < Base
+    private_attr_reader :force
+
     MAX_RESULT_COUNT = 100
 
+    def initialize(project, force: false)
+      super(project)
+      @force = force
+    end
+
     def call
-      data = Rails.cache.fetch("#{uniq_cache_key}/GetAssessments", expires_in: 1.day) do
+      data = Rails.cache.fetch(cache_key, expires_in: 1.day, race_condition_ttl: 1.minute, force: force) do
         load_assessments
       end
 
@@ -26,6 +33,10 @@ module Iiht
       return assessments.sort_by { |a| a['name'] } if new_assessments.empty? || assessments.count == data['totalCount']
 
       load_assessments(assessments, skip_count + MAX_RESULT_COUNT)
+    end
+
+    def cache_key
+      "#{uniq_cache_key}/GetAssessments"
     end
   end
 end

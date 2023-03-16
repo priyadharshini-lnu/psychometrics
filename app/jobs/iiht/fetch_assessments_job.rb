@@ -6,7 +6,7 @@ module Iiht
 
     def perform
       Client.projects.joins(:integrations).merge(Integration.iiht.active).each do |project|
-        Iiht::GetAssessments.call!(project)
+        Iiht::GetAssessments.call!(project, force: true)
       end
     end
   end
