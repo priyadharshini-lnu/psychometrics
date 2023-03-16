@@ -137,7 +137,7 @@ RUN bundle exec rake i18n:js:export \
     && DISABLE_COVERAGE=1 bundle exec rails assets:precompile \
     && rm -rf tmp/ && rm -rf node_modules
 
-FROM ruby:3.1.3-slim
+FROM ruby:3.1.2-slim
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
