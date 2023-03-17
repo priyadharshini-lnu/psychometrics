@@ -125,7 +125,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               listType="picture"
               maxCount={1}
               onRemove={removeFile}
-              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg, |image/*"
+              accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
               fileList={logo && typeof logo === 'string' ? [{
                 uid: '1', name: 'logo', status: 'done', url: logo,
               }] : undefined}
@@ -138,7 +138,8 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
             <Upload
               listType="picture"
               maxCount={1}
-              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg,.mp4"
+              // eslint-disable-next-line max-len
+              accept=".jpeg, .jpg, .png, .svg, .mp4, .gif, .bmp, image/jpeg, image/png, image/svg+xml, video/mp4, image/gif"
               fileList={background && typeof background === 'string' ? [{
                 uid: '1', name: 'background', status: 'done', url: background,
               }] : undefined}
@@ -153,7 +154,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
             <Upload
               listType="picture"
               maxCount={1}
-              accept=".jpg, .png, .jpeg, .gif, .bmp, .svg|image/*"
+              accept=".jpeg, .jpg, .png, .svg, .gif, .bmp, image/jpeg, image/png, image/svg+xml"
               fileList={secondaryLogo && typeof secondaryLogo === 'string' ? [{
                 uid: '1', name: 'secondary_logo', status: 'done', url: secondaryLogo,
               }] : undefined}
