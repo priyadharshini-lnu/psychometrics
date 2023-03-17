@@ -13,7 +13,7 @@ import { scaleNumber } from '~/utils/number'
 import styles from './Slider.less'
 
 export const SliderQuestion = ({
-  model, I18n, preview, changeLabel, changeValue,
+  model, I18n, preview, changeLabel, changeValue, readOnly,
 }) => {
   const {
     result, props, choicesIds, moduleConfig,
@@ -127,7 +127,7 @@ export const SliderQuestion = ({
                 <AntSlider
                   onAfterChange={value => onChangeSlider(choiceId, value, true)}
                   onChange={value => onChangeSlider(choiceId, value)}
-                  value={preview ? values[choiceId] : props.fakeResults[choiceId]}
+                  value={preview ? values[choiceId]?.value : props.fakeResults[choiceId]}
                   min={1}
                   max={100}
                   className={cs(styles.slider, 'ms-0 me-0')}
@@ -135,25 +135,31 @@ export const SliderQuestion = ({
                   tipFormatter={
                     hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>
                   }
+                  disabled={readOnly}
                 />
               </Col>
               {!hideValue && (
                 <Col className={`ps-4 ${styles.inputContainer}`} span={3}>
                   <InputNumber
                     onChange={value => onChangeSlider(choiceId, unscaledValue(value), true)}
-                    value={preview ? values[choiceId] && scaledValue(values[choiceId]) : props.fakeResults[choiceId]}
+                    value={preview
+                      ? values[choiceId] && scaledValue(values[choiceId].value)
+                      : props.fakeResults[choiceId]}
                     style={{ maxWidth: '100%' }}
                     min={minValue}
                     max={maxValue}
                     controls={false}
+                    disabled={readOnly}
                   />
-                  <Button
-                    onClick={() => changeValue(choiceId, minValue)}
-                    type="link"
-                    className="text-align-c"
-                  >
-                    Clear
-                  </Button>
+                  {!readOnly && (
+                    <Button
+                      onClick={() => changeValue(choiceId, minValue)}
+                      type="link"
+                      className="text-align-c"
+                    >
+                      Clear
+                    </Button>
+                  )}
                 </Col>
               )}
             </Row>
