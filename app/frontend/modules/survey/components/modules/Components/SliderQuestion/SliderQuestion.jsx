@@ -30,7 +30,7 @@ export const SliderQuestion = ({
   const unscaledValue = value => scaleNumber(value, minValue, maxValue, 1, 100)
 
   const onChangeSlider = (choiceId, value, update) => {
-    setValue({ ...values, [choiceId]: update ? unscaledValue(scaledValue(value)) : value })
+    setValue({ ...values, [choiceId]: { index: choiceId, value: update ? unscaledValue(scaledValue(value)) : value } })
     if (update) {
       changeValue(choiceId, scaledValue(value))
     }
@@ -153,7 +153,7 @@ export const SliderQuestion = ({
                   />
                   {!readOnly && (
                     <Button
-                      onClick={() => changeValue(choiceId, minValue)}
+                      onClick={() => onChangeSlider(choiceId, minValue, true)}
                       type="link"
                       className="text-align-c"
                     >
