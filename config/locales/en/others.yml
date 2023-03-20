@@ -1300,6 +1300,7 @@ en:
       upload: Upload
     column:
       action: Action
+      active: Active
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
       category: Category
@@ -1309,13 +1310,17 @@ en:
       created_by: Created By
       created_date: Created Date
       details: Details
+      email: Email
+      first_name: First Name
       id: Id
+      last_name: Last Name
       modified_by: Modified By
       modified_date: Modified Date
       name: Name
       qc_user_list: QC Users List
       report_id: Report Id
       status: Status
+      updated_at: Last Updated
     model:
       admins: Admins
       assessment: Assessment
@@ -1554,6 +1559,8 @@ en:
       unlocked: Your account has been unlocked successfully. Please login to continue.
   dry_errors:
     errors:
+      create_superadmin:
+        uniq_email: Email should be uniq.
       filled?: can't be blank
       key?: can't be blank
       missed?: can't be blank
@@ -2906,7 +2913,35 @@ en:
       not_prepared: Not Available
       prepared: Available
   users:
+    actions:
+      2fa:
+        confirm_message: 2 Factor Auth Updated
+        option_to_disable: Disable 2FA
+        option_to_enable: Enable 2FA
+      details: Details
+      remove:
+        confirm_message: Are you sure you want to delete the user with an email '%{email}'?
+        confirm_title: Confirmation Requred
+        success_message: "%{email} has been removed"
+      reset_password:
+        confirm_message: User %{email} will receive an email with instructions on how to reset his/her password in a few minutes.
+        option: Reset Password
+    admins: Admins
+    create_superadmin: Create Super Admin
+    dashboard: Dashboard
+    drawer:
+      link: Link
+      role: Role
+      title: User details
     password_change_success: Password changed successfully. Please login with your new password.
+    remove_message: Are you sure?
+    roles:
+      campaign_admin: Campaign Admin
+      client_admin: Client Admin
+      project_admin: Project Admin
+      superadmin: Super Admin
+    superadmins: Super Admins
+    users: Users
   validations:
     AudioResponse:
       in_progress:

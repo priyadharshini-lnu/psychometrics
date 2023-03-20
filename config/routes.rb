@@ -694,6 +694,7 @@ Rails.application.routes.draw do
     ### END DIMENSIONS
 
     ### USERS
+    get '/users/*all' => 'users#index'
     resources :users, except: [:create] do
       member do
         patch :toggle_status
@@ -1146,7 +1147,13 @@ Rails.application.routes.draw do
             get :spoof
             get :reset_password
           end
-          jsonapi_resources :users, only: %i[index show]
+          jsonapi_resources :users do
+            post :reset_password
+            get :roles
+            collection do
+              post :create_superadmin
+            end
+          end
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
             resource :uploads, only: %i[update]

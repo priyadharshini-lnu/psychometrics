@@ -52,5 +52,58 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
         end
       end
     end
+
+    describe 'Ignoring Swagger' do
+      before(:each) { login_user(superadmin) }
+      after(:each) { sign_out(superadmin) }
+      describe 'Create a Superadmin' do
+        it 'check success response' do
+          post '/api/v2/administration/users/create_superadmin', params: {
+            data: {
+              type: 'users',
+              attributes: {
+                email: 'a@a.com',
+                first_name: 'John',
+                last_name: 'Travolta'
+              }
+            }
+          }
+
+          parsed_response = JSON.parse(response.body)
+          expect(response.status).to eq(200)
+          expect(parsed_response['data']).to have_key('attributes')
+          expect(parsed_response.dig('data', 'attributes', 'email')).to eq('a@a.com')
+          expect(parsed_response.dig('data', 'attributes', 'first_name')).to eq('John')
+          expect(parsed_response.dig('data', 'attributes', 'last_name')).to eq('Travolta')
+        end
+
+        it 'check invalid response' do
+          post '/api/v2/administration/users/create_superadmin', params: {
+            data: {
+              type: 'users',
+              attributes: {
+                email: 'a',
+                first_name: 'John',
+                last_name: 'Travolta'
+              }
+            }
+          }
+
+          expect(response.status).to eq(422)
+        end
+      end
+
+      describe 'Get roles' do
+        before(:each) { login_user(superadmin) }
+        after(:each) { sign_out(superadmin) }
+        it 'check response' do
+          get "/api/v2/administration/users/#{superadmin.id}/roles", params: { user_id: superadmin.id }
+          parsed_response = JSON.parse(response.body)
+          expect(parsed_response['data']['attributes']).to eq(
+            { 'roles' => [{ 'name' => 'superadmin', 'paths' => [] }] }
+          )
+        end
+      end
+    end
   end
 end

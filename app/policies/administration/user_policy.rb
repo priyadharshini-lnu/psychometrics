@@ -37,6 +37,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin)
   end
 
+  def roles?
+    index?
+  end
+
   def edit?
     update?
   end

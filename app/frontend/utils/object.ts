@@ -16,11 +16,12 @@ export const camelizeKeys = (data: object, { except, only }: Options = {}) => {
 }
 
 const camelizeKeysExcept = (data: object, except: string[]) => {
-  let transformedData = humps.camelizeKeys(data)
+  const transformedData = humps.camelizeKeys(data)
   except.forEach((ex) => {
     jsonpath.nodes(data, ex).forEach((node) => {
       const path = node.path.slice(1)
-      transformedData = _.set(transformedData, path.map(p => _.camelCase(p)), node.value)
+      _.set(transformedData, path.map(p => p), node.value)
+      _.unset(transformedData, path.map(p => humps.camelize(p)))
     })
   })
   return transformedData

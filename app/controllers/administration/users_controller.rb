@@ -7,17 +7,12 @@ class Administration::UsersController < Administration::BaseController
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
+  append_after_action :verify_policy_scoped, except: :index
   # GET /administration/resources
   def index
-    @filter_term = params.dig(:q, :filterable_fields)
-    @_filter_form = policy_scope(resource_class).
-                    includes(:modifier, :creator, :project_admin_clients).
-                    ransack(params[:q])
-    @_resources = filter_form.result.page(params[:page])
-    respond_to do |format|
-      format.html
-      format.js { render :index, formats: [:js] }
-    end
+    @init_state = {
+      currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
+    }
   end
 
   def search_admins

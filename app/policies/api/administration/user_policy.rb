@@ -7,7 +7,10 @@ module Api
         @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
       end
 
-      class Scope < ::Administration::UserPolicy::Scope
+      class Scope < Scope
+        def resolve
+          ::Administration::UserPolicy::Scope.new(user, ::User).resolve
+        end
       end
     end
   end
