@@ -31,8 +31,9 @@ export const SliderQuestion = ({
 
   const onChangeSlider = (choiceId, value, update) => {
     setValue({ ...values, [choiceId]: { index: choiceId, value: update ? unscaledValue(scaledValue(value)) : value } })
+
     if (update) {
-      changeValue(choiceId, scaledValue(value))
+      changeValue(choiceId, unscaledValue(scaledValue(value)))
     }
   }
 
