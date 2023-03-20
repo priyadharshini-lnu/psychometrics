@@ -3,7 +3,7 @@ import * as t from 'io-ts'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import ApiAction from 'interfaces/ApiAction'
 
-const FETCH = 'campaignList/FETCH'
+export const FETCH = 'campaignList/FETCH'
 const LOGIN_HOGAN = 'campaignList/LOGIN_HOGAN'
 const ACCEPT_POLICY = 'campaignList/ACCEPT_POLICY'
 
@@ -46,6 +46,7 @@ export const fetchCampaigns = (): ApiAction<Campaigns> => ({
   request: {
     url: '/dashboard',
     typedResponse: CampaignsTR,
+    loader: true,
   },
 })
 

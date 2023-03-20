@@ -1632,6 +1632,7 @@ en:
         eti: ETI
         yti: YTI
   errors:
+    error: Error
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
