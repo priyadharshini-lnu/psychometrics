@@ -8,6 +8,10 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
 
   ransack_filters %i[filterable_fields]
 
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, project) { project.slice('id', 'name') }
+
   DEFAULT_SECRET = 'default'
 
   before_create :set_defaults

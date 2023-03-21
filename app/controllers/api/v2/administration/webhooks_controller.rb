@@ -15,6 +15,14 @@ module Api
       response = ::Administration::Webhooks::TestWebhook.call(
         @webhook, event
       )
+
+      audit_payload = {
+        eventName: event['event_name'],
+        response: response[:error] || I18n.t('frontend.test_webhook.success')
+      }
+
+      audit! :send_test, @webhook, payload: audit_payload, project: @webhook.project
+
       if response && response[:error]
         render json: { error: response[:error] }, status: 400
       else

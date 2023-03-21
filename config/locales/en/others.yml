@@ -1731,6 +1731,7 @@ en:
       create_success: SMS job scheduled successfully
     test_webhook:
       create_success: Webhook test successful.
+      success: Success
     update: Update
     upload: Upload
     'yes': 'Yes'
