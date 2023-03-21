@@ -1,6 +1,6 @@
 import { Button, InputNumber } from 'antd'
 import { useState, FC } from 'react'
-import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.js?worker&url'
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.js?url'
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry'
 import styles from './styles.less'
 
