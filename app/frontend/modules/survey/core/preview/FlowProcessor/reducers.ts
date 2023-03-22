@@ -191,7 +191,9 @@ const HANDLERS = {
   ),
   [REMOVE_PREV_PAGE]: (state: State) => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
   [SHOW_END]: (state: State, { payload: endOfAssessmentElementProps }: ShowEnd) => (
-    { ...state, end: true, endOfAssessmentElementProps }),
+    {
+      ...state, end: true, endOfAssessmentElementProps, showSubmitPage: false,
+    }),
   [HIDE_END]: (state: State) => ({ ...state, end: false }),
   [SET_EMBEDDED_DATA]: (state: State, { data }: SetEmbeddedData) => setIn(
     state, 'embeddedData', { ...state.embeddedData, ...data },

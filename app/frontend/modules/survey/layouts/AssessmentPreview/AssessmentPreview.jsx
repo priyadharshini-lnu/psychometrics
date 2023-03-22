@@ -63,7 +63,7 @@ const AssessmentPreview = ({
     return <ErrorWarning />
   }
 
-  if (showSubmitPage && !submissionInProgress && !submissionFailed) {
+  if (showSubmitPage || (end && (submissionInProgress || submissionFailed))) {
     return <SubmitPage />
   }
 
