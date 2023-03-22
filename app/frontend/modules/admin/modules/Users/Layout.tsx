@@ -7,7 +7,7 @@ import {
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import RouteList from '~/components/RouteList'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
-import { history } from './store'
+import { history } from '~/modules/admin/store'
 import routes from './routes'
 import settings from './settings'
 
