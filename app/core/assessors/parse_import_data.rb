@@ -13,8 +13,7 @@ module Assessors
         if import_data.is_a?(ActionDispatch::Http::UploadedFile) || import_data.is_a?(Rack::Test::UploadedFile)
           CSV.read(import_data.path, encoding: 'bom|utf-8', headers: true)
         else
-          # TODO: get rid of URI.open
-          CSV.new(URI.open(import_data.url), headers: true).read # rubocop:disable Security/Open
+          CSV.new(URI(import_data.url).open, headers: true).read
         end
       rows = csv.map { |row| row.to_h.symbolize_keys }.map do |row|
         row[:assessment_ids] = (row[:assessment_ids] || '').split(',').map(&:to_i)
