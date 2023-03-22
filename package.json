@@ -216,7 +216,8 @@
     "highcharts-custom-events/highcharts": "9.0.0",
     "moment-timezone/moment": ">=2.29.4",
     "eslint-plugin-import/tsconfig-paths/json5": ">=1.0.2",
-    "eslint-plugin-node/minimatch": ">=3.0.5"
+    "eslint-plugin-node/minimatch": ">=3.0.5",
+    "coveralls/request/http-signature/jsprim/json-schema": "0.4.0"
   },
   "husky": {
     "hooks": {
