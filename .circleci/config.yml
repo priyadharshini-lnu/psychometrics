@@ -450,7 +450,6 @@ workflows:
       - heroku_deploy:
           name: heroku_staging
           app-name: tte-lighthouse-staging
-          asset-host: staging-cdn.tte-lighthouse.com
           requires:
             - jest
             - rspec
