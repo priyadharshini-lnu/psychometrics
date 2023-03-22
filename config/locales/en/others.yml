@@ -1559,6 +1559,10 @@ en:
       unlocked: Your account has been unlocked successfully. Please login to continue.
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: Wrong subdomain format.
+        reserved_subdomain: Subdomain %{value} is reserved
+        uniq_subdomain: Subdomain should be uniq.
       create_superadmin:
         uniq_email: Email should be uniq.
       filled?: can't be blank
