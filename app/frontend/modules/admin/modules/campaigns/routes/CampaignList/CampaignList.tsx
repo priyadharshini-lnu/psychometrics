@@ -210,7 +210,7 @@ const CampaignListComponent: React.FC<Props> = ({
                 text: capitalize(status),
                 value: status,
               }))}
-              filteredValue={getFilteredValue('status')}
+              filteredValue={getFilteredValue('statusEq')}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.type')}
