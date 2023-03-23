@@ -218,7 +218,8 @@
     "eslint-plugin-import/tsconfig-paths/json5": ">=1.0.2",
     "eslint-plugin-node/minimatch": ">=3.0.5",
     "coveralls/request/http-signature/jsprim/json-schema": "0.4.0",
-    "coveralls/minimist": "1.2.6"
+    "coveralls/minimist": "1.2.6",
+    "video.js": "7.21.4"
   },
   "husky": {
     "hooks": {
