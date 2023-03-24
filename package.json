@@ -103,8 +103,8 @@
     "medium-zoom": "^1.0.6",
     "microphone-stream": "^6.0.1",
     "mime": "^3.0.0",
-    "moment": "^2.29.1",
-    "moment-timezone": "^0.5.40",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.42",
     "normalize.css": "^4.1.1",
     "normalizr": "^3.6.2",
     "noty": "^2.3.8",
@@ -222,6 +222,10 @@
     "fbemitter/fbjs/ua-parser-js": "0.7.33",
     "video.js": "7.21.4",
     "react-pdf/file-loader/loader-utils/json5": "2.2.2",
+    "lodash": "^4.17.21",
+    "antd/moment": "^2.29.4",
+    "antd/rc-picker/moment": "^2.29.4",
+    "node-fetch": ">=2.6.7",
     "qs": ">=6.9.7"
   },
   "husky": {
