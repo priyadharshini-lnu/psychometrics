@@ -221,7 +221,8 @@
     "coveralls/minimist": "1.2.6",
     "fbemitter/fbjs/ua-parser-js": "0.7.33",
     "video.js": "7.21.4",
-    "react-pdf/file-loader/loader-utils/json5": "2.2.2"
+    "react-pdf/file-loader/loader-utils/json5": "2.2.2",
+    "qs": ">=6.9.7"
   },
   "husky": {
     "hooks": {
