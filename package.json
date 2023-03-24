@@ -159,7 +159,7 @@
     "seedrandom": "^3.0.5",
     "sms-segments-calculator": "^1.1.1",
     "type-fest": "^2.12.2",
-    "ua-parser-js": "^1.0.33",
+    "ua-parser-js": "0.7.33",
     "use-debounce": "^3.0.0",
     "videojs-record": "^3.6.0",
     "vite": "^4.1.1",
@@ -219,6 +219,7 @@
     "eslint-plugin-node/minimatch": ">=3.0.5",
     "coveralls/request/http-signature/jsprim/json-schema": "0.4.0",
     "coveralls/minimist": "1.2.6",
+    "fbemitter/fbjs/ua-parser-js": "0.7.33",
     "video.js": "7.21.4",
     "react-pdf/file-loader/loader-utils/json5": "2.2.2"
   },
