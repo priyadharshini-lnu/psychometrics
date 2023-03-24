@@ -1,4 +1,4 @@
-import { Button, InputNumber } from 'antd'
+import { Button, InputNumber, Skeleton } from 'antd'
 import { useState, FC } from 'react'
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.js?url'
 import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry'
@@ -53,6 +53,11 @@ export const PDFViewer: FC<Props> = ({ fileUrl, onLoadingComplete }) => {
           <Page key={`page_${index + 1}`} pageNumber={index + 1} loading="" className={styles.page} scale={scale} />
         ))}
       </Document>
+      {!loaded && (
+        <>
+          <Skeleton active paragraph={{ rows: 20, width: '768px' }} />
+        </>
+      )}
     </div>
   )
 }
