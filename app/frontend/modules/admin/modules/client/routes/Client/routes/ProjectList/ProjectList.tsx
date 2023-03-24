@@ -16,6 +16,7 @@ import {
   Row,
   Col,
   message,
+  Skeleton,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
@@ -141,16 +142,17 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                 <Col span="4">
                   {
                     logo ? (
-                      <Image
-                        src={logo}
-                        preview={false}
-                        width={60}
-                        height={60}
-                        className={styles.logoImageStyles}
-                        onClick={() => {
-                          history.push(`/administration/projects/${id}/new_campaigns?filters[statusEq]=active`)
-                        }}
-                      />
+                      <>
+                        <Image
+                          src={logo}
+                          preview={false}
+                          className={styles.logoImageStyles}
+                          placeholder={<Skeleton.Avatar className={styles.imageSkeleton} shape="square" active />}
+                          onClick={() => {
+                            history.push(`/administration/projects/${id}/new_campaigns?filters[statusEq]=active`)
+                          }}
+                        />
+                      </>
                     ) : (
                       <Avatar
                         size="large"
