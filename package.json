@@ -228,7 +228,8 @@
     "antd/moment": "^2.29.4",
     "antd/rc-picker/moment": "^2.29.4",
     "node-fetch": ">=2.6.7",
-    "kind-of": "6.0.3"
+    "kind-of": "6.0.3",
+    "babel-jest/**/browserslist": "4.16.5"
   },
   "husky": {
     "hooks": {
