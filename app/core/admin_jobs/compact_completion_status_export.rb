@@ -20,7 +20,7 @@ module AdminJobs
     end
 
     def headers
-      completion_statuses[0].keys
+      completion_statuses[0]&.keys || Campaigns::CompactCompletionStatusQuery::DEFAULT_COLUMN_NAMES
     end
 
     def csv_template
