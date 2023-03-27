@@ -97,6 +97,7 @@ const AssessorAssessment: React.FC<Props> = ({
             locales={assessorForm.result.translations}
             showScoringOnEndPage
             showQuestionScoring
+            isAssessor
           />
         )}
       </Content>

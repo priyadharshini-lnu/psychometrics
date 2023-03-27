@@ -56,6 +56,11 @@ class PageFooter extends Component {
     }
   }
 
+  saveResults = () => {
+    const { saveCurrentPage } = this.props
+    saveCurrentPage()
+  }
+
   hidePopConfirm = () => {
     this.setState({ popConfirmVisibleFor: null })
   }
@@ -65,9 +70,12 @@ class PageFooter extends Component {
       page, preview,
       preview: {
         enableBack, submissionInProgress, submissionFailed, nextButtonPressed, backButtonPressed,
+        isAssessor, type,
       },
       hasPrevPage, isDisconnected, showSubmit,
     } = this.props
+
+    const showSave = type === 'pass_assessment' && isAssessor
     const { popConfirmVisibleFor } = this.state
     const rtl = isRtl(I18n.uiLocale)
     const disableActionableButtons = isDisconnected || submissionInProgress || submissionFailed
@@ -113,6 +121,18 @@ class PageFooter extends Component {
             hidePopConfirm={this.hidePopConfirm}
             onConfirm={this.moveToNextPage}
           >
+            {!showSubmit && showSave && (
+              <Button
+                size="large"
+                type="primary"
+                disabled={disableActionableButtons}
+                loading={submissionInProgress}
+                className={styles.next}
+                onClick={this.saveResults}
+              >
+                {I18n.t('assessments.page.save', { locale: I18n.uiLocale })}
+              </Button>
+            )}
             {showSubmit ? (
               <Button
                 size="large"
