@@ -4,6 +4,7 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
       = resource.decorate.status
   td = resource.name
   td = resource.decorate.assessments_name
+  td = resource.decorate.owner_link
   td.text-center = resource.decorate.created_at
   td.actions-cell
     - if policy(resource).actions?

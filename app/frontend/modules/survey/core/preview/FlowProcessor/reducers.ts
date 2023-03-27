@@ -95,7 +95,7 @@ const HANDLERS = {
     const normalizedData = normalize({ blocks: data.blocks }, assessment)
     const resultsUrl = data.resultsUrl || `/assigns/${result.id}`
 
-    let { elements } = data.flow
+    let { elements } = (data.flow || { elements: [] })
     if (elements.length === 0) {
       elements = InitLinearElements.run(data.blocks)
     }
@@ -130,13 +130,13 @@ const HANDLERS = {
       resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
-      enableSingleQuestionPage: data.options.enable_single_question_page,
+      enableSingleQuestionPage: data.options?.enable_single_question_page,
       allPages: InitPages.run(data, (result.id || Date.now()).toString(), data.options),
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
-      elements: data.flow.elements,
-      linear: data.flow.elements.length === 0,
+      elements,
+      linear: elements.length === 0,
       blocks: normalizedData.entities.blocks,
       questions: normalizedData.entities.questions,
       currentElement: result.current_element || null,

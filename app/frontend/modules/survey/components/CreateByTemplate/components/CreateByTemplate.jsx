@@ -64,9 +64,9 @@ export class CreateByTemplate extends Component {
   }
 
   loadOptions = (input, callback) => {
-    const { entityName } = this.props
+    const { entityName, ownerId } = this.props
     perform(`${entityName.toLowerCase()}_filter`,
-      { q: input, without_notification: true }, (data) => {
+      { owner_id: ownerId, q: input, without_notification: true }, (data) => {
         callback(data)
       })
   }

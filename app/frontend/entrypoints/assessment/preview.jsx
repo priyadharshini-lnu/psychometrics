@@ -20,7 +20,7 @@ const {
 
 const props = {
   data: JSON.parse(data),
-  locales: JSON.parse(locales),
+  locales: JSON.parse(locales || '{}'),
   result: JSON.parse(result || '{}'),
   type,
   isThreesixty,

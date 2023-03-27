@@ -19,8 +19,8 @@ class BlockFooter extends Component {
   }
 
   createDefault = () => {
-    const { model } = this.props
-    model.addQuestion()
+    const { addQuestion, model } = this.props
+    addQuestion(model)
   }
 
   changeType = (type) => {

@@ -47,7 +47,13 @@ export const isAssessmentTimedOut = (state): boolean => state.assessmentTimedOut
 export const currentPage = (state): number => state.currentPage
 
 export const getElement = (state, id): ElementInterface => state.normalizedTree[id]
-export const getCurrentElement = (state): BlockElementInterface => state.normalizedTree[state.currentElement]
+export const getCurrentElement = (state): BlockElementInterface => {
+  if (state.type === 'block_preview') {
+    return state.normalizedTree[0]
+  }
+
+  return state.normalizedTree[state.currentElement]
+}
 
 export const getElementIdByBlockId = (state, blockId) => _.findKey(
   state.normalizedTree, el => el.props && el.props.current === `${blockId}`,

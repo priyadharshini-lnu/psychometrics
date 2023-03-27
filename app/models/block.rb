@@ -11,6 +11,7 @@ class Block < ApplicationRecord
   has_many :questions, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions_ams, -> { ams }, class_name: 'Question'
   has_many :blocks, class_name: 'Block', foreign_key: :template_id, dependent: :destroy
+  belongs_to :owner, class_name: 'Client'
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true

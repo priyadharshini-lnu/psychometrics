@@ -89,8 +89,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
 --
@@ -688,7 +686,8 @@ CREATE TABLE public.blocks (
     props json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer
+    template_id integer,
+    owner_id integer
 );
 
 
@@ -10892,6 +10891,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230207074200'),
 ('20230216143441'),
 ('20230223085853'),
-('20230315112437');
+('20230315112437'),
+('20230320091546');
 
 

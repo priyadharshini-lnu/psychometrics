@@ -36,6 +36,7 @@ export const defaultState = {
   trash: [],
   options: {},
   instructions: {},
+  ownerId: null,
 }
 
 const HANDLERS = {
@@ -47,6 +48,7 @@ const HANDLERS = {
     return ({
       ...state,
       ...assessment,
+      ownerId: assessment.owner_id,
       instructions: assessment.instructions || {},
       // fix wrong norms initializing app/models/assessments/common.rb:23
       norm_rules: _.isEmpty(assessment.norm_rules) ? [] : assessment.norm_rules.map(r => new Rule(r)),

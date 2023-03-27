@@ -16,6 +16,7 @@ function* genSave ({ response }: any) {
     question_recoding: [],
     flow: {},
   }, schema)
+
   yield put({ type: INIT, data: normalizedData })
 }
 

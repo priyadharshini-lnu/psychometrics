@@ -116,7 +116,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:name, assign_to_assessment_ids: [])
+        params.require(:resource).permit(:name, :owner_id, assign_to_assessment_ids: [])
       end
     end
   end
