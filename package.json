@@ -83,10 +83,8 @@
     "fp-ts": "^2.11.8",
     "glob": "^7.1.6",
     "green-audio-player": "git+https://github.com/TheTalentEnterprise/green-audio-player.git",
-    "highcharts": "^4.2.7",
-    "highcharts-3d": "0.1.2",
+    "highcharts": "^10.3.3",
     "highcharts-custom-events": "^3.0.10",
-    "highcharts-v9": "npm::highcharts",
     "history": "^4.10.1",
     "humps": "^2.0.1",
     "interact.js": "1.2.8",
@@ -213,7 +211,6 @@
     "buffer": "^6.0.3",
     "buffer-from": "^1.1.2",
     "readable-stream": "^4.3.0",
-    "highcharts-custom-events/highcharts": "9.0.0",
     "moment-timezone/moment": ">=2.29.4",
     "eslint-plugin-import/tsconfig-paths/json5": ">=1.0.2",
     "eslint-plugin-node/minimatch": ">=3.0.5",
@@ -229,7 +226,9 @@
     "antd/rc-picker/moment": "^2.29.4",
     "node-fetch": ">=2.6.7",
     "kind-of": "6.0.3",
-    "babel-jest/**/browserslist": "4.16.5"
+    "babel-jest/**/browserslist": "4.16.5",
+    "highcharts-custom-events/highcharts": "^10.3.3",
+    "ansi-regex":"^5.0.1"
   },
   "husky": {
     "hooks": {

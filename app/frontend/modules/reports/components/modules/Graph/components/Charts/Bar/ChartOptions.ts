@@ -1,7 +1,7 @@
-import { Options, AxisLabelsFormatterContextObject } from 'highcharts-v9'
+import { Options, AxisLabelsFormatterContextObject } from 'highcharts'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 
-type changeLabelFun = (labelObj: AxisLabelsFormatterContextObject<string>) => void
+type changeLabelFun = (labelObj: AxisLabelsFormatterContextObject) => void
 
 export default function ChartOptions (
   { ...model }: PropertiesModel,

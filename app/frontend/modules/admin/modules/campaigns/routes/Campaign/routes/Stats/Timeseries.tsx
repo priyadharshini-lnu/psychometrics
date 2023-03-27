@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Highcharts, { Chart, Options } from 'highcharts-v9'
-import Highcharts3D from 'highcharts-v9/highcharts-3d'
+import Highcharts, { Chart, Options } from 'highcharts'
+import Highcharts3D from 'highcharts/highcharts-3d'
 import CustomEvents from 'highcharts-custom-events'
 import { connect, ConnectedProps } from 'react-redux'
 import type { RangePickerProps } from 'antd/es/date-picker'

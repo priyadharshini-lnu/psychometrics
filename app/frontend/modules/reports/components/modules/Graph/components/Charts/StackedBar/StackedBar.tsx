@@ -1,7 +1,6 @@
 import merge from 'lodash/merge'
 import React, { useEffect, useRef } from 'react'
-import Highcharts from 'highcharts'
-import { Chart } from 'highcharts-v9'
+import Highcharts, { Chart } from 'highcharts'
 
 import AppStore from '~/modules/reports/store/AppStore'
 import LookupSourceName from '~/modules/reports/commands/LookupSourceName'

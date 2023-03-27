@@ -1,4 +1,4 @@
-import { SeriesBubbleOptions, Options } from 'highcharts-v9'
+import { SeriesBubbleOptions, Options } from 'highcharts'
 import { AdditionalChartOptions } from '~/modules/reports/interfaces/graphs/Bubble'
 
 export interface ChartOptions extends Options {
