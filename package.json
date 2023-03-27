@@ -223,7 +223,7 @@
     "video.js": "7.21.4",
     "react-pdf/file-loader/loader-utils/json5": "2.2.2",
     "qs": ">=6.9.7",
-    "mocker-api/follow-redirects": ">=1.15.2",
+    "follow-redirects": ">=1.15.2",
     "lodash": "^4.17.21",
     "antd/moment": "^2.29.4",
     "antd/rc-picker/moment": "^2.29.4",
