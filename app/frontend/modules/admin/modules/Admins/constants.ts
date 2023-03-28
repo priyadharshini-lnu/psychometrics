@@ -19,6 +19,11 @@ export enum AdminTypes {
   CampaignAdmin = 'campaign_admin',
 }
 
+export const ThreeSixtyGrants = {
+  campaigns: ['participant_options', 'reset_nominations', 'report_options'],
+  messages: ['email', 'instructions', 'options'],
+}
+
 export const ProjectAdminGrants = {
   clients: ['view'],
   projects: ['view', 'manage_users'],

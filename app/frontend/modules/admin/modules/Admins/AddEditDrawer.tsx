@@ -22,7 +22,9 @@ import ResourceForm from '~/components/ResourceForm'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import { Admin, AdminPermissions, CurrentUserPermissions } from '~/modules/admin/modules/client/core/admin'
 import styles from './styles.less'
-import { AdminTypes, CampaignAdminGrants, ProjectAdminGrants } from './constants'
+import {
+  AdminTypes, CampaignAdminGrants, ProjectAdminGrants, ThreeSixtyGrants,
+} from './constants'
 
 const { I18n } = window
 const { Option } = Select
@@ -375,6 +377,11 @@ const AddEditDrawerComponent: FC<Props> = ({
                       {_.map(grants, grant => (
                         <Checkbox value={grant}>
                           {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
+                          {_.includes(ThreeSixtyGrants[grantFor], grant) && (
+                            <sup>
+                              <a href="#sup-note-1">1</a>
+                            </sup>
+                          )}
                         </Checkbox>
                       ))}
                     </Checkbox.Group>
@@ -398,6 +405,14 @@ const AddEditDrawerComponent: FC<Props> = ({
           </>
         )}
       </ResourceForm>
+      <div className="notes">
+        {I18n.t('administration.administrators.drawers.notes.title')}
+        <ol className="notes">
+          <li id="sup-note-1">
+            {I18n.t('administration.administrators.drawers.notes.threesixty_permission')}
+          </li>
+        </ol>
+      </div>
     </Drawer>
   )
 }

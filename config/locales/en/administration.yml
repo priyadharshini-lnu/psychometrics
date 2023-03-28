@@ -85,6 +85,9 @@ en:
           update: Update
           update_failed: Admin '%{name}' update failed
           update_success: Admin '%{name}' was updated successfully
+        notes:
+          threesixty_permission: Permissions specific to 360 campaigns
+          title: Notes
         view:
           add_campaign_admin: Add Campaign Admin
           add_project_admin: Add Project Admin
