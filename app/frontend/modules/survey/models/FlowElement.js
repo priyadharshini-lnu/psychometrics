@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import _ from 'lodash'
-import genUUID from 'uuid/v4'
+import { v4 as genUUID } from 'uuid'
 import { EventEmitter } from 'fbemitter'
 import FlowCondition from './FlowCondition'
 

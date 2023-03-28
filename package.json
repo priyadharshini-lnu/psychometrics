@@ -160,6 +160,7 @@
     "type-fest": "^2.12.2",
     "ua-parser-js": "0.7.33",
     "use-debounce": "^3.0.0",
+    "uuid": "^9.0.0",
     "videojs-record": "^3.6.0",
     "vite": "^4.1.1",
     "vite-plugin-dts": "^1.7.2",
@@ -191,7 +192,7 @@
     "@types/react-select": "4.0.15",
     "@types/ua-parser-js": "^0.7.36",
     "babel-jest": "^29.5.0",
-    "coveralls": "^3.1.1",
+    "coveralls-next": "^4.2.0",
     "eslint": "^8.32.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "eslint-plugin-react": "^7.32.1",
@@ -215,8 +216,6 @@
     "moment-timezone/moment": ">=2.29.4",
     "eslint-plugin-import/tsconfig-paths/json5": ">=1.0.2",
     "eslint-plugin-node/minimatch": ">=3.0.5",
-    "coveralls/request/http-signature/jsprim/json-schema": "0.4.0",
-    "coveralls/minimist": "1.2.6",
     "fbemitter/fbjs/ua-parser-js": "0.7.33",
     "video.js": "7.21.4",
     "react-pdf/file-loader/loader-utils/json5": "2.2.2",
@@ -229,7 +228,8 @@
     "kind-of": "6.0.3",
     "babel-jest/**/browserslist": "4.16.5",
     "highcharts-custom-events/highcharts": "^10.3.3",
-    "ansi-regex": "^5.0.1"
+    "ansi-regex": "^5.0.1",
+    "path-parse": "^1.0.7"
   },
   "cssnano": {
     "preset": [

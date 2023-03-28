@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
-import genUUID from 'uuid/v4'
+import { v4 as genUUID } from 'uuid'
 import { question } from '../../../store/schema'
 import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
