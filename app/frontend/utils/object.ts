@@ -20,8 +20,9 @@ const camelizeKeysExcept = (data: object, except: string[]) => {
   except.forEach((ex) => {
     jsonpath.nodes(data, ex).forEach((node) => {
       const path = node.path.slice(1)
-      _.set(transformedData, path.map(p => _.camelCase(p)), node.value)
-      _.unset(transformedData, path)
+      const modifiedPath = path.map(p => humps.camelize(p))
+      _.unset(transformedData, modifiedPath)
+      _.set(transformedData, [...modifiedPath.slice(0, -1), path[path.length - 1]], node.value)
     })
   })
   return transformedData
