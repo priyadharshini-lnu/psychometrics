@@ -303,7 +303,6 @@ jobs:
             bundle exec rake i18n:js:export
             (find tmp/cache/jest -type f -mtime +30 -delete) || echo "No old cache files to prune"
             yarn test --coverage --detectOpenHandles -w 2 && yarn run coveralls < coverage/lcov.info
-            mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
       - run:
           name: Jest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
