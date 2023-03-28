@@ -2921,7 +2921,9 @@ en:
   users:
     actions:
       2fa:
-        confirm_message: 2 Factor Auth Updated
+        confirm_message:
+          disabled: 2 Factor Auth is Disabled
+          enabled: 2 Factor Auth is Enabled
         option_to_disable: Disable 2FA
         option_to_enable: Enable 2FA
       details: Details

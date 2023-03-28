@@ -96,7 +96,9 @@ const UserListComponent: React.FC<Props> = ({
     updateResource({
       id: user.id,
       enable_2fa: !user.enable_2fa,
-    }).then(() => message.info(I18n.t('users.actions.2fa.confirm_message')))
+    }).then((user: User) => {
+      message.info(I18n.t(`users.actions.2fa.confirm_message.${user.enable_2fa ? 'enabled' : 'disabled'}`))
+    })
   }
 
   const openDrawer = (user: User) => {
