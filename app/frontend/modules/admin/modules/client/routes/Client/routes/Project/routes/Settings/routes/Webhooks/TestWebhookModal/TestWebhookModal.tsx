@@ -33,7 +33,7 @@ export const TestWebhookModal: React.FC<Props> = ({
 
   const {
     memberAction,
-  } = useResources<Webook>(
+  } = useResources<Webhook>(
     'webhooks',
     {
       basePath: `projects/${webhook.projectId}`,

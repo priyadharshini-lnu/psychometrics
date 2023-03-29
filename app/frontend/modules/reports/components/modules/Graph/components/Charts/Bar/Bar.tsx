@@ -59,7 +59,7 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
     }
   }
 
-  const changeBarLabel = (collectionName: string, labelObj: AxisLabelsFormatterContextObject<string>) => {
+  const changeBarLabel = (collectionName: string, labelObj: AxisLabelsFormatterContextObject) => {
     changeLabel(model, labelObj.value, collectionName)
   }
 

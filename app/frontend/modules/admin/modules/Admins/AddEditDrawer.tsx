@@ -62,7 +62,7 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const [open, setUserSelectOpen] = useState(true)
 
-  const [selectedUser, setSelectedUser] = useState<UserDetails | null>(
+  const [selectedUser, setSelectedUser] = useState<Omit<UserDetails, 'enable_2fa'> | null>(
     {
       firstName: '', lastName: '', name: '', email: '', id: '',
     },

@@ -19,7 +19,7 @@ const connector = connect(
 )
 
 type OwnProps = {
-  accept: MouseEventHandler<HTMLElement>,
+  accept: (version: number) => void,
   show: boolean,
   close: MouseEventHandler<HTMLElement>,
 }

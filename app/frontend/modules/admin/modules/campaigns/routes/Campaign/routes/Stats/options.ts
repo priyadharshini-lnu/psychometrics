@@ -18,7 +18,9 @@ export const buildHighchartOptions = (timeseries: Stats['timeseries']): Options 
   },
   credits: { enabled: false },
   chart: {
-    zoomType: 'x',
+    zooming: {
+      type: 'x',
+    },
   },
   tooltip: {
     enabled: false,

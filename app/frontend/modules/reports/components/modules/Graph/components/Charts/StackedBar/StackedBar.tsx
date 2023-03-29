@@ -19,7 +19,7 @@ interface Props {
 }
 
 export const StackedBar: React.FC<Props> = ({ model, animation = false, factors }: Props) => {
-  const containerRef: React.MutableRefObject<null> = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false, factors 
     }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
 
-    chartRef.current = Highcharts.chart(
+    chartRef.current = containerRef.current ? Highcharts.chart(
       containerRef.current,
       merge(ChartOptions(model, animation), {
         chart: {
@@ -79,8 +79,7 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false, factors 
           pointWidth: model.props.pointWidth,
         })),
       }),
-    )
-
+    ) : undefined
     return null
   }
 
