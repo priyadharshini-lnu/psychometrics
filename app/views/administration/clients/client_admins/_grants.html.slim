@@ -120,6 +120,17 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][projects][]',
                         'manage_users', resource.has_grant?(:projects, :manage_users), id: projects_manage_users_id
                 | Manage Users
+    
+    - if policy(:membership).manage_grants_for_actions?('users', ['reset_password'], client: client)
+      tr
+        td Users
+        td
+          div.grants-grid
+            - if policy(:membership).manage_grants_for_action?('users', 'reset_password', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][users][]',
+                        'reset_password', resource.has_grant?(:users, :reset_password)
+                | Reset Password
 
     - if policy(:membership).manage_grants_for_actions?('project_settings', ['design', 'smtp', 'sms', 'saml', 'integrations'], client: client)
       tr

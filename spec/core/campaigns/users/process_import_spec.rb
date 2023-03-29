@@ -41,6 +41,60 @@ describe Campaigns::Users::ProcessImport do
     ]
   end
 
+  it "changes password if ovewrite_password is 'Yes'" do
+    user = campaign.users.create!(email: 'james@cc.com', password: 'Old_password1')
+    import_data = [{
+      active: nil,
+      first_name: 'James',
+      last_name: 'Smith',
+      email: 'james@cc.com',
+      password: 'New_password1',
+      overwrite_password: 'Yes'
+    }]
+
+    described_class.call!(
+      campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+    )
+    expect(user.reload.valid_password?('New_password1')).to eq(true)
+  end
+
+  it "doesn't change password if ovewrite_password is not 'Yes'" do
+    user = campaign.users.create!(email: 'james@cc.com', password: 'Old_password1')
+    import_data = [{
+      active: nil,
+      first_name: 'James',
+      last_name: 'Smith',
+      email: 'james@cc.com',
+      password: 'New_password1',
+      overwrite_password: 'No'
+    }]
+
+    described_class.call!(
+      campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+    )
+    expect(user.reload.valid_password?('New_password1')).to eq(false)
+  end
+
+  it 'saves error if update fails' do
+    user = campaign.users.create!(email: 'james@cc.com', password: 'Old_password1')
+    import_data = [{
+      active: nil,
+      first_name: 'James',
+      last_name: 'Smith',
+      email: 'james@cc.com',
+      password: 'Weak_password',
+      overwrite_password: 'Yes'
+    }]
+
+    described_class.call!(
+      campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+    )
+    expect(user.reload.valid_password?('weak_password')).to eq(false)
+    expect(admin_job_record.error_messages).to eq(
+      ["User update failed for james@cc.com with error 'Password must contain at least one digit'"]
+    )
+  end
+
   it '.call' do
     campaign.users.create!(email: 'vlad@gmail.com', password: 'A!sdasd1234321')
     campaign.users.create!(email: 'namu@gmail.com', password: 'A!namkhf123456')

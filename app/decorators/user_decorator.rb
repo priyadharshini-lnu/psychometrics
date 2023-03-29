@@ -207,6 +207,7 @@ class UserDecorator < BaseDecorator
         User.human_attribute_name('email'),
         User.human_attribute_name('locale'),
         User.human_attribute_name('password'),
+        User.human_attribute_name('overwrite_password'),
         User.human_attribute_name('created_at')
       ]
     end

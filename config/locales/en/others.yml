@@ -244,8 +244,10 @@ en:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project
             import_data:
+              cant_overwrite_password: You do not have permission to overwrite password.
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
               invalid_header: Invalid header, take header from export
+              user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
         user_assessment:

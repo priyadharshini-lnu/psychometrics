@@ -9,6 +9,7 @@ module Memberships
     GRANT_PARAMETERS = [data: [
       clients: [],
       projects: [],
+      users: [],
       campaigns: [],
       dimensions: [],
       reports: [],
