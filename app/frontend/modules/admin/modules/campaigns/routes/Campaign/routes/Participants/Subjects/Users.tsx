@@ -24,6 +24,10 @@ const MODALS = {
   UserFormModal,
   ImportUsersModal,
 }
+export const FILTER_PREDICATES = {
+  campaignUsersCompletionStatus: 'In',
+  campaignUsersStatus: 'In',
+}
 
 const { Column } = Table
 const { Search } = Input
@@ -75,6 +79,7 @@ const UserList: React.FC<Props> = ({
     page,
   },
   tableConfig,
+  getFilteredValue,
   changeFilter,
   removeFilter,
   onTableChange,
@@ -208,27 +213,42 @@ const UserList: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.campaigns.users.completion_status')}
-              key="completionStatus"
+              key="campaignUsersCompletionStatus"
+              dataIndex="completionStatus"
               sorter
-              sortOrder={getSortOrder('completionStatus')}
-              render={user => (
+              sortOrder={getSortOrder('campaignUsersCompletionStatus')}
+              filters={[
+                { text: 'Not Started', value: '0' },
+                { text: 'In Progress', value: '1' },
+                { text: 'Completed', value: '2' },
+              ]}
+              filteredValue={getFilteredValue('campaignUsersCompletionStatus')}
+              render={completionStatus => (
                 <Tag
-                  color={statusToColor[user.completionStatus]}
+                  color={statusToColor[completionStatus]}
                 >
-                  {I18n.t(`frontend.campaign.users.completion_statuses.${user.completionStatus}`)}
+                  {I18n.t(`frontend.campaign.users.completion_statuses.${completionStatus}`)}
                 </Tag>
               )}
             />
             <Column
               title={I18n.t('common.column.status')}
-              key="status"
+              key="campaignUsersStatus"
+              dataIndex="status"
               sorter
               sortOrder={getSortOrder('status')}
-              render={user => (
+              filters={[
+                { text: 'Not Started', value: '0' },
+                { text: 'In Progress', value: '1' },
+                { text: 'Interrupted', value: '2' },
+                { text: 'Timed Out', value: '3' },
+              ]}
+              filteredValue={getFilteredValue('campaignUsersStatus')}
+              render={status => (
                 <Tag
-                  color={statusToColor[user.status]}
+                  color={statusToColor[status]}
                 >
-                  {I18n.t(`campaign_users.details.statuses.${user.status}`)}
+                  {I18n.t(`campaign_users.details.statuses.${status}`)}
                 </Tag>
               )}
             />
@@ -386,4 +406,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   )
 }
 
-export default withEnhancedTable<{}>(UserList, 'usersList', { maintainHistory: true })
+export default withEnhancedTable<{}>(UserList, 'usersList', {
+  maintainHistory: true,
+  filterPredicates: FILTER_PREDICATES,
+})
