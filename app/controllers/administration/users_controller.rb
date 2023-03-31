@@ -7,7 +7,7 @@ class Administration::UsersController < Administration::BaseController
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
-  append_after_action :verify_policy_scoped, except: :index
+  append_after_action :verify_policy_scoped, except: %i[index search_admins]
   # GET /administration/resources
   def index
     @init_state = {
