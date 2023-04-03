@@ -5,6 +5,7 @@ import RubyPlugin from 'vite-plugin-ruby'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
+import checker from 'vite-plugin-checker'
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
 import { env } from 'process'
@@ -27,6 +28,7 @@ const devPlugins = __DEV__ ? [
   dts({
     insertTypesEntry: true,
   }),
+  checker({typescript: true}),
 ] : []
 
 // Ignore all the files from vendor if it is big and is required just for specific entry point
@@ -53,7 +55,6 @@ export default defineConfig({
   plugins: [
     RubyPlugin(),
     react(),
-
     // visualizer({open: true}),
     ...devPlugins,
     loadCssModulePlugin.default({

@@ -435,6 +435,9 @@ workflows:
       - eslint:
           requires:
             - yarn
+      - typescript:
+          requires:
+            - yarn
       - brakeman:
           requires:
             - bundle
@@ -445,6 +448,7 @@ workflows:
           requires:
             - rubocop
             - eslint
+            - typescript
       - jest:
           requires:
             - bundle_assets

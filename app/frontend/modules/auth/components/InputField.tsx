@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Input as AntInput, InputNumber, Form, InputNumberProps,
+  Input as AntInput, Form,
 } from 'antd'
 import { PasswordProps } from 'antd/lib/input'
 import styles from './styles.less'
@@ -13,19 +13,15 @@ type ComponentProps = {
 }
 
 type Prop1 = ComponentProps & PasswordProps
-type Prop2 = ComponentProps & InputNumberProps<number>
 
-type Props = Prop1 | Prop2
+type Props = Prop1
 
 export const InputField: React.FC<Props> = ({
-  label, name, password, errors = [], disabled, type, ...props
+  label, name, password, errors = [], disabled, ...props
 }) => {
   const InputTag = () => {
     if (password) {
       return AntInput.Password
-    }
-    if (type === 'number') {
-      return InputNumber as InputNumberProps
     }
 
     return AntInput
