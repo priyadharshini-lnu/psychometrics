@@ -175,7 +175,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def pearson_norms
-    norms = PearsonAssessmentSetting.pearson_norms(params[:pearson_assessment_id], params[:pearson_norm_id])
+    norms = Assessments::PearsonSettings.norms(params[:pearson_assessment_id], params[:pearson_norm_id])
 
     render json: norms
   end

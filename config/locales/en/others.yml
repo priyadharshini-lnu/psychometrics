@@ -591,10 +591,6 @@ en:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from
           score_to_must_be_number: Score to must be number
-        iiht_assessment_setting:
-          attributes:
-            iiht_schedule_config:
-              invalid: IIHT Schedule config should be a valid josn
         license:
           attributes:
             used_number:

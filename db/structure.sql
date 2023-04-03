@@ -89,6 +89,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
 --
@@ -1818,39 +1820,6 @@ CREATE TABLE public.highlights (
 
 
 --
--- Name: hogan_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.hogan_assessment_settings (
-    id bigint NOT NULL,
-    hogan_assessment_id character varying,
-    hogan_form_id character varying NOT NULL,
-    assessment_id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: hogan_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.hogan_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hogan_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.hogan_assessment_settings_id_seq OWNED BY public.hogan_assessment_settings.id;
-
-
---
 -- Name: hogan_credentials; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1920,39 +1889,6 @@ CREATE SEQUENCE public.hogan_report_settings_id_seq
 --
 
 ALTER SEQUENCE public.hogan_report_settings_id_seq OWNED BY public.hogan_report_settings.id;
-
-
---
--- Name: iiht_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.iiht_assessment_settings (
-    id bigint NOT NULL,
-    assessment_id bigint NOT NULL,
-    iiht_assessment_id_number character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    iiht_schedule_config jsonb
-);
-
-
---
--- Name: iiht_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.iiht_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: iiht_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.iiht_assessment_settings_id_seq OWNED BY public.iiht_assessment_settings.id;
 
 
 --
@@ -2539,39 +2475,6 @@ CREATE SEQUENCE public.old_passwords_id_seq
 --
 
 ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
-
-
---
--- Name: pearson_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.pearson_assessment_settings (
-    id bigint NOT NULL,
-    assessment_id bigint NOT NULL,
-    pearson_assessment_id character varying NOT NULL,
-    pearson_norm_id character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: pearson_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.pearson_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pearson_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.pearson_assessment_settings_id_seq OWNED BY public.pearson_assessment_settings.id;
 
 
 --
@@ -3459,39 +3362,6 @@ CREATE SEQUENCE public.saml_settings_id_seq
 --
 
 ALTER SEQUENCE public.saml_settings_id_seq OWNED BY public.saml_settings.id;
-
-
---
--- Name: saville_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.saville_assessment_settings (
-    id bigint NOT NULL,
-    assessment_id bigint NOT NULL,
-    saville_assessment_id character varying NOT NULL,
-    saville_norm_id character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: saville_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.saville_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: saville_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.saville_assessment_settings_id_seq OWNED BY public.saville_assessment_settings.id;
 
 
 --
@@ -5195,13 +5065,6 @@ ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- Name: hogan_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.hogan_assessment_settings_id_seq'::regclass);
-
-
---
 -- Name: hogan_credentials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5213,13 +5076,6 @@ ALTER TABLE ONLY public.hogan_credentials ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.hogan_report_settings ALTER COLUMN id SET DEFAULT nextval('public.hogan_report_settings_id_seq'::regclass);
-
-
---
--- Name: iiht_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.iiht_assessment_settings_id_seq'::regclass);
 
 
 --
@@ -5332,13 +5188,6 @@ ALTER TABLE ONLY public.occupations_factors ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.old_passwords ALTER COLUMN id SET DEFAULT nextval('public.old_passwords_id_seq'::regclass);
-
-
---
--- Name: pearson_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pearson_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.pearson_assessment_settings_id_seq'::regclass);
 
 
 --
@@ -5514,13 +5363,6 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.saml_settings ALTER COLUMN id SET DEFAULT nextval('public.saml_settings_id_seq'::regclass);
-
-
---
--- Name: saville_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.saville_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.saville_assessment_settings_id_seq'::regclass);
 
 
 --
@@ -6152,14 +5994,6 @@ ALTER TABLE ONLY public.highlights
 
 
 --
--- Name: hogan_assessment_settings hogan_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_assessment_settings
-    ADD CONSTRAINT hogan_assessment_settings_pkey PRIMARY KEY (id);
-
-
---
 -- Name: hogan_credentials hogan_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6173,14 +6007,6 @@ ALTER TABLE ONLY public.hogan_credentials
 
 ALTER TABLE ONLY public.hogan_report_settings
     ADD CONSTRAINT hogan_report_settings_pkey PRIMARY KEY (id);
-
-
---
--- Name: iiht_assessment_settings iiht_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings
-    ADD CONSTRAINT iiht_assessment_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6309,14 +6135,6 @@ ALTER TABLE ONLY public.occupations
 
 ALTER TABLE ONLY public.old_passwords
     ADD CONSTRAINT old_passwords_pkey PRIMARY KEY (id);
-
-
---
--- Name: pearson_assessment_settings pearson_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pearson_assessment_settings
-    ADD CONSTRAINT pearson_assessment_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6517,14 +6335,6 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.saml_settings
     ADD CONSTRAINT saml_settings_pkey PRIMARY KEY (id);
-
-
---
--- Name: saville_assessment_settings saville_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.saville_assessment_settings
-    ADD CONSTRAINT saville_assessment_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -7594,13 +7404,6 @@ CREATE INDEX index_highlights_on_user_id ON public.highlights USING btree (user_
 
 
 --
--- Name: index_hogan_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_hogan_assessment_settings_on_assessment_id ON public.hogan_assessment_settings USING btree (assessment_id);
-
-
---
 -- Name: index_hogan_credentials_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7619,13 +7422,6 @@ CREATE INDEX index_hogan_credentials_on_user_id ON public.hogan_credentials USIN
 --
 
 CREATE INDEX index_hogan_report_settings_on_report_id ON public.hogan_report_settings USING btree (report_id);
-
-
---
--- Name: index_iiht_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_iiht_assessment_settings_on_assessment_id ON public.iiht_assessment_settings USING btree (assessment_id);
 
 
 --
@@ -7871,13 +7667,6 @@ CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree
 --
 
 CREATE INDEX index_password_archivable ON public.old_passwords USING btree (password_archivable_type, password_archivable_id);
-
-
---
--- Name: index_pearson_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_pearson_assessment_settings_on_assessment_id ON public.pearson_assessment_settings USING btree (assessment_id);
 
 
 --
@@ -8165,13 +7954,6 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 --
 
 CREATE INDEX index_saml_settings_on_project_id ON public.saml_settings USING btree (project_id);
-
-
---
--- Name: index_saville_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_saville_assessment_settings_on_assessment_id ON public.saville_assessment_settings USING btree (assessment_id);
 
 
 --
@@ -9002,14 +8784,6 @@ ALTER TABLE ONLY public.assigns
 
 
 --
--- Name: iiht_assessment_settings fk_rails_1d640cec6c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings
-    ADD CONSTRAINT fk_rails_1d640cec6c FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
 -- Name: memberships fk_rails_1e06b93eb5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9039,14 +8813,6 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 ALTER TABLE ONLY public.assessors
     ADD CONSTRAINT fk_rails_232405a599 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
-
-
---
--- Name: pearson_assessment_settings fk_rails_2368fd589d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pearson_assessment_settings
-    ADD CONSTRAINT fk_rails_2368fd589d FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -9407,14 +9173,6 @@ ALTER TABLE ONLY public.communications
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_6437d9c02f FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
--- Name: saville_assessment_settings fk_rails_6847f23cff; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.saville_assessment_settings
-    ADD CONSTRAINT fk_rails_6847f23cff FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -10031,14 +9789,6 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.threesixty_email_histories
     ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE CASCADE;
-
-
---
--- Name: hogan_assessment_settings fk_rails_d0f7b433a7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_assessment_settings
-    ADD CONSTRAINT fk_rails_d0f7b433a7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -10892,6 +10642,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230216143441'),
 ('20230223085853'),
 ('20230315112437'),
+('20230317094144'),
 ('20230320091546');
 
 

@@ -13,7 +13,15 @@ class CampaignAssessment < ApplicationRecord
 
   before_create :set_position
 
-  delegate :common?, :hogan?, :mindmill?, :external?, :saville?, :iiht?, :has_external_norm?, to: :assessment
+  delegate :common?,
+           :hogan?,
+           :mindmill?,
+           :external?,
+           :saville?,
+           :iiht?,
+           :has_external_norm?,
+           :external_assessment_id,
+           to: :assessment
 
   def validate_external_config
     return unless external_config.presence.is_a?(String)
@@ -66,7 +74,9 @@ class CampaignAssessment < ApplicationRecord
   private
 
   def pearson_norm_name
-    assessment.pearson_norms.find { |norm| norm[:id] == external_norm_id }[:name]
+    Assessments::PearsonSettings.
+      pearson_norms(external_assessment_id).
+      find { |norm| norm[:id] == external_norm_id }[:name]
   end
 
   def saville_norm_name
