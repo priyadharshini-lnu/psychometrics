@@ -32,12 +32,14 @@ const buildUrl = ({
     ...bodyFromTableConfig(tableConfig),
     ...body,
   })
+
   const query = qs.stringify(normalizedBody, {
-    arrayFormat: 'bracket',
+    arrayFormat: 'brackets',
   })
+
   if (query.length !== 0) {
     return `${url}?${qs.stringify(normalizedBody, {
-      arrayFormat: 'bracket',
+      arrayFormat: 'brackets',
     })}`
   }
 
@@ -48,7 +50,11 @@ const buildUrl = ({
 const bodyFromTableConfig = (tableConfig) => {
   if (!tableConfig) { return {} }
 
-  const data = { filters: tableConfig.filters || {}, page: tableConfig.page, size: tableConfig.pageSize }
+  const data = {
+    filters: tableConfig.filters || {},
+    page: tableConfig.page,
+    size: tableConfig.pageSize,
+  }
   if (_.isEmpty(tableConfig.sort)) return data
   return setIn(data, ['filters', 's'], `${_.snakeCase(tableConfig.sort.columnName)} ${tableConfig.sort.order}`)
 }
