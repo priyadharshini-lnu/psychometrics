@@ -384,7 +384,7 @@ jobs:
             git config http.postBuffer 524288000
             git add -f public/vite
             git add -f public/assets
-            git commit -m "ci compiled assets"
+            git commit -m "ci compiled assets" --no-verify
       - heroku/install
       - heroku/deploy-via-git:
           force: true
