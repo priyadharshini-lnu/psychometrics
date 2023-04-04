@@ -87,6 +87,7 @@ const defaultState: State = {
   instructions: { enabled: false, content: '' },
   fixedTimed: false,
   showErrorWarning: false,
+  submitRequired: false,
 }
 
 const HANDLERS = {
@@ -302,7 +303,7 @@ const HANDLERS = {
         })
       ))
     },
-  [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
+  [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, submitRequired: true, showSubmitPage: true }),
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
   [NEXT_BUTTON_PRESSED]: (state: State) => ({
