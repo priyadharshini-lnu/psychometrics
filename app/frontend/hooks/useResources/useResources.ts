@@ -181,10 +181,15 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const { data, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success) {
-        const camelizedData = camelizeKeys(data || {}, { except: camelizeExcept, only: camelizeOnly })
-        if (updateStore) updateIndividualRecord(camelizedData)
-        resolve(camelizedData)
-        responseTypeValidation(memberResponseType, camelizedData)
+        if (typeof data !== 'object') {
+          responseTypeValidation(memberResponseType, response)
+          resolve(response)
+        } else {
+          const camelizedData = camelizeKeys(data || {}, { except: camelizeExcept, only: camelizeOnly })
+          if (updateStore) updateIndividualRecord(camelizedData)
+          resolve(camelizedData)
+          responseTypeValidation(memberResponseType, camelizedData)
+        }
       } else {
         reject(formattedErrors)
       }
@@ -221,12 +226,17 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const { data: responseData, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
-        const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
-        resolve(camelizedData)
-        if (args.updateStore && args.responseType === responseType) {
-          updateIndividualRecord(camelizedData)
+        if (typeof data !== 'object') {
+          responseTypeValidation(memberResponseType, response)
+          resolve(response)
+        } else {
+          const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
+          resolve(camelizedData)
+          if (args.updateStore && args.responseType === responseType) {
+            updateIndividualRecord(camelizedData)
+          }
+          responseTypeValidation(memberResponseType, camelizedData)
         }
-        responseTypeValidation(memberResponseType, camelizedData)
       } else {
         reject(formattedErrors)
       }

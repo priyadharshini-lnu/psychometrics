@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {
   Button, Menu, Switch, message,
 } from 'antd'
+import * as t from 'io-ts'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
 import { ConfirmationModal } from '~/glint'
@@ -89,6 +90,8 @@ interface ActionMenuProps {
   confirmation: boolean
 }
 
+const ResetPasswordTR = t.literal('ok')
+
 const ActionsMenu: React.FC<ActionMenuProps> = ({ setConfirmation, confirmation, user }) => {
   const { resource } = useResourceContext<User>()
 
@@ -96,6 +99,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ setConfirmation, confirmation,
     id: user.id,
     action: 'reset_password',
     method: 'post',
+    responseType: ResetPasswordTR,
   }).then(
     () => message.info(I18n.t('users.actions.reset_password.confirm_message', { email: user.email })),
   ).catch(e => message.error(JSON.stringify(e)))
