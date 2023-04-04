@@ -20,7 +20,6 @@ export const UserDetailsTR = t.type({
   name: t.string,
   firstName: t.string,
   lastName: t.string,
-  enable_2fa: t.string,
   email: t.string,
 })
 

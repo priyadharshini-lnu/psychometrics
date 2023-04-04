@@ -45,6 +45,8 @@
     "public"
   ],
   "include": [
+    // "./app/stories",
+    // "**/*.stories.tsx",
     "./app/frontend",
     "./app/frontend/modules/survey",
   ],

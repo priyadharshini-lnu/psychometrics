@@ -1,0 +1,52 @@
+import { FC, ReactNode } from 'react'
+import {
+  Input, Space, Row, Col,
+} from 'antd'
+import { CountDisplay } from '~/components/CountDisplay'
+import { useResourceContext } from '../ResourceContext'
+
+const { Search } = Input
+
+type Props = {
+  children: ReactNode
+  placeholder: string
+  name: string
+}
+
+export const Filter: FC<Props> = ({
+  children,
+  placeholder,
+  name,
+}) => {
+  const { resource } = useResourceContext()
+  const loading = resource.isLoading('fetch')
+
+  const requestFailed = resource.requests.fetch?.status === 'failed'
+  return (
+    <Row
+      justify="space-between"
+      align="middle"
+      className="pt-4 pb-4 ps-4 pe-4"
+    >
+      <Col>
+        <CountDisplay
+          selectedCount={0}
+          totalCount={requestFailed ? 0 : resource.meta.recordCount || 0}
+          isLoading={loading}
+        />
+      </Col>
+      <Col>
+
+        <Space>
+          <Search
+            placeholder={placeholder}
+            value={resource.getFilteredValue(name)}
+            onChange={({ target: { value } }) => { resource.changeFilter(name, value) }}
+          />
+          {children}
+        </Space>
+      </Col>
+    </Row>
+
+  )
+}

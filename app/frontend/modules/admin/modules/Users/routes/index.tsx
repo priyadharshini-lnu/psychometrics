@@ -4,15 +4,15 @@ const routes = [
   { redirect: true, from: '', to: '/users' },
   {
     path: '/users',
-    component: () => <UserList userRole="Users::Regular" />,
+    component: () => <UserList userTab="Users::Regular" />,
   },
   {
     path: '/admins',
-    component: () => <UserList userRole="Users::Admin" />,
+    component: () => <UserList userTab="Users::Admin" />,
   },
   {
     path: '/superadmins',
-    component: () => <UserList userRole="Users::SuperAdmin" />,
+    component: () => <UserList userTab="Users::SuperAdmin" />,
   },
 ]
 

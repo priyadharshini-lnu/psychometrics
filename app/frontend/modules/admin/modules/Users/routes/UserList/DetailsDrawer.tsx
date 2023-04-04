@@ -3,8 +3,8 @@ import * as t from 'io-ts'
 import {
   Drawer, Row, Descriptions, Skeleton,
 } from 'antd'
-import { MemberAction } from '~/hooks/useResources/interfaces'
 import { User } from '~/modules/admin/modules/client/core/users'
+import { useResourceContext } from '~/modules/admin/components/Resource'
 
 export const RoleTR = t.type({
   name: t.string,
@@ -21,8 +21,6 @@ export const RolesResponseTR = t.type({
 const { I18n } = window
 
 interface Props {
-  isOpen: boolean
-  memberAction: MemberAction
   close: () => void
   user: User | undefined
 }
@@ -34,11 +32,10 @@ interface RolesResponse {
 }
 
 export const DetailsDrawer: FC<Props> = ({
-  isOpen,
   close,
-  memberAction,
   user,
 }) => {
+  const { resource } = useResourceContext()
   const [roles, setRoles] = useState<Role[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -50,7 +47,7 @@ export const DetailsDrawer: FC<Props> = ({
     getRoles(user)
   }, [user])
 
-  const getRoles = (user: User) => memberAction({
+  const getRoles = (user: User) => resource.memberAction({
     id: user.id,
     action: 'roles',
     method: 'get',
@@ -67,7 +64,7 @@ export const DetailsDrawer: FC<Props> = ({
       placement="right"
       closable
       onClose={close}
-      visible={isOpen}
+      visible
       width="40%"
     >
       <Row>
