@@ -1,5 +1,6 @@
 import React, { useEffect, FC } from 'react'
-import { Layout, Col } from 'antd'
+import { Layout, Col, Space } from 'antd'
+import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 
@@ -8,9 +9,11 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import LangDropdown from '~/components/LangDropdown'
-import { PageHeader } from '~/glint'
+import { PageHeader, CountdownTimer } from '~/glint'
 import { Common } from './Common'
 import { Threesixty } from './Threesixty'
+import { secondsLeftFromNow } from '~/utils/time'
+import { Notification } from '~/glint/components/CountdownTimer'
 
 import styles from './styles.less'
 
@@ -57,10 +60,45 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
     }
   }, [match.url])
 
+  const notificationDurations: Notification[] = [
+    { completionPercentage: 50, type: 'info' },
+    { completionPercentage: 75, type: 'warning' },
+    { completionPercentage: 90, type: 'error' },
+  ]
+  const notificationMessage = (minutes: number, seconds: number) => (
+    I18n.t('campaign.timer.notification', { minutes, seconds })
+  )
+  const expiryDate = campaign?.campaignUser?.expiryDate
+  const isTimedCampaign = campaign?.isTimedCampaign
+  const remainingCampaignTime = secondsLeftFromNow(expiryDate)
+
+
   const headerElement = (
-    <Col flex="auto" span={24} className="ta-e">
-      <LangDropdown locales={locales} current={current} />
-    </Col>
+    <>
+      <Col offset={4} span={16} className="ta-c">
+        <Space align="center" size="large">
+          {isTimedCampaign && remainingCampaignTime && (
+          <CountdownTimer
+            prefix={(
+              <>
+                {I18n.t('user_assessments.timer_title.campaign')}
+                {': '}
+                <ClockCircleOutlined />
+              </>
+              )}
+            notificationPoints={notificationDurations}
+            notificationTemplate={notificationMessage}
+            seconds={remainingCampaignTime}
+            onFinish={() => fetchCampaign(match.url)}
+          />
+          )}
+        </Space>
+      </Col>
+      <Col flex="auto" span={24} className="ta-e">
+        <LangDropdown locales={locales} current={current} />
+      </Col>
+    </>
+
   )
 
   const Campaign = TYPES[campaign.type]
