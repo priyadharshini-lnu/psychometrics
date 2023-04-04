@@ -447,6 +447,7 @@ workflows:
       - bundle_assets:
           requires:
             - rubocop
+            - brakeman
             - eslint
             - typescript
       - jest:
