@@ -9,9 +9,6 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import { UserFormModal } from './UserFormModal'
 import { UserTable } from './UserTable'
 import { UserFilter } from './UserFilter'
-import { createZutandStoreForJsonApi } from '~/hooks/useResources/utils'
-
-export const useStore = createZutandStoreForJsonApi<{ id: string }[]>('dashboard')
 
 const connecter = connect(
   (state: RootState) => ({
@@ -33,12 +30,10 @@ const UserListComponent: React.FC<Props> = ({
 }) => {
   const [drawerUser, setDrawerUser] = useState<User | undefined>()
   const [closed, closeModal] = useState(true)
-  const stateManager = useStore()
   const config = {
     trackUrl: true,
     apiConfig: { camelizeExcept: ['$[*].enable_2fa', '$.enable_2fa'], filter: { role_eq: userTab } },
     responseType: UserTR,
-    stateManager,
   }
 
   return (
