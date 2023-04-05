@@ -126,6 +126,7 @@ export const importAssessors = (campaignId: number, body: FormData) => ({
     url: `/administration/new_campaigns/${campaignId}/assessors/import`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

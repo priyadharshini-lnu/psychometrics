@@ -85,6 +85,7 @@ export const importUsers = (campaignId: number, body: any): ApiAction<ShortUser[
     url: `/administration/new_campaigns/${campaignId}/users/import`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;',
   },
 })
 

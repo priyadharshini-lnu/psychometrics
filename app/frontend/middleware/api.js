@@ -53,11 +53,11 @@ const bodyFromTableConfig = (tableConfig) => {
   return setIn(data, ['filters', 's'], `${_.snakeCase(tableConfig.sort.columnName)} ${tableConfig.sort.order}`)
 }
 
-const buildOptions = ({ options = {} }) => ({
+const buildOptions = ({ options = {}, ...request }) => ({
   ...options,
   headers: {
     ...options.headers,
-    'Content-Type': 'application/json',
+    'Content-Type': request.contentType || 'application/json',
     Accept: 'application/json',
     'X-CSRF-Token': window.$('meta[name="csrf-token"]').attr('content'),
   },
