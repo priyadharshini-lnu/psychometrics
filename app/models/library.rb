@@ -2,6 +2,7 @@
 
 class Library < ApplicationRecord
   include OwnerValidations
+  include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
   # TODO: remove after migration to ActiveStorage
   include ActiveStorageSync
@@ -15,11 +16,14 @@ class Library < ApplicationRecord
 
   mount_uploader :file, Public::FileUploader
 
-  has_one_attached :as_file
-  validates :as_file, content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls]
+  has_one_attachment :as_file, content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls]
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :file
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/library/#{id}/#{attribute_name}/#{filename}"
+  end
 
   validates :name, presence: true, if: proc { folder? }
   validates :file, presence: true, unless: proc { folder? }

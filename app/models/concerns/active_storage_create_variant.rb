@@ -10,7 +10,7 @@ module ActiveStorageCreateVariant
   def create_variant
     if record.class.respond_to?(:attachment_variants)
       record.class.attachment_variants[name.to_sym].each do |variant|
-        image_variant(variant)
+        ActiveStorageCreateVariantJob.perform_later(blob, variant)
       end
     end
   end
