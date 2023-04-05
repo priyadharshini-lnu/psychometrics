@@ -10,6 +10,7 @@ module Campaigns
       attribute :instructions_enabled, { String => Boolean }
       attribute :instructions, String
       attribute :identification, Integer
+      attribute :integration_type, String
       attribute :proctoring_enabled, { String => Boolean }
       attribute :rules, Hash
       attribute :description, String

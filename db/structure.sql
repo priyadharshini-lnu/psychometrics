@@ -10,6 +10,27 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: c_11492; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_11492;
+
+
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
+-- Name: test; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA test;
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -88,8 +109,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 
 SET default_tablespace = '';
-
-SET default_with_oids = false;
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -379,10 +398,10 @@ CREATE TABLE public.ar_internal_metadata (
 --
 
 CREATE TABLE public.assessments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     category character varying,
-    dimension_id integer,
+    dimension_id bigint,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -561,16 +580,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -678,17 +697,17 @@ ALTER SEQUENCE public.audit_logs_id_seq OWNED BY public.audit_logs.id;
 --
 
 CREATE TABLE public.blocks (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessment_id integer,
+    assessment_id bigint,
     deleted_at timestamp without time zone,
     props json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer
+    template_id bigint
 );
 
 
@@ -720,8 +739,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -742,6 +760,131 @@ CREATE SEQUENCE public.bulk_reports_id_seq
 --
 
 ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: c_10916_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10916_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    ((sheet_rows.data ->> 'Grit'::text))::double precision AS "Grit",
+    (sheet_rows.data ->> 'Name'::text) AS "Name"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 288)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: c_10935_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10935_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Name'::text) AS "Name",
+    (sheet_rows.data ->> 'Level'::text) AS "Level",
+    (sheet_rows.data ->> 'Position '::text) AS "Position ",
+    (sheet_rows.data ->> 'Organization'::text) AS "Organization",
+    (sheet_rows.data ->> 'Gender'::text) AS "Gender",
+    (sheet_rows.data ->> 'Tenure'::text) AS "Tenure",
+    ((sheet_rows.data ->> 'Excitable'::text))::double precision AS "Excitable",
+    ((sheet_rows.data ->> 'Skeptical'::text))::double precision AS "Skeptical",
+    ((sheet_rows.data ->> 'Cautious'::text))::double precision AS "Cautious",
+    ((sheet_rows.data ->> 'Reserved'::text))::double precision AS "Reserved",
+    ((sheet_rows.data ->> 'Leisurely'::text))::double precision AS "Leisurely",
+    ((sheet_rows.data ->> 'Bold'::text))::double precision AS "Bold",
+    ((sheet_rows.data ->> 'Mischievous'::text))::double precision AS "Mischievous",
+    ((sheet_rows.data ->> 'Colorful'::text))::double precision AS "Colorful",
+    ((sheet_rows.data ->> 'Imaginative'::text))::double precision AS "Imaginative",
+    ((sheet_rows.data ->> 'Diligent'::text))::double precision AS "Diligent",
+    ((sheet_rows.data ->> 'Dutiful'::text))::double precision AS "Dutiful",
+    ((sheet_rows.data ->> 'Aesthetic'::text))::double precision AS "Aesthetic",
+    ((sheet_rows.data ->> 'Affiliation'::text))::double precision AS "Affiliation",
+    ((sheet_rows.data ->> 'Altruistic'::text))::double precision AS "Altruistic",
+    ((sheet_rows.data ->> 'Commercial'::text))::double precision AS "Commercial",
+    ((sheet_rows.data ->> 'Hedonistic'::text))::double precision AS "Hedonistic",
+    ((sheet_rows.data ->> 'Power'::text))::double precision AS "Power",
+    ((sheet_rows.data ->> 'Recognition'::text))::double precision AS "Recognition",
+    ((sheet_rows.data ->> 'Scientific'::text))::double precision AS "Scientific",
+    ((sheet_rows.data ->> 'Security'::text))::double precision AS "Security",
+    ((sheet_rows.data ->> 'Tradition'::text))::double precision AS "Tradition",
+    ((sheet_rows.data ->> 'Cognitive Ability Results'::text))::double precision AS "Cognitive Ability Results",
+    (sheet_rows.data ->> 'Analytical Reasoning'::text) AS "Analytical Reasoning",
+    ((sheet_rows.data ->> 'Overall Potential Score'::text))::double precision AS "Overall Potential Score",
+    (sheet_rows.data ->> 'Talent Mapping'::text) AS "Talent Mapping",
+    ((sheet_rows.data ->> 'Performance Score'::text))::double precision AS "Performance Score",
+    (sheet_rows.data ->> 'Performance Level'::text) AS "Performance Level",
+    ((sheet_rows.data ->> '9 Box Position'::text))::double precision AS "9 Box Position",
+    (sheet_rows.data ->> 'Behaviour Strength'::text) AS "Behaviour Strength",
+    (sheet_rows.data ->> 'Behaviour Development Areas'::text) AS "Behaviour Development Areas",
+    (sheet_rows.data ->> 'Behaviour Overall'::text) AS "Behaviour Overall",
+    (sheet_rows.data ->> 'Technical Competency 1'::text) AS "Technical Competency 1",
+    (sheet_rows.data ->> 'Technical Competency 2'::text) AS "Technical Competency 2",
+    (sheet_rows.data ->> 'Technical Competency 3'::text) AS "Technical Competency 3",
+    (sheet_rows.data ->> 'Technical Competency 4'::text) AS "Technical Competency 4",
+    (sheet_rows.data ->> 'Technical Competency 5'::text) AS "Technical Competency 5",
+    ((sheet_rows.data ->> 'Technical Score 1'::text))::double precision AS "Technical Score 1",
+    ((sheet_rows.data ->> 'Technical Score 2'::text))::double precision AS "Technical Score 2",
+    ((sheet_rows.data ->> 'Technical Score 3'::text))::double precision AS "Technical Score 3",
+    ((sheet_rows.data ->> 'Technical Score 4'::text))::double precision AS "Technical Score 4",
+    ((sheet_rows.data ->> 'Technical Score 5'::text))::double precision AS "Technical Score 5",
+    (sheet_rows.data ->> 'Technical Strengths'::text) AS "Technical Strengths",
+    (sheet_rows.data ->> 'Technical Development Areas'::text) AS "Technical Development Areas",
+    (sheet_rows.data ->> 'Technical Summary'::text) AS "Technical Summary",
+    ((sheet_rows.data ->> '1. Service Excellence'::text))::double precision AS "1. Service Excellence",
+    ((sheet_rows.data ->> '2. Engages Others'::text))::double precision AS "2. Engages Others",
+    ((sheet_rows.data ->> '3. Harnesses Data'::text))::double precision AS "3. Harnesses Data",
+    ((sheet_rows.data ->> '4. Delivery Focussed'::text))::double precision AS "4. Delivery Focussed",
+    ((sheet_rows.data ->> '5. Builds Capability'::text))::double precision AS "5. Builds Capability",
+    ((sheet_rows.data ->> '6. Acts with Agility'::text))::double precision AS "6. Acts with Agility",
+    ((sheet_rows.data ->> '7. Drives Efficiencies'::text))::double precision AS "7. Drives Efficiencies",
+    ((sheet_rows.data ->> '8. Digital Dexterity'::text))::double precision AS "8. Digital Dexterity",
+    ((sheet_rows.data ->> 'F2F Overall Score'::text))::double precision AS "F2F Overall Score",
+    ((sheet_rows.data ->> 'Validity'::text))::double precision AS "Validity",
+    ((sheet_rows.data ->> 'Adjustment'::text))::double precision AS "Adjustment",
+    ((sheet_rows.data ->> 'Ambition'::text))::double precision AS "Ambition",
+    ((sheet_rows.data ->> 'Sociability'::text))::double precision AS "Sociability",
+    ((sheet_rows.data ->> 'InterpersonalSensitivity'::text))::double precision AS "InterpersonalSensitivity",
+    ((sheet_rows.data ->> 'Prudence'::text))::double precision AS "Prudence",
+    ((sheet_rows.data ->> 'Inquisitive'::text))::double precision AS "Inquisitive",
+    ((sheet_rows.data ->> 'LearningApproach'::text))::double precision AS "LearningApproach",
+    ((sheet_rows.data ->> 'ServiceOrientation'::text))::double precision AS "ServiceOrientation",
+    ((sheet_rows.data ->> 'StressTolerance'::text))::double precision AS "StressTolerance",
+    ((sheet_rows.data ->> 'Reliability'::text))::double precision AS "Reliability",
+    ((sheet_rows.data ->> 'Clerical'::text))::double precision AS "Clerical",
+    ((sheet_rows.data ->> 'Sales'::text))::double precision AS "Sales",
+    ((sheet_rows.data ->> 'Manager'::text))::double precision AS "Manager",
+    ((sheet_rows.data ->> 'Ravens data'::text))::double precision AS "Ravens data",
+    ((sheet_rows.data ->> 'Overall Potential'::text))::double precision AS "Overall Potential",
+    ((sheet_rows.data ->> 'Performance'::text))::double precision AS "Performance",
+    ((sheet_rows.data ->> 'Position in 9 Box'::text))::double precision AS "Position in 9 Box",
+    (sheet_rows.data ->> 'Strengths'::text) AS "Strengths",
+    (sheet_rows.data ->> 'Development Areas'::text) AS "Development Areas",
+    (sheet_rows.data ->> 'Overall'::text) AS "Overall",
+    (sheet_rows.data ->> 'Technical strengths'::text) AS "Technical strengths",
+    (sheet_rows.data ->> 'Technical dev areas'::text) AS "Technical dev areas",
+    (sheet_rows.data ->> 'Target Role'::text) AS "Target Role",
+    (sheet_rows.data ->> 'Target Level'::text) AS "Target Level",
+    (sheet_rows.data ->> 'Target Entity'::text) AS "Target Entity"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 299)
+  ORDER BY sheet_rows.id;
 
 
 --
@@ -873,7 +1016,8 @@ CREATE TABLE public.campaign_options (
     proctoring_enabled boolean DEFAULT false,
     identification integer DEFAULT 0,
     rules jsonb DEFAULT '{"allow_voices": false, "allow_to_use_books": false, "allow_to_use_excel": false, "allow_to_use_paper": true, "allow_to_use_websites": false, "allow_absence_in_frame": false, "allow_to_use_calculator": true, "allow_to_use_messengers": false, "allow_wrong_gaze_direction": false, "allow_to_use_human_assistant": false}'::jsonb,
-    description text
+    description text,
+    integration_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -939,8 +1083,8 @@ ALTER SEQUENCE public.campaign_reports_id_seq OWNED BY public.campaign_reports.i
 CREATE TABLE public.campaign_templates (
     id bigint NOT NULL,
     name character varying,
-    assessment_id integer,
-    report_id integer,
+    assessment_id bigint,
+    report_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1146,12 +1290,12 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 --
 
 CREATE TABLE public.comments (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     text character varying,
     created_by integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
+    commentable_id bigint,
     commentable_type character varying
 );
 
@@ -1217,7 +1361,7 @@ CREATE TABLE public.communications (
     id integer NOT NULL,
     subject character varying,
     body text,
-    assessment_id integer,
+    assessment_id bigint,
     client_id integer,
     recipients integer DEFAULT 0,
     delivery_rule integer,
@@ -1461,7 +1605,7 @@ ALTER SEQUENCE public.design_settings_id_seq OWNED BY public.design_settings.id;
 --
 
 CREATE TABLE public.dimensions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
@@ -1635,12 +1779,12 @@ ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
 --
 
 CREATE TABLE public.factors (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer,
-    parent_id integer,
+    dimension_id bigint,
+    parent_id bigint,
     disabled boolean DEFAULT false,
     icon character varying,
     description text,
@@ -1709,10 +1853,10 @@ ALTER SEQUENCE public.factors_id_seq OWNED BY public.factors.id;
 --
 
 CREATE TABLE public.factors_norms (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     type public.factors_norms_types,
-    factor_id integer,
-    norm_id integer,
+    factor_id bigint,
+    norm_id bigint,
     props json
 );
 
@@ -1741,11 +1885,11 @@ ALTER SEQUENCE public.factors_norms_id_seq OWNED BY public.factors_norms.id;
 --
 
 CREATE TABLE public.factors_scoring (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     props json,
-    factor_id integer,
-    assessment_id integer,
-    question_id integer
+    factor_id bigint,
+    assessment_id bigint,
+    question_id bigint
 );
 
 
@@ -1813,7 +1957,7 @@ CREATE TABLE public.highlights (
     assessment_id bigint,
     user_id bigint,
     data jsonb DEFAULT '{}'::jsonb NOT NULL,
-    resource_id integer NOT NULL,
+    resource_id bigint NOT NULL,
     resource_type character varying NOT NULL
 );
 
@@ -2101,7 +2245,7 @@ ALTER SEQUENCE public.integrations_id_seq OWNED BY public.integrations.id;
 --
 
 CREATE TABLE public.libraries (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     description text,
     type integer DEFAULT 0,
@@ -2362,14 +2506,14 @@ ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_crede
 --
 
 CREATE TABLE public.norms (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     disabled boolean DEFAULT false,
     created_by_id integer,
     updated_by_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer,
+    dimension_id bigint,
     owner_id integer,
     norm_type integer DEFAULT 0
 );
@@ -2432,11 +2576,11 @@ ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
 --
 
 CREATE TABLE public.occupations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     icon character varying,
     description text,
-    dimension_id integer,
+    dimension_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     full_description text,
@@ -2458,9 +2602,9 @@ CREATE TABLE public.occupations (
 --
 
 CREATE TABLE public.occupations_factors (
-    id integer NOT NULL,
-    occupation_id integer,
-    factor_id integer,
+    id bigint NOT NULL,
+    occupation_id bigint,
+    factor_id bigint,
     predicate character varying,
     value double precision,
     created_at timestamp without time zone NOT NULL,
@@ -3012,14 +3156,14 @@ ALTER SEQUENCE public.question_recoding_id_seq OWNED BY public.question_recoding
 --
 
 CREATE TABLE public.questions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying,
     "position" integer,
     type character varying,
     props json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    block_id integer,
+    block_id bigint,
     deleted_at timestamp without time zone,
     required_validation json,
     validation json,
@@ -3027,8 +3171,8 @@ CREATE TABLE public.questions (
     skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer,
-    assessment_id integer,
+    template_id bigint,
+    assessment_id bigint,
     owner_id integer,
     created_by_id bigint,
     updated_by_id bigint
@@ -3200,7 +3344,7 @@ ALTER SEQUENCE public.report_families_id_seq OWNED BY public.report_families.id;
 --
 
 CREATE TABLE public.report_families_reports (
-    report_id integer,
+    report_id bigint,
     report_family_id integer,
     external_package_id character varying,
     id bigint NOT NULL,
@@ -3233,8 +3377,8 @@ ALTER SEQUENCE public.report_families_reports_id_seq OWNED BY public.report_fami
 --
 
 CREATE TABLE public.reports (
-    id integer NOT NULL,
-    assessment_id integer,
+    id bigint NOT NULL,
+    assessment_id bigint,
     name character varying,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
@@ -3243,12 +3387,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -3300,13 +3444,13 @@ ALTER SEQUENCE public.reports_accesses_id_seq OWNED BY public.reports_accesses.i
 --
 
 CREATE TABLE public.reports_filters (
-    id integer NOT NULL,
-    report_id integer,
+    id bigint NOT NULL,
+    report_id bigint,
     name character varying,
     conditions json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessment_id integer,
+    assessment_id bigint,
     min_required_responses integer DEFAULT 0
 );
 
@@ -3354,8 +3498,8 @@ ALTER SEQUENCE public.reports_id_seq OWNED BY public.reports.id;
 --
 
 CREATE TABLE public.reports_modules (
-    id integer NOT NULL,
-    page_id integer,
+    id bigint NOT NULL,
+    page_id bigint,
     name character varying,
     props json,
     "position" integer,
@@ -3392,8 +3536,8 @@ ALTER SEQUENCE public.reports_modules_id_seq OWNED BY public.reports_modules.id;
 --
 
 CREATE TABLE public.reports_pages (
-    id integer NOT NULL,
-    report_id integer,
+    id bigint NOT NULL,
+    report_id bigint,
     name character varying,
     props json,
     "position" integer,
@@ -3644,20 +3788,6 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
-
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
 
 
 --
@@ -4183,7 +4313,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4415,15 +4546,15 @@ ALTER SEQUENCE public.threesixty_subjects_id_seq OWNED BY public.threesixty_subj
 --
 
 CREATE TABLE public.translations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     translateable_type character varying,
-    translateable_id integer,
+    translateable_id bigint,
     props json DEFAULT '{}'::json,
     locale character varying(10),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     resource_type character varying,
-    resource_id integer
+    resource_id bigint
 );
 
 
@@ -4743,10 +4874,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -10818,6 +10949,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230117130759'),
 ('20230207074200'),
 ('20230216143441'),
-('20230315112437');
+('20230315112437'),
+('20230328102230');
 
 

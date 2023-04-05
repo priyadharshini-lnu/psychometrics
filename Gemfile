@@ -103,8 +103,6 @@ gem 'net-smtp', require: false
 gem 'file_validators',            '~> 3.0.0'
 gem 'rubyXL',                     '~> 3.4.6'
 
-# For import csv
-gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails', '~> 0.4.6'
 gem 'redis', '~> 4.7.1'

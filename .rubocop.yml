@@ -115,7 +115,7 @@ Style/FormatString:
 # supressing Redis-related global var
 Style/GlobalVars:
   Exclude:
-    - app/commands/users/build_sso_url.rb
+    - app/models/users/regular.rb
     - app/core/hogan/add_reports.rb
     - app/core/users/authenticate_user.rb
     - config/initializers/redis.rb

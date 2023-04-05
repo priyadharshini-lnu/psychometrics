@@ -11,7 +11,7 @@ import {
   getName,
 } from '~/modules/endUser/modules/campaigns/core/project'
 import lighthouseLogo from '~/modules/endUser/assets/images/lighthouseLogoTall.png'
-import { isInsideIframe } from '~/utils/isInsideIframe'
+import { isProctored } from '~/utils/isProctored'
 
 import { PageFooter } from '~/glint'
 import styles from './styles.less'
@@ -35,7 +35,7 @@ const FooterComponent: FC<PropsFromRedux> = ({
   secondaryLogo,
   projectName,
 }) => {
-  if (isInsideIframe()) {
+  if (isProctored()) {
     return null
   }
 
