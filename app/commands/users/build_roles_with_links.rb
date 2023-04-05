@@ -9,8 +9,18 @@ module Users
     end
 
     def call
-      roles = build_for_superadmin + build_for_client_admins + build_for_project_admins + build_for_campaign_admins
+      roles =
+        if user.role == 'Users::Regular'
+          build_for_regular_user
+        else
+          build_for_superadmin + build_for_client_admins + build_for_project_admins + build_for_campaign_admins
+        end
+
       broadcast :ok, roles
+    end
+
+    def build_for_regular_user
+      user.campaigns.map { |campaign| build_for_campaign(campaign, 'campaign_user') }
     end
 
     def build_for_superadmin
@@ -40,18 +50,20 @@ module Users
     end
 
     def build_for_campaign_admins
-      user.campaign_admin_campaigns.map do |campaign|
-        project = campaign.project
-        client = project.client
-        {
-          name: 'campaign_admin',
-          paths: [
-            { name: client.name, value: "/administration/clients/#{client.id}/projects" },
-            { name: project.name, value: "/administration/projects/#{project.id}/new_campaigns" },
-            { name: campaign.name, value: "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}" }
-          ]
-        }
-      end
+      user.campaign_admin_campaigns.map { |campaign| build_for_campaign(campaign, 'campaign_admin') }
+    end
+
+    def build_for_campaign(campaign, name)
+      project = campaign.project
+      client = project.client
+      {
+        name: name,
+        paths: [
+          { name: client.name, value: "/administration/clients/#{client.id}/projects" },
+          { name: project.name, value: "/administration/projects/#{project.id}/new_campaigns" },
+          { name: campaign.name, value: "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}" }
+        ]
+      }
     end
   end
 end

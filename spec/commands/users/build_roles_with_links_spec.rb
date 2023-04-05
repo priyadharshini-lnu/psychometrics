@@ -4,17 +4,18 @@ require 'rails_helper'
 
 describe Users::BuildRolesWithLinks do
   let!(:superadmin) { create(:superadmin) }
-  let!(:user) { create(:user, project: project) }
+  let!(:admin) { create(:user, project: project, role: 'Users::Admin') }
+  let!(:regular) { create(:user, project: project) }
   let!(:campaign) { create(:campaign) }
   let!(:project) { campaign.project }
   let!(:client) { project.client }
-  let!(:client_membership) { create(:client_admin_membership, user: user, client: client) }
-  let!(:project_membership) { create(:project_admin_membership, user: user, client: project) }
-  let!(:campaign_membership) { create(:campaign_admin_membership, user: user, campaign: campaign) }
+  let!(:client_membership) { create(:client_admin_membership, user: admin, client: client) }
+  let!(:project_membership) { create(:project_admin_membership, user: admin, client: project) }
+  let!(:campaign_membership) { create(:campaign_admin_membership, user: admin, campaign: campaign) }
 
-  describe 'gen roles with links' do
+  describe 'gen roles with links for admin' do
     it do
-      roles = described_class.call!(user)
+      roles = described_class.call!(admin)
       expect(roles).to eq [
         { :name => 'client_admin',
           :paths => [
@@ -33,6 +34,21 @@ describe Users::BuildRolesWithLinks do
             }
           ] }
       ]
+    end
+  end
+
+  describe 'gen roles with links for regular user' do
+    before do
+      create(:campaign_user, user: regular)
+      create(:campaign_user, user: regular)
+    end
+
+    it do
+      roles = described_class.call!(regular)
+
+      expect(roles.length).to eq(2)
+      expect(roles.first[:name]).to eq('campaign_user')
+      expect(roles.first[:paths].length).to eq(3)
     end
   end
 
