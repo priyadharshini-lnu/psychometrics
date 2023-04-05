@@ -1559,7 +1559,7 @@ en:
       add_edit_project:
         invalid_subdomain_format: Wrong subdomain format.
         reserved_subdomain: Subdomain %{value} is reserved
-        uniq_subdomain: Subdomain should be uniq.
+        uniq_subdomain: Subdomain should be unique.
       admin:
         already_added: Admin with email already added.
       create_superadmin:
