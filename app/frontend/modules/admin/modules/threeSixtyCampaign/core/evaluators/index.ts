@@ -95,6 +95,7 @@ export const importFile = (campaignId: number, data: FormData) => ({
     url: `/administration/threesixty_campaigns/${campaignId}/evaluators/import`,
     body: data,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

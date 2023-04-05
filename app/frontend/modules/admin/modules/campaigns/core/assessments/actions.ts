@@ -55,6 +55,7 @@ export const importRawResults = (campaignId: number, assessmentId: number, body:
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/import_results`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 
