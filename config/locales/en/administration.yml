@@ -376,6 +376,7 @@ en:
           body: Refer to the Export functionality to extract a template that can be used to Import here.
           title: Import Assessors
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
+      saved_results: Answers successfully saved.
       status: Status
       statuses:
         completed: Completed

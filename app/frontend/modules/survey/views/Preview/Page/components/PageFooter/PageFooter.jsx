@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import cs from 'classnames'
-import { Button, Popconfirm, Alert } from 'antd'
+import {
+  Button, Popconfirm, Alert, message,
+} from 'antd'
 import { isRtl } from '~/utils/locales'
 import { getQuestion } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import styles from './styles.less'
@@ -58,7 +60,9 @@ class PageFooter extends Component {
 
   saveResults = () => {
     const { saveCurrentPage } = this.props
-    saveCurrentPage()
+    saveCurrentPage().then(() => {
+      message.success(I18n.t('administration.assessor.saved_results'))
+    })
   }
 
   hidePopConfirm = () => {
