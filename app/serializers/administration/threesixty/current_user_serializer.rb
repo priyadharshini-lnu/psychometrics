@@ -37,6 +37,7 @@ module Administration
             edit_report
             edit_dimension
             manage_relationships
+            regenerate_report
           ],
           {
             project_id: current_project_id

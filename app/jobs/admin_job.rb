@@ -34,6 +34,7 @@ class AdminJob < ApplicationJob
     export_users: AdminJobs::ExportUsers,
     import_accesssheet: AdminJobs::ImportAccesssheet,
     import_question_translations: AdminJobs::ImportQuestionTranslations,
+    regenerate_threesixty_report: AdminJobs::RegenerateThreesixtyReport,
     bulk_regenerate_threesixty_reports: AdminJobs::BulkRegenerateThreesixtyReports
   }.freeze
 

@@ -28,6 +28,7 @@ export default function SubjectList ({
   openModal,
   removeUser,
   downloadReport,
+  regenerateReport,
   total,
   permissions,
   page,
@@ -144,6 +145,7 @@ export default function SubjectList ({
                       editUser,
                       onUserUpdate,
                       permissions,
+                      regenerateReport,
                     })
                   }
                   innerElement={(

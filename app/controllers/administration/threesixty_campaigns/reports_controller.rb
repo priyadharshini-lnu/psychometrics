@@ -6,7 +6,7 @@ module Administration
       include AuthenticateByToken
 
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show export download]
+      before_action :set_resource, only: %i[show export download regenerate]
       prepend_before_action :authenticate_by_token!, only: %i[show]
       append_before_action :pundit_authorize
 
@@ -62,6 +62,16 @@ module Administration
             send_tmp_file data[:file_path], type: 'application/pdf'
           end
         end
+      end
+
+      def regenerate
+        AdminJob.call(
+          :regenerate_threesixty_report, {
+            subject_id: resource.id,
+            threesixty_campaign_id: params[:threesixty_campaign_id]
+          }, current_user
+        )
+        render json: :ok
       end
 
       private

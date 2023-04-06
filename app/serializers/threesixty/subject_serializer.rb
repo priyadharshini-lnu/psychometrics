@@ -53,7 +53,8 @@ module Threesixty
           'mark_as_done',
           'unmark_as_done',
           'remove_subject',
-          'remove_from_campaign'
+          'remove_from_campaign',
+          'regenerate_report'
         ],
         {
           project_id: current_project_id

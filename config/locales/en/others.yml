@@ -668,6 +668,7 @@ en:
         import_users: Import Users
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
+        regenerate_threesixty_report: Regenerate Threesixty Report
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
@@ -2739,6 +2740,7 @@ en:
         hold_report: Hold report
         login: Login
         mark_as_done: Mark as done
+        regenerate_report: Regenerate report
         release_report: Release report
         remove_campaign: Remove from campaign
         remove_report_approval: Remove report approval
