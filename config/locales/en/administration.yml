@@ -142,6 +142,7 @@ en:
             manage: Manage
             view: View
           campaigns:
+            bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
             manage_admins: Manage Admins
             manage_messages: Manage Messages
@@ -3515,6 +3516,8 @@ en:
         title: Preview
       regenerate:
         successfully: Report successfully sent for regeneration
+      regenerated: Regenerated
+      regenerated_count: Reports regenerated
       resource:
         confirmations:
           delete:

@@ -48,6 +48,13 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     render json: :ok
   end
 
+  def regenerate_reports
+    AdminJob.call(
+      :bulk_regenerate_threesixty_reports, { campaign_id: resource.id }, current_user
+    )
+    render json: :ok
+  end
+
   def destroy
     audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
     resource.destroy!

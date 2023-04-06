@@ -6,7 +6,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const CustomMenu = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
-  permissions, onExport, handleRescoreAssessment,
+  permissions, onExport, handleRescoreAssessment, regenerateReports,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_completion_status') {
@@ -20,6 +20,9 @@ const CustomMenu = ({
     }
     if (key === 'rescore_assessment') {
       return handleRescoreAssessment(campaignId)
+    }
+    if (key === 'regenerate_reports') {
+      return regenerateReports(campaignId)
     }
   }
 
@@ -52,6 +55,10 @@ const CustomMenu = ({
       key: 'rescore_assessment',
       label: I18n.t('campaign_assessment.actions.rescore'),
     },
+    permissions.bulkRegenerateReports && {
+      key: 'regenerate_reports',
+      label: I18n.t('campaign_assessment.actions.regenerate'),
+    },
   ]
   return (
     <Menu onClick={handleMenuClick} items={menuItems} />
@@ -61,7 +68,7 @@ const CustomMenu = ({
 export default function ToolsDropdown ({
   resetCampaign, resetAllNominations, openModal, rescoreAssessment,
   match: { params: { campaignId, projectId } }, permissions,
-  exportCompletionStatuses,
+  exportCompletionStatuses, regenerateReports,
 }) {
   const resetCampaignWithConfirmation = (campaignId) => {
     openModal('ResetCampaignModal', {
@@ -90,6 +97,26 @@ export default function ToolsDropdown ({
   }
 
 
+  const handleRegenerateReports = (campaignId) => {
+    Modal.confirm({
+      title: I18n.t('campaign_assessment.modals.regenerate.title'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('campaign_assessment.modals.regenerate.content'),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: async () => {
+        try {
+          await regenerateReports(campaignId)
+          message.success(I18n.t('user_reports.messages.regenerate_successful'))
+        } catch (error) {
+          message.error(error, 5)
+        }
+      },
+    })
+  }
+
   const resetAllNominationsWithConfirmation = (campaignId) => {
     openModal('CampaignNameConfirmationModal', {
       onConfirm: () => resetAllNominations(campaignId),
@@ -112,6 +139,7 @@ export default function ToolsDropdown ({
           resetCampaignWithConfirmation,
           resetAllNominationsWithConfirmation,
           handleRescoreAssessment,
+          regenerateReports: handleRegenerateReports,
           openModal,
           permissions,
           onExport,

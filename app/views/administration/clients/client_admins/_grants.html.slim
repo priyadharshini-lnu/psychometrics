@@ -56,6 +56,7 @@
 - campaigns_participant_options_id = dom_id(u, :campaigns_participant_options)
 - campaigns_reset_nominations_id = dom_id(u, :campaigns_reset_nominations)
 - campaigns_report_options_id = dom_id(u, :campaigns_report_options)
+- campaigns_bulk_regenerate_reports_id = dom_id(u, :campaigns_bulk_regenerate_reports)
 
 - messages_email_id = dom_id(u, :messages_email)
 - messages_instructions_id = dom_id(u, :messages_instructions)
@@ -237,6 +238,13 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][campaigns][]',
                         'stats', resource.has_grant?(:campaigns, :stats)
                 | View Stats
+            - if policy(:membership).manage_grants_for_action?('campaigns', 'bulk_regenerate_reports', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][campaigns][]',
+                        'bulk_regenerate_reports', resource.has_grant?(:campaigns, :report_options), id: campaigns_bulk_regenerate_reports_id
+                | Bulk Regenerate Reports
+                sup
+                  a href='#sup-note-1' 1
 
     - if policy(:membership).manage_grants_for_actions?('messages', ['email', 'instructions', 'options'], client: client)
       tr

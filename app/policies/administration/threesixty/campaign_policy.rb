@@ -70,6 +70,12 @@ module Administration::Threesixty
       has_permission?(:results, :rescore_responses)
     end
 
+    def regenerate_reports?
+      has_permission?(:results, :bulk_regenerate_reports)
+    end
+
+    alias bulk_regenerate_reports? regenerate_reports?
+
     def export_completion_status?
       @user.is?(:superadmin) || @user.has_grant?(:campaigns, :view)
     end

@@ -127,8 +127,9 @@ module Administration
           Administration::Threesixty::CampaignPolicy,
           current_user,
           nil,
-          [
-            'rescore_assessment'
+          %w[
+            rescore_assessment
+            bulk_regenerate_reports
           ],
           {
             project_id: threesixty_campaign.campaign.project_id

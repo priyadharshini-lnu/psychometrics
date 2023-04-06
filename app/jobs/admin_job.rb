@@ -33,7 +33,8 @@ class AdminJob < ApplicationJob
     threesixty_campaign_export_completion_status: AdminJobs::ThreesixtyCampaignExportCompletionStatus,
     export_users: AdminJobs::ExportUsers,
     import_accesssheet: AdminJobs::ImportAccesssheet,
-    import_question_translations: AdminJobs::ImportQuestionTranslations
+    import_question_translations: AdminJobs::ImportQuestionTranslations,
+    bulk_regenerate_threesixty_reports: AdminJobs::BulkRegenerateThreesixtyReports
   }.freeze
 
   def perform(record)

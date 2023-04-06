@@ -46,6 +46,7 @@ export const ProjectAdminGrants = {
     'reset_nominations',
     'report_options',
     'manage_report_approvals',
+    'bulk_regenerate_reports',
   ],
   dashboards: ['view', 'accesssheet_view', 'accesssheet_manage', 'accesssheet_settings'],
   messages: ['email', 'instructions', 'options'],
@@ -71,7 +72,9 @@ export const ProjectAdminGrants = {
 
 export const CampaignAdminGrants = {
   assessors: ['view', 'manage'],
-  campaigns: ['view', 'manage', 'manage_users', 'manage_options', 'manage_report_approvals'],
+  campaigns: [
+    'view', 'manage', 'manage_users', 'manage_options', 'manage_report_approvals', 'bulk_regenerate_reports',
+  ],
   smsInvites: ['view', 'manage'],
   communications: ['view', 'manage'],
   datasheets: ['view', 'manage'],

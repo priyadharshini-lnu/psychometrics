@@ -649,6 +649,7 @@ en:
         assessment_scoring_export: Scoring Results Export
         bulk_download_reports: Bulk Download Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
+        bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
         compact_completion_status_export: Compact Completion Status Export
@@ -1071,6 +1072,7 @@ en:
       export_scoring: Scoring
       import_raw: Raw
       import_scoring: Scoring
+      regenerate: Regenerate Reports
       rescore: Rescore Assessment
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
@@ -1100,6 +1102,10 @@ en:
         success_msg: Import successfully uploaded
         title: Import Scoring Results data
         upload: Upload
+      regenerate:
+        content: Are you sure you want to regenerate available reports?
+        successfully: Reports will be regenerated.
+        title: Regenerate reports?
       remove:
         helper_text: 'DANGER: Selecting this will remove all users'' responses to this assessment in this campaign.'
         msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
