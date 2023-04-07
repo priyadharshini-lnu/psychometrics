@@ -7,9 +7,11 @@ import RequiredValidation from '../Validations/Required'
 import { isEmailTextEntryQuestion } from '~/modules/survey/utils/question'
 import Results from './Results'
 
-const Result = function (question, answers = null, notApplicable = null) {
+const Result = function (question, answers = null, notApplicable = null, results = {}, answeredQuestions = null) {
   this.questionId = question.id
   this.question = question
+  this.answeredQuestions = answeredQuestions
+  this.results = results
   const Res = Results[question.type] || function () {}
   // this.moduleResult = new Results[question.type](this)
   this.answers = _.cloneDeep(answers || question.props.defaultValues) || []
@@ -33,6 +35,7 @@ _.extend(Result.prototype, {
     }
 
     const res = this.processValidation()
+
     if (res) {
       if (isEmailTextEntryQuestion(this.question)) { res.field = 'message' }
       errors.push(res)
@@ -51,7 +54,6 @@ _.extend(Result.prototype, {
     if (this.question.validation.type === 'None') {
       return
     }
-
     if (this.question.validation.type === 'Custom') {
       return _.find(
         _.map(this.question.validation.customValidations, validation => this.processCustomValidation(validation)),
@@ -70,14 +72,12 @@ _.extend(Result.prototype, {
   processCustomValidation (validation) {
     const message = I18n().tCustomValidation(this.question, validation.message, validation.uuid)
     if (!message) { return }
-
     const { conditions } = validation
     const validations = conditions.map(
-      condition => new Validations.Custom(condition, [this.question], {}, this),
+      condition => new Validations.Custom(condition, this.answeredQuestions || [this.question], this.results, this),
     )
 
     const results = validations.map(validation => validation.validate(this))
-
     let res = null
     let prev = null
     _.each(results, (result) => {
