@@ -33,28 +33,24 @@ export const UserTable: React.FC<{ currentUser: User, openDrawer: (user: User) =
       id="first_name"
       width={300}
       sorter
-      dataIndex="firstName"
     />
     <Resource.Column<User>
       title={I18n.t('common.column.last_name')}
       id="last_name"
       width={300}
       sorter
-      dataIndex="lastName"
     />
     <Resource.Column<User>
       title={I18n.t('common.column.email')}
       id="email"
       width={300}
       sorter
-      dataIndex="email"
     />
     <Resource.Column<User>
       title={I18n.t('common.column.updated_at')}
       id="updated_at"
       width={300}
       sorter
-      dataIndex="updatedAt"
     />
     {isSuperAdmin(currentUser)
         && (

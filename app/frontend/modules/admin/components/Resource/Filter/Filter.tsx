@@ -5,11 +5,13 @@ import {
 import { CountDisplay } from '~/components/CountDisplay'
 import { useResourceContext } from '../ResourceContext'
 
+const { I18n } = window
+
 const { Search } = Input
 
 type Props = {
   children: ReactNode
-  placeholder: string
+  placeholder?: string
   name: string
 }
 
@@ -22,6 +24,9 @@ export const Filter: FC<Props> = ({
   const loading = resource.isLoading('fetch')
 
   const requestFailed = resource.requests.fetch?.status === 'failed'
+
+  const defaultPlaceholder = I18n.t('common.actions.search')
+
   return (
     <Row
       justify="space-between"
@@ -39,7 +44,7 @@ export const Filter: FC<Props> = ({
 
         <Space>
           <Search
-            placeholder={placeholder}
+            placeholder={placeholder || defaultPlaceholder}
             value={resource.getFilteredValue(name)}
             onChange={({ target: { value } }) => { resource.changeFilter(name, value) }}
           />

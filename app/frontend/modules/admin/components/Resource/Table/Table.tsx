@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { FC, Children, ReactElement } from 'react'
 import { Table as AntTable, Pagination } from 'antd'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
@@ -32,6 +33,9 @@ export const Table: FC<Props> = ({ pagination, children }) => {
         let innerProps = { ...c.props, key: c.props.id }
         if (c.props.sorter) {
           innerProps = { ...innerProps, sortOrder: resource.getSortOrder(innerProps.id) }
+          if (!innerProps.render) {
+            innerProps.dataIndex = _.camelCase(innerProps.id)
+          }
         }
         return <AntColumn {...innerProps} />
       })}
