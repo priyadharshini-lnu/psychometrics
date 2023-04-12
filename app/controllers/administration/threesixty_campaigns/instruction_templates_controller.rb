@@ -13,7 +13,7 @@ module Administration
       end
 
       def show
-        list = params[:locales].values.map do |locale|
+        list = params[:locales].map do |locale|
           Mobility.with_locale(locale) do
             ::Threesixty::InstructionTemplateLocaleSerializer.new(resource, locale: locale).to_h
           end
