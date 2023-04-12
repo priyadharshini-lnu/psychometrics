@@ -236,7 +236,7 @@ const UserList: React.FC<Props> = ({
               key="campaignUsersStatus"
               dataIndex="status"
               sorter
-              sortOrder={getSortOrder('status')}
+              sortOrder={getSortOrder('campaignUsersStatus')}
               filters={[
                 { text: 'Not Started', value: '0' },
                 { text: 'In Progress', value: '1' },

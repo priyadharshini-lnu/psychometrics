@@ -7,7 +7,7 @@ module Administration
                  :created_at, :updated_at, :locale, :active, :completion_status,
                  :status, :permissions
 
-      delegate :active, :completion_status, to: :campaign_user
+      delegate :active, :completion_status, :status, to: :campaign_user
 
       attribute :started_at do
         campaign_user&.started_at && I18n.l(campaign_user&.started_at, format: :short)
@@ -33,10 +33,6 @@ module Administration
             campaign_id: instance_options[:campaign_id]
           }
         )
-      end
-
-      def status
-        campaign_user.real_status
       end
 
       def created_at
