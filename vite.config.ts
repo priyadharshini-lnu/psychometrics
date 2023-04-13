@@ -7,6 +7,7 @@ import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
+import svgr from 'vite-plugin-svgr'
 import { env } from 'process'
 import fs from 'fs'
 
@@ -54,6 +55,9 @@ export default defineConfig({
   plugins: [
     RubyPlugin(),
     // visualizer({open: true}),
+    svgr({
+      exportAsDefault: true,
+    }),
     ...devPlugins,
     loadCssModulePlugin.default({
       include: (id) => {
