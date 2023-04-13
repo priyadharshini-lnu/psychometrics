@@ -7,7 +7,6 @@ import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
 import _ from 'lodash'
-import { Link } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import Utils from '~/modules/reports/utils/Utils'
 import LangDropdown from '~/components/LangDropdown'
@@ -295,7 +294,6 @@ function ProfileComponent ({
                       ))}
                     </Row>
                     <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
-                      <Link to="/change_password">{I18n.t('change_password_page.title')}</Link>
                       <ButtonWithArrow
                         label={I18n.t('profile.update')}
                         type="primary"

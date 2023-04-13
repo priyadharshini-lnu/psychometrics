@@ -3,7 +3,6 @@ import {
   Form, Layout, Typography, Input, Row, Col, Space,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { ButtonWithArrow, PageHeader as GlintPageHeader } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -64,7 +63,6 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                     <Input.Password />
                   </Form.Item>
                   <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
-                    <Link to="/profile">{I18n.t('change_password_page.change_profile_details')}</Link>
                     <ButtonWithArrow
                       label={I18n.t('common.actions.update')}
                       type="primary"

@@ -33,7 +33,7 @@ const routes = [
     exact: true,
   },
   {
-    path: '/profile',
+    path: '/profile_details',
     main: Profile,
     exact: true,
   },

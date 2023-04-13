@@ -1005,10 +1005,12 @@ en:
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
       campaign: Campaign
+      change_password: Change Password
       home: Home
       insights: Insights
       livechat: Live Support
       profile: Profile
+      profile_details: Details
       tasks: Tasks
     details: Details
     edit_evaluation:
@@ -1222,7 +1224,6 @@ en:
       other_assessments: Other Assessments
       other_reports: Other Reports
   change_password_page:
-    change_profile_details: Change Profile Details
     old_password: Old Password
     password: Password
     password_confirmation: Password Confirmation
