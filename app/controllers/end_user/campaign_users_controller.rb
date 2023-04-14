@@ -40,16 +40,17 @@ class EndUser::CampaignUsersController < ApplicationController
       return render json: { errors: I18n.t('campaign.errors.invalid_status') }, status: 422
     end
 
-    data = if @campaign_user.proctoring_enabled?
-             result = Examus::GetSessionUrl.call(@campaign_user)
-             if result[:error]
-               return render json: { errors: result[:error] }, status: 422
-             end
+    data = {}
+    if @campaign_user.proctoring_enabled?
+      result = Examus::GetSessionUrl.call(@campaign_user)
+      if result[:error]
+        return render json: { errors: result[:error] }, status: 422
+      end
 
-             { examus_session_url: result[:ok] }
-           else
-             {}
-           end
+      data = { examus_session_url: result[:ok] }
+    else
+      CampaignUsers::ContinueCampaign.call(@campaign_user)
+    end
 
     render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
   end
