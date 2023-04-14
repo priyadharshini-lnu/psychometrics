@@ -3,18 +3,29 @@ import React, { useState } from 'react'
 import {
   Button, Menu, Switch, message,
 } from 'antd'
-import * as t from 'io-ts'
+import { ConnectedProps, connect } from 'react-redux'
+import _ from 'lodash'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
 import { ConfirmationModal } from '~/glint'
 import { isSuperAdmin } from '~/core/currentUser'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 const { I18n } = window
 
-export const UserTable: React.FC<{ currentUser: User, openDrawer: (user: User) => void }> = ({
+const connecter = connect(null, { openModal })
+interface OwnProps {
+  currentUser: User
+  openDrawer: (user: User) => void
+}
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux & OwnProps
+
+export const UserTableComponent: React.FC<Props> = ({
   currentUser,
   openDrawer,
+  openModal,
 }) => (
   <Resource.Table pagination>
     <Resource.Column<User>
@@ -52,16 +63,21 @@ export const UserTable: React.FC<{ currentUser: User, openDrawer: (user: User) =
       width={300}
       sorter
     />
-    {isSuperAdmin(currentUser)
-        && (
-          <Resource.Column<User>
-            title={I18n.t('common.column.action')}
-            id="action"
-            render={(_, user) => <Dropdown user={user} />}
-          />
-        )}
+    <Resource.Column<User>
+      title={I18n.t('common.column.action')}
+      id="action"
+      render={(_, user) => (
+        <Dropdown
+          user={user}
+          currentUser={currentUser}
+          openResetPasswordModal={user => openModal('ResetPasswordModal', { user })}
+        />
+      )}
+    />
   </Resource.Table>
 )
+
+export const UserTable = connecter(UserTableComponent)
 
 const ActiveSwitch: React.FC<{ user: User }> = ({ user }) => {
   const { resource } = useResourceContext<User>()
@@ -75,30 +91,33 @@ const ActiveSwitch: React.FC<{ user: User }> = ({ user }) => {
   )
 }
 
-const Dropdown: React.FC<{ user: User }> = ({ user }) => {
-  const [confirmation, setConfirmation] = useState(false)
-  return (<ConditionalDropdown menu={ActionsMenu({ user, setConfirmation, confirmation }) as React.ReactElement} />)
+interface DropdownProps {
+  user: User
+  currentUser: unknown
+  openResetPasswordModal: (user: User) => void
 }
 
-interface ActionMenuProps {
+const Dropdown: React.FC<DropdownProps> = ({ user, currentUser, openResetPasswordModal }) => {
+  const [confirmation, setConfirmation] = useState(false)
+  return (
+    <ConditionalDropdown menu={ActionsMenu({
+      user, currentUser, openResetPasswordModal, setConfirmation, confirmation,
+    })}
+    />
+  )
+}
+
+interface ActionMenuProps extends DropdownProps {
   user: User
   setConfirmation: (confirmation: boolean) => void
   confirmation: boolean
+  openResetPasswordModal: DropdownProps['openResetPasswordModal']
 }
 
-const ResetPasswordTR = t.literal('ok')
-
-const ActionsMenu: React.FC<ActionMenuProps> = ({ setConfirmation, confirmation, user }) => {
+const ActionsMenu: React.FC<ActionMenuProps> = ({
+  setConfirmation, confirmation, user, currentUser, openResetPasswordModal,
+}) => {
   const { resource } = useResourceContext<User>()
-
-  const resetPassword = (user: User) => resource.memberAction({
-    id: user.id,
-    action: 'reset_password',
-    method: 'post',
-    responseType: ResetPasswordTR,
-  }).then(
-    () => message.info(I18n.t('users.actions.reset_password.confirm_message', { email: user.email })),
-  ).catch(e => message.error(JSON.stringify(e)))
 
   const toggle2FA = (user) => {
     resource.updateResource({
@@ -114,21 +133,21 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ setConfirmation, confirmation,
   }).catch(e => message.error(JSON.stringify(e)))
 
   const menuItems = [
-    {
+    user.meta.permissions.resetPassword && {
       key: 'reset_password',
       label: (
-        <Button type="link" onClick={() => resetPassword(user)} className="ps-0">
+        <Button type="link" onClick={() => openResetPasswordModal(user)} className="ps-0">
           {I18n.t('users.actions.reset_password.option')}
         </Button>),
     },
-    {
+    isSuperAdmin(currentUser) && {
       key: '2fa',
       label: (
         <Button type="link" onClick={() => toggle2FA(user)} className="ps-0">
           {I18n.t(`users.actions.2fa.${user.enable_2fa ? 'option_to_disable' : 'option_to_enable'}`)}
         </Button>),
     },
-    {
+    isSuperAdmin(currentUser) && {
       key: 'remove',
       label: (
         <>
@@ -148,5 +167,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ setConfirmation, confirmation,
     },
   ]
 
-  return (<Menu items={menuItems} />)
+  return (<Menu items={_.compact(menuItems)} />)
 }

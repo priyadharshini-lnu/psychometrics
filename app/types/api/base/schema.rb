@@ -115,6 +115,8 @@ module Api
           required(:attributes).hash do
             instance_eval(&this.attributes(method(:required), type))
           end
+
+          required(:meta).value(this.individual_record_meta_schema) if this.respond_to?(:individual_record_meta_schema)
         end
       end
 
@@ -164,6 +166,16 @@ module Api
 
       def self.relationships(_)
         []
+      end
+
+      def self.json_api_attributes(&)
+        Dry::Schema.define do
+          required(:data).hash do
+            required(:attributes).hash do
+              instance_eval(&)
+            end
+          end
+        end
       end
     end
   end

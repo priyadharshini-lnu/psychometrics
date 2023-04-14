@@ -46,6 +46,11 @@ Lint/MissingSuper:
 Metrics/AbcSize:
   Max: 50
 
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 200
+  Enabled: true
+
 Metrics/BlockLength:
   Exclude:
     - spec/**/*

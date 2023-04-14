@@ -13,6 +13,11 @@ export const UserTR = t.type({
   updatedAt: t.union([t.string, t.null]),
   createdBy: t.union([t.string, t.null]),
   modifiedBy: t.union([t.string, t.null]),
+  meta: t.type({
+    permissions: t.type({
+      resetPassword: t.boolean,
+    }),
+  }),
 })
 
 export const UserDetailsTR = t.type({

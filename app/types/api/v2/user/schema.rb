@@ -39,6 +39,29 @@ module Api
             attribute[:role].filled(:string)
           end
         end
+
+        def self.individual_record_meta_schema
+          Dry::Schema.define do
+            required(:permissions).hash do
+              required(:reset_password).filled(:bool)
+            end
+          end
+        end
+
+        def self.reset_password_request
+          json_api_attributes do
+            required(:automatically_generate_password).filled(:bool)
+            optional(:password).value(:string)
+            optional(:send_password_email).value(:bool)
+            optional(:change_password_on_login).value(:bool)
+          end
+        end
+
+        def self.reset_password_response
+          json_api_attributes do
+            optional(:password).maybe(:string)
+          end
+        end
       end
     end
   end

@@ -6,9 +6,15 @@ import { User, UserTR } from '~/modules/admin/modules/client/core/users'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { DetailsDrawer } from './DetailsDrawer'
 import { get as getCurrentUser } from '~/core/currentUser'
+import { ResetPasswordModal } from './ResetPasswordModal'
+import Modals from '~/modules/admin/components/Modals'
 import { UserFormModal } from './UserFormModal'
 import { UserTable } from './UserTable'
 import { UserFilter } from './UserFilter'
+
+const MODALS = {
+  ResetPasswordModal,
+}
 
 const connecter = connect(
   (state: RootState) => ({
@@ -43,6 +49,7 @@ const UserListComponent: React.FC<Props> = ({
         <UserTable currentUser={currentUser} openDrawer={setDrawerUser} />
         {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
         {!closed && <UserFormModal close={() => closeModal(true)} />}
+        <Modals modals={MODALS} />
       </Resource>
     </>
   )

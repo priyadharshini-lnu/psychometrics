@@ -65,6 +65,16 @@ module Api
       end
     end
 
+    def json_api_attributes(record, attrs)
+      {
+        data: {
+          type: record.class.name.underscore.pluralize,
+          id: record.id.to_s,
+          attributes: attrs
+        }
+      }
+    end
+
     def context_for_schema_validation
       { current_user: current_user, project: project, campaign: campaign }
     end

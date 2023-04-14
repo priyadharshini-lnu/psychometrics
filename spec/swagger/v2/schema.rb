@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/MutableConstant, Metrics/ModuleLength
+# rubocop:disable Style/MutableConstant
 
 Dir["#{__dir__}/definitions/**/*.rb"].each { |file| require file }
 
@@ -135,6 +135,12 @@ module Swagger
           UserListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.multiple_resource_response
           ),
+          ResetPasswordRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.reset_password_request
+          ),
+          ResetPasswordResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.reset_password_response
+          ),
           ReportApprovalListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::ReportApproval::Schema.multiple_resource_response
           ),
@@ -180,4 +186,4 @@ module Swagger
   end
 end
 
-# rubocop:enable Style/MutableConstant, Metrics/ModuleLength
+# rubocop:enable Style/MutableConstant

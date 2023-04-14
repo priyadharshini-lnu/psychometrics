@@ -1369,6 +1369,11 @@
                       "attributes": {
                         "name": "User Name",
                         "email": "user@cc.com"
+                      },
+                      "meta": {
+                        "permissions": {
+                          "reset_password": true
+                        }
                       }
                     }
                   }
@@ -1379,6 +1384,67 @@
               }
             }
           }
+        }
+      }
+    },
+    "/users/{user_id}/reset_password/": {
+      "post": {
+        "summary": "Reset Password",
+        "operationId": "ResetPassword",
+        "description": "Reset Password",
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Password Reset",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "users",
+                  "data": {
+                    "id": "770",
+                    "attributes": {
+                      "automatically_generate_password": false,
+                      "password": "stron_password",
+                      "change_password_on_login": true,
+                      "send_password_email": true
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          },
+          "required": true
         }
       }
     },
@@ -3627,18 +3693,82 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
+                    "email": {
+                      "type": "string",
+                      "nullable": false
+                    },
                     "name": {
                       "type": "string",
                       "nullable": false
                     },
-                    "email": {
+                    "full_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "first_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "disabled": {
+                      "type": "boolean",
+                      "nullable": false
+                    },
+                    "enable_2fa": {
+                      "type": "boolean",
+                      "nullable": false
+                    },
+                    "created_by": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "modified_by": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "role": {
                       "type": "string",
                       "nullable": false
                     }
                   },
                   "required": [
+                    "email",
                     "name",
-                    "email"
+                    "full_name",
+                    "first_name",
+                    "last_name",
+                    "disabled",
+                    "enable_2fa",
+                    "role"
+                  ],
+                  "nullable": false
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "permissions": {
+                      "type": "object",
+                      "properties": {
+                        "reset_password": {
+                          "type": "boolean",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "reset_password"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "permissions"
                   ],
                   "nullable": false
                 }
@@ -3647,7 +3777,8 @@
                 "id",
                 "type",
                 "links",
-                "attributes"
+                "attributes",
+                "meta"
               ],
               "nullable": false
             },
@@ -3675,6 +3806,78 @@
         "required": [
           "data",
           "meta"
+        ]
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "automatically_generate_password": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "send_password_email": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "change_password_on_login": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "automatically_generate_password"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ResetPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
         ]
       },
       "ReportApprovalListResponse": {
@@ -4532,11 +4735,15 @@
                   },
                   "text": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "link": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
+                  },
+                  "enable_privacy_link": {
+                    "type": "boolean",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -4620,11 +4827,15 @@
                   },
                   "text": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "link": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
+                  },
+                  "enable_privacy_link": {
+                    "type": "boolean",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -4710,11 +4921,15 @@
                   },
                   "text": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "link": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
+                  },
+                  "enable_privacy_link": {
+                    "type": "boolean",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -4814,11 +5029,15 @@
                     },
                     "text": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
                     },
                     "link": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
+                    },
+                    "enable_privacy_link": {
+                      "type": "boolean",
+                      "nullable": true
                     }
                   },
                   "required": [

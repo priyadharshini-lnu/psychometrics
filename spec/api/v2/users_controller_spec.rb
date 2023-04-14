@@ -39,6 +39,11 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
             attributes: {
               name: 'User Name',
               email: 'user@cc.com'
+            },
+            meta: {
+              permissions: {
+                reset_password: true
+              }
             }
           }
         }]
@@ -47,8 +52,64 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
           data = JSON.parse(response.body)['data']
           user_response = data.find { |d| d['id'] == user.id.to_s }
           expect(user_response).to have_key('id')
+          expect(user_response).to have_meta({ 'permissions' => { 'reset_password' => true } })
           expect(user_response).to have_attribute(:name).with_value(user.decorate.display_name)
           expect(user_response).to have_attribute(:email).with_value(user.email)
+          expect(user_response).to have_attribute(:email).with_value(user.email)
+        end
+      end
+
+      path '/users/{user_id}/reset_password/' do
+        let(:user) { create(:client_admin) }
+        let(:new_password) { user.generate_strong_password }
+        let(:user_id) { user.id }
+
+        post 'Reset Password' do
+          operationId 'ResetPassword'
+          description 'Reset Password'
+          tags 'User'
+          consumes 'application/vnd.api+json'
+          security [basic: []]
+          parameter name: :user_id, in: :path, type: :string
+          parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ResetPasswordRequest' },
+                    required: true
+
+          response '200', 'Password Reset' do
+            schema '$ref' => '#/components/schemas/ResetPasswordResponse'
+
+            examples 'application/json' => {
+              type: 'users',
+              data: {
+                id: '770',
+                attributes: {
+                  automatically_generate_password: false,
+                  password: 'strong_password1',
+                  change_password_on_login: true,
+                  send_password_email: true
+                }
+              }
+            }
+
+            let(:body) do
+              jsonapi_resource_request(
+                'users',
+                {
+                  automatically_generate_password: false,
+                  password: new_password,
+                  change_password_on_login: true,
+                  send_password_email: true
+                }
+              )
+            end
+
+            run_test! do |response|
+              data = JSON.parse(response.body)['data']
+              expect(data).to have_key('id')
+              expect(data).to have_attribute(:password)
+              expect(user.reload.force_password_change).to eq(true)
+              expect(user.reload.valid_password?(new_password)).to eq(true)
+            end
+          end
         end
       end
     end

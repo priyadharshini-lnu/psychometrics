@@ -27,6 +27,7 @@ export const ThreeSixtyGrants = {
 export const ProjectAdminGrants = {
   clients: ['view'],
   projects: ['view', 'manage_users'],
+  users: ['reset_password'],
   projectSettings: [
     'design',
     'smtp',

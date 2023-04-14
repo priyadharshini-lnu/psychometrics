@@ -3,15 +3,30 @@
 module Api
   class V2::Administration::UsersController < Api::V2::Administration::BaseController
     validates_request_schema :create_superadmin, Api::V2::User::CreateSuperadminContract.new
+    validates_request_schema :reset_password, Api::V2::User::ResetPasswordContract.new
+
+    prepend_before_action :set_resource, only: %i[reset_password roles]
 
     def reset_password
-      resource.send_reset_password_instructions
-      audit! :reset_password_email, resource, payload: { email: resource.email }
-      render json: :ok
+      attrs = params.dig(:data, :attributes)
+      if attrs[:automatically_generate_password]
+        auto_generated_password = @resource.generate_strong_password
+      end
+      password = auto_generated_password || attrs[:password]
+      @resource.update!(
+        password: password, force_password_change: attrs[:change_password_on_login]
+      )
+      audit! :reset_password_email, @resource, payload: attrs.except(:password)
+      SendPasswordMailer.password_email(@resource, password).deliver_later if attrs[:send_password_email]
+      login_url = Utility::Url.generate(:user_session_url, subdomain: @resource.project&.subdomain)
+      render json: json_api_attributes(
+        @resource,
+        { password: auto_generated_password, login_url: login_url }
+      )
     end
 
     def roles
-      render json: { data: { attributes: { roles: Users::BuildRolesWithLinks.call!(resource) } } }
+      render json: { data: { attributes: { roles: Users::BuildRolesWithLinks.call!(@resource) } } }
     end
 
     def create_superadmin
@@ -28,10 +43,16 @@ module Api
 
     private
 
-    def resource
+    def context_for_schema_validation
+      { current_user: current_user, project: project, campaign: campaign, user: @resource }
+    end
+
+    def set_resource
+      # rubocop:disable Naming/MemoizedInstanceVariableName
       @resource ||= Api::Administration::UserPolicy::Scope.new(
         current_user, User
       ).resolve.find(params[:user_id])
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
 
     def create_resource_params

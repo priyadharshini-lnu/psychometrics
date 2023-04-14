@@ -54,7 +54,7 @@ export type OwnProps = {
     fields?: FieldData[],
     setFields?(fields: object): void
   }
-  children(props: ChildrenProps): ReactElement
+  children(props: ChildrenProps): ReactElement | React.FC
   scrollToFirstError?: boolean
   mockRequest?: boolean
   nullifyEmptyString?: boolean

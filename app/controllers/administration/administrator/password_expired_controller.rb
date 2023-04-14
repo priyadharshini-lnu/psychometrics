@@ -25,6 +25,10 @@ module Administration
       def devise_mapping
         @devise_mapping ||= Devise.mappings[:user]
       end
+
+      def resource_params
+        super.merge(force_password_change: false)
+      end
     end
   end
 end

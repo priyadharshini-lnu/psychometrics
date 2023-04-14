@@ -15,7 +15,7 @@ interface Props {
   requestScope?: string
   children({
     form: FormInstance, status: string, isEdit: boolean, fieldsUtil: FieldsUtil,
-  }): ReactElement
+  }): ReactElement | React.FC
   close(): void
   title?: string
   readableResourceName?: string
@@ -36,6 +36,8 @@ interface Props {
   scrollToFirstError?: boolean
   submitButtonName?: string
   nullifyEmptyString?: boolean
+  manuallyClose?: boolean
+  hideOkButton?: boolean
 }
 
 interface Request {
@@ -57,6 +59,8 @@ const ResourceFormModal: React.FC<Props> = (props) => {
     onSuccessfulSubmission,
     storeManager,
     submitButtonName,
+    manuallyClose,
+    hideOkButton,
   } = props
 
   const [resourceStatus, setResourceStatus] = useState<string | null>(null)
@@ -71,7 +75,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
 
   const handleSuccessfulSubmission = (response: object, values: object) => {
     onSuccessfulSubmission && onSuccessfulSubmission(response, values)
-    close()
+    if (!manuallyClose) close()
   }
 
   const saveButtonIcon = () => {
@@ -117,6 +121,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
         <Button key="back" onClick={close}>
           Cancel
         </Button>,
+        !hideOkButton && (
         <Button
           key="submit"
           type="primary"
@@ -125,7 +130,8 @@ const ResourceFormModal: React.FC<Props> = (props) => {
         >
           {saveButtonIcon()}
           {buttonName()}
-        </Button>,
+        </Button>
+        ),
       ]}
       {...modalProps || {}}
     >

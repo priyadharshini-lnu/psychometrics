@@ -31,6 +31,7 @@ en:
     password_expired:
       updated: 'Your new password is saved.'
       change_required: 'Your password is expired. Please renew your password.'
+      forced_changed: 'You need to set new password for your account.'
       show:
         renew_your_password: Renew your password
         current_password: Current password

@@ -74,7 +74,7 @@ const securityComponent: React.FC<Props> = ({
                   label={I18n.t('administration.security_setting.min_length')}
                   required
                 >
-                  <Input type="number" defaultValue={8} min={8} max={128} />
+                  <Input type="number" defaultValue={8} min={8} max={20} />
                 </Form.Item>
                 <Form.Item
                   name="enforcePasswordPolicy"
