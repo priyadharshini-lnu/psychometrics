@@ -11,7 +11,7 @@ module Api
         end
 
         rule(data: { attributes: :subdomain }) do
-          key.failure(:invalid_subdomain_format) unless /^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$/.match?(value)
+          key.failure(:invalid_subdomain_format) if key? && !/^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$/.match?(value)
         end
       end
     end

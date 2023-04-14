@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import {
@@ -63,8 +63,6 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
 
   const history = useHistory()
 
-  const [showDisabledProject, setShowDisabledProject] = useState('false')
-
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, createResource,
@@ -110,7 +108,6 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   }
 
   const handleProjectStatusChange = (e) => {
-    setShowDisabledProject(e.target.value)
     changeFilter('disabled_true', e.target.value)
   }
 
@@ -258,7 +255,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     <Space>
       <Radio.Group
         onChange={handleProjectStatusChange}
-        value={showDisabledProject}
+        defaultValue={getFilteredValue('disabled_true') || 'false'}
       >
         <Radio.Button value="false">
           {I18n.t('administration.clients.projects.status.active')}
