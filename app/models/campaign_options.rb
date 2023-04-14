@@ -7,4 +7,5 @@ class CampaignOptions < ApplicationRecord
   translates :instructions, :description
 
   enum identification: { passport: 0, face: 1, face_and_passport: 2 }
+  enum integration_type: { iframe: 0, ldb: 1 }
 end

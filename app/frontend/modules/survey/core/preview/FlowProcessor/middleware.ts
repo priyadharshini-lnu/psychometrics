@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import {
   showErrors, emptyErrors, showPage, changeElement, showEnd, hideQuestion, showQuestion,
-  addPrevPage, setEmbeddedData, nextButtonPressed,
+  addPrevPage, setEmbeddedData, nextButtonPressed, showSubmitPage,
 } from './actions'
 import { NEXT_PAGE } from './consts'
 import {
@@ -60,6 +60,8 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     if (element) {
       dispatch(changeElement(element))
       processDisplayLogic()
+    } else if (needShowSubmitPage()) {
+      dispatch(showSubmitPage())
     } else {
       dispatch(showEnd(endOfAssessmentElementProps))
     }
@@ -87,6 +89,28 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     }
   }
 
+  const needShowSubmitPage = () => {
+    const state = getState()
+    const { preview } = state
+
+    const {
+      showSubmitPage, enableBack, isThreesixty, showScoringOnEndPage,
+    } = preview
+
+    if (showSubmitPage) { return false }
+
+    const canNotEdit = _.get(
+      state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
+    )
+    if (showScoringOnEndPage) {
+      return true
+    }
+    if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
+      return true
+    }
+    return false
+  }
+
   dispatch(emptyErrors())
 
   if (preview.currentElement && !action.ignoreBackBtn) {
@@ -102,7 +126,11 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     const skipResult = SkipLogicProcessor.run(skipLogic, preview.questions, preview.results)
     if (skipResult) {
       if (skipResult.type === END_OF_ASSESSMENT) {
-        dispatch(showEnd())
+        if (needShowSubmitPage()) {
+          dispatch(showSubmitPage())
+        } else {
+          dispatch(showEnd())
+        }
         return
       }
       if (skipResult.type === END_OF_BLOCK) {

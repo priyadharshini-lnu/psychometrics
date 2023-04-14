@@ -2,6 +2,7 @@
 
 class UserReport < ApplicationRecord
   include WorkflowActiverecord
+  include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
   # TODO: remove after migration to ActiveStorage
   include ActiveStorageSync
@@ -27,11 +28,16 @@ class UserReport < ApplicationRecord
 
   # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts
   # when serializing user_reports; :pdf attribute already exists in schema
-  has_one_attached :as_pdf_file, service: Settings.storage.private_storage_service
-  validates :as_pdf_file, content_type: %w[application/pdf]
+  has_one_attachment :as_pdf_file,
+                     service: Settings.storage.private_storage_service,
+                     content_type: %w[application/pdf]
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :pdf
+
+  def attachment_storage_path(attribute_name, filename)
+    "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
+  end
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 

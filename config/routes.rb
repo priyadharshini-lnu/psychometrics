@@ -991,6 +991,7 @@ Rails.application.routes.draw do
         member do
           post :begin_campaign
           post :continue_campaign
+          get :proctoring_redirect
         end
       end
 

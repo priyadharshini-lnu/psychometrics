@@ -8,6 +8,7 @@ export const UA_BROWSERS = {
   Edge: 'edge',
   Samsung: 'samsung',
   Opera: 'opera',
+  ExamusElectron: 'examus-electron',
 }
 
 export const UA_OPERATING_SYSTEMS = {
@@ -23,28 +24,33 @@ export const BROWSERS_ON_OS_TYPES = {
     UA_BROWSERS.FirefoxMobile,
     UA_BROWSERS.ChromeMobile,
     UA_BROWSERS.Edge,
+    UA_BROWSERS.ExamusElectron,
   ],
   [UA_OPERATING_SYSTEMS.IOS]: [
     UA_BROWSERS.FirefoxMobile,
     UA_BROWSERS.ChromeMobile,
     UA_BROWSERS.SafariMobile,
     UA_BROWSERS.Edge,
+    UA_BROWSERS.ExamusElectron,
   ],
   [UA_OPERATING_SYSTEMS.MacOS]: [
     UA_BROWSERS.Firefox,
     UA_BROWSERS.Chrome,
     UA_BROWSERS.Safari,
     UA_BROWSERS.Edge,
+    UA_BROWSERS.ExamusElectron,
   ],
   [UA_OPERATING_SYSTEMS.Windows]: [
     UA_BROWSERS.Firefox,
     UA_BROWSERS.Chrome,
     UA_BROWSERS.Edge,
+    UA_BROWSERS.ExamusElectron,
   ],
   [UA_OPERATING_SYSTEMS.Linux]: [
     UA_BROWSERS.Firefox,
     UA_BROWSERS.Chrome,
     UA_BROWSERS.Edge,
+    UA_BROWSERS.ExamusElectron,
   ],
 }
 
@@ -66,6 +72,7 @@ export const NAMES_FROM_UA_BROWSERS = {
   [UA_BROWSERS.Chrome]: 'Google Chrome',
   [UA_BROWSERS.ChromeMobile]: 'Mobile Chrome',
   [UA_BROWSERS.Edge]: 'Microsoft Edge',
+  [UA_BROWSERS.ExamusElectron]: 'Examus Electron',
 }
 
 export const BROWSER_FEATURES = {
@@ -86,6 +93,7 @@ export const MIN_BROWSER_FEATURE_SUPPORT = {
     [UA_BROWSERS.SafariMobile]: 14.8,
     [UA_BROWSERS.Samsung]: 5,
     [UA_BROWSERS.Opera]: 36,
+    [UA_BROWSERS.ExamusElectron]: 1.0,
   },
   [BROWSER_FEATURES.cssFlexibleBoxLayoutModule]: {
     [UA_BROWSERS.Edge]: 84,

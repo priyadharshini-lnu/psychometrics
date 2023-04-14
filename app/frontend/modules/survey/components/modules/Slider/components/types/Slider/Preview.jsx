@@ -13,5 +13,5 @@ export const SliderPreview = ({ model, I18n, readOnly }) => {
     model.result.answer(choiceId, value, numberOfDecimals)
   }
 
-  return <SliderQuestion model={model} I18n={I18n} preview changeValue={changeValue} />
+  return <SliderQuestion readOnly={readOnly} model={model} I18n={I18n} preview changeValue={changeValue} />
 }

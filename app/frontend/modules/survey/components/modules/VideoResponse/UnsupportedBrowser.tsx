@@ -95,7 +95,6 @@ export const getSupportedBrowsersForCurrentOS = (
   const osCompatBrowsers = osCompatBrowserNames.map((browser) => {
     const browserVersion = supportedBrowsers[browser]
     const browserName = NAMES_FROM_UA_BROWSERS[browser]
-
     let browserIcon: JSX.Element | null = null
     switch (browser) {
       case 'and_ff':

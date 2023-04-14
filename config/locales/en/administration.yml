@@ -697,6 +697,10 @@ en:
             face: Face
             face_and_passport: Face and Passport
             passport: Passport
+          integration_type: Integration
+          integration_types:
+            iframe: IFrame
+            ldb: Lockdown Browser
           rule_types:
             allow_absence_in_frame: Allow absense in frame
             allow_to_use_books: Allow to use Books

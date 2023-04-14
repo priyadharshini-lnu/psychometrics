@@ -1020,6 +1020,8 @@ en:
       edit: Re-evaluate
       title: Confirm
       view: View Assessment
+    errors:
+      invalid_status: Invalid campaign status
     goto_dashboard: Go to the Dashboard
     in_progress: In Progress
     inactive_campaign_message: Currently, you have not been assigned any activities.

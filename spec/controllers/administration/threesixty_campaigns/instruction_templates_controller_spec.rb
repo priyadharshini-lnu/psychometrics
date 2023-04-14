@@ -16,7 +16,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::InstructionTemplatesControll
     end
 
     get :show, params: {
-      locales: { '0' => 'en', '1' => 'ar' },
+      locales: %w[en ar],
       threesixty_campaign_id: template.threesixty_campaign_id,
       id: template.id
     }, as: :json

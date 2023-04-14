@@ -21,7 +21,7 @@ import { loginHogan } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
 import { SafeHTML } from '~/components/SafeHTML'
-import { isInsideIframe } from '~/utils/isInsideIframe'
+import { isProctored } from '~/utils/isProctored'
 import { ProgressStatus, DirectionalArrowIcon } from '~/glint'
 import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
@@ -70,7 +70,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignOptions: { instructionsEnabled, instructions, proctoringEnabled },
   } = campaign
 
-  const needsProctoring = proctoringEnabled && !isInsideIframe()
+  const needsProctoring = proctoringEnabled && !isProctored()
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
   // TODO: We can check completion_status here. Also need to take care for assessment timed_out status when we add it
@@ -82,14 +82,17 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const hasStartedCampaign = !!campaignUser.startedAt
   const campaignUserTimedOut = campaignUser.status === 'timed_out'
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
+  const hasNoExpiryDateForTimedCampaign = isTimedCampaign && !expiryDate && campaignUser.status === 'in_progress'
   const canNotStartAssessment = needsProctoring
     || !hasStartedCampaign
     || campaignClosed
     || campaignUser.status === 'completed'
     || isCampaignInterrupted
     || campaignUserTimedOut
+    || hasNoExpiryDateForTimedCampaign
   const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
-  const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted)
+  // eslint-disable-next-line max-len
+  const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
     && !campaignClosed && !allAssessmentsComplete && !campaignUserTimedOut
   const showCampaignClosedMessage = campaignClosed
   || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')

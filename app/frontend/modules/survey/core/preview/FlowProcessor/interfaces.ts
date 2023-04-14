@@ -164,6 +164,7 @@ export interface DefaultState {
   instructions: { enabled: boolean, content: string }
   fixedTimed: boolean
   showErrorWarning: boolean
+  submitRequired: boolean
 }
 
 export interface MediaResponse {

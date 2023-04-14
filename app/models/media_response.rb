@@ -4,17 +4,22 @@ require 'carrierwave/storage/fog'
 
 class MediaResponse < ApplicationRecord
   include EncodableId
+  include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
   # TODO: remove after migration to ActiveStorage
   include ActiveStorageSync
 
   mount_uploader :asset, Private::MediaResponseUploader
 
-  has_one_attached :as_asset, service: Settings.storage.private_storage_service
+  has_one_attachment :as_asset, service: Settings.storage.private_storage_service
   # TODO: add :asset content_type validation after ActiveStorage migration
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :asset
+
+  def attachment_storage_path(attribute_name, filename)
+    "private/projects/#{users_result.campaign.project.id}/media_response/#{id}/#{attribute_name}/#{filename}"
+  end
 
   belongs_to :users_assessment
   belongs_to :question

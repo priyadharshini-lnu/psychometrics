@@ -7,7 +7,11 @@ import {
 } from '~/modules/survey/constants/browser'
 import { convertToUserAgentBrowserName } from '~/modules/survey/utils/browser'
 
-const uaParser = new UAParser()
+const myOwnListOfBrowsers = [
+  [/(examus-electron)\/([\w.]+)/i], [UAParser.BROWSER.NAME, UAParser.BROWSER.VERSION],
+]
+
+const uaParser = new UAParser({ browser: myOwnListOfBrowsers })
 
 export const BROWSER_NAME = uaParser.getBrowser().name ?? ''
 export const BROWSER_VERSION = uaParser.getBrowser().version ?? ''

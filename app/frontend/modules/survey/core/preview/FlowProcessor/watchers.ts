@@ -15,7 +15,6 @@ import {
   setNotDirtyResults,
   setLocalResults,
   clearInProgressQuestion,
-  showSubmitPage,
   hideSubmitPage,
   hideEnd,
   setIsSimulation,
@@ -34,7 +33,7 @@ import {
 } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, SAVE_RESULTS,
-  ANSWER, MARK_ASSESSMENT_TIMED_OUT, REMOVE_QUESTION_IN_PROGRESS,
+  ANSWER, MARK_ASSESSMENT_TIMED_OUT, REMOVE_QUESTION_IN_PROGRESS, SHOW_SUBMIT_PAGE,
 } from './consts'
 import { InProgressQuestion } from './interfaces'
 
@@ -152,29 +151,6 @@ function* genPassAssessmentIfTimedOut () {
   }
 }
 
-function* getShowSubmitPage () {
-  const state = yield select()
-  if (state.preview.assessmentTimedOut) { return }
-  if (state.preview.readOnly) { return }
-  if (state.preview.showSubmitPage) {
-    yield put(hideSubmitPage())
-    return
-  }
-  const { enableBack, isThreesixty, showScoringOnEndPage } = state.preview
-
-  const canNotEdit = _.get(
-    state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
-  )
-
-  if (showScoringOnEndPage) {
-    yield put(showSubmitPage())
-  }
-
-  if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
-    yield put(showSubmitPage())
-  }
-}
-
 function* genFetchQuestionScoring ({ result: { question_id } }: AnyAction) {
   const state = yield select()
   if (state.preview.showQuestionScoring) {
@@ -204,9 +180,8 @@ export const watchers = [
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
   takeEvery(SAVE_RESULTS, genRestart),
-  takeLatest(SHOW_END, getShowSubmitPage),
   takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),
   takeLatest(REMOVE_QUESTION_IN_PROGRESS, genPassAssessmentIfTimedOut),
-  debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genSaveResults),
+  debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_SUBMIT_PAGE, SHOW_END], genSaveResults),
 ]

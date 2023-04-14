@@ -4,8 +4,10 @@ test:
 
 s3_public_bucket:
   service: Disk
+  public: true
   root: <%= Rails.root.join('tmp/storage') %>
 
 s3_private_bucket:
   service: Disk
+  private: true
   root: <%= Rails.root.join('tmp/storage') %>

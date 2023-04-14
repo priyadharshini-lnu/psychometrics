@@ -106,7 +106,7 @@ module Administration
       end
 
       def fetch_campaign_instructions
-        list = params[:locales].values.map do |locale|
+        list = params[:locales].map do |locale|
           Mobility.with_locale(locale) do
             CampaignOptionsLocaleSerializer.new(@campaign.campaign_options, locale: locale).to_h
           end
@@ -116,7 +116,7 @@ module Administration
       end
 
       def fetch_descriptions
-        list = params[:locales].values.map do |locale|
+        list = params[:locales].map do |locale|
           Mobility.with_locale(locale) do
             { description: @campaign.campaign_options.description, locale:  locale }
           end
@@ -191,7 +191,7 @@ module Administration
 
       def campaign_options_params
         resource_params.permit(:fixed_time, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions,
-                               :proctoring_enabled, :identification, :description,
+                               :proctoring_enabled, :identification, :description, :integration_type,
                                rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
                                           allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
                                           allow_to_use_messengers allow_wrong_gaze_direction

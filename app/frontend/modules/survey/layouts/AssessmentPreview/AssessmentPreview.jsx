@@ -12,7 +12,7 @@ const InteractiveAssessmentsModule = () => import('@thetalententerprise/interact
 const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
   started, type, isAnonymousAssessment, showErrorWarning, fixedTimed, instructions, submissionInProgress,
-  submissionFailed,
+  submissionFailed, submitRequired,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
 
@@ -63,7 +63,7 @@ const AssessmentPreview = ({
     return <ErrorWarning />
   }
 
-  if (showSubmitPage && !submissionInProgress && !submissionFailed) {
+  if (showSubmitPage || (submitRequired && (submissionInProgress || submissionFailed))) {
     return <SubmitPage />
   }
 

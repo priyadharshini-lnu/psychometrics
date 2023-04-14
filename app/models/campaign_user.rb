@@ -29,6 +29,18 @@ class CampaignUser < ApplicationRecord
     update(status: completion_status)
   end
 
+  def compute_expiry_date
+    return unless campaign.fixed_time?
+
+    if expiry_date.nil? || not_started_campaign?
+      campaign.fixed_time_duration&.seconds&.from_now
+    elsif interrupted_campaign?
+      additional_time&.seconds&.from_now
+    else
+      expiry_date
+    end
+  end
+
   def finish_proctoring_session
     proctoring_session = proctoring_sessions.last
     return unless proctoring_session
