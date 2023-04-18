@@ -93,7 +93,7 @@ module Api
         {
           title: error.text,
           source: {
-            pointer: error.path.join('/')
+            pointer: "/#{error.path.join('/')}"
           },
           status: '422'
         }
