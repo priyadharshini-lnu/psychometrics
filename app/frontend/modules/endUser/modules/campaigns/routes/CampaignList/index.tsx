@@ -59,7 +59,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   }, [])
 
   const handleProfileCompletion = () => {
-    history.push('/profile')
+    history.push('/profile_details')
   }
 
   const isProfileComplete = profileCompletionPercentage === 100
