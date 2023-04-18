@@ -304,7 +304,7 @@ const HANDLERS = {
       ))
     },
   [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, submitRequired: true, showSubmitPage: true }),
-  [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
+  [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, submitRequired: false, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
   [NEXT_BUTTON_PRESSED]: (state: State) => ({
     ...state, backButtonPressed: false, nextButtonPressed: true, submissionInProgress: state.type === 'pass_assessment',

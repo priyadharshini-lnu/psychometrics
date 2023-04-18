@@ -67,6 +67,7 @@ function* genPrevPage () {
   const questions = pageQuestions(state.preview)
   const prev = getPrevPage(state.preview)
   if (prev) {
+    yield put(hideSubmitPage())
     yield put(backButtonPressed())
     yield put(setDirtyResults(_.map(questions, 'id')))
     yield put(changeElement(prev.element, prev.page))
