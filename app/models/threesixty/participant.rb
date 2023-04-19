@@ -12,7 +12,7 @@ module Threesixty
     delegate :threesixty_campaign, to: :campaign
 
     def log_attribute_for_delete
-      slice(:campaign_id)
+      slice(:subject_id, :evaluator_id, :campaign_id)
     end
 
     def threesixty_evaluator
