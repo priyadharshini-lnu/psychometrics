@@ -102,17 +102,20 @@ const Evaluation = ({
             activeKey={currentAssessorFormId || 'overview'}
             defaultActiveKey="overview"
             onChange={changeAssessorForm}
+            className={styles.assessorTabs}
           >
             <TabPane tab="Overview" key="overview">
-              <div>
-                {I18n.t('user.fields.first_name')}
-                {': '}
-                {userInfo.user && userInfo.user.first_name}
-              </div>
-              <div>
-                {I18n.t('user.fields.last_name')}
-                {': '}
-                {userInfo.user && userInfo.user.last_name}
+              <div className={styles.nameContainer}>
+                <div>
+                  {I18n.t('user.fields.first_name')}
+                  {': '}
+                  {userInfo.user && userInfo.user.first_name}
+                </div>
+                <div>
+                  {I18n.t('user.fields.last_name')}
+                  {': '}
+                  {userInfo.user && userInfo.user.last_name}
+                </div>
               </div>
               <div className={styles.table}>
                 <Table

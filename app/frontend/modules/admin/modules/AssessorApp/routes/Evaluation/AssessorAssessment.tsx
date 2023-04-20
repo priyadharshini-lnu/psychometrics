@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Layout, Card, Progress,
+  Layout, Card, Progress, Space,
 } from 'antd'
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
@@ -71,16 +71,18 @@ const AssessorAssessment: React.FC<Props> = ({
       bordered={false}
       bodyStyle={bodyStyles}
       className={styles.card}
-      extra={[
-        enableProgress
-          && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-        loaded && (
+      extra={(
+        <Space size="large">
+          {enableProgress
+          && (<Progress key="1" percent={progress} style={{ width: '200px' }} />)}
+          {loaded && (
           <Language
             selectedLanguage={assessorForm.result.selected_locale}
             availableTranslations={assessorForm.result.available_translations}
           />
-        ),
-      ]}
+          )}
+        </Space>
+      )}
     >
       <Content className={cs('fluid-container', assessorForm?.result?.selected_locale?.code === 'ar' ? 'rtl' : 'ltr')}>
         {loaded && (
