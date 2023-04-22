@@ -71,11 +71,11 @@ module Administration::Threesixty
     end
 
     def regenerate_reports?
-      has_permission?(:campaigns, :bulk_regenerate_reports)
+      has_permission?(:results, :bulk_regenerate_reports)
     end
 
     def regenerate_report?
-      has_permission?(:campaigns, :regenerate_report)
+      has_permission?(:results, :regenerate_report)
     end
 
     alias bulk_regenerate_reports? regenerate_reports?
