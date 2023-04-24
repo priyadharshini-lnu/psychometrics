@@ -10,6 +10,7 @@ import { pageQuestions, pageQuestionsWithoutHidden } from '~/modules/survey/core
 import assessment from './seeds/assessment'
 import assessmentWithDisplayLogic from './seeds/assessmentWithDisplayLogic'
 import assessmentWithSkipLogic from './seeds/assessmentWithSkipLogic'
+import assessmentWithSubmit from './seeds/assessmentWithSubmit'
 
 describe('initializing base assessment', () => {
   const store: any = createStore(reducers)
@@ -280,5 +281,29 @@ describe('assessment with valid valid skip to specific block not in linear shoul
     flow(next)({ type: NEXT_PAGE })
     expect(store.getState().preview.currentElement).toBe('0')
     expect(store.getState().preview.currentPage).toBe(1)
+  })
+})
+
+
+describe('assessment with submit page', () => {
+  const store: any = createStore(reducers)
+  const next = jest.fn()
+  const flow = middleware(store)
+  store.dispatch({ type: INIT, data: assessmentWithSubmit, result: {} })
+  flow(next)({ type: NEXT_PAGE }) // initial from saga
+
+  test('next page should trigger display logic with valid condition and show question', () => {
+    flow(next)({ type: NEXT_PAGE })
+    expect(store.getState().preview.currentElement).toBe('1')
+    expect(store.getState().preview.currentPage).toBe(0)
+    expect(store.getState().preview.showSubmitPage).toBe(false)
+    flow(next)({ type: NEXT_PAGE })
+    expect(store.getState().preview.currentElement).toBe('1')
+    expect(store.getState().preview.currentPage).toBe(0)
+    expect(store.getState().preview.showSubmitPage).toBe(true)
+    expect(store.getState().preview.end).toBe(false)
+    flow(next)({ type: NEXT_PAGE })
+    expect(store.getState().preview.showSubmitPage).toBe(false)
+    expect(store.getState().preview.end).toBe(true)
   })
 })

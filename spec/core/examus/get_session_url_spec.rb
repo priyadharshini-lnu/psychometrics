@@ -3,9 +3,14 @@
 require 'rails_helper'
 
 describe Examus::GetSessionUrl do
-  let(:campaign) { create(:campaign) }
+  let(:campaign) do
+    campaign = create(:campaign)
+    campaign.campaign_options.update(fixed_time: true, fixed_time_duration: 10.minutes.to_i)
+    campaign
+  end
   let(:campaign_user) do
-    create(:campaign_user, started_at: Time.zone.now, campaign: campaign, expiry_date: 10.minutes.from_now)
+    create(:campaign_user, started_at: Time.zone.now, campaign: campaign, expiry_date: 10.minutes.from_now,
+status: :in_progress)
   end
   let(:proctoring_license) { create(:proctoring_license) }
 

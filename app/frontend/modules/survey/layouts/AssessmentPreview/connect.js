@@ -15,6 +15,7 @@ export default connect(
     isAnonymousAssessment: preview.isAnonymousAssessment,
     submissionInProgress: preview.submissionInProgress,
     submissionFailed: preview.submissionFailed,
+    submitRequired: preview.submitRequired,
   }),
   {
   },

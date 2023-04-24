@@ -88,6 +88,7 @@ const defaultState: State = {
   fixedTimed: false,
   showErrorWarning: false,
   isAssessor: false,
+  submitRequired: false,
 }
 
 const HANDLERS = {
@@ -193,7 +194,9 @@ const HANDLERS = {
   ),
   [REMOVE_PREV_PAGE]: (state: State) => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
   [SHOW_END]: (state: State, { payload: endOfAssessmentElementProps }: ShowEnd) => (
-    { ...state, end: true, endOfAssessmentElementProps }),
+    {
+      ...state, end: true, endOfAssessmentElementProps, showSubmitPage: false,
+    }),
   [HIDE_END]: (state: State) => ({ ...state, end: false }),
   [SET_EMBEDDED_DATA]: (state: State, { data }: SetEmbeddedData) => setIn(
     state, 'embeddedData', { ...state.embeddedData, ...data },
@@ -303,8 +306,8 @@ const HANDLERS = {
         })
       ))
     },
-  [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
-  [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
+  [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, submitRequired: true, showSubmitPage: true }),
+  [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, submitRequired: false, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
   [NEXT_BUTTON_PRESSED]: (state: State) => ({
     ...state, backButtonPressed: false, nextButtonPressed: true, submissionInProgress: state.type === 'pass_assessment',

@@ -26,8 +26,6 @@ import {
 } from '~/modules/admin/modules/campaigns/core/list'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { get as getTotal } from '~/modules/admin/modules/campaigns/core/total'
-import { isProjectMigrated } from '~/core/config'
-import Breadcrumb from '../../components/Breadcrumb'
 import { get as getPermissions } from '~/modules/admin/modules/campaigns/core/permissions'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
@@ -68,7 +66,6 @@ const connector = connect(
     total: getTotal(state),
     permissions: getPermissions(state),
     currentUser: getCurrentUser(state),
-    isProjectMigrated: isProjectMigrated(state),
   }),
   {
     fetch,
@@ -95,7 +92,6 @@ const CampaignListComponent: React.FC<Props> = ({
   getSortOrder,
   changePage,
   openModal,
-  isProjectMigrated,
 }) => {
   const params = useParams<{ projectId: string }>()
   const projectId = parseInt(params.projectId, 10)
@@ -106,29 +102,6 @@ const CampaignListComponent: React.FC<Props> = ({
 
   return (
     <div>
-      {!isProjectMigrated && (
-        <Breadcrumb
-          request={{
-            fields: ['project', 'client'],
-            data: {
-              projectId,
-            },
-          }}
-          crumbs={[
-            {
-              link: () => '/administration',
-              label: () => I18n.t('administration.clients.tenancies'),
-            },
-            {
-              link: state => `/administration/clients/${state.client.id}/projects`,
-              label: state => state.client.name,
-            },
-            {
-              label: state => state.project?.name,
-            },
-          ]}
-        />
-      )}
       <Row
         justify="space-between"
         align="middle"

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { takeLatest, put } from 'redux-saga/effects'
 import { getIn } from '~/utils/immutable'
+import { FETCH_SINGLE as FETCH_PROJECT } from '~/modules/admin/modules/client/core/projects'
 
 const CHANGE_LOCALE = 'threeSixty/users/CHANGE_LOCALE'
 const SYNC = 'threeSixty/user/SYNC'
@@ -76,6 +77,8 @@ export default function reducer (state = defaultState, action) {
       return action.payload.user
     case SYNC:
       return action.response
+    case FETCH_PROJECT:
+      return action.response.currentUser
     default:
       return state
   }

@@ -87,9 +87,7 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
           if (filterValues === null) {
             removeFilter(tableName, filterWithPredicate)
           } else {
-            filterValues.forEach((filterValue) => {
-              changeFilter(tableName, filterWithPredicate, filterValue as string)
-            })
+            changeFilter(tableName, filterWithPredicate, filterValues as string[])
           }
         })
       }
@@ -107,7 +105,7 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
       const filterValue = tableConfig.filters[filterWithPredicate]
 
       if (filterValue) {
-        return [filterValue]
+        return Array.isArray(filterValue) ? filterValue : [filterValue]
       }
 
       return null

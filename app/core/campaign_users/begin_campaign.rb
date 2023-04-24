@@ -11,12 +11,9 @@ module CampaignUsers
     end
 
     def call
-      examus_session_url = transaction do
-        campaign_user.update(attributes)
-        Examus::GetSessionUrl.call!(campaign_user) if campaign_user.proctoring_enabled?
-      end
+      campaign_user.update(attributes)
 
-      broadcast :ok, { examus_session_url: examus_session_url }
+      broadcast :ok
     end
 
     private
@@ -25,7 +22,7 @@ module CampaignUsers
       {
         started_at: Time.zone.now,
         status: :in_progress,
-        expiry_date: campaign.fixed_time? ? campaign.fixed_time_duration&.seconds&.from_now : nil
+        expiry_date: campaign_user.compute_expiry_date
       }
     end
   end

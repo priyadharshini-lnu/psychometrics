@@ -16,10 +16,14 @@ class UserProfile < ApplicationRecord
 
   mount_uploader :photo, Public::ImageUploader
 
-  has_one_image_attached :as_photo, variants: [:icon]
+  has_one_image_attachment :as_photo, variants: [:icon]
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :photo
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/user_profile/#{id}/#{attribute_name}/#{filename}"
+  end
 
   def set_age_updated_at
     self.age_updated_at = Time.current

@@ -25,5 +25,8 @@ export const convertToUserAgentBrowserName = (
   if (browserName === 'Opera') {
     return UA_BROWSERS.Opera
   }
+  if (browserName === 'examus-electron') {
+    return UA_BROWSERS.ExamusElectron
+  }
   return ''
 }

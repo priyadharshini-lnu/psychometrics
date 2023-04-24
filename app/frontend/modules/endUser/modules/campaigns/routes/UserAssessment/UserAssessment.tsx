@@ -20,7 +20,7 @@ import {
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { isInsideIframe } from '~/utils/isInsideIframe'
+import { isProctored } from '~/utils/isProctored'
 import { Notification } from '~/glint/components/CountdownTimer'
 import {
   PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon,
@@ -82,10 +82,10 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
 
-  const needsProctoring = proctoringEnabled && !isInsideIframe()
+  const needsProctoring = proctoringEnabled && !isProctored()
   if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
 
-  const enableBackButton = !isInsideIframe() || proctoringEnabled
+  const enableBackButton = !isProctored() || proctoringEnabled
   const notificationDurations: Notification[] = [
     { completionPercentage: 50, type: 'info' },
     { completionPercentage: 75, type: 'warning' },

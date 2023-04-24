@@ -13,10 +13,9 @@ module Psychometrics
     config.load_defaults 6.1
     config.action_dispatch.cookies_same_site_protection = :none
     config.active_record.belongs_to_required_by_default = false
+    # setting default storage service, this will fallback to this service throughout the application
     config.active_storage.service = ENV.fetch('PUBLIC_BUCKET_STORAGE_SERVICE_KEY', 's3_public_bucket')
 
-    # https://www.bigbinary.com/blog/rails-6-1-tracks-active-storage-variant-in-the-database
-    config.active_storage.track_variants = true
     # NOTE: in rails 7 default image processor will be :vips
     config.active_storage.variant_processor = :mini_magick
 
