@@ -57,6 +57,7 @@ executors:
       REDIS_URL: 'redis://localhost:6379/1'
       DISABLE_COVERAGE: '1'
       THREAD_LOADER_WORKERS: '3'
+      HUSKY: '0'
 
   tte-docker-build:
     machine:
