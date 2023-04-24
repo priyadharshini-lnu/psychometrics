@@ -147,7 +147,7 @@ const SendSmsModalComponent: React.FC<Props> = ({
           <Form.Item name="linkExpiry" label={I18n.t('administration.sms_invites.send_sms.fields.link_expiry')}>
             <DatePicker showTime format="YYYY-MM-DD HH:mm" />
           </Form.Item>
-          <Form.Item noStyle name="message" label={I18n.t('administration.sms_invites.send_sms.fields.message')}>
+          <Form.Item name="message" label={I18n.t('administration.sms_invites.send_sms.fields.message')}>
             <Input.TextArea rows={3} />
           </Form.Item>
           {!!form.getFieldValue('message')?.length && (
