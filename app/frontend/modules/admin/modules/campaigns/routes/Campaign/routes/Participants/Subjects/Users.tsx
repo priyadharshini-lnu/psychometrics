@@ -7,6 +7,7 @@ import {
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { FilterValue } from 'antd/lib/table/interface'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -48,6 +49,7 @@ interface Props {
   }
   tableConfig: TableConfig
   changeFilter(filterName: string, filterValue: string): void
+  getFilteredValue(filterName: string): FilterValue
   removeFilter(filterName: string): void
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
