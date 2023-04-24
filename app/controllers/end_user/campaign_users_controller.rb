@@ -4,28 +4,61 @@ class EndUser::CampaignUsersController < ApplicationController
   before_action :set_campaign_user
 
   def begin_campaign
-    if @campaign_user.proctoring_enabled? && @campaign_user.campaign.proctoring_license_with_enough_credits.blank?
-      return render json: { errors: I18n.t('licenses.not_enough_proctoring_credits') }, status: 422
+    data = {}
+    unless @campaign_user.not_started_campaign?
+      return render json: { errors: I18n.t('campaign.errors.invalid_status') }, status: 422
     end
 
-    data = CampaignUsers::BeginCampaign.call!(@campaign_user)
+    if @campaign_user.proctoring_enabled?
+      result = Examus::GetSessionUrl.call(@campaign_user)
+      if result[:error]
+        return render json: { errors: result[:error] }, status: 422
+      end
+
+      data = { examus_session_url: result[:ok] }
+    else
+      CampaignUsers::BeginCampaign.call!(@campaign_user)
+    end
+
     render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
   end
 
-  def continue_campaign
-    return continue_campaign_successful_response unless @campaign_user.proctoring_enabled?
+  def proctoring_redirect
+    return redirect_to_campaign unless @campaign_user.proctoring_enabled?
 
-    Examus::FindOrCreateSession.call(@campaign_user) do
-      on(:error) { |error| render json: { errors: error }, status: 422 }
-      on(:ok) { continue_campaign_successful_response }
+    if @campaign_user.not_started_campaign?
+      CampaignUsers::BeginCampaign.call(@campaign_user)
+    elsif @campaign_user.interrupted_campaign?
+      CampaignUsers::ContinueCampaign.call(@campaign_user)
     end
+
+    redirect_to_campaign
+  end
+
+  def continue_campaign
+    unless @campaign_user.interrupted_campaign? || @campaign_user.in_progress_campaign?
+      return render json: { errors: I18n.t('campaign.errors.invalid_status') }, status: 422
+    end
+
+    data = {}
+    if @campaign_user.proctoring_enabled?
+      result = Examus::GetSessionUrl.call(@campaign_user)
+      if result[:error]
+        return render json: { errors: result[:error] }, status: 422
+      end
+
+      data = { examus_session_url: result[:ok] }
+    else
+      CampaignUsers::ContinueCampaign.call(@campaign_user)
+    end
+
+    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
   end
 
   private
 
-  def continue_campaign_successful_response
-    data = CampaignUsers::ContinueCampaign.call!(@campaign_user)
-    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
+  def redirect_to_campaign
+    redirect_to(campaign_path(@campaign_user.campaign_id))
   end
 
   def set_campaign_user

@@ -165,6 +165,7 @@ export interface DefaultState {
   fixedTimed: boolean
   showErrorWarning: boolean
   isAssessor: boolean
+  submitRequired: boolean
 }
 
 export interface MediaResponse {

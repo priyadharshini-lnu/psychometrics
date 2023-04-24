@@ -17,10 +17,14 @@ class InnovationStyle < ApplicationRecord
 
   mount_uploader :icon, Public::ImageUploader
 
-  has_one_image_attached :as_icon, variants: [:icon]
+  has_one_image_attachment :as_icon, variants: [:icon]
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :icon
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/innovation_style/#{id}/#{attribute_name}/#{filename}"
+  end
 
   def log_attribute_for_delete
     slice(:name, :dimension_id)

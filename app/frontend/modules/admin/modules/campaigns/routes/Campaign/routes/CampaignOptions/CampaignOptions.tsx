@@ -56,6 +56,7 @@ const CampaignOptions: React.FC<Props> = ({
   const parsedCampaignId = parseInt(campaignId, 10)
 
   const identifications = I18n.t('administration.campaigns.options.proctoring.identifications')
+  const integrationTypes = I18n.t('administration.campaigns.options.proctoring.integration_types')
 
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
@@ -99,6 +100,11 @@ const CampaignOptions: React.FC<Props> = ({
   const saveIdentificationType = (e) => {
     const { value } = e.target
     update(parsedProjectId, parsedCampaignId, { ...options, identification: value })
+  }
+
+  const saveIntegrationType = (e) => {
+    const { value } = e.target
+    update(parsedProjectId, parsedCampaignId, { ...options, integrationType: value })
   }
 
   return (
@@ -190,6 +196,28 @@ const CampaignOptions: React.FC<Props> = ({
                             value={options.identification}
                           >
                             {Object.entries(identifications).map(
+                              ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                            )}
+                          </Radio.Group>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={24}>
+                      <Row>
+                        <Col span={2}>
+                          <label>
+                            {I18n.t('administration.campaigns.options.proctoring.integration_type')}
+                          </label>
+                        </Col>
+                        <Col span={22}>
+                          <Radio.Group
+                            defaultValue="iframe"
+                            onChange={saveIntegrationType}
+                            value={options.integrationType}
+                          >
+                            {Object.entries(integrationTypes).map(
                               ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
                             )}
                           </Radio.Group>

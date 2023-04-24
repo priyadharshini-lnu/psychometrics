@@ -13,7 +13,7 @@ export const initTable = (tableName: string, maintainHistory = false, pageSize: 
   payload: { tableName, maintainHistory, pageSize },
 })
 
-export const changeFilter = (tableName: string, filterName: string, filterValue: string) => ({
+export const changeFilter = (tableName: string, filterName: string, filterValue: string | string[]) => ({
   type: CHANGE_FILTER,
   payload: { tableName, filterName, filterValue },
 })

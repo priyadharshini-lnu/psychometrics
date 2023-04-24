@@ -1,28 +1,25 @@
 # frozen_string_literal: true
 
 module Users
-  class BuildSsoUrl < Rectify::Command
+  class BuildSsoUrl < BaseCommand
     TTL = 30.minutes
-    attr_reader :project, :user
+    attr_reader :project, :user, :ttl
 
-    def initialize(project, user)
+    def initialize(project, user, ttl = 30.minutes)
       @project = project
       @user = user
+      @ttl = ttl
     end
 
     def call
       url = gen_url
-      $redis.setex(user.sso_key, TTL, token)
-      broadcast :ok, [url, Time.zone.now + TTL]
+      broadcast :ok, [url, Time.zone.now + ttl]
     end
 
     def gen_url
       protocol = Settings.protocol || 'http'
+      token = user.generate_sso_token(ttl)
       URI("#{protocol}://#{project.subdomain}.#{Settings.domain}:#{Settings.port}/sso/#{user.id}/#{token}").to_s
-    end
-
-    def token
-      @token ||= SecureRandom.urlsafe_base64(20, false)
     end
   end
 end

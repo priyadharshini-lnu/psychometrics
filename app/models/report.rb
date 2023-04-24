@@ -103,11 +103,16 @@ class Report < ApplicationRecord
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader
 
-  has_one_image_attached :as_icon, variants: [:icon]
-  has_one_image_attached :as_poster, variants: [:icon]
+  has_one_image_attachment :as_icon, variants: [:icon]
+  has_one_image_attachment :as_poster, variants: [:icon]
+
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :icon, :poster
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/report/#{id}/#{attribute_name}/#{filename}"
+  end
 
   def delete_assessments_reports
     assessments_reports.destroy_all
