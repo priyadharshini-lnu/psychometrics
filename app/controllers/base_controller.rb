@@ -11,6 +11,7 @@ class BaseController < ActionController::Base
   prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
   before_action :detect_mobile
   before_action :set_sentry_context
+  before_action :enforce_password_change
 
   rescue_from Rack::Timeout::RequestTimeoutException, with: :timeout
   rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
@@ -21,6 +22,17 @@ class BaseController < ActionController::Base
     else
       administration_password_expired_path
     end
+  end
+
+  def enforce_password_change
+    return if devise_controller? || session[:spoofed]
+    return unless warden.session(:user)['enforce_password_change']
+
+    store_location_for(:user, request.original_fullpath) if request.get? && request.format.html?
+    flash.delete(:notice)
+
+    redirect_to change_password_required_path_for(:user),
+                alert: I18n.t('devise.password_expired.password_policy_changed')
   end
 
   def authenticate_user!
