@@ -8,7 +8,6 @@ import _ from 'lodash'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
 import { ConfirmationModal } from '~/glint'
-import { isSuperAdmin } from '~/core/currentUser'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { openModal } from '~/modules/admin/core/ui/modals'
 
@@ -16,14 +15,12 @@ const { I18n } = window
 
 const connecter = connect(null, { openModal })
 interface OwnProps {
-  currentUser: User
   openDrawer: (user: User) => void
 }
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux & OwnProps
 
 export const UserTableComponent: React.FC<Props> = ({
-  currentUser,
   openDrawer,
   openModal,
 }) => (
@@ -69,7 +66,6 @@ export const UserTableComponent: React.FC<Props> = ({
       render={(_, user) => (
         <Dropdown
           user={user}
-          currentUser={currentUser}
           openResetPasswordModal={user => openModal('ResetPasswordModal', { user })}
         />
       )}
@@ -93,15 +89,14 @@ const ActiveSwitch: React.FC<{ user: User }> = ({ user }) => {
 
 interface DropdownProps {
   user: User
-  currentUser: unknown
   openResetPasswordModal: (user: User) => void
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ user, currentUser, openResetPasswordModal }) => {
+const Dropdown: React.FC<DropdownProps> = ({ user, openResetPasswordModal }) => {
   const [confirmation, setConfirmation] = useState(false)
   return (
     <ConditionalDropdown menu={ActionsMenu({
-      user, currentUser, openResetPasswordModal, setConfirmation, confirmation,
+      user, openResetPasswordModal, setConfirmation, confirmation,
     })}
     />
   )
@@ -115,7 +110,7 @@ interface ActionMenuProps extends DropdownProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  setConfirmation, confirmation, user, currentUser, openResetPasswordModal,
+  setConfirmation, confirmation, user, openResetPasswordModal,
 }) => {
   const { resource } = useResourceContext<User>()
 
@@ -140,14 +135,14 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('users.actions.reset_password.option')}
         </Button>),
     },
-    isSuperAdmin(currentUser) && {
+    user.meta.permissions.toggleEnable2fa && {
       key: '2fa',
       label: (
         <Button type="link" onClick={() => toggle2FA(user)} className="ps-0">
           {I18n.t(`users.actions.2fa.${user.enable_2fa ? 'option_to_disable' : 'option_to_enable'}`)}
         </Button>),
     },
-    isSuperAdmin(currentUser) && {
+    user.meta.permissions.resetPassword && {
       key: 'remove',
       label: (
         <>

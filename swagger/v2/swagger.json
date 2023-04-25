@@ -1356,6 +1356,18 @@
             ]
           }
         ],
+        "parameters": [
+          {
+            "name": "query[include_resource_meta]",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "filter[role_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "User list",
@@ -1372,7 +1384,9 @@
                       },
                       "meta": {
                         "permissions": {
-                          "reset_password": true
+                          "reset_password": true,
+                          "remove": false,
+                          "toggle_enable_2fa": true
                         }
                       }
                     }
@@ -1423,7 +1437,7 @@
                     "id": "770",
                     "attributes": {
                       "automatically_generate_password": false,
-                      "password": "stron_password",
+                      "password": "strong_password1",
                       "change_password_on_login": true,
                       "send_password_email": true
                     }
@@ -3759,10 +3773,20 @@
                         "reset_password": {
                           "type": "boolean",
                           "nullable": false
+                        },
+                        "remove": {
+                          "type": "boolean",
+                          "nullable": false
+                        },
+                        "toggle_enable_2fa": {
+                          "type": "boolean",
+                          "nullable": false
                         }
                       },
                       "required": [
-                        "reset_password"
+                        "reset_password",
+                        "remove",
+                        "toggle_enable_2fa"
                       ],
                       "nullable": false
                     }

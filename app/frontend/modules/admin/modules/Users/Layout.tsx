@@ -1,19 +1,30 @@
 import React from 'react'
+import { connect, ConnectedProps } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   ShopOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import RouteList from '~/components/RouteList'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { history } from '~/modules/admin/store'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import routes from './routes'
 import settings from './settings'
 
 const { I18n } = window
 
-const Layout: React.FC = () => {
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }), {},
+)
+
+type Props = ConnectedProps<typeof connecter>
+
+const LayoutComponent: React.FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation()
   const handleOnSelect = ({ key }) => {
     history.push(`${settings.urlPrefix}/${key}`)
@@ -21,9 +32,14 @@ const Layout: React.FC = () => {
 
   const menuItems: ItemType[] = [
     { key: 'users', icon: <ShopOutlined />, label: I18n.t('users.users') },
-    { key: 'admins', icon: <ShopOutlined />, label: I18n.t('users.admins') },
-    { key: 'superadmins', icon: <ShopOutlined />, label: I18n.t('users.superadmins') },
   ]
+
+  isSuperAdmin(currentUser) && (
+    menuItems.push(
+      { key: 'admins', icon: <ShopOutlined />, label: I18n.t('users.admins') },
+      { key: 'superadmins', icon: <ShopOutlined />, label: I18n.t('users.superadmins') },
+    )
+  )
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
     if (pathname.includes('/superadmins')) {
@@ -62,4 +78,4 @@ const Layout: React.FC = () => {
   )
 }
 
-export default Layout
+export const Layout = connecter(LayoutComponent)

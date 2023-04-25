@@ -40,6 +40,7 @@ export interface UrlQuery {
 export interface ApiConfig extends UrlQuery {
   include?: string[]
   include_meta?: string[]
+  include_resource_meta?: string[]
   camelizeOnly?: string[]
   camelizeExcept?: string[]
   query?: {

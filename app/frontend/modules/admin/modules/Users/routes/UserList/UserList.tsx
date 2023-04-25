@@ -38,7 +38,11 @@ const UserListComponent: React.FC<Props> = ({
   const [closed, closeModal] = useState(true)
   const config = {
     trackUrl: true,
-    apiConfig: { camelizeExcept: ['$[*].enable_2fa', '$.enable_2fa'], filter: { role_eq: userTab } },
+    apiConfig: {
+      camelizeExcept: ['$[*].enable_2fa', '$.enable_2fa'],
+      filter: { role_eq: userTab },
+      include_resource_meta: ['permissions'],
+    },
     responseType: UserTR,
   }
 
@@ -46,7 +50,7 @@ const UserListComponent: React.FC<Props> = ({
     <>
       <Resource config={config} name="users">
         <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
-        <UserTable currentUser={currentUser} openDrawer={setDrawerUser} />
+        <UserTable openDrawer={setDrawerUser} />
         {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
         {!closed && <UserFormModal close={() => closeModal(true)} />}
         <Modals modals={MODALS} />

@@ -44,6 +44,8 @@ module Api
           Dry::Schema.define do
             required(:permissions).hash do
               required(:reset_password).filled(:bool)
+              required(:remove).filled(:bool)
+              required(:toggle_enable_2fa).filled(:bool)
             end
           end
         end

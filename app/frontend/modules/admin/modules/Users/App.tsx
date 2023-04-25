@@ -6,7 +6,7 @@ import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import humps from 'humps'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import store, { history } from '~/modules/admin/store'
-import Layout from './Layout'
+import { Layout } from './Layout'
 import { Schema } from '~/libs/jsonApi/schema'
 
 

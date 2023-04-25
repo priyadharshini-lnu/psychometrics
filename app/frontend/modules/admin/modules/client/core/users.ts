@@ -15,7 +15,9 @@ export const UserTR = t.type({
   modifiedBy: t.union([t.string, t.null]),
   meta: t.type({
     permissions: t.type({
+      remove: t.boolean,
       resetPassword: t.boolean,
+      toggleEnable2fa: t.boolean,
     }),
   }),
 })
