@@ -7,6 +7,7 @@ module Administration
     USER_PARAMETERS = %i[first_name last_name email].freeze
     UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
     GRANT_PARAMETERS = [data: [
+      users: [],
       clients: [],
       projects: [],
       project_settings: [],

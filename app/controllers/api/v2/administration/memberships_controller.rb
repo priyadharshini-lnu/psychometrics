@@ -7,11 +7,6 @@ module Api
 
     before_action :set_resource, only: %i[spoof reset_password]
 
-    def reset_password
-      @_resource.user.send_reset_password_instructions
-      render json: :ok
-    end
-
     def spoof
       sign_in(@_resource.user)
       redirect_url ||= administration_root_path
