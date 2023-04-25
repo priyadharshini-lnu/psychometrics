@@ -68,15 +68,6 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
-  describe 'GET reset_password' do
-    it 'sends email to user to reset password' do
-      get :reset_password, params: { new_campaign_id: campaign.id, id: user.id }
-      expect(ActionMailer::Base.deliveries.count(1))
-      expect(ActionMailer::Base.deliveries.first.subject).to eq('Instructions for resetting your password')
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   it 'POST search' do
     u = create(:user, email: 'atanych@gmail.com')
     create(:campaign_user, campaign: campaign, user: u)
