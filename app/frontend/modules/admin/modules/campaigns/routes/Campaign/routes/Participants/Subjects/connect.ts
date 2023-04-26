@@ -3,7 +3,6 @@ import {
   fetch,
   remove,
   toggleActive,
-  resetPassword,
   get as getUsers,
   exportCompletionStatuses,
   exportCompactCompletionStatuses,
@@ -19,7 +18,6 @@ const connecter = connect(
   {
     fetch,
     remove,
-    resetPassword,
     openModal,
     toggleActive,
     exportCompletionStatuses,

@@ -132,14 +132,6 @@ export const toggleActive = (campaignId: string, id: number, options: { updateIn
   },
 })
 
-export const resetPassword = (campaignId: string, id: number) => ({
-  type: RESET_PASSWORD,
-  request: {
-    method: 'get',
-    url: `/administration/new_campaigns/${campaignId}/users/${id}/reset_password`,
-  },
-})
-
 export const extendTime = (campaignId: number, id: number, additionalTime: number) => ({
   type: EXTEND_TIME,
   request: {

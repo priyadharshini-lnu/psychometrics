@@ -12,6 +12,10 @@ module Api
       def spoof?
         @user.is?(:superadmin)
       end
+
+      def reset_password?
+        @user.is?(:superadmin)
+      end
     end
   end
 end

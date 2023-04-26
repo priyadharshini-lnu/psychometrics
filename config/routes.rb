@@ -222,7 +222,6 @@ Rails.application.routes.draw do
           resources :user_reports
           member do
             patch :toggle_status
-            get :reset_password
             post :extend_time
           end
           collection do

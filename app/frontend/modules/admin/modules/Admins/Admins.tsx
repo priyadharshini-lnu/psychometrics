@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
-import * as t from 'io-ts'
 import {
   Row, Col,
   Table,
@@ -25,12 +24,18 @@ import { CountDisplay } from '~/components/CountDisplay'
 import {
   ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
 } from '~/modules/admin/modules/client/core/admin'
+import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
+import Modals from '~/modules/admin/components/Modals/'
 import { DetailsDrawer } from './DetailsDrawer'
 import { AddEditDrawer } from './AddEditDrawer'
 import { ActionsMenu } from './ActionsMenu'
 import {
   DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes,
 } from './constants'
+
+const MODALS = {
+  ResetPasswordModal,
+}
 
 const connecter = connect(
   (state: RootState) => ({
@@ -56,7 +61,7 @@ interface Meta extends BaseMeta {
   usersGrants: CurrentUserPermissions
 }
 
-const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
+const AdminsComponent: React.FC<Props> = ({ adminType, currentUser, openModal }) => {
   const params = useParams<{ campaignId: string; projectId: string }>()
   const { campaignId } = params
   const { projectId } = params
@@ -72,7 +77,7 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
 
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, createResource, updateResource,
-    removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter, memberAction,
+    removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter,
   } = useResources<ProjectAdmin, Meta>(
     'memberships',
     {
@@ -119,28 +124,6 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
   const handleEditAdminClick = (id: Admin['id']) => {
     const editUrl = getIndividualAdminUrl(DrawerMode.Edit, id)
     history.push(editUrl)
-  }
-
-  const ResetPasswordTR = t.literal('ok')
-
-  const handlePasswordResetClick = (id) => {
-    Modal.confirm({
-      title: I18n.t('administration.administrators.modals.resetPassword.title'),
-      content: 'reset password?',
-      okText: I18n.t(
-        'administration.administrators.modals.resetPassword.okText',
-      ),
-      cancelText: I18n.t(
-        'administration.administrators.modals.resetPassword.cancelText',
-      ),
-      onOk: async () => {
-        memberAction(
-          {
-            id, action: 'reset_password', method: 'get', updateStore: false, responseType: ResetPasswordTR,
-          },
-        )
-      },
-    })
   }
 
   const handleDeleteAdminClick = (
@@ -271,21 +254,25 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
               )}
               render={(
                 _,
-                {
+                user: Admin,
+              ) => {
+                const {
                   id, email, firstName, lastName,
-                },
-              ) => (
-                <ActionsMenu
-                  id={id}
-                  email={email}
-                  firstName={firstName}
-                  lastName={lastName}
-                  permissions={meta.permissions}
-                  handleEdit={handleEditAdminClick}
-                  handleDelete={handleDeleteAdminClick}
-                  handleResetPassword={handlePasswordResetClick}
-                />
-              )}
+                } = user
+
+                return (
+                  <ActionsMenu
+                    id={id}
+                    email={email}
+                    firstName={firstName}
+                    lastName={lastName}
+                    permissions={meta.permissions}
+                    handleEdit={handleEditAdminClick}
+                    handleDelete={handleDeleteAdminClick}
+                    handleResetPassword={() => openModal('ResetPasswordModal', { user: { ...user, id: user.userId } })}
+                  />
+                )
+              }}
             />
           </Table>
           <Pagination
@@ -319,6 +306,7 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser }) => {
         adminId={drawerAdminId}
         adminType={adminType}
       />
+      <Modals modals={MODALS} />
     </>
   )
 }
