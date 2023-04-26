@@ -32,7 +32,7 @@ RSpec.describe UserAssessment, type: :model do
   describe '#applicable_external_norm_id' do
     it 'returns external_norm_id of campaign_assessment if present' do
       campaign_assessment = create(:campaign_assessment, external_norm_id: 'abc')
-      campaign_assessment.assessment.update(external_settings: { norm_id: 'abc' })
+      campaign_assessment.assessment.update(external_settings: { norm_id: 'another_norm' })
       user_assessment = create(:user_assessment, campaign_id: campaign_assessment.campaign_id,
         assessment_id: campaign_assessment.assessment_id)
 
