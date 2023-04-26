@@ -7,7 +7,7 @@ module AdminJobs
         user_reports = campaign.user_reports.where(user_id: subject.user_id)
         ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
       else
-        return broadcast :ok
+        return broadcast :ok, content: "Report can't be generated"
       end
 
       broadcast :waiting
@@ -43,7 +43,7 @@ module AdminJobs
     end
 
     def valid?
-      campaign.present? && subject.present? && available?
+      campaign.present? && subject.present?
     end
 
     private
