@@ -49,9 +49,7 @@ module Administration
     end
 
     def regenerate?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-      )
+      @user.is?(:superadmin) || has_permission?(:results, :regenerate_report)
     end
 
     def destroy?

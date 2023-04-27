@@ -522,6 +522,7 @@ Rails.application.routes.draw do
 
           resource :reports, only: [:show] do
             get :download, on: :member
+            post :regenerate, on: :member
           end
           resources :evaluations, only: %i[show update destroy] do
             member do
