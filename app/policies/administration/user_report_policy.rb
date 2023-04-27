@@ -49,7 +49,7 @@ module Administration
     end
 
     def regenerate?
-      @user.is?(:superadmin) || has_permission?(:results, :regenerate_report)
+      @user.is?(:superadmin) || has_permission?(:results, :bulk_regenerate_reports)
     end
 
     def destroy?

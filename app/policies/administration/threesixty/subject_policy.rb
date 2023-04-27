@@ -84,7 +84,7 @@ module Administration
       end
 
       def regenerate_report?
-        user.is?(:superadmin) || user.has_permission?(:camoaign, :regenerate_report, project_id: project_id)
+        user.is?(:superadmin) || user.has_permission?(:results, :regenerate_report, project_id: project_id)
       end
 
       def view_responses?
