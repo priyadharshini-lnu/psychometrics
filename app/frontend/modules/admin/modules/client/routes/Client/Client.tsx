@@ -31,19 +31,15 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation()
 
   const handleOnSelect = ({ key }) => {
-    if (key === 'client_admins') {
-      window.location.pathname = `/administration/clients/${clientId}/client_admins`
-    } else {
-      history.push(`${settings.urlPrefix}/clients/${clientId}/${key}`)
-    }
+    history.push(`${settings.urlPrefix}/clients/${clientId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
     if (pathname.includes('/projects')) {
       return ['projects']
     }
-    if (pathname.includes('/client_admins')) {
-      return ['client_admins']
+    if (pathname.includes('/admins')) {
+      return ['admins']
     }
     return undefined
   }
@@ -58,6 +54,8 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
     switch (primaryTab) {
       case 'projects':
         return I18n.t('common.model.projects')
+      case 'admins':
+        return I18n.t('administration.breadcrumbs.admins')
       default:
         return ''
     }
@@ -67,9 +65,9 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
   ]
 
   isSuperAdmin(currentUser) && menuItems.push({
-    key: 'client_admins',
+    key: 'admins',
     icon: <ShopOutlined />,
-    label: I18n.t('administration.breadcrumbs.clientAdmins'),
+    label: I18n.t('administration.breadcrumbs.client_admins'),
   })
 
   return (

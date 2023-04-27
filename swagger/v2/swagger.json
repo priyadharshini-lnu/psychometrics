@@ -576,6 +576,318 @@
         }
       }
     },
+    "/memberships/": {
+      "get": {
+        "summary": "Membership list",
+        "operationId": "MembershipList",
+        "tags": [
+          "Membership"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "filter[client_id_eq]",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "filter[with_role]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "12",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "email": "user@cc.com",
+                        "user_id": "2"
+                      },
+                      "meta": {
+                        "permissions": {
+                          "login_as": true,
+                          "edit": true,
+                          "reset_password": true,
+                          "remove": true,
+                          "send_mail": true
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a membership",
+        "operationId": "CreateMembership",
+        "description": "Create new Membership",
+        "tags": [
+          "Memberships"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Membership Created",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "name": "First Name Last Name",
+                        "email": "user@cc.com",
+                        "role": "client_admin",
+                        "user_id": "1",
+                        "clients": [
+                          {
+                            "id": 1,
+                            "name": "Client Tenancy",
+                            "role": "client_admin"
+                          }
+                        ],
+                        "grants_names": {
+                          "norms": [
+                            "view",
+                            "manage"
+                          ],
+                          "clients": [
+                            "view",
+                            "view_licenses"
+                          ]
+                        }
+                      },
+                      "relationships": {
+                        "user": {
+                          "data": {
+                            "id": "1",
+                            "type": "users"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MembershipCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/memberships/{membership_id}": {
+      "get": {
+        "summary": "Membership",
+        "operationId": "Membership",
+        "description": "Fetch Membership",
+        "tags": [
+          "Memberships"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "membership_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Membership",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "name": "First Name Last Name",
+                        "email": "user@cc.com",
+                        "role": "client_admin",
+                        "user_id": "1",
+                        "clients": [
+                          {
+                            "id": 1,
+                            "name": "Client Tenancy",
+                            "role": "client_admin"
+                          }
+                        ],
+                        "grants_names": {
+                          "norms": [
+                            "view",
+                            "manage"
+                          ],
+                          "clients": [
+                            "view",
+                            "view_licenses"
+                          ]
+                        }
+                      },
+                      "relationships": {
+                        "user": {
+                          "data": {
+                            "id": "1",
+                            "type": "users"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a membership",
+        "operationId": "UpdateMembership",
+        "description": "Update Membership",
+        "tags": [
+          "Memberships"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "membership_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Membership Updated",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "name": "First Name Last Name",
+                        "email": "user@cc.com",
+                        "role": "client_admin",
+                        "user_id": "1",
+                        "clients": [
+                          {
+                            "id": 1,
+                            "name": "Client Tenancy",
+                            "role": "client_admin"
+                          }
+                        ],
+                        "grants_names": {
+                          "norms": [
+                            "view",
+                            "manage"
+                          ],
+                          "clients": [
+                            "view",
+                            "view_licenses"
+                          ]
+                        }
+                      },
+                      "relationships": {
+                        "user": {
+                          "data": {
+                            "id": "1",
+                            "type": "users"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MembershipUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/clients/{client_id}/projects/": {
       "get": {
         "summary": "Project List",
@@ -3830,6 +4142,744 @@
         "required": [
           "data",
           "meta"
+        ]
+      },
+      "MembershipListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to memberships",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "grant_names": {
+                      "type": "object",
+                      "properties": {
+                        "clients": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "projects": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "project_settings": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "campaigns": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "dashboards": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "messages": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "sms_invites": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "registration_codes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "communications": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "assessors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "reports": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "datasheets": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "first_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "email": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "role",
+                    "grant_names"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "MembershipResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to memberships",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "grant_names": {
+                    "type": "object",
+                    "properties": {
+                      "clients": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "projects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "project_settings": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "campaigns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "dashboards": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "sms_invites": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "registration_codes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "communications": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "assessors": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "reports": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "datasheets": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "role",
+                  "grant_names"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "MembershipCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to memberships",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "role": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "grant_names": {
+                    "type": "object",
+                    "properties": {
+                      "clients": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "projects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "project_settings": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "campaigns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "dashboards": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "sms_invites": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "registration_codes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "communications": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "assessors": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "reports": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "datasheets": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "client_id",
+                  "role",
+                  "grant_names"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "MembershipUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to memberships",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "role": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "grant_names": {
+                    "type": "object",
+                    "properties": {
+                      "clients": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "projects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "project_settings": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "campaigns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "dashboards": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "sms_invites": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "registration_codes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "communications": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "assessors": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "reports": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "datasheets": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
         ]
       },
       "ResetPasswordRequest": {

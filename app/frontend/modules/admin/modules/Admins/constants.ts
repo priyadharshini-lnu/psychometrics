@@ -17,11 +17,65 @@ export enum ParentResourceType {
 export enum AdminTypes {
   ProjectAdmin = 'project_admin',
   CampaignAdmin = 'campaign_admin',
+  ClientAdmin = 'client_admin',
 }
 
 export const ThreeSixtyGrants = {
   campaigns: ['participant_options', 'reset_nominations', 'report_options'],
   messages: ['email', 'instructions', 'options'],
+}
+
+export const ClientAdminGrants = {
+  clients: ['view', 'view_licenses'],
+  projects: ['view', 'manage', 'manage_admins', 'manage_users'],
+  users: ['reset_password'],
+  projectSettings: [
+    'design',
+    'smtp',
+    'saml',
+    'integrations',
+    'security',
+    'webhooks',
+  ],
+  dashboards: ['view', 'accesssheet_view', 'accesssheet_manage', 'accesssheet_settings'],
+  smsInvites: ['view', 'manage'],
+  campaigns: [
+    'view',
+    'manage',
+    'manage_users',
+    'manage_admins',
+    'manage_options',
+    'manage_messages',
+    'participant_options',
+    'reset_nominations',
+    'report_options',
+    'manage_report_approvals',
+    'bulk_regenerate_reports',
+    'view_stats',
+  ],
+  messages: ['email', 'instructions', 'options'],
+  norms: ['view', 'manage'],
+  dimensions: ['view', 'manage'],
+  assessments: ['view', 'manage'],
+  questions: ['view', 'manage'],
+  mediaLibraries: ['view', 'manage'],
+  communications: ['view', 'manage'],
+  reports: ['view', 'manage'],
+  results: [
+    'view_report',
+    'download_report',
+    'report_data',
+    'raw_responses',
+    'scores',
+    'reset_responses',
+    'approve_report',
+    'rescore_responses',
+    'reset_progress',
+  ],
+  assessors: ['view', 'manage'],
+  registrationCodes: ['view', 'manage'],
+  datasheets: ['view', 'manage'],
+  auditLogs: ['view'],
 }
 
 export const ProjectAdminGrants = {

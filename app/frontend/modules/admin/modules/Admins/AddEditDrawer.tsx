@@ -23,7 +23,7 @@ import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import { Admin, AdminPermissions, CurrentUserPermissions } from '~/modules/admin/modules/client/core/admin'
 import styles from './styles.less'
 import {
-  AdminTypes, CampaignAdminGrants, ProjectAdminGrants, ThreeSixtyGrants,
+  AdminTypes, ClientAdminGrants, CampaignAdminGrants, ProjectAdminGrants, ThreeSixtyGrants,
 } from './constants'
 
 const { I18n } = window
@@ -68,11 +68,22 @@ const AddEditDrawerComponent: FC<Props> = ({
     },
   )
 
-  const grantsHash = adminType === AdminTypes.ProjectAdmin
-    ? ProjectAdminGrants : CampaignAdminGrants
+  const grantsHash = (): {} => {
+    switch (adminType) {
+      case AdminTypes.ProjectAdmin:
+        return ProjectAdminGrants
+      case AdminTypes.ClientAdmin:
+        return ClientAdminGrants
+      case AdminTypes.CampaignAdmin:
+        return CampaignAdminGrants
+      default:
+        return {}
+    }
+  }
 
   const { projectId } = useParams<{ projectId: string }>()
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { clientId } = useParams<{ clientId: string }>()
 
   const historyPath = (adminType === AdminTypes.CampaignAdmin)
     ? `/administration/projects/${projectId}/new_campaigns/${campaignId}/admins`
@@ -107,7 +118,8 @@ const AddEditDrawerComponent: FC<Props> = ({
       apiConfig: {
         filter: {
           with_role: adminType,
-          client_id_eq: projectId,
+          client_id_eq: clientId,
+          project_id_eq: projectId,
           campaign_id_eq: campaignId,
         },
       },
@@ -171,7 +183,8 @@ const AddEditDrawerComponent: FC<Props> = ({
     return {
       ...values,
       campaignId,
-      clientId: isEditMode ? undefined : projectId,
+      clientId,
+      projectId,
       role: adminType,
       email: notFromList ? (values?.userId && values?.userId[0]) : undefined,
       userId: notFromList ? [] : values.userId,
@@ -363,7 +376,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                 </Form.Item>
               </>
             )}
-            {_.map(grantsHash, (grants, grantFor) => (
+            {_.map(grantsHash(), (grants, grantFor) => (
               <>
                 <Form.Item
                   name={['grantNames', `${grantFor}`]}

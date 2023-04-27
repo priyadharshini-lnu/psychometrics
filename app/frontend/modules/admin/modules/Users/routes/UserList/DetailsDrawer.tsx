@@ -1,22 +1,10 @@
-import { FC, useEffect, useState } from 'react'
-import * as t from 'io-ts'
+import { FC } from 'react'
 import {
-  Drawer, Row, Descriptions, Skeleton,
+  Drawer, Row, Descriptions,
 } from 'antd'
 import { User } from '~/modules/admin/modules/client/core/users'
-import { useResourceContext } from '~/modules/admin/components/Resource'
+import { UserRolesDetails } from '~/modules/admin/components/UserRolesDetails'
 
-export const RoleTR = t.type({
-  name: t.string,
-  paths: t.array(t.type({
-    name: t.string,
-    value: t.string,
-  })),
-})
-
-export const RolesResponseTR = t.type({
-  roles: t.array(RoleTR),
-})
 
 const { I18n } = window
 
@@ -25,38 +13,13 @@ interface Props {
   user: User | undefined
 }
 
-type Role = t.TypeOf<typeof RoleTR>
-
-interface RolesResponse {
-  roles: Role[]
-}
-
 export const DetailsDrawer: FC<Props> = ({
   close,
   user,
 }) => {
-  const { resource } = useResourceContext()
-  const [roles, setRoles] = useState<Role[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-
   if (!user) {
     return null
   }
-
-  useEffect(() => {
-    getRoles(user)
-  }, [user])
-
-  const getRoles = (user: User) => resource.memberAction({
-    id: user.id,
-    action: 'roles',
-    method: 'get',
-    responseType: RolesResponseTR,
-  }).then((response: RolesResponse) => {
-    setRoles(response.roles)
-    setIsLoading(false)
-  })
-
 
   return (
     <Drawer
@@ -104,44 +67,7 @@ export const DetailsDrawer: FC<Props> = ({
         </Descriptions>
       </Row>
       <Row>
-        <Skeleton loading={isLoading} active>
-          <Descriptions
-            layout="horizontal"
-            className="mb-6 w-100"
-            bordered
-            column={1}
-          >
-            <Descriptions.Item
-              labelStyle={{ fontWeight: 'bold', width: '40%' }}
-              contentStyle={{ fontWeight: 'bold', width: '60%' }}
-              label={I18n.t('users.drawer.role')}
-              key="id"
-              className="va-t w-30"
-            >
-              {I18n.t('users.drawer.link')}
-            </Descriptions.Item>
-            {!roles.length
-              && (
-                <Descriptions.Item span={2}>
-                  Empty
-                </Descriptions.Item>
-              )}
-            {roles.map((role, index) => (
-              <Descriptions.Item
-                label={I18n.t(`users.roles.${role.name}`)}
-                key={index}
-                className="va-t"
-              >
-                {role.paths.map((path, i) => (
-                  <>
-                    {i > 0 && <span> &gt; </span>}
-                    <a href={path.value}>{path.name}</a>
-                  </>
-                ))}
-              </Descriptions.Item>
-            ))}
-          </Descriptions>
-        </Skeleton>
+        <UserRolesDetails userId={user.id} />
       </Row>
     </Drawer>
   )

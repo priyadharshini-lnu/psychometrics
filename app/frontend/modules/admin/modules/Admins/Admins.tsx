@@ -62,13 +62,15 @@ interface Meta extends BaseMeta {
 }
 
 const AdminsComponent: React.FC<Props> = ({ adminType, currentUser, openModal }) => {
-  const params = useParams<{ campaignId: string; projectId: string }>()
+  const params = useParams<{ campaignId: string; projectId: string; clientId: string }>()
   const { campaignId } = params
   const { projectId } = params
+  const { clientId } = params
 
   const filterHash = {
     with_role: adminType,
-    client_id_eq: projectId,
+    client_id_eq: clientId,
+    project_id_eq: projectId,
   }
 
   if (adminType === AdminTypes.CampaignAdmin) {

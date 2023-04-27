@@ -23,7 +23,7 @@ module Api
     end
 
     def project_id
-      params.dig(:filter, :client_id_eq)
+      params.dig(:filter, :project_id_eq) || params.dig(:filter, :client_id_eq)
     end
 
     def campaign_id

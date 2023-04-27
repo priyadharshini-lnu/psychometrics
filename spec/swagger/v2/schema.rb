@@ -135,6 +135,18 @@ module Swagger
           UserListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.multiple_resource_response
           ),
+          MembershipListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.multiple_resource_response
+          ),
+          MembershipResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.single_resource_response
+          ),
+          MembershipCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.create_request
+          ),
+          MembershipUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.update_request
+          ),
           ResetPasswordRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.reset_password_request
           ),
