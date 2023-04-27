@@ -156,15 +156,6 @@ class Administration::AssessmentsController < Administration::BaseController
     end
   end
 
-  def export
-    respond_to do |format|
-      format.xlsx do
-        headers['Content-Disposition'] = "attachment; filename=\"#{resource.name}-#{Time.zone.today}.xlsx\""
-        headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-      end
-    end
-  end
-
   def factors
     render json: resource.dimension.all_factors.as_json(only: %i[id name])
   end

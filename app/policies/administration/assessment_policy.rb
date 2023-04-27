@@ -124,13 +124,6 @@ module Administration
         @user.is?(:superadmin)
     end
 
-    # Can export Assessment's questions and scoring
-    # true if it's Common Assessment
-    def export?
-      @record.common? &&
-        super
-    end
-
     def factors?
       @user.is?(:superadmin) || @user.has_permission?(:assessments, :view, project_id: project_id)
     end

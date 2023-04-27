@@ -112,8 +112,10 @@ gem 'redlock', '~> 1.2.2'
 gem 'rubyzip', '~> 2.3'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
-gem 'caxlsx_rails', '~> 0.6.0'
+# gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
+
+gem 'caxlsx', '~> 3.2'
+gem 'caxlsx_rails', '~> 0.6'
 gem 'roo', '~> 2.9'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
@@ -201,6 +203,7 @@ group :development, :test do
   gem 'awesome_print', '~> 1.9.2'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bundler-audit', require: false
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'hirb'

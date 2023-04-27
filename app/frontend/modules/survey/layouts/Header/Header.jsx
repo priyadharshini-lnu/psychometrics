@@ -208,14 +208,6 @@ export class Header extends Component {
                   Import Translations
                 </a>
               </li>
-              <li>
-                <a
-                  className={styles.linkExport}
-                  href={`/administration/assessments/${_.result(assessment, 'id')}/export.xlsx`}
-                >
-                  Export Scoring
-                </a>
-              </li>
               <MenuItem onSelect={toggleEnableBack}>
                 {_.result(assessment, 'enable_back') ? 'Disable Back Button' : 'Enable Back Button'}
               </MenuItem>

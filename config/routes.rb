@@ -603,7 +603,6 @@ Rails.application.routes.draw do
         get :preview
         post :preview
         get :reports
-        get :export
         put :save
         patch :toggle_archive
         get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
