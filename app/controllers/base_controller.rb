@@ -25,7 +25,7 @@ class BaseController < ActionController::Base
   end
 
   def enforce_password_change
-    return if devise_controller? || session[:spoofed]
+    return if devise_controller? || session[:spoofed] || @anonymous_user
     return unless warden.session(:user)['enforce_password_change']
 
     store_location_for(:user, request.original_fullpath) if request.get? && request.format.html?
