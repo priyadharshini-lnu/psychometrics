@@ -755,6 +755,7 @@ en:
         id: Id
         is_active: Active
         name: Name
+        no_permission_message: You do not have permission to modify
         updated_by: Updated By
       validations:
         dates:

@@ -25,6 +25,7 @@ const defaultState = {
     exportUsers: false,
     exportCompletionStatus: false,
     import: false,
+    edit: false,
   },
 }
 
@@ -176,6 +177,7 @@ export interface State {
     exportUsers: boolean,
     exportCompletionStatus: boolean,
     import: boolean,
+    edit: boolean
   }
   current?: UserDetails
 }
@@ -188,6 +190,7 @@ type FetchType = ApiActionResponse<{
     exportUsers: boolean,
     exportCompletionStatus: boolean,
     import: boolean,
+    edit: boolean
   }
 }>
 type FetchSingleType = ApiActionResponse<UserDetails & { userAssessments: UserAssessment[], userReports: UserReport[]}>

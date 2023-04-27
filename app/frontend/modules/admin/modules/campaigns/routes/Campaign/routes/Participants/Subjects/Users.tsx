@@ -168,14 +168,19 @@ const UserList: React.FC<Props> = ({
                 ({
                   active, id,
                 }) => (
-                  <Switch
-                    checked={active}
-                    onChange={
+                  <Tooltip title={
+                    permissions.edit ? '' : I18n.t('administration.campaigns.users.no_permission_message')}
+                  >
+                    <Switch
+                      disabled={!permissions.edit}
+                      checked={active}
+                      onChange={
                       () => {
                         toggleActive(campaignId, id, { updateInListing: true })
                       }
                   }
-                  />
+                    />
+                  </Tooltip>
                 )
               }
             />
@@ -271,17 +276,15 @@ const UserList: React.FC<Props> = ({
                     }) as React.ReactElement
                   }
                   innerElement={(
-                    <Tooltip title={I18n.t('administration.table.more_actions')}>
-                      <Button
-                        id={`menu-button_campaign-subjects-${user.email}`}
-                        type="link"
-                        aria-label={I18n.t('administration.table.more_actions')}
-                        aria-controls={`menu_campaign-subjects-${user.email}`}
-                        aria-haspopup
-                      >
-                        <MoreOutlined />
-                      </Button>
-                    </Tooltip>
+                    <Button
+                      id={`menu-button_campaign-subjects-${user.email}`}
+                      type="link"
+                      aria-label={I18n.t('administration.table.more_actions')}
+                      aria-controls={`menu_campaign-subjects-${user.email}`}
+                      aria-haspopup
+                    >
+                      <Tooltip title={I18n.t('administration.table.more_actions')}><MoreOutlined /></Tooltip>
+                    </Button>
                   )}
                 />
               )}
