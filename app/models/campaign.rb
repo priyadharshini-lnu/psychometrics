@@ -70,7 +70,7 @@ class Campaign < ApplicationRecord
     parent.table[:status]
   end
 
-  ransacker :type, formatter: proc { |v| types[v] } do |parent|
+  ransacker :type do |parent|
     parent.table[:type]
   end
 
