@@ -86,7 +86,10 @@ module Administration
       end
 
       def pundit_authorize
-        authorize %i[threesixty report]
+        authorize %i[threesixty report], nil, {
+          threesixty_campaign: threesixty_campaign,
+          project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+        }
       end
 
       def add_cookie_for_file_download

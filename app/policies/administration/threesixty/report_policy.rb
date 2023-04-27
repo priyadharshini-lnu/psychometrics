@@ -7,7 +7,7 @@ module Administration
       alias export? show?
 
       def regenerate?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :regenerate_report, project_id: project_id)
+        user.is?(:superadmin) || user.has_permission?(:results, :regenerate_report, project_id: project_id)
       end
     end
   end
