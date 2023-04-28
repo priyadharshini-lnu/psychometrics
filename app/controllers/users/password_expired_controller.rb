@@ -19,7 +19,7 @@ module Users
     end
 
     def skip_password_change
-      return if warden.session(:user)['enforce_password_change']
+      return if user_signed_in? && warden.session(:user)['enforce_password_change']
 
       super
     end

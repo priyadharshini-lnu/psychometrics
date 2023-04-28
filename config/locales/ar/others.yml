@@ -188,6 +188,8 @@ ar:
       view: عرض الإجابات
     goto_dashboard: الذهاب الى لوحة التعليمات
     in_progress: على قيد التقدم
+    inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
+    insights_reports: رؤى وتقارير
     instructions:
       heading: يرجى مراجعة الإرشادات أدناه قبل أن تبدأ. أتمنى لك الأفضل!
     interrupted: تمت مقاطعته
