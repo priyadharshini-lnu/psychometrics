@@ -8,6 +8,7 @@ import styles from './styles.less'
 
 const BACK = 'BACK'
 const NEXT = 'NEXT'
+const SUBMIT = 'SUBMIT'
 const { I18n } = window
 
 class PageFooter extends Component {
@@ -15,6 +16,8 @@ class PageFooter extends Component {
     popConfirmVisibleFor: null,
     backButtonPressed: false,
     nextButtonPressed: false,
+    submitButtonPressed: false,
+    saveButtonPressed: false,
   }
 
   componentDidMount () {
@@ -31,7 +34,9 @@ class PageFooter extends Component {
 
   moveToPreviousPage = () => {
     const { prevPage, preview } = this.props
-    this.setState({ popConfirmVisibleFor: null, nextButtonPressed: false, backButtonPressed: true })
+    this.setState({
+      popConfirmVisibleFor: null, nextButtonPressed: false, backButtonPressed: true, saveButtonPressed: false,
+    })
     document.body.scrollIntoView({ behavior: 'smooth' })
     prevPage(preview)
   }
@@ -44,24 +49,33 @@ class PageFooter extends Component {
     }
   }
 
-  moveToNextPage = () => {
+  moveToNextPage = (buttonType) => {
     const { nextPage } = this.props
-    this.setState({ popConfirmVisibleFor: null, nextButtonPressed: true, backButtonPressed: false })
+    const nextButtonPressed = buttonType === NEXT
+    this.setState({
+      popConfirmVisibleFor: null,
+      nextButtonPressed,
+      backButtonPressed: false,
+      submitButtonPressed: buttonType === SUBMIT,
+      saveButtonPressed: false,
+    })
     document.body.scrollIntoView({ behavior: 'smooth' })
     nextPage()
   }
 
-  handleNextClick = () => {
+  handleNextClick = (buttonType) => {
     if (this.areQuestionsInProgress()) {
       this.setState({ popConfirmVisibleFor: NEXT })
     } else {
-      this.moveToNextPage()
+      this.moveToNextPage(buttonType)
     }
   }
 
   saveResults = () => {
     const { saveCurrentPage } = this.props
-    this.setState(prevState => ({ ...prevState, nextButtonPressed: false, backButtonPressed: false }))
+    this.setState(prevState => ({
+      ...prevState, nextButtonPressed: false, backButtonPressed: false, saveButtonPressed: true,
+    }))
     saveCurrentPage().then(() => {
       message.success(I18n.t('administration.assessor.saved_results'))
     })
@@ -82,10 +96,11 @@ class PageFooter extends Component {
     } = this.props
 
     const showSave = type === 'pass_assessment' && isAssessor
-    const { popConfirmVisibleFor, nextButtonPressed, backButtonPressed } = this.state
+    const {
+      popConfirmVisibleFor, nextButtonPressed, backButtonPressed, submitButtonPressed, saveButtonPressed,
+    } = this.state
     const rtl = isRtl(I18n.uiLocale)
     const disableActionableButtons = isDisconnected || submissionInProgress || submissionFailed
-    const backOrNextPressed = nextButtonPressed || backButtonPressed
 
     return (
       <>
@@ -133,7 +148,7 @@ class PageFooter extends Component {
                 size="large"
                 type="primary"
                 disabled={disableActionableButtons}
-                loading={!backOrNextPressed && submissionInProgress}
+                loading={saveButtonPressed && submissionInProgress}
                 className={styles.next}
                 onClick={this.saveResults}
               >
@@ -145,9 +160,9 @@ class PageFooter extends Component {
                 size="large"
                 type="primary"
                 disabled={disableActionableButtons}
-                loading={!backOrNextPressed && submissionInProgress}
+                loading={submitButtonPressed && submissionInProgress}
                 className={styles.next}
-                onClick={this.handleNextClick}
+                onClick={() => this.handleNextClick(SUBMIT)}
               >
                 {I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
               </FixedWidthButton>
@@ -157,7 +172,7 @@ class PageFooter extends Component {
                 type="primary"
                 disabled={disableActionableButtons}
                 loading={submissionInProgress && nextButtonPressed}
-                onClick={this.handleNextClick}
+                onClick={() => this.handleNextClick(NEXT)}
                 className={styles.next}
               >
                 {page.nextBtn || I18n.t('assessments.page.next', { locale: I18n.uiLocale })}
