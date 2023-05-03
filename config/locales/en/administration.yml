@@ -153,6 +153,7 @@ en:
           auditLogs:
             view: View
           campaigns:
+            bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
             manage_admins: Manage Admins
             manage_messages: Manage Messages
@@ -182,7 +183,7 @@ en:
           dimensions:
             manage: Manage
             view: View
-          media_libraries:
+          mediaLibraries:
             manage: Manage
             view: View
           messages:
