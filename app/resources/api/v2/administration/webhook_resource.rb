@@ -4,13 +4,13 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
   model_name 'Webhook'
 
   attributes :url, :description, :created_at, :updated_at, :topics, :username,
-             :project_id, :auth_type, :active
+             :project_id, :auth_type, :active, :password
 
   ransack_filters %i[filterable_fields]
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
-  audit_log_for :destroy, payload: ->(_, project) { project.slice('id', 'name') }
+  audit_log_for :destroy, payload: ->(_, webhook) { webhook.slice('id', 'description') }
 
   DEFAULT_SECRET = 'default'
 
@@ -43,6 +43,10 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
       @model.topics.new(name: topic) unless existing_topics.include?(topic)
     end
     @model.topics.where(name: topics_to_delete).destroy_all
+  end
+
+  def fetchable_fields
+    super - [:password]
   end
 
   def self.records(opts = {})

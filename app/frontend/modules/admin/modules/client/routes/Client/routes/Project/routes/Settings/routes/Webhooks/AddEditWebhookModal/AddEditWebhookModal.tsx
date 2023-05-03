@@ -25,7 +25,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
   close,
 }) => {
   const { projectId } = useParams<{ projectId: string }>()
-  const [authType, setAuthType] = useState('no_auth')
+  const [authType, setAuthType] = useState(webhook?.authType || 'no_auth')
 
   const handleAuthTypeChange = (e) => {
     setAuthType(e.target.value)
@@ -78,8 +78,8 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                 <Row>
                   {_.map(topics, topic => (
                     <Col className={styles.topics_columns}>
-                      <Checkbox value={topic}>
-                        {topic}
+                      <Checkbox value={topic} className={styles.topics_checkbox}>
+                        {I18n.t(`administration.project_tabs.webhooks.form.topics.list.${topic}`)}
                       </Checkbox>
                     </Col>
                   ))}
@@ -90,14 +90,16 @@ export const AddEditWebhookModal: React.FC<Props> = ({
               name={I18n.t('administration.project_tabs.webhooks.form.active.name')}
               label={I18n.t('administration.project_tabs.webhooks.form.active.name')}
               valuePropName="checked"
+              initialValue={webhook?.active || true}
             >
               <Switch />
             </Form.Item>
             <Form.Item
               name={I18n.t('administration.project_tabs.webhooks.form.auth_type.name')}
               label={I18n.t('administration.project_tabs.webhooks.form.auth_type.label')}
+              initialValue={authType}
             >
-              <Radio.Group defaultValue={authType} onChange={handleAuthTypeChange}>
+              <Radio.Group onChange={handleAuthTypeChange}>
                 <Radio
                   value={
                     I18n.t('administration.project_tabs.webhooks.form.auth_type.no_auth.value')

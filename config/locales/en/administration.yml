@@ -3283,6 +3283,12 @@ en:
             name: password
           topics:
             label: Topics
+            list:
+              assessment_completed: Assessment Completed
+              assessment_started: Assessment Started
+              assessment_timeout: Assessment Timeout
+              report_available: Report Available
+              results_available: Results Available
             name: topics
           url:
             label: Url
@@ -3290,6 +3296,9 @@ en:
           username:
             label: User Name
             name: username
+        remove_webhook:
+          content: Delete %{description}?
+          title: Delete
         send_test:
           copy_payload_success: Payload copied to clipboard successfully.
           event_dropdown:

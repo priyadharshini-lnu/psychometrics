@@ -136,8 +136,11 @@ describe Api::V2::Administration::WebhooksController, swagger_doc: 'v2/swagger.j
             data: {
               type: 'webhooks',
               id: webhook.id.to_s,
+
               attributes: {
                 description: 'webhook description',
+                active: true,
+                auth_type: 'no_auth',
                 url: 'http://www.dummy_webhook_url.com'
               }
             }

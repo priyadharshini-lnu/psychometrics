@@ -38,7 +38,6 @@ export const TestWebhookModal: React.FC<Props> = ({
     {
       basePath: `projects/${webhook.projectId}`,
       trackUrl: true,
-      responseType: {},
     },
   )
 

@@ -3,6 +3,8 @@
 module Api
   class V2::Administration::WebhooksController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::Webhook::Schema
+    validates_request_schema :update, Api::V2::Webhook::Contract.new
+    validates_request_schema :create, Api::V2::Webhook::Contract.new
 
     def policy_class
       Api::Administration::WebhookPolicy
@@ -26,7 +28,7 @@ module Api
       if response && response[:error]
         render json: { error: response[:error] }, status: 400
       else
-        render json: {}
+        render json: :ok
       end
     end
 

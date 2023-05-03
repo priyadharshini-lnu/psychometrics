@@ -68,16 +68,21 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
     })
   }
 
-  const removeWebhook = (id) => {
+  const removeWebhook = (webhook) => {
     Modal.confirm({
-      title: 'Delete',
-      content: 'Delete ?',
+      title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
+      content: I18n.t(
+        'administration.project_tabs.webhooks.remove_webhook.content',
+        {
+          description: webhook.description,
+        },
+      ),
       okText: I18n.t('administration.administrators.modals.delete.okText'),
       cancelText: I18n.t(
         'administration.administrators.modals.delete.cancelText',
       ),
       onOk: async () => {
-        removeResource(`${id}`).then(() => {
+        removeResource(`${webhook.id}`).then(() => {
           message.info('Success')
           close()
         }).catch((error) => {
@@ -214,7 +219,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
 
 interface ActionMenuProps {
   webhook: Webhook,
-  removeWebhook(id): void
+  removeWebhook(webhook: Webhook): void
   updateWebhook: UpdateResource<Webhook>
   openModal(name: string, data?: {
     webhook: Webhook,
@@ -226,8 +231,6 @@ interface ActionMenuProps {
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   webhook, removeWebhook, openModal, updateWebhook,
 }) => {
-  const { id } = webhook
-
   const menuItems: ItemType[] = [
     {
       key: I18n.t('administration.project_tabs.webhooks.actions.edit.key'),
@@ -245,7 +248,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   const handleMenuClick = ({ key }) => {
     if (key === 'delete') {
-      removeWebhook(id)
+      removeWebhook(webhook)
     }
     if (key === 'send_test') {
       openModal('TestWebhookModal', { webhook })
