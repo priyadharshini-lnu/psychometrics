@@ -37,6 +37,13 @@
             ]
           }
         ],
+        "parameters": [
+          {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "Client list",
@@ -55,6 +62,11 @@
                         "project_manager": {
                           "id": "1",
                           "name": "John Doe"
+                        }
+                      },
+                      "meta": {
+                        "permissions": {
+                          "view_licenses": true
                         }
                       }
                     }
@@ -83,7 +95,11 @@
           }
         ],
         "parameters": [
-
+          {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          }
         ],
         "responses": {
           "201": {
@@ -106,6 +122,11 @@
                           "type": "users",
                           "id": "100"
                         }
+                      }
+                    },
+                    "meta": {
+                      "permissions": {
+                        "view_licenses": true
                       }
                     }
                   }
@@ -146,6 +167,11 @@
         ],
         "parameters": [
           {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          },
+          {
             "name": "client_id",
             "in": "path",
             "required": true,
@@ -176,6 +202,11 @@
                           "type": "users",
                           "id": "100"
                         }
+                      }
+                    },
+                    "meta": {
+                      "permissions": {
+                        "view_licenses": true
                       }
                     }
                   }
@@ -761,24 +792,7 @@
                         "name": "First Name Last Name",
                         "email": "user@cc.com",
                         "role": "client_admin",
-                        "user_id": "1",
-                        "clients": [
-                          {
-                            "id": 1,
-                            "name": "Client Tenancy",
-                            "role": "client_admin"
-                          }
-                        ],
-                        "grants_names": {
-                          "norms": [
-                            "view",
-                            "manage"
-                          ],
-                          "clients": [
-                            "view",
-                            "view_licenses"
-                          ]
-                        }
+                        "user_id": "1"
                       },
                       "relationships": {
                         "user": {
@@ -1670,7 +1684,7 @@
         ],
         "parameters": [
           {
-            "name": "query[include_resource_meta]",
+            "name": "include_resource_meta",
             "in": "query",
             "required": true
           },
@@ -1696,8 +1710,8 @@
                       },
                       "meta": {
                         "permissions": {
-                          "reset_password": true,
                           "remove": false,
+                          "reset_password": true,
                           "toggle_enable_2fa": true
                         }
                       }
@@ -2115,13 +2129,36 @@
                     "year"
                   ],
                   "nullable": false
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "permissions": {
+                      "type": "object",
+                      "properties": {
+                        "view_licenses": {
+                          "type": "boolean",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "view_licenses"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "permissions"
+                  ],
+                  "nullable": false
                 }
               },
               "required": [
                 "id",
                 "type",
                 "links",
-                "attributes"
+                "attributes",
+                "meta"
               ],
               "nullable": false
             },
@@ -2291,13 +2328,36 @@
                   "year"
                 ],
                 "nullable": false
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "permissions": {
+                    "type": "object",
+                    "properties": {
+                      "view_licenses": {
+                        "type": "boolean",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "view_licenses"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "permissions"
+                ],
+                "nullable": false
               }
             },
             "required": [
               "id",
               "type",
               "links",
-              "attributes"
+              "attributes",
+              "meta"
             ],
             "nullable": false
           }
@@ -4553,7 +4613,7 @@
                   },
                   "client_id": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "role": {
                     "type": "string",
@@ -4686,7 +4746,6 @@
                   }
                 },
                 "required": [
-                  "client_id",
                   "role",
                   "grant_names"
                 ],
@@ -4732,7 +4791,7 @@
                   },
                   "client_id": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "role": {
                     "type": "string",

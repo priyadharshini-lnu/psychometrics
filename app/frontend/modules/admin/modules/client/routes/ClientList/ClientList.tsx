@@ -46,7 +46,11 @@ interface Meta extends BaseMeta{
 const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const [countries, setCoutries] = useState<Meta['countries']>([])
   const [types, setTypes] = useState<Meta['types']>([])
-  const baseApiConfig = { include: ['project_manager'], fields: { users: ['name', 'email'] } }
+  const baseApiConfig = {
+    include: ['project_manager'],
+    fields: { users: ['name', 'email'] },
+    include_resource_meta: ['permissions'],
+  }
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource,
@@ -205,11 +209,11 @@ interface ActionMenuProps {
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   client, countries, types, updateResource, removeResource, openModal,
 }) => {
-  const { id, name } = client
+  const { id, name, meta } = client
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
     // { key: 'remove', label: I18n.t('common.actions.remove') },
-    {
+    meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
         <a href={`/administration/clients/${id}/licenses`}>
@@ -218,6 +222,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       ),
     },
   ]
+
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return openModal('ClientFormModal', {
@@ -230,7 +235,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
+    <Menu items={_.compact(menuItems)} onClick={handleMenuClick} />
   )
 }
 

@@ -10,4 +10,22 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :destroy, payload: ->(_, client) { client.attributes.slice('id', 'name') }
+
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Administration::LicensePolicy,
+          context[:user],
+          @model,
+          [
+            %w[view_licenses index]
+          ],
+          {
+            project_id: @model.id
+          }
+        )
+      }
+    }
+  end
 end
