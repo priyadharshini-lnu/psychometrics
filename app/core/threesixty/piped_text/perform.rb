@@ -32,13 +32,15 @@ module Threesixty
           key: 'st',
           name: 'subject_table',
           class_name: 'Threesixty::PipedText::Branches::SubjectTableBranch',
-          required_context: %i[subject_ids evaluator threesixty_campaign]
+          required_context: %i[subject_ids evaluator threesixty_campaign],
+          allow_html: true
         },
         {
           key: 'dash',
           name: 'dashboard',
           class_name: 'Threesixty::PipedText::Branches::Dashboard',
-          required_context: %i[threesixty_campaign recipient]
+          required_context: %i[threesixty_campaign recipient],
+          allow_html: true
         },
         {
           key: 'd',
@@ -56,13 +58,15 @@ module Threesixty
           key: 'answer',
           name: 'answer',
           class_name: 'Threesixty::PipedText::Branches::Answer',
-          required_context: %i[result]
+          required_context: %i[result],
+          allow_html: true
         },
         {
           key: 'nat',
           name: 'nomination_table',
           class_name: 'Threesixty::PipedText::Branches::NominationBranch',
-          required_context: %i[subject threesixty_campaign]
+          required_context: %i[subject threesixty_campaign],
+          allow_html: true
         }
       ].freeze
 
@@ -91,7 +95,7 @@ module Threesixty
               )
               next transformer.call(value) if transformer
 
-              value
+              branch[:allow_html] ? value : CGI.escapeHTML(value)
             else
               ''
             end
