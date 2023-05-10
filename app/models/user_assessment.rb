@@ -188,7 +188,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def pearson_norm_name
-    Assessments::PearsonSettings.norms(assessment.external_assessment_id, pearson_user_assessment.norm_id).
+    Assessments::PearsonSettings.norms(assessment.external_assessment_id, pearson_user_assessment.norm_id)&.
       find { |norm| norm[:id] == pearson_user_assessment.norm_id }&.dig(:name)
   end
 end

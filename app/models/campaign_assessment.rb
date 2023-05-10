@@ -75,8 +75,8 @@ class CampaignAssessment < ApplicationRecord
 
   def pearson_norm_name
     Assessments::PearsonSettings.
-      pearson_norms(external_assessment_id).
-      find { |norm| norm[:id] == external_norm_id }[:name]
+      norms(external_assessment_id)&.
+      find { |norm| norm[:id] == external_norm_id }&.dig(:name)
   end
 
   def saville_norm_name
