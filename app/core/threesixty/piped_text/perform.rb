@@ -78,7 +78,7 @@ module Threesixty
         @transformer = transformer
       end
 
-      # rubocop:disable Style/CharacterLiteral
+      # rubocop:disable Style/CharacterLiteral, Metrics/PerceivedComplexity
       def call
         return if body.blank?
 
@@ -93,16 +93,24 @@ module Threesixty
                 Rack::Utils.parse_nested_query(params ? CGI.escape(params).gsub('%3D', ?=).gsub('%26', ?&) : ''),
                 context
               )
+              value = if branch[:allow_html]
+                        value
+                      elsif value
+                        CGI.escapeHTML(value)
+                      else
+                        ''
+                      end
+
               next transformer.call(value) if transformer
 
-              branch[:allow_html] ? value : CGI.escapeHTML(value)
+              value
             else
               ''
             end
           end
         broadcast :ok, result
       end
-      # rubocop:enable Style/CharacterLiteral
+      # rubocop:enable Style/CharacterLiteral, Metrics/PerceivedComplexity
 
       def lookup_branch(path)
         branch_key = path.scan(/^(\w+):/).first&.first
