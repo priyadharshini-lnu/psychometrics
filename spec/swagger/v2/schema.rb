@@ -117,6 +117,24 @@ module Swagger
           DesignSettingUpdateResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::DesignSetting::Schema.single_resource_response
           ),
+          LicensesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.multiple_resource_response
+          ),
+          LicenseResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.single_resource_response
+          ),
+          LicenseCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.create_request
+          ),
+          LicenseUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.update_request
+          ),
+          LicenseUsageListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::LicenseUsage::Schema.multiple_resource_response
+          ),
+          LicenseUsageResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::LicenseUsage::Schema.single_resource_response
+          ),
           ReportApprovalSettingListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::ReportApprovalSetting::Schema.multiple_resource_response
           ),

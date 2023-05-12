@@ -607,6 +607,407 @@
         }
       }
     },
+    "/clients/{client_id}/licenses/{license_id}/license_usages": {
+      "get": {
+        "summary": "License Usages List",
+        "operationId": "LicenseUsagesList",
+        "description": "Fetch client License Usages list",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License Usages list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "data": {
+                      "id": "52",
+                      "type": "license_usages",
+                      "links": {
+                        "self": "http://do.main/api/v2/administration/license_usages/29283"
+                      },
+                      "attributes": {
+                        "campaign_id": null,
+                        "created_at": "2019-07-28T02:41:04.221+04:00",
+                        "status_updated_at": "2023-04-24T14:45:45.308+04:00",
+                        "status_updated_by_id": 176,
+                        "extras": {
+                        },
+                        "status": "active"
+                      },
+                      "relationships": {
+                        "campaign": {
+                          "data": null
+                        },
+                        "user": {
+                          "data": {
+                            "type": "users",
+                            "id": "829"
+                          }
+                        },
+                        "status_updated_by": {
+                          "data": {
+                            "type": "users",
+                            "id": "176"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseUsageListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/{client_id}/licenses/{license_id}/license_usages/{license_usage_id}/toggle_status": {
+      "post": {
+        "summary": "Toggle License Usage Status",
+        "operationId": "LicenseUsageToggleStatus",
+        "description": "Toggle License Usage status",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_usage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License Usage toggle status",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "data": {
+                      "id": "52",
+                      "type": "license_usages",
+                      "links": {
+                        "self": "http://do.main/api/v2/administration/license_usages/29283"
+                      },
+                      "attributes": {
+                        "campaign_id": null,
+                        "created_at": "2019-07-28T02:41:04.221+04:00",
+                        "status_updated_at": "2023-04-24T14:45:45.308+04:00",
+                        "status_updated_by_id": 176,
+                        "extras": {
+                        },
+                        "status": "inactive"
+                      },
+                      "relationships": {
+                        "campaign": {
+                          "data": null
+                        },
+                        "user": {
+                          "data": {
+                            "type": "users",
+                            "id": "829"
+                          }
+                        },
+                        "status_updated_by": {
+                          "data": {
+                            "type": "users",
+                            "id": "176"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseUsageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/{client_id}/licenses": {
+      "get": {
+        "summary": "Licenses List",
+        "operationId": "LicensesList",
+        "description": "Fetch client Licenses list",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Licenses list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "data": {
+                      "id": "52",
+                      "type": "licenses",
+                      "links": {
+                        "self": "http://do.main/api/v2/administration/licenses/52"
+                      },
+                      "attributes": {
+                        "number": 100,
+                        "overuse_number": 0,
+                        "used_number": 1,
+                        "start_date": "2017-05-01",
+                        "end_date": "2021-01-01",
+                        "report_family_id": 2,
+                        "disabled": false,
+                        "type": "common"
+                      },
+                      "relationships": {
+                        "client": {
+                          "data": {
+                            "type": "clients",
+                            "id": "100"
+                          }
+                        },
+                        "report_family": {
+                          "data": {
+                            "type": "report_families",
+                            "id": "2"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/LicensesListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create License",
+        "operationId": "CreateLicense",
+        "description": "Create new License",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "License Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "licenses",
+                    "attributes": {
+                      "number": 100,
+                      "overuse_number": 0,
+                      "used_number": 1,
+                      "start_date": "2017-05-01",
+                      "end_date": "2021-01-01",
+                      "report_family_id": 2,
+                      "disabled": false,
+                      "type": "common"
+                    },
+                    "relationships": {
+                      "report_family": {
+                        "data": {
+                          "type": "report_families",
+                          "id": "2"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/{client_id}/licenses/{license_id}": {
+      "patch": {
+        "summary": "Update a license",
+        "operationId": "UpdateLicense",
+        "description": "Update a License",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License Updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "licenses",
+                    "id": "87",
+                    "attributes": {
+                      "number": 100,
+                      "overuse_number": 0,
+                      "used_number": 1,
+                      "start_date": "2017-05-01",
+                      "end_date": "2021-01-01",
+                      "report_family_id": 2,
+                      "disabled": false,
+                      "type": "common"
+                    },
+                    "relationships": {
+                      "report_family": {
+                        "data": {
+                          "type": "report_families",
+                          "id": "2"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/memberships/": {
       "get": {
         "summary": "Membership list",
@@ -3343,6 +3744,685 @@
                 },
                 "required": [
 
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "LicensesListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to licenses",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "report_family": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to report_families",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "start_date": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "end_date": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "number": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "overuse_number": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "used_number": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "disabled": {
+                      "type": "boolean",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "start_date",
+                    "end_date",
+                    "number",
+                    "overuse_number",
+                    "used_number"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "LicenseResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to licenses",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "report_family": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to report_families",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "overuse_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "used_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "start_date",
+                  "end_date",
+                  "number",
+                  "overuse_number",
+                  "used_number"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "LicenseCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to licenses",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "overuse_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "start_date",
+                  "end_date",
+                  "number",
+                  "overuse_number"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "report_family": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to report_families",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "LicenseUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to licenses",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "overuse_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "report_family": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to report_families",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "LicenseUsageListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to license_usages",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "extras": {
+                      "type": "object",
+                      "properties": {
+                        "campaign_name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "subject_name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "subject_email": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "status_updated_at": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "extras",
+                    "status"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "LicenseUsageResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to license_usages",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "extras": {
+                    "type": "object",
+                    "properties": {
+                      "campaign_name": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "subject_name": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "subject_email": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "status_updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "extras",
+                  "status"
                 ],
                 "nullable": false
               }

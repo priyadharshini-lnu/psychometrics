@@ -1140,7 +1140,15 @@ Rails.application.routes.draw do
           jsonapi_resources :clients do
             jsonapi_relationships
             jsonapi_resources :projects, only: %i[index create update]
+            jsonapi_resources :licenses, only: %i[index create update] do
+              jsonapi_resources :license_usages, only: %i[index] do
+                member do
+                  post :toggle_status
+                end
+              end
+            end
           end
+          jsonapi_resources :report_families, only: %i[index]
           jsonapi_resources :projects, only: :show
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof

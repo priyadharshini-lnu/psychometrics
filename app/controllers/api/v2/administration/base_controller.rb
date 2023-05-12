@@ -19,6 +19,13 @@ module Api
     prepend_before_action :validate_requests_schema
     before_action :ensure_project
     before_action :ensure_campaign
+    # Setting up additional fields for custom actions in json_api response
+    # 'gems/jsonapi-resources-CURRENT_GEM_VERSION/lib/jsonapi/acts_as_resource_controller.rb'
+    before_action :setup_custom_request, except: %i[
+      index show create update destroy
+      show_relationship create_relationship update_relationship destroy_relationship
+      get_related_resource get_related_resources
+    ]
     append_before_action :pundit_authorize
     append_after_action :verify_authorized
 
@@ -157,6 +164,14 @@ module Api
 
     def ensure_campaign
       campaign if params[:campaign_id]
+    end
+
+    def setup_custom_request
+      @request.parse_fields(params[:fields])
+      @request.parse_include_directives(params[:include])
+      @request.parse_filters(params[:filter])
+      @request.parse_sort_criteria(params[:sort])
+      @request.parse_pagination(params[:page])
     end
 
     def pundit_authorize

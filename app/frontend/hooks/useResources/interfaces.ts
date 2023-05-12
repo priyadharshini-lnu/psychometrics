@@ -65,6 +65,7 @@ export interface Options<R, M> {
 }
 
 export interface BaseMeta {
+  permissions?: { [key: string]: boolean },
   recordCount?: number,
   pageCount?: number,
 }

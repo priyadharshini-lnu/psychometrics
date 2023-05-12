@@ -11,16 +11,9 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @filter_term = params.dig(:q, :subject_cont)
-        @_filter_form = license.license_usages.includes(:campaign,
-                                                        :status_updated_by).order(created_at: :desc).ransack(params[:q])
-        filter_form.status_eq ||= 0
-        @_resources = @_filter_form.result.page(params[:page])
-
-        respond_to do |format|
-          format.html
-          format.js { render 'administration/base/index', formats: [:js] }
-        end
+        @init_state = {
+          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
+        }
       end
 
       def toggle_activation_status

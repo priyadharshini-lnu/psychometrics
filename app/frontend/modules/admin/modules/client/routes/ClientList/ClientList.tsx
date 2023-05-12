@@ -65,7 +65,9 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     },
   )
   useEffect(() => {
-    fetch({ apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }) }).then(({ meta }) => {
+    fetch({
+      apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }),
+    }).then(({ meta }) => {
       setCoutries(meta.countries)
       setTypes(meta.types)
     })
@@ -212,13 +214,12 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const { id, name, meta } = client
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
-    // { key: 'remove', label: I18n.t('common.actions.remove') },
     meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
-        <a href={`/administration/clients/${id}/licenses`}>
+        <Link to={`/administration/clients/${id}/licenses`}>
           {I18n.t('frontend.clients.actions.menus.view_licenses')}
-        </a>
+        </Link>
       ),
     },
   ]

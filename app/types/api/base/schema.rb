@@ -168,6 +168,10 @@ module Api
         []
       end
 
+      def self.response_schema?(type)
+        %i[single_response multiple_response].include?(type)
+      end
+
       def self.json_api_attributes(&)
         Dry::Schema.define do
           required(:data).hash do

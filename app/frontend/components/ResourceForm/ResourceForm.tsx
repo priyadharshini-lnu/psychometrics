@@ -227,6 +227,7 @@ const ResourceForm: React.FC<Props> = ({
       scrollToFirstError={scrollToFirstError}
       layout="vertical"
       {...formProps || {}}
+      initialValues={resource || undefined}
       className="resourceForm"
     >
       {!_.isEmpty(baseErrors) && baseErrors !== undefined
