@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AdminJobs
-  class BaseExportAssessment < BaseExportXlsx
+  class BaseExportAssessment < BaseExportCsv
     def valid?
       campaign.present? && assessment.present?
     end
@@ -18,6 +18,10 @@ module AdminJobs
     end
 
     private
+
+    def user_name(first_name, last_name)
+      [first_name, last_name].compact_blank.join(', ')
+    end
 
     def assessment
       @assessment ||= Assessment.find_by(id: record.data['assessment_id'])

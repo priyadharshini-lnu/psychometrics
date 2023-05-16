@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Assessments::Export::AgileRaw do
+describe AdminJobs::AgileRawResultExport do
   let(:current_user) { create(:superadmin) }
   let(:campaign) { create(:campaign) }
   let!(:assessment) { create(:assessment, :agile) }
@@ -14,26 +14,28 @@ describe Assessments::Export::AgileRaw do
       evaluator: user,
       campaign: campaign,
       assessment: assessment,
+      status: :completed,
       answers: YAML.load_file(Rails.root.join('spec/fixtures/agile_answers.yml'))
     )
   end
-
-  let!(:user_assessment) { create(:user_assessment, subject: user, campaign: campaign, users_result: users_result) }
-  let(:file_name) { "#{SecureRandom.uuid}.xlsx" }
-
-  after do
-    FileUtils.rm_rf(file_name)
+  let(:job_record) do
+    create(
+      :admin_job_record, operation: :assessment_raw_result_export,
+      data: { campaign_id: campaign.id, assessment_id: assessment.id }
+    )
+  end
+  let!(:user_assessment) do
+    create(:user_assessment, subject: user, campaign: campaign, users_result: users_result, status: :completed)
   end
 
   context 'Agile raw export' do
-    it 'first row in xlsx contains result_details_header along with question ids' do
+    it 'first row in csv contains result_details_header along with question ids' do
       assessment.agile.update(config: YAML.load_file(Rails.root.join('spec/fixtures/agile_group.yml')))
 
-      xlsx = described_class.call!(assessment, campaign)
-      xlsx.serialize(file_name)
+      described_class.call!(job_record)
 
-      xlsx = Roo::Spreadsheet.open(file_name)
-      actual_first_row = xlsx.sheet(0).row(1)
+      csv = Roo::CSV.new(job_record.file.path)
+      actual_first_row = csv.row(1)
 
       expected_first_row = [
         'ID',
@@ -47,7 +49,6 @@ describe Assessments::Export::AgileRaw do
         'Completed At',
         'Completed Groups',
         'Norm',
-        nil,
         'cmp-1.group_id',
         'cmp-1.id',
         'cmp-1.answers',
@@ -60,33 +61,31 @@ describe Assessments::Export::AgileRaw do
       expect(actual_first_row).to eq(expected_first_row)
     end
 
-    it 'second row in xlsx  contains actual data' do
+    it 'second row in csv  contains actual data' do
       config = YAML.load_file(Rails.root.join('spec/fixtures/agile_group.yml'))
       agile = assessment.agile
       agile.update(config: config)
 
-      xlsx = described_class.call!(assessment, campaign)
-      xlsx.serialize(file_name)
+      described_class.call!(job_record)
 
-      xlsx = Roo::Spreadsheet.open(file_name)
-      actual_second_row = xlsx.sheet(0).row(2)
+      csv = Roo::CSV.new(job_record.file.path)
+      actual_second_row = csv.row(2)
       expected_second_row = [
         users_result.encoded_id,
         users_result.subject.first_name,
         users_result.subject.last_name,
         users_result.subject.email,
-        assessment.id,
+        assessment.id.to_s,
         assessment.name,
         I18n.t("activerecord.attributes.users_result.statuses.#{users_result.real_status}", locale: :en),
         users_result.started_at.try(:strftime, '%D %r'),
         users_result.completed_at.try(:strftime, '%D %r'),
         nil,
         nil,
-        nil,
         'nf-1-group',
         'cmp-1',
         'equal',
-        1.502,
+        '1.502',
         '39c19fb5-08e9-4030-adc8-c282f4b1eb1a',
         'Mon, 09 May 2022 07:48:50 +0000',
         'Mon, 09 May 2022 07:48:51 +0000'

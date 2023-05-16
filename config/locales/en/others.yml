@@ -1773,6 +1773,7 @@ en:
         message: Report is ready
     threesixty:
       export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
+      export_raw_results_scheduled: Raw Results export job scheduled successfully
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'

@@ -54,6 +54,14 @@ export const exportCompletionStatuses = (campaignId: number) => ({
   },
 })
 
+export const exportRawResults = (campaignId: number) => ({
+  type: EXPORT_COMPLETION_STATUSES,
+  request: {
+    method: 'get',
+    url: `/administration/threesixty_campaigns/${campaignId}/export_results`,
+  },
+})
+
 export const removeUser = (campaignId: number, userId: number) => ({
   type: REMOVE_USER,
   request: {
