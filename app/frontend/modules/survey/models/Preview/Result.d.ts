@@ -1,7 +1,7 @@
-import { QuestionError } from '~/modules/survey/core/preview/FlowProcessor/interfaces.ts'
+import { Questions, QuestionError } from '~/modules/survey/core/preview/FlowProcessor/interfaces.ts'
 
 declare class Result {
-  constructor(question, answers = null, notApplicable = null)
+  constructor(question, answers = null, notApplicable = null, results = {}, answeredQuestions?: Questions[] = null)
 
   validate(): QuestionError[]
 }

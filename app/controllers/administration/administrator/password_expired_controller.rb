@@ -9,6 +9,7 @@ module Administration
         resource.extend(Devise::Models::DatabaseAuthenticatablePatch)
         if resource.update_with_password(resource_params)
           warden.session(scope)['password_expired'] = false
+          warden.session(scope)['enforce_password_change'] = false
           set_flash_message :notice, :updated
           bypass_sign_in resource, scope: scope
           redirect_to stored_location_for(scope) || :root
@@ -28,6 +29,12 @@ module Administration
 
       def resource_params
         super.merge(force_password_change: false)
+      end
+
+      def skip_password_change
+        return if user_signed_in? && warden.session(:user)['enforce_password_change']
+
+        super
       end
     end
   end

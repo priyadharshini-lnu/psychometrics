@@ -47,7 +47,6 @@ executors:
       AWS_REGION: 'dummy'
       AWS_S3_BUCKET: 'dummy'
       AWS_SECRET_ACCESS_KEY: 'dummy'
-      S3_COMPATIBLE_STORAGE_ENDPOINT: 'dummy'
       S3_COMPATIBLE_STORAGE_ACCESS_KEY_ID: 'dummy'
       S3_COMPATIBLE_STORAGE_SECRET_ACCESS_KEY: 'dummy'
       S3_COMPATIBLE_STORAGE_REGION: 'dummy'
@@ -481,7 +480,6 @@ workflows:
       - heroku_deploy:
           name: heroku_staging
           app-name: tte-lighthouse-staging
-          asset-host: staging-cdn.tte-lighthouse.com
           requires:
             - jest
             - rspec

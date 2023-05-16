@@ -21,11 +21,9 @@ fog_credentials = if s3_compatible_storage[:provider] == 'aws'
                       region: s3_compatible_storage[:region]
                     }
                   else
-                    Aws.config.update(endpoint: s3_compatible_storage[:endpoint])
                     Aws.config[:s3] = { force_path_style: true }
                     {
                       provider: 'AWS',
-                      endpoint: s3_compatible_storage[:endpoint],
                       region: s3_compatible_storage[:region],
                       path_style: true,
                       aws_access_key_id: s3_compatible_storage[:access_key_id],
@@ -33,6 +31,10 @@ fog_credentials = if s3_compatible_storage[:provider] == 'aws'
                       enable_signature_v4_streaming: s3_compatible_storage[:provider] != 'oracle'
                     }
                   end
+if s3_compatible_storage[:endpoint].present?
+  fog_credentials = fog_credentials.merge(endpoint: s3_compatible_storage[:endpoint])
+  Aws.config.update(endpoint: s3_compatible_storage[:endpoint])
+end
 
 if Rails.env.test?
   CarrierWave.configure do |config|

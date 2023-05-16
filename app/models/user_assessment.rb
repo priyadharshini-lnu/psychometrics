@@ -138,11 +138,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def applicable_external_norm_id
-    if campaign_assessment&.assessment
-      campaign_assessment.assessment.external_settings[:norm_id]
-    else
-      assessment.external_settings[:norm_id]
-    end
+    campaign_assessment&.external_norm_id || assessment.external_settings[:norm_id]
   end
 
   def user_reports

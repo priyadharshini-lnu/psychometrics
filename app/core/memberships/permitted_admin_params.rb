@@ -10,6 +10,7 @@ module Memberships
       users: [],
       clients: [],
       projects: [],
+      users: [],
       campaigns: [],
       dimensions: [],
       reports: [],

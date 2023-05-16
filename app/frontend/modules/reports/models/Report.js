@@ -4,7 +4,7 @@ import { perform } from '~/modules/reports/core/temp/socket'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import {
   PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE, SAVILLE,
-  ORG_SURVEYS, CASE_STUDIES,
+  ORG_SURVEYS, CASE_STUDIES, PEARSON,
 } from '~/modules/reports/models/Assessment'
 import Filter from './Filter'
 
@@ -58,6 +58,9 @@ export const SOURCE_TYPES = {
     { value: 'Saville#Nipsative', label: 'Nipsative', condition: true },
     { value: 'Saville#Normative', label: 'Normative', condition: true },
     { value: 'Saville#Raw', label: 'Raw', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
+  ],
+  [PEARSON]: [
     { value: 'Factor', label: 'Factors', condition: true },
   ],
 }

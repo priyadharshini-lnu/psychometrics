@@ -8,27 +8,28 @@ module Pearson
       @user_assessment = user_assessment
     end
 
-    def call
+    def call # rubocop:disable  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       schedule_id = user_assessment.pearson_user_assessment.schedule_id
       response = client.get("v1/results/#{schedule_id}")
       scores_and_report = ::JSON.parse(response.body).dig('data', 'candidates', 0, 'products', 0, 'results')
 
       scores = scores_and_report.dig('scores', 'items')
-      report_item = scores_and_report.dig('reports', 'items', 0)
-
-      raise StandardError, 'Pearson assessment scores not available' if scores.blank? || report_item.blank?
+      report_items = scores_and_report.dig('reports', 'items').select { |item| item['type'] == 'pdf' }
+      raise StandardError, 'Pearson assessment scores not available' if scores.blank? || report_items.blank?
 
       user_result = user_assessment.users_result
       user_result.update(external_results: scores)
       user_assessment.update!(status: :completed, completed_at: Time.current) unless user_assessment.completed?
       generate_internal_reports
 
-      if report_item && report_item['type'] == 'pdf'
-        user_assessment.
-          external_user_reports(:pearson).
-          first&.
-          update(remote_pdf_url: report_item['url'], status: :prepared)
+      user_report = user_assessment.external_user_reports(:pearson).first
+      return broadcast :ok unless user_report
+
+      report_item = report_items.find do |item|
+        item['languageCode']&.split('-')&.first == user_report.report.default_language
       end
+      report_item ||= report_items.first
+      user_report.update(remote_pdf_url: report_item['url'], status: :prepared) if report_item
 
       broadcast :ok
     end

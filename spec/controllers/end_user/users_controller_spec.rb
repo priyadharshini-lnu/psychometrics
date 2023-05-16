@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe EndUser::UsersController, type: :controller do
-  let(:current_password) { 'Current@Password123' }
+  let(:current_password) { 'Current@Password129' }
   let(:user) { create(:user, :with_project_membership, password: current_password) }
 
   before(:each) do
@@ -50,7 +50,7 @@ describe EndUser::UsersController, type: :controller do
   end
 
   describe 'PATCH /users/update_details' do
-    let(:new_password) { 'NewPassword@123' }
+    let(:new_password) { 'NewPassword@129' }
 
     it 'returns current password is incorrect error' do
       patch :change_password, params: {

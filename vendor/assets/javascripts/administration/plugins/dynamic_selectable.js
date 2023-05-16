@@ -47,7 +47,7 @@ DynamicSelectable = (function() {
               }
 
               return _this.$targetSelect.append("<option " + multiple +
-                "value='" + el.id + "' " + selected + " " + disabled + ">" +
+                "value='" + el.id.replace("'", '&#39;') + "' " + selected + " " + disabled + ">" +
                 el.name + "</option>").selectpicker('refresh');
             });
             return _this.reinitializeTarget();

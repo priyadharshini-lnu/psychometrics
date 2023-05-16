@@ -400,6 +400,13 @@ providers:
           - EcHPILFPML
           - EcHPIHDSMVPIFR
           - EcHPIHDSMVPIPESML
+      - id: RPInsightFlashPkg
+        name: PKG-Insights + Flash, ID
+        report_ids:
+          - EcHPIHDSMVPIFR
+          - EcHPIINSRV2
+          - EcHDSINSRV2
+          - EcMVPIINSRV2
     reports:
       - id: EcHPIDML
         name: HPI Data Report

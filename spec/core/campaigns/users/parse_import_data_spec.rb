@@ -16,7 +16,7 @@ describe Campaigns::Users::ParseImportData do
     data = described_class.call!(file, campaign)
 
     expect(data).to eq([
-      ['Active', 'First Name', 'Last Name', 'Email Address', 'Locale', 'Password',
+      ['Active', 'First Name', 'Last Name', 'Email Address', 'Locale', 'Password', 'Overwrite password',
        'Created Date', 'Custom Field1', 'Custom Field2'],
       {
         active: true,
@@ -25,6 +25,7 @@ describe Campaigns::Users::ParseImportData do
         email: 'fedor@gmail.com',
         locale: 'de',
         password: nil,
+        overwrite_password: nil,
         created_at: '11 Jul 2020 / 16:39',
         custom_field: 'c1'
       },
@@ -35,6 +36,7 @@ describe Campaigns::Users::ParseImportData do
         email: 'vlad@gmail.com',
         locale: 'de',
         password: nil,
+        overwrite_password: nil,
         created_at: '11 Jul 2020 / 17:25',
         custom_field: 'c1'
       },
@@ -45,6 +47,7 @@ describe Campaigns::Users::ParseImportData do
         email: 'rohan@gmail.com',
         locale: 'de',
         password: nil,
+        overwrite_password: nil,
         created_at: '22 Jul 2020 / 18:40',
         custom_field: 'c1'
       },
@@ -55,6 +58,7 @@ describe Campaigns::Users::ParseImportData do
         email: 'shuja@gmail.com',
         locale: 'de',
         password: nil,
+        overwrite_password: nil,
         created_at: '22 Jul 2020 / 19:03',
         custom_field: 'c1'
       }

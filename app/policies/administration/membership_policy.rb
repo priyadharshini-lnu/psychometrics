@@ -10,6 +10,7 @@ module Administration
       users: [],
       clients: [],
       projects: [],
+      users: [],
       project_settings: [],
       sms_invites: [],
       campaigns: [],
