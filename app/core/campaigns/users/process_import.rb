@@ -31,7 +31,18 @@ module Campaigns
             custom_fields_data = attrs.slice(*custom_fields)
 
             if user
-              update_user!(user, user_data)
+              user = update_user(user, user_data)
+              unless user.valid?
+                job_record.complete!(
+                  [
+                    I18n.t(
+                      'activemodel.errors.models.user.attributes.import_data.user_update_failed',
+                      email: user.email, error: user.errors.full_messages.join(',')
+                    )
+                  ]
+                )
+                raise ActiveRecord::Rollback
+              end
               user.user_profile.update!(profile_data.merge(
                                           custom_fields: (user.user_profile.custom_fields || {}).
                                           merge(custom_fields_data)
@@ -57,16 +68,16 @@ module Campaigns
         broadcast :ok, users_those_pwd_not_changed, imported_users
       end
 
-      def update_user!(user, attrs)
+      def update_user(user, attrs)
         pwd_to_be_not_changed = pwd_to_be_not_changed?(user, attrs)
         strong_attrs = attrs.except(:created_at, :active)
         strong_attrs = strong_attrs.except(:password) if pwd_to_be_not_changed
 
-        attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id)
+        attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id).except(:overwrite_password)
 
         update_active_value(user, attrs[:active])
 
-        user.update!(attrs_to_update)
+        user.update(attrs_to_update)
         add_user_that_pwd_not_changed(user) if pwd_to_be_not_changed
         imported_users << user
         user
@@ -87,7 +98,7 @@ module Campaigns
       end
 
       def pwd_to_be_not_changed?(user, attrs)
-        attrs[:password].present? && user.encrypted_password.present?
+        attrs[:password].present? && user.encrypted_password.present? && attrs[:overwrite_password] != 'Yes'
       end
     end
   end

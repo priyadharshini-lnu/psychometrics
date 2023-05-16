@@ -6,6 +6,7 @@ jest.mock('modules/survey/store/StoreWatchman', () => {
     I18n: () => ({
       t: (t) => t,
       lookup: (code) => code,
+      tCustomValidation () { return 'error'}
     }),
   }
 })
@@ -27,6 +28,29 @@ const textEntry = {
   type: 'TextEntry',
   required_validation: { enabled: false, type: 'Force' },
   validation: { type: 'MinLength', args: { minLength: 5 } },
+  props: {
+    ...DefaultProps.TextEntry,
+  },
+}
+
+
+const customValidation = {
+  id: 3,
+  type: 'TextEntry',
+  required_validation: { enabled: false, type: 'Force' },
+  validation: {
+    type: 'Custom',
+    customValidations: [{
+      uuid: '1',
+      conditions: [{
+        subject: 1,
+        answer: "1",
+        predicate:"Selected",
+        type:"bool"
+      }],
+      message: 'aaaaa'
+    }]
+  },
   props: {
     ...DefaultProps.TextEntry,
   },
@@ -61,4 +85,25 @@ test('required return empty errors for valid results', () => {
     2: { answers: [{ value: 'test test' }] },
   }
   expect(ValidationProcessor.run([multipleChoice, textEntry], results, [])).toStrictEqual({})
+})
+
+
+test('return errors for custom validation', () => {
+  const results = {
+    1: { answers: [{ index: 0, value: true }] },
+    2: { answers: [{ value: 'test test' }] },
+  }
+
+  expect(ValidationProcessor.run([customValidation], results, [], [multipleChoice])).toStrictEqual({
+    '3': [ { type: 'Custom', message: 'error' } ]
+  })
+})
+
+test('should pass well custom validation', () => {
+  const results = {
+    1: { answers: [{ index: 1, value: true }] },
+    2: { answers: [{ value: 'test test' }] },
+  }
+
+  expect(ValidationProcessor.run([customValidation], results, [], [multipleChoice])).toStrictEqual({})
 })

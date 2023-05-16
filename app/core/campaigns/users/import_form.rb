@@ -13,8 +13,17 @@ module Campaigns
       validate :validate_header
       validate :validate_body
       validate :validate_duplicated_emails
+      validate :validate_overwrite_permission
 
       private
+
+      def validate_overwrite_permission
+        return if context.current_user.has_permission?(:users, :reset_password, campaign_id: context.campaign.id)
+
+        if import_data[1..].any? { |data| data[:overwrite_password] == 'Yes' }
+          errors.add(:import_data, :cant_overwrite_password)
+        end
+      end
 
       def validate_header
         errors.add(:import_data, :invalid_header) if (UserDecorator.export_headers - import_data.first).any?

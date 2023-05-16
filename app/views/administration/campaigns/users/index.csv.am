@@ -9,6 +9,7 @@ users.each do |user|
           user.email,
           user.locale,
           nil,
+          nil,
           user.decorate.created_at,
          ]
 

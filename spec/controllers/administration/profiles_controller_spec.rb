@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Administration::ProfilesController, type: :controller do
-  let(:current_password) { 'Password@12344' }
-  let(:new_password) { 'New_Password@12344' }
+  let(:current_password) { 'Password@129' }
+  let(:new_password) { 'New_Password@1299' }
   let(:client_admin) { create(:client_admin, password: current_password) }
   let(:valid_params) { client_admin.slice(:email, :first_name, :last_name) }
 

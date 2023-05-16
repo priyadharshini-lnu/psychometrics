@@ -23,17 +23,17 @@ export const SliderQuestion = ({
   } = props
   const labelWidth = `${100 / labels}%`
   const questionChoices = preview ? choicesIds : times(choices, i => i)
-
-  const [values, setValue] = useState(result.answers || {})
-
   const scaledValue = value => _.round(scaleNumber(value, 1, 100, minValue, maxValue), numberOfDecimals)
   const unscaledValue = value => scaleNumber(value, minValue, maxValue, 1, 100)
+  const scaledAnswers = (result.answers || []).map(answer => ({ ...answer, value: unscaledValue(answer.value) }))
+  const [values, setValue] = useState(scaledAnswers)
+
 
   const onChangeSlider = (choiceId, value, update) => {
     setValue({ ...values, [choiceId]: { index: choiceId, value: update ? unscaledValue(scaledValue(value)) : value } })
 
     if (update) {
-      changeValue(choiceId, unscaledValue(scaledValue(value)))
+      changeValue(choiceId, scaledValue(value))
     }
   }
 
