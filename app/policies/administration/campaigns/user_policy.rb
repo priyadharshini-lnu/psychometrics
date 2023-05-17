@@ -24,7 +24,7 @@ module Administration
       end
 
       def regenerate_report?
-        can_mange_campaign_users?
+        has_permission?(:results, :regenerate_report)
       end
 
       def toggle_status?
