@@ -122,28 +122,25 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           dataIndex={['projectManager', 'name']}
           key="project_manager"
         />
-
-        {isSuperAdmin(currentUser)
-          && (
-          <Column
-            title={I18n.t('common.column.action')}
-            key="action"
-            render={client => (
-              <ConditionalDropdown
-                menu={
-                  ActionsMenu({
-                    client,
-                    updateResource,
-                    removeResource,
-                    openModal,
-                    countries,
-                    types,
-                  }) as React.ReactElement
-                }
-              />
-            )}
-          />
+        <Column
+          title={I18n.t('common.column.action')}
+          key="action"
+          render={client => (
+            <ConditionalDropdown
+              menu={
+                ActionsMenu({
+                  client,
+                  updateResource,
+                  removeResource,
+                  openModal,
+                  countries,
+                  types,
+                  isSuperAdmin: isSuperAdmin(currentUser),
+                }) as React.ReactElement
+              }
+            />
           )}
+        />
       </Table>
       <Pagination
         current={currentPage}
@@ -206,14 +203,15 @@ interface ActionMenuProps {
   updateResource: UpdateResource<Client>
   removeResource: RemoveResource
   openModal: (modalName: string, modalProps: unknown) => void
+  isSuperAdmin: boolean
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  client, countries, types, updateResource, removeResource, openModal,
+  client, countries, types, updateResource, removeResource, openModal, isSuperAdmin,
 }) => {
   const { id, name, meta } = client
   const menuItems = [
-    { key: 'edit', label: I18n.t('common.actions.edit') },
+    isSuperAdmin && { key: 'edit', label: I18n.t('common.actions.edit') },
     meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
