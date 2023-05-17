@@ -20,9 +20,36 @@ export enum AdminTypes {
   ClientAdmin = 'client_admin',
 }
 
-export const ThreeSixtyGrants = {
+export enum CampaignTypes {
+  common = 'common',
+  threesixty = 'threesixty'
+}
+
+export const ThreeSixtySpecificGrants = {
   campaigns: ['participant_options', 'reset_nominations', 'report_options'],
   messages: ['email', 'instructions', 'options'],
+}
+
+export const ThreeSixtyCampaignAdminGrants = {
+  campaigns: [
+    'view',
+    'manage',
+    'manage_users',
+    'participant_options',
+    'reset_nominations',
+    'report_options',
+  ],
+  datasheets: ['view', 'manage'],
+  messages: ['email', 'instructions', 'options'],
+  results: [
+    'view_report',
+    'download_report',
+    'raw_responses',
+    'reset_responses',
+    'rescore_responses',
+    'regenerate_report',
+    'bulk_regenerate_reports',
+  ],
 }
 
 export const ClientAdminGrants = {

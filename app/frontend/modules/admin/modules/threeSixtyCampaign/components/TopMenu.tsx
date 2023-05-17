@@ -79,6 +79,12 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
   })
 
+  // menuItems.push({
+  //   key: 'admins',
+  //   label: I18n.t('common.model.admins'),
+  //   icon: <SolutionOutlined />,
+  // })
+
   return (
     <Menu
       items={menuItems}

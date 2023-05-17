@@ -24,13 +24,14 @@ import { CountDisplay } from '~/components/CountDisplay'
 import {
   ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
 } from '~/modules/admin/modules/client/core/admin'
+import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import Modals from '~/modules/admin/components/Modals/'
 import { DetailsDrawer } from './DetailsDrawer'
 import { AddEditDrawer } from './AddEditDrawer'
 import { ActionsMenu } from './ActionsMenu'
 import {
-  DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes,
+  DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes, CampaignTypes,
 } from './constants'
 
 const MODALS = {
@@ -40,6 +41,7 @@ const MODALS = {
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
+    currentCampaignId: getCurrentCampaignId(state),
   }),
   {
     openModal,
@@ -50,6 +52,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 
 interface OwnProps {
   adminType: string
+  campaignType?: string
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -61,16 +64,20 @@ interface Meta extends BaseMeta {
   usersGrants: CurrentUserPermissions
 }
 
-const AdminsComponent: React.FC<Props> = ({ adminType, currentUser, openModal }) => {
+const AdminsComponent: React.FC<Props> = ({
+  adminType, campaignType, currentUser, openModal, currentCampaignId,
+}) => {
   const params = useParams<{ campaignId: string; projectId: string; clientId: string }>()
-  const { campaignId } = params
   const { projectId } = params
   const { clientId } = params
+  const campaignIdParam = params.campaignId
+
+  const campaignId = campaignType === CampaignTypes.common ? campaignIdParam : currentCampaignId
 
   const filterHash = {
     with_role: adminType,
-    client_id_eq: clientId,
     project_id_eq: projectId,
+    client_id_eq: clientId,
   }
 
   if (adminType === AdminTypes.CampaignAdmin) {
@@ -307,6 +314,7 @@ const AdminsComponent: React.FC<Props> = ({ adminType, currentUser, openModal })
         currentUserGrants={meta.usersGrants}
         adminId={drawerAdminId}
         adminType={adminType}
+        campaignType={campaignType}
       />
       <Modals modals={MODALS} />
     </>

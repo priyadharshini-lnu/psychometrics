@@ -55,6 +55,8 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
                            Users::Admin
                          when User::SUPER_ADMIN_ROLE
                            Users::SuperAdmin
+                         else
+                           User
                        end
 
     ::Pundit.policy_scope!(
