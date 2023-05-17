@@ -997,13 +997,15 @@ en:
     all_activities_are_completed: All activities are now complete.
     all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
     begin: Begin your tasks
+    begin_btn_msg_before_prework: You have to complete the below tasks before starting the timed campaign
     begin_campaign_msg: Start campaign before taking assessments
     campaigns: Campaigns
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
     complete_prev: Complete all previous assessments
+    complete_tasks: Please complete tasks below before taking this action.
     completed: Completed
-    continue: Continue Assessment
+    continue: Continue your tasks
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
       campaign: Campaign
@@ -1025,6 +1027,18 @@ en:
     inactive_campaign_message: Currently, you have not been assigned any activities.
     ineligible: Ineligible
     insights_reports: Insights & Reports
+    instruction_modal:
+      campaign_start_instruction: |
+        Once you click start, the campaign timer will start. You have %{minutes} minutes to complete all the activity.
+        You will have to complete all the activities in single seating. The timer will keep running even if you close the browser.
+      common_proctoring_instructions: |
+        You will be proctored for all these tasks.
+        Please make sure you have a stable internet connection and a working webcam.
+        Make sure that you are in a well lit room and your face is clearly visible in the webcam.
+        It is recommended to close all the chat related applications and other applications that are not required for the assessment.
+      lockdown_browser_instruction: You will be asked to download lockdown browser once you click start. Please follow the instructions to download and install the lockdown browser in next screen.
+      proctoring_message: You will be proctored for all the tasks.
+      title: Instructions
     instructions:
       collapse_link_text: Show less
       expand_link_text: Show more
@@ -1085,6 +1099,7 @@ en:
       assessor_form: Assessor Form
       locales: Locales
       norm: Norm
+      prework: Prework
       status: Status
       universal_link: Universal link
     messages:
@@ -1220,6 +1235,11 @@ en:
       assessor_assessments: Assessor Assessments
       other_assessments: Other Assessments
       other_reports: Other Reports
+    card:
+      duration: Duration
+      starts_in: 'Starts in:'
+      starts_on: Starts on %{date}
+      will_start_shortly: Campaign will start shortly. Please wait
   change_password_page:
     change_profile_details: Change Profile Details
     old_password: Old Password
@@ -1297,6 +1317,7 @@ en:
       save: Save
       search: Search
       send: Send
+      start: Start
       unresolve: Unresolve
       update: Update
       upload: Upload

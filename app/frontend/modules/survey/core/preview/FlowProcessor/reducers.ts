@@ -88,6 +88,7 @@ const defaultState: State = {
   fixedTimed: false,
   showErrorWarning: false,
   submitRequired: false,
+  otherPendingAssessmentCount: 0,
 }
 
 const HANDLERS = {
@@ -166,6 +167,7 @@ const HANDLERS = {
       instructions: data.instructions,
       fixedTimed: data.fixed_timed,
       defaultNorm: data.default_norm_id,
+      otherPendingAssessmentCount: result.other_pending_assessments_count,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

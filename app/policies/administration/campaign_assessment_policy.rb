@@ -57,5 +57,11 @@ module Administration
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
     end
+
+    def update_prework?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
   end
 end

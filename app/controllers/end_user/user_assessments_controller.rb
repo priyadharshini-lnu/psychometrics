@@ -70,11 +70,13 @@ class EndUser::UserAssessmentsController < ApplicationController
 
   def set_user_assessment
     @user_assessment = UserAssessment.joins(:campaign).
-                       where.not(status: %i[completed timed_out ineligible]).
                        find_by!(
                          id: params[:id],
                          evaluator_id: current_user.id,
                          campaigns: { status: :active }
                        )
+    if %w[completed timed_out ineligible].include?(@user_assessment.status)
+      redirect_to assessment_completed_path(@user_assessment.campaign_id)
+    end
   end
 end

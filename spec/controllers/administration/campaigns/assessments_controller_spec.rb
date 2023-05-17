@@ -8,7 +8,9 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
   let(:dimension) { create(:dimension) }
   let(:assessment) { create(:assessment, dimension: dimension) }
   let!(:assessor_form) { create(:assessment, category: :assessor_form, name: 'A 1') }
-  let!(:campaign_assessment) { create(:campaign_assessment, assessment: assessment, campaign: campaign) }
+  let!(:campaign_assessment) do
+    create(:campaign_assessment, assessment: assessment, campaign: campaign, prework: true)
+  end
   let!(:norm) { create(:norm, name: 'Norm', dimension: dimension) }
   let(:report) { create(:report, assessments: [assessment]) }
   let(:report_family) { report.report_families.first }
@@ -100,5 +102,19 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       expect(response.body).to eq(assessment.id.to_s)
       expect(CampaignAssessment.find_by(id: campaign_assessment.id)).to be_nil
     end
+  end
+
+  it '[PUT] update_prework' do
+    expect(campaign_assessment.prework).to eq(true)
+    put :update_prework, params: {
+      id: assessment.id,
+      new_campaign_id: campaign.id,
+      prework: false
+    }, as: :json
+
+    parsed_response = JSON.parse(response.body)
+
+    expect(campaign_assessment.reload.prework).to eq(false)
+    expect(parsed_response).to match(hash_including('prework' => false))
   end
 end

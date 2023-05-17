@@ -7,6 +7,7 @@ class CampaignUser < ApplicationRecord
   belongs_to :user
   belongs_to :campaign
   has_one :project, through: :campaign
+  has_many :campaign_assessments, through: :campaign
   has_many :evaluation_results, through: :user
   has_many :user_assessments, through: :user
   has_many :assessments, through: :user_assessments
@@ -22,6 +23,7 @@ class CampaignUser < ApplicationRecord
                if: proc { status_previously_changed? && %w[completed timed_out].include?(status) },
                on: [:update]
   delegate :proctoring_enabled?, to: :campaign
+  delegate :pending_assessments, to: :user_assessments
 
   def compute_and_set_status
     return if campaign.fixed_timed? && completion_status != 'completed'
@@ -73,5 +75,20 @@ class CampaignUser < ApplicationRecord
     return [campaign.end_date, expiry_date].min if campaign.end_date && expiry_date
 
     expiry_date || campaign.end_date
+  end
+
+  def remaining_campaign_time
+    return unless real_expiry_date
+
+    [real_expiry_date - Time.zone.now, 0].max
+  end
+
+  def prework_user_assessments
+    assessment_ids = campaign_assessments.preworks.pluck(:assessment_id)
+    campaign_user_assessments.self_assessment.where(assessment_id: assessment_ids)
+  end
+
+  def all_prework_completed?
+    !prework_user_assessments.pending_assessments.exists?
   end
 end

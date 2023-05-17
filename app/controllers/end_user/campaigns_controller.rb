@@ -11,6 +11,8 @@ module EndUser
     initial_state_for %i[show insights]
 
     def show
+      return redirect_to dashboard_path unless %(active closed).include?(@campaign.status)
+
       respond_to do |format|
         format.html { render 'campaigns/show' }
         format.json do

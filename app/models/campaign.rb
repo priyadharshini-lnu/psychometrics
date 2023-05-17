@@ -23,6 +23,7 @@ class Campaign < ApplicationRecord
   has_one :dashboard
 
   delegate :fixed_time?,
+           :fixed_time,
            :fixed_time_duration,
            :time_zone,
            :instructions_enabled,
@@ -74,7 +75,13 @@ class Campaign < ApplicationRecord
     parent.table[:type]
   end
 
-  scope :visible_to_end_user, -> { where(status: %i[active closed]) }
+  scope :visible_to_end_user, lambda {
+    where(
+      'campaigns.status IN (?) OR (campaigns.status = ? AND campaigns.start_date is NOT NULL)',
+      [statuses[:active], statuses[:closed]],
+      statuses[:inactive]
+    )
+  }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
 
   def proctoring_license_with_enough_credits

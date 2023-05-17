@@ -110,6 +110,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                   loginHogan={loginHogan}
                   acceptPolicy={acceptPolicy}
                   history={history}
+                  fetchCampaigns={fetchCampaigns}
                 />
               )
             })}

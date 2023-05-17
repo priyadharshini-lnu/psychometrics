@@ -2,16 +2,15 @@ import React from 'react'
 import round from 'lodash/round'
 import { Col } from 'antd'
 import { useHistory } from 'react-router-dom'
-
-import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { getTotalProgress } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
 import { DetailsCard } from '~/glint'
 import styles from './styles.less'
+import { StartsInTimer } from '../StartsInTimer'
 
 const { I18n } = window
 
-export const Threesixty = ({ campaign }) => {
+export const Threesixty = ({ campaign, fetchCampaigns }) => {
   const history = useHistory()
   const totalProgress = round(getTotalProgress(campaign))
 
@@ -23,10 +22,11 @@ export const Threesixty = ({ campaign }) => {
     <Col lg={12} xs={24} sm={24} className={styles.campaignCard}>
       <DetailsCard
         title={<TruncatedTitle title={campaign.assessmentName} />}
-        subtitle={campaign.timing && <TimerText text={campaign.timing} />}
+        subtitle={<StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} />}
         progressPercentage={totalProgress}
         buttonText={I18n.t('campaign.details')}
         onButtonClick={handleClick}
+        actionDisabled={campaign.status === 'inactive'}
       />
     </Col>
   )
