@@ -15,6 +15,10 @@ module Api
         !@record.is_anonym? && has_permission?(:projects, :manage_users, project_id: @record.project_id)
       end
 
+      def update?
+        has_permission?(:projects, :manage_users, project_id: @record.project_id)
+      end
+
       def reset_password?
         return true if @user.is?(:superadmin)
         return false unless @record.is?(:regular)
