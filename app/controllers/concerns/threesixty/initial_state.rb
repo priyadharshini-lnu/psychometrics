@@ -33,7 +33,7 @@ module Threesixty::InitialState
           info_color: @current_project.design_setting.info_color
         },
         profile: {
-          fields: @current_project.profile_setting&.profile_fields&.map do |q|
+          fields: @current_project.profile_setting&.profile_fields&.includes(:question)&.map do |q|
             ProfileFieldSerializer.new(q, selected_locale: I18n.locale).to_h
           end,
           requiredFields: @current_project.profile_setting&.required_default_fields || {},

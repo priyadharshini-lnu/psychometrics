@@ -139,7 +139,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def campaign_assessment
-    CampaignAssessment.find_by(campaign_id: campaign_id, assessment_id: assessment_id)
+    @campaign_assessment ||= CampaignAssessment.find_by(campaign_id: campaign_id, assessment_id: assessment_id)
   end
 
   def applicable_norm_id

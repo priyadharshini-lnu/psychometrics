@@ -33,10 +33,13 @@ module UserRoles
 
   def is?(*roles)
     roles.map!(&:to_sym)
+    current_role = USER_ROLES.key(role)
+    return roles.include?(current_role) if (roles - USER_ROLES.keys).blank?
+
     arr = if current_membership
             [current_membership.role.to_sym]
           else
-            [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
+            [current_role] + memberships.map { |m| m.role.to_sym }
           end
     arr << :assessor if assessors.exists?
     (arr & roles).any?

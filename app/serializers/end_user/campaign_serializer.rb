@@ -10,7 +10,6 @@ module EndUser
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
-    has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
     has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
@@ -39,12 +38,6 @@ module EndUser
       UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id).
         includes({ assessment: :agile }, :users_result, :campaign, :evaluator).
         where.not(assessments: { category: :mindmill })
-    end
-
-    def user_reports
-      object.user_reports.eager_load(:report, :user).
-        where(user_id: current_user.id, user_access: true).
-        merge(Report.assignable)
     end
 
     def campaign_user
