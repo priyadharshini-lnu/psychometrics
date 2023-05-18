@@ -36,8 +36,7 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
           [
             %w[remove destroy],
             'reset_password',
-            'toggle_enable_2fa',
-            'reset_password'
+            'toggle_enable_2fa'
           ],
           {
             project_id: @model.project_id

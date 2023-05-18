@@ -142,7 +142,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t(`users.actions.2fa.${user.enable_2fa ? 'option_to_disable' : 'option_to_enable'}`)}
         </Button>),
     },
-    user.meta.permissions.resetPassword && {
+    user.meta.permissions.remove && {
       key: 'remove',
       label: (
         <>
