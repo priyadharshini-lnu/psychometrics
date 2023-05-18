@@ -18,17 +18,18 @@ interface Props {
   fetchCampaigns: () => void
 }
 export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns }) => {
-  const [refreshDelay, setRefreshDelay] = useState<null | number>(null)
   const isInactive = campaign.status === 'inactive'
+  const hoursRemaining = moment(campaign.startDate).diff(moment(), 'hours')
+  const secondsRemaining = moment(campaign.startDate).diff(moment(), 'seconds')
+  const timeIsInPast = secondsRemaining <= 0
+
+  const [refreshDelay, setRefreshDelay] = useState<null | number>(timeIsInPast ? randomWholeNumber(15000, 30000) : null)
 
   useTimeout(() => {
     fetchCampaigns()
     setRandomDelaysForRefresh()
   }, isInactive ? refreshDelay : null)
 
-  const hoursRemaining = moment(campaign.startDate).diff(moment(), 'hours')
-  const secondsRemaining = moment(campaign.startDate).diff(moment(), 'seconds')
-  const timeIsInPast = secondsRemaining <= 0
   const startDateWithTimezone = () => moment(campaign.startDate).format('Do MMMM YYYY hh:mm Z')
 
   const setRandomDelaysForRefresh = () => {
