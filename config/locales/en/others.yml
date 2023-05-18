@@ -1781,9 +1781,12 @@ en:
           error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
+    af: Afrikaans
     ar: Arabic
+    az: Azerbaijani
     bg: Bulgarian
     bs: Bosnian
+    by: Belarusian
     ca: Catalan
     cn: Chinese
     cs: Czech
@@ -1821,6 +1824,8 @@ en:
     pl: Polish
     pt: Portuguese
     pt-BR: Brazilian Portuguese
+    pt-PT: Portuguese (Portugal)
+    pt_BR: Portuguese (Brazil)
     ro: Romanian
     ru: Russian
     sk: Slovak
@@ -1833,11 +1838,16 @@ en:
     th: Thai
     tl: Tagalog
     tr: Turkish
+    ua: Ukrainian
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
     zh: Chinese Simplified
-    zh-TW: Chinese Traditional
+    zh-CN: Chinese (PRC)
+    zh-HK: Chinese (Hong Kong)
+    zh-TW: Chinese (Taiwan)
+    zh_CN: Chinese (Simplified, People's Republic of China)
+    zh_TW: Chinese - Traditional
   languages_localized:
     ar: عربي
     bg: български
