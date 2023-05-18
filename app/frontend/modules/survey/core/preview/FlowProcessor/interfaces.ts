@@ -254,6 +254,7 @@ export interface Result {
   hris: {}
   highlights: [{id: string, data: {}, resource_type: string, resource_id: number}]
   other_pending_assessments_count: number
+  seedrandom: string
 }
 
 interface SaveResponse {

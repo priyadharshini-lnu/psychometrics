@@ -35,6 +35,8 @@ class UsersResult < ApplicationRecord
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
            to: :user_assessment, allow_nil: true)
 
+  before_create :generate_randomseed
+
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
@@ -42,5 +44,9 @@ class UsersResult < ApplicationRecord
   # TODO: Remove all reference of answer_key after Assign model is removed
   def answer_key
     'answers'
+  end
+
+  def generate_randomseed
+    self.seedrandom = Devise.friendly_token(10)
   end
 end
