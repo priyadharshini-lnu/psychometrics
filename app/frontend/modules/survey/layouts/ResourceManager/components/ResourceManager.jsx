@@ -29,6 +29,7 @@ export default function ResourceManager (props) {
         <div className={styles.resourceWrapper}>
           {list.map((resource, index) => (
             <DndElement
+              key={index}
               className={styles.dragable}
               iconClass={styles.iconHandler}
               strategy="index"

@@ -11,6 +11,7 @@ import CreateByTemplate from '../CreateByTemplate'
 import MappingNorms from '../MappingNorms'
 import EndOfAssessmentModal from '../EndOfAssessmentModal'
 import DataSheetModal from '../DataSheetModal'
+import { SettingsModal } from '../SettingsModal/SettingsModal'
 
 const MODALS = {
   dataSheetModal: DataSheetModal,
@@ -25,6 +26,7 @@ const MODALS = {
   createByTemplate: CreateByTemplate,
   mapNorms: MappingNorms,
   endOfAssessment: EndOfAssessmentModal,
+  settings: SettingsModal,
 }
 
 

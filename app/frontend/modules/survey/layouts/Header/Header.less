@@ -1,10 +1,11 @@
+@import '~/styles/ant.variable.less';
+
 .menu {
   width: 100%;
   border-bottom: 1px solid #444;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 1ch;
-  align-items: start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .linkExport {
@@ -15,10 +16,15 @@
   }
 }
 
-.title {
-  margin: 0;
-}
 .spaceLeft {
   margin-left: 10px;
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.tabs {
+  margin: 0 12px;
+}
