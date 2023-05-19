@@ -86,7 +86,9 @@ module UsersResults::ControllerConcern
                     find(params[:id])
     authorize [:end_user, @users_result]
     user_assessment = @users_result.user_assessment
-    redirect_to assessment_completed_path(user_assessment.campaign_id) if user_assessment.closed?
+    if request.format.html? && user_assessment.closed?
+      redirect_to assessment_completed_path(user_assessment.campaign_id)
+    end
   end
 
   private

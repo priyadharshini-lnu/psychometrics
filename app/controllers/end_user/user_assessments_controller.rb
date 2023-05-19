@@ -75,7 +75,8 @@ class EndUser::UserAssessmentsController < ApplicationController
                          evaluator_id: current_user.id,
                          campaigns: { status: :active }
                        )
-
-    redirect_to assessment_completed_path(@user_assessment.campaign_id) if @user_assessment.closed?
+    if request.format.html? && @user_assessment.closed?
+      redirect_to assessment_completed_path(@user_assessment.campaign_id)
+    end
   end
 end
