@@ -75,8 +75,7 @@ class EndUser::UserAssessmentsController < ApplicationController
                          evaluator_id: current_user.id,
                          campaigns: { status: :active }
                        )
-    if %w[completed timed_out ineligible].include?(@user_assessment.status)
-      redirect_to assessment_completed_path(@user_assessment.campaign_id)
-    end
+
+    redirect_to assessment_completed_path(@user_assessment.campaign_id) if @user_assessment.closed?
   end
 end

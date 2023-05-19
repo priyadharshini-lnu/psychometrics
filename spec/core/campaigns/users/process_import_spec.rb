@@ -14,6 +14,8 @@ describe Campaigns::Users::ProcessImport do
         last_name: 'Tar',
         email: 'fedor@gmail.com',
         password: 'asdasd1234',
+        schedule_start_date: 1.day.from_now.to_s,
+        schedule_end_date: 2.days.from_now.to_s,
         created_at: '11 Jul 2020 / 16:39',
         age: 32,
         custom_field: '1111',
@@ -63,6 +65,8 @@ describe Campaigns::Users::ProcessImport do
     expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
     expect(fedor_user.user_profile).to have_attributes(age: 32)
     expect(fedor_user.user_profile).to have_attributes(custom_fields: {})
+    expect(fedor_campaign_user.schedule_start_date).to eq(1.day.from_now)
+    expect(fedor_campaign_user.schedule_end_date).to eq(2.days.from_now)
 
     expect(
       [

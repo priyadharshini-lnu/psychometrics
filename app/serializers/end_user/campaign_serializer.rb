@@ -27,6 +27,8 @@ module EndUser
     end
 
     def status
+      return 'closed' unless campaign_user.in_schedule?
+
       object.real_status
     end
 

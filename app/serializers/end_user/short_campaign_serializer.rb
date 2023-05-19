@@ -3,9 +3,9 @@
 module EndUser
   class ShortCampaignSerializer < ActiveModel::Serializer
     attributes :id, :name, :type, :status, :completion_percentage, :progress_status, :user_reports_available,
-               :description, :start_date, :timing
+               :description, :timing, :scheduled_at, :scheduled_in
 
-    delegate :start_date, to: :object
+    delegate :scheduled_at, :scheduled_in, to: :campaign_user, allow_nil: true
 
     def completion_percentage
       uas = instance_options[:current_user].user_assessments.where(campaign: object)

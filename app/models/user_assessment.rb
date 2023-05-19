@@ -197,6 +197,18 @@ class UserAssessment < ApplicationRecord
     campaign_user.pending_assessments.where.not(id: id).count
   end
 
+  def self_assessment?
+    subject_id == evaluator_id
+  end
+
+  def closed?
+    return true if %w[completed timed_out ineligible].include?(status)
+    return true if self_assessment? && %w[closed inactive archived].include?(campaign.status)
+    return false unless campaign_user
+
+    !campaign_user.in_schedule?
+  end
+
   private
 
   def saville_norm_name

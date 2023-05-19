@@ -102,6 +102,9 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
               </Text>
             </Col>
             {campaigns.map((campaign) => {
+              const scheduledForFuture = campaign.scheduledIn && campaign.scheduledIn > 0
+              const campaignDisabled = campaign.status === 'inactive' || scheduledForFuture
+
               const Component = Campaigns[campaign.type]
               return (
                 <Component
@@ -111,6 +114,8 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                   acceptPolicy={acceptPolicy}
                   history={history}
                   fetchCampaigns={fetchCampaigns}
+                  scheduledForFuture={scheduledForFuture}
+                  campaignDisabled={campaignDisabled}
                 />
               )
             })}

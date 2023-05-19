@@ -81,5 +81,80 @@ RSpec.describe UserAssessment, type: :model do
 
       expect(user_assessment.norm_name).to eq(norm.name)
     end
+
+    describe 'closed?' do
+      let(:user) { create(:user) }
+
+      it 'returns true if assessment is completed timed_out or ineligible' do
+        user_assessment = create(:user_assessment, status: :completed)
+        expect(user_assessment.closed?).to eq(true)
+
+        user_assessment = create(:user_assessment, status: :timed_out)
+        expect(user_assessment.closed?).to eq(true)
+
+        user_assessment = create(:user_assessment, status: :ineligible)
+        expect(user_assessment.closed?).to eq(true)
+
+        user_assessment = create(:user_assessment, status: :in_progress)
+        expect(user_assessment.closed?).to eq(false)
+      end
+
+      it 'returns true if campaign is closed inactive or archived' do
+        user_assessment = create(:user_assessment, subject: user, evaluator: user, status: :in_progress)
+
+        user_assessment.campaign.update(status: :closed)
+        expect(user_assessment.reload.closed?).to eq(true)
+
+        user_assessment.campaign.update(status: :inactive)
+        expect(user_assessment.closed?).to eq(true)
+
+        user_assessment.campaign.update(status: :archived)
+        expect(user_assessment.closed?).to eq(true)
+
+        user_assessment.campaign.update(status: :active)
+        expect(user_assessment.closed?).to eq(false)
+      end
+
+      it 'returns false for non self assessment even if campaign is closed' do
+        user_assessment = create(:user_assessment, subject: user, evaluator: create(:user), status: :in_progress)
+
+        user_assessment.campaign.update(status: :closed)
+        expect(user_assessment.reload.closed?).to eq(false)
+
+        user_assessment.campaign.update(status: :inactive)
+        expect(user_assessment.closed?).to eq(false)
+
+        user_assessment.campaign.update(status: :archived)
+        expect(user_assessment.closed?).to eq(false)
+      end
+
+      it 'returns true is if campaign_user schedule_start_date is in future' do
+        campaign = create(:campaign)
+        create(:campaign_user, campaign: campaign, user: user, schedule_start_date: 1.day.from_now)
+        user_assessment = create(:user_assessment, campaign: campaign, subject: user, evaluator: user,
+status: :in_progress)
+
+        expect(user_assessment.closed?).to eq(true)
+      end
+
+      it 'returns true if campaign_user schedule_end_date is in past' do
+        campaign = create(:campaign)
+        create(:campaign_user, campaign: campaign, user: user, schedule_end_date: 1.day.ago)
+        user_assessment = create(:user_assessment, campaign: campaign, subject: user, evaluator: user,
+status: :in_progress)
+
+        expect(user_assessment.closed?).to eq(true)
+      end
+
+      it 'returns false if campaign_user if current time is between schedule_start_date and schedule_end_date' do
+        campaign = create(:campaign, status: :active)
+        create(:campaign_user, campaign: campaign, user: user, schedule_start_date: 1.day.ago,
+schedule_end_date: 1.day.from_now)
+        user_assessment = create(:user_assessment, campaign: campaign, subject: user, evaluator: user,
+status: :in_progress)
+
+        expect(user_assessment.closed?).to eq(false)
+      end
+    end
   end
 end

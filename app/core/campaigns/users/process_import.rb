@@ -59,12 +59,12 @@ module Campaigns
 
       def update_user!(user, attrs)
         pwd_to_be_not_changed = pwd_to_be_not_changed?(user, attrs)
-        strong_attrs = attrs.except(:created_at, :active)
+        strong_attrs = attrs.except(:created_at, :active, :schedule_start_date, :schedule_end_date)
         strong_attrs = strong_attrs.except(:password) if pwd_to_be_not_changed
 
         attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id)
 
-        update_active_value(user, attrs[:active])
+        update_campaign_user(user, attrs)
 
         user.update!(attrs_to_update)
         add_user_that_pwd_not_changed(user) if pwd_to_be_not_changed
@@ -72,10 +72,11 @@ module Campaigns
         user
       end
 
-      def update_active_value(user, active)
-        return if active.nil?
+      def update_campaign_user(user, attributes)
+        attrs = attributes.slice(:active, :schedule_start_date, :schedule_end_date)
+        attrs = attrs.except(:active) if attrs[:active].nil?
 
-        campaign.campaign_users.where(user_id: user.id).update_all(active: active)
+        campaign.campaign_users.find_by(user_id: user.id).update!(attrs)
       end
 
       def add_user_that_pwd_not_changed(user)

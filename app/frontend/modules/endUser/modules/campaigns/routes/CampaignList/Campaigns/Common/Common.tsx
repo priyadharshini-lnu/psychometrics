@@ -10,9 +10,10 @@ import { StartsInTimer } from '../StartsInTimer'
 
 const { I18n } = window
 
-export const Common = ({ campaign, fetchCampaigns }) => {
+export const Common = ({
+  campaign, fetchCampaigns, campaignDisabled, scheduledForFuture,
+}) => {
   const history = useHistory()
-
   const handleClick = () => {
     history.push(`/campaigns/${campaign.id}`)
   }
@@ -26,11 +27,13 @@ export const Common = ({ campaign, fetchCampaigns }) => {
       <DetailsCard
         title={<TruncatedTitle title={campaign.name} />}
         status={<StatusText taskStatus={campaign.progressStatus} />}
-        subtitle={<StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} />}
+        subtitle={
+          <StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} scheduledForFuture={scheduledForFuture} />
+        }
         description={campaign.description && <ViewMoreText maxTextLen={200} text={campaign.description} />}
         buttonText={I18n.t('campaign.dashboard_menu.tasks')}
         onButtonClick={handleClick}
-        actionDisabled={campaign.status === 'inactive'}
+        actionDisabled={campaignDisabled}
         secondaryBtnText={campaign.userReportsAvailable && I18n.t('campaign.insights_reports')}
         onSecondaryBtnClick={handleSecondaryBtnClick}
       />

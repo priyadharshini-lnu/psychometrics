@@ -91,21 +91,22 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const campaignUserTimedOut = campaignUser.status === 'timed_out'
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
   const hasNoExpiryDateForTimedCampaign = isTimedCampaign && !expiryDate && campaignUser.status === 'in_progress'
-  const canNotStartPrework = campaignClosed || campaignUser.status === 'completed'
+  const campaignClosedForUser = campaignClosed
+  || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
+
+  const canNotStartPrework = campaignClosedForUser || campaignUser.status === 'completed'
   const canNotStartAssessment = needsProctoring
     || (fixedTimed && !hasStartedCampaign)
-    || campaignClosed
+    || campaignClosedForUser
     || campaignUser.status === 'completed'
     || isCampaignInterrupted
     || campaignUserTimedOut
     || hasNoExpiryDateForTimedCampaign
-  const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
-    && fixedTimed
+  const canBeginCampaign = !campaignClosedForUser && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
+    && fixedTimed && !isCampaignInterrupted
   // eslint-disable-next-line max-len
   const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
-    && !campaignClosed && !allAssessmentsComplete && !campaignUserTimedOut && fixedTimed
-  const showCampaignClosedMessage = campaignClosed
-  || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
+    && !campaignClosedForUser && !allAssessmentsComplete && !campaignUserTimedOut && fixedTimed
 
 
   const allCampaignLevelAssessmentIds = _.flatten([
@@ -228,7 +229,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
         </Row>
         <Row className={styles.cardsContainer}>
           <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
-            {showCampaignClosedMessage && (
+            {campaignClosedForUser && (
             <div className="mvm font-bold">
               <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
             </div>

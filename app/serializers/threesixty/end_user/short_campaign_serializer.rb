@@ -4,10 +4,10 @@ module Threesixty
   module EndUser
     class ShortCampaignSerializer < Threesixty::EndUser::BaseCampaignSerializer
       attributes :id, :type, :timing, :assessment_name, :evaluations_counters, :nominations_counters,
-                 :reports_counters, :status, :start_date
+                 :reports_counters, :status, :scheduled_at, :scheduled_in
 
       delegate :campaign, to: :object
-      delegate :start_date, :status, to: :campaign
+      delegate :scheduled_at, :scheduled_in, to: :campaign_user, allow_nil: true
 
       def timing
         object.assessment.timing

@@ -10,6 +10,8 @@ module Campaigns
       attribute :email, String
       attribute :operation, String, default: 'add_and_allow_new_response'
       attribute :locale, String
+      attribute :schedule_start_date, DateTime
+      attribute :schedule_end_date, DateTime
 
       validates :first_name, :last_name, :email, presence: true
       validates :email, format: { with: Devise.email_regexp }
@@ -17,6 +19,9 @@ module Campaigns
       validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
       validate :user_exists_in_project, if: -> { operation == 'skip_existing' }
       validate :user_exists_in_campaign
+
+      validates_datetime :schedule_start_date, allow_blank: true
+      validates_datetime :schedule_end_date, allow_blank: true
 
       def user_exists_in_project
         if User.exists?(project_id: campaign.project_id, email: email) && !campaign.users.exists?(email: email)

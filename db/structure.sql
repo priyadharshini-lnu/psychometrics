@@ -983,7 +983,9 @@ CREATE TABLE public.campaign_users (
     completion_status integer DEFAULT 0,
     additional_time integer,
     expiry_date timestamp without time zone,
-    status integer DEFAULT 0
+    status integer DEFAULT 0,
+    schedule_start_date timestamp without time zone,
+    schedule_end_date timestamp without time zone
 );
 
 
@@ -10823,4 +10825,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230315112437'),
 ('20230328102230'),
 ('20230511105741'),
-('20230518075547');
+('20230518075547'),
+('20230518123651');
+
+

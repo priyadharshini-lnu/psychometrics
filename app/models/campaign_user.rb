@@ -27,6 +27,7 @@ class CampaignUser < ApplicationRecord
 
   def compute_and_set_status
     return if campaign.fixed_timed? && completion_status != 'completed'
+    return if campaign.fixed_timed? && started_at.nil?
 
     update(status: completion_status)
   end
@@ -34,13 +35,16 @@ class CampaignUser < ApplicationRecord
   def compute_expiry_date
     return unless campaign.fixed_time?
 
-    if expiry_date.nil? || not_started_campaign?
-      campaign.fixed_time_duration&.seconds&.from_now
-    elsif interrupted_campaign?
-      additional_time&.seconds&.from_now
-    else
-      expiry_date
-    end
+    dates = []
+    dates << if interrupted_campaign?
+               additional_time&.seconds&.from_now
+             elsif expiry_date.nil? || not_started_campaign?
+               campaign.fixed_time_duration&.seconds&.from_now
+             else
+               expiry_date
+             end
+    dates << schedule_end_date
+    dates.compact.min
   end
 
   def finish_proctoring_session
@@ -90,5 +94,32 @@ class CampaignUser < ApplicationRecord
 
   def all_prework_completed?
     !prework_user_assessments.pending_assessments.exists?
+  end
+
+  def scheduled_at
+    dates = []
+    dates << campaign.start_date if campaign.inactive? && campaign.start_date
+    dates << schedule_start_date if schedule_start_date
+    dates.max
+  end
+
+  def scheduled_in
+    return unless scheduled_at
+
+    scheduled_at - Time.zone.now
+  end
+
+  def schedule_started?
+    return true unless schedule_start_date
+
+    schedule_start_date < Time.zone.now
+  end
+
+  def schedule_ended?
+    schedule_end_date && schedule_end_date < Time.zone.now
+  end
+
+  def in_schedule?
+    schedule_started? && !schedule_ended?
   end
 end

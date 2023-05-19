@@ -13,6 +13,9 @@ module EndUser
     def show
       return redirect_to dashboard_path unless %(active closed).include?(@campaign.status)
 
+      campaign_user = current_user.campaign_users.find_by(campaign_id: @campaign.id)
+      return redirect_to dashboard_path unless campaign_user.schedule_started?
+
       respond_to do |format|
         format.html { render 'campaigns/show' }
         format.json do

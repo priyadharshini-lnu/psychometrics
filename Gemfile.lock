@@ -946,7 +946,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     timecop (0.9.5)
-    timeliness (0.4.4)
+    timeliness (0.4.5)
     timeout (0.3.1)
     tins (1.31.1)
       sync
@@ -972,7 +972,8 @@ GEM
     validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
-    validates_timeliness (5.0.0)
+    validates_timeliness (6.0.1)
+      activemodel (>= 6.0.0, < 7)
       timeliness (>= 0.3.10, < 1)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -1197,7 +1198,7 @@ DEPENDENCIES
   tty-progressbar (~> 0.16.0)
   twilio-ruby (~> 5.58.1)
   two_factor_authentication!
-  validates_timeliness (~> 5.0.0)
+  validates_timeliness (~> 6.0.1)
   virtus (~> 1.0.5)
   vite_rails
   vite_ruby

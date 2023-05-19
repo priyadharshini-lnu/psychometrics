@@ -10,7 +10,9 @@ import { StartsInTimer } from '../StartsInTimer'
 
 const { I18n } = window
 
-export const Threesixty = ({ campaign, fetchCampaigns }) => {
+export const Threesixty = ({
+  campaign, fetchCampaigns, campaignDisabled, scheduledForFuture,
+}) => {
   const history = useHistory()
   const totalProgress = round(getTotalProgress(campaign))
 
@@ -22,11 +24,13 @@ export const Threesixty = ({ campaign, fetchCampaigns }) => {
     <Col lg={12} xs={24} sm={24} className={styles.campaignCard}>
       <DetailsCard
         title={<TruncatedTitle title={campaign.assessmentName} />}
-        subtitle={<StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} />}
+        subtitle={
+          <StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} scheduledForFuture={scheduledForFuture} />
+        }
         progressPercentage={totalProgress}
         buttonText={I18n.t('campaign.details')}
         onButtonClick={handleClick}
-        actionDisabled={campaign.status === 'inactive'}
+        actionDisabled={campaignDisabled}
       />
     </Col>
   )

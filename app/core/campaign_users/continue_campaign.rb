@@ -18,6 +18,7 @@ module CampaignUsers
 
     def attributes
       {
+        started_at: campaign_user.started_at || Time.zone.now,
         status: :in_progress,
         completed_at: nil,
         expiry_date: campaign_user.compute_expiry_date,

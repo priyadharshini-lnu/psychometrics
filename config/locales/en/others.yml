@@ -248,6 +248,10 @@ en:
               invalid_header: Invalid header, take header from export
             locale:
               inclusion: Wrong locale
+            schedule_end_date:
+              invalid_datetime: is invalid
+            schedule_start_date:
+              invalid_datetime: is invalid
         user_assessment:
           subject_and_assessment_exists: Assessment and subject pair already exists
     models:
@@ -2819,6 +2823,7 @@ en:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
   universal_links:
     close: Close
     deactivate_link: Deactivate Link

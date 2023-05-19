@@ -2339,6 +2339,8 @@ en:
           {{first_name}} - Recipient First Name
           {{last_name}} - Recipient Last Name
           {{email}} - Recipient Email
+          {{schedule_start_date}} - Schedule Start Date
+          {{schedule_end_date}} - Schedule End Date
         completion: Completion
         delivery_at: Delivery at (GST)
         delivery_rules:

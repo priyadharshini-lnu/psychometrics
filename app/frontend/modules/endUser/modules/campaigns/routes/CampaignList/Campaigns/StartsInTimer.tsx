@@ -11,26 +11,33 @@ const { I18n } = window
 
 interface Props {
   campaign: {
-    startDate: string
+    scheduledIn: number
+    scheduledAt: string
+    scheduledDate: string
     timing: string
     status: string
   },
+  scheduledForFuture: boolean
   fetchCampaigns: () => void
 }
-export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns }) => {
-  const isInactive = campaign.status === 'inactive'
-  const hoursRemaining = moment(campaign.startDate).diff(moment(), 'hours')
-  const secondsRemaining = moment(campaign.startDate).diff(moment(), 'seconds')
-  const timeIsInPast = secondsRemaining <= 0
+export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledForFuture }) => {
+  const { scheduledIn, scheduledAt } = campaign
+  let hoursRemaining = 0
+  let timeIsInPast = false
+  let date: null | string = null
+  if (scheduledIn) {
+    hoursRemaining = scheduledIn / 3600
+    timeIsInPast = scheduledIn <= 0
+    date = moment(scheduledAt).format('Do MMMM YYYY hh:mm Z')
+  }
+
 
   const [refreshDelay, setRefreshDelay] = useState<null | number>(timeIsInPast ? randomWholeNumber(15000, 30000) : null)
 
   useTimeout(() => {
     fetchCampaigns()
     setRandomDelaysForRefresh()
-  }, isInactive ? refreshDelay : null)
-
-  const startDateWithTimezone = () => moment(campaign.startDate).format('Do MMMM YYYY hh:mm Z')
+  }, scheduledForFuture ? refreshDelay : null)
 
   const setRandomDelaysForRefresh = () => {
     setRefreshDelay(randomWholeNumber(15000, 30000))
@@ -52,19 +59,20 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns }) => {
           </Descriptions.Item>
         </Descriptions>
       )}
-      {isInactive && hoursRemaining >= 24 && I18n.t('campaigns.card.starts_on', { date: startDateWithTimezone() })}
-      {isInactive && hoursRemaining < 24 && !timeIsInPast && (
+      {scheduledForFuture
+        && hoursRemaining >= 24 && I18n.t('campaigns.card.starts_on', { date })}
+      {scheduledForFuture && hoursRemaining < 24 && !timeIsInPast && (
         <Space>
           {I18n.t('campaigns.card.starts_in')}
           <CountdownTimer
             prefix={<ClockCircleOutlined />}
-            seconds={secondsRemaining}
+            seconds={scheduledIn}
             valueStyle={{ fontWeight: 'bold' }}
             onFinish={() => setRefreshDelay(0)}
           />
         </Space>
       )}
-      {isInactive && timeIsInPast && (
+      {scheduledForFuture && timeIsInPast && (
         <Space>
           {I18n.t('campaigns.card.will_start_shortly')}
           <LoadingOutlined />
