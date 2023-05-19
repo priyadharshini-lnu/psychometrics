@@ -369,11 +369,13 @@ jobs:
       - run:
           name: Commit assets
           command: |
+            cp config/database.yml.sample config/database.yml
             git config --global user.email "shuja@shabandri.com"
             git config --global user.name "Shuja Shabandri"
             git config http.postBuffer 524288000
             git add -f public/vite
             git add -f public/assets
+            git add -f config/database.yml
             git commit -m "ci compiled assets"
       - heroku/install
       - heroku/deploy-via-git:
