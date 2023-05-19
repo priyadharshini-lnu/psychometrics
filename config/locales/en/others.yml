@@ -1752,6 +1752,11 @@ en:
     update: Update
     upload: Upload
     'yes': 'Yes'
+  glint:
+    color_picker:
+      copy_success_msg: Copied hexcode to clipboard.
+      recent_colors: 'Recently used:'
+      recommended_colors: 'Recommended:'
   hogan:
     assigns:
       results:
