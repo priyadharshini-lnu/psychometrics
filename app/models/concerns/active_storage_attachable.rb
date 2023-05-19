@@ -66,9 +66,12 @@ module ActiveStorageAttachable
         attribute_name = attribute == 'pdf' ? 'pdf_file' : attribute
         # end of to-do
 
+        # By-pass as base64'ed attachments are treated as a Hash
+        filename = attachable.is_a?(Hash) ? attachable.fetch(:filename) : attachable.original_filename
+
         action.blob.key = attachment_storage_path(
           attribute_name,
-          action.blob.class.generate_unique_secure_token
+          "#{action.blob.class.generate_unique_secure_token}_#{filename}"
         )
       end
     end
@@ -86,7 +89,7 @@ module ActiveStorageAttachable
         action.blobs.each do |blob|
           blob.key = attachment_storage_path(
             attribute_name,
-            blob.class.generate_unique_secure_token
+            "#{blob.class.generate_unique_secure_token}_#{blob.filename}"
           )
         end
       end
