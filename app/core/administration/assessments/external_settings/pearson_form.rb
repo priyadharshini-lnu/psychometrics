@@ -22,11 +22,15 @@ module Administration
         def assessment_language
           return unless assessment_setting
 
-          assessment_setting.dig('norms', 'items').find { |n| n['normId'] == norm_id }&.dig('supportedLanguage')
+          norm_language = assessment_setting.norms['items'].
+                          find { |n| n['normId'] == norm_id }&.dig('supportedLanguage')
+          return norm_language if norm_language
+
+          assessment_setting.languages['default']
         end
 
         def assessment_setting
-          @assessment_setting ||= Pearson::GetAssessments.call!.find { |a| a['productId'] == assessment_id }
+          @assessment_setting ||= PearsonAssessment.find_by(product_id: assessment_id)
         end
       end
     end

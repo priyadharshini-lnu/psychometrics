@@ -370,8 +370,9 @@ de:
   threesixty:
     accept_privacy_modal:
       accept: Annehmen
+      policy_link: Klicken Sie hier, um die Datenschutzrichtlinie zu lesen.
       reject: Ablehnen
-      text: Mit dem Ausfüllen dieses Fragebogens bzw. dieser Fragebögen erklären Sie sich damit einverstanden, dass die erhobenen Daten für die Zwecke verwendet werden, die in der Mitteilung, die Sie bereits erhalten haben, vorgesehen und beschrieben sind. Ihre Antworten auf die gestellten Fragen werden zusammen mit allen anderen zur Verfügung gestellten Daten zum Zwecke der Analyse und Berichterstattung bezüglich Ihrer individuellen Antworten verwendet. Wir können Ihre Antworten außerdem im Rahmen von groß angelegten Forschungsprojekten verwenden. Ihre Daten werden mit der erforderlichen Vertraulichkeit und Sicherheit behandelt. Bitte klicken Sie <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>hier</a> / und besuchen Sie diese Website, um weitere Informationen zu erhalten oder sich mit jemandem in Verbindung zu setzen, wenn Sie spezifischere Fragen haben.
+      text: Bevor ich mit der Ausführung der nachstehenden Aufgaben fortfahre, bestätige ich, dass ich die Datenschutzrichtlinie von The Talent Enterprise und die damit verbundenen Richtlinien zur Verwendung meiner personenbezogenen Daten gelesen habe und ihnen zustimme.
       title: Einwilligung zur Datenverarbeitung
     add: hinzufügen
     and: und

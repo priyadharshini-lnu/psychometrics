@@ -1,3 +1,4 @@
+import { FilterValue } from 'antd/lib/table/interface'
 import { TableConfig } from './interfaces'
 
 export const INIT_TABLE = 'INIT_TABLE'
@@ -13,7 +14,9 @@ export const initTable = (tableName: string, maintainHistory = false, pageSize: 
   payload: { tableName, maintainHistory, pageSize },
 })
 
-export const changeFilter = (tableName: string, filterName: string, filterValue: string | string[]) => ({
+export const changeFilter = (
+  tableName: string, filterName: string, filterValue: string | boolean | number | FilterValue,
+) => ({
   type: CHANGE_FILTER,
   payload: { tableName, filterName, filterValue },
 })

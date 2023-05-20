@@ -3,7 +3,9 @@ import Result from '~/modules/survey/models/Preview/Result'
 import { setIn } from '~/utils/immutable'
 import { isMediaResponseQuestion } from '~/modules/survey/utils/question'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
-import { QuestionsInterface, ResultsInterface, QuestionError } from '../interfaces'
+import {
+  Question, QuestionsInterface, ResultsInterface, QuestionError,
+} from '../interfaces'
 import MediaResponseValidator from './MediaResponseValidator'
 
 const ValidationProcessor = {
@@ -11,6 +13,7 @@ const ValidationProcessor = {
     questions: QuestionsInterface,
     results: ResultsInterface,
     mediaResponses: MediaResponse[],
+    answeredQuestions: Question[],
   ): {[questionId: number]: []} {
     return _.reduce(questions, (errors, question) => {
       const result = results[question.id] || {}
@@ -21,7 +24,7 @@ const ValidationProcessor = {
       if (isMediaResponseQuestion(question)) {
         err = MediaResponseValidator.run(question, mediaResponses)
       } else {
-        const resultModel = new Result(qwrap, result.answers, result.not_applicable)
+        const resultModel = new Result(qwrap, result.answers, result.not_applicable, results, answeredQuestions)
         err = resultModel.validate()
       }
 

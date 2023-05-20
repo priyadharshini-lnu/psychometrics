@@ -195,6 +195,8 @@ en:
           smsInvites:
             manage: Manage
             view: View
+          users:
+            reset_password: Reset Password
     all: " - All - "
     any: " - Any - "
     assessments:

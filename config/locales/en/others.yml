@@ -244,8 +244,10 @@ en:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project
             import_data:
+              cant_overwrite_password: You do not have permission to overwrite password.
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
               invalid_header: Invalid header, take header from export
+              user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
             schedule_end_date:
@@ -1659,6 +1661,7 @@ en:
         eti: ETI
         yti: YTI
   errors:
+    error: Error
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
@@ -2638,8 +2641,8 @@ en:
       policy_link: Click here to read the privacy policy.
       reject: Reject
       text: |
-        Prior to proceeding to completing the tasks below, I confirm that I have read and agree to
-        The Talent Enterprise’s Privacy Policy and related guidelines regarding the use of my personal information.
+        Prior to proceeding to complete the tasks below, I confirm that I have read and agree to
+        The Talent Enterprise's Privacy Policy and related guidelines regarding the use of my personal information.
       title: Data processing consent
     action: Action
     add: Add

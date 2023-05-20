@@ -1,10 +1,13 @@
-import React, { useEffect, FC, useContext } from 'react'
+import React, {
+  useEffect, FC, useContext, useState,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {
-  Col, Row, Typography, Layout, Card,
+  Col, Row, Typography, Layout, Card, Skeleton,
 } from 'antd'
 import moment from 'moment'
+import { isRequestInProgress } from '~/core/request'
 
 import { ProfileCompletion } from '~/modules/endUser/modules/campaigns/components/ProfileCompletion'
 import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components/ProfileCardTitle'
@@ -13,6 +16,7 @@ import {
   fetchCampaigns,
   loginHogan,
   acceptPolicy,
+  FETCH,
 } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import LangDropdown from '~/components/LangDropdown'
 import { PageHeader, MediaQueryContext } from '~/glint'
@@ -31,6 +35,7 @@ const mapStateToProps = (state: RootState) => ({
   campaigns: state.campaigns.campaigns,
   profileCompletionPercentage: state.currentUser.profileCompletionPercentage,
   profileLastUpdatedAt: state.currentUser.updatedAt,
+  isLoading: isRequestInProgress(state, FETCH),
 })
 
 const mapDispatchToProps = {
@@ -50,12 +55,16 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   acceptPolicy,
   profileCompletionPercentage,
   profileLastUpdatedAt,
+  isLoading,
 }) => {
+  const [error, setError] = useState(false)
   const history = useHistory()
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
 
   useEffect(() => {
-    fetchCampaigns()
+    fetchCampaigns().catch(() => {
+      setError(true)
+    })
   }, [])
 
   const handleProfileCompletion = () => {
@@ -95,11 +104,29 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
               </Card>
             </Col>
             <Col span={24}>
-              <Title level={4} className={styles['campaign-title']}>{I18n.t('campaign.campaigns')}</Title>
-              <Text className={styles['campaign-instruction']}>
-                {campaigns.length
-                  ? I18n.t('campaign.dashboard_instructions') : I18n.t('campaign.inactive_campaign_message')}
-              </Text>
+              <Title level={4} className={styles['campaign-title']}>
+                {error ? I18n.t('errors.error') : I18n.t('campaign.campaigns')}
+              </Title>
+              {error
+                ? (
+                  <Text className={styles['campaign-instruction']}>
+                    {I18n.t('errors.error_500')}
+                  </Text>
+                )
+                : (
+                  <>
+                    {isLoading
+                      ? <Skeleton active />
+                      : (
+                        <Text className={styles['campaign-instruction']}>
+                          {campaigns.length
+                            ? I18n.t('campaign.dashboard_instructions')
+                            : I18n.t('campaign.inactive_campaign_message')}
+                        </Text>
+                      )}
+                  </>
+                )
+              }
             </Col>
             {campaigns.map((campaign) => {
               const scheduledForFuture = campaign.scheduledIn && campaign.scheduledIn > 0

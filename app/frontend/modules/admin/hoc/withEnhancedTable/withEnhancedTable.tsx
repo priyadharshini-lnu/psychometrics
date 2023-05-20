@@ -86,8 +86,10 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
 
           if (filterValues === null) {
             removeFilter(tableName, filterWithPredicate)
+          } else if (filterPredicate === 'Eq') {
+            changeFilter(tableName, filterWithPredicate, filterValues[0])
           } else {
-            changeFilter(tableName, filterWithPredicate, filterValues as string[])
+            changeFilter(tableName, filterWithPredicate, filterValues)
           }
         })
       }

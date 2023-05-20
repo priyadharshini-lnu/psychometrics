@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import FroalaEditor from 'react-froala-wysiwyg'
+import store from '~/modules/survey/store'
 
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 import 'froala-editor/js/third_party/spell_checker.min.js'
 import 'froala-editor/css/third_party/spell_checker.min.css'
 
-import '~/modules/survey/commands/froalaCommands'
+import pipedText from '~/libs/Editor/commands/pipedText'
+
 import config from './froalaConfig'
 
 const {
@@ -16,6 +18,10 @@ const {
 
 export const RichEditor = ({ value, onSave, close }) => {
   const [text, setText] = useState(value)
+
+  useEffect(() => {
+    pipedText(store)
+  }, [])
 
   const saveText = () => {
     onSave(text)
