@@ -125,6 +125,8 @@ const CommonComponent: FC<CommonComponentProps> = ({
 
     if (integrationType === 'ldb') { messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction')) }
 
+    messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
+
     return (
       messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
     )
@@ -147,12 +149,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
 
     Modal.info({
       icon: false,
-      title: (
-        <Space>
-          <InfoCircleOutlined />
-          {I18n.t('campaign.instruction_modal.title')}
-        </Space>
-      ),
+      title: null,
       content: campaignStartInstruction(),
       okText: I18n.t('common.actions.start'),
       closable: true,

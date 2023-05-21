@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 class SetRandomseedForExistingUsersResults < ActiveRecord::Migration[6.1]
   def up
-    UsersResult.find_each do |user_result|
-      next if user_result.seedrandom
-
-      user_result.generate_randomseed
-      user_result.save!
-    end
+    ActiveRecord::Migration[6.1].execute(%(
+      UPDATE users_results SET seedrandom = id WHERE seedrandom IS NULL
+    ))
   end
 end
