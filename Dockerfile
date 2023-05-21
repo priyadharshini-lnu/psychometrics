@@ -123,7 +123,6 @@ ARG AWS_ACCESS_KEY_ID="dummy_key"
 ARG AWS_SECRET_ACCESS_KEY="dummy_secret"
 ARG AWS_REGION="eu-west-1"
 ARG AWS_S3_BUCKET="dummy_bucket"
-ARG S3_COMPATIBLE_STORAGE_ENDPOINT="dummy"
 ARG S3_COMPATIBLE_STORAGE_ACCESS_KEY_ID="dummy"
 ARG S3_COMPATIBLE_STORAGE_SECRET_ACCESS_KEY="dummy"
 ARG S3_COMPATIBLE_STORAGE_REGION="dummy"
@@ -137,7 +136,7 @@ RUN bundle exec rake i18n:js:export \
     && DISABLE_COVERAGE=1 bundle exec rails assets:precompile \
     && rm -rf tmp/ && rm -rf node_modules
 
-FROM ruby:3.1.3-slim
+FROM ruby:3.1.2-slim
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"

@@ -36,7 +36,7 @@ _.extend(Custom.prototype, {
 
   validate () {
     if (!this.question || !this.predicate) { return { prefix: 'Or', value: false } }
-    this.result = this.result || this.results[this.question.id]
+    this.result = this.results[this.subject]
     if (!this.result) { return { prefix: 'Or', value: false } }
     return { prefix: this.prefix, value: this[this.predicate]() }
   },
@@ -54,7 +54,7 @@ _.extend(Custom.prototype, {
       case 'HotSpot':
         return true
       default:
-        return !!_.find(this.result.question.choicesIds, this.answer)
+        return !!_.find(this.question.choicesIds, this.answer)
     }
   },
 
@@ -63,7 +63,7 @@ _.extend(Custom.prototype, {
       case 'HotSpot':
         return true
       default:
-        return !_.find(this.result.question.choicesIds, this.answer)
+        return !_.find(this.question.choicesIds, this.answer)
     }
   },
 

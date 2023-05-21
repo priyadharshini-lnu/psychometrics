@@ -17,10 +17,10 @@ type ProgressStatusProps = {
 export const ProgressStatus: FC<ProgressStatusProps> = ({
   statusText, StatusIcon, count, theme = 'dark',
 }) => {
-  const { isMobile } = useContext(MediaQueryContext)
+  const { isMobile, isTablet } = useContext(MediaQueryContext)
 
   return (
-    <Row gutter={[16, 0]}>
+    <Row gutter={[16, 0]} wrap={isMobile || isTablet}>
       {!isMobile && (
       <Col span={6} className={cs(styles[theme], styles.iconColumn)}>
         <StatusIcon className={styles.statusIcon} />

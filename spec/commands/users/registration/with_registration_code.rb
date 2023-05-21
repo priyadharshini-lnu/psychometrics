@@ -10,8 +10,8 @@ describe Users::Registration::WithRegistrationCode do
     @form = Users::Registration::WithRegistrationCodeForm.from_params(
       'email' => 'email-1@tte-test.com', 'first_name' => 'Tester',
       'last_name' => 'Person', 'registration_code' => 'tte-2019',
-      'password' => 'ComplexPass123',
-      'password_confirmation' => 'ComplexPass123'
+      'password' => 'ComplexPass129',
+      'password_confirmation' => 'ComplexPass129'
     ).with_context(project: project)
   end
 

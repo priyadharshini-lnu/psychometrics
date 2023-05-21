@@ -8,7 +8,7 @@ module Administration
       end
 
       def export_results?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:results, :raw_responses)
       end
 
       def export_completion_status?

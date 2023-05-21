@@ -81,7 +81,7 @@ module Administration
       def import
         import_data = ::Campaigns::Users::ParseImportData.call!(params[:import_data], campaign)
         form = ::Campaigns::Users::ImportForm.new(import_data: import_data, operation: params[:operation]).
-               with_context(campaign: campaign)
+               with_context(campaign: campaign, current_user: current_user)
         if form.valid?
           audit! :import_users, campaign, campaign: campaign
           AdminJob.call(:import_users, {

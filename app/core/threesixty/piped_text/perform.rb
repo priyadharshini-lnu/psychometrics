@@ -32,13 +32,15 @@ module Threesixty
           key: 'st',
           name: 'subject_table',
           class_name: 'Threesixty::PipedText::Branches::SubjectTableBranch',
-          required_context: %i[subject_ids evaluator threesixty_campaign]
+          required_context: %i[subject_ids evaluator threesixty_campaign],
+          allow_html: true
         },
         {
           key: 'dash',
           name: 'dashboard',
           class_name: 'Threesixty::PipedText::Branches::Dashboard',
-          required_context: %i[threesixty_campaign recipient]
+          required_context: %i[threesixty_campaign recipient],
+          allow_html: true
         },
         {
           key: 'd',
@@ -56,13 +58,15 @@ module Threesixty
           key: 'answer',
           name: 'answer',
           class_name: 'Threesixty::PipedText::Branches::Answer',
-          required_context: %i[result]
+          required_context: %i[result],
+          allow_html: true
         },
         {
           key: 'nat',
           name: 'nomination_table',
           class_name: 'Threesixty::PipedText::Branches::NominationBranch',
-          required_context: %i[subject threesixty_campaign]
+          required_context: %i[subject threesixty_campaign],
+          allow_html: true
         }
       ].freeze
 
@@ -74,7 +78,7 @@ module Threesixty
         @transformer = transformer
       end
 
-      # rubocop:disable Style/CharacterLiteral
+      # rubocop:disable Style/CharacterLiteral, Metrics/PerceivedComplexity
       def call
         return if body.blank?
 
@@ -89,6 +93,14 @@ module Threesixty
                 Rack::Utils.parse_nested_query(params ? CGI.escape(params).gsub('%3D', ?=).gsub('%26', ?&) : ''),
                 context
               )
+              value = if branch[:allow_html]
+                        value
+                      elsif value
+                        CGI.escapeHTML(value)
+                      else
+                        ''
+                      end
+
               next transformer.call(value) if transformer
 
               value
@@ -98,7 +110,7 @@ module Threesixty
           end
         broadcast :ok, result
       end
-      # rubocop:enable Style/CharacterLiteral
+      # rubocop:enable Style/CharacterLiteral, Metrics/PerceivedComplexity
 
       def lookup_branch(path)
         branch_key = path.scan(/^(\w+):/).first&.first

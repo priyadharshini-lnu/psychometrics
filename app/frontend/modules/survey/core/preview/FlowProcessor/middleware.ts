@@ -8,7 +8,7 @@ import {
 import { NEXT_PAGE } from './consts'
 import {
   pageQuestions, pageQuestionsWithoutHidden, getNextPage, getNextElementId,
-  getSkipLogicSelector, getDisplayLogicSelector, getElementIdByBlockId,
+  getSkipLogicSelector, getDisplayLogicSelector, getElementIdByBlockId, getAllAnsweredQuestions,
 } from './selectors'
 import ValidationProcessor from './commands/ValidationProcessor'
 import ElementProcessor from './commands/ElementProcessor'
@@ -80,7 +80,8 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   const questions = pageQuestionsWithoutHidden(preview)
 
   if (!action.skipValidations && !preview.ignoreValidations) {
-    const errors = ValidationProcessor.run(questions, preview.results, preview.mediaResponses)
+    const answeredQuestions = getAllAnsweredQuestions(preview)
+    const errors = ValidationProcessor.run(questions, preview.results, preview.mediaResponses, answeredQuestions)
 
     if (_.size(errors) > 0) {
       dispatch(showErrors(errors))
