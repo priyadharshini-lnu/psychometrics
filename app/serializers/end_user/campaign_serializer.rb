@@ -6,11 +6,10 @@ module EndUser
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,
-               :privacy_consent_required
+               :privacy_consent_required, :campaign_time, :fixed_timed
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
-    has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
     has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
@@ -19,11 +18,17 @@ module EndUser
         !current_user.privacy_consents.exists?(version: Settings.privacy_policy_version)
     end
 
+    def fixed_timed
+      object.fixed_timed?
+    end
+
     def is_timed_campaign
       object.timed?
     end
 
     def status
+      return 'closed' unless campaign_user.in_schedule?
+
       object.real_status
     end
 
@@ -35,12 +40,6 @@ module EndUser
       UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id).
         includes({ assessment: :agile }, :users_result, :campaign, :evaluator).
         where.not(assessments: { category: :mindmill })
-    end
-
-    def user_reports
-      object.user_reports.eager_load(:report, :user).
-        where(user_id: current_user.id, user_access: true).
-        merge(Report.assignable)
     end
 
     def campaign_user
@@ -57,6 +56,13 @@ module EndUser
 
     def user_reports_available
       object.user_reports.exists?(user_id: current_user.id, user_access: true)
+    end
+
+    def campaign_time
+      return unless object.fixed_time?
+      return campaign_user.additional_time / 60 if campaign_user.interrupted_campaign?
+
+      return object.fixed_time_duration / 60 if campaign_user.not_started_campaign?
     end
 
     private

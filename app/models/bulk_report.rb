@@ -17,7 +17,7 @@ class BulkReport < ApplicationRecord
   sync_to_active_storage :files
 
   def attachment_storage_path(attribute_name, filename)
-    "private/bulk_report/#{id}/#{attribute_name}/#{filename}"
+    "private/bulk_report/#{attribute_name}/#{filename}"
   end
 
   # TODO: remove after ActiveStorage implementation?

@@ -26,6 +26,7 @@ class UserAssessment < ApplicationRecord
   has_one :threesixty_campaign, through: :campaign
 
   delegate :saville?, :iiht?, :pearson?, to: :assessment
+  delegate :prework?, :prework, to: :campaign_assessment, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -42,13 +43,26 @@ class UserAssessment < ApplicationRecord
       where('user_assessments.subject_id != user_assessments.evaluator_id')
     end
   }
+  scope :pending_assessments, -> { where.not(status: %i[completed timed_out]) }
 
   before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
 
+  after_commit -> { set_campaign_user_started_at }, unless: :not_started?, on: %i[create]
+  after_commit -> { set_campaign_user_started_at }, if: proc {
+                                                          status_previously_changed? && in_progress?
+                                                        }, on: %i[update]
+
   alias result users_result
+
+  def set_campaign_user_started_at
+    return unless campaign_user
+    return if campaign_user.started_at.present? || campaign.fixed_timed?
+
+    campaign_user.update!(started_at: Time.current)
+  end
 
   def complete!
     update!(status: :completed, completed_at: Time.current)
@@ -121,11 +135,11 @@ class UserAssessment < ApplicationRecord
   end
 
   def campaign_user
-    CampaignUser.find_by(campaign_id: campaign_id, user_id: evaluator_id)
+    @campaign_user ||= CampaignUser.find_by(campaign_id: campaign_id, user_id: evaluator_id)
   end
 
   def campaign_assessment
-    CampaignAssessment.find_by(campaign_id: campaign_id, assessment_id: assessment_id)
+    @campaign_assessment ||= CampaignAssessment.find_by(campaign_id: campaign_id, assessment_id: assessment_id)
   end
 
   def applicable_norm_id
@@ -171,6 +185,24 @@ class UserAssessment < ApplicationRecord
     return false unless expiry_date
 
     expiry_date.advance(minutes: 5) < Time.current
+  end
+
+  def other_pending_assessments_count
+    return 0 unless campaign_user
+
+    campaign_user.pending_assessments.where.not(id: id).count
+  end
+
+  def self_assessment?
+    subject_id == evaluator_id
+  end
+
+  def closed?
+    return true if %w[completed timed_out ineligible].include?(status)
+    return true if self_assessment? && %w[closed inactive archived].include?(campaign.status)
+    return false unless campaign_user
+
+    !campaign_user.in_schedule?
   end
 
   private

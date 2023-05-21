@@ -3,7 +3,9 @@
 module EndUser
   class ShortCampaignSerializer < ActiveModel::Serializer
     attributes :id, :name, :type, :status, :completion_percentage, :progress_status, :user_reports_available,
-               :description
+               :description, :timing, :scheduled_at, :scheduled_in
+
+    delegate :scheduled_at, :scheduled_in, to: :campaign_user, allow_nil: true
 
     def completion_percentage
       uas = instance_options[:current_user].user_assessments.where(campaign: object)
@@ -14,7 +16,7 @@ module EndUser
     end
 
     def progress_status
-      object.campaign_users.find_by(user_id: instance_options[:current_user]).completion_status
+      campaign_user.completion_status
     end
 
     def user_reports_available
@@ -23,6 +25,14 @@ module EndUser
 
     def description
       object.campaign_options.description
+    end
+
+    def timing
+      object.fixed_timed? ? object.fixed_time_duration : nil
+    end
+
+    def campaign_user
+      object.campaign_users.find_by(user_id: instance_options[:current_user])
     end
   end
 end

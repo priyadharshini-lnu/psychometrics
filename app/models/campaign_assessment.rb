@@ -15,6 +15,8 @@ class CampaignAssessment < ApplicationRecord
 
   delegate :common?, :hogan?, :mindmill?, :external?, :saville?, :iiht?, :has_external_norm?, to: :assessment
 
+  scope :preworks, -> { where(prework: true) }
+
   def validate_external_config
     return unless external_config.presence.is_a?(String)
 

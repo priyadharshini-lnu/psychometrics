@@ -2,9 +2,13 @@
 
 module UsersResults
   class AgileSerializer < ActiveModel::Serializer
-    attributes :id, :groups, :locale, :completed_groups, :assets, :available_locales
+    attributes :id, :groups, :locale, :completed_groups, :assets, :available_locales, :other_pending_assessments_count,
+               :remaining_campaign_time
 
+    delegate :agile, :user_assessment, to: :object
     delegate :config, :translations, to: :agile
+    delegate :other_pending_assessments_count, :campaign_user, to: :user_assessment
+    delegate :remaining_campaign_time, to: :campaign_user, allow_nil: true
 
     def completed_groups
       object.meta_data['completed_groups'] || []
@@ -21,14 +25,12 @@ module UsersResults
     def locale
       locales = object.available_locales
       {
-        selected: object.user_assessment.selected_locale,
+        selected: user_assessment.selected_locale,
         defaultLocale: I18n.default_locale,
         available: locales,
         translations: translations.slice(*locales)
       }
     end
-
-    delegate :agile, to: :object
 
     def attributes(*_)
       super.transform_keys { |k| k.to_s.camelcase(:lower) }

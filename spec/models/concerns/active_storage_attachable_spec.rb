@@ -25,7 +25,7 @@ describe ActiveStorageAttachable do
         @innovation_style = create(:innovation_style),
         @occupation = create(:occupation),
         @report = create(:report),
-        @user_profile = create(:user_profile, user: create(:user)),
+        @user_profile = create(:user_profile, user: create(:user), photo: nil),
         @media_resp = MediaResponse.create(
           question: FactoryBot.build(:question),
           users_result: FactoryBot.create(:users_result)
@@ -45,24 +45,24 @@ describe ActiveStorageAttachable do
     end
 
     it 'stores correct attachment key' do
-      expect(@assessment.as_icon.blob.key).
-        to match(%r{public/assessment/#{@assessment.id}/icon/})
-      expect(@dashboard.as_image.blob.key).
-        to match(%r{private/projects/#{@dashboard.project.id}/dashboard/#{@dashboard.id}/image/})
-      expect(@design_setting.as_logo.blob.key).
-        to match(%r{public/projects/#{@design_setting.project.id}/design_setting/#{@design_setting.id}/logo/})
-      expect(@factor.as_icon.blob.key).
-        to match(%r{public/factor/#{@factor.id}/icon/})
-      expect(@innovation_style.as_icon.blob.key).
-        to match(%r{public/innovation_style/#{@innovation_style.id}/icon/})
-      expect(@occupation.as_icon.blob.key).
-        to match(%r{public/occupation/#{@occupation.id}/icon/})
-      expect(@report.as_icon.blob.key).
-        to match(%r{public/report/#{@report.id}/icon/})
-      expect(@user_profile.as_photo.blob.key).
-        to match(%r{public/user_profile/#{@user_profile.id}/photo/})
-      expect(@media_resp.as_asset.blob.key).to match(
-        %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.id}/asset/}
+      expect(@assessment.as_icon.key).
+        to match(%r{public/assessment/icon/\w+_test_image.jpeg})
+      expect(@dashboard.as_image.key).
+        to match(%r{private/projects/#{@dashboard.project.id}/dashboard/image/\w+_test_image.jpeg})
+      expect(@design_setting.as_logo.key).
+        to match(%r{public/projects/#{@design_setting.project.id}/design_setting/logo/\w+_test_image.jpeg})
+      expect(@factor.as_icon.key).
+        to match(%r{public/factor/icon/\w+_test_image.jpeg})
+      expect(@innovation_style.as_icon.key).
+        to match(%r{public/innovation_style/icon/\w+_test_image.jpeg})
+      expect(@occupation.as_icon.key).
+        to match(%r{public/occupation/icon/\w+_test_image.jpeg})
+      expect(@report.as_icon.key).
+        to match(%r{public/report/icon/\w+_test_image.jpeg})
+      expect(@user_profile.as_photo.key).
+        to match(%r{public/user_profile/photo/\w+_})
+      expect(@media_resp.as_asset.key).to match(
+        %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
       )
     end
   end
@@ -99,10 +99,10 @@ describe ActiveStorageAttachable do
     end
 
     it 'stores correct attachment key' do
-      expect(@library.as_file.blob.key).
-        to match(%r{public/library/#{@library.id}/file/})
-      expect(@user_report.as_pdf_file.blob.key).
-        to match(%r{private/projects/#{@user_report.project.id}/user_report/#{@user_report.id}/pdf_file/})
+      expect(@library.as_file.key).
+        to match(%r{public/library/file/\w+_test_image.jpeg})
+      expect(@user_report.as_pdf_file.key).
+        to match(%r{private/projects/#{@user_report.project.id}/user_report/pdf_file/\w+_test.pdf})
     end
   end
 
@@ -118,7 +118,7 @@ describe ActiveStorageAttachable do
     end
 
     it 'stores correct attachment key' do
-      expect(@bulk_report.as_files.first.blob.key).to match(%r{private/bulk_report/#{@bulk_report.id}/files/})
+      expect(@bulk_report.as_files.first.key).to match(%r{private/bulk_report/files/\w+_archive.zip})
     end
   end
 end

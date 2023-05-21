@@ -18,6 +18,16 @@ const EXPORT_NORMED_RESULTS = 'campaigns/userAssessments/EXPORT_NORMED_RESULTS'
 const EXPORT_RAW_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_RAW_FACTOR_RESULTS'
 const EXPORT_EXTERNAL_RESULTS = 'campaigns/userAssessments/EXPORT_EXTERNAL_RESULTS'
 
+export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
+export const updatePrework = (campaignId: number, id: number, prework: boolean) => ({
+  type: UPDATE_PREWORK,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${id}/update_prework`,
+    body: { prework },
+  },
+})
+
 export const activateUniversalLink = (campaignId: string, id: number) => ({
   type: ACTIVATE_UNIVERSAL_LINK,
   request: {

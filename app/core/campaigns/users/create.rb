@@ -33,7 +33,9 @@ module Campaigns
         if existing_user_in_project
           @user = existing_user_in_project
         else
-          user_attributes = form.to_h.except(:operation, :campaign_ids, :active).merge(
+          user_attributes = form.to_h.except(
+            :operation, :campaign_ids, :schedule_start_date, :schedule_start_date, :schedule_end_date, :active
+          ).merge(
             project: project,
             create_by_invite: true,
             creator: current_user,
@@ -41,7 +43,10 @@ module Campaigns
           )
           @user = User.create!(user_attributes)
         end
-        @campaign_user = campaign.campaign_users.create(user: user, active: form.active)
+        @campaign_user = campaign.campaign_users.create(
+          user: user, active: form.active, schedule_start_date: form.schedule_start_date,
+          schedule_end_date: form.schedule_end_date
+        )
       end
 
       def add_reports_and_assessments

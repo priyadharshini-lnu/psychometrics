@@ -88,10 +88,19 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           <Col lg={24 - progressBarSpanLg} md={16} xs={24 - progressBarSpanXs} className={styles.buttonCol}>
             <Space>
               {secondaryBtnText && (
-              <Button size="small" type="primary" ghost onClick={onSecondaryBtnClick} className={styles.actionButton}>
-                {secondaryBtnText}
-                <DirectionalArrowIcon className={styles.buttonIcon} />
-              </Button>
+              <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
+                <Button
+                  size="small"
+                  type="primary"
+                  disabled={actionDisabled}
+                  ghost
+                  onClick={onSecondaryBtnClick}
+                  className={styles.actionButton}
+                >
+                  {secondaryBtnText}
+                  <DirectionalArrowIcon className={styles.buttonIcon} />
+                </Button>
+              </ButtonWrapper>
               )}
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
                 <Button

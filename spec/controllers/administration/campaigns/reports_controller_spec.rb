@@ -147,6 +147,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         all_locales
         external_config
         campaign_assessment_id
+        prework
       ]
     )
     expect(assessment_response).to include({

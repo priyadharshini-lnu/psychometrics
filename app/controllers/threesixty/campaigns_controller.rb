@@ -27,6 +27,8 @@ module Threesixty
     end
 
     def show
+      return redirect_to dashboard_path unless %(active closed).include?(@campaign.campaign.status)
+
       respond_to do |format|
         format.html
         format.json do

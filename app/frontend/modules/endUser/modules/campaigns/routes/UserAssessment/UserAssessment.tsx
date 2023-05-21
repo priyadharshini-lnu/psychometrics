@@ -61,6 +61,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       remaining_campaign_time: remainingCampaignTime,
       remaining_assessment_time: remainingAssessmentTime,
       proctoring_enabled: proctoringEnabled,
+      prework,
     },
   }, fetchAssessment,
   match: { params },
@@ -82,7 +83,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
 
-  const needsProctoring = proctoringEnabled && !isProctored()
+  const needsProctoring = proctoringEnabled && !prework && !isProctored()
   if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
 
   const enableBackButton = !isProctored() || proctoringEnabled

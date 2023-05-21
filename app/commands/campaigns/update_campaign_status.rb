@@ -4,7 +4,7 @@ module Campaigns
   class UpdateCampaignStatus < Rectify::Command
     attr_accessor :interval
 
-    def initialize(interval = '10 minutes')
+    def initialize(interval = '1 minutes')
       @interval = interval
     end
 

@@ -7,7 +7,6 @@ class ApplicationController < ::BaseController
   # Authentication user/manager
   before_action :set_client_by_subdomain
   before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
-  append_before_action :set_membership, if: :user_signed_in?
   after_action :allow_iframe_for_sso, if: proc { inside_sso_iframe? }
   after_action :allow_iframe_for_examus, if: proc { inside_examus_iframe? }
   around_action :set_mobility_locale
@@ -31,8 +30,7 @@ class ApplicationController < ::BaseController
     {
       current_user: current_user,
       current_client: @current_client,
-      current_project: @current_project,
-      current_membership: @current_membership
+      current_project: @current_project
     }
   end
 
@@ -119,30 +117,6 @@ class ApplicationController < ::BaseController
     @current_client = @current_project.client
   end
   # rubocop:enable all
-
-  # Fetch membership
-  def set_membership # rubocop:disable Metrics/PerceivedComplexity
-    return if request.controller_class.to_s.start_with?('Administration')
-    return if request.controller_class.to_s.start_with?('Ecommerce')
-    return if request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
-
-    @current_membership = current_user.memberships.join_user.find_by(client_id: @current_project)
-
-    unless @current_membership
-      campaign_user = current_user.campaign_users.includes(:project).find { |cu| cu.project == @current_project }
-      return if campaign_user
-    end
-
-    current_user.current_membership = @current_membership
-    if !@current_membership && current_user
-      if current_user.is?(:superadmin)
-        redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}")
-      else
-        sign_out current_user
-        redirect_to root_url
-      end
-    end
-  end
 
   def user_not_authorized
     respond_to do |format|
