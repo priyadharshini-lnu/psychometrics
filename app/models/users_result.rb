@@ -47,6 +47,6 @@ class UsersResult < ApplicationRecord
   end
 
   def generate_randomseed
-    self.seedrandom = Devise.friendly_token(10)
+    self.seedrandom = rand(1..100).to_s
   end
 end
