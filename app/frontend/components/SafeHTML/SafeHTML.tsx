@@ -38,7 +38,7 @@ const sanitizeConfig: SanitizeConfig = {
   },
   report: {
     ALLOWED_TAGS: ['img'],
-    ALLOWED_ATTR: ['src', 'width', 'height'],
+    ALLOWED_ATTR: ['src', 'width', 'height', 'style'],
   },
 }
 

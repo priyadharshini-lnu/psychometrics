@@ -30,10 +30,12 @@ class UsersResult < ApplicationRecord
 
   delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,
            :norm_data, :completed_at, :started_at, :completion_reason, :user_reports, :available_locales,
-           :external_user_reports, :user, :user_id,
+           :external_user_reports, :user, :user_id, :campaign_user,
            to: :user_assessment, allow_nil: true
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
            to: :user_assessment, allow_nil: true)
+
+  before_create :generate_randomseed
 
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
@@ -42,5 +44,9 @@ class UsersResult < ApplicationRecord
   # TODO: Remove all reference of answer_key after Assign model is removed
   def answer_key
     'answers'
+  end
+
+  def generate_randomseed
+    self.seedrandom = rand(1..100).to_s
   end
 end

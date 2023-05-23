@@ -3,6 +3,78 @@
 require 'rails_helper'
 
 describe CampaignUser, type: :model do
+  describe 'scheduled_at' do
+    it 'if campaign is inactive, gives max date between campaign start_date and schedule_start_date' do
+      campaign = create(:campaign, status: :inactive, start_date: 2.days.from_now)
+      campaign_user = create(:campaign_user, campaign: campaign, schedule_start_date: 1.day.from_now)
+
+      expect(campaign_user.scheduled_at).to eq(campaign.start_date)
+    end
+
+    it 'if campaign is active returns cam schedule_start_date' do
+      campaign = create(:campaign, status: :active, start_date: 1.day.from_now)
+      campaign_user = create(:campaign_user, campaign: campaign, schedule_start_date: 2.days.from_now)
+
+      expect(campaign_user.scheduled_at).to eq(campaign_user.schedule_start_date)
+    end
+
+    it 'returns nil if there is no schedule_start_date and campaign is active' do
+      campaign = create(:campaign, status: :active, start_date: 1.day.from_now)
+      campaign_user = create(:campaign_user, campaign: campaign, schedule_start_date: nil)
+      expect(campaign_user.scheduled_at).to eq(nil)
+    end
+  end
+
+  describe 'in_schedule?' do
+    it 'returns true if schedule started but not ended or return false' do
+      campaign = create(:campaign, status: :active)
+
+      campaign_user = create(
+        :campaign_user, campaign: campaign, schedule_start_date: 1.day.ago,
+        schedule_end_date: 2.days.from_now
+      )
+      expect(campaign_user.in_schedule?).to eq(true)
+
+      campaign_user = create(
+        :campaign_user, campaign: campaign, schedule_start_date: 1.day.from_now,
+        schedule_end_date: 2.days.from_now
+      )
+      expect(campaign_user.in_schedule?).to eq(false)
+
+      campaign_user = create(
+        :campaign_user, campaign: campaign, schedule_start_date: 2.days.ago,
+        schedule_end_date: 1.day.ago
+      )
+      expect(campaign_user.in_schedule?).to eq(false)
+    end
+  end
+
+  describe 'compute_expiry_date' do
+    it 'returns time in future determined by additional_time if interrupted_campaign' do
+      campaign = create(:campaign)
+      campaign.campaign_options.update(fixed_time: true, fixed_time_duration: 120)
+      campaign_user = create(:campaign_user, campaign: campaign, additional_time: 60, status: :interrupted)
+
+      expect(campaign_user.compute_expiry_date).to eq(60.seconds.from_now)
+    end
+
+    it 'returns time in future determined by fixed_time_duration if not_started_campaign' do
+      campaign = create(:campaign)
+      campaign.campaign_options.update(fixed_time: true, fixed_time_duration: 120)
+      campaign_user = create(:campaign_user, campaign: campaign, additional_time: 60, status: :not_started)
+
+      expect(campaign_user.compute_expiry_date).to eq(120.seconds.from_now)
+    end
+
+    it 'returns expiry_date if present' do
+      campaign = create(:campaign)
+      campaign.campaign_options.update(fixed_time: true, fixed_time_duration: 120)
+      campaign_user = create(:campaign_user, campaign: campaign, expiry_date: 60.seconds.from_now, status: :in_progress)
+
+      expect(campaign_user.compute_expiry_date).to eq(60.seconds.from_now)
+    end
+  end
+
   describe 'real_expiry_date' do
     context 'fixed_time campaign with campaign end date' do
       it 'returns smallest expiry time between campaign end_time and campaign_user expiry_date' do

@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { useLocation, useHistory } from 'react-router-dom'
+import { Space, Typography } from 'antd'
 import { RootState } from '~/modules/survey/core/rootReducers'
 
 import { EndOfAssessmentElementProps } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
@@ -20,6 +21,7 @@ const connector = connect(({ preview }: RootState) => ({
   factors: preview.factors,
   showScoringOnEndPage: preview.showScoringOnEndPage,
   endOfAssessmentElementProps: preview.endOfAssessmentElementProps as EndOfAssessmentElementProps | undefined,
+  otherPendingAssessmentCount: preview.otherPendingAssessmentCount,
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -35,6 +37,7 @@ const EndPage: FC<Props> = ({
   factors,
   showScoringOnEndPage,
   endOfAssessmentElementProps,
+  otherPendingAssessmentCount,
 }) => {
   const location = useLocation()
   const history = useHistory()
@@ -52,15 +55,31 @@ const EndPage: FC<Props> = ({
   if (endOfAssessmentElementProps?.messageType === 'Custom' && endOfAssessmentElementProps?.message) {
     message = endOfAssessmentElementProps?.message
   }
-  const textDirection = message.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? 'ltr' : 'rtl'
+
   const getViewPath = () => `?tab=${user_assessment_id}&read=true`
 
   return (
     <div className={styles.page}>
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>
-      <div className={styles.end} style={{ direction: textDirection }}>
-        {message}
-        <UniqueID endOfAssessmentElementProps={endOfAssessmentElementProps} dbResult={dbResult} />
+      <div className={styles.end}>
+        <Space direction="vertical" align="center">
+          <Typography.Text>
+            {message}
+            <UniqueID endOfAssessmentElementProps={endOfAssessmentElementProps} dbResult={dbResult} />
+          </Typography.Text>
+          {!showScoringOnEndPage && !isAnonymousAssessment && (
+            <>
+              {otherPendingAssessmentCount > 0 && (
+              <Typography.Title level={3}>
+                {`You have ${otherPendingAssessmentCount} pending Tasks.`}
+              </Typography.Title>
+              )}
+              <a href={dashboardUrl}>
+                {I18n.t('assessments.actions.goto_dashboard')}
+              </a>
+            </>
+          )}
+        </Space>
       </div>
       <ScoringTable
         showScoringOnEndPage={showScoringOnEndPage}
@@ -69,13 +88,6 @@ const EndPage: FC<Props> = ({
         I18n={I18n}
         userAssessmentId={user_assessment_id}
       />
-      {!showScoringOnEndPage && !isAnonymousAssessment && (
-        <div className={styles.end}>
-          <a href={dashboardUrl}>
-            {I18n.t('assessments.actions.goto_dashboard')}
-          </a>
-        </div>
-      )}
       {showScoringOnEndPage && (
         <>
           <div className={styles.links}>
@@ -105,10 +117,12 @@ const UniqueID: FC<UniqueIDProps> = ({ endOfAssessmentElementProps, dbResult }) 
 
   if (endOfAssessmentElementProps?.showUniqueId && hashID) {
     return (
-      <div>
-        Your unique ID:
-        {hashID}
-      </div>
+      <Typography.Paragraph>
+        <Space>
+          Your unique ID:
+          <Typography.Text code copyable>{hashID}</Typography.Text>
+        </Space>
+      </Typography.Paragraph>
     )
   }
   return null

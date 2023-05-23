@@ -166,6 +166,7 @@ export interface DefaultState {
   showErrorWarning: boolean
   isAssessor: boolean
   submitRequired: boolean
+  otherPendingAssessmentCount: number
 }
 
 export interface MediaResponse {
@@ -254,6 +255,8 @@ export interface Result {
   media_responses: []
   hris: {}
   highlights: [{id: string, data: {}, resource_type: string, resource_id: number}]
+  other_pending_assessments_count: number
+  seedrandom: string
 }
 
 interface SaveResponse {

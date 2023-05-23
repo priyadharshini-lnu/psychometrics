@@ -275,6 +275,7 @@ Rails.application.routes.draw do
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
+            put :update_prework
           end
           collection do
             get :other

@@ -13,8 +13,8 @@ module Users
 
       filled = 0
       total = (user_fields.length + required_default_fields.length + required_custom_fields.length).to_f
-      (required_default_fields - user_fields).each do |field|
-        filled += 1 if user.user_profile.send(field).present?
+      required_default_fields.each do |field|
+        filled += 1 if user.user_profile.respond_to?(field) && user.user_profile.send(field).present?
       end
       user_fields.each do |field|
         filled += 1 if user.send(field).present?

@@ -10,6 +10,9 @@ class CommunicationEmailMailer < ApplicationMailer
     data[:user_link] = accept_invitation_link
     data[:user_url] = accept_invitation_url
     data[:user_link_qrcode] = accept_invitation_qrcode
+    campaign_user = @communication_email.campaign_user
+    data[:schedule_start_date] = format_date(campaign_user&.schedule_start_date)
+    data[:schedule_end_date] = format_date(campaign_user&.schedule_end_date)
     @body = Mustache.render(@communication_email.communication.body, data)
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
     smtp_setting = recipient.project.smtp_setting
@@ -24,6 +27,12 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   private
+
+  def format_date(date)
+    return unless date
+
+    I18n.l  date, format: :with_time_zone
+  end
 
   def entity
     @entity ||= if @communication_email.membership_id

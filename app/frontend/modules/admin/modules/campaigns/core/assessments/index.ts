@@ -19,6 +19,7 @@ import {
   REMOVE, UPDATE_ASSESSOR_FORM,
   UPDATE_AVAILABLE_LOCALES,
   UPDATE_EXTERNAL_CONFIG,
+  UPDATE_PREWORK,
 } from './actions'
 
 const defaultState: State = {
@@ -152,6 +153,11 @@ const HANDLERS = {
     updateIn(state, ['list'], (assessments: Assessment[]) => _.filter(
       assessments, (assessment: Assessment) => assessment.id !== response,
     ))
+  ),
+  [UPDATE_PREWORK]: (state: State, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.id === response.id ? response : assessment
+    )))
   ),
 }
 

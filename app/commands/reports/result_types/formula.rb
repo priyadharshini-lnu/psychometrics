@@ -13,6 +13,7 @@ module Reports
 
       def call
         formula_op = data.dig('formula', 'op')
+        round = data.dig('formula', 'round')
         total_weight = 0
         results = formula_args.map do |arg|
           weight = arg['weight'] || 1
@@ -27,7 +28,7 @@ module Reports
           key: data['id'] || 'formula',
           name: data['label'],
           config_data: data,
-          value: calc(results, formula_op, total_weight)
+          value: calc(results, formula_op, total_weight, round)
         }
       end
 
@@ -35,11 +36,11 @@ module Reports
         data.dig('formula', 'args') || []
       end
 
-      def calc(results, formula_op, total_weight) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      def calc(results, formula_op, total_weight, round) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         return if results.blank?
         return if results.any?(&:nil?)
 
-        return (results.sum(0.0) / total_weight.to_f).round(2) if formula_op == AVERAGE
+        return (results.sum(0.0) / total_weight.to_f).round(round || 2) if formula_op == AVERAGE
         return results.min if formula_op == MIN
         return results.max if formula_op == MAX
         return results.sum if formula_op == ADD

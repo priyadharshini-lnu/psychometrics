@@ -8,11 +8,13 @@ class HomeController < ApplicationController
   end
 
   # TODO: needs some refactoring
-  def sso
+  def sso # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     if params[:user_assessment_id]
       user_assessment = UserAssessment.find_by(id: params[:user_assessment_id], evaluator_id: @current_user.id)
       redirect_to_campaign_or_return_url('assessment_invalid') && return unless user_assessment
       redirect_to_campaign_or_return_url('assessment_completed') && return if user_assessment.completed?
+      redirect_to_campaign_or_return_url('assessment_timed_out') && return if user_assessment.timed_out?
+      redirect_to_campaign_or_return_url('assessment_ineligible') && return if user_assessment.ineligible?
 
       campaign_user = user_assessment.campaign_user
       CampaignUsers::BeginCampaign.call(campaign_user) if campaign_user.not_started?

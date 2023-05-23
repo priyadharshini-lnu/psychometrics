@@ -13,7 +13,7 @@ module Webhooks
       data = JSON.parse(request.raw_post)
       proctoring_session = ProctoringSession.find_by!(session_id: data['sessionId'])
       proctoring_session&.update(
-        results: data.slice('archive', 'conclusion', 'comment', 'score', 'reportUrl'),
+        results: data.slice('archive', 'conclusion', 'comment', 'score', 'reportUrl', 'warnings'),
         completed_at: data['sessionEnd'],
         started_at: data['sessionStart']
       )

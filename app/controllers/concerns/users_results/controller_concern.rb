@@ -6,18 +6,17 @@ module UsersResults::ControllerConcern
   included do
     before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data
                                              complete_multipart_upload mark_as_user_selected_take]
-    before_action :set_user_assessment, only: %i[update]
   end
 
   def update
     result_params = ::UsersResults::ExtendResourceParams.call!(
       resource_params.to_h,
       params[:question_ids],
-      @user_assessment
+      user_assessment
     )
 
     form = ::UsersResults::UpdatingForm.from_params(result_params)
-    progress_was_reseted = @user_assessment.progress_reseted
+    progress_was_reseted = user_assessment.progress_reseted
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
     render json: @users_result,
@@ -86,12 +85,16 @@ module UsersResults::ControllerConcern
                     where(user_assessments: { evaluator_id: current_user.id }).
                     find(params[:id])
     authorize [:end_user, @users_result]
+    user_assessment = @users_result.user_assessment
+    if request.format.html? && user_assessment.closed?
+      redirect_to assessment_completed_path(user_assessment.campaign_id)
+    end
   end
 
   private
 
-  def set_user_assessment
-    @user_assessment = @users_result.user_assessment
+  def user_assessment
+    @user_assessment ||= @users_result.user_assessment
   end
 
   def resource_params
