@@ -10,7 +10,7 @@ const { I18n } = window
 const { Search } = Input
 
 type Props = {
-  children: ReactNode
+  children?: ReactNode
   placeholder?: string
   name: string
 }

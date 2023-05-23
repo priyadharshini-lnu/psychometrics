@@ -51,4 +51,8 @@ class Dimension < ApplicationRecord
       @cloned_dimension
     end
   end
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[search_query]
+  end
 end

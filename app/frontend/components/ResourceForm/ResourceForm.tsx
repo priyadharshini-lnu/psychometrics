@@ -206,7 +206,7 @@ const ResourceForm: React.FC<Props> = ({
     _.each(errors, (error: string | string[] | JSONApiError, name: string) => {
       const field = _.find(store.fields, field => _.includes(field.name as string[], name))
       const errors = displayableError(error)
-      let newField: FieldData = { name, errors }
+      let newField: FieldData = { name: name.includes('/') ? name.split('/') : name, errors }
       if (field) {
         newField = { ...field, errors }
       }

@@ -8,51 +8,16 @@ class Administration::AssessmentsController < Administration::BaseController
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
+  # we need this line to override a behviour from BaseController
+  append_after_action :verify_policy_scoped, only: []
 
   # GET /administration/resources
   def index
-    @filter_term = params.dig(:q, :filterable_fields)
-    @_filter_form = policy_scope(resource_class).
-                    includes(:dimension, :owner).
-                    ransack(params[:q])
-    @_resources = filter_form.result.page(params[:page])
+    @init_state = {
+      currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
+    }
 
-    respond_to do |format|
-      format.html
-      format.js { render :index, formats: [:js] }
-    end
-  end
-
-  def new
-    @_resource = resource_class.new
-    @external_settings = Administration::Assessments::ExternalSettings::BaseForm.new
-    @_resource.set_default_color
-  end
-
-  def create
-    @_resource = resource_class.new(resource_params)
-    resource.created_by = current_user
-    resource.updated_by = current_user
-
-    unless resource.common?
-      @external_settings = Administration::Assessments::GetExternalSettingsForm.
-                           call(resource, resource_params[:external_settings])[:ok]
-
-      resource.external_settings = @external_settings.attributes.compact_blank
-    end
-
-    if current_user.is?(:client_admin) && resource_params[:owner_id].blank?
-      resource.owner_id = current_user.client_admin_client_ids.first
-    end
-
-    respond_to do |format|
-      if (resource.common? || @external_settings&.valid?) && resource.save
-        audit! :create, resource, payload: params
-        format.js
-      else
-        format.js { render :new }
-      end
-    end
+    render 'index'
   end
 
   def preview
@@ -79,83 +44,6 @@ class Administration::AssessmentsController < Administration::BaseController
     add_breadcrumb resource.decorate.display_name
   end
 
-  def edit
-    @external_settings = Administration::Assessments::ExternalSettings::BaseForm.new(@_resource.external_settings)
-    add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
-  end
-
-  def update
-    resource.updated_by = current_user
-
-    unless resource.common?
-      @external_settings = Administration::Assessments::GetExternalSettingsForm.
-                           call(resource, resource_params[:external_settings])[:ok]
-
-      resource.external_settings = @external_settings.attributes.compact_blank if @external_settings.valid?
-    end
-    resource.attributes = resource_params.except(:external_settings)
-    respond_to do |format|
-      if (resource.common? || @external_settings&.valid?) && resource.save
-        audit! :update, resource, payload: params
-        format.js
-        format.json { render json: :ok }
-      else
-        format.js { render :edit }
-        format.json { render json: :fail }
-      end
-    end
-  end
-
-  def destroy
-    resource.destroy
-    respond_to do |format|
-      audit! :delete, resource, payload: resource.log_attribute_for_delete
-      format.html do
-        redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
-      end
-      format.js
-    end
-  end
-
-  def soft_delete
-    resource.soft_delete!(current_user)
-    audit! :soft_delete, resource
-  end
-
-  def restore
-    resource.restore!
-    render 'refresh_list'
-  end
-
-  # Change resources's status to active/disabled
-  #
-  def toggle_status
-    resource.toggle!(:disabled)
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
-      format.js
-    end
-  end
-
-  def copy
-    event = ::Assessments::CopyAssessment.call(resource.id, current_user)
-
-    respond_to do |format|
-      if event[:ok]
-        @cloned_resource = event[:ok][:assessment]
-        audit! :copy, @cloned_resource, payload: { source_id: resource.id }
-
-        format.js
-      else
-        format.js do
-          render(:error, locals: {
-            message: t("administration.#{resource_class.model_name.plural}.copy.error", id: resource.id)
-          })
-        end
-      end
-    end
-  end
-
   def factors
     render json: resource.dimension.all_factors.as_json(only: %i[id name])
   end
@@ -163,38 +51,6 @@ class Administration::AssessmentsController < Administration::BaseController
   def upload_data_sheet
     @form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: 'Datasheet')
     render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
-  end
-
-  def pearson_norms
-    norms = Assessments::PearsonSettings.norms(params[:pearson_assessment_id], params[:pearson_norm_id])
-
-    render json: norms
-  end
-
-  def projects
-    projects = policy_scope(Client).roots.find(params[:owner_id]).projects
-    projects = projects.joins(:integrations).merge(Integration.iiht.active) if params[:type] == Assessment::TYPES[:iiht]
-    projects = projects.map do |project|
-      { id: project.id, name: project.name, selected: params[:project_id] == project.id.to_s }
-    end
-
-    render json: projects
-  end
-
-  def external_assessments
-    assessments = []
-    if params[:type] == Assessment::TYPES[:iiht] && params[:project_id]
-      assessments = Iiht::GetAssessments.call!(Client.find(params[:project_id])).map do |a|
-        id = a['assessmentIdNumber']
-        { id: id, name: a['name'], selected: params[:external_assessment_id] == id }
-      end
-    elsif params[:type] == Assessment::TYPES[:pearson] && Rails.application.secrets.pearson[:base_api_url]
-      assessments = PearsonAssessment.order(:title).map do |a|
-        { id: a.product_id, name: a.title, selected: params[:external_assessment_id] == a.product_id }
-      end
-    end
-
-    render json: assessments
   end
 
   private

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api
-  class V2::Administration::UploadsController < ActionController::Base
+  class V2::Administration::DesignSettings::UploadsController < ActionController::Base
     include V2::Administration::Concerns::ApiController
 
     before_action :set_resource
@@ -12,7 +12,8 @@ module Api
     end
 
     def set_resource
-      @settings = DesignSetting.find(params[:design_setting_id])
+      @settings = ::Pundit.policy_scope(current_user, [:api, :administration, DesignSetting]).
+                  find(params[:design_setting_id])
     end
 
     def design_params

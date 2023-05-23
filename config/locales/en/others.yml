@@ -282,6 +282,7 @@ en:
           pearson: Pearson
           psychometric: Assessment
           saville: Saville
+          threesixty: 360 Campaign
         category: Category
         created_at: Created Date
         description: Description
@@ -713,14 +714,24 @@ en:
   assessments:
     actions:
       back_to_campaign: Back to Campaign
+      details: Details
       download_csv: Download CSV
+      edit: Edit
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Click here to continue
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
+      remove:
+        confirm_message: Are you sure you want to delete the assessment '%{name}'?
+        confirm_title: Confirmation Requred
+        success_message: Asessment %{name} has been removed
       rescore: Rescore
+      show_usage: Show Usage
       submit_evaluation: Submit Evaluation
+    active: Active
+    archived: Archived
+    assessments: Assessments
     audio_response:
       pause: Pause
       permission_denied_message: Please enable microphone permission in your browser to record the answer
@@ -741,6 +752,19 @@ en:
       organisational: Survey
       psychometric: Assessment
       saville: Saville
+    column:
+      enable_audio_check: Enable Audio Check
+      enable_network_check: Enable Network Check
+      enable_video_check: Enable Video Check
+      external_settings:
+        hogan_assessment_id: Hogan Assessment ID
+        iiht_assessment_id: IIHT assessment ID
+        iiht_schedule_config: Schedule config
+        pearson_assessment_id: Pearson assessment ID
+        pearson_norm_id: Pearson norm ID
+        saville_assessment_id: Saville assessment ID
+    create: Create
+    dashboard: Dashboard
     decorator:
       no_description: Description is empty
     dictation:
@@ -759,6 +783,32 @@ en:
       start_dictation: Start dictation
       stop_dictation: Stop dictation
       use_speech_instructions: Use speech input to write this answer
+    drawer:
+      title: Assessment Details
+    edit: Edit
+    fields:
+      category:
+        agile: AGILE
+        assessor_form: Assessor Form
+        case_study: Case Studies
+        hogan: Hogan
+        iiht: IIHT
+        mindmill: Mindmill
+        organisational: Surveys
+        pearson: Pearson
+        psychometric: Assessment
+        saville: Saville
+        threesixty: 360 Campaign
+      status:
+        finished: Finished
+        in_progress: In Progress
+      type:
+        common: TTE Assessment
+        hogan: Hogan
+        iiht: IIHT Assessment
+        mindmill: Mindmill
+        pearson: Pearson Assessment
+        saville: Saville Assessment
     file_upload:
       select_file: Select file
     flow:
@@ -793,6 +843,7 @@ en:
     pickgrouprank:
       items: Items
     proceed: Proceed Anyway
+    reset: Reset
     resource:
       assigned: Assigned %{date}
       invite_users: Invite Users
@@ -809,7 +860,10 @@ en:
       competency: Competency
       id: ID
       score: Score
+    trash: Trash
     unknown_error: Unknown error occurred.
+    update: Update
+    upload: Upload
     video_response:
       delete: Delete
       device: Allow
@@ -1318,17 +1372,26 @@ en:
       created_at: Created at
       created_by: Created By
       created_date: Created Date
+      description: Description
       details: Details
+      dimension: Dimension
       email: Email
       first_name: First Name
+      icon: Icon
+      icon_color: Icon color
       id: Id
       last_name: Last Name
       modified_by: Modified By
       modified_date: Modified Date
       name: Name
+      owner: Owner
+      poster: Poster
+      project: Project
       qc_user_list: QC Users List
       report_id: Report Id
       status: Status
+      timing: Timing
+      type: Type
       updated_at: Last Updated
     model:
       admins: Admins
@@ -1577,8 +1640,10 @@ en:
       create_superadmin:
         uniq_email: Email should be uniq.
       filled?: can't be blank
+      json?: Should be valid JSON
       key?: can't be blank
       missed?: can't be blank
+      not_in_the_list?: invalid value passed
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.

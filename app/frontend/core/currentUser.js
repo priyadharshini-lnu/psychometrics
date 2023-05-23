@@ -16,6 +16,7 @@ export function isSuperAdmin (user) {
 }
 
 export function hasGrant (user, scope, action) {
+  if (isSuperAdmin(user)) return true
   return getIn(user.grants, scope, []).includes(action)
 }
 

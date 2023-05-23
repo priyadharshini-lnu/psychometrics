@@ -1,0 +1,1 @@
+export { ResourceAvatar } from './ResourceAvatar'

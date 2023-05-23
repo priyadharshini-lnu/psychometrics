@@ -29,9 +29,9 @@ module EndUser
 
     def checks
       {
-        video: object.assessment.extra['enable_video_check'] == '1',
-        audio: object.assessment.extra['enable_audio_check'] == '1',
-        network: object.assessment.extra['enable_network_check'] == '1'
+        video: object.assessment.extra['enable_video_check'],
+        audio: object.assessment.extra['enable_audio_check'],
+        network: object.assessment.extra['enable_network_check']
       }
     end
 

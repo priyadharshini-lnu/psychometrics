@@ -41,7 +41,13 @@ export const formDataToResource = (formData: { [key: string]: unknown }, resourc
       if (relationship.readOnly) { return acc }
 
       if (Array.isArray(val)) {
-        acc[relationshipName] = val.map(v => ({ type: relType, id: String(v) }))
+        if (val.length === 0) {
+          acc[relationshipName] = []
+        } else {
+          acc[relationshipName] = val.map(v => ({ type: relType, id: String(v) }))
+        }
+      } else if (val === null || val === undefined) {
+        acc[relationshipName] = null
       } else {
         acc[relationshipName] = { type: relType, id: String(val) }
       }

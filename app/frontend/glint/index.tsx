@@ -16,5 +16,6 @@ export { DirectionAwareIcon, DirectionalArrowIcon, DirectionalNavigateBackIcon }
 export { withLoadingSpinner } from './hocs/withLoadingSpinner'
 export { CommentItem } from './components/CommentItem'
 export { CommentReply } from './components/CommentReply'
+export { ResourceAvatar } from './components/ResourceAvatar'
 export { FixedWidthButton } from './components/FixedWidthButton'
 export { ColorPicker } from './components/ColorPicker'

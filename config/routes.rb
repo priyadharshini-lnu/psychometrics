@@ -595,6 +595,10 @@ Rails.application.routes.draw do
     end
 
     ### ASSESSMENTS
+    get '/assessments/active' => 'assessments#index'
+    get '/assessments/archived' => 'assessments#index'
+    get '/assessments/trash' => 'assessments#index'
+    get '/assessments/:id/edit' => 'assessments#index'
     resources :assessments do
       member do
         get :copy
@@ -1161,9 +1165,19 @@ Rails.application.routes.draw do
               post :create_superadmin
             end
           end
+          jsonapi_resources :assessments do
+            scope module: :assessments do
+              resource :uploads, only: %i[update]
+            end
+          end
+          jsonapi_resources :dimensions
+          jsonapi_resources :external_assessments
+          jsonapi_resources :external_norms
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
-            resource :uploads, only: %i[update]
+            scope module: :design_settings do
+              resource :uploads, only: %i[update]
+            end
           end
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do

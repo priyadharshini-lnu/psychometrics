@@ -31,6 +31,9 @@ export const Table: FC<Props> = ({ pagination, children }) => {
     >
       {arrayChildren.map((c) => {
         let innerProps = { ...c.props, key: c.props.id }
+        if (!innerProps.render) {
+          innerProps.dataIndex = _.camelCase(innerProps.id)
+        }
         if (c.props.sorter) {
           innerProps = { ...innerProps, sortOrder: resource.getSortOrder(innerProps.id) }
           if (!innerProps.render && !innerProps.dataIndex) {
