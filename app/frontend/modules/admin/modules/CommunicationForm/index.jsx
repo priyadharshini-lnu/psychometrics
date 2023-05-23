@@ -1,4 +1,3 @@
-import React from 'react'
 import EmailEditor from '~/components/EmailEditor'
 
 export default function Form ({ elementId }) {

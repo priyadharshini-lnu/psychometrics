@@ -88,7 +88,7 @@ app/assets/javascripts/administration/i18n/translations.js
 app/assets/javascripts/i18n/translations.js
 
 # Ignore Dev Procfile
-Procfile.dev
+Procfile.*
 
 # Ignore storybook build files
 storybook-static

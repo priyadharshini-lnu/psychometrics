@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { createRef, useEffect } from 'react'
 import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
 } from 'antd'
@@ -69,7 +69,7 @@ const EvaluationComponent = ({
   markAssessmentTimedOut,
   progress,
 }) => {
-  const assessmentRef = React.createRef()
+  const assessmentRef = createRef()
   const {
     edit, step, approve_evaluation, lang, read,
   } = qs.parse(location.search.substr(1))

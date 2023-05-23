@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import _ from 'lodash'
 import routeUtils from '~/utils/route'

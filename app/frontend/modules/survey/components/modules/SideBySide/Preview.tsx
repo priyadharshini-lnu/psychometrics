@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'

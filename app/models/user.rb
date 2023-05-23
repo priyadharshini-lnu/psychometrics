@@ -200,7 +200,7 @@ class User < ApplicationRecord
 
   # Overridden Devise class method
 
-  def log_attribute_for_delete
+  def log_attributes
     slice(:id, :email)
   end
 

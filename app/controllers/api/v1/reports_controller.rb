@@ -74,7 +74,7 @@ module Api
 
       def update
         @user_report.update!(user_report_params)
-        audit! :api_update, @user_report, payload: params.permit!, campaign: @user_report.campaign
+        audit! :api_update, @user_report, payload: params, campaign: @user_report.campaign
         user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
                            joins(:users_result, :assessment).
                            index_by(&:assessment_id)

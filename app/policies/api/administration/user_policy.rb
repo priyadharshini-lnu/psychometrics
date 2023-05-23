@@ -7,7 +7,49 @@ module Api
         @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
       end
 
-      class Scope < ::Administration::UserPolicy::Scope
+      def destroy?
+        has_permission?(:projects, :manage_users, project_id: @record.project_id)
+      end
+
+      def toggle_enable_2fa?
+        !@record.is_anonym? && has_permission?(:projects, :manage_users, project_id: @record.project_id)
+      end
+
+      def update?
+        has_permission?(:projects, :manage_users, project_id: @record.project_id)
+      end
+
+      def reset_password?
+        return true if @user.is?(:superadmin)
+        return false unless @record.is?(:regular)
+
+        @user.has_permission?(:users, :reset_password, project_id: @record.project_id)
+      end
+
+      class Scope < Scope
+        def resolve
+          return scope if @user.is?(:superadmin)
+
+          permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
+            @user.has_permission?(:projects, :manage_users, project_id: project_id)
+          end
+
+          permitted_project_admin_project_ids = @user.project_admin_client_ids.select do |project_id|
+            @user.has_permission?(:projects, :manage_users, project_id: project_id)
+          end
+
+          permitted_campaign_admin_project_ids = @user.campaign_admin_campaigns.select do |campaign|
+            @user.has_permission?(
+              :campaigns, :manage_users, project_id: campaign.project_id, campaign_id: campaign.id
+            )
+          end.pluck(:project_id)
+
+          scope.where(
+            project_id: permitted_client_admin_project_ids.concat(
+              permitted_project_admin_project_ids, permitted_campaign_admin_project_ids
+            )
+          )
+        end
       end
     end
   end

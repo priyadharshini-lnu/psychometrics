@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Space,
   Typography,
@@ -16,11 +16,12 @@ import {
 
 import { ANSWER_TYPE_OPTIONS } from '~/modules/survey/components/modules/MultipleChoice/constants'
 import useForceUpdate from '~/hooks/useUpdate'
-
+import { MultilineEdit } from '~/modules/survey/components/MultilineEdit'
 import { PropertiesModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 import RequiredValidations from '~/modules/survey/components/RequiredValidations'
 import ValidationTypes from '~/modules/survey/components/ValidationTypes'
 import ChoicesInput from '~/modules/survey/components/ChoicesInput'
+
 
 const { I18n } = window
 
@@ -30,7 +31,6 @@ export interface Props {
 
 export const Properties: FC<Props> = ({ model }) => {
   const forceUpdate = useForceUpdate()
-
   const handleAnswerTypeChange = (selectedType: string) => {
     model.resetDefaultValues()
     model.changeProps({
@@ -41,6 +41,12 @@ export const Properties: FC<Props> = ({ model }) => {
 
   const handleChoiceCountChange = (val: number) => {
     model.setChoices(val)
+    model.update()
+  }
+
+  const handleMultilineChange = (values) => {
+    model.setChoices(values.length)
+    model.changeProps({ choicesTexts: values })
     model.update()
   }
 
@@ -96,6 +102,9 @@ export const Properties: FC<Props> = ({ model }) => {
       <Divider className="mt-4 mb-4" />
       <Space direction="vertical" size="small">
         <ChoicesCountInput model={model} onChange={handleChoiceCountChange} />
+        <Space className="ms-4 me-4">
+          <MultilineEdit title="Choices" lines={model.props.choicesTexts} onChange={handleMultilineChange} />
+        </Space>
         <Checkbox
           onChange={handleNotApplicableOptionChange}
           checked={notApplicable}
@@ -151,11 +160,11 @@ const AnswerTypeSelect: FC<AnswerTypeSelectProps> = ({ value, onSelect }) => (
     />
   </div>
 )
-
 interface ChoicesCountInputProps {
   model: PropertiesModel
   onChange(value: number): void
 }
+
 
 const ChoicesCountInput: FC<ChoicesCountInputProps> = ({ model, onChange }) => (
   <Space direction="vertical" className="ms-4 me-4">
@@ -167,7 +176,6 @@ const ChoicesCountInput: FC<ChoicesCountInputProps> = ({ model, onChange }) => (
     <ChoicesInput model={model} onChange={onChange} />
   </Space>
 )
-
 interface PositionPropertyProps {
   value: PropertiesModel['props']['position']
   onChange(event: RadioChangeEvent): void

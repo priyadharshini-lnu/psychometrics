@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import ScoringCell from '~/modules/survey/components/ScoringCell'
 import styles from './ScoringGradingRow.less'

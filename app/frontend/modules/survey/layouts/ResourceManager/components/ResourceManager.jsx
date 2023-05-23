@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import utils from '~/modules/survey/utils'
 import DndElement from '~/components/DnD/DnDElement'
 import styles from './ResourceManager.less'
@@ -29,6 +29,7 @@ export default function ResourceManager (props) {
         <div className={styles.resourceWrapper}>
           {list.map((resource, index) => (
             <DndElement
+              key={index}
               className={styles.dragable}
               iconClass={styles.iconHandler}
               strategy="index"

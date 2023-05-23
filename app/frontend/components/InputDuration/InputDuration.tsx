@@ -1,9 +1,5 @@
-import React, {
-  ChangeEvent,
-  KeyboardEvent,
-  FC,
-  useState,
-  useEffect,
+import {
+  ChangeEvent, KeyboardEvent, FC, useState, useEffect,
 } from 'react'
 import { Input } from 'antd'
 import { InputProps } from 'antd/lib/input/Input'

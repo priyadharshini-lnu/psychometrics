@@ -18,6 +18,7 @@ module Administration
             'can_manage_project',
             'manage_project_admins',
             'manage_project_smtp_settings',
+            'manage_project_webhooks',
             %w[manage_project_general_settings update]
           ],
           {

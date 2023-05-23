@@ -4,6 +4,8 @@ module Campaigns
   class CompactCompletionStatusQuery < Rectify::Query
     private_attr_reader :campaign_id
 
+    DEFAULT_COLUMN_NAMES = ['Email', 'First Name', 'Last Name'].freeze
+
     def initialize(campaign_id)
       @campaign_id = campaign_id
     end
@@ -34,13 +36,9 @@ module Campaigns
     end
 
     def column_names
-      default_column_names.concat(assessment_names).map do |name|
-        "\"#{name}\" text"
+      [].concat(DEFAULT_COLUMN_NAMES, assessment_names).map do |name|
+        "\"#{name.gsub('"', '""')}\" text"
       end.join(', ')
-    end
-
-    def default_column_names
-      ['Email', 'First Name', 'Last Name']
     end
 
     def assessment_names_query

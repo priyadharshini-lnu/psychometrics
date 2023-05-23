@@ -4,7 +4,7 @@ module Administration
   module Templates
     class BlocksController < Administration::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar new_assign preview]
+      before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview]
       before_action :skip_authorization, only: [:sidebar]
       before_action :init_breadcrumbs
       append_before_action :pundit_authorize, except: [:sidebar]
@@ -90,8 +90,6 @@ module Administration
         end
       end
 
-      def new_assign; end
-
       def preview
         add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
         @data = {
@@ -116,7 +114,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:name, assign_to_assessment_ids: [])
+        params.require(:resource).permit(:name, :owner_id, assign_to_assessment_ids: [])
       end
     end
   end

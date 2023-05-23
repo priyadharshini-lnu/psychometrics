@@ -1,8 +1,8 @@
-import React, {
+import {
   FC, useEffect, useRef, useState,
 } from 'react'
-import Highcharts, { Chart } from 'highcharts-v9'
-import highChartMore from 'highcharts-v9/highcharts-more'
+import Highcharts, { Chart } from 'highcharts'
+import highChartMore from 'highcharts/highcharts-more'
 import _ from 'lodash'
 
 import {

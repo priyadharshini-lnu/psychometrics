@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import LogicElement from '~/modules/reports/components/LogicElement'
 import LogicElementModel from '~/modules/reports/models/logic/LogicElement'

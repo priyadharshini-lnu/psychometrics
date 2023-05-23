@@ -1,4 +1,3 @@
-import React from 'react'
 import AnswerableConfirmationModal from '~/components/AnswerableConfirmationModal'
 
 export default function CampaignNameConfirmationModal ({

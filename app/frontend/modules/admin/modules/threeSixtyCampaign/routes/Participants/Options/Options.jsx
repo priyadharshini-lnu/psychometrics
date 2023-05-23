@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import styles from './Options.less'
 import SubjectSection from './SubjectSection'
 import ManagerSection from './ManagerSection'

@@ -56,21 +56,39 @@ RSpec.describe UserAssessment, type: :model do
 
   describe '#norm_name' do
     it 'returns saville_norm_name is assessment is saville' do
-      saville_assessment = build(:assessment, :saville)
-      user_assessment = build(:user_assessment, assessment: saville_assessment)
-      build(:saville_user_assessment,
-            user_assessment: user_assessment, norm_id: '05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337')
+      user_assessment = build(
+        :user_assessment,
+        assessment: build(
+          :assessment,
+          :saville,
+          external_settings: { assessment_id: 'A830E4AB-BC66-4238-92E0-6E6FD3FD1EDF' }
+        )
+      )
+      build(
+        :saville_user_assessment,
+        user_assessment: user_assessment,
+        norm_id: '05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337'
+      )
 
       expect(user_assessment.norm_name).to eq('Wave Focus Styles V4 - Graduates - All (INT, IA, 2021)')
     end
 
     it 'returns pearson_norm_name is assessment is pearson' do
-      expect(PearsonAssessmentSetting).to receive(:pearson_norms).and_return(
-        [{ id: 'pearson_norm_id', name: 'pearson_norm_name' }]
+      norms = {
+        'items' =>
+          [{
+            'label' => 'pearson_norm_name',
+            'normId' => 'pearson_norm_id'
+          }]
+      }
+      assessment = build(:assessment, :pearson)
+      user_assessment = build(:user_assessment, assessment: assessment)
+      create(:pearson_assessment, product_id: assessment.external_assessment_id, norms: norms)
+      build(
+        :pearson_user_assessment,
+        user_assessment: user_assessment,
+        norm_id: 'pearson_norm_id'
       )
-      user_assessment = build(:user_assessment, assessment: build(:assessment, :pearson))
-      build(:pearson_user_assessment,
-            user_assessment: user_assessment, norm_id: 'pearson_norm_id')
 
       expect(user_assessment.norm_name).to eq('pearson_norm_name')
     end

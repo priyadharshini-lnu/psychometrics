@@ -11,6 +11,7 @@ import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
+import { camelizeKeys } from '~/utils/object'
 import { Schema } from '~/libs/jsonApi/schema'
 import { setResponseDataMismatched } from '~/core/request'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
@@ -18,7 +19,7 @@ import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
   Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
-  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction,
+  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction, MemberAction,
 } from './interfaces'
 import { formatErrors, defaultState } from './utils'
 
@@ -28,6 +29,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const {
     apiConfig, stateManager, responseType, trackUrl, basePath,
   } = options
+
+  const [camelizeExcept, camelizeOnly] = [apiConfig?.camelizeExcept, apiConfig?.camelizeOnly]
   const client = useClient()
   const dispatch = useDispatch()
   const location = useLocation()
@@ -109,7 +112,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         const camelizedMeta = humps.camelizeKeys(meta)
         setState((previousState: ResourceState<R[], M>) => (
           { ...previousState, data: camelizedResponse, meta: camelizedMeta }))
@@ -126,7 +129,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
   const handleCustomMemberDeleteAction = (
     args: { id: string, action: string, updateStore?: boolean, apiConfig?: ApiConfig},
-  ) => {
+  ): Promise<void | null> => {
     const {
       id, action, apiConfig, updateStore,
     } = args
@@ -145,7 +148,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     })
   }
 
-  const memberAction = (
+  const memberAction: MemberAction = (
     args: {
       id: string, action: string, method: HttpAction,
       body?: Record<string, unknown>,
@@ -155,7 +158,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       id, action, method, body, apiConfig, updateStore,
     } = { apiConfig: options.apiConfig, ...args }
-    const memberResponseType = options.responseType || responseType
+    const memberResponseType = args.responseType || options.responseType
     const requestKey: RequestType = `${method}/${action}@${id}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
 
@@ -177,11 +180,16 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       }
       const { data, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
-      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
-        const camelizedData = humps.camelizeKeys(data)
-        if (updateStore) updateIndividualRecord(camelizedData)
-        resolve(camelizedData)
-        responseTypeValidation(memberResponseType, camelizedData)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success) {
+        if (typeof data !== 'object') {
+          responseTypeValidation(memberResponseType, response)
+          resolve(response)
+        } else {
+          const camelizedData = camelizeKeys(data || {}, { except: camelizeExcept, only: camelizeOnly })
+          if (updateStore) updateIndividualRecord(camelizedData)
+          resolve(camelizedData)
+          responseTypeValidation(memberResponseType, camelizedData)
+        }
       } else {
         reject(formattedErrors)
       }
@@ -215,12 +223,20 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           { url: resourceUrl },
         )
       }
-      const { data, error, errors } = response
+      const { data: responseData, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
-        const camelizedData = humps.camelizeKeys(data || response)
-        resolve(camelizedData)
-        responseTypeValidation(memberResponseType, camelizedData)
+        if (typeof data !== 'object') {
+          responseTypeValidation(memberResponseType, response)
+          resolve(response)
+        } else {
+          const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
+          resolve(camelizedData)
+          if (args.updateStore && args.responseType === responseType) {
+            updateIndividualRecord(camelizedData)
+          }
+          responseTypeValidation(memberResponseType, camelizedData)
+        }
       } else {
         reject(formattedErrors)
       }
@@ -263,7 +279,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         updateIndividualRecord(camelizedResponse)
         resolve(camelizedResponse)
         if (responseType || args.responseType) {
@@ -292,7 +308,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('add', formattedErrors) === RequestStatus.Success && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         setData([camelizedResponse, ...data])
         resolve(camelizedResponse)
         responseTypeValidation(args?.responseType || responseType, camelizedResponse)
@@ -316,7 +332,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
         resolve(camelizedResponse)
         responseTypeValidation(args?.responseType || responseType, camelizedResponse)

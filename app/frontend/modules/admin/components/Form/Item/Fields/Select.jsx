@@ -1,4 +1,3 @@
-import React from 'react'
 import { Select as AntSelect } from 'antd'
 
 export default function Select ({

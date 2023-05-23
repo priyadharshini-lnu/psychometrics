@@ -86,7 +86,7 @@
         = f.input :status, as: :select, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] },
                            include_blank: false,
                            wrapper_html: { class: 'common hogan saville pearson' }
-        = f.association :dimension, collection: policy_scope(Dimension).all.sorted_by('name_asc'),
+        = f.association :dimension, collection: policy_scope(Dimension).all.order(name: :asc),
                                     include_blank: true,
                                     input_html: { data: { live_search: true } },
                                     wrapper_html: { class: 'common hogan saville pearson iiht' }

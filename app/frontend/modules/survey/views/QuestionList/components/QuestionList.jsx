@@ -1,4 +1,3 @@
-import React from 'react'
 import FlipMove from 'react-flip-move'
 import Question from '~/modules/survey/views/Question'
 import PageBreak from '~/modules/survey/components/PageBreak'

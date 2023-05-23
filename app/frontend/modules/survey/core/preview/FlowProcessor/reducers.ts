@@ -12,7 +12,7 @@ import {
   CHANGE_ELEMENT, SHOW_END, HIDE_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
-  RESET, SAVE_RESULTS, SAVE_RESULTS_FAILURE, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
+  RESET, SAVE_RESULTS, SAVE_RESULTS_REQUEST, SAVE_RESULTS_FAILURE, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
@@ -87,6 +87,7 @@ const defaultState: State = {
   instructions: { enabled: false, content: '' },
   fixedTimed: false,
   showErrorWarning: false,
+  isAssessor: false,
   submitRequired: false,
   otherPendingAssessmentCount: 0,
 }
@@ -96,7 +97,7 @@ const HANDLERS = {
     const normalizedData = normalize({ blocks: data.blocks }, assessment)
     const resultsUrl = data.resultsUrl || `/assigns/${result.id}`
 
-    let { elements } = data.flow
+    let { elements } = (data.flow || { elements: [] })
     if (elements.length === 0) {
       elements = InitLinearElements.run(data.blocks)
     }
@@ -138,8 +139,8 @@ const HANDLERS = {
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
-      elements: data.flow.elements,
-      linear: data.flow.elements.length === 0,
+      elements: data.flow?.elements,
+      linear: data.flow?.elements?.length === 0,
       blocks: normalizedData.entities.blocks,
       questions: normalizedData.entities.questions,
       currentElement: result.current_element || null,
@@ -169,6 +170,7 @@ const HANDLERS = {
       instructions: data.instructions,
       fixedTimed: data.fixed_timed,
       defaultNorm: data.default_norm_id,
+      isAssessor: data.isAssessor,
       otherPendingAssessmentCount: result.other_pending_assessments_count,
     }
   },
@@ -232,6 +234,7 @@ const HANDLERS = {
   }),
   [PREV_PAGE_REQUEST]: state => ({ ...state, submissionInProgress: state.type === 'pass_assessment' }),
   [PREV_PAGE_FAILURE]: state => ({ ...state, submissionInProgress: false, submissionFailed: true }),
+  [SAVE_RESULTS_REQUEST]: state => ({ ...state, submissionInProgress: true }),
   [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
       expired, current_block: currentBlock, factors, scoring, translations,

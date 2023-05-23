@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import {
   Row, Col, Input, Typography, Tooltip,
 } from 'antd'

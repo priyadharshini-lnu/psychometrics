@@ -37,6 +37,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin)
   end
 
+  def roles?
+    index?
+  end
+
   def edit?
     update?
   end
@@ -66,10 +70,6 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def destroy?
     @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
-  end
-
-  def reset_password?
-    update? && !@record.is_anonym?
   end
 
   def export?

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { BuilderModel } from '~/modules/survey/interfaces/questions/AudioResponse'
 import useForceUpdate from '~/hooks/useUpdate'

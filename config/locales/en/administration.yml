@@ -85,17 +85,27 @@ en:
           update: Update
           update_failed: Admin '%{name}' update failed
           update_success: Admin '%{name}' was updated successfully
+        notes:
+          threesixty_permission: Permissions specific to 360 campaigns
+          title: Notes
         view:
           add_campaign_admin: Add Campaign Admin
+          add_client_admin: Add Client Admin
           add_project_admin: Add Project Admin
+          add_threesixty_campaign_admin: Add Campaign Admin
           edit_campaign_admin: Edit Campaign Admin
+          edit_client_admin: Edit Client Admin
           edit_project_admin: Edit Project Admin
+          edit_threesixty_campaign_admin: Edit Campaign Admin
           first_name: First name
           last_name: Last name
           project_admin: Project Admin
           project_list: Project List
           role: Campaign Admin
-          title_campaign: Campaign admin
+          title:
+            campaign_admin: Campaign Admin
+            client_admin: Client Admin
+            project_admin: Project Admin
       list:
         actions:
           cancel_text: Cancel
@@ -109,12 +119,13 @@ en:
             login_successful: Login successful.
         columns:
           actions: Actions
-          campaigns_list: Campaigns list
+          campaigns_list: Campaigns List
+          clients_list: Clients List
           created_at: Created at
           email: Email
           id: Id
           name: Name
-          projects_list: Projects list
+          projects_list: Projects List
         header:
           add_admin: Add admin
           search_admins: Search admins
@@ -135,10 +146,16 @@ en:
           title: Reset admin password
       permissions:
         labels:
+          assessments:
+            manage: Manage
+            view: View
           assessors:
             manage: Manage
             view: View
+          auditLogs:
+            view: View
           campaigns:
+            bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
             manage_admins: Manage Admins
             manage_messages: Manage Messages
@@ -149,9 +166,11 @@ en:
             report_options: Report Options
             reset_nominations: Reset Nominations
             view: View
+            view_stats: View Stats
           clients:
             manage: Manage
             view: View
+            view_licenses: View Licenses
           communications:
             manage: Manage
             view: View
@@ -163,29 +182,47 @@ en:
           datasheets:
             manage: Manage
             view: View
+          dimensions:
+            manage: Manage
+            view: View
+          mediaLibraries:
+            manage: Manage
+            view: View
           messages:
             email: Email
             instructions: Instructions
             options: Options
+          norms:
+            manage: Manage
+            view: View
           projectSettings:
             design: Design
             integrations: Integrations
             saml: SAML
             security: Security
             smtp: SMTP
+            webhooks: Webhooks
           projects:
+            manage: Manage
+            manage_admins: Manage Admins
             manage_users: Manage Users
+            view: View
+          questions:
+            manage: Manage
             view: View
           registrationCodes:
             manage: Manage
             view: View
           reports:
             manage: Manage
+            view: View
           results:
             approve_report: Approve Report
+            bulk_regenerate_reports: Bulk Regenerate Reports
             download_report: Download Report
             edit_report: Edit Report
             raw_responses: Raw Responses
+            regenerate_report: Regenerate Report
             report_data: Report Data
             rescore_responses: Rescore Responses
             reset_progress: Reset Progress
@@ -227,6 +264,7 @@ en:
         header: Assessment Settings
       errors:
         owner_validation: You don't have %{resource_name} %{permission} permission for %{client_name}
+      flow: Flow
       form:
         categories:
           '360': 360 Feedback
@@ -276,11 +314,14 @@ en:
         name: Name
         type: Type
         updated_at: Modified date
+      map_norms: Map Norms
       menus:
         add_timer: Add timer
         remove_timer: Remove timer
       new:
         header: New assessment
+      preview: Assessment Preview
+      reports: Reports
       resource:
         confirmations:
           delete:
@@ -305,6 +346,14 @@ en:
           soft_delete: Soft Delete Assessment
       restore:
         successfully: Assessment %{name} was Restored Successfully.
+      settings:
+        enable_back: Enable back button
+        enable_progress: Enable progress bar
+        enable_single_question_page: Show one question per page
+        enable_timer: Enable timer
+        instructions: Enable Instructions
+        timer: Timer
+        title: Assessment Settings
       sidebar:
         assign: Assign Assessment
         builder: Questions Builder
@@ -373,6 +422,7 @@ en:
           body: Refer to the Export functionality to extract a template that can be used to Import here.
           title: Import Assessors
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
+      saved_results: Answers successfully saved.
       status: Status
       statuses:
         completed: Completed
@@ -720,6 +770,7 @@ en:
         id: Id
         is_active: Active
         name: Name
+        no_permission_message: You do not have permission to modify
         updated_by: Updated By
       validations:
         dates:
@@ -3216,7 +3267,61 @@ en:
       design: Design
       general: General
       profile: Profile
-      webhooks: Webhooks
+      webhooks:
+        actions:
+          delete:
+            key: delete
+            label: Delete
+          edit:
+            key: edit
+            label: Edit
+          send_test:
+            key: send_test
+            label: Send Test
+        form:
+          active:
+            label: Active
+            name: active
+          auth_type:
+            basic:
+              label: Basic
+              value: basic_auth
+            label: Auth Type
+            name: auth_type
+            no_auth:
+              label: None
+              value: no_auth
+          description:
+            label: Description
+            name: description
+          password:
+            label: Password
+            name: password
+          topics:
+            label: Topics
+            list:
+              assessment_completed: Assessment Completed
+              assessment_started: Assessment Started
+              assessment_timeout: Assessment Timeout
+              report_available: Report Available
+              results_available: Results Available
+            name: topics
+          url:
+            label: Url
+            name: url
+          username:
+            label: User Name
+            name: username
+        remove_webhook:
+          content: Delete %{description}?
+          title: Delete
+        send_test:
+          copy_payload_success: Payload copied to clipboard successfully.
+          event_dropdown:
+            placeholder: Select event
+          submit_button: Send Test
+          title: Send Webhook Event Test
+        title: Webhooks
     project_users:
       cancel: Cancel
       change_password: Change password
@@ -3296,9 +3401,11 @@ en:
       webhook_settings:
         add: Add Webhook
         column_active: Active
+        column_created_date: Created Date
         column_description: Description
         column_manage: Manage
         column_status: Status
+        column_updated_date: Modified date
         column_url: URL
         delete: Delete
         edit: Edit
@@ -3472,6 +3579,8 @@ en:
         title: Preview
       regenerate:
         successfully: Report successfully sent for regeneration
+      regenerated: Regenerated
+      regenerated_count: Reports regenerated
       resource:
         confirmations:
           delete:
@@ -4138,3 +4247,7 @@ en:
       update:
         successfully: User %{name} was successfully updated.
       user: User
+    webhook:
+      connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
+      request_failure: Request failed with status code %{http_status_code}.
+      test_success: Webhook test successful.

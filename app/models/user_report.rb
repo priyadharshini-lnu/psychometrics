@@ -16,6 +16,9 @@ class UserReport < ApplicationRecord
 
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
+  has_one :subject, -> { where('campaign_id = threesixty_subjects.campaign_id') },
+          foreign_key: :user_id, primary_key: :user_id,
+          class_name: 'Threesixty::Subject'
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
   has_many :user_report_events
@@ -119,8 +122,8 @@ class UserReport < ApplicationRecord
     generate
   end
 
-  def log_attribute_for_delete
-    slice(:campaign_id, :report_id, :user_id)
+  def log_attributes
+    slice(:campaign_id, :report_id, :user_id, :status)
   end
 
   def publish_to_webhook

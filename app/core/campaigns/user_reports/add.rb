@@ -3,11 +3,12 @@
 module Campaigns
   module UserReports
     class Add < BaseCommand
-      private_attr_reader :form, :campaign_user
+      private_attr_reader :form, :campaign_user, :current_user
 
-      def initialize(form, campaign_user)
+      def initialize(form, campaign_user, current_user)
         @form = form
         @campaign_user = campaign_user
+        @current_user = current_user
       end
 
       def call
@@ -16,6 +17,7 @@ module Campaigns
             Campaigns::Users::AddReport.call!(
               campaign_user,
               report,
+              current_user: current_user,
               report_family_id: report_family_id_for(report),
               user_access: user_access_for(report),
               operation: form.operation,

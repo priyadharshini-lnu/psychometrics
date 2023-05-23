@@ -1,4 +1,3 @@
-import React from 'react'
 import { Input, Checkbox } from 'antd'
 import ColorPicker from '~/modules/survey/components/ColorPicker'
 

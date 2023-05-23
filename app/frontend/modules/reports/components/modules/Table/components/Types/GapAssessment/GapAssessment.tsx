@@ -1,4 +1,4 @@
-import React, { FC, lazy, Suspense } from 'react'
+import { FC, lazy, Suspense } from 'react'
 import { Empty, Spin } from 'antd'
 
 import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'

@@ -7,11 +7,6 @@ module Api
 
     before_action :set_resource, only: %i[spoof reset_password]
 
-    def reset_password
-      @_resource.user.send_reset_password_instructions
-      render json: :ok
-    end
-
     def spoof
       sign_in(@_resource.user)
       redirect_url ||= administration_root_path
@@ -28,7 +23,7 @@ module Api
     end
 
     def project_id
-      params.dig(:filter, :client_id_eq)
+      params.dig(:filter, :project_id_eq) || params.dig(:filter, :client_id_eq)
     end
 
     def campaign_id

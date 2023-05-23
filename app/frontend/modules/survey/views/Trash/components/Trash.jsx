@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import FlipMove from 'react-flip-move'
 import styles from '~/modules/survey/views/Block/components/Block.less'
 import Confirmation from '~/modules/survey/components/Confirmation'

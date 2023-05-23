@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './QuestionCondition.less'
 import Bool from './Bool'
@@ -26,7 +26,7 @@ const FormTypes = {
   Checkbox: Bool,
 }
 
-class QuestionCondition extends React.Component {
+class QuestionCondition extends Component {
   static propTypes = {
     questions: PropTypes.object.isRequired,
     condition: PropTypes.object.isRequired,
@@ -92,9 +92,7 @@ class QuestionCondition extends React.Component {
     const answers = answerManager.getAnswers()
     if (preview) {
       const answer = _.find(answers, { value: condition.answer }) || { label: '' }
-      return (
-        <div className={styles.margin5}>{answer.label.replace(/(<([^>]+)>)/ig, '')}</div>
-      )
+      return <div className={styles.margin5}>{answer.label.replace(/(<([^>]+)>)/ig, '')}</div>
     }
     return (
       <div className={styles.answers}>

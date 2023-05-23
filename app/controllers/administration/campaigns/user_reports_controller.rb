@@ -12,9 +12,8 @@ module Administration
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
         if form.valid?
-          ::Campaigns::UserReports::Add.call(form, campaign_user) do
+          ::Campaigns::UserReports::Add.call(form, campaign_user, current_user) do
             on(:ok) do
-              audit! :create, campaign_user, payload: params.permit!, campaign: campaign
               render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
                      campaign: campaign_user.campaign
             end
@@ -26,7 +25,7 @@ module Administration
       end
 
       def destroy
-        audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
+        audit! :delete, resource, payload: resource.log_attributes, campaign: resource.campaign
         resource.destroy!
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
@@ -106,7 +105,7 @@ module Administration
         respond_to do |format|
           format.html do
             audit! :view_report, user_dashboard, campaign: user_dashboard.campaign,
-              payload: params.permit!.merge(user_dashboard.details_to_log)
+              payload: params.merge(user_dashboard.details_to_log)
           end
           format.json do
             render json: user_dashboard, report: user_dashboard.report,

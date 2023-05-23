@@ -597,10 +597,6 @@ en:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from
           score_to_must_be_number: Score to must be number
-        iiht_assessment_setting:
-          attributes:
-            iiht_schedule_config:
-              invalid: IIHT Schedule config should be a valid josn
         license:
           attributes:
             used_number:
@@ -659,6 +655,7 @@ en:
         assessment_scoring_export: Scoring Results Export
         bulk_download_reports: Bulk Download Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
+        bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
         compact_completion_status_export: Compact Completion Status Export
@@ -677,6 +674,7 @@ en:
         import_users: Import Users
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
+        regenerate_threesixty_report: Regenerate Threesixty Report
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
@@ -791,6 +789,7 @@ en:
 
         Click **Back** to review your responses one final time or click **Submit** if you are finished.
       next: Next
+      save: Save
       submissionFailedAlert:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or surveys@thetalententerprise.com
         title: Last Request Failed
@@ -1015,10 +1014,12 @@ en:
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
       campaign: Campaign
+      change_password: Change Password
       home: Home
       insights: Insights
       livechat: Live Support
       profile: Profile
+      profile_details: Details
       tasks: Tasks
     details: Details
     edit_evaluation:
@@ -1105,6 +1106,7 @@ en:
       export_scoring: Scoring
       import_raw: Raw
       import_scoring: Scoring
+      regenerate: Regenerate Reports
       rescore: Rescore Assessment
       reset_all_nominations: Reset All Nominations
       reset_participant: Reset All Participants
@@ -1135,6 +1137,10 @@ en:
         success_msg: Import successfully uploaded
         title: Import Scoring Results data
         upload: Upload
+      regenerate:
+        content: Are you sure you want to regenerate available reports?
+        successfully: Reports will be regenerated.
+        title: Regenerate reports?
       remove:
         helper_text: 'DANGER: Selecting this will remove all users'' responses to this assessment in this campaign.'
         msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
@@ -1256,7 +1262,6 @@ en:
       starts_on: Starts on %{date}
       will_start_shortly: Campaign will start shortly. Please wait
   change_password_page:
-    change_profile_details: Change Profile Details
     old_password: Old Password
     password: Password
     password_confirmation: Password Confirmation
@@ -1338,6 +1343,7 @@ en:
       upload: Upload
     column:
       action: Action
+      active: Active
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
       category: Category
@@ -1347,13 +1353,17 @@ en:
       created_by: Created By
       created_date: Created Date
       details: Details
+      email: Email
+      first_name: First Name
       id: Id
+      last_name: Last Name
       modified_by: Modified By
       modified_date: Modified Date
       name: Name
       qc_user_list: QC Users List
       report_id: Report Id
       status: Status
+      updated_at: Last Updated
     model:
       admins: Admins
       assessment: Assessment
@@ -1592,6 +1602,14 @@ en:
       unlocked: Your account has been unlocked successfully. Please login to continue.
   dry_errors:
     errors:
+      add_edit_project:
+        invalid_subdomain_format: Wrong subdomain format.
+        reserved_subdomain: Subdomain %{value} is reserved
+        uniq_subdomain: Subdomain should be unique.
+      admin:
+        already_added: Admin with email already added.
+      create_superadmin:
+        uniq_email: Email should be uniq.
       filled?: can't be blank
       key?: can't be blank
       missed?: can't be blank
@@ -1688,6 +1706,8 @@ en:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
     try_again: Please try again
+    webhooks:
+      multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
   evaluators:
     errors:
       can_not_processed: can not be processed
@@ -1724,6 +1744,7 @@ en:
       actions:
         create:
           create_client: Create Client
+          create_license: Add license
         menus:
           view_licenses: View Licenses
         remove:
@@ -1759,9 +1780,17 @@ en:
       update_success: SMS Invite updated successfully
     sms_records:
       create_success: SMS job scheduled successfully
+    test_webhook:
+      create_success: Webhook test successful.
+      success: Success
     update: Update
     upload: Upload
     'yes': 'Yes'
+  glint:
+    color_picker:
+      copy_success_msg: Copied hexcode to clipboard.
+      recent_colors: 'Recently used:'
+      recommended_colors: 'Recommended:'
   hogan:
     assigns:
       results:
@@ -1783,6 +1812,7 @@ en:
         message: Report is ready
     threesixty:
       export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
+      export_raw_results_scheduled: Raw Results export job scheduled successfully
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
@@ -1790,9 +1820,12 @@ en:
           error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
+    af: Afrikaans
     ar: Arabic
+    az: Azerbaijani
     bg: Bulgarian
     bs: Bosnian
+    by: Belarusian
     ca: Catalan
     cn: Chinese
     cs: Czech
@@ -1830,6 +1863,8 @@ en:
     pl: Polish
     pt: Portuguese
     pt-BR: Brazilian Portuguese
+    pt-PT: Portuguese (Portugal)
+    pt_BR: Portuguese (Brazil)
     ro: Romanian
     ru: Russian
     sk: Slovak
@@ -1842,11 +1877,16 @@ en:
     th: Thai
     tl: Tagalog
     tr: Turkish
+    ua: Ukrainian
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
     zh: Chinese Simplified
-    zh-TW: Chinese Traditional
+    zh-CN: Chinese (PRC)
+    zh-HK: Chinese (Hong Kong)
+    zh-TW: Chinese (Taiwan)
+    zh_CN: Chinese (Simplified, People's Republic of China)
+    zh_TW: Chinese - Traditional
   languages_localized:
     ar: عربي
     bg: български
@@ -1913,9 +1953,33 @@ en:
       menu: Menu
       notifications: Notifications
       profile: Profile
+  license_usage:
+    active: Active
+    campaign_name: Campaign name
+    inactive: Inactive
+    status_updated_at: Last status update
+    status_updated_by: Last updated by
+    subject_email: Subject email
+    subject_name: Subject name
+    usage_id: Usage ID
+    usage_overview: View license usage
   licenses:
+    enabled: Enabled
+    end_date: End date
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
+    number: Number
+    overuse_number: Over use allowance
+    report_family: Report bundle
+    start_date: Start date
+    type: Type
+    types:
+      common: Common
+      proctoring: Proctoring
+      threesixty: Threesixty
+    used_number: Used licenses
+    used_out_of: "%{used} out of %{total}"
+    used_percentage: Used Percentage
   loading: Processing...
   mailer:
     from: The Talent Enterprise
@@ -1934,7 +1998,7 @@ en:
           type: License type
           use_count: Use count
         expiry_stats: 'Licenses expiring in the next 30 days :'
-        no_expiry_stats: No lincenses expiring in the next 30 days.
+        no_expiry_stats: No licenses expiring in the next 30 days.
         no_weekly_stats: No licenses consumed in the last 7 days.
         notice: Note - You can unsubscribe to this weekly email from your profile page.
         subject: Weekly license usage stats
@@ -2262,6 +2326,20 @@ en:
       not_available: Not available
       on_hold: On hold
       released: Released
+  reset_password_modal:
+    fields:
+      automatically_generate_password: Automatically generate password
+      change_password_on_login: Change password on login
+      login_link: Login Link
+      name: Name
+      new_password: New Password
+      password_placeholder: Enter Password
+      send_password_email: Send password via Email
+      username: Username
+    messages:
+      reset_password_success: User %{email} password reseted successfully.
+      send_password_email_success: Email sent to user %{email} with the password.
+    title: Reset Password
   select: Select
   shared:
     filters:
@@ -2757,6 +2835,7 @@ en:
         hold_report: Hold report
         login: Login
         mark_as_done: Mark as done
+        regenerate_report: Regenerate report
         release_report: Release report
         remove_campaign: Remove from campaign
         remove_report_approval: Remove report approval
@@ -2942,7 +3021,37 @@ en:
       not_prepared: Not Available
       prepared: Available
   users:
+    actions:
+      2fa:
+        confirm_message:
+          disabled: 2 Factor Auth is Disabled
+          enabled: 2 Factor Auth is Enabled
+        option_to_disable: Disable 2FA
+        option_to_enable: Enable 2FA
+      details: Details
+      remove:
+        confirm_message: Are you sure you want to delete the user with an email '%{email}'?
+        confirm_title: Confirmation Requred
+        success_message: "%{email} has been removed"
+      reset_password:
+        option: Reset Password
+    admins: Admins
+    create_superadmin: Create Super Admin
+    dashboard: Dashboard
+    drawer:
+      link: Link
+      role: Role
+      title: User details
     password_change_success: Password changed successfully. Please login with your new password.
+    remove_message: Are you sure?
+    roles:
+      campaign_admin: Campaign Admin
+      campaign_user: Campaign User
+      client_admin: Client Admin
+      project_admin: Project Admin
+      superadmin: Super Admin
+    superadmins: Super Admins
+    users: Users
   validations:
     AudioResponse:
       in_progress:

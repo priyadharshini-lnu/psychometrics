@@ -40,6 +40,9 @@ export interface UrlQuery {
 export interface ApiConfig extends UrlQuery {
   include?: string[]
   include_meta?: string[]
+  include_resource_meta?: string[]
+  camelizeOnly?: string[]
+  camelizeExcept?: string[]
   query?: {
     [key:string]: unknown
   }
@@ -62,6 +65,7 @@ export interface Options<R, M> {
 }
 
 export interface BaseMeta {
+  permissions?: { [key: string]: boolean },
   recordCount?: number,
   pageCount?: number,
 }
@@ -74,6 +78,12 @@ export type UpdateResource<R> =
   (attribute: { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: ExtraArgs) => Promise<R>
 
 export type RemoveResource = (id: string, args?: ExtraArgs) => Promise<void>
+
+export type MemberAction = (args: {
+  id: string, action: string, method: HttpAction,
+  body?: Record<string, unknown>,
+  updateStore?: boolean, responseType?: ResponseType, apiConfig?: ApiConfig
+}) => Promise<void | unknown>
 
 export interface MemberActionOptions {
   responseType?: ResponseType

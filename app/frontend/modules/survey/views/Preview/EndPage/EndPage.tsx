@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { useLocation, useHistory } from 'react-router-dom'

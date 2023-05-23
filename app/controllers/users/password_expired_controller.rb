@@ -23,5 +23,9 @@ module Users
 
       super
     end
+
+    def resource_params
+      super.merge(force_password_change: false)
+    end
   end
 end

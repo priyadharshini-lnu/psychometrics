@@ -35,7 +35,7 @@ class Administration::DimensionsController < Administration::BaseController
 
     respond_to do |format|
       if resource.save
-        audit! :create, resource, payload: params.permit!, user: current_user
+        audit! :create, resource, payload: params, user: current_user
         format.js
       else
         format.js { render :new }

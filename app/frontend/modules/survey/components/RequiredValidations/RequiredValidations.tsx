@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Radio, Checkbox } from 'antd'
 
 import { RadioChangeEvent } from 'antd/lib/radio'

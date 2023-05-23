@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Select } from 'antd'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'

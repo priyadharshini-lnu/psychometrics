@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Campaigns::UserReports::Add do
   let(:campaign) { create(:campaign) }
+  let(:current_user) { create(:user) }
   let(:campaign_user) do
     create(:campaign_user, campaign: campaign, user: create(:user, project_id: campaign.project_id))
   end
@@ -24,7 +25,7 @@ describe Campaigns::UserReports::Add do
   end
 
   it 'catches not enough license error error' do
-    result = described_class.call(form, campaign_user)
+    result = described_class.call(form, campaign_user, current_user)
 
     expect(result[:error][:base]).to eq("'#{campaign.client.name}' does not have enough licenses for '#{report.name}'")
   end

@@ -100,7 +100,7 @@ module Administration
         else
           resource.destroy
         end
-        audit! :delete, resource, payload: resource.log_attribute_for_delete, client: resource
+        audit! :delete, resource, payload: resource.log_attributes, client: resource
         respond_to do |format|
           format.html do
             redirect_back(

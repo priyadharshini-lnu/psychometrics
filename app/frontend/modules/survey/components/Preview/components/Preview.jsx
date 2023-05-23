@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Previews } from '~/modules/survey/components/modules'
 import styles from './Preview.less'

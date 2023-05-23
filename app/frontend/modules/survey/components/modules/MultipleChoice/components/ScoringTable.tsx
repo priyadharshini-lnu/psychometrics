@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Table } from 'antd'
 import map from 'lodash/map'
 import find from 'lodash/find'

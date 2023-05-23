@@ -1,10 +1,10 @@
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './Overlay.less'
 import frames from './frames'
 
-export class Overlay extends React.Component {
+export class Overlay extends Component {
   constructor () {
     super()
 

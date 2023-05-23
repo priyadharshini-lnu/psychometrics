@@ -1,4 +1,3 @@
-import React from 'react'
 import { Radio, Divider } from 'antd'
 import _ from 'lodash'
 import RouteList from '~/components/RouteList'

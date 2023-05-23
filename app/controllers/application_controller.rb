@@ -80,14 +80,14 @@ class ApplicationController < ::BaseController
   private
 
   def ensure_user_profile_completed
-    return if request.method != 'GET' || request.path == '/profile'
+    return if request.method != 'GET' || request.path == '/profile_details'
     return unless @current_project && current_user
 
     update_in = @current_project.profile_setting.update_in || 9999
 
     completion = Users::ProfileCompletion.call!(current_user)
     if completion < 100 || (Time.current - current_user.user_profile.updated_at) > update_in.month
-      redirect_to '/profile'
+      redirect_to '/profile_details'
     end
   end
 

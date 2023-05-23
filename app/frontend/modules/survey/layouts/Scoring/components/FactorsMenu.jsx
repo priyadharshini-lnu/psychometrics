@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import styles from './Scoring.less'
 

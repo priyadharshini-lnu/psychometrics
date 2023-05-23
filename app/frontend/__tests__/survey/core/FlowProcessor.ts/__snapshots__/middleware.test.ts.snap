@@ -164,6 +164,7 @@ exports[`initializing base assessment init action should init assessment data: i
     "initialized": true,
     "instructions": undefined,
     "isAnonymousAssessment": undefined,
+    "isAssessor": undefined,
     "isSimulation": false,
     "isThreesixty": undefined,
     "linear": false,
@@ -384,6 +385,7 @@ exports[`initializing base assessment init action should init assessment data: i
         "name": "",
         "norm_rules": [],
         "options": {},
+        "ownerId": null,
         "propPanel": {
           "offset": null,
           "question": null,
@@ -469,6 +471,7 @@ exports[`initializing base assessment middleware should call next if is not NEXT
       "content": "",
       "enabled": false,
     },
+    "isAssessor": false,
     "isSimulation": false,
     "isThreesixty": false,
     "linear": false,
@@ -511,6 +514,7 @@ exports[`initializing base assessment middleware should call next if is not NEXT
         "name": "",
         "norm_rules": [],
         "options": {},
+        "ownerId": null,
         "propPanel": {
           "offset": null,
           "question": null,

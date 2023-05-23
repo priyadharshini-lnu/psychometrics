@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Avatar } from 'antd'
 import { PictureOutlined, StopOutlined } from '@ant-design/icons'
 

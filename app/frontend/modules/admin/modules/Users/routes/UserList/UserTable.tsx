@@ -1,0 +1,166 @@
+
+import React, { useState } from 'react'
+import {
+  Button, Menu, Switch, message,
+} from 'antd'
+import { ConnectedProps, connect } from 'react-redux'
+import _ from 'lodash'
+import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { User } from '~/modules/admin/modules/client/core/users'
+import { ConfirmationModal } from '~/glint'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { openModal } from '~/modules/admin/core/ui/modals'
+
+const { I18n } = window
+
+const connecter = connect(null, { openModal })
+interface OwnProps {
+  openDrawer: (user: User) => void
+}
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux & OwnProps
+
+export const UserTableComponent: React.FC<Props> = ({
+  openDrawer,
+  openModal,
+}) => (
+  <Resource.Table pagination>
+    <Resource.Column<User>
+      title={I18n.t('common.column.id')}
+      id="id"
+      sorter
+      render={user => <Button type="link" onClick={() => openDrawer(user)}>{user.id}</Button>}
+    />
+    <Resource.Column<User>
+      id="disabled"
+      title={I18n.t('common.column.active')}
+      render={user => <ActiveSwitch user={user} />}
+    />
+    <Resource.Column<User>
+      title={I18n.t('common.column.first_name')}
+      id="first_name"
+      width={300}
+      sorter
+    />
+    <Resource.Column<User>
+      title={I18n.t('common.column.last_name')}
+      id="last_name"
+      width={300}
+      sorter
+    />
+    <Resource.Column<User>
+      title={I18n.t('common.column.email')}
+      id="email"
+      width={300}
+      sorter
+    />
+    <Resource.Column<User>
+      title={I18n.t('common.column.updated_at')}
+      id="updated_at"
+      width={300}
+      sorter
+    />
+    <Resource.Column<User>
+      title={I18n.t('common.column.action')}
+      id="action"
+      render={(_, user) => (
+        <Dropdown
+          user={user}
+          openResetPasswordModal={user => openModal('ResetPasswordModal', { user })}
+        />
+      )}
+    />
+  </Resource.Table>
+)
+
+export const UserTable = connecter(UserTableComponent)
+
+const ActiveSwitch: React.FC<{ user: User }> = ({ user }) => {
+  const { resource } = useResourceContext<User>()
+  return (
+    <Switch
+      checked={!user.disabled}
+      onChange={() => {
+        resource.updateResource({ id: user.id, disabled: !user.disabled })
+      }}
+    />
+  )
+}
+
+interface DropdownProps {
+  user: User
+  openResetPasswordModal: (user: User) => void
+}
+
+const Dropdown: React.FC<DropdownProps> = ({ user, openResetPasswordModal }) => {
+  const [confirmation, setConfirmation] = useState(false)
+  return (
+    <ConditionalDropdown menu={ActionsMenu({
+      user, openResetPasswordModal, setConfirmation, confirmation,
+    })}
+    />
+  )
+}
+
+interface ActionMenuProps extends DropdownProps {
+  user: User
+  setConfirmation: (confirmation: boolean) => void
+  confirmation: boolean
+  openResetPasswordModal: DropdownProps['openResetPasswordModal']
+}
+
+const ActionsMenu: React.FC<ActionMenuProps> = ({
+  setConfirmation, confirmation, user, openResetPasswordModal,
+}) => {
+  const { resource } = useResourceContext<User>()
+
+  const toggle2FA = (user) => {
+    resource.updateResource({
+      id: user.id,
+      enable_2fa: !user.enable_2fa,
+    }).then((user: User) => {
+      message.info(I18n.t(`users.actions.2fa.confirm_message.${user.enable_2fa ? 'enabled' : 'disabled'}`))
+    })
+  }
+
+  const handleOnConfirm = () => resource.removeResource(user.id).then(() => {
+    message.info(I18n.t('users.actions.remove.success_message', { email: user.email }))
+  }).catch(e => message.error(JSON.stringify(e)))
+
+  const menuItems = [
+    user.meta.permissions.resetPassword && {
+      key: 'reset_password',
+      label: (
+        <Button type="link" onClick={() => openResetPasswordModal(user)} className="ps-0">
+          {I18n.t('users.actions.reset_password.option')}
+        </Button>),
+    },
+    user.meta.permissions.toggleEnable2fa && {
+      key: '2fa',
+      label: (
+        <Button type="link" onClick={() => toggle2FA(user)} className="ps-0">
+          {I18n.t(`users.actions.2fa.${user.enable_2fa ? 'option_to_disable' : 'option_to_enable'}`)}
+        </Button>),
+    },
+    user.meta.permissions.remove && {
+      key: 'remove',
+      label: (
+        <>
+          <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+            {I18n.t('common.actions.remove')}
+          </Button>
+          {confirmation && (
+            <ConfirmationModal
+              title={I18n.t('users.actions.remove.confirm_title')}
+              message={I18n.t('users.actions.remove.confirm_message', { email: user.email })}
+              onConfirm={handleOnConfirm}
+              onCancel={() => setConfirmation(false)}
+            />
+          )}
+        </>
+      ),
+    },
+  ]
+
+  return (<Menu items={_.compact(menuItems)} />)
+}

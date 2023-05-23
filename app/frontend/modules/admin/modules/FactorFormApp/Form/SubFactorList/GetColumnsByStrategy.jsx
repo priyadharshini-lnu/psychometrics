@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button, InputNumber, Select } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
 

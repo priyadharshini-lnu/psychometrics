@@ -85,7 +85,7 @@ module Imports
             started_at: parse_date(data['started_at'], index)
           )
 
-          user_result.meta_data['completed_groups'] = data['completed_groups'].split(',')
+          user_result.meta_data['completed_groups'] = data['completed_groups']&.split(',')
 
           fixed_headers_size.times { data.shift }
 
@@ -97,7 +97,7 @@ module Imports
 
       def open_spreadsheet
         case File.extname(file.path)
-          when '.csv' then Roo::CSV.new(file.url)
+          when '.csv' then Roo::CSV.new(file.url, csv_options: { converters: [:numeric] })
           when '.xlsx' then ::Roo::Excelx.new(file.url)
           else raise t('administration.imports.errors.unknown_type', filename: file.url)
         end
@@ -203,7 +203,7 @@ module Imports
       end
 
       def fixed_headers_size
-        ::Assessments::Export::AgileRaw::FIXED_HEADERS.size
+        ::AdminJobs::AgileRawResultExport::FIXED_HEADERS.size
       end
     end
   end

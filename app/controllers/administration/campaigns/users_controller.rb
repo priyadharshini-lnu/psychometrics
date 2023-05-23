@@ -153,11 +153,6 @@ module Administration
         render json: resource.id
       end
 
-      def reset_password
-        resource.send_reset_password_instructions
-        render json: :ok
-      end
-
       def spoof
         authorize(resource, nil, policy_class: Campaigns::UserPolicy)
         audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }

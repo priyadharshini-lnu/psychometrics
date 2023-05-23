@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTransition, animated as a } from 'react-spring'
 import Question from '~/modules/survey/views/Preview/Question'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'

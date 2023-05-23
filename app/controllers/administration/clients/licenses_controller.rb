@@ -11,14 +11,10 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @_filter_form = client.licenses.includes(:report_family).ransack(params[:q])
-        @_resources = filter_form.result.order(created_at: :desc).page(params[:page])
-        @report_families = ReportFamily.joins(:licenses).where(licenses: { client_id: client.root.id }).distinct
-
-        respond_to do |format|
-          format.html
-          format.js { render :index, formats: [:js] }
-        end
+        @init_state = {
+          licenses: [],
+          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
+        }
       end
 
       def create

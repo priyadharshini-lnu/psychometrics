@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import ProgressBar from '~/modules/survey/components/ProgressBar'
 import styles from './Bar.less'

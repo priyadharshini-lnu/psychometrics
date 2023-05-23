@@ -1,1 +1,3 @@
-export { PDFViewer } from './PDFViewer'
+import { PDFViewer } from './PDFViewer'
+
+export default PDFViewer

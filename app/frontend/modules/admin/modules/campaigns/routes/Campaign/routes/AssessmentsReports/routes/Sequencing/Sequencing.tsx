@@ -1,7 +1,7 @@
 import findIndex from 'lodash/findIndex'
 import pick from 'lodash/pick'
-import React, {
-  FC, useEffect, useState, useMemo, useRef,
+import {
+  Fragment, FC, useEffect, useState, useMemo, useRef,
 } from 'react'
 import { createPortal, unstable_batchedUpdates } from 'react-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -475,7 +475,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                       id={`${GROUP_ID_PREFIX}${group.id}`}
                     >
                       {sortedGroupedAssessments.map(groupedAssessment => (
-                        <React.Fragment key={groupedAssessment.id}>
+                        <Fragment key={groupedAssessment.id}>
                           <Row gutter={[8, 8]} key={groupedAssessment.id}>
                             <AssessmentSortable
                               disabled={isSortingContainer}
@@ -486,7 +486,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                             />
                           </Row>
                           <br />
-                        </React.Fragment>
+                        </Fragment>
                       ))}
                     </SortableContext>
                   </GroupSortable>
@@ -515,12 +515,12 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                     isLoading={false}
                   >
                     {getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).map(groupedAssessment => (
-                      <React.Fragment key={groupedAssessment.id}>
+                      <Fragment key={groupedAssessment.id}>
                         <Row gutter={[8, 8]}>
                           <Assessment span={24} assessment={groupedAssessment} />
                         </Row>
                         <br />
-                      </React.Fragment>
+                      </Fragment>
                     ))}
                   </GroupedAssessmentContainer>
                 ) : (

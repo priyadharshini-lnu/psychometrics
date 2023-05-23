@@ -9,6 +9,38 @@ module Api
         end
       end
 
+      def show?
+        @user.is?(:superadmin)
+      end
+
+      def update?
+        @user.is?(:superadmin)
+      end
+
+      def create?
+        @user.is?(:superadmin)
+      end
+
+      def index?
+        @user.is?(:superadmin)
+      end
+
+      def edit?
+        @user.is?(:superadmin)
+      end
+
+      def destroy?
+        @user.is?(:superadmin)
+      end
+
+      def reset_password?
+        @user.is?(:superadmin)
+      end
+
+      def send_mail?
+        @user.is?(:superadmin)
+      end
+
       def spoof?
         @user.is?(:superadmin)
       end

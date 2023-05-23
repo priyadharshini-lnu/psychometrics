@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { CSSProperties } from 'react'
+import { CSSProperties } from 'react'
 import { Route } from 'react-router-dom'
 import {
   Layout, Row, Col, Space, ConfigProvider,

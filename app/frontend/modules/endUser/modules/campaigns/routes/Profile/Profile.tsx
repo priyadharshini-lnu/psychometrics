@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import {
   Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress,
@@ -7,7 +7,6 @@ import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
 import _ from 'lodash'
-import { Link } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import Utils from '~/modules/reports/utils/Utils'
 import LangDropdown from '~/components/LangDropdown'
@@ -247,7 +246,9 @@ function ProfileComponent ({
                     >
                       <Select size="large" disabled={lockedFields.locale}>
                         {_.map(locales, locale => (
-                          <Select.Option value={locale}>{I18n.t(`languages_localized.${locale}`)}</Select.Option>
+                          <Select.Option key={locale} value={locale}>
+                            {I18n.t(`languages_localized.${locale}`)}
+                          </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
@@ -275,7 +276,7 @@ function ProfileComponent ({
                     </Form.Item> */}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
-                        <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
+                        <Col key={field.question_id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
                           <Form.Item
                             hasFeedback
                             help={Array.isArray(errors?.[field.name])
@@ -293,7 +294,6 @@ function ProfileComponent ({
                       ))}
                     </Row>
                     <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
-                      <Link to="/change_password">{I18n.t('change_password_page.title')}</Link>
                       <ButtonWithArrow
                         label={I18n.t('profile.update')}
                         type="primary"

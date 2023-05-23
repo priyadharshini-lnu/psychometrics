@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import moment from 'moment'
 import {
   Row, Col, Space, Avatar, Typography,

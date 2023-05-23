@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Assessment from '~/modules/survey/containers/AppContainer'

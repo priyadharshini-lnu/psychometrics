@@ -1,4 +1,3 @@
-import React from 'react'
 import { Select } from 'antd'
 import cs from 'classnames'
 import styles from './styles.less'
@@ -16,6 +15,7 @@ export default function MultiSelect ({
       mode="multiple"
       value={entity[field.key] || []}
       onChange={onChange}
+      filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
     >
       {field.values(context).map(f => (
         <Select.Option key={f.key} value={f.key}>

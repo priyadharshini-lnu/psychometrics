@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Slider as AntSlider } from 'antd'
 import classNames from 'classnames'
 

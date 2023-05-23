@@ -1,7 +1,7 @@
 import merge from 'lodash/merge'
 import React, { useEffect, useRef } from 'react'
-import Highcharts, { Chart, AxisLabelsFormatterContextObject } from 'highcharts-v9'
-import Highcharts3D from 'highcharts-v9/highcharts-3d'
+import Highcharts, { Chart, AxisLabelsFormatterContextObject } from 'highcharts'
+import Highcharts3D from 'highcharts/highcharts-3d'
 import CustomEvents from 'highcharts-custom-events'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 import { Factor } from '~/modules/reports/interfaces/Base'
@@ -59,7 +59,7 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
     }
   }
 
-  const changeBarLabel = (collectionName: string, labelObj: AxisLabelsFormatterContextObject<string>) => {
+  const changeBarLabel = (collectionName: string, labelObj: AxisLabelsFormatterContextObject) => {
     changeLabel(model, labelObj.value, collectionName)
   }
 

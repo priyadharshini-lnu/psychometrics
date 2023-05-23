@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import v4 from 'uuid/v4'
+import { v4 } from 'uuid'
 
 export default {
   limit (val, min = 0, max = 300) {

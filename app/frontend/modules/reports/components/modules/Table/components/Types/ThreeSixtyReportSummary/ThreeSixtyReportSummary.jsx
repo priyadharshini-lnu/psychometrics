@@ -1,4 +1,3 @@
-import React from 'react'
 import cs from 'classnames'
 import _ from 'lodash'
 import { getIn } from '~/utils/immutable'

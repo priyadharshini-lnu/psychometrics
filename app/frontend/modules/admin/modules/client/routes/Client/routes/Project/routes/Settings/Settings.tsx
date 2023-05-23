@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { History } from 'history'
@@ -74,6 +74,10 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
   permissions.manageProfileSettings && menuItems.push({
     key: '/profile',
     label: I18n.t('administration.project_tabs.profile'),
+  })
+  permissions.manageProjectWebhooks && menuItems.push({
+    key: '/webhooks',
+    label: I18n.t('administration.project_tabs.webhooks.title'),
   })
 
   return (

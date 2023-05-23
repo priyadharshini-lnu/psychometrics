@@ -17,7 +17,7 @@ module Api
           project = ::Projects::Create.call!(normalized_params.except(*DESIGN_ATTRIBUTES), current_user)
           project.design_setting.update!(normalized_params.slice(*DESIGN_ATTRIBUTES))
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
-          audit! :api_create, project, payload: params.permit!, project: project
+          audit! :api_create, project, payload: params, project: project
           render json: project, serializer: Api::V1::ProjectSerializer
         else
           render_validation_errors(form)
@@ -25,14 +25,14 @@ module Api
       end
 
       def update
-        form = Api::V1::Projects::UpdateForm.from_params(params)
+        form = Api::V1::Projects::UpdateForm.from_params(params).with_context(project: project)
         if form.valid?
           normalized_params = ::Projects::NormalizeApiRequest.call!(project_params)
           project.update!(normalized_params.except(*DESIGN_ATTRIBUTES, *SECURITY_SETTINGS))
           project.design_setting.update!(normalized_params.slice(*DESIGN_ATTRIBUTES))
           project.security_setting.update!(normalized_params.slice(SECURITY_SETTINGS))
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
-          audit! :api_update, project, payload: params.permit!, project: project
+          audit! :api_update, project, payload: params, project: project
           render json: project, serializer: Api::V1::ProjectSerializer
         else
           render_validation_errors(form)

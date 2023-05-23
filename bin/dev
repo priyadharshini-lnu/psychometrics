@@ -5,5 +5,8 @@ then
   echo "Installing foreman..."
   gem install foreman
 fi
+dev="dev"
+env="${1:-$dev}"
 
-foreman start -f Procfile.dev "$@"
+echo "Run with Procfile.$env"
+foreman start -f Procfile.$env "$@"

@@ -37,6 +37,13 @@
             ]
           }
         ],
+        "parameters": [
+          {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "Client list",
@@ -55,6 +62,11 @@
                         "project_manager": {
                           "id": "1",
                           "name": "John Doe"
+                        }
+                      },
+                      "meta": {
+                        "permissions": {
+                          "view_licenses": true
                         }
                       }
                     }
@@ -83,7 +95,11 @@
           }
         ],
         "parameters": [
-
+          {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          }
         ],
         "responses": {
           "201": {
@@ -106,6 +122,11 @@
                           "type": "users",
                           "id": "100"
                         }
+                      }
+                    },
+                    "meta": {
+                      "permissions": {
+                        "view_licenses": true
                       }
                     }
                   }
@@ -146,6 +167,11 @@
         ],
         "parameters": [
           {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          },
+          {
             "name": "client_id",
             "in": "path",
             "required": true,
@@ -176,6 +202,11 @@
                           "type": "users",
                           "id": "100"
                         }
+                      }
+                    },
+                    "meta": {
+                      "permissions": {
+                        "view_licenses": true
                       }
                     }
                   }
@@ -576,6 +607,702 @@
         }
       }
     },
+    "/clients/{client_id}/licenses/{license_id}/license_usages": {
+      "get": {
+        "summary": "License Usages List",
+        "operationId": "LicenseUsagesList",
+        "description": "Fetch client License Usages list",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License Usages list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "data": {
+                      "id": "52",
+                      "type": "license_usages",
+                      "links": {
+                        "self": "http://do.main/api/v2/administration/license_usages/29283"
+                      },
+                      "attributes": {
+                        "campaign_id": null,
+                        "created_at": "2019-07-28T02:41:04.221+04:00",
+                        "status_updated_at": "2023-04-24T14:45:45.308+04:00",
+                        "status_updated_by_id": 176,
+                        "extras": {
+                        },
+                        "status": "active"
+                      },
+                      "relationships": {
+                        "campaign": {
+                          "data": null
+                        },
+                        "user": {
+                          "data": {
+                            "type": "users",
+                            "id": "829"
+                          }
+                        },
+                        "status_updated_by": {
+                          "data": {
+                            "type": "users",
+                            "id": "176"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseUsageListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/{client_id}/licenses/{license_id}/license_usages/{license_usage_id}/toggle_status": {
+      "post": {
+        "summary": "Toggle License Usage Status",
+        "operationId": "LicenseUsageToggleStatus",
+        "description": "Toggle License Usage status",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_usage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License Usage toggle status",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "data": {
+                      "id": "52",
+                      "type": "license_usages",
+                      "links": {
+                        "self": "http://do.main/api/v2/administration/license_usages/29283"
+                      },
+                      "attributes": {
+                        "campaign_id": null,
+                        "created_at": "2019-07-28T02:41:04.221+04:00",
+                        "status_updated_at": "2023-04-24T14:45:45.308+04:00",
+                        "status_updated_by_id": 176,
+                        "extras": {
+                        },
+                        "status": "inactive"
+                      },
+                      "relationships": {
+                        "campaign": {
+                          "data": null
+                        },
+                        "user": {
+                          "data": {
+                            "type": "users",
+                            "id": "829"
+                          }
+                        },
+                        "status_updated_by": {
+                          "data": {
+                            "type": "users",
+                            "id": "176"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseUsageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/{client_id}/licenses": {
+      "get": {
+        "summary": "Licenses List",
+        "operationId": "LicensesList",
+        "description": "Fetch client Licenses list",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Licenses list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "data": {
+                      "id": "52",
+                      "type": "licenses",
+                      "links": {
+                        "self": "http://do.main/api/v2/administration/licenses/52"
+                      },
+                      "attributes": {
+                        "number": 100,
+                        "overuse_number": 0,
+                        "used_number": 1,
+                        "start_date": "2017-05-01",
+                        "end_date": "2021-01-01",
+                        "report_family_id": 2,
+                        "disabled": false,
+                        "type": "common"
+                      },
+                      "relationships": {
+                        "client": {
+                          "data": {
+                            "type": "clients",
+                            "id": "100"
+                          }
+                        },
+                        "report_family": {
+                          "data": {
+                            "type": "report_families",
+                            "id": "2"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/LicensesListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create License",
+        "operationId": "CreateLicense",
+        "description": "Create new License",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "License Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "licenses",
+                    "attributes": {
+                      "number": 100,
+                      "overuse_number": 0,
+                      "used_number": 1,
+                      "start_date": "2017-05-01",
+                      "end_date": "2021-01-01",
+                      "report_family_id": 2,
+                      "disabled": false,
+                      "type": "common"
+                    },
+                    "relationships": {
+                      "report_family": {
+                        "data": {
+                          "type": "report_families",
+                          "id": "2"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/{client_id}/licenses/{license_id}": {
+      "patch": {
+        "summary": "Update a license",
+        "operationId": "UpdateLicense",
+        "description": "Update a License",
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "license_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License Updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "licenses",
+                    "id": "87",
+                    "attributes": {
+                      "number": 100,
+                      "overuse_number": 0,
+                      "used_number": 1,
+                      "start_date": "2017-05-01",
+                      "end_date": "2021-01-01",
+                      "report_family_id": 2,
+                      "disabled": false,
+                      "type": "common"
+                    },
+                    "relationships": {
+                      "report_family": {
+                        "data": {
+                          "type": "report_families",
+                          "id": "2"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/LicenseResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/memberships/": {
+      "get": {
+        "summary": "Membership list",
+        "operationId": "MembershipList",
+        "tags": [
+          "Membership"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "filter[client_id_eq]",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "filter[with_role]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "12",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "email": "user@cc.com",
+                        "user_id": "2"
+                      },
+                      "meta": {
+                        "permissions": {
+                          "login_as": true,
+                          "edit": true,
+                          "reset_password": true,
+                          "remove": true,
+                          "send_mail": true
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a membership",
+        "operationId": "CreateMembership",
+        "description": "Create new Membership",
+        "tags": [
+          "Memberships"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Membership Created",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "name": "First Name Last Name",
+                        "email": "user@cc.com",
+                        "role": "client_admin",
+                        "user_id": "1",
+                        "clients": [
+                          {
+                            "id": 1,
+                            "name": "Client Tenancy",
+                            "role": "client_admin"
+                          }
+                        ],
+                        "grants_names": {
+                          "norms": [
+                            "view",
+                            "manage"
+                          ],
+                          "clients": [
+                            "view",
+                            "view_licenses"
+                          ]
+                        }
+                      },
+                      "relationships": {
+                        "user": {
+                          "data": {
+                            "id": "1",
+                            "type": "users"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MembershipCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/memberships/{membership_id}": {
+      "get": {
+        "summary": "Membership",
+        "operationId": "Membership",
+        "description": "Fetch Membership",
+        "tags": [
+          "Memberships"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "membership_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Membership",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "name": "First Name Last Name",
+                        "email": "user@cc.com",
+                        "role": "client_admin",
+                        "user_id": "1"
+                      },
+                      "relationships": {
+                        "user": {
+                          "data": {
+                            "id": "1",
+                            "type": "users"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a membership",
+        "operationId": "UpdateMembership",
+        "description": "Update Membership",
+        "tags": [
+          "Memberships"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "membership_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Membership Updated",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "memberships",
+                    "data": {
+                      "id": "770",
+                      "attributes": {
+                        "first_name": "First Name",
+                        "last_name": "Last Name",
+                        "name": "First Name Last Name",
+                        "email": "user@cc.com",
+                        "role": "client_admin",
+                        "user_id": "1",
+                        "clients": [
+                          {
+                            "id": 1,
+                            "name": "Client Tenancy",
+                            "role": "client_admin"
+                          }
+                        ],
+                        "grants_names": {
+                          "norms": [
+                            "view",
+                            "manage"
+                          ],
+                          "clients": [
+                            "view",
+                            "view_licenses"
+                          ]
+                        }
+                      },
+                      "relationships": {
+                        "user": {
+                          "data": {
+                            "id": "1",
+                            "type": "users"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MembershipUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/clients/{client_id}/projects/": {
       "get": {
         "summary": "Project List",
@@ -618,6 +1345,7 @@
                         "locales": [
                           "en"
                         ],
+                        "logo": "https://dummy_bucket.s3.amazonaws.com/uploads/client/logo/1005/8845148b-2404-48b7-9cbc-9f90e088341c.png",
                         "number": "TTE-2022",
                         "privacy_consent": false,
                         "subdomain": "project-subdomain"
@@ -1355,6 +2083,18 @@
             ]
           }
         ],
+        "parameters": [
+          {
+            "name": "include_resource_meta",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "filter[role_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "User list",
@@ -1368,6 +2108,13 @@
                       "attributes": {
                         "name": "User Name",
                         "email": "user@cc.com"
+                      },
+                      "meta": {
+                        "permissions": {
+                          "remove": false,
+                          "reset_password": true,
+                          "toggle_enable_2fa": true
+                        }
                       }
                     }
                   }
@@ -1378,6 +2125,246 @@
               }
             }
           }
+        }
+      }
+    },
+    "/users/{user_id}/reset_password/": {
+      "post": {
+        "summary": "Reset Password",
+        "operationId": "ResetPassword",
+        "description": "Reset Password",
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Password Reset",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "users",
+                  "data": {
+                    "id": "770",
+                    "attributes": {
+                      "automatically_generate_password": false,
+                      "password": "strong_password1",
+                      "change_password_on_login": true,
+                      "send_password_email": true
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/webhooks/": {
+      "get": {
+        "summary": "Webhook List",
+        "operationId": "WebhooksList",
+        "description": "Fetch Webhook list",
+        "tags": [
+          "Webhook"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "webhooks",
+                    "data": {
+                      "id": "1",
+                      "attributes": {
+                        "description": "webhook description",
+                        "url": "http://www.dummy_webhook.com",
+                        "active": false,
+                        "auth_type": "none",
+                        "username": "Jon"
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a Webhook",
+        "operationId": "CreateWebhhook",
+        "description": "Create new Webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Webhook Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "webhooks",
+                    "attributes": {
+                      "description": "webhook description",
+                      "url": "http://www.dummy_webhook.com",
+                      "active": false,
+                      "auth_type": "none",
+                      "username": "Jon"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/webhooks/{webhook_id}/": {
+      "patch": {
+        "summary": "Update a Webhook",
+        "operationId": "UpdateWebhook",
+        "description": "Update a webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "webhook_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook Updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "webhooks",
+                    "id": "20",
+                    "attributes": {
+                      "acttive": true
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookUpdateRequest"
+              }
+            }
+          },
+          "required": true
         }
       }
     }
@@ -1543,13 +2530,36 @@
                     "year"
                   ],
                   "nullable": false
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "permissions": {
+                      "type": "object",
+                      "properties": {
+                        "view_licenses": {
+                          "type": "boolean",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "view_licenses"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "permissions"
+                  ],
+                  "nullable": false
                 }
               },
               "required": [
                 "id",
                 "type",
                 "links",
-                "attributes"
+                "attributes",
+                "meta"
               ],
               "nullable": false
             },
@@ -1719,13 +2729,36 @@
                   "year"
                 ],
                 "nullable": false
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "permissions": {
+                    "type": "object",
+                    "properties": {
+                      "view_licenses": {
+                        "type": "boolean",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "view_licenses"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "permissions"
+                ],
+                "nullable": false
               }
             },
             "required": [
               "id",
               "type",
               "links",
-              "attributes"
+              "attributes",
+              "meta"
             ],
             "nullable": false
           }
@@ -2728,6 +3761,685 @@
           "data"
         ]
       },
+      "LicensesListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to licenses",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "report_family": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to report_families",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "start_date": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "end_date": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "number": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "overuse_number": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "used_number": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "disabled": {
+                      "type": "boolean",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "start_date",
+                    "end_date",
+                    "number",
+                    "overuse_number",
+                    "used_number"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "LicenseResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to licenses",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "report_family": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to report_families",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "overuse_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "used_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "start_date",
+                  "end_date",
+                  "number",
+                  "overuse_number",
+                  "used_number"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "LicenseCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to licenses",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "overuse_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "start_date",
+                  "end_date",
+                  "number",
+                  "overuse_number"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "report_family": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to report_families",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "LicenseUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to licenses",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "overuse_number": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "report_family": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to report_families",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "LicenseUsageListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to license_usages",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "extras": {
+                      "type": "object",
+                      "properties": {
+                        "campaign_name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "subject_name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "subject_email": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "status_updated_at": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "extras",
+                    "status"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "LicenseUsageResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to license_usages",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "extras": {
+                    "type": "object",
+                    "properties": {
+                      "campaign_name": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "subject_name": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "subject_email": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "status_updated_at": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "extras",
+                  "status"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
       "ReportApprovalSettingListResponse": {
         "type": "object",
         "properties": {
@@ -2866,7 +4578,7 @@
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "integer",
+                            "type": "string",
                             "nullable": false
                           },
                           "email": {
@@ -2888,7 +4600,7 @@
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "integer",
+                            "type": "string",
                             "nullable": false
                           },
                           "email": {
@@ -2910,7 +4622,7 @@
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "integer",
+                            "type": "string",
                             "nullable": false
                           },
                           "email": {
@@ -3254,7 +4966,7 @@
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "integer",
+                          "type": "string",
                           "nullable": false
                         },
                         "email": {
@@ -3276,7 +4988,7 @@
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "integer",
+                          "type": "string",
                           "nullable": false
                         },
                         "email": {
@@ -3298,7 +5010,7 @@
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "integer",
+                          "type": "string",
                           "nullable": false
                         },
                         "email": {
@@ -3447,7 +5159,286 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
+                    "email": {
+                      "type": "string",
+                      "nullable": false
+                    },
                     "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "full_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "first_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "disabled": {
+                      "type": "boolean",
+                      "nullable": false
+                    },
+                    "enable_2fa": {
+                      "type": "boolean",
+                      "nullable": false
+                    },
+                    "created_by": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "modified_by": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "role": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "email",
+                    "name",
+                    "full_name",
+                    "first_name",
+                    "last_name",
+                    "disabled",
+                    "enable_2fa",
+                    "role"
+                  ],
+                  "nullable": false
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "permissions": {
+                      "type": "object",
+                      "properties": {
+                        "reset_password": {
+                          "type": "boolean",
+                          "nullable": false
+                        },
+                        "remove": {
+                          "type": "boolean",
+                          "nullable": false
+                        },
+                        "toggle_enable_2fa": {
+                          "type": "boolean",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "reset_password",
+                        "remove",
+                        "toggle_enable_2fa"
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "permissions"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes",
+                "meta"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "MembershipListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to memberships",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "grant_names": {
+                      "type": "object",
+                      "properties": {
+                        "clients": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "projects": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "project_settings": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "campaigns": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "dashboards": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "messages": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "sms_invites": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "registration_codes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "communications": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "assessors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "reports": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        },
+                        "datasheets": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "first_name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "last_name": {
                       "type": "string",
                       "nullable": false
                     },
@@ -3457,8 +5448,8 @@
                     }
                   },
                   "required": [
-                    "name",
-                    "email"
+                    "role",
+                    "grant_names"
                   ],
                   "nullable": false
                 }
@@ -3495,6 +5486,611 @@
         "required": [
           "data",
           "meta"
+        ]
+      },
+      "MembershipResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to memberships",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "grant_names": {
+                    "type": "object",
+                    "properties": {
+                      "clients": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "projects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "project_settings": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "campaigns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "dashboards": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "sms_invites": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "registration_codes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "communications": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "assessors": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "reports": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "datasheets": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "role",
+                  "grant_names"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "MembershipCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to memberships",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "role": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "grant_names": {
+                    "type": "object",
+                    "properties": {
+                      "clients": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "projects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "project_settings": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "campaigns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "dashboards": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "sms_invites": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "registration_codes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "communications": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "assessors": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "reports": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "datasheets": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "role",
+                  "grant_names"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "MembershipUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to memberships",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "role": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "grant_names": {
+                    "type": "object",
+                    "properties": {
+                      "clients": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "projects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "project_settings": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "campaigns": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "dashboards": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "messages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "sms_invites": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "results": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "registration_codes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "communications": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "assessors": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "reports": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      },
+                      "datasheets": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "automatically_generate_password": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "send_password_email": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "change_password_on_login": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "automatically_generate_password"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ResetPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
         ]
       },
       "ReportApprovalListResponse": {
@@ -4352,11 +6948,15 @@
                   },
                   "text": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "link": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
+                  },
+                  "enable_privacy_link": {
+                    "type": "boolean",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -4440,11 +7040,15 @@
                   },
                   "text": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "link": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
+                  },
+                  "enable_privacy_link": {
+                    "type": "boolean",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -4530,11 +7134,15 @@
                   },
                   "text": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
                   },
                   "link": {
                     "type": "string",
-                    "nullable": false
+                    "nullable": true
+                  },
+                  "enable_privacy_link": {
+                    "type": "boolean",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -4634,17 +7242,352 @@
                     },
                     "text": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
                     },
                     "link": {
                       "type": "string",
-                      "nullable": false
+                      "nullable": true
+                    },
+                    "enable_privacy_link": {
+                      "type": "boolean",
+                      "nullable": true
                     }
                   },
                   "required": [
                     "name",
                     "number",
                     "subdomain"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "WebhookResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to webhooks",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "auth_type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "url",
+                  "description",
+                  "auth_type",
+                  "active"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "WebhookCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to webhooks",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "auth_type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "url",
+                  "description",
+                  "auth_type",
+                  "active"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "WebhookUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to webhooks",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "topics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "auth_type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "WebhookListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to webhooks",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "password": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "url": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "topics": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
+                    "auth_type": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "description",
+                    "auth_type",
+                    "active"
                   ],
                   "nullable": false
                 }

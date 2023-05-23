@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Home from '~/modules/survey/views/Home'
 import Trash from '~/modules/survey/views/Trash'

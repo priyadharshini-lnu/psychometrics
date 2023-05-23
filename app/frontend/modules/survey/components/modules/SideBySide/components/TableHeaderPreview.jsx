@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 import cs from 'classnames'
 import styles from '../styles.less'
 

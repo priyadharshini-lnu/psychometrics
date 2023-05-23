@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Menu from '~/modules/survey/components/ModulesMenu'
 // import CreateByTemplateStore from 'store/CreateByTemplateStore'
@@ -19,8 +19,8 @@ class BlockFooter extends Component {
   }
 
   createDefault = () => {
-    const { model } = this.props
-    model.addQuestion()
+    const { addQuestion, model } = this.props
+    addQuestion(model)
   }
 
   changeType = (type) => {

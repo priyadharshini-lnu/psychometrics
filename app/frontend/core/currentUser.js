@@ -48,6 +48,7 @@ export const uploadPhoto = formData => ({
     method: 'patch',
     url: '/users/upload_photo',
     body: formData,
+    contentType: 'multipart/form-data;',
   },
 })
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 import {
   BROWSER_NAME, BROWSER_VERSION, OS_NAME, OS_VERSION, UA_STRING,

@@ -27,12 +27,14 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   end
 
   def export_results
-    results = ::Assessments::Export::RawAndScoring.call!(resource.assessment, resource.campaign)
-
     audit! :export_results, resource, campaign: resource.campaign
-    respond_to do |format|
-      format.xlsx { send_data results.to_stream.read, filename: 'assessment_raw_results.xlsx' }
-    end
+
+    AdminJob.call(
+      :assessment_raw_result_export,
+      { assessment_id: resource.assessment_id, campaign_id: resource.campaign_id, export_with_labels: false },
+      current_user
+    )
+    head :ok
   end
 
   def reset_nominations
@@ -44,6 +46,13 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   def rescore_assessment
     AdminJob.call(
       :rescore_assessment, { campaign_id: resource.campaign_id, assessment_id: resource.assessment_id }, current_user
+    )
+    render json: :ok
+  end
+
+  def regenerate_reports
+    AdminJob.call(
+      :bulk_regenerate_threesixty_reports, { campaign_id: resource.id }, current_user
     )
     render json: :ok
   end

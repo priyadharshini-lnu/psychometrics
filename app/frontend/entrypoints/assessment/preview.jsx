@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -21,7 +20,7 @@ const {
 
 const props = {
   data: JSON.parse(data),
-  locales: JSON.parse(locales),
+  locales: JSON.parse(locales || '{}'),
   result: JSON.parse(result || '{}'),
   type,
   isThreesixty,

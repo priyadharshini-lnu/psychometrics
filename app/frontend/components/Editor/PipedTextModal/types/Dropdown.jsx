@@ -1,4 +1,3 @@
-import React from 'react'
 import { Menu, Dropdown as AntDropdown } from 'antd'
 import { CaretDownFilled } from '@ant-design/icons'
 import { getMenuItems } from '~/utils/array'

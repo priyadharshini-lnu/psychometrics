@@ -27,4 +27,22 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
   def self.records(opts = {})
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, _model_class])
   end
+
+  def meta(_options)
+    return {} if context[:params][:include_resource_meta].blank?
+
+    meta_keys = if context[:params][:include_resource_meta] == '*'
+                  meta_details.keys.map(&:to_s)
+                else
+                  context[:params][:include_resource_meta].split(',')
+                end
+
+    meta_details.each_with_object({}) do |(key, value), hash|
+      hash[key] = value.call if meta_keys.include?(key.to_s)
+    end
+  end
+
+  def meta_details
+    {}
+  end
 end

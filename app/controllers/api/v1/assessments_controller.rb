@@ -19,7 +19,7 @@ module Api
 
       def update
         @user_assessment.update!(user_assessment_params)
-        audit! :api_update, @user_assessment, payload: params.permit!, campaign: @user_assessment.campaign
+        audit! :api_update, @user_assessment, payload: params, campaign: @user_assessment.campaign
         render json: @user_assessment, serializer: Api::V1::UserAssessmentSerializer
       end
 

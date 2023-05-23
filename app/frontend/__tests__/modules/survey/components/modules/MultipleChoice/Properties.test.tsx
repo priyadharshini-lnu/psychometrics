@@ -8,6 +8,7 @@ import {
   Props,
 } from '~/modules/survey/components/modules/MultipleChoice/Properties'
 
+global.React = React
 const testStore = (state=[], _) => {
   return state
 }

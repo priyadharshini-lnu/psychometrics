@@ -89,6 +89,7 @@ export const importSmsInvites = (campaignId: number, body: FormData) => ({
     url: `/administration/new_campaigns/${campaignId}/sms_invites/import`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

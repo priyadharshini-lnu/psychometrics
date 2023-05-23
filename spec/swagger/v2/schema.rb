@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/MutableConstant, Metrics/ModuleLength
+# rubocop:disable Style/MutableConstant
 
 Dir["#{__dir__}/definitions/**/*.rb"].each { |file| require file }
 
@@ -117,6 +117,24 @@ module Swagger
           DesignSettingUpdateResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::DesignSetting::Schema.single_resource_response
           ),
+          LicensesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.multiple_resource_response
+          ),
+          LicenseResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.single_resource_response
+          ),
+          LicenseCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.create_request
+          ),
+          LicenseUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::License::Schema.update_request
+          ),
+          LicenseUsageListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::LicenseUsage::Schema.multiple_resource_response
+          ),
+          LicenseUsageResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::LicenseUsage::Schema.single_resource_response
+          ),
           ReportApprovalSettingListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::ReportApprovalSetting::Schema.multiple_resource_response
           ),
@@ -134,6 +152,24 @@ module Swagger
           ),
           UserListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.multiple_resource_response
+          ),
+          MembershipListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.multiple_resource_response
+          ),
+          MembershipResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.single_resource_response
+          ),
+          MembershipCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.create_request
+          ),
+          MembershipUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Membership::Schema.update_request
+          ),
+          ResetPasswordRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.reset_password_request
+          ),
+          ResetPasswordResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.reset_password_response
           ),
           ReportApprovalListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::ReportApproval::Schema.multiple_resource_response
@@ -161,6 +197,18 @@ module Swagger
           ),
           ProjectsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Projects::Schema.multiple_resource_response
+          ),
+          WebhookResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.single_resource_response
+          ),
+          WebhookCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.create_request
+          ),
+          WebhookUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.update_request
+          ),
+          WebhookListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Webhook::Schema.multiple_resource_response
           )
         }
       }
@@ -168,4 +216,4 @@ module Swagger
   end
 end
 
-# rubocop:enable Style/MutableConstant, Metrics/ModuleLength
+# rubocop:enable Style/MutableConstant

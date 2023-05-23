@@ -1,4 +1,3 @@
-import React from 'react'
 import cs from 'classnames'
 import { Select } from 'antd'
 import styles from './styles.less'

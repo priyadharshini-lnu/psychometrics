@@ -1,4 +1,3 @@
-import React from 'react'
 import Select from 'react-select'
 import _ from 'lodash'
 import AppStore from '~/modules/reports/store/AppStore'

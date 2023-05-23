@@ -3,11 +3,12 @@
 module Campaigns
   module Reports
     class Add < BaseCommand
-      private_attr_reader :form, :campaign
+      private_attr_reader :form, :campaign, :current_user
 
-      def initialize(form, campaign)
+      def initialize(form, campaign, current_user)
         @form = form
         @campaign = campaign
+        @current_user = current_user
       end
 
       def call
@@ -26,8 +27,13 @@ module Campaigns
       def create_campaign_report(report)
         return if existing_report_ids.include?(report.id)
 
-        campaign.campaign_reports.create!(
+        campaign_report = campaign.campaign_reports.create!(
           report: report, user_access: user_access_for(report), report_family_id: report_family_id_for(report)
+        )
+        AuditLogModule.audit!(
+          :create, campaign_report,
+          payload: form.attributes,
+          user: current_user
         )
 
         unless report.data_only?
@@ -35,7 +41,11 @@ module Campaigns
             assessment_params = form.assessment_map[assessment.id] || {}
             attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
             attrs[:external_norm_id] = assessment.external_settings[:norm_id] if assessment.has_external_norm?
-            campaign.campaign_assessments.create_with(attrs).find_or_create_by!(assessment: assessment)
+            camapign_assessment = campaign.campaign_assessments.
+                                  create_with(attrs).find_or_create_by!(assessment: assessment)
+            AuditLogModule.audit!(
+              :create, camapign_assessment, payload: camapign_assessment.log_attributes, user: current_user
+            )
           end
         end
 
@@ -49,6 +59,7 @@ module Campaigns
           Campaigns::Users::AddReport.call!(
             campaign_user,
             report,
+            current_user: current_user,
             report_family_id: report_family_id_for(report),
             user_access: user_access_for(report),
             operation: form.operation,

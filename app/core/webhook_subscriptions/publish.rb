@@ -19,11 +19,16 @@ module WebhookSubscriptions
     end
 
     def call
-      return broadcast(:ok) unless project.webhook_subscription
+      return broadcast(:ok) unless project.webhooks.not_deleted.exists?
 
       event = EVENTS[event_name].call(data.merge(project: project, client: project.parent))
 
-      WebhookSystemJob.perform_later(project.webhook_subscription, event.as_json)
+      project.webhooks.not_deleted.includes(:topics).each do |webhook|
+        if webhook.topics.pluck(:name).include?(event_name.to_s)
+          WebhookSystemJob.perform_later(webhook, event.as_json)
+        end
+      end
+
       broadcast(:ok)
     end
   end

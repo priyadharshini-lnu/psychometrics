@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button, Input, Menu, Dropdown, DatePicker,
 } from 'antd'

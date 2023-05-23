@@ -1,4 +1,3 @@
-import React from 'react'
 import OptionSection from '~/modules/admin/components/Options/Section'
 import ExpandableOption from '~/modules/admin/components/Options/Expandable'
 import AvailabilityRequirement from '../AvailabilityRequirement'

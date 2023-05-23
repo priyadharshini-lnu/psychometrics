@@ -222,7 +222,6 @@ Rails.application.routes.draw do
           resources :user_reports
           member do
             patch :toggle_status
-            get :reset_password
             post :extend_time
           end
           collection do
@@ -524,6 +523,7 @@ Rails.application.routes.draw do
 
           resource :reports, only: [:show] do
             get :download, on: :member
+            post :regenerate, on: :member
           end
           resources :evaluations, only: %i[show update destroy] do
             member do
@@ -591,6 +591,7 @@ Rails.application.routes.draw do
         delete :reset_nominations
         delete :remove_user
         post :rescore_assessment
+        post :regenerate_reports
       end
     end
 
@@ -603,7 +604,6 @@ Rails.application.routes.draw do
         get :preview
         post :preview
         get :reports
-        get :export
         put :save
         patch :toggle_archive
         get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
@@ -695,6 +695,7 @@ Rails.application.routes.draw do
     ### END DIMENSIONS
 
     ### USERS
+    get '/users/*all' => 'users#index'
     resources :users, except: [:create] do
       member do
         patch :toggle_status
@@ -729,7 +730,6 @@ Rails.application.routes.draw do
           get :copy
           get :sidebar
           patch :toggle_status
-          get :new_assign
         end
       end
       resources :blocks do
@@ -737,7 +737,6 @@ Rails.application.routes.draw do
           get :copy
           get :sidebar
           patch :toggle_status
-          get :new_assign
           get :preview
         end
       end
@@ -1080,7 +1079,7 @@ Rails.application.routes.draw do
     get 'identify', to: 'home#identify', as: :identify
     get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed', as: :assessment_completed
     get 'upgrade', to: 'home#upgrade'
-    get 'profile', to: 'end_user/users#dashboard'
+    get 'profile_details', to: 'end_user/users#dashboard'
     get 'change_password', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
@@ -1142,16 +1141,35 @@ Rails.application.routes.draw do
           jsonapi_resources :clients do
             jsonapi_relationships
             jsonapi_resources :projects, only: %i[index create update]
+            jsonapi_resources :licenses, only: %i[index create update] do
+              jsonapi_resources :license_usages, only: %i[index] do
+                member do
+                  post :toggle_status
+                end
+              end
+            end
           end
+          jsonapi_resources :report_families, only: %i[index]
           jsonapi_resources :projects, only: :show
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
             get :reset_password
           end
-          jsonapi_resources :users, only: %i[index show]
+          jsonapi_resources :users do
+            post :reset_password
+            get :roles
+            collection do
+              post :create_superadmin
+            end
+          end
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
             resource :uploads, only: %i[update]
+          end
+          jsonapi_resources :projects do
+            jsonapi_resources :webhooks do
+              post :send_test
+            end
           end
           jsonapi_resources :profile_settings, only: %i[index update]
           jsonapi_resources :dashboards, only: %i[index show create update] do

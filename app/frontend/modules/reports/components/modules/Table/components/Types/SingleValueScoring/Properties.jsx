@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import DataSource from '~/modules/reports/components/DataSourceMenu'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'

@@ -137,7 +137,7 @@ module Administration
     end
 
     def init_collections
-      @super_admins = User.superadmins.sorted_by('first_name_asc')
+      @super_admins = User.superadmins.order(first_name: :asc)
       @countries = ::Datas::Geo.order(:country_name).select(:country_name).distinct
     end
   end

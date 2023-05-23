@@ -13,7 +13,15 @@ class CampaignAssessment < ApplicationRecord
 
   before_create :set_position
 
-  delegate :common?, :hogan?, :mindmill?, :external?, :saville?, :iiht?, :has_external_norm?, to: :assessment
+  delegate :common?,
+           :hogan?,
+           :mindmill?,
+           :external?,
+           :saville?,
+           :iiht?,
+           :has_external_norm?,
+           :external_assessment_id,
+           to: :assessment
 
   scope :preworks, -> { where(prework: true) }
 
@@ -61,14 +69,16 @@ class CampaignAssessment < ApplicationRecord
     UserAssessment.where(campaign_id: campaign_id, assessment_id: assessment_id)
   end
 
-  def log_attribute_for_delete
-    slice(:assessment_id, :campaign_id, :norm_id)
+  def log_attributes
+    slice(:campaign_id, :assessment_id, :norm_id)
   end
 
   private
 
   def pearson_norm_name
-    assessment.pearson_norms.find { |norm| norm[:id] == external_norm_id }[:name]
+    Assessments::PearsonSettings.
+      norms(external_assessment_id)&.
+      find { |norm| norm[:id] == external_norm_id }&.dig(:name)
   end
 
   def saville_norm_name

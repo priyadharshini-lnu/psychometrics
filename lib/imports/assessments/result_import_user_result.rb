@@ -142,7 +142,7 @@ module Imports
 
       def open_spreadsheet
         case File.extname(file.path)
-          when '.csv' then Roo::CSV.new(file.url)
+          when '.csv' then Roo::CSV.new(file.url, csv_options: { converters: [:numeric] })
           when '.xlsx' then ::Roo::Excelx.new(file.url)
           else raise t('administration.imports.errors.unknown_type', filename: file.url)
         end

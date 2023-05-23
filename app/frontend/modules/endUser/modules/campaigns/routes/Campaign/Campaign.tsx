@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react'
+import { useEffect, FC } from 'react'
 import { Layout, Col, Space } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'

@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 import _ from 'lodash'
-import React from 'react'
 import { RECODING, SCORING } from '~/modules/survey/constants/scoring'
 import { Scorings } from '~/modules/survey/components/modules'
 import styles from './Scoring.less'

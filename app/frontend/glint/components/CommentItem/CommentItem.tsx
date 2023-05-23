@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import {
   Row, Col, Avatar, Dropdown, Menu, Typography, Space, Input, Button, Modal,
 } from 'antd'

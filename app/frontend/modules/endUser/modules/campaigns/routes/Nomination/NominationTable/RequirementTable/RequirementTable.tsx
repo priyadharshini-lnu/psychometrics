@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   Table, Dropdown, Menu, Button, Row, Popconfirm, Card, Typography, Space,
 } from 'antd'

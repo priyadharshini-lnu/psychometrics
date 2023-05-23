@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
@@ -230,13 +230,13 @@ class Block extends Component {
           <h4>Please type a brief name / description for the new block:</h4>
         </Prompt>
         {model.templateId && (
-        <Confirmation
-          show={showDeleteConfirmation}
-          onConfirm={this.remove}
-          onCancel={this.onCancelConfirm}
-        >
-          <p>Are you sure you want to remove? (with template)</p>
-        </Confirmation>
+          <Confirmation
+            show={showDeleteConfirmation}
+            onConfirm={this.remove}
+            onCancel={this.onCancelConfirm}
+          >
+            <p>Are you sure you want to remove? (with template)</p>
+          </Confirmation>
         )}
       </div>
     )

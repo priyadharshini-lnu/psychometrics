@@ -7,9 +7,9 @@ module Memberships
     USER_PARAMETERS = %i[first_name last_name email].freeze
     UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
     GRANT_PARAMETERS = [data: [
+      users: [],
       clients: [],
       projects: [],
-      users: [],
       campaigns: [],
       dimensions: [],
       reports: [],

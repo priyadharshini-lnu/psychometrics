@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 import { Col, Row, Typography } from 'antd'
 
 import Assessments from '~/modules/endUser/modules/campaigns/routes/Campaign/Common/Assessments'

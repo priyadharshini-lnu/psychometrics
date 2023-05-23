@@ -1,4 +1,3 @@
-import React from 'react'
 import { Col } from 'antd'
 import { useHistory } from 'react-router-dom'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'

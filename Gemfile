@@ -112,8 +112,10 @@ gem 'redlock', '~> 1.2.2'
 gem 'rubyzip', '~> 2.3'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
-gem 'caxlsx_rails', '~> 0.6.0'
+# gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
+
+gem 'caxlsx', '~> 3.2'
+gem 'caxlsx_rails', '~> 0.6'
 gem 'roo', '~> 2.9'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
@@ -177,6 +179,7 @@ gem 'interactor', '~> 3.1.2'
 gem 'enum_help', '~> 0.0.17'
 # A simple date validator for Rails
 gem 'attr_encrypted', '~> 3.1.0'
+gem 'brakeman'
 gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils', ref: '3634294'
@@ -192,7 +195,7 @@ gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 0.8.2'
 gem 'twilio-ruby', '~>  5.58.1'
-gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'master'
+gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', ref: 'fee3201'
 gem 'workflow-activerecord', '~> 4.1.2'
 
 group :development, :test do
@@ -200,6 +203,7 @@ group :development, :test do
   gem 'awesome_print', '~> 1.9.2'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bundler-audit', require: false
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'hirb'

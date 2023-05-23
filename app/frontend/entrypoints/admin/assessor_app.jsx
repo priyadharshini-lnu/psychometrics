@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-import React from 'react'
 
 import AssessorApp from '~/modules/admin/modules/AssessorApp/App'
 import initSentry from '~/libs/initSentry'

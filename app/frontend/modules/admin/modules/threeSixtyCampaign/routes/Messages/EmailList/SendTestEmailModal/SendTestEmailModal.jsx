@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Modal, Button, Input, Alert, message,
 } from 'antd'

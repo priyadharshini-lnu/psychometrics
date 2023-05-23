@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Highlighter from 'web-highlighter'
 import Palette from './Palette'
 import styles from './StaticContent.less'

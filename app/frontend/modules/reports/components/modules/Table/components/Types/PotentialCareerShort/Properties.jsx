@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 import Select from 'react-select'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'

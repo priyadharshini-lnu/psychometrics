@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
@@ -78,6 +78,12 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     icon: <DatabaseOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
   })
+
+  // menuItems.push({
+  //   key: 'admins',
+  //   label: I18n.t('common.model.admins'),
+  //   icon: <SolutionOutlined />,
+  // })
 
   return (
     <Menu

@@ -89,16 +89,22 @@ function* genSubsribeSocket ({ channel, data }: ReturnType<typeof subscribeSocke
   const { socket } = yield select()
   if (socket.initialized) { return }
   const socketChannel = yield call(createSocketChannel, channel, data)
-
+  let timeout
   while (true) {
     const payload = yield take(socketChannel)
     if (payload.type === 'connected') {
       yield put(subscribed())
       yield put(enableApp())
+      if (timeout) {
+        clearTimeout(timeout)
+        timeout = null
+      }
     }
     if (payload.type === 'disconnect') {
       yield put(disableApp())
-      NotificationDispatcher.notify({ level: 'error', message: 'Connection lost' })
+      timeout = setTimeout(() => {
+        NotificationDispatcher.notify({ level: 'error', message: 'Connection lost' })
+      }, 2000)
     }
     if (payload.type === 'message') {
       yield put(socketMessage(payload.data))

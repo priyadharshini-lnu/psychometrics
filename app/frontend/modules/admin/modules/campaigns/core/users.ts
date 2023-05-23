@@ -25,6 +25,7 @@ const defaultState = {
     exportUsers: false,
     exportCompletionStatus: false,
     import: false,
+    edit: false,
   },
 }
 
@@ -85,6 +86,7 @@ export const importUsers = (campaignId: number, body: any): ApiAction<ShortUser[
     url: `/administration/new_campaigns/${campaignId}/users/import`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;',
   },
 })
 
@@ -128,14 +130,6 @@ export const toggleActive = (campaignId: string, id: number, options: { updateIn
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
-  },
-})
-
-export const resetPassword = (campaignId: string, id: number) => ({
-  type: RESET_PASSWORD,
-  request: {
-    method: 'get',
-    url: `/administration/new_campaigns/${campaignId}/users/${id}/reset_password`,
   },
 })
 
@@ -183,6 +177,7 @@ export interface State {
     exportUsers: boolean,
     exportCompletionStatus: boolean,
     import: boolean,
+    edit: boolean
   }
   current?: UserDetails
 }
@@ -195,6 +190,7 @@ type FetchType = ApiActionResponse<{
     exportUsers: boolean,
     exportCompletionStatus: boolean,
     import: boolean,
+    edit: boolean
   }
 }>
 type FetchSingleType = ApiActionResponse<UserDetails & { userAssessments: UserAssessment[], userReports: UserReport[]}>

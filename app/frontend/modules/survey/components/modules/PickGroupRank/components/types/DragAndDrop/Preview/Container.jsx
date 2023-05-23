@@ -1,7 +1,7 @@
 /* eslint-disable react/no-will-update-set-state */
 /* eslint-disable react/no-access-state-in-setstate */
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropTarget } from 'react-dnd'
 

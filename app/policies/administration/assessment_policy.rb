@@ -68,7 +68,8 @@ module Administration
     # Can open Websocket Channel for build Assessment (Blocks, Questions and etc.)
     # true if it's Common Assessment and user is Superadmin
     def open_channel?
-      @record.common? && @user.is?(:superadmin)
+      @record.common? &&
+        (@user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: @record.owner_id))
     end
 
     # Can preview Assessment (Blocks, Questions and etc.)
@@ -121,13 +122,6 @@ module Administration
     def save?
       @record.common? &&
         @user.is?(:superadmin)
-    end
-
-    # Can export Assessment's questions and scoring
-    # true if it's Common Assessment
-    def export?
-      @record.common? &&
-        super
     end
 
     def factors?

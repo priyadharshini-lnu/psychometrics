@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react'
+import { FC, ReactElement } from 'react'
 import { Card } from 'antd'
 import styles from './ThreesixtyCard.less'
 

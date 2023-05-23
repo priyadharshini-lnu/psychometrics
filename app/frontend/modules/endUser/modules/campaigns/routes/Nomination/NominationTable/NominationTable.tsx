@@ -1,4 +1,3 @@
-import React from 'react'
 import { RequirementTable } from './RequirementTable/RequirementTable'
 
 export const NominationTable = ({ requirements, ...props }) => (

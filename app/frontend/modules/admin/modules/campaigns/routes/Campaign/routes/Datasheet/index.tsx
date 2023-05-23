@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { SheetTabs } from '~/modules/admin/modules/SheetManagement'
 
 import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'

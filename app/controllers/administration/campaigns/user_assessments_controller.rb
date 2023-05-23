@@ -22,7 +22,7 @@ module Administration
 
       def destroy
         resource.destroy!
-        audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
+        audit! :delete, resource, payload: resource.log_attributes, campaign: resource.campaign
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end

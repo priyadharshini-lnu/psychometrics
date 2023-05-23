@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import cs from 'classnames'
 import { Select } from 'antd'

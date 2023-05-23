@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Provider } from 'react-redux'
 import '~/modules/survey/styles/globals.less'
 import { BrowserRouter as Router } from 'react-router-dom'

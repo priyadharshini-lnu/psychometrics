@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Row, Col, Progress, Typography, Button, Space,
 } from 'antd'

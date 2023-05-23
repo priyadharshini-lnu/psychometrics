@@ -41,7 +41,7 @@ export const saveCurrentPage = () => (dispatch, getState) => {
   const { preview } = getState()
   if (preview.type === 'pass_assessment') {
     const currentBlock = getCurrentBlock(preview)
-    dispatch(saveResults(preview, [], currentBlock.id))
+    return dispatch(saveResults(preview, [], currentBlock.id))
   }
 }
 

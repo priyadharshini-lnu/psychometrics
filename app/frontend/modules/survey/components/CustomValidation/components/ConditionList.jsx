@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import QuestionCondition from '~/modules/survey/models/QuestionCondition'
 import Condition from './Condition'
 

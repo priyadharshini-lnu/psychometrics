@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler } from 'react'
+import { FC, MouseEventHandler } from 'react'
 import {
   Button, Modal,
   Typography,
@@ -19,7 +19,7 @@ const connector = connect(
 )
 
 type OwnProps = {
-  accept: MouseEventHandler<HTMLElement>,
+  accept: (version: number) => void,
   show: boolean,
   close: MouseEventHandler<HTMLElement>,
 }

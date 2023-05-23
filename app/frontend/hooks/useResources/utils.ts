@@ -23,8 +23,8 @@ interface Schema {
 }
 
 export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = null): Error => {
-  const attributePrefix = 'data/attributes/'
-  const relationshipPrefix = 'data/relationships/'
+  const attributePrefix = '/data/attributes/'
+  const relationshipPrefix = '/data/relationships/'
 
   return errors.reduce((acc, error: JsonApiStandardError) => {
     const pointer = error.source?.pointer

@@ -1,4 +1,3 @@
-import React from 'react'
 import BlockList from '~/modules/survey/views/BlockList'
 import Instructions from '~/modules/survey/views/Instructions'
 import styles from './HomeView.less'

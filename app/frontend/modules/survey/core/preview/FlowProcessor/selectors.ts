@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
-import genUUID from 'uuid/v4'
+import { v4 as genUUID } from 'uuid'
 import { question } from '../../../store/schema'
 import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
@@ -47,7 +47,13 @@ export const isAssessmentTimedOut = (state): boolean => state.assessmentTimedOut
 export const currentPage = (state): number => state.currentPage
 
 export const getElement = (state, id): ElementInterface => state.normalizedTree[id]
-export const getCurrentElement = (state): BlockElementInterface => state.normalizedTree[state.currentElement]
+export const getCurrentElement = (state): BlockElementInterface => {
+  if (state.type === 'block_preview') {
+    return state.normalizedTree[0]
+  }
+
+  return state.normalizedTree[state.currentElement]
+}
 
 export const getElementIdByBlockId = (state, blockId) => _.findKey(
   state.normalizedTree, el => el.props && el.props.current === `${blockId}`,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import ScoringList from '~/modules/survey/views/ScoringList'
 import { SCORING } from '~/modules/survey/constants/scoring'
 import styles from './Scoring.less'
@@ -24,7 +24,7 @@ export default class Scoring extends Component {
     return (
       <div className={styles.loading}>
         <i className={`fa fa-refresh fa-spin fa-fw ${styles.icon}`} />
-        <span className={styles.loadingLabel}>Saving...</span>
+        <span className={styles.loadingLabel}>Loading...</span>
       </div>
     )
   }
@@ -32,6 +32,7 @@ export default class Scoring extends Component {
   render () {
     const { type } = this.state
     const { loaded } = this.props
+
     return (
       <div className="col-md-12">
         <div className="panel panel-default">

@@ -164,6 +164,7 @@ export interface DefaultState {
   instructions: { enabled: boolean, content: string }
   fixedTimed: boolean
   showErrorWarning: boolean
+  isAssessor: boolean
   submitRequired: boolean
   otherPendingAssessmentCount: number
 }
@@ -232,6 +233,7 @@ export interface InitData {
   instructions: {enabled: boolean, content: string}
   fixed_timed: boolean
   default_norm_id: number
+  isAssessor: boolean
 }
 export interface Result {
   id: number
