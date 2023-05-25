@@ -19,7 +19,7 @@ class AdminJobRecord < ApplicationRecord
   sync_to_active_storage :file
 
   def attachment_storage_path(attribute_name, filename)
-    "private/admin_job/#{id}/#{attribute_name}/#{filename}"
+    "private/admin_job/#{attribute_name}/#{filename}"
   end
 
   enum operation: {

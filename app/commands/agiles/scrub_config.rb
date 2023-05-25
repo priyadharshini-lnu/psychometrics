@@ -2,10 +2,11 @@
 
 module Agiles
   class ScrubConfig < BaseCommand
-    private_attr_accessor :config
+    private_attr_accessor :config, :seedrandom
 
-    def initialize(config)
+    def initialize(config, seedrandom)
       @config = config
+      @seedrandom = Random.new(seedrandom)
     end
 
     def call
@@ -20,6 +21,8 @@ module Agiles
     def scrub_keys(groups)
       iterate_blocks(groups, ['AssessmentScene']) do |block, _|
         block.delete('scoring')
+        block.delete('randomise')
+        block.delete('maxItems')
         questions = block['questions']
         questions.each { |q| q.except!('answers', 'scoring') }
       end
@@ -38,8 +41,10 @@ module Agiles
           random_sets.add q['randomSet']
         end
         # Retain previous set if exists in block
-        random_set = random_sets.include?(random_set) ? random_set : random_sets.to_a.sample
+        random_set = random_sets.include?(random_set) ? random_set : random_sets.to_a.sample(random: @seedrandom)
         questions.select! { |q| q['randomSet'] == random_set }
+        questions.shuffle!(random: @seedrandom) if block['randomise']
+        questions.slice!(block['maxItems']..-1) if block['maxItems']
       end
     end
 

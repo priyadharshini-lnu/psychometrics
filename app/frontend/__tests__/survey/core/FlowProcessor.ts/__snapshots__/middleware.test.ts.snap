@@ -84,6 +84,7 @@ exports[`initializing base assessment init action should init assessment data: i
     "dataSheetColumns": undefined,
     "dbResult": {
       "id": 1,
+      "seedrandom": 1,
     },
     "defaultNorm": undefined,
     "elements": [
@@ -228,6 +229,7 @@ exports[`initializing base assessment init action should init assessment data: i
       },
     },
     "options": {},
+    "otherPendingAssessmentCount": undefined,
     "prevPages": [],
     "questions": {
       "1": {
@@ -479,6 +481,7 @@ exports[`initializing base assessment middleware should call next if is not NEXT
     "nextButtonPressed": false,
     "normalizedTree": {},
     "options": {},
+    "otherPendingAssessmentCount": 0,
     "prevPages": [],
     "questions": {},
     "readOnly": false,

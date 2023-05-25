@@ -38,7 +38,7 @@ weekly_stats_job:
   queue_as: cron_tasks
 
 campaign_status_updater_job:
-  cron: "*/10 * * * *" # Every 10 minutes
+  cron: "*/1 * * * *" # Every 1 minutes
   class: CampaignStatusUpdaterJob
   queue_as: cron_tasks
 

@@ -48,6 +48,7 @@ export const AssessmentsContainer = ({
   expiryDate,
   campaignNotStarted,
   privacyConsentRequired,
+  canNotStartPrework,
 }) => (
   <ViewsContainer
     title={I18n.t('campaign_assessment.assessments_heading')}
@@ -89,9 +90,11 @@ export const AssessmentsContainer = ({
                 <Row gutter={[16, 16]}>
                   {userAssessments.map((userAssessment) => {
                     const Assessment = Assessments[userAssessment.type]
-                    const isDisabled = canNotStartAssessment || !prevCompleted
+                    let isDisabled = userAssessment.prework ? canNotStartPrework : canNotStartAssessment
+                    isDisabled = isDisabled || !prevCompleted
                     if (!isDisabled && group.previousAssessmentsRequired) {
                       prevCompleted = prevAssessmentsCompleted(userAssessments, userAssessment)
+                      isDisabled = isDisabled || !prevCompleted
                       if (previousAssessmentIsIneligible) {
                         return null
                       }
@@ -106,7 +109,7 @@ export const AssessmentsContainer = ({
                           size={size}
                           loginHogan={loginHogan}
                           acceptPolicy={acceptPolicy}
-                          disabled={canNotStartAssessment || !prevCompleted}
+                          disabled={isDisabled}
                           prevCompleted={prevCompleted}
                           campaignNotStarted={campaignNotStarted}
                           isPartOfTimedCampaign={isTimedCampaign}
@@ -136,7 +139,7 @@ export const AssessmentsContainer = ({
                       userAssessment={userAssessment}
                       loginHogan={loginHogan}
                       acceptPolicy={acceptPolicy}
-                      disabled={canNotStartAssessment}
+                      disabled={userAssessment.prework ? canNotStartPrework : canNotStartAssessment}
                       campaignNotStarted={campaignNotStarted}
                       prevCompleted
                       isPartOfTimedCampaign={isTimedCampaign}

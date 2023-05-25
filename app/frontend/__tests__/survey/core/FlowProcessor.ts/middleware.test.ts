@@ -25,7 +25,7 @@ describe('initializing base assessment', () => {
 
 
   test('init action should init assessment data', () => {
-    store.dispatch({ type: INIT, data: assessment, result: {id: 1} })
+    store.dispatch({ type: INIT, data: assessment, result: {id: 1, seedrandom: 1} })
     expect(store.getState()).toMatchSnapshot('init_assessment')
   })
 
@@ -51,7 +51,7 @@ describe('initializing base assessment from not the first step', () => {
   test('init action should init assessment from element 2', () => {
     const flow = middleware(store)
     const next = jest.fn()
-    store.dispatch({ type: INIT, data: assessment, result: { current_element: '2/0', current_page: 0, results: { 1: { answers: [{ index: 0, value: true }] } } } })
+    store.dispatch({ type: INIT, data: assessment, result: { current_element: '2/0', current_page: 0, results: { 1: { answers: [{ index: 0, value: true }] }}, seedrandom: 1 } })
     expect(store.getState().preview.currentElement).toBe('2/0')
     expect(store.getState().preview.currentPage).toBe(0)
     flow(next)({ type: NEXT_PAGE })
@@ -70,7 +70,7 @@ describe('initializing base assessment from question with display logic', () => 
   test('init action should init assessment from element 2/0 page 2 and skip it to next as it does not have questions', () => {
     const flow = middleware(store)
     const next = jest.fn()
-    store.dispatch({ type: INIT, data: assessment, result: { current_element: '2/0', current_page: 1 } })
+    store.dispatch({ type: INIT, data: assessment, result: { current_element: '2/0', current_page: 1, seedrandom: 1 } })
     flow(next)({ type: NEXT_PAGE, testDisplayLogic: true })
     expect(store.getState().preview.currentElement).toBe('2/1')
     flow(next)({ type: NEXT_PAGE })
@@ -88,7 +88,7 @@ describe('initializing base assessment from question with display logic', () => 
     const data = _.cloneDeep(assessment)
     data.blocks[0].questions.push({ ...data.blocks[0].questions[0], id: 4 })
 
-    store.dispatch({ type: INIT, data, result: { current_element: '2/0', current_page: 1 } })
+    store.dispatch({ type: INIT, data, result: { current_element: '2/0', current_page: 1, seedrandom: 1 } })
     flow(next)({ type: NEXT_PAGE, testDisplayLogic: true })
     expect(store.getState().preview.currentElement).toBe('2/0')
     expect(store.getState().preview.currentPage).toBe(1)

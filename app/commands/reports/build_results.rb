@@ -10,11 +10,13 @@ module Reports
       saville_result: 'Reports::ResultTypes::SavilleResults',
       normed_factor: 'Reports::ResultTypes::NormedFactor',
       raw_factor: 'Reports::ResultTypes::RawFactor',
+      zscore_factor: 'Reports::ResultTypes::ZscoreFactor',
       formula: 'Reports::ResultTypes::Formula',
       ranked_occupations: 'Reports::ResultTypes::RankedOccupations',
       survey_response: 'Reports::ResultTypes::Survey',
       assign: 'Reports::ResultTypes::Assign',
       mapped_value: 'Reports::ResultTypes::MappedValue',
+      zscore_to_percentile: 'Reports::ResultTypes::ZscoreToPercentile',
       ref: 'Reports::ResultTypes::Ref',
       datasheet: 'Reports::ResultTypes::Datasheet'
     }.freeze

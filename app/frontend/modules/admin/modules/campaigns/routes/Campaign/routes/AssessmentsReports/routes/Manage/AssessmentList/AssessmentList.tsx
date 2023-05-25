@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Row, Col,
+  Table, Row, Col, Switch,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
@@ -39,6 +39,7 @@ const AssessmentList: React.FC<Props> = ({
   exportRawFactorScores,
   exportExternalResults,
   updateExternalConfig,
+  updatePrework,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -172,6 +173,16 @@ const AssessmentList: React.FC<Props> = ({
             }}
           />
 
+          <Column
+            title={I18n.t('campaign_assessment.column.prework')}
+            key="category"
+            render={({ id, prework }) => (
+              <Switch
+                checked={prework}
+                onChange={checked => updatePrework(parsedCampaignId, id, checked)}
+              />
+            )}
+          />
           <Column
             title={I18n.t('common.column.action')}
             key="action"

@@ -13,14 +13,17 @@ module AdminJobs
     end
 
     def data_row(user)
+      campaign_user = user.campaign_users.find { |cu| cu.campaign_id == campaign.id }
       row = [
-        user.campaign_users.find { |cu| cu.campaign_id == campaign.id }.decorate.status_text,
+        campaign_user.decorate.status_text,
         user.first_name,
         user.last_name,
         user.email,
         user.locale,
         nil,
         nil,
+        campaign_user.schedule_start_date,
+        campaign_user.schedule_end_date,
         user.decorate.created_at
       ]
 

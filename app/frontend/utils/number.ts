@@ -7,6 +7,8 @@ export const scaleNumber = (value: number, inMin: number, inMax: number, outMin:
   return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
 }
 
+export const randomWholeNumber = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min
+
 export default {
   scaleNumber,
 }
