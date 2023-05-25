@@ -2593,6 +2593,9 @@ en:
       project_participants: Participants | %{project}
     edit: Edit
     enable: Enable
+    errors:
+      attention: Attention
+      error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     factors:
       copy:
         error: "%{name} factor was not copied"
