@@ -7,7 +7,8 @@ class UsersResultSerializer < ActiveModel::Serializer
              :selected_locale, :current_element, :current_page, :seedrandom,
              :subject_datasheet, :highlights, :user_assessment_id, :started_at,
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
-             :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled
+             :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled,
+             :other_pending_assessments_count, :prework
 
   attribute :relationship
 
@@ -21,7 +22,8 @@ class UsersResultSerializer < ActiveModel::Serializer
   delegate :campaign_options, to: :campaign
   has_many :factors, serializer: ::UsersResults::FactorSerializer
 
-  delegate :reset_count, :started_at, to: :user_assessment
+  delegate :reset_count, :started_at, :prework, :other_pending_assessments_count, to: :user_assessment
+  delegate :remaining_campaign_time, to: :campaign_user, allow_nil: true
 
   def hash_id
     object.encoded_id
@@ -29,12 +31,6 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def proctoring_enabled
     campaign_user&.proctoring_enabled?
-  end
-
-  def remaining_campaign_time
-    return unless campaign_user&.real_expiry_date
-
-    [campaign_user.real_expiry_date - Time.zone.now, 0].max
   end
 
   def remaining_assessment_time

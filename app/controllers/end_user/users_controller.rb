@@ -5,7 +5,6 @@ class EndUser::UsersController < ApplicationController
   layout 'layouts/end_user'
   before_action :skip_policy_scope
   before_action :set_locale, except: %i[change_locale]
-  before_action :single_assigns, except: %i[change_locale]
   initial_state_for %i[dashboard]
   skip_before_action :authenticate_user!, only: %i[change_locale]
 
@@ -13,8 +12,7 @@ class EndUser::UsersController < ApplicationController
     redirect_to new_user_session_path
   end
 
-  # rubocop:disable Metrics/AbcSize
-  def dashboard # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def dashboard
     respond_to do |format|
       format.html do
         render 'end_user/users/dashboard'
@@ -26,19 +24,9 @@ class EndUser::UsersController < ApplicationController
                          subject_campaigns | evaluator_campaigns
 
         campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
-                    includes(:threesixty_campaign).group_by(&:type)
+                    includes(:threesixty_campaign, { campaign_options: :translations }).group_by(&:type)
 
-        json = @single_assigns.uniq.filter_map do |assign|
-          next if assign.membership.client.migrated?
-
-          applicable_level_project = assign.membership.client.applicable_level == 'project'
-
-          next if applicable_level_project && assign.membership.disabled?
-          next if !applicable_level_project && assign.original_assigns.all? { |a| a.membership&.disabled? }
-
-          ::EndUser::AssignSerializer.new(assign).to_h
-        end
-
+        json = []
         json.concat(serializer_campaign(campaigns['common'], ::EndUser::ShortCampaignSerializer)) if campaigns['common']
 
         if campaigns['threesixty']
@@ -50,7 +38,6 @@ class EndUser::UsersController < ApplicationController
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   def accept_privacy
     raise "Invalid Privacy consent version '#{params[:version]}' passed" if params[:version].blank?
@@ -113,21 +100,5 @@ class EndUser::UsersController < ApplicationController
     campaigns.map do |campaign|
       serializer.new(campaign, current_user: current_user, include: '**').to_h
     end
-  end
-
-  def single_assigns
-    @single_assigns = []
-    return @single_assigns unless @current_membership
-
-    @single_assigns = policy_scope(Assign).
-                      includes(:single_reports, membership: :client, original_assign: %i[membership single_reports]).
-                      joining { original_assign.outer.membership.outer.client.outer }.
-                      joins(
-                        'LEFT OUTER JOIN "assessments_clients"
-                        ON "assessments_clients"."client_id" = "clients"."id"
-                        AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"'
-                      ).
-                      order('assessments_clients.position ASC').
-                      preload(:assessment)
   end
 end

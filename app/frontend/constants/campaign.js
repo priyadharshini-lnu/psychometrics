@@ -12,7 +12,7 @@ export const STATUSES = {
 
 export const FILTER_PREDICATES = {
   status: 'Eq',
-  type: 'Eq',
+  type: 'In',
 }
 
 export const DEFAULT_PAGE_SIZE = 25

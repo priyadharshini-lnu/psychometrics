@@ -23,6 +23,8 @@ class CampaignAssessment < ApplicationRecord
            :external_assessment_id,
            to: :assessment
 
+  scope :preworks, -> { where(prework: true) }
+
   def validate_external_config
     return unless external_config.presence.is_a?(String)
 

@@ -1,14 +1,16 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import {
-  Layout, Row, Col, Alert, Button, Result, Typography,
+  Layout, Row, Col, Alert, Button, Result, Typography, Space, message, Modal,
 } from 'antd'
 import {
+  InfoCircleOutlined,
   PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { STATUSES } from '~/constants/campaign'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -62,12 +64,15 @@ const CommonComponent: FC<CommonComponentProps> = ({
   continueCampaign,
   privacyConsentRequired,
 }) => {
-  const [showError, setShowError] = useState(false)
   const {
     isTimedCampaign,
+    fixedTimed,
     campaignsCount,
     campaignUser: { expiryDate },
-    campaignOptions: { instructionsEnabled, instructions, proctoringEnabled },
+    campaignOptions: {
+      instructionsEnabled, instructions, proctoringEnabled, integrationType,
+    },
+    campaignTime,
   } = campaign
 
   const needsProctoring = proctoringEnabled && !isProctored()
@@ -75,6 +80,9 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const counters = _.countBy(campaign.userAssessments, 'status')
   // TODO: We can check completion_status here. Also need to take care for assessment timed_out status when we add it
   const allAssessmentsComplete = counters.completed === campaign.userAssessments.length
+  const allPreworkIsComplete = _.find(
+    campaign.userAssessments, ua => ua.prework && ua.status !== 'completed',
+  ) === undefined
   let ungrouped = _.compact(
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
@@ -83,46 +91,72 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const campaignUserTimedOut = campaignUser.status === 'timed_out'
   const isCampaignInterrupted = campaignUser.status === 'interrupted'
   const hasNoExpiryDateForTimedCampaign = isTimedCampaign && !expiryDate && campaignUser.status === 'in_progress'
+  const campaignClosedForUser = campaignClosed
+  || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
+
+  const canNotStartPrework = campaignClosedForUser || campaignUser.status === 'completed'
   const canNotStartAssessment = needsProctoring
-    || !hasStartedCampaign
-    || campaignClosed
+    || (fixedTimed && !hasStartedCampaign)
+    || campaignClosedForUser
     || campaignUser.status === 'completed'
     || isCampaignInterrupted
     || campaignUserTimedOut
     || hasNoExpiryDateForTimedCampaign
-  const canBeginCampaign = !campaignClosed && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
+  const canBeginCampaign = !campaignClosedForUser && hasAssessments && !hasStartedCampaign && !allAssessmentsComplete
+    && fixedTimed && !isCampaignInterrupted
   // eslint-disable-next-line max-len
   const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
-    && !campaignClosed && !allAssessmentsComplete && !campaignUserTimedOut
-  const showCampaignClosedMessage = campaignClosed
-  || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
+    && !campaignClosedForUser && !allAssessmentsComplete && !campaignUserTimedOut && fixedTimed
 
 
-  const allCampaignLevelAsssementIds = _.flatten([
+  const allCampaignLevelAssessmentIds = _.flatten([
     ...groups.map(g => g.campaignAssessmentIds),
     campaign.ungroupedAssessmentsIds,
   ])
 
   const ungroupedAssessments = campaign.userAssessments.filter(
-    ua => !_.includes(allCampaignLevelAsssementIds, ua.assessmentId),
+    ua => !_.includes(allCampaignLevelAssessmentIds, ua.assessmentId),
   )
   ungrouped = [...ungrouped, ...ungroupedAssessments]
 
-  const handleBeginCampign = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    beginCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }: any) => {
-      if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
-    }).catch((error) => {
-      setShowError(error)
+  const campaignStartInstruction = () => {
+    const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
+    if (proctoringEnabled) { messages.push(I18n.t('campaign.instruction_modal.common_proctoring_instructions')) }
+
+    if (integrationType === 'ldb') { messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction')) }
+
+    messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
+
+    return (
+      messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
+    )
+  }
+
+  const startCampaignActivities = () => {
+    const func = canBeginCampaign ? beginCampaign : continueCampaign
+    func(campaignUser.id).then(
+      ({ response: { examusSessionUrl } }: ApiActionResponse<{ examusSessionUrl?: string }>) => {
+        if (proctoringEnabled && examusSessionUrl) { window.location.href = examusSessionUrl }
+      },
+    ).catch((error) => {
+      message.error(error)
     })
   }
 
-  const handleContinueCampaign = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    continueCampaign(campaignUser.id).then(({ response: { examusSessionUrl } }: any) => {
-      if (proctoringEnabled && examusSessionUrl) { window.location = examusSessionUrl }
-    }).catch((error) => {
-      setShowError(error)
+
+  const handleStartCampaignActivities = () => {
+    if (!fixedTimed) { return startCampaignActivities() }
+
+    Modal.info({
+      icon: false,
+      title: null,
+      content: campaignStartInstruction(),
+      okText: I18n.t('common.actions.start'),
+      closable: true,
+      width: 600,
+      onOk () {
+        startCampaignActivities()
+      },
     })
   }
 
@@ -158,11 +192,6 @@ const CommonComponent: FC<CommonComponentProps> = ({
   return (
     <Content>
       <>
-        {showCampaignClosedMessage && (
-          <div className="mvm font-bold">
-            <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
-          </div>
-        )}
         <CampaignPageHeader extra={statusElement} activeCampaignId={campaign.id} />
         <Row>
           <Col span={24}>
@@ -197,6 +226,11 @@ const CommonComponent: FC<CommonComponentProps> = ({
         </Row>
         <Row className={styles.cardsContainer}>
           <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
+            {campaignClosedForUser && (
+            <div className="mvm font-bold">
+              <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
+            </div>
+            )}
             <div className={styles.tasksContainer}>
               <Row>
                 <Col span={24} style={{ paddingInlineStart: '14px' }}>
@@ -209,8 +243,8 @@ const CommonComponent: FC<CommonComponentProps> = ({
                       <Button
                         size="small"
                         type="primary"
-                        onClick={handleBeginCampign}
-                        disabled={proctoringEnabled && showError}
+                        onClick={handleStartCampaignActivities}
+                        disabled={!allPreworkIsComplete}
                       >
                         {I18n.t('campaign.begin')}
                         {' '}
@@ -218,10 +252,6 @@ const CommonComponent: FC<CommonComponentProps> = ({
                       </Button>
                     </>
                   )}
-                  {proctoringEnabled
-                      && showError
-                      && <Alert message={I18n.t('licenses.not_enough_proctoring_credits')} type="error" />
-                  }
                   {canContinueCampaign && (
                     <>
                       <Title className={styles.beginText} level={4}>
@@ -231,14 +261,24 @@ const CommonComponent: FC<CommonComponentProps> = ({
                       <Button
                         size="small"
                         type="primary"
-                        onClick={handleContinueCampaign}
-                        disabled={proctoringEnabled && showError}
+                        onClick={handleStartCampaignActivities}
+                        disabled={!allPreworkIsComplete}
                       >
                         {I18n.t('campaign.continue')}
                         {' '}
                         <DirectionalArrowIcon />
                       </Button>
                     </>
+                  )}
+                  {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
+                    <div className="mt-1">
+                      <Space>
+                        <InfoCircleOutlined />
+                        <Typography.Text type="secondary">
+                          {I18n.t('campaign.begin_btn_msg_before_prework')}
+                        </Typography.Text>
+                      </Space>
+                    </div>
                   )}
                 </Col>
               </Row>
@@ -247,6 +287,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                 ungrouped={ungrouped}
                 campaign={campaign}
                 loginHogan={loginHogan}
+                canNotStartPrework={canNotStartPrework}
                 canNotStartAssessment={canNotStartAssessment}
                 campaignNotStarted={canBeginCampaign || canContinueCampaign}
                 acceptPolicy={acceptPolicy}

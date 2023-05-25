@@ -89,6 +89,7 @@ const defaultState: State = {
   showErrorWarning: false,
   isAssessor: false,
   submitRequired: false,
+  otherPendingAssessmentCount: 0,
 }
 
 const HANDLERS = {
@@ -100,7 +101,9 @@ const HANDLERS = {
     if (elements.length === 0) {
       elements = InitLinearElements.run(data.blocks)
     }
-    const normalizedTree = NormalizeTree.run(elements)
+
+    const randomseed = (result.seedrandom || Date.now()).toString()
+    const normalizedTree = NormalizeTree.run(elements, randomseed)
 
     // saga triggers next_page to process element '0'
     if (data.locale) {
@@ -132,7 +135,7 @@ const HANDLERS = {
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
       enableSingleQuestionPage: data.options?.enable_single_question_page,
-      allPages: InitPages.run(data, (result.id || Date.now()).toString(), data.options),
+      allPages: InitPages.run(data, randomseed, data.options),
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
@@ -142,7 +145,7 @@ const HANDLERS = {
       questions: normalizedData.entities.questions,
       currentElement: result.current_element || null,
       currentPage: result.current_page || 0,
-      randomseed: (result.id || Date.now()).toString(), // use assign or user id
+      randomseed,
       dataSheet: result.data_sheet,
       subjectDataSheet: result.subject_datasheet,
       dbResult: _.omit(result, 'media_responses'),
@@ -168,6 +171,7 @@ const HANDLERS = {
       fixedTimed: data.fixed_timed,
       defaultNorm: data.default_norm_id,
       isAssessor: data.isAssessor,
+      otherPendingAssessmentCount: result.other_pending_assessments_count,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

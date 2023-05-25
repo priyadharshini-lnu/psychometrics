@@ -5,7 +5,8 @@ require 'rails_helper'
 describe Campaigns::Users::Create do
   let(:form) do
     Campaigns::Users::CreateForm.new(
-      first_name: 'John', last_name: 'Doe', email: Faker::Internet.email, operation: 'add_and_allow_new_response'
+      first_name: 'John', last_name: 'Doe', email: Faker::Internet.email, operation: 'add_and_allow_new_response',
+      schedule_start_date: 1.day.from_now, schedule_end_date: 2.days.from_now
     )
   end
   let!(:campaign) { create(:campaign) }
@@ -32,6 +33,8 @@ describe Campaigns::Users::Create do
     user = described_class.call!(form, campaign, current_user)
     campaign_user = user.campaign_users.find_by(campaign: campaign)
 
+    expect(campaign_user.schedule_start_date).to eq(1.day.from_now)
+    expect(campaign_user.schedule_end_date).to eq(2.days.from_now)
     expect(campaign_user).to be_present
   end
 
@@ -45,7 +48,12 @@ describe Campaigns::Users::Create do
 
     user = User.find_by(email: form.email)
     user_create_log = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create', record_id: user)
-    expect(user_create_log.payload.deep_symbolize_keys).to eq(form.attributes)
+    time_fields = %i[schedule_start_date schedule_end_date]
+    expect(
+      user_create_log.payload.deep_symbolize_keys.except(*time_fields)
+    ).to eq(form.attributes.except(*time_fields))
+    expect(user_create_log.payload['schedule_start_date'].to_time).to eq(form.schedule_start_date)
+    expect(user_create_log.payload['schedule_end_date'].to_time).to eq(form.schedule_end_date)
 
     user_report1 = user.user_reports.find_by(report: reports[0])
     user_report2 = user.user_reports.find_by(report: reports[1])

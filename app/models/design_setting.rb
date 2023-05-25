@@ -22,6 +22,6 @@ class DesignSetting < ApplicationRecord
   sync_to_active_storage :logo, :background, :secondary_logo
 
   def attachment_storage_path(attribute_name, filename)
-    "public/projects/#{project.id}/design_setting/#{id}/#{attribute_name}/#{filename}"
+    "public/projects/#{project.id}/design_setting/#{attribute_name}/#{filename}"
   end
 end

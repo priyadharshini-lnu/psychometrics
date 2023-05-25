@@ -18,7 +18,7 @@ class MediaResponse < ApplicationRecord
   sync_to_active_storage :asset
 
   def attachment_storage_path(attribute_name, filename)
-    "private/projects/#{users_result.campaign.project.id}/media_response/#{id}/#{attribute_name}/#{filename}"
+    "private/projects/#{users_result.campaign.project.id}/media_response/#{users_result_id}/#{question_id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength
   end
 
   belongs_to :users_assessment

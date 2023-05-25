@@ -8,8 +8,8 @@ describe Reports::BuildResults do
     let(:user)             { create(:user, first_name: 'Jon', last_name: 'Snow') }
     let(:scoring) do
       {
-        '1' => { 'results' => [1, 2, 3], 'norm_score' => 3 },
-        '2' => { 'results' => [4, 5, 6], 'norm_score' => 5.5 }
+        '1' => { 'results' => [1, 2, 3], 'norm_score' => 3, 'zscore' => 1.68817 },
+        '2' => { 'results' => [4, 5, 6], 'norm_score' => 5.5, 'zscore' => 3.67817 }
       }
     end
     let(:user_result) do
@@ -203,11 +203,21 @@ describe Reports::BuildResults do
           allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return(
             { value: 1 }, { value: 2 }, { value: 3 }
           )
+          allow(data).to receive(:dig).with('formula', 'round').and_return(nil)
         end
 
         it 'AVERAGE' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('AVERAGE')
           is_expected.to eq(key: 'formula', name: nil, value: 2.0, config_data: data)
+        end
+
+        it 'AVERAGE with round' do
+          allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return(
+            { value: 1 }, { value: 2 }, { value: 4 }
+          )
+          allow(data).to receive(:dig).with('formula', 'op').and_return('AVERAGE')
+          allow(data).to receive(:dig).with('formula', 'round').and_return(5)
+          is_expected.to eq(key: 'formula', name: nil, value: 2.33333, config_data: data)
         end
 
         it 'MIN' do
@@ -362,6 +372,107 @@ describe Reports::BuildResults do
             key: 1,
             name: 'Test factor1',
             value: 3
+          }
+        ])
+      end
+    end
+
+    context 'Zscore Factor' do
+      let(:data_configuration) do
+        {
+          sections: [
+            {
+              data: [
+                {
+                  type: 'zscore_factor',
+                  factorId: 1,
+                  assessmentId: user_result.assessment.id
+                },
+                {
+                  type: 'zscore_factor',
+                  factorId: 2,
+                  assessmentId: user_result.assessment.id
+                }
+              ]
+            }
+          ]
+        }
+      end
+      let(:report) { create(:report, data_configuration: data_configuration) }
+
+      subject { described_class.call!(report, [user_result]) }
+
+      it 'resolves to the zscore' do
+        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+          and_return({ factor_names: { 1 => 'Test factor1', 2 => 'Test factor2' } })
+
+        is_expected.to eq([
+          {
+            config_data: {
+              'assessmentId' => user_result.assessment.id,
+              'factorId' => 1,
+              'type' => 'zscore_factor'
+            },
+            key: 1,
+            name: 'Test factor1',
+            value: 1.68817
+          },
+          {
+            config_data: {
+              'assessmentId' => user_result.assessment.id,
+              'factorId' => 2,
+              'type' => 'zscore_factor'
+            },
+            key: 2,
+            name: 'Test factor2',
+            value: 3.67817
+          }
+        ])
+      end
+    end
+
+    context 'Zscore to Percentile' do
+      let(:data_configuration) do
+        {
+          sections: [
+            {
+              data: [
+                {
+                  type: 'zscore_to_percentile',
+                  label: 'Overall Score',
+                  source: {
+                    type: 'zscore_factor',
+                    factorId: 1,
+                    assessmentId: user_result.assessment.id
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      end
+      let(:report) { create(:report, data_configuration: data_configuration) }
+
+      subject { described_class.call!(report, [user_result]) }
+
+      it 'resolves zscore to percentile' do
+        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+          and_return({ factor_names: { 1 => 'Test factor1' } })
+
+        is_expected.to eq([
+          {
+            config_data: {
+              'label' => 'Overall Score',
+              'source' => {
+                'assessmentId' => user_result.assessment.id,
+                'factorId' => 1,
+                'type' => 'zscore_factor'
+              },
+              'type' => 'zscore_to_percentile'
+            },
+            key: nil,
+            name: 'Overall Score',
+            value: 95.449
           }
         ])
       end

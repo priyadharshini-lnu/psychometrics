@@ -7,6 +7,7 @@ class CampaignUser < ApplicationRecord
   belongs_to :user
   belongs_to :campaign
   has_one :project, through: :campaign
+  has_many :campaign_assessments, through: :campaign
   has_many :evaluation_results, through: :user
   has_many :user_assessments, through: :user
   has_many :assessments, through: :user_assessments
@@ -22,9 +23,11 @@ class CampaignUser < ApplicationRecord
                if: proc { status_previously_changed? && %w[completed timed_out].include?(status) },
                on: [:update]
   delegate :proctoring_enabled?, to: :campaign
+  delegate :pending_assessments, to: :user_assessments
 
   def compute_and_set_status
     return if campaign.fixed_timed? && completion_status != 'completed'
+    return if campaign.fixed_timed? && started_at.nil?
 
     update(status: completion_status)
   end
@@ -32,13 +35,16 @@ class CampaignUser < ApplicationRecord
   def compute_expiry_date
     return unless campaign.fixed_time?
 
-    if expiry_date.nil? || not_started_campaign?
-      campaign.fixed_time_duration&.seconds&.from_now
-    elsif interrupted_campaign?
-      additional_time&.seconds&.from_now
-    else
-      expiry_date
-    end
+    dates = []
+    dates << if interrupted_campaign?
+               additional_time&.seconds&.from_now
+             elsif expiry_date.nil? || not_started_campaign?
+               campaign.fixed_time_duration&.seconds&.from_now
+             else
+               expiry_date
+             end
+    dates << schedule_end_date
+    dates.compact.min
   end
 
   def finish_proctoring_session
@@ -73,5 +79,47 @@ class CampaignUser < ApplicationRecord
     return [campaign.end_date, expiry_date].min if campaign.end_date && expiry_date
 
     expiry_date || campaign.end_date
+  end
+
+  def remaining_campaign_time
+    return unless real_expiry_date
+
+    [real_expiry_date - Time.zone.now, 0].max
+  end
+
+  def prework_user_assessments
+    assessment_ids = campaign_assessments.preworks.pluck(:assessment_id)
+    campaign_user_assessments.self_assessment.where(assessment_id: assessment_ids)
+  end
+
+  def all_prework_completed?
+    !prework_user_assessments.pending_assessments.exists?
+  end
+
+  def scheduled_at
+    dates = []
+    dates << campaign.start_date if campaign.inactive? && campaign.start_date
+    dates << schedule_start_date if schedule_start_date
+    dates.max
+  end
+
+  def scheduled_in
+    return unless scheduled_at
+
+    scheduled_at - Time.zone.now
+  end
+
+  def schedule_started?
+    return true unless schedule_start_date
+
+    schedule_start_date < Time.zone.now
+  end
+
+  def schedule_ended?
+    schedule_end_date && schedule_end_date < Time.zone.now
+  end
+
+  def in_schedule?
+    schedule_started? && !schedule_ended?
   end
 end

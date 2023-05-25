@@ -1,4 +1,9 @@
 import { takeLatest, put } from 'redux-saga/effects'
+import _ from 'lodash'
+
+export const getCampaignRemainingTime = state => (
+  _.get(state, ['campaigns', 'userAssessment', 'results', 'remaining_campaign_time'])
+)
 
 const FETCH = 'userAssessment/FETCH'
 const FETCH_FAILURE = 'userAssessment/FETCH_FAILURE'

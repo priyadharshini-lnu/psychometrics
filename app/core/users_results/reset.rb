@@ -37,6 +37,7 @@ module UsersResults
         manager_evaluation_status: :waiting,
         evaluator_nomination_status: :waiting
       )
+      users_result.generate_randomseed
       users_result.update!(
         answers: {},
         scoring: nil,

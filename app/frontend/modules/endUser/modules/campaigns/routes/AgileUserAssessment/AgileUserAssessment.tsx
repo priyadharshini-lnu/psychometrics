@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import {
+  Col,
   Layout,
 } from 'antd'
+import { ClockCircleOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps, useHistory } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
@@ -11,8 +13,9 @@ import { get as getConfig } from '~/modules/endUser/core/config'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { get as getCampaign } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
-import { fetchAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment'
+import { fetchAssessment, getCampaignRemainingTime } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import styles from './styles.less'
+import { CountdownTimer, PageHeader as GlintPageHeader } from '~/glint'
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -22,6 +25,7 @@ const connector = connect(
     isAnonym: getCurrentUser(state).isAnonym,
     campaignId: getCampaign(state).id,
     assessment: state.campaigns.userAssessment.assessment,
+    remainingCampaignTime: getCampaignRemainingTime(state),
   }),
   {
     fetchAssessment,
@@ -31,6 +35,7 @@ const connector = connect(
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
 const { Content } = Layout
+const { I18n } = window
 
 type Params = {
   userAssessmentId: string
@@ -48,6 +53,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   campaignId,
   assessment,
   fetchAssessment,
+  remainingCampaignTime,
   match: { params },
 }) => {
   const history = useHistory()
@@ -85,8 +91,30 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
     fetchAssessment(params.userAssessmentId, edit)
   }, [])
 
+  const notificationMessage = (minutes: number, seconds: number) => (
+    I18n.t('campaign.timer.notification', { minutes, seconds })
+  )
+
   return (
     <>
+      {remainingCampaignTime && (
+      <GlintPageHeader>
+        <Col span={16} className="ta-c">
+          <CountdownTimer
+            prefix={(
+              <>
+                {I18n.t('user_assessments.timer_title.campaign')}
+                {': '}
+                <ClockCircleOutlined />
+              </>
+            )}
+            // notificationPoints={notificationDurations}
+            notificationTemplate={notificationMessage}
+            seconds={remainingCampaignTime}
+          />
+        </Col>
+      </GlintPageHeader>
+      )}
       <SubHeader
         title={assessment.name}
         onBack={() => history.push(`/campaigns/${campaignId}`)}

@@ -2,6 +2,8 @@
 
 class EndUser::CampaignUsersController < ApplicationController
   before_action :set_campaign_user
+  before_action :check_all_prework_are_completed,
+                only: %i[begin_campaign continue_campaign proctoring_redirect]
 
   def begin_campaign
     data = {}
@@ -56,6 +58,12 @@ class EndUser::CampaignUsersController < ApplicationController
   end
 
   private
+
+  def check_all_prework_are_completed
+    return if @campaign_user.all_prework_completed?
+
+    render json: { errors: I18n.t('campaign.complete_tasks') }, status: 422
+  end
 
   def redirect_to_campaign
     redirect_to(campaign_path(@campaign_user.campaign_id))

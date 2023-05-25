@@ -4,8 +4,27 @@ require 'rails_helper'
 
 describe Campaigns::Users::CreateForm do
   let(:campaign) { create(:campaign) }
-  let(:attributes) { { first_name: 'John', last_name: 'Doe', email: 'john@cc.com', operation: 'skip_existing' } }
-  let(:user_attributes) { attributes.except(:operation) }
+  let(:attributes) do
+    {
+      first_name: 'John', last_name: 'Doe', email: 'john@cc.com', operation: 'skip_existing',
+      schedule_start_date: 1.day.from_now.to_s, schedule_end_date: 2.days.from_now.to_s
+    }
+  end
+  let(:user_attributes) { attributes.except(:operation, :schedule_start_date, :schedule_end_date) }
+
+  it 'validates schedule_start_date is a valid date' do
+    form = described_class.new(attributes.merge(schedule_start_date: 'abc')).with_context(campaign: campaign)
+
+    expect(form.valid?).to eq(false)
+    expect(form.errors[:schedule_start_date]).to include('is invalid')
+  end
+
+  it 'validates schedule_end_date is a valid date' do
+    form = described_class.new(attributes.merge(schedule_end_date: 'abc')).with_context(campaign: campaign)
+
+    expect(form.valid?).to eq(false)
+    expect(form.errors[:schedule_end_date]).to include('is invalid')
+  end
 
   it 'validates presence of first_name' do
     form = described_class.new(attributes.merge(first_name: '')).with_context(campaign: campaign)

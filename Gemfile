@@ -163,7 +163,7 @@ gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.15.0'
 gem 'reform-rails', '~> 0.2.3'
-gem 'validates_timeliness', '~> 5.0.0'
+gem 'validates_timeliness', '~> 6.0.1'
 gem 'virtus', '~> 1.0.5'
 
 # SOAP client
