@@ -73,7 +73,7 @@ module Administration
 
         @data = ::Reports::PrepareDataForReport.call!(
           campaign_user_report: user_report,
-          locale: user_locale,
+          locale: user_report.report.default_language,
           current_user: current_user
         )
       end

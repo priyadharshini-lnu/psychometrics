@@ -501,6 +501,8 @@ ar:
           totalResponses: إجمالي الردود
           variance: التباين
           weightedMean: المتوسط المرجح
+        question:
+          no_response: لا يوجد رد متاح
         statistic: الاحصائيه
         value: 'القيمة '
       three_sixty_report_summary:

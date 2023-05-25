@@ -17,7 +17,7 @@ module Administration
         set_available_translations(@user_report.report)
         @data = ::Reports::PrepareDataForReport.call!(
           user_report: @user_report,
-          locale: user_locale,
+          locale: @user_report.report.default_language,
           current_user: current_user
         )
 
@@ -40,7 +40,7 @@ module Administration
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
         options = {
-          lang: params[:lang],
+          lang: user_report.report.default_language,
           file_path: Settings.aws.s3.one_day_expiry_folder,
           notify_user: true,
           update_record: false,
