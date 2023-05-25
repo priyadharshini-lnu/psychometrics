@@ -1,13 +1,13 @@
 import React from 'react'
 import cs from 'classnames'
-import { RGBColor } from 'react-color'
+import { RgbaColor } from 'react-colorful'
 import _ from 'lodash'
 import { rgba2hex } from '~/utils/color'
 import Utils from '~/modules/reports/utils'
 import styles from './styles.less'
 
 interface ScoreRange {
-  color: RGBColor
+  color: RgbaColor
   value: number
 }
 

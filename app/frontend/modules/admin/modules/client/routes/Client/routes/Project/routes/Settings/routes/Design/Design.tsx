@@ -13,13 +13,13 @@ import {
   uploadFiles,
 } from '~/modules/admin/modules/client/core/designSettings'
 import { useResources } from '~/hooks/useResources/useResources'
-import { ColorPicker } from '~/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import { DesignPreview } from './DesignPreview'
 import styles from './styles.less'
 
 const { I18n } = window
 
-const connecter = connect(() => {}, { uploadFiles })
+const connecter = connect(() => ({}), { uploadFiles })
 
 type Props = ConnectedProps<typeof connecter>
 
@@ -168,7 +168,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           <Form.Item label={I18n.t('administration.projects.design_settings.background_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="backgroundColor">
-                <ColorPicker swatchClass={styles.swatch} defaultValue="#ffffff" />
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#ffffff" />
               </Form.Item>
               <Button onClick={() => resetColor('backgroundColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
@@ -178,7 +178,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           <Form.Item label={I18n.t('administration.projects.design_settings.primary_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="primaryColor">
-                <ColorPicker swatchClass={styles.swatch} defaultValue="#009ea7" />
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#009ea7" />
               </Form.Item>
               <Button onClick={() => resetColor('primaryColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
@@ -188,7 +188,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           <Form.Item label={I18n.t('administration.projects.design_settings.error_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="errorColor">
-                <ColorPicker swatchClass={styles.swatch} defaultValue="#f5222d" />
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#f5222d" />
               </Form.Item>
               <Button onClick={() => resetColor('errorColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
@@ -198,7 +198,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           <Form.Item label={I18n.t('administration.projects.design_settings.warning_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="warningColor">
-                <ColorPicker swatchClass={styles.swatch} defaultValue="#faad14" />
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#faad14" />
               </Form.Item>
               <Button onClick={() => resetColor('warningColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
@@ -208,7 +208,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           <Form.Item label={I18n.t('administration.projects.design_settings.success_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="successColor">
-                <ColorPicker swatchClass={styles.swatch} defaultValue="#52c41a" />
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#52c41a" />
               </Form.Item>
               <Button onClick={() => resetColor('successColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
@@ -218,7 +218,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
           <Form.Item label={I18n.t('administration.projects.design_settings.info_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="infoColor">
-                <ColorPicker swatchClass={styles.swatch} defaultValue="#009ea7" />
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#009ea7" />
               </Form.Item>
               <Button onClick={() => resetColor('infoColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}

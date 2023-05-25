@@ -7,7 +7,7 @@ import {
 import { UploadOutlined } from '@ant-design/icons'
 import { UploadFile } from 'antd/lib/upload/interface'
 import type { Merge } from 'type-fest'
-import { ColorPicker } from '~/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { Assessment, Files, uploadFiles } from '~/modules/admin/modules/client/core/assessments'
 import { BaseFormFields } from '../../AssessmentList/BaseFormFields'
@@ -144,7 +144,7 @@ export const EditForm: React.FC<Props> = ({ assessment }) => {
                 <Form.Item label={I18n.t('common.column.icon_color')}>
                   <div className={styles.iconColorContainer}>
                     <Form.Item name="iconColor">
-                      <ColorPicker value={iconColor} />
+                      <ColorPicker getValueInHexFormat defaultColor="#00000000" value={iconColor} />
                     </Form.Item>
                     <Button onClick={() => resetColor('iconColor')}>
                       {I18n.t('assessments.reset')}

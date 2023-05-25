@@ -5,7 +5,7 @@ import Module from '~/modules/reports/core/interfaces/Module'
 import ColorSet from '~/modules/reports/components/ColorSet'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { rgba2hex } from '~/utils/color'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
@@ -46,20 +46,29 @@ const Properties: FC<Props> = ({ model }) => {
         Header Colours
         <div className={styles.flexRow}>
           <ColorPicker
-            color={model.props.mainHeaderColor}
-            onChange={color => onChange('mainHeaderColor', color.hex)}
+            defaultColor="#00000000"
+            value={typeof model.props.mainHeaderColor === 'string'
+              ? model.props.mainHeaderColor : rgba2hex(model.props.mainHeaderColor)}
+            getValueInHexFormat
+            onChange={color => onChange('mainHeaderColor', color)}
           />
           <ColorPicker
-            color={model.props.secondHeaderColor}
-            onChange={color => onChange('secondHeaderColor', color.hex)}
+            defaultColor="#00000000"
+            value={typeof model.props.secondHeaderColor === 'string'
+              ? model.props.secondHeaderColor : rgba2hex(model.props.secondHeaderColor)}
+            getValueInHexFormat
+            onChange={color => onChange('secondHeaderColor', color)}
           />
         </div>
       </div>
       <div className={styles.block}>
         Score Background Color
         <ColorPicker
-          color={model.props.scoreBackgroundColor}
-          onChange={color => onChange('scoreBackgroundColor', rgba2hex(color.rgb))}
+          defaultColor="#00000000"
+          getValueInHexFormat
+          value={typeof model.props.scoreBackgroundColor === 'string'
+            ? model.props.scoreBackgroundColor : rgba2hex(model.props.scoreBackgroundColor)}
+          onChange={color => onChange('scoreBackgroundColor', color)}
         />
       </div>
       <div className="margin-top-10">

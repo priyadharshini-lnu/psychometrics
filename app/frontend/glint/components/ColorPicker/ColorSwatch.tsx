@@ -1,4 +1,7 @@
 import { FC, MouseEventHandler } from 'react'
+import cs from 'classnames'
+import { RgbaColor } from 'react-colorful'
+import { hexToRgba } from '~/utils/color'
 import styles from './colorSwatch.less'
 
 type props={
@@ -17,7 +20,7 @@ export const ColorSwatch:FC<props> = ({
     }
   }
 
-  if (colors.length || maxColors === 0) {
+  if (!colors.length || maxColors === 0) {
     return null
   }
 
@@ -27,7 +30,7 @@ export const ColorSwatch:FC<props> = ({
       <div className={styles.swatchContainer} onClick={handleSwatchClick}>
         {
           colors.slice(0, maxColors || colors.length).map(color => (
-            <ColorSwatchItem color={color} />
+            <ColorSwatchItem key={color} color={color} />
           ))
         }
       </div>
@@ -39,17 +42,27 @@ export const ColorSwatch:FC<props> = ({
 type ColorSwatchItemProps = {
   color: string
   onClick? : MouseEventHandler<HTMLButtonElement>
+  className?: string
 }
 
 export const ColorSwatchItem:FC<ColorSwatchItemProps> = ({
   color,
   onClick,
-}) => (
-  <button
-    onClick={onClick || (() => null)}
-    id={color}
-    key={color}
-    style={{ background: color }}
-    className={styles.swatchItem}
-  />
-)
+  className,
+}) => {
+  let colorObj: RgbaColor
+  let backgroundColor = color
+  if (typeof color === 'string') {
+    colorObj = hexToRgba(color)
+    backgroundColor = `rgba(${colorObj.r},${colorObj.g},${colorObj.b},${colorObj.a})`
+  }
+  return (
+    <button
+      onClick={onClick || (() => null)}
+      id={color}
+      key={backgroundColor}
+      style={{ background: backgroundColor }}
+      className={cs([styles.swatchItem, className])}
+    />
+  )
+}

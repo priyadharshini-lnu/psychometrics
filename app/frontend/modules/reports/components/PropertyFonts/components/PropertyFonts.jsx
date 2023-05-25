@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Component } from 'react'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 
 export const FONTS = {
   Arial: 'arial, helvetica, sans-serif',

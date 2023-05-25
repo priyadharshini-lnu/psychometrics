@@ -1,5 +1,6 @@
 import cs from 'classnames'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { rgba2hex } from '~/utils/color'
+import { ColorPicker } from '~/glint'
 import styles from './styles.less'
 
 export default function ScoreRange ({
@@ -24,8 +25,8 @@ export default function ScoreRange ({
         />
         {showColorPicker && (
           <ColorPicker
-            color={scoreRange.color || '#cccccc'}
-            onChange={color => onUpdate(scoreRange.id, { color: color.rgb })}
+            value={scoreRange.color ? rgba2hex(scoreRange.color) : '#cccccc'}
+            onChange={color => onUpdate(scoreRange.id, { color })}
           />
         )}
         <i className={cs('fa', 'fa-minus', 'mls', styles.remove)} onClick={removeScoreRange} />

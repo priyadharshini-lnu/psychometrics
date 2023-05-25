@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DragSource, DropTarget } from 'react-dnd'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import styles from './ColorSet.less'
 
 const swatchSource = {
@@ -55,7 +55,7 @@ let Swatch = class extends Component {
 
   change = (val) => {
     const { color, onChange } = this.props
-    color.color = val.hex
+    color.color = val
     this.forceUpdate()
     onChange && onChange()
   }
@@ -68,7 +68,7 @@ let Swatch = class extends Component {
 
     return connectDragSource(connectDropTarget(
       <div className={styles.swatch} style={{ opacity }}>
-        <ColorPicker color={color.color} onComplete={this.change} />
+        <ColorPicker getValueInHexFormat value={color.color} onChange={this.change} />
       </div>,
     ))
   }

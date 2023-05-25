@@ -7,7 +7,6 @@ import { Properties } from '~/modules/reports/components/modules'
 import ModuleModel from '~/modules/reports/models/Module'
 import LayoutManager from '~/modules/reports/models/LayoutManager'
 import styles from './PropertyPanel.less'
-import ColorPickerModal from './ColorPickerModal'
 
 const { $ } = window
 const { Panel } = Collapse
@@ -253,7 +252,6 @@ class PropertyPanel extends Component {
             {selected.type === 'Module' && this.renderLayout()}
           </div>
         </div>
-        <ColorPickerModal />
       </>
     )
   }
