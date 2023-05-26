@@ -68,6 +68,7 @@ export interface BaseMeta {
   permissions?: { [key: string]: boolean },
   recordCount?: number,
   pageCount?: number,
+  reportFamilyName?: { [key: string]: string },
 }
 
 type ExtraArgs = { responseType?: ResponseType, apiConfig?: ApiConfig }

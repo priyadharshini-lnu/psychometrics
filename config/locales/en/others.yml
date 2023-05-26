@@ -2026,11 +2026,12 @@ en:
     status_updated_by: Last updated by
     subject_email: Subject email
     subject_name: Subject name
-    usage_id: Usage ID
     usage_overview: View license usage
+    usages: Usages
   licenses:
     enabled: Enabled
     end_date: End date
+    id: License ID
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
