@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Typography, Input, Form } from 'antd'
+import {
+  Typography, Input, Form, Button,
+} from 'antd'
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
-import styles from '../Registration/styles.less'
+import styles from './styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
 import { Flash } from '../../components/Flash'
@@ -59,6 +61,14 @@ const PasswordExpiredComponent: React.FC<Props> = ({
         className={styles.submit}
         block
       />
+      <Button
+        href={projectConfig.id ? '/users/sign_out' : '/administration/sign_out'}
+        type="link"
+        className={styles.logoutBtn}
+        block
+      >
+        {I18n.t('auth.logout')}
+      </Button>
     </Form>
   </div>
 )
