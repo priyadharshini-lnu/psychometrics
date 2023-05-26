@@ -294,7 +294,7 @@ class User < ApplicationRecord
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
         membership = Membership.join_user.find_by(
-          users: { email: warden_conditions[:email]&.downcase }, client_id: project.id
+          users: { email: warden_conditions[:email]&.downcase }, client_id: project.id, role: 'member'
         )
         if membership
           find_user_with_membership(project, subdomain, warden_conditions)
