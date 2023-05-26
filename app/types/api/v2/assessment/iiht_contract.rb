@@ -13,9 +13,7 @@ module Api
         end
 
         rule(data: { attributes: { external_settings: :schedule_config } }) do
-          next key.failure(:filled?) unless value
-
-          key.failure(:json?) unless json?(value)
+          key.failure(:json?) if value && !json?(value)
         end
 
         private

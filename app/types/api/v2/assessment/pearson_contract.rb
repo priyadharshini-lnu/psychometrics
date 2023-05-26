@@ -4,15 +4,10 @@ module Api
   module V2
     module Assessment
       class PearsonContract < Api::Base::Contract
-        rule(data: { attributes: { external_settings: :norm_id } }) do
+        rule(data: { attributes: { external_settings: :assessment_id } }) do
           key.failure(:filled?) unless value
-          assessment_id = values.dig(:data, :attributes, :external_settings, :assessment_id)
 
-          norm = (Assessments::PearsonSettings.norms(assessment_id) || []).find do |a|
-            a[:id] == value
-          end
-
-          key.failure(:not_in_the_list?) unless norm
+          key.failure(:not_in_the_list?) unless PearsonAssessment.order(:title).exists?(product_id: value)
         end
 
         rule(data: { attributes: { external_settings: :norm_id } }) do

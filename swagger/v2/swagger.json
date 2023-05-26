@@ -22,6 +22,240 @@
     }
   },
   "paths": {
+    "/assessments/": {
+      "get": {
+        "summary": "Assessments List",
+        "operationId": "AssessmentsList",
+        "description": "Fetch Assessments list",
+        "tags": [
+          "Assessments"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "clients",
+                    "data": {
+                      "attributes": {
+                        "name": "name",
+                        "disabled": false,
+                        "type": "common",
+                        "category": "psychometric",
+                        "created_at": "25 May 2023 / 12:35",
+                        "updated_at": "25 May 2023 / 12:35",
+                        "created_by": "ROHAN PUJARI",
+                        "description": "asd",
+                        "external_settings": {
+                        }
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentsListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an assessment",
+        "operationId": "CreateAssessment",
+        "description": "Create new Assessment",
+        "tags": [
+          "Assessments"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Assessment Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "assessments",
+                    "attributes": {
+                      "name": "name",
+                      "disabled": false,
+                      "type": "common",
+                      "category": "psychometric",
+                      "created_at": "25 May 2023 / 12:35",
+                      "updated_at": "25 May 2023 / 12:35",
+                      "created_by": "ROHAN PUJARI",
+                      "description": "asd",
+                      "external_settings": {
+                      }
+                    },
+                    "relationships": {
+                      "dimension": {
+                        "data": {
+                          "type": "dimensions",
+                          "id": "39"
+                        }
+                      },
+                      "owner": {
+                        "data": {
+                          "type": "clients",
+                          "id": "266"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/assessments/{assessment_id}": {
+      "patch": {
+        "summary": "Update a assessment",
+        "operationId": "UpdateAssessment",
+        "description": "Update an Assessment",
+        "tags": [
+          "Assessments"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment Updated",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "type": "assessments",
+                    "attributes": {
+                      "name": "name",
+                      "disabled": false,
+                      "icon_url": "#111",
+                      "type": "common",
+                      "category": "saville",
+                      "created_at": "25 May 2023 / 12:35",
+                      "updated_at": "25 May 2023 / 12:35",
+                      "created_by": "ROHAN PUJARI",
+                      "icon_color": "#000",
+                      "description": "asd",
+                      "enable_video_check": true,
+                      "enable_audio_check": true,
+                      "enable_network_check": true,
+                      "external_settings": {
+                      }
+                    },
+                    "relationships": {
+                      "dimension": {
+                        "data": {
+                          "type": "dimensions",
+                          "id": "39"
+                        }
+                      },
+                      "owner": {
+                        "data": {
+                          "type": "clients",
+                          "id": "266"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete an assessment",
+        "operationId": "DeleteAssessment",
+        "description": "Delete a Assessment",
+        "tags": [
+          "Assessments"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Assessment Deleted"
+          }
+        }
+      }
+    },
     "/clients/": {
       "get": {
         "summary": "Clients List",
@@ -2966,6 +3200,595 @@
             "required": [
               "id",
               "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AssessmentsListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to assessments",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "owner": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to clients",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "project": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to clients",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "dimension": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to dimensions",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "common",
+                        "mindmill",
+                        "hogan",
+                        "saville",
+                        "pearson",
+                        "iiht"
+                      ],
+                      "nullable": false
+                    },
+                    "category": {
+                      "type": "string",
+                      "enum": [
+                        "psychometric",
+                        "organisational",
+                        "case_study",
+                        "threesixty",
+                        "mindmill",
+                        "hogan",
+                        "agile",
+                        "assessor_form",
+                        "saville",
+                        "pearson",
+                        "iiht"
+                      ],
+                      "nullable": false
+                    },
+                    "timing": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "in_progress",
+                        "finished",
+                        null
+                      ],
+                      "nullable": true
+                    },
+                    "enable_video_check": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "enable_audio_check": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "enable_network_check": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "icon_color": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "external_settings": {
+                      "type": "object",
+                      "properties": {
+                        "assessment_id": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "norm_id": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "schedule_config": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description",
+                    "type",
+                    "category"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "AssessmentResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to assessments",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "owner": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to clients",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "dimension": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to dimensions",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "common",
+                      "mindmill",
+                      "hogan",
+                      "saville",
+                      "pearson",
+                      "iiht"
+                    ],
+                    "nullable": false
+                  },
+                  "category": {
+                    "type": "string",
+                    "enum": [
+                      "psychometric",
+                      "organisational",
+                      "case_study",
+                      "threesixty",
+                      "mindmill",
+                      "hogan",
+                      "agile",
+                      "assessor_form",
+                      "saville",
+                      "pearson",
+                      "iiht"
+                    ],
+                    "nullable": false
+                  },
+                  "timing": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "in_progress",
+                      "finished",
+                      null
+                    ],
+                    "nullable": true
+                  },
+                  "enable_video_check": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "enable_audio_check": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "enable_network_check": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "icon_color": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "external_settings": {
+                    "type": "object",
+                    "properties": {
+                      "assessment_id": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "norm_id": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "schedule_config": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "type",
+                  "category"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
               "attributes"
             ],
             "nullable": false

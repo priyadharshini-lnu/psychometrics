@@ -15,7 +15,7 @@ module Api
             attribute[:type].filled(:string, included_in?: ::Assessment::TYPES.keys.map(&:to_s))
             attribute[:category].filled(:string, included_in?: ::Assessment.categories.keys)
             optional(:timing).maybe(:string)
-            optional(:status).maybe(:string, included_in?: ::Assessment::STATUSES.map(&:to_s))
+            optional(:status).maybe(:string, included_in?: ::Assessment::STATUSES.map(&:to_s) + [nil])
             optional(:enable_video_check).maybe(:bool)
             optional(:enable_audio_check).maybe(:bool)
             optional(:enable_network_check).maybe(:bool)

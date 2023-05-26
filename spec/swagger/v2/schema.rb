@@ -99,6 +99,12 @@ module Swagger
           ClientUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Client::Schema.update_request
           ),
+          AssessmentsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Assessment::Schema.multiple_resource_response
+          ),
+          AssessmentResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Assessment::Schema.single_resource_response
+          ),
           DashboardsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Dashboard::Schema.multiple_resource_response
           ),
