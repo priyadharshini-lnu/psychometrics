@@ -27,8 +27,7 @@ module Reports
                   to_json(include: '**'),
                 locales: translations(piped_text_context).to_json,
                 available_translations: available_translations,
-                campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json,
-                selected_locale: locale
+                campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json
     end
 
     def serialize_results
