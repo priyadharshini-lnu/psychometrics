@@ -61,9 +61,15 @@ module Users
         paths: [
           { name: client.name, value: "/administration/clients/#{client.id}/projects" },
           { name: project.name, value: "/administration/projects/#{project.id}/new_campaigns" },
-          { name: campaign.name, value: "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}" }
+          { name: campaign.name, value: build_campain_url(client, project, campaign) }
         ]
       }
+    end
+
+    def build_campain_url(client, project, campaign)
+      return "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}" unless campaign.threesixty?
+
+      "/administration/clients/#{client.id}/projects/#{project.id}/threesixty_campaigns/#{campaign.threesixty_campaign.id}" # rubocop:disable Layout/LineLength
     end
   end
 end
