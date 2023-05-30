@@ -42,6 +42,7 @@ export const uploadImage = (dashboardId: string, formData: FormData) => ({
     url: `/api/v2/administration/dashboards/${dashboardId}/upload_image`,
     body: formData,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 
