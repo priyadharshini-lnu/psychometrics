@@ -929,6 +929,7 @@ Rails.application.routes.draw do
         get :insights
       end
       get :dashboard, to: 'users#dashboard'
+      get 'policy/:version', to: 'users#policy'
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
@@ -983,7 +984,7 @@ Rails.application.routes.draw do
       end
 
       resources :user_assessments do
-        resources :users_results, only: %i[update], concerns: :media_uploades
+        resources :users_results, only: %i[index update], concerns: :media_uploades
         member do
           get :assessment
           get :pass

@@ -4,6 +4,7 @@ import { Profile } from './Profile'
 import { ChangePassword } from './ChangePassword'
 import { Insights } from './Insights'
 import { UserAssessment } from './UserAssessment'
+import { Assessment } from './Assessment'
 import { AgileUserAssessment } from './AgileUserAssessment'
 import { CheckingWizard } from './CheckingWizard'
 import { Nomination } from './Nomination'
@@ -45,6 +46,11 @@ const routes = [
   {
     path: '/campaigns/:campaignId/insights',
     main: Insights,
+    exact: true,
+  },
+  {
+    path: '/user_assessments/:userAssessmentId',
+    main: Assessment,
     exact: true,
   },
   {

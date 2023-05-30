@@ -7,7 +7,7 @@ import qs from 'qs'
 import Cookies from 'js-cookie'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { RouteComponentProps, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { fetch } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { Checks, Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
@@ -66,31 +66,26 @@ const STEPS = [
   },
 ]
 
-interface Params {
-  assessmentId: string
-  id: string
-}
-
 interface OwnProps {
+  assessmentId: number
+  userAssessmentId: number
   checks: Checks
   config: Config
   url?: string
 }
 
-type Props = OwnProps & PropsFromRedux & RouteComponentProps<Params>
+type Props = OwnProps & PropsFromRedux
 
 const CheckingWizardComponent: React.FC<Props> = ({
-  url, checks, config, fetch, match: { params },
+  url, checks, config, fetch, assessmentId, userAssessmentId,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
-  const parsedAssessmentId = parseInt(params.assessmentId, 10)
-  const parsedId = parseInt(params.id, 10)
   const { search } = useLocation()
   const mode = new URLSearchParams(search).get('mode')
 
   useEffect(() => {
     const query = qs.parse(location.search.substr(1))
-    fetch(parsedAssessmentId, parsedId, query.type?.toString())
+    fetch(assessmentId, userAssessmentId, query.type?.toString())
   }, [])
 
   const [currentStep, setCurrentStep] = useState(0)

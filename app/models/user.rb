@@ -149,6 +149,10 @@ class User < ApplicationRecord
     recoverable.send_reset_password_instructions if recoverable.persisted?
   end
 
+  def privacy_consent_required?
+    project.privacy_consent && !privacy_consents.exists?(version: Settings.privacy_policy_version)
+  end
+
   def accessible_records(resource_class, permissions)
     return resource_class.all if is?(:superadmin)
 

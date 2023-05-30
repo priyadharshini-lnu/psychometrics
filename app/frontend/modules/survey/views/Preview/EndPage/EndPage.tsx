@@ -21,6 +21,7 @@ const connector = connect(({ preview }: RootState) => ({
   factors: preview.factors,
   showScoringOnEndPage: preview.showScoringOnEndPage,
   endOfAssessmentElementProps: preview.endOfAssessmentElementProps as EndOfAssessmentElementProps | undefined,
+  nextAssessmentUrl: preview.nextAssessmentUrl,
   otherPendingAssessmentCount: preview.otherPendingAssessmentCount,
 }))
 
@@ -37,6 +38,7 @@ const EndPage: FC<Props> = ({
   factors,
   showScoringOnEndPage,
   endOfAssessmentElementProps,
+  nextAssessmentUrl,
   otherPendingAssessmentCount,
 }) => {
   const location = useLocation()
@@ -88,6 +90,15 @@ const EndPage: FC<Props> = ({
         I18n={I18n}
         userAssessmentId={user_assessment_id}
       />
+      {nextAssessmentUrl && (
+        <>
+          <div className={styles.links}>
+            <a href={nextAssessmentUrl}>
+              {I18n.t('assessments.actions.next_assessment')}
+            </a>
+          </div>
+        </>
+      )}
       {showScoringOnEndPage && (
         <>
           <div className={styles.links}>

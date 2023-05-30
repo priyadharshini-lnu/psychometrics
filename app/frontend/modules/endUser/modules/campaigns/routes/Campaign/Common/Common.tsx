@@ -57,18 +57,17 @@ const { I18n } = window
 
 const CommonComponent: FC<CommonComponentProps> = ({
   campaign,
-  campaign: { campaignUser, groups },
-  loginHogan,
-  acceptPolicy,
+  campaign: {
+    campaignUser, groups,
+    campaignUser: { expiryDate },
+  },
   beginCampaign,
   continueCampaign,
-  privacyConsentRequired,
 }) => {
   const {
     isTimedCampaign,
     fixedTimed,
     campaignsCount,
-    campaignUser: { expiryDate },
     campaignOptions: {
       instructionsEnabled, instructions, proctoringEnabled, integrationType,
     },
@@ -286,14 +285,9 @@ const CommonComponent: FC<CommonComponentProps> = ({
                 groups={groups}
                 ungrouped={ungrouped}
                 campaign={campaign}
-                loginHogan={loginHogan}
                 canNotStartPrework={canNotStartPrework}
                 canNotStartAssessment={canNotStartAssessment}
                 campaignNotStarted={canBeginCampaign || canContinueCampaign}
-                acceptPolicy={acceptPolicy}
-                isTimedCampaign={isTimedCampaign}
-                expiryDate={expiryDate}
-                privacyConsentRequired={privacyConsentRequired}
               />
             </div>
           </Col>

@@ -39,6 +39,10 @@ class EndUser::UsersController < ApplicationController
     end
   end
 
+  def policy
+    render json: { content: I18n.t("privacy_policy.#{params[:version]}") }
+  end
+
   def accept_privacy
     raise "Invalid Privacy consent version '#{params[:version]}' passed" if params[:version].blank?
 

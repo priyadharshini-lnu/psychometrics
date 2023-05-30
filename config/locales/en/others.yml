@@ -724,6 +724,7 @@ en:
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Click here to continue
+      next_assessment: Pass To Next Assessment
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
@@ -755,6 +756,7 @@ en:
       mindmill: Mindmill
       organisational: Survey
       psychometric: Assessment
+      redirecting: Redirecting
       saville: Saville
     column:
       enable_audio_check: Enable Audio Check
@@ -2791,6 +2793,7 @@ en:
   threesixty:
     accept_privacy_modal:
       accept: Accept
+      checkbox: I have read and understood Privacy Policy mentioned above
       policy_link: Click here to read the privacy policy.
       reject: Reject
       text: |
@@ -3035,6 +3038,7 @@ en:
         successfully: "%{name} assessment removed successfully."
       reset:
         content: Are you sure you want to reset progress '%{name}'?
+    redirect: You would be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
     status:
       completed: Completed
       in_progress: In Progress

@@ -165,6 +165,7 @@ export interface DefaultState {
   fixedTimed: boolean
   showErrorWarning: boolean
   isAssessor: boolean
+  nextAssessmentUrl?: string | null
   submitRequired: boolean
   otherPendingAssessmentCount: number
 }
@@ -255,6 +256,7 @@ export interface Result {
   media_responses: []
   hris: {}
   highlights: [{id: string, data: {}, resource_type: string, resource_id: number}]
+  next_assessment_url?: string
   other_pending_assessments_count: number
   seedrandom: string
 }
@@ -265,6 +267,7 @@ interface SaveResponse {
   scoring?: {}
   factors?: [],
   translations: object
+  next_assessment_url?: string
 }
 
 interface FetchQuestionScoringResponse {

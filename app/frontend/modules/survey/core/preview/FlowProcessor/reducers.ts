@@ -88,6 +88,7 @@ const defaultState: State = {
   fixedTimed: false,
   showErrorWarning: false,
   isAssessor: false,
+  nextAssessmentUrl: null,
   submitRequired: false,
   otherPendingAssessmentCount: 0,
 }
@@ -171,6 +172,7 @@ const HANDLERS = {
       fixedTimed: data.fixed_timed,
       defaultNorm: data.default_norm_id,
       isAssessor: data.isAssessor,
+      nextAssessmentUrl: result.next_assessment_url,
       otherPendingAssessmentCount: result.other_pending_assessments_count,
     }
   },
@@ -237,7 +239,7 @@ const HANDLERS = {
   [SAVE_RESULTS_REQUEST]: state => ({ ...state, submissionInProgress: true }),
   [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
-      expired, current_block: currentBlock, factors, scoring, translations,
+      expired, current_block: currentBlock, factors, scoring, translations, next_assessment_url: nextAssessmentUrl,
     },
   }: SaveResults) => {
     const blocks = currentBlock
@@ -259,6 +261,7 @@ const HANDLERS = {
       factors,
       scoring,
       submissionInProgress: false,
+      nextAssessmentUrl,
     } : {
       ...state,
       end,
@@ -266,6 +269,7 @@ const HANDLERS = {
       locales: translations,
       questions: newQuestions,
       submissionInProgress: false,
+      nextAssessmentUrl,
     }
   },
   [SAVE_RESULTS_FAILURE]: state => ({ ...state, submissionFailed: true, submissionInProgress: false }),

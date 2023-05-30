@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { Col, Row, Typography } from 'antd'
 
-import Assessments from '~/modules/endUser/modules/campaigns/routes/Campaign/Common/Assessments'
+import { AssessmentCard } from '../AssessmentCard'
 
 import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import { ViewsContainer } from '~/glint'
@@ -42,12 +42,7 @@ export const AssessmentsContainer = ({
   groups,
   canNotStartAssessment,
   campaign,
-  loginHogan,
-  acceptPolicy,
-  isTimedCampaign,
-  expiryDate,
   campaignNotStarted,
-  privacyConsentRequired,
   canNotStartPrework,
 }) => (
   <ViewsContainer
@@ -66,7 +61,6 @@ export const AssessmentsContainer = ({
       return (
         <>
           {groups.map((group) => {
-            const size = group.campaignAssessmentIds.length
             let prevCompleted = true
             let previousAssessmentIsIneligible = false
             if (group.previousGroupRequired) {
@@ -89,7 +83,6 @@ export const AssessmentsContainer = ({
                 <Title level={5}>{group.name}</Title>
                 <Row gutter={[16, 16]}>
                   {userAssessments.map((userAssessment) => {
-                    const Assessment = Assessments[userAssessment.type]
                     let isDisabled = userAssessment.prework ? canNotStartPrework : canNotStartAssessment
                     isDisabled = isDisabled || !prevCompleted
                     if (!isDisabled && group.previousAssessmentsRequired) {
@@ -102,19 +95,12 @@ export const AssessmentsContainer = ({
                     previousAssessmentIsIneligible = userAssessment.status === Statuses.INELIGIBLE
                     return (
                       <Col xs={24} sm={tabCol} md={tabCol} lg={tabCol} xl={deskCol} key={userAssessment.id}>
-                        <Assessment
+                        <AssessmentCard
                           view={view}
-                          history={history}
                           userAssessment={userAssessment}
-                          size={size}
-                          loginHogan={loginHogan}
-                          acceptPolicy={acceptPolicy}
                           disabled={isDisabled}
                           prevCompleted={prevCompleted}
                           campaignNotStarted={campaignNotStarted}
-                          isPartOfTimedCampaign={isTimedCampaign}
-                          campaignExpiryDate={expiryDate}
-                          privacyConsentRequired={privacyConsentRequired}
                         />
                       </Col>
                     )
@@ -129,26 +115,17 @@ export const AssessmentsContainer = ({
               <Title level={5}>{I18n.t('campaign_assessment.ungrouped_assessments_heading')}</Title>
             )}
             <Row gutter={[16, 16]}>
-              {ungrouped.map((userAssessment) => {
-                const Assessment = Assessments[userAssessment.type]
-                return (
-                  <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
-                    <Assessment
-                      history={history}
-                      view={view}
-                      userAssessment={userAssessment}
-                      loginHogan={loginHogan}
-                      acceptPolicy={acceptPolicy}
-                      disabled={userAssessment.prework ? canNotStartPrework : canNotStartAssessment}
-                      campaignNotStarted={campaignNotStarted}
-                      prevCompleted
-                      isPartOfTimedCampaign={isTimedCampaign}
-                      campaignExpiryDate={expiryDate}
-                      privacyConsentRequired={privacyConsentRequired}
-                    />
-                  </Col>
-                )
-              })}
+              {ungrouped.map(userAssessment => (
+                <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={userAssessment.id}>
+                  <AssessmentCard
+                    view={view}
+                    userAssessment={userAssessment}
+                    disabled={userAssessment.prework ? canNotStartPrework : canNotStartAssessment}
+                    campaignNotStarted={campaignNotStarted}
+                    prevCompleted
+                  />
+                </Col>
+              ))}
             </Row>
           </div>
           )}

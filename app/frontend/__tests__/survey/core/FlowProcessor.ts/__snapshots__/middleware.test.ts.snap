@@ -172,6 +172,7 @@ exports[`initializing base assessment init action should init assessment data: i
     "mediaResponses": undefined,
     "mediaUrl": "/assigns/1",
     "metaData": {},
+    "nextAssessmentUrl": undefined,
     "nextButtonPressed": false,
     "normRules": [],
     "normalizedTree": {
@@ -478,6 +479,7 @@ exports[`initializing base assessment middleware should call next if is not NEXT
     "locales": null,
     "mediaResponses": [],
     "mediaUrl": null,
+    "nextAssessmentUrl": null,
     "nextButtonPressed": false,
     "normalizedTree": {},
     "options": {},
