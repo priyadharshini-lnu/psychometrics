@@ -7,6 +7,8 @@ export const AssessmentTR = t.type({
   id: t.string,
   name: t.string,
   disabled: t.boolean,
+  archived: t.boolean,
+  deleted: t.boolean,
   iconUrl: t.union([t.string, t.null, t.undefined]),
   iconColor: t.union([t.string, t.null, t.undefined]),
   type: t.string,
@@ -45,6 +47,11 @@ export const AssessmentTR = t.type({
       name: t.string,
     }),
     t.undefined]),
+  meta: t.type({
+    permissions: t.type({
+      manage: t.boolean,
+    }),
+  }),
 })
 
 

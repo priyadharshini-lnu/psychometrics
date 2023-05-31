@@ -717,7 +717,11 @@ en:
     restart: Restart
   assessments:
     actions:
+      archived:
+        success_message: Asessment %{name} archived successfully
       back_to_campaign: Back to Campaign
+      copy:
+        success_message: Asessment %{name} coppied successfully
       details: Details
       download_csv: Download CSV
       edit: Edit
@@ -732,8 +736,12 @@ en:
         confirm_title: Confirmation Requred
         success_message: Asessment %{name} has been removed
       rescore: Rescore
+      restore:
+        success_message: Asessment %{name} restored successfully
       show_usage: Show Usage
       submit_evaluation: Submit Evaluation
+      unarchived:
+        success_message: Asessment %{name} unarchived successfully
     active: Active
     archived: Archived
     assessments: Assessments
@@ -1384,16 +1392,19 @@ en:
       archive: Archive
       cancel: Cancel
       close: Close
+      copy: Copy
       delete: Delete
       edit: Edit
       import: Import
       remove: Remove
       reset: Reset
       resolve: Resolve
+      restore: Restore
       save: Save
       search: Search
       send: Send
       start: Start
+      unarchive: Unarchive
       unresolve: Unresolve
       update: Update
       upload: Upload
@@ -1429,6 +1440,8 @@ en:
       timing: Timing
       type: Type
       updated_at: Last Updated
+    errors:
+      something_wrong: Something went wrong. Contact your administrator.
     model:
       admins: Admins
       assessment: Assessment

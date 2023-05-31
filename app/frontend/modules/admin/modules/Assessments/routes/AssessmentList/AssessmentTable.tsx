@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import {
   Button, Menu, Switch, message,
 } from 'antd'
-import { useSelector } from 'react-redux'
-import { get as getCurrentUser, hasGrant } from '~/core/currentUser'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { Assessment } from '~/modules/admin/modules/client/core/assessments'
+import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import settings from '../../settings'
@@ -143,11 +142,46 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   setConfirmation, confirmation, assessment, openDrawer,
 }) => {
   const { resource } = useResourceContext<Assessment>()
-  const currentUser = useSelector(getCurrentUser)
 
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
     message.info(I18n.t('assessments.actions.remove.success_message', { name: assessment.name }))
-  }).catch(e => message.error(JSON.stringify(e)))
+  }).catch(() => {
+    message.error(I18n.t('common.errors.something_wrong'))
+  })
+
+  const toggleArchive = () => resource.memberAction({
+    id: assessment.id,
+    action: 'toggle_archive',
+    method: 'post',
+    responseType: AssessmentTR,
+  }).then((response: Assessment) => {
+    const type = response.archived ? 'archived' : 'unarchived'
+    message.success(I18n.t(`assessments.actions.${type}.success_message`, { name: response.name }))
+    resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount - 1 : 0 })
+    resource.setData(resource.data.filter(a => a.id !== assessment.id))
+  })
+
+  const restore = () => resource.memberAction({
+    id: assessment.id,
+    action: 'restore',
+    method: 'post',
+    responseType: AssessmentTR,
+  }).then((response: Assessment) => {
+    message.success(I18n.t('assessments.actions.restore.success_message', { name: response.name }))
+    resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount - 1 : 0 })
+    resource.setData(resource.data.filter(a => a.id !== assessment.id))
+  })
+
+  const copy = () => resource.memberAction({
+    id: assessment.id,
+    action: 'copy',
+    method: 'post',
+    updateStore: true,
+    responseType: AssessmentTR,
+  }).then((response: Assessment) => {
+    resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount + 1 : 0 })
+    message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
+  })
 
   const menuItems = [
     {
@@ -157,7 +191,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('assessments.actions.details')}
         </Button>),
     },
-    hasGrant(currentUser, 'assessments', 'manage') && {
+    assessment.meta.permissions.manage && {
       key: 'edit',
       label: (
         <Button
@@ -175,7 +209,39 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('assessments.actions.show_usage')}
         </Button>),
     },
-    hasGrant(currentUser, 'assessments', 'manage') && {
+    assessment.meta.permissions.manage && !assessment.deleted && {
+      key: 'copy',
+      label: (
+        <Button type="link" onClick={copy} className="ps-0">
+          {I18n.t('common.actions.copy')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.manage && !assessment.archived && {
+      key: 'archive',
+      label: (
+        <Button type="link" onClick={toggleArchive} className="ps-0">
+          {I18n.t('common.actions.archive')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.manage && assessment.archived && {
+      key: 'archive',
+      label: (
+        <Button type="link" onClick={toggleArchive} className="ps-0">
+          {I18n.t('common.actions.unarchive')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.manage && assessment.deleted && {
+      key: 'restore',
+      label: (
+        <Button type="link" onClick={restore} className="ps-0">
+          {I18n.t('common.actions.restore')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.manage && {
       key: 'remove',
       label: (
         <>
@@ -193,7 +259,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </>
       ),
     },
-  ].filter(m => m)
+  ].filter(m => m) as ItemType[]
 
   return (<Menu items={menuItems} />)
 }

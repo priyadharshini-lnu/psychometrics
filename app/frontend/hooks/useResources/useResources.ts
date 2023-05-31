@@ -76,6 +76,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data }))
   }
 
+  const setMeta = (meta: M) => {
+    setState((previousState: ResourceState<R[], M>) => ({ ...previousState, meta }))
+  }
+
   const responseTypeValidation = (responseType: ResponseType, data) => {
     if (window.PsyGlobalState.realEnv === 'production') { return }
 
@@ -310,6 +314,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       if (getRequestStatus('add', formattedErrors) === RequestStatus.Success && response) {
         const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         setData([camelizedResponse, ...data])
+        if (meta.recordCount) setMeta({ ...meta, recordCount: meta.recordCount + 1 })
         resolve(camelizedResponse)
         responseTypeValidation(args?.responseType || responseType, camelizedResponse)
       } else {
@@ -352,6 +357,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === 'success') {
         setData(data.filter(r => r.id !== id))
+        if (meta.recordCount) setMeta({ ...meta, recordCount: meta.recordCount - 1 })
         resolve()
       } else {
         reject(formattedErrors)
@@ -453,6 +459,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     meta,
     requests,
     setData,
+    setMeta,
     fetch,
     fetchSingle,
     getResource,

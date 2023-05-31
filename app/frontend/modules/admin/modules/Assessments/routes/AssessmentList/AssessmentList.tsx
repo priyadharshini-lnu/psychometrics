@@ -19,6 +19,7 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
     apiConfig: {
       include: ['dimension', 'owner', 'project'],
       fields: { dimensions: ['name'], users: ['name'] },
+      include_resource_meta: ['permissions'],
       filter: { with_resource_state: assessmentTab },
     },
   }

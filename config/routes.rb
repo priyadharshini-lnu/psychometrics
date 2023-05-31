@@ -1168,6 +1168,9 @@ Rails.application.routes.draw do
             end
           end
           jsonapi_resources :assessments do
+            post :toggle_archive
+            post :copy
+            post :restore
             scope module: :assessments do
               resource :uploads, only: %i[update]
             end

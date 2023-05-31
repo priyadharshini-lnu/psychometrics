@@ -17,6 +17,7 @@ export const EditAssessment: React.FC = () => {
     responseType: AssessmentTR,
     apiConfig: {
       include: ['dimension', 'owner', 'project'],
+      include_resource_meta: ['permissions'],
       fields: { dimensions: ['name'], users: ['name'] },
     },
   })

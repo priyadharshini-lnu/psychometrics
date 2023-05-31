@@ -25,5 +25,28 @@ module Api
 
       Api::V2::Assessment::Schema.update_request
     end
+
+    def toggle_archive
+      resource.toggle!(:archived)
+      jsonapi_render json: resource
+    end
+
+    def copy
+      result = ::Assessments::CopyAssessment.call!(resource.id, current_user)
+      jsonapi_render json: result[:assessment]
+    end
+
+    def restore
+      resource.restore!
+      jsonapi_render json: resource
+    end
+
+    private
+
+    def resource
+      @resource ||= Api::Administration::AssessmentPolicy::Scope.new(
+        current_user, Assessment
+      ).resolve.find(params[:assessment_id])
+    end
   end
 end

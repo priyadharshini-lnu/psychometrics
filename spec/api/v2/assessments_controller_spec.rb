@@ -202,9 +202,9 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
 
       let(:assessment_id) { assessment.id }
 
-      response '202', 'Assessment Deleted' do
+      response '204', 'Assessment Deleted' do
         run_test! do |response|
-          expect(response.body).to eq('{}')
+          expect(response.body).to eq('')
           expect(Assessment.find_by(id: assessment_id).deleted?).to eq(true)
         end
       end

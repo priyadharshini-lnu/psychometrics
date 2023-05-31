@@ -3,7 +3,7 @@
 class Api::V2::Administration::AssessmentResource < Api::V2::Administration::BaseResource
   attributes :name, :disabled, :icon_url, :type, :category, :created_at, :updated_at, :created_by,
              :modified_by, :icon_color, :description, :timing, :status, :enable_video_check, :enable_audio_check,
-             :enable_network_check, :poster, :icon, :external_settings
+             :enable_network_check, :poster, :icon, :external_settings, :archived, :deleted
 
   ransack_filters %i[filterable_fields with_resource_state category_in id_eq]
   audit_log_for :create, payload: '*'
@@ -23,7 +23,13 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def remove
-    @model.soft_delete!(context[:user])
+    return super if @model.deleted?
+
+    unless @model.soft_delete!(context[:user])
+      raise JSONAPI::Exceptions::ValidationErrors, self
+    end
+
+    :completed
   end
 
   def self.records(opts)
@@ -32,6 +38,10 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
 
   def icon_url
     @model.icon&.url(:thumb)
+  end
+
+  def deleted
+    @model.deleted?
   end
 
   def type
@@ -80,5 +90,21 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
 
   def icon
     @model.icon&.url
+  end
+
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::AssessmentPolicy,
+          context[:user],
+          @model,
+          %w[manage],
+          {
+            project_id: Project.last.id
+          }
+        )
+      }
+    }
   end
 end
