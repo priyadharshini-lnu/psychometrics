@@ -12,6 +12,7 @@ import { Schema } from '~/libs/jsonApi/schema'
 import store, { history } from '~/modules/admin/store'
 import settings from './settings'
 import routes from './routes'
+import { PortalMenu } from '~/components/MainMenu'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
@@ -27,7 +28,10 @@ const App: React.FC<void> = () => (
         <DndProvider backend={HTML5Backend}>
           <Router>
             <ConnectedRouter history={history}>
-              <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+              <PortalMenu />
+              <div className="ms">
+                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+              </div>
             </ConnectedRouter>
           </Router>
         </DndProvider>

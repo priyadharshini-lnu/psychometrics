@@ -43,5 +43,46 @@ module Administration
     def set_locale
       I18n.locale = I18n.default_locale
     end
+
+    def init_state
+      return unless request.format.html?
+
+      @init_state = {
+        currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(
+          current_user,
+          project_id: params[:client_id]
+        ).to_h,
+        ui: {
+          menu: ::Administration::NavigationLinksSerializer.new(
+            current_user,
+            project_id: params[:client_id]
+          ).to_h
+        }
+      }
+    end
+
+    class << self
+      def render_entrypoint(actions, element:, entry:, state: true)
+        actions = Array.wrap(actions)
+
+        @_entrypoints ||= {}.with_indifferent_access
+        actions.each do |action|
+          @_entrypoints[action] = [element, entry]
+        end
+
+        before_action :init_state, only: actions if state
+        before_action :handle_render_entrypoint, only: actions
+      end
+    end
+
+    def handle_render_entrypoint
+      entrypoints = self.class.instance_variable_get(:@_entrypoints)
+      element, entry = entrypoints[action_name]
+
+      if request.format.html?
+        @do_not_render_rails_menu = true
+        render('shared/frontend_entry', locals: { element: element, entry: entry }) && return
+      end
+    end
   end
 end

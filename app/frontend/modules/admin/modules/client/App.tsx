@@ -12,6 +12,7 @@ import store, { history } from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { Schema } from '~/libs/jsonApi/schema'
+import { PortalMenu } from '~/components/MainMenu'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
@@ -26,6 +27,7 @@ const App: React.FC<void> = () => (
         <DndProvider backend={HTML5Backend}>
           <Router>
             <ConnectedRouter history={history}>
+              <PortalMenu />
               <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
               <IncorrectResponseErrorModal />
             </ConnectedRouter>

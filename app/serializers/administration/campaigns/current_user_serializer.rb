@@ -3,10 +3,14 @@
 module Administration
   module Campaigns
     class CurrentUserSerializer < ActiveModel::Serializer
-      attributes :id, :grants, :role, :permissions
+      attributes :id, :grants, :role, :role_title, :permissions, :name
 
       def grants
         instance_options[:current_membership]&.grants&.data || {}
+      end
+
+      def role_title
+        object.decorate.role
       end
 
       def permissions
@@ -43,6 +47,10 @@ module Administration
           object, ProfileSetting, project_id: instance_options[:project_id]
         ).profile?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
+      end
+
+      def current_user
+        object
       end
     end
   end

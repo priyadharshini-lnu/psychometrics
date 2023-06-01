@@ -8,7 +8,7 @@ import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModa
 import store, { history } from '~/modules/admin/store'
 import Layout from './Layout'
 import { Schema } from '~/libs/jsonApi/schema'
-
+import { PortalMenu } from '~/components/MainMenu'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
@@ -22,6 +22,7 @@ const App: React.FC<void> = () => (
       <ApiProvider client={client}>
         <Router>
           <ConnectedRouter history={history}>
+            <PortalMenu />
             <Layout />
           </ConnectedRouter>
         </Router>

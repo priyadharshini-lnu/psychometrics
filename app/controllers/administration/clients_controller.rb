@@ -10,11 +10,7 @@ module Administration
     append_before_action :init_collections, only: %i[new create edit update]
     before_action :skip_policy_scope, only: [:index]
 
-    def index
-      @init_state = {
-        currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-      }
-    end
+    render_entrypoint :index, element: 'client-container', entry: 'admin/client'
 
     def new
       @_resource = resource_class.new

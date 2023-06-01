@@ -2979,6 +2979,7 @@ en:
       assessments: Assessments
       assessor_dashboard: Assessor Dashboard
       audit_logs: Audit Logs
+      back_to_main: Main Menu
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
@@ -3011,6 +3012,7 @@ en:
       report_approvals: Report Approvals
       report_families: Report Bundles
       reports: Reports
+      show_submenu: Show Submenu
       statistics: Statistics
       sub_campaigns: Sub Campaigns
       sub_factors: Sub-Factors
@@ -3656,6 +3658,10 @@ en:
       verify_and_save: Verify & Save Setting
       webhooks: Webhooks
     save: Save
+    scheduling:
+      tabs:
+        assessment_center: Assessment Center
+        invites: Invites
     search: Search
     security_setting:
       180_days: 180 Days

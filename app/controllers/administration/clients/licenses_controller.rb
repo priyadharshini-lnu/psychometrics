@@ -8,12 +8,10 @@ module Administration
       before_action :ensure_client, except: :overview
       before_action :set_resource, only: %i[edit update toggle_status]
       append_before_action :pundit_authorize
+      before_action :init_state, only: [:index]
 
       def index
-        @init_state = {
-          licenses: [],
-          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-        }
+        @init_state[:licenses] = []
       end
 
       def create

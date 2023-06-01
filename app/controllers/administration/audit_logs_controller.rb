@@ -5,11 +5,12 @@ module Administration
     before_action :authenticate_user!
     before_action :set_log, only: %i[show destroy]
 
+    render_entrypoint %i[index show], element: 'audit-logs', entry: 'admin/audit_logs'
+
     def index
       @q = policy_scope(::AuditLog).eager_load(:user).ransack(params[:filters])
       @logs = @q.result.order('audit_logs.id desc')
       respond_to do |format|
-        format.html
         format.json do
           serialized_logs = @logs.page(params[:page]).includes(:client, :project, :campaign).
                             per(params[:size] || 25).
@@ -27,7 +28,6 @@ module Administration
     def show
       authorize @log
       respond_to do |format|
-        format.html
         format.json { render json: @log, serializer: AuditLogSerializer }
       end
     end

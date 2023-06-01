@@ -8,12 +8,7 @@ module Administration
       before_action :set_resource, only: %i[toggle_activation_status]
       before_action :ensure_client
       append_before_action :pundit_authorize
-
-      def index
-        @init_state = {
-          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-        }
-      end
+      before_action :init_state, only: [:index]
 
       def toggle_activation_status
         license_counter_update = resource.active? ? 'decrement!' : 'increment!'

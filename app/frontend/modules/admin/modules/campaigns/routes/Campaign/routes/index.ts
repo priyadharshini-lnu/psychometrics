@@ -8,10 +8,13 @@ import { Datasheet } from './Datasheet'
 import { Admins } from './Admins'
 import CampaignOptions from './CampaignOptions'
 import { Dashboard } from './Dashboard'
+import { Scheduling, AssessmentCenter, Invites } from './Scheduling'
+
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
   { redirect: true, from: '/participants', to: '/participants/subjects' },
+  { redirect: true, from: '/scheduling', to: '/scheduling/assessment_center' },
   {
     path: '/participants',
     component: Participants,
@@ -19,6 +22,14 @@ const routes = [
       { path: '/participants/subjects', component: Subjects },
       { path: '/participants/assessors', component: Assessors },
       { path: '/participants/sms_invites', component: SmsInvites },
+    ],
+  },
+  {
+    path: '/scheduling',
+    component: Scheduling,
+    routes: [
+      { path: '/scheduling/assessment_center', component: AssessmentCenter },
+      { path: '/scheduling/invites', component: Invites },
     ],
   },
   { path: '/assessments_reports/*', component: AssessmentsReports },

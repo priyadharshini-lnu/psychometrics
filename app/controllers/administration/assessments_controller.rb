@@ -11,14 +11,9 @@ class Administration::AssessmentsController < Administration::BaseController
   # we need this line to override a behviour from BaseController
   append_after_action :verify_policy_scoped, only: []
 
-  # GET /administration/resources
-  def index
-    @init_state = {
-      currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-    }
+  render_entrypoint :index, element: 'assessments', entry: 'admin/assessments'
 
-    render 'index'
-  end
+  def index; end
 
   def preview
     @translations = ::Translation.to_hash_for_assessment(resource.id, user_locale)

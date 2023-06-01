@@ -9,6 +9,7 @@ import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModa
 import store, { history } from './store'
 import routes from './routes'
 import settings from './settings'
+import { PortalMenu } from '~/components/MainMenu'
 
 const App: React.FC<void> = () => (
   <div className="ms" style={{ background: 'white' }}>
@@ -17,6 +18,7 @@ const App: React.FC<void> = () => (
       <DndProvider backend={HTML5Backend}>
         <Router>
           <ConnectedRouter history={history}>
+            <PortalMenu />
             <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
           </ConnectedRouter>
         </Router>

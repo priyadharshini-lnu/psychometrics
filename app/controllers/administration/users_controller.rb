@@ -8,12 +8,8 @@ class Administration::UsersController < Administration::BaseController
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
   append_after_action :verify_policy_scoped, except: %i[index search_admins]
-  # GET /administration/resources
-  def index
-    @init_state = {
-      currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-    }
-  end
+
+  render_entrypoint :index, element: 'users', entry: 'admin/users'
 
   def search_admins
     users = ::Users::Admin.search_query(params[:q]).map do |user|
@@ -22,6 +18,7 @@ class Administration::UsersController < Administration::BaseController
     render json: users
   end
 
+  def index; end
   # GET /administration/resources/1
   def show; end
 

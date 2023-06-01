@@ -9,14 +9,9 @@ module Administration
       before_action :set_privacy_link_enabled, only: %i[new edit create update]
       append_before_action :pundit_authorize, except: %i[index sidebar]
 
-      def index
-        @init_state = {
-          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(
-            current_user,
-            project_id: params[:client_id]
-          ).to_h
-        }
-      end
+      render_entrypoint :index, element: 'client-container', entry: 'admin/client'
+
+      def index; end
 
       def new
         @_resource = resource_class.new

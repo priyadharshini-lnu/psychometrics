@@ -17,6 +17,10 @@ export const routes = [
     component: ClientList,
   },
   {
+    path: '/clients',
+    component: ClientList,
+  },
+  {
     path: '/clients/:clientId',
     component: Client,
   },

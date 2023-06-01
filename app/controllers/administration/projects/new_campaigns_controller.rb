@@ -11,6 +11,7 @@ module Administration
         show update assessments_and_reports fetch_campaign_options fetch_campaign_instructions
         update_campaign_options destroy fetch_descriptions
       ]
+      render_entrypoint %i[index show], element: 'project-container', entry: 'admin/project'
       before_action :set_project_init_state, only: %i[index show], if: -> { request.format.html? }
       append_before_action :pundit_authorize, except: [:index]
 
@@ -62,6 +63,7 @@ module Administration
       end
 
       def show
+        @do_not_render_rails_menu = true
         respond_to do |format|
           format.html { render :index }
           format.json do
