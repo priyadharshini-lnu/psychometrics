@@ -58,19 +58,16 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             title={I18n.t('license_usage.campaign_name')}
             id="campaign_name"
             dataIndex={['extras', 'campaignName']}
-            sorter
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.subject_name')}
             id="subject_name"
             dataIndex={['extras', 'subjectName']}
-            sorter
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.subject_email')}
             id="subject_email"
             dataIndex={['extras', 'subjectEmail']}
-            sorter
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('common.column.created_at')}
