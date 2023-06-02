@@ -505,6 +505,12 @@ providers:
           - HPI
           - HDS
           - MVPI
+      - id: EcEQHPIHDSEIR
+        name: Hogan EQ report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HPI
     assessments:
       - id: HPI
         name: HPI
