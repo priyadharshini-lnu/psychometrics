@@ -55,6 +55,7 @@ export const uploadFiles = (id: string, data: FormData): ApiAction<void> => ({
     contentType: 'multipart/form-data;',
     url: `/api/v2/administration/design_settings/${id}/uploads`,
     body: data,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

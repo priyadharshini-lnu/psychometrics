@@ -56,6 +56,7 @@ export const uploadDataSheet = (id: number, body: { file: File }) => ({
     method: 'post',
     url: `/administration/reports/${id}/upload_data_sheet`,
     body,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

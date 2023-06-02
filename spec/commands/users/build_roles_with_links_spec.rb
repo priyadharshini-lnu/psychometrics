@@ -52,6 +52,20 @@ describe Users::BuildRolesWithLinks do
     end
   end
 
+  describe 'gen roles with links for regular 360 user' do
+    let(:campaign) { create(:campaign, type: :threesixty) }
+    let!(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
+    before do
+      create(:campaign_user, user: regular, campaign: campaign)
+    end
+
+    it do
+      roles = described_class.call!(regular)
+
+      expect(roles.first[:paths].last[:value]).to eq("/administration/clients/#{campaign.project.client.id}/projects/#{campaign.project.id}/threesixty_campaigns/#{threesixty_campaign.id}") # rubocop:disable Layout/LineLength
+    end
+  end
+
   describe 'when the user is superadmin' do
     it 'generates just an object for superadmin without links' do
       roles = described_class.call!(superadmin)

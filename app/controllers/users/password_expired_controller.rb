@@ -3,6 +3,7 @@
 module Users
   class PasswordExpiredController < Devise::PasswordExpiredController
     layout 'devise'
+    skip_before_action :ensure_user_profile_completed, only: %i[show update]
 
     def update
       resource.extend(Devise::Models::DatabaseAuthenticatablePatch)

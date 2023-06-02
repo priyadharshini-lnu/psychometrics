@@ -1007,6 +1007,7 @@ en:
       or: OR
       sso_btn: Login with Single Sign-On
       title: Welcome!
+    logout: Logout
     new_password: New Password
     otp:
       code: Code
@@ -2190,7 +2191,7 @@ en:
   myself: Myself
   na: NA
   navigation:
-    logout: Logout
+    logout: Log out
     profile: Profile
   next: Next
   'no': 'No'

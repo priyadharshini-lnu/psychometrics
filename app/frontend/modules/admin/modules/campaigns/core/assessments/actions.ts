@@ -96,6 +96,7 @@ export const importScoringResults = (campaignId: number, assessmentId: number, b
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/import_results?scoring=true`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

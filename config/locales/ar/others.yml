@@ -126,6 +126,7 @@ ar:
       or: أو
       sso_btn: تسجيل الدخول باستخدام الدخول الموحد
       title: مرحباً
+    logout: تسجيل خروج
     new_password: كلمة السر الجديدة
     otp:
       code: رمز
@@ -501,6 +502,8 @@ ar:
           totalResponses: إجمالي الردود
           variance: التباين
           weightedMean: المتوسط المرجح
+        question:
+          no_response: لا يوجد رد متاح
         statistic: الاحصائيه
         value: 'القيمة '
       three_sixty_report_summary:
