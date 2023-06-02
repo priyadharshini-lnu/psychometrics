@@ -3,6 +3,7 @@
 module Administration
   class AdminJobsController < Administration::BaseController
     before_action :skip_authorization
+    skip_before_action :init_state
 
     def index
       jobs = policy_scope(AdminJobRecord).order(created_at: :desc).offset(params[:offset] || 0).limit(20).all

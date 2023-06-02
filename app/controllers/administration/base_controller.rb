@@ -13,6 +13,8 @@ module Administration
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+    before_action :init_state
+
     private
 
     def user_not_authorized
@@ -62,7 +64,7 @@ module Administration
     end
 
     class << self
-      def render_entrypoint(actions, element:, entry:, state: true)
+      def render_entrypoint(actions, element:, entry:)
         actions = Array.wrap(actions)
 
         @_entrypoints ||= {}.with_indifferent_access
@@ -70,7 +72,6 @@ module Administration
           @_entrypoints[action] = [element, entry]
         end
 
-        before_action :init_state, only: actions if state
         before_action :handle_render_entrypoint, only: actions
       end
     end
