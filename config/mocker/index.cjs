@@ -14,35 +14,18 @@ function retrieveJSONFrom (jsonPath) {
 let ParticipantData = retrieveJSONFrom('./responses/projectParticipants/participantsData.json')
 
 const proxy = {
-  // Comment this instead of deleting. Useful for syntax lookups
-  // 'GET /relative/url': (_, res) => {
-  //   const data = retrieveJSONFrom('./responses/path/to/response.json')
-  //   return res.json(data)
-  // },
-
-  'GET /administration/projects/:projectId/assesssors': (_, res) => {
-    const data = retrieveJSONFrom('./responses/projectAssessors/get.json')
+  'GET /invites.json': (_, res) => {
+    const data = retrieveJSONFrom('./responses/invites/index.json')
     return res.json(data)
   },
 
-  'GET /administration/projects/:projectId/assesssors/:assessorId': (_, res) => {
-    const data = retrieveJSONFrom('./responses/projectAssessors/getOne.json')
+  'GET /bookings.json': (_, res) => {
+    const data = retrieveJSONFrom('./responses/bookings/index.json')
     return res.json(data)
   },
 
-  'PUT /administration/projects/:projectId/assesssors/:assessorId': (_, res) => {
-    const data = retrieveJSONFrom('./responses/projectAssessors/put.json')
-    return res.json(data)
-  },
-
-  'GET /administration/projects/:projectId/assesssors/:assessorId/reset_password': (_, res) => res.json('ok'),
-
-  'DELETE /administration/projects/:projectId/assesssors/:assessorId': (_, res) => {
-    const data = retrieveJSONFrom('./responses/projectAssessors/delete.json')
-    return res.json(data)
-  },
-
-  /* Project Participants API mocks */
+  // Below code can be used as inspiration to mock CRUD endpoints
+  // Project Participants API mocks
   'GET /administration/projects/:projectId/participants': (_, res) => res.json(ParticipantData),
 
   'GET /administration/projects/:projectId/participants/:participantId': (req, res) => {

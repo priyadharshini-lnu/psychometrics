@@ -18,7 +18,8 @@
     "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "mockApi": "mocker config/mocker/index.cjs --port ${MOCK_SERVER_API_PORT:-'3037'}"
   },
   "engines": {
     "node": ">=14.15.1 <15.0.0"
@@ -101,7 +102,7 @@
     "lodash": "^4.17.21",
     "medium-zoom": "^1.0.6",
     "microphone-stream": "^6.0.1",
-    "mime": "^3.0.0",
+    "mime": "^1.6.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.40",
     "normalize.css": "^4.1.1",
@@ -211,7 +212,7 @@
     "vite-plugin-svgr": "^2.4.0"
   },
   "resolutions": {
-    "mime": "^3.0.0",
+    "mime": "^1.6.0",
     "caniuse-lite": "^1.0.30001422",
     "has-symbols": "^1.0.3",
     "buffer": "^6.0.3",

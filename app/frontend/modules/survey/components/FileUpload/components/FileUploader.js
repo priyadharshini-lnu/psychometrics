@@ -1,4 +1,4 @@
-import mime from 'mime/lite'
+import mime from 'mime'
 import humps from 'humps'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
@@ -24,7 +24,7 @@ const uploadFile = (data, context) => {
     url: data.url,
     data: file,
     processData: false,
-    contentType: mime.getType(fileName || file.name),
+    contentType: mime.lookup(fileName || file.name),
     xhr: () => {
       const xhr = new XMLHttpRequest()
       xhr.upload.addEventListener('progress', e => onUploadProgress(e, dispatch), false)

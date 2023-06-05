@@ -132,6 +132,26 @@ Following the above steps, your local development environment should be accessib
 bundle exec rspec
 ```
 
+# Running mock server
+Currently mock server can only run on non ssl mode. For this we would have start rails server and vite server on non ssl mode.
+
+Run below code in terminal to run mock server
+```
+yarn run mockApi
+```
+
+To use mock api, pass `mocked: true` from redux api action
+```
+export const fetch = () => ({
+  type: FETCH,
+  request: {
+    method: 'get',
+    mocked: true,
+    url: `/invites`,
+  },
+})
+```
+
 # Other Development Tasks
 
 ## Localisation
