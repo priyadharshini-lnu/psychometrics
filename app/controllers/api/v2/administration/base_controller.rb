@@ -47,6 +47,7 @@ module Api
       action = params[:action].to_sym
       if _request_schemas&.dig(action)
         schema_or_contract = _request_schemas&.dig(action)
+        schema_or_contract = send(schema_or_contract) if schema_or_contract.is_a?(Symbol)
         schema_validation = if schema_or_contract.is_a?(Dry::Schema::Processor)
                               schema_or_contract.call(params.permit!.to_h)
                             else

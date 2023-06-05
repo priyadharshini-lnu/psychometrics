@@ -8,6 +8,7 @@ class Webhook < WebhookSystem::Subscription
   validates :url, http_url: { presence: true }
   validates :description, :auth_type, presence: true
 
+  scope :active, -> { where(active: true) }
   scope :webhooks_of, ->(project_id) { where(project_id: project_id) }
 
   enum auth_type: { no_auth: 0, basic_auth: 1 }

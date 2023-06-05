@@ -3,8 +3,20 @@
 module Api
   class V2::Administration::WebhooksController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::Webhook::Schema
-    validates_request_schema :update, Api::V2::Webhook::Contract.new
-    validates_request_schema :create, Api::V2::Webhook::Contract.new
+    validates_request_schema :update, :update_request_contract_and_schema
+    validates_request_schema :create, :create_request_contract_and_schema
+
+    def update_request_contract_and_schema
+      Api::V2::Webhook::Contract.new(
+        schema: Api::V2::Webhook::Schema.update_request
+      )
+    end
+
+    def create_request_contract_and_schema
+      Api::V2::Webhook::Contract.new(
+        schema: Api::V2::Webhook::Schema.create_request
+      )
+    end
 
     def policy_class
       Api::Administration::WebhookPolicy
